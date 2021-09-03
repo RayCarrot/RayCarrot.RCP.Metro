@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
@@ -13,7 +12,7 @@
 
         <StackPanel Orientation="Horizontal">
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <Button Content="{Resx Utility_Apply}"
@@ -23,7 +22,7 @@
             <Button Content="{Resx Utility_Revert}"
                     HorizontalAlignment="Left"
                     Command="{Binding Path=RevertPatchCommand}"
-                    Visibility="{Binding Path=HasBeenApplied, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                    Visibility="{Binding Path=HasBeenApplied, Converter={local:BooleanToVisibilityConverter}}"/>
 
         </StackPanel>
 

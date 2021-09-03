@@ -3,7 +3,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
@@ -156,14 +155,14 @@
                             InputGestureText="Del"
                             IsEnabled="{Binding Path=CanBeDeleted, Mode=OneTime}" />
 
-        <Separator Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}" />
+        <Separator Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}" />
 
         <!-- Open Location -->
 
         <local:MenuItemIcon Header="{Resx GameDisplay_OpenLocation}"
                             Command="{Binding Path=OpenLocationCommand}"
                             IconKind="FolderOutline"
-                            Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                            Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}" />
 
     </ContextMenu>
 

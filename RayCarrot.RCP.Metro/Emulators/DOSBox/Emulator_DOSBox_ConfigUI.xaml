@@ -6,7 +6,6 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -16,7 +15,7 @@
              d:DataContext="{d:DesignInstance local:Config_Ray1_BaseViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- General settings -->
@@ -32,7 +31,7 @@
 
         <WrapPanel>
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="0 8 8 8" />
+                <local:UnifiedMarginBehavior Margin="0 8 8 8" />
             </i:Interaction.Behaviors>
 
             <CheckBox Content="{Resx DosBoxOptions_Fullscreeen}"
@@ -77,7 +76,7 @@
             </Grid.Resources>
 
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
             </i:Interaction.Behaviors>
 
             <TextBlock Grid.Column="0"
@@ -191,12 +190,12 @@
 
         <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx DosBoxOptions_Commands}"
-                   rwpf:UserLevelTag.MinUserLevel="Technical" />
+                   local:UserLevelTag.MinUserLevel="Technical" />
 
         <TextBox Text="{Binding Path=CustomCommands}"
                  AcceptsReturn="True"
                  mah:TextBoxHelper.Watermark="{Resx DosBoxOptions_CommandsOptional}"
-                 rwpf:UserLevelTag.MinUserLevel="Technical"
+                 local:UserLevelTag.MinUserLevel="Technical"
                  MinHeight="70" />
 
     </StackPanel>

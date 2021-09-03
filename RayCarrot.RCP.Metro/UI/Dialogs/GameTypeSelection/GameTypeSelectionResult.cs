@@ -1,6 +1,4 @@
-﻿using RayCarrot.WPF;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// User input result for a game type selection

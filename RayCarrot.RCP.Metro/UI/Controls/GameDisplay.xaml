@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              IsTabStop="False" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:Page_Games_GameViewModel}">
@@ -40,7 +39,7 @@
                               MainCommand="{Binding Path=MainAction.Command, Mode=OneTime}"
                               MainContent="{Binding Path=MainAction.Header, Mode=OneTime}"
                               MainIconKind="{Binding Path=MainAction.IconKind, Mode=OneTime}"
-                              ShowSecondaryButton="{Binding Path=SecondaryAction, Converter={rwpf:IsNotNullConverter}}"
+                              ShowSecondaryButton="{Binding Path=SecondaryAction, Converter={local:IsNotNullConverter}}"
                               SecondaryCommand="{Binding Path=SecondaryAction.Command, Mode=OneTime}"
                               SecondaryIconKind="{Binding Path=SecondaryAction.IconKind, Mode=OneTime}"/>
 

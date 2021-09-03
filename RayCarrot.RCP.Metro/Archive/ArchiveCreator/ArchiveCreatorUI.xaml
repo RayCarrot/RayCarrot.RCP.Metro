@@ -2,10 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveCreatorDialogViewModel}"
              Language="{UICulture}"
@@ -18,7 +17,7 @@
                                 VerticalContentAlignment="Stretch"
                                 IsLoading="{Binding Path=IsLoading}">
         <Grid Margin="10"
-              IsEnabled="{Binding Path=IsLoading, Converter={rwpf:InvertedBooleanConverter}}">
+              IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -27,23 +26,23 @@
             <ScrollViewer Grid.Row="0">
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <TextBlock Style="{StaticResource TextBlock.Header}"
                                Text="{Resx Archive_CreateInputDir}" />
 
-                    <rwpf:BrowseBox SelectedPath="{Binding Path=InputDirectory}"
-                                    PathValidation="DirectoryExistsAndNotEmpty"
-                                    BrowseType="Directory"/>
+                    <local:BrowseBox SelectedPath="{Binding Path=InputDirectory}"
+                                     PathValidation="DirectoryExistsAndNotEmpty"
+                                     BrowseType="Directory"/>
 
                     <TextBlock Style="{StaticResource TextBlock.Header}"
                                Text="{Resx Archive_CreateOutputFile}" />
 
-                    <rwpf:BrowseBox SelectedPath="{Binding Path=OutputFile}"
-                                    PathValidation="NotEmpty"
-                                    BrowseType="SaveFile"
-                                    FileFilter="{Binding Path=Manager.ArchiveFileFilter, Mode=OneTime}"/>
+                    <local:BrowseBox SelectedPath="{Binding Path=OutputFile}"
+                                     PathValidation="NotEmpty"
+                                     BrowseType="SaveFile"
+                                     FileFilter="{Binding Path=Manager.ArchiveFileFilter, Mode=OneTime}"/>
 
                     <ContentPresenter Content="{Binding Path=Manager.GetCreatorUIConfig, Mode=OneTime}" />
 

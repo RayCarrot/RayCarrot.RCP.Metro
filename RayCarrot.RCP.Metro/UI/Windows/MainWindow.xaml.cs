@@ -1,9 +1,8 @@
-﻿using System;
+﻿using RayCarrot.Logging;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -70,7 +69,7 @@ namespace RayCarrot.RCP.Metro
             // Set the data context for each overflow item
             foreach (var page in PageTabControl.Items.
                 // Get all tab items
-                OfType<TabItem>().
+                OfType<System.Windows.Controls.TabItem>().
                 // Get the content of the tab items
                 Select(x => x.Content).
                 // Only get base pages

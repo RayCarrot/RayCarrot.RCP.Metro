@@ -5,9 +5,9 @@ using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
 using RayCarrot.Common;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
-using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +20,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shell;
 using Microsoft.Extensions.DependencyInjection;
-using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -70,7 +69,7 @@ namespace RayCarrot.RCP.Metro
                 // Add message UI manager
                 AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
-                AddBrowseUIManager<DefaultWPFBrowseUIManager>().
+                AddBrowseUIManager<RCPBrowseUIManager>().
                 // Add file manager
                 AddFileManager<RCPFileManager>().
                 // Add dialog base manager
@@ -200,7 +199,7 @@ namespace RayCarrot.RCP.Metro
                 return;
             
             // Save window state
-            RCPServices.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
+            RCPServices.Data.WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
 
             RL.Logger?.LogInformationSource($"The application is exiting...");
 
@@ -322,7 +321,7 @@ namespace RayCarrot.RCP.Metro
 
                 return Task.CompletedTask;
             };
-            Services.Data.CultureChanged += (s, e) => RefreshJumpList();
+            Services.InstanceData.CultureChanged += (s, e) => RefreshJumpList();
 
             // Subscribe to when the app has finished setting up
             StartupComplete += App_StartupComplete_GameFinder_Async;
@@ -331,15 +330,15 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("BasicStartup: Check launch arguments");
 
             // Check for reset argument
-            if (Services.Data.Arguments.Contains("-reset"))
+            if (Services.InstanceData.Arguments.Contains("-reset"))
                 RCPServices.Data.Reset();
 
             // Check for user level argument
-            if (Services.Data.Arguments.Contains("-ul"))
+            if (Services.InstanceData.Arguments.Contains("-ul"))
             {
                 try
                 {
-                    string ul = Services.Data.Arguments[Services.Data.Arguments.FindItemIndex(x => x == "-ul") + 1];
+                    string ul = Services.InstanceData.Arguments[Services.InstanceData.Arguments.FindItemIndex(x => x == "-ul") + 1];
                     Data.UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
                 }
                 catch (Exception ex)
@@ -350,11 +349,11 @@ namespace RayCarrot.RCP.Metro
 
             // NOTE: Starting with the updater 3.0.0 (available from 4.5.0) this is no longer used. It must however be maintained for legacy support (i.e. updating to version 4.5.0+ using an updater below 3.0.0)
             // Check for updater install argument
-            if (Services.Data.Arguments.Contains("-install"))
+            if (Services.InstanceData.Arguments.Contains("-install"))
             {
                 try
                 {
-                    FileSystemPath updateFile = Services.Data.Arguments[Services.Data.Arguments.FindItemIndex(x => x == "-install") + 1];
+                    FileSystemPath updateFile = Services.InstanceData.Arguments[Services.InstanceData.Arguments.FindItemIndex(x => x == "-install") + 1];
                     if (updateFile.FileExists)
                     {
                         updateFile.GetFileInfo().Delete();

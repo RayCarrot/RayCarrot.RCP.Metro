@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -189,7 +188,7 @@ namespace RayCarrot.RCP.Metro
                 // Arg 4: Update URL
                 $"\"{result.DownloadURL}\" " +
                 // Arg 5: Current culture
-                $"\"{Services.Data.CurrentCulture}\"");
+                $"\"{Services.InstanceData.CurrentCulture}\"");
 
             // Make sure we have a valid process
             if (updateProcess == null)

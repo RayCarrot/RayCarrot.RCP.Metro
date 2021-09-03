@@ -6,7 +6,6 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="100" 
@@ -70,7 +69,7 @@
                                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                                 SnapsToDevicePixels="True"
                                 Style="{DynamicResource MahApps.Styles.Button.Split.Arrow}"
-                                Visibility="{Binding Path=ShowSecondaryButton, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                Visibility="{Binding Path=ShowSecondaryButton, Converter={local:BooleanToVisibilityConverter}}"
                                 Command="{Binding Path=SecondaryCommand}">
 
                             <iconPacks:PackIconMaterial Width="14"
@@ -90,7 +89,7 @@
                             SnapsToDevicePixels="True"
                             Style="{DynamicResource MahApps.Styles.Button.Split.Arrow}"
                             Click="ExpanderButton_OnClick"
-                            Visibility="{Binding Path=OverflowItemSource, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                            Visibility="{Binding Path=OverflowItemSource, Converter={local:EnumerableEmptyVisibilityConverter}}">
 
                         <ContentControl Width="9"
                                         Height="9"
@@ -123,10 +122,10 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="local:OverflowButtonItemViewModel">
                             <Grid Background="{StaticResource MahApps.Brushes.Control.Background}"
-                              rwpf:UserLevelTag.MinUserLevel="{Binding Path=MinUserLevel}">
+                              local:UserLevelTag.MinUserLevel="{Binding Path=MinUserLevel}">
                                 <MenuItem Header="{Binding Path=Header}"
                                       Command="{Binding Path=Command}"
-                                      Visibility="{Binding Path=IsSeparator, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
+                                      Visibility="{Binding Path=IsSeparator, Converter={local:InvertedBooleanToVisibilityConverter}}"
                                       Click="MenuItem_OnClick">
                                     <MenuItem.Style>
                                         <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
@@ -152,7 +151,7 @@
                                         </Style>
                                     </MenuItem.Style>
                                 </MenuItem>
-                                <Separator Visibility="{Binding Path=IsSeparator, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                                <Separator Visibility="{Binding Path=IsSeparator, Converter={local:BooleanToVisibilityConverter}}"/>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

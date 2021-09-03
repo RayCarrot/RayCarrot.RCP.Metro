@@ -1,6 +1,5 @@
 ﻿using RayCarrot.Common;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -34,7 +33,7 @@ namespace RayCarrot.RCP.Metro
 
             // Refresh the game data on certain events
             App.RefreshRequired += App_RefreshRequiredAsync;
-            Services.Data.CultureChanged += Data_CultureChanged;
+            Services.InstanceData.CultureChanged += Data_CultureChanged;
         }
 
         #endregion
@@ -124,7 +123,7 @@ namespace RayCarrot.RCP.Metro
 
             // Unsubscribe events
             App.RefreshRequired -= App_RefreshRequiredAsync;
-            Services.Data.CultureChanged -= Data_CultureChanged;
+            Services.InstanceData.CultureChanged -= Data_CultureChanged;
 
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(GameInfoItems);

@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Default Items Control -->
+
+    <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+
+        <!-- Disable tab stop -->
+
+        <Setter Property="IsTabStop" Value="False" />
+
+    </Style>
+
+</ResourceDictionary>

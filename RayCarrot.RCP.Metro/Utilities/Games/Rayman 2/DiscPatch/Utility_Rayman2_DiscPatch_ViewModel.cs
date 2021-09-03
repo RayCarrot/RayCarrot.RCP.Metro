@@ -108,13 +108,13 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource($"The R2 disc patch has been applied");
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_DiscPatchApplied);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_DiscPatchApplied);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying R2 disc patch");
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_DiscPatchError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_DiscPatchError);
             }
         }
 

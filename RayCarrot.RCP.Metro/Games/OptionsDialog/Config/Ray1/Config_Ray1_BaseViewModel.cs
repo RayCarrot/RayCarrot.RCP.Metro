@@ -4,7 +4,6 @@ using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
-using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;

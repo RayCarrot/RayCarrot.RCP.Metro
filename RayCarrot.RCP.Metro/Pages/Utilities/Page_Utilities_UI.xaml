@@ -7,7 +7,6 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -20,13 +19,13 @@
                                  FocusVisualStyle="{x:Null}">
 
         <i:Interaction.Behaviors>
-            <rwpf:FocusElementOnLoad />
+            <local:FocusElementOnLoad />
         </i:Interaction.Behaviors>
 
         <!-- Archive Explorer -->
 
-        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
-                 local:TabItemProperties.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
+                 local:TabItem.IconForeground="{StaticResource Colors.ArchiveExplorer}"
                  Header="{Resx Utilities_ArchiveExplorer_Header}">
 
             <ScrollViewer>
@@ -37,8 +36,8 @@
 
         <!-- Converters -->
 
-        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Converters}"
-                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_Converters}"
+                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Converter_Header}">
 
             <ScrollViewer>
@@ -49,8 +48,8 @@
 
         <!-- Decoders -->
 
-        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Decoders}"
-                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_Decoders}"
+                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Decoder_Header}">
 
             <ScrollViewer>
@@ -61,8 +60,8 @@
 
         <!-- Other -->
 
-        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Other}"
-                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_Other}"
+                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Other_Header}">
 
             <ScrollViewer>
@@ -73,8 +72,8 @@
 
         <!-- External Tools -->
 
-        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
-                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
+                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_ExternalTools_Header}">
 
             <ScrollViewer>

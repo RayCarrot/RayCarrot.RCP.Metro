@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
-using RayCarrot.WPF;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 

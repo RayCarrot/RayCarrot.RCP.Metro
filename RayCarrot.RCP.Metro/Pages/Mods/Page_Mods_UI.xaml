@@ -7,7 +7,6 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -21,14 +20,14 @@
                                  FocusVisualStyle="{x:Null}">
 
         <i:Interaction.Behaviors>
-            <rwpf:FocusElementOnLoad />
+            <local:FocusElementOnLoad />
         </i:Interaction.Behaviors>
 
         <mah:MetroAnimatedTabControl.ItemContainerStyle>
             <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
                 <Setter Property="Header" Value="{Binding Path=Header, Mode=OneTime}" />
-                <Setter Property="local:TabItemProperties.IconKind" Value="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
-                <Setter Property="local:TabItemProperties.IconForeground" Value="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}" />
+                <Setter Property="local:TabItem.IconKind" Value="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
+                <Setter Property="local:TabItem.IconForeground" Value="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}" />
             </Style>
         </mah:MetroAnimatedTabControl.ItemContainerStyle>
 

@@ -1,6 +1,5 @@
 ﻿using Nito.AsyncEx;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -176,7 +175,7 @@ namespace RayCarrot.RCP.Metro
 
         public void SetErrorState(Exception ex)
         {
-            PageContent = Services.Data.CurrentUserLevel >= UserLevel.Advanced ? ex.ToString() : null;
+            PageContent = Services.InstanceData.CurrentUserLevel >= UserLevel.Advanced ? ex.ToString() : null;
         }
 
         public virtual void Dispose()

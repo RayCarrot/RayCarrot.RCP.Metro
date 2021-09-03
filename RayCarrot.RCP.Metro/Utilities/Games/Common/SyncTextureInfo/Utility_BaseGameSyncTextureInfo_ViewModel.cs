@@ -101,13 +101,13 @@ namespace RayCarrot.RCP.Metro
                     return EditTextureInfo(gameSettings, dataFiles, cntFiles);
                 });
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
             }
             catch (Exception ex)
             {
                 ex.HandleError("Syncing texture info");
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
             }
             finally
             {

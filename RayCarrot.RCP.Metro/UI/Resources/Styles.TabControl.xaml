@@ -17,8 +17,8 @@
 
     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
         <Setter Property="Padding" Value="0" />
-        <Setter Property="local:TabItemProperties.HeaderFontSize" Value="16" />
-        <Setter Property="local:TabItemProperties.IconForeground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+        <Setter Property="local:TabItem.HeaderFontSize" Value="16" />
+        <Setter Property="local:TabItem.IconForeground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
         <Setter Property="metro:TabControlHelper.UnderlineSelectedBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
         <Setter Property="metro:TabControlHelper.UnderlineBrush" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
         <Setter Property="metro:TabControlHelper.UnderlineMouseOverBrush" Value="{DynamicResource MahApps.Brushes.Gray.MouseOver}" />
@@ -30,15 +30,15 @@
                                 Margin="8 2"
                                 DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}">
 
-                        <iconPacks:PackIconMaterial Kind="{Binding Path=(local:TabItemProperties.IconKind)}"
-                                                    Foreground="{Binding Path=(local:TabItemProperties.IconForeground)}"
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=(local:TabItem.IconKind)}"
+                                                    Foreground="{Binding Path=(local:TabItem.IconForeground)}"
                                                     Margin="0 0 7 0"
                                                     VerticalAlignment="Center"
-                                                    Visibility="{Binding Path=(local:TabItemProperties.IconVisibility)}" />
+                                                    Visibility="{Binding Path=(local:TabItem.IconVisibility)}" />
 
                         <ContentControl x:Name="TabItemHeaderContent" 
                                         ContentStringFormat="{Binding Path=HeaderStringFormat}" 
-                                        FontSize="{Binding Path=(local:TabItemProperties.HeaderFontSize)}"
+                                        FontSize="{Binding Path=(local:TabItem.HeaderFontSize)}"
                                         Content="{Binding Path=Header}"
                                         VerticalAlignment="Center">
 
@@ -80,7 +80,7 @@
     <!-- Large Tab Item -->
 
     <Style x:Key="TabItem.Large" TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-        <Setter Property="local:TabItemProperties.HeaderFontSize" Value="24" />
+        <Setter Property="local:TabItem.HeaderFontSize" Value="24" />
     </Style>
 
     <!-- Default Tab Panel -->

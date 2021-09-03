@@ -11,7 +11,6 @@ using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

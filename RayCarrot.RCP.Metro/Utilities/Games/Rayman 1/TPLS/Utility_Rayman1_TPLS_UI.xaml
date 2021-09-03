@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -12,27 +11,27 @@
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_Rayman1_TPLS_ViewModel}">
     <StackPanel>
         <Interactions:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
         <Button Content="{Resx R1U_TPLSInstall}"
                 Command="{Binding Path=InstallTPLSCommand}"
                 HorizontalAlignment="Left"
-                Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:ObjectNullToVisibilityConverter}}" />
+                Visibility="{Binding Path=Data.TPLSData, Converter={local:ObjectNullToVisibilityConverter}}" />
 
         <Button Content="{Resx R1U_TPLSUninstall}"
                 Command="{Binding Path=UninstallTPLSCommand}"
                 HorizontalAlignment="Left"
-                Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}" />
+                Visibility="{Binding Path=Data.TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}" />
 
         <mah:ToggleSwitch IsOn="{Binding Path=IsEnabled}"
                           IsEnabled="{Binding Path=CanEnableTPLS}"
-                          Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                          Visibility="{Binding Path=Data.TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                           HorizontalAlignment="Left"
                           OnContent="{Resx SettingEnabled}"
                           OffContent="{Resx SettingDisabled}" />
 
-        <Grid Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}">
+        <Grid Visibility="{Binding Path=Data.TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" MinWidth="110" />
@@ -44,7 +43,7 @@
                        Text="{Resx R1U_TPLSRaymanVersion}" />
 
             <ComboBox Grid.Column="1"
-                      SelectedIndex="{Binding Path=SelectedRaymanVersion, Converter={rwpf:EnumToIntConverter}}">
+                      SelectedIndex="{Binding Path=SelectedRaymanVersion, Converter={local:EnumToIntConverter}}">
 
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_Auto}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_00}" />

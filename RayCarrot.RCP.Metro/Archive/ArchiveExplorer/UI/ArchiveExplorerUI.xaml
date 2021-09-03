@@ -7,7 +7,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:editors="http://wpfcontrols.com/"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:wpfTextBoxAutoComplete="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
@@ -32,7 +31,7 @@
                                 HorizontalContentAlignment="Stretch"
                                 IsLoading="{Binding Path=IsLoading}">
         <Grid Margin="10"
-              IsEnabled="{Binding Path=IsLoading, Converter={rwpf:InvertedBooleanConverter}}">
+              IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -122,35 +121,35 @@
 
                 <local:OverflowMenu Grid.Column="2"
                                     InheritDataContext="False"
-                                    Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}">
+                                    Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}">
                     <local:OverflowMenu.ContextMenu>
                         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                      DataContext="{x:Static local:RCPServices.Data}">
                             <local:MenuItemIcon Header="{Resx Archive_Sort}"
                                                 IconKind="Sort" >
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Default}" 
+                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}" 
                                                     Header="{Resx Archive_Sort_Default}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked"/>
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}" 
+                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}" 
                                                     Header="{Resx Archive_Sort_AlphabeticallyAscending}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked" />
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}" 
+                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}" 
                                                     Header="{Resx Archive_Sort_AlphabeticalDescending}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked" />
 
                             </local:MenuItemIcon>
 
-                            <Separator rwpf:UserLevelTag.MinUserLevel="Debug"/>
+                            <Separator local:UserLevelTag.MinUserLevel="Debug"/>
 
                             <local:MenuItemIcon Header="{Resx DebugPageHeader}"
                                                 IconKind="CodeBraces"
-                                                rwpf:UserLevelTag.MinUserLevel="Debug">
+                                                local:UserLevelTag.MinUserLevel="Debug">
 
                                 <local:MenuItemIcon Header="Force repack"
                                                     Click="ForceRepackMenuItem_OnClick"/>
@@ -313,11 +312,11 @@
                 <!-- Status -->
 
                 <Separator Grid.Row="1"
-                           Visibility="{Binding Path=DisplayStatus, Converter={rwpf:StringEmptyToVisibilityConverter}}" />
+                           Visibility="{Binding Path=DisplayStatus, Converter={local:StringEmptyToVisibilityConverter}}" />
 
                 <TextBlock Grid.Row="2"
                            Text="{Binding Path=DisplayStatus}" 
-                           Visibility="{Binding Path=DisplayStatus, Converter={rwpf:StringEmptyToVisibilityConverter}}"/>
+                           Visibility="{Binding Path=DisplayStatus, Converter={local:StringEmptyToVisibilityConverter}}"/>
 
             </Grid>
 
@@ -332,7 +331,7 @@
 
                     <DataTemplate>
 
-                        <Grid Visibility="{Binding Path=HasModifiedFiles, Converter={rwpf:BooleanToVisibilityConverter}}">
+                        <Grid Visibility="{Binding Path=HasModifiedFiles, Converter={local:BooleanToVisibilityConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

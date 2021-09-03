@@ -7,7 +7,6 @@ using System.Windows.Input;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

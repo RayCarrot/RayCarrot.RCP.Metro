@@ -3,7 +3,6 @@ using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
-using RayCarrot.WPF;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;

@@ -5,7 +5,6 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
@@ -13,7 +12,7 @@
 
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <Border BorderThickness="{StaticResource Thickness.Border.Default}" 

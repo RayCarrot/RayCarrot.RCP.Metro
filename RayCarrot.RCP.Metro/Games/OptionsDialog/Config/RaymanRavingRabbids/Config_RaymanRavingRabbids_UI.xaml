@@ -5,14 +5,13 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:Config_RaymanRavingRabbids_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <TextBlock Style="{StaticResource TextBlock.Header}"
@@ -23,7 +22,7 @@
                   IsChecked="{Binding Path=FullscreenMode}" />
 
         <StackPanel Orientation="Horizontal"
-                    rwpf:UserLevelTag.MinUserLevel="Advanced">
+                    local:UserLevelTag.MinUserLevel="Advanced">
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_RRRScreenMode}" />
 
@@ -33,7 +32,7 @@
 
         <ComboBox SelectedIndex="{Binding Path=ScreenModeIndex}"
                   HorizontalAlignment="Left"
-                  rwpf:UserLevelTag.MinUserLevel="Advanced">
+                  local:UserLevelTag.MinUserLevel="Advanced">
             <TextBlock Text="{Resx Config_RRRScreenMode_4_3Borders}" />
             <TextBlock Text="{Resx Config_RRRScreenMode_4_3}" />
             <TextBlock Text="{Resx Config_RRRScreenMode_16_9}" />

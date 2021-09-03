@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
@@ -19,7 +18,7 @@
             <DataTemplate>
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <Separator x:Name="ItemSeparator"/>
@@ -30,18 +29,18 @@
 
                         <local:InfoIcon Style="{StaticResource InfoIcon.AdditionalFilesRequired}"
                                         Text="{Resx Utility_AdditionalFilesRequired}"
-                                        Visibility="{Binding Path=Utility.RequiresAdditionalFiles, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}"/>
+                                        Visibility="{Binding Path=Utility.RequiresAdditionalFiles, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}"/>
 
                         <local:InfoIcon Text="{Binding Path=InfoText.Value}"
-                                        Visibility="{Binding Path=InfoText.Value, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"/>
+                                        Visibility="{Binding Path=InfoText.Value, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"/>
 
                         <local:InfoIcon Style="{StaticResource InfoIcon.WorkInProgress}"
                                         Text="{Resx Utility_WIP}"
-                                        Visibility="{Binding Path=Utility.IsWorkInProcess, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}"/>
+                                        Visibility="{Binding Path=Utility.IsWorkInProcess, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}"/>
 
                         <local:InfoIcon Style="{StaticResource InfoIcon.Warning}"
                                         Text="{Binding Path=WarningText.Value}"
-                                        Visibility="{Binding Path=WarningText.Value, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
+                                        Visibility="{Binding Path=WarningText.Value, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
 
                     </StackPanel>
 

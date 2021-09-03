@@ -1,7 +1,6 @@
 ﻿using Nito.AsyncEx;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.WPF;
 using System;
 using System.Threading.Tasks;
 

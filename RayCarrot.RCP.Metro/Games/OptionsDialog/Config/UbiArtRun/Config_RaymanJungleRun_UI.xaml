@@ -5,14 +5,13 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:Config_RaymanJungleRun_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
@@ -23,7 +22,7 @@
 
         </StackPanel>
 
-        <ComboBox SelectedIndex="{Binding Path=SelectedHero, Converter={rwpf:EnumToIntConverter}}"
+        <ComboBox SelectedIndex="{Binding Path=SelectedHero, Converter={local:EnumToIntConverter}}"
                   HorizontalAlignment="Left">
             <TextBlock Text="{Resx Config_RJRHeroes_Rayman}" />
             <TextBlock Text="{Resx Config_RJRHeroes_Globox}" />

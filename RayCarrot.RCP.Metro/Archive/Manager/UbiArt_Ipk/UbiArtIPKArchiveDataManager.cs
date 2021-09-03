@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ByteSizeLib;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

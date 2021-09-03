@@ -296,7 +296,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             ex.HandleError("Repacking archive", DisplayName);
 
-                            await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
                             // Re-open the file stream if closed
                             if (ArchiveFileStream == null)

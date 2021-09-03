@@ -1,5 +1,4 @@
 ﻿using RayCarrot.Logging;
-using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -20,7 +19,7 @@ namespace RayCarrot.RCP.Metro
         {
             Refresh();
 
-            Services.Data.CultureChanged += (s, e) => Refresh();
+            Services.InstanceData.CultureChanged += (s, e) => Refresh();
         }
 
         #endregion

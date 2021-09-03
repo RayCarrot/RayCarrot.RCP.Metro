@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <Style x:Key="ItemsControl.LinkItemsDisplay" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
@@ -12,7 +11,7 @@
                         <ItemsControl ItemsSource="{Binding}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <rwpf:AlignableWrapPanel HorizontalContentAlignment="Center" />
+                                    <local:AlignableWrapPanel HorizontalContentAlignment="Center" />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -27,7 +26,7 @@
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Source="{Binding Path=IconSource, Mode=OneTime}" />
                                                     <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}" 
-                                                                                Visibility="{Binding Path=IconSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"/>
+                                                                                Visibility="{Binding Path=IconSource, Converter={local:ObjectNullToVisibilityConverter}}"/>
                                                     <TextBlock Text="{Binding Path=DisplayText}"
                                                                Margin="5 0 0 0"
                                                                VerticalAlignment="Center"/>

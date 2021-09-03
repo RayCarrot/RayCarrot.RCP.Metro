@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.DialogMessageBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance local:DialogMessageViewModel}">
+
+    <Grid Margin="1" MinWidth="430" MinHeight="170" MaxWidth="600">
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="100"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Path=MessageText}"
+                       TextWrapping="Wrap"
+                       Margin="20"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+            <Image Margin="5"
+                   Width="120"
+                   Height="120"
+                   Grid.Column="1"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="{Binding Path=DialogImageSource}"
+                   Visibility="{Binding Path=DialogImageSource, Converter={local:InvertedObjectNullToVisibilityConverter}}"/>
+        </Grid>
+        <ItemsControl Grid.Row="1" HorizontalAlignment="Right" ItemsSource="{Binding Path=DialogActions}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="local:DialogMessageActionViewModel">
+                    <Button Content="{Binding Path=DisplayText}"
+                            ToolTip="{Binding Path=DisplayDescription}"
+                            IsDefault="{Binding Path=IsDefault}"
+                            IsCancel="{Binding Path=IsCancel}"
+                            Command="{Binding Path=ActionCommand}"
+                            Margin="8"
+                            VerticalAlignment="Center"
+                            Padding="4"
+                            MinWidth="50"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</UserControl>

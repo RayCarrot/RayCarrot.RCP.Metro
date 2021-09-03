@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.IconPacks;
-using Nito.AsyncEx;
+﻿using Nito.AsyncEx;
 using RayCarrot.Common;
 using RayCarrot.UI;
 using System;
@@ -9,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -64,7 +62,7 @@ namespace RayCarrot.RCP.Metro
             _ = Task.Run(async () => await RefreshCategorizedVisibilityAsync());
 
             // Refresh on culture changed
-            Services.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+            Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
 
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();

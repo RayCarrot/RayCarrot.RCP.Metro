@@ -1,5 +1,4 @@
-﻿using RayCarrot.WPF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -88,7 +87,7 @@ namespace RayCarrot.RCP.Metro
             // Add game specific group names
             groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
 
-            WindowHelpers.ShowWindow(() => new GameOptionsDialog(game), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
+            AppWindowsManager.ShowWindow(() => new GameOptionsDialog(game), AppWindowsManager.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
         }
 
         #endregion

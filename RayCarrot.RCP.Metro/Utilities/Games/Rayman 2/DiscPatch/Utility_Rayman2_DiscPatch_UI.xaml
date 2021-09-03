@@ -4,19 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_Rayman2_DiscPatch_ViewModel}">
     <StackPanel>
         <Interactions:Interaction.Behaviors>
-            <wpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
         <TextBlock Text="{Resx R2U_DiscPatchNotRequired}"
                    Foreground="Green"
-                   Visibility="{Binding Path=RequiresPatching, Converter={wpf:InvertedBooleanToVisibilityConverter}}"/>
+                   Visibility="{Binding Path=RequiresPatching, Converter={local:InvertedBooleanToVisibilityConverter}}"/>
 
         <Button Content="{Resx Utility_Apply}"
                 IsEnabled="{Binding Path=RequiresPatching}"

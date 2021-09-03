@@ -105,6 +105,40 @@
     </ApplicationDefinition>
     <Compile Include="AppData\DataModels\UserData_Archive_GF_TransparencyMode.cs" />
     <Compile Include="AppData\DataModels\UserData_Archive_Sort.cs" />
+    <Compile Include="AppData\DataModels\UserData_WindowSessionState.cs" />
+    <Compile Include="App\BaseApp.cs" />
+    <Compile Include="App\InstanceData\CultureChangedWeakEventManager.cs" />
+    <Compile Include="App\Logging\BaseLogger.cs" />
+    <Compile Include="App\Logging\BaseLogProvider.cs" />
+    <Compile Include="App\InstanceData\AppInstanceData.cs" />
+    <Compile Include="App\Logging\DefaultLoggers.cs" />
+    <Compile Include="App\InstanceData\IAppInstanceData.cs" />
+    <Compile Include="App\Logging\LoggingBuilderExtensions.cs" />
+    <Compile Include="App\Logging\SessionLogger\DefaultSessionLoggerCollection.cs" />
+    <Compile Include="App\Logging\SessionLogger\ISessionLoggerCollection.cs" />
+    <Compile Include="App\Logging\SessionLogger\LogAddedEventArgs.cs" />
+    <Compile Include="App\Logging\SessionLogger\LogItem.cs" />
+    <Compile Include="App\Logging\SessionLogger\SessionLogger.cs" />
+    <Compile Include="App\UserLevel.cs" />
+    <Compile Include="App\Logging\WPFTraceListener.cs" />
+    <Compile Include="Helpers\Extensions\BitmapExtensions.cs" />
+    <Compile Include="Helpers\Extensions\VisualExtensions.cs" />
+    <Compile Include="Helpers\PropertyChangedEventArgs.cs" />
+    <Compile Include="Services\Browse\BaseBrowseViewModel.cs" />
+    <Compile Include="Services\Browse\Directory\DirectoryBrowserResult.cs" />
+    <Compile Include="Services\Browse\Directory\DirectoryBrowserViewModel.cs" />
+    <Compile Include="Services\Browse\Drive\DriveBrowserResult.cs" />
+    <Compile Include="Services\Browse\Drive\DriveBrowserViewModel.cs" />
+    <Compile Include="Services\Browse\File\FileBrowserResult.cs" />
+    <Compile Include="Services\Browse\File\FileBrowserViewModel.cs" />
+    <Compile Include="Services\Browse\RCPBrowseUIManager.cs" />
+    <Compile Include="Services\Browse\IBrowseUIManager.cs" />
+    <Compile Include="Services\Browse\SaveFile\SaveFileResult.cs" />
+    <Compile Include="Services\Browse\SaveFile\SaveFileViewModel.cs" />
+    <Compile Include="Services\Message\IMessageUIManager.cs" />
+    <Compile Include="Services\Message\MessageUIManagerExtensions.cs" />
+    <Compile Include="Services\ServiceCollectionExtensions.cs" />
+    <Compile Include="Services\Services.cs" />
     <Compile Include="Archive\ArchiveExplorer\Converters\ArchiveExplorerIsFolderExpandedToIconConverter.cs" />
     <Compile Include="Archive\Data\ArchiveThumbnailCache.cs" />
     <Compile Include="Archive\ArchiveExplorer\ViewModels\IArchiveExplorerEntryViewModel.cs" />
@@ -131,6 +165,21 @@
     <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo4_Win32.cs" />
     <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo5_Win32.cs" />
+    <Compile Include="Helpers\Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="UI\AttachedProperties\UnifiedMargin.cs" />
+    <Compile Include="UI\Behaviors\DataGridSelectedItemsBehavior.cs" />
+    <Compile Include="UI\Behaviors\FocusElementOnLoad.cs" />
+    <Compile Include="UI\Behaviors\FocusScrollViewerOnLoad.cs" />
+    <Compile Include="UI\Behaviors\UnifiedMarginBehavior.cs" />
+    <Compile Include="UI\AttachedProperties\UserLevelTag.cs" />
+    <Compile Include="UI\AttachedProperties\UserLevelTagMode.cs" />
+    <Compile Include="UI\BindingProxy.cs" />
+    <Compile Include="UI\Controls\AlignableWrapPanel.cs" />
+    <Compile Include="UI\Controls\BrowseBox\BrowseBox.cs" />
+    <Compile Include="UI\Controls\BrowseBox\BrowseBoxValidationRule.cs" />
+    <Compile Include="UI\Controls\BrowseBox\BrowseType.cs" />
+    <Compile Include="UI\Controls\BrowseBox\BrowseValidationRule.cs" />
+    <Compile Include="UI\Controls\BrowseBox\BrowseValidationRuleData.cs" />
     <Compile Include="UI\Controls\ButtonMapper\ButtonMapper.xaml.cs">
       <DependentUpon>ButtonMapper.xaml</DependentUpon>
     </Compile>
@@ -228,7 +277,7 @@
     </Compile>
     <Compile Include="Helpers\DirectXKeyHelpers.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
-    <Compile Include="App\Abstraction\File\IFileManager.cs" />
+    <Compile Include="Services\File\IFileManager.cs" />
     <Compile Include="IsExternalInit.cs" />
     <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_MemoryPatch.cs" />
     <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_MemoryManager.cs" />
@@ -248,6 +297,75 @@
     <Compile Include="Mods\RaymanRavingRabbids\Mod_RRR_ViewModel.cs" />
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
     <Compile Include="Helpers\Extensions\ApplicationExtensions.cs" />
+    <Compile Include="UI\Controls\RadioButtonExtended.cs" />
+    <Compile Include="UI\Controls\VMUserControl.cs" />
+    <Compile Include="UI\Controls\VMWindow.cs" />
+    <Compile Include="UI\Converters\BaseValueConverter.cs" />
+    <Compile Include="UI\Converters\Bool\BooleanAndConverter.cs" />
+    <Compile Include="UI\Converters\Bool\EnumBooleanConverter.cs" />
+    <Compile Include="UI\Converters\Bool\InvertedBooleanConverter.cs" />
+    <Compile Include="UI\Converters\Bool\IsNotNullConverter.cs" />
+    <Compile Include="UI\Converters\Bool\IsNullConverter.cs" />
+    <Compile Include="UI\Converters\Bool\PathExistsConverter.cs" />
+    <Compile Include="UI\Converters\Bool\PathNotExistsConverter.cs" />
+    <Compile Include="UI\Converters\Other\BitmapToImageSourceConverter.cs" />
+    <Compile Include="UI\Converters\Other\BooleanToDataGridSelectionModeConverter.cs" />
+    <Compile Include="UI\Converters\Other\ByteEnumToIntConverter.cs" />
+    <Compile Include="UI\Converters\Other\EnumToIntConverter.cs" />
+    <Compile Include="UI\Converters\Other\EnumToListConverter.cs" />
+    <Compile Include="UI\Converters\Other\FileSystemPathToStringConverter.cs" />
+    <Compile Include="UI\Converters\Other\GetDescendantByTypeConverter.cs" />
+    <Compile Include="UI\Converters\Other\IntToStringConverter.cs" />
+    <Compile Include="UI\Converters\Other\StringToFileSystemPathConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\BooleanToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\BooleanToVisibilityHiddenConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\EnumerableEmptyVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\EnumVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\InvertedEnumerableEmptyVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\InvertedObjectNullToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\InvertedObjectNullToVisibilityHiddenConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\InvertedStringEmptyToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\IsNotTypeToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\IsTypeToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\ObjectNullToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Visibility\StringEmptyToVisibilityConverter.cs" />
+    <Compile Include="UI\Dialogs\Base\DialogBaseSize.cs" />
+    <Compile Include="UI\Dialogs\Base\IDialogBaseControl.cs" />
+    <Compile Include="UI\Dialogs\Base\IWindowBaseControl.cs" />
+    <Compile Include="UI\Dialogs\Base\Manager\IDialogBaseManager.cs" />
+    <Compile Include="UI\Dialogs\Base\Manager\WindowDialogBaseManager.cs" />
+    <Compile Include="UI\Dialogs\DialogBaseControlExtensions.cs" />
+    <Compile Include="UI\Dialogs\DriveSelectionDialog\DriveSelectionDialog.xaml.cs">
+      <DependentUpon>DriveSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\DriveSelectionDialog\DriveSelectionViewModel.cs" />
+    <Compile Include="UI\Dialogs\DriveSelectionDialog\DriveViewModel.cs" />
+    <Compile Include="UI\Dialogs\LogViewer\LogLevelToBrushConverter.cs" />
+    <Compile Include="UI\Dialogs\LogViewer\LogViewer.xaml.cs">
+      <DependentUpon>LogViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\LogViewer\LogViewerViewModel.cs" />
+    <Compile Include="UI\Dialogs\Message\DialogMessageActionHandledEventArgs.cs" />
+    <Compile Include="UI\Dialogs\Message\DialogMessageActionViewModel.cs" />
+    <Compile Include="UI\Dialogs\Message\DialogMessageBox.xaml.cs">
+      <DependentUpon>DialogMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\Message\DialogMessageViewModel.cs" />
+    <Compile Include="UI\Dialogs\Message\MessageType.cs" />
+    <Compile Include="UI\Dialogs\StringInput\StringInputDialog.xaml.cs">
+      <DependentUpon>StringInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\StringInput\StringInputResult.cs" />
+    <Compile Include="UI\Dialogs\StringInput\StringInputViewModel.cs" />
+    <Compile Include="UI\Dialogs\UserInputResult.cs" />
+    <Compile Include="UI\Dialogs\UserInputViewModel.cs" />
+    <Compile Include="UI\ValidationRules\Files and Directories\DirectoryExistsAndNotEmptyValidationRule.cs" />
+    <Compile Include="UI\ValidationRules\Files and Directories\DirectoryExistsValidationRule.cs" />
+    <Compile Include="UI\ValidationRules\Files and Directories\FileExistsAndNotEmptyValidationRule.cs" />
+    <Compile Include="UI\ValidationRules\Files and Directories\FileExistsValidationRule.cs" />
+    <Compile Include="UI\ValidationRules\NotEmptyValidationRule.cs" />
+    <Compile Include="UI\Windows\Base\AppWindowsManager.cs" />
     <Compile Include="Utilities\General\Other\R1PasswordGenerator\Utility_R1PasswordGenerator_PasswordValidationRule.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\Utility_BaseGameSyncTextureInfo_UI.xaml.cs">
       <DependentUpon>Utility_BaseGameSyncTextureInfo_UI.xaml</DependentUpon>
@@ -369,18 +487,16 @@
     <Compile Include="Games\OptionsDialog\Progression\Rayman3\GameProgression_Rayman3_ViewModel.cs" />
     <Compile Include="App\AppFilePaths.cs" />
     <Compile Include="Localization\LocalizationManager.cs" />
-    <Compile Include="Helpers\Extensions\MessageUIManagerExtensions.cs" />
-    <Compile Include="App\ServiceCollectionExtensions.cs" />
-    <Compile Include="App\FileLogger.cs" />
-    <Compile Include="App\Abstraction\Dialog\RCPDialogBaseManager.cs" />
-    <Compile Include="App\Abstraction\ExceptionHandler\RCPExceptionHandler.cs" />
-    <Compile Include="App\Abstraction\MessageUI\RCPMessageUIManager.cs" />
+    <Compile Include="App\Logging\FileLogger.cs" />
+    <Compile Include="Services\Dialog\RCPDialogBaseManager.cs" />
+    <Compile Include="Services\ExceptionHandler\RCPExceptionHandler.cs" />
+    <Compile Include="Services\Message\RCPMessageUIManager.cs" />
     <Compile Include="AppData\DataModels\UserData_GameData.cs" />
     <Compile Include="AppData\DataModels\UserData_GameLaunchMode.cs" />
     <Compile Include="Games\Games.cs" />
     <Compile Include="Games\GameType.cs" />
     <Compile Include="Helpers\Operation.cs" />
-    <Compile Include="App\Abstraction\File\RCPFileManager.cs" />
+    <Compile Include="Services\File\RCPFileManager.cs" />
     <Compile Include="Utilities\General\EnumSelectionViewModel.cs" />
     <Compile Include="Helpers\Extensions\GameModeExtensions.cs" />
     <Compile Include="Utilities\General\ArchiveExplorer\Utility_BaseArchiveExplorer_ViewModel.cs" />
@@ -395,13 +511,13 @@
     <Compile Include="UI\Controls\OverflowMenu.xaml.cs">
       <DependentUpon>OverflowMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\AttachedProperties\TabItemProperties.cs" />
-    <Compile Include="UI\Converters\GameModeToDisplayNameConverter.cs" />
-    <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
-    <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
+    <Compile Include="UI\AttachedProperties\TabItem.cs" />
+    <Compile Include="UI\Converters\Other\GameModeToDisplayNameConverter.cs" />
+    <Compile Include="UI\Converters\Other\AppendSpacesToStringConverter.cs" />
+    <Compile Include="UI\Converters\Other\BooleanToTransitionTypeConverter.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\IBasePage.cs" />
-    <Compile Include="UI\Windows\BaseWindow.cs" />
+    <Compile Include="UI\Windows\Base\BaseWindow.cs" />
     <Compile Include="UI\Windows\LicenseDialog.xaml.cs">
       <DependentUpon>LicenseDialog.xaml</DependentUpon>
     </Compile>
@@ -613,6 +729,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UI\Dialogs\DriveSelectionDialog\DriveSelectionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UI\Dialogs\FileExtensionSelection\FileExtensionSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -637,6 +757,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UI\Dialogs\LogViewer\LogViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Dialogs\Message\DialogMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Dialogs\StringInput\StringInputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Resources\Styles.ItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Resources\Styles.DuoGridItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Resources\Styles.ScrollViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Resources\Styles.ToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UI\Resources\Theme.RoundedCorners.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -646,10 +794,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Resources\Styles.AutoCompleteTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\Resources\Styles.BrowseBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -976,7 +1120,7 @@
     <Compile Include="Pages\Settings\Page_Settings_LinkItemViewModel.cs" />
     <Compile Include="Pages\Utilities\Page_Utilities_ViewModel.cs" />
     <Compile Include="Pages\Help\Cheats\Page_Help_Rayman1CheatCodeItemViewModel.cs" />
-    <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />
+    <Compile Include="UI\Converters\Other\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="Emulators\DOSBox\Config\Emulator_DOSBox_AutoConfigData.cs" />
     <Compile Include="Emulators\DOSBox\Config\Emulator_DOSBox_AutoConfigManager.cs" />
     <Compile Include="Localization\Resources.Designer.cs">
@@ -1037,7 +1181,7 @@
     <Compile Include="Pages\Backup\Page_Backup_ViewModel.cs" />
     <Compile Include="App\BaseRCPViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Config\Ray1\Config_Ray1_BaseViewModel.cs" />
-    <Compile Include="App\Abstraction\AppUI\AppUIManager.cs" />
+    <Compile Include="Services\AppUI\AppUIManager.cs" />
     <Compile Include="Games\OptionsDialog\Config\UbiIni\Rayman2\Config_Rayman2_ButtonMappingItem.cs" />
     <Compile Include="Games\OptionsDialog\Config\UbiIni\Rayman2\Config_Rayman2_ButtonMappingManager.cs" />
     <Compile Include="AppData\DataModels\UserData_DosBoxOptions.cs" />
@@ -1049,8 +1193,8 @@
       <DependentUpon>Config_Rayman2_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Games\OptionsDialog\Config\UbiIni\Rayman2\Config_Rayman2_ViewModel.cs" />
-    <Compile Include="UI\Converters\KeyToHotKeyConverter.cs" />
-    <Compile Include="UI\Converters\KeyToStringConverter.cs" />
+    <Compile Include="UI\Controls\ButtonMapper\KeyToHotKeyConverter.cs" />
+    <Compile Include="UI\Controls\ButtonMapper\KeyToStringConverter.cs" />
     <Compile Include="UI\Controls\ButtonMapper\ButtonMapperHotKeyValidationRule.cs" />
     <Compile Include="UI\Dialogs\GameTypeSelection\GameTypeSelectionResult.cs" />
     <Compile Include="UI\Dialogs\GameTypeSelection\GameTypeSelectionViewModel.cs" />
@@ -1061,7 +1205,7 @@
       <DependentUpon>OverflowButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Extensions\GamesExtensions.cs" />
-    <Compile Include="App\RCPServices.cs" />
+    <Compile Include="Services\RCPServices.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1191,10 +1335,6 @@
     <ProjectReference Include="..\..\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
       <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
       <Name>RayCarrot.Windows.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.WPF\RayCarrot.WPF\RayCarrot.WPF.csproj">
-      <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
-      <Name>RayCarrot.WPF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -1431,6 +1571,18 @@
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
       <Version>4.8.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug">
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.5.ReferenceAssemblies">
       <Version>1.1.0</Version>

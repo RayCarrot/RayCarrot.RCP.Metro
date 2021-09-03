@@ -2,7 +2,7 @@
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:editors="http://wpfcontrols.com/"
-                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF">
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
     <!-- Default AutoCompleteTextBox -->
 
@@ -58,7 +58,7 @@
                                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                              ScrollViewer.VerticalScrollBarVisibility="Auto" />
                                     <Border
-                                        Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BooleanToVisibilityConverter}}">
                                         <ContentPresenter ContentSource="LoadingContent" />
                                     </Border>
                                 </Grid>

@@ -7,7 +7,6 @@ using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
-using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

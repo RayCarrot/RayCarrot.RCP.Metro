@@ -5,7 +5,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -32,7 +31,7 @@
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
                                 Command="{Binding Path=RefreshCommand}"
-                                rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+                                local:UserLevelTag.MinUserLevel="Advanced"/>
 
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
@@ -51,7 +50,7 @@
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Settings_BackupLocation}" />
 
-            <rwpf:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation, UpdateSourceTrigger=LostFocus}"
+            <local:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation, UpdateSourceTrigger=LostFocus}"
                             UseCurrentPathAsDefaultLocationIfValid="True"
                             BrowseType="Directory"
                             PathValidation="DirectoryExistsAndNotEmpty"
@@ -84,7 +83,7 @@
             <!-- Backup Size -->
 
             <TextBlock Grid.Column="3"
-                       rwpf:UserLevelTag.MinUserLevel="Advanced"
+                       local:UserLevelTag.MinUserLevel="Advanced"
                        MinWidth="100"
                        Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Backup_LastBackupSize}"
@@ -95,7 +94,7 @@
             <!-- Debug Info -->
             <!-- NOTE: Not localized -->
             <TextBlock Grid.Column="4"
-                       rwpf:UserLevelTag.MinUserLevel="Debug"
+                       local:UserLevelTag.MinUserLevel="Debug"
                        MinWidth="100"
                        Style="{StaticResource TextBlock.Header}"
                        Text="Debug Info"
@@ -107,7 +106,7 @@
 
         <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto">
             <i:Interaction.Behaviors>
-                <rwpf:FocusScrollViewerOnLoad />
+                <local:FocusScrollViewerOnLoad />
             </i:Interaction.Behaviors>
 
             <!-- TODO: Make setting for showing debug info -->
@@ -151,28 +150,28 @@
                                            Text="{Binding Path=LastBackupDisplay}"
                                            VerticalAlignment="Center"
                                            Margin="20 0"
-                                           Visibility="{Binding Path=CanRestore, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                                           Visibility="{Binding Path=CanRestore, Converter={local:BooleanToVisibilityConverter}}" />
 
                             </Grid>
 
                             <!-- Backup Size -->
 
                             <Grid Grid.Column="3"
-                                  rwpf:UserLevelTag.MinUserLevel="Advanced"
+                                  local:UserLevelTag.MinUserLevel="Advanced"
                                   MinWidth="100">
 
                                 <TextBlock FontSize="14"
                                            Text="{Binding Path=BackupSize}"
                                            VerticalAlignment="Center"
                                            Margin="20 0"
-                                           Visibility="{Binding Path=CanRestore, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                                           Visibility="{Binding Path=CanRestore, Converter={local:BooleanToVisibilityConverter}}" />
 
                             </Grid>
 
                             <!-- Debug Info -->
 
                             <Grid Grid.Column="4"
-                                  rwpf:UserLevelTag.MinUserLevel="Debug"
+                                  local:UserLevelTag.MinUserLevel="Debug"
                                   MinWidth="100">
 
                                 <TextBlock FontSize="14"
@@ -197,7 +196,7 @@
                                                   ToolTip="{Resx Backup_Restore}"
                                                   IsEnabled="{Binding Path=CanRestore}" />
 
-                                <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rwpf:BooleanToVisibilityHiddenConverter}}" />
+                                <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={local:BooleanToVisibilityHiddenConverter}}" />
 
                             </StackPanel>
 

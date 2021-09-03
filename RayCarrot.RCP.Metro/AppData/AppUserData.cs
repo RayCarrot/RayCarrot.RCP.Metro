@@ -1,7 +1,6 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -108,8 +107,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public UserLevel UserLevel
         {
-            get => Services.Data.CurrentUserLevel;
-            set => Services.Data.CurrentUserLevel = value;
+            get => Services.InstanceData.CurrentUserLevel;
+            set => Services.InstanceData.CurrentUserLevel = value;
         }
 
         /// <summary>
@@ -120,7 +119,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The previous Window session state
         /// </summary>
-        public WindowSessionState WindowState { get; set; }
+        public UserData_WindowSessionState WindowState { get; set; }
 
         /// <summary>
         /// Indicates if the dark mode is on
@@ -162,7 +161,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string CurrentCulture
         {
-            get => Services.Data.CurrentCulture?.Name ?? LocalizationManager.DefaultCulture.Name;
+            get => Services.InstanceData.CurrentCulture?.Name ?? LocalizationManager.DefaultCulture.Name;
             set => LocalizationManager.SetCulture(value);
         }
 

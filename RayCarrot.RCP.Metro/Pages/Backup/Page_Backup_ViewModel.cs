@@ -9,7 +9,6 @@ using Nito.AsyncEx;
 using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -44,7 +43,7 @@ namespace RayCarrot.RCP.Metro
             };
 
             // Refresh on culture changed
-            Services.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+            Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
 
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();

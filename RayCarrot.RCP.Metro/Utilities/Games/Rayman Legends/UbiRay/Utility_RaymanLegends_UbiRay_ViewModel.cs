@@ -187,13 +187,13 @@ namespace RayCarrot.RCP.Metro
 
                 IsApplied = true;
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_ApplySuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_ApplySuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RL UbiRay patch");
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex);
             }
         }
 
@@ -212,13 +212,13 @@ namespace RayCarrot.RCP.Metro
 
                 IsApplied = false;
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_RevertSuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_RevertSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Reverting RL UbiRay patch");
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex);
             }
         }
 

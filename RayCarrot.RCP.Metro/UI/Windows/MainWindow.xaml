@@ -7,7 +7,6 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:tb="http://www.hardcodet.net/taskbar"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                  xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                   xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
                   mc:Ignorable="d"
                   Language="{UICulture}"
@@ -32,10 +31,10 @@
                     </Style>
                 </Grid.Resources>
 
-                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
+                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={local:InvertedBooleanToVisibilityConverter}}"
                            Text="{Resx AppName}" />
 
-                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={rwpf:BooleanToVisibilityConverter}}"
+                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={local:BooleanToVisibilityConverter}}"
                            Text="{Resx AppNameAdmin}" />
             </Grid>
         </DataTemplate>
@@ -54,7 +53,7 @@
                         IconSource="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RCP_Metro.ico"
                         ToolTipText="{Resx AppName}"
                         LeftClickCommand="{Binding Path=OpenFromTaskbarCommand}"
-                        Visibility="{Binding Path=IsIconVisible, Converter={rwpf:BooleanToVisibilityConverter}}">
+                        Visibility="{Binding Path=IsIconVisible, Converter={local:BooleanToVisibilityConverter}}">
 
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Padding="5"
@@ -122,7 +121,7 @@
                                         <local:OverflowMenu Grid.Column="2"
                                                             InheritDataContext="False"
                                                             DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:IBasePage.OverflowMenu)}"
-                                                            Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityHiddenConverter}}"
+                                                            Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
                                                             ContextMenu="{Binding}"
                                                             Margin="10"/>
 
@@ -200,9 +199,9 @@
             <!-- Games -->
 
             <TabItem Header="{Resx GamesPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Games}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Games}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Games}">
+                     local:TabItem.IconKind="{StaticResource Icons.Games}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Games}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
                 <local:Page_Games_UI />
             </TabItem>
 
@@ -210,45 +209,45 @@
 
             <TabItem x:Name="BackupPageTab"  
                      Header="{Resx BackupPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Backup}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Progression}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
+                     local:TabItem.IconKind="{StaticResource Icons.Backup}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Progression}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
                 <local:Page_Backup_UI />
             </TabItem>
 
             <!-- Utilities -->
 
             <TabItem Header="{Resx UtilitiesPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Utilities}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Utilities}">
+                     local:TabItem.IconKind="{StaticResource Icons.Utilities}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Utilities}">
                 <local:Page_Utilities_UI />
             </TabItem>
 
             <!-- Mods -->
 
             <TabItem Header="{Resx ModsPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Mods}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Mods}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Mods}">
+                     local:TabItem.IconKind="{StaticResource Icons.Mods}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Mods}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Mods}">
                 <local:Page_Mods_UI />
             </TabItem>
 
             <!-- Settings -->
 
             <TabItem Header="{Resx SettingsPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Settings}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Settings}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
+                     local:TabItem.IconKind="{StaticResource Icons.Settings}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Settings}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Settings}">
                 <local:Page_Settings_UI />
             </TabItem>
 
             <!-- Help -->
 
             <TabItem Header="{Resx HelpPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Help}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Help}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Help}">
+                     local:TabItem.IconKind="{StaticResource Icons.Help}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Help}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Help}">
                 <local:Page_Help_UI />
 
             </TabItem>
@@ -256,19 +255,19 @@
             <!-- About -->
 
             <TabItem Header="{Resx AboutPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Info}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Info}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=About}">
+                     local:TabItem.IconKind="{StaticResource Icons.Info}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Info}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=About}">
                 <local:Page_About_UI />
             </TabItem>
 
             <!-- Debug -->
 
             <TabItem Header="{Resx DebugPageHeader}"
-                     local:TabItemProperties.IconKind="{StaticResource Icons.Debug}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Debug}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
-                     rwpf:UserLevelTag.MinUserLevel="Debug">
+                     local:TabItem.IconKind="{StaticResource Icons.Debug}"
+                     local:TabItem.IconForeground="{StaticResource Colors.Debug}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
+                     local:UserLevelTag.MinUserLevel="Debug">
                 <local:Page_Debug_UI />
             </TabItem>
 
@@ -277,7 +276,7 @@
         <mah:ProgressRing HorizontalAlignment="Right"
                           VerticalAlignment="Bottom"
                           Margin="5"
-                          Visibility="{Binding Path=IsStartupRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                          Visibility="{Binding Path=IsStartupRunning, Converter={local:BooleanToVisibilityConverter}}" />
 
     </Grid>
 </local:BaseWindow>

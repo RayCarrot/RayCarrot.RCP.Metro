@@ -9,7 +9,6 @@ using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

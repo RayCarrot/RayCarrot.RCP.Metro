@@ -1,7 +1,6 @@
 ﻿using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

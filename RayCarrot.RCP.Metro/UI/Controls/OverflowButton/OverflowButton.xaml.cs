@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MahApps.Metro.IconPacks;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

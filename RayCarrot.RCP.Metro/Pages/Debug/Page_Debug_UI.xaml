@@ -6,7 +6,6 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -46,12 +45,12 @@
     <ScrollViewer Padding="15">
         <StackPanel>
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="2 5" />
+                <local:UnifiedMarginBehavior Margin="2 5" />
             </i:Interaction.Behaviors>
 
             <StackPanel>
                 <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                 </i:Interaction.Behaviors>
 
                 <StackPanel Orientation="Horizontal">
@@ -70,8 +69,8 @@
                     </Grid.ColumnDefinitions>
 
                     <ComboBox Grid.Column="0" 
-                              ItemsSource="{Binding Path=SelectedDialog, Converter={rwpf:EnumToListConverter}}"
-                              SelectedIndex="{Binding Path=SelectedDialog, Converter={rwpf:EnumToIntConverter}}"/>
+                              ItemsSource="{Binding Path=SelectedDialog, Converter={local:EnumToListConverter}}"
+                              SelectedIndex="{Binding Path=SelectedDialog, Converter={local:EnumToIntConverter}}"/>
 
                     <Button Grid.Column="2" 
                             Content="Show Dialog"
@@ -82,7 +81,7 @@
 
             <StackPanel>
                 <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                 </i:Interaction.Behaviors>
 
                 <StackPanel Orientation="Horizontal">
@@ -113,7 +112,7 @@
 
             <StackPanel>
                 <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                 </i:Interaction.Behaviors>
 
                 <TextBlock Text="Data Output"
@@ -127,8 +126,8 @@
                     </Grid.ColumnDefinitions>
 
                     <ComboBox Grid.Column="0" 
-                              ItemsSource="{Binding Path=SelectedDataOutputType, Converter={rwpf:EnumToListConverter}}"
-                              SelectedIndex="{Binding Path=SelectedDataOutputType, Converter={rwpf:EnumToIntConverter}}"/>
+                              ItemsSource="{Binding Path=SelectedDataOutputType, Converter={local:EnumToListConverter}}"
+                              SelectedIndex="{Binding Path=SelectedDataOutputType, Converter={local:EnumToIntConverter}}"/>
 
                     <Button Grid.Column="2" 
                             Content="Refresh"

@@ -4,26 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_Rayman1_CompleteSoundtrack_ViewModel}">
     <StackPanel>
         <Interactions:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
         <Grid>
             <Button Content="{Resx R1U_CompleteOSTReplace}"
                     HorizontalAlignment="Left"
                     Command="{Binding Path=ReplaceSoundtrackCommand}"
-                    Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                    Visibility="{Binding Path=IsOriginalMusic, Converter={local:BooleanToVisibilityConverter}}"/>
 
             <Button Content="{Resx R1U_CompleteOSTRevert}"
                     HorizontalAlignment="Left"
                     Command="{Binding Path=ReplaceSoundtrackCommand}"
-                    Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"/>
+                    Visibility="{Binding Path=IsOriginalMusic, Converter={local:InvertedBooleanToVisibilityConverter}}"/>
         </Grid>
 
     </StackPanel>

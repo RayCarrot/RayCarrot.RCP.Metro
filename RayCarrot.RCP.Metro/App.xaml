@@ -1,7 +1,7 @@
-﻿<rwpf:BaseApp x:Class="RayCarrot.RCP.Metro.App"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF">
+﻿<local:BaseApp x:Class="RayCarrot.RCP.Metro.App"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,16 +12,14 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Purple.xaml" />
 
-                <!-- Libraries -->
-
-                <ResourceDictionary Source="pack://application:,,,/RayCarrot.WPF;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/RayCarrot.WPF;component/Styles/Common.xaml" />
-
                 <!-- Local -->
 
                 <ResourceDictionary Source="UI/Resources/Theme.RoundedCorners.xaml" />
                 <ResourceDictionary Source="UI/Resources/Resources.Icons.xaml" />
                 <ResourceDictionary Source="UI/Resources/Resources.Margins.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.ToolTip.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.ScrollViewer.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.ItemsControl.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.InfoIcon.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.TextBlock.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.RadioButton.xaml" />
@@ -29,13 +27,13 @@
                 <ResourceDictionary Source="UI/Resources/Styles.MenuItem.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.Button.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.NumericUpDown.xaml" />
-                <ResourceDictionary Source="UI/Resources/Styles.BrowseBox.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.AutoCompleteTextBox.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.LinkItem.List.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.DuoGridItem.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
     </Application.Resources>
 
-</rwpf:BaseApp>
+</local:BaseApp>

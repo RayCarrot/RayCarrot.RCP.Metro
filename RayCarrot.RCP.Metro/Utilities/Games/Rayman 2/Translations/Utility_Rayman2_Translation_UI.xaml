@@ -4,17 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_Rayman2_Translation_ViewModel}">
     <StackPanel>
         <Interactions:Interaction.Behaviors>
-            <wpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
-        <ComboBox SelectedIndex="{Binding Path=SelectedTranslation, Converter={wpf:EnumToIntConverter}}"
+        <ComboBox SelectedIndex="{Binding Path=SelectedTranslation, Converter={local:EnumToIntConverter}}"
                   HorizontalAlignment="Left"
                   MinWidth="110">
             <TextBlock Text="{Resx R2U_Translations_Original}" />
@@ -25,19 +24,19 @@
         </ComboBox>
 
         <TextBlock Text="{Resx R2U_Translations_IrishInfo}"
-                   Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Irish}"
+                   Visibility="{Binding Path=SelectedTranslation, Converter={local:EnumVisibilityConverter}, ConverterParameter=Irish}"
                    TextWrapping="WrapWithOverflow" />
 
         <TextBlock Text="{Resx R2U_Translations_SwedishInfo}"
-                       Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Swedish}"
+                       Visibility="{Binding Path=SelectedTranslation, Converter={local:EnumVisibilityConverter}, ConverterParameter=Swedish}"
                        TextWrapping="WrapWithOverflow" />
 
         <TextBlock Text="{Resx R2U_Translations_PortugueseInfo}"
-                   Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Portuguese}"
+                   Visibility="{Binding Path=SelectedTranslation, Converter={local:EnumVisibilityConverter}, ConverterParameter=Portuguese}"
                    TextWrapping="WrapWithOverflow" />
 
         <TextBlock Text="{Resx R2U_Translations_SlovakInfo}"
-                   Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Slovak}"
+                   Visibility="{Binding Path=SelectedTranslation, Converter={local:EnumVisibilityConverter}, ConverterParameter=Slovak}"
                    TextWrapping="WrapWithOverflow" />
 
         <Button Content="{Resx Utility_Apply}"

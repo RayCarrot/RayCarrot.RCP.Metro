@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using RayCarrot.Common;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

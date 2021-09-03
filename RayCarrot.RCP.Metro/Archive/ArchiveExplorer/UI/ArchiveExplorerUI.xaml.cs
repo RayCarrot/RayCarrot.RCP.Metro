@@ -1,7 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 using RayCarrot.Common;
 using RayCarrot.IO;
-using RayCarrot.WPF;
 using System;
 using System.ComponentModel;
 using System.Linq;

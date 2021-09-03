@@ -4,14 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_RaymanDesigner_ReplaceFiles_ViewModel}">
     <StackPanel>
         <Interactions:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
         <Grid>
@@ -28,14 +27,14 @@
             </Grid.Resources>
 
             <Interactions:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="0 8" />
+                <local:UnifiedMarginBehavior Margin="0 8" />
             </Interactions:Interaction.Behaviors>
 
             <TextBlock Grid.Column="0"
                        Text="{Resx RDU_ReplaceFilesLanguage}"/>
 
             <ComboBox Grid.Column="1"
-                      SelectedIndex="{Binding Path=MapperLanguage, Converter={rwpf:EnumToIntConverter}}">
+                      SelectedIndex="{Binding Path=MapperLanguage, Converter={local:EnumToIntConverter}}">
                 <TextBlock Text="{Resx Lang_English}" />
                 <TextBlock Text="{Resx Lang_German}" />
                 <TextBlock Text="{Resx Lang_French}" />

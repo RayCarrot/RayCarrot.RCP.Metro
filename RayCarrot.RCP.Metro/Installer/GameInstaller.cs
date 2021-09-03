@@ -7,7 +7,6 @@ using System.Net;
 using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -532,7 +531,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ex2.HandleError("Deleting incomplete installation directory");
 
-                        if (Services.Data.CurrentUserLevel >= UserLevel.Advanced)
+                        if (Services.InstanceData.CurrentUserLevel >= UserLevel.Advanced)
                             await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
                     }
                 }

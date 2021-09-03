@@ -91,7 +91,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Updating TPLS config");
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.TPLS_UpdateVersionError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.TPLS_UpdateVersionError);
             }
         }
 

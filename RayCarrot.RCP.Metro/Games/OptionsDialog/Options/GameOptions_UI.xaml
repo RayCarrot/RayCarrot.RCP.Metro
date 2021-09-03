@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
@@ -13,7 +12,7 @@
              d:DesignHeight="300" d:DesignWidth="650" d:DataContext="{d:DesignInstance local:GameOptionsDialog_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <wpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Information -->
@@ -34,12 +33,12 @@
 
         </ItemsControl>
 
-        <Separator Visibility="{Binding Path=HasOptionsOrCanChangeLaunchMode, Converter={wpf:BooleanToVisibilityConverter}}" />
+        <Separator Visibility="{Binding Path=HasOptionsOrCanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}" />
 
         <!-- Launch Mode -->
 
         <StackPanel Orientation="Horizontal"
-                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={wpf:BooleanToVisibilityConverter}}">
+                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
 
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GameOptions_LaunchMode}" />
@@ -49,34 +48,34 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
-                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={wpf:BooleanToVisibilityConverter}}">
+                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
 
             <i:Interaction.Behaviors>
-                <wpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
-            <wpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
-                                     IsChecked="{Binding Path=LaunchMode, Converter={wpf:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
+            <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
+                                     IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
                                      ToolTip="{Resx GameOptions_LaunchMode_AsInvokerInfo}" />
 
-            <wpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
-                                     IsChecked="{Binding Path=LaunchMode, Converter={wpf:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
+            <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
+                                     IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminOptionInfo}" />
 
-            <wpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
-                                     IsChecked="{Binding Path=LaunchMode, Converter={wpf:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
+            <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
+                                     IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}" />
 
         </StackPanel>
 
-        <Grid Visibility="{Binding Path=CanChangeLaunchMode, Converter={wpf:BooleanToVisibilityConverter}}">
-            <Separator Visibility="{Binding Path=OptionsContent, Converter={wpf:InvertedObjectNullToVisibilityConverter}}" />
+        <Grid Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
+            <Separator Visibility="{Binding Path=OptionsContent, Converter={local:InvertedObjectNullToVisibilityConverter}}" />
         </Grid>
 
         <!-- Options Content -->
 
         <ContentPresenter Content="{Binding Path=OptionsContent}"
-                          wpf:UnifiedMargin.Ignored="True" />
+                          local:UnifiedMargin.Ignored="True" />
 
     </StackPanel>
 </UserControl>

@@ -13,7 +13,6 @@ using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

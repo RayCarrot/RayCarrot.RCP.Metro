@@ -1,6 +1,5 @@
 ﻿using RayCarrot.Common;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -64,7 +63,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void ShowVersionHistory()
         {
-            WindowHelpers.ShowWindow<AppNewsDialog>();
+            AppWindowsManager.ShowWindow<AppNewsDialog>();
         }
 
         /// <summary>

@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

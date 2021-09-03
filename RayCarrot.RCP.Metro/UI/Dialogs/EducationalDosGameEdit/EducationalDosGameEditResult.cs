@@ -1,5 +1,4 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

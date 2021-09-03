@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.IconPacks;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

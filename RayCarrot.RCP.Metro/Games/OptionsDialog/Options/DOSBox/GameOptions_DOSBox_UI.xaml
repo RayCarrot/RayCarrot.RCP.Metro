@@ -5,7 +5,6 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -13,7 +12,7 @@
              d:DataContext="{d:DesignInstance local:GameOptions_DOSBox_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Mount path -->
@@ -26,11 +25,11 @@
 
         </StackPanel>
 
-        <rwpf:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
+        <local:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={local:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
                         AllowedDriveTypes="{Binding Path=MountPathAllowedDriveTypes}">
 
-            <rwpf:BrowseBox.Style>
-                <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">
+            <local:BrowseBox.Style>
+                <Style TargetType="{x:Type local:BrowseBox}" BasedOn="{StaticResource {x:Type local:BrowseBox}}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=IsChecked, ElementName=DriveBrowseToggle}"
                                      Value="True">
@@ -41,8 +40,8 @@
                     <Setter Property="BrowseType" Value="File" />
 
                 </Style>
-            </rwpf:BrowseBox.Style>
-        </rwpf:BrowseBox>
+            </local:BrowseBox.Style>
+        </local:BrowseBox>
 
         <WrapPanel>
             <RadioButton Content="{Resx MountOption_File}"

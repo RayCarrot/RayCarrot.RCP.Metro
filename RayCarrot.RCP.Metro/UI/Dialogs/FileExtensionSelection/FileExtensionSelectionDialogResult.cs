@@ -1,6 +1,4 @@
-﻿using RayCarrot.WPF;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// The result for a file extension selection dialog

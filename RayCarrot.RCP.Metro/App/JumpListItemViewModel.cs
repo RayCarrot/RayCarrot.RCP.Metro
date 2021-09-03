@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
-using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Windows.Shell;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

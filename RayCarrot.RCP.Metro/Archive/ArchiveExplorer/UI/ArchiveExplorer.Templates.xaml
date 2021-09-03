@@ -5,7 +5,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
@@ -42,7 +41,7 @@
                     <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
                                                 Foreground="{StaticResource Archive_FileBrush}"
                                                 HorizontalAlignment="Center"
-                                                Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
+                                                Visibility="{Binding Path=ThumbnailSource, Converter={local:ObjectNullToVisibilityConverter}}"
                                                 Width="48"
                                                 Height="48" />
 
@@ -57,7 +56,7 @@
                         Background="{DynamicResource MahApps.Brushes.Badged.Background}"
                         CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}"
                         RenderTransformOrigin=".5,.5"
-                        Visibility="{Binding Path=HasPendingImport, Converter={rwpf:BooleanToVisibilityConverter}}">
+                        Visibility="{Binding Path=HasPendingImport, Converter={local:BooleanToVisibilityConverter}}">
                     <Border.RenderTransform>
                         <ScaleTransform ScaleX="1" ScaleY="1" />
                     </Border.RenderTransform>

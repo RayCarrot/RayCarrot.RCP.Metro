@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

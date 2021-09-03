@@ -194,7 +194,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Updating Print Studio version");
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.PrintStudioOptions_VersionUpdateError);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.PrintStudioOptions_VersionUpdateError);
                 }
             }
         }

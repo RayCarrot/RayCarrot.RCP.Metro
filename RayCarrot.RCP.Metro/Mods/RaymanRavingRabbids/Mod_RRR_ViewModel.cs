@@ -1,9 +1,7 @@
-﻿using MahApps.Metro.IconPacks;
-using RayCarrot.Common;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

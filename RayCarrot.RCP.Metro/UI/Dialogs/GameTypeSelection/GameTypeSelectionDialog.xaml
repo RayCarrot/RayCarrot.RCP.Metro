@@ -2,7 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
@@ -19,38 +18,38 @@
                    VerticalAlignment="Center">
 
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <!-- Win32 -->
 
-            <rwpf:RadioButtonExtended Content="{Resx GameType_Desktop}"
-                                      IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Win32}"
-                                      Visibility="{Binding Path=AllowWin32, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+            <local:RadioButtonExtended Content="{Resx GameType_Desktop}"
+                                      IsChecked="{Binding Path=SelectedType, Converter={local:EnumBooleanConverter}, ConverterParameter=Win32}"
+                                      Visibility="{Binding Path=AllowWin32, Converter={local:BooleanToVisibilityConverter}}"/>
 
             <!-- Steam -->
 
-            <rwpf:RadioButtonExtended Content="{Resx GameType_Steam}"
-                                      IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Steam}"
-                                      Visibility="{Binding Path=AllowSteam, Converter={rwpf:BooleanToVisibilityConverter}}" />
+            <local:RadioButtonExtended Content="{Resx GameType_Steam}"
+                                      IsChecked="{Binding Path=SelectedType, Converter={local:EnumBooleanConverter}, ConverterParameter=Steam}"
+                                      Visibility="{Binding Path=AllowSteam, Converter={local:BooleanToVisibilityConverter}}" />
             
             <!-- WinStore -->
 
-            <rwpf:RadioButtonExtended Content="{Resx GameType_WinStore}"
-                                      IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=WinStore}"
-                                      Visibility="{Binding Path=AllowWinStore, Converter={rwpf:BooleanToVisibilityConverter}}" />
+            <local:RadioButtonExtended Content="{Resx GameType_WinStore}"
+                                      IsChecked="{Binding Path=SelectedType, Converter={local:EnumBooleanConverter}, ConverterParameter=WinStore}"
+                                      Visibility="{Binding Path=AllowWinStore, Converter={local:BooleanToVisibilityConverter}}" />
             
             <!-- DosBox -->
 
-            <rwpf:RadioButtonExtended Content="{Resx GameType_DosBox}"
-                                      IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DosBox}"
-                                      Visibility="{Binding Path=AllowDosBox, Converter={rwpf:BooleanToVisibilityConverter}}" />
+            <local:RadioButtonExtended Content="{Resx GameType_DosBox}"
+                                      IsChecked="{Binding Path=SelectedType, Converter={local:EnumBooleanConverter}, ConverterParameter=DosBox}"
+                                      Visibility="{Binding Path=AllowDosBox, Converter={local:BooleanToVisibilityConverter}}" />
 
             <!-- Educational DosBox -->
 
-            <rwpf:RadioButtonExtended Content="{Resx GameType_EducationalDosBox}"
-                                      IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=EducationalDosBox}"
-                                      Visibility="{Binding Path=AllowEducationalDosBox, Converter={rwpf:BooleanToVisibilityConverter}}" />
+            <local:RadioButtonExtended Content="{Resx GameType_EducationalDosBox}"
+                                      IsChecked="{Binding Path=SelectedType, Converter={local:EnumBooleanConverter}, ConverterParameter=EducationalDosBox}"
+                                      Visibility="{Binding Path=AllowEducationalDosBox, Converter={local:BooleanToVisibilityConverter}}" />
 
         </WrapPanel>
 

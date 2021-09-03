@@ -464,7 +464,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, AppFilePaths.UbiIniPath1.Parent));
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, AppFilePaths.UbiIniPath1.Parent));
 
                     throw;
                 }

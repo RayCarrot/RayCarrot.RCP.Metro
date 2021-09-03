@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -12,7 +11,7 @@
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_RaymanOrigins_DebugCommands_ViewModel}">
     <StackPanel>
         <Interactions:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
         <mah:ToggleSwitch IsOn="{Binding Path=IsDebugModeEnabled}"
@@ -24,21 +23,21 @@
                       ToolTip="{Resx ROU_DebugCommandsInvincibilityInfo}"
                       IsChecked="{Binding Path=IsInvincibilityEnabled}"
                       IsThreeState="True"
-                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={local:BooleanToVisibilityConverter}}"/>
 
         <CheckBox Content="{Resx ROU_DebugCommandsHideMouse}"
                       ToolTip="{Resx ROU_DebugCommandsHideMouseInfo}"
                       IsChecked="{Binding Path=IsMouseHidden}"
                       IsThreeState="True"
-                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={local:BooleanToVisibilityConverter}}"/>
 
         <CheckBox Content="{Resx ROU_DebugCommandsMaxZoom}"
                       ToolTip="{Resx ROU_DebugCommandsMaxZoomInfo}"
                       IsChecked="{Binding Path=IsCameraMaxZoom}"
                       IsThreeState="True"
-                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={local:BooleanToVisibilityConverter}}"/>
 
-        <Grid Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}">
+        <Grid Visibility="{Binding Path=IsDebugModeEnabled, Converter={local:BooleanToVisibilityConverter}}">
 
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -59,7 +58,7 @@
             </Grid.Resources>
 
             <Interactions:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="0 8" />
+                <local:UnifiedMarginBehavior Margin="0 8" />
             </Interactions:Interaction.Behaviors>
 
             <TextBlock Grid.Column="0"
@@ -89,8 +88,8 @@
             <ComboBox Grid.Column="1"
                           Grid.Row="2"
                           ToolTip="{Resx ROU_DebugCommandsLanguageInfo}"
-                          ItemsSource="{Binding Path=Language, Mode=OneTime, Converter={rwpf:EnumToListConverter}}"
-                          SelectedIndex="{Binding Path=Language, Converter={rwpf:EnumToIntConverter}}" />
+                          ItemsSource="{Binding Path=Language, Mode=OneTime, Converter={local:EnumToListConverter}}"
+                          SelectedIndex="{Binding Path=Language, Converter={local:EnumToIntConverter}}" />
 
         </Grid>
 

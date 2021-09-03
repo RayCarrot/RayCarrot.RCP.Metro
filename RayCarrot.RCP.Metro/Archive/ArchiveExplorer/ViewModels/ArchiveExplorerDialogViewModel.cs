@@ -14,7 +14,6 @@ using ByteSizeLib;
 using Nito.AsyncEx;
 using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

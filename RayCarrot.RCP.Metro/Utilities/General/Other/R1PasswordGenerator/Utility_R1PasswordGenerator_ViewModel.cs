@@ -2,7 +2,6 @@
 using RayCarrot.Logging;
 using RayCarrot.Rayman.Ray1;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System;
 using System.Globalization;
 using System.Linq;

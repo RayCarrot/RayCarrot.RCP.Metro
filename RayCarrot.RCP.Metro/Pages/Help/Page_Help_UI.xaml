@@ -6,7 +6,6 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -34,7 +33,7 @@
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                     <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                    <Setter Property="rwpf:UserLevelTag.MinUserLevel" Value="{Binding Path=RequiredUserLevel}" />
+                    <Setter Property="local:UserLevelTag.MinUserLevel" Value="{Binding Path=RequiredUserLevel}" />
                 </Style>
             </TreeView.ItemContainerStyle>
         </TreeView>
@@ -45,7 +44,7 @@
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Column="2">
             <i:Interaction.Behaviors>
-                <rwpf:FocusScrollViewerOnLoad />
+                <local:FocusScrollViewerOnLoad />
             </i:Interaction.Behaviors>
 
             <Grid Margin="10">
@@ -88,10 +87,10 @@
                         <DataGrid DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
                                   d:DataContext="{d:DesignInstance local:Page_Help_ItemViewModel}"
                                   ItemsSource="{Binding Path=CheatCodeItems}"
-                                  Visibility="{Binding Path=CheatCodeItems, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, FallbackValue=Collapsed}"
+                                  Visibility="{Binding Path=CheatCodeItems, Converter={local:InvertedObjectNullToVisibilityConverter}, FallbackValue=Collapsed}"
                                   Margin="0 0 0 15">
                             <DataGrid.Resources>
-                                <rwpf:BindingProxy x:Key="DataGridProxy" Data="{Binding}" />
+                                <local:BindingProxy x:Key="DataGridProxy" Data="{Binding}" />
                                 <Style x:Key="DataGridColumnElementStyle">
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
@@ -112,25 +111,25 @@
 
                                 <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Generic, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Generic, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:Page_Help_GenericCheatCodeItemViewModel.Input)}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                                 <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats1}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input1)}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                                 <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats2}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input2)}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                                 <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats3}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input3)}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
@@ -151,7 +150,7 @@
                            Grid.Row="0"
                            DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
                            d:DataContext="{d:DesignInstance local:Page_Help_ItemViewModel}"
-                           Visibility="{Binding Path=HelpText, Converter={rwpf:ObjectNullToVisibilityConverter}}"
+                           Visibility="{Binding Path=HelpText, Converter={local:ObjectNullToVisibilityConverter}}"
                            FontSize="20"
                            Text="{Resx Help_CategoryHelp}"
                            TextWrapping="Wrap"

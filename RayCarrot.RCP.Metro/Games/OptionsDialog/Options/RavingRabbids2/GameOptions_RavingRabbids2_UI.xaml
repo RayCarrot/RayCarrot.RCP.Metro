@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
@@ -12,7 +11,7 @@
              mc:Ignorable="d">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
@@ -24,7 +23,7 @@
 
         </StackPanel>
 
-        <ComboBox SelectedIndex="{Binding Source={x:Static local:RCPServices.Data}, Path=RRR2LaunchMode, Converter={rwpf:EnumToIntConverter}}"
+        <ComboBox SelectedIndex="{Binding Source={x:Static local:RCPServices.Data}, Path=RRR2LaunchMode, Converter={local:EnumToIntConverter}}"
                   HorizontalAlignment="Left">
 
             <TextBlock Text="{Resx RR2Options_GameMode_All}" />

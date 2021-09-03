@@ -120,7 +120,7 @@ namespace RayCarrot.RCP.Metro
                 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = ci;
                 
                 // Set the framework culture
-                WPF.Services.Data.CurrentCulture = ci;
+                Services.InstanceData.CurrentCulture = ci;
 
                 RL.Logger?.LogInformationSource($"The current culture was set to {ci.EnglishName}");
             }

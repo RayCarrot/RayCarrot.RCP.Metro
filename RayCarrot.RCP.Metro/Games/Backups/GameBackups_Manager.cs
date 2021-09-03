@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

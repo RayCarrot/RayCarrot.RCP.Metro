@@ -130,13 +130,13 @@ namespace RayCarrot.RCP.Metro
 
                 HasBeenApplied = true;
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_Success);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Removal R2 DRM");
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_Error);
             }
             finally
             {
@@ -165,13 +165,13 @@ namespace RayCarrot.RCP.Metro
 
                 HasBeenApplied = false;
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_RevertSuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_RevertSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Reverting R2 DRM patch");
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_RevertError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_RevertError);
             }
             finally
             {

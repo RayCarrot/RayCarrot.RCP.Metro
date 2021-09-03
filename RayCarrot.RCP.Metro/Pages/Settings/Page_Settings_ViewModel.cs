@@ -4,7 +4,6 @@ using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
-using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -46,8 +45,8 @@ namespace RayCarrot.RCP.Metro
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync(true, true);
 
-            Services.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
-            Services.Data.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
+            Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
+            Services.InstanceData.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
             Data.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == nameof(Data.Archive_AssociatedPrograms))

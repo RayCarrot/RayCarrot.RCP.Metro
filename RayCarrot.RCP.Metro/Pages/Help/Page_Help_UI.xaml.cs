@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
 
-            WPF.Services.Data.UserLevelChanged += (s, e) =>
+            Services.InstanceData.UserLevelChanged += (s, e) =>
             {
                 if ((HelpTreeView.SelectedItem as Page_Help_ItemViewModel)?.RequiredUserLevel > RCPServices.Data.UserLevel)
                     ((TreeViewItem)HelpTreeView.ItemContainerGenerator.ContainerFromItem(HelpTreeView.Items[0])).IsSelected = true;
