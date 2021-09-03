@@ -1,37 +1,37 @@
 {
   "LocalUtilities": {
     "Rayman1": [
-      "R1TPLSUtility",
-      "R1CompleteSoundtrackUtility"
+      "Utility_Rayman1_TPLS",
+      "Utility_Rayman1_CompleteSoundtrack"
     ],
     "RaymanDesigner": [
-      "RDReplaceFilesUtility",
-      "RDCreateConfigUtility"
+      "Utility_RaymanDesigner_ReplaceFiles",
+      "Utility_RaymanDesigner_CreateConfig"
     ],
     "Rayman2": [
-      "R2GameSyncTextureInfoUtility",
-      "R2RemoveDRMUtility",
-      "R2DiscPatchUtility",
-      "R2TranslationUtility"
+      "Utility_Rayman2_GameSyncTextureInfo",
+      "Utility_Rayman2_RemoveDRM",
+      "Utility_Rayman2_DiscPatch",
+      "Utility_Rayman2_Translation"
     ],
     "RaymanM": [
-      "RMGameSyncTextureInfoUtility"
+      "Utility_RaymanM_GameSyncTextureInfo"
     ],
     "RaymanArena": [
-      "RAGameSyncTextureInfoUtility"
+      "Utility_RaymanArena_GameSyncTextureInfo"
     ],
     "Rayman3": [
-      "R3GameSyncTextureInfoUtility",
-      "R3DirectPlayUtility"
+      "Utility_Rayman3_GameSyncTextureInfo",
+      "Utility_Rayman3_DirectPlay"
     ],
     "RaymanOrigins": [
-      "ROHQVideosUtility",
-      "RODebugCommandsUtility",
-      "ROUpdateUtility"
+      "Utility_RaymanOrigins_HQVideos",
+      "Utility_RaymanOrigins_DebugCommands",
+      "Utility_RaymanOrigins_Update"
     ],
     "RaymanLegends": [
-      "RLUbiRayUtility",
-      "RLDebugCommandsUtility"
+      "Utility_RaymanLegends_UbiRay",
+      "Utility_RaymanLegends_DebugCommands"
     ]
   },
   "GameManagers": {

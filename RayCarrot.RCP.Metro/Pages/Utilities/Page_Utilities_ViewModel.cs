@@ -15,40 +15,40 @@
             // Create view models
             ArchiveExplorerViewModels = new UtilityViewModel[]
             {
-                new UtilityViewModel(new R1ArchiveExplorerUtility()),
-                new UtilityViewModel(new CNTArchiveExplorerUtility()),
-                new UtilityViewModel(new IPKArchiveExplorerUtility()),
+                new UtilityViewModel(new Utility_ArchiveExplorer_R1()),
+                new UtilityViewModel(new Utility_ArchiveExplorer_CNT()),
+                new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
             };
             ConverterViewModels = new UtilityViewModel[]
             {
-                new UtilityViewModel(new R1SaveConverterUtility()),
-                new UtilityViewModel(new R1ConfigConverterUtility()),
-                new UtilityViewModel(new R2SaveConverterUtility()),
-                new UtilityViewModel(new R2ConfigConverterUtility()),
-                new UtilityViewModel(new GFConverterUtility()),
-                new UtilityViewModel(new RMSaveConverterUtility()),
-                new UtilityViewModel(new R3SaveConverterUtility()),
-                new UtilityViewModel(new LOCConverterUtility()),
-                new UtilityViewModel(new ROSaveConverterUtility()),
-                new UtilityViewModel(new RJRSaveConverterUtility()),
-                new UtilityViewModel(new RLSaveConverterUtility()),
+                new UtilityViewModel(new Utility_Converter_R1Save()),
+                new UtilityViewModel(new Utility_Converter_R1Config()),
+                new UtilityViewModel(new Utility_Converter_R2Save()),
+                new UtilityViewModel(new Utility_Converter_R2Config()),
+                new UtilityViewModel(new Utility_Converter_GF()),
+                new UtilityViewModel(new Utility_Converter_RMSave()),
+                new UtilityViewModel(new Utility_Converter_R3Save()),
+                new UtilityViewModel(new Utility_Converter_LOC()),
+                new UtilityViewModel(new Utility_Converter_ROSave()),
+                new UtilityViewModel(new Utility_Converter_RJRSave()),
+                new UtilityViewModel(new Utility_Converter_RLSave()),
             };
             DecoderViewModels = new UtilityViewModel[]
             {
-                new UtilityViewModel(new R1LngDecoderUtility()),
-                new UtilityViewModel(new R12SaveDecoderUtility()),
-                new UtilityViewModel(new TTSnaDsbDecoderUtility()),
-                new UtilityViewModel(new R2SnaDsbDecoderUtility()),
-                new UtilityViewModel(new R3SaveDecoderUtility()),
+                new UtilityViewModel(new Utility_Decoder_R1Lng()),
+                new UtilityViewModel(new Utility_Decoder_R12Save()),
+                new UtilityViewModel(new Utility_Decoder_TTSnaDsb()),
+                new UtilityViewModel(new Utility_Decoder_R2SnaDsb()),
+                new UtilityViewModel(new Utility_Decoder_R3Save()),
             };
             OtherViewModels = new UtilityViewModel[]
             {
-                new UtilityViewModel(new SyncTextureInfoUtility()),
-                new UtilityViewModel(new R1PasswordGeneratorUtility()),
+                new UtilityViewModel(new Utility_SyncTextureInfo()),
+                new UtilityViewModel(new Utility_R1PasswordGenerator()),
             };
             ExternalToolViewModels = new UtilityViewModel[]
             {
-                new UtilityViewModel(new Ray1EditorUtility()),
+                new UtilityViewModel(new Utility_Ray1Editor()),
             };
         }
 

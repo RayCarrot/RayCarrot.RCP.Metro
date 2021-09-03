@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
             if (win == null)
                 return;
 
-            win.Closing += (ss, ee) => Utilities?.DisposeAll();
+            win.Closing += (_, _) => Utilities?.DisposeAll();
             Loaded -= UtilitiesContainer_Loaded;
         }
 

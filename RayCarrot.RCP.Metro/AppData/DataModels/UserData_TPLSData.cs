@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The selected Rayman version to search for
         /// </summary>
-        public TPLSRaymanVersion RaymanVersion { get; set; }
+        public Utility_Rayman1_TPLS_RaymanVersion RaymanVersion { get; set; }
 
         /// <summary>
         /// Indicates if the utility is enabled
@@ -61,17 +61,17 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task UpdateConfigAsync()
         {
-            static string GetVersionName(TPLSRaymanVersion version) => version switch
+            static string GetVersionName(Utility_Rayman1_TPLS_RaymanVersion version) => version switch
             {
-                TPLSRaymanVersion.Auto => "auto",
-                TPLSRaymanVersion.Ray_1_12_0 => "1.12.0",
-                TPLSRaymanVersion.Ray_1_20 => "1.20",
-                TPLSRaymanVersion.Ray_1_21 => "1.21",
-                TPLSRaymanVersion.Ray_1_00 => "1.00",
-                TPLSRaymanVersion.Ray_1_12_1 => "1.12.1",
-                TPLSRaymanVersion.Ray_1_12_2 => "1.12.2",
-                TPLSRaymanVersion.Ray_1_10 => "1.10",
-                TPLSRaymanVersion.Ray_1_21_Chinese => "1.21_Chinese",
+                Utility_Rayman1_TPLS_RaymanVersion.Auto => "auto",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_0 => "1.12.0",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_20 => "1.20",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_21 => "1.21",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_00 => "1.00",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_1 => "1.12.1",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_12_2 => "1.12.2",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_10 => "1.10",
+                Utility_Rayman1_TPLS_RaymanVersion.Ray_1_21_Chinese => "1.21_Chinese",
                 _ => throw new ArgumentOutOfRangeException(nameof(version), version, null)
             };
 
