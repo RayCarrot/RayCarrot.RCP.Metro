@@ -10,9 +10,8 @@
         ContextMenuOpening="OverflowMenu_OnContextMenuOpening"
         Width="22"
         Height="22">
-    <Grid>
-        <iconPacks:PackIconMaterial Kind="DotsVertical"
-                                    Background="Transparent"
-                                    VerticalAlignment="Center"/>
-    </Grid>
+    <iconPacks:PackIconMaterial Kind="DotsVertical"
+                                Background="Transparent"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
 </Button>
