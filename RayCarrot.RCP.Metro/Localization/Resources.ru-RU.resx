@@ -1844,7 +1844,10 @@
     <value>Ссылки</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Новое бета-обновление доступно для загрузки. Скачать сейчас?</value>
+    <value>Новое бета-обновление доступно для загрузки. Скачать сейчас?
+
+Что нового:
+{0}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Удалить</value>

@@ -1847,7 +1847,10 @@ L'esecuzione di un'applicazione in modalità compatibilità viene eseguita selez
     <value>Link</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>È disponibile un nuovo aggiornamento beta per il download. Scaricare ora?</value>
+    <value>È disponibile un nuovo aggiornamento beta per il download. Scaricare ora?
+
+Novità:
+{0}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Disinstalla</value>

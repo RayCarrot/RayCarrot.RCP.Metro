@@ -1154,7 +1154,10 @@ Notícias:
     <value>Hipervínculos de encabezado de página</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Está disponible una nueva actualización beta para descargar. ¿Descargar ahora?</value>
+    <value>Está disponible una nueva actualización beta para descargar. ¿Descargar ahora?
+
+Notícias:
+{0}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>

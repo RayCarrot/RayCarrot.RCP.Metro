@@ -11212,7 +11212,10 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new beta update is available to download. Download now?.
+        ///   Looks up a localized string similar to A new beta update is available to download. Download now?
+        ///
+        ///News: 
+        ///{0}.
         /// </summary>
         public static string Update_BetaUpdateAvailable {
             get {

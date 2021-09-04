@@ -1937,7 +1937,10 @@ downloadURL</comment>
     <value>Links</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>A new beta update is available to download. Download now?</value>
+    <value>A new beta update is available to download. Download now?
+
+News: 
+{0}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Uninstall</value>

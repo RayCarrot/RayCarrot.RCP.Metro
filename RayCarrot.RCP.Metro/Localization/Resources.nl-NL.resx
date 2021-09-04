@@ -1843,7 +1843,10 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Links</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?</value>
+    <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?
+
+Nieuws: 
+{0}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Deïnstalleren</value>

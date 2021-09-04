@@ -30,11 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The display news</returns>
         protected override string GetDisplayNews(JObject manifest, bool isBeta)
         {
-            // Beta updates don't currently have display news
-            if (isBeta)
-                return null;
-
-            return manifest["DisplayNews"].Value<string>();
+            return manifest[isBeta ? "BetaDisplayNews" : "DisplayNews"].Value<string>();
         }
 
         /// <summary>

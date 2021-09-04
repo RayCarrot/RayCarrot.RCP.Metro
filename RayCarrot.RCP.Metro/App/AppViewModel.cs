@@ -809,7 +809,12 @@ namespace RayCarrot.RCP.Metro
                 {
                     try
                     {
-                        if (await Services.MessageUI.DisplayMessageAsync(!result.IsBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, result.DisplayNews) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                        var isBeta = result.IsBetaUpdate;
+                        var message = String.Format(!isBeta 
+                            ? Resources.Update_UpdateAvailable 
+                            : Resources.Update_BetaUpdateAvailable, result.DisplayNews);
+
+                        if (await Services.MessageUI.DisplayMessageAsync(message, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                         {
                             // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
                             var succeeded = await RCPServices.UpdaterManager.UpdateAsync(result, false);

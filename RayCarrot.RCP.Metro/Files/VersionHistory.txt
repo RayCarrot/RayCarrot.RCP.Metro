@@ -7,6 +7,7 @@
 	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
 
 Other changes:
+• Beta updates will now show update news in the update dialog message
 • Improved scrolling with the mouse wheel over button mapping controls
 • Debug symbols are no longer included in the executable
 • Fixed the version history window not being centered when opened from the about page

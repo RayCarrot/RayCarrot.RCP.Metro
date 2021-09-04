@@ -1460,7 +1460,10 @@ Försök igen?"</value>
     <value>Länkar</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?</value>
+    <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?
+
+Nyheter:
+{0}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Avinstallera</value>

@@ -1846,7 +1846,10 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Ligações</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
+    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?
+
+Notícias:
+{0}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>
