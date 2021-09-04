@@ -1,8 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
+using MahApps.Metro.Controls;
+using MahApps.Metro.SimpleChildWindow;
 using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
@@ -20,7 +23,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="dialog">The dialog to show</param>
         /// <param name="owner">The owner window</param>
         /// <returns>The result</returns>
-        public Task<R> ShowDialogAsync<V, R>(IDialogBaseControl<V, R> dialog, object owner)
+        public async Task<R> ShowDialogAsync<V, R>(IDialogBaseControl<V, R> dialog, object owner)
             where V : UserInputViewModel
         {
             using (dialog)
@@ -33,30 +36,32 @@ namespace RayCarrot.RCP.Metro
                     throw new Exception("A dialog can not be created before the application has been loaded");
 
                 // Run on UI thread
-                return dispatcher.Invoke(() =>
+                return await dispatcher.Invoke(async () =>
                 {
                     // Create the window
-                    var window = GetWindow();
+                    var childWin = new ChildWindow();
 
                     // Configure the window
-                    ConfigureWindow(window, dialog, owner);
+                    ConfigureChildWindow(childWin, dialog, owner);
 
-                    void Dialog_CloseDialog(object sender, EventArgs e)
-                    {
-                        window.Close();
-                    }
+                    void Dialog_CloseDialog(object sender, EventArgs e) => childWin.Close();
+                    static void Window_Closing(object sender, CancelEventArgs e) => e.Cancel = true;
 
-                    // Close window on request
+                    // Get the parent window
+                    var window = (MetroWindow)(Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive) ?? Application.Current.MainWindow);
+
+                    var wasCloseEnabled = window.IsCloseButtonEnabled;
+                    window.Closing += Window_Closing;
                     dialog.CloseDialog += Dialog_CloseDialog;
+                    window.IsCloseButtonEnabled = false;
 
-                    // Show window as dialog
-                    window.ShowDialog();
+                    await window.ShowChildWindowAsync(childWin);
 
-                    // Unsubscribe
+                    window.Closing -= Window_Closing;
                     dialog.CloseDialog -= Dialog_CloseDialog;
+                    window.IsCloseButtonEnabled = wasCloseEnabled;
 
-                    // Return the result
-                    return Task.FromResult(dialog.GetResult());
+                    return dialog.GetResult();
                 });
             }
         }
@@ -203,6 +208,20 @@ namespace RayCarrot.RCP.Metro
 
             // Set startup location
             window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
+        }
+
+        public void ConfigureChildWindow<VM>(ChildWindow window, IWindowBaseControl<VM> windowContent, object owner)
+            where VM : UserInputViewModel
+        {
+            // Set window properties
+            window.Content = windowContent.UIContent;
+            window.Title = windowContent.ViewModel.Title ?? String.Empty;
+
+            if (windowContent.Resizable)
+            {
+                window.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                window.VerticalContentAlignment = VerticalAlignment.Stretch;
+            }
         }
 
         /// <summary>

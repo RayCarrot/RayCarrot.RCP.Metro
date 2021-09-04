@@ -30,6 +30,7 @@
                 <ResourceDictionary Source="UI/Resources/Styles.AutoCompleteTextBox.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.LinkItem.List.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.DuoGridItem.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.ChildWindow.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
