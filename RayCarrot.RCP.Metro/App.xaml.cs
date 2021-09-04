@@ -226,7 +226,7 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("InitialSetup: Checking Windows version");
 
             // Make sure we are on Windows Vista or higher for the Windows API Code Pack and Deployment Image Servicing and Management
-            if (AppViewModel.WindowsVersion < WindowsVersion.WinVista)
+            if (AppViewModel.WindowsVersion < WindowsVersion.WinVista && AppViewModel.WindowsVersion != WindowsVersion.Unknown)
             {
                 MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
                 return Task.FromResult(false);

@@ -129,7 +129,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if Microsoft Store apps are supported on the current system
         /// </summary>
-        public bool SupportsWinStoreApps => AppViewModel.WindowsVersion >= WindowsVersion.Win8;
+        public bool SupportsWinStoreApps => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
 
         #endregion
 

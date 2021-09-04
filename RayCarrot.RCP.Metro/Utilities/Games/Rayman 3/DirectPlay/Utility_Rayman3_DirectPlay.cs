@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => AppViewModel.WindowsVersion >= WindowsVersion.Win8;
+        public bool IsAvailable => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility
