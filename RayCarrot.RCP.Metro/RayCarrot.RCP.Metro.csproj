@@ -1524,15 +1524,10 @@
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
     <Resource Include="Img\GameLogos\RaymanM_Logo.png" />
     <Resource Include="Installer\InstallerGifs\ASTRO.gif" />
-    <Resource Include="Installer\InstallerGifs\BAST.gif" />
     <Resource Include="Installer\InstallerGifs\CASK.gif" />
     <Resource Include="Installer\InstallerGifs\CHASE.gif" />
     <Resource Include="Installer\InstallerGifs\GLOB.gif" />
-    <Resource Include="Installer\InstallerGifs\MORB.gif" />
-    <Resource Include="Installer\InstallerGifs\RAY.gif" />
     <Resource Include="Installer\InstallerGifs\RODEO.gif" />
-    <Resource Include="Installer\InstallerGifs\SKI.gif" />
-    <Resource Include="Installer\InstallerGifs\WHALE.gif" />
     <Resource Include="Img\GameLogos\Rayman2_Logo.png" />
     <Resource Include="Installer\Games\Rayman2.txt" />
     <Resource Include="Installer\Games\RaymanArena.txt" />

@@ -8,6 +8,7 @@
 
 Other changes:
 • Removed the option to minimize the app to the tray
+• Reduced the number of animations shown in the disc installer
 • Beta updates will now show update news in the update dialog message
 • Improved scrolling with the mouse wheel over button mapping controls
 • Debug symbols are no longer included in the executable

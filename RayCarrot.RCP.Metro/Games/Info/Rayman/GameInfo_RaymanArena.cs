@@ -97,10 +97,11 @@ namespace RayCarrot.RCP.Metro
 
                 return new string[]
                 {
-                    basePath + "BAST.gif",
+                    basePath + "ASTRO.gif",
+                    basePath + "CASK.gif",
                     basePath + "CHASE.gif",
                     basePath + "GLOB.gif",
-                    basePath + "RAY.gif"
+                    basePath + "RODEO.gif",
                 };
             }
         }
