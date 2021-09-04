@@ -129,7 +129,7 @@ namespace RayCarrot.RCP.Metro
             foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))
             {
                 // Get the file
-                var file = ipk.Files.FindItem(x => x.Path.FileName == patchGroup.Key);
+                var file = ipk.Files.FirstOrDefault(x => x.Path.FileName == patchGroup.Key);
 
                 // Make sure we found the file
                 if (file == null)

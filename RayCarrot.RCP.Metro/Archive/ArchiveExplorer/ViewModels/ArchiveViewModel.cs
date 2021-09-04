@@ -140,7 +140,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the currently selected item
         /// </summary>
-        public ArchiveDirectoryViewModel SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.IsSelected);
+        public ArchiveDirectoryViewModel SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FirstOrDefault(x => x.IsSelected);
        
         /// <summary>
         /// The text to display for the save prompt if there are modified files
@@ -234,7 +234,7 @@ namespace RayCarrot.RCP.Metro
                 foreach (string subDir in dir.DirectoryName.Trim(Manager.PathSeparatorCharacter).Split(Manager.PathSeparatorCharacter))
                 {
                     // Set the previous item and create the item if it doesn't already exist
-                    prevItem = prevItem.FindItem(x => x.ID == subDir) ?? prevItem.Add(subDir);
+                    prevItem = prevItem.FirstOrDefault(x => x.ID == subDir) ?? prevItem.Add(subDir);
                 }
 
                 // Add the files
@@ -308,7 +308,7 @@ namespace RayCarrot.RCP.Metro
                     LoadArchive();
 
                     // Get the previously selected item
-                    var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.FullID.SequenceEqual(selected));
+                    var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FirstOrDefault(x => x.FullID.SequenceEqual(selected));
 
                     // Load the previously selected directory if it still exists
                     if (previouslySelectedItem != null)

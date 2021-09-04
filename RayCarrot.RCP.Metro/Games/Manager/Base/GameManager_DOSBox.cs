@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RayCarrot.Common;
@@ -138,7 +139,7 @@ namespace RayCarrot.RCP.Metro
                     foreverInstallDir + "Music\\game.ins",
                 };
 
-                var mountPath = mountFiles.FindItem(x => x.FileExists);
+                var mountPath = mountFiles.FirstOrDefault(x => x.FileExists);
 
                 if (mountPath.FileExists)
                 {

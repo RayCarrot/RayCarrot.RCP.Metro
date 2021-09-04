@@ -148,7 +148,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the active <see cref="Window"/>
         /// </summary>
-        public Window CurrentActiveWindow => Windows.OfType<Window>().FindItem(x => x.IsActive);
+        public Window CurrentActiveWindow => Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
 
         /// <summary>
         /// The common application data, or null if not available

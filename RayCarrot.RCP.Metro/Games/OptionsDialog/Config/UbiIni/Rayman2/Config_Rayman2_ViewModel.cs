@@ -365,7 +365,7 @@ namespace RayCarrot.RCP.Metro
                     var originalKey = DirectXKeyHelpers.GetKey(item.OriginalKey);
 
                     // Attempt to get corresponding Rayman 2 key
-                    var r2Item = KeyItems.FindItem(x => x.OriginalKey == originalKey);
+                    var r2Item = KeyItems.FirstOrDefault(x => x.OriginalKey == originalKey);
 
                     // If one was found, set the new key
                     r2Item?.SetInitialNewKey(DirectXKeyHelpers.GetKey(item.NewKey));

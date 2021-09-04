@@ -198,14 +198,14 @@ namespace RayCarrot.RCP.Metro
             /// </summary>
             /// <param name="tag">The level tag</param>
             /// <returns>The level, or null if not found</returns>
-            public Level GetLevel(uint tag) => Levels.FindItem(x => x.Tag == tag);
+            public Level GetLevel(uint tag) => Levels.FirstOrDefault(x => x.Tag == tag);
 
             /// <summary>
             /// Gets the mission which matches the level tag
             /// </summary>
             /// <param name="tag">The level tag</param>
             /// <returns>The mission, or null if not found</returns>
-            public Mission GetMission(uint tag) => Missions.FindItem(x => x.Type == GetLevel(tag)?.Type);
+            public Mission GetMission(uint tag) => Missions.FirstOrDefault(x => x.Type == GetLevel(tag)?.Type);
 
             #endregion
 

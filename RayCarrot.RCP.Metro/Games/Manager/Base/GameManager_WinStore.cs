@@ -283,7 +283,7 @@ namespace RayCarrot.RCP.Metro
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Package GetGamePackage(string packageName = null)
         {
-            return new PackageManager().FindPackagesForUser(String.Empty).FindItem(x => x.Id.Name == (packageName ?? PackageName));
+            return new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == (packageName ?? PackageName));
         }
 
         /// <summary>

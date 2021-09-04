@@ -204,7 +204,7 @@ namespace RayCarrot.RCP.Metro
             else if (owner is IntPtr oi)
                 new WindowInteropHelper(window).Owner = oi;
             else
-                window.Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
+                window.Owner = Application.Current?.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive);
 
             // Set startup location
             window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;

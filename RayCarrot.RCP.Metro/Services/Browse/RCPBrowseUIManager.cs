@@ -49,7 +49,7 @@ namespace RayCarrot.RCP.Metro
                 };
 
                 // Show the dialog
-                var dialogResult = dialog.ShowDialog(Application.Current.Windows.Cast<Window>().FindItem(x => x.IsActive));
+                var dialogResult = dialog.ShowDialog(Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive));
 
                 var result = dialogResult != CommonFileDialogResult.Ok ? new DirectoryBrowserResult()
                 {

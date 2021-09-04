@@ -273,7 +273,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Get the master category
-                    var master = GameCategories.FindItem(x => x.IsMaster);
+                    var master = GameCategories.FirstOrDefault(x => x.IsMaster);
 
                     // Set the master category visibility
                     master.IsVisible = false;

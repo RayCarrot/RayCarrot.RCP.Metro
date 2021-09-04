@@ -142,7 +142,7 @@ namespace RayCarrot.RCP.Metro
                 CurrentInput.Add(key);
 
                 // Attempt to get a completed code
-                var task = Codes.FindItem(x => x.Key.SequenceEqual(CurrentInput)).Value;
+                var task = Codes.FirstOrDefault(x => x.Key.SequenceEqual(CurrentInput)).Value;
 
                 if (task == null)
                     return;

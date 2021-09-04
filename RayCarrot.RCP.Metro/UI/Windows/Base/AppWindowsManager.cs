@@ -113,14 +113,14 @@ namespace RayCarrot.RCP.Metro
                     foreach (Window window in windows)
                     {
                         // Find saved instance
-                        var gn = Windows.FindItem(k =>
+                        var gn = Windows.FirstOrDefault(k =>
                         {
                             k.Key.TryGetTarget(out Window win);
                             return win == window;
                         }).Value?.GroupNames;
 
                         // Continue if not found
-                        if (gn?.FindItem(groupNames.Contains) == null)
+                        if (gn?.FirstOrDefault(groupNames.Contains) == null)
                             continue;
 
                         RL.Logger?.LogInformationSource($"The window is not being shown due to a window with the same ID being available");
