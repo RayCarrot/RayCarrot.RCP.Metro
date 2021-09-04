@@ -8,6 +8,7 @@
 
 Other changes:
 • Improved scrolling with the mouse wheel over button mapping controls
+• Debug symbols are no longer included in the executable
 • Fixed the version history window not being centered when opened from the about page
 
 
