@@ -7,8 +7,8 @@
     <!-- Default Animated Tab Control -->
 
     <Style TargetType="{x:Type metro:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type metro:MetroAnimatedTabControl}}">
-        <!-- Allow the transition animation to be disabled -->
-        <Setter Property="metro:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCPServices.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
+        <!-- Use dynamic transition animations -->
+        <Setter Property="local:DynamicTabAnimationBehavior.IsEnabledForStyle" Value="True" />
         <!-- Show underline for tab item headers -->
         <Setter Property="metro:TabControlHelper.Underlined" Value="TabItems" />
     </Style>
