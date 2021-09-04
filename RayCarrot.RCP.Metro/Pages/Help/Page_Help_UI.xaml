@@ -3,7 +3,6 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -41,22 +40,22 @@
         <Separator Grid.Column="1"
                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
 
-        <ScrollViewer x:Name="MainScrollViewer"
-                      Grid.Column="2">
-            <i:Interaction.Behaviors>
-                <local:FocusScrollViewerOnLoad />
-            </i:Interaction.Behaviors>
+        <Grid Grid.Column="2" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-            <Grid Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="0" Grid.Row="0">
 
-                <StackPanel Grid.Column="0"
-                            Grid.Row="0">
+                <Grid>
 
-                    <StackPanel.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.Resources>
                         <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                             <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
                             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -65,7 +64,8 @@
                             <Setter Property="MaxColumnWidth" Value="200" />
                             <Setter Property="CellStyle">
                                 <Setter.Value>
-                                    <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                    <Style TargetType="{x:Type DataGridCell}"
+                                           BasedOn="{StaticResource {x:Type DataGridCell}}">
                                         <Setter Property="Margin" Value="10 7" />
                                         <Setter Property="KeyboardNavigation.IsTabStop"
                                                 Value="False" />
@@ -80,90 +80,90 @@
                                 </Setter.Value>
                             </Setter>
                         </Style>
-                    </StackPanel.Resources>
+                    </Grid.Resources>
 
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                                  PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
-                        <DataGrid DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
-                                  d:DataContext="{d:DesignInstance local:Page_Help_ItemViewModel}"
-                                  ItemsSource="{Binding Path=CheatCodeItems}"
-                                  Visibility="{Binding Path=CheatCodeItems, Converter={local:InvertedObjectNullToVisibilityConverter}, FallbackValue=Collapsed}"
-                                  Margin="0 0 0 15">
-                            <DataGrid.Resources>
-                                <local:BindingProxy x:Key="DataGridProxy" Data="{Binding}" />
-                                <Style x:Key="DataGridColumnElementStyle">
-                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
-                                </Style>
-                            </DataGrid.Resources>
+                    <DataGrid Grid.Row="0"
+                              DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
+                              d:DataContext="{d:DesignInstance local:Page_Help_ItemViewModel}"
+                              ItemsSource="{Binding Path=CheatCodeItems}"
+                              Visibility="{Binding Path=CheatCodeItems, Converter={local:InvertedObjectNullToVisibilityConverter}, FallbackValue=Collapsed}"
+                              Margin="0 0 0 15">
+                        <DataGrid.Resources>
+                            <local:BindingProxy x:Key="DataGridProxy" Data="{Binding}" />
+                            <Style x:Key="DataGridColumnElementStyle">
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGrid.Resources>
 
-                            <DataGrid.Columns>
+                        <DataGrid.Columns>
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                                    Header="{Resx Help_Cheats_Description}"
-                                                    Binding="{Binding Path=CheatDescription}"
-                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
+                            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                                Header="{Resx Help_Cheats_Description}"
+                                                Binding="{Binding Path=CheatDescription}"
+                                                ElementStyle="{StaticResource DataGridColumnElementStyle}" />
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                                    Header="{Resx Help_Cheats_Location}"
-                                                    Binding="{Binding Path=InputLocation}"
-                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
+                            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                                Header="{Resx Help_Cheats_Location}"
+                                                Binding="{Binding Path=InputLocation}"
+                                                ElementStyle="{StaticResource DataGridColumnElementStyle}" />
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                                    Header="{Resx Help_Cheats_Cheats}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Generic, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
-                                                    Binding="{Binding Path=(local:Page_Help_GenericCheatCodeItemViewModel.Input)}"
-                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
+                            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                                Header="{Resx Help_Cheats_Cheats}" 
+                                                Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Generic, FallbackValue=Collapsed, Source=  {StaticResource DataGridProxy}}"
+                                                Binding="{Binding Path=(local:Page_Help_GenericCheatCodeItemViewModel.Input)}"
+                                                ElementStyle="{StaticResource DataGridColumnElementStyle}" />
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                                    Header="{Resx Help_Cheats_Cheats1}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
-                                                    Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input1)}"
-                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
+                            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                                Header="{Resx Help_Cheats_Cheats1}"
+                                                Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input1)}"
+                                                ElementStyle="{StaticResource DataGridColumnElementStyle}" />
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                                    Header="{Resx Help_Cheats_Cheats2}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
-                                                    Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input2)}"
-                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
+                            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                                Header="{Resx Help_Cheats_Cheats2}"
+                                                Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input2)}"
+                                                ElementStyle="{StaticResource DataGridColumnElementStyle}" />
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                                    Header="{Resx Help_Cheats_Cheats3}"
-                                                    Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
-                                                    Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input3)}"
-                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
+                            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                                Header="{Resx Help_Cheats_Cheats3}"
+                                                Visibility="{Binding Path=Data.(local:Page_Help_ItemViewModel.CheatCodeType), Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                Binding="{Binding Path=(local:Page_Help_Rayman1CheatCodeItemViewModel.Input3)}"
+                                                ElementStyle="{StaticResource DataGridColumnElementStyle}" />
 
-                            </DataGrid.Columns>
+                        </DataGrid.Columns>
 
-                        </DataGrid>
-                    </ScrollViewer>
+                    </DataGrid>
 
-                    <TextBlock Margin="5"
+                    <TextBlock Grid.Row="1"
+                               Margin="5"
                                DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
                                d:DataContext="{d:DesignInstance local:Page_Help_ItemViewModel}"
                                Text="{Binding Path=HelpText}"
-                               TextWrapping="Wrap"/>
+                               TextWrapping="Wrap" />
 
-                </StackPanel>
+                </Grid>
 
-                <TextBlock Grid.Column="0"
-                           Grid.Row="0"
-                           DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
-                           d:DataContext="{d:DesignInstance local:Page_Help_ItemViewModel}"
-                           Visibility="{Binding Path=HelpText, Converter={local:ObjectNullToVisibilityConverter}}"
-                           FontSize="20"
-                           Text="{Resx Help_CategoryHelp}"
-                           TextWrapping="Wrap"
-                           HorizontalAlignment="Center" />
+            </ScrollViewer>
 
-                <Image Grid.Column="1"
+            <TextBlock Grid.Column="0"
                        Grid.Row="0"
-                       VerticalAlignment="Top"
-                       Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
-                       Height="128"
-                       Width="128"/>
+                       DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
+                       d:DataContext="{d:DesignInstance local:Page_Help_ItemViewModel}"
+                       Visibility="{Binding Path=HelpText, Converter={local:ObjectNullToVisibilityConverter}}"
+                       FontSize="20"
+                       Text="{Resx Help_CategoryHelp}"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center" />
 
-            </Grid>
-        </ScrollViewer>
+            <Image Grid.Column="1"
+                   Grid.Row="0"
+                   VerticalAlignment="Top"
+                   Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
+                   Height="128"
+                   Width="128" />
+
+        </Grid>
     </Grid>
 </local:BasePage>
