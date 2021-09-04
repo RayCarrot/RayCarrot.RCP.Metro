@@ -5,7 +5,6 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:tb="http://www.hardcodet.net/taskbar"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
                   mc:Ignorable="d"
@@ -15,9 +14,6 @@
                   Height="720"
                   Width="960"
                   DataContext="{x:Static local:RCPServices.App}">
-    <Window.Resources>
-        <local:TaskbarIconViewModel x:Key="TaskbarIconViewModel" />
-    </Window.Resources>
     <local:BaseWindow.TitleTemplate>
         <DataTemplate>
             <Grid DataContext="{x:Static local:RCPServices.App}">
@@ -39,41 +35,7 @@
             </Grid>
         </DataTemplate>
     </local:BaseWindow.TitleTemplate>
-    <mah:MetroWindow.RightWindowCommands>
-        <mah:WindowCommands>
-            <Button DataContext="{StaticResource TaskbarIconViewModel}"
-                    Command="{Binding Path=MinimizeToTaskbarCommand}"
-                    ToolTip="{Resx Window_MinimizeToTray}">
-                <iconPacks:PackIconMaterial Kind="ArrowDownBoldBoxOutline" />
-            </Button>
-        </mah:WindowCommands>
-    </mah:MetroWindow.RightWindowCommands>
     <Grid>
-        <tb:TaskbarIcon DataContext="{StaticResource TaskbarIconViewModel}"
-                        IconSource="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RCP_Metro.ico"
-                        ToolTipText="{Resx AppName}"
-                        LeftClickCommand="{Binding Path=OpenFromTaskbarCommand}"
-                        Visibility="{Binding Path=IsIconVisible, Converter={local:BooleanToVisibilityConverter}}">
-
-            <tb:TaskbarIcon.ContextMenu>
-                <ContextMenu Padding="5"
-                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
-                    <MenuItem Header="{Resx TaskBarIcon_Open}"
-                              Command="{Binding Path=OpenFromTaskbarCommand}">
-                        <MenuItem.Icon>
-                            <iconPacks:PackIconMaterial Kind="OpenInApp" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="{Resx TaskBarIcon_Close}"
-                              Command="{Binding Path=CloseApplicationCommand}">
-                        <MenuItem.Icon>
-                            <iconPacks:PackIconMaterial Kind="CloseOutline" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </ContextMenu>
-            </tb:TaskbarIcon.ContextMenu>
-        </tb:TaskbarIcon>
-
         <mah:MetroAnimatedTabControl x:Name="PageTabControl"
                                      ItemContainerStyle="{StaticResource TabItem.Large}"
                                      Padding="5">
