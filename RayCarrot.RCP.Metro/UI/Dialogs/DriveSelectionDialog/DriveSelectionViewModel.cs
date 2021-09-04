@@ -4,7 +4,6 @@ using Nito.AsyncEx;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.Windows.Shell;
 using System;
 using System.Collections;
 using System.Collections.ObjectModel;

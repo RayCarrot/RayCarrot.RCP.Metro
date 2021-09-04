@@ -10,7 +10,6 @@ using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
 using RayCarrot.Windows.Registry;
-using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {

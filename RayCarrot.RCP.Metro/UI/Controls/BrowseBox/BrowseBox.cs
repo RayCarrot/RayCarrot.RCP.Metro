@@ -3,7 +3,6 @@ using Nito.AsyncEx;
 using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.Windows.Shell;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -2,7 +2,6 @@
 using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
-using RayCarrot.Windows.Shell;
 using System;
 using System.Diagnostics;
 using System.IO;

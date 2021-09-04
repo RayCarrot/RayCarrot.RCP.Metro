@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Taskbar;
-using RayCarrot.Windows.Shell;
 using System.Threading.Tasks;
 using RayCarrot.Common;
 

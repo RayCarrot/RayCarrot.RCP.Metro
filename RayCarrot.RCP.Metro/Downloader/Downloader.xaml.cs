@@ -1,5 +1,4 @@
 ﻿using RayCarrot.Common;
-using RayCarrot.Windows.Shell;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;

@@ -7,7 +7,6 @@ using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
