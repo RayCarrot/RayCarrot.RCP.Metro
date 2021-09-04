@@ -122,7 +122,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="local:OverflowButtonItemViewModel">
                             <Grid Background="{StaticResource MahApps.Brushes.Control.Background}"
-                              local:UserLevelTag.MinUserLevel="{Binding Path=MinUserLevel}">
+                              local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel}">
                                 <MenuItem Header="{Binding Path=Header}"
                                       Command="{Binding Path=Command}"
                                       Visibility="{Binding Path=IsSeparator, Converter={local:InvertedBooleanToVisibilityConverter}}"

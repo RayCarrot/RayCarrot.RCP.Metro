@@ -32,7 +32,7 @@
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                     <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                    <Setter Property="local:UserLevelTag.MinUserLevel" Value="{Binding Path=RequiredUserLevel}" />
+                    <Setter Property="local:UserLevelAssist.MinUserLevel" Value="{Binding Path=RequiredUserLevel}" />
                 </Style>
             </TreeView.ItemContainerStyle>
         </TreeView>

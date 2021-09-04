@@ -1,9 +1,9 @@
 ﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The behavior to use for <see cref="UserLevelTag"/>
+    /// The behavior to use for <see cref="UserLevelAssist"/>
     /// </summary>
-    public enum UserLevelTagMode
+    public enum UserLevelAssistMode
     {
         /// <summary>
         /// The element should be collapsed when not meeting the <see cref="UserLevel"/> requirement

@@ -190,12 +190,12 @@
 
         <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx DosBoxOptions_Commands}"
-                   local:UserLevelTag.MinUserLevel="Technical" />
+                   local:UserLevelAssist.MinUserLevel="Technical" />
 
         <TextBox Text="{Binding Path=CustomCommands}"
                  AcceptsReturn="True"
                  mah:TextBoxHelper.Watermark="{Resx DosBoxOptions_CommandsOptional}"
-                 local:UserLevelTag.MinUserLevel="Technical"
+                 local:UserLevelAssist.MinUserLevel="Technical"
                  MinHeight="70" />
 
     </StackPanel>

@@ -56,7 +56,7 @@
                   ToolTip="{Resx Config_TnLInfo}"
                   IsChecked="{Binding Path=TnL}" />
 
-        <Grid local:UserLevelTag.MinUserLevel="Advanced"
+        <Grid local:UserLevelAssist.MinUserLevel="Advanced"
               local:UnifiedMargin.Ignored="True">
             <CheckBox Content="{Resx Config_DynamicShadows}"
                       IsChecked="{Binding Path=DynamicShadows}"
@@ -64,7 +64,7 @@
                       Margin="0 8" />
         </Grid>
 
-        <Grid local:UserLevelTag.MinUserLevel="Advanced"
+        <Grid local:UserLevelAssist.MinUserLevel="Advanced"
               local:UnifiedMargin.Ignored="True">
             <CheckBox Content="{Resx Config_StaticShadows}"
                       IsChecked="{Binding Path=StaticShadows}"

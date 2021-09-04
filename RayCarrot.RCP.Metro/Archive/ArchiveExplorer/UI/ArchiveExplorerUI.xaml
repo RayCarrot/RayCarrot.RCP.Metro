@@ -145,11 +145,11 @@
 
                             </local:MenuItemIcon>
 
-                            <Separator local:UserLevelTag.MinUserLevel="Debug"/>
+                            <Separator local:UserLevelAssist.MinUserLevel="Debug"/>
 
                             <local:MenuItemIcon Header="{Resx DebugPageHeader}"
                                                 IconKind="CodeBraces"
-                                                local:UserLevelTag.MinUserLevel="Debug">
+                                                local:UserLevelAssist.MinUserLevel="Debug">
 
                                 <local:MenuItemIcon Header="Force repack"
                                                     Click="ForceRepackMenuItem_OnClick"/>

@@ -50,12 +50,12 @@
 
             </MenuItem>
 
-            <Separator local:UserLevelTag.MinUserLevel="Advanced"/>
+            <Separator local:UserLevelAssist.MinUserLevel="Advanced"/>
 
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
                                 Command="{Binding Path=RefreshCommand}"
-                                local:UserLevelTag.MinUserLevel="Advanced"/>
+                                local:UserLevelAssist.MinUserLevel="Advanced"/>
 
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
@@ -70,8 +70,8 @@
 
         <!-- General -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Settings}"
-                 local:TabItem.IconForeground="{StaticResource Colors.Settings}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Settings}"
                  Header="{Resx Settings_GeneralHeader}">
 
             <ScrollViewer>
@@ -117,7 +117,7 @@
                                 </Hyperlink>
                             </TextBlock>
 
-                            <CheckBox local:UserLevelTag.MinUserLevel="Debug"
+                            <CheckBox local:UserLevelAssist.MinUserLevel="Debug"
                                       Content="{Resx Settings_IncompleteTranslations}"
                                       IsChecked="{Binding Path=ShowIncompleteTranslations}" />
 
@@ -176,7 +176,7 @@
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
                                                           ToolTip="{Resx Settings_UserLevelDebugInfo}"
                                                           IsChecked="{Binding Path=UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
-                                                          local:UserLevelTag.MinUserLevel="Technical" />
+                                                          local:UserLevelAssist.MinUserLevel="Technical" />
 
                             </WrapPanel>
 
@@ -210,15 +210,15 @@
                             <CheckBox Content="{Resx Settings_GetBetaUpdates}"
                                       DataContext="{Binding Path=Data}"
                                       IsChecked="{Binding Path=GetBetaUpdates}"
-                                      local:UserLevelTag.MinUserLevel="Technical" />
+                                      local:UserLevelAssist.MinUserLevel="Technical" />
 
                             <CheckBox Content="{Resx Settings_ManualDownloads}"
                                       ToolTip="{Resx Settings_ManualDownloadsInfo}"
                                       DataContext="{Binding Path=Data}"
                                       IsChecked="{Binding Path=HandleDownloadsManually}"
-                                      local:UserLevelTag.MinUserLevel="Advanced" />
+                                      local:UserLevelAssist.MinUserLevel="Advanced" />
 
-                            <StackPanel local:UserLevelTag.MinUserLevel="Technical"
+                            <StackPanel local:UserLevelAssist.MinUserLevel="Technical"
                                         DataContext="{Binding Path=Data}">
 
                                 <TextBlock Style="{StaticResource TextBlock.Header}"
@@ -309,8 +309,8 @@
 
         <!-- Archive Explorer -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
-                 local:TabItem.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.ArchiveExplorer}"
                  Header="{Resx Archive_Title}">
 
             <ScrollViewer>
@@ -435,8 +435,8 @@
 
         <!-- DOSBox -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
-                 local:TabItem.IconForeground="{StaticResource Colors.Emulator}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Emulator}"
                  Header="{Resx Settings_DosBoxHeader}">
 
             <ScrollViewer>
@@ -474,7 +474,7 @@
 
                             </StackPanel>
 
-                            <StackPanel local:UserLevelTag.MinUserLevel="Advanced">
+                            <StackPanel local:UserLevelAssist.MinUserLevel="Advanced">
 
                                 <TextBlock Style="{StaticResource TextBlock.Header}"
                                            Text="{Resx Settings_OptionalDosBoxConfigPath}"
@@ -501,8 +501,8 @@
 
         <!-- Links -->
 
-        <TabItem local:TabItem.IconKind="Link"
-                 local:TabItem.IconForeground="{StaticResource Colors.Info}"
+        <TabItem local:TabItemAssist.IconKind="Link"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
                  Header="{Resx LinksPageHeader}">
 
             <ScrollViewer>
@@ -515,10 +515,10 @@
 
         <!-- Debug -->
 
-        <TabItem local:TabItem.IconKind="CodeBraces"
-                 local:TabItem.IconForeground="{StaticResource Colors.Debug}"
+        <TabItem local:TabItemAssist.IconKind="CodeBraces"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
                  Header="{Resx DebugPageHeader}"
-                 local:UserLevelTag.MinUserLevel="Debug">
+                 local:UserLevelAssist.MinUserLevel="Debug">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
@@ -528,7 +528,7 @@
 
                     <!-- Debug -->
 
-                    <StackPanel local:UserLevelTag.MinUserLevel="Debug"
+                    <StackPanel local:UserLevelAssist.MinUserLevel="Debug"
                                 DataContext="{Binding Path=Data}">
                         <i:Interaction.Behaviors>
                             <local:UnifiedMarginBehavior Margin="0 2" />

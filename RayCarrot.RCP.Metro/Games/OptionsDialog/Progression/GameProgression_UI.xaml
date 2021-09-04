@@ -20,7 +20,7 @@
 
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding Path=CanModify, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}">
-                            <local:OverflowMenu local:UserLevelTag.MinUserLevel="Technical"
+                            <local:OverflowMenu local:UserLevelAssist.MinUserLevel="Technical"
                                                 Margin="7">
                                 <local:OverflowMenu.ContextMenu>
                                     <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">

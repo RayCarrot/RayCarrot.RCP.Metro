@@ -22,7 +22,7 @@
                   IsChecked="{Binding Path=FullscreenMode}" />
 
         <StackPanel Orientation="Horizontal"
-                    local:UserLevelTag.MinUserLevel="Advanced">
+                    local:UserLevelAssist.MinUserLevel="Advanced">
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_RRRScreenMode}" />
 
@@ -32,7 +32,7 @@
 
         <ComboBox SelectedIndex="{Binding Path=ScreenModeIndex}"
                   HorizontalAlignment="Left"
-                  local:UserLevelTag.MinUserLevel="Advanced">
+                  local:UserLevelAssist.MinUserLevel="Advanced">
             <TextBlock Text="{Resx Config_RRRScreenMode_4_3Borders}" />
             <TextBlock Text="{Resx Config_RRRScreenMode_4_3}" />
             <TextBlock Text="{Resx Config_RRRScreenMode_16_9}" />

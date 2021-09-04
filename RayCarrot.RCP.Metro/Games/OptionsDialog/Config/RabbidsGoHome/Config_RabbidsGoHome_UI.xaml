@@ -90,18 +90,18 @@
 
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GoHomeConfig_BigFile}"
-                       local:UserLevelTag.MinUserLevel="Technical" />
+                       local:UserLevelAssist.MinUserLevel="Technical" />
 
             <TextBox Text="{Binding Path=BigFile}"
-                     local:UserLevelTag.MinUserLevel="Technical" />
+                     local:UserLevelAssist.MinUserLevel="Technical" />
 
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GoHomeConfig_Commands}"
-                       local:UserLevelTag.MinUserLevel="Technical" />
+                       local:UserLevelAssist.MinUserLevel="Technical" />
 
             <TextBox Text="{Binding Path=CustomCommands}"
                      AcceptsReturn="True"
-                     local:UserLevelTag.MinUserLevel="Technical"
+                     local:UserLevelAssist.MinUserLevel="Technical"
                      MinHeight="70" />
 
         </StackPanel>

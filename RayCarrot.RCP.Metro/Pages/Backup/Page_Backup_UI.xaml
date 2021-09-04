@@ -31,7 +31,7 @@
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
                                 Command="{Binding Path=RefreshCommand}"
-                                local:UserLevelTag.MinUserLevel="Advanced"/>
+                                local:UserLevelAssist.MinUserLevel="Advanced"/>
 
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
@@ -83,7 +83,7 @@
             <!-- Backup Size -->
 
             <TextBlock Grid.Column="3"
-                       local:UserLevelTag.MinUserLevel="Advanced"
+                       local:UserLevelAssist.MinUserLevel="Advanced"
                        MinWidth="100"
                        Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Backup_LastBackupSize}"
@@ -94,7 +94,7 @@
             <!-- Debug Info -->
             <!-- NOTE: Not localized -->
             <TextBlock Grid.Column="4"
-                       local:UserLevelTag.MinUserLevel="Debug"
+                       local:UserLevelAssist.MinUserLevel="Debug"
                        MinWidth="100"
                        Style="{StaticResource TextBlock.Header}"
                        Text="Debug Info"
@@ -157,7 +157,7 @@
                             <!-- Backup Size -->
 
                             <Grid Grid.Column="3"
-                                  local:UserLevelTag.MinUserLevel="Advanced"
+                                  local:UserLevelAssist.MinUserLevel="Advanced"
                                   MinWidth="100">
 
                                 <TextBlock FontSize="14"
@@ -171,7 +171,7 @@
                             <!-- Debug Info -->
 
                             <Grid Grid.Column="4"
-                                  local:UserLevelTag.MinUserLevel="Debug"
+                                  local:UserLevelAssist.MinUserLevel="Debug"
                                   MinWidth="100">
 
                                 <TextBlock FontSize="14"

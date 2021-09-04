@@ -79,7 +79,7 @@
                    Visibility="{Binding Path=InstallerRunning, Converter={local:BooleanToVisibilityConverter}}"
                    TextWrapping="Wrap"
                    HorizontalAlignment="Center"
-                   local:UserLevelTag.MinUserLevel="Advanced"
+                   local:UserLevelAssist.MinUserLevel="Advanced"
                    MaxWidth="450"
                    Height="50"/>
 

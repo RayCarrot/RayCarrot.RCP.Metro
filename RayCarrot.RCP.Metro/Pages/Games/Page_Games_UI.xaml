@@ -36,7 +36,7 @@
 
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 Command="{Binding Path=RefreshGamesCommand}"
-                                local:UserLevelTag.MinUserLevel="Debug"
+                                local:UserLevelAssist.MinUserLevel="Debug"
                                 IconKind="Refresh"/>
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
@@ -58,9 +58,9 @@
                         <Setter Property="Visibility"
                                 Value="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}" />
                         <Setter Property="Header" Value="{Binding Path=DisplayName.Value, Mode=OneTime}" />
-                        <Setter Property="local:TabItem.IconKind"
+                        <Setter Property="local:TabItemAssist.IconKind"
                                 Value="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
-                        <Setter Property="local:TabItem.IconForeground"
+                        <Setter Property="local:TabItemAssist.IconForeground"
                                 Value="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}" />
                     </Style>
                 </mah:MetroAnimatedTabControl.ItemContainerStyle>

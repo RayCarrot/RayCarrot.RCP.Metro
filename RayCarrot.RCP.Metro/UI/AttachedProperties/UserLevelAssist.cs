@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Provides attached properties for tagging <see cref="FrameworkElement"/> objects with a minimum <see cref="UserLevel"/>
     /// </summary>
-    public static class UserLevelTag
+    public static class UserLevelAssist
     {
         #region MinUserLevel
 
@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The property for the minimum <see cref="UserLevel"/>
         /// </summary>
-        public static readonly DependencyProperty MinUserLevelProperty = DependencyProperty.RegisterAttached("MinUserLevel", typeof(UserLevel), typeof(UserLevelTag), new PropertyMetadata(UserLevel.Normal, MinUserLevelChanged));
+        public static readonly DependencyProperty MinUserLevelProperty = DependencyProperty.RegisterAttached("MinUserLevel", typeof(UserLevel), typeof(UserLevelAssist), new PropertyMetadata(UserLevel.Normal, MinUserLevelChanged));
 
         #endregion
 
@@ -39,19 +39,19 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="obj">The object to get the property from</param>
         /// <returns>The property</returns>
-        public static UserLevelTagMode GetMode(DependencyObject obj) => (UserLevelTagMode)obj.GetValue(ModeProperty);
+        public static UserLevelAssistMode GetMode(DependencyObject obj) => (UserLevelAssistMode)obj.GetValue(ModeProperty);
 
         /// <summary>
         /// Sets the requested mode for a <see cref="DependencyObject"/>
         /// </summary>
         /// <param name="obj">The object to set the property on</param>
         /// <param name="value">The property to set</param>
-        public static void SetMode(DependencyObject obj, UserLevelTagMode value) => obj.SetValue(ModeProperty, value);
+        public static void SetMode(DependencyObject obj, UserLevelAssistMode value) => obj.SetValue(ModeProperty, value);
 
         /// <summary>
         /// The property for the requested mode
         /// </summary>
-        public static readonly DependencyProperty ModeProperty = DependencyProperty.RegisterAttached("Mode", typeof(UserLevelTagMode), typeof(UserLevelTag), new PropertyMetadata(UserLevelTagMode.Collapse, ModeChanged));
+        public static readonly DependencyProperty ModeProperty = DependencyProperty.RegisterAttached("Mode", typeof(UserLevelAssistMode), typeof(UserLevelAssist), new PropertyMetadata(UserLevelAssistMode.Collapse, ModeChanged));
 
         #endregion
 
@@ -115,9 +115,9 @@ namespace RayCarrot.RCP.Metro
         {
             var b = GetMode(element);
 
-            if (b == UserLevelTagMode.Collapse)
+            if (b == UserLevelAssistMode.Collapse)
                 element.Visibility = GetMinUserLevel(element) <= Services.InstanceData.CurrentUserLevel ? Visibility.Visible : Visibility.Collapsed;
-            else if (b == UserLevelTagMode.Disable)
+            else if (b == UserLevelAssistMode.Disable)
                 element.IsEnabled = GetMinUserLevel(element) <= Services.InstanceData.CurrentUserLevel;
         }
 

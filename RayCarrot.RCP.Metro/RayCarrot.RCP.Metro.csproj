@@ -186,8 +186,8 @@
     <Compile Include="UI\Behaviors\FocusElementOnLoad.cs" />
     <Compile Include="UI\Behaviors\FocusScrollViewerOnLoad.cs" />
     <Compile Include="UI\Behaviors\UnifiedMarginBehavior.cs" />
-    <Compile Include="UI\AttachedProperties\UserLevelTag.cs" />
-    <Compile Include="UI\AttachedProperties\UserLevelTagMode.cs" />
+    <Compile Include="UI\AttachedProperties\UserLevelAssist.cs" />
+    <Compile Include="UI\AttachedProperties\UserLevelAssistMode.cs" />
     <Compile Include="UI\BindingProxy.cs" />
     <Compile Include="UI\AttachableForStyleBehavior.cs" />
     <Compile Include="UI\Controls\AlignableWrapPanel.cs" />
@@ -529,7 +529,7 @@
     <Compile Include="UI\Controls\OverflowMenu.xaml.cs">
       <DependentUpon>OverflowMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\AttachedProperties\TabItem.cs" />
+    <Compile Include="UI\AttachedProperties\TabItemAssist.cs" />
     <Compile Include="UI\Converters\Other\GameModeToDisplayNameConverter.cs" />
     <Compile Include="UI\Converters\Other\AppendSpacesToStringConverter.cs" />
     <Compile Include="Pages\BasePage.cs" />

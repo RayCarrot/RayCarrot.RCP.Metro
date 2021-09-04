@@ -24,8 +24,8 @@
 
         <!-- Archive Explorer -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
-                 local:TabItem.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.ArchiveExplorer}"
                  Header="{Resx Utilities_ArchiveExplorer_Header}">
 
             <ScrollViewer>
@@ -36,8 +36,8 @@
 
         <!-- Converters -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_Converters}"
-                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Converters}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Converter_Header}">
 
             <ScrollViewer>
@@ -48,8 +48,8 @@
 
         <!-- Decoders -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_Decoders}"
-                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Decoders}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Decoder_Header}">
 
             <ScrollViewer>
@@ -60,8 +60,8 @@
 
         <!-- Other -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_Other}"
-                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Other}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Other_Header}">
 
             <ScrollViewer>
@@ -72,8 +72,8 @@
 
         <!-- External Tools -->
 
-        <TabItem local:TabItem.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
-                 local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_ExternalTools_Header}">
 
             <ScrollViewer>

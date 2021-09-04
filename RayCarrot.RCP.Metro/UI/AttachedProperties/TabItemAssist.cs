@@ -4,7 +4,7 @@ using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
-    public static class TabItem
+    public static class TabItemAssist
     {
         #region Icon Kind
 
@@ -15,7 +15,7 @@ namespace RayCarrot.RCP.Metro
         public static readonly DependencyProperty IconKindProperty = DependencyProperty.RegisterAttached(
             name: "IconKind",
             propertyType: typeof(PackIconMaterialKind),
-            ownerType: typeof(TabItem));
+            ownerType: typeof(TabItemAssist));
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
         public static readonly DependencyProperty HeaderFontSizeProperty = DependencyProperty.RegisterAttached(
             name: "HeaderFontSize",
             propertyType: typeof(double),
-            ownerType: typeof(TabItem));
+            ownerType: typeof(TabItemAssist));
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace RayCarrot.RCP.Metro
         public static readonly DependencyProperty IconVisibilityProperty = DependencyProperty.RegisterAttached(
             name: "IconVisibility",
             propertyType: typeof(Visibility),
-            ownerType: typeof(TabItem));
+            ownerType: typeof(TabItemAssist));
 
         #endregion
 
@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
         public static readonly DependencyProperty IconForegroundProperty = DependencyProperty.RegisterAttached(
             name: "IconForeground",
             propertyType: typeof(Brush),
-            ownerType: typeof(TabItem));
+            ownerType: typeof(TabItemAssist));
 
         #endregion
     }

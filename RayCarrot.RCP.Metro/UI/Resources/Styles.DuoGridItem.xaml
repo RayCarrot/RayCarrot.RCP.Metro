@@ -9,7 +9,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:DuoGridItem}">
-                    <Grid local:UserLevelTag.MinUserLevel="{TemplateBinding Property=MinUserLevel}">
+                    <Grid local:UserLevelAssist.MinUserLevel="{TemplateBinding Property=MinUserLevel}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"
                                               SharedSizeGroup="A" />

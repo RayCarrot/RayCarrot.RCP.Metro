@@ -218,7 +218,7 @@
                     BorderThickness="1" 
                     BorderBrush="{DynamicResource MahApps.Brushes.Border.NonActive}" 
                     HorizontalAlignment="Left"
-                    local:UserLevelTag.MinUserLevel="Advanced">
+                    local:UserLevelAssist.MinUserLevel="Advanced">
                 <Grid Margin="5">
                     <Grid.Resources>
                         <Style TargetType="{x:Type metro:NumericUpDown}" BasedOn="{StaticResource {x:Type metro:NumericUpDown}}">
@@ -252,9 +252,9 @@
 
         <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Device}"
-                   local:UserLevelTag.MinUserLevel="Technical" />
+                   local:UserLevelAssist.MinUserLevel="Technical" />
 
-        <Grid local:UserLevelTag.MinUserLevel="Technical">
+        <Grid local:UserLevelAssist.MinUserLevel="Technical">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" MinWidth="100" />

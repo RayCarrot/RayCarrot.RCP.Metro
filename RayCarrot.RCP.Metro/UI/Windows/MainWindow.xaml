@@ -199,8 +199,8 @@
             <!-- Games -->
 
             <TabItem Header="{Resx GamesPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Games}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Games}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Games}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Games}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
                 <local:Page_Games_UI />
             </TabItem>
@@ -209,8 +209,8 @@
 
             <TabItem x:Name="BackupPageTab"  
                      Header="{Resx BackupPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Backup}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Progression}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Backup}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Progression}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
                 <local:Page_Backup_UI />
             </TabItem>
@@ -218,8 +218,8 @@
             <!-- Utilities -->
 
             <TabItem Header="{Resx UtilitiesPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Utilities}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Utilities}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Utilities}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Utilities}">
                 <local:Page_Utilities_UI />
             </TabItem>
@@ -227,8 +227,8 @@
             <!-- Mods -->
 
             <TabItem Header="{Resx ModsPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Mods}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Mods}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Mods}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Mods}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Mods}">
                 <local:Page_Mods_UI />
             </TabItem>
@@ -236,8 +236,8 @@
             <!-- Settings -->
 
             <TabItem Header="{Resx SettingsPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Settings}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Settings}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Settings}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Settings}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Settings}">
                 <local:Page_Settings_UI />
             </TabItem>
@@ -245,8 +245,8 @@
             <!-- Help -->
 
             <TabItem Header="{Resx HelpPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Help}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Help}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Help}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Help}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Help}">
                 <local:Page_Help_UI />
 
@@ -255,8 +255,8 @@
             <!-- About -->
 
             <TabItem Header="{Resx AboutPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Info}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Info}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Info}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=About}">
                 <local:Page_About_UI />
             </TabItem>
@@ -264,10 +264,10 @@
             <!-- Debug -->
 
             <TabItem Header="{Resx DebugPageHeader}"
-                     local:TabItem.IconKind="{StaticResource Icons.Debug}"
-                     local:TabItem.IconForeground="{StaticResource Colors.Debug}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.Debug}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
                      IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
-                     local:UserLevelTag.MinUserLevel="Debug">
+                     local:UserLevelAssist.MinUserLevel="Debug">
                 <local:Page_Debug_UI />
             </TabItem>
 
