@@ -1,5 +1,4 @@
-﻿using RayCarrot.Common;
-using RayCarrot.Logging;
+﻿using RayCarrot.Logging;
 using System.Diagnostics;
 using System.Globalization;
 

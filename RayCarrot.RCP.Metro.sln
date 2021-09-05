@@ -43,8 +43,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Binary", "..\RayC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{C4961690-46B5-41C8-BF26-0F1E20E0F59F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Common", "..\RayCarrot.Common\RayCarrot.Common\RayCarrot.Common.csproj", "{BD854370-65EF-41C0-B920-7C82DD3DAA63}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.IO", "..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj", "{E271DC05-6629-48D1-9423-FE4957EAB807}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Logging", "..\RayCarrot.Logging\RayCarrot.Logging\RayCarrot.Logging.csproj", "{F0BA66A8-806B-464E-9A2A-B8050C453524}"
@@ -109,14 +107,6 @@ Global
 		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Release|x86.ActiveCfg = Release|Any CPU
 		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Release|x86.Build.0 = Release|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Debug|x86.Build.0 = Debug|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Release|x86.ActiveCfg = Release|Any CPU
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63}.Release|x86.Build.0 = Release|Any CPU
 		{E271DC05-6629-48D1-9423-FE4957EAB807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E271DC05-6629-48D1-9423-FE4957EAB807}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E271DC05-6629-48D1-9423-FE4957EAB807}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -161,16 +151,15 @@ Global
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{65E77864-A23C-4B4F-8219-BB141B902815} = {5428B0C5-4DD5-4A42-BA9E-3DFF74D61362}
 		{FBBB053C-D02E-439D-B589-320FC21DD60C} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
-		{BD854370-65EF-41C0-B920-7C82DD3DAA63} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{E271DC05-6629-48D1-9423-FE4957EAB807} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{F0BA66A8-806B-464E-9A2A-B8050C453524} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{D5FC22F6-391E-4EF1-8818-1C2256B2816A} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{44D63AFC-58D4-4F7E-9304-4ABF40EBAE29} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ExcelExportMode = MultipleSheets
-		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
-		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
 		RESX_TaskErrorCategory = Message
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
+		RESX_ExcelExportMode = MultipleSheets
 	EndGlobalSection
 EndGlobal

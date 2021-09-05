@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using ByteSizeLib;
 using RayCarrot.Binary;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;

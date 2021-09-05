@@ -1,5 +1,4 @@
 ﻿using IniParser.Model;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;

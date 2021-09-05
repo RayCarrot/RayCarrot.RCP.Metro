@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nito.AsyncEx;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using System;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using System;

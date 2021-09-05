@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Net;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 

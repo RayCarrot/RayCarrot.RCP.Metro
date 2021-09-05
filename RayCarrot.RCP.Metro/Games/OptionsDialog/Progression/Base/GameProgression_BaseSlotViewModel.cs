@@ -1,5 +1,4 @@
-﻿using RayCarrot.Common;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;

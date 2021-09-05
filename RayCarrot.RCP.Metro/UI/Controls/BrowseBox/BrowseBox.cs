@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using Nito.AsyncEx;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using System;

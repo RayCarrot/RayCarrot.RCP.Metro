@@ -2,7 +2,6 @@
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using System.Threading.Tasks;
-using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualBasic.FileIO;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 using System;
@@ -42,7 +41,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Set to run as admin if specified
                 if (asAdmin)
-                    info.AsAdmin();
+                    info.Verb = "runas";
 
                 // Start the process and get the process
                 var p = Process.Start(info);

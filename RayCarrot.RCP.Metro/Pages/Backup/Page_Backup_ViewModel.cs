@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 

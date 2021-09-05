@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 

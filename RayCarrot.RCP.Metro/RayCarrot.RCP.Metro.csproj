@@ -131,8 +131,26 @@
     <Compile Include="App\Logging\SessionLogger\SessionLogger.cs" />
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
+    <Compile Include="Helpers\AsyncEvent\AsyncEventHandler.cs" />
+    <Compile Include="Helpers\AsyncEvent\AsyncEventHandlertExtensions.cs" />
+    <Compile Include="Helpers\EnumHelpers.cs" />
+    <Compile Include="Helpers\Extensions\ActionExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ArrayExtensions.cs" />
     <Compile Include="Helpers\Extensions\BitmapExtensions.cs" />
+    <Compile Include="Helpers\Extensions\CollectionExtensions.cs" />
+    <Compile Include="Helpers\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Helpers\Extensions\DisposableExtensions.cs" />
+    <Compile Include="Helpers\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Helpers\Extensions\EnumExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ObjectExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ProcessExtensions.cs" />
+    <Compile Include="Helpers\Extensions\TypeExtensions.cs" />
     <Compile Include="Helpers\Extensions\VisualExtensions.cs" />
+    <Compile Include="Helpers\OperationStatus\IStatusUpdated.cs" />
+    <Compile Include="Helpers\OperationStatus\ItemsOperationProgress.cs" />
+    <Compile Include="Helpers\OperationStatus\OperationProgressEventArgs.cs" />
+    <Compile Include="Helpers\OperationStatus\OperationState.cs" />
+    <Compile Include="Helpers\OperationStatus\Progress.cs" />
     <Compile Include="Helpers\PropertyChangedEventArgs.cs" />
     <Compile Include="Helpers\Windows\ShellThumbnailExtensions.cs" />
     <Compile Include="Helpers\Windows\ShellThumbnailSize.cs" />
@@ -1327,10 +1345,6 @@
     <ProjectReference Include="..\..\RayCarrot.Binary\RayCarrot.Binary\RayCarrot.Binary.csproj">
       <Project>{fbbb053c-d02e-439d-b589-320fc21dd60c}</Project>
       <Name>RayCarrot.Binary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.Common\RayCarrot.Common\RayCarrot.Common.csproj">
-      <Project>{bd854370-65ef-41c0-b920-7c82dd3daa63}</Project>
-      <Name>RayCarrot.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj">
       <Project>{e271dc05-6629-48d1-9423-fe4957eab807}</Project>

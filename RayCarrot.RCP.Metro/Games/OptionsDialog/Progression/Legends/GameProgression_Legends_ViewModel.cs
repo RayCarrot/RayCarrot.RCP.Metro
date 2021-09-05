@@ -1,5 +1,4 @@
-﻿using RayCarrot.Common;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 using System;

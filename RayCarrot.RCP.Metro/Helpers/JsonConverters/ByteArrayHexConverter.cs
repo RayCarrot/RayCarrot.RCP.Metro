@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
-using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {

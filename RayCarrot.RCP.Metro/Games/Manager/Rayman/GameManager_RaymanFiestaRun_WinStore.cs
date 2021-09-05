@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 

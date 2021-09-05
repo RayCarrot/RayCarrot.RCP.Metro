@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Nito.AsyncEx;
 using RayCarrot.Binary;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;

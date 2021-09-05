@@ -1,5 +1,4 @@
-﻿using RayCarrot.Common;
-using RayCarrot.Rayman;
+﻿using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro

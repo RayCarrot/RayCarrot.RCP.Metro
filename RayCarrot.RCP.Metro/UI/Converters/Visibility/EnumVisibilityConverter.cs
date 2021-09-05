@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
-using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {

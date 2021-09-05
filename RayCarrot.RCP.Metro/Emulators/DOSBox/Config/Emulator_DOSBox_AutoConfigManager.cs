@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 

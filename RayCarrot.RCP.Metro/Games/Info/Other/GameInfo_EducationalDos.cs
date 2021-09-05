@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;

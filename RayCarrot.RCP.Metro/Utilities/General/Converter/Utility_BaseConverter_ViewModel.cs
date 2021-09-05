@@ -3,7 +3,6 @@ using RayCarrot.Rayman;
 using RayCarrot.UI;
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Binary;

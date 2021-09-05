@@ -1,6 +1,5 @@
 ﻿using ImageMagick;
 using RayCarrot.Binary;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;

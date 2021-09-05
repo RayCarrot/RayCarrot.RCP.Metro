@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 

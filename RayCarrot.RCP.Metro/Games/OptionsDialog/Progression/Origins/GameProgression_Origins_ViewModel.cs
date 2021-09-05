@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using System;

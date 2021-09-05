@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {

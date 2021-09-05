@@ -1,5 +1,4 @@
 ﻿using Nito.AsyncEx;
-using RayCarrot.Common;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;

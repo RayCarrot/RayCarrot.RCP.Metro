@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Threading.Tasks;
-using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {

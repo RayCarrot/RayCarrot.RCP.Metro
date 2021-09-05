@@ -1,5 +1,4 @@
 ﻿using IWshRuntimeLibrary;
-using RayCarrot.Common;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;

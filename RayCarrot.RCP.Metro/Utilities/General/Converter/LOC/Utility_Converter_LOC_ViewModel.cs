@@ -2,7 +2,6 @@
 using RayCarrot.Rayman.UbiArt;
 using System.Text;
 using System.Threading.Tasks;
-using RayCarrot.Common;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro

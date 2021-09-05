@@ -1,5 +1,4 @@
 ﻿using Microsoft.WindowsAPICodePack.Taskbar;
-using RayCarrot.Common;
 using System;
 using System.Windows;
 using System.Windows.Interop;

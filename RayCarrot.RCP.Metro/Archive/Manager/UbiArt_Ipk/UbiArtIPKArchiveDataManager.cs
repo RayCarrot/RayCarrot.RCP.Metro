@@ -1,5 +1,4 @@
 ﻿using RayCarrot.Binary;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;

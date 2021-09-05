@@ -1,5 +1,4 @@
-﻿using RayCarrot.Common;
-using RayCarrot.UI;
+﻿using RayCarrot.UI;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;

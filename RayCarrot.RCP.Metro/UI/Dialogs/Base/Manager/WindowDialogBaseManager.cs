@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Interop;
 using MahApps.Metro.Controls;
 using MahApps.Metro.SimpleChildWindow;
-using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {

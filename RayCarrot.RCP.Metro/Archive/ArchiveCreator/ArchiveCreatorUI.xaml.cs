@@ -1,5 +1,4 @@
 ﻿using MahApps.Metro.Controls;
-using RayCarrot.Common;
 using System;
 using System.Windows;
 using System.Windows.Controls;

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using IniParser;
 using Microsoft.Win32;
-using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
@@ -310,7 +309,7 @@ namespace RayCarrot.RCP.Metro
             foreach (var program in installedPrograms)
             {
                 // Check matches towards other finder items
-                foreach (var finderItem in regUninstallFinders.Where(x => program.DisplayName.Equals(StringComparison.CurrentCultureIgnoreCase, x.PossibleWin32Names)).ToArray())
+                foreach (var finderItem in regUninstallFinders.Where(x => x.PossibleWin32Names.Any(item => program.DisplayName.Equals(item, StringComparison.CurrentCultureIgnoreCase))).ToArray())
                 {
                     // Add the item
                     var added = AddItem(finderItem, program.InstallLocation);
@@ -330,7 +329,7 @@ namespace RayCarrot.RCP.Metro
                 if (isSteamGame)
                     gameMatches = steamGameFinders.Where(x => x.FinderItem.SteamID == program.SteamID).ToArray();
                 else
-                    gameMatches = regUninstallGameFinders.Where(x => program.DisplayName.Equals(StringComparison.CurrentCultureIgnoreCase, x.FinderItem.PossibleWin32Names)).ToArray();
+                    gameMatches = regUninstallGameFinders.Where(x => x.FinderItem.PossibleWin32Names.Any(item => program.DisplayName.Equals(item, StringComparison.CurrentCultureIgnoreCase))).ToArray();
 
                 // Handle each game match
                 foreach (var gameMatch in gameMatches)

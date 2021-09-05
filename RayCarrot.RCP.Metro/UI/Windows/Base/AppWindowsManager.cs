@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using RayCarrot.Common;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro

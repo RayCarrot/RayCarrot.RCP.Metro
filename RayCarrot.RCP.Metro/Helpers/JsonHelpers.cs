@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
-using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -20,7 +19,7 @@ namespace RayCarrot.RCP.Metro
         public static void SerializeToFile<T>(T obj, string filePath, params JsonConverter[] converters)
         {
             // Serialize to JSON
-            var json = JsonConvert.SerializeObject(obj, Formatting.Indented, converters.Append(new ByteArrayHexConverter()));
+            var json = JsonConvert.SerializeObject(obj, Formatting.Indented, converters.AppendToArray(new ByteArrayHexConverter()));
 
             // Write to output
             File.WriteAllText(filePath, json);
@@ -39,7 +38,7 @@ namespace RayCarrot.RCP.Metro
             var json = File.ReadAllText(filePath);
 
             // Return the deserialized object
-            return JsonConvert.DeserializeObject<T>(json, converters.Append(new ByteArrayHexConverter()));
+            return JsonConvert.DeserializeObject<T>(json, converters.AppendToArray(new ByteArrayHexConverter()));
         }
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace RayCarrot.RCP.Metro
             var json = File.ReadAllText(filePath);
 
             // Return the deserialized object
-            return (T)JsonConvert.DeserializeObject(json, type, converters.Append(new ByteArrayHexConverter()));
+            return (T)JsonConvert.DeserializeObject(json, type, converters.AppendToArray(new ByteArrayHexConverter()));
         }
     }
 }
