@@ -699,7 +699,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                PatchedBFFilePath.DeleteFile();
+                RCPServices.File.DeleteFile(PatchedBFFilePath);
 
                 IsPatchedBFDownloaded = false;
                 CanUpdatePatchedBF = false;
