@@ -85,7 +85,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is bool v)
-                    DebugCommands.SetValue(InvincibilityKey, v ? "1" : "0");
+                    DebugCommands[InvincibilityKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(InvincibilityKey);
             }
@@ -108,7 +108,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is bool v)
-                    DebugCommands.SetValue(MouseHiddenKey, v ? "1" : "0");
+                    DebugCommands[MouseHiddenKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(MouseHiddenKey);
             }
@@ -128,7 +128,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is string v && !v.IsNullOrWhiteSpace())
-                    DebugCommands.SetValue(MapKey, v);
+                    DebugCommands[MapKey] = v;
                 else
                     DebugCommands.Remove(MapKey);
             }
@@ -151,7 +151,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is bool v)
-                    DebugCommands.SetValue(DisableSaveKey, v ? "1" : "0");
+                    DebugCommands[DisableSaveKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(DisableSaveKey);
             }

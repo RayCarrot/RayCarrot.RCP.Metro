@@ -136,7 +136,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is bool v)
-                    DebugCommands.SetValue(InvincibilityKey, v ? "1" : "0");
+                    DebugCommands[InvincibilityKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(InvincibilityKey);
 
@@ -161,7 +161,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is bool v)
-                    DebugCommands.SetValue(MouseHiddenKey, v ? "1" : "0");
+                    DebugCommands[MouseHiddenKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(MouseHiddenKey);
 
@@ -186,7 +186,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is bool v)
-                    DebugCommands.SetValue(MaxZoomKey, v ? "1" : "0");
+                    DebugCommands[MaxZoomKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(MaxZoomKey);
 
@@ -202,8 +202,8 @@ namespace RayCarrot.RCP.Metro
             get => Double.TryParse(DebugCommands.TryGetValue(FramerateKey), out double result) ? (double?)result : null;
             set
             {
-                if (value is double v && v > 0)
-                    DebugCommands.SetValue(FramerateKey, v.ToString(CultureInfo.InvariantCulture));
+                if (value is double v and > 0)
+                    DebugCommands[FramerateKey] = v.ToString(CultureInfo.InvariantCulture);
                 else
                     DebugCommands.Remove(FramerateKey);
 
@@ -225,7 +225,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 if (value is string v && !v.IsNullOrWhiteSpace())
-                    DebugCommands.SetValue(MapKey, v);
+                    DebugCommands[MapKey] = v;
                 else
                     DebugCommands.Remove(MapKey);
 
@@ -241,7 +241,7 @@ namespace RayCarrot.RCP.Metro
             get => Enum.TryParse(DebugCommands.TryGetValue(LanguageKey), out ROLanguages result) ? result : ROLanguages.English;
             set
             {
-                DebugCommands.SetValue(LanguageKey, ((int)value).ToString());
+                DebugCommands[LanguageKey] = ((int)value).ToString();
 
                 _ = UpdateDebugCommandsAsync();
             }
