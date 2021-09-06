@@ -7,6 +7,7 @@
 	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
 
 Other changes:
+• Major code and libraries refactoring
 • Replaced the logging framework with NLog
 	• The log file now gets recreated each time the application is launched rather than after reaching a certain size
 	• The log viewer is no longer enabled by default to avoid unnecessarily storing all logs
