@@ -133,18 +133,32 @@
                                                 <DataTrigger Binding="{Binding Path=IconSource}" Value="{x:Null}">
                                                     <Setter Property="Icon">
                                                         <Setter.Value>
-                                                            <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                                                    VerticalAlignment="Center"
-                                                                                    HorizontalAlignment="Center" />
+                                                            <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                                                                        Foreground="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                                                                        VerticalAlignment="Center"
+                                                                                        HorizontalAlignment="Center" />
                                                         </Setter.Value>
                                                     </Setter>
                                                 </DataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=IconSource}" Value="{x:Null}" />
+                                                        <Condition Binding="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}" Value="{x:Null}" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Icon">
+                                                        <Setter.Value>
+                                                            <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                                                                        VerticalAlignment="Center"
+                                                                                        HorizontalAlignment="Center" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </MultiDataTrigger>
                                             </Style.Triggers>
                                             <Setter Property="Icon">
                                                 <Setter.Value>
                                                     <Image Source="{Binding Path=IconSource}"
-                                                       MaxWidth="16"
-                                                       MaxHeight="16"/>
+                                                           MaxWidth="16"
+                                                           MaxHeight="16"/>
                                                 </Setter.Value>
                                             </Setter>
 

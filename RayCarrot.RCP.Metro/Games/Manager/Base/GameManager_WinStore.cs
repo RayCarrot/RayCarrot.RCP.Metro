@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
         {
-            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenInWinStore, PackIconMaterialKind.MicrosoftWindows, new AsyncRelayCommand(async () =>
+            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
             {
                 // NOTE: We could use Launcher.LaunchURI here, but since we're targeting Windows 7 it is good to use as few of the WinRT APIs as possible to avoid any runtime errors. Launching a file as a process will work with URLs as well, although less information will be given in case of error (such as if no application is installed to handle the URI).
                 (await Services.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();

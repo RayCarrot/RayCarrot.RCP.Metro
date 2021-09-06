@@ -38,10 +38,10 @@
                               OverflowItemSource="{Binding Path=LaunchActions, Mode=OneTime}"
                               MainCommand="{Binding Path=MainAction.Command, Mode=OneTime}"
                               MainContent="{Binding Path=MainAction.Header, Mode=OneTime}"
-                              MainIconKind="{Binding Path=MainAction.IconKind, Mode=OneTime}"
+                              MainIconKind="{Binding Path=MainAction.IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
                               ShowSecondaryButton="{Binding Path=SecondaryAction, Converter={local:IsNotNullConverter}}"
                               SecondaryCommand="{Binding Path=SecondaryAction.Command, Mode=OneTime}"
-                              SecondaryIconKind="{Binding Path=SecondaryAction.IconKind, Mode=OneTime}"/>
+                              SecondaryIconKind="{Binding Path=SecondaryAction.IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"/>
 
     </Grid>
 </UserControl>

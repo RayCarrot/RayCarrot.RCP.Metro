@@ -1,6 +1,5 @@
 ﻿using System.Windows.Input;
 using System.Windows.Media;
-using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -18,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="iconKind">The item icon kind</param>
         /// <param name="command">The item command</param>
         /// <param name="minUserLevel">The minimum user level for the action</param>
-        public ActionItemViewModel(string header, PackIconMaterialKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal)
+        public ActionItemViewModel(string header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal)
         {
             Header = header;
             IconKind = iconKind;
@@ -55,7 +54,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The item icon kind
         /// </summary>
-        public PackIconMaterialKind IconKind { get; }
+        public GenericIconKind IconKind { get; }
 
         /// <summary>
         /// The icon source

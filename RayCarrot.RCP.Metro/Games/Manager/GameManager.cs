@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using NLog;
 
@@ -209,7 +207,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// A game purchase link which can be accessed from the game
         /// </summary>
-        public record GamePurchaseLink(string Header, string Path, PackIconMaterialKind Icon = PackIconMaterialKind.BriefcaseOutline);
+        public record GamePurchaseLink(string Header, string Path, GenericIconKind Icon = GenericIconKind.GameDisplay_Purchase);
 
         #endregion
     }

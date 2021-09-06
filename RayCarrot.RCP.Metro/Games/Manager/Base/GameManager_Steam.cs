@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
 using RayCarrot.IO;
 using NLog;
@@ -43,12 +42,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
         {
-            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
+            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, GenericIconKind.GameDisplay_Steam, new AsyncRelayCommand(async () =>
             {
                 (await Services.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
                 Logger.Trace("The game {0} Steam store page was opened", Game);
             })),
-            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
+            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, GenericIconKind.GameDisplay_Steam, new AsyncRelayCommand(async () =>
             {
                 (await Services.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
                 Logger.Trace("The game {0} Steam community page was opened", Game);

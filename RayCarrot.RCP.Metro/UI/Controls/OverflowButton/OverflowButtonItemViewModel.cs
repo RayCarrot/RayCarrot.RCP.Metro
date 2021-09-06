@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="iconKind">The item icon kind</param>
         /// <param name="command">The item command</param>
         /// <param name="minUserLevel">The minimum user level for the action</param>
-        public OverflowButtonItemViewModel(string header, PackIconMaterialKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, iconKind, command, minUserLevel)
+        public OverflowButtonItemViewModel(string header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, iconKind, command, minUserLevel)
         {
         }
 

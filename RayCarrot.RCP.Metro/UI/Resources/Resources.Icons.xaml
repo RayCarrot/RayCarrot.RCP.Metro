@@ -26,6 +26,18 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.GameOptions_Config">WrenchOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.GameOptions_Progression">TrophyVariantOutline</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Play">PlayOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Admin">Security</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Map">MapMarkerOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.CloudDownload">CloudDownloadOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Disc">Disc</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Purchase">BriefcaseOutline</iconPacks:PackIconMaterialKind>
+    
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Web">Earth</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Steam">Steam</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Microsoft">MicrosoftWindows</iconPacks:PackIconMaterialKind>
+
     <!-- Colors -->
 
     <SolidColorBrush x:Key="Colors.Games" Color="#9C27B0" />
@@ -38,10 +50,13 @@
     <SolidColorBrush x:Key="Colors.Info" Color="#2196F3" />
     <SolidColorBrush x:Key="Colors.Debug" Color="#9E9E9E" />
     <SolidColorBrush x:Key="Colors.ArchiveExplorer" Color="#FF9800" />
-    <SolidColorBrush x:Key="Colors.Emulator" Color="#FFEB3B" />
+    <SolidColorBrush x:Key="Colors.Technical" Color="#FFEB3B" />
     <SolidColorBrush x:Key="Colors.GameConfig" Color="#3F51B5" />
 
     <!-- Generic Icons (used from C# code) -->
+
+    <local:GenericIcon x:Key="GenericIcons.None" 
+                       IconKind="{x:Static iconPacks:PackIconMaterialKind.None}" />
 
     <local:GenericIcon x:Key="GenericIcons.Games" 
                        IconKind="{StaticResource Icons.Games}" 
@@ -62,6 +77,43 @@
                        IconKind="{StaticResource Icons.Games}" 
                        IconColor="{StaticResource Colors.OtherGames}" />
 
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Play" 
+                       IconKind="{StaticResource Icons.Play}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Admin" 
+                       IconKind="{StaticResource Icons.Admin}" 
+                       IconColor="{StaticResource Colors.Technical}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Map" 
+                       IconKind="{StaticResource Icons.Map}" 
+                       IconColor="{StaticResource Colors.Mods}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Archive" 
+                       IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}" 
+                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Location" 
+                       IconKind="{StaticResource Icons.Folder}" 
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Config" 
+                       IconKind="{StaticResource Icons.Settings}" 
+                       IconColor="{StaticResource Colors.Settings}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Download" 
+                       IconKind="{StaticResource Icons.CloudDownload}" 
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_DiscInstall" 
+                       IconKind="{StaticResource Icons.Disc}" 
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Web" 
+                       IconKind="{StaticResource Icons.Web}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Steam" 
+                       IconKind="{StaticResource Icons.Steam}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Microsoft" 
+                       IconKind="{StaticResource Icons.Microsoft}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="GenericIcons.GameDisplay_Purchase" 
+                       IconKind="{StaticResource Icons.Purchase}" 
+                       IconColor="{x:Null}" />
+
     <local:GenericIcon x:Key="GenericIcons.GameOptions_General" 
                        IconKind="{StaticResource Icons.Settings}" 
                        IconColor="{StaticResource Colors.Settings}" />
@@ -73,7 +125,7 @@
                        IconColor="{StaticResource Colors.GameConfig}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Emulator" 
                        IconKind="{StaticResource Icons.Settings_Emulator}"
-                       IconColor="{StaticResource Colors.Emulator}" />
+                       IconColor="{StaticResource Colors.Technical}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Utilities" 
                        IconKind="{StaticResource Icons.Utilities}"
                        IconColor="{StaticResource Colors.Utilities}" />

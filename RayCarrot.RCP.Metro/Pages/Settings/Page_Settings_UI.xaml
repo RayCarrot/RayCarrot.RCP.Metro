@@ -436,7 +436,7 @@
         <!-- DOSBox -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Emulator}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Technical}"
                  Header="{Resx Settings_DosBoxHeader}">
 
             <ScrollViewer>

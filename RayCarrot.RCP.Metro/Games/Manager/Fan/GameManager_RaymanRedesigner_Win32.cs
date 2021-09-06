@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MahApps.Metro.IconPacks;
+﻿using System.Collections.Generic;
 using NLog;
 using RayCarrot.UI;
 
@@ -29,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
         {
-            new GamePurchaseLink(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/Rayman_ReDesigner/539216", PackIconMaterialKind.Earth), 
+            new GamePurchaseLink(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/Rayman_ReDesigner/539216", GenericIconKind.GameDisplay_Web), 
         };
 
         /// <summary>
@@ -37,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
         {
-            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, PackIconMaterialKind.Earth, new AsyncRelayCommand(async () =>
+            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
             {
                 (await Services.File.LaunchFileAsync("https://gamejolt.com/games/Rayman_ReDesigner/539216"))?.Dispose();
                 Logger.Trace("The game {0} GameJolt page was opened", Game);

@@ -223,7 +223,7 @@ namespace RayCarrot.RCP.Metro
                     // Add launch options if set to do so
                     if (Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdminOption)
                     {
-                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(true))));
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(true))));
 
                         actions.Add(new OverflowButtonItemViewModel());
                     }
@@ -243,7 +243,7 @@ namespace RayCarrot.RCP.Metro
                                 // Create the command
                                 var command = new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(path))?.Dispose());
 
-                                if (x.Icon != PackIconMaterialKind.None)
+                                if (x.Icon != GenericIconKind.None)
                                     return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
 
                                 try
@@ -274,14 +274,14 @@ namespace RayCarrot.RCP.Metro
                     // Add RayMap link
                     if (RayMapURL != null)
                     {
-                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(RayMapURL))?.Dispose())));
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(RayMapURL))?.Dispose())));
                         actions.Add(new OverflowButtonItemViewModel());
                     }
 
                     // Add open archive
                     if (HasArchives)
                     {
-                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, PackIconMaterialKind.FolderMultipleOutline, new AsyncRelayCommand(async () =>
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, GenericIconKind.GameDisplay_Archive, new AsyncRelayCommand(async () =>
                         {
                             // Show the archive explorer
                             await Services.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
@@ -289,7 +289,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Add open location
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () =>
                     {
                         // Get the install directory
                         var instDir = Game.GetInstallDir();
@@ -307,7 +307,7 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
 
                     // Add Game options
-                    var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.CogOutline, new RelayCommand(() =>
+                    var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, GenericIconKind.GameDisplay_Config, new RelayCommand(() =>
                     {
                         Logger.Trace("The Game {0} options dialog is opening...", Game);
                         GameOptionsDialog.Show(Game);
@@ -319,7 +319,7 @@ namespace RayCarrot.RCP.Metro
                         game: Game, 
                         displayName: DisplayName, 
                         iconSource: IconSource, 
-                        mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.PlayOutline, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), 
+                        mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), 
                         secondaryAction: optionsAction, 
                         launchActions: actions);
                 }
@@ -331,7 +331,7 @@ namespace RayCarrot.RCP.Metro
 
                     if (CanBeDownloaded)
                     {
-                        downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, PackIconMaterialKind.CloudDownloadOutline, new AsyncRelayCommand(async () => await DownloadGameAsync()));
+                        downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, GenericIconKind.GameDisplay_Download, new AsyncRelayCommand(async () => await DownloadGameAsync()));
 
                         if (CanBeLocated)
                         {
@@ -369,7 +369,7 @@ namespace RayCarrot.RCP.Metro
                             actions.Add(new OverflowButtonItemViewModel());
 
                         // Add disc installer action
-                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disc, new RelayCommand(() =>
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new RelayCommand(() =>
                             // NOTE: This is a blocking dialog
                             new GameInstaller_Window(Game).ShowDialog())));
                     }
@@ -380,7 +380,7 @@ namespace RayCarrot.RCP.Metro
 
                     // Create the main action
                     var mainAction = CanBeLocated
-                        ? new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () => await LocateGameAsync()))
+                        ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync()))
                         : downloadItem;
 
                     // Return the view model
@@ -510,7 +510,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// A game file link which can be accessed from the game
         /// </summary>
-        public record GameFileLink(string Header, FileSystemPath Path, PackIconMaterialKind Icon = PackIconMaterialKind.None);
+        public record GameFileLink(string Header, FileSystemPath Path, GenericIconKind Icon = GenericIconKind.None);
 
         #endregion
     }
