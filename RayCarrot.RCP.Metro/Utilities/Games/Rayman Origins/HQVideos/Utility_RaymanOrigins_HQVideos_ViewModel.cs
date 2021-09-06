@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -45,6 +45,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -80,7 +86,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogInformationSource($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
+                Logger.Info($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]
@@ -93,7 +99,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Replacing RO videos");
+                Logger.Error(ex, "Replacing RO videos");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_HQVideosFailed);
             }
         }
@@ -117,7 +123,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting RO video size");
+                Logger.Error(ex, "Getting RO video size");
                 return null;
             }
         }

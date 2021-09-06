@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,6 +25,12 @@ namespace RayCarrot.RCP.Metro
             // Create the commands
             AddGameCommand = new AsyncRelayCommand(AddGameAsync);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -51,7 +57,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddGameAsync()
         {
-            RL.Logger?.LogInformationSource($"A new educational game is being added...");
+            Logger.Info($"A new educational game is being added...");
 
             // Get the manager
             var manager = Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>();
@@ -77,7 +83,7 @@ namespace RayCarrot.RCP.Metro
             // Add to the jump list
             Data.JumpListItemIDCollection.Add(newItem.ID);
 
-            RL.Logger?.LogInformationSource($"A new educational game has been added with the name {newItem.Name}");
+            Logger.Info($"A new educational game has been added with the name {newItem.Name}");
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
@@ -92,7 +98,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"The educational game options are saving...");
+            Logger.Info($"The educational game options are saving...");
 
             // Clear the games
             Data.EducationalDosBoxGames.Clear();
@@ -111,7 +117,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
 
-            RL.Logger?.LogInformationSource($"The educational game options have saved");
+            Logger.Info($"The educational game options have saved");
         }
 
         #endregion

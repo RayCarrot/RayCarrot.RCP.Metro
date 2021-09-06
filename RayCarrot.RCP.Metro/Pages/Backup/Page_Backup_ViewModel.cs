@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -47,6 +47,12 @@ namespace RayCarrot.RCP.Metro
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -113,7 +119,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleCritical("Refreshing backups");
+                    Logger.Fatal(ex, "Refreshing backups");
                     throw;
                 }
             }
@@ -136,7 +142,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm backup
                 if (!await Services.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
                 {
-                    RL.Logger?.LogInformationSource($"Backup canceled");
+                    Logger.Info($"Backup canceled");
 
                     return;
                 }

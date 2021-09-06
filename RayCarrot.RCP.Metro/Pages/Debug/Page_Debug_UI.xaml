@@ -7,6 +7,8 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
@@ -34,6 +36,10 @@
             <local:MenuItemIcon Header="Refresh all async"
                                 Command="{Binding Path=RefreshAllAsyncCommand}"
                                 IconKind="Refresh"/>
+
+            <local:MenuItemIcon Header="Throw unhandled exception"
+                                Command="{Binding Path=ThrowUnhandledExceptionCommand}"
+                                IconKind="Exclamation"/>
 
             <local:MenuItemIcon Header="Shutdown app"
                                 Command="{Binding Path=ShutdownAppCommand}"

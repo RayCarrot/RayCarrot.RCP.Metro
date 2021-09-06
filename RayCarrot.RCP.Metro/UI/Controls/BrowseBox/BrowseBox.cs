@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +38,12 @@ namespace RayCarrot.RCP.Metro
         {
             BrowseAsyncLock = new AsyncLock();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -148,7 +154,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Validating browse save file type");
+                        Logger.Warn(ex, "Validating browse save file type");
 
                         return false;
                     }
@@ -277,7 +283,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleUnexpected("Opening browse location");
+                Logger.Warn(ex, "Opening browse location");
             }
         }
 

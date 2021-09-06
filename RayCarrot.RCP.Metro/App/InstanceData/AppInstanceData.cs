@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -20,6 +20,12 @@ namespace RayCarrot.RCP.Metro
             CurrentUserLevel = UserLevel.Normal;
             CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -53,7 +59,7 @@ namespace RayCarrot.RCP.Metro
                 _currentUserLevel = value;
 
                 // Log the change
-                RL.Logger?.LogInformationSource($"The user level has changed from {oldValue} to {CurrentUserLevel}");
+                Logger.Info($"The user level has changed from {oldValue} to {CurrentUserLevel}");
 
                 // Fire event
                 UserLevelChanged?.Invoke(this, new PropertyChangedEventArgs<UserLevel>(oldValue, CurrentUserLevel));
@@ -78,7 +84,7 @@ namespace RayCarrot.RCP.Metro
                 _currentCulture = value;
 
                 // Log the change
-                RL.Logger?.LogInformationSource($"The current culture has changed from {oldValue} to {CurrentCulture}");
+                Logger.Info($"The current culture has changed from {oldValue} to {CurrentCulture}");
 
                 // Fire event
                 CultureChanged?.Invoke(this, new PropertyChangedEventArgs<CultureInfo>(oldValue, CurrentCulture));
@@ -100,7 +106,7 @@ namespace RayCarrot.RCP.Metro
                 _arguments = value;
 
                 // Log the change
-                RL.Logger?.LogInformationSource($"The program arguments have been set to \"{Arguments.JoinItems(", ")}\"");
+                Logger.Info($"The program arguments have been set to \"{Arguments.JoinItems(", ")}\"");
             }
         }
 

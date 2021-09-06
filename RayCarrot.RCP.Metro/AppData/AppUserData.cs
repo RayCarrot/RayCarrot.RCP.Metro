@@ -1,5 +1,4 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Logging;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
@@ -29,7 +28,6 @@ namespace RayCarrot.RCP.Metro
             ShowActionComplete = true;
             AutoUpdate = true;
             ShowProgressOnTaskBar = true;
-            DisplayExceptionLevel = ExceptionLevel.Critical;
             EnableAnimations = true;
             CurrentCulture = LocalizationManager.DefaultCulture.Name;
             ShowIncompleteTranslations = false;
@@ -145,11 +143,6 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if progress should be shown on the task bar
         /// </summary>
         public bool ShowProgressOnTaskBar { get; set; }
-
-        /// <summary>
-        /// The minimum exception level to display
-        /// </summary>
-        public ExceptionLevel DisplayExceptionLevel { get; set; }
 
         /// <summary>
         /// Indicates if animations are enabled

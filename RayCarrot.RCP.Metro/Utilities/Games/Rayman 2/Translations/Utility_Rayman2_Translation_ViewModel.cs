@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -29,8 +29,14 @@ namespace RayCarrot.RCP.Metro
             // Get current translation
             SelectedTranslation = GetAppliedRayman2Translation() ?? Rayman2Translation.Original;
 
-            RL.Logger?.LogInformationSource($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
+            Logger.Info($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -64,7 +70,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogInformationSource($"The Rayman 2 translation patch is downloading...");
+                Logger.Info($"The Rayman 2 translation patch is downloading...");
 
                 // Attempt to get the files
                 var fixSna = GetFixSnaFilePath();
@@ -73,7 +79,7 @@ namespace RayCarrot.RCP.Metro
                 // Verify the files
                 if (!fixSna.FileExists || !texturesCnt.FileExists)
                 {
-                    RL.Logger?.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
+                    Logger.Info($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_FilesNotFound, MessageType.Error);
                     return;
@@ -88,12 +94,12 @@ namespace RayCarrot.RCP.Metro
                 if (!succeeded)
                     return;
 
-                RL.Logger?.LogInformationSource($"The Rayman 2 fix.sna file has been downloaded");
+                Logger.Info($"The Rayman 2 fix.sna file has been downloaded");
 
                 // Get the current textures file
                 var textures = GetTexturesVersion(texturesCnt);
 
-                RL.Logger?.LogInformationSource($"The Rayman 2 textures file has been retrieved as {textures}");
+                Logger.Info($"The Rayman 2 textures file has been retrieved as {textures}");
 
                 if (textures == SelectedTranslation || 
                     (textures == Rayman2Translation.Original && SelectedTranslation == Rayman2Translation.Irish) ||
@@ -106,7 +112,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (await Services.MessageUI.DisplayMessageAsync(message, Resources.R2U_Translations_ReplaceTexturesHeader, MessageType.Question, true))
                 {
-                    RL.Logger?.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
+                    Logger.Info($"The Rayman 2 translation texture patch is downloading...");
 
                     // Replace the textures.cnt file
                     var succeeded2 = await App.DownloadAsync(new Uri[]
@@ -118,13 +124,13 @@ namespace RayCarrot.RCP.Metro
                         return;
                 }
 
-                RL.Logger?.LogInformationSource($"The Rayman 2 translation has been applied");
+                Logger.Info($"The Rayman 2 translation has been applied");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_Translations_Success);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Applying R2 translation patch");
+                Logger.Error(ex, "Applying R2 translation patch");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_Translations_Error);
             }
         }
@@ -235,7 +241,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting R2 textures file size");
+                Logger.Error(ex, "Getting R2 textures file size");
                 return null;
             }
         }
@@ -274,7 +280,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting applied R2 translation");
+                Logger.Error(ex, "Getting applied R2 translation");
                 return null;
             }
         }

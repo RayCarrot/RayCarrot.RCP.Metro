@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -15,6 +15,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class GameInfo : BaseGameData
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Constants
 
         /// <summary>
@@ -246,7 +252,7 @@ namespace RayCarrot.RCP.Metro
                                 }
                                 catch (Exception ex)
                                 {
-                                    ex.HandleError("Getting file icon for overflow button item");
+                                    Logger.Error(ex, "Getting file icon for overflow button item");
                                     return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
                                 }
                             }));
@@ -295,7 +301,7 @@ namespace RayCarrot.RCP.Metro
                         // Open the location
                         await RCPServices.File.OpenExplorerLocationAsync(instDir);
 
-                        RL.Logger?.LogTraceSource($"The Game {Game} install location was opened");
+                        Logger.Trace($"The Game {Game} install location was opened");
                     }), UserLevel.Advanced));
 
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
@@ -303,7 +309,7 @@ namespace RayCarrot.RCP.Metro
                     // Add Game options
                     var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.CogOutline, new RelayCommand(() =>
                     {
-                        RL.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
+                        Logger.Trace($"The Game {Game} options dialog is opening...");
                         GameOptionsDialog.Show(Game);
                     }));
 
@@ -383,7 +389,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleCritical("Getting game display view model");
+                Logger.Fatal(ex, "Getting game display view model");
                 throw;
             }
         }
@@ -440,20 +446,20 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogTraceSource($"The game {Game} is being located...");
+                Logger.Trace($"The game {Game} is being located...");
 
                 var typeResult = await GetGameTypeAsync();
 
                 if (typeResult.CanceledByUser)
                     return;
 
-                RL.Logger?.LogInformationSource($"The game {Game} type has been detected as {typeResult.SelectedType}");
+                Logger.Info($"The game {Game} type has been detected as {typeResult.SelectedType}");
 
                 await Game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
             }
             catch (Exception ex)
             {
-                ex.HandleError("Locating game");
+                Logger.Error(ex, "Locating game");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
             }
         }
@@ -466,7 +472,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogTraceSource($"The game {Game} is being downloaded...");
+                Logger.Trace($"The game {Game} is being downloaded...");
 
                 // Get the game directory
                 var gameDir = AppFilePaths.GamesBaseDir + Game.ToString();
@@ -486,13 +492,13 @@ namespace RayCarrot.RCP.Metro
                 // Refresh
                 await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
-                RL.Logger?.LogTraceSource($"The game {Game} has been downloaded");
+                Logger.Trace($"The game {Game} has been downloaded");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, DisplayName), Resources.GameInstall_SuccessHeader);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Downloading game");
+                Logger.Error(ex, "Downloading game");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, DisplayName), Resources.GameInstall_ErrorHeader);
             }
         }

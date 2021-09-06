@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,6 +14,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class GameManager_DOSBox : GameManager_Win32
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Override Properties
 
         /// <summary>
@@ -143,7 +149,7 @@ namespace RayCarrot.RCP.Metro
                 if (mountPath.FileExists)
                 {
                     options.MountPath = mountPath;
-                    RL.Logger?.LogInformationSource($"The mount path for {Game} was automatically found");
+                    Logger.Info($"The mount path for {Game} was automatically found");
                 }
 
                 // Find DOSBox path if not already added
@@ -186,7 +192,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Removing DosBox auto config file");
+                    Logger.Error(ex, "Removing DosBox auto config file");
                 }
             }
 
@@ -222,7 +228,7 @@ namespace RayCarrot.RCP.Metro
             // If the executable does not exist the location is not valid
             if (!(result.SelectedDirectory + ExecutableName).FileExists)
             {
-                RL.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
+                Logger.Info($"The selected install directory for {Game} is not valid");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
                 return null;
@@ -235,7 +241,7 @@ namespace RayCarrot.RCP.Metro
                 $"{Path.GetFileNameWithoutExtension(ExecutableName)} ver=usa"
             });
 
-            RL.Logger?.LogInformationSource($"A batch file was created for {Game}");
+            Logger.Info($"A batch file was created for {Game}");
 
             return result.SelectedDirectory;
         }

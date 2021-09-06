@@ -1,6 +1,6 @@
 ﻿using IniParser.Model;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman.UbiIni;
 using System;
 using System.Threading.Tasks;
@@ -27,8 +27,14 @@ namespace RayCarrot.RCP.Metro
             CanModifyGame = RCPServices.File.CheckDirectoryWriteAccess(Game.GetInstallDir(false));
 
             if (!CanModifyGame)
-                RL.Logger?.LogInformationSource($"The game {Game} can't be modified");
+                Logger.Info($"The game {Game} can't be modified");
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -63,7 +69,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task LoadAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} config is being set up");
+            Logger.Info($"{Game} config is being set up");
 
             // Run setup code
             await OnSetupAsync();
@@ -71,7 +77,7 @@ namespace RayCarrot.RCP.Metro
             // Load the configuration data
             ConfigData = await LoadConfigAsync();
 
-            RL.Logger?.LogInformationSource($"The ubi.ini file has been loaded");
+            Logger.Info($"The ubi.ini file has been loaded");
 
             // Keep track if the data had to be recreated
             bool recreated = false;
@@ -81,7 +87,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ConfigData.ReCreate();
                 recreated = true;
-                RL.Logger?.LogInformationSource($"The ubi.ini section for {Game} was recreated");
+                Logger.Info($"The ubi.ini section for {Game} was recreated");
             }
 
             // Import config data
@@ -90,7 +96,7 @@ namespace RayCarrot.RCP.Metro
             // If the data was recreated we mark that there are unsaved changes available
             UnsavedChanges = recreated;
 
-            RL.Logger?.LogInformationSource($"All section properties have been loaded");
+            Logger.Info($"All section properties have been loaded");
         }
 
         /// <summary>
@@ -99,7 +105,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
+            Logger.Info($"{Game} configuration is saving...");
 
             try
             {
@@ -109,11 +115,11 @@ namespace RayCarrot.RCP.Metro
                 // Save the config data
                 ConfigData.Save();
 
-                RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
+                Logger.Info($"{Game} configuration has been saved");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Saving ubi.ini data");
+                Logger.Error(ex, "Saving ubi.ini data");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
             }
@@ -125,7 +131,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("On save config");
+                Logger.Error(ex, "On save config");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader);
 
                 return false;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -15,6 +15,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Override Properties
 
         /// <summary>
@@ -33,24 +39,24 @@ namespace RayCarrot.RCP.Metro
         public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => RCPServices.Data.EducationalDosBoxGames.
             Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.WPFApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
         {
-            RL.Logger?.LogTraceSource($"The educational game {x.Name} is being launched...");
+            Logger.Trace($"The educational game {x.Name} is being launched...");
 
             // Verify that the game can launch
             if (!await VerifyCanLaunchAsync(x))
             {
-                RL.Logger?.LogInformationSource($"The educational game {x.Name} could not be launched");
+                Logger.Info($"The educational game {x.Name} could not be launched");
                 return;
             }
 
             // Get the launch info
             GameLaunchInfo launchInfo = GetLaunchInfo(x);
 
-            RL.Logger?.LogTraceSource($"The educational game {x.Name} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+            Logger.Trace($"The educational game {x.Name} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
             var process = await RCPServices.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
-            RL.Logger?.LogInformationSource($"The educational game {x.Name} has been launched");
+            Logger.Info($"The educational game {x.Name} has been launched");
 
             if (process != null)
                 // Run any post launch operations on the process
@@ -144,7 +150,7 @@ namespace RayCarrot.RCP.Metro
             // Check if the location if valid
             if (!IsGameDirValid(result.SelectedDirectory))
             {
-                RL.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
+                Logger.Info($"The selected install directory for {Game} is not valid");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
                 return null;
@@ -281,7 +287,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Checking if educational game directory is valid");
+                Logger.Error(ex, "Checking if educational game directory is valid");
 
                 return false;
             }
@@ -301,7 +307,7 @@ namespace RayCarrot.RCP.Metro
                 LaunchMode = launchMode
             };
 
-            RL.Logger?.LogInformationSource($"The default educational game has been refreshed");
+            Logger.Info($"The default educational game has been refreshed");
         }
 
         ///// <summary>

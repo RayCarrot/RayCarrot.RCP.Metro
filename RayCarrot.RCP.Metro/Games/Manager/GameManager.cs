@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -12,6 +12,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class GameManager : BaseGameData
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Abstract Properties
 
         /// <summary>
@@ -152,12 +158,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync(bool forceRunAsAdmin)
         {
-            RL.Logger?.LogTraceSource($"The game {Game} is being launched...");
+            Logger.Trace($"The game {Game} is being launched...");
 
             // Verify that the game can launch
             if (!await VerifyCanLaunchAsync())
             {
-                RL.Logger?.LogInformationSource($"The game {Game} could not be launched");
+                Logger.Info($"The game {Game} could not be launched");
                 return;
             }
 
@@ -187,7 +193,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
-            RL.Logger?.LogInformationSource($"The game {Game} has been added");
+            Logger.Info($"The game {Game} has been added");
         }
 
         #endregion

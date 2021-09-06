@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows;
 using Infralution.Localization.Wpf;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -29,6 +29,12 @@ namespace RayCarrot.RCP.Metro
             // Refresh the available languages
             RefreshLanguages(false);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -106,7 +112,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleUnexpected("Getting culture info from setter string value");
+                    Logger.Warn(ex, "Getting culture info from setter string value");
                     ci = DefaultCulture;
                 }
 
@@ -122,7 +128,7 @@ namespace RayCarrot.RCP.Metro
                 // Set the framework culture
                 Services.InstanceData.CurrentCulture = ci;
 
-                RL.Logger?.LogInformationSource($"The current culture was set to {ci.EnglishName}");
+                Logger.Info($"The current culture was set to {ci.EnglishName}");
             }
         }
 

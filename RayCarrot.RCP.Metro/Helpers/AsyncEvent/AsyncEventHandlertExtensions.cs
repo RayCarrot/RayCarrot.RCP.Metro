@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -10,6 +10,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public static class AsyncEventHandlertExtensions
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Raises the event async
         /// </summary>
@@ -62,7 +64,7 @@ namespace RayCarrot.RCP.Metro
                 if (task.Exception != null)
                 {
                     foreach (var innerEx in task.Exception.InnerExceptions)
-                        innerEx.HandleCritical("Async event exception");
+                        Logger.Fatal(innerEx, "Async event exception");
                 }
 
                 // Throw caught exception

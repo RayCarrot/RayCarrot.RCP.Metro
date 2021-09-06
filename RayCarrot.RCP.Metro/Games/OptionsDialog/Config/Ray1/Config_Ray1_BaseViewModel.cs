@@ -1,6 +1,6 @@
 ﻿using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
 using System;
@@ -60,6 +60,12 @@ namespace RayCarrot.RCP.Metro
                 new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Action), Key.X, keyChanged),
             };
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -439,7 +445,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} config is being set up");
+            Logger.Info($"{Game} config is being set up");
 
             ConfigFilePath = GetConfigPath();
 
@@ -560,7 +566,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} config is saving...");
+            Logger.Info($"{Game} config is saving...");
 
             try
             {
@@ -617,7 +623,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Saving {Game} configuration data");
+                Logger.Error(ex, $"Saving {Game} configuration data");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
@@ -752,7 +758,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Getting {Game} language from batch file");
+                Logger.Error(ex, $"Getting {Game} language from batch file");
                 return null;
             }
         }
@@ -788,7 +794,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Setting {Game} language from batch file");
+                Logger.Error(ex, $"Setting {Game} language from batch file");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader);
             }
         }

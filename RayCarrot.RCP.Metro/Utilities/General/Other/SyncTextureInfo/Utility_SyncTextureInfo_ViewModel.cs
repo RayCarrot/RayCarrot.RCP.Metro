@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
@@ -37,6 +37,12 @@ namespace RayCarrot.RCP.Metro
                 GameMode.TonicTroubleSEPC,
             });
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -101,7 +107,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Syncing texture info");
+                Logger.Error(ex, "Syncing texture info");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
             }

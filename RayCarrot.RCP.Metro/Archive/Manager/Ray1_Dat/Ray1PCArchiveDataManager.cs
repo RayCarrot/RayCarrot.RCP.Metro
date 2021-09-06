@@ -5,7 +5,7 @@ using System.Linq;
 using ByteSizeLib;
 using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
 
@@ -26,6 +26,12 @@ namespace RayCarrot.RCP.Metro
         {
             Config = configViewModel;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -135,7 +141,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files to include</param>
         public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
         {
-            RL.Logger?.LogInformationSource($"An R1 PC archive is being repacked...");
+            Logger.Info($"An R1 PC archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<Rayman1PCArchiveData>();
@@ -192,7 +198,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"The R1 PC archive has been repacked");
+            Logger.Info($"The R1 PC archive has been repacked");
         }
 
         /// <summary>
@@ -207,7 +213,7 @@ namespace RayCarrot.RCP.Metro
             // Get the data
             var data = archive.CastTo<Rayman1PCArchiveData>();
 
-            RL.Logger?.LogInformationSource("The files are being retrieved for an R1 PC archive");
+            Logger.Info("The files are being retrieved for an R1 PC archive");
 
             var fileExt = fileName.StartsWith("VIGNET", StringComparison.OrdinalIgnoreCase) || fileName.StartsWith("WldDesc", StringComparison.OrdinalIgnoreCase) ? ".pcx" : ".dat";
 
@@ -231,7 +237,7 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"Read R1 PC archive file with {data.Files.Length} files");
+            Logger.Info($"Read R1 PC archive file with {data.Files.Length} files");
 
             return data;
         }

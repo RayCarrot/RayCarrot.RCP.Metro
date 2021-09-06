@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.WindowsAPICodePack.Shell;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,6 +26,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Commands
 
         public ICommand UpdateDiscVersionCommand { get; }
@@ -42,7 +48,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogInformationSource($"The Rayman Origins disc updater is being downloaded...");
+                Logger.Info($"The Rayman Origins disc updater is being downloaded...");
 
                 // Download the file
                 var succeeded = await App.DownloadAsync(new Uri[]
@@ -55,7 +61,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Downloading RO updater");
+                Logger.Error(ex, "Downloading RO updater");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_UpdateFailed);
             }
 

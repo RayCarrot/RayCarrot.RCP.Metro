@@ -2,7 +2,7 @@
 using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using System;
 using System.Collections;
@@ -57,6 +57,12 @@ namespace RayCarrot.RCP.Metro
             Setup();
             Drives = new ObservableCollection<DriveViewModel>();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -153,7 +159,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleExpected("Getting drive label");
+                            Logger.Debug(ex, "Getting drive label");
                         }
 
                         try
@@ -169,12 +175,12 @@ namespace RayCarrot.RCP.Metro
                             }
                             catch (Exception ex)
                             {
-                                ex.HandleExpected("Getting drive icon");
+                                Logger.Debug(ex, "Getting drive icon");
                             }
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleExpected("Getting drive name");
+                            Logger.Debug(ex, "Getting drive name");
                             continue;
                         }
 
@@ -184,7 +190,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleExpected("Getting drive format");
+                            Logger.Debug(ex, "Getting drive format");
                         }
 
                         try
@@ -193,7 +199,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleExpected("Getting drive freeSpace");
+                            Logger.Debug(ex, "Getting drive freeSpace");
                         }
 
                         try
@@ -202,7 +208,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleExpected("Getting drive totalSize");
+                            Logger.Debug(ex, "Getting drive totalSize");
                         }
 
                         try
@@ -211,7 +217,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleExpected("Getting drive type");
+                            Logger.Debug(ex, "Getting drive type");
                         }
 
                         try
@@ -222,7 +228,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleExpected("Getting drive ready");
+                            Logger.Debug(ex, "Getting drive ready");
                             if (!BrowseVM.AllowNonReadyDrives)
                                 continue;
                         }
@@ -245,7 +251,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleUnexpected("Getting drives");
+                    Logger.Warn(ex, "Getting drives");
                     await Services.MessageUI.DisplayMessageAsync("An error occurred getting the drives", "Error", MessageType.Error);
                 }
             }

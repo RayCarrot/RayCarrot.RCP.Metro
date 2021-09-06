@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,6 +23,12 @@ namespace RayCarrot.RCP.Metro
             // Create commands
             CreateConfigCommand = new AsyncRelayCommand(CreateConfigAsync);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -78,13 +84,13 @@ namespace RayCarrot.RCP.Metro
                     "Directory =.\\"
                 });
 
-                RL.Logger?.LogInformationSource($"The Rayman Designer config file has been recreated");
+                Logger.Info($"The Rayman Designer config file has been recreated");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Applying RD config patch");
+                Logger.Error(ex, "Applying RD config patch");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_CreateConfig_Error);
             }
         }

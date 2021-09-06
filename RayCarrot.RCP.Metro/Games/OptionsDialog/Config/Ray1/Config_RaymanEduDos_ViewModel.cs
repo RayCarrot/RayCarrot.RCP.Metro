@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
@@ -18,7 +18,9 @@ namespace RayCarrot.RCP.Metro
             PageSelection = new ObservableCollection<string>();
             RefreshSelection();
         }
-        
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public void RefreshSelection()
         {
             PageSelection.Clear();
@@ -26,14 +28,14 @@ namespace RayCarrot.RCP.Metro
 
             ResetSelectedPageSelectionIndex();
 
-            RL.Logger?.LogTraceSource($"EDU config selection has been modified with {PageSelection.Count} items");
+            Logger.Trace($"EDU config selection has been modified with {PageSelection.Count} items");
         }
 
         public override FileSystemPath GetConfigPath()
         {
             var game = Data.EducationalDosBoxGames[SelectedPageSelectionIndex];
 
-            RL.Logger?.LogTraceSource($"Retrieving EDU config path for '{game.Name} ({game.LaunchMode})'");
+            Logger.Trace($"Retrieving EDU config path for '{game.Name} ({game.LaunchMode})'");
 
             var installDir = Game.GetInstallDir();
 
@@ -53,7 +55,7 @@ namespace RayCarrot.RCP.Metro
 
         protected override Task OnSelectedPageSelectionIndexUpdatedAsync()
         {
-            RL.Logger?.LogTraceSource($"EDU config selection changed");
+            Logger.Trace($"EDU config selection changed");
             return LoadPageAsync();
         }
 

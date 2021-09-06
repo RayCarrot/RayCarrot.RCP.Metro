@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using NLog;
 using System;
 using System.Globalization;
 using System.Windows.Media;
@@ -18,16 +18,20 @@ namespace RayCarrot.RCP.Metro
 
             static string GetDefaultColor(LogLevel logLevel)
             {
-                return logLevel switch
-                {
-                    LogLevel.Trace => "#689F38",
-                    LogLevel.Debug => "#AFB42B",
-                    LogLevel.Information => "#1976D2",
-                    LogLevel.Warning => "#FFA000",
-                    LogLevel.Error => "#E64A19",
-                    LogLevel.Critical => "#d32f2f",
-                    _ => null
-                };
+                if (logLevel == LogLevel.Trace)
+                    return "#689F38";
+                else if (logLevel == LogLevel.Debug)
+                    return "#AFB42B";
+                else if (logLevel == LogLevel.Info)
+                    return "#1976D2";
+                else if (logLevel == LogLevel.Warn)
+                    return "#FFA000";
+                else if (logLevel == LogLevel.Error)
+                    return "#E64A19";
+                else if (logLevel == LogLevel.Fatal)
+                    return "#d32f2f";
+                else
+                    return null;
             }
         }
     }

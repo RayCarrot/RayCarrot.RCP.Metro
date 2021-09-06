@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -30,8 +30,14 @@ namespace RayCarrot.RCP.Metro
             CanSetVersion = currentVersion != null;
             _selectedVersion = currentVersion ?? PrintStudioVersion.Version_03;
 
-            RL.Logger?.LogInformationSource($"The current Print Studio version has been detected as {SelectedVersion} with the option to set the version as {CanSetVersion}");
+            Logger.Info($"The current Print Studio version has been detected as {SelectedVersion} with the option to set the version as {CanSetVersion}");
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -110,7 +116,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting Print Studio version");
+                Logger.Error(ex, "Getting Print Studio version");
 
                 return null;
             }
@@ -126,7 +132,7 @@ namespace RayCarrot.RCP.Metro
             {
                 try
                 {
-                    RL.Logger?.LogInformationSource("The Print Studio version is being updated...");
+                    Logger.Info("The Print Studio version is being updated...");
 
                     // Helper method for getting version tag
                     static string GetVersionTag(PrintStudioVersion version) =>
@@ -151,12 +157,12 @@ namespace RayCarrot.RCP.Metro
                     // Get the current version
                     var previousVersion = GetCurrentVersion() ?? throw new Exception("Previous Print Studio version can not be null");
 
-                    RL.Logger?.LogInformationSource($"The current version is {previousVersion}");
+                    Logger.Info($"The current version is {previousVersion}");
 
                     // Make sure the version is different than the current one
                     if (previousVersion == SelectedVersion)
                     {
-                        RL.Logger?.LogWarningSource("Print Studio version attempted to update when being the same");
+                        Logger.Warn("Print Studio version attempted to update when being the same");
                         return;
                     }
 
@@ -189,11 +195,11 @@ namespace RayCarrot.RCP.Metro
                         RCPServices.File.MoveFiles(new IOSearchPattern(installDir + "CalendarData" + GetVersionTag(SelectedVersion) + lang), installDir + "Pictures" + lang + "calendars", true);
                     }
 
-                    RL.Logger?.LogInformationSource($"The Print Studio version has been updated");
+                    Logger.Info($"The Print Studio version has been updated");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Updating Print Studio version");
+                    Logger.Error(ex, "Updating Print Studio version");
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.PrintStudioOptions_VersionUpdateError);
                 }
             }

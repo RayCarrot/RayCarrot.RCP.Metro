@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,6 +14,12 @@ namespace RayCarrot.RCP.Metro
         // IDEA: Allow these values to be changed in settings?
         private const int CacheMaxCount = 250;
         private const int CacheClearCycleCount = 15;
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -61,7 +67,7 @@ namespace RayCarrot.RCP.Metro
                     CacheRegister.RemoveAt(0);
                 }
 
-                RL.Logger?.LogInformationSource($"Cleared {clearCount} entries from thumbnail cache");
+                Logger.Info($"Cleared {clearCount} entries from thumbnail cache");
             }
         }
 

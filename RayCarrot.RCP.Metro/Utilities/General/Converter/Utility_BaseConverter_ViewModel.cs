@@ -6,7 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Binary;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,6 +28,12 @@ namespace RayCarrot.RCP.Metro
             ConvertFromCommand = new AsyncRelayCommand(ConvertFromAsync);
             ConvertToCommand = new AsyncRelayCommand(ConvertToAsync);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -156,7 +162,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Converting files");
+                    Logger.Error(ex, "Converting files");
 
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
                 }
@@ -270,7 +276,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Converting files");
+                    Logger.Error(ex, "Converting files");
 
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
                 }

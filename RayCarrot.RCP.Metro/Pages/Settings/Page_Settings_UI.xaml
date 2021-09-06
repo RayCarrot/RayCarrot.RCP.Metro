@@ -542,18 +542,6 @@
                                 <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                             </i:Interaction.Behaviors>
 
-                            <StackPanel>
-
-                                <TextBlock Style="{StaticResource TextBlock.Header}"
-                                           Text="{Resx Settings_DebugExceptionLevel}"
-                                           Margin="0 0 0 8" />
-
-                                <ComboBox ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={local:EnumToListConverter}, Mode=OneTime}"
-                                          SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={local:EnumToIntConverter}}"
-                                          ToolTip="{Resx Settings_DebugExceptionLevelInfo}" />
-
-                            </StackPanel>
-
                             <CheckBox Content="{Resx Settings_ForceUpdates}"
                                       IsChecked="{Binding Path=ForceUpdate}" />
 

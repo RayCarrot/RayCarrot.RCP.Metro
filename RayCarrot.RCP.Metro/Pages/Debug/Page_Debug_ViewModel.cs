@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Newtonsoft.Json;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -35,6 +35,7 @@ namespace RayCarrot.RCP.Metro
             RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
+            ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
             RunInstallerCommand = new RelayCommand(RunInstaller);
             ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
 
@@ -42,6 +43,12 @@ namespace RayCarrot.RCP.Metro
             AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
             SelectedInstaller = AvailableInstallers.First();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -140,6 +147,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ShowLogAsync()
         {
+            if (!Metro.App.Current.IsLogViewerAvailable)
+            {
+                await Services.MessageUI.DisplayMessageAsync("The log viewer is not enabled. Use the launch argument -logviewer to enabled it.", MessageType.Warning);
+                return;
+            }
+
             await new LogViewer().ShowWindowAsync();
         }
 
@@ -188,7 +201,7 @@ namespace RayCarrot.RCP.Metro
                             }
                             catch (Exception ex)
                             {
-                                ex.HandleUnexpected("Loading referenced assembly");
+                                Logger.Warn(ex, "Loading referenced assembly");
                             }
 
                             DataOutput += $"Name: {assemblyName.Name}{Environment.NewLine}";
@@ -319,7 +332,7 @@ namespace RayCarrot.RCP.Metro
                             }
                             catch (Exception ex)
                             {
-                                ex.HandleError("Getting game install dir size");
+                                Logger.Error(ex, "Getting game install dir size");
                                 DataOutput += $"{game.GetGameInfo().DisplayName}: N/A{Environment.NewLine}";
                             }
                         }
@@ -334,7 +347,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Updating debug data output");
+                Logger.Error(ex, "Updating debug data output");
             }
         }
 
@@ -354,6 +367,11 @@ namespace RayCarrot.RCP.Metro
         public async Task RefreshAllTaskAsync()
         {
             await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true, true)));
+        }
+
+        public void ThrowUnhandledException()
+        {
+            throw new Exception("Debug");
         }
 
         /// <summary>
@@ -379,6 +397,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand RefreshAllCommand { get; }
 
         public ICommand RefreshAllAsyncCommand { get; }
+
+        public ICommand ThrowUnhandledExceptionCommand { get; }
 
         public ICommand RunInstallerCommand { get; }
 

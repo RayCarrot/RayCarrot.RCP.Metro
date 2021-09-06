@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -33,6 +33,12 @@ namespace RayCarrot.RCP.Metro
             CompressedBackupLocation = BackupLocation.FullPath + AppFilePaths.BackupCompressionExtension;
             GameDisplayName = displayName;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -118,7 +124,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting existing backups");
+                Logger.Error(ex, "Getting existing backups");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GetExistingBackupsError, GameDisplayName));
                 return new GameBackups_ExistingBackup[0];
             }

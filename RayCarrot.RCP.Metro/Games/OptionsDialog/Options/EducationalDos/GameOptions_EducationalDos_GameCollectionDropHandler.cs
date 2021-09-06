@@ -1,5 +1,5 @@
 ﻿using GongSolutions.Wpf.DragDrop;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -8,6 +8,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class GameOptions_EducationalDos_GameCollectionDropHandler : DefaultDropHandler
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// The options view model
         /// </summary>
@@ -18,7 +20,7 @@ namespace RayCarrot.RCP.Metro
             // Call base drop handler
             base.Drop(dropInfo);
             
-            RL.Logger?.LogDebugSource("The educational games have been reordered");
+            Logger.Debug("The educational games have been reordered");
 
             // Save the new order
             await ViewModel.SaveAsync();

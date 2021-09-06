@@ -1,6 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-using RayCarrot.Logging;
+﻿using NLog;
+using System.Diagnostics;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,7 +12,11 @@ namespace RayCarrot.RCP.Metro
 
         private static WPFTraceListener Instance { get; } = new WPFTraceListener();
 
-        private static LogLevel LogLevel { get; set; }
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -22,11 +25,8 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Sets up the trace listener
         /// </summary>
-        /// <param name="level">The level to log the trace listener messages</param>
-        public static void Setup(LogLevel level)
+        public static void Setup()
         {
-            LogLevel = level;
-
             if (PresentationTraceSources.DataBindingSource.Listeners.Contains(Instance))
                 return;
 
@@ -39,12 +39,12 @@ namespace RayCarrot.RCP.Metro
 
         public override void Write(string message)
         {
-            RL.Logger?.LogSource(message, LogLevel);
+            Logger.Warn(message);
         }
 
         public override void WriteLine(string message)
         {
-            RL.Logger?.LogSource(message, LogLevel);
+            Logger.Warn(message);
         }
 
         #endregion

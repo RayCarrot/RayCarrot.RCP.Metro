@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using RayCarrot.Binary;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -17,6 +17,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Methods
 
         /// <summary>
@@ -223,7 +229,7 @@ namespace RayCarrot.RCP.Metro
                     // Ignore if not found
                     if (gf == null)
                     {
-                        RL.Logger?.LogWarningSource($"A matching texture was not found for {longestName.Trim('\0')}");
+                        Logger.Warn($"A matching texture was not found for {longestName.Trim('\0')}");
                         continue;
                     }
 
@@ -283,7 +289,7 @@ namespace RayCarrot.RCP.Metro
                     edited++;
                 }
 
-                RL.Logger?.LogInformationSource($"{foundCount} texture infos modified for {file.Name}");
+                Logger.Info($"{foundCount} texture infos modified for {file.Name}");
 
                 // Encode if we have an encoder
                 if (encoder != null)

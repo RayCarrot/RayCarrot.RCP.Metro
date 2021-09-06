@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -12,6 +12,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public sealed class GameManager_RaymanFiestaRun_WinStore : GameManager_WinStore
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Override Properties
 
         /// <summary>
@@ -96,7 +102,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we got a directory
                     if (dir == null)
                     {
-                        RL.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
+                        Logger.Info($"The {Game} was not found under Windows Store packages");
                         continue;
                     }
 
@@ -106,7 +112,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we got a valid directory
                     if (!await IsValidAsync(installDir, version))
                     {
-                        RL.Logger?.LogInformationSource($"The {Game} install directory was not valid");
+                        Logger.Info($"The {Game} install directory was not valid");
 
                         continue;
                     }
@@ -124,7 +130,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting Fiesta Run game install directory");
+                Logger.Error(ex, "Getting Fiesta Run game install directory");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 

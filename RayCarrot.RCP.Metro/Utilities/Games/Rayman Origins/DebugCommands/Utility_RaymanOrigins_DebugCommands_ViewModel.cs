@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -56,9 +56,15 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Reading RO command file");
+                Logger.Error(ex, $"Reading RO command file");
             }
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -268,14 +274,14 @@ namespace RayCarrot.RCP.Metro
         {
             using (await UpdateDebugCommandsAsyncLock.LockAsync())
             {
-                RL.Logger?.LogInformationSource($"The Rayman Origins debug commands are being updated...");
+                Logger.Info($"The Rayman Origins debug commands are being updated...");
 
                 // Make sure the install directory was found
                 if (!DebugCommandFilePath.Parent.DirectoryExists)
                 {
                     IsDebugModeEnabled = false;
 
-                    RL.Logger?.LogWarningSource($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
+                    Logger.Warn($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
                     return;
@@ -287,18 +293,18 @@ namespace RayCarrot.RCP.Metro
 
                     if (!IsDebugModeEnabled)
                     {
-                        RL.Logger?.LogInformationSource($"The Rayman Origins debug commands have been disabled");
+                        Logger.Info($"The Rayman Origins debug commands have been disabled");
 
                         return;
                     }
 
                     File.WriteAllLines(DebugCommandFilePath, DebugCommands.Select(x => $"{x.Key}={x.Value}"));
 
-                    RL.Logger?.LogInformationSource($"The Rayman Origins debug commands have been updated");
+                    Logger.Info($"The Rayman Origins debug commands have been updated");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Applying RO debug commands");
+                    Logger.Error(ex, "Applying RO debug commands");
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_DebugCommandsError);
                 }
             }

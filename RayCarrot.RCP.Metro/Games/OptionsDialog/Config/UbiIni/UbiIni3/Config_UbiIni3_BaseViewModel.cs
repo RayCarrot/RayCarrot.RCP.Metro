@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman.UbiIni;
 
 namespace RayCarrot.RCP.Metro
@@ -34,6 +34,12 @@ namespace RayCarrot.RCP.Metro
                 "Local Area Network"
             };
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -398,7 +404,7 @@ namespace RayCarrot.RCP.Metro
             // Get the current dinput type
             var dinputType = CanModifyGame ? GetCurrentDinput() : DinputType.Unknown;
 
-            RL.Logger?.LogInformationSource($"The dinput type has been retrieved as {dinputType}");
+            Logger.Info($"The dinput type has been retrieved as {dinputType}");
 
             ControllerSupport = dinputType == DinputType.Controller;
 
@@ -422,32 +428,32 @@ namespace RayCarrot.RCP.Metro
                         IsDiscCheckRemoved = false;
                         CanRemoveDiscCheck = true;
 
-                        RL.Logger?.LogInformationSource($"The game has not been modified to remove the disc checker");
+                        Logger.Info($"The game has not been modified to remove the disc checker");
                     }
                     else if (result == false)
                     {
                         IsDiscCheckRemoved = true;
                         CanRemoveDiscCheck = true;
 
-                        RL.Logger?.LogInformationSource($"The game has been modified to remove the disc checker");
+                        Logger.Info($"The game has been modified to remove the disc checker");
                     }
                     else if (result == null)
                     {
                         CanRemoveDiscCheck = false;
 
-                        RL.Logger?.LogInformationSource($"The game disc checker status could not be read");
+                        Logger.Info($"The game disc checker status could not be read");
                     }
                 }
                 else
                 {
                     CanRemoveDiscCheck = false;
 
-                    RL.Logger?.LogInformationSource($"The game file was not found");
+                    Logger.Info($"The game file was not found");
                 }
             }
             else
             {
-                RL.Logger?.LogTraceSource($"The disc checker can not be removed for this game");
+                Logger.Trace($"The disc checker can not be removed for this game");
             }
 
             // If the primary config file does not exist, create a new one
@@ -458,11 +464,11 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCPServices.File.CreateFile(AppFilePaths.UbiIniPath1);
 
-                    RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {AppFilePaths.UbiIniPath1}");
+                    Logger.Info($"A new ubi.ini file has been created under {AppFilePaths.UbiIniPath1}");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Creating ubi.ini file");
+                    Logger.Error(ex, "Creating ubi.ini file");
 
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, AppFilePaths.UbiIniPath1.Parent));
 
@@ -478,11 +484,11 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCPServices.File.CreateFile(AppFilePaths.UbiIniPath2);
 
-                    RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {AppFilePaths.UbiIniPath2}");
+                    Logger.Info($"A new ubi.ini file has been created under {AppFilePaths.UbiIniPath2}");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Creating ubi.ini file");
+                    Logger.Error(ex, "Creating ubi.ini file");
                 }
             }
         }
@@ -512,7 +518,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError($"Saving {Game} ubi.ini secondary data");
+                    Logger.Error(ex, $"Saving {Game} ubi.ini secondary data");
                 }
             }
 
@@ -524,7 +530,7 @@ namespace RayCarrot.RCP.Metro
                     var dt = GetCurrentDinput();
                     var path = GetDinputPath();
 
-                    RL.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
+                    Logger.Info($"The dinput type has been retrieved as {dt}");
 
                     if (ControllerSupport)
                     {
@@ -547,7 +553,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError($"Saving {Game} dinput hack data");
+                    Logger.Error(ex, $"Saving {Game} dinput hack data");
                     throw;
                 }
 
@@ -567,7 +573,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError($"Saving {Game} disc check modification");
+                        Logger.Error(ex, $"Saving {Game} disc check modification");
                         throw;
                     }
                 }
@@ -610,7 +616,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Getting {Game} dinput file size");
+                Logger.Error(ex, $"Getting {Game} dinput file size");
                 return DinputType.Unknown;
             }
         }

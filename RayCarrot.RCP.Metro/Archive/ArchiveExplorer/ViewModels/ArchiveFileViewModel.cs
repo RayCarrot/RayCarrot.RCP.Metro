@@ -1,6 +1,6 @@
 ﻿using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
@@ -51,6 +51,12 @@ namespace RayCarrot.RCP.Metro
             BindingOperations.EnableCollectionSynchronization(EditActions, Application.Current);
             BindingOperations.EnableCollectionSynchronization(FileDisplayInfo, Application.Current);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -229,7 +235,7 @@ namespace RayCarrot.RCP.Metro
                 encodedStream?.Dispose();
                 decodedStream?.Dispose();
 
-                ex.HandleError("Getting decoded archive file data");
+                Logger.Error(ex, "Getting decoded archive file data");
 
                 throw;
             }
@@ -306,11 +312,11 @@ namespace RayCarrot.RCP.Metro
                 // If the stream has closed it's not an error
                 if (!ArchiveFileStream.CanRead)
                 {
-                    ex.HandleExpected("Initializing file");
+                    Logger.Debug(ex, "Initializing file");
                 }
                 else
                 {
-                    ex.HandleError("Initializing file");
+                    Logger.Error(ex, "Initializing file");
 
                     // Initialize the file with default settings to allow the file to be exported and deleted
                     SetFileType(new ArchiveFileType_Default());
@@ -385,7 +391,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ExportFileAsync(FileExtension format = null)
         {
-            RL.Logger?.LogTraceSource($"The archive file {FileName} is being exported as {format?.FileExtensions ?? "original"}");
+            Logger.Trace($"The archive file {FileName} is being exported as {format?.FileExtensions ?? "original"}");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -424,7 +430,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleError("Exporting archive file", FileName);
+                            Logger.Error(ex, "Exporting archive file", FileName);
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, FileName));
 
@@ -435,7 +441,7 @@ namespace RayCarrot.RCP.Metro
                             Archive.SetDisplayStatus(String.Empty);
                         }
 
-                        RL.Logger?.LogTraceSource($"The archive file has been exported");
+                        Logger.Trace($"The archive file has been exported");
 
                         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
                     });
@@ -452,7 +458,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public void ExportFile(FileSystemPath filePath, Stream stream, FileExtension format)
         {
-            RL.Logger?.LogTraceSource($"An archive file is being exported as {format}");
+            Logger.Trace($"An archive file is being exported as {format}");
 
             // Create the output file and open it
             using var fileStream = File.Create(filePath);
@@ -471,7 +477,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ImportFileAsync()
         {
-            RL.Logger?.LogTraceSource($"The archive file {FileName} is being imported...");
+            Logger.Trace($"The archive file {FileName} is being imported...");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -497,11 +503,11 @@ namespace RayCarrot.RCP.Metro
                             // Import the file
                             ImportFile(result.SelectedFile, true);
 
-                            RL.Logger?.LogTraceSource($"The archive file is pending to be imported");
+                            Logger.Trace($"The archive file is pending to be imported");
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleError("Importing file");
+                            Logger.Error(ex, "Importing file");
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportFile_Error);
                         }
@@ -571,7 +577,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task DeleteFileAsync()
         {
-            RL.Logger?.LogTraceSource($"The archive file {FileName} is being removed...");
+            Logger.Trace($"The archive file {FileName} is being removed...");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -597,7 +603,7 @@ namespace RayCarrot.RCP.Metro
 
             Archive.ExplorerDialogViewModel.RefreshStatusBar();
 
-            RL.Logger?.LogTraceSource($"The archive file has been removed");
+            Logger.Trace($"The archive file has been removed");
         }
 
         /// <summary>
@@ -610,7 +616,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task EditFileAsync(FileExtension ext, bool convert, bool asBinary, bool readOnly)
         {
-            RL.Logger?.LogTraceSource($"The archive file {FileName} is being opened...");
+            Logger.Trace($"The archive file {FileName} is being opened...");
 
             if (convert && asBinary)
                 throw new Exception("A file can't be converted when opened as binary");
@@ -681,17 +687,17 @@ namespace RayCarrot.RCP.Metro
                                 if (errorCode != null)
                                 {
                                     if (errorCode == 2)
-                                        RL.Logger?.LogWarningSource($"Executable was not found due to file not existing");
+                                        Logger.Warn($"Executable was not found due to file not existing");
                                     else if (errorCode == 3)
-                                        RL.Logger?.LogWarningSource($"Executable was not found due to the path being invalid");
+                                        Logger.Warn($"Executable was not found due to the path being invalid");
                                     else if (errorCode == 5)
-                                        RL.Logger?.LogWarningSource($"Executable was not found due to that the file could not be accessed");
+                                        Logger.Warn($"Executable was not found due to that the file could not be accessed");
                                     else if (errorCode == 8)
-                                        RL.Logger?.LogWarningSource($"Executable was not found due to the system being out of memory");
+                                        Logger.Warn($"Executable was not found due to the system being out of memory");
                                     else if (errorCode == 31)
-                                        RL.Logger?.LogWarningSource($"Executable was not found due to there not being an association for the specified file type with an executable file");
+                                        Logger.Warn($"Executable was not found due to there not being an association for the specified file type with an executable file");
                                     else
-                                        RL.Logger?.LogWarningSource($"Executable was not found due to an unknown error");
+                                        Logger.Warn($"Executable was not found due to an unknown error");
                                 }
 
                                 if (exe != null)
@@ -742,7 +748,7 @@ namespace RayCarrot.RCP.Metro
                             // Ignore if the file wasn't opened
                             if (p == null)
                             {
-                                RL.Logger?.LogTraceSource($"The file was not opened");
+                                Logger.Trace($"The file was not opened");
                                 return;
                             }
 
@@ -765,19 +771,19 @@ namespace RayCarrot.RCP.Metro
                         // Check if the file has been modified
                         if (!originalHash.SequenceEqual(newHash))
                         {
-                            RL.Logger?.LogTraceSource($"The file was modified");
+                            Logger.Trace($"The file was modified");
 
                             // Import the modified file
                             ImportFile(tempFileStream, ext, convert);
                         }
                         else
                         {
-                            RL.Logger?.LogTraceSource($"The file was not modified");
+                            Logger.Trace($"The file was not modified");
                         }
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Opening archive file for editing");
+                        Logger.Error(ex, "Opening archive file for editing");
 
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
                     }
@@ -828,7 +834,7 @@ namespace RayCarrot.RCP.Metro
                     // Delete this file
                     DeleteFile();
 
-                    RL.Logger?.LogTraceSource($"The file {FileName} was renamed to {newName}");
+                    Logger.Trace($"The file {FileName} was renamed to {newName}");
                 }
             }
         }

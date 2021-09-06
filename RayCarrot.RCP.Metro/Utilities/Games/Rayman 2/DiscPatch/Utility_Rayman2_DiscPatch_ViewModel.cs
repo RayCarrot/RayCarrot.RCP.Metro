@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -24,11 +24,17 @@ namespace RayCarrot.RCP.Metro
             InstallDir = Games.Rayman2.GetInstallDir();
             RequiresPatching = (InstallDir + "RAYMAN2.ICD").FileExists;
 
-            RL.Logger?.LogInformationSource($"The R2 disc patch utility has detected that the currently installed game does {(RequiresPatching ? "require" : "not require")} the patch");
+            Logger.Info($"The R2 disc patch utility has detected that the currently installed game does {(RequiresPatching ? "require" : "not require")} the patch");
 
             // Create commands
             ApplyPatchCommand = new AsyncRelayCommand(ApplyPatchAsync);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -65,7 +71,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                RL.Logger?.LogInformationSource($"The R2 disc patch is being applied...");
+                Logger.Info($"The R2 disc patch is being applied...");
 
                 // Write the GOG executable file
                 File.WriteAllBytes(InstallDir + "Rayman2.exe", Files.Rayman2_GOG);
@@ -106,13 +112,13 @@ namespace RayCarrot.RCP.Metro
 
                 RequiresPatching = false;
 
-                RL.Logger?.LogInformationSource($"The R2 disc patch has been applied");
+                Logger.Info($"The R2 disc patch has been applied");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_DiscPatchApplied);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Applying R2 disc patch");
+                Logger.Error(ex, "Applying R2 disc patch");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_DiscPatchError);
             }

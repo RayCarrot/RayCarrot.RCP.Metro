@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
@@ -338,6 +338,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Commands
 
         public ICommand ApplyMemoryPatchCommand { get; }
@@ -484,7 +490,7 @@ namespace RayCarrot.RCP.Metro
 
         protected void GameDirectoryUpdated()
         {
-            RL.Logger?.LogTraceSource("Updating RRR mod directory");
+            Logger.Trace("Updating RRR mod directory");
             IsExePatched = CheckIsExePatched();
             CanDownloadPatchedBF = IsExePatched;
             IsPatchedBFDownloaded = CheckIsPatchedBFDownloaded();
@@ -515,7 +521,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task ApplyMemoryPatchAsync()
         {
-            RL.Logger?.LogInformationSource("Applying RRR memory patch");
+            Logger.Info("Applying RRR memory patch");
 
             try
             {
@@ -531,13 +537,13 @@ namespace RayCarrot.RCP.Metro
 
                 MemoryPatcher.Patch();
 
-                RL.Logger?.LogInformationSource("RRR memory patch applied");
+                Logger.Info("RRR memory patch applied");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_MemMod_ApplySuccess);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Applying RRR memory patch");
+                Logger.Error(ex, "Applying RRR memory patch");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_MemMod_ApplyError);
             }
@@ -545,13 +551,13 @@ namespace RayCarrot.RCP.Metro
 
         public async Task<GameVersion> DetermineGameVersionAsync()
         {
-            RL.Logger?.LogInformationSource("Determining RRR game version");
+            Logger.Info("Determining RRR game version");
 
             FileSystemPath exe = ExeFilePath;
 
             if (!exe.FileExists)
             {
-                RL.Logger?.LogInformationSource("RRR exe does not exist");
+                Logger.Info("RRR exe does not exist");
                 await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_InvalidGameDir, MessageType.Error);
                 return GameVersion.Unknown;
             }
@@ -561,11 +567,11 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 fileSize = (long)exe.GetSize().Bytes;
-                RL.Logger?.LogInformationSource($"RRR exe size is {fileSize} bytes");
+                Logger.Info($"RRR exe size is {fileSize} bytes");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting RRR exe file size");
+                Logger.Error(ex, "Getting RRR exe file size");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_DetermineGameVerError);
 
@@ -574,7 +580,7 @@ namespace RayCarrot.RCP.Metro
 
             GameVersion version = ExePatches.FirstOrDefault(x => x.Value.FileSize == fileSize).Key;
 
-            RL.Logger?.LogInformationSource($"RRR game version detected as {version}");
+            Logger.Info($"RRR game version detected as {version}");
 
             if (version == GameVersion.Unknown)
                 await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_UnsupportedGameExe, MessageType.Error);
@@ -584,30 +590,30 @@ namespace RayCarrot.RCP.Metro
 
         public bool CheckIsExePatched()
         {
-            RL.Logger?.LogInformationSource("Checking if RRR exe is patched");
+            Logger.Info("Checking if RRR exe is patched");
 
             bool? isOriginal = ExePatcher.GetIsOriginal();
 
             if (isOriginal == true)
-                RL.Logger?.LogInformationSource("RRR exe is not patched");
+                Logger.Info("RRR exe is not patched");
             else if (isOriginal == false)
-                RL.Logger?.LogInformationSource("RRR exe is patched");
+                Logger.Info("RRR exe is patched");
             else if (isOriginal == null)
-                RL.Logger?.LogInformationSource("Could not determine if RRR exe is patched");
+                Logger.Info("Could not determine if RRR exe is patched");
             
             return isOriginal == false;
         }
 
         public bool CheckIsPatchedBFDownloaded()
         {
-            RL.Logger?.LogInformationSource("Checking if RRR patched BF is downloaded");
+            Logger.Info("Checking if RRR patched BF is downloaded");
 
             var isDownloaded = PatchedBFFilePath.FileExists;
 
             if (isDownloaded)
-                RL.Logger?.LogInformationSource("RRR patched BF is downloaded");
+                Logger.Info("RRR patched BF is downloaded");
             else
-                RL.Logger?.LogInformationSource("RRR patched BF is not downloaded");
+                Logger.Info("RRR patched BF is not downloaded");
 
             return isDownloaded;
         }
@@ -616,7 +622,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogInformationSource("Patching RRR exe");
+                Logger.Info("Patching RRR exe");
 
                 // Verify that the version is supported first
                 GameVersion version = await DetermineGameVersionAsync();
@@ -644,7 +650,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Patching RRR exe");
+                Logger.Error(ex, "Patching RRR exe");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_ApplyExePatchError);
 
@@ -660,7 +666,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task DownloadPatchedBFAsync()
         {
-            RL.Logger?.LogInformationSource("Downloading patched RRR BF");
+            Logger.Info("Downloading patched RRR BF");
 
             // Determine the game version
             GameVersion version = await DetermineGameVersionAsync();
@@ -695,7 +701,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task RemovePatchedBFAsync()
         {
-            RL.Logger?.LogInformationSource("Removing patched RRR BF");
+            Logger.Info("Removing patched RRR BF");
 
             try
             {
@@ -709,7 +715,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Deleting patched BF file");
+                Logger.Error(ex, "Deleting patched BF file");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_RemovePatchedBFError);
             }
@@ -717,7 +723,7 @@ namespace RayCarrot.RCP.Metro
 
         public void RefreshBFPatches()
         {
-            RL.Logger?.LogInformationSource("Refreshing RRR BF patches");
+            Logger.Info("Refreshing RRR BF patches");
 
             if (!PatchedBFFilePath.FileExists)
             {
@@ -746,7 +752,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Refreshing BF patches");
+                Logger.Error(ex, "Refreshing BF patches");
 
                 foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
                     bfMod.IsToggled = false;
@@ -755,7 +761,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task UpdatePatchedBFAsync()
         {
-            RL.Logger?.LogInformationSource("Updating patched RRR BF");
+            Logger.Info("Updating patched RRR BF");
 
             try
             {
@@ -782,7 +788,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Updating patched BF");
+                Logger.Error(ex, "Updating patched BF");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_UpdatePatchedBFError);
             }
@@ -790,7 +796,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task LaunchWithPatchedBFAsync()
         {
-            RL.Logger?.LogInformationSource("Launching RRR with patched BF");
+            Logger.Info("Launching RRR with patched BF");
 
             // Launch the game exe passing in the path to the patched BF
             (await RCPServices.File.LaunchFileAsync(ExeFilePath, arguments: PatchedBFFilePath.Name))?.Dispose();

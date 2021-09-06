@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +13,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using NLog;
+using NLog.Targets;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -76,6 +76,12 @@ namespace RayCarrot.RCP.Metro
 
             LogStartupTime("BaseApp: Construction finished");
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -184,16 +190,16 @@ namespace RayCarrot.RCP.Metro
             // Log the current environment
             try
             {
-                RL.Logger?.LogInformationSource($"Current platform: {Environment.OSVersion.VersionString}");
+                Logger.Info($"Current platform: {Environment.OSVersion.VersionString}");
 
             }
             catch (Exception ex)
             {
-                ex.HandleError("Logging environment details");
+                Logger.Error(ex, "Logging environment details");
             }
 
             // Log some debug information
-            RL.Logger?.LogDebugSource($"Entry assembly path: {Assembly.GetEntryAssembly()?.Location}");
+            Logger.Debug($"Entry assembly path: {Assembly.GetEntryAssembly()?.Location}");
 
             LogStartupTime("Startup: Debug info has been logged");
 
@@ -229,24 +235,8 @@ namespace RayCarrot.RCP.Metro
         {
             LogStartupTime("AppData: Setting up application data");
 
-            LogLevel logLevel = LogLevel.Information;
-
-            // Get the log level from launch arguments
-            if (args.Contains("-loglevel"))
-            {
-                try
-                {
-                    string ll = args[args.FindItemIndex(x => x == "-loglevel") + 1];
-                    logLevel = Enum.Parse(typeof(LogLevel), ll, true).CastTo<LogLevel>();
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Setting user level from args");
-                }
-            }
-
             // Set up the services
-            var services = GetServices(logLevel, args);
+            var services = GetServices(args);
 
             // If there is no app data we add a default one
             if (services.All(x => x.ServiceType != typeof(IAppInstanceData)))
@@ -261,8 +251,7 @@ namespace RayCarrot.RCP.Metro
             InstanceData.Arguments = args;
 
             // Log that the build is complete
-            RL.Logger?.LogInformationSource($"The service provider has been built with {services.Count} services");
-            RL.Logger?.LogInformationSource($"The log level has been set to {logLevel}");
+            Logger.Info($"The service provider has been built with {services.Count} services");
 
             LogStartupTime("AppData: Application data and services have been setup");
         }
@@ -325,16 +314,17 @@ namespace RayCarrot.RCP.Metro
                 if (ServiceProvider != null)
                 {
                     // Handle the exception
-                    e?.Exception?.HandleCritical("Unhandled exception");
+                    if (e?.Exception != null)
+                        Logger.Fatal(e.Exception, "Unhandled exception");
 
-                    RL.Logger?.LogCriticalSource("An unhandled exception has occurred");
+                    Logger.Fatal("An unhandled exception has occurred");
                 }
 
                 // Get the path to log to
                 FileSystemPath logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
 
                 // Write log
-                File.WriteAllLines(logPath, Services.Logs?.GetLogs().Select(x => $"[{x.LogLevel}] {x.Message}") ?? new string[]
+                File.WriteAllLines(logPath, LogManager.Configuration.FindTargetByName<MemoryTarget>("memory")?.Logs ?? new string[]
                 {
                     "Service not available",
                     e?.Exception?.ToString()
@@ -378,7 +368,7 @@ namespace RayCarrot.RCP.Metro
 
             // Log all startup time logs
             foreach (string log in StartupTimeLogs)
-                RL.Logger?.LogDebugSource(log);
+                Logger.Debug(log);
 
             // Clear the startup time logs
             StartupTimeLogs.Clear();
@@ -417,7 +407,7 @@ namespace RayCarrot.RCP.Metro
             if (IsClosing)
                 return;
 
-            RL.Logger?.LogInformationSource("The main window is closing...");
+            Logger.Info("The main window is closing...");
 
             // Shut down the app
             await ShutdownRCFAppAsync(false);
@@ -436,10 +426,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the services to use for the application
         /// </summary>
-        /// <param name="logLevel">The level to log</param>
         /// <param name="args">The launch arguments</param>
         /// <returns>The services to use</returns>
-        protected abstract IServiceCollection GetServices(LogLevel logLevel, string[] args);
+        protected abstract IServiceCollection GetServices(string[] args);
 
         #endregion
 
@@ -532,7 +521,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure all other windows have been closed unless forcing a shut down
                     if (!forceShutDown && Windows.Count > 1)
                     {
-                        RL.Logger?.LogInformationSource("The shutdown was canceled due to one or more windows still being open");
+                        Logger.Info("The shutdown was canceled due to one or more windows still being open");
 
                         IsClosing = false;
                         return;
@@ -553,7 +542,7 @@ namespace RayCarrot.RCP.Metro
                 await Dispatcher.InvokeAsync(() =>
                 {
                     // Attempt to log the exception, ignoring any exceptions thrown
-                    new Action(() => ex.HandleError("Closing main window")).IgnoreIfException();
+                    new Action(() => Logger.Error(ex, "Closing main window")).IgnoreIfException();
 
                     // Notify the user of the error
                     MessageBox.Show($"An error occurred when shutting down the application. Error message: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

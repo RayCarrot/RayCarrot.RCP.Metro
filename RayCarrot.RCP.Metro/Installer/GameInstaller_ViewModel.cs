@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game"></param>
         public GameInstaller_ViewModel(Games game)
         {
-            RL.Logger?.LogInformationSource($"An installation has been requested for the game {game}");
+            Logger.Info($"An installation has been requested for the game {game}");
 
             // Create the commands
             InstallCommand = new AsyncRelayCommand(InstallAsync);
@@ -43,6 +43,12 @@ namespace RayCarrot.RCP.Metro
             // Default image source to an empty string
             CurrentGifImageSource = String.Empty;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -187,7 +193,7 @@ namespace RayCarrot.RCP.Metro
 
             if (await Services.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
             {
-                RL.Logger?.LogInformationSource($"The installation has been requested to cancel");
+                Logger.Info($"The installation has been requested to cancel");
                 CancellationTokenSource.Cancel();
             }
         }
@@ -198,7 +204,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshGifsAsync()
         {
-            RL.Logger?.LogInformationSource($"The gif images are being refreshed for the installation");
+            Logger.Info($"The gif images are being refreshed for the installation");
 
             ShowGifImage = true;
 
@@ -227,7 +233,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the installer is not already running
             if (InstallerRunning)
             {
-                RL.Logger?.LogWarningSource($"A requested installation was canceled due to already running");
+                Logger.Warn($"A requested installation was canceled due to already running");
                 return;
             }
 
@@ -268,7 +274,7 @@ namespace RayCarrot.RCP.Metro
                 // Run the installer
                 var result = await Task.Run(async () => await installer.InstallAsync());
 
-                RL.Logger?.LogInformationSource($"The installation finished with the result of {result}");
+                Logger.Info($"The installation finished with the result of {result}");
 
                 // Make sure the result was successful
                 if (result == GameInstaller_Result.Successful)
@@ -297,7 +303,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleError("Creating game shortcut from installer", Game);
+                            Logger.Error(ex, "Creating game shortcut from installer", Game);
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
                         }
                     }

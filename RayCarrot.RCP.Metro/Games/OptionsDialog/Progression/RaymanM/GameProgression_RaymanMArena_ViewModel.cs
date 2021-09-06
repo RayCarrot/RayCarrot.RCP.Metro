@@ -1,6 +1,6 @@
 ﻿using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.UI;
@@ -28,6 +28,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Methods
 
         /// <summary>
@@ -37,12 +43,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view models</returns>
         protected IEnumerable<GameProgression_BaseSlotViewModel> GetProgressionSlotViewModels(FileSystemPath filePath)
         {
-            RL.Logger?.LogInformationSource($"Rayman M/Arena save file {filePath.Name} is being loaded...");
+            Logger.Info($"Rayman M/Arena save file {filePath.Name} is being loaded...");
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                RL.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
+                Logger.Info($"Slot was not loaded due to not being found");
 
                 yield break;
             }
@@ -50,7 +56,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize the save data
             var saveData = BinarySerializableHelpers.ReadFromFile<RaymanMPCSaveData>(filePath, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
 
-            RL.Logger?.LogInformationSource($"Save file has been deserialized");
+            Logger.Info($"Save file has been deserialized");
 
             // Helper for getting the entry with a specific key
             int[] GetValues(string key) => saveData.Items.First(x => x.Key == key).Values;
@@ -133,7 +139,7 @@ namespace RayCarrot.RCP.Metro
                     AddRaceItem("sg_racelevels_bestnumber_lums", () => Resources.Progression_RM_Lums, false);
                 }
 
-                RL.Logger?.LogInformationSource($"General progress info has been set for slot {slotIndex}");
+                Logger.Info($"General progress info has been set for slot {slotIndex}");
 
                 // Calculate the percentage
                 var percentage = (((raceCompleted + battleCompleted) / (double)(maxRace + maxBattle) * 100)).ToString("0.##");

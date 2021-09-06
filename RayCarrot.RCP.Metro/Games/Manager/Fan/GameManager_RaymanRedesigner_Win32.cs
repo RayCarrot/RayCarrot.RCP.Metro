@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MahApps.Metro.IconPacks;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -10,6 +10,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public sealed class GameManager_RaymanRedesigner_Win32 : GameManager_Win32
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Overrides
 
         /// <summary>
@@ -33,7 +39,7 @@ namespace RayCarrot.RCP.Metro
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, PackIconMaterialKind.Earth, new AsyncRelayCommand(async () =>
             {
                 (await RCPServices.File.LaunchFileAsync("https://gamejolt.com/games/Rayman_ReDesigner/539216"))?.Dispose();
-                RL.Logger?.LogTraceSource($"The game {Game} GameJolt page was opened");
+                Logger.Trace($"The game {Game} GameJolt page was opened");
             })),
         };
 

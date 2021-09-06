@@ -7,7 +7,7 @@ using RayCarrot.UI;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
@@ -41,13 +41,19 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting R2 .sna files");
+                Logger.Error(ex, "Getting R2 .sna files");
                 SnaOffsets = new Dictionary<FileSystemPath, uint[]>();
             }
 
             // Check if the utility has been applied, i.e. if a backup exists
             HasBeenApplied = AppFilePaths.R2RemoveDRMDir.DirectoryExists;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -134,7 +140,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Removal R2 DRM");
+                Logger.Error(ex, "Removal R2 DRM");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_Error);
             }
@@ -169,7 +175,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Reverting R2 DRM patch");
+                Logger.Error(ex, "Reverting R2 DRM patch");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_RevertError);
             }

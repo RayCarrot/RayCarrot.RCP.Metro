@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Net;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,6 +26,12 @@ namespace RayCarrot.RCP.Metro
             InstallData = installerData;
             FileManager = RCPServices.File;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -216,7 +222,7 @@ namespace RayCarrot.RCP.Metro
                 // Save drive information if new items were added
                 if (anyAdded)
                 {
-                    RL.Logger?.LogInformationSource($"The drive {drive} was added to the installation");
+                    Logger.Info($"The drive {drive} was added to the installation");
 
                     // Get the drive info
                     var driveInfo = new GameInstaller_DriveInfo(drive, new DriveInfo(drive).VolumeLabel);
@@ -233,7 +239,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 else
                 {
-                    RL.Logger?.LogInformationSource($"The drive {drive} was not added to the installation");
+                    Logger.Info($"The drive {drive} was not added to the installation");
                 }
 
                 // Check if only optional items are remaining
@@ -256,7 +262,7 @@ namespace RayCarrot.RCP.Metro
             // Save the drives
             Drives = drives.ToArray();
 
-            RL.Logger?.LogInformationSource($"The drives have been verified as {Drives.JoinItems(", ")}");
+            Logger.Info($"The drives have been verified as {Drives.JoinItems(", ")}");
 
             return true;
         }
@@ -268,7 +274,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the drive is available, false if the request was canceled</returns>
         protected virtual async Task<bool> RequestDriveAsync(GameInstaller_DriveInfo drive)
         {
-            RL.Logger?.LogInformationSource($"The drive {drive.Root} has been requested");
+            Logger.Info($"The drive {drive.Root} has been requested");
 
             // Make sure the drive is available
             while (!drive.IsAvailable)
@@ -286,7 +292,7 @@ namespace RayCarrot.RCP.Metro
                 OnStatusUpdated();
             }
 
-            RL.Logger?.LogInformationSource($"The drive {drive.Root} is available");
+            Logger.Info($"The drive {drive.Root} is available");
 
             return true;
         }
@@ -299,7 +305,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected virtual async Task HandleItemAsync(WebClient wc, GameInstaller_Item item)
         {
-            RL.Logger?.LogDebugSource($"The installation item {item.BasePath} is being handled");
+            Logger.Debug($"The installation item {item.BasePath} is being handled");
 
             // Check if cancellation has been requested
             InstallData.CancellationToken.ThrowIfCancellationRequested();
@@ -318,7 +324,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the item has been handled
                 item.ProcessStage = GameInstaller_ItemStage.Complete;
 
-                RL.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a directory");
+                Logger.Debug($"The installation item {item.BasePath} has been handled as a directory");
             }
             else if (item.InputPath.FileExists)
             {
@@ -331,11 +337,11 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the item has been handled
                 item.ProcessStage = GameInstaller_ItemStage.Complete;
 
-                RL.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a file");
+                Logger.Debug($"The installation item {item.BasePath} has been handled as a file");
             }
             else
             {
-                RL.Logger?.LogWarningSource($"The installation item {item.BasePath} is not a valid file or directory");
+                Logger.Warn($"The installation item {item.BasePath} is not a valid file or directory");
             }
 
             CurrentItem++;
@@ -367,19 +373,19 @@ namespace RayCarrot.RCP.Metro
                     // Throw if cancellation has been requested
                     if (ex is WebException we && we.Status == WebExceptionStatus.RequestCanceled)
                     {
-                        ex.HandleExpected("Copying file");
+                        Logger.Debug(ex, "Copying file");
                         throw;
                     }
 
-                    ex.HandleError("Copying file");
+                    Logger.Error(ex, "Copying file");
 
-                    RL.Logger?.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
+                    Logger.Info($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
 
                     // Ask user to retry
                     if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
                         throw;
 
-                    RL.Logger?.LogInformationSource($"Attempting to retry to copy file");
+                    Logger.Info($"Attempting to retry to copy file");
 
                     // Remove partially copied file
                     FileManager.DeleteFile(destination);
@@ -400,7 +406,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task to run</returns>
         public virtual async Task<GameInstaller_Result> InstallAsync()
         {
-            RL.Logger?.LogInformationSource($"An installation has begun");
+            Logger.Info($"An installation has begun");
 
             // Flag indicating if the installation was completed
             bool complete = false;
@@ -420,12 +426,12 @@ namespace RayCarrot.RCP.Metro
                 if (!await VerifyInstallationAsync())
                     return GameInstaller_Result.Canceled;
 
-                RL.Logger?.LogInformationSource($"The installation has been verified");
+                Logger.Info($"The installation has been verified");
 
                 // Check if the output directory already exists
                 if (InstallData.OutputDir.DirectoryExists)
                 {
-                    RL.Logger?.LogInformationSource($"The installation output already exists");
+                    Logger.Info($"The installation output already exists");
 
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
@@ -497,7 +503,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the installation completed
                 complete = true;
 
-                RL.Logger?.LogInformationSource($"The installation has completed");
+                Logger.Info($"The installation has completed");
 
                 return GameInstaller_Result.Successful;
             }
@@ -505,12 +511,12 @@ namespace RayCarrot.RCP.Metro
             {
                 if (InstallData.CancellationToken.IsCancellationRequested)
                 {
-                    ex.HandleExpected("Installing game");
+                    Logger.Debug(ex, "Installing game");
                     return GameInstaller_Result.Canceled;
                 }
                 else
                 {
-                    ex.HandleError("Installing game", InstallData);
+                    Logger.Error(ex, "Installing game", InstallData);
                     return GameInstaller_Result.Failed;
                 }
             }
@@ -528,7 +534,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex2)
                     {
-                        ex2.HandleError("Deleting incomplete installation directory");
+                        Logger.Error(ex2, "Deleting incomplete installation directory");
 
                         if (Services.InstanceData.CurrentUserLevel >= UserLevel.Advanced)
                             await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);

@@ -1,6 +1,6 @@
 ﻿using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
 using System;
@@ -29,6 +29,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Methods
 
         /// <summary>
@@ -38,12 +44,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath dirPath)
         {
-            RL.Logger?.LogInformationSource($"Rayman Designer saves from {dirPath.Name} is being loaded...");
+            Logger.Info($"Rayman Designer saves from {dirPath.Name} is being loaded...");
 
             // Make sure the directory exists
             if (!dirPath.DirectoryExists)
             {
-                RL.Logger?.LogInformationSource($"Saves were not loaded due to not being found");
+                Logger.Info($"Saves were not loaded due to not being found");
 
                 return null;
             }
@@ -107,7 +113,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (value == -1)
                 {
-                    RL.Logger?.LogWarningSource($"Invalid save value for {save.FilePath.Name}");
+                    Logger.Warn($"Invalid save value for {save.FilePath.Name}");
                     continue;
                 }
 
@@ -117,7 +123,7 @@ namespace RayCarrot.RCP.Metro
                 progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Flag, new LocalizedString(() => $"{longWorldNames[save.World]} {save.Level}: {time:ss\\:fff}")));
             }
 
-            RL.Logger?.LogInformationSource($"General progress info has been set");
+            Logger.Info($"General progress info has been set");
 
             var levelsCount = Game switch
             {
@@ -130,7 +136,7 @@ namespace RayCarrot.RCP.Metro
             // Calculate the percentage
             var percentage = ((progressItems.Count / (double)levelsCount * 100)).ToString("0.##");
 
-            RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
+            Logger.Info($"Slot percentage is {percentage}%");
 
             // Return the data with the collection
             return new GameProgression_RaymanDesigner_SlotViewModel(new LocalizedString(() => $"{Resources.Progression_GenericSave} ({percentage}%)"), progressItems.ToArray(), this);

@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using System;
 using System.IO;
 using System.Linq;
@@ -23,6 +23,12 @@ namespace RayCarrot.RCP.Metro
             // Create properties
             Game = game;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -172,7 +178,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task LoadAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} config is being set up");
+            Logger.Info($"{Game} config is being set up");
 
             // Get the save directory
             SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
@@ -187,7 +193,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RL.Logger?.LogInformationSource($"All values have been loaded");
+            Logger.Info($"All values have been loaded");
         }
 
         /// <summary>
@@ -196,7 +202,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
+            Logger.Info($"{Game} configuration is saving...");
 
             try
             {
@@ -213,13 +219,13 @@ namespace RayCarrot.RCP.Metro
                     SoundVolume
                 });
 
-                RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
+                Logger.Info($"{Game} configuration has been saved");
 
                 return true;
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Saving {Game} config");
+                Logger.Error(ex, $"Saving {Game} config");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
             }

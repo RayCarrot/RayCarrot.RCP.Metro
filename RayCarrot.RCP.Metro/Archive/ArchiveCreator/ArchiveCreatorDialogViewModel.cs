@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -24,6 +24,12 @@ namespace RayCarrot.RCP.Metro
             Title = Resources.Archive_CreateHeader;
             Manager = manager;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -183,7 +189,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Creating archive", Manager);
+                Logger.Error(ex, "Creating archive", Manager);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
 

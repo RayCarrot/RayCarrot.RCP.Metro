@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,6 +14,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class UpdaterManager : IUpdaterManager
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Checks for updates
         /// </summary>
@@ -22,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The result</returns>
         public async Task<UpdaterCheckResult> CheckAsync(bool forceUpdate, bool includeBeta)
         {
-            RL.Logger?.LogInformationSource($"Updates are being checked for");
+            Logger.Info($"Updates are being checked for");
 
             string errorMessage = Resources.Update_UnknownError;
             Exception exception = null;
@@ -43,19 +45,19 @@ namespace RayCarrot.RCP.Metro
             catch (WebException ex)
             {
                 exception = ex;
-                ex.HandleUnexpected("Getting server manifest");
+                Logger.Warn(ex, "Getting server manifest");
                 errorMessage = Resources.Update_WebError;
             }
             catch (JsonReaderException ex)
             {
                 exception = ex;
-                ex.HandleError("Parsing server manifest");
+                Logger.Error(ex, "Parsing server manifest");
                 errorMessage = Resources.Update_FormatError;
             }
             catch (Exception ex)
             {
                 exception = ex;
-                ex.HandleError("Getting server manifest");
+                Logger.Error(ex, "Getting server manifest");
                 errorMessage = Resources.Update_GenericError;
             }
 
@@ -66,7 +68,7 @@ namespace RayCarrot.RCP.Metro
             // Flag indicating if the current update is a beta update
             bool isBetaUpdate = false;
 
-            RL.Logger?.LogInformationSource($"The update manifest was retrieved");
+            Logger.Info($"The update manifest was retrieved");
 
             try
             {
@@ -100,7 +102,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         else
                         {
-                            RL.Logger?.LogInformationSource($"The latest version is installed");
+                            Logger.Info($"The latest version is installed");
 
                             // Return the result
                             return new UpdaterCheckResult();
@@ -110,11 +112,11 @@ namespace RayCarrot.RCP.Metro
 
                 latestFoundVersion = isBetaUpdate ? latestBetaVersion : latestVersion;
 
-                RL.Logger?.LogInformationSource($"A new version ({latestFoundVersion}) is available");
+                Logger.Info($"A new version ({latestFoundVersion}) is available");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting assembly version from server manifest", manifest);
+                Logger.Error(ex, "Getting assembly version from server manifest", manifest);
 
                 return new UpdaterCheckResult(Resources.Update_ManifestError, ex);
             }
@@ -128,7 +130,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting download URL from server manifest", manifest);
+                Logger.Error(ex, "Getting download URL from server manifest", manifest);
 
                 return new UpdaterCheckResult(Resources.Update_ManifestError, ex);
             }
@@ -143,7 +145,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting update news from server manifest", manifest);
+                Logger.Error(ex, "Getting update news from server manifest", manifest);
             }
 
             // Return the result
@@ -166,11 +168,11 @@ namespace RayCarrot.RCP.Metro
                 // Deploy the updater
                 File.WriteAllBytes(AppFilePaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
 
-                RL.Logger?.LogInformationSource($"The updater was created");
+                Logger.Info($"The updater was created");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Writing updater to temp path", AppFilePaths.UpdaterFilePath);
+                Logger.Error(ex, "Writing updater to temp path", AppFilePaths.UpdaterFilePath);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
 

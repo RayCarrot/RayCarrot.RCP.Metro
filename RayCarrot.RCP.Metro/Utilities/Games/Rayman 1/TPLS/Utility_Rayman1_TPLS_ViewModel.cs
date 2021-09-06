@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -36,6 +36,12 @@ namespace RayCarrot.RCP.Metro
 
             VerifyTPLS();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -118,7 +124,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogInformationSource($"The TPLS utility is downloading...");
+                Logger.Info($"The TPLS utility is downloading...");
 
                 // Check if the directory exists
                 if (AppFilePaths.R1TPLSDir.DirectoryExists)
@@ -142,11 +148,11 @@ namespace RayCarrot.RCP.Metro
                 // Update the version
                 await Data.TPLSData.UpdateConfigAsync();
 
-                RL.Logger?.LogInformationSource($"The TPLS utility has been downloaded");
+                Logger.Info($"The TPLS utility has been downloaded");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Installing TPLS");
+                Logger.Error(ex, "Installing TPLS");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader);
             }
             finally
@@ -172,11 +178,11 @@ namespace RayCarrot.RCP.Metro
 
                 RCPServices.Data.TPLSData = null;
 
-                RL.Logger?.LogInformationSource($"The TPLS utility has been uninstalled");
+                Logger.Info($"The TPLS utility has been uninstalled");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Uninstalling TPLS");
+                Logger.Error(ex, "Uninstalling TPLS");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
             }
         }

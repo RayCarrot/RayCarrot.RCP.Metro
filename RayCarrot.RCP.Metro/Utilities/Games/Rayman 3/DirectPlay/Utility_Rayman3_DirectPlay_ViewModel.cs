@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,6 +22,12 @@ namespace RayCarrot.RCP.Metro
 
             Task.Run(RefreshDirectPlay);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -77,7 +83,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Setting DirectPlay state");
+                Logger.Error(ex, "Setting DirectPlay state");
                 IsLoadingDirectPlay = false;
             }
         }
@@ -109,7 +115,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting DirectPlay info");
+                Logger.Error(ex, "Getting DirectPlay info");
                 IsLoadingDirectPlay = false;
             }
         }

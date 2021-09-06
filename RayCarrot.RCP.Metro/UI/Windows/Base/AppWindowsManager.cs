@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -17,6 +17,12 @@ namespace RayCarrot.RCP.Metro
         {
             Windows = new Dictionary<WeakReference<Window>, WindowFlagModel>();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -88,7 +94,7 @@ namespace RayCarrot.RCP.Metro
                     // Remove unused entries
                     Windows.RemoveWhere(x => !x.Key.TryGetTarget(out Window _));
 
-                    RL.Logger?.LogDebugSource($"A custom window of type {windowType} has been requested to show");
+                    Logger.Debug($"A custom window of type {windowType} has been requested to show");
 
                     // Get the currently available windows and copy them to a list
                     var windows = Application.Current.Windows.Cast<Window>().ToList();
@@ -100,7 +106,7 @@ namespace RayCarrot.RCP.Metro
 
                         if (window != null)
                         {
-                            RL.Logger?.LogInformationSource($"The window is not being shown due to a window of the same type being available");
+                            Logger.Info($"The window is not being shown due to a window of the same type being available");
 
                             if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
                                 window.Focus();
@@ -122,7 +128,7 @@ namespace RayCarrot.RCP.Metro
                         if (gn?.FirstOrDefault(groupNames.Contains) == null)
                             continue;
 
-                        RL.Logger?.LogInformationSource($"The window is not being shown due to a window with the same ID being available");
+                        Logger.Info($"The window is not being shown due to a window with the same ID being available");
 
                         if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
                             window.Focus();
@@ -139,13 +145,13 @@ namespace RayCarrot.RCP.Metro
                     // Show the window
                     instance.Show();
 
-                    RL.Logger?.LogInformationSource($"The window of type {windowType} has been shown");
+                    Logger.Info($"The window of type {windowType} has been shown");
 
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Custom showing window");
+                    Logger.Error(ex, "Custom showing window");
                     throw;
                 }
             }

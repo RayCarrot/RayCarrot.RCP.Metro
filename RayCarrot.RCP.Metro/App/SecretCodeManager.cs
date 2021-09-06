@@ -1,5 +1,5 @@
 ﻿using Nito.AsyncEx;
-using RayCarrot.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,6 +104,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Static Methods
 
         /// <summary>
@@ -131,7 +137,7 @@ namespace RayCarrot.RCP.Metro
                     if (CurrentInput.Any())
                     {
                         CurrentInput.Clear();
-                        RL.Logger?.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");
+                        Logger.Debug("The secret code inputs were reset due to an invalid key being pressed");
                     }
 
                     return;
@@ -147,7 +153,7 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 CurrentInput.Clear();
-                RL.Logger?.LogDebugSource("The secret code inputs were reset due to a valid code having been entered");
+                Logger.Debug("The secret code inputs were reset due to a valid code having been entered");
 
                 // Run the task
                 await task();

@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using RayCarrot.Logging;
-using System;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,79 +18,6 @@ namespace RayCarrot.RCP.Metro
         {
             // Add the service
             services.AddTransient<IDialogBaseManager, D>();
-
-            // Return the service collection
-            return services;
-        }
-
-        /// <summary>
-        /// Add a <see cref="IExceptionHandler"/> to the service collection
-        /// </summary>
-        /// <typeparam name="E">The type of exception handler to add</typeparam>
-        /// <param name="services">The services</param>
-        /// <param name="setupExceptionHandling">Indicates if exception handling should be set up through RayCarrot.Logging</param>
-        /// <returns>The services</returns>
-        public static IServiceCollection AddExceptionHandler<E>(this IServiceCollection services, bool setupExceptionHandling = true)
-            where E : class, IExceptionHandler, new()
-        {
-            // Add the exception handler
-            services.AddTransient<IExceptionHandler, E>();
-
-            // Setup the exception handler
-            if (setupExceptionHandling)
-                RL.Setup(() => BaseApp.Current.GetService<IExceptionHandler>());
-
-            // Return the service collection
-            return services;
-        }
-
-        /// <summary>
-        /// Adds loggers to the service collection
-        /// </summary>
-        /// <param name="services">The services</param>
-        /// <param name="defaultLoggers">Indicates the loggers to add</param>
-        /// <param name="minLogLevel">The minimum log level to log</param>
-        /// <param name="loggingInjection">An action for injecting custom loggers</param>
-        /// <param name="setupLogging">Indicates if logging should be set up through RayCarrot.Logging</param>
-        /// <returns>The services</returns>
-        public static IServiceCollection AddLoggers(this IServiceCollection services, DefaultLoggers defaultLoggers, LogLevel minLogLevel = LogLevel.Information, Action<ILoggingBuilder> loggingInjection = null, bool setupLogging = true)
-        {
-            // Add the loggers
-            services.AddLogging(options =>
-            {
-                // Add filter
-                options.AddFilter("RL", minLogLevel);
-
-                // Check the flags
-                if (defaultLoggers.HasFlag(DefaultLoggers.Console))
-                    // Add console logger
-                    options.AddConsole();
-
-                // Check the flags
-                if (defaultLoggers.HasFlag(DefaultLoggers.Debug))
-                    // Add debug logger
-                    options.AddDebug();
-
-                // Check the flags
-                if (defaultLoggers.HasFlag(DefaultLoggers.Session))
-                {
-                    // Add session logger
-                    options.AddSession();
-
-                    // Add the session logger collection
-                    services.AddSingleton<ISessionLoggerCollection>(new DefaultSessionLoggerCollection());
-                }
-
-                // Add custom loggers
-                loggingInjection?.Invoke(options);
-            });
-
-            // Adds a default logger so that we can get a non-generic ILogger that will have the category name of "RL"
-            services.AddTransient(provider => provider.GetService<ILoggerFactory>().CreateLogger("RL"));
-
-            // Setup the logger
-            if (setupLogging)
-                RL.Setup(() => BaseApp.Current.GetService<ILogger>());
 
             // Return the service collection
             return services;

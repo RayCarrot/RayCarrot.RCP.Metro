@@ -1,6 +1,6 @@
 ﻿using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 using System;
@@ -26,6 +26,12 @@ namespace RayCarrot.RCP.Metro
         {
             Config = configViewModel;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -99,7 +105,7 @@ namespace RayCarrot.RCP.Metro
             // Compress the bytes
             UbiArtIpkData.GetEncoder(entry.IPKVersion, entry.Size).Encode(inputStream, outputStream);
 
-            RL.Logger?.LogTraceSource($"The file {entry.Path.FileName} has been compressed");
+            Logger.Trace($"The file {entry.Path.FileName} has been compressed");
 
             // Set the compressed file size
             entry.CompressedSize = (uint)outputStream.Length;
@@ -137,7 +143,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files to include</param>
         public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
         {
-            RL.Logger?.LogInformationSource($"An IPK archive is being repacked...");
+            Logger.Info($"An IPK archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<UbiArtIpkData>();
@@ -213,7 +219,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"The IPK archive has been repacked");
+            Logger.Info($"The IPK archive has been repacked");
         }
 
         /// <summary>
@@ -228,7 +234,7 @@ namespace RayCarrot.RCP.Metro
             // Get the data
             var data = archive.CastTo<UbiArtIpkData>();
 
-            RL.Logger?.LogInformationSource("The directories are being retrieved for an IPK archive");
+            Logger.Info("The directories are being retrieved for an IPK archive");
 
             // Helper method for getting the directories
             IEnumerable<ArchiveDirectory> GetDirectories()
@@ -258,7 +264,7 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"Read IPK file ({data.Version}) with {data.FilesCount} files");
+            Logger.Info($"Read IPK file ({data.Version}) with {data.FilesCount} files");
 
             return data;
         }

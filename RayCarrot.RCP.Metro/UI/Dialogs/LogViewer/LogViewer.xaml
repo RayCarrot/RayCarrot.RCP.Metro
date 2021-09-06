@@ -4,8 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:nlog="clr-namespace:NLog;assembly=NLog"
              mc:Ignorable="d"
              Loaded="LogViewer_Loaded"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              d:DesignHeight="450" 
              d:DesignWidth="800"
              d:DataContext="{d:DesignInstance local:LogViewerViewModel}">
@@ -26,32 +29,32 @@
 
             <WrapPanel Orientation="Horizontal">
                 <local:RadioButtonExtended Content="Trace"
-                                          IsChecked="{Binding Path=ShowLogLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Trace}"
-                                          Margin="5"/>
+                                           IsChecked="{Binding Path=ShowLogLevel, Converter={local:EqualsToConverter}, ConverterParameter={x:Static nlog:LogLevel.Trace}}"
+                                           Margin="5"/>
 
                 <local:RadioButtonExtended Content="Debug"
-                                              IsChecked="{Binding Path=ShowLogLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
-                                              Margin="5"/>
+                                           IsChecked="{Binding Path=ShowLogLevel, Converter={local:EqualsToConverter}, ConverterParameter={x:Static nlog:LogLevel.Debug}}"
+                                           Margin="5"/>
 
-                <local:RadioButtonExtended Content="Information"
-                                              IsChecked="{Binding Path=ShowLogLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Information}"
-                                              Margin="5"/>
+                <local:RadioButtonExtended Content="Info"
+                                           IsChecked="{Binding Path=ShowLogLevel, Converter={local:EqualsToConverter}, ConverterParameter={x:Static nlog:LogLevel.Info}}"
+                                           Margin="5"/>
 
-                <local:RadioButtonExtended Content="Warning"
-                                              IsChecked="{Binding Path=ShowLogLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Warning}"
-                                              Margin="5"/>
+                <local:RadioButtonExtended Content="Warn"
+                                           IsChecked="{Binding Path=ShowLogLevel, Converter={local:EqualsToConverter}, ConverterParameter={x:Static nlog:LogLevel.Warn}}"
+                                           Margin="5"/>
 
                 <local:RadioButtonExtended Content="Error"
-                                              IsChecked="{Binding Path=ShowLogLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Error}"
-                                              Margin="5"/>
+                                           IsChecked="{Binding Path=ShowLogLevel, Converter={local:EqualsToConverter}, ConverterParameter={x:Static nlog:LogLevel.Error}}"
+                                           Margin="5"/>
 
-                <local:RadioButtonExtended Content="Critical"
-                                              IsChecked="{Binding Path=ShowLogLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Critical}"
-                                              Margin="5"/>
+                <local:RadioButtonExtended Content="Fatal"
+                                           IsChecked="{Binding Path=ShowLogLevel, Converter={local:EqualsToConverter}, ConverterParameter={x:Static nlog:LogLevel.Fatal}}"
+                                           Margin="5"/>
 
                 <local:RadioButtonExtended Content="None"
-                                              IsChecked="{Binding Path=ShowLogLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=None}"
-                                              Margin="5"/>
+                                           IsChecked="{Binding Path=ShowLogLevel, Converter={local:EqualsToConverter}, ConverterParameter={x:Static nlog:LogLevel.Off}}"
+                                           Margin="5"/>
 
             </WrapPanel>
 
@@ -73,13 +76,44 @@
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Row="1"
                       VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=DisplayLog}">
+            <ItemsControl Grid.IsSharedSizeScope="True"
+                          ItemsSource="{Binding Path=LogItems, Mode=OneTime}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=Message, Mode=OneTime}"
-                                   Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
-                                   Margin="5"
-                                   TextWrapping="Wrap"/>
+                        <Grid Visibility="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}"
+                              Margin="5">
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding Path=LogTime, Mode=OneTime, StringFormat=HH:mm:ss.fff}"
+                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
+                                       Margin="0 0 20 0" />
+
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Path=LoggerName, Mode=OneTime}"
+                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
+                                       Margin="0 0 10 0" />
+
+                            <local:InfoIcon Grid.Column="2"
+                                            Style="{StaticResource InfoIcon.Warning}"
+                                            Visibility="{Binding Path=Exception, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
+                                            Text="{Binding Path=Exception, Mode=OneTime}"
+                                            Margin="0 0 10 0" />
+
+                            <TextBlock Grid.Column="3"
+                                       Text="{Binding Path=LogMessage, Mode=OneTime}"
+                                       Visibility="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}"
+                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
+                                       TextWrapping="Wrap" />
+
+                        </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

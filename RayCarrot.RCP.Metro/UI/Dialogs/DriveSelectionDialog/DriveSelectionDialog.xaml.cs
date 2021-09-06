@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using System;
 using System.IO;
 using System.Linq;
@@ -41,6 +41,12 @@ namespace RayCarrot.RCP.Metro
             ViewModel = vm;
             DataContext = new DriveSelectionViewModel(ViewModel);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -98,7 +104,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Checking if drive is ready");
+                    Logger.Error(ex, "Checking if drive is ready");
                     return true;
                 }
             }))

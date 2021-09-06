@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Windows.Registry;
 using System;
 using System.Threading.Tasks;
@@ -26,6 +26,12 @@ namespace RayCarrot.RCP.Metro
             // Get the game
             Game = game;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -131,11 +137,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} config is being set up");
+            Logger.Info($"{Game} config is being set up");
 
             using (var key = GetKey(false))
             {
-                RL.Logger?.LogInformationSource(key != null
+                Logger.Info(key != null
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Game} does not exist. Default values will be used.");
 
@@ -149,7 +155,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RL.Logger?.LogInformationSource($"All values have been loaded");
+            Logger.Info($"All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -160,7 +166,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
+            Logger.Info($"{Game} configuration is saving...");
 
             try
             {
@@ -169,20 +175,20 @@ namespace RayCarrot.RCP.Metro
                     if (key == null)
                         throw new Exception("The Registry key could not be created");
 
-                    RL.Logger?.LogInformationSource($"The key {key.Name} has been opened");
+                    Logger.Info($"The key {key.Name} has been opened");
 
                     key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
                     key.SetValue(ScreenWidthKey, ScreenWidth.ToString());
                     key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                 }
 
-                RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
+                Logger.Info($"{Game} configuration has been saved");
 
                 return true;
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Saving {Game} registry data");
+                Logger.Error(ex, $"Saving {Game} registry data");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
             }
@@ -207,7 +213,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
-                RL.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
+                Logger.Info($"The Registry key {key?.Name} has been created");
 
                 return key;
             }

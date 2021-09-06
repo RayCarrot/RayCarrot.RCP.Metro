@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using NLog;
+using RayCarrot.IO;
+using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using RayCarrot.IO;
-using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -15,6 +14,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class RCPBrowseUIManager : IBrowseUIManager
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Indicates if the browse requests should be logged
         /// </summary>
@@ -24,14 +25,11 @@ namespace RayCarrot.RCP.Metro
         /// Allows the user to browse for a directory
         /// </summary>
         /// <param name="directoryBrowserModel">The directory browser information</param>
-        /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
-        /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
-        /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
         /// <returns>The directory browser result</returns>
-        public virtual Task<DirectoryBrowserResult> BrowseDirectoryAsync(DirectoryBrowserViewModel directoryBrowserModel, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public virtual Task<DirectoryBrowserResult> BrowseDirectoryAsync(DirectoryBrowserViewModel directoryBrowserModel)
         {
             if (LogRequests)
-                RL.Logger?.LogTraceSource($"A browse directory dialog was opened with the title of: {directoryBrowserModel.Title}", origin: origin, filePath: filePath, lineNumber: lineNumber);
+                Logger.Trace($"A browse directory dialog was opened with the title of: {directoryBrowserModel.Title}");
 
             return Application.Current.Dispatcher.Invoke(() =>
             {
@@ -60,7 +58,7 @@ namespace RayCarrot.RCP.Metro
                     SelectedDirectories = dialog.FileNames.Select(x => new FileSystemPath(x))
                 };
 
-                RL.Logger?.LogTraceSource(result.CanceledByUser
+                Logger.Trace(result.CanceledByUser
                     ? "The browse directory dialog was canceled by the user"
                     : $"The browse directory dialog returned the selected directory paths {result.SelectedDirectories.JoinItems(", ")}");
 
@@ -72,14 +70,11 @@ namespace RayCarrot.RCP.Metro
         /// Allows the user to browse for a file
         /// </summary>
         /// <param name="fileBrowserModel">The file browser information</param>
-        /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
-        /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
-        /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
         /// <returns>The file browser result</returns>
-        public virtual Task<FileBrowserResult> BrowseFileAsync(FileBrowserViewModel fileBrowserModel, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public virtual Task<FileBrowserResult> BrowseFileAsync(FileBrowserViewModel fileBrowserModel)
         {
             if (LogRequests)
-                RL.Logger?.LogTraceSource($"A browse file dialog was opened with the title of: {fileBrowserModel.Title}", origin: origin, filePath: filePath, lineNumber: lineNumber);
+                Logger.Trace($"A browse file dialog was opened with the title of: {fileBrowserModel.Title}");
 
             return Application.Current.Dispatcher.Invoke(() =>
             {
@@ -97,7 +92,7 @@ namespace RayCarrot.RCP.Metro
                 // Show the dialog and get the result
                 bool canceled = openFileDialog.ShowDialog() != true;
 
-                RL.Logger?.LogTraceSource(canceled
+                Logger.Trace(canceled
                     ? "The browse file dialog was canceled by the user"
                     : $"The browse file dialog returned the selected file paths {openFileDialog.FileNames.JoinItems(", ")}");
 
@@ -115,14 +110,11 @@ namespace RayCarrot.RCP.Metro
         /// Allows the user to browse for a location and chose a name for a file to save
         /// </summary>
         /// <param name="saveFileModel">The save file browser information</param>
-        /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
-        /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
-        /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
         /// <returns>The save file result</returns>
-        public virtual Task<SaveFileResult> SaveFileAsync(SaveFileViewModel saveFileModel, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public virtual Task<SaveFileResult> SaveFileAsync(SaveFileViewModel saveFileModel)
         {
             if (LogRequests)
-                RL.Logger?.LogTraceSource($"A save file dialog was opened with the title of: {saveFileModel.Title}", origin: origin, filePath: filePath, lineNumber: lineNumber);
+                Logger.Trace($"A save file dialog was opened with the title of: {saveFileModel.Title}");
 
             return Application.Current.Dispatcher.Invoke(() =>
             {
@@ -138,7 +130,7 @@ namespace RayCarrot.RCP.Metro
                 // Show the dialog and get the result
                 bool canceled = saveFileDialog.ShowDialog() != true;
 
-                RL.Logger?.LogTraceSource(canceled
+                Logger.Trace(canceled
                     ? "The save file dialog was canceled by the user"
                     : $"The save file dialog returned the selected file path {saveFileDialog.FileName}");
 
@@ -155,17 +147,14 @@ namespace RayCarrot.RCP.Metro
         /// Allows the user to browse for a drive
         /// </summary>
         /// <param name="driveBrowserModel">The drive browser information</param>
-        /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
-        /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
-        /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
         /// <returns>The browse drive result</returns>
-        public virtual async Task<DriveBrowserResult> BrowseDriveAsync(DriveBrowserViewModel driveBrowserModel, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public virtual async Task<DriveBrowserResult> BrowseDriveAsync(DriveBrowserViewModel driveBrowserModel)
         {
             if (Application.Current.Dispatcher == null)
                 throw new Exception("A drive selection dialog can not be shown when the application dispatcher is null");
 
             if (LogRequests)
-                RL.Logger?.LogTraceSource($"A browse drive dialog was opened with the title of: {driveBrowserModel.Title}", origin: origin, filePath: filePath, lineNumber: lineNumber);
+                Logger.Trace($"A browse drive dialog was opened with the title of: {driveBrowserModel.Title}");
 
             // Create the dialog
             var driveSelectionDialog = Application.Current.Dispatcher.Invoke(() => new DriveSelectionDialog(driveBrowserModel));
@@ -173,7 +162,7 @@ namespace RayCarrot.RCP.Metro
             // Show the dialog and get the result
             var result = await driveSelectionDialog.ShowDialogAsync();
 
-            RL.Logger?.LogTraceSource(result.CanceledByUser
+            Logger.Trace(result.CanceledByUser
                 ? "The browse drive dialog was canceled by the user"
                 : $"The browse drive dialog returned the selected drive paths {result.SelectedDrives.JoinItems(", ")}");
 

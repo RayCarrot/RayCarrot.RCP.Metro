@@ -6,7 +6,7 @@ using RayCarrot.UI;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,6 +28,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Methods
 
         /// <summary>
@@ -37,12 +43,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath)
         {
-            RL.Logger?.LogInformationSource($"Rayman 3 slot {filePath.Name} is being loaded...");
+            Logger.Info($"Rayman 3 slot {filePath.Name} is being loaded...");
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                RL.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
+                Logger.Info($"Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -62,7 +68,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize the data
             var saveData = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
 
-            RL.Logger?.LogInformationSource($"Slot has been deserialized");
+            Logger.Info($"Slot has been deserialized");
 
             var formatInfo = new NumberFormatInfo()
             {
@@ -86,7 +92,7 @@ namespace RayCarrot.RCP.Metro
                 new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
             };
 
-            RL.Logger?.LogInformationSource($"General progress info has been set");
+            Logger.Info($"General progress info has been set");
 
             // Return the data with the collection
             return new GameProgression_Rayman3_SlotViewModel(new LocalizedString(() => $"{filePath.RemoveFileExtension().Name}"), progressItems, filePath, this);

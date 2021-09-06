@@ -1,6 +1,6 @@
 ﻿using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
 using RayCarrot.UI;
@@ -27,6 +27,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Methods
 
         /// <summary>
@@ -36,12 +42,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath)
         {
-            RL.Logger?.LogInformationSource($"Rayman 1 slot {filePath.Name} is being loaded...");
+            Logger.Info($"Rayman 1 slot {filePath.Name} is being loaded...");
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                RL.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
+                Logger.Info($"Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -61,7 +67,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and return the data
             var saveData = BinarySerializableHelpers.ReadFromStream<Rayman1PCSaveData>(memStream, Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
 
-            RL.Logger?.LogInformationSource($"Slot has been deserialized");
+            Logger.Info($"Slot has been deserialized");
 
             // Get total amount of cages
             var cages = saveData.Wi_Save_Zone.Sum(x => x.Cages);
@@ -74,12 +80,12 @@ namespace RayCarrot.RCP.Metro
                 new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Life, new LocalizedString(() => $"{saveData.StatusBar.LivesCount}")),
             };
 
-            RL.Logger?.LogInformationSource($"General progress info has been set");
+            Logger.Info($"General progress info has been set");
 
             // Calculate the percentage
             var percentage = ((cages / 102d * 100)).ToString("0.##");
 
-            RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
+            Logger.Info($"Slot percentage is {percentage}%");
 
             // Return the data with the collection
             return new GameProgression_Rayman1_SlotViewModel(new LocalizedString(() => $"{saveData.SaveName.ToUpper()} ({percentage}%)"), progressItems, filePath, this);

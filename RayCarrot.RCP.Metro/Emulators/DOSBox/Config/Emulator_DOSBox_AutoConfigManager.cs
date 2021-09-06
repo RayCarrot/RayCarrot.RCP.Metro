@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -20,6 +20,12 @@ namespace RayCarrot.RCP.Metro
             FilePath = path;
             FirstLines = $"[ipx]{Environment.NewLine}# ipx -- Enable ipx over UDP/IP emulation.{Environment.NewLine}ipx=false{Environment.NewLine}{Environment.NewLine}[autoexec]{Environment.NewLine}@echo off";
         }
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
 
         #region Private Properties
 
@@ -52,12 +58,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Create()
         {
-            RL.Logger?.LogTraceSource($"Recreating DosBox config file {FilePath}");
+            Logger.Trace($"Recreating DosBox config file {FilePath}");
 
             // Check if the file exists and is valid
             if (FilePath.FileExists && File.ReadAllText(FilePath).StartsWith(FirstLines))
             {
-                RL.Logger?.LogTraceSource($"The DosBox config file is valid and no further action is needed");
+                Logger.Trace($"The DosBox config file is valid and no further action is needed");
                 return;
             }
 
@@ -66,7 +72,7 @@ namespace RayCarrot.RCP.Metro
             // Create the file with default content
             File.WriteAllText(FilePath, FirstLines);
 
-            RL.Logger?.LogInformationSource($"The DosBox config file was recreated");
+            Logger.Info($"The DosBox config file was recreated");
         }
 
         /// <summary>

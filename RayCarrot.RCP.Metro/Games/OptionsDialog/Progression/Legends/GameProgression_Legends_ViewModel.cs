@@ -7,7 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using RayCarrot.Binary;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
@@ -27,6 +27,12 @@ namespace RayCarrot.RCP.Metro
             // Get the save data directory
             SaveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends";
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -162,12 +168,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath)
         {
-            RL.Logger?.LogInformationSource($"Legends slot {filePath.Parent.Name} is being loaded...");
+            Logger.Info($"Legends slot {filePath.Parent.Name} is being loaded...");
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                RL.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
+                Logger.Info($"Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -175,7 +181,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and return the data
             var saveData = BinarySerializableHelpers.ReadFromFile<LegendsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name)).SaveData;
 
-            RL.Logger?.LogInformationSource($"Slot has been deserialized");
+            Logger.Info($"Slot has been deserialized");
 
             // Create the collection with items for each time trial level + general information
             var progressItems = new List<GameProgression_InfoItemViewModel>();
@@ -203,7 +209,7 @@ namespace RayCarrot.RCP.Metro
             progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Gold, new LocalizedString(() => $"{saveData.Profile.GoldMedals.ToString("n", formatInfo)}")));
             progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Diamond, new LocalizedString(() => $"{saveData.Profile.DiamondMedals.ToString("n", formatInfo)}")));
 
-            RL.Logger?.LogInformationSource($"General progress info has been set");
+            Logger.Info($"General progress info has been set");
 
             // Get the level IDs
             var lvlIds = GetLevelIDs;
@@ -219,12 +225,12 @@ namespace RayCarrot.RCP.Metro
                     new LocalizedString(() => Resources.ResourceManager.GetString($"RL_LevelName_{x.Item1.Replace("-", "_")}")))).
                 OrderBy(x => x.Content.Value));
 
-            RL.Logger?.LogInformationSource($"Invasion progress info has been set");
+            Logger.Info($"Invasion progress info has been set");
 
             // Calculate the percentage
             var percentage = ((teensies / 700d * 100)).ToString("0.##");
 
-            RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
+            Logger.Info($"Slot percentage is {percentage}%");
 
             // Return the data with the collection
             return new GameProgression_Legends_SlotViewModel(new LocalizedString(() => $"{saveData.Profile.Name} ({percentage}%)"), progressItems.ToArray(), filePath, this);

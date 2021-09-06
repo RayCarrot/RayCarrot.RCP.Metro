@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 using RayCarrot.Rayman.Ray1;
 using RayCarrot.UI;
 using System;
@@ -60,6 +60,12 @@ namespace RayCarrot.RCP.Metro
 
             Password = "??????????";
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -188,7 +194,7 @@ namespace RayCarrot.RCP.Metro
 
             if (error != null)
             {
-                RL.Logger.LogWarningSource($"Invalid R1 password: {error}");
+                Logger.Warn($"Invalid R1 password: {error}");
                 await Services.MessageUI.DisplayMessageAsync(Resources.R1Passwords_InvalidData, MessageType.Error);
                 return;
             }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -20,6 +20,8 @@ namespace RayCarrot.RCP.Metro
             Root = root;
             VolumeLabel = volumeLabel;
         }
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// The root directory
@@ -44,7 +46,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Checking if saved drive is available");
+                    Logger.Error(ex, "Checking if saved drive is available");
                     return false;
                 }
             }

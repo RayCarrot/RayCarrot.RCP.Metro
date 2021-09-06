@@ -1,6 +1,6 @@
 ﻿using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
@@ -73,6 +73,12 @@ namespace RayCarrot.RCP.Metro
 
             SelectedPage = Pages.FirstOrDefault();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -158,12 +164,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task UninstallAsync()
         {
-            RL.Logger?.LogInformationSource($"{Game} is being uninstalled...");
+            Logger.Info($"{Game} is being uninstalled...");
 
             // Have user confirm
             if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
             {
-                RL.Logger?.LogInformationSource($"The uninstallation was canceled");
+                Logger.Info($"The uninstallation was canceled");
 
                 return;
             }
@@ -173,7 +179,7 @@ namespace RayCarrot.RCP.Metro
                 // Delete the game directory
                 RCPServices.File.DeleteDirectory(Game.GetInstallDir(false));
 
-                RL.Logger?.LogInformationSource($"The game install directory was removed");
+                Logger.Info($"The game install directory was removed");
 
                 // Get additional uninstall directories
                 var dirs = Game.GetGameInfo().UninstallDirectories;
@@ -184,7 +190,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (var dir in dirs)
                         RCPServices.File.DeleteDirectory(dir);
 
-                    RL.Logger?.LogInformationSource($"The game additional directories were removed");
+                    Logger.Info($"The game additional directories were removed");
                 }
 
                 // Get additional uninstall files
@@ -196,12 +202,12 @@ namespace RayCarrot.RCP.Metro
                     foreach (var file in files)
                         RCPServices.File.DeleteFile(file);
 
-                    RL.Logger?.LogInformationSource($"The game additional files were removed");
+                    Logger.Info($"The game additional files were removed");
                 }
             }
             catch (Exception ex)
             {
-                ex.HandleError("Uninstalling game", Game);
+                Logger.Error(ex, "Uninstalling game", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.UninstallGameError, DisplayName), Resources.UninstallGameErrorHeader);
 
                 return;
@@ -241,7 +247,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Creating game shortcut", Game);
+                Logger.Error(ex, "Creating game shortcut", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
             }
         }
@@ -267,11 +273,11 @@ namespace RayCarrot.RCP.Metro
                     // Load the page
                     await page.LoadPageAsync();
 
-                    RL.Logger?.LogInformationSource($"Loaded {page.PageName} page");
+                    Logger.Info($"Loaded {page.PageName} page");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Loading page", page);
+                    Logger.Error(ex, "Loading page", page);
 
                     page.SetErrorState(ex);
                 }

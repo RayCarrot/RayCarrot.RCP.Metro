@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 using System;
 
 namespace RayCarrot.RCP.Metro
@@ -8,6 +8,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public static class ActionExtensions
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Tries running a method and requests to retry if an exception is thrown
         /// </summary>
@@ -33,7 +35,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleExpected();
+                    Logger.Debug(ex, "Retrying action after exception");
                     if (retryFunction(ex))
                         retry = true;
                 }
@@ -56,7 +58,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleExpected();
+                Logger.Debug(ex, "Ignoring action exception");
             }
         }
     }

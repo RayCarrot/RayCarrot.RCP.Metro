@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +27,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Private Methods
 
         /// <summary>
@@ -43,7 +49,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Refreshing backup page enabled");
+                Logger.Error(ex, "Refreshing backup page enabled");
                 BackupPageTab.IsEnabled = true;
             }
         });

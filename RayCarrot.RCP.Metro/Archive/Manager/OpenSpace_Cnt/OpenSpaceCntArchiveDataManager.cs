@@ -5,7 +5,7 @@ using System.Linq;
 using ByteSizeLib;
 using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
@@ -23,6 +23,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="settings">The settings when serializing the data</param>
         public OpenSpaceCntArchiveDataManager(OpenSpaceSettings settings) => Settings = settings;
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -114,7 +120,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files to include</param>
         public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
         {
-            RL.Logger?.LogInformationSource($"A CNT archive is being repacked...");
+            Logger.Info($"A CNT archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<OpenSpaceCntData>();
@@ -186,7 +192,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"The CNT archive has been repacked");
+            Logger.Info($"The CNT archive has been repacked");
         }
 
         /// <summary>
@@ -201,7 +207,7 @@ namespace RayCarrot.RCP.Metro
             // Get the data
             var data = archive.CastTo<OpenSpaceCntData>();
 
-            RL.Logger?.LogInformationSource("The directories are being retrieved for a CNT archive");
+            Logger.Info("The directories are being retrieved for a CNT archive");
 
             // Helper method for getting the directories
             IEnumerable<ArchiveDirectory> GetDirectories()
@@ -240,7 +246,7 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"Read CNT file with {data.Files.Length} files and {data.Directories.Length} directories");
+            Logger.Info($"Read CNT file with {data.Files.Length} files and {data.Directories.Length} directories");
 
             return data;
         }

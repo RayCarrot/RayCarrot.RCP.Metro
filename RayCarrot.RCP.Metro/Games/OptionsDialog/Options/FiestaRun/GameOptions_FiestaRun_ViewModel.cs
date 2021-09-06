@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -31,6 +31,12 @@ namespace RayCarrot.RCP.Metro
             // Get the current version
             _selectedFiestaRunVersion = Data.FiestaRunVersion;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -131,7 +137,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Updating Fiesta Run install directory");
+                    Logger.Error(ex, "Updating Fiesta Run install directory");
                 }
             }
         }

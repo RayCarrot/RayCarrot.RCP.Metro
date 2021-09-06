@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
     public class Mod_RRR_MemoryPatcher
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Properties
 
         public bool autodetectVersion = true;
@@ -165,12 +171,12 @@ namespace RayCarrot.RCP.Metro
             switch (aeInitAddress)
             {
                 case off_AE_Init_GOG:
-                    RL.Logger?.LogInformationSource("RRR Memory Mod: Version detection found GOG version");
+                    Logger.Info("RRR Memory Mod: Version detection found GOG version");
                     isSteam = false;
                     break;
 
                 case off_AE_Init_Steam:
-                    RL.Logger?.LogInformationSource("Version detection found Steam version");
+                    Logger.Info("Version detection found Steam version");
                     isSteam = true;
                     break;
 

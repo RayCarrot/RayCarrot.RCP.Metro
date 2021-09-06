@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,6 +21,12 @@ namespace RayCarrot.RCP.Metro
         {
             AsyncLock = new AsyncLock();
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -108,13 +114,13 @@ namespace RayCarrot.RCP.Metro
                     return false;
                 }
 
-                RL.Logger?.LogInformationSource($"Backup complete");
+                Logger.Info($"Backup complete");
 
                 return true;
             }
             catch (Exception ex)
             {
-                ex.HandleError("Performing backup");
+                Logger.Error(ex, "Performing backup");
 
                 // Restore temp backup
                 if (tempDir.TempPath.DirectoryExists)
@@ -124,7 +130,7 @@ namespace RayCarrot.RCP.Metro
                     // Delete incomplete backup
                     FileManager.DeleteDirectory(destinationDir);
 
-                RL.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
+                Logger.Info($"Backup failed - clean up succeeded");
 
                 throw;
             }
@@ -197,13 +203,13 @@ namespace RayCarrot.RCP.Metro
                     return false;
                 }
 
-                RL.Logger?.LogInformationSource($"Backup complete");
+                Logger.Info($"Backup complete");
 
                 return true;
             }
             catch (Exception ex)
             {
-                ex.HandleError("Performing compressed backup");
+                Logger.Error(ex, "Performing compressed backup");
 
                 // Check if a temp backup exists
                 if (tempFile.TempPath.FileExists)
@@ -213,7 +219,7 @@ namespace RayCarrot.RCP.Metro
                     // Delete incomplete backup
                     FileManager.DeleteFile(destinationFile);
 
-                RL.Logger?.LogInformationSource($"Compressed backup failed - clean up succeeded");
+                Logger.Info($"Compressed backup failed - clean up succeeded");
 
                 throw;
             }
@@ -232,14 +238,14 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RL.Logger?.LogInformationSource($"A backup has been requested for {backupInformation.GameDisplayName}");
+                Logger.Info($"A backup has been requested for {backupInformation.GameDisplayName}");
 
                 try
                 {
                     // Make sure we have write access to the backup location
                     if (!FileManager.CheckDirectoryWriteAccess(RCPServices.Data.BackupLocation + AppViewModel.BackupFamily))
                     {
-                        RL.Logger?.LogInformationSource($"Backup failed - backup location lacks write access");
+                        Logger.Info($"Backup failed - backup location lacks write access");
 
                         // Request to restart as admin
                         await RCPServices.App.RequestRestartAsAdminAsync();
@@ -250,7 +256,7 @@ namespace RayCarrot.RCP.Metro
                     // Get the backup information and group items by ID
                     var backupInfoByID = backupInformation.BackupDirectories.GroupBy(x => x.ID).ToList();
 
-                    RL.Logger?.LogDebugSource($"{backupInfoByID.Count} backup directory ID groups were found");
+                    Logger.Debug($"{backupInfoByID.Count} backup directory ID groups were found");
 
                     // Get the backup info
                     var backupInfo = new List<GameBackups_Directory>();
@@ -264,7 +270,7 @@ namespace RayCarrot.RCP.Metro
                             continue;
                         }
 
-                        RL.Logger?.LogDebugSource($"ID {group.Key} has multiple items");
+                        Logger.Debug($"ID {group.Key} has multiple items");
 
                         // Find which group is the latest one
                         var groupItems = new Dictionary<GameBackups_Directory, DateTime>();
@@ -284,13 +290,13 @@ namespace RayCarrot.RCP.Metro
                         // Add the latest directory
                         backupInfo.Add(latestDir);
 
-                        RL.Logger?.LogDebugSource($"The most recent backup directory was found under {latestDir.DirPath}");
+                        Logger.Debug($"The most recent backup directory was found under {latestDir.DirPath}");
                     }
 
                     // Make sure all the directories to back up exist
                     if (!backupInfo.Select(x => x.DirPath).DirectoriesExist())
                     {
-                        RL.Logger?.LogInformationSource($"Backup failed - the input directories could not be found");
+                        Logger.Info($"Backup failed - the input directories could not be found");
 
                         await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
 
@@ -300,7 +306,7 @@ namespace RayCarrot.RCP.Metro
                     // Check if the backup should be compressed
                     bool compress = RCPServices.Data.CompressBackups;
 
-                    RL.Logger?.LogDebugSource(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
+                    Logger.Debug(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
 
                     // Perform the backup and keep track if it succeeded
                     bool success = await (compress ? 
@@ -326,20 +332,20 @@ namespace RayCarrot.RCP.Metro
                                 // Delete the file
                                 FileManager.DeleteFile(existingBackup.Path);
 
-                                RL.Logger?.LogInformationSource("Compressed leftover backup was deleted");
+                                Logger.Info("Compressed leftover backup was deleted");
                             }
                             else
                             {
                                 // Delete the directory
                                 FileManager.DeleteDirectory(existingBackup.Path);
 
-                                RL.Logger?.LogInformationSource("Non-compressed leftover backup was deleted");
+                                Logger.Info("Non-compressed leftover backup was deleted");
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Deleting leftover backups");
+                        Logger.Error(ex, "Deleting leftover backups");
                     }
 
                     return true;
@@ -347,7 +353,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {   
                     // Handle error
-                    ex.HandleError("Backing up game", backupInformation);
+                    Logger.Error(ex, "Backing up game", backupInformation);
 
                     // Display message to user
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
@@ -367,7 +373,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RL.Logger?.LogInformationSource($"A backup restore has been requested for {backupInformation.GameDisplayName}");
+                Logger.Info($"A backup restore has been requested for {backupInformation.GameDisplayName}");
 
                 try
                 {
@@ -377,7 +383,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure a backup exists
                     if (existingBackup == null)
                     {
-                        RL.Logger?.LogInformationSource($"Restore failed - the input location could not be found");
+                        Logger.Info($"Restore failed - the input location could not be found");
 
                         await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
 
@@ -390,7 +396,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we have write access to the restore destinations
                     if (backupInfo.Any(x => !FileManager.CheckDirectoryWriteAccess(x.DirPath)))
                     {
-                        RL.Logger?.LogInformationSource($"Restore failed - one or more restore destinations lack write access");
+                        Logger.Info($"Restore failed - one or more restore destinations lack write access");
 
                         // Request to restart as admin
                         await RCPServices.App.RequestRestartAsAdminAsync();
@@ -485,19 +491,19 @@ namespace RayCarrot.RCP.Metro
                                 FileManager.MoveDirectory(dirPath, item.DirPath, false, false);
                             }
 
-                            RL.Logger?.LogInformationSource($"Restore failed - clean up succeeded");
+                            Logger.Info($"Restore failed - clean up succeeded");
 
                             throw;
                         }
                     }
 
-                    RL.Logger?.LogInformationSource($"Restore complete");
+                    Logger.Info($"Restore complete");
 
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Restoring game", backupInformation);
+                    Logger.Error(ex, "Restoring game", backupInformation);
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
 
                     return false;

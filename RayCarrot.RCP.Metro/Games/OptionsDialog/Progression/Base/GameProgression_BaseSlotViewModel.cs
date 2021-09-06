@@ -3,7 +3,7 @@ using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -31,6 +31,12 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(ExportAsync);
             ImportCommand = new AsyncRelayCommand(ImportAsync);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -112,20 +118,20 @@ namespace RayCarrot.RCP.Metro
             if (outputResult.CanceledByUser)
                 return;
 
-            RL.Logger?.LogInformationSource($"Progression data for slot {SlotName} is being exported...");
+            Logger.Info($"Progression data for slot {SlotName} is being exported...");
 
             try
             {
                 // Export
                 await ExportSaveDataAsync(outputResult.SelectedFileLocation);
 
-                RL.Logger?.LogInformationSource($"Progression data has been exported");
+                Logger.Info($"Progression data has been exported");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ExportSuccess);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Exporting progression slot to JSON");
+                Logger.Error(ex, "Exporting progression slot to JSON");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Progression_ExportError);
             }
         }
@@ -147,18 +153,18 @@ namespace RayCarrot.RCP.Metro
             if (inputResult.CanceledByUser)
                 return;
 
-            RL.Logger?.LogInformationSource($"Progression data for slot {SlotName} is being imported...");
+            Logger.Info($"Progression data for slot {SlotName} is being imported...");
 
             try
             {
                 // Import
                 await ImportSaveDataAsync(inputResult.SelectedFile);
 
-                RL.Logger?.LogInformationSource($"Progression data has been imported");
+                Logger.Info($"Progression data has been imported");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Importing JSON to progression slot file");
+                Logger.Error(ex, "Importing JSON to progression slot file");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Progression_ImportError);
 
                 return;
@@ -169,11 +175,11 @@ namespace RayCarrot.RCP.Metro
                 // Reload data
                 await ProgressionViewModel.LoadDataAsync();
 
-                RL.Logger?.LogInformationSource($"Progression data has been reloaded");
+                Logger.Info($"Progression data has been reloaded");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Reload game progression view model");
+                Logger.Error(ex, "Reload game progression view model");
             }
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ImportSuccess);

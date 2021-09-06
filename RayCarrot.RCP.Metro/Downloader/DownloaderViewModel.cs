@@ -5,7 +5,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Threading.Tasks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -39,8 +39,14 @@ namespace RayCarrot.RCP.Metro
             if (IsCompressed)
                 TotalMaxProgress += 10 * InputSources.Count;
 
-            RL.Logger?.LogInformationSource($"A download operation has started with the {(isCompressed ? "compressed" : "")} files {InputSources.JoinItems(", ")}");
+            Logger.Info($"A download operation has started with the {(isCompressed ? "compressed" : "")} files {InputSources.JoinItems(", ")}");
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -59,7 +65,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Updating server download progress", e);
+                Logger.Error(ex, "Updating server download progress", e);
             }
         }
 
@@ -87,7 +93,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Deleting processed file from incomplete download operation");
+                        Logger.Error(ex, "Deleting processed file from incomplete download operation");
                     }
                 }
 
@@ -104,13 +110,13 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Restoring backed up file from incomplete download operation");
+                        Logger.Error(ex, "Restoring backed up file from incomplete download operation");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ex.HandleError("Cleaning up incomplete download operation");
+                Logger.Error(ex, "Cleaning up incomplete download operation");
 
                 // Let the user know the restore failed
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Download_RestoreStoppedDownloadError, LocalTempDir.TempPath, ServerTempDir.TempPath));
@@ -250,7 +256,7 @@ namespace RayCarrot.RCP.Metro
                 // Download files
                 foreach (var item in InputSources)
                 {
-                    RL.Logger?.LogInformationSource($"The file {item} is being downloaded");
+                    Logger.Info($"The file {item} is being downloaded");
 
                     await WCServer.DownloadFileTaskAsync(item, ServerTempDir.TempPath + Path.GetFileName(item.AbsolutePath));
                     ItemCurrentProgress = 100;
@@ -304,7 +310,7 @@ namespace RayCarrot.RCP.Metro
 
             if (await Services.MessageUI.DisplayMessageAsync(Resources.Download_Cancel, Resources.Download_CancelHeader, MessageType.Question, true))
             {
-                RL.Logger?.LogInformationSource($"The downloader has been requested to cancel");
+                Logger.Info($"The downloader has been requested to cancel");
                 WCServer?.CancelAsync();
                 CancellationRequested = true;
             }
@@ -353,12 +359,12 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (CancellationRequested)
                         {
-                            ex.HandleExpected("Downloading files");
+                            Logger.Debug(ex, "Downloading files");
                             await Services.MessageUI.DisplayMessageAsync(Resources.Download_Canceled, Resources.Download_CanceledHeader, MessageType.Information);
                         }
                         else
                         {
-                            ex.HandleError("Downloading files");
+                            Logger.Error(ex, "Downloading files");
                             await Services.MessageUI.DisplayMessageAsync(Resources.Download_Failed, Resources.Download_FailedHeader, MessageType.Error);
                         }
 
@@ -384,7 +390,7 @@ namespace RayCarrot.RCP.Metro
 
             CurrentDownloadState = DownloadState.Succeeded;
 
-            RL.Logger?.LogInformationSource($"The download operation has completed");
+            Logger.Info($"The download operation has completed");
 
             await Services.MessageUI.DisplayMessageAsync(Resources.Download_Success, Resources.Download_SuccessHeader, MessageType.Success);
             OnDownloadComplete();

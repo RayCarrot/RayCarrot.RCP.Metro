@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleUnexpected("Getting link item thumbnail");
+                Logger.Warn(ex, "Getting link item thumbnail");
             }
 
             OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
@@ -80,7 +80,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleUnexpected("Getting Registry link item thumbnail");
+                Logger.Warn(ex, "Getting Registry link item thumbnail");
             }
 
             OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
@@ -116,9 +116,15 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleUnexpected("Getting external link icon");
+                Logger.Warn(ex, "Getting external link icon");
             }
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -215,7 +221,7 @@ namespace RayCarrot.RCP.Metro
 
                 image.Freeze();
 
-                RL.Logger?.LogDebugSource($"The link item image source has been created for the path '{path}'");
+                Logger.Debug($"The link item image source has been created for the path '{path}'");
 
                 IconCache.Add(path.FullPath, image);
 

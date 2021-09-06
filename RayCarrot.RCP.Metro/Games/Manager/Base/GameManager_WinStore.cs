@@ -9,7 +9,7 @@ using Windows.ApplicationModel;
 using Windows.Management.Deployment;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -25,6 +25,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class GameManager_WinStore : GameManager
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Override Properties
 
         /// <summary>
@@ -150,7 +156,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Launching Windows Store application");
+                Logger.Error(ex, "Launching Windows Store application");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, Game.GetGameInfo().DisplayName));
 
                 return new GameLaunchResult(null, false);
@@ -197,7 +203,7 @@ namespace RayCarrot.RCP.Metro
                 // Make sure we got a valid directory
                 if (dir == null)
                 {
-                    RL.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
+                    Logger.Info($"The {Game} was not found under Windows Store packages");
 
                     return null;
                 }
@@ -206,7 +212,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting Windows Store game install directory");
+                Logger.Error(ex, "Getting Windows Store game install directory");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
@@ -215,7 +221,7 @@ namespace RayCarrot.RCP.Metro
 
             if (!await IsValidAsync(installDir))
             {
-                RL.Logger?.LogInformationSource($"The {Game} install directory was not valid");
+                Logger.Info($"The {Game} install directory was not valid");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
@@ -255,7 +261,7 @@ namespace RayCarrot.RCP.Metro
             // Create the shortcut
             RCPServices.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
 
-            RL.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
+            Logger.Trace($"A shortcut was created for {Game} under {destinationDirectory}");
         }
 
         #endregion

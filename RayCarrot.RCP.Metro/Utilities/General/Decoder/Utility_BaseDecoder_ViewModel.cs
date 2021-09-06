@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,6 +28,12 @@ namespace RayCarrot.RCP.Metro
             DecodeCommand = new AsyncRelayCommand(DecodeFileAsync);
             EncodeCommand = new AsyncRelayCommand(EncodeFileAsync);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -154,13 +160,13 @@ namespace RayCarrot.RCP.Metro
             }
             catch (NotImplementedException ex)
             {
-                ex.HandleExpected("Decoding files");
+                Logger.Debug(ex, "Decoding files");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Decoding files");
+                Logger.Error(ex, "Decoding files");
                 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Decoder_DecodeError);
             }
@@ -202,13 +208,13 @@ namespace RayCarrot.RCP.Metro
             }
             catch (NotImplementedException ex)
             {
-                ex.HandleExpected("Encoding files");
+                Logger.Debug(ex, "Encoding files");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Encoding files");
+                Logger.Error(ex, "Encoding files");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Decoder_EncodeError);
             }

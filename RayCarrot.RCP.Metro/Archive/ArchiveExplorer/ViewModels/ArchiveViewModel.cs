@@ -1,6 +1,6 @@
 ﻿using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using System;
 using System.IO;
@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="isDuplicateName">Indicates if the name of the archive matches the name of another loaded archive</param>
         public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel, bool isDuplicateName) : base(filePath.Name)
         {
-            RL.Logger?.LogInformationSource($"An archive view model is being created for {filePath.Name}");
+            Logger.Info($"An archive view model is being created for {filePath.Name}");
 
             // Set properties
             FilePath = filePath;
@@ -44,6 +44,12 @@ namespace RayCarrot.RCP.Metro
             // Create the file stream
             ArchiveFileStream = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -162,7 +168,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected void ClearAndDisposeItems()
         {
-            RL.Logger?.LogInformationSource($"The archive items have been cleared and disposed");
+            Logger.Info($"The archive items have been cleared and disposed");
 
             // Dispose every directory
             this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
@@ -193,7 +199,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void LoadArchive()
         {
-            RL.Logger?.LogInformationSource($"The archive {DisplayName} is being loaded");
+            Logger.Info($"The archive {DisplayName} is being loaded");
 
             // Clear existing items
             ClearAndDisposeItems();
@@ -247,7 +253,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"The archive {DisplayName} is being repacked");
+            Logger.Info($"The archive {DisplayName} is being repacked");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -293,7 +299,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleError("Repacking archive", DisplayName);
+                            Logger.Error(ex, "Repacking archive", DisplayName);
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
@@ -327,7 +333,7 @@ namespace RayCarrot.RCP.Metro
             // Open the location
             await RCPServices.File.OpenExplorerLocationAsync(FilePath);
 
-            RL.Logger?.LogTraceSource($"The archive {DisplayName} location was opened");
+            Logger.Trace($"The archive {DisplayName} location was opened");
         }
 
         /// <summary>
@@ -373,7 +379,7 @@ namespace RayCarrot.RCP.Metro
             // Dispose the cache
             ThumbnailCache?.Dispose();
 
-            RL.Logger?.LogInformationSource($"The archive {DisplayName} has been disposed");
+            Logger.Info($"The archive {DisplayName} has been disposed");
         }
 
         #endregion

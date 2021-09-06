@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -24,6 +24,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -35,7 +41,7 @@ namespace RayCarrot.RCP.Metro
 
             time.Start();
 
-            RL.Logger?.LogInformationSource("The help items are refreshing...");
+            Logger.Info("The help items are refreshing...");
 
             HelpItems = new ObservableCollection<Page_Help_ItemViewModel>()
             {
@@ -339,8 +345,8 @@ namespace RayCarrot.RCP.Metro
 
             time.Stop();
 
-            RL.Logger?.LogInformationSource("The help items have refreshed");
-            RL.Logger?.LogDebugSource($"The help items refresh time was {time.ElapsedMilliseconds} ms");
+            Logger.Info("The help items have refreshed");
+            Logger.Debug($"The help items refresh time was {time.ElapsedMilliseconds} ms");
         }
 
         #endregion

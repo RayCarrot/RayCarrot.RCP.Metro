@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -74,13 +74,19 @@ namespace RayCarrot.RCP.Metro
     public abstract class BaseValueConverter<TConverter, TValue1, TValue2> : BaseValueConverter<TConverter>
         where TConverter : class, new()
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Value Converter Methods
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is TValue1 converterValue))
             {
-                RL.Logger?.LogWarningSource($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue1).FullName}");
+                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue1).FullName}");
                 return DependencyProperty.UnsetValue;
             }
 
@@ -91,7 +97,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (!(value is TValue2 converterValue))
             {
-                RL.Logger?.LogWarningSource($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue2).FullName}");
+                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue2).FullName}");
                 return DependencyProperty.UnsetValue;
             }
 
@@ -122,19 +128,25 @@ namespace RayCarrot.RCP.Metro
     public abstract class BaseValueConverter<TConverter, TValue1, TValue2, TParamater> : BaseValueConverter<TConverter>
         where TConverter : class, new()
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Value Converter Methods
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is TValue1 converterValue))
             {
-                RL.Logger?.LogWarningSource($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue1).FullName}");
+                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue1).FullName}");
                 return DependencyProperty.UnsetValue;
             }
 
             if (!(parameter is TParamater parameterValue))
             {
-                RL.Logger?.LogWarningSource($"The converter {typeof(TConverter).Name} returned null due to the parameter value not being of the expected type {typeof(TParamater).FullName}");
+                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the parameter value not being of the expected type {typeof(TParamater).FullName}");
                 return DependencyProperty.UnsetValue;
             }
 
@@ -145,13 +157,13 @@ namespace RayCarrot.RCP.Metro
         {
             if (!(value is TValue2 converterValue))
             {
-                RL.Logger?.LogWarningSource($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue2).FullName}");
+                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue2).FullName}");
                 return DependencyProperty.UnsetValue;
             }
 
             if (!(parameter is TParamater parameterValue))
             {
-                RL.Logger?.LogWarningSource($"The converter {typeof(TConverter).Name} returned null due to the parameter value not being of the expected type {typeof(TParamater).FullName}");
+                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the parameter value not being of the expected type {typeof(TParamater).FullName}");
                 return DependencyProperty.UnsetValue;
             }
 

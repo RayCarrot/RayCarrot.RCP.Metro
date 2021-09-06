@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -27,6 +27,12 @@ namespace RayCarrot.RCP.Metro
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(ProgressionSlots, this);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -66,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LoadDataAsync()
         {
-            RL.Logger?.LogInformationSource($"Progression data for {Game} is being loaded...");
+            Logger.Info($"Progression data for {Game} is being loaded...");
 
             // Run on a new thread
             await Task.Run(() =>
@@ -76,7 +82,7 @@ namespace RayCarrot.RCP.Metro
                     // Dispose existing slot view models
                     ProgressionSlots.DisposeAll();
 
-                    RL.Logger?.LogDebugSource($"Existing slots have been disposed");
+                    Logger.Debug($"Existing slots have been disposed");
 
                     // Clear the collection
                     ProgressionSlots.Clear();
@@ -84,16 +90,16 @@ namespace RayCarrot.RCP.Metro
                     // Load the data
                     LoadData();
 
-                    RL.Logger?.LogInformationSource($"Slots have been loaded");
+                    Logger.Info($"Slots have been loaded");
 
                     // Remove empty slots
                     ProgressionSlots.RemoveWhere(x => x == null);
 
-                    RL.Logger?.LogDebugSource($"Empty slots have been removed");
+                    Logger.Debug($"Empty slots have been removed");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError($"Reading {Game} save data");
+                    Logger.Error(ex, $"Reading {Game} save data");
                     throw;
                 }
             });

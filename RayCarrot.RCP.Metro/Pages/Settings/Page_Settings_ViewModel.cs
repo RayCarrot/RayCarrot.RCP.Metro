@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using System;
@@ -65,6 +65,12 @@ namespace RayCarrot.RCP.Metro
                 }
             };
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -176,7 +182,7 @@ namespace RayCarrot.RCP.Metro
 
                     time.Start();
 
-                    RL.Logger?.LogInformationSource("The links are refreshing...");
+                    Logger.Info("The links are refreshing...");
 
                     LocalLinkItems.Clear();
 
@@ -221,7 +227,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Getting Steam Registry key");
+                        Logger.Warn(ex, "Getting Steam Registry key");
                     }
 
                     // GOG paths
@@ -244,7 +250,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Getting GOG Galaxy Registry key");
+                        Logger.Warn(ex, "Getting GOG Galaxy Registry key");
                     }
 
                     // Registry paths
@@ -279,12 +285,12 @@ namespace RayCarrot.RCP.Metro
 
                     time.Stop();
 
-                    RL.Logger?.LogInformationSource("The links have refreshed");
-                    RL.Logger?.LogDebugSource($"The link refresh time was {time.ElapsedMilliseconds} ms");
+                    Logger.Info("The links have refreshed");
+                    Logger.Debug($"The link refresh time was {time.ElapsedMilliseconds} ms");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Refreshing links");
+                    Logger.Error(ex, "Refreshing links");
                 }
             }
         }

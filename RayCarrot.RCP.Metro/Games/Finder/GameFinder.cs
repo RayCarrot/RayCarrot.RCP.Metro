@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using IniParser;
 using Microsoft.Win32;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.Rayman.UbiIni;
 using RayCarrot.Windows.Registry;
 
@@ -33,15 +33,21 @@ namespace RayCarrot.RCP.Metro
             Results = new List<GameFinder_BaseResult>();
             HasRun = false;
 
-            RL.Logger?.LogInformationSource($"The game finder has been created to search for the following games: {GamesToFind.JoinItems(", ")}");
+            Logger.Info($"The game finder has been created to search for the following games: {GamesToFind.JoinItems(", ")}");
 
             // Get the game finder items
             GameFinderItems = GamesToFind.
                 SelectMany(x => x.GetManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.Type, y.GameFinderItem))).
                 ToArray();
 
-            RL.Logger?.LogTraceSource($"{GameFinderItems.Length} game finders were found");
+            Logger.Trace($"{GameFinderItems.Length} game finders were found");
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -68,7 +74,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     IDictionary<string, string> iniLocations = null;
 
-                    RL.Logger?.LogInformationSource("The game finder has ubi.ini finder");
+                    Logger.Info("The game finder has ubi.ini finder");
 
                     try
                     {
@@ -77,19 +83,19 @@ namespace RayCarrot.RCP.Metro
                         {
                             // Get the sections and the directory for each one
                             iniLocations = GetUbiIniData();
-                            RL.Logger?.LogInformationSource("The ubi.ini file data was parsed for the game finder");
+                            Logger.Info("The ubi.ini file data was parsed for the game finder");
                         }
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Reading ubi.ini file for game finder");
+                        Logger.Warn(ex, "Reading ubi.ini file for game finder");
                     }
 
                     // If we retrieved ini data, search it
                     if (iniLocations != null)
                         await SearchIniDataAsync(iniLocations, ubiIniGameFinders);
                     else
-                        RL.Logger?.LogInformationSource("The ubi.ini file data was null");
+                        Logger.Info("The ubi.ini file data was null");
                 }
 
                 // Split finders into groups
@@ -100,7 +106,7 @@ namespace RayCarrot.RCP.Metro
                 // Search Registry uninstall programs
                 if ((regUninstallGameFinders.Any() || steamGameFinders.Any() || regUninstallFinders.Any()) && GamesToFind.Any())
                 {
-                    RL.Logger?.LogInformationSource("The Registry uninstall programs are being searched...");
+                    Logger.Info("The Registry uninstall programs are being searched...");
 
                     try
                     {
@@ -112,7 +118,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Searching Registry uninstall programs for game finder");
+                        Logger.Error(ex, "Searching Registry uninstall programs for game finder");
                     }
                 }
 
@@ -123,7 +129,7 @@ namespace RayCarrot.RCP.Metro
                 // Search Win32 shortcuts
                 if ((programShortcutGameFinders.Any() || programShortcutFinders.Any()) && GamesToFind.Any())
                 {
-                    RL.Logger?.LogInformationSource("The program shortcuts are being searched...");
+                    Logger.Info("The program shortcuts are being searched...");
 
                     try
                     {
@@ -135,7 +141,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Searching program shortcuts for game finder");
+                        Logger.Warn(ex, "Searching program shortcuts for game finder");
                     }
                 }
 
@@ -167,14 +173,14 @@ namespace RayCarrot.RCP.Metro
                     AddItem(item, result.InstallDir, result.Parameter);
                 }
 
-                RL.Logger?.LogInformationSource($"The game finder found {Results.Count} games");
+                Logger.Info($"The game finder found {Results.Count} games");
 
                 // Return the found games
                 return Results.AsReadOnly();
             }
             catch (Exception ex)
             {
-                ex.HandleError("Game finder");
+                Logger.Error(ex, "Game finder");
                 throw;
             }
         }
@@ -253,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Getting start menu item shortcut target for game finder", shortcut);
+                        Logger.Warn(ex, "Getting start menu item shortcut target for game finder", shortcut);
                         continue;
                     }
 
@@ -277,7 +283,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Getting start menu item shortcut target for game finder", shortcut);
+                        Logger.Warn(ex, "Getting start menu item shortcut target for game finder", shortcut);
                         continue;
                     }
 
@@ -366,7 +372,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected virtual async Task SearchIniDataAsync(IDictionary<string, string> iniInstallDirData, GameFinderItemContainer[] finders)
         {
-            RL.Logger?.LogInformationSource("The ini sections are being searched...");
+            Logger.Info("The ini sections are being searched...");
 
             // Enumerate each game finder item
             foreach (var game in finders)
@@ -412,7 +418,7 @@ namespace RayCarrot.RCP.Metro
                 yield return file;
             }
 
-            RL.Logger?.LogTraceSource("The user start menu programs were retrieved for the game finder");
+            Logger.Trace("The user start menu programs were retrieved for the game finder");
 
             // Get items from common start menu
             foreach (string file in EnumerateShortcuts(Environment.SpecialFolder.CommonStartMenu.GetFolderPath(), SearchOption.AllDirectories))
@@ -421,7 +427,7 @@ namespace RayCarrot.RCP.Metro
                 yield return file;
             }
 
-            RL.Logger?.LogTraceSource("The common start menu programs were retrieved for the game finder");
+            Logger.Trace("The common start menu programs were retrieved for the game finder");
 
             // Get items from user desktop
             foreach (string file in EnumerateShortcuts(Environment.SpecialFolder.DesktopDirectory.GetFolderPath()))
@@ -430,7 +436,7 @@ namespace RayCarrot.RCP.Metro
                 yield return file;
             }
 
-            RL.Logger?.LogTraceSource("The user desktop shortcuts were retrieved for the game finder");
+            Logger.Trace("The user desktop shortcuts were retrieved for the game finder");
 
             // Get items from common desktop
             foreach (string file in EnumerateShortcuts(Environment.SpecialFolder.CommonDesktopDirectory.GetFolderPath()))
@@ -439,7 +445,7 @@ namespace RayCarrot.RCP.Metro
                 yield return file;
             }
 
-            RL.Logger?.LogTraceSource("The common desktop shortcuts were retrieved for the game finder");
+            Logger.Trace("The common desktop shortcuts were retrieved for the game finder");
         }
 
         /// <summary>
@@ -457,7 +463,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleUnexpected("Enumerating shortcuts for game finder", directory);
+                Logger.Warn(ex, "Enumerating shortcuts for game finder", directory);
                 
                 // Return an empty array to enumerate
                 return new string[0];
@@ -470,7 +476,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The programs</returns>
         protected virtual IEnumerable<InstalledProgram> EnumerateRegistryUninstallPrograms()
         {
-            RL.Logger?.LogInformationSource("Getting installed programs from the Registry");
+            Logger.Info("Getting installed programs from the Registry");
 
             // Get 64-bit location if on 64-bit system
             var keys = Environment.Is64BitOperatingSystem
@@ -543,19 +549,19 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game item was added, otherwise false</returns>
         protected virtual async Task<bool> AddGameAsync(GameFinderItemContainer game, FileSystemPath installDir, object parameter = null)
         {
-            RL.Logger?.LogInformationSource($"An install directory was found for {game.Game}");
+            Logger.Info($"An install directory was found for {game.Game}");
 
             // Make sure the game hasn't already been found
             if (FoundGames.Contains(game.Game))
             {
-                RL.Logger?.LogWarningSource($"{game.Game} could not be added. The game has already been found.");
+                Logger.Warn($"{game.Game} could not be added. The game has already been found.");
                 return false;
             }
 
             // Make sure the install directory exists
             if (!installDir.DirectoryExists)
             {
-                RL.Logger?.LogWarningSource($"{game.Game} could not be added. The install directory does not exist.");
+                Logger.Warn($"{game.Game} could not be added. The install directory does not exist.");
                 return false;
             }
 
@@ -566,7 +572,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (result == null)
                 {
-                    RL.Logger?.LogInformationSource($"{game.Game} could not be added. The optional verification returned null.");
+                    Logger.Info($"{game.Game} could not be added. The optional verification returned null.");
                     return false;
                 }
 
@@ -576,7 +582,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure that the game is valid
             if (!await game.Game.GetManager(game.GameType).IsValidAsync(installDir, parameter))
             {
-                RL.Logger?.LogInformationSource($"{game.Game} could not be added. The game default file was not found.");
+                Logger.Info($"{game.Game} could not be added. The game default file was not found.");
                 return false;
             }
 
@@ -586,7 +592,7 @@ namespace RayCarrot.RCP.Metro
             // Remove from games to find
             GamesToFind.Remove(game.Game);
 
-            RL.Logger?.LogInformationSource($"The game {game.Game} was found");
+            Logger.Info($"The game {game.Game} was found");
 
             return true;
         }
@@ -600,12 +606,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the item was added, otherwise false</returns>
         protected virtual bool AddItem(GameFinder_GenericItem item, FileSystemPath installDir, object parameter = null)
         {
-            RL.Logger?.LogInformationSource($"An install directory was found for a finder item");
+            Logger.Info($"An install directory was found for a finder item");
 
             // Make sure the install directory exists
             if (!installDir.DirectoryExists)
             {
-                RL.Logger?.LogWarningSource($"The item could not be added. The install directory does not exist.");
+                Logger.Warn($"The item could not be added. The install directory does not exist.");
                 return false;
             }
 
@@ -616,7 +622,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (result == null)
                 {
-                    RL.Logger?.LogInformationSource($"The item could not be added. The optional verification returned null.");
+                    Logger.Info($"The item could not be added. The optional verification returned null.");
                     return false;
                 }
 
@@ -627,7 +633,7 @@ namespace RayCarrot.RCP.Metro
             FoundFinderItems.Add(item);
             Results.Add(new GameFinder_GenericResult(installDir, item.FoundAction, parameter, item.DisplayName));
 
-            RL.Logger?.LogInformationSource($"A finder item was found");
+            Logger.Info($"A finder item was found");
 
             return true;
         }

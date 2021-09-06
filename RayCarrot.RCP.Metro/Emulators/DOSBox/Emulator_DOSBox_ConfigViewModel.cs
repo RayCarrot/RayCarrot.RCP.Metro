@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -93,6 +93,12 @@ namespace RayCarrot.RCP.Metro
                 "max"
             };
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -368,7 +374,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} is being set up");
+            Logger.Info($"DOSBox emulator game config for {Game} is being set up");
 
             // Get the config manager
             var configManager = new Emulator_DOSBox_AutoConfigManager(Game.GetManager<GameManager_DOSBox>(GameType).DosBoxConfigFile);
@@ -393,7 +399,7 @@ namespace RayCarrot.RCP.Metro
 
             CustomCommands = configData.CustomLines.JoinItems(Environment.NewLine);
 
-            RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} has been loaded");
+            Logger.Info($"DOSBox emulator game config for {Game} has been loaded");
 
             UnsavedChanges = false;
 
@@ -411,7 +417,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} is saving...");
+            Logger.Info($"DOSBox emulator game config for {Game} is saving...");
 
             try
             {
@@ -465,7 +471,7 @@ namespace RayCarrot.RCP.Metro
                 // Write to the config file
                 configManager.WriteFile(configData);
 
-                RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} has been saved");
+                Logger.Info($"DOSBox emulator game config for {Game} has been saved");
 
                 return true;
 
@@ -480,7 +486,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Saving DOSBox emulator game config data");
+                Logger.Error(ex, "Saving DOSBox emulator game config data");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader);
                 return false;
             }
@@ -497,7 +503,7 @@ namespace RayCarrot.RCP.Metro
             SelectedOutput = "default";
             SelectedCycles = "20000";
 
-            RL.Logger?.LogTraceSource($"Recommended DosBox settings were applied");
+            Logger.Trace($"Recommended DosBox settings were applied");
         }
 
         #endregion

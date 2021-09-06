@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,6 +21,12 @@ namespace RayCarrot.RCP.Metro
         {
             InstallDir = installDir;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -89,7 +95,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Updating TPLS config");
+                Logger.Error(ex, "Updating TPLS config");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.TPLS_UpdateVersionError);
             }

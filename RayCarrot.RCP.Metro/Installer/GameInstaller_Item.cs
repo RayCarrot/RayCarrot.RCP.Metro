@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,6 +25,12 @@ namespace RayCarrot.RCP.Metro
             Optional = optional;
             BasePath = FileSystemPath.EmptyPath;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -87,7 +93,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Setting game install item base path");
+                Logger.Error(ex, "Setting game install item base path");
                 return false;
             }
         }

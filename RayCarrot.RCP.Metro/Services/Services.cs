@@ -18,11 +18,6 @@ namespace RayCarrot.RCP.Metro
         public static IAppInstanceData InstanceData => BaseApp.Current.GetService<IAppInstanceData>();
 
         /// <summary>
-        /// The logs stored for this session, if a session logger is used
-        /// </summary>
-        public static ISessionLoggerCollection Logs => BaseApp.Current.GetService<ISessionLoggerCollection>();
-
-        /// <summary>
         /// Gets the message UIManager
         /// </summary>
         public static IMessageUIManager MessageUI => BaseApp.Current.GetService<IMessageUIManager>();

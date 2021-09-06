@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -15,11 +14,17 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class AppUIManager
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region UserInput
 
-        public async Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel)
         {
-            RL.Logger?.LogTraceSource($"A games selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace($"A games selection dialog was opened");
 
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");
@@ -28,19 +33,19 @@ namespace RayCarrot.RCP.Metro
             var result = await Application.Current.Dispatcher.Invoke(() => new GamesSelectionDialog(gamesSelectionViewModel)).ShowDialogAsync();
 
             if (result == null)
-                RL.Logger?.LogTraceSource($"The games selection dialog returned null");
+                Logger.Trace($"The games selection dialog returned null");
             else if (result.CanceledByUser)
-                RL.Logger?.LogTraceSource($"The games selection dialog was canceled by the user");
+                Logger.Trace($"The games selection dialog was canceled by the user");
             else
-                RL.Logger?.LogTraceSource($"The games selection dialog returned the selected games {result.SelectedGames.JoinItems(", ")}");
+                Logger.Trace($"The games selection dialog returned the selected games {result.SelectedGames.JoinItems(", ")}");
 
             // Return the result
             return result;
         }
 
-        public async Task<GameTypeSelectionResult> SelectGameTypeAsync(GameTypeSelectionViewModel gameTypeSelectionViewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task<GameTypeSelectionResult> SelectGameTypeAsync(GameTypeSelectionViewModel gameTypeSelectionViewModel)
         {
-            RL.Logger?.LogTraceSource($"A game type selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace($"A game type selection dialog was opened");
 
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");
@@ -49,19 +54,19 @@ namespace RayCarrot.RCP.Metro
             var result = await Application.Current.Dispatcher.Invoke(() => new GameTypeSelectionDialog(gameTypeSelectionViewModel)).ShowDialogAsync();
 
             if (result == null)
-                RL.Logger?.LogTraceSource($"The game type selection dialog returned null");
+                Logger.Trace($"The game type selection dialog returned null");
             else if (result.CanceledByUser)
-                RL.Logger?.LogTraceSource($"The game type selection dialog was canceled by the user");
+                Logger.Trace($"The game type selection dialog was canceled by the user");
             else
-                RL.Logger?.LogTraceSource($"The game type selection dialog returned the selected type {result.SelectedType}");
+                Logger.Trace($"The game type selection dialog returned the selected type {result.SelectedType}");
 
             // Return the result
             return result;
         }
 
-        public async Task<EducationalDosGameEditResult> EditEducationalDosGameAsync(EducationalDosGameEditViewModel viewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task<EducationalDosGameEditResult> EditEducationalDosGameAsync(EducationalDosGameEditViewModel viewModel)
         {
-            RL.Logger?.LogTraceSource($"An educational DOS game edit dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace("An educational DOS game edit dialog was opened");
 
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");
@@ -70,19 +75,19 @@ namespace RayCarrot.RCP.Metro
             var result = await Application.Current.Dispatcher.Invoke(() => new EducationalDosGameEditDialog(viewModel)).ShowDialogAsync();
 
             if (result == null)
-                RL.Logger?.LogTraceSource($"The educational DOS game edit dialog returned null");
+                Logger.Trace($"The educational DOS game edit dialog returned null");
             else if (result.CanceledByUser)
-                RL.Logger?.LogTraceSource($"The educational DOS game edit dialog was canceled by the user");
+                Logger.Trace($"The educational DOS game edit dialog was canceled by the user");
             else
-                RL.Logger?.LogTraceSource($"The educational DOS game edit dialog returned the selected name {result.Name}");
+                Logger.Trace($"The educational DOS game edit dialog returned the selected name {result.Name}");
 
             // Return the result
             return result;
         }
 
-        public async Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel)
         {
-            RL.Logger?.LogTraceSource($"A jump list edit dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace($"A jump list edit dialog was opened");
 
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");
@@ -91,17 +96,17 @@ namespace RayCarrot.RCP.Metro
             var result = await Application.Current.Dispatcher.Invoke(() => new JumpListEditDialog(viewModel)).ShowDialogAsync();
 
             if (result == null)
-                RL.Logger?.LogTraceSource($"The jump list edit dialog returned null");
+                Logger.Trace($"The jump list edit dialog returned null");
             else if (result.CanceledByUser)
-                RL.Logger?.LogTraceSource($"The jump list edit dialog was canceled by the user");
+                Logger.Trace($"The jump list edit dialog was canceled by the user");
 
             // Return the result
             return result;
         }
 
-        public async Task<FileExtensionSelectionDialogResult> SelectFileExtensionAsync(FileExtensionSelectionDialogViewModel viewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task<FileExtensionSelectionDialogResult> SelectFileExtensionAsync(FileExtensionSelectionDialogViewModel viewModel)
         {
-            RL.Logger?.LogTraceSource($"A file extension selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace($"A file extension selection dialog was opened");
 
             // If only one item is available, return it
             if (viewModel.FileFormats.Length == 1)
@@ -120,9 +125,9 @@ namespace RayCarrot.RCP.Metro
             var result = await Application.Current.Dispatcher.Invoke(() => new FileExtensionSelectionDialog(viewModel)).ShowDialogAsync();
 
             if (result == null)
-                RL.Logger?.LogTraceSource($"The file extension selection dialog returned null");
+                Logger.Trace($"The file extension selection dialog returned null");
             else if (result.CanceledByUser)
-                RL.Logger?.LogTraceSource($"The file extension selection dialog was canceled by the user");
+                Logger.Trace($"The file extension selection dialog was canceled by the user");
 
             // Return the result
             return result;
@@ -134,17 +139,14 @@ namespace RayCarrot.RCP.Metro
         /// <param name="messageType">The type of message, determining its visual appearance</param>
         /// <param name="allowCancel">True if the option to cancel is present</param>
         /// <param name="additionalActions">Additional actions</param>
-        /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
-        /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
-        /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
         /// <returns>True if the user accepted the message, otherwise false</returns>
-        public async Task<bool> DisplayMessageAsync(string message, string header, MessageType messageType, bool allowCancel, IList<DialogMessageActionViewModel> additionalActions, string origin = "", string filePath = "", int lineNumber = 0)
+        public async Task<bool> DisplayMessageAsync(string message, string header, MessageType messageType, bool allowCancel, IList<DialogMessageActionViewModel> additionalActions)
         {
             // Make sure the application has been set up
             if (Application.Current.Dispatcher == null)
                 throw new Exception("A message box can not be shown when the application dispatcher is null");
 
-            RL.Logger?.LogTraceSource($"A message of type {messageType} was displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace($"A message of type {messageType} was displayed with the content of: '{message}'");
 
             // Get the header message to use
             var headerMessage = !header.IsNullOrWhiteSpace()
@@ -223,9 +225,9 @@ namespace RayCarrot.RCP.Metro
             });
         }
 
-        public async Task<StringInputResult> GetStringInput(StringInputViewModel stringInputViewModel, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public async Task<StringInputResult> GetStringInput(StringInputViewModel stringInputViewModel)
         {
-            RL.Logger?.LogTraceSource($"A string input dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace($"A string input dialog was opened");
 
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");
@@ -234,11 +236,11 @@ namespace RayCarrot.RCP.Metro
             var result = await Application.Current.Dispatcher.Invoke(() => new StringInputDialog(stringInputViewModel)).ShowDialogAsync();
 
             if (result == null)
-                RL.Logger?.LogTraceSource($"The string input dialog returned null");
+                Logger.Trace($"The string input dialog returned null");
             else if (result.CanceledByUser)
-                RL.Logger?.LogTraceSource($"The string input dialog was canceled by the user");
+                Logger.Trace($"The string input dialog was canceled by the user");
             else
-                RL.Logger?.LogTraceSource($"The string input dialog returned the selected string {result.StringInput}");
+                Logger.Trace($"The string input dialog returned the selected string {result.StringInput}");
 
             // Return the result
             return result;
@@ -253,18 +255,15 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="manager">The archive data manager</param>
         /// <param name="filePaths">The archive file paths</param>
-        /// <param name="origin">The callers member/function name</param>
-        /// <param name="filePath">The source code file path</param>
-        /// <param name="lineNumber">The line number in the code file of the caller</param>
         /// <returns>The task</returns>
-        public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, FileSystemPath[] filePaths, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, FileSystemPath[] filePaths)
         {
             try
             {
                 if (Application.Current.Dispatcher == null)
                     throw new Exception("The application does not have a valid dispatcher");
 
-                RL.Logger?.LogTraceSource($"An Archive Explorer window was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+                Logger.Trace($"An Archive Explorer window was opened");
 
                 // Run on UI thread
                 await Application.Current.Dispatcher.Invoke(() => 
@@ -272,7 +271,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Archive explorer");
+                Logger.Error(ex, "Archive explorer");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
             }
@@ -282,16 +281,13 @@ namespace RayCarrot.RCP.Metro
         /// Shows a new instance of the Archive Creator
         /// </summary>
         /// <param name="manager">The archive data manager</param>
-        /// <param name="origin">The callers member/function name</param>
-        /// <param name="filePath">The source code file path</param>
-        /// <param name="lineNumber">The line number in the code file of the caller</param>
         /// <returns>The task</returns>
-        public async Task ShowArchiveCreatorAsync(IArchiveDataManager manager, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task ShowArchiveCreatorAsync(IArchiveDataManager manager)
         {
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");
 
-            RL.Logger?.LogTraceSource($"An Archive Creator window was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            Logger.Trace($"An Archive Creator window was opened");
 
             // Run on UI thread
             await Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorUI(new ArchiveCreatorDialogViewModel(manager))).ShowWindowAsync();

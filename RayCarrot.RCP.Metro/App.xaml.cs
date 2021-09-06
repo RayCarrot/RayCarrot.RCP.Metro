@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
 using RayCarrot.Windows.Registry;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -18,6 +17,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shell;
 using Microsoft.Extensions.DependencyInjection;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -43,27 +45,27 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Protected Overrides
 
         /// <summary>
         /// Gets the services to use for the application
         /// </summary>
-        /// <param name="logLevel">The level to log</param>
         /// <param name="args">The launch arguments</param>
         /// <returns>The services to use</returns>
-        protected override IServiceCollection GetServices(LogLevel logLevel, string[] args)
+        protected override IServiceCollection GetServices(string[] args)
         {
-            // Set file log level
-            FileLogger.FileLoggerLogLevel = logLevel;
+            InitializeLogging(args);
 
             // Add services
             return new ServiceCollection().
-                // Add loggers
-                AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add user data
                 AddSingleton(new AppUserData()).
-                // Add exception handler
-                AddExceptionHandler<RCPExceptionHandler>().
                 // Add message UI manager
                 AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
@@ -97,7 +99,8 @@ namespace RayCarrot.RCP.Metro
                 if (AppFilePaths.AppUserDataPath.FileExists)
                 {
                     JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), RCPServices.Data);
-                    RL.Logger?.LogInformationSource($"The app user data has been loaded");
+
+                    Logger.Info("The app user data has been loaded");
 
                     // Verify the data
                     RCPServices.Data.Verify();
@@ -107,12 +110,12 @@ namespace RayCarrot.RCP.Metro
                     // Reset the user data
                     RCPServices.Data.Reset();
 
-                    RL.Logger?.LogInformationSource($"The app user data has been reset");
+                    Logger.Info($"The app user data has been reset");
                 }
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Loading app user data");
+                Logger.Error(ex, "Loading app user data");
 
                 // NOTE: This is not localized due to the current culture not having been set at this point
                 MessageBox.Show($"An error occurred reading saved app data. Some settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -137,7 +140,7 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("Setup: Setup WPF trace listener");
 
             // Listen to data binding logs
-            WPFTraceListener.Setup(LogLevel.Warning);
+            WPFTraceListener.Setup();
 
             StartupComplete += BaseApp_StartupComplete_Miscellaneous_Async;
             StartupComplete += App_StartupComplete_Updater_Async;
@@ -146,7 +149,7 @@ namespace RayCarrot.RCP.Metro
             // Run basic startup
             await BasicStartupAsync();
 
-            RL.Logger?.LogInformationSource($"Current version is {RCPServices.App.CurrentAppVersion}");
+            Logger.Info($"Current version is {RCPServices.App.CurrentAppVersion}");
 
             // Check if it's a new version
             if (Data.LastVersion < RCPServices.App.CurrentAppVersion)
@@ -162,7 +165,7 @@ namespace RayCarrot.RCP.Metro
             // Check if it's a lower version than previously recorded
             else if (Data.LastVersion > RCPServices.App.CurrentAppVersion)
             {
-                RL.Logger?.LogWarningSource($"A newer version ({Data.LastVersion}) has been recorded in the application data");
+                Logger.Warn($"A newer version ({Data.LastVersion}) has been recorded in the application data");
 
                 if (!Data.DisableDowngradeWarning)
                     await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCPServices.App.CurrentAppVersion,
@@ -199,7 +202,7 @@ namespace RayCarrot.RCP.Metro
             // Save window state
             RCPServices.Data.WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
 
-            RL.Logger?.LogInformationSource($"The application is exiting...");
+            Logger.Info($"The application is exiting...");
 
             // Save all user data
             await RCPServices.App.SaveUserDataAsync();
@@ -243,18 +246,6 @@ namespace RayCarrot.RCP.Metro
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) ?? Directory.GetCurrentDirectory());
 
             return Task.FromResult(true);
-        }
-
-        /// <summary>
-        /// Disposes any disposable application objects
-        /// </summary>
-        protected override void Dispose()
-        {
-            // Dispose base
-            base.Dispose();
-
-            // Dispose log file
-            AppLogFileStream?.Dispose();
         }
 
         #endregion
@@ -341,7 +332,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Setting user level from args");
+                    Logger.Error(ex, "Setting user level from args");
                 }
             }
 
@@ -355,12 +346,12 @@ namespace RayCarrot.RCP.Metro
                     if (updateFile.FileExists)
                     {
                         updateFile.GetFileInfo().Delete();
-                        RL.Logger?.LogInformationSource($"The updater was deleted");
+                        Logger.Info($"The updater was deleted");
                     }
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Deleting updater");
+                    Logger.Error(ex, "Deleting updater");
                 }
             }
 
@@ -371,7 +362,7 @@ namespace RayCarrot.RCP.Metro
             {
                 Data.ApplicationPath = appPath;
 
-                RL.Logger?.LogInformationSource("The application path has been updated");
+                Logger.Info("The application path has been updated");
             }
 
             LogStartupTime("BasicStartup: Deploy files");
@@ -450,7 +441,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Moving Fiesta Run backups to 5.0.0 standard");
+                        Logger.Error(ex, "Moving Fiesta Run backups to 5.0.0 standard");
 
                         await Services.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_MigrateFiestaRunBackup5Error, Metro.Resources.PostUpdate_MigrateBackupErrorHeader, MessageType.Error);
                     }
@@ -463,7 +454,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Cleaning pre-5.0.0 temp");
+                    Logger.Error(ex, "Cleaning pre-5.0.0 temp");
                 }
 
                 Data.DisableDowngradeWarning = false;
@@ -524,11 +515,11 @@ namespace RayCarrot.RCP.Metro
                             // Delete the sub-key
                             parentKey.DeleteSubKey(regUninstallKeyName);
 
-                            RL.Logger?.LogInformationSource("The program Registry key has been deleted");
+                            Logger.Info("The program Registry key has been deleted");
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleError("Removing uninstall Registry key");
+                            Logger.Error(ex, "Removing uninstall Registry key");
 
                             await Services.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                         }
@@ -618,12 +609,80 @@ namespace RayCarrot.RCP.Metro
                 // Add to removed games
                 removed.Add(game);
 
-                RL.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
+                Logger.Info($"The game {game} has been removed due to not being valid");
             }
 
             // Refresh if any games were removed
             if (removed.Any())
                 await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, true, false, false, false));
+        }
+
+        private void InitializeLogging(string[] args)
+        {
+            // Create a new logging configuration
+            var logConfig = new LoggingConfiguration();
+
+#if DEBUG
+            // On debug we default it to log trace
+            LogLevel logLevel = LogLevel.Trace;
+#else
+            // If not on debug we default to log info
+            LogLevel logLevel = LogLevel.Info;
+#endif
+
+            // Allow the log level to be specified from a launch argument
+            if (args.Contains("-loglevel"))
+            {
+                string argLogLevel = args[args.FindItemIndex(x => x == "-loglevel") + 1];
+                logLevel = LogLevel.FromString(argLogLevel);
+            }
+
+            const string logLayout = "${time:invariant=true}|${level:uppercase=true}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}";
+            bool logToFile = !args.Contains("-nofilelog");
+            bool logToMemory = !args.Contains("-nomemlog");
+            bool logToViewer = args.Contains("-logviewer");
+
+            // Log to file
+            if (logToFile)
+            {
+                logConfig.AddRule(logLevel, LogLevel.Fatal, new FileTarget("file")
+                {
+                    // IDEA: Archive old logs?
+                    DeleteOldFileOnStartup = true,
+                    ConcurrentWrites = false,
+                    FileName = AppFilePaths.LogFile.FullPath,
+                    Layout = logLayout,
+                });
+            }
+
+            if (logToMemory)
+            {
+                logConfig.AddRule(logLevel, LogLevel.Fatal, new MemoryTarget("memory")
+                {
+                    Layout = logLayout,
+                });
+            }
+
+            // Log to log viewer
+            if (logToViewer)
+            {
+                LogViewerViewModel = new LogViewerViewModel();
+
+                // Always log from trace to fatal to include all logs
+                logConfig.AddRuleForAllLevels(new MethodCallTarget("logviewer", async (logEvent, _) =>
+                {
+                    // Await to avoid blocking
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        var log = new LogItemViewModel(logEvent.Level, logEvent.Exception, logEvent.TimeStamp, logEvent.LoggerName, logEvent.FormattedMessage);
+                        log.IsVisible = log.LogLevel >= LogViewerViewModel.ShowLogLevel;
+                        LogViewerViewModel.LogItems.Add(log);
+                    });
+                }));
+            }
+
+            // Apply config
+            LogManager.Configuration = logConfig;
         }
 
         #endregion
@@ -663,21 +722,21 @@ namespace RayCarrot.RCP.Metro
                     // Try for 2 seconds first
                     if (retryTime < 20)
                     {
-                        RL.Logger?.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        Logger.Debug($"The updater can not be removed due to not having write access. Retrying {retryTime}");
 
                         await Task.Delay(100);
                     }
                     // Now it's taking a long time... Try for 10 more seconds
                     else if (retryTime < 70)
                     {
-                        RL.Logger?.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        Logger.Warn($"The updater can not be removed due to not having write access. Retrying {retryTime}");
 
                         await Task.Delay(200);
                     }
                     // Give up and let the deleting of the file give an error message
                     else
                     {
-                        RL.Logger?.LogCriticalSource($"The updater can not be removed due to not having write access");
+                        Logger.Fatal($"The updater can not be removed due to not having write access");
                         break;
                     }
                 }
@@ -687,11 +746,11 @@ namespace RayCarrot.RCP.Metro
                     // Remove the updater
                     RCPServices.File.DeleteFile(AppFilePaths.UpdaterFilePath);
 
-                    RL.Logger?.LogInformationSource($"The updater has been removed");
+                    Logger.Info($"The updater has been removed");
                 }
                 catch (Exception ex)
                 {
-                    ExceptionExtensions.HandleCritical(ex, "Removing updater");
+                    Logger.Error(ex, "Removing updater");
                 }
             }
 
@@ -708,8 +767,8 @@ namespace RayCarrot.RCP.Metro
             // Run on UI thread
             await Dispatcher.Invoke(async () =>
             {
-                // Show log viewer if a debugger is attached
-                if (Debugger.IsAttached)
+                // Show log viewer if available
+                if (IsLogViewerAvailable)
                 {
                     var logViewer = new LogViewer();
                     var win = await logViewer.ShowWindowAsync();
@@ -744,11 +803,11 @@ namespace RayCarrot.RCP.Metro
 
                         if (!PreviousBackupLocation.DirectoryExists)
                         {
-                            RL.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
+                            Logger.Info("The backup location has been changed, but the previous directory does not exist");
                             return;
                         }
 
-                        RL.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
+                        Logger.Info("The backup location has been changed and old backups are being moved...");
 
                         await RCPServices.App.MoveBackupsAsync(PreviousBackupLocation, Data.BackupLocation);
 
@@ -810,7 +869,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     if (RCPServices.Data.JumpListItemIDCollection == null)
                     {
-                        RL.Logger?.LogWarningSource("The jump could not refresh due to collection not existing");
+                        Logger.Warn("The jump could not refresh due to collection not existing");
 
                         return;
                     }
@@ -840,11 +899,11 @@ namespace RayCarrot.RCP.Metro
                         // Apply the new jump list
                         Apply();
 
-                    RL.Logger?.LogInformationSource("The jump list has been refreshed");
+                    Logger.Info("The jump list has been refreshed");
                 }
                 catch (Exception ex)
                 {
-                    ExceptionExtensions.HandleError(ex, "Creating jump list");
+                    Logger.Error(ex, "Creating jump list");
                 }
             });
         }
@@ -877,10 +936,8 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
-        /// <summary>
-        /// The file stream for the application log file
-        /// </summary>
-        public StreamWriter AppLogFileStream { get; set; }
+        public bool IsLogViewerAvailable => LogViewerViewModel != null;
+        public LogViewerViewModel LogViewerViewModel { get; set; }
 
         #endregion
 

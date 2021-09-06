@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -19,7 +19,9 @@ namespace RayCarrot.RCP.Metro
 
             App.SelectedPageChanged += App_SelectedPageChangedAsync;
         }
-        
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private bool _hasInitialized;
 
         private async void App_SelectedPageChangedAsync(object sender, PropertyChangedEventArgs<AppPage> e)
@@ -34,11 +36,11 @@ namespace RayCarrot.RCP.Metro
 
             foreach (var mod in Mods)
             {
-                RL.Logger?.LogInformationSource($"Initializing mod {mod.Header.Value}");
+                Logger.Info($"Initializing mod {mod.Header.Value}");
                 await mod.InitializeAsync();
             }
 
-            RL.Logger?.LogInformationSource("Initialized mods");
+            Logger.Info("Initialized mods");
         }
 
         public Mod_BaseViewModel[] Mods { get; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -23,7 +24,7 @@ namespace RayCarrot.RCP.Metro
             if (DesignerProperties.GetIsInDesignMode(this))
                 return;
 
-            DataContext = new LogViewerViewModel();
+            DataContext = App.Current.LogViewerViewModel;
         }
 
         #endregion
@@ -82,17 +83,18 @@ namespace RayCarrot.RCP.Metro
         {
             MainScrollViewer.ScrollToBottom();
 
+            // TODO: Unsubscribe when closing log viewer
             // Scroll to bottom when a new log is added
-            Services.Logs.LogAdded += async (ss, ee) =>
+            ViewModel.LogItems.CollectionChanged += async (_, ee) =>
             {
-                if (Dispatcher != null) 
+                if (ee.Action == NotifyCollectionChangedAction.Add)
                     await Dispatcher.InvokeAsync(() => MainScrollViewer.ScrollToBottom());
             };
         }
 
         private void ButtonCopyToClipboard_Click(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(ViewModel.DisplayLog.Select(x => x.Message).JoinItems(Environment.NewLine));
+            Clipboard.SetText(ViewModel.LogItems.Where(x => x.IsVisible).Select(x => x.LogMessage).JoinItems(Environment.NewLine));
         }
 
         #endregion

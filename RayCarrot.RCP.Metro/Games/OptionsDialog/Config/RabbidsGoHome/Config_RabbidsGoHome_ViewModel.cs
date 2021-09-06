@@ -1,4 +1,4 @@
-﻿using RayCarrot.Logging;
+﻿using NLog;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +10,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class Config_RabbidsGoHome_ViewModel : GameOptionsDialog_ConfigPageViewModel
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Private Fields
 
         private bool _enableCustomSettings;
@@ -209,7 +215,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            RL.Logger?.LogInformationSource("Rabbids Go Home config is being set up");
+            Logger.Info("Rabbids Go Home config is being set up");
 
             // Get the current launch data
             var launchData = Data.RabbidsGoHomeLaunchData;
@@ -228,7 +234,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RL.Logger?.LogInformationSource($"All values have been loaded");
+            Logger.Info($"All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -239,7 +245,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            RL.Logger?.LogInformationSource($"Rabbids Go Home configuration is saving...");
+            Logger.Info($"Rabbids Go Home configuration is saving...");
 
             // Set the launch data
             Data.RabbidsGoHomeLaunchData = EnableCustomSettings ?
@@ -249,7 +255,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, false, false, false, true));
 
-            RL.Logger?.LogInformationSource($"Rabbids Go Home configuration has been saved");
+            Logger.Info($"Rabbids Go Home configuration has been saved");
 
             return true;
         }

@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using RayCarrot.Logging;
+﻿using NLog;
 using RayCarrot.UI;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -23,15 +20,12 @@ namespace RayCarrot.RCP.Metro
             // Set a default title
             Title = "Log Viewer";
 
+            // Set properties
+            LogItems = new ObservableCollection<LogItemViewModel>();
+            ShowLogLevel = LogLevel.Info;
+
             // Create commands
-            RefreshDisplayLogCommand = new RelayCommand(RefreshDisplayLog);
             ClearLogCommand = new RelayCommand(ClearLog);
-
-            // Refresh the logs
-            RefreshDisplayLog();
-
-            // Subscribe to when new logs get added
-            Services.Logs.LogAdded += (_, _) => RefreshDisplayLog();
         }
 
         #endregion
@@ -39,40 +33,17 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Refreshes the display log
-        /// </summary>
-        public void RefreshDisplayLog()
-        {
-            lock (this)
-            {
-                try
-                {
-                    DisplayLog = Services.Logs?.GetLogs().Where(x => x.LogLevel >= ShowLogLevel).ToObservableCollection();
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleUnexpected("Refreshing log viewer");
-                }
-            }
-        }
-
-        /// <summary>
         /// Clears the log
         /// </summary>
         public void ClearLog()
         {
             lock (this)
-            {
-                Services.Logs?.Clear();
-                DisplayLog.Clear();
-            }
+                LogItems.Clear();
         }
 
         #endregion
 
         #region Commands
-
-        public ICommand RefreshDisplayLogCommand { get; }
 
         public ICommand ClearLogCommand { get; }
 
@@ -80,10 +51,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
-        /// <summary>
-        /// The logs to be displayed
-        /// </summary>
-        public ObservableCollection<LogItem> DisplayLog { get; set; }
+        public ObservableCollection<LogItemViewModel> LogItems { get; }
 
         /// <summary>
         /// The log level to show
@@ -97,7 +65,9 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 _showLogLevel = value;
-                RefreshDisplayLog();
+
+                foreach (LogItemViewModel item in LogItems)
+                    item.IsVisible = item.LogLevel >= value;
             }
         }
 

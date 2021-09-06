@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Media;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,6 +28,8 @@ namespace RayCarrot.RCP.Metro
             ID = id;
         }
 
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Sets the icon image source
         /// </summary>
@@ -39,7 +41,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleUnexpected("Getting jump list icon image source");
+                Logger.Warn(ex, "Getting jump list icon image source");
             }
         }
 

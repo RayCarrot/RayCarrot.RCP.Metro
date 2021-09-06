@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Getting if DOSBox game is using GOG cloud sync");
+                    Logger.Error(ex, "Getting if DOSBox game is using GOG cloud sync");
                     IsGOGCloudSyncUsed = false;
                 }
             }
@@ -54,6 +54,12 @@ namespace RayCarrot.RCP.Metro
             RestoreCommand = new AsyncRelayCommand(RestoreAsync);
             BackupCommand = new AsyncRelayCommand(BackupAsync);
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -184,7 +190,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting backup info", BackupInfo);
+                Logger.Error(ex, "Getting backup info", BackupInfo);
 
                 CanRestore = false;
 
@@ -215,7 +221,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm restore
                 if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                 {
-                    RL.Logger?.LogInformationSource($"Restore canceled");
+                    Logger.Info($"Restore canceled");
 
                     return;
                 }
@@ -260,7 +266,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm backup if one already exists
                 if (BackupInfo.ExistingBackups.Any() && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
-                    RL.Logger?.LogInformationSource($"Backup canceled");
+                    Logger.Info($"Backup canceled");
                     return;
                 }
 

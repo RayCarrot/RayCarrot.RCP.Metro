@@ -1,6 +1,6 @@
 ﻿using Nito.AsyncEx;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using System;
 using System.Threading.Tasks;
 
@@ -26,8 +26,14 @@ namespace RayCarrot.RCP.Metro
 
             _selectedLanguage = GetCurrentLanguage() ?? Ray1MinigamesLanguage.French;
 
-            RL.Logger?.LogInformationSource($"The current Rayman 1 Minigames language has been detected as {SelectedLanguage}");
+            Logger.Info($"The current Rayman 1 Minigames language has been detected as {SelectedLanguage}");
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -85,7 +91,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting Rayman 1 Minigames language");
+                Logger.Error(ex, "Getting Rayman 1 Minigames language");
 
                 return null;
             }
@@ -101,7 +107,7 @@ namespace RayCarrot.RCP.Metro
             {
                 try
                 {
-                    RL.Logger?.LogInformationSource("The Rayman 1 Minigames language is being updated...");
+                    Logger.Info("The Rayman 1 Minigames language is being updated...");
 
                     // Get languages
                     var newLang = SelectedLanguage.ToString();
@@ -111,11 +117,11 @@ namespace RayCarrot.RCP.Metro
                     RCPServices.File.MoveFile(InstallDir + "RayGames.exe", InstallDir + $"{oldLang}.exe", true);
                     RCPServices.File.MoveFile(InstallDir + $"{newLang}.exe", InstallDir + "RayGames.exe", true);
 
-                    RL.Logger?.LogInformationSource($"The Rayman 1 Minigames language has been updated");
+                    Logger.Info($"The Rayman 1 Minigames language has been updated");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Updating Rayman 1 Minigames language");
+                    Logger.Error(ex, "Updating Rayman 1 Minigames language");
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Ray1MinigamesOptions_LanguageUpdateError);
                 }
             }

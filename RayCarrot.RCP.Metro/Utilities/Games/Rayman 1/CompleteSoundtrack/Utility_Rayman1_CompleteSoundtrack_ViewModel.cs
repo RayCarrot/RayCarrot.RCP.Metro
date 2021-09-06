@@ -4,7 +4,7 @@ using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -35,6 +35,12 @@ namespace RayCarrot.RCP.Metro
             if (CanMusicBeReplaced)
                 IsOriginalMusic = GetIsOriginalSoundtrack() ?? false;
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -73,7 +79,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RL.Logger?.LogInformationSource($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
+                Logger.Info($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]
@@ -86,7 +92,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Replacing R1 soundtrack");
+                Logger.Error(ex, "Replacing R1 soundtrack");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_CompleteOSTReplaceError);
             }
         }
@@ -110,7 +116,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting R1 music size");
+                Logger.Error(ex, "Getting R1 music size");
                 return null;
             }
         }

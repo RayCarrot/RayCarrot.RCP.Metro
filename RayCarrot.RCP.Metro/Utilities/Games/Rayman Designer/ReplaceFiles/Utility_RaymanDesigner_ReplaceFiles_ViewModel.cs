@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Logging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -30,6 +30,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Commands
 
         public ICommand ReplaceRayKitCommand { get; }
@@ -44,7 +50,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ReplaceRayKitAsync()
         {
-            RL.Logger?.LogInformationSource($"The Rayman Designer replacement patch is downloading...");
+            Logger.Info($"The Rayman Designer replacement patch is downloading...");
 
             // Find the files to be replaced
             var files = new Tuple<string, Uri>[]
@@ -88,7 +94,7 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
-            RL.Logger?.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
+            Logger.Info($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
 
             await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
 
@@ -102,13 +108,13 @@ namespace RayCarrot.RCP.Metro
                     // Download the files
                     await App.DownloadAsync(group.Select(x => x.Item2).ToList(), false, group.Key);
 
-                RL.Logger?.LogInformationSource($"The Rayman Designer files have been replaced");
+                Logger.Info($"The Rayman Designer files have been replaced");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Replacing R1 soundtrack");
+                Logger.Error(ex, "Replacing R1 soundtrack");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_ReplaceFiles_Error);
             }
         }

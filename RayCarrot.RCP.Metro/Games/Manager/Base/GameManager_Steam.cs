@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
 using RayCarrot.IO;
-using RayCarrot.Logging;
+using NLog;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -15,6 +15,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class GameManager_Steam : GameManager
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Public Override Properties
 
         /// <summary>
@@ -40,12 +46,12 @@ namespace RayCarrot.RCP.Metro
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
                 (await RCPServices.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
-                RL.Logger?.LogTraceSource($"The game {Game} Steam store page was opened");
+                Logger.Trace($"The game {Game} Steam store page was opened");
             })),
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
                 (await RCPServices.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
-                RL.Logger?.LogTraceSource($"The game {Game} Steam community page was opened");
+                Logger.Trace($"The game {Game} Steam community page was opened");
             }))
         };
 
@@ -114,12 +120,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch result</returns>
         protected override async Task<GameLaunchResult> LaunchAsync(bool forceRunAsAdmin)
         {
-            RL.Logger?.LogTraceSource($"The game {Game} is launching with Steam ID {SteamID}");
+            Logger.Trace($"The game {Game} is launching with Steam ID {SteamID}");
 
             // Launch the game
             var process = await RCPServices.File.LaunchFileAsync(LaunchURL);
 
-            RL.Logger?.LogInformationSource($"The game {Game} has been launched");
+            Logger.Info($"The game {Game} has been launched");
 
             return new GameLaunchResult(process, process != null);
         }
@@ -146,7 +152,7 @@ namespace RayCarrot.RCP.Metro
                 // Get the install directory
                 if (!(key?.GetValue("InstallLocation") is string dir))
                 {
-                    RL.Logger?.LogInformationSource($"The {Game} was not found under Steam Apps");
+                    Logger.Info($"The {Game} was not found under Steam Apps");
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 
@@ -157,7 +163,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting Steam game install directory");
+                Logger.Error(ex, "Getting Steam game install directory");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 
@@ -167,7 +173,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the game is valid
             if (!await IsValidAsync(installDir))
             {
-                RL.Logger?.LogInformationSource($"The {Game} install directory was not valid");
+                Logger.Info($"The {Game} install directory was not valid");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 
@@ -186,7 +192,7 @@ namespace RayCarrot.RCP.Metro
         {
             RCPServices.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
 
-            RL.Logger?.LogTraceSource($"An URL shortcut was created for {Game} under {destinationDirectory}");
+            Logger.Trace($"An URL shortcut was created for {Game} under {destinationDirectory}");
         }
 
         #endregion
