@@ -14,7 +14,6 @@ This repository is only for the WPF redesign. The WinForms version (version 1.0.
 ## Dependencies
 The Rayman Control Panel uses these main dependencies:
 
-- [RayCarrot.Logging](https://github.com/RayCarrot/RayCarrot.Logging)
 - [RayCarrot.IO](https://github.com/RayCarrot/RayCarrot.IO)
 - [RayCarrot.UI](https://github.com/RayCarrot/RayCarrot.UI)
 - [RayCarrot.Binary](https://github.com/RayCarrot/RayCarrot.Binary)
@@ -24,6 +23,7 @@ The Rayman Control Panel uses these main dependencies:
 - [Infralution.Localization.Wpf](https://www.codeproject.com/Articles/35159/WPF-Localization-Using-RESX-Files)
 - [DotNetZip](https://github.com/haf/DotNetZip.Semverd)
 - [gong-wpf-dragdrop](https://github.com/punker76/gong-wpf-dragdrop)
+- [NLog](https://github.com/NLog/NLog)
 - [Magick.NET](https://github.com/dlemstra/Magick.NET)
 - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
 - [MahApps.Metro.SimpleChildWindow](https://github.com/punker76/MahApps.Metro.SimpleChildWindow)
