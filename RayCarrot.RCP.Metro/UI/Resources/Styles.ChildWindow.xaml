@@ -4,6 +4,7 @@
                     xmlns:simpleChildWindow="http://metro.mahapps.com/winfx/xaml/simplechildwindow">
 
     <Style TargetType="{x:Type simpleChildWindow:ChildWindow}" BasedOn="{StaticResource {x:Type simpleChildWindow:ChildWindow}}">
+        <Setter Property="OverlayBrush" Value="#10FFFFFF" />
         <Setter Property="ShowCloseButton" Value="True" />
         <Setter Property="CloseByEscape" Value="True" />
         <Setter Property="AllowMove" Value="True" />
