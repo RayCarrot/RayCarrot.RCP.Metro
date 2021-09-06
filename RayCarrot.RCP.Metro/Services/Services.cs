@@ -1,17 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Shortcuts for the common application services
     /// </summary>
     public static class Services
     {
-        /// <summary>
-        /// Gets the logger factory for creating loggers
-        /// </summary>
-        public static ILoggerFactory LoggerFactory => BaseApp.Current.GetService<ILoggerFactory>();
-
         /// <summary>
         /// Gets the common app data
         /// </summary>
