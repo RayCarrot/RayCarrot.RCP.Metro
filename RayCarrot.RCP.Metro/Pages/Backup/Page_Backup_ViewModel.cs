@@ -156,7 +156,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         game.ShowBackupRestoreIndicator = true;
 
-                        if (await RCPServices.Backup.BackupAsync(game.BackupInfo))
+                        if (await Services.Backup.BackupAsync(game.BackupInfo))
                             completed++;
 
                         game.ShowBackupRestoreIndicator = false;

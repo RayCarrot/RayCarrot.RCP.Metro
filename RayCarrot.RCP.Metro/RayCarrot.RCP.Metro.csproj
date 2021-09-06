@@ -1234,7 +1234,6 @@
       <DependentUpon>OverflowButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Extensions\GamesExtensions.cs" />
-    <Compile Include="Services\RCPServices.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

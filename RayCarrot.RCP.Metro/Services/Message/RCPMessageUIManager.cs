@@ -15,7 +15,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the user accepted the message, otherwise false</returns>
         public Task<bool> DisplayMessageAsync(string message, string header, MessageType messageType, bool allowCancel)
         {
-            return RCPServices.UI.DisplayMessageAsync(message, header, messageType, allowCancel, new DialogMessageActionViewModel[0]);
+            return Services.UI.DisplayMessageAsync(message, header, messageType, allowCancel, new DialogMessageActionViewModel[0]);
         }
     }
 }

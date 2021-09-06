@@ -431,7 +431,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    RCPServices.File.CreateFile(newFile);
+                    Services.File.CreateFile(newFile);
 
                     Logger.Info("A new ubi.ini file has been created under {0}", newFile.FullPath);
                 }

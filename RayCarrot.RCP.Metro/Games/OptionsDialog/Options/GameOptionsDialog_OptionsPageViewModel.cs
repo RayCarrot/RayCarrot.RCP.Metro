@@ -64,7 +64,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game data
         /// </summary>
-        public UserData_GameData GameData => RCPServices.Data.Games.TryGetValue(Game);
+        public UserData_GameData GameData => Services.Data.Games.TryGetValue(Game);
 
         /// <summary>
         /// The game's launch mode

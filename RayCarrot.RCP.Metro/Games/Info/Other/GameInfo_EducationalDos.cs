@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => RCPServices.Data.EducationalDosBoxGames?.FirstOrDefault()?.LaunchName;
+        public override string DefaultFileName => Services.Data.EducationalDosBoxGames?.FirstOrDefault()?.LaunchName;
 
         /// <summary>
         /// The config page view model, if any is available
@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
             get
             {
                 // Get the games with a launch mode
-                var games = RCPServices.Data.EducationalDosBoxGames.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).ToArray();
+                var games = Services.Data.EducationalDosBoxGames.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).ToArray();
 
                 // Return a collection of the backup infos for the available games
                 return games.Select(x =>

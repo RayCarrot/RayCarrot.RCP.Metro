@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Run the uninstaller
-            if (await RCPServices.File.LaunchFileAsync(AppFilePaths.UninstallFilePath, true, $"\"{Assembly.GetEntryAssembly()?.Location}\"") == null)
+            if (await Services.File.LaunchFileAsync(AppFilePaths.UninstallFilePath, true, $"\"{Assembly.GetEntryAssembly()?.Location}\"") == null)
             {
                 string[] appDataLocations = 
                 {

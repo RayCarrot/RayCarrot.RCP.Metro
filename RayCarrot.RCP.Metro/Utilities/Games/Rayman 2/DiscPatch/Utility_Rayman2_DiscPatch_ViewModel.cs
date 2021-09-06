@@ -83,32 +83,32 @@ namespace RayCarrot.RCP.Metro
                 File.WriteAllText(InstallDir + "ubi.ini", Files.ubi);
 
                 // Delete unnecessary files
-                RCPServices.File.DeleteFile(InstallDir + "RAYMAN2.ICD");
+                Services.File.DeleteFile(InstallDir + "RAYMAN2.ICD");
 
                 // NOTE: The below files are no longer included in the disc installer but have to be removed here for legacy reasons
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS0.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS2.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS0.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS2.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS2.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP0.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP2.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU0.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU2.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC0.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC2.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS0.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS2.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES0.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES1.DAT");
-                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS0.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS0.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP0.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU0.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC0.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS0.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS2.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES0.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES1.DAT");
+                Services.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES2.DAT");
 
                 RequiresPatching = false;
 

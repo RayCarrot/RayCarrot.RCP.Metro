@@ -292,7 +292,7 @@ namespace RayCarrot.RCP.Metro
                             ArchiveFileStream = null;
 
                             // If the operation succeeded, replace the archive file with the temporary output
-                            RCPServices.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
+                            Services.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
                             // Re-open the file stream
                             ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
@@ -331,7 +331,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenLocationAsync()
         {
             // Open the location
-            await RCPServices.File.OpenExplorerLocationAsync(FilePath);
+            await Services.File.OpenExplorerLocationAsync(FilePath);
 
             Logger.Trace("The archive {0} location was opened", DisplayName);
         }

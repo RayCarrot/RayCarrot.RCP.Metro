@@ -47,7 +47,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current version of the application
         /// </summary>
-        protected override Version CurrentVersion => RCPServices.App.CurrentAppVersion;
+        protected override Version CurrentVersion => Services.App.CurrentAppVersion;
 
         /// <summary>
         /// The fallback URL to display to the user in case of an error

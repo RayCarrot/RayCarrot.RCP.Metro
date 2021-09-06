@@ -783,7 +783,7 @@ namespace RayCarrot.RCP.Metro
                 };
 
                 // Delete the existing file
-                RCPServices.File.DeleteFile(batchFile);
+                Services.File.DeleteFile(batchFile);
 
                 // Create the .bat file
                 File.WriteAllLines(batchFile, new string[]

@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         {
             WebClient = new WebClient();
             InstallData = installerData;
-            FileManager = RCPServices.File;
+            FileManager = Services.File;
         }
 
         #endregion

@@ -111,7 +111,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (createBackup)
                             // Backup the file
-                            RCPServices.File.CopyFile(sna.Key, AppFilePaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
+                            Services.File.CopyFile(sna.Key, AppFilePaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
 
                         // Create the encoder
                         var encoder = new Rayman2SNADataEncoder();
@@ -163,10 +163,10 @@ namespace RayCarrot.RCP.Metro
                 await Task.Run(() =>
                 {
                     // Move back the files
-                    RCPServices.File.MoveFiles(new IOSearchPattern(AppFilePaths.R2RemoveDRMDir), BaseDirectory, true);
+                    Services.File.MoveFiles(new IOSearchPattern(AppFilePaths.R2RemoveDRMDir), BaseDirectory, true);
 
                     // Delete the backup directory
-                    RCPServices.File.DeleteDirectory(AppFilePaths.R2RemoveDRMDir);
+                    Services.File.DeleteDirectory(AppFilePaths.R2RemoveDRMDir);
                 });
 
                 HasBeenApplied = false;

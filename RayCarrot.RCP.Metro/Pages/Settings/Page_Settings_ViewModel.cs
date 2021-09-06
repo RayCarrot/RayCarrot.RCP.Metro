@@ -146,7 +146,7 @@ namespace RayCarrot.RCP.Metro
         public async Task EditJumpListAsync()
         {
             // Get the result
-            var result = await RCPServices.UI.EditJumpListAsync(new JumpListEditViewModel());
+            var result = await Services.UI.EditJumpListAsync(new JumpListEditViewModel());
 
             if (result.CanceledByUser)
                 return;
@@ -329,7 +329,7 @@ namespace RayCarrot.RCP.Metro
             public new void Add(Page_Settings_LinkItemViewModel[] group)
             {
                 // Get the valid items
-                var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= RCPServices.Data.UserLevel).ToArray();
+                var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= Services.Data.UserLevel).ToArray();
 
                 // If there are valid items, add them
                 if (validItems.Any())

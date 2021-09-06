@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => !RCPServices.File.CheckFileWriteAccess(ViewModel.SnaOffsets.Keys.FirstOrDefault());
+        public bool RequiresAdmin => !Services.File.CheckFileWriteAccess(ViewModel.SnaOffsets.Keys.FirstOrDefault());
 
         /// <summary>
         /// Indicates if the utility is available to the user

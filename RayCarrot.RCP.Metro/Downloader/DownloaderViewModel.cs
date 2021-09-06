@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
             OutputDirectory = outputDirectory;
             IsCompressed = isCompressed;
             ProcessedPaths = new List<FileSystemPath>();
-            FileManager = RCPServices.File;
+            FileManager = Services.File;
 
             // Set properties
             CurrentDownloadState = DownloadState.Paused;

@@ -104,7 +104,7 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 // Allow the user to select the file extension to export as
-                var extResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(supportedFileExtensions, Resources.Utilities_Converter_ExportExtensionHeader));
+                var extResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(supportedFileExtensions, Resources.Utilities_Converter_ExportExtensionHeader));
 
                 if (extResult.CanceledByUser)
                     return;
@@ -140,7 +140,7 @@ namespace RayCarrot.RCP.Metro
                                 }
 
                                 // Read the file data
-                                var data = BinarySerializableHelpers.ReadFromStream<T>(stream, settings, RCPServices.App.GetBinarySerializerLogger(file.Name));
+                                var data = BinarySerializableHelpers.ReadFromStream<T>(stream, settings, Services.App.GetBinarySerializerLogger(file.Name));
 
                                 // Get the destination file
                                 var destinationFile = destinationResult.SelectedDirectory + file.Name;
@@ -223,7 +223,7 @@ namespace RayCarrot.RCP.Metro
                     if (outputFormats?.Any() == true)
                     {
                         // Get the format
-                        var formatResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(outputFormats, Resources.Utilities_Converter_FormatSelectionHeader));
+                        var formatResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(outputFormats, Resources.Utilities_Converter_FormatSelectionHeader));
                         
                         if (formatResult.CanceledByUser)
                             return;
@@ -251,7 +251,7 @@ namespace RayCarrot.RCP.Metro
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
 
                                 // Save the converted data
-                                BinarySerializableHelpers.WriteToStream(data, destinationFileStream, settings, RCPServices.App.GetBinarySerializerLogger(file.Name));
+                                BinarySerializableHelpers.WriteToStream(data, destinationFileStream, settings, Services.App.GetBinarySerializerLogger(file.Name));
                             }
                             else
                             {
@@ -259,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                                 using var encodingStream = new MemoryStream();
 
                                 // Serialize the converted data to the memory stream
-                                BinarySerializableHelpers.WriteToStream(data, encodingStream, settings, RCPServices.App.GetBinarySerializerLogger(file.Name));
+                                BinarySerializableHelpers.WriteToStream(data, encodingStream, settings, Services.App.GetBinarySerializerLogger(file.Name));
 
                                 // Create the destination file
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);

@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
                 _isEnabled = value;
                 Data.TPLSData.IsEnabled = value;
 
-                _ = Task.Run(async () => await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, false, false, false, true)));
+                _ = Task.Run(async () => await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, false, false, false, true)));
             }
         }
 
@@ -129,7 +129,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if the directory exists
                 if (AppFilePaths.R1TPLSDir.DirectoryExists)
                     // Delete the directory
-                    RCPServices.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
+                    Services.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
 
                 // Download the files
                 if (!await App.DownloadAsync(new Uri[]
@@ -138,12 +138,12 @@ namespace RayCarrot.RCP.Metro
                 }, true, AppFilePaths.R1TPLSDir))
                 {
                     // If canceled, delete the directory
-                    RCPServices.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
+                    Services.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
                     return;
                 }
 
                 // Save
-                RCPServices.Data.TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
+                Services.Data.TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
 
                 // Update the version
                 await Data.TPLSData.UpdateConfigAsync();
@@ -172,11 +172,11 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                RCPServices.File.DeleteDirectory(RCPServices.Data.TPLSData.InstallDir);
+                Services.File.DeleteDirectory(Services.Data.TPLSData.InstallDir);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
-                RCPServices.Data.TPLSData = null;
+                Services.Data.TPLSData = null;
 
                 Logger.Info("The TPLS utility has been uninstalled");
             }

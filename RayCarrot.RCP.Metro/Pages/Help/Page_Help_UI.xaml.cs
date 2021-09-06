@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro
 
             Services.InstanceData.UserLevelChanged += (s, e) =>
             {
-                if ((HelpTreeView.SelectedItem as Page_Help_ItemViewModel)?.RequiredUserLevel > RCPServices.Data.UserLevel)
+                if ((HelpTreeView.SelectedItem as Page_Help_ItemViewModel)?.RequiredUserLevel > Services.Data.UserLevel)
                     ((TreeViewItem)HelpTreeView.ItemContainerGenerator.ContainerFromItem(HelpTreeView.Items[0])).IsSelected = true;
             };
         }

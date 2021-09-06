@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro
             outputFileStream.Position = 0;
 
             // Serialize the data
-            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, Services.App.GetBinarySerializerLogger());
 
             Logger.Info("The R1 PC archive has been repacked");
         }
@@ -235,7 +235,7 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Load the current file
-            var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
 
             Logger.Info("Read R1 PC archive file with {0} files", data.Files.Length);
 

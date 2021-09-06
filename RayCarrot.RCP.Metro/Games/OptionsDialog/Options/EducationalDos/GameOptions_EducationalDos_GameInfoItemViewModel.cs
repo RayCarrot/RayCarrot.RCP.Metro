@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("The educational game {0} is being edited...", GameData.Name);
 
             // Show the edit dialog and get the result
-            var result = await RCPServices.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(GameData)
+            var result = await Services.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(GameData)
             {
                 Title = Resources.EducationalOptions_EditHeader
             });
@@ -126,7 +126,7 @@ namespace RayCarrot.RCP.Metro
                 instDir += GameData.LaunchName;
 
             // Open the location
-            await RCPServices.File.OpenExplorerLocationAsync(instDir);
+            await Services.File.OpenExplorerLocationAsync(instDir);
 
             Logger.Trace("The educational game {0} install location was opened", GameData.Name);
         }

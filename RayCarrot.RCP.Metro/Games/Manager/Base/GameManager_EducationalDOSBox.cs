@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the additional overflow button items for the game
         /// </summary>
-        public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => RCPServices.Data.EducationalDosBoxGames.
+        public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => Services.Data.EducationalDosBoxGames.
             Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.WPFApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
         {
             Logger.Trace("The educational game {0} is being launched...", x.Name);
@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
 
             // Launch the game
-            var process = await RCPServices.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
+            var process = await Services.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
             Logger.Info("The educational game {0} has been launched", x.Name);
 
@@ -74,10 +74,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The items</returns>
         public override IList<JumpListItemViewModel> GetJumpListItems()
         {
-            if (RCPServices.Data.EducationalDosBoxGames == null)
+            if (Services.Data.EducationalDosBoxGames == null)
                 return new JumpListItemViewModel[0];
 
-            return RCPServices.Data.EducationalDosBoxGames.Select(x =>
+            return Services.Data.EducationalDosBoxGames.Select(x =>
             {
                 var launchInfo = Game.GetManager<GameManager_EducationalDOSBox>().GetLaunchInfo(x);
 
@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Metro
         public override GameLaunchInfo GetLaunchInfo()
         {
             // Get the default game
-            var defaultGame = RCPServices.Data.EducationalDosBoxGames.First();
+            var defaultGame = Services.Data.EducationalDosBoxGames.First();
 
             return GetLaunchInfo(defaultGame);
         }
@@ -107,7 +107,7 @@ namespace RayCarrot.RCP.Metro
             var info = GetNewEducationalDosBoxGameInfo(Game.GetInstallDir());
 
             // Add the game to the list of educational games
-            RCPServices.Data.EducationalDosBoxGames.Add(info);
+            Services.Data.EducationalDosBoxGames.Add(info);
 
             // Create config file
             return base.PostGameAddAsync();
@@ -120,7 +120,7 @@ namespace RayCarrot.RCP.Metro
         public override Task PostGameRemovedAsync()
         {
             // Remove game specific data
-            RCPServices.Data.EducationalDosBoxGames = null;
+            Services.Data.EducationalDosBoxGames = null;
             
             return base.PostGameRemovedAsync();
         }
@@ -168,27 +168,27 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is valid, otherwise false</returns>
         public override async Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
-            if (RCPServices.Data.EducationalDosBoxGames == null)
+            if (Services.Data.EducationalDosBoxGames == null)
                 return false;
 
-            var toRemove = RCPServices.Data.EducationalDosBoxGames.
+            var toRemove = Services.Data.EducationalDosBoxGames.
                 Where(game => !IsGameDirValid(game.InstallDir) || game.LaunchName.IsNullOrWhiteSpace()).
                 ToArray();
 
             // Remove invalid games
             foreach (var game in toRemove)
-                RCPServices.Data.EducationalDosBoxGames.Remove(game);
+                Services.Data.EducationalDosBoxGames.Remove(game);
 
             // Notify user
             foreach (var game in toRemove)
             {
-                RCPServices.Data.JumpListItemIDCollection.RemoveWhere(x => x == game.ID);
+                Services.Data.JumpListItemIDCollection.RemoveWhere(x => x == game.ID);
 
                 await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
             }
 
             // Make sure there is at least one game
-            if (RCPServices.Data.EducationalDosBoxGames?.Any() != true)
+            if (Services.Data.EducationalDosBoxGames?.Any() != true)
                 return false;
 
             // If any games were removed, refresh the default game and jump list
@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro
             {
                 // Reset the game data with new install directory
                 RefreshDefault();
-                await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, false, false, false, true));
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, false, false, false, true));
             }
 
             return true;
@@ -208,7 +208,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game can launch, otherwise false</returns>
         public override async Task<bool> VerifyCanLaunchAsync()
         {
-            return await VerifyCanLaunchAsync(RCPServices.Data.EducationalDosBoxGames.First());
+            return await VerifyCanLaunchAsync(Services.Data.EducationalDosBoxGames.First());
         }
 
         #endregion
@@ -226,8 +226,8 @@ namespace RayCarrot.RCP.Metro
             FileSystemPath launchName = Directory.EnumerateFiles(installDir, "*.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
 
             // Create the collection if it doesn't exist
-            if (RCPServices.Data.EducationalDosBoxGames == null)
-                RCPServices.Data.EducationalDosBoxGames = new List<UserData_EducationalDosBoxGameData>();
+            if (Services.Data.EducationalDosBoxGames == null)
+                Services.Data.EducationalDosBoxGames = new List<UserData_EducationalDosBoxGameData>();
 
             // Create the game data
             var info = new UserData_EducationalDosBoxGameData(installDir, launchName.Name)
@@ -245,7 +245,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch info</returns>
         public GameLaunchInfo GetLaunchInfo(UserData_EducationalDosBoxGameData game)
         {
-            return new GameLaunchInfo(RCPServices.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDir));
+            return new GameLaunchInfo(Services.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDir));
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace RayCarrot.RCP.Metro
         public async Task<bool> VerifyCanLaunchAsync(UserData_EducationalDosBoxGameData game)
         {
             // Make sure the DosBox executable exists
-            if (!File.Exists(RCPServices.Data.DosBoxPath))
+            if (!File.Exists(Services.Data.DosBoxPath))
             {
                 await Services.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
                 return false;
@@ -302,7 +302,7 @@ namespace RayCarrot.RCP.Metro
             var launchMode = Games.EducationalDos.GetLaunchMode();
 
             // Reset the game data with new install directory
-            RCPServices.Data.Games[Games.EducationalDos] = new UserData_GameData(GameType.EducationalDosBox, RCPServices.Data.EducationalDosBoxGames.First().InstallDir)
+            Services.Data.Games[Games.EducationalDos] = new UserData_GameData(GameType.EducationalDosBox, Services.Data.EducationalDosBoxGames.First().InstallDir)
             {
                 LaunchMode = launchMode
             };

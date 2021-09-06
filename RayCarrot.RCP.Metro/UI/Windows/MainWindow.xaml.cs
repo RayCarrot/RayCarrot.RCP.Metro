@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
 
             // Subscribe to events
-            RCPServices.App.RefreshRequired += AppGameRefreshRequiredAsync;
+            Services.App.RefreshRequired += AppGameRefreshRequiredAsync;
             Loaded += MainWindow_Loaded;
         }
 
@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                BackupPageTab.IsEnabled = RCPServices.Data.Games?.Any() ?? false;
+                BackupPageTab.IsEnabled = Services.Data.Games?.Any() ?? false;
             }
             catch (Exception ex)
             {

@@ -43,7 +43,7 @@ namespace RayCarrot.RCP.Metro
             HandledAction?.Invoke(InstallLocation, HandledParameter);
 
             // Add the game
-            await RCPServices.App.AddNewGameAsync(Game, GameType, InstallLocation);
+            await Services.App.AddNewGameAsync(Game, GameType, InstallLocation);
         }
     }
 }

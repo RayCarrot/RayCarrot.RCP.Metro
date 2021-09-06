@@ -263,7 +263,7 @@ namespace RayCarrot.RCP.Metro
 
                     case DebugDataOutputType.GameFinder:
                         // Select the games to find
-                        var selectionResult = await RCPServices.UI.SelectGamesAsync(new GamesSelectionViewModel());
+                        var selectionResult = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel());
 
                         if (selectionResult.CanceledByUser)
                             return;

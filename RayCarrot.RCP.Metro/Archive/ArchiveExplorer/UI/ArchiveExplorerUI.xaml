@@ -124,7 +124,7 @@
                                     Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}">
                     <local:OverflowMenu.ContextMenu>
                         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                     DataContext="{x:Static local:RCPServices.Data}">
+                                     DataContext="{x:Static local:Services.Data}">
                             <local:MenuItemIcon Header="{Resx Archive_Sort}"
                                                 IconKind="Sort" >
 

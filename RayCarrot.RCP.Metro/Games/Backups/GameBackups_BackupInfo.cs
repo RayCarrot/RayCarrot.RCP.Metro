@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Metro
             // Get the latest backup version to create a backup from
             LatestAvailableBackupVersion = AllBackupDirectories.Select(x => x.Value.Select(y => y.BackupVersion)).SelectMany(x => x).Max();
 
-            BackupLocation = RCPServices.Data.BackupLocation + AppViewModel.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
+            BackupLocation = Services.Data.BackupLocation + AppViewModel.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
             CompressedBackupLocation = BackupLocation.FullPath + AppFilePaths.BackupCompressionExtension;
             GameDisplayName = displayName;
         }
@@ -111,7 +111,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                var path = RCPServices.Data.BackupLocation + AppViewModel.BackupFamily;
+                var path = Services.Data.BackupLocation + AppViewModel.BackupFamily;
 
                 if (!path.DirectoryExists)
                     return new GameBackups_ExistingBackup[0];
@@ -119,7 +119,7 @@ namespace RayCarrot.RCP.Metro
                 return Directory.GetFileSystemEntries(path, $"{BackupName}*", SearchOption.TopDirectoryOnly).
                     Select(x => new GameBackups_ExistingBackup(x)).
                     OrderByDescending(x => x.BackupVersion).
-                    ThenBy(x => x.IsCompressed == RCPServices.Data.CompressBackups ? 0 : 1).
+                    ThenBy(x => x.IsCompressed == Services.Data.CompressBackups ? 0 : 1).
                     ToArray();
             }
             catch (Exception ex)

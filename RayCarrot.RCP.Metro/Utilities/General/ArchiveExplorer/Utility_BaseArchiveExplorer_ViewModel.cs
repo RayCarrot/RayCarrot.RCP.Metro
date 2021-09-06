@@ -91,7 +91,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Show the Archive Explorer
-            await RCPServices.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
+            await Services.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Metro
         public async Task CreateArchiveAsync()
         {
             // Show the Archive Creator
-            await RCPServices.UI.ShowArchiveCreatorAsync(GetArchiveDataManager(ArchiveMode.Creator));
+            await Services.UI.ShowArchiveCreatorAsync(GetArchiveDataManager(ArchiveMode.Creator));
         }
 
         #endregion

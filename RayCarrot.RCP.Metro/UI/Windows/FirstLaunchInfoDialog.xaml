@@ -47,7 +47,7 @@
                 </ScrollViewer>
 
                 <WrapPanel Grid.Row="1"
-                           DataContext="{Binding Source={x:Static local:RCPServices.Data}}">
+                           DataContext="{Binding Source={x:Static local:Services.Data}}">
                     <CheckBox Content="{Resx Settings_StartupGameFinder}" 
                               Margin="10"
                               IsChecked="{Binding Path=AutoLocateGames}"/>

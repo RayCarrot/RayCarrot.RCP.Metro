@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         public override Task PostGameAddAsync()
         {
             // Default to run as admin
-            RCPServices.Data.Games[Game].LaunchMode = UserData_GameLaunchMode.AsAdmin;
+            Services.Data.Games[Game].LaunchMode = UserData_GameLaunchMode.AsAdmin;
 
             // Call base and return
             return base.PostGameAddAsync();

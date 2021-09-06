@@ -229,7 +229,7 @@ namespace RayCarrot.RCP.Metro
                 ShowBackupRestoreIndicator = true;
 
                 // Perform the restore
-                if (await Task.Run(async () => await RCPServices.Backup.RestoreAsync(BackupInfo)))
+                if (await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo)))
                 {
                     ShowBackupRestoreIndicator = false;
 
@@ -273,7 +273,7 @@ namespace RayCarrot.RCP.Metro
                 ShowBackupRestoreIndicator = true;
 
                 // Perform the backup
-                if (await Task.Run(async () => await RCPServices.Backup.BackupAsync(BackupInfo)))
+                if (await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo)))
                 {
                     ShowBackupRestoreIndicator = false;
 

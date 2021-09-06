@@ -280,7 +280,7 @@ namespace RayCarrot.RCP.Metro
                                         }.Concat(file.FileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
 
                                         // Have user select the format
-                                        FileExtensionSelectionDialogResult extResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FileType.TypeDisplayName)));
+                                        FileExtensionSelectionDialogResult extResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FileType.TypeDisplayName)));
 
                                         // Since this operation can't be canceled we get the first format
                                         if (extResult.CanceledByUser)
@@ -439,7 +439,7 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
-                    var result = await RCPServices.UI.GetStringInput(new StringInputViewModel
+                    var result = await Services.UI.GetStringInput(new StringInputViewModel
                     {
                         Title = Resources.Archive_CreateDir_Header,
                         HeaderText = Resources.Archive_CreateDir_Header,

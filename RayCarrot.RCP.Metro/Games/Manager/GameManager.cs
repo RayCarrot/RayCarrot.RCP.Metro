@@ -103,7 +103,7 @@ namespace RayCarrot.RCP.Metro
             process?.Dispose();
 
             // Check if the application should close
-            if (RCPServices.Data.CloseAppOnGameLaunch)
+            if (Services.Data.CloseAppOnGameLaunch)
                 await App.Current.ShutdownRCFAppAsync(false);
         }
 
@@ -189,10 +189,10 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Add the game
-            await RCPServices.App.AddNewGameAsync(Game, Type, path.Value);
+            await Services.App.AddNewGameAsync(Game, Type, path.Value);
 
             // Refresh
-            await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
             Logger.Info("The game {0} has been added", Game);
         }

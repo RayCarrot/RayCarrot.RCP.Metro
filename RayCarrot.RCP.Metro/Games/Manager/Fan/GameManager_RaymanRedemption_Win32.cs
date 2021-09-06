@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
         {
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, PackIconMaterialKind.Earth, new AsyncRelayCommand(async () =>
             {
-                (await RCPServices.File.LaunchFileAsync("https://gamejolt.com/games/raymanredemption/340532"))?.Dispose();
+                (await Services.File.LaunchFileAsync("https://gamejolt.com/games/raymanredemption/340532"))?.Dispose();
                 Logger.Trace("The game {0} GameJolt page was opened", Game);
             })),
         };

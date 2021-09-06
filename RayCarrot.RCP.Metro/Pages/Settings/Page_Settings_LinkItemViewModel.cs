@@ -241,13 +241,13 @@ namespace RayCarrot.RCP.Metro
             if (IsLocal)
             {
                 if (IsRegistryPath)
-                    await RCPServices.File.OpenRegistryKeyAsync(RegistryLinkPath);
+                    await Services.File.OpenRegistryKeyAsync(RegistryLinkPath);
 
                 else if (LocalLinkPath.FileExists)
-                    await RCPServices.File.LaunchFileAsync(LocalLinkPath);
+                    await Services.File.LaunchFileAsync(LocalLinkPath);
 
                 else if (LocalLinkPath.DirectoryExists)
-                    await RCPServices.File.OpenExplorerLocationAsync(LocalLinkPath);
+                    await Services.File.OpenExplorerLocationAsync(LocalLinkPath);
 
                 else
                     await Services.MessageUI.DisplayMessageAsync(Resources.Links_OpenErrorNotFound, Resources.Links_OpenErrorNotFoundHeader, MessageType.Error);

@@ -24,5 +24,35 @@
         /// Gets the dialog base manager, or the default one
         /// </summary>
         public static IDialogBaseManager DialogBaseManager => BaseApp.Current.GetService<IDialogBaseManager>();
+
+        /// <summary>
+        /// The application user data
+        /// </summary>
+        public static AppUserData Data => BaseApp.Current.GetService<AppUserData>();
+
+        /// <summary>
+        /// The app view model
+        /// </summary>
+        public static AppViewModel App => BaseApp.Current.GetService<AppViewModel>();
+
+        /// <summary>
+        /// The App UI manager
+        /// </summary>
+        public static AppUIManager UI => BaseApp.Current.GetService<AppUIManager>();
+
+        /// <summary>
+        /// The backup manager
+        /// </summary>
+        public static GameBackups_Manager Backup => BaseApp.Current.GetService<GameBackups_Manager>();
+
+        /// <summary>
+        /// The update manager
+        /// </summary>
+        public static IUpdaterManager UpdaterManager => BaseApp.Current.GetService<IUpdaterManager>();
+
+        /// <summary>
+        /// The file manager
+        /// </summary>
+        public static IFileManager File => BaseApp.Current.GetService<IFileManager>();
     }
 }

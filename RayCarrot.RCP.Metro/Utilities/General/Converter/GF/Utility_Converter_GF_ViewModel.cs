@@ -143,7 +143,7 @@ namespace RayCarrot.RCP.Metro
                 var oldRepeatByte = gf.RepeatByte;
 
                 // Import from the bitmap
-                gf.ImportFromBitmap(settings, new RawBitmapData(bmp), RCPServices.Data.Archive_GF_GenerateMipmaps);
+                gf.ImportFromBitmap(settings, new RawBitmapData(bmp), Services.Data.Archive_GF_GenerateMipmaps);
 
                 Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 

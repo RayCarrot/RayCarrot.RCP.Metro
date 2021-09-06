@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The DOSBox file path
         /// </summary>
-        public virtual FileSystemPath DOSBoxFilePath => RCPServices.Data.DosBoxPath;
+        public virtual FileSystemPath DOSBoxFilePath => Services.Data.DosBoxPath;
 
         /// <summary>
         /// Optional additional config files
@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch info</returns>
         public override GameLaunchInfo GetLaunchInfo()
         {
-            var options = RCPServices.Data.DosBoxGames[Game];
+            var options = Services.Data.DosBoxGames[Game];
             return new GameLaunchInfo(DOSBoxFilePath, GetDosBoxArguments(options.MountPath, Game.GetGameInfo().DefaultFileName));
         }
 
@@ -126,8 +126,8 @@ namespace RayCarrot.RCP.Metro
             // Create the options
             var options = new UserData_DosBoxOptions();
 
-            if (!RCPServices.Data.DosBoxGames.ContainsKey(Game))
-                RCPServices.Data.DosBoxGames.Add(Game, options);
+            if (!Services.Data.DosBoxGames.ContainsKey(Game))
+                Services.Data.DosBoxGames.Add(Game, options);
 
             // If the game was included in Rayman Forever...
             if (RaymanForeverFolderName != null)
@@ -153,21 +153,21 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Find DOSBox path if not already added
-                if (!File.Exists(RCPServices.Data.DosBoxPath))
+                if (!File.Exists(Services.Data.DosBoxPath))
                 {
                     var dosBoxPath = foreverInstallDir + "DosBox" + "DOSBox.exe";
 
                     if (dosBoxPath.FileExists)
-                        RCPServices.Data.DosBoxPath = dosBoxPath;
+                        Services.Data.DosBoxPath = dosBoxPath;
                 }
 
                 // Find DOSBox config path if not already added
-                if (!File.Exists(RCPServices.Data.DosBoxConfig))
+                if (!File.Exists(Services.Data.DosBoxConfig))
                 {
                     var dosBoxConfigPath = foreverInstallDir + "dosboxRayman.conf";
 
                     if (dosBoxConfigPath.FileExists)
-                        RCPServices.Data.DosBoxConfig = dosBoxConfigPath;
+                        Services.Data.DosBoxConfig = dosBoxConfigPath;
                 }
             }
 
@@ -181,14 +181,14 @@ namespace RayCarrot.RCP.Metro
         public override Task PostGameRemovedAsync()
         {
             // If there is DosBox options saved, remove those as well
-            if (RCPServices.Data.DosBoxGames.ContainsKey(Game))
+            if (Services.Data.DosBoxGames.ContainsKey(Game))
             {
-                RCPServices.Data.DosBoxGames.Remove(Game);
+                Services.Data.DosBoxGames.Remove(Game);
 
                 try
                 {
                     // Remove the config file
-                    RCPServices.File.DeleteFile(DosBoxConfigFile);
+                    Services.File.DeleteFile(DosBoxConfigFile);
                 }
                 catch (Exception ex)
                 {
@@ -260,7 +260,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Make sure the mount path exists
-            if (RequiresMounting && !RCPServices.Data.DosBoxGames[Game].MountPath.Exists)
+            if (RequiresMounting && !Services.Data.DosBoxGames[Game].MountPath.Exists)
             {
                 await Services.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
                 return false;
@@ -299,7 +299,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Add the primary config file
-            AddConfig(RCPServices.Data.DosBoxConfig);
+            AddConfig(Services.Data.DosBoxConfig);
 
             // Add the RCP config file
             AddConfig(DosBoxConfigFile.FullPath);

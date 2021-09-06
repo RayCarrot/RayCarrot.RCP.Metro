@@ -152,10 +152,10 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Remove the game
-            await RCPServices.App.RemoveGameAsync(Game, false);
+            await Services.App.RemoveGameAsync(Game, false);
 
             // Refresh
-            await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Delete the game directory
-                RCPServices.File.DeleteDirectory(Game.GetInstallDir(false));
+                Services.File.DeleteDirectory(Game.GetInstallDir(false));
 
                 Logger.Info("The game install directory was removed");
 
@@ -188,7 +188,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Delete additional directories
                     foreach (var dir in dirs)
-                        RCPServices.File.DeleteDirectory(dir);
+                        Services.File.DeleteDirectory(dir);
 
                     Logger.Info("The game additional directories were removed");
                 }
@@ -200,7 +200,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Delete additional files
                     foreach (var file in files)
-                        RCPServices.File.DeleteFile(file);
+                        Services.File.DeleteFile(file);
 
                     Logger.Info("The game additional files were removed");
                 }
@@ -214,10 +214,10 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Remove the game
-            await RCPServices.App.RemoveGameAsync(Game, true);
+            await Services.App.RemoveGameAsync(Game, true);
 
             // Refresh
-            await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.UninstallGameSuccess, DisplayName), Resources.UninstallGameSuccessHeader);
         }

@@ -89,7 +89,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}", Game, launchInfo.Path, launchInfo.Args);
 
             // Launch the game
-            var process = await RCPServices.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
+            var process = await Services.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
             Logger.Info("The game {0} has been launched", Game);
 
@@ -169,7 +169,7 @@ namespace RayCarrot.RCP.Metro
             var launchInfo = GetLaunchInfo();
 
             // Create the shortcut
-            RCPServices.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
+            Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
 
             Logger.Trace("A shortcut was created for {0} under {1}", Game, destinationDirectory);
         }

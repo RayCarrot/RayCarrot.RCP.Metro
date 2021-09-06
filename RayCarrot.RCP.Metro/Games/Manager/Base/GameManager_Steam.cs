@@ -45,12 +45,12 @@ namespace RayCarrot.RCP.Metro
         {
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
-                (await RCPServices.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
+                (await Services.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
                 Logger.Trace("The game {0} Steam store page was opened", Game);
             })),
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
-                (await RCPServices.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
+                (await Services.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
                 Logger.Trace("The game {0} Steam community page was opened", Game);
             }))
         };
@@ -123,7 +123,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Trace("The game {0} is launching with Steam ID {1}", Game, SteamID);
 
             // Launch the game
-            var process = await RCPServices.File.LaunchFileAsync(LaunchURL);
+            var process = await Services.File.LaunchFileAsync(LaunchURL);
 
             Logger.Info("The game {0} has been launched", Game);
 
@@ -190,7 +190,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="destinationDirectory">The destination directory for the shortcut</param>
         public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
         {
-            RCPServices.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
+            Services.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
 
             Logger.Trace("An URL shortcut was created for {0} under {1}", Game, destinationDirectory);
         }

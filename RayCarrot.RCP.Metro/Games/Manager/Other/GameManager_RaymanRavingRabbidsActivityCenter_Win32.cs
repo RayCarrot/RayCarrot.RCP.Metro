@@ -27,12 +27,12 @@ namespace RayCarrot.RCP.Metro
         public override async Task PostLaunchAsync(Process process)
         {
             // Check if the launch message should show
-            if (!RCPServices.Data.ShownRabbidsActivityCenterLaunchMessage)
+            if (!Services.Data.ShownRabbidsActivityCenterLaunchMessage)
             {
                 await Services.MessageUI.DisplayMessageAsync(Resources.RabbidsActivityCenter_LaunchMessage, MessageType.Information);
 
                 // Flag that the message should not be shown again
-                RCPServices.Data.ShownRabbidsActivityCenterLaunchMessage = true;
+                Services.Data.ShownRabbidsActivityCenterLaunchMessage = true;
             }
 
             // Run the base code

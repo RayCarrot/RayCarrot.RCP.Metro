@@ -114,8 +114,8 @@ namespace RayCarrot.RCP.Metro
                     var oldLang = (SelectedLanguage == Ray1MinigamesLanguage.German ? Ray1MinigamesLanguage.French : Ray1MinigamesLanguage.German).ToString();
 
                     // Move exe files
-                    RCPServices.File.MoveFile(InstallDir + "RayGames.exe", InstallDir + $"{oldLang}.exe", true);
-                    RCPServices.File.MoveFile(InstallDir + $"{newLang}.exe", InstallDir + "RayGames.exe", true);
+                    Services.File.MoveFile(InstallDir + "RayGames.exe", InstallDir + $"{oldLang}.exe", true);
+                    Services.File.MoveFile(InstallDir + $"{newLang}.exe", InstallDir + "RayGames.exe", true);
 
                     Logger.Info("The Rayman 1 Minigames language has been updated");
                 }

@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Metro
                 }, true, KnownFolders.Downloads.Path);
 
                 if (succeeded)
-                    (await RCPServices.File.LaunchFileAsync(Path.Combine(KnownFolders.Downloads.Path, "RaymanOriginspc_1.02.exe")))?.Dispose();
+                    (await Services.File.LaunchFileAsync(Path.Combine(KnownFolders.Downloads.Path, "RaymanOriginspc_1.02.exe")))?.Dispose();
             }
             catch (Exception ex)
             {

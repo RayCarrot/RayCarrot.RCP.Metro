@@ -6,7 +6,7 @@
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
     <Button Style="{StaticResource Button.Flat}"
             ToolTip="{Resx Settings_AdminInfo}"
-            Command="{Binding Path=RequestRestartAsAdminCommand, Source={x:Static local:RCPServices.App}}">
+            Command="{Binding Path=RequestRestartAsAdminCommand, Source={x:Static local:Services.App}}">
 
         <iconPacks:PackIconMaterial Background="Transparent"
                                     Kind="Security"

@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro
         public GamesSelectionViewModel()
         {
             Title = "Select games";
-            Games = RCPServices.App.GetGames.Select(x => new GamesItem(x)).ToArray();
+            Games = Services.App.GetGames.Select(x => new GamesItem(x)).ToArray();
         }
 
         /// <summary>

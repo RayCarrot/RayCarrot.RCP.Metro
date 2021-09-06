@@ -13,10 +13,10 @@
                   CloseWithEscape="False"
                   Height="720"
                   Width="960"
-                  DataContext="{x:Static local:RCPServices.App}">
+                  DataContext="{x:Static local:Services.App}">
     <local:BaseWindow.TitleTemplate>
         <DataTemplate>
-            <Grid DataContext="{x:Static local:RCPServices.App}">
+            <Grid DataContext="{x:Static local:Services.App}">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
                         <Setter Property="Margin" Value="8 -1 1 0" />

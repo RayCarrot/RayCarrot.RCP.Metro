@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        Application.Current.SetTheme(RCPServices.Data.DarkMode, false, "Red");
+                        Application.Current.SetTheme(Services.Data.DarkMode, false, "Red");
 
                         await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Konami, Resources.SecretCodes_KonamiHeader, MessageType.Success);
                     }
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        Application.Current.SetTheme(RCPServices.Data.DarkMode, false, "Orange");
+                        Application.Current.SetTheme(Services.Data.DarkMode, false, "Orange");
 
                         await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_RayCarrot, Resources.SecretCodes_RayCarrotHeader, MessageType.Success);
                     }
@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        Application.Current.SetTheme(RCPServices.Data.DarkMode, false, "Lime");
+                        Application.Current.SetTheme(Services.Data.DarkMode, false, "Lime");
 
                         await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
                     }

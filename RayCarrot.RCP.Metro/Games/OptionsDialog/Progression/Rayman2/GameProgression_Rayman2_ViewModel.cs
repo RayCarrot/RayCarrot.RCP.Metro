@@ -86,7 +86,7 @@ namespace RayCarrot.RCP.Metro
             memStream.Position = 0;
 
             // Deserialize and return the data
-            var saveData = BinarySerializableHelpers.ReadFromStream<Rayman2PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
+            var saveData = BinarySerializableHelpers.ReadFromStream<Rayman2PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC), Services.App.GetBinarySerializerLogger(filePath.Name));
 
             Logger.Info("Slot has been deserialized");
 
@@ -156,7 +156,7 @@ namespace RayCarrot.RCP.Metro
             decodedDataStream.Position = 0;
 
             // Get the serialized data
-            var config = BinarySerializableHelpers.ReadFromStream<Rayman2PCConfigData>(decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC), RCPServices.App.GetBinarySerializerLogger(ConfigFilePath.Name));
+            var config = BinarySerializableHelpers.ReadFromStream<Rayman2PCConfigData>(decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC), Services.App.GetBinarySerializerLogger(ConfigFilePath.Name));
 
             // Read and set slot data
             ProgressionSlots.AddRange(config.Slots.Select(x => GetProgressionSlotViewModel(SaveGamePath + $"Slot{x.SlotIndex}" + "General.sav", x.SlotDisplayName)));

@@ -245,7 +245,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Make sure write permission is granted to the selected directory
-            if (!RCPServices.File.CheckDirectoryWriteAccess(InstallDir))
+            if (!Services.File.CheckDirectoryWriteAccess(InstallDir))
             {
                 await Services.MessageUI.DisplayMessageAsync(Resources.Installer_DirMissingWritePermission, Resources.Installer_DirMissingWritePermissionHeader, MessageType.Error);
                 return;
@@ -283,7 +283,7 @@ namespace RayCarrot.RCP.Metro
                     await App.AddNewGameAsync(Game, GameType.Win32, output);
 
                     // Add game to installed games
-                    RCPServices.Data.InstalledGames.Add(Game);
+                    Services.Data.InstalledGames.Add(Game);
 
                     // Refresh
                     await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));

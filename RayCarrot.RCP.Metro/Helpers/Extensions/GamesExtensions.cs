@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game has been added, otherwise false</returns>
         public static bool IsAdded(this Games game)
         {
-            return RCPServices.Data.Games.ContainsKey(game);
+            return Services.Data.Games.ContainsKey(game);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath GetInstallDir(this Games game, bool throwIfNotFound = true)
         {
             // Get the game data
-            var data = RCPServices.Data.Games.TryGetValue(game);
+            var data = Services.Data.Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -95,7 +95,7 @@ namespace RayCarrot.RCP.Metro
         public static GameType GetGameType(this Games game)
         {
             // Get the game data
-            var data = RCPServices.Data.Games.TryGetValue(game);
+            var data = Services.Data.Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -113,7 +113,7 @@ namespace RayCarrot.RCP.Metro
         public static UserData_GameLaunchMode GetLaunchMode(this Games game)
         {
             // Get the game data
-            var data = RCPServices.Data.Games.TryGetValue(game);
+            var data = Services.Data.Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -130,7 +130,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The manager</returns>
         public static GameManager GetManager(this Games game)
         {
-            var g = RCPServices.App.GamesManager;
+            var g = Services.App.GamesManager;
             return g.CreateCachedInstance<GameManager>(g.GameManagers[game][game.GetGameType()]);
         }
 
@@ -141,7 +141,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The managers</returns>
         public static IEnumerable<GameManager> GetManagers(this Games game)
         {
-            var g = RCPServices.App.GamesManager;
+            var g = Services.App.GamesManager;
             return g.GameManagers[game].Values.Select(managerType => g.CreateCachedInstance<GameManager>(managerType));
         }
 
@@ -153,7 +153,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The manager</returns>
         public static GameManager GetManager(this Games game, GameType type)
         {
-            var g = RCPServices.App.GamesManager;
+            var g = Services.App.GamesManager;
             return g.CreateCachedInstance<GameManager>(g.GameManagers[game][type]);
         }
 
@@ -188,7 +188,7 @@ namespace RayCarrot.RCP.Metro
                     throw new Exception("The provided game manager type is not valid");
             }
 
-            var g = RCPServices.App.GamesManager;
+            var g = Services.App.GamesManager;
             return g.CreateCachedInstance<T>(g.GameManagers[game][type.Value]);
         }
 
@@ -207,7 +207,7 @@ namespace RayCarrot.RCP.Metro
         public static T GetGameInfo<T>(this Games game)
             where T : GameInfo
         {
-            var g = RCPServices.App.GamesManager;
+            var g = Services.App.GamesManager;
             return g.CreateCachedInstance<T>(g.GameInfos[game]);
         }
     }

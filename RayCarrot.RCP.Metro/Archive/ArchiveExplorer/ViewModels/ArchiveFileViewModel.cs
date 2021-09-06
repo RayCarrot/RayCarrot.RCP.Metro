@@ -666,7 +666,7 @@ namespace RayCarrot.RCP.Metro
                         // If not opening as binary we check for programs associated with the file extension
                         if (!asBinary)
                         {
-                            var extPrograms = RCPServices.Data.Archive_AssociatedPrograms;
+                            var extPrograms = Services.Data.Archive_AssociatedPrograms;
 
                             // Start by checking if the user has specified a default program
                             if (extPrograms.ContainsKey(ext.FileExtensions))
@@ -676,7 +676,7 @@ namespace RayCarrot.RCP.Metro
                                 if (exe.FileExists)
                                     programPath = exe;
                                 else
-                                    RCPServices.Data.RemoveAssociatedProgram(ext);
+                                    Services.Data.RemoveAssociatedProgram(ext);
                             }
 
                             // If not we try and get the registered default program
@@ -706,7 +706,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         else
                         {
-                            var binaryEditor = RCPServices.Data.Archive_BinaryEditorExe;
+                            var binaryEditor = Services.Data.Archive_BinaryEditorExe;
 
                             if (binaryEditor.FileExists)
                                 programPath = binaryEditor;
@@ -728,9 +728,9 @@ namespace RayCarrot.RCP.Metro
                                 return;
 
                             if (asBinary)
-                                RCPServices.Data.Archive_BinaryEditorExe = browseResult.SelectedFile;
+                                Services.Data.Archive_BinaryEditorExe = browseResult.SelectedFile;
                             else
-                                RCPServices.Data.AddAssociatedProgram(ext, browseResult.SelectedFile);
+                                Services.Data.AddAssociatedProgram(ext, browseResult.SelectedFile);
 
                             programPath = browseResult.SelectedFile;
                         }
@@ -743,7 +743,7 @@ namespace RayCarrot.RCP.Metro
                         }
 
                         // Open the file
-                        using (var p = await RCPServices.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile.TempPath}\""))
+                        using (var p = await Services.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile.TempPath}\""))
                         {
                             // Ignore if the file wasn't opened
                             if (p == null)
@@ -799,7 +799,7 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
-                    var result = await RCPServices.UI.GetStringInput(new StringInputViewModel
+                    var result = await Services.UI.GetStringInput(new StringInputViewModel
                     {
                         Title = Resources.Archive_SetFileName,
                         HeaderText = Resources.Archive_SetFileName,

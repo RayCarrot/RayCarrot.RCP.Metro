@@ -73,7 +73,7 @@ namespace RayCarrot.RCP.Metro
             FilesList?.Items.SortDescriptions.Clear();
             DirTreeView?.Items.SortDescriptions.Clear();
 
-            switch (RCPServices.Data.ArchiveExplorerSortOption)
+            switch (Services.Data.ArchiveExplorerSortOption)
             {
                 case UserData_Archive_Sort.AlphabeticalAscending:
                     FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveFileViewModel.FileName), ListSortDirection.Ascending));

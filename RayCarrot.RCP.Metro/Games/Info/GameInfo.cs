@@ -40,7 +40,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the game can be uninstalled
         /// </summary>
-        public bool CanBeUninstalled => RCPServices.Data.InstalledGames.Contains(Game);
+        public bool CanBeUninstalled => Services.Data.InstalledGames.Contains(Game);
 
         #endregion
 
@@ -198,7 +198,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public virtual Task<IList<string>> GetAppliedUtilitiesAsync()
         {
-            return Task.FromResult<IList<string>>(RCPServices.App.GetUtilities(Game).SelectMany(x => x.GetAppliedUtilities()).ToArray());
+            return Task.FromResult<IList<string>>(Services.App.GetUtilities(Game).SelectMany(x => x.GetAppliedUtilities()).ToArray());
         }
 
         #endregion
@@ -241,7 +241,7 @@ namespace RayCarrot.RCP.Metro
                                 string path = x.Path;
 
                                 // Create the command
-                                var command = new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(path))?.Dispose());
+                                var command = new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(path))?.Dispose());
 
                                 if (x.Icon != PackIconMaterialKind.None)
                                     return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -274,7 +274,7 @@ namespace RayCarrot.RCP.Metro
                     // Add RayMap link
                     if (RayMapURL != null)
                     {
-                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(RayMapURL))?.Dispose())));
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(RayMapURL))?.Dispose())));
                         actions.Add(new OverflowButtonItemViewModel());
                     }
 
@@ -284,7 +284,7 @@ namespace RayCarrot.RCP.Metro
                         actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, PackIconMaterialKind.FolderMultipleOutline, new AsyncRelayCommand(async () =>
                         {
                             // Show the archive explorer
-                            await RCPServices.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
+                            await Services.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
                         }), UserLevel.Advanced));
                     }
 
@@ -299,7 +299,7 @@ namespace RayCarrot.RCP.Metro
                             instDir += DefaultFileName;
 
                         // Open the location
-                        await RCPServices.File.OpenExplorerLocationAsync(instDir);
+                        await Services.File.OpenExplorerLocationAsync(instDir);
 
                         Logger.Trace("The Game {0} install location was opened", Game);
                     }), UserLevel.Advanced));
@@ -355,7 +355,7 @@ namespace RayCarrot.RCP.Metro
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(path))?.Dispose());
+                            var command = new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(path))?.Dispose());
 
                             // Return the item
                             return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -401,7 +401,7 @@ namespace RayCarrot.RCP.Metro
         public async Task<GameTypeSelectionResult> GetGameTypeAsync()
         {
             // Get the available types
-            var types = RCPServices.App.GamesManager.GameManagers[Game].Keys.ToArray();
+            var types = Services.App.GamesManager.GameManagers[Game].Keys.ToArray();
 
             // If only one type, return that
             if (types.Length == 1)
@@ -435,7 +435,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Create and show the dialog and return the result
-            return await RCPServices.UI.SelectGameTypeAsync(vm);
+            return await Services.UI.SelectGameTypeAsync(vm);
         }
 
         /// <summary>
@@ -478,19 +478,19 @@ namespace RayCarrot.RCP.Metro
                 var gameDir = AppFilePaths.GamesBaseDir + Game.ToString();
 
                 // Download the game
-                var downloaded = await RCPServices.App.DownloadAsync(DownloadURLs, true, gameDir, true);
+                var downloaded = await Services.App.DownloadAsync(DownloadURLs, true, gameDir, true);
 
                 if (!downloaded)
                     return;
 
                 // Add the game
-                await RCPServices.App.AddNewGameAsync(Game, DownloadType, gameDir);
+                await Services.App.AddNewGameAsync(Game, DownloadType, gameDir);
 
                 // Add game to installed games
-                RCPServices.Data.InstalledGames.Add(Game);
+                Services.Data.InstalledGames.Add(Game);
 
                 // Refresh
-                await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
                 Logger.Trace("The game {0} has been downloaded", Game);
 

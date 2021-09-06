@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
         public GameBackups_Manager()
         {
             // Get a new file manager
-            FileManager = RCPServices.File;
+            FileManager = Services.File;
         }
 
         #endregion
@@ -243,12 +243,12 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Make sure we have write access to the backup location
-                    if (!FileManager.CheckDirectoryWriteAccess(RCPServices.Data.BackupLocation + AppViewModel.BackupFamily))
+                    if (!FileManager.CheckDirectoryWriteAccess(Services.Data.BackupLocation + AppViewModel.BackupFamily))
                     {
                         Logger.Info("Backup failed - backup location lacks write access");
 
                         // Request to restart as admin
-                        await RCPServices.App.RequestRestartAsAdminAsync();
+                        await Services.App.RequestRestartAsAdminAsync();
 
                         return false;
                     }
@@ -304,7 +304,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Check if the backup should be compressed
-                    bool compress = RCPServices.Data.CompressBackups;
+                    bool compress = Services.Data.CompressBackups;
 
                     Logger.Debug(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
 
@@ -399,7 +399,7 @@ namespace RayCarrot.RCP.Metro
                         Logger.Info("Restore failed - one or more restore destinations lack write access");
 
                         // Request to restart as admin
-                        await RCPServices.App.RequestRestartAsAdminAsync();
+                        await Services.App.RequestRestartAsAdminAsync();
 
                         return false;
                     }

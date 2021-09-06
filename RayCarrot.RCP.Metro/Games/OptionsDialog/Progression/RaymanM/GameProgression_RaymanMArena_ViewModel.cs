@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize the save data
-            var saveData = BinarySerializableHelpers.ReadFromFile<RaymanMPCSaveData>(filePath, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
+            var saveData = BinarySerializableHelpers.ReadFromFile<RaymanMPCSaveData>(filePath, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC), Services.App.GetBinarySerializerLogger(filePath.Name));
 
             Logger.Info("Save file has been deserialized");
 

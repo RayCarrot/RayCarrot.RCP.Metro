@@ -119,7 +119,7 @@ namespace RayCarrot.RCP.Metro
                 using var cntFileStream = File.OpenRead(cntFile);
 
                 // Read the .cnt data
-                var cntData = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(cntFileStream, gameSettings, RCPServices.App.GetBinarySerializerLogger(cntFile.Name));
+                var cntData = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(cntFileStream, gameSettings, Services.App.GetBinarySerializerLogger(cntFile.Name));
 
                 // Get the file generator
                 using var generator = cntData.GetArchiveContent(cntFileStream);

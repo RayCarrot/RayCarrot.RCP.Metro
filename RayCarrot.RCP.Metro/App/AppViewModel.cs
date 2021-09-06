@@ -161,7 +161,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Shortcut to the app user data
         /// </summary>
-        public AppUserData Data => RCPServices.Data;
+        public AppUserData Data => Services.Data;
 
         /// <summary>
         /// The application games manager
@@ -250,12 +250,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The binary serializer logger</returns>
         public IBinarySerializerLogger GetBinarySerializerLogger(string name = null, long? addr = null)
         {
-            if (RCPServices.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
-                !RCPServices.Data.BinarySerializationFileLogPath.Parent.DirectoryExists)
+            if (Services.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
+                !Services.Data.BinarySerializationFileLogPath.Parent.DirectoryExists)
                 return null;
 
             // Get the log file path
-            var logPath = RCPServices.Data.BinarySerializationFileLogPath;
+            var logPath = Services.Data.BinarySerializationFileLogPath;
 
             // Only re-create the file if this is the first time we create a logger
             Stream logStream = !HasCreatedSerializerLogger ? File.Create(logPath) : File.OpenWrite(logPath);
@@ -404,7 +404,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Check if we have write access
-                if (RCPServices.File.CheckFileWriteAccess(AppFilePaths.UbiIniPath1))
+                if (Services.File.CheckFileWriteAccess(AppFilePaths.UbiIniPath1))
                 {
                     Logger.Debug("The ubi.ini file has write access");
                     return;
@@ -544,7 +544,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (Data.HandleDownloadsManually)
                 {
-                    var result = await RCPServices.UI.DisplayMessageAsync(Resources.Download_ManualInstructions, Resources.Download_ManualHeader, MessageType.Information, true, new DialogMessageActionViewModel[]
+                    var result = await Services.UI.DisplayMessageAsync(Resources.Download_ManualInstructions, Resources.Download_ManualHeader, MessageType.Information, true, new DialogMessageActionViewModel[]
                         {
                             // Download files
                             new DialogMessageActionViewModel
@@ -565,7 +565,7 @@ namespace RayCarrot.RCP.Metro
                                 OnHandled = () =>
                                 {
                                     Directory.CreateDirectory(outputDir);
-                                    Task.Run(async () => await RCPServices.File.OpenExplorerLocationAsync(outputDir));
+                                    Task.Run(async () => await Services.File.OpenExplorerLocationAsync(outputDir));
                                 }
                             },
                         });
@@ -668,7 +668,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Move the directory
-                    RCPServices.File.MoveDirectory(oldLocation, newLocation, false, false);
+                    Services.File.MoveDirectory(oldLocation, newLocation, false, false);
 
                     Logger.Info("Old backups have been moved");
 
@@ -706,7 +706,7 @@ namespace RayCarrot.RCP.Metro
             // Lock
             using (await AdminWorkerAsyncLock.LockAsync())
                 // Launch the admin worker with the specified launch arguments
-                await RCPServices.File.LaunchFileAsync(AppFilePaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await Services.File.LaunchFileAsync(AppFilePaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>
@@ -782,7 +782,7 @@ namespace RayCarrot.RCP.Metro
                 CheckingForUpdates = true;
 
                 // Check for updates
-                var result = await RCPServices.UpdaterManager.CheckAsync(RCPServices.Data.ForceUpdate && isManualSearch, RCPServices.Data.GetBetaUpdates || IsBeta);
+                var result = await Services.UpdaterManager.CheckAsync(Services.Data.ForceUpdate && isManualSearch, Services.Data.GetBetaUpdates || IsBeta);
 
                 // Check if there is an error
                 if (result.ErrorMessage != null)
@@ -790,7 +790,7 @@ namespace RayCarrot.RCP.Metro
                     await Services.MessageUI.DisplayExceptionMessageAsync(result.Exception,
                         String.Format(Resources.Update_CheckFailed, result.ErrorMessage, AppURLs.RCPBaseUrl), Resources.Update_ErrorHeader);
 
-                    RCPServices.Data.IsUpdateAvailable = false;
+                    Services.Data.IsUpdateAvailable = false;
 
                     return;
                 }
@@ -801,13 +801,13 @@ namespace RayCarrot.RCP.Metro
                     if (isManualSearch)
                         await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
-                    RCPServices.Data.IsUpdateAvailable = false;
+                    Services.Data.IsUpdateAvailable = false;
 
                     return;
                 }
 
                 // Indicate that a new update is available
-                RCPServices.Data.IsUpdateAvailable = true;
+                Services.Data.IsUpdateAvailable = true;
 
                 // Run as new task to mark this operation as finished
                 _ = Task.Run(async () =>
@@ -822,7 +822,7 @@ namespace RayCarrot.RCP.Metro
                         if (await Services.MessageUI.DisplayMessageAsync(message, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                         {
                             // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
-                            var succeeded = await RCPServices.UpdaterManager.UpdateAsync(result, false);
+                            var succeeded = await Services.UpdaterManager.UpdateAsync(result, false);
 
                             if (!succeeded)
                                 Logger.Warn("The updater failed to update the program");
@@ -856,7 +856,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Save the user data
-                        JsonHelpers.SerializeToFile(RCPServices.Data, AppFilePaths.AppUserDataPath);
+                        JsonHelpers.SerializeToFile(Services.Data, AppFilePaths.AppUserDataPath);
 
                         Logger.Info("The application user data was saved");
                     }

@@ -180,7 +180,7 @@ namespace RayCarrot.RCP.Metro
                 tex.TextureSize2 = (uint)bytes.Length;
 
                 // Write the TEX file
-                BinarySerializableHelpers.WriteToStream(texFile, outputStream, manager.SerializerSettings, RCPServices.App.GetBinarySerializerLogger());
+                BinarySerializableHelpers.WriteToStream(texFile, outputStream, manager.SerializerSettings, Services.App.GetBinarySerializerLogger());
             }
         }
 
@@ -229,7 +229,7 @@ namespace RayCarrot.RCP.Metro
             if (usesTexWrapper)
             {
                 // Serialize the header
-                return BinarySerializableHelpers.ReadFromStream<UbiArtTEXData>(inputStream, manager.SerializerSettings, RCPServices.App.GetBinarySerializerLogger());
+                return BinarySerializableHelpers.ReadFromStream<UbiArtTEXData>(inputStream, manager.SerializerSettings, Services.App.GetBinarySerializerLogger());
             }
 
             return null;

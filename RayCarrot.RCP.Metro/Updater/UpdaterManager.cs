@@ -180,13 +180,13 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Launch the updater and capture the process
-            using var updateProcess = await RCPServices.File.LaunchFileAsync(AppFilePaths.UpdaterFilePath, asAdmin, 
+            using var updateProcess = await Services.File.LaunchFileAsync(AppFilePaths.UpdaterFilePath, asAdmin, 
                 // Arg 1: Program path
                 $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
                 // Arg 2: Dark mode
-                $"{RCPServices.Data.DarkMode} " +
+                $"{Services.Data.DarkMode} " +
                 // Arg 3: User level
-                $"{RCPServices.Data.UserLevel} " +
+                $"{Services.Data.UserLevel} " +
                 // Arg 4: Update URL
                 $"\"{result.DownloadURL}\" " +
                 // Arg 5: Current culture

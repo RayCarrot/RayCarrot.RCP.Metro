@@ -167,17 +167,17 @@ namespace RayCarrot.RCP.Metro
                 rawBitmapData = new RawBitmapData(bmp.Width, bmp.Height, bmpLock.Pixels, bmp.PixelFormat);
 
                 // Force the new pixel format to be 888 or 8888 if set to do so
-                if (RCPServices.Data.Archive_GF_ForceGF8888Import)
+                if (Services.Data.Archive_GF_ForceGF8888Import)
                     gf.GFPixelFormat = gf.GFPixelFormat.SupportsTransparency() ? OpenSpaceGFFormat.Format_32bpp_BGRA_8888 : OpenSpaceGFFormat.Format_24bpp_BGR_888;
 
                 // Check if the format should be updated for transparency
-                if (RCPServices.Data.Archive_GF_UpdateTransparency != UserData_Archive_GF_TransparencyMode.PreserveFormat)
+                if (Services.Data.Archive_GF_UpdateTransparency != UserData_Archive_GF_TransparencyMode.PreserveFormat)
                 {
                     // NOTE: Only 24 and 32 bpp bitmaps are supported
                     // Check if the imported file is transparent
                     var isTransparent = bmp.PixelFormat switch
                     {
-                        PixelFormat.Format32bppArgb => (RCPServices.Data.Archive_GF_UpdateTransparency == UserData_Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
+                        PixelFormat.Format32bppArgb => (Services.Data.Archive_GF_UpdateTransparency == UserData_Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
                                                         bmpLock.UtilizesAlpha()),
                         PixelFormat.Format24bppRgb => false,
                         _ => (bool?)null
@@ -194,12 +194,12 @@ namespace RayCarrot.RCP.Metro
             var oldRepeatByte = gf.RepeatByte;
 
             // Import the bitmap
-            gf.ImportFromBitmap((OpenSpaceSettings)manager.SerializerSettings, rawBitmapData, RCPServices.Data.Archive_GF_GenerateMipmaps);
+            gf.ImportFromBitmap((OpenSpaceSettings)manager.SerializerSettings, rawBitmapData, Services.Data.Archive_GF_GenerateMipmaps);
 
             Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 
             // Serialize the data to get the bytes
-            BinarySerializableHelpers.WriteToStream(gf, outputStream, manager.SerializerSettings, RCPServices.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToStream(gf, outputStream, manager.SerializerSettings, Services.App.GetBinarySerializerLogger());
         }
 
         #endregion
@@ -215,7 +215,7 @@ namespace RayCarrot.RCP.Metro
         public OpenSpaceGFFile GetFileContent(Stream fileStream, IArchiveDataManager manager)
         {
             // Serialize the data
-            return BinarySerializableHelpers.ReadFromStream<OpenSpaceGFFile>(fileStream, manager.SerializerSettings, RCPServices.App.GetBinarySerializerLogger());
+            return BinarySerializableHelpers.ReadFromStream<OpenSpaceGFFile>(fileStream, manager.SerializerSettings, Services.App.GetBinarySerializerLogger());
         }
 
         #endregion

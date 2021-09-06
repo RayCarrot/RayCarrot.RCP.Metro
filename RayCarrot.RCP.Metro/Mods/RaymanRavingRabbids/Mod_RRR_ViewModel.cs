@@ -675,7 +675,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Download the game
-            bool downloaded = await RCPServices.App.DownloadAsync(new Uri[]
+            bool downloaded = await Services.App.DownloadAsync(new Uri[]
             {
                 version switch
                 {
@@ -705,7 +705,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                RCPServices.File.DeleteFile(PatchedBFFilePath);
+                Services.File.DeleteFile(PatchedBFFilePath);
 
                 IsPatchedBFDownloaded = false;
                 CanUpdatePatchedBF = false;
@@ -799,7 +799,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Launching RRR with patched BF");
 
             // Launch the game exe passing in the path to the patched BF
-            (await RCPServices.File.LaunchFileAsync(ExeFilePath, arguments: PatchedBFFilePath.Name))?.Dispose();
+            (await Services.File.LaunchFileAsync(ExeFilePath, arguments: PatchedBFFilePath.Name))?.Dispose();
         }
 
         public void Dispose()

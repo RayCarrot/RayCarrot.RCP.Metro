@@ -131,9 +131,9 @@ namespace RayCarrot.RCP.Metro
                     });
 
                     // Update the game data
-                    RCPServices.Data.Games[Games.RaymanFiestaRun] = gameData;
+                    Services.Data.Games[Games.RaymanFiestaRun] = gameData;
 
-                    await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
+                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
                 }
                 catch (Exception ex)
                 {

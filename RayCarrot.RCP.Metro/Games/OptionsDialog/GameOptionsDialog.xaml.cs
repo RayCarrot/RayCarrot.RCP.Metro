@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
 
         private void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            RCPServices.App.RefreshRequired += AppGameRefreshRequiredAsync;
+            Services.App.RefreshRequired += AppGameRefreshRequiredAsync;
 
             foreach (var page in ViewModel.Pages)
                 page.Saved += Page_Saved;
@@ -104,13 +104,13 @@ namespace RayCarrot.RCP.Metro
 
         private void Page_Saved(object sender, EventArgs e)
         {
-            if (RCPServices.Data.CloseConfigOnSave)
+            if (Services.Data.CloseConfigOnSave)
                 Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            RCPServices.App.RefreshRequired -= AppGameRefreshRequiredAsync;
+            Services.App.RefreshRequired -= AppGameRefreshRequiredAsync;
 
             foreach (var page in ViewModel.Pages)
                 page.Saved -= Page_Saved;

@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
         public static async Task DisplaySuccessfulActionMessageAsync(this IMessageUIManager messageUIManager, string message, string header = null)
         {
             // Make sure the setting to show success messages is on
-            if (!RCPServices.Data.ShowActionComplete)
+            if (!Services.Data.ShowActionComplete)
             {
                 Logger.Trace("A message of type {0} was not displayed with the content of: '{1}'", MessageType.Success, message);
 

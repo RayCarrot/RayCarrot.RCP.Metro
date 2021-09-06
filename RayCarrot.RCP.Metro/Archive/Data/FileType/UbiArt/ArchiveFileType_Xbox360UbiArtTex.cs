@@ -49,7 +49,7 @@ namespace RayCarrot.RCP.Metro
             ReadTEXHeader(inputStream, manager);
 
             // Serialize data
-            var imgData = BinarySerializableHelpers.ReadFromStream<UbiArtXbox360Texture>(inputStream, manager.SerializerSettings, logger: RCPServices.App.GetBinarySerializerLogger());
+            var imgData = BinarySerializableHelpers.ReadFromStream<UbiArtXbox360Texture>(inputStream, manager.SerializerSettings, logger: Services.App.GetBinarySerializerLogger());
 
             // Get the untiled image data
             var untiledImgData = imgData.Untile(true);

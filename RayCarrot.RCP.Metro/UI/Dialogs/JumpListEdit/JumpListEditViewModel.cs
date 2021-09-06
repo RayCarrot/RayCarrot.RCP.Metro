@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
             NotIncluded = new ObservableCollection<JumpListItemViewModel>();
 
             // Get all jump list items
-            foreach (var game in RCPServices.App.GetGames.Where(x => x.IsAdded()))
+            foreach (var game in Services.App.GetGames.Where(x => x.IsAdded()))
             {
                 foreach (var item in game.GetManager().GetJumpListItems())
                 {
@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Order the included games
-            Included = included.OrderBy(x => RCPServices.Data.JumpListItemIDCollection.IndexOf(x.ID)).ToObservableCollection();
+            Included = included.OrderBy(x => Services.Data.JumpListItemIDCollection.IndexOf(x.ID)).ToObservableCollection();
         }
 
         #endregion

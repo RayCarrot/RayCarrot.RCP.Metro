@@ -47,7 +47,7 @@ namespace RayCarrot.RCP.Metro
             decodedDataStream.Position = 0;
 
             // Get the serialized data
-            var data = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), RCPServices.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
+            var data = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), Services.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
 
             // Export the data
             JsonHelpers.SerializeToFile(data, outputFilePath);
@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro
             using var saveFileStream = File.Create(SaveSlotFilePath);
 
             // Import the data
-            BinarySerializableHelpers.WriteToStream(data, decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), RCPServices.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
+            BinarySerializableHelpers.WriteToStream(data, decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), Services.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
 
             // Set position to 0
             decodedDataStream.Position = 0;
