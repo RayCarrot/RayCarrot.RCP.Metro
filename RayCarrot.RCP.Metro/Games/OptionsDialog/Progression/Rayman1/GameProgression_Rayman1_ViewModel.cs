@@ -1,4 +1,5 @@
-﻿using RayCarrot.Binary;
+﻿using System;
+using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;
 using RayCarrot.Rayman;
@@ -42,12 +43,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath)
         {
-            Logger.Info($"Rayman 1 slot {filePath.Name} is being loaded...");
+            Logger.Info("Rayman 1 slot {0} is being loaded...", filePath.Name);
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                Logger.Info($"Slot was not loaded due to not being found");
+                Logger.Info("Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -67,7 +68,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and return the data
             var saveData = BinarySerializableHelpers.ReadFromStream<Rayman1PCSaveData>(memStream, Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
 
-            Logger.Info($"Slot has been deserialized");
+            Logger.Info("Slot has been deserialized");
 
             // Get total amount of cages
             var cages = saveData.Wi_Save_Zone.Sum(x => x.Cages);
@@ -80,12 +81,12 @@ namespace RayCarrot.RCP.Metro
                 new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Life, new LocalizedString(() => $"{saveData.StatusBar.LivesCount}")),
             };
 
-            Logger.Info($"General progress info has been set");
+            Logger.Info("General progress info has been set");
 
             // Calculate the percentage
             var percentage = ((cages / 102d * 100)).ToString("0.##");
 
-            Logger.Info($"Slot percentage is {percentage}%");
+            Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
             return new GameProgression_Rayman1_SlotViewModel(new LocalizedString(() => $"{saveData.SaveName.ToUpper()} ({percentage}%)"), progressItems, filePath, this);

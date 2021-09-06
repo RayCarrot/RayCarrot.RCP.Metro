@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="isDuplicateName">Indicates if the name of the archive matches the name of another loaded archive</param>
         public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel, bool isDuplicateName) : base(filePath.Name)
         {
-            Logger.Info($"An archive view model is being created for {filePath.Name}");
+            Logger.Info("An archive view model is being created for {0}", filePath.Name);
 
             // Set properties
             FilePath = filePath;
@@ -168,7 +168,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected void ClearAndDisposeItems()
         {
-            Logger.Info($"The archive items have been cleared and disposed");
+            Logger.Info("The archive items have been cleared and disposed");
 
             // Dispose every directory
             this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void LoadArchive()
         {
-            Logger.Info($"The archive {DisplayName} is being loaded");
+            Logger.Info("The archive {0} is being loaded", DisplayName);
 
             // Clear existing items
             ClearAndDisposeItems();
@@ -253,7 +253,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task SaveAsync()
         {
-            Logger.Info($"The archive {DisplayName} is being repacked");
+            Logger.Info("The archive {0} is being repacked", DisplayName);
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -299,7 +299,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            Logger.Error(ex, "Repacking archive", DisplayName);
+                            Logger.Error(ex, "Repacking archive {0}", DisplayName);
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
@@ -333,7 +333,7 @@ namespace RayCarrot.RCP.Metro
             // Open the location
             await RCPServices.File.OpenExplorerLocationAsync(FilePath);
 
-            Logger.Trace($"The archive {DisplayName} location was opened");
+            Logger.Trace("The archive {0} location was opened", DisplayName);
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace RayCarrot.RCP.Metro
             // Dispose the cache
             ThumbnailCache?.Dispose();
 
-            Logger.Info($"The archive {DisplayName} has been disposed");
+            Logger.Info("The archive {0} has been disposed", DisplayName);
         }
 
         #endregion

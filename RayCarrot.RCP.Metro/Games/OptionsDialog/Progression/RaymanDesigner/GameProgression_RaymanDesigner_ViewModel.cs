@@ -44,12 +44,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath dirPath)
         {
-            Logger.Info($"Rayman Designer saves from {dirPath.Name} is being loaded...");
+            Logger.Info("Rayman Designer saves from {0} is being loaded...", dirPath.Name);
 
             // Make sure the directory exists
             if (!dirPath.DirectoryExists)
             {
-                Logger.Info($"Saves were not loaded due to not being found");
+                Logger.Info("Saves were not loaded due to not being found");
 
                 return null;
             }
@@ -113,7 +113,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (value == -1)
                 {
-                    Logger.Warn($"Invalid save value for {save.FilePath.Name}");
+                    Logger.Warn("Invalid save value for {0}", save.FilePath.Name);
                     continue;
                 }
 
@@ -123,7 +123,7 @@ namespace RayCarrot.RCP.Metro
                 progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Flag, new LocalizedString(() => $"{longWorldNames[save.World]} {save.Level}: {time:ss\\:fff}")));
             }
 
-            Logger.Info($"General progress info has been set");
+            Logger.Info("General progress info has been set");
 
             var levelsCount = Game switch
             {
@@ -136,7 +136,7 @@ namespace RayCarrot.RCP.Metro
             // Calculate the percentage
             var percentage = ((progressItems.Count / (double)levelsCount * 100)).ToString("0.##");
 
-            Logger.Info($"Slot percentage is {percentage}%");
+            Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
             return new GameProgression_RaymanDesigner_SlotViewModel(new LocalizedString(() => $"{Resources.Progression_GenericSave} ({percentage}%)"), progressItems.ToArray(), this);

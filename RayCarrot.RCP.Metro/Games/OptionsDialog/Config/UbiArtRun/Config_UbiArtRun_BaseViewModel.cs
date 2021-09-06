@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task LoadAsync()
         {
-            Logger.Info($"{Game} config is being set up");
+            Logger.Info("{0} config is being set up", Game);
 
             // Get the save directory
             SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
@@ -193,7 +193,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            Logger.Info($"All values have been loaded");
+            Logger.Info("All values have been loaded");
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info($"{Game} configuration is saving...");
+            Logger.Info("{0} configuration is saving...", Game);
 
             try
             {
@@ -219,13 +219,13 @@ namespace RayCarrot.RCP.Metro
                     SoundVolume
                 });
 
-                Logger.Info($"{Game} configuration has been saved");
+                Logger.Info("{0} configuration has been saved", Game);
 
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Saving {Game} config");
+                Logger.Error(ex, "Saving {0} config", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
             }

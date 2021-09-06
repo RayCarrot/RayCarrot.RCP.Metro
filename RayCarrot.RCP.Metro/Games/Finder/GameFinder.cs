@@ -33,14 +33,14 @@ namespace RayCarrot.RCP.Metro
             Results = new List<GameFinder_BaseResult>();
             HasRun = false;
 
-            Logger.Info($"The game finder has been created to search for the following games: {GamesToFind.JoinItems(", ")}");
+            Logger.Info("The game finder has been created to search for the following games: {0}", GamesToFind.JoinItems(", "));
 
             // Get the game finder items
             GameFinderItems = GamesToFind.
                 SelectMany(x => x.GetManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.Type, y.GameFinderItem))).
                 ToArray();
 
-            Logger.Trace($"{GameFinderItems.Length} game finders were found");
+            Logger.Trace("{0} game finders were found", GameFinderItems.Length);
         }
 
         #endregion
@@ -173,7 +173,7 @@ namespace RayCarrot.RCP.Metro
                     AddItem(item, result.InstallDir, result.Parameter);
                 }
 
-                Logger.Info($"The game finder found {Results.Count} games");
+                Logger.Info("The game finder found {0} games", Results.Count);
 
                 // Return the found games
                 return Results.AsReadOnly();
@@ -259,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        Logger.Warn(ex, "Getting start menu item shortcut target for game finder", shortcut);
+                        Logger.Warn(ex, "Getting start menu item shortcut target for game finder {0}", shortcut);
                         continue;
                     }
 
@@ -283,7 +283,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        Logger.Warn(ex, "Getting start menu item shortcut target for game finder", shortcut);
+                        Logger.Warn(ex, "Getting start menu item shortcut target for game finder {0}", shortcut);
                         continue;
                     }
 
@@ -463,7 +463,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex, "Enumerating shortcuts for game finder", directory);
+                Logger.Warn(ex, "Enumerating shortcuts for game finder in {0}", directory);
                 
                 // Return an empty array to enumerate
                 return new string[0];
@@ -549,19 +549,19 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game item was added, otherwise false</returns>
         protected virtual async Task<bool> AddGameAsync(GameFinderItemContainer game, FileSystemPath installDir, object parameter = null)
         {
-            Logger.Info($"An install directory was found for {game.Game}");
+            Logger.Info("An install directory was found for {0}", game.Game);
 
             // Make sure the game hasn't already been found
             if (FoundGames.Contains(game.Game))
             {
-                Logger.Warn($"{game.Game} could not be added. The game has already been found.");
+                Logger.Warn("{0} could not be added. The game has already been found.", game.Game);
                 return false;
             }
 
             // Make sure the install directory exists
             if (!installDir.DirectoryExists)
             {
-                Logger.Warn($"{game.Game} could not be added. The install directory does not exist.");
+                Logger.Warn("{0} could not be added. The install directory does not exist.", game.Game);
                 return false;
             }
 
@@ -572,7 +572,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (result == null)
                 {
-                    Logger.Info($"{game.Game} could not be added. The optional verification returned null.");
+                    Logger.Info("{0} could not be added. The optional verification returned null.", game.Game);
                     return false;
                 }
 
@@ -582,7 +582,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure that the game is valid
             if (!await game.Game.GetManager(game.GameType).IsValidAsync(installDir, parameter))
             {
-                Logger.Info($"{game.Game} could not be added. The game default file was not found.");
+                Logger.Info("{0} could not be added. The game default file was not found.", game.Game);
                 return false;
             }
 
@@ -592,7 +592,7 @@ namespace RayCarrot.RCP.Metro
             // Remove from games to find
             GamesToFind.Remove(game.Game);
 
-            Logger.Info($"The game {game.Game} was found");
+            Logger.Info("The game {0} was found", game.Game);
 
             return true;
         }
@@ -606,12 +606,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the item was added, otherwise false</returns>
         protected virtual bool AddItem(GameFinder_GenericItem item, FileSystemPath installDir, object parameter = null)
         {
-            Logger.Info($"An install directory was found for a finder item");
+            Logger.Info("An install directory was found for a finder item");
 
             // Make sure the install directory exists
             if (!installDir.DirectoryExists)
             {
-                Logger.Warn($"The item could not be added. The install directory does not exist.");
+                Logger.Warn("The item could not be added. The install directory does not exist.");
                 return false;
             }
 
@@ -622,7 +622,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (result == null)
                 {
-                    Logger.Info($"The item could not be added. The optional verification returned null.");
+                    Logger.Info("The item could not be added. The optional verification returned null.");
                     return false;
                 }
 
@@ -633,7 +633,7 @@ namespace RayCarrot.RCP.Metro
             FoundFinderItems.Add(item);
             Results.Add(new GameFinder_GenericResult(installDir, item.FoundAction, parameter, item.DisplayName));
 
-            Logger.Info($"A finder item was found");
+            Logger.Info("A finder item was found");
 
             return true;
         }

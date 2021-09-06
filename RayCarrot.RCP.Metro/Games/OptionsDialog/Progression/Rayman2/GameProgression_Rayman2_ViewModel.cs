@@ -63,12 +63,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath, string slotName)
         {
-            Logger.Info($"Rayman 2 slot {slotName} is being loaded...");
+            Logger.Info("Rayman 2 slot {0} is being loaded...", slotName);
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                Logger.Info($"Slot was not loaded due to not being found");
+                Logger.Info("Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -88,7 +88,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and return the data
             var saveData = BinarySerializableHelpers.ReadFromStream<Rayman2PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
 
-            Logger.Info($"Slot has been deserialized");
+            Logger.Info("Slot has been deserialized");
 
             // Get the bit array
             var array = saveData.GlobalArrayAsBitFlags();
@@ -119,14 +119,14 @@ namespace RayCarrot.RCP.Metro
             if (walkOfPowerTime > 120)
                 progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new LocalizedString(() => $"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\:ff}"), new LocalizedString(() => Resources.R2_BonusLevelName_2)));
 
-            Logger.Info($"General progress info has been set");
+            Logger.Info("General progress info has been set");
 
             // Get the name and percentage
             var separatorIndex = slotName.LastIndexOf((char)0x20);
             var name = slotName.Substring(0, separatorIndex);
             var percentage = slotName.Substring(separatorIndex + 1);
 
-            Logger.Info($"Slot percentage is {percentage}%");
+            Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
             return new GameProgression_Rayman2_SlotViewModel(new LocalizedString(() => $"{name} ({percentage}%)"), progressItems.ToArray(), filePath, this);

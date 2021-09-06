@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ReplaceRayKitAsync()
         {
-            Logger.Info($"The Rayman Designer replacement patch is downloading...");
+            Logger.Info("The Rayman Designer replacement patch is downloading...");
 
             // Find the files to be replaced
             var files = new Tuple<string, Uri>[]
@@ -94,7 +94,7 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
-            Logger.Info($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
+            Logger.Info("The following Rayman Designer files were found to replace: {0}", foundFiles.Select(x => x.Item1.Name).JoinItems(", "));
 
             await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
 
@@ -108,7 +108,7 @@ namespace RayCarrot.RCP.Metro
                     // Download the files
                     await App.DownloadAsync(group.Select(x => x.Item2).ToList(), false, group.Key);
 
-                Logger.Info($"The Rayman Designer files have been replaced");
+                Logger.Info("The Rayman Designer files have been replaced");
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
             }

@@ -114,7 +114,7 @@ namespace RayCarrot.RCP.Metro
                     return false;
                 }
 
-                Logger.Info($"Backup complete");
+                Logger.Info("Backup complete");
 
                 return true;
             }
@@ -130,7 +130,7 @@ namespace RayCarrot.RCP.Metro
                     // Delete incomplete backup
                     FileManager.DeleteDirectory(destinationDir);
 
-                Logger.Info($"Backup failed - clean up succeeded");
+                Logger.Info("Backup failed - clean up succeeded");
 
                 throw;
             }
@@ -203,7 +203,7 @@ namespace RayCarrot.RCP.Metro
                     return false;
                 }
 
-                Logger.Info($"Backup complete");
+                Logger.Info("Backup complete");
 
                 return true;
             }
@@ -219,7 +219,7 @@ namespace RayCarrot.RCP.Metro
                     // Delete incomplete backup
                     FileManager.DeleteFile(destinationFile);
 
-                Logger.Info($"Compressed backup failed - clean up succeeded");
+                Logger.Info("Compressed backup failed - clean up succeeded");
 
                 throw;
             }
@@ -238,14 +238,14 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                Logger.Info($"A backup has been requested for {backupInformation.GameDisplayName}");
+                Logger.Info("A backup has been requested for {0}", backupInformation.GameDisplayName);
 
                 try
                 {
                     // Make sure we have write access to the backup location
                     if (!FileManager.CheckDirectoryWriteAccess(RCPServices.Data.BackupLocation + AppViewModel.BackupFamily))
                     {
-                        Logger.Info($"Backup failed - backup location lacks write access");
+                        Logger.Info("Backup failed - backup location lacks write access");
 
                         // Request to restart as admin
                         await RCPServices.App.RequestRestartAsAdminAsync();
@@ -256,7 +256,7 @@ namespace RayCarrot.RCP.Metro
                     // Get the backup information and group items by ID
                     var backupInfoByID = backupInformation.BackupDirectories.GroupBy(x => x.ID).ToList();
 
-                    Logger.Debug($"{backupInfoByID.Count} backup directory ID groups were found");
+                    Logger.Debug("{0} backup directory ID groups were found", backupInfoByID.Count);
 
                     // Get the backup info
                     var backupInfo = new List<GameBackups_Directory>();
@@ -270,7 +270,7 @@ namespace RayCarrot.RCP.Metro
                             continue;
                         }
 
-                        Logger.Debug($"ID {group.Key} has multiple items");
+                        Logger.Debug("ID {0} has multiple items", group.Key);
 
                         // Find which group is the latest one
                         var groupItems = new Dictionary<GameBackups_Directory, DateTime>();
@@ -290,13 +290,13 @@ namespace RayCarrot.RCP.Metro
                         // Add the latest directory
                         backupInfo.Add(latestDir);
 
-                        Logger.Debug($"The most recent backup directory was found under {latestDir.DirPath}");
+                        Logger.Debug("The most recent backup directory was found under {0}", latestDir.DirPath);
                     }
 
                     // Make sure all the directories to back up exist
                     if (!backupInfo.Select(x => x.DirPath).DirectoriesExist())
                     {
-                        Logger.Info($"Backup failed - the input directories could not be found");
+                        Logger.Info("Backup failed - the input directories could not be found");
 
                         await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
 
@@ -353,7 +353,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {   
                     // Handle error
-                    Logger.Error(ex, "Backing up game", backupInformation);
+                    Logger.Error(ex, "Backing up game");
 
                     // Display message to user
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
@@ -373,7 +373,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                Logger.Info($"A backup restore has been requested for {backupInformation.GameDisplayName}");
+                Logger.Info("A backup restore has been requested for {0}", backupInformation.GameDisplayName);
 
                 try
                 {
@@ -383,7 +383,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure a backup exists
                     if (existingBackup == null)
                     {
-                        Logger.Info($"Restore failed - the input location could not be found");
+                        Logger.Info("Restore failed - the input location could not be found");
 
                         await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
 
@@ -396,7 +396,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we have write access to the restore destinations
                     if (backupInfo.Any(x => !FileManager.CheckDirectoryWriteAccess(x.DirPath)))
                     {
-                        Logger.Info($"Restore failed - one or more restore destinations lack write access");
+                        Logger.Info("Restore failed - one or more restore destinations lack write access");
 
                         // Request to restart as admin
                         await RCPServices.App.RequestRestartAsAdminAsync();
@@ -491,19 +491,19 @@ namespace RayCarrot.RCP.Metro
                                 FileManager.MoveDirectory(dirPath, item.DirPath, false, false);
                             }
 
-                            Logger.Info($"Restore failed - clean up succeeded");
+                            Logger.Info("Restore failed - clean up succeeded");
 
                             throw;
                         }
                     }
 
-                    Logger.Info($"Restore complete");
+                    Logger.Info("Restore complete");
 
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, "Restoring game", backupInformation);
+                    Logger.Error(ex, "Restoring game");
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
 
                     return false;

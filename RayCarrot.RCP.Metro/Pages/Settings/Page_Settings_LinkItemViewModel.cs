@@ -221,7 +221,7 @@ namespace RayCarrot.RCP.Metro
 
                 image.Freeze();
 
-                Logger.Debug($"The link item image source has been created for the path '{path}'");
+                Logger.Debug("The link item image source has been created for the path '{0}'", path);
 
                 IconCache.Add(path.FullPath, image);
 

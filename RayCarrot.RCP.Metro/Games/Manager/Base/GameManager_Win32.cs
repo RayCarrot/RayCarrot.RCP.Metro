@@ -86,12 +86,12 @@ namespace RayCarrot.RCP.Metro
             // Get the launch info
             GameLaunchInfo launchInfo = GetLaunchInfo();
 
-            Logger.Trace($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+            Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}", Game, launchInfo.Path, launchInfo.Args);
 
             // Launch the game
             var process = await RCPServices.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
-            Logger.Info($"The game {Game} has been launched");
+            Logger.Info("The game {0} has been launched", Game);
 
             return new GameLaunchResult(process, process != null);
         }
@@ -125,7 +125,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the directory is valid
             if (!await IsValidAsync(result.SelectedDirectory))
             {
-                Logger.Info($"The selected install directory for {Game} is not valid");
+                Logger.Info("The selected install directory for {0} is not valid", Game);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation,
                     Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
@@ -171,7 +171,7 @@ namespace RayCarrot.RCP.Metro
             // Create the shortcut
             RCPServices.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
 
-            Logger.Trace($"A shortcut was created for {Game} under {destinationDirectory}");
+            Logger.Trace("A shortcut was created for {0} under {1}", Game, destinationDirectory);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using RayCarrot.UI;
+﻿using System;
+using RayCarrot.UI;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddGameAsync()
         {
-            Logger.Info($"A new educational game is being added...");
+            Logger.Info("A new educational game is being added...");
 
             // Get the manager
             var manager = Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>();
@@ -83,7 +84,7 @@ namespace RayCarrot.RCP.Metro
             // Add to the jump list
             Data.JumpListItemIDCollection.Add(newItem.ID);
 
-            Logger.Info($"A new educational game has been added with the name {newItem.Name}");
+            Logger.Info("A new educational game has been added with the name {0}", newItem.Name);
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
@@ -98,7 +99,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task SaveAsync()
         {
-            Logger.Info($"The educational game options are saving...");
+            Logger.Info("The educational game options are saving...");
 
             // Clear the games
             Data.EducationalDosBoxGames.Clear();
@@ -117,7 +118,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
 
-            Logger.Info($"The educational game options have saved");
+            Logger.Info("The educational game options have saved");
         }
 
         #endregion

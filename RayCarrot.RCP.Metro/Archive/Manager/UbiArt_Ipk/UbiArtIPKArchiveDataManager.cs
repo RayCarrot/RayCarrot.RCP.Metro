@@ -105,7 +105,7 @@ namespace RayCarrot.RCP.Metro
             // Compress the bytes
             UbiArtIpkData.GetEncoder(entry.IPKVersion, entry.Size).Encode(inputStream, outputStream);
 
-            Logger.Trace($"The file {entry.Path.FileName} has been compressed");
+            Logger.Trace("The file {0} has been compressed", entry.Path.FileName);
 
             // Set the compressed file size
             entry.CompressedSize = (uint)outputStream.Length;
@@ -143,7 +143,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files to include</param>
         public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
         {
-            Logger.Info($"An IPK archive is being repacked...");
+            Logger.Info("An IPK archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<UbiArtIpkData>();
@@ -219,7 +219,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            Logger.Info($"The IPK archive has been repacked");
+            Logger.Info("The IPK archive has been repacked");
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            Logger.Info($"Read IPK file ({data.Version}) with {data.FilesCount} files");
+            Logger.Info("Read IPK file ({0}) with {1} files", data.Version, data.FilesCount);
 
             return data;
         }

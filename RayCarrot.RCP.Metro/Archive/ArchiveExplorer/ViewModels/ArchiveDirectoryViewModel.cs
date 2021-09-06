@@ -305,7 +305,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            Logger.Error(ex, "Exporting archive directory", DisplayName);
+                            Logger.Error(ex, "Exporting archive directory {0}", DisplayName);
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
 
@@ -413,7 +413,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            Logger.Error(ex, "Importing archive directory", DisplayName);
+                            Logger.Error(ex, "Importing archive directory {0}", DisplayName);
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportDir_Error);
 
@@ -452,14 +452,14 @@ namespace RayCarrot.RCP.Metro
                     // Check if the name conflicts with an existing directory
                     if (this.Any(x => x.ID.Equals(result.StringInput, StringComparison.OrdinalIgnoreCase)))
                     {
-                        Logger.Trace($"The archive directory {result.StringInput} was not added due to already existing");
+                        Logger.Trace("The archive directory {0} was not added due to already existing", result.StringInput);
                         return;
                     }
 
                     // Add the directory
                     Add(result.StringInput);
 
-                    Logger.Trace($"The archive directory {result.StringInput} has been added to {DisplayName}");
+                    Logger.Trace("The archive directory {0} has been added to {1}", result.StringInput, DisplayName);
                 }
             }
         }
@@ -473,7 +473,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the archive supports creating directories
             if (!Archive.Manager.CanModifyDirectories)
             {
-                Logger.Trace($"The directory {DisplayName} was not removed due to the manager not allowing directory modifications");
+                Logger.Trace("The directory {0} was not removed due to the manager not allowing directory modifications", DisplayName);
                 return;
             }
 
@@ -481,7 +481,7 @@ namespace RayCarrot.RCP.Metro
             if (IsRoot)
                 return;
 
-            Logger.Trace($"The archive directory {DisplayName} is being removed...");
+            Logger.Trace("The archive directory {0} is being removed...", DisplayName);
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -498,7 +498,7 @@ namespace RayCarrot.RCP.Metro
                     // Add as modified file
                     Archive.AddModifiedFiles();
 
-                    Logger.Trace($"The archive directory has been removed");
+                    Logger.Trace("The archive directory has been removed");
                 }
             }
         }
@@ -521,7 +521,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task AddFilesAsync()
         {
-            Logger.Trace($"Files are being added to {FullPath}");
+            Logger.Trace("Files are being added to {0}", FullPath);
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -584,7 +584,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, "Adding files to archive directory", DisplayName);
+                    Logger.Error(ex, "Adding files to archive directory {0}", DisplayName);
 
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_AddFiles_Error, file.Name));
 

@@ -94,7 +94,7 @@ namespace RayCarrot.RCP.Metro
                     // Remove unused entries
                     Windows.RemoveWhere(x => !x.Key.TryGetTarget(out Window _));
 
-                    Logger.Debug($"A custom window of type {windowType} has been requested to show");
+                    Logger.Debug("A custom window of type {0} has been requested to show", windowType);
 
                     // Get the currently available windows and copy them to a list
                     var windows = Application.Current.Windows.Cast<Window>().ToList();
@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro
 
                         if (window != null)
                         {
-                            Logger.Info($"The window is not being shown due to a window of the same type being available");
+                            Logger.Info("The window is not being shown due to a window of the same type being available");
 
                             if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
                                 window.Focus();
@@ -128,7 +128,7 @@ namespace RayCarrot.RCP.Metro
                         if (gn?.FirstOrDefault(groupNames.Contains) == null)
                             continue;
 
-                        Logger.Info($"The window is not being shown due to a window with the same ID being available");
+                        Logger.Info("The window is not being shown due to a window with the same ID being available");
 
                         if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
                             window.Focus();
@@ -145,7 +145,7 @@ namespace RayCarrot.RCP.Metro
                     // Show the window
                     instance.Show();
 
-                    Logger.Info($"The window of type {windowType} has been shown");
+                    Logger.Info("The window of type {0} has been shown", windowType);
 
                     return true;
                 }

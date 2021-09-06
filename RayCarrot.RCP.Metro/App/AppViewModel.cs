@@ -318,12 +318,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddNewGameAsync(Games game, GameType type, FileSystemPath installDirectory)
         {
-            Logger.Info($"The game {game} is being added of type {type}...");
+            Logger.Info("The game {0} is being added of type {1}...", game, type);
 
             // Make sure the game hasn't already been added
             if (game.IsAdded())
             {
-                Logger.Warn($"The game {game} has already been added");
+                Logger.Warn("The game {0} has already been added", game);
 
                 await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), Resources.AddGame_DuplicateHeader, MessageType.Error);
 
@@ -336,7 +336,7 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             Data.Games.Add(game, new UserData_GameData(type, installDirectory));
 
-            Logger.Info($"The game {game} has been added");
+            Logger.Info("The game {0} has been added", game);
 
             // Run post-add operations
             await manager.PostGameAddAsync();
@@ -415,7 +415,7 @@ namespace RayCarrot.RCP.Metro
                 // Attempt to change the permission
                 await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, AppFilePaths.UbiIniPath1);
 
-                Logger.Info($"The ubi.ini file permission was changed");
+                Logger.Info("The ubi.ini file permission was changed");
             }
             catch (Exception ex)
             {
@@ -443,7 +443,7 @@ namespace RayCarrot.RCP.Metro
                 // Get all games which have not been added
                 var games = GetGames.Where(x => !x.IsAdded()).ToArray();
 
-                Logger.Trace($"The following games were added to the game checker: {games.JoinItems(", ")}");
+                Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
 
                 // Get additional finder items
                 var finderItems = new List<GameFinder_GenericItem>(1);
@@ -496,7 +496,7 @@ namespace RayCarrot.RCP.Metro
 
                     await Services.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
-                    Logger.Info($"The game finder found the following games {foundItems.JoinItems(", ", x => x.ToString())}");
+                    Logger.Info("The game finder found the following games {0}", foundItems.JoinItems(", ", x => x.ToString()));
 
                     return true;
                 }
@@ -531,12 +531,12 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                Logger.Info($"A download is starting...");
+                Logger.Info("A download is starting...");
 
                 // Make sure there are input sources to download
                 if (!inputSources.Any())
                 {
-                    Logger.Info($"Download failed due to there not being any input sources");
+                    Logger.Info("Download failed due to there not being any input sources");
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
                     return false;
@@ -573,7 +573,7 @@ namespace RayCarrot.RCP.Metro
                     if (!result)
                         return false;
 
-                    Logger.Info($"Manual download finished");
+                    Logger.Info("Manual download finished");
 
                     // Return the result
                     return true;
@@ -593,7 +593,7 @@ namespace RayCarrot.RCP.Metro
                             size = size.Add(ByteSize.FromBytes(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
                         }
 
-                        Logger.Debug($"The size of the download has been retrieved as {size}");
+                        Logger.Debug("The size of the download has been retrieved as {0}", size);
 
                         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
                             return false;
@@ -612,14 +612,14 @@ namespace RayCarrot.RCP.Metro
                 // Show the dialog
                 dialog.ShowDialog();
 
-                Logger.Info($"The download finished with the result of {dialog.ViewModel.CurrentDownloadState}");
+                Logger.Info("The download finished with the result of {0}", dialog.ViewModel.CurrentDownloadState);
 
                 // Return the result
                 return dialog.ViewModel.CurrentDownloadState == DownloaderViewModel.DownloadState.Succeeded;
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Downloading files");
+                Logger.Error(ex, "Downloading files");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
                 return false;
             }
@@ -763,7 +763,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Opening URL {url}");
+                Logger.Error(ex, "Opening URL {0}", url);
             }
         }
 
@@ -858,7 +858,7 @@ namespace RayCarrot.RCP.Metro
                         // Save the user data
                         JsonHelpers.SerializeToFile(RCPServices.Data, AppFilePaths.AppUserDataPath);
 
-                        Logger.Info($"The application user data was saved");
+                        Logger.Info("The application user data was saved");
                     }
                     catch (Exception ex)
                     {

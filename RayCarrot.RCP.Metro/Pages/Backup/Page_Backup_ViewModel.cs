@@ -142,7 +142,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm backup
                 if (!await Services.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
                 {
-                    Logger.Info($"Backup canceled");
+                    Logger.Info("Backup canceled");
 
                     return;
                 }

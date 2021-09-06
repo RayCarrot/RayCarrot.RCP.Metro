@@ -56,7 +56,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Reading RO command file");
+                Logger.Error(ex, "Reading RO command file");
             }
         }
 
@@ -274,14 +274,14 @@ namespace RayCarrot.RCP.Metro
         {
             using (await UpdateDebugCommandsAsyncLock.LockAsync())
             {
-                Logger.Info($"The Rayman Origins debug commands are being updated...");
+                Logger.Info("The Rayman Origins debug commands are being updated...");
 
                 // Make sure the install directory was found
                 if (!DebugCommandFilePath.Parent.DirectoryExists)
                 {
                     IsDebugModeEnabled = false;
 
-                    Logger.Warn($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
+                    Logger.Warn("The Rayman Origins debug commands could not be updated due to the install directory not being found");
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
                     return;
@@ -293,14 +293,14 @@ namespace RayCarrot.RCP.Metro
 
                     if (!IsDebugModeEnabled)
                     {
-                        Logger.Info($"The Rayman Origins debug commands have been disabled");
+                        Logger.Info("The Rayman Origins debug commands have been disabled");
 
                         return;
                     }
 
                     File.WriteAllLines(DebugCommandFilePath, DebugCommands.Select(x => $"{x.Key}={x.Value}"));
 
-                    Logger.Info($"The Rayman Origins debug commands have been updated");
+                    Logger.Info("The Rayman Origins debug commands have been updated");
                 }
                 catch (Exception ex)
                 {

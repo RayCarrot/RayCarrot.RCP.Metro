@@ -190,7 +190,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Getting backup info", BackupInfo);
+                Logger.Error(ex, "Getting backup info");
 
                 CanRestore = false;
 
@@ -221,7 +221,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm restore
                 if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                 {
-                    Logger.Info($"Restore canceled");
+                    Logger.Info("Restore canceled");
 
                     return;
                 }
@@ -266,7 +266,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm backup if one already exists
                 if (BackupInfo.ExistingBackups.Any() && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
-                    Logger.Info($"Backup canceled");
+                    Logger.Info("Backup canceled");
                     return;
                 }
 

@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using System;
+using NLog;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -59,7 +60,7 @@ namespace RayCarrot.RCP.Metro
                 _currentUserLevel = value;
 
                 // Log the change
-                Logger.Info($"The user level has changed from {oldValue} to {CurrentUserLevel}");
+                Logger.Info("The user level has changed from {0} to {1}", oldValue, CurrentUserLevel);
 
                 // Fire event
                 UserLevelChanged?.Invoke(this, new PropertyChangedEventArgs<UserLevel>(oldValue, CurrentUserLevel));
@@ -84,7 +85,7 @@ namespace RayCarrot.RCP.Metro
                 _currentCulture = value;
 
                 // Log the change
-                Logger.Info($"The current culture has changed from {oldValue} to {CurrentCulture}");
+                Logger.Info("The current culture has changed from {0} to {1}", oldValue, CurrentCulture);
 
                 // Fire event
                 CultureChanged?.Invoke(this, new PropertyChangedEventArgs<CultureInfo>(oldValue, CurrentCulture));
@@ -106,7 +107,7 @@ namespace RayCarrot.RCP.Metro
                 _arguments = value;
 
                 // Log the change
-                Logger.Info($"The program arguments have been set to \"{Arguments.JoinItems(", ")}\"");
+                Logger.Info("The program arguments have been set to \"{0}\"", Arguments.JoinItems(", "));
             }
         }
 

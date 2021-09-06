@@ -118,14 +118,14 @@ namespace RayCarrot.RCP.Metro
             if (outputResult.CanceledByUser)
                 return;
 
-            Logger.Info($"Progression data for slot {SlotName} is being exported...");
+            Logger.Info("Progression data for slot {0} is being exported...", SlotName);
 
             try
             {
                 // Export
                 await ExportSaveDataAsync(outputResult.SelectedFileLocation);
 
-                Logger.Info($"Progression data has been exported");
+                Logger.Info("Progression data has been exported");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ExportSuccess);
             }
@@ -153,14 +153,14 @@ namespace RayCarrot.RCP.Metro
             if (inputResult.CanceledByUser)
                 return;
 
-            Logger.Info($"Progression data for slot {SlotName} is being imported...");
+            Logger.Info("Progression data for slot {0} is being imported...", SlotName);
 
             try
             {
                 // Import
                 await ImportSaveDataAsync(inputResult.SelectedFile);
 
-                Logger.Info($"Progression data has been imported");
+                Logger.Info("Progression data has been imported");
             }
             catch (Exception ex)
             {
@@ -175,7 +175,7 @@ namespace RayCarrot.RCP.Metro
                 // Reload data
                 await ProgressionViewModel.LoadDataAsync();
 
-                Logger.Info($"Progression data has been reloaded");
+                Logger.Info("Progression data has been reloaded");
             }
             catch (Exception ex)
             {

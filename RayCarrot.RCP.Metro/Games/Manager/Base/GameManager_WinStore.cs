@@ -203,7 +203,7 @@ namespace RayCarrot.RCP.Metro
                 // Make sure we got a valid directory
                 if (dir == null)
                 {
-                    Logger.Info($"The {Game} was not found under Windows Store packages");
+                    Logger.Info("The {0} was not found under Windows Store packages", Game);
 
                     return null;
                 }
@@ -221,7 +221,7 @@ namespace RayCarrot.RCP.Metro
 
             if (!await IsValidAsync(installDir))
             {
-                Logger.Info($"The {Game} install directory was not valid");
+                Logger.Info("The {0} install directory was not valid", Game);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
@@ -261,7 +261,7 @@ namespace RayCarrot.RCP.Metro
             // Create the shortcut
             RCPServices.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
 
-            Logger.Trace($"A shortcut was created for {Game} under {destinationDirectory}");
+            Logger.Trace("A shortcut was created for {0} under {1}", Game, destinationDirectory);
         }
 
         #endregion

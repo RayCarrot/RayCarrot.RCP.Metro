@@ -149,7 +149,7 @@ namespace RayCarrot.RCP.Metro
                 if (mountPath.FileExists)
                 {
                     options.MountPath = mountPath;
-                    Logger.Info($"The mount path for {Game} was automatically found");
+                    Logger.Info("The mount path for {0} was automatically found", Game);
                 }
 
                 // Find DOSBox path if not already added
@@ -228,7 +228,7 @@ namespace RayCarrot.RCP.Metro
             // If the executable does not exist the location is not valid
             if (!(result.SelectedDirectory + ExecutableName).FileExists)
             {
-                Logger.Info($"The selected install directory for {Game} is not valid");
+                Logger.Info("The selected install directory for {0} is not valid", Game);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
                 return null;
@@ -241,7 +241,7 @@ namespace RayCarrot.RCP.Metro
                 $"{Path.GetFileNameWithoutExtension(ExecutableName)} ver=usa"
             });
 
-            Logger.Info($"A batch file was created for {Game}");
+            Logger.Info("A batch file was created for {0}", Game);
 
             return result.SelectedDirectory;
         }

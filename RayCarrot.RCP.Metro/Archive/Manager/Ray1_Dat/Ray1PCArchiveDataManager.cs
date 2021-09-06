@@ -141,7 +141,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files to include</param>
         public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
         {
-            Logger.Info($"An R1 PC archive is being repacked...");
+            Logger.Info("An R1 PC archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<Rayman1PCArchiveData>();
@@ -198,7 +198,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            Logger.Info($"The R1 PC archive has been repacked");
+            Logger.Info("The R1 PC archive has been repacked");
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            Logger.Info($"Read R1 PC archive file with {data.Files.Length} files");
+            Logger.Info("Read R1 PC archive file with {0} files", data.Files.Length);
 
             return data;
         }

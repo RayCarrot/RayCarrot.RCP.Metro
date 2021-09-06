@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using System;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -36,7 +37,7 @@ namespace RayCarrot.RCP.Metro
 
             foreach (var mod in Mods)
             {
-                Logger.Info($"Initializing mod {mod.Header.Value}");
+                Logger.Info("Initializing mod {0}", mod.Header.Value);
                 await mod.InitializeAsync();
             }
 

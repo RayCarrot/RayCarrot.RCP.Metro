@@ -346,7 +346,7 @@ namespace RayCarrot.RCP.Metro
             time.Stop();
 
             Logger.Info("The help items have refreshed");
-            Logger.Debug($"The help items refresh time was {time.ElapsedMilliseconds} ms");
+            Logger.Debug("The help items refresh time was {0} ms", time.ElapsedMilliseconds);
         }
 
         #endregion

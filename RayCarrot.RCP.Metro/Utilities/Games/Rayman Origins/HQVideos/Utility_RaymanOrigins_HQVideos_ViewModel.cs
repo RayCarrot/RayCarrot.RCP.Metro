@@ -86,7 +86,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                Logger.Info($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
+                Logger.Info("The Rayman Origins videos are being replaced with {0}", IsOriginalVideos ? "HQ Videos" : "original videos");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]

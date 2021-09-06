@@ -301,7 +301,7 @@ namespace RayCarrot.RCP.Metro
                         // Open the location
                         await RCPServices.File.OpenExplorerLocationAsync(instDir);
 
-                        Logger.Trace($"The Game {Game} install location was opened");
+                        Logger.Trace("The Game {0} install location was opened", Game);
                     }), UserLevel.Advanced));
 
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
@@ -309,7 +309,7 @@ namespace RayCarrot.RCP.Metro
                     // Add Game options
                     var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.CogOutline, new RelayCommand(() =>
                     {
-                        Logger.Trace($"The Game {Game} options dialog is opening...");
+                        Logger.Trace("The Game {0} options dialog is opening...", Game);
                         GameOptionsDialog.Show(Game);
                     }));
 
@@ -446,14 +446,14 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                Logger.Trace($"The game {Game} is being located...");
+                Logger.Trace("The game {0} is being located...", Game);
 
                 var typeResult = await GetGameTypeAsync();
 
                 if (typeResult.CanceledByUser)
                     return;
 
-                Logger.Info($"The game {Game} type has been detected as {typeResult.SelectedType}");
+                Logger.Info("The game {0} type has been detected as {1}", Game, typeResult.SelectedType);
 
                 await Game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
             }
@@ -472,7 +472,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                Logger.Trace($"The game {Game} is being downloaded...");
+                Logger.Trace("The game {0} is being downloaded...", Game);
 
                 // Get the game directory
                 var gameDir = AppFilePaths.GamesBaseDir + Game.ToString();
@@ -492,7 +492,7 @@ namespace RayCarrot.RCP.Metro
                 // Refresh
                 await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
-                Logger.Trace($"The game {Game} has been downloaded");
+                Logger.Trace("The game {0} has been downloaded", Game);
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, DisplayName), Resources.GameInstall_SuccessHeader);
             }

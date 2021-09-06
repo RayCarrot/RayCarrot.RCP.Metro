@@ -73,7 +73,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the setting to show success messages is on
             if (!RCPServices.Data.ShowActionComplete)
             {
-                Logger.Trace($"A message of type {MessageType.Success} was not displayed with the content of: '{message}'");
+                Logger.Trace("A message of type {0} was not displayed with the content of: '{1}'", MessageType.Success, message);
 
                 return;
             }

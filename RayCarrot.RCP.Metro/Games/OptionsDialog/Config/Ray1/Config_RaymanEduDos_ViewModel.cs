@@ -1,4 +1,5 @@
-﻿using RayCarrot.IO;
+﻿using System;
+using RayCarrot.IO;
 using RayCarrot.Rayman.Ray1;
 using RayCarrot.UI;
 using System.Collections.ObjectModel;
@@ -28,14 +29,14 @@ namespace RayCarrot.RCP.Metro
 
             ResetSelectedPageSelectionIndex();
 
-            Logger.Trace($"EDU config selection has been modified with {PageSelection.Count} items");
+            Logger.Trace("EDU config selection has been modified with {0} items", PageSelection.Count);
         }
 
         public override FileSystemPath GetConfigPath()
         {
             var game = Data.EducationalDosBoxGames[SelectedPageSelectionIndex];
 
-            Logger.Trace($"Retrieving EDU config path for '{game.Name} ({game.LaunchMode})'");
+            Logger.Trace("Retrieving EDU config path for '{0} ({1})'", game.Name, game.LaunchMode);
 
             var installDir = Game.GetInstallDir();
 
@@ -55,7 +56,7 @@ namespace RayCarrot.RCP.Metro
 
         protected override Task OnSelectedPageSelectionIndexUpdatedAsync()
         {
-            Logger.Trace($"EDU config selection changed");
+            Logger.Trace("EDU config selection changed");
             return LoadPageAsync();
         }
 

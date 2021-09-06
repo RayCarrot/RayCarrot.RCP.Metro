@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
 
             _selectedLanguage = GetCurrentLanguage() ?? Ray1MinigamesLanguage.French;
 
-            Logger.Info($"The current Rayman 1 Minigames language has been detected as {SelectedLanguage}");
+            Logger.Info("The current Rayman 1 Minigames language has been detected as {0}", SelectedLanguage);
         }
 
         #endregion
@@ -117,7 +117,7 @@ namespace RayCarrot.RCP.Metro
                     RCPServices.File.MoveFile(InstallDir + "RayGames.exe", InstallDir + $"{oldLang}.exe", true);
                     RCPServices.File.MoveFile(InstallDir + $"{newLang}.exe", InstallDir + "RayGames.exe", true);
 
-                    Logger.Info($"The Rayman 1 Minigames language has been updated");
+                    Logger.Info("The Rayman 1 Minigames language has been updated");
                 }
                 catch (Exception ex)
                 {

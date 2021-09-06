@@ -567,7 +567,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 fileSize = (long)exe.GetSize().Bytes;
-                Logger.Info($"RRR exe size is {fileSize} bytes");
+                Logger.Info("RRR exe size is {0} bytes", fileSize);
             }
             catch (Exception ex)
             {
@@ -580,7 +580,7 @@ namespace RayCarrot.RCP.Metro
 
             GameVersion version = ExePatches.FirstOrDefault(x => x.Value.FileSize == fileSize).Key;
 
-            Logger.Info($"RRR game version detected as {version}");
+            Logger.Info("RRR game version detected as {0}", version);
 
             if (version == GameVersion.Unknown)
                 await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_UnsupportedGameExe, MessageType.Error);

@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
             CanModifyGame = RCPServices.File.CheckDirectoryWriteAccess(Game.GetInstallDir(false));
 
             if (!CanModifyGame)
-                Logger.Info($"The game {Game} can't be modified");
+                Logger.Info("The game {0} can't be modified", Game);
         }
 
         #endregion
@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task LoadAsync()
         {
-            Logger.Info($"{Game} config is being set up");
+            Logger.Info("{0} config is being set up", Game);
 
             // Run setup code
             await OnSetupAsync();
@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
             // Load the configuration data
             ConfigData = await LoadConfigAsync();
 
-            Logger.Info($"The ubi.ini file has been loaded");
+            Logger.Info("The ubi.ini file has been loaded");
 
             // Keep track if the data had to be recreated
             bool recreated = false;
@@ -87,7 +87,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ConfigData.ReCreate();
                 recreated = true;
-                Logger.Info($"The ubi.ini section for {Game} was recreated");
+                Logger.Info("The ubi.ini section for {0} was recreated", Game);
             }
 
             // Import config data
@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
             // If the data was recreated we mark that there are unsaved changes available
             UnsavedChanges = recreated;
 
-            Logger.Info($"All section properties have been loaded");
+            Logger.Info("All section properties have been loaded");
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info($"{Game} configuration is saving...");
+            Logger.Info("{0} configuration is saving...", Game);
 
             try
             {
@@ -115,7 +115,7 @@ namespace RayCarrot.RCP.Metro
                 // Save the config data
                 ConfigData.Save();
 
-                Logger.Info($"{Game} configuration has been saved");
+                Logger.Info("{0} configuration has been saved", Game);
             }
             catch (Exception ex)
             {

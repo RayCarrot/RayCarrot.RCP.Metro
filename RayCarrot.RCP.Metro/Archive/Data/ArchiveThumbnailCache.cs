@@ -67,7 +67,7 @@ namespace RayCarrot.RCP.Metro
                     CacheRegister.RemoveAt(0);
                 }
 
-                Logger.Info($"Cleared {clearCount} entries from thumbnail cache");
+                Logger.Info("Cleared {0} entries from thumbnail cache", clearCount);
             }
         }
 

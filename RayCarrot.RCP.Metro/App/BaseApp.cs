@@ -190,7 +190,7 @@ namespace RayCarrot.RCP.Metro
             // Log the current environment
             try
             {
-                Logger.Info($"Current platform: {Environment.OSVersion.VersionString}");
+                Logger.Info("Current platform: {0}", Environment.OSVersion.VersionString);
 
             }
             catch (Exception ex)
@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Log some debug information
-            Logger.Debug($"Entry assembly path: {Assembly.GetEntryAssembly()?.Location}");
+            Logger.Debug("Entry assembly path: {0}", Assembly.GetEntryAssembly()?.Location);
 
             LogStartupTime("Startup: Debug info has been logged");
 
@@ -251,7 +251,7 @@ namespace RayCarrot.RCP.Metro
             InstanceData.Arguments = args;
 
             // Log that the build is complete
-            Logger.Info($"The service provider has been built with {services.Count} services");
+            Logger.Info("The service provider has been built with {0} services", services.Count);
 
             LogStartupTime("AppData: Application data and services have been setup");
         }

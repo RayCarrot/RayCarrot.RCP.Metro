@@ -445,7 +445,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            Logger.Info($"{Game} config is being set up");
+            Logger.Info("{0} config is being set up", Game);
 
             ConfigFilePath = GetConfigPath();
 
@@ -566,7 +566,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info($"{Game} config is saving...");
+            Logger.Info("{0} config is saving...", Game);
 
             try
             {
@@ -623,7 +623,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Saving {Game} configuration data");
+                Logger.Error(ex, "Saving {0} configuration data", Game);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
@@ -758,7 +758,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Getting {Game} language from batch file");
+                Logger.Error(ex, "Getting {0} language from batch file", Game);
                 return null;
             }
         }
@@ -794,7 +794,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Setting {Game} language from batch file");
+                Logger.Error(ex, "Setting {0} language from batch file", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader);
             }
         }

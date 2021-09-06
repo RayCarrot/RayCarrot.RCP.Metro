@@ -46,12 +46,12 @@ namespace RayCarrot.RCP.Metro
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
                 (await RCPServices.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
-                Logger.Trace($"The game {Game} Steam store page was opened");
+                Logger.Trace("The game {0} Steam store page was opened", Game);
             })),
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
                 (await RCPServices.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
-                Logger.Trace($"The game {Game} Steam community page was opened");
+                Logger.Trace("The game {0} Steam community page was opened", Game);
             }))
         };
 
@@ -120,12 +120,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch result</returns>
         protected override async Task<GameLaunchResult> LaunchAsync(bool forceRunAsAdmin)
         {
-            Logger.Trace($"The game {Game} is launching with Steam ID {SteamID}");
+            Logger.Trace("The game {0} is launching with Steam ID {1}", Game, SteamID);
 
             // Launch the game
             var process = await RCPServices.File.LaunchFileAsync(LaunchURL);
 
-            Logger.Info($"The game {Game} has been launched");
+            Logger.Info("The game {0} has been launched", Game);
 
             return new GameLaunchResult(process, process != null);
         }
@@ -152,7 +152,7 @@ namespace RayCarrot.RCP.Metro
                 // Get the install directory
                 if (!(key?.GetValue("InstallLocation") is string dir))
                 {
-                    Logger.Info($"The {Game} was not found under Steam Apps");
+                    Logger.Info("The {0} was not found under Steam Apps", Game);
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 
@@ -173,7 +173,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the game is valid
             if (!await IsValidAsync(installDir))
             {
-                Logger.Info($"The {Game} install directory was not valid");
+                Logger.Info("The {0} install directory was not valid", Game);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 
@@ -192,7 +192,7 @@ namespace RayCarrot.RCP.Metro
         {
             RCPServices.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
 
-            Logger.Trace($"An URL shortcut was created for {Game} under {destinationDirectory}");
+            Logger.Trace("An URL shortcut was created for {0} under {1}", Game, destinationDirectory);
         }
 
         #endregion

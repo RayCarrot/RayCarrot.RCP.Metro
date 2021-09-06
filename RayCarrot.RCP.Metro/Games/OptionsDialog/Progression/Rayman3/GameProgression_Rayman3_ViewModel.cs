@@ -1,4 +1,5 @@
-﻿using RayCarrot.Binary;
+﻿using System;
+using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
@@ -43,12 +44,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath)
         {
-            Logger.Info($"Rayman 3 slot {filePath.Name} is being loaded...");
+            Logger.Info("Rayman 3 slot {0} is being loaded...", filePath.Name);
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                Logger.Info($"Slot was not loaded due to not being found");
+                Logger.Info("Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -68,7 +69,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize the data
             var saveData = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
 
-            Logger.Info($"Slot has been deserialized");
+            Logger.Info("Slot has been deserialized");
 
             var formatInfo = new NumberFormatInfo()
             {
@@ -92,7 +93,7 @@ namespace RayCarrot.RCP.Metro
                 new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
             };
 
-            Logger.Info($"General progress info has been set");
+            Logger.Info("General progress info has been set");
 
             // Return the data with the collection
             return new GameProgression_Rayman3_SlotViewModel(new LocalizedString(() => $"{filePath.RemoveFileExtension().Name}"), progressItems, filePath, this);

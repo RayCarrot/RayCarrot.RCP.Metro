@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
                 // Set the archive lock
                 ArchiveLock = new AsyncLock();
 
-                Logger.Info($"The Archive Explorer is loading with {Archives.Length} archives");
+                Logger.Info("The Archive Explorer is loading with {0} archives", Archives.Length);
 
                 // Make sure we got an archive
                 if (!Archives.Any())
@@ -266,7 +266,7 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
-                Logger.Warn($"Attempted to navigate to unsupported archive entry type {entry}");
+                Logger.Warn("Attempted to navigate to unsupported archive entry type {0}", entry);
             }
         }
 
@@ -428,7 +428,7 @@ namespace RayCarrot.RCP.Metro
             if (selectedFilesCount > 0 && !invalidSize)
                 StatusBarItems.Add(new LocalizedString(() => $"{selectedFilesSize}"));
 
-            Logger.Trace($"Refreshed the status bar");
+            Logger.Trace("Refreshed the status bar");
         }
 
         /// <summary>
@@ -465,7 +465,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="address">The address of the directory to load</param>
         public void LoadDirectory(string address)
         {
-            Logger.Debug($"Loading directory from address: {address}");
+            Logger.Debug("Loading directory from address: {0}", address);
 
             // Get the directory
             var dir = GetDirectory(address);
@@ -484,7 +484,7 @@ namespace RayCarrot.RCP.Metro
             if (newDir == null)
                 throw new ArgumentNullException(nameof(newDir));
 
-            Logger.Debug($"The loaded archive directory is changing from {previousDir?.DisplayName ?? "NULL"} to {newDir.DisplayName}");
+            Logger.Debug("The loaded archive directory is changing from {0} to {1}", previousDir?.DisplayName ?? "NULL", newDir.DisplayName);
 
             // Stop refreshing thumbnails
             if (IsInitializingFiles)
@@ -499,7 +499,7 @@ namespace RayCarrot.RCP.Metro
             // Update the address bar
             UpdateAddress();
 
-            Logger.Debug($"Updating loaded archive dir from {previousDir?.DisplayName} to {newDir.DisplayName}");
+            Logger.Debug("Updating loaded archive dir from {0} to {1}", previousDir?.DisplayName, newDir.DisplayName);
 
             // Lock the access to the archive
             using (await ArchiveLock.LockAsync())
@@ -509,7 +509,7 @@ namespace RayCarrot.RCP.Metro
                     // Check if the operation should be canceled
                     if (CancelInitializeFiles)
                     {
-                        Logger.Debug($"Canceled initializing files for archive dir {newDir.DisplayName}");
+                        Logger.Debug("Canceled initializing files for archive dir {0}", newDir.DisplayName);
 
                         return;
                     }
@@ -517,7 +517,7 @@ namespace RayCarrot.RCP.Metro
                     // Indicate that we are refreshing the thumbnails
                     IsInitializingFiles = true;
 
-                    Logger.Debug($"Initializing files for archive dir {newDir.DisplayName}");
+                    Logger.Debug("Initializing files for archive dir {0}", newDir.DisplayName);
 
                     // Unload the files
                     previousDir?.Files.ForEach(x => x.Unload());
@@ -533,7 +533,7 @@ namespace RayCarrot.RCP.Metro
                             // Check if the operation should be canceled
                             if (CancelInitializeFiles)
                             {
-                                Logger.Debug($"Canceled initializing files for archive dir {newDir.DisplayName}");
+                                Logger.Debug("Canceled initializing files for archive dir {0}", newDir.DisplayName);
 
                                 return;
                             }
@@ -543,7 +543,7 @@ namespace RayCarrot.RCP.Metro
                         }
                     });
 
-                    Logger.Debug($"Initialized files for archive dir {newDir.DisplayName}");
+                    Logger.Debug("Initialized files for archive dir {0}", newDir.DisplayName);
                 }
                 finally
                 {

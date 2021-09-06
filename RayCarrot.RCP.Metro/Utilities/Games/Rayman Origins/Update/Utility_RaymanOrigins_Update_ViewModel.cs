@@ -48,7 +48,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                Logger.Info($"The Rayman Origins disc updater is being downloaded...");
+                Logger.Info("The Rayman Origins disc updater is being downloaded...");
 
                 // Download the file
                 var succeeded = await App.DownloadAsync(new Uri[]

@@ -137,7 +137,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            Logger.Info($"{Game} config is being set up");
+            Logger.Info("{0} config is being set up", Game);
 
             using (var key = GetKey(false))
             {
@@ -155,7 +155,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            Logger.Info($"All values have been loaded");
+            Logger.Info("All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -166,7 +166,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info($"{Game} configuration is saving...");
+            Logger.Info("{0} configuration is saving...", Game);
 
             try
             {
@@ -175,20 +175,20 @@ namespace RayCarrot.RCP.Metro
                     if (key == null)
                         throw new Exception("The Registry key could not be created");
 
-                    Logger.Info($"The key {key.Name} has been opened");
+                    Logger.Info("The key {0} has been opened", key.Name);
 
                     key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
                     key.SetValue(ScreenWidthKey, ScreenWidth.ToString());
                     key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                 }
 
-                Logger.Info($"{Game} configuration has been saved");
+                Logger.Info("{0} configuration has been saved", Game);
 
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Saving {Game} registry data");
+                Logger.Error(ex, "Saving {0} registry data", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
             }
@@ -213,7 +213,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
-                Logger.Info($"The Registry key {key?.Name} has been created");
+                Logger.Info("The Registry key {0} has been created", key?.Name);
 
                 return key;
             }

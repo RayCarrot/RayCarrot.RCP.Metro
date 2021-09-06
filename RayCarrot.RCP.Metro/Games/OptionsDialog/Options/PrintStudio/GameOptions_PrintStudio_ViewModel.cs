@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
             CanSetVersion = currentVersion != null;
             _selectedVersion = currentVersion ?? PrintStudioVersion.Version_03;
 
-            Logger.Info($"The current Print Studio version has been detected as {SelectedVersion} with the option to set the version as {CanSetVersion}");
+            Logger.Info("The current Print Studio version has been detected as {0} with the option to set the version as {1}", SelectedVersion, CanSetVersion);
         }
 
         #endregion
@@ -157,7 +157,7 @@ namespace RayCarrot.RCP.Metro
                     // Get the current version
                     var previousVersion = GetCurrentVersion() ?? throw new Exception("Previous Print Studio version can not be null");
 
-                    Logger.Info($"The current version is {previousVersion}");
+                    Logger.Info("The current version is {0}", previousVersion);
 
                     // Make sure the version is different than the current one
                     if (previousVersion == SelectedVersion)
@@ -195,7 +195,7 @@ namespace RayCarrot.RCP.Metro
                         RCPServices.File.MoveFiles(new IOSearchPattern(installDir + "CalendarData" + GetVersionTag(SelectedVersion) + lang), installDir + "Pictures" + lang + "calendars", true);
                     }
 
-                    Logger.Info($"The Print Studio version has been updated");
+                    Logger.Info("The Print Studio version has been updated");
                 }
                 catch (Exception ex)
                 {

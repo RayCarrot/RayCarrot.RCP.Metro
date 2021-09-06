@@ -128,7 +128,7 @@ namespace RayCarrot.RCP.Metro
                 // Set the framework culture
                 Services.InstanceData.CurrentCulture = ci;
 
-                Logger.Info($"The current culture was set to {ci.EnglishName}");
+                Logger.Info("The current culture was set to {0}", ci.EnglishName);
             }
         }
 

@@ -102,7 +102,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we got a directory
                     if (dir == null)
                     {
-                        Logger.Info($"The {Game} was not found under Windows Store packages");
+                        Logger.Info("The {0} was not found under Windows Store packages", Game);
                         continue;
                     }
 
@@ -112,7 +112,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we got a valid directory
                     if (!await IsValidAsync(installDir, version))
                     {
-                        Logger.Info($"The {Game} install directory was not valid");
+                        Logger.Info("The {0} install directory was not valid", Game);
 
                         continue;
                     }

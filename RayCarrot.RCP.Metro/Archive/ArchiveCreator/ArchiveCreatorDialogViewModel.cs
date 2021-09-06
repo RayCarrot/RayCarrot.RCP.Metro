@@ -189,7 +189,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Creating archive", Manager);
+                Logger.Error(ex, "Creating archive using manager {0}", Manager);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
 

@@ -58,12 +58,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Create()
         {
-            Logger.Trace($"Recreating DosBox config file {FilePath}");
+            Logger.Trace("Recreating DosBox config file {0}", FilePath);
 
             // Check if the file exists and is valid
             if (FilePath.FileExists && File.ReadAllText(FilePath).StartsWith(FirstLines))
             {
-                Logger.Trace($"The DosBox config file is valid and no further action is needed");
+                Logger.Trace("The DosBox config file is valid and no further action is needed");
                 return;
             }
 
@@ -72,7 +72,7 @@ namespace RayCarrot.RCP.Metro
             // Create the file with default content
             File.WriteAllText(FilePath, FirstLines);
 
-            Logger.Info($"The DosBox config file was recreated");
+            Logger.Info("The DosBox config file was recreated");
         }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath fileName, Func<string> slotNamegenerator)
         {
-            Logger.Info($"Jungle Run slot {fileName.Name} is being loaded...");
+            Logger.Info("Jungle Run slot {0} is being loaded...", fileName.Name);
 
             // Get the file path
             var filePath = SaveDir + fileName;
@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                Logger.Info($"Slot was not loaded due to not being found");
+                Logger.Info("Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and return the data
             var saveData = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name));
 
-            Logger.Info($"Slot has been deserialized");
+            Logger.Info("Slot has been deserialized");
 
             // Create the collection with items for each time trial level + general information
             var progressItems = new GameProgression_InfoItemViewModel[(saveData.Levels.Length / 10) + 2];
@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
             int collectedTeeth = 0;
             int availableTeeth = saveData.Levels.Length;
 
-            Logger.Trace($"Levels are being enumerated...");
+            Logger.Trace("Levels are being enumerated...");
 
             // Enumerate each level
             for (int i = 0; i < saveData.Levels.Length; i++)
@@ -80,13 +80,13 @@ namespace RayCarrot.RCP.Metro
                 // Check if the level is a normal level
                 if ((i + 1) % 10 != 0)
                 {
-                    Logger.Trace($"Level index {i} is a normal level");
+                    Logger.Trace("Level index {0} is a normal level", i);
 
                     // Get the collected lums
                     collectedLums += levelData.LumsRecord;
                     availableLums += 100;
 
-                    Logger.Trace($"{levelData.LumsRecord} Lums have been collected");
+                    Logger.Trace("{0} Lums have been collected", levelData.LumsRecord);
 
                     // Check if the level is 100% complete
                     if (levelData.LumsRecord >= 100)
@@ -95,17 +95,17 @@ namespace RayCarrot.RCP.Metro
                     continue;
                 }
 
-                Logger.Trace($"Level index {i} is a time trial level");
+                Logger.Trace("Level index {0} is a time trial level", i);
 
                 // Make sure the level has been completed
                 if (levelData.RecordTime == 0)
                 {
-                    Logger.Trace($"Level has not been completed");
+                    Logger.Trace("Level has not been completed");
 
                     continue;
                 }
 
-                Logger.Trace($"Level has been completed with the record time {levelData.RecordTime}");
+                Logger.Trace("Level has been completed with the record time {0}", levelData.RecordTime);
 
                 collectedTeeth++;
 
@@ -131,12 +131,12 @@ namespace RayCarrot.RCP.Metro
             progressItems[0] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Lum, new LocalizedString(() => $"{collectedLums}/{availableLums}"));
             progressItems[1] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_RedTooth, new LocalizedString(() => $"{collectedTeeth}/{availableTeeth}"));
 
-            Logger.Info($"General progress info has been set");
+            Logger.Info("General progress info has been set");
 
             // Calculate the percentage
             var percentage = ((collectedLums / (double)availableLums * 50) + (collectedTeeth / (double)availableTeeth * 50)).ToString("0.##");
 
-            Logger.Info($"Slot percentage is {percentage}%");
+            Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
             return new GameProgression_JungleRun_SlotViewModel(new LocalizedString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems, filePath, this);

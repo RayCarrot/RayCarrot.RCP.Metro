@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Metro
                     // Reset the user data
                     RCPServices.Data.Reset();
 
-                    Logger.Info($"The app user data has been reset");
+                    Logger.Info("The app user data has been reset");
                 }
             }
             catch (Exception ex)
@@ -118,7 +118,7 @@ namespace RayCarrot.RCP.Metro
                 Logger.Error(ex, "Loading app user data");
 
                 // NOTE: This is not localized due to the current culture not having been set at this point
-                MessageBox.Show($"An error occurred reading saved app data. Some settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("An error occurred reading saved app data. Some settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Reset the user data
                 RCPServices.Data.Reset();
@@ -149,7 +149,7 @@ namespace RayCarrot.RCP.Metro
             // Run basic startup
             await BasicStartupAsync();
 
-            Logger.Info($"Current version is {RCPServices.App.CurrentAppVersion}");
+            Logger.Info("Current version is {0}", RCPServices.App.CurrentAppVersion);
 
             // Check if it's a new version
             if (Data.LastVersion < RCPServices.App.CurrentAppVersion)
@@ -165,7 +165,7 @@ namespace RayCarrot.RCP.Metro
             // Check if it's a lower version than previously recorded
             else if (Data.LastVersion > RCPServices.App.CurrentAppVersion)
             {
-                Logger.Warn($"A newer version ({Data.LastVersion}) has been recorded in the application data");
+                Logger.Warn("A newer version ({0}) has been recorded in the application data", Data.LastVersion);
 
                 if (!Data.DisableDowngradeWarning)
                     await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCPServices.App.CurrentAppVersion,
@@ -202,7 +202,7 @@ namespace RayCarrot.RCP.Metro
             // Save window state
             RCPServices.Data.WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
 
-            Logger.Info($"The application is exiting...");
+            Logger.Info("The application is exiting...");
 
             // Save all user data
             await RCPServices.App.SaveUserDataAsync();
@@ -346,7 +346,7 @@ namespace RayCarrot.RCP.Metro
                     if (updateFile.FileExists)
                     {
                         updateFile.GetFileInfo().Delete();
-                        Logger.Info($"The updater was deleted");
+                        Logger.Info("The updater was deleted");
                     }
                 }
                 catch (Exception ex)
@@ -609,7 +609,7 @@ namespace RayCarrot.RCP.Metro
                 // Add to removed games
                 removed.Add(game);
 
-                Logger.Info($"The game {game} has been removed due to not being valid");
+                Logger.Info("The game {0} has been removed due to not being valid", game);
             }
 
             // Refresh if any games were removed
@@ -722,21 +722,21 @@ namespace RayCarrot.RCP.Metro
                     // Try for 2 seconds first
                     if (retryTime < 20)
                     {
-                        Logger.Debug($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        Logger.Debug("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
 
                         await Task.Delay(100);
                     }
                     // Now it's taking a long time... Try for 10 more seconds
                     else if (retryTime < 70)
                     {
-                        Logger.Warn($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        Logger.Warn("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
 
                         await Task.Delay(200);
                     }
                     // Give up and let the deleting of the file give an error message
                     else
                     {
-                        Logger.Fatal($"The updater can not be removed due to not having write access");
+                        Logger.Fatal("The updater can not be removed due to not having write access");
                         break;
                     }
                 }
@@ -746,7 +746,7 @@ namespace RayCarrot.RCP.Metro
                     // Remove the updater
                     RCPServices.File.DeleteFile(AppFilePaths.UpdaterFilePath);
 
-                    Logger.Info($"The updater has been removed");
+                    Logger.Info("The updater has been removed");
                 }
                 catch (Exception ex)
                 {

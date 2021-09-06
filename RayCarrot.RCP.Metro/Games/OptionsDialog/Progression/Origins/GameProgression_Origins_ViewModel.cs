@@ -44,12 +44,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected GameProgression_BaseSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath, Func<string> slotNamegenerator)
         {
-            Logger.Info($"Origins slot {filePath.Name} is being loaded...");
+            Logger.Info("Origins slot {0} is being loaded...", filePath.Name);
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                Logger.Info($"Slot was not loaded due to not being found");
+                Logger.Info("Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and get the data
             var saveData = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger(filePath.Name)).SaveData;
 
-            Logger.Info($"Slot has been deserialized");
+            Logger.Info("Slot has been deserialized");
 
             // Get the level configuration
             var lvlConfig = JsonConvert.DeserializeObject<ROLevelConfig>(Files.RO_LevelConfig);
@@ -132,12 +132,12 @@ namespace RayCarrot.RCP.Metro
             progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Medal, new LocalizedString(() => $"{lumAttack3}/51")));
             progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Trophy, new LocalizedString(() => $"{timeAttack2}/31")));
 
-            Logger.Info($"General progress info has been set");
+            Logger.Info("General progress info has been set");
 
             // Calculate the percentage
             var percentage = ((electoons / 246d * 25) + (teeth / 10d * 25) + (lumAttack3 / 51d * 25) + (timeAttack2 / 31d * 25)).ToString("0.##");
 
-            Logger.Info($"Slot percentage is {percentage}%");
+            Logger.Info("Slot percentage is {percentage}%");
 
             // Return the data with the collection
             return new GameProgression_Origins_SlotViewModel(new LocalizedString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems.ToArray(), filePath, this);

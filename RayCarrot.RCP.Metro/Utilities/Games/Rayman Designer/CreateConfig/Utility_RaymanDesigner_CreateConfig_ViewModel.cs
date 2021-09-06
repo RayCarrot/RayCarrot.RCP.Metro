@@ -84,7 +84,7 @@ namespace RayCarrot.RCP.Metro
                     "Directory =.\\"
                 });
 
-                Logger.Info($"The Rayman Designer config file has been recreated");
+                Logger.Info("The Rayman Designer config file has been recreated");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
             }

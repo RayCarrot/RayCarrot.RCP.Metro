@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
@@ -158,12 +159,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync(bool forceRunAsAdmin)
         {
-            Logger.Trace($"The game {Game} is being launched...");
+            Logger.Trace("The game {0} is being launched...", Game);
 
             // Verify that the game can launch
             if (!await VerifyCanLaunchAsync())
             {
-                Logger.Info($"The game {Game} could not be launched");
+                Logger.Info("The game {0} could not be launched", Game);
                 return;
             }
 
@@ -193,7 +194,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
-            Logger.Info($"The game {Game} has been added");
+            Logger.Info("The game {0} has been added", Game);
         }
 
         #endregion

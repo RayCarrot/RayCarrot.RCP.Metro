@@ -120,7 +120,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files to include</param>
         public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
         {
-            Logger.Info($"A CNT archive is being repacked...");
+            Logger.Info("A CNT archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<OpenSpaceCntData>();
@@ -192,7 +192,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            Logger.Info($"The CNT archive has been repacked");
+            Logger.Info("The CNT archive has been repacked");
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            Logger.Info($"Read CNT file with {data.Files.Length} files and {data.Directories.Length} directories");
+            Logger.Info("Read CNT file with {0} files and {1} directories", data.Files.Length, data.Directories.Length);
 
             return data;
         }

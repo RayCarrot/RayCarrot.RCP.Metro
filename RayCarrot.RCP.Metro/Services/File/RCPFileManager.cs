@@ -48,20 +48,20 @@ namespace RayCarrot.RCP.Metro
                 // Start the process and get the process
                 var p = Process.Start(info);
 
-                Logger.Info($"The file {file.FullPath} launched with the arguments: {arguments}");
+                Logger.Info("The file {0} launched with the arguments: {1}", file.FullPath, arguments);
 
                 // Return the process
                 return p;
             }
             catch (FileNotFoundException ex)
             {
-                Logger.Debug(ex, "Launching file", file);
+                Logger.Debug(ex, "Launching file {0}", file);
                 
                 await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.File_FileNotFound, file.FullPath), Resources.File_FileNotFoundHeader, MessageType.Error);
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex, "Launching file", file);
+                Logger.Warn(ex, "Launching file {0}");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, file.FullPath));
             }
@@ -86,11 +86,11 @@ namespace RayCarrot.RCP.Metro
                 // Create the shortcut
                 WindowsHelpers.CreateFileShortcut(ShortcutName, DestinationDirectory, TargetFile, arguments);
 
-                Logger.Info($"The shortcut {ShortcutName} was created");
+                Logger.Info("The shortcut {0} was created", ShortcutName);
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex, "Creating shortcut", DestinationDirectory);
+                Logger.Warn(ex, "Creating shortcut {0}", DestinationDirectory);
 
                 throw;
             }
@@ -117,7 +117,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex, "Creating URL shortcut", destinationDirectory);
+                Logger.Warn(ex, "Creating URL shortcut {0}", destinationDirectory);
 
                 throw;
             }
@@ -138,11 +138,11 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 WindowsHelpers.OpenExplorerPath(location);
-                Logger.Debug($"The explorer location {location} was opened");
+                Logger.Debug("The explorer location {0} was opened", location);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Opening explorer location", location);
+                Logger.Error(ex, "Opening explorer location {0}", location);
                 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader);
             }
@@ -165,11 +165,11 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 WindowsHelpers.OpenRegistryPath(registryKeyPath);
-                Logger.Debug($"The Registry key path {registryKeyPath} was opened");
+                Logger.Debug("The Registry key path {0} was opened", registryKeyPath);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Opening Registry key path", registryKeyPath);
+                Logger.Error(ex, "Opening Registry key path {0}", registryKeyPath);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader);
             }
@@ -198,7 +198,7 @@ namespace RayCarrot.RCP.Metro
             // Create the file
             File.Create(filePath).Dispose();
 
-            Logger.Debug($"The file {filePath} was created");
+            Logger.Debug("The file {0} was created", filePath);
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace RayCarrot.RCP.Metro
             }
 
 
-            Logger.Debug($"The directory {source} was moved to {destination}");
+            Logger.Debug("The directory {0} was moved to {1}", source, destination);
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace RayCarrot.RCP.Metro
                 MoveFile(file, destFile, true);
             }
 
-            Logger.Debug($"The files from {source.DirPath} were moved to {destination}");
+            Logger.Debug("The files from {0} were moved to {1}", source.DirPath, destination);
         }
 
         /// <summary>
@@ -296,7 +296,7 @@ namespace RayCarrot.RCP.Metro
             // Copy the directory
             FileSystem.CopyDirectory(source, destination, replaceExistingFiles);
 
-            Logger.Debug($"The directory {source} was copied to {destination}");
+            Logger.Debug("The directory {0} was copied to {1}", source, destination);
         }
 
         /// <summary>
@@ -321,7 +321,7 @@ namespace RayCarrot.RCP.Metro
                 CopyFile(file, destFile, true);
             }
 
-            Logger.Debug($"The files from {source.DirPath} were copied to {destination}");
+            Logger.Debug("The files from {0} were copied to {1}", source.DirPath, destination);
         }
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace RayCarrot.RCP.Metro
             // Move the file
             File.Move(source, destination);
 
-            Logger.Debug($"The file {source} was moved to {destination}");
+            Logger.Debug("The file {0} was moved to {1}", source, destination);
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace RayCarrot.RCP.Metro
             // Move the file
             File.Copy(source, destination);
 
-            Logger.Debug($"The file {source} was copied to {destination}");
+            Logger.Debug("The file {0} was copied to {1}", source, destination);
         }
 
         /// <summary>

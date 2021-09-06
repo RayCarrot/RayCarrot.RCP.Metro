@@ -194,7 +194,7 @@ namespace RayCarrot.RCP.Metro
 
             if (error != null)
             {
-                Logger.Warn($"Invalid R1 password: {error}");
+                Logger.Warn("Invalid R1 password: {0}", error);
                 await Services.MessageUI.DisplayMessageAsync(Resources.R1Passwords_InvalidData, MessageType.Error);
                 return;
             }

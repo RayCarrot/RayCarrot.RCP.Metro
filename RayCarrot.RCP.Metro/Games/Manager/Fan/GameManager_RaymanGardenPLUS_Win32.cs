@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MahApps.Metro.IconPacks;
 using NLog;
 using RayCarrot.UI;
@@ -39,7 +40,7 @@ namespace RayCarrot.RCP.Metro
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, PackIconMaterialKind.Earth, new AsyncRelayCommand(async () =>
             {
                 (await RCPServices.File.LaunchFileAsync("https://gamejolt.com/games/RaymanGardenPlus/622289"))?.Dispose();
-                Logger.Trace($"The game {Game} GameJolt page was opened");
+                Logger.Trace("The game {0} GameJolt page was opened", Game);
             })),
         };
 

@@ -286,7 +286,7 @@ namespace RayCarrot.RCP.Metro
                     time.Stop();
 
                     Logger.Info("The links have refreshed");
-                    Logger.Debug($"The link refresh time was {time.ElapsedMilliseconds} ms");
+                    Logger.Debug("The link refresh time was {0} ms", time.ElapsedMilliseconds);
                 }
                 catch (Exception ex)
                 {

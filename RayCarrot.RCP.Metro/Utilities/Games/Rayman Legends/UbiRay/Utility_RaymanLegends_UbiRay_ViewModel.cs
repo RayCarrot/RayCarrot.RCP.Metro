@@ -188,7 +188,7 @@ namespace RayCarrot.RCP.Metro
                 // Apply the patch
                 PatchFile(true);
 
-                Logger.Info($"The Rayman Legends UbiRay utility has been applied");
+                Logger.Info("The Rayman Legends UbiRay utility has been applied");
 
                 IsApplied = true;
 
@@ -213,7 +213,7 @@ namespace RayCarrot.RCP.Metro
                 // Apply the patch
                 PatchFile(false);
 
-                Logger.Info($"The Rayman Legends UbiRay utility has been reverted");
+                Logger.Info("The Rayman Legends UbiRay utility has been reverted");
 
                 IsApplied = false;
 

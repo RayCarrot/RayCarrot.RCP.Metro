@@ -404,7 +404,7 @@ namespace RayCarrot.RCP.Metro
             // Get the current dinput type
             var dinputType = CanModifyGame ? GetCurrentDinput() : DinputType.Unknown;
 
-            Logger.Info($"The dinput type has been retrieved as {dinputType}");
+            Logger.Info("The dinput type has been retrieved as {0}", dinputType);
 
             ControllerSupport = dinputType == DinputType.Controller;
 
@@ -428,32 +428,32 @@ namespace RayCarrot.RCP.Metro
                         IsDiscCheckRemoved = false;
                         CanRemoveDiscCheck = true;
 
-                        Logger.Info($"The game has not been modified to remove the disc checker");
+                        Logger.Info("The game has not been modified to remove the disc checker");
                     }
                     else if (result == false)
                     {
                         IsDiscCheckRemoved = true;
                         CanRemoveDiscCheck = true;
 
-                        Logger.Info($"The game has been modified to remove the disc checker");
+                        Logger.Info("The game has been modified to remove the disc checker");
                     }
                     else if (result == null)
                     {
                         CanRemoveDiscCheck = false;
 
-                        Logger.Info($"The game disc checker status could not be read");
+                        Logger.Info("The game disc checker status could not be read");
                     }
                 }
                 else
                 {
                     CanRemoveDiscCheck = false;
 
-                    Logger.Info($"The game file was not found");
+                    Logger.Info("The game file was not found");
                 }
             }
             else
             {
-                Logger.Trace($"The disc checker can not be removed for this game");
+                Logger.Trace("The disc checker can not be removed for this game");
             }
 
             // If the primary config file does not exist, create a new one
@@ -464,7 +464,7 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCPServices.File.CreateFile(AppFilePaths.UbiIniPath1);
 
-                    Logger.Info($"A new ubi.ini file has been created under {AppFilePaths.UbiIniPath1}");
+                    Logger.Info("A new ubi.ini file has been created under {0}", AppFilePaths.UbiIniPath1);
                 }
                 catch (Exception ex)
                 {
@@ -484,7 +484,7 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCPServices.File.CreateFile(AppFilePaths.UbiIniPath2);
 
-                    Logger.Info($"A new ubi.ini file has been created under {AppFilePaths.UbiIniPath2}");
+                    Logger.Info("A new ubi.ini file has been created under {0}", AppFilePaths.UbiIniPath2);
                 }
                 catch (Exception ex)
                 {
@@ -518,7 +518,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, $"Saving {Game} ubi.ini secondary data");
+                    Logger.Error(ex, "Saving {0} ubi.ini secondary data", Game);
                 }
             }
 
@@ -530,7 +530,7 @@ namespace RayCarrot.RCP.Metro
                     var dt = GetCurrentDinput();
                     var path = GetDinputPath();
 
-                    Logger.Info($"The dinput type has been retrieved as {dt}");
+                    Logger.Info("The dinput type has been retrieved as {0}", dt);
 
                     if (ControllerSupport)
                     {
@@ -553,7 +553,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, $"Saving {Game} dinput hack data");
+                    Logger.Error(ex, "Saving {0} dinput hack data", Game);
                     throw;
                 }
 
@@ -573,7 +573,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        Logger.Error(ex, $"Saving {Game} disc check modification");
+                        Logger.Error(ex, "Saving {0} disc check modification", Game);
                         throw;
                     }
                 }
@@ -616,7 +616,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Getting {Game} dinput file size");
+                Logger.Error(ex, "Getting {0} dinput file size", Game);
                 return DinputType.Unknown;
             }
         }

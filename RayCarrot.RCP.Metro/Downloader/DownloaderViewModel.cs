@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
             if (IsCompressed)
                 TotalMaxProgress += 10 * InputSources.Count;
 
-            Logger.Info($"A download operation has started with the {(isCompressed ? "compressed" : "")} files {InputSources.JoinItems(", ")}");
+            Logger.Info("A download operation has started with the {0} files {1}", isCompressed ? "compressed" : "", InputSources.JoinItems(", "));
         }
 
         #endregion
@@ -65,7 +65,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Updating server download progress", e);
+                Logger.Error(ex, "Updating server download progress {0}", e);
             }
         }
 
@@ -256,7 +256,7 @@ namespace RayCarrot.RCP.Metro
                 // Download files
                 foreach (var item in InputSources)
                 {
-                    Logger.Info($"The file {item} is being downloaded");
+                    Logger.Info("The file {0} is being downloaded", item);
 
                     await WCServer.DownloadFileTaskAsync(item, ServerTempDir.TempPath + Path.GetFileName(item.AbsolutePath));
                     ItemCurrentProgress = 100;
@@ -310,7 +310,7 @@ namespace RayCarrot.RCP.Metro
 
             if (await Services.MessageUI.DisplayMessageAsync(Resources.Download_Cancel, Resources.Download_CancelHeader, MessageType.Question, true))
             {
-                Logger.Info($"The downloader has been requested to cancel");
+                Logger.Info("The downloader has been requested to cancel");
                 WCServer?.CancelAsync();
                 CancellationRequested = true;
             }
@@ -390,7 +390,7 @@ namespace RayCarrot.RCP.Metro
 
             CurrentDownloadState = DownloadState.Succeeded;
 
-            Logger.Info($"The download operation has completed");
+            Logger.Info("The download operation has completed");
 
             await Services.MessageUI.DisplayMessageAsync(Resources.Download_Success, Resources.Download_SuccessHeader, MessageType.Success);
             OnDownloadComplete();

@@ -88,7 +88,7 @@ namespace RayCarrot.RCP.Metro
                     // Read the bytes
                     var read = stream.Read(currentBytes, 0, currentBytes.Length);
 
-                    Logger.Info($"{read}/{currentBytes.Length} bytes were read from the game file");
+                    Logger.Info("{0}/{1} bytes were read from the game file", read, currentBytes.Length);
                 }
 
                 // Check if they match

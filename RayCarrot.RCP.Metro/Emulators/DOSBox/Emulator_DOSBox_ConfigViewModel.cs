@@ -374,7 +374,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            Logger.Info($"DOSBox emulator game config for {Game} is being set up");
+            Logger.Info("DOSBox emulator game config for {0} is being set up", Game);
 
             // Get the config manager
             var configManager = new Emulator_DOSBox_AutoConfigManager(Game.GetManager<GameManager_DOSBox>(GameType).DosBoxConfigFile);
@@ -399,7 +399,7 @@ namespace RayCarrot.RCP.Metro
 
             CustomCommands = configData.CustomLines.JoinItems(Environment.NewLine);
 
-            Logger.Info($"DOSBox emulator game config for {Game} has been loaded");
+            Logger.Info("DOSBox emulator game config for {0} has been loaded", Game);
 
             UnsavedChanges = false;
 
@@ -417,7 +417,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info($"DOSBox emulator game config for {Game} is saving...");
+            Logger.Info("DOSBox emulator game config for {0} is saving...", Game);
 
             try
             {
@@ -471,7 +471,7 @@ namespace RayCarrot.RCP.Metro
                 // Write to the config file
                 configManager.WriteFile(configData);
 
-                Logger.Info($"DOSBox emulator game config for {Game} has been saved");
+                Logger.Info("DOSBox emulator game config for {0} has been saved", Game);
 
                 return true;
 
@@ -503,7 +503,7 @@ namespace RayCarrot.RCP.Metro
             SelectedOutput = "default";
             SelectedCycles = "20000";
 
-            Logger.Trace($"Recommended DosBox settings were applied");
+            Logger.Trace("Recommended DosBox settings were applied");
         }
 
         #endregion

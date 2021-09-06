@@ -234,7 +234,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            Logger.Info($"All values have been loaded");
+            Logger.Info("All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -245,7 +245,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info($"Rabbids Go Home configuration is saving...");
+            Logger.Info("Rabbids Go Home configuration is saving...");
 
             // Set the launch data
             Data.RabbidsGoHomeLaunchData = EnableCustomSettings ?
@@ -255,7 +255,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, false, false, false, true));
 
-            Logger.Info($"Rabbids Go Home configuration has been saved");
+            Logger.Info("Rabbids Go Home configuration has been saved");
 
             return true;
         }

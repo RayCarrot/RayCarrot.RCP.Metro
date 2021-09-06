@@ -86,7 +86,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (!(value is TValue1 converterValue))
             {
-                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue1).FullName}");
+                Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue1).FullName);
                 return DependencyProperty.UnsetValue;
             }
 
@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (!(value is TValue2 converterValue))
             {
-                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue2).FullName}");
+                Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue2).FullName);
                 return DependencyProperty.UnsetValue;
             }
 
@@ -140,13 +140,13 @@ namespace RayCarrot.RCP.Metro
         {
             if (!(value is TValue1 converterValue))
             {
-                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue1).FullName}");
+                Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue1).FullName);
                 return DependencyProperty.UnsetValue;
             }
 
             if (!(parameter is TParamater parameterValue))
             {
-                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the parameter value not being of the expected type {typeof(TParamater).FullName}");
+                Logger.Warn("The converter {0} returned null due to the parameter value not being of the expected type {1}", typeof(TConverter).Name, typeof(TParamater).FullName);
                 return DependencyProperty.UnsetValue;
             }
 
@@ -157,13 +157,13 @@ namespace RayCarrot.RCP.Metro
         {
             if (!(value is TValue2 converterValue))
             {
-                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the value not being of the expected type {typeof(TValue2).FullName}");
+                Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue2).FullName);
                 return DependencyProperty.UnsetValue;
             }
 
             if (!(parameter is TParamater parameterValue))
             {
-                Logger.Warn($"The converter {typeof(TConverter).Name} returned null due to the parameter value not being of the expected type {typeof(TParamater).FullName}");
+                Logger.Warn("The converter {0} returned null due to the parameter value not being of the expected type {1}", typeof(TConverter).Name, typeof(TParamater).FullName);
                 return DependencyProperty.UnsetValue;
             }
 

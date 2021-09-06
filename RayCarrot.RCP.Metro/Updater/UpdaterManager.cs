@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The result</returns>
         public async Task<UpdaterCheckResult> CheckAsync(bool forceUpdate, bool includeBeta)
         {
-            Logger.Info($"Updates are being checked for");
+            Logger.Info("Updates are being checked for");
 
             string errorMessage = Resources.Update_UnknownError;
             Exception exception = null;
@@ -68,7 +68,7 @@ namespace RayCarrot.RCP.Metro
             // Flag indicating if the current update is a beta update
             bool isBetaUpdate = false;
 
-            Logger.Info($"The update manifest was retrieved");
+            Logger.Info("The update manifest was retrieved");
 
             try
             {
@@ -102,7 +102,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         else
                         {
-                            Logger.Info($"The latest version is installed");
+                            Logger.Info("The latest version is installed");
 
                             // Return the result
                             return new UpdaterCheckResult();
@@ -112,11 +112,11 @@ namespace RayCarrot.RCP.Metro
 
                 latestFoundVersion = isBetaUpdate ? latestBetaVersion : latestVersion;
 
-                Logger.Info($"A new version ({latestFoundVersion}) is available");
+                Logger.Info("A new version ({0}) is available", latestFoundVersion);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Getting assembly version from server manifest", manifest);
+                Logger.Error(ex, "Getting assembly version from server manifest {0}", manifest);
 
                 return new UpdaterCheckResult(Resources.Update_ManifestError, ex);
             }
@@ -130,7 +130,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Getting download URL from server manifest", manifest);
+                Logger.Error(ex, "Getting download URL from server manifest {0}", manifest);
 
                 return new UpdaterCheckResult(Resources.Update_ManifestError, ex);
             }
@@ -145,7 +145,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Getting update news from server manifest", manifest);
+                Logger.Error(ex, "Getting update news from server manifest {0}", manifest);
             }
 
             // Return the result
@@ -168,11 +168,11 @@ namespace RayCarrot.RCP.Metro
                 // Deploy the updater
                 File.WriteAllBytes(AppFilePaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
 
-                Logger.Info($"The updater was created");
+                Logger.Info("The updater was created");
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Writing updater to temp path", AppFilePaths.UpdaterFilePath);
+                Logger.Error(ex, "Writing updater to temp path {0}", AppFilePaths.UpdaterFilePath);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
 

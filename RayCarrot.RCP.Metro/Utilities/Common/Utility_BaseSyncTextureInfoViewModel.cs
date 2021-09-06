@@ -229,7 +229,7 @@ namespace RayCarrot.RCP.Metro
                     // Ignore if not found
                     if (gf == null)
                     {
-                        Logger.Warn($"A matching texture was not found for {longestName.Trim('\0')}");
+                        Logger.Warn("A matching texture was not found for {0}", longestName.Trim('\0'));
                         continue;
                     }
 
@@ -289,7 +289,7 @@ namespace RayCarrot.RCP.Metro
                     edited++;
                 }
 
-                Logger.Info($"{foundCount} texture infos modified for {file.Name}");
+                Logger.Info("{0} texture infos modified for {1}", foundCount, file.Name);
 
                 // Encode if we have an encoder
                 if (encoder != null)

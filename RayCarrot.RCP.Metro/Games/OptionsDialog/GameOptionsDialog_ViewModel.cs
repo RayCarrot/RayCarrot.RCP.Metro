@@ -164,12 +164,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task UninstallAsync()
         {
-            Logger.Info($"{Game} is being uninstalled...");
+            Logger.Info("{0} is being uninstalled...", Game);
 
             // Have user confirm
             if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
             {
-                Logger.Info($"The uninstallation was canceled");
+                Logger.Info("The uninstallation was canceled");
 
                 return;
             }
@@ -179,7 +179,7 @@ namespace RayCarrot.RCP.Metro
                 // Delete the game directory
                 RCPServices.File.DeleteDirectory(Game.GetInstallDir(false));
 
-                Logger.Info($"The game install directory was removed");
+                Logger.Info("The game install directory was removed");
 
                 // Get additional uninstall directories
                 var dirs = Game.GetGameInfo().UninstallDirectories;
@@ -190,7 +190,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (var dir in dirs)
                         RCPServices.File.DeleteDirectory(dir);
 
-                    Logger.Info($"The game additional directories were removed");
+                    Logger.Info("The game additional directories were removed");
                 }
 
                 // Get additional uninstall files
@@ -202,12 +202,12 @@ namespace RayCarrot.RCP.Metro
                     foreach (var file in files)
                         RCPServices.File.DeleteFile(file);
 
-                    Logger.Info($"The game additional files were removed");
+                    Logger.Info("The game additional files were removed");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Uninstalling game", Game);
+                Logger.Error(ex, "Uninstalling game {0}", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.UninstallGameError, DisplayName), Resources.UninstallGameErrorHeader);
 
                 return;
@@ -247,7 +247,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Creating game shortcut", Game);
+                Logger.Error(ex, "Creating game shortcut {0}", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
             }
         }
@@ -273,11 +273,11 @@ namespace RayCarrot.RCP.Metro
                     // Load the page
                     await page.LoadPageAsync();
 
-                    Logger.Info($"Loaded {page.PageName} page");
+                    Logger.Info("Loaded {0} page", page.PageName);
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, "Loading page", page);
+                    Logger.Error(ex, "Loading page {0}", page);
 
                     page.SetErrorState(ex);
                 }

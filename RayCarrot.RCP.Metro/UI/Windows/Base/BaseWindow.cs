@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using System;
+using MahApps.Metro.Controls;
 using NLog;
 using System.Linq;
 using System.Windows;
@@ -18,7 +19,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public BaseWindow()
         {
-            Logger.Info($"A window is being created...");
+            Logger.Info("A window is being created...");
 
             // Default to true
             CloseWithEscape = true;
@@ -40,7 +41,7 @@ namespace RayCarrot.RCP.Metro
             if (ownerWin != this)
                 Owner = ownerWin;
 
-            Logger.Info($"The owner window has been set to {Owner?.ToString() ?? "null"}");
+            Logger.Info("The owner window has been set to {0}", Owner?.ToString() ?? "null");
 
             // Do not show in the task bar if the window has a owner, is not the main window and a main window has been created
             if (Owner != null && Application.Current?.MainWindow != null && this != Application.Current.MainWindow)
@@ -56,7 +57,7 @@ namespace RayCarrot.RCP.Metro
             // Set transition
             WindowTransitionsEnabled = RCPServices.Data?.EnableAnimations ?? true;
 
-            Logger.Info($"The window {this} has been created");
+            Logger.Info("The window {0} has been created", this);
 
             PreviewKeyDown += (s, e) =>
             {

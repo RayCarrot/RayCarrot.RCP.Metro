@@ -79,7 +79,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                Logger.Info($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
+                Logger.Info("The Rayman 1 soundtrack is being replaced with the {0}", IsOriginalMusic ? "complete version" : "original version");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]

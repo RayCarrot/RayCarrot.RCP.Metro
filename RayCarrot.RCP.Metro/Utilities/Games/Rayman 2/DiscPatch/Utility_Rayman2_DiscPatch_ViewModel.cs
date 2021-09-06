@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
             InstallDir = Games.Rayman2.GetInstallDir();
             RequiresPatching = (InstallDir + "RAYMAN2.ICD").FileExists;
 
-            Logger.Info($"The R2 disc patch utility has detected that the currently installed game does {(RequiresPatching ? "require" : "not require")} the patch");
+            Logger.Info("The R2 disc patch utility has detected that the currently installed game does {0} the patch", RequiresPatching ? "require" : "not require");
 
             // Create commands
             ApplyPatchCommand = new AsyncRelayCommand(ApplyPatchAsync);
@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                Logger.Info($"The R2 disc patch is being applied...");
+                Logger.Info("The R2 disc patch is being applied...");
 
                 // Write the GOG executable file
                 File.WriteAllBytes(InstallDir + "Rayman2.exe", Files.Rayman2_GOG);
@@ -112,7 +112,7 @@ namespace RayCarrot.RCP.Metro
 
                 RequiresPatching = false;
 
-                Logger.Info($"The R2 disc patch has been applied");
+                Logger.Info("The R2 disc patch has been applied");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_DiscPatchApplied);
             }

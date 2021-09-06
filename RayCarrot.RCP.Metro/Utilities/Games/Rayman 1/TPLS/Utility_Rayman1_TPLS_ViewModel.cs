@@ -124,7 +124,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                Logger.Info($"The TPLS utility is downloading...");
+                Logger.Info("The TPLS utility is downloading...");
 
                 // Check if the directory exists
                 if (AppFilePaths.R1TPLSDir.DirectoryExists)
@@ -148,7 +148,7 @@ namespace RayCarrot.RCP.Metro
                 // Update the version
                 await Data.TPLSData.UpdateConfigAsync();
 
-                Logger.Info($"The TPLS utility has been downloaded");
+                Logger.Info("The TPLS utility has been downloaded");
             }
             catch (Exception ex)
             {
@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro
 
                 RCPServices.Data.TPLSData = null;
 
-                Logger.Info($"The TPLS utility has been uninstalled");
+                Logger.Info("The TPLS utility has been uninstalled");
             }
             catch (Exception ex)
             {

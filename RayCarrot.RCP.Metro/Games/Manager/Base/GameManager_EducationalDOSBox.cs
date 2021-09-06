@@ -39,24 +39,24 @@ namespace RayCarrot.RCP.Metro
         public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => RCPServices.Data.EducationalDosBoxGames.
             Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.WPFApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
         {
-            Logger.Trace($"The educational game {x.Name} is being launched...");
+            Logger.Trace("The educational game {0} is being launched...", x.Name);
 
             // Verify that the game can launch
             if (!await VerifyCanLaunchAsync(x))
             {
-                Logger.Info($"The educational game {x.Name} could not be launched");
+                Logger.Info("The educational game {0} could not be launched", x.Name);
                 return;
             }
 
             // Get the launch info
             GameLaunchInfo launchInfo = GetLaunchInfo(x);
 
-            Logger.Trace($"The educational game {x.Name} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+            Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
 
             // Launch the game
             var process = await RCPServices.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
-            Logger.Info($"The educational game {x.Name} has been launched");
+            Logger.Info("The educational game {0} has been launched", x.Name);
 
             if (process != null)
                 // Run any post launch operations on the process
@@ -150,7 +150,7 @@ namespace RayCarrot.RCP.Metro
             // Check if the location if valid
             if (!IsGameDirValid(result.SelectedDirectory))
             {
-                Logger.Info($"The selected install directory for {Game} is not valid");
+                Logger.Info("The selected install directory for {0} is not valid", Game);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
                 return null;
@@ -307,7 +307,7 @@ namespace RayCarrot.RCP.Metro
                 LaunchMode = launchMode
             };
 
-            Logger.Info($"The default educational game has been refreshed");
+            Logger.Info("The default educational game has been refreshed");
         }
 
         ///// <summary>

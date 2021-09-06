@@ -72,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LoadDataAsync()
         {
-            Logger.Info($"Progression data for {Game} is being loaded...");
+            Logger.Info("Progression data for {0} is being loaded...", Game);
 
             // Run on a new thread
             await Task.Run(() =>
@@ -82,7 +82,7 @@ namespace RayCarrot.RCP.Metro
                     // Dispose existing slot view models
                     ProgressionSlots.DisposeAll();
 
-                    Logger.Debug($"Existing slots have been disposed");
+                    Logger.Debug("Existing slots have been disposed");
 
                     // Clear the collection
                     ProgressionSlots.Clear();
@@ -90,16 +90,16 @@ namespace RayCarrot.RCP.Metro
                     // Load the data
                     LoadData();
 
-                    Logger.Info($"Slots have been loaded");
+                    Logger.Info("Slots have been loaded");
 
                     // Remove empty slots
                     ProgressionSlots.RemoveWhere(x => x == null);
 
-                    Logger.Debug($"Empty slots have been removed");
+                    Logger.Debug("Empty slots have been removed");
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, $"Reading {Game} save data");
+                    Logger.Error(ex, "Reading {0} save data", Game);
                     throw;
                 }
             });

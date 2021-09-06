@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Metro
         public virtual Task<DirectoryBrowserResult> BrowseDirectoryAsync(DirectoryBrowserViewModel directoryBrowserModel)
         {
             if (LogRequests)
-                Logger.Trace($"A browse directory dialog was opened with the title of: {directoryBrowserModel.Title}");
+                Logger.Trace("A browse directory dialog was opened with the title of: {0}", directoryBrowserModel.Title);
 
             return Application.Current.Dispatcher.Invoke(() =>
             {
@@ -74,7 +74,7 @@ namespace RayCarrot.RCP.Metro
         public virtual Task<FileBrowserResult> BrowseFileAsync(FileBrowserViewModel fileBrowserModel)
         {
             if (LogRequests)
-                Logger.Trace($"A browse file dialog was opened with the title of: {fileBrowserModel.Title}");
+                Logger.Trace("A browse file dialog was opened with the title of: {0}", fileBrowserModel.Title);
 
             return Application.Current.Dispatcher.Invoke(() =>
             {
@@ -114,7 +114,7 @@ namespace RayCarrot.RCP.Metro
         public virtual Task<SaveFileResult> SaveFileAsync(SaveFileViewModel saveFileModel)
         {
             if (LogRequests)
-                Logger.Trace($"A save file dialog was opened with the title of: {saveFileModel.Title}");
+                Logger.Trace("A save file dialog was opened with the title of: {0}", saveFileModel.Title);
 
             return Application.Current.Dispatcher.Invoke(() =>
             {
@@ -154,7 +154,7 @@ namespace RayCarrot.RCP.Metro
                 throw new Exception("A drive selection dialog can not be shown when the application dispatcher is null");
 
             if (LogRequests)
-                Logger.Trace($"A browse drive dialog was opened with the title of: {driveBrowserModel.Title}");
+                Logger.Trace("A browse drive dialog was opened with the title of: {0}", driveBrowserModel.Title);
 
             // Create the dialog
             var driveSelectionDialog = Application.Current.Dispatcher.Invoke(() => new DriveSelectionDialog(driveBrowserModel));

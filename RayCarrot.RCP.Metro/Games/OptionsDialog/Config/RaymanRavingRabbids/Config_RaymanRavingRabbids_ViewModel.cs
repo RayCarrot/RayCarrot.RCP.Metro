@@ -112,7 +112,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            Logger.Info($"All values have been loaded");
+            Logger.Info("All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -123,7 +123,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info($"Rayman Raving Rabbids configuration is saving...");
+            Logger.Info("Rayman Raving Rabbids configuration is saving...");
 
             try
             {
@@ -137,7 +137,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
-                    Logger.Info($"The Registry key {key?.Name} has been created");
+                    Logger.Info("The Registry key {0} has been created", key?.Name);
                 }
                 else
                 {
@@ -149,14 +149,14 @@ namespace RayCarrot.RCP.Metro
                     if (key == null)
                         throw new Exception("The Registry key could not be created");
 
-                    Logger.Info($"The key {key.Name} has been opened");
+                    Logger.Info("The key {0} has been opened", key.Name);
 
                     key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
                     key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
                     key.SetValue(ScreenModeKey, ScreenModeIndex + 1);
                 }
 
-                Logger.Info($"Rayman Raving Rabbids configuration has been saved");
+                Logger.Info("Rayman Raving Rabbids configuration has been saved");
 
                 return true;
             }
