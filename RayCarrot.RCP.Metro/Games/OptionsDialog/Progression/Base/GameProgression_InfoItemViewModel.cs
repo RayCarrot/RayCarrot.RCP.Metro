@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         {
             Icon = icon;
             Content = content;
-            Description = description ?? new LocalizedString(() => null);
+            Description = description ?? new ConstLocString(null);
         }
 
         /// <summary>

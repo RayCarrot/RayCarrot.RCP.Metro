@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro
         #region Constructor
 
         public GameOptionsDialog_OptionsPageViewModel(Games game) 
-            : base(new LocalizedString(() => Resources.GameOptions_Options), GenericIconKind.GameOptions_General)
+            : base(new ResourceLocString(nameof(Resources.GameOptions_Options)), GenericIconKind.GameOptions_General)
         {
             // Get the info
             var gameInfo = game.GetGameInfo();

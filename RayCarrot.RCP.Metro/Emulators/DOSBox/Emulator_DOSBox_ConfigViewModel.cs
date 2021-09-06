@@ -15,7 +15,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The DosBox game</param>
         /// <param name="gameType">The type of game</param>
-        public Emulator_DOSBox_ConfigViewModel(Games game, GameType gameType) : base(new LocalizedString(() => Resources.GameType_DosBox))
+        public Emulator_DOSBox_ConfigViewModel(Games game, GameType gameType) : base(new ResourceLocString(nameof(Resources.GameType_DosBox)))
         {
             Game = game;
             GameType = gameType;

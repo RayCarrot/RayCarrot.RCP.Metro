@@ -124,12 +124,12 @@ namespace RayCarrot.RCP.Metro
                 }
                 
                 // Create the view model
-                progressItems[((i + 1) / 10) - 1 + 2] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\:fff}"));
+                progressItems[((i + 1) / 10) - 1 + 2] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Clock, new ConstLocString($"{worldNum}-{lvlNum}: {new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\:fff}"));
             }
 
             // Set general progress info
-            progressItems[0] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Lum, new LocalizedString(() => $"{collectedLums}/{availableLums}"));
-            progressItems[1] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_RedTooth, new LocalizedString(() => $"{collectedTeeth}/{availableTeeth}"));
+            progressItems[0] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Lum, new ConstLocString($"{collectedLums}/{availableLums}"));
+            progressItems[1] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_RedTooth, new ConstLocString($"{collectedTeeth}/{availableTeeth}"));
 
             Logger.Info("General progress info has been set");
 
@@ -139,7 +139,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
-            return new GameProgression_JungleRun_SlotViewModel(new LocalizedString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems, filePath, this);
+            return new GameProgression_JungleRun_SlotViewModel(new GeneratedLocString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems, filePath, this);
         }
 
         #endregion

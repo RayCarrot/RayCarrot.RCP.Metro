@@ -197,17 +197,17 @@ namespace RayCarrot.RCP.Metro
             var teensies = saveData.Levels.Select(x => x.Value.Object.FreedPrisoners.Length).Sum() + saveData.LuckyTicketRewardList.Count(x => x.Type == 5);
 
             // Set general progress info
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Teensy, new LocalizedString(() => $"{teensies}/700")));
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Lum, new LocalizedString(() => $"{saveData.Score.LocalLumsCount.ToString("n", formatInfo)}")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Teensy, new ConstLocString($"{teensies}/700")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Lum, new ConstLocString($"{saveData.Score.LocalLumsCount.ToString("n", formatInfo)}")));
 
             // Set rank
-            progressItems.Add(new GameProgression_InfoItemViewModel(Enum.Parse(typeof(GameProgression_Icon), $"RL_Rank{saveData.Profile.StatusIcon}").CastTo<GameProgression_Icon>(), new LocalizedString(() => $"{saveData.Profile.StatusIcon}")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(Enum.Parse(typeof(GameProgression_Icon), $"RL_Rank{saveData.Profile.StatusIcon}").CastTo<GameProgression_Icon>(), new ConstLocString($"{saveData.Profile.StatusIcon}")));
 
             // Set cups
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Bronze, new LocalizedString(() => $"{saveData.Profile.BronzeMedals.ToString("n", formatInfo)}")));
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Silver, new LocalizedString(() => $"{saveData.Profile.SilverMedals.ToString("n", formatInfo)}")));
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Gold, new LocalizedString(() => $"{saveData.Profile.GoldMedals.ToString("n", formatInfo)}")));
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Diamond, new LocalizedString(() => $"{saveData.Profile.DiamondMedals.ToString("n", formatInfo)}")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Bronze, new ConstLocString($"{saveData.Profile.BronzeMedals.ToString("n", formatInfo)}")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Silver, new ConstLocString($"{saveData.Profile.SilverMedals.ToString("n", formatInfo)}")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Gold, new ConstLocString($"{saveData.Profile.GoldMedals.ToString("n", formatInfo)}")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RL_Diamond, new ConstLocString($"{saveData.Profile.DiamondMedals.ToString("n", formatInfo)}")));
 
             Logger.Info("General progress info has been set");
 
@@ -221,8 +221,8 @@ namespace RayCarrot.RCP.Metro
                 Select(x => (lvlIds[x.Id.ID], x.BestTime)).
                 Select(x => new GameProgression_InfoItemViewModel(
                     Enum.Parse(typeof(GameProgression_Icon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<GameProgression_Icon>(), 
-                    new LocalizedString(() => $"{x.Item1}: {x.BestTime:0.000}"), 
-                    new LocalizedString(() => Resources.ResourceManager.GetString($"RL_LevelName_{x.Item1.Replace("-", "_")}")))).
+                    new ConstLocString($"{x.Item1}: {x.BestTime:0.000}"), 
+                    new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"))).
                 OrderBy(x => x.Content.Value));
 
             Logger.Info("Invasion progress info has been set");
@@ -233,7 +233,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
-            return new GameProgression_Legends_SlotViewModel(new LocalizedString(() => $"{saveData.Profile.Name} ({percentage}%)"), progressItems.ToArray(), filePath, this);
+            return new GameProgression_Legends_SlotViewModel(new ConstLocString($"{saveData.Profile.Name} ({percentage}%)"), progressItems.ToArray(), filePath, this);
         }
 
         #endregion

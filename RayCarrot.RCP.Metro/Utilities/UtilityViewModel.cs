@@ -17,9 +17,9 @@ namespace RayCarrot.RCP.Metro
         public UtilityViewModel(IUtility utility)
         {
             Utility = utility;
-            DisplayHeader = new LocalizedString(() => Utility.DisplayHeader);
-            InfoText = new LocalizedString(() => Utility.InfoText);
-            WarningText = new LocalizedString(() => Utility.WarningText);
+            DisplayHeader = new GeneratedLocString(() => Utility.DisplayHeader);
+            InfoText = new GeneratedLocString(() => Utility.InfoText);
+            WarningText = new GeneratedLocString(() => Utility.WarningText);
         }
 
         #endregion

@@ -120,7 +120,7 @@ namespace RayCarrot.RCP.Metro
                 // Get the time
                 var time = new TimeSpan((long)(value / (3600d / TimeSpan.TicksPerSecond)));
 
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Flag, new LocalizedString(() => $"{longWorldNames[save.World]} {save.Level}: {time:ss\\:fff}")));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Flag, new ConstLocString($"{longWorldNames[save.World]} {save.Level}: {time:ss\\:fff}")));
             }
 
             Logger.Info("General progress info has been set");
@@ -139,7 +139,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
-            return new GameProgression_RaymanDesigner_SlotViewModel(new LocalizedString(() => $"{Resources.Progression_GenericSave} ({percentage}%)"), progressItems.ToArray(), this);
+            return new GameProgression_RaymanDesigner_SlotViewModel(new GeneratedLocString(() => $"{Resources.Progression_GenericSave} ({percentage}%)"), progressItems.ToArray(), this);
         }
 
         #endregion

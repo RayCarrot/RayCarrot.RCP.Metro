@@ -35,24 +35,24 @@ namespace RayCarrot.RCP.Metro
             // Set levels
             Levels = new LevelViewModel[]
             {
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_0), ProcessUnlockedChange, canIsUnlockedBeModified: false),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_1), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_2), ProcessUnlockedChange, link: 4),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_3), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.Moskito),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_4), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_5), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_6), ProcessUnlockedChange, link: 8),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_7), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.MrSax),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_8), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_9), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_10), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_11), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_12), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_13), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_14), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_15), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_16), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrSkops),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_17), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrDark, hasCages: false)
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_0)), ProcessUnlockedChange, canIsUnlockedBeModified: false),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_1)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_2)), ProcessUnlockedChange, link: 4),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_3)), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.Moskito),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_4)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_5)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_6)), ProcessUnlockedChange, link: 8),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_7)), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.MrSax),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_8)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_9)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_10)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_11)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_12)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_13)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_14)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_15)), ProcessUnlockedChange),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_16)), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrSkops),
+                new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_17)), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrDark, hasCages: false)
             };
 
             // First level should always be unlocked

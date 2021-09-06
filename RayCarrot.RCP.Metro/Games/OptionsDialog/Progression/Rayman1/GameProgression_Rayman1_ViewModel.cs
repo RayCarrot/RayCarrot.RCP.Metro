@@ -76,9 +76,9 @@ namespace RayCarrot.RCP.Metro
             // Create the collection with items for cages + lives
             var progressItems = new GameProgression_InfoItemViewModel[]
             {
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Cage, new LocalizedString(() => $"{cages}/102")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Continue, new LocalizedString(() => $"{saveData.ContinuesCount}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Life, new LocalizedString(() => $"{saveData.StatusBar.LivesCount}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Cage, new ConstLocString($"{cages}/102")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Continue, new ConstLocString($"{saveData.ContinuesCount}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Life, new ConstLocString($"{saveData.StatusBar.LivesCount}")),
             };
 
             Logger.Info("General progress info has been set");
@@ -89,7 +89,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
-            return new GameProgression_Rayman1_SlotViewModel(new LocalizedString(() => $"{saveData.SaveName.ToUpper()} ({percentage}%)"), progressItems, filePath, this);
+            return new GameProgression_Rayman1_SlotViewModel(new ConstLocString($"{saveData.SaveName.ToUpper()} ({percentage}%)"), progressItems, filePath, this);
         }
 
         #endregion

@@ -29,7 +29,7 @@
         /// <summary>
         /// The display name of the emulator
         /// </summary>
-        public override LocalizedString DisplayName => new LocalizedString(() => Resources.GameType_DosBox);
+        public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameType_DosBox));
 
         /// <summary>
         /// The emulator's game configuration view model

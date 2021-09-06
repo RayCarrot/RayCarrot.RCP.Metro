@@ -24,12 +24,12 @@ namespace RayCarrot.RCP.Metro
             MemoryModSections = new ObservableCollection<Mod_RRR_MemoryModsSectonViewModel>()
             {
                 // Main
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_MainHeader), null, 
+                new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MainHeader)), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_EnableProtoFeatures), 
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_EnableProtoFeaturesInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_EnableProtoFeatures)), 
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_EnableProtoFeaturesInfo)),
                             toggleAction: x =>
                             {
                                 MemoryPatcher.enableProtoRaymanEverywhere = x;
@@ -38,220 +38,220 @@ namespace RayCarrot.RCP.Metro
                             },
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddCamControls), 
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddCamControlsInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddCamControls)), 
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddCamControlsInfo)),
                             toggleAction: x => MemoryPatcher.addCameraControls = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddDuel), 
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddDuelInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddDuel)), 
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddDuelInfo)),
                             toggleAction: x => MemoryPatcher.addDuel = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddPlaytestMenu), 
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddPlaytestMenuInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddPlaytestMenu)), 
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddPlaytestMenuInfo)),
                             toggleAction: x => MemoryPatcher.addPlaytestMenu = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_UnlockAllMinigames),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_UnlockAllMinigamesInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UnlockAllMinigames)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UnlockAllMinigamesInfo)),
                             toggleAction: x => MemoryPatcher.unlockAllMinigames = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_CheatPage),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_CheatPageInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_CheatPage)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_CheatPageInfo)),
                             toggleAction: x => MemoryPatcher.setCheatPage = x,
                             isToggled: false,
                             selectionOptions: new ObservableCollection<LocalizedString>()
                             {
-                                new LocalizedString(() => "1"),
-                                new LocalizedString(() => "2"),
-                                new LocalizedString(() => "3"),
-                                new LocalizedString(() => "4"),
-                                new LocalizedString(() => "5"),
+                                new ConstLocString("1"),
+                                new ConstLocString("2"),
+                                new ConstLocString("3"),
+                                new ConstLocString("4"),
+                                new ConstLocString("5"),
                             },
                             selectionAction: x => MemoryPatcher.cheatPage = x + 1),
                     }),
 
                 // Rayman
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_RaymanHeader), new LocalizedString(() => Resources.Mod_RRR_MemMod_RaymanInfo), 
+                new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RaymanHeader)), new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RaymanInfo)), 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddLookMode),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddLookModeInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddLookMode)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddLookModeInfo)),
                             toggleAction: x => MemoryPatcher.addLookMode = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddBoostButton),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddBoostButtonInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddBoostButton)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddBoostButtonInfo)),
                             toggleAction: x => MemoryPatcher.addBoostButton = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddFinishers),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddFinishersInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddFinishers)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AddFinishersInfo)),
                             toggleAction: x => MemoryPatcher.addFinishers = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_ClimbWalls),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ClimbWallsInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ClimbWalls)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ClimbWallsInfo)),
                             toggleAction: x => MemoryPatcher.climbWalls = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_HangFromSpots),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_HangFromSpotsInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_HangFromSpots)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_HangFromSpotsInfo)),
                             toggleAction: x => MemoryPatcher.hangFromHotspots = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFXInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFXInfo)),
                             toggleAction: x => MemoryPatcher.setGrappinGFX = x,
                             isToggled: false,
                             selectionOptions: new ObservableCollection<LocalizedString>()
                             {
-                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_0),
-                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_1),
-                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_2),
-                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_3),
-                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_4),
+                                new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX_0)),
+                                new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX_1)),
+                                new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX_2)),
+                                new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX_3)),
+                                new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GrappinGFX_4)),
                             },
                             selectionAction: x => MemoryPatcher.GrappinGFX = (byte)x),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_UpgradedPowers),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_UpgradedPowersInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UpgradedPowers)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_UpgradedPowersInfo)),
                             toggleAction: x => MemoryPatcher.allpowers = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_Immortal),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ImmortalInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_Immortal)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ImmortalInfo)),
                             toggleAction: x => MemoryPatcher.immortal = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_ControlTempo),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ControlTempoInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ControlTempo)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ControlTempoInfo)),
                             toggleAction: x => MemoryPatcher.controlTempo = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_GroovyMoveset),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_GroovyMovesetInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GroovyMoveset)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_GroovyMovesetInfo)),
                             toggleAction: x => MemoryPatcher.groovyRaymanDanceMoveset = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_SetCostume),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_SetCostumeInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SetCostume)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SetCostumeInfo)),
                             toggleAction: x => MemoryPatcher.setPlayer1Costume = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableIntros),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableIntrosInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableIntros)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableIntrosInfo)),
                             toggleAction: x => MemoryPatcher.disableMinigameIntro = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableFootstepSound),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableFootstepSoundInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableFootstepSound)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DisableFootstepSoundInfo)),
                             toggleAction: x => MemoryPatcher.disableFootstepSound = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_LessSlippery),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_LessSlipperyInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_LessSlippery)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_LessSlipperyInfo)),
                             toggleAction: x => MemoryPatcher.lowerSlippery = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DrawHealthMana),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DrawHealthManaInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DrawHealthMana)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DrawHealthManaInfo)),
                             toggleAction: x => MemoryPatcher.drawHealthMana = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_NoInstaKill),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_NoInstaKillInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_NoInstaKill)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_NoInstaKillInfo)),
                             toggleAction: x => MemoryPatcher.noInstaKill = x,
                             isToggled: true),
                     }),
 
                 // Rabbids
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_RabbidsHeader), null, 
+                new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsHeader)), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_RabbidsDropItems),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_RabbidsDropItemsInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsDropItems)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RabbidsDropItemsInfo)),
                             toggleAction: x => MemoryPatcher.rabbidsDropItems = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_IncreasedRabbidHP),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_IncreasedRabbidHPInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_IncreasedRabbidHP)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_IncreasedRabbidHPInfo)),
                             toggleAction: x => MemoryPatcher.rabbidsIncreasedHP = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_RandomProtoRabbidPowers),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_RandomProtoRabbidPowersInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RandomProtoRabbidPowers)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_RandomProtoRabbidPowersInfo)),
                             toggleAction: x => MemoryPatcher.randomProtoRabbidPowers = x,
                             isToggled: false),
                     }),
 
                 // Mounts
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_MountsHeader), null, 
+                new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MountsHeader)), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_TameMounts),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_TameMountsInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_TameMounts)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_TameMountsInfo)),
                             toggleAction: x => MemoryPatcher.tameMounts = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatsActLikeEagles),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatsActLikeEaglesInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatsActLikeEagles)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatsActLikeEaglesInfo)),
                             toggleAction: x => MemoryPatcher.makeBatsIntoEagles = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_PigsActLikePlums),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_PigsActLikePlumsInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_PigsActLikePlums)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_PigsActLikePlumsInfo)),
                             toggleAction: x => MemoryPatcher.makePigsIntoPlums = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AggressiveRhinos),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AggressiveRhinosInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AggressiveRhinos)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_AggressiveRhinosInfo)),
                             toggleAction: x => MemoryPatcher.makeRhinosAggressive = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_SpiderJump),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_SpiderJumpInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SpiderJump)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SpiderJumpInfo)),
                             toggleAction: x => MemoryPatcher.makeSpidersJump = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatShoot),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatShootInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatShoot)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BatShootInfo)),
                             toggleAction: x => MemoryPatcher.makeBatShoot = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_SaucersStartFlying),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_SaucersStartFlyingInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SaucersStartFlying)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_SaucersStartFlyingInfo)),
                             toggleAction: x => MemoryPatcher.saucersStartFlying = x,
                             isToggled: false),
                     }),
 
                 // Bunny hunts
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_BunnyHuntsHeader), null, 
+                new Mod_RRR_MemoryModsSectonViewModel(new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BunnyHuntsHeader)), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_MissileLaunchersTarget),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_MissileLaunchersTargetInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MissileLaunchersTarget)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_MissileLaunchersTargetInfo)),
                             toggleAction: x => MemoryPatcher.missileLaunchersTargetPlayer = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DontDestroyBipods),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DontDestroyBipodsInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DontDestroyBipods)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_DontDestroyBipodsInfo)),
                             toggleAction: x => MemoryPatcher.dontDestroyBipods = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_ActivatorTriggers),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ActivatorTriggersInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ActivatorTriggers)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_ActivatorTriggersInfo)),
                             toggleAction: x => MemoryPatcher.activateAllActivatorTriggers = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_BoundingVolumeTriggers),
-                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_BoundingVolumeTriggersInfo),
+                            header: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BoundingVolumeTriggers)),
+                            description: new ResourceLocString(nameof(Resources.Mod_RRR_MemMod_BoundingVolumeTriggersInfo)),
                             toggleAction: x => MemoryPatcher.activateAllPivotInBVTriggers = x,
                             isToggled: false),
                     }),
@@ -262,67 +262,67 @@ namespace RayCarrot.RCP.Metro
 
             ButtonMappingItems = new ObservableCollection<ButtonMappingKeyItemViewModel<int>>()
             {
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_0), Key.A, 0), // Jump
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_4), Key.Space, 4), // Attack
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_10), Key.X, 10), // Attack (finisher)
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_6), Key.S, 6), // Grapple hook
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_14), Key.W, 14), // Roll/Ground pound
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_28), Key.LeftShift, 28), // Walk
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_8), Key.LeftCtrl, 8), // Light/Tempo
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_24), Key.D, 24), // Dance toggle
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_2), Key.B, 2), // Dance mode: turn
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_12), Key.E, 12), // Look mode
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_16), Key.P, 16), // No-clip
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_18), Key.Escape, 18), // Pause
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_0)), Key.A, 0), // Jump
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_4)), Key.Space, 4), // Attack
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_10)), Key.X, 10), // Attack (finisher)
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_6)), Key.S, 6), // Grapple hook
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_14)), Key.W, 14), // Roll/Ground pound
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_28)), Key.LeftShift, 28), // Walk
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_8)), Key.LeftCtrl, 8), // Light/Tempo
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_24)), Key.D, 24), // Dance toggle
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_2)), Key.B, 2), // Dance mode: turn
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_12)), Key.E, 12), // Look mode
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_16)), Key.P, 16), // No-clip
+                new ButtonMappingKeyItemViewModel<int>(new ResourceLocString(nameof(Resources.Mod_RRR_KeyAction_18)), Key.Escape, 18), // Pause
             };
 
             BFModToggles = new ObservableCollection<Mod_RRR_BFModToggleViewModel>()
             {
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_FixSounds),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_FixSounds)),
                     patches: Mod_RRR_BigFilePatch.FixSoundEffects,
                     isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer)),
                     patch: Mod_RRR_BigFilePatch.PlayableCharacters,
                     isDefaultToggled: false,
                     selectionOptions: new ObservableCollection<LocalizedString>()
                     {
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_BabyGlobox), // Baby Globox
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_Serguei), // Serguei
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_Rabbid), // Rabbid
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid), // Grey Leader Rabbid
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid), // Superman Rabbid
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid), // Terminator Rabbid (Pink)
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid), // Sam Fisher Rabbid
-                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_NurgleDemon), // Nurgle Demon
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_BabyGlobox)), // Baby Globox
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_Serguei)), // Serguei
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_Rabbid)), // Rabbid
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid)), // Grey Leader Rabbid
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid)), // Superman Rabbid
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid)), // Terminator Rabbid (Pink)
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid)), // Sam Fisher Rabbid
+                        new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_ChangePlayer_NurgleDemon)), // Nurgle Demon
                     }),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_BatSoundLikeEagle),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_BatSoundLikeEagle)),
                     patch: Mod_RRR_BigFilePatch.MakeBatSoundLikeEagle,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider)),
                     patches: Mod_RRR_BigFilePatch.MakeSpiderRobotsSoundLikeSpider,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_CustomHelicoTexture),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_CustomHelicoTexture)),
                     patch: Mod_RRR_BigFilePatch.AddCustomHelicopterTexture,
                     isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_RabbidsFur),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_RabbidsFur)),
                     patches: Mod_RRR_BigFilePatch.AddFurToRabbids,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_Flashlight),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_Flashlight)),
                     patch: Mod_RRR_BigFilePatch.EnableFlashlight,
                     isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_FlashlightMines),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_FlashlightMines)),
                     patches: Mod_RRR_BigFilePatch.AddFlashlightToMines,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_RabbidItems),
+                    header: new ResourceLocString(nameof(Resources.Mod_RRR_BFPatch_RabbidItems)),
                     patches: Mod_RRR_BigFilePatch.ModdedRabbidItems,
                     isDefaultToggled: false),
             };
@@ -359,7 +359,7 @@ namespace RayCarrot.RCP.Metro
         #region Mods Page
 
         public override GenericIconKind Icon => GenericIconKind.Games;
-        public override LocalizedString Header => new LocalizedString(() => Resources.Mod_RRR_Header);
+        public override LocalizedString Header => new ResourceLocString(nameof(Resources.Mod_RRR_Header));
         public override object UIContent => new Mod_RRR_UI()
         {
             DataContext = this

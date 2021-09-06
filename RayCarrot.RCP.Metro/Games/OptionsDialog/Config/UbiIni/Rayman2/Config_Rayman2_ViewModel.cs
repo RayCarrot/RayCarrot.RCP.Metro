@@ -32,24 +32,24 @@ namespace RayCarrot.RCP.Metro
 
             KeyItems = new ObservableCollection<ButtonMapperKeyItemViewModel>()
             {
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Up), Key.Up, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Down), Key.Down, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Left), Key.Left, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Right), Key.Right, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_JumpSwimUp), Key.A, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Config_Action_SwimDown), Key.Z, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Shoot), Key.Space, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_WalkSlow), Key.LeftShift, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Strafe), Key.LeftCtrl, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_CamRight), Key.Q, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_CamLeft), Key.W, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_CamCenter), Key.End, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Look), Key.NumPad0, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Screenshot), Key.F8, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_HUD), Key.J, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_R2Guide), Key.F1, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Confirm), Key.Enter, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Cancel), Key.Escape, keyChanged)
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Up)), Key.Up, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Down)), Key.Down, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Left)), Key.Left, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Right)), Key.Right, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_JumpSwimUp)), Key.A, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Config_Action_SwimDown)), Key.Z, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Shoot)), Key.Space, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_WalkSlow)), Key.LeftShift, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Strafe)), Key.LeftCtrl, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_CamRight)), Key.Q, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_CamLeft)), Key.W, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_CamCenter)), Key.End, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Look)), Key.NumPad0, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Screenshot)), Key.F8, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_HUD)), Key.J, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_R2Guide)), Key.F1, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Confirm)), Key.Enter, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Cancel)), Key.Escape, keyChanged)
             };
         }
 

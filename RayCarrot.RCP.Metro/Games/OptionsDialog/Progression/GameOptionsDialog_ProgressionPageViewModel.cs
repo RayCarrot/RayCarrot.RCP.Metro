@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro
         #region Constructor
 
         public GameOptionsDialog_ProgressionPageViewModel(GameProgression_BaseViewModel progressionViewModel) 
-            : base(new LocalizedString(() => Resources.Progression_Header), GenericIconKind.GameOptions_Progression)
+            : base(new ResourceLocString(nameof(Resources.Progression_Header)), GenericIconKind.GameOptions_Progression)
         {
             ProgressionViewModel = progressionViewModel ?? throw new ArgumentNullException(nameof(progressionViewModel));
         }

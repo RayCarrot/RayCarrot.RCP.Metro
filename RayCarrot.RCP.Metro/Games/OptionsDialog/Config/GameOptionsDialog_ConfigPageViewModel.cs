@@ -2,7 +2,7 @@
 {
     public abstract class GameOptionsDialog_ConfigPageViewModel : GameOptionsDialog_BasePageViewModel
     {
-        protected GameOptionsDialog_ConfigPageViewModel() : base(new LocalizedString(() => Resources.GameOptions_Config), GenericIconKind.GameOptions_Config) { }
+        protected GameOptionsDialog_ConfigPageViewModel() : base(new ResourceLocString(nameof(Resources.GameOptions_Config)), GenericIconKind.GameOptions_Config) { }
 
         /// <summary>
         /// Indicates if the page can be saved

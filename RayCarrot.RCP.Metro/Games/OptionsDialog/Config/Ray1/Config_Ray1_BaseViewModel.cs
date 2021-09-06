@@ -51,13 +51,13 @@ namespace RayCarrot.RCP.Metro
 
             KeyItems = new ObservableCollection<ButtonMapperKeyItemViewModel>()
             {
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Left), Key.NumPad4, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Up), Key.NumPad8, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Right), Key.NumPad6, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Down), Key.NumPad2, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Jump), Key.LeftCtrl, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Fist), Key.LeftAlt, keyChanged),
-                new ButtonMapperKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Action), Key.X, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Left)), Key.NumPad4, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Up)), Key.NumPad8, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Right)), Key.NumPad6, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Down)), Key.NumPad2, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Jump)), Key.LeftCtrl, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Fist)), Key.LeftAlt, keyChanged),
+                new ButtonMapperKeyItemViewModel(new ResourceLocString(nameof(Resources.Config_Action_Action)), Key.X, keyChanged),
             };
         }
 

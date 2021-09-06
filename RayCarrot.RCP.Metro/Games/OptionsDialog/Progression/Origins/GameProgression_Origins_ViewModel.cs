@@ -127,10 +127,10 @@ namespace RayCarrot.RCP.Metro
             var teeth = saveData.Levels.Select(x => x.Value.Object.ISDs.Select(y => y.Value.Object.TakenTooth.Length)).SelectMany(x => x).Sum();
 
             // Set general progress info
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Electoon, new LocalizedString(() => $"{electoons}/246")));
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_RedTooth, new LocalizedString(() => $"{teeth}/10")));
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Medal, new LocalizedString(() => $"{lumAttack3}/51")));
-            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Trophy, new LocalizedString(() => $"{timeAttack2}/31")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Electoon, new ConstLocString($"{electoons}/246")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_RedTooth, new ConstLocString($"{teeth}/10")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Medal, new ConstLocString($"{lumAttack3}/51")));
+            progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Trophy, new ConstLocString($"{timeAttack2}/31")));
 
             Logger.Info("General progress info has been set");
 
@@ -140,7 +140,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Slot percentage is {percentage}%");
 
             // Return the data with the collection
-            return new GameProgression_Origins_SlotViewModel(new LocalizedString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems.ToArray(), filePath, this);
+            return new GameProgression_Origins_SlotViewModel(new GeneratedLocString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems.ToArray(), filePath, this);
         }
 
         #endregion

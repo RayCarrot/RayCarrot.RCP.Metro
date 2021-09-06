@@ -80,23 +80,23 @@ namespace RayCarrot.RCP.Metro
             // Create the collection with items for each level + general information
             var progressItems = new GameProgression_InfoItemViewModel[]
             {
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Cage, new LocalizedString(() => $"{saveData.TotalCages}/60")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_TotalHeader}: {saveData.TotalScore.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level1Header}: {saveData.Levels[0].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level2Header}: {saveData.Levels[1].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level3Header}: {saveData.Levels[2].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level4Header}: {saveData.Levels[3].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level5Header}: {saveData.Levels[4].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level6Header}: {saveData.Levels[5].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level7Header}: {saveData.Levels[6].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level8Header}: {saveData.Levels[7].Score.ToString("n", formatInfo)}")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Cage, new ConstLocString($"{saveData.TotalCages}/60")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_TotalHeader}: {saveData.TotalScore.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level1Header}: {saveData.Levels[0].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level2Header}: {saveData.Levels[1].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level3Header}: {saveData.Levels[2].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level4Header}: {saveData.Levels[3].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level5Header}: {saveData.Levels[4].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level6Header}: {saveData.Levels[5].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level7Header}: {saveData.Levels[6].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level8Header}: {saveData.Levels[7].Score.ToString("n", formatInfo)}")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
             };
 
             Logger.Info("General progress info has been set");
 
             // Return the data with the collection
-            return new GameProgression_Rayman3_SlotViewModel(new LocalizedString(() => $"{filePath.RemoveFileExtension().Name}"), progressItems, filePath, this);
+            return new GameProgression_Rayman3_SlotViewModel(new ConstLocString($"{filePath.RemoveFileExtension().Name}"), progressItems, filePath, this);
         }
 
         #endregion

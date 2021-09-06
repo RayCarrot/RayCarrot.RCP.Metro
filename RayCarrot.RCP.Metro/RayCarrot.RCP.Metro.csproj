@@ -146,6 +146,9 @@
     <Compile Include="Helpers\PropertyChangedEventArgs.cs" />
     <Compile Include="Helpers\Windows\ShellThumbnailExtensions.cs" />
     <Compile Include="Helpers\Windows\ShellThumbnailSize.cs" />
+    <Compile Include="Localization\LocString\ConstLocString.cs" />
+    <Compile Include="Localization\LocString\GeneratedLocString.cs" />
+    <Compile Include="Localization\LocString\ResourceLocString.cs" />
     <Compile Include="UI\Converters\Bool\EqualsToConverter.cs" />
     <Compile Include="UI\Dialogs\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
@@ -412,7 +415,7 @@
     <Compile Include="Helpers\JsonConverters\SimpleTypeConverter.cs" />
     <Compile Include="Games\Info\Demo\GameInfo_Rayman3Demo1.cs" />
     <Compile Include="Utilities\Games\Rayman 1\TPLS\Utility_Rayman1_TPLS_RaymanVersion.cs" />
-    <Compile Include="Localization\LocalizedString.cs" />
+    <Compile Include="Localization\LocString\LocalizedString.cs" />
     <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\Utility_RaymanM_GameSyncTextureInfo.cs" />
     <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigViewModel.cs" />
     <Compile Include="Archive\ArchiveExplorer\UI\ArchiveExplorerUI.xaml.cs">

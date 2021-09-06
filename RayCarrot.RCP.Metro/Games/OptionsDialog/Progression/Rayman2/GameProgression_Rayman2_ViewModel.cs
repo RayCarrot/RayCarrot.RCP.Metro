@@ -109,15 +109,15 @@ namespace RayCarrot.RCP.Metro
             // Create the collection with items for cages + lives
             var progressItems = new List<GameProgression_InfoItemViewModel>
             {
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Lum, new LocalizedString(() => $"{lums}/1000")),
-                new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Cage, new LocalizedString(() => $"{cages}/80")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Lum, new ConstLocString($"{lums}/1000")),
+                new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Cage, new ConstLocString($"{cages}/80")),
             };
 
             if (walkOfLifeTime > 120)
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new LocalizedString(() => $"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\:ff}"), new LocalizedString(() => Resources.R2_BonusLevelName_1)));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\:ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_1))));
 
             if (walkOfPowerTime > 120)
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new LocalizedString(() => $"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\:ff}"), new LocalizedString(() => Resources.R2_BonusLevelName_2)));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\:ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_2))));
 
             Logger.Info("General progress info has been set");
 
@@ -129,7 +129,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Slot percentage is {0}%", percentage);
 
             // Return the data with the collection
-            return new GameProgression_Rayman2_SlotViewModel(new LocalizedString(() => $"{name} ({percentage}%)"), progressItems.ToArray(), filePath, this);
+            return new GameProgression_Rayman2_SlotViewModel(new ConstLocString($"{name} ({percentage}%)"), progressItems.ToArray(), filePath, this);
         }
 
         #endregion

@@ -102,8 +102,8 @@ namespace RayCarrot.RCP.Metro
                 AddBattleCompleted(GetValues("sg_battlelevels_mode3"));
 
                 // Add completed challenges
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RM_Race, new LocalizedString(() => $"{raceCompleted}/{maxRace}")));
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RM_Battle, new LocalizedString(() => $"{battleCompleted}/{maxBattle}")));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RM_Race, new ConstLocString($"{raceCompleted}/{maxRace}")));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.RM_Battle, new ConstLocString($"{battleCompleted}/{maxBattle}")));
 
                 // Add records for every race
                 for (int raceIndex = 0; raceIndex < 16; raceIndex++)
@@ -123,9 +123,9 @@ namespace RayCarrot.RCP.Metro
                                 // Get the level icon
                                 Enum.Parse(typeof(GameProgression_Icon), $"RM_R{raceIndex}").CastTo<GameProgression_Icon>(), 
                                 // The value
-                                new LocalizedString(() => $"{getDescription()}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\:fff")) : value.ToString())}"),
+                                new GeneratedLocString(() => $"{getDescription()}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\:fff")) : value.ToString())}"),
                                 // The description (level name)
-                                new LocalizedString(() => Resources.ResourceManager.GetString($"RM_RaceName_{raceIndex}"))));
+                                new ResourceLocString($"RM_RaceName_{raceIndex}")));
                     }
 
                     AddRaceItem("sg_racelevels_bestlap_training", () => Resources.Progression_RM_LapTraining);
@@ -145,7 +145,7 @@ namespace RayCarrot.RCP.Metro
                 var percentage = (((raceCompleted + battleCompleted) / (double)(maxRace + maxBattle) * 100)).ToString("0.##");
 
                 // Return the data for this slot
-                yield return new GameProgression_RaymanMArena_SlotViewModel(new LocalizedString(() => $"{name.TrimEnd()} ({percentage}%)"), progressItems.ToArray(), filePath, this);
+                yield return new GameProgression_RaymanMArena_SlotViewModel(new ConstLocString($"{name.TrimEnd()} ({percentage}%)"), progressItems.ToArray(), filePath, this);
             }
         }
 

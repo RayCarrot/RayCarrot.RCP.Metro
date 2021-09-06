@@ -394,7 +394,7 @@ namespace RayCarrot.RCP.Metro
             var selectedDir = SelectedDir;
 
             // Show the file count
-            StatusBarItems.Add(new LocalizedString(() => String.Format(Resources.Archive_Status_FilesCount, selectedDir.Files.Count)));
+            StatusBarItems.Add(new ResourceLocString(nameof(Resources.Archive_Status_FilesCount), selectedDir.Files.Count));
 
             var selectedFilesCount = 0;
             var selectedFilesSize = new ByteSize();
@@ -422,11 +422,11 @@ namespace RayCarrot.RCP.Metro
 
             // Show the selected files count if multiple ones are selected
             if (selectedFilesCount > 1)
-                StatusBarItems.Add(new LocalizedString(() => String.Format(Resources.Archive_Status_SelectedFilesCount, selectedFilesCount)));
+                StatusBarItems.Add(new ResourceLocString(nameof(Resources.Archive_Status_SelectedFilesCount), selectedFilesCount));
 
             // Show the total file size for all selected files if any are selected
             if (selectedFilesCount > 0 && !invalidSize)
-                StatusBarItems.Add(new LocalizedString(() => $"{selectedFilesSize}"));
+                StatusBarItems.Add(new ConstLocString($"{selectedFilesSize}"));
 
             Logger.Trace("Refreshed the status bar");
         }

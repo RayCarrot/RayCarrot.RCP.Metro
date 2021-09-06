@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Set properties
             Games = games.ToArray();
-            DisplayName = new LocalizedString(() => "(master)");
+            DisplayName = new ConstLocString("(master)");
             IsMaster = true;
 
             // Create properties
