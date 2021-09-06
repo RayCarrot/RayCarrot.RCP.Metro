@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
+using NLog;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -40,6 +41,12 @@ namespace RayCarrot.RCP.Metro
                 GameMode.LargoWinchPC
             });
         }
+
+        #endregion
+
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -133,8 +140,12 @@ namespace RayCarrot.RCP.Metro
 
                 // IDEA: If bmp is not in supported format, then convert it?
 
+                var oldRepeatByte = gf.RepeatByte;
+
                 // Import from the bitmap
                 gf.ImportFromBitmap(settings, new RawBitmapData(bmp), RCPServices.Data.Archive_GF_GenerateMipmaps);
+
+                Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 
                 // Return the data
                 return gf;

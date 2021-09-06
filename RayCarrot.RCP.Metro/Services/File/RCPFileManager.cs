@@ -179,7 +179,11 @@ namespace RayCarrot.RCP.Metro
         /// Deletes a directory recursively if it exists
         /// </summary>
         /// <param name="dirPath">The directory path</param>
-        public void DeleteDirectory(FileSystemPath dirPath) => dirPath.DeleteDirectory();
+        public void DeleteDirectory(FileSystemPath dirPath)
+        {
+            dirPath.DeleteDirectory();
+            Logger.Debug("The directory {0} was deleted", dirPath);
+        }
 
         /// <summary>
         /// Creates an new empty file
@@ -205,7 +209,12 @@ namespace RayCarrot.RCP.Metro
         /// Deletes a file if it exists
         /// </summary>
         /// <param name="filePath">The file path</param>
-        public void DeleteFile(FileSystemPath filePath) => filePath.DeleteFile();
+        public void DeleteFile(FileSystemPath filePath)
+        {
+            filePath.DeleteFile();
+
+            Logger.Debug("The file {0} was deleted", filePath);
+        }
 
         /// <summary>
         /// Moves a directory and creates the parent directory of its new location if it doesn't exist

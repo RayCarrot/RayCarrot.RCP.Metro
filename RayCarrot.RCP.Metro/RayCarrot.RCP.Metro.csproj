@@ -1341,10 +1341,6 @@
       <Project>{e271dc05-6629-48d1-9423-fe4957eab807}</Project>
       <Name>RayCarrot.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.Logging\RayCarrot.Logging\RayCarrot.Logging.csproj">
-      <Project>{f0ba66a8-806b-464e-9a2a-b8050c453524}</Project>
-      <Name>RayCarrot.Logging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
       <Project>{b3c0c9ee-0acb-4cd6-9dab-d9f3c741300d}</Project>
       <Name>RayCarrot.Rayman</Name>

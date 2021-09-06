@@ -9,6 +9,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using NLog;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro
@@ -18,6 +19,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class ArchiveFileType_GF : IArchiveFileType
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Interface Implementations
 
         /// <summary>
@@ -184,8 +191,12 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
+            var oldRepeatByte = gf.RepeatByte;
+
             // Import the bitmap
             gf.ImportFromBitmap((OpenSpaceSettings)manager.SerializerSettings, rawBitmapData, RCPServices.Data.Archive_GF_GenerateMipmaps);
+
+            Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 
             // Serialize the data to get the bytes
             BinarySerializableHelpers.WriteToStream(gf, outputStream, manager.SerializerSettings, RCPServices.App.GetBinarySerializerLogger());
