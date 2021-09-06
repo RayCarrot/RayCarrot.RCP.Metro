@@ -514,7 +514,7 @@
     <Compile Include="Games\OptionsDialog\Progression\JungleRun\GameProgression_JungleRun_SlotViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Progression\Rayman3\GameProgression_Rayman3_SlotViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Progression\Rayman3\GameProgression_Rayman3_ViewModel.cs" />
-    <Compile Include="App\AppFilePaths.cs" />
+    <Compile Include="App\Constants\AppFilePaths.cs" />
     <Compile Include="Localization\LocalizationManager.cs" />
     <Compile Include="Services\Dialog\RCPDialogBaseManager.cs" />
     <Compile Include="Services\Message\RCPMessageUIManager.cs" />
@@ -1159,7 +1159,7 @@
     </Compile>
     <Compile Include="Pages\About\Page_About_ViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\Translations\Utility_Rayman2_Translation_ViewModel.cs" />
-    <Compile Include="App\AppURLs.cs" />
+    <Compile Include="App\Constants\AppURLs.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
     <Compile Include="AppData\DataModels\UserData_TPLSData.cs" />
     <Compile Include="Games\OptionsDialog\Config\UbiArt\Config_UbiArt_ViewModel.cs" />
