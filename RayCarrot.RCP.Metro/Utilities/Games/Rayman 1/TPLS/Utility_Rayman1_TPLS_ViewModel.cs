@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
                 _isEnabled = value;
                 Data.TPLSData.IsEnabled = value;
 
-                _ = Task.Run(async () => await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, false, false, false, true)));
+                _ = Task.Run(async () => await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, RefreshFlags.GameInfo)));
             }
         }
 

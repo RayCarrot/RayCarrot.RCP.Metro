@@ -511,7 +511,7 @@ namespace RayCarrot.RCP.Metro
             {
                 // Refresh if any games were added
                 if (addedGames.Any())
-                    await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(addedGames, true, false, false, false));
+                    await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(addedGames, RefreshFlags.GameCollection));
 
                 IsGameFinderRunning = false;
             }
@@ -673,7 +673,7 @@ namespace RayCarrot.RCP.Metro
                     Logger.Info("Old backups have been moved");
 
                     // Refresh backups
-                    await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
+                    await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
 
                     await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
                 }

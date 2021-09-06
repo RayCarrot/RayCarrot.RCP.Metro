@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro
             {
                 // Reset the game data with new install directory
                 RefreshDefault();
-                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, false, false, false, true));
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, RefreshFlags.JumpList));
             }
 
             return true;

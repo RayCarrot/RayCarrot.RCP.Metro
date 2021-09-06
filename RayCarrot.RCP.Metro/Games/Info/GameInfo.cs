@@ -490,7 +490,7 @@ namespace RayCarrot.RCP.Metro
                 Services.Data.InstalledGames.Add(Game);
 
                 // Refresh
-                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
 
                 Logger.Trace("The game {0} has been downloaded", Game);
 

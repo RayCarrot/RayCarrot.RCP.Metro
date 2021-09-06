@@ -192,7 +192,7 @@ namespace RayCarrot.RCP.Metro
             await Services.App.AddNewGameAsync(Game, Type, path.Value);
 
             // Refresh
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
 
             Logger.Info("The game {0} has been added", Game);
         }

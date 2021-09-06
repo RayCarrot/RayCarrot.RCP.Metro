@@ -253,7 +253,7 @@ namespace RayCarrot.RCP.Metro
                 null;
 
             // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, false, false, false, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, RefreshFlags.GameInfo));
 
             Logger.Info("Rabbids Go Home configuration has been saved");
 

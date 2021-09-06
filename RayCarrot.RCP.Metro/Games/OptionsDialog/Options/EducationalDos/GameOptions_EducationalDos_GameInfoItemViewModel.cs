@@ -109,7 +109,8 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("The educational game {0} has been edited", GameData.Name);
 
             // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+                RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
         }
 
         /// <summary>
@@ -169,7 +170,8 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+                RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
         }
 
         #endregion

@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 Data.DosBoxGames[Game].MountPath = value;
-                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, false, false, false, true));
+                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameInfo));
             }
         }
 

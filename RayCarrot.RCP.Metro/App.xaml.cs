@@ -614,7 +614,7 @@ namespace RayCarrot.RCP.Metro
 
             // Refresh if any games were removed
             if (removed.Any())
-                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, true, false, false, false));
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, RefreshFlags.GameCollection));
         }
 
         private void InitializeLogging(string[] args)
@@ -799,7 +799,7 @@ namespace RayCarrot.RCP.Metro
 
                     case nameof(AppUserData.BackupLocation):
 
-                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
+                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
 
                         if (!PreviousBackupLocation.DirectoryExists)
                         {
@@ -843,12 +843,12 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.RRR2LaunchMode):
-                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
+                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo));
                         break;
 
                     case nameof(AppUserData.DosBoxPath):
                     case nameof(AppUserData.DosBoxConfig):
-                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, true));
+                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
                         break;
                 }
             }

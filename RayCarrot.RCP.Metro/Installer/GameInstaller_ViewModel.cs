@@ -286,7 +286,7 @@ namespace RayCarrot.RCP.Metro
                     Services.Data.InstalledGames.Add(Game);
 
                     // Refresh
-                    await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+                    await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
 
                     if (CreateDesktopShortcut)
                         await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, displayName));

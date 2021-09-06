@@ -87,7 +87,8 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("A new educational game has been added with the name {0}", newItem.Name);
 
             // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+                RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
 
             // Edit the game
             await vm.EditGameAsync();
@@ -116,7 +117,8 @@ namespace RayCarrot.RCP.Metro
             Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>().RefreshDefault();
 
             // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+                RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
 
             Logger.Info("The educational game options have saved");
         }

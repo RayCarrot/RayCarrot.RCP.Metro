@@ -155,7 +155,7 @@ namespace RayCarrot.RCP.Metro
             await Services.App.RemoveGameAsync(Game, false);
 
             // Refresh
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace RayCarrot.RCP.Metro
             await Services.App.RemoveGameAsync(Game, true);
 
             // Refresh
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.UninstallGameSuccess, DisplayName), Resources.UninstallGameSuccessHeader);
         }

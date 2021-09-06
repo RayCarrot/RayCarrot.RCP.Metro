@@ -120,6 +120,7 @@
     <Compile Include="App\InstanceData\CultureChangedWeakEventManager.cs" />
     <Compile Include="App\InstanceData\AppInstanceData.cs" />
     <Compile Include="App\InstanceData\IAppInstanceData.cs" />
+    <Compile Include="App\Refresh\RefreshFlags.cs" />
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
     <Compile Include="Helpers\AsyncEvent\AsyncEventHandler.cs" />
@@ -1082,7 +1083,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Files.resx</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\EventArgs\RefreshRequiredEventArgs.cs" />
+    <Compile Include="App\Refresh\RefreshRequiredEventArgs.cs" />
     <Compile Include="DataModels\Enums\AdminWorkerMode.cs" />
     <Compile Include="App\SecretCodeManager.cs" />
     <Compile Include="UI\Controls\IconButton.xaml.cs">

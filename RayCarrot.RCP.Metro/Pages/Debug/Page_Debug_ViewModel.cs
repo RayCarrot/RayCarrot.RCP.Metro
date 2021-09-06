@@ -357,7 +357,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshAllAsync()
         {
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All));
         }
 
         /// <summary>
@@ -366,7 +366,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshAllTaskAsync()
         {
-            await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true, true)));
+            await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All)));
         }
 
         public void ThrowUnhandledException()

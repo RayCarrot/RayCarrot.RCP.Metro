@@ -155,7 +155,7 @@ namespace RayCarrot.RCP.Metro
             Data.JumpListItemIDCollection = result.IncludedItems.Select(x => x.ID).ToList();
 
             // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, false, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.JumpList));
         }
 
         /// <summary>

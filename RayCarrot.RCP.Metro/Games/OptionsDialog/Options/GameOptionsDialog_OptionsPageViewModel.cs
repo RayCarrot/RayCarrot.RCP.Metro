@@ -75,7 +75,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 GameData.LaunchMode = value;
-                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, false, true, false, false));
+                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.LaunchInfo));
             }
         }
 
