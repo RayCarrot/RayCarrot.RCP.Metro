@@ -679,7 +679,7 @@
       <DependentUpon>Page_Utilities_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppData\DataModels\UserData_FiestaRunEdition.cs" />
-    <Compile Include="DataModels\Enums\AppPage.cs" />
+    <Compile Include="App\AppPage.cs" />
     <Compile Include="Pages\Games\Page_Games_CategoryViewModel.cs" />
     <Compile Include="Games\OptionsDialog\GameOptionsDialog_BasePageViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Config\GameOptionsDialog_ConfigPageViewModel.cs" />
@@ -1084,7 +1084,7 @@
       <DependentUpon>Files.resx</DependentUpon>
     </Compile>
     <Compile Include="App\Refresh\RefreshRequiredEventArgs.cs" />
-    <Compile Include="DataModels\Enums\AdminWorkerMode.cs" />
+    <Compile Include="App\AdminWorkerMode.cs" />
     <Compile Include="App\SecretCodeManager.cs" />
     <Compile Include="UI\Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
@@ -1161,7 +1161,7 @@
     <Compile Include="Pages\About\Page_About_ViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\Translations\Utility_Rayman2_Translation_ViewModel.cs" />
     <Compile Include="App\Constants\AppURLs.cs" />
-    <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
+    <Compile Include="Helpers\ValueEventArgs.cs" />
     <Compile Include="AppData\DataModels\UserData_TPLSData.cs" />
     <Compile Include="Games\OptionsDialog\Config\UbiArt\Config_UbiArt_ViewModel.cs" />
     <Compile Include="Helpers\Extensions\StringExtensions.cs" />
