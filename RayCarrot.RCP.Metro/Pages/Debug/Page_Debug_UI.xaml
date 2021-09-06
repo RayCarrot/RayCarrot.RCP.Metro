@@ -6,6 +6,7 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -48,106 +49,258 @@
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 
-    <ScrollViewer Padding="15">
-        <StackPanel>
-            <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="2 5" />
-            </i:Interaction.Behaviors>
+    <metro:MetroAnimatedTabControl x:Name="DebugTabControl"
+                                   Margin="15"
+                                   FocusVisualStyle="{x:Null}">
 
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
-                </i:Interaction.Behaviors>
+        <i:Interaction.Behaviors>
+            <local:FocusElementOnLoad />
+        </i:Interaction.Behaviors>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Dialogs"
-                               Style="{StaticResource TextBlock.HeaderLarge}" />
+        <!-- Information -->
 
-                    <local:InfoIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
+        <TabItem local:TabItemAssist.IconKind="InformationOutline"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 Header="Information">
+
+            <ScrollViewer>
+                <StackPanel Grid.IsSharedSizeScope="True">
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                    </i:Interaction.Behaviors>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmallest}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="Information"
+                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+
+                        <TextBlock TextWrapping="Wrap">
+
+                            This page is primarily used for debugging the application. It allows certain services to be used, such as displaying
+                            dialogs, running the installers etc. and outputting debug information. Occasionally new features being tested will be
+                            added here.
+
+                        </TextBlock>
+
+                    </StackPanel>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmallest}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="Launch Arguments"
+                                   Style="{StaticResource TextBlock.Header}" />
+
+                        <StackPanel>
+
+                            <local:DuoGridItem Header="-noui (0 params)" 
+                                               Text="Indicates that the app should run in console mode." />
+                            <local:DuoGridItem Header="-reset (0 params)" 
+                                               Text="Resets the app user data. This will not reset that the license has been accepted." />
+                            <local:DuoGridItem Header="-ul (1 param)" 
+                                               Text="Sets the user level to {param0}" />
+                            <local:DuoGridItem Header="-install (1 param)" 
+                                               Text="Legacy argument used by the updater prior to version 4.5.0. Deletes the file at {param0}." />
+                            <local:DuoGridItem Header="-loglevel (1 param)" 
+                                               Text="Sets the log level to {param0}. Can be either Trace, Debug, Info, Warn, Error, Fatal or Off. This will not effect the log viewer as that always receives all logs. By default the log level is set to Info for release builds and Trace for debug builds." />
+                            <local:DuoGridItem Header="-nofilelog" 
+                                               Text="Disables the file logging." />
+                            <local:DuoGridItem Header="-nomemlog" 
+                                               Text="Disabled the memory logging. This will cause a potential application crash to not include the log information in the crash log." />
+                            <local:DuoGridItem Header="-logviewer" 
+                                               Text="Enables the log viewer." />
+
+                        </StackPanel>
+
+                        <TextBlock TextWrapping="Wrap">
+
+                            Example: RCP.exe -reset -loglevel Trace -logviewer<LineBreak/>
+                            This will run the app, reset the app data, set the log level to Trace and enable the log viewer.
+
+                        </TextBlock>
+
+                    </StackPanel>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmallest}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="Console Mode"
+                                   Style="{StaticResource TextBlock.Header}" />
+
+                        <TextBlock TextWrapping="Wrap">
+
+                            By launching the app with the argument -noui (has to be the first argument) it will run in an experimental console mode.
+                            This will not have any UI (the WPF App won't be initialized) and is entirely command based. Each command has to be entered
+                            as an argument when launching the app. The app will then process each command and then close once finished.<LineBreak/>
+                            <LineBreak/>
+
+                            Commands:
+
+                        </TextBlock>
+
+                        <StackPanel>
+
+                            <local:DuoGridItem Header="test (0 params)" 
+                                               Text="A simple test command. Does nothing." />
+                            <local:DuoGridItem Header="games (0 params)" 
+                                               Text="Outputs the games configuration used by the app." />
+                            <local:DuoGridItem Header="wait (1 param)" 
+                                               Text="waits {param0} milliseconds" />
+
+                        </StackPanel>
+
+                        <TextBlock TextWrapping="Wrap">
+
+                            Example: RCP.exe test wait 1000 games<LineBreak/>
+                            This will run the app, process the test command, wait 1 second and then output the games configuration before closing.
+
+                        </TextBlock>
+
+                    </StackPanel>
 
                 </StackPanel>
+            </ScrollViewer>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+        </TabItem>
 
-                    <ComboBox Grid.Column="0" 
-                              ItemsSource="{Binding Path=SelectedDialog, Converter={local:EnumToListConverter}}"
-                              SelectedIndex="{Binding Path=SelectedDialog, Converter={local:EnumToIntConverter}}"/>
+        <!-- Services -->
 
-                    <Button Grid.Column="2" 
-                            Content="Show Dialog"
-                            Command="{Binding Path=ShowDialogCommand}" />
-                </Grid>
+        <TabItem local:TabItemAssist.IconKind="DatabaseOutline"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 Header="Services">
 
-            </StackPanel>
+            <ScrollViewer>
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                    </i:Interaction.Behaviors>
 
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
-                </i:Interaction.Behaviors>
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                        </i:Interaction.Behaviors>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Installer"
-                               Style="{StaticResource TextBlock.HeaderLarge}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Dialogs"
+                                       Style="{StaticResource TextBlock.HeaderLarge}" />
 
-                    <local:InfoIcon Text="Running the installer on a game which has already been added might crash the application when complete." />
+                            <local:InfoIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
+
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0" 
+                                      ItemsSource="{Binding Path=SelectedDialog, Converter={local:EnumToListConverter}}"
+                                      SelectedIndex="{Binding Path=SelectedDialog, Converter={local:EnumToIntConverter}}"/>
+
+                            <Button Grid.Column="2" 
+                                    Content="Show Dialog"
+                                    Command="{Binding Path=ShowDialogCommand}" />
+                        </Grid>
+
+                    </StackPanel>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                        </i:Interaction.Behaviors>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Installer"
+                                       Style="{StaticResource TextBlock.HeaderLarge}" />
+
+                            <local:InfoIcon Text="Running the installer on a game which has already been added might crash the application when complete." />
+
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0" 
+                                      ItemsSource="{Binding Path=AvailableInstallers, Mode=OneTime}"
+                                      SelectedItem="{Binding Path=SelectedInstaller}"/>
+
+                            <Button Grid.Column="2" 
+                                    Content="Run installer"
+                                    Command="{Binding Path=RunInstallerCommand}" />
+                        </Grid>
+
+                    </StackPanel>
 
                 </StackPanel>
+            </ScrollViewer>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+        </TabItem>
 
-                    <ComboBox Grid.Column="0" 
-                              ItemsSource="{Binding Path=AvailableInstallers, Mode=OneTime}"
-                              SelectedItem="{Binding Path=SelectedInstaller}"/>
+        <!-- Services -->
 
-                    <Button Grid.Column="2" 
-                            Content="Run installer"
-                            Command="{Binding Path=RunInstallerCommand}" />
-                </Grid>
+        <TabItem local:TabItemAssist.IconKind="TextBoxMultipleOutline"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 Header="Output">
 
-            </StackPanel>
+            <ScrollViewer>
+                <StackPanel Margin="2 0">
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                    </i:Interaction.Behaviors>
 
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
-                </i:Interaction.Behaviors>
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                        </i:Interaction.Behaviors>
 
-                <TextBlock Text="Data Output"
-                           Style="{StaticResource TextBlock.HeaderLarge}" />
+                        <TextBlock Text="Data Output"
+                                   Style="{StaticResource TextBlock.HeaderLarge}" />
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <ComboBox Grid.Column="0" 
-                              ItemsSource="{Binding Path=SelectedDataOutputType, Converter={local:EnumToListConverter}}"
-                              SelectedIndex="{Binding Path=SelectedDataOutputType, Converter={local:EnumToIntConverter}}"/>
+                            <ComboBox Grid.Column="0" 
+                                      ItemsSource="{Binding Path=SelectedDataOutputType, Converter={local:EnumToListConverter}}"
+                                      SelectedIndex="{Binding Path=SelectedDataOutputType, Converter={local:EnumToIntConverter}}"/>
 
-                    <Button Grid.Column="2" 
-                            Content="Refresh"
-                            Command="{Binding Path=RefreshDataOutputCommand}" />
-                </Grid>
+                            <Button Grid.Column="2" 
+                                    Content="Refresh"
+                                    Command="{Binding Path=RefreshDataOutputCommand}" />
+                        </Grid>
 
-                <TextBox IsReadOnly="True"
-                         Text="{Binding Path=DataOutput}"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto"
-                         MaxHeight="450"/>
+                        <TextBox IsReadOnly="True"
+                                 Text="{Binding Path=DataOutput}"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 MaxHeight="450"/>
 
-            </StackPanel>
+                    </StackPanel>
 
-        </StackPanel>
-    </ScrollViewer>
+                </StackPanel>
+            </ScrollViewer>
+
+        </TabItem>
+
+    </metro:MetroAnimatedTabControl>
+
+    <i:Interaction.Behaviors>
+        <local:SubTabControlBehavior ChildTabControl="{Binding ElementName=DebugTabControl}" />
+    </i:Interaction.Behaviors>
+
 </local:BasePage>

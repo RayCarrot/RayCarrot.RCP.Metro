@@ -17,6 +17,7 @@ Other changes:
 • Reduced the number of animations shown in the disc installer
 • Beta updates will now show update news in the update dialog message
 • Improved scrolling with the mouse wheel over button mapping controls
+• Added tabs to the debug page and information about the app launch arguments
 • Added a debug option to throw an unhandled exception for testing the crash handler
 • Debug symbols are no longer included in the executable
 • Fixed the version history window not being centered when opened from the about page

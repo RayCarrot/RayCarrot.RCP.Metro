@@ -5,6 +5,8 @@
 
     <Thickness x:Key="Thickness.VerticalSmall">0 4</Thickness>
 
+    <Thickness x:Key="Thickness.VerticalSmallest">0 2</Thickness>
+
     <Thickness x:Key="Thickness.Horizontal">0 0 8 0</Thickness>
 
 </ResourceDictionary>
