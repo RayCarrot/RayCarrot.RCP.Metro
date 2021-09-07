@@ -142,14 +142,15 @@ namespace RayCarrot.RCP.Metro
 
             if (gliMode != null)
             {
-                ResX = gliMode.ResX;
-                ResY = gliMode.ResY;
+                Resolution.Width = gliMode.ResX;
+                Resolution.Height = gliMode.ResY;
                 FullscreenMode = !gliMode.IsWindowed;
                 IsTextures32Bit = gliMode.ColorMode != 16;
             }
             else
             {
-                LockToScreenRes = true;
+                Resolution.Width = 800;
+                Resolution.Height = 600;
                 FullscreenMode = true;
                 IsTextures32Bit = true;
             }
@@ -176,8 +177,8 @@ namespace RayCarrot.RCP.Metro
             {
                 ColorMode = IsTextures32Bit ? 32 : 16,
                 IsWindowed = !FullscreenMode,
-                ResX = ResX,
-                ResY = ResY
+                ResX = Resolution.Width,
+                ResY = Resolution.Height,
             }.ToString();
 
             ConfigData.FormattedTriLinear = TriLinear;

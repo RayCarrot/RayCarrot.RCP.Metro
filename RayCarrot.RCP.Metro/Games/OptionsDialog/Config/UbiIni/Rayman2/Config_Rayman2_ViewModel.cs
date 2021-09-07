@@ -79,12 +79,6 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        private int _resX;
-
-        private int _resY;
-
-        private bool _lockToScreenRes;
-
         private bool _widescreenSupport;
 
         private bool _controllerSupport;
@@ -111,32 +105,6 @@ namespace RayCarrot.RCP.Metro
         public FileSystemPath ConfigPath { get; set; }
 
         /// <summary>
-        /// The current horizontal resolution
-        /// </summary>
-        public int ResX
-        {
-            get => _resX;
-            set
-            {
-                _resX = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// The current vertical resolution
-        /// </summary>
-        public int ResY
-        {
-            get => _resY;
-            set
-            {
-                _resY = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
         /// Indicates if widescreen support is enabled
         /// </summary>
         public bool WidescreenSupport
@@ -146,9 +114,6 @@ namespace RayCarrot.RCP.Metro
             {
                 _widescreenSupport = value;
                 UnsavedChanges = true;
-
-                if (value && LockToScreenRes)
-                    ResX = (int)SystemParameters.PrimaryScreenWidth;
             }
         }
 
@@ -162,27 +127,6 @@ namespace RayCarrot.RCP.Metro
             {
                 _controllerSupport = value;
                 UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// Indicates if the resolution is locked to the current screen resolution
-        /// </summary>
-        public bool LockToScreenRes
-        {
-            get => _lockToScreenRes;
-            set
-            {
-                _lockToScreenRes = value;
-
-                if (!value)
-                    return;
-
-                ResY = (int)SystemParameters.PrimaryScreenHeight;
-
-                ResX = WidescreenSupport
-                    ? (int) SystemParameters.PrimaryScreenWidth
-                    : (int) Math.Round((double) ResY / 3 * 4);
             }
         }
 
@@ -315,14 +259,17 @@ namespace RayCarrot.RCP.Metro
         {
             var gliMode = ConfigData.FormattedGLI_Mode;
 
+            Resolution.GetAvailableResolutions();
+
             if (gliMode != null)
             {
-                ResX = gliMode.ResX;
-                ResY = gliMode.ResY;
+                Resolution.Width = gliMode.ResX;
+                Resolution.Height = gliMode.ResY;
             }
             else
             {
-                LockToScreenRes = true;
+                Resolution.Width = 800;
+                Resolution.Height = 600;
             }
 
             CurrentLanguage = ConfigData.FormattedLanguage ?? R2Languages.English;
@@ -388,8 +335,8 @@ namespace RayCarrot.RCP.Metro
             {
                 ColorMode = ConfigData.FormattedGLI_Mode?.ColorMode ?? 16,
                 IsWindowed = ConfigData.FormattedGLI_Mode?.IsWindowed ?? false,
-                ResX = ResX,
-                ResY = ResY
+                ResX = Resolution.Width,
+                ResY = Resolution.Height,
             }.ToString();
 
             ConfigData.Language = CurrentLanguage.ToString();
@@ -568,7 +515,7 @@ namespace RayCarrot.RCP.Metro
                 if (WidescreenSupport)
                 {
                     // Get the aspect ratio
-                    float ratio = IsHorizontalWidescreen ? (float)ResY / ResX : (float)ResX / ResY;
+                    float ratio = IsHorizontalWidescreen ? (float)Resolution.Height / Resolution.Width : (float)Resolution.Width / Resolution.Height;
 
                     // Multiply by 4/3
                     ratio *= (4.0F / 3.0F);

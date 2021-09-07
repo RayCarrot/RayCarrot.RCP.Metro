@@ -45,12 +45,6 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        private int _resX;
-
-        private int _resY;
-
-        private bool _lockToScreenRes;
-
         private bool _fullscreenMode;
 
         private bool _triLinear;
@@ -123,50 +117,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The current horizontal resolution
-        /// </summary>
-        public int ResX
-        {
-            get => _resX;
-            set
-            {
-                _resX = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// The current vertical resolution
-        /// </summary>
-        public int ResY
-        {
-            get => _resY;
-            set
-            {
-                _resY = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// Indicates if the resolution is locked to the current screen resolution
-        /// </summary>
-        public bool LockToScreenRes
-        {
-            get => _lockToScreenRes;
-            set
-            {
-                _lockToScreenRes = value;
-
-                if (!value)
-                    return;
-
-                ResY = (int)SystemParameters.PrimaryScreenHeight;
-                ResX = (int)Math.Round((double)ResY / 3 * 4);
-            }
-        }
 
         /// <summary>
         /// Indicates if fullscreen mode is enabled or if the game should run in windowed mode

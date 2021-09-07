@@ -37,12 +37,6 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        private int _screenHeight;
-
-        private int _screenWidth;
-
-        private bool _lockToScreenRes;
-
         private bool _fullscreenMode;
 
         #endregion
@@ -65,50 +59,6 @@ namespace RayCarrot.RCP.Metro
         public Games Game { get; }
 
         /// <summary>
-        /// The screen height
-        /// </summary>
-        public int ScreenHeight
-        {
-            get => _screenHeight;
-            set
-            {
-                _screenHeight = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// The screen width
-        /// </summary>
-        public int ScreenWidth
-        {
-            get => _screenWidth;
-            set
-            {
-                _screenWidth = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// Indicates if the resolution is locked to the current screen resolution
-        /// </summary>
-        public bool LockToScreenRes
-        {
-            get => _lockToScreenRes;
-            set
-            {
-                _lockToScreenRes = value;
-
-                if (!value)
-                    return;
-
-                ScreenHeight = (int)SystemParameters.PrimaryScreenHeight;
-                ScreenWidth = (int)SystemParameters.PrimaryScreenWidth;
-            }
-        }
-
-        /// <summary>
         /// True if the game should run in fullscreen,
         /// false if it should run in windowed mode
         /// </summary>
@@ -120,6 +70,33 @@ namespace RayCarrot.RCP.Metro
                 _fullscreenMode = value;
                 UnsavedChanges = true;
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Gets the registry key for the game properties
+        /// </summary>
+        /// <param name="writable">True if the key should be writable</param>
+        /// <returns>The key</returns>
+        private RegistryKey GetKey(bool writable)
+        {
+            // Get the key path
+            var keyPath = RegistryHelpers.CombinePaths(Game == Games.RaymanOrigins ? AppFilePaths.RaymanOriginsRegistryKey : AppFilePaths.RaymanLegendsRegistryKey, "Settings");
+
+            // Create the key if it doesn't exist and should be written to
+            if (!RegistryHelpers.KeyExists(keyPath) && writable)
+            {
+                var key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
+
+                Logger.Info("The Registry key {0} has been created", key?.Name);
+
+                return key;
+            }
+
+            return RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, writable);
         }
 
         #endregion
@@ -145,8 +122,9 @@ namespace RayCarrot.RCP.Metro
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Game} does not exist. Default values will be used.");
 
-                ScreenHeight = GetInt(ScreenHeightKey, (int)SystemParameters.PrimaryScreenHeight);
-                ScreenWidth = GetInt(ScreenWidthKey, (int)SystemParameters.PrimaryScreenWidth);
+                Resolution.GetAvailableResolutions(800, 600);
+                Resolution.Width = GetInt(ScreenWidthKey, (int)SystemParameters.PrimaryScreenWidth);
+                Resolution.Height = GetInt(ScreenHeightKey, (int)SystemParameters.PrimaryScreenHeight);
                 FullscreenMode = GetInt(FullScreenKey, 1) == 1;
 
                 // Helper methods for getting values
@@ -177,8 +155,8 @@ namespace RayCarrot.RCP.Metro
 
                     Logger.Info("The key {0} has been opened", key.Name);
 
-                    key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
-                    key.SetValue(ScreenWidthKey, ScreenWidth.ToString());
+                    key.SetValue(ScreenWidthKey, Resolution.Width.ToString());
+                    key.SetValue(ScreenHeightKey, Resolution.Height.ToString());
                     key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                 }
 
@@ -192,33 +170,6 @@ namespace RayCarrot.RCP.Metro
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
             }
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Gets the registry key for the game properties
-        /// </summary>
-        /// <param name="writable">True if the key should be writable</param>
-        /// <returns>The key</returns>
-        private RegistryKey GetKey(bool writable)
-        {
-            // Get the key path
-            var keyPath = RegistryHelpers.CombinePaths(Game == Games.RaymanOrigins ? AppFilePaths.RaymanOriginsRegistryKey : AppFilePaths.RaymanLegendsRegistryKey, "Settings");
-
-            // Create the key if it doesn't exist and should be written to
-            if (!RegistryHelpers.KeyExists(keyPath) && writable)
-            {
-                var key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
-
-                Logger.Info("The Registry key {0} has been created", key?.Name);
-
-                return key;
-            }
-
-            return RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, writable);
         }
 
         #endregion

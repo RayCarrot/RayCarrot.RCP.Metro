@@ -20,12 +20,6 @@ namespace RayCarrot.RCP.Metro
 
         private bool _enableCustomSettings;
 
-        private int _resX;
-
-        private int _resY;
-
-        private bool _lockToScreenRes;
-
         private RabbidsGoHomeLanguage _language;
 
         private bool _fullscreen;
@@ -55,50 +49,6 @@ namespace RayCarrot.RCP.Metro
 
                 if (EnableCustomSettings)
                     ImportConfig(new UserData_RabbidsGoHomeLaunchData());
-            }
-        }
-
-        /// <summary>
-        /// The current horizontal resolution
-        /// </summary>
-        public int ResX
-        {
-            get => _resX;
-            set
-            {
-                _resX = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// The current vertical resolution
-        /// </summary>
-        public int ResY
-        {
-            get => _resY;
-            set
-            {
-                _resY = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// Indicates if the resolution is locked to the current screen resolution
-        /// </summary>
-        public bool LockToScreenRes
-        {
-            get => _lockToScreenRes;
-            set
-            {
-                _lockToScreenRes = value;
-
-                if (!value)
-                    return;
-
-                ResY = (int)SystemParameters.PrimaryScreenHeight;
-                ResX = (int)SystemParameters.PrimaryScreenWidth;
             }
         }
 
@@ -190,8 +140,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="data">The data to import</param>
         private void ImportConfig(UserData_RabbidsGoHomeLaunchData data)
         {
-            ResX = data.ResolutionX;
-            ResY = data.ResolutionY;
+            Resolution.GetAvailableResolutions();
+            Resolution.Width = data.ResolutionX;
+            Resolution.Height = data.ResolutionY;
             Language = GetLanguage(data.Language);
             Fullscreen = data.IsFullscreen;
             VSync = data.IsVSyncEnabled;
@@ -249,7 +200,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set the launch data
             Data.RabbidsGoHomeLaunchData = EnableCustomSettings ?
-                new UserData_RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), ResX, ResY, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
+                new UserData_RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), Resolution.Width, Resolution.Height, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
                 null;
 
             // Refresh

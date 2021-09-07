@@ -37,28 +37,7 @@
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_Resolution}" />
 
-            <StackPanel Orientation="Horizontal">
-                <metro:NumericUpDown Value="{Binding Path=ResX}"
-                                     ToolTip="{Resx Config_ResolutionHorizontalInfo}"
-                                     Minimum="1"
-                                     Maximum="99999"
-                                     IsEnabled="{Binding Path=LockToScreenRes, Converter={local:InvertedBooleanConverter}}" />
-
-                <TextBlock Text="  x  "
-                           VerticalAlignment="Center"
-                           FontSize="14" />
-
-                <metro:NumericUpDown Value="{Binding Path=ResY}"
-                                     ToolTip="{Resx Config_ResolutionVerticalInfo}"
-                                     Minimum="1"
-                                     Maximum="99999"
-                                     IsEnabled="{Binding Path=LockToScreenRes, Converter={local:InvertedBooleanConverter}}" />
-
-            </StackPanel>
-
-            <CheckBox Content="{Resx Config_LockRes}"
-                      ToolTip="{Resx Config_LockResInfo}"
-                      IsChecked="{Binding Path=LockToScreenRes}" />
+            <local:ResolutionSelection DataContext="{Binding Path=Resolution, Mode=OneTime}"/>
 
             <CheckBox Content="{Resx Config_Fullscreen}"
                       ToolTip="{Resx Config_FullscreenInfo}"

@@ -123,6 +123,8 @@
     <Compile Include="App\Refresh\RefreshFlags.cs" />
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionValidationRule.cs" />
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionSelectionViewModel.cs" />
     <Compile Include="Helpers\AsyncEvent\AsyncEventHandler.cs" />
     <Compile Include="Helpers\AsyncEvent\AsyncEventHandlertExtensions.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
@@ -149,6 +151,9 @@
     <Compile Include="Localization\LocString\ConstLocString.cs" />
     <Compile Include="Localization\LocString\GeneratedLocString.cs" />
     <Compile Include="Localization\LocString\ResourceLocString.cs" />
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionSelection.xaml.cs">
+      <DependentUpon>ResolutionSelection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Converters\Bool\EqualsToConverter.cs" />
     <Compile Include="UI\Dialogs\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
@@ -757,6 +762,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\ResolutionSelectionViewModel\ResolutionSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Dialogs\DriveSelectionDialog\DriveSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>

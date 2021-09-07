@@ -23,46 +23,17 @@
 
         </StackPanel>
 
+        <local:ResolutionSelection DataContext="{Binding Path=Resolution, Mode=OneTime}"/>
+
         <StackPanel Orientation="Horizontal">
-            <mah:NumericUpDown Value="{Binding Path=ResX}"
-                               ToolTip="{Resx Config_ResolutionHorizontalInfo}"
-                               Minimum="1"
-                               Maximum="99999"
-                               IsEnabled="{Binding Path=LockToScreenRes, Converter={local:InvertedBooleanConverter}}" />
+            <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={local:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                               Margin="0 0 5 0" />
 
-            <TextBlock Text="  x  "
-                       VerticalAlignment="Center"
-                       FontSize="14" />
-
-            <mah:NumericUpDown Value="{Binding Path=ResY}"
-                               ToolTip="{Resx Config_ResolutionVerticalInfo}"
-                               Minimum="1"
-                               Maximum="99999"
-                               IsEnabled="{Binding Path=LockToScreenRes, Converter={local:InvertedBooleanConverter}}" />
-
+            <CheckBox Content="{Resx Config_WidescreenSupport}"
+                      ToolTip="{Resx Config_WidescreenSupportInfo}"
+                      IsChecked="{Binding Path=WidescreenSupport}"
+                      IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
         </StackPanel>
-
-        <WrapPanel>
-            <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
-            </i:Interaction.Behaviors>
-
-            <CheckBox Content="{Resx Config_LockRes}"
-                      ToolTip="{Resx Config_LockResInfo}"
-                      IsChecked="{Binding Path=LockToScreenRes}" />
-
-            <StackPanel Orientation="Horizontal">
-                <local:AdminButton
-                    Visibility="{Binding Path=CanModifyGame, Converter={local:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                    Margin="0 0 5 0" />
-
-                <CheckBox Content="{Resx Config_WidescreenSupport}"
-                          ToolTip="{Resx Config_WidescreenSupportInfo}"
-                          IsChecked="{Binding Path=WidescreenSupport}"
-                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
-            </StackPanel>
-
-        </WrapPanel>
 
         <WrapPanel Visibility="{Binding Path=WidescreenSupport, Converter={local:BooleanToVisibilityConverter}}">
             <i:Interaction.Behaviors>
