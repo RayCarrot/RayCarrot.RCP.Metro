@@ -97,9 +97,9 @@
 
                         <StackPanel>
 
-                            <local:DuoGridItem Header="-noui (0 params)" 
+                            <local:DuoGridItem Header="-noui" 
                                                Text="Indicates that the app should run in console mode." />
-                            <local:DuoGridItem Header="-reset (0 params)" 
+                            <local:DuoGridItem Header="-reset" 
                                                Text="Resets the app user data. This will not reset that the license has been accepted." />
                             <local:DuoGridItem Header="-ul (1 param)" 
                                                Text="Sets the user level to {param0}" />
@@ -146,9 +146,9 @@
 
                         <StackPanel>
 
-                            <local:DuoGridItem Header="test (0 params)" 
+                            <local:DuoGridItem Header="test" 
                                                Text="A simple test command. Does nothing." />
-                            <local:DuoGridItem Header="games (0 params)" 
+                            <local:DuoGridItem Header="games" 
                                                Text="Outputs the games configuration used by the app." />
                             <local:DuoGridItem Header="wait (1 param)" 
                                                Text="waits {param0} milliseconds" />
