@@ -13,19 +13,19 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ItemsControl Grid.Row="0"
-                      VerticalAlignment="Top"
-                      ItemsSource="{Binding Path=Games, Mode=OneTime}">
+        <ScrollViewer Grid.Row="0" MaxHeight="500">
+            <ItemsControl ItemsSource="{Binding Path=Games, Mode=OneTime}">
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <CheckBox Content="{Binding Path=DisplayName}"
-                              IsChecked="{Binding Path=IsSelected}"
-                              Margin="0 0 0 6"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Path=DisplayName}"
+                                  IsChecked="{Binding Path=IsSelected}"
+                                  Margin="0 0 0 6"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
 
-        </ItemsControl>
+            </ItemsControl>
+        </ScrollViewer>
 
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal" 
