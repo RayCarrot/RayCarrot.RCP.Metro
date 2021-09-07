@@ -542,6 +542,11 @@
                                 <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                             </i:Interaction.Behaviors>
 
+                            <!-- TODO-UPDATE: Localize -->
+                            <CheckBox Content="Disable game validation"
+                                      ToolTip="Allows a game to be added with any selected directory. Note that this will cause the game finder to automatically add every game if run."
+                                      IsChecked="{Binding Path=Debug_DisableGameValidation}" />
+
                             <CheckBox Content="{Resx Settings_ForceUpdates}"
                                       IsChecked="{Binding Path=ForceUpdate}" />
 

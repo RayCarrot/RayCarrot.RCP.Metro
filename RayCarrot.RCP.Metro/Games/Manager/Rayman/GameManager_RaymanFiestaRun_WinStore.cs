@@ -138,10 +138,6 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        #endregion
-
-        #region Public Override Methods
-
         /// <summary>
         /// Indicates if the game is valid
         /// </summary>
@@ -149,7 +145,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="parameter">Optional game parameter</param>
         /// <returns>True if the game is valid, otherwise false</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public override Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
+        protected override Task<bool> IsDirectoryValidAsync(FileSystemPath installDir, object parameter = null)
         {
             // Make sure version is at least Windows 8
             if (!SupportsWinStoreApps)

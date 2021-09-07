@@ -66,6 +66,52 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Override Methods
+
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <param name="parameter">Optional game parameter</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        protected override async Task<bool> IsDirectoryValidAsync(FileSystemPath installDir, object parameter = null)
+        {
+            if (Services.Data.EducationalDosBoxGames == null)
+                return false;
+
+            var toRemove = Services.Data.EducationalDosBoxGames.
+                Where(game => !IsGameDirValid(game.InstallDir) || game.LaunchName.IsNullOrWhiteSpace()).
+                ToArray();
+
+            // Remove invalid games
+            foreach (var game in toRemove)
+                Services.Data.EducationalDosBoxGames.Remove(game);
+
+            // Notify user
+            foreach (var game in toRemove)
+            {
+                Services.Data.JumpListItemIDCollection.RemoveWhere(x => x == game.ID);
+
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
+            }
+
+            // Make sure there is at least one game
+            if (Services.Data.EducationalDosBoxGames?.Any() != true)
+                return false;
+
+            // If any games were removed, refresh the default game and jump list
+            if (toRemove.Any())
+            {
+                // Reset the game data with new install directory
+                RefreshDefault();
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, RefreshFlags.JumpList));
+            }
+
+            return true;
+        }
+
+        #endregion
+
         #region Public Override Methods
 
         /// <summary>
@@ -158,48 +204,6 @@ namespace RayCarrot.RCP.Metro
 
             // Return the valid directory
             return result.SelectedDirectory;
-        }
-
-        /// <summary>
-        /// Indicates if the game is valid
-        /// </summary>
-        /// <param name="installDir">The game install directory, if any</param>
-        /// <param name="parameter">Optional game parameter</param>
-        /// <returns>True if the game is valid, otherwise false</returns>
-        public override async Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
-        {
-            if (Services.Data.EducationalDosBoxGames == null)
-                return false;
-
-            var toRemove = Services.Data.EducationalDosBoxGames.
-                Where(game => !IsGameDirValid(game.InstallDir) || game.LaunchName.IsNullOrWhiteSpace()).
-                ToArray();
-
-            // Remove invalid games
-            foreach (var game in toRemove)
-                Services.Data.EducationalDosBoxGames.Remove(game);
-
-            // Notify user
-            foreach (var game in toRemove)
-            {
-                Services.Data.JumpListItemIDCollection.RemoveWhere(x => x == game.ID);
-
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
-            }
-
-            // Make sure there is at least one game
-            if (Services.Data.EducationalDosBoxGames?.Any() != true)
-                return false;
-
-            // If any games were removed, refresh the default game and jump list
-            if (toRemove.Any())
-            {
-                // Reset the game data with new install directory
-                RefreshDefault();
-                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, RefreshFlags.JumpList));
-            }
-
-            return true;
         }
 
         /// <summary>

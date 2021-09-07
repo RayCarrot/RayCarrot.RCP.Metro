@@ -74,6 +74,18 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch result</returns>
         protected abstract Task<GameLaunchResult> LaunchAsync(bool forceRunAsAdmin);
 
+        /// <summary>
+        /// Indicates if the game directory is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <param name="parameter">Optional game parameter</param>
+        /// <returns>True if the game directory is valid, otherwise false</returns>
+        protected virtual Task<bool> IsDirectoryValidAsync(FileSystemPath installDir, object parameter = null)
+        {
+            // Make sure the default file exists in the install directory
+            return Task.FromResult((installDir + Game.GetGameInfo().DefaultFileName).FileExists);
+        }
+
         #endregion
 
         #region Public Virtual Methods
@@ -117,10 +129,12 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game install directory, if any</param>
         /// <param name="parameter">Optional game parameter</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public virtual Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
+        public Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
-            // Make sure the default file exists in the install directory
-            return Task.FromResult((installDir + Game.GetGameInfo().DefaultFileName).FileExists);
+            if (Services.Data.Debug_DisableGameValidation)
+                return Task.FromResult(true);
+
+            return IsDirectoryValidAsync(installDir, parameter);
         }
 
         #endregion

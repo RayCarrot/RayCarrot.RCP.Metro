@@ -67,6 +67,7 @@ namespace RayCarrot.RCP.Metro
             Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
             Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
             Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
+            Debug_DisableGameValidation = false;
         }
 
         /// <summary>
@@ -342,6 +343,11 @@ namespace RayCarrot.RCP.Metro
         /// The saved button mapping for the Rayman Raving Rabbids memory mod
         /// </summary>
         public Dictionary<int, Key> Mod_RRR_KeyboardButtonMapping { get; set; }
+
+        /// <summary>
+        /// Disables validating the game install location. This allow a game with any install location to be added.
+        /// </summary>
+        public bool Debug_DisableGameValidation { get; set; }
 
         #endregion
     }

@@ -6,9 +6,7 @@ using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -566,6 +564,9 @@ namespace RayCarrot.RCP.Metro
 
             if (Data.LastVersion < new Version(11, 3, 0, 0))
                 Data.Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
+
+            if (Data.LastVersion < new Version(12, 0, 0, 0))
+                Data.Debug_DisableGameValidation = false;
 
             // Re-deploy files
             await Services.App.DeployFilesAsync(true);

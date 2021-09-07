@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
-using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using NLog;
 using RayCarrot.UI;
@@ -163,6 +162,26 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <param name="parameter">Optional game parameter</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        protected override async Task<bool> IsDirectoryValidAsync(FileSystemPath installDir, object parameter = null)
+        {
+            // Make sure version is at least Windows 8
+            if (!SupportsWinStoreApps)
+                return false;
+
+            // Make sure the default game file is found
+            if (!(await base.IsDirectoryValidAsync(installDir, parameter)))
+                return false;
+
+            return true;
+        }
+
         #endregion
 
         #region Public Override Methods
@@ -229,26 +248,6 @@ namespace RayCarrot.RCP.Metro
             }
 
             return installDir;
-        }
-
-        /// <summary>
-        /// Indicates if the game is valid
-        /// </summary>
-        /// <param name="installDir">The game install directory, if any</param>
-        /// <param name="parameter">Optional game parameter</param>
-        /// <returns>True if the game is valid, otherwise false</returns>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public override async Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
-        {
-            // Make sure version is at least Windows 8
-            if (!SupportsWinStoreApps)
-                return false;
-
-            // Make sure the default game file is found
-            if (!(await base.IsValidAsync(installDir, parameter)))
-                return false;
-
-            return true;
         }
 
         /// <summary>
