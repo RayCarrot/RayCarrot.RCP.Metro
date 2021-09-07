@@ -22,6 +22,7 @@ Other changes:
 • Added tabs to the debug page and information about the app launch arguments
 • Added a debug setting for disabling the game validation
 • Added a debug option to throw an unhandled exception for testing the crash handler
+• Added more dialog types to show from the debug page
 • Debug symbols are no longer included in the executable
 • Fixed the version history window not being centered when opened from the about page
 

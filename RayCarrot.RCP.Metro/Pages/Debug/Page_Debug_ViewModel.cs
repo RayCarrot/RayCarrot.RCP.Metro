@@ -91,8 +91,15 @@ namespace RayCarrot.RCP.Metro
         {
             switch (SelectedDialog)
             {
+                case DebugDialogType.GameSelection:
+                    await Services.UI.SelectGamesAsync(new GamesSelectionViewModel()
+                    {
+                        Title = "Debug",
+                    });
+                    break;
+
                 case DebugDialogType.GameTypeSelection:
-                    await new GameTypeSelectionDialog(new GameTypeSelectionViewModel()
+                    await Services.UI.SelectGameTypeAsync(new GameTypeSelectionViewModel()
                     {
                         Title = "Debug",
                         AllowSteam = true,
@@ -100,7 +107,7 @@ namespace RayCarrot.RCP.Metro
                         AllowDosBox = true,
                         AllowWinStore = true,
                         AllowEducationalDosBox = true,
-                    }).ShowDialogAsync();
+                    });
                     break;
 
                 case DebugDialogType.Message:
@@ -132,6 +139,42 @@ namespace RayCarrot.RCP.Metro
                     await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
                         Title = "Debug"
+                    });
+                    break;
+
+                case DebugDialogType.EditEducationalDosGame:
+                    await Services.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(new UserData_EducationalDosBoxGameData(FileSystemPath.EmptyPath, "DEBUG", "DEBUG"), new string[]
+                    {
+                        "DEBUG"
+                    })
+                    {
+                        Title = "Debug"
+                    });
+                    break;
+
+                case DebugDialogType.EditJumpList:
+                    await Services.UI.EditJumpListAsync(new JumpListEditViewModel()
+                    {
+                        Title = "Debug"
+                    });
+                    break;
+
+                case DebugDialogType.FileExtensionSelection:
+                    await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(new string[]
+                    {
+                        "EXT 1",
+                        "EXT 2",
+                    }, "Select a file extension")
+                    {
+                        Title = "Debug"
+                    });
+                    break;
+
+                case DebugDialogType.StringInput:
+                    await Services.UI.GetStringInput(new StringInputViewModel()
+                    {
+                        Title = "Debug",
+                        HeaderText = "Specify a string"
                     });
                     break;
 
@@ -413,6 +456,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public enum DebugDialogType
         {
+            GameSelection,
+
             /// <summary>
             /// A game type selection dialog
             /// </summary>
@@ -442,6 +487,14 @@ namespace RayCarrot.RCP.Metro
             /// A save file dialog
             /// </summary>
             SaveFile,
+
+            EditEducationalDosGame,
+
+            EditJumpList,
+
+            FileExtensionSelection,
+
+            StringInput,
         }
 
         /// <summary>
