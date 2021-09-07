@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
+             MinWidth="250"
+             MinHeight="180"
              d:DataContext="{d:DesignInstance local:FileExtensionSelectionDialogViewModel}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -15,10 +17,12 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
+                   Margin="0 0 0 8"
                    TextWrapping="Wrap"
                    Text="{Binding Path=Header, Mode=OneTime}" />
 
         <ListBox Grid.Row="1"
+                 Margin="0 0 0 8"
                  ItemsSource="{Binding Path=FileFormats, Mode=OneTime}"
                  SelectedItem="{Binding Path=SelectedFileFormat}"
                  HorizontalAlignment="Left">
@@ -29,7 +33,10 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                 <Border Background="Transparent">
-                                    <RadioButton Focusable="False" IsHitTestVisible="False" IsChecked="{TemplateBinding IsSelected}">
+                                    <RadioButton Focusable="False" 
+                                                 IsHitTestVisible="False" 
+                                                 IsChecked="{TemplateBinding IsSelected}"
+                                                 Margin="0 0 0 4">
                                         <ContentPresenter />
                                     </RadioButton>
                                 </Border>
