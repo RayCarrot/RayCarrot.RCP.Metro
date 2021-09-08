@@ -8,6 +8,7 @@
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:JumpListEditViewModel}"
+             Loaded="JumpListEditDialog_OnLoaded"
              Height="400"
              Width="600">
     <Grid Margin="10">

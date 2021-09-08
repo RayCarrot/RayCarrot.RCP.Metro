@@ -38,6 +38,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 IconImageSource = IconSource == null ? null : WindowsHelpers.GetIconOrThumbnail(IconSource, ShellThumbnailSize.Small).ToImageSource();
+                IconImageSource?.Freeze();
             }
             catch (Exception ex)
             {

@@ -26,6 +26,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Fields
+
+        private bool _hasLoaded;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -89,6 +95,16 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Event Handlers
+
+        private async void JumpListEditDialog_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_hasLoaded)
+                return;
+
+            _hasLoaded = true;
+
+            await ViewModel.LoadIconsAsync();
+        }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {

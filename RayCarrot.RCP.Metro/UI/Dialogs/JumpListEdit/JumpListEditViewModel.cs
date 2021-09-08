@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -32,8 +33,6 @@ namespace RayCarrot.RCP.Metro
                         included.Add(item);
                     else
                         NotIncluded.Add(item);
-
-                    item.SetIconImageSource();
                 }
             }
 
@@ -54,6 +53,19 @@ namespace RayCarrot.RCP.Metro
         /// The not included items
         /// </summary>
         public ObservableCollection<JumpListItemViewModel> NotIncluded { get; }
+
+        #endregion
+
+        #region Public Methods
+
+        public async Task LoadIconsAsync()
+        {
+            await Task.Run(() =>
+            {
+                foreach (JumpListItemViewModel item in Included.Concat(NotIncluded).ToArray())
+                    item.SetIconImageSource();
+            });
+        }
 
         #endregion
     }
