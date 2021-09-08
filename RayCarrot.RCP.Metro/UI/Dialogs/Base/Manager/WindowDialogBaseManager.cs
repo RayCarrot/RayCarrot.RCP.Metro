@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
                 return await dispatcher.Invoke(async () =>
                 {
                     // Get the parent window
-                    if ((Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive)
+                    if (Services.Data.UI_UseChildWindows && (Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive)
                          ?? Application.Current.MainWindow) is MetroWindow metroWindow)
                     {
                         // Create the child window

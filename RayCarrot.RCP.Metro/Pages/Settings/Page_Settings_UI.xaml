@@ -273,6 +273,11 @@
                                       ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
                                       IsChecked="{Binding Path=ShowProgressOnTaskBar}" />
 
+                            <!-- TODO-UPDATE: Localize -->
+                            <CheckBox Content="Show dialogs within windows"
+                                      ToolTip="Disabling this will show dialogs as separate blocking windows, while enabling it will show them inside of the window they originated from"
+                                      IsChecked="{Binding Path=UI_UseChildWindows}" />
+
                         </StackPanel>
 
                     </StackPanel>

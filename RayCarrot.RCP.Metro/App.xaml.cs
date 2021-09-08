@@ -573,7 +573,10 @@ namespace RayCarrot.RCP.Metro
                 Data.Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
 
             if (Data.LastVersion < new Version(12, 0, 0, 0))
+            {
                 Data.Debug_DisableGameValidation = false;
+                Data.UI_UseChildWindows = true;
+            }
 
             // Re-deploy files
             await Services.App.DeployFilesAsync(true);

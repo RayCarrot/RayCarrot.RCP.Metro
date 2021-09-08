@@ -3,7 +3,7 @@
 	• Redesigned the tab headers to use colored icons and underlines
 	• Controls now have rounded corners and slightly thicker borders
 	• Changed which areas of pages use scroll bars
-	• Dialog windows now appear within the parent window
+	• Dialog windows now appear within the parent window (this can be reverted back to the previous behavior in the settings)
 	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
 • Resolution selections in game configurations now have a drop-down for choosing a supported resolution
 

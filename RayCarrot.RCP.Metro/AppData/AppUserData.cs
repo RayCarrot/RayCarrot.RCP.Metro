@@ -68,6 +68,7 @@ namespace RayCarrot.RCP.Metro
             Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
             Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
             Debug_DisableGameValidation = false;
+            UI_UseChildWindows = true;
         }
 
         /// <summary>
@@ -348,6 +349,11 @@ namespace RayCarrot.RCP.Metro
         /// Disables validating the game install location. This allow a game with any install location to be added.
         /// </summary>
         public bool Debug_DisableGameValidation { get; set; }
+
+        /// <summary>
+        /// Indicates if dialogs should be shown as child windows whenever possible
+        /// </summary>
+        public bool UI_UseChildWindows { get; set; }
 
         #endregion
     }
