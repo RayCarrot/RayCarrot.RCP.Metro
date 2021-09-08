@@ -42,7 +42,7 @@
                     <local:BrowseBox SelectedPath="{Binding Path=OutputFile}"
                                      PathValidation="NotEmpty"
                                      BrowseType="SaveFile"
-                                     FileFilter="{Binding Path=Manager.ArchiveFileFilter, Mode=OneTime}"/>
+                                     FileFilter="{Binding Path=Manager.ArchiveFileExtension.GetFileFilterItem, Mode=OneTime}"/>
 
                     <ContentPresenter Content="{Binding Path=Manager.GetCreatorUIConfig, Mode=OneTime}" />
 
