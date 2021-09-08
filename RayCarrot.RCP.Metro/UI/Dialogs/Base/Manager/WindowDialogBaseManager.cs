@@ -37,29 +37,50 @@ namespace RayCarrot.RCP.Metro
                 // Run on UI thread
                 return await dispatcher.Invoke(async () =>
                 {
-                    // Create the window
-                    var childWin = new ChildWindow();
-
-                    // Configure the window
-                    ConfigureChildWindow(childWin, dialog, owner);
-
-                    void Dialog_CloseDialog(object sender, EventArgs e) => childWin.Close();
-                    static void Window_Closing(object sender, CancelEventArgs e) => e.Cancel = true;
-
                     // Get the parent window
-                    var window = (MetroWindow)(Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive) ?? Application.Current.MainWindow);
+                    if ((Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive)
+                         ?? Application.Current.MainWindow) is MetroWindow metroWindow)
+                    {
+                        // Create the child window
+                        var childWin = new ChildWindow();
 
-                    var wasCloseEnabled = window.IsCloseButtonEnabled;
-                    window.Closing += Window_Closing;
-                    dialog.CloseDialog += Dialog_CloseDialog;
-                    window.IsCloseButtonEnabled = false;
+                        // Configure the window
+                        ConfigureChildWindow(childWin, dialog, owner);
 
-                    await window.ShowChildWindowAsync(childWin);
+                        void Dialog_CloseDialog(object sender, EventArgs e) => childWin.Close();
+                        static void Window_Closing(object sender, CancelEventArgs e) => e.Cancel = true;
 
-                    window.Closing -= Window_Closing;
-                    dialog.CloseDialog -= Dialog_CloseDialog;
-                    window.IsCloseButtonEnabled = wasCloseEnabled;
+                        var wasCloseEnabled = metroWindow.IsCloseButtonEnabled;
+                        metroWindow.Closing += Window_Closing;
+                        dialog.CloseDialog += Dialog_CloseDialog;
+                        metroWindow.IsCloseButtonEnabled = false;
 
+                        await metroWindow.ShowChildWindowAsync(childWin);
+
+                        metroWindow.Closing -= Window_Closing;
+                        dialog.CloseDialog -= Dialog_CloseDialog;
+                        metroWindow.IsCloseButtonEnabled = wasCloseEnabled;
+                    }
+                    else
+                    {
+                        // If there is no parent window we can't display the dialog as a child window, so fall back to a normal window
+                        var window = GetWindow();
+
+                        ConfigureWindow(window, dialog, owner);
+
+                        void DialogWin_CloseDialog(object sender, EventArgs e) => window.Close();
+
+                        // Close window on request
+                        dialog.CloseDialog += DialogWin_CloseDialog;
+
+                        // Show window as dialog
+                        window.ShowDialog();
+
+                        // Unsubscribe
+                        dialog.CloseDialog -= DialogWin_CloseDialog;
+                    }
+
+                    // Return the result
                     return dialog.GetResult();
                 });
             }
