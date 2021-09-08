@@ -31,6 +31,8 @@
                 <ResourceDictionary Source="UI/Resources/Styles.LinkItem.List.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.DuoGridItem.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.ChildWindow.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.LoaderContentControl.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.BrowseBox.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

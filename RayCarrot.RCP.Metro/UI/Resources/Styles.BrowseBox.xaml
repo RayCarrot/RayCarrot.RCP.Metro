@@ -1,7 +1,7 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <!-- Default Browse Box -->
@@ -110,30 +110,6 @@
         <Setter Property="SaveFileHeader" Value="{x:Static local:Resources.Browse_SaveFile}" />
         <Setter Property="SelectDirectoryHeader" Value="{x:Static local:Resources.Browse_SelectDir}" />
         <Setter Property="SelectDriveHeader" Value="{x:Static local:Resources.Browse_SelectDrive}" />
-    </Style>
-
-    <!-- LoaderContentControl -->
-
-    <Style TargetType="{x:Type local:LoaderContentControl}">
-        <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="VerticalContentAlignment" Value="Top" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:LoaderContentControl}">
-                    <Grid>
-                        <ContentPresenter IsEnabled="{TemplateBinding Property=IsLoading, Converter={local:InvertedBooleanConverter}}"
-                                          VerticalAlignment="{TemplateBinding Property=VerticalContentAlignment}"
-                                          HorizontalAlignment="{TemplateBinding Property=HorizontalContentAlignment}"/>
-
-                        <metro:ProgressRing Visibility="{TemplateBinding Property=IsLoading, Converter={local:BooleanToVisibilityConverter}}"
-                                          HorizontalAlignment="{TemplateBinding Property=HorizontalLoadingIconAlignment}"
-                                          VerticalAlignment="{TemplateBinding Property=VerticalLoadingIconAlignment}"/>
-
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
 </ResourceDictionary>
