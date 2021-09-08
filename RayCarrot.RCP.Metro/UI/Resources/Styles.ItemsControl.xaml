@@ -5,9 +5,10 @@
 
     <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
 
-        <!-- Disable tab stop -->
+        <!-- Disable focus -->
 
         <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
 
     </Style>
 
