@@ -33,6 +33,7 @@ namespace RayCarrot.RCP.Metro
             ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
             EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
             RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync(true, true)));
+            ResetCommand = new AsyncRelayCommand(ResetAsync);
 
             // Create properties
             AsyncLock = new AsyncLock();
@@ -81,6 +82,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand EditJumpListCommand { get; }
 
         public ICommand RefreshCommand { get; }
+
+        public ICommand ResetCommand { get; }
 
         #endregion
 
@@ -311,6 +314,18 @@ namespace RayCarrot.RCP.Metro
 
                 OnPropertyChanged(nameof(AssociatedPrograms));
             });
+        }
+
+        public async Task ResetAsync()
+        {
+            // TODO-UPDATE: Localize
+            if (!await Services.MessageUI.DisplayMessageAsync("Are you sure you want to reset the app settings? This can not be undone.", "Confirm reset", MessageType.Question, true))
+            {
+                return;
+            }
+
+            // The app data can't be reset while the app is running as it could cause multiple issues, so better to restart
+            await App.RestartAsync("-reset");
         }
 
         #endregion

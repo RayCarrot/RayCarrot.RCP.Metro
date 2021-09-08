@@ -13,6 +13,11 @@
         /// <summary>
         /// Restarts the Rayman Control Panel as administrator
         /// </summary>
-        RestartAsAdmin
+        RestartAsAdmin,
+
+        /// <summary>
+        /// Restarts the Rayman Control Panel with the specified arguments
+        /// </summary>
+        RestartWithArgs,
     }
 }

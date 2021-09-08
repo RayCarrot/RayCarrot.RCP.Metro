@@ -413,7 +413,7 @@ namespace RayCarrot.RCP.Metro
                 await Services.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
                 // Attempt to change the permission
-                await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, AppFilePaths.UbiIniPath1);
+                await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppFilePaths.UbiIniPath1);
 
                 Logger.Info("The ubi.ini file permission was changed");
             }
@@ -692,21 +692,35 @@ namespace RayCarrot.RCP.Metro
         public async Task RestartAsAdminAsync()
         {
             // Run the admin worker, setting it to restart this process as admin
-            await RunAdminWorkerAsync(AdminWorkerMode.RestartAsAdmin, Process.GetCurrentProcess().Id.ToString());
+            await RunAdminWorkerAsync(AdminWorkerMode.RestartAsAdmin, true, Process.GetCurrentProcess().Id.ToString());
+        }
+
+        /// <summary>
+        /// Restarts the Rayman Control Panel with the specified arguments
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task RestartAsync(params string[] args)
+        {
+            // Run the admin worker, setting it to restart this process as admin
+            await RunAdminWorkerAsync(AdminWorkerMode.RestartWithArgs, false, new string[]
+            {
+                Process.GetCurrentProcess().Id.ToString()
+            }.Concat(args).ToArray());
         }
 
         /// <summary>
         /// Runs the admin worker
         /// </summary>
         /// <param name="mode">The mode to run in</param>
+        /// <param name="asAdmin">Indicates if the admin worker should be run with admin privileges</param>
         /// <param name="args">The mode arguments</param>
         /// <returns>The task</returns>
-        public async Task RunAdminWorkerAsync(AdminWorkerMode mode, params string[] args)
+        public async Task RunAdminWorkerAsync(AdminWorkerMode mode, bool asAdmin, params string[] args)
         {
             // Lock
             using (await AdminWorkerAsyncLock.LockAsync())
                 // Launch the admin worker with the specified launch arguments
-                await Services.File.LaunchFileAsync(AppFilePaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await Services.File.LaunchFileAsync(AppFilePaths.AdminWorkerPath, asAdmin, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>

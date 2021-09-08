@@ -57,6 +57,13 @@
                                 Command="{Binding Path=RefreshCommand}"
                                 local:UserLevelAssist.MinUserLevel="Advanced"/>
 
+            <Separator />
+
+            <!-- TODO-UPDATE: Localize -->
+            <local:MenuItemIcon Header="Reset"
+                                IconKind="Restore"
+                                Command="{Binding Path=ResetCommand, Mode=OneTime}"/>
+
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 

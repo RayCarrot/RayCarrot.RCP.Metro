@@ -95,7 +95,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Read the data from the file if it exists
-                if (AppFilePaths.AppUserDataPath.FileExists)
+                if (!Services.InstanceData.Arguments.Contains("-reset") && AppFilePaths.AppUserDataPath.FileExists)
                 {
                     // Always reset the data first so any missing properties use the correct defaults
                     Services.Data.Reset();
@@ -322,10 +322,6 @@ namespace RayCarrot.RCP.Metro
             StartupComplete += App_StartupComplete_Miscellaneous_Async;
 
             LogStartupTime("BasicStartup: Check launch arguments");
-
-            // Check for reset argument
-            if (Services.InstanceData.Arguments.Contains("-reset"))
-                Services.Data.Reset();
 
             // Check for user level argument
             if (Services.InstanceData.Arguments.Contains("-ul"))
