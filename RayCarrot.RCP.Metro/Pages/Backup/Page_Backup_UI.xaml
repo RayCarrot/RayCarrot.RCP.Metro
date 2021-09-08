@@ -41,7 +41,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -60,150 +59,159 @@
 
         <Separator Grid.Row="1" Margin="0 5" />
 
-        <!-- Header -->
-
-        <Grid Grid.Row="2" Margin="0 15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
-                <ColumnDefinition Width="*" MaxWidth="550" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
-            </Grid.ColumnDefinitions>
-
-            <!-- Last Backup -->
-
-            <TextBlock Grid.Column="2"
-                       Style="{StaticResource TextBlock.Header}"
-                       Text="{Resx Backup_LastBackupDate}"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center" />
-
-            <!-- Backup Size -->
-
-            <TextBlock Grid.Column="3"
-                       local:UserLevelAssist.MinUserLevel="Advanced"
-                       MinWidth="100"
-                       Style="{StaticResource TextBlock.Header}"
-                       Text="{Resx Backup_LastBackupSize}"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10 0 0 0" />
-
-            <!-- Debug Info -->
-            <!-- NOTE: Not localized -->
-            <TextBlock Grid.Column="4"
-                       local:UserLevelAssist.MinUserLevel="Debug"
-                       MinWidth="100"
-                       Style="{StaticResource TextBlock.Header}"
-                       Text="Debug Info"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10 0 0 0" />
-
-        </Grid>
-
-        <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto">
             <i:Interaction.Behaviors>
                 <local:FocusScrollViewerOnLoad />
             </i:Interaction.Behaviors>
 
-            <!-- TODO: Make setting for showing debug info -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <ItemsControl DataContext="{Binding Path=GameBackupItems}"
-                          ItemsSource="{Binding IsAsync=True}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0 0 0 15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
-                                <ColumnDefinition Width="*" MaxWidth="550" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
-                            </Grid.ColumnDefinitions>
+                <!-- Header -->
 
-                            <!-- Image -->
+                <Grid Grid.Row="0" Margin="0 15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
+                        <ColumnDefinition Width="*" MaxWidth="550" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
+                    </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0"
-                                   Source="{Binding Path=IconSource, Mode=OneTime}"
-                                   Height="64" Width="64" />
+                    <!-- Last Backup -->
 
-                            <!-- Title -->
+                    <TextBlock Grid.Column="2"
+                               Style="{StaticResource TextBlock.Header}"
+                               Text="{Resx Backup_LastBackupDate}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
 
-                            <TextBlock Grid.Column="1"
-                                       Style="{StaticResource TextBlock.HeaderLarge}"
-                                       Text="{Binding Path=DisplayName, Mode=OneTime}"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       TextWrapping="WrapWithOverflow"
-                                       MaxWidth="510"
-                                       Margin="20 0" />
+                    <!-- Backup Size -->
 
-                            <!-- Last Backup -->
+                    <TextBlock Grid.Column="3"
+                               local:UserLevelAssist.MinUserLevel="Advanced"
+                               MinWidth="100"
+                               Style="{StaticResource TextBlock.Header}"
+                               Text="{Resx Backup_LastBackupSize}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="10 0 0 0" />
 
-                            <Grid Grid.Column="2">
+                    <!-- Debug Info -->
+                    <!-- NOTE: Not localized -->
+                    <TextBlock Grid.Column="4"
+                               local:UserLevelAssist.MinUserLevel="Debug"
+                               MinWidth="100"
+                               Style="{StaticResource TextBlock.Header}"
+                               Text="Debug Info"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="10 0 0 0" />
 
-                                <TextBlock FontSize="14"
-                                           Text="{Binding Path=LastBackupDisplay}"
+                </Grid>
+
+                <!-- Games -->
+
+                <ItemsControl Grid.Row="1"
+                              DataContext="{Binding Path=GameBackupItems}"
+                              ItemsSource="{Binding IsAsync=True}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0 0 0 15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
+                                    <ColumnDefinition Width="*" MaxWidth="550" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Image -->
+
+                                <Image Grid.Column="0"
+                                       Source="{Binding Path=IconSource, Mode=OneTime}"
+                                       Height="64" Width="64" />
+
+                                <!-- Title -->
+
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource TextBlock.HeaderLarge}"
+                                           Text="{Binding Path=DisplayName, Mode=OneTime}"
                                            VerticalAlignment="Center"
-                                           Margin="20 0"
-                                           Visibility="{Binding Path=CanRestore, Converter={local:BooleanToVisibilityConverter}}" />
-
-                            </Grid>
-
-                            <!-- Backup Size -->
-
-                            <Grid Grid.Column="3"
-                                  local:UserLevelAssist.MinUserLevel="Advanced"
-                                  MinWidth="100">
-
-                                <TextBlock FontSize="14"
-                                           Text="{Binding Path=BackupSize}"
-                                           VerticalAlignment="Center"
-                                           Margin="20 0"
-                                           Visibility="{Binding Path=CanRestore, Converter={local:BooleanToVisibilityConverter}}" />
-
-                            </Grid>
-
-                            <!-- Debug Info -->
-
-                            <Grid Grid.Column="4"
-                                  local:UserLevelAssist.MinUserLevel="Debug"
-                                  MinWidth="100">
-
-                                <TextBlock FontSize="14"
-                                           Text="{Binding Path=DebugInfo}"
-                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           TextWrapping="WrapWithOverflow"
+                                           MaxWidth="510"
                                            Margin="20 0" />
 
+                                <!-- Last Backup -->
+
+                                <Grid Grid.Column="2">
+
+                                    <TextBlock FontSize="14"
+                                               Text="{Binding Path=LastBackupDisplay}"
+                                               VerticalAlignment="Center"
+                                               Margin="20 0"
+                                               Visibility="{Binding Path=CanRestore, Converter={local:BooleanToVisibilityConverter}}" />
+
+                                </Grid>
+
+                                <!-- Backup Size -->
+
+                                <Grid Grid.Column="3"
+                                      local:UserLevelAssist.MinUserLevel="Advanced"
+                                      MinWidth="100">
+
+                                    <TextBlock FontSize="14"
+                                               Text="{Binding Path=BackupSize}"
+                                               VerticalAlignment="Center"
+                                               Margin="20 0"
+                                               Visibility="{Binding Path=CanRestore, Converter={local:BooleanToVisibilityConverter}}" />
+
+                                </Grid>
+
+                                <!-- Debug Info -->
+
+                                <Grid Grid.Column="4"
+                                      local:UserLevelAssist.MinUserLevel="Debug"
+                                      MinWidth="100">
+
+                                    <TextBlock FontSize="14"
+                                               Text="{Binding Path=DebugInfo}"
+                                               VerticalAlignment="Center"
+                                               Margin="20 0" />
+
+                                </Grid>
+
+                                <!-- Actions -->
+
+                                <StackPanel Grid.Column="5"
+                                            Orientation="Horizontal"
+                                            Margin="20 0 0 0">
+
+                                    <local:IconButton IconKind="FolderUploadOutline"
+                                                      Command="{Binding Path=BackupCommand}"
+                                                      ToolTip="{Resx Backup_Backup}" />
+
+                                    <local:IconButton IconKind="FolderDownloadOutline"
+                                                      Command="{Binding Path=RestoreCommand}"
+                                                      ToolTip="{Resx Backup_Restore}"
+                                                      IsEnabled="{Binding Path=CanRestore}" />
+
+                                    <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={local:BooleanToVisibilityHiddenConverter}}" />
+
+                                </StackPanel>
+
                             </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-                            <!-- Actions -->
-
-                            <StackPanel Grid.Column="5"
-                                        Orientation="Horizontal"
-                                        Margin="20 0 0 0">
-
-                                <local:IconButton IconKind="FolderUploadOutline"
-                                                  Command="{Binding Path=BackupCommand}"
-                                                  ToolTip="{Resx Backup_Backup}" />
-
-                                <local:IconButton IconKind="FolderDownloadOutline"
-                                                  Command="{Binding Path=RestoreCommand}"
-                                                  ToolTip="{Resx Backup_Restore}"
-                                                  IsEnabled="{Binding Path=CanRestore}" />
-
-                                <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={local:BooleanToVisibilityHiddenConverter}}" />
-
-                            </StackPanel>
-
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            </Grid>
 
         </ScrollViewer>
 
