@@ -210,6 +210,9 @@
                                     Command="{Binding Path=ShowDialogCommand}" />
                         </Grid>
 
+                        <CheckBox Content="Async"
+                                  IsChecked="{Binding Path=ShowDialogAsAsync}"/>
+
                     </StackPanel>
 
                     <StackPanel>

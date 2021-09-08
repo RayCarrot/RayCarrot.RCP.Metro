@@ -59,6 +59,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public DebugDialogType SelectedDialog { get; set; }
 
+        public bool ShowDialogAsAsync { get; set; }
+
         /// <summary>
         /// The selected data output type
         /// </summary>
@@ -89,98 +91,106 @@ namespace RayCarrot.RCP.Metro
         /// <returns></returns>
         public async Task ShowDialogAsync()
         {
-            switch (SelectedDialog)
+            if (ShowDialogAsAsync)
+                await Task.Run(showAsync);
+            else
+                await showAsync();
+
+            async Task showAsync()
             {
-                case DebugDialogType.GameSelection:
-                    await Services.UI.SelectGamesAsync(new GamesSelectionViewModel()
-                    {
-                        Title = "Debug",
-                    });
-                    break;
+                switch (SelectedDialog)
+                {
+                    case DebugDialogType.GameSelection:
+                        await Services.UI.SelectGamesAsync(new GamesSelectionViewModel()
+                        {
+                            Title = "Debug",
+                        });
+                        break;
 
-                case DebugDialogType.GameTypeSelection:
-                    await Services.UI.SelectGameTypeAsync(new GameTypeSelectionViewModel()
-                    {
-                        Title = "Debug",
-                        AllowSteam = true,
-                        AllowWin32 = true,
-                        AllowDosBox = true,
-                        AllowWinStore = true,
-                        AllowEducationalDosBox = true,
-                    });
-                    break;
+                    case DebugDialogType.GameTypeSelection:
+                        await Services.UI.SelectGameTypeAsync(new GameTypeSelectionViewModel()
+                        {
+                            Title = "Debug",
+                            AllowSteam = true,
+                            AllowWin32 = true,
+                            AllowDosBox = true,
+                            AllowWinStore = true,
+                            AllowEducationalDosBox = true,
+                        });
+                        break;
 
-                case DebugDialogType.Message:
-                    await Services.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
-                    break;
+                    case DebugDialogType.Message:
+                        await Services.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
+                        break;
 
-                case DebugDialogType.Directory:
-                    await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-                    {
-                        Title = "Debug"
-                    });
-                    break;
+                    case DebugDialogType.Directory:
+                        await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                        {
+                            Title = "Debug"
+                        });
+                        break;
 
-                case DebugDialogType.Drive:
-                    await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
-                    {
-                        Title = "Debug"
-                    });
-                    break;
+                    case DebugDialogType.Drive:
+                        await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                        {
+                            Title = "Debug"
+                        });
+                        break;
 
-                case DebugDialogType.File:
-                    await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-                    {
-                        Title = "Debug"
-                    });
-                    break;
+                    case DebugDialogType.File:
+                        await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                        {
+                            Title = "Debug"
+                        });
+                        break;
 
-                case DebugDialogType.SaveFile:
-                    await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
-                    {
-                        Title = "Debug"
-                    });
-                    break;
+                    case DebugDialogType.SaveFile:
+                        await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                        {
+                            Title = "Debug"
+                        });
+                        break;
 
-                case DebugDialogType.EditEducationalDosGame:
-                    await Services.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(new UserData_EducationalDosBoxGameData(FileSystemPath.EmptyPath, "DEBUG", "DEBUG"), new string[]
-                    {
-                        "DEBUG"
-                    })
-                    {
-                        Title = "Debug"
-                    });
-                    break;
+                    case DebugDialogType.EditEducationalDosGame:
+                        await Services.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(new UserData_EducationalDosBoxGameData(FileSystemPath.EmptyPath, "DEBUG", "DEBUG"), new string[]
+                        {
+                            "DEBUG"
+                        })
+                        {
+                            Title = "Debug"
+                        });
+                        break;
 
-                case DebugDialogType.EditJumpList:
-                    await Services.UI.EditJumpListAsync(new JumpListEditViewModel()
-                    {
-                        Title = "Debug"
-                    });
-                    break;
+                    case DebugDialogType.EditJumpList:
+                        await Services.UI.EditJumpListAsync(new JumpListEditViewModel()
+                        {
+                            Title = "Debug"
+                        });
+                        break;
 
-                case DebugDialogType.FileExtensionSelection:
-                    await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(new string[]
-                    {
-                        "EXT 1",
-                        "EXT 2",
-                    }, "Select a file extension")
-                    {
-                        Title = "Debug"
-                    });
-                    break;
+                    case DebugDialogType.FileExtensionSelection:
+                        await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(new string[]
+                        {
+                            "EXT 1",
+                            "EXT 2",
+                        }, "Select a file extension")
+                        {
+                            Title = "Debug"
+                        });
+                        break;
 
-                case DebugDialogType.StringInput:
-                    await Services.UI.GetStringInput(new StringInputViewModel()
-                    {
-                        Title = "Debug",
-                        HeaderText = "Specify a string"
-                    });
-                    break;
+                    case DebugDialogType.StringInput:
+                        await Services.UI.GetStringInput(new StringInputViewModel()
+                        {
+                            Title = "Debug",
+                            HeaderText = "Specify a string"
+                        });
+                        break;
 
-                default:
-                    await Services.MessageUI.DisplayMessageAsync("Invalid selection");
-                    break;
+                    default:
+                        await Services.MessageUI.DisplayMessageAsync("Invalid selection");
+                        break;
+                }
             }
         }
 
