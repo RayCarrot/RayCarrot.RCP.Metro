@@ -94,8 +94,15 @@ namespace RayCarrot.RCP.Metro
             // Load the user data
             try
             {
+                // Read the data from the file if it exists
                 if (AppFilePaths.AppUserDataPath.FileExists)
                 {
+                    // Always reset the data first so any missing properties use the correct defaults
+                    Services.Data.Reset();
+
+                    Services.Data.LastVersion = null; // Need to set to null before calling JsonConvert.PopulateObject or else it's ignored
+
+                    // Populate the data from the file
                     JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), Services.Data);
 
                     Logger.Info("The app user data has been loaded");
