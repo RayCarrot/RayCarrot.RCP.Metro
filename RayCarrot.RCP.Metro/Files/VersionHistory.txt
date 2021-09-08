@@ -9,24 +9,27 @@
 
 Other changes:
 • Major code and libraries refactoring
+• Removed the option to minimize the app to the tray
+• Reduced the number of animations shown in the disc installer
+• Beta updates will now show update news in the update dialog message
+• Improved scrolling with the mouse wheel over button mapping controls
+• The jump list edit dialog now opens faster
 • Replaced the logging framework with NLog
 	• The log file now gets recreated each time the application is launched rather than after reaching a certain size
 	• The log viewer is no longer enabled by default to avoid unnecessarily storing all logs
 	• The log viewer is now split into columns for each field with an info icon for optional exception details
 	• Removed the debug setting to display exceptions
 	• Added additional launch arguments for controlling the logging
-• Removed the option to minimize the app to the tray
-• Reduced the number of animations shown in the disc installer
-• Beta updates will now show update news in the update dialog message
-• Improved scrolling with the mouse wheel over button mapping controls
-• The jump list edit dialog now opens faster
-• Added tabs to the debug page and information about the app launch arguments
-• Added a debug setting for disabling the game validation
-• Added a debug option to throw an unhandled exception for testing the crash handler
-• Added more dialog types to show from the debug page, with an option to show them async
-• Debug symbols are no longer included in the executable
-• Fixed the version history window not being centered when opened from the about page
-• Fixed certain browse boxes not allowing backslashes to be typed
+• Debug/technical changes
+	• Added tabs to the debug page and information about the app launch arguments
+	• Added a debug setting for disabling the game validation
+	• Added a debug option to throw an unhandled exception for testing the crash handler
+	• Added more dialog types to show from the debug page, with an option to show them async
+	• Debug symbols are no longer included in the executable
+• Bug fixes
+	• Fixed the version history window not being centered when opened from the about page
+	• Fixed certain browse boxes not allowing backslashes to be typed
+	• Fixed the file filter not working when specifying the output file when creating an archive
 
 
 -----   Version 11.3.0 - August 25, 2021   -----
