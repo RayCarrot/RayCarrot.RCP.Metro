@@ -86,22 +86,6 @@ namespace RayCarrot.RCP.Metro
                             HelpText = String.Format(Resources.Help_RCP_AppData, AppFilePaths.UserDataBaseDir, AppFilePaths.RegistryBaseKey),
                             RequiredUserLevel = UserLevel.Advanced
                         },
-
-                        // Launch arguments
-                        new Page_Help_ItemViewModel()
-                        {
-                            DisplayHeader = Resources.Help_RCP_LaunchArgsHeader,
-                            HelpText = Resources.Help_RCP_LaunchArgs,
-                            RequiredUserLevel = UserLevel.Technical
-                        },
-
-                        // Launch arguments
-                        new Page_Help_ItemViewModel()
-                        {
-                            DisplayHeader = Resources.Help_RCP_DebugHeader,
-                            HelpText = String.Format(Resources.Help_RCP_Debug, AppFilePaths.LogFile),
-                            RequiredUserLevel = UserLevel.Debug
-                        },
                     }
                 },
 
