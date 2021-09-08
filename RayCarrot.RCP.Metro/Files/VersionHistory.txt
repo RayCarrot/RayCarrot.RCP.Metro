@@ -26,6 +26,7 @@ Other changes:
 • Added more dialog types to show from the debug page, with an option to show them async
 • Debug symbols are no longer included in the executable
 • Fixed the version history window not being centered when opened from the about page
+• Fixed certain browse boxes not allowing backslashes to be typed
 
 
 -----   Version 11.3.0 - August 25, 2021   -----

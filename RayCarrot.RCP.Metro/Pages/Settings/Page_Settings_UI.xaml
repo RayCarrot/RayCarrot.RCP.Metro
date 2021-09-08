@@ -226,7 +226,7 @@
                                            Margin="0 0 0 8" />
 
                                 <local:BrowseBox FileFilter="Txt (*.txt)|*.txt"
-                                                SelectedPath="{Binding Path=BinarySerializationFileLogPath}"
+                                                SelectedPath="{Binding Path=BinarySerializationFileLogPath, UpdateSourceTrigger=LostFocus}"
                                                 ToolTip="{Resx Settings_BinarySerializationFileLogPathInfo}"
                                                 BrowseType="SaveFile" />
 
@@ -346,7 +346,7 @@
                                            Margin="0 0 0 8" />
 
                                 <local:BrowseBox FileFilter="Exe (*.exe)|*.exe"
-                                                SelectedPath="{Binding Path=Archive_BinaryEditorExe}"
+                                                SelectedPath="{Binding Path=Archive_BinaryEditorExe, UpdateSourceTrigger=LostFocus}"
                                                 BrowseType="File"
                                                 PathValidation="FileExists" />
 
@@ -472,7 +472,7 @@
                                            Margin="0 0 0 8" />
 
                                 <local:BrowseBox FileFilter="Exe (*.exe)|*.exe"
-                                                SelectedPath="{Binding Path=DosBoxPath}"
+                                                SelectedPath="{Binding Path=DosBoxPath, UpdateSourceTrigger=LostFocus}"
                                                 ToolTip="{Resx Settings_DosBoxPathInfo}"
                                                 BrowseType="File"
                                                 PathValidation="FileExists" />
@@ -488,7 +488,7 @@
                                 <!-- IDEA: Localize -->
 
                                 <local:BrowseBox FileFilter="Conf (*.conf)|*.conf"
-                                                SelectedPath="{Binding Path=DosBoxConfig}"
+                                                SelectedPath="{Binding Path=DosBoxConfig, UpdateSourceTrigger=LostFocus}"
                                                 ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
                                                 BrowseType="File"
                                                 PathValidation="FileExists" />
