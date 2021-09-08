@@ -37,7 +37,7 @@
 
         </StackPanel>
 
-        <local:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={local:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}">
+        <local:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={local:FileSystemPathToStringConverter}}">
             <local:BrowseBox.Style>
                 <Style TargetType="{x:Type local:BrowseBox}" BasedOn="{StaticResource {x:Type local:BrowseBox}}">
                     <Style.Triggers>

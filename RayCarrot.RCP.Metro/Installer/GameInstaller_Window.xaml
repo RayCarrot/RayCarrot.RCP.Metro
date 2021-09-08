@@ -19,7 +19,7 @@
 
         <local:BrowseBox BrowseType="Directory"
                         PathValidation="DirectoryExistsAndNotEmpty" 
-                        SelectedPath="{Binding Path=InstallDir, Converter={local:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
+                        SelectedPath="{Binding Path=InstallDir, Converter={local:FileSystemPathToStringConverter}}"
                         IsEnabled="{Binding Path=InstallerRunning, Converter={local:InvertedBooleanConverter}}"/>
 
         <StackPanel Orientation="Horizontal">

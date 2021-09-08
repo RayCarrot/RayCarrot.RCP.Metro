@@ -32,14 +32,14 @@
                     <TextBlock Style="{StaticResource TextBlock.Header}"
                                Text="{Resx Archive_CreateInputDir}" />
 
-                    <local:BrowseBox SelectedPath="{Binding Path=InputDirectory, UpdateSourceTrigger=LostFocus}"
+                    <local:BrowseBox SelectedPath="{Binding Path=InputDirectory}"
                                      PathValidation="DirectoryExistsAndNotEmpty"
                                      BrowseType="Directory"/>
 
                     <TextBlock Style="{StaticResource TextBlock.Header}"
                                Text="{Resx Archive_CreateOutputFile}" />
 
-                    <local:BrowseBox SelectedPath="{Binding Path=OutputFile, UpdateSourceTrigger=LostFocus}"
+                    <local:BrowseBox SelectedPath="{Binding Path=OutputFile}"
                                      PathValidation="NotEmpty"
                                      BrowseType="SaveFile"
                                      FileFilter="{Binding Path=Manager.ArchiveFileFilter, Mode=OneTime}"/>

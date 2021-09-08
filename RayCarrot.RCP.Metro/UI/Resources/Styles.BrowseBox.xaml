@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
@@ -29,12 +30,19 @@
                                      HorizontalAlignment="Stretch"
                                      metro:TextBoxHelper.Watermark="{TemplateBinding metro:TextBoxHelper.Watermark}">
 
+                                <i:Interaction.Behaviors>
+                                    <local:UpdateTextBoxBindingOnEnterBehavior />
+                                </i:Interaction.Behaviors>
+
                                 <TextBox.Resources>
                                     <local:BindingProxy x:Key="proxy" Data="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
                                 </TextBox.Resources>
 
                                 <TextBox.Text>
-                                    <Binding Path="SelectedPath" RelativeSource="{RelativeSource TemplatedParent}" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding Path="SelectedPath" 
+                                             RelativeSource="{RelativeSource TemplatedParent}" 
+                                             UpdateSourceTrigger="LostFocus" 
+                                             Mode="TwoWay">
                                         <Binding.ValidationRules>
                                             <local:BrowseBoxValidationRule ValidatesOnTargetUpdated="True">
                                                 <local:BrowseBoxValidationRule.ValidationData>

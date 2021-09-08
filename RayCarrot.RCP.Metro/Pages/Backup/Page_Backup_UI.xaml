@@ -50,7 +50,7 @@
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Settings_BackupLocation}" />
 
-            <local:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation, UpdateSourceTrigger=LostFocus}"
+            <local:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation}"
                             UseCurrentPathAsDefaultLocationIfValid="True"
                             BrowseType="Directory"
                             PathValidation="DirectoryExistsAndNotEmpty"

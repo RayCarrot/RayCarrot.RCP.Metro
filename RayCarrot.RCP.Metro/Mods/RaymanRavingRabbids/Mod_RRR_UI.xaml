@@ -204,7 +204,7 @@
                 <TextBlock Text="{Resx Mod_RRR_GameDirHeader}"
                            Style="{StaticResource TextBlock.Header}" />
 
-                <local:BrowseBox SelectedPath="{Binding Path=GameDirectoryPath, UpdateSourceTrigger=LostFocus}"
+                <local:BrowseBox SelectedPath="{Binding Path=GameDirectoryPath}"
                                 BrowseType="Directory"
                                 PathValidation="DirectoryExists" />
 
