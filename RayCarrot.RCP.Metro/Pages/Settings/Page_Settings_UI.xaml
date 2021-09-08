@@ -96,7 +96,9 @@
                             </i:Interaction.Behaviors>
 
                             <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
-                                      ItemsSource="{Binding Source={x:Static local:LocalizationManager.Languages}}">
+                                      ItemsSource="{Binding Source={x:Static local:LocalizationManager.Languages}}"
+                                      HorizontalAlignment="Left"
+                                      MinWidth="150">
                                 <ComboBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ComboBoxItem}"
                                            BasedOn="{StaticResource {x:Type ComboBoxItem}}">
@@ -352,8 +354,7 @@
 
                             </StackPanel>
 
-                            <StackPanel
-                                Visibility="{Binding Path=AssociatedPrograms, Converter={local:EnumerableEmptyVisibilityConverter}}">
+                            <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={local:EnumerableEmptyVisibilityConverter}}">
 
                                 <TextBlock Style="{StaticResource TextBlock.Header}"
                                            Text="{Resx Archive_FileEditors}"
