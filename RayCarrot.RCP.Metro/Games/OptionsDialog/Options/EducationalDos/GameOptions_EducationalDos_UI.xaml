@@ -39,7 +39,7 @@
             <dd:DragDrop.DragAdornerTemplate>
                 <DataTemplate>
 
-                    <Image Source="../../../Img/GameIcons/EducationalDos.png"
+                    <Image Source="../../../../Img/GameIcons/EducationalDos.png"
                            Height="16"
                            Width="16"
                            Margin="0 0 8 0" />
@@ -68,7 +68,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"
-                                   Source="../../../Img/GameIcons/EducationalDos.png"
+                                   Source="../../../../Img/GameIcons/EducationalDos.png"
                                    Height="32" Width="32"
                                    Margin="0 0 8 0" />
 
