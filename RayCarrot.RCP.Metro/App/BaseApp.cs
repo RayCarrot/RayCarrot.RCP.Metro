@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using MahApps.Metro.Controls;
 using NLog;
 using NLog.Targets;
 
@@ -402,6 +403,10 @@ namespace RayCarrot.RCP.Metro
 
             // Cancel the native closing
             e.Cancel = true;
+
+            // Don't close if the close button is disabled
+            if (sender is MetroWindow {IsCloseButtonEnabled: false})
+                return;
 
             // If already is closing, ignore
             if (IsClosing)
