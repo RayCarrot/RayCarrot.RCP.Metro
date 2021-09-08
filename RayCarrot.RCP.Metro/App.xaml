@@ -22,6 +22,7 @@
                 <ResourceDictionary Source="UI/Resources/Styles.ItemsControl.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.InfoIcon.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.TextBlock.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.CheckBox.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.RadioButton.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.TabControl.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.MenuItem.xaml" />
