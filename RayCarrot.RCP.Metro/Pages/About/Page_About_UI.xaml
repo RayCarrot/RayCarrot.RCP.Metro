@@ -76,14 +76,8 @@
                     <local:DuoGridItem Header="Fabiosek"
                                        Text="{Resx About_Credits_Fabiosek}" />
 
-                    <local:DuoGridItem Header="Hakyra"
-                                       Text="{Resx About_Credits_Hakyra}" />
-
                     <local:DuoGridItem Header="Haruka Tavares"
                                        Text="{Resx About_Credits_HarukaTavares}" />
-
-                    <local:DuoGridItem Header="ICUP321"
-                                       Text="{Resx About_Credits_ICUP321}" />
 
                     <local:DuoGridItem Header="ItzalDrake"
                                        Text="{Resx About_Credits_ItzalDrake}" />
@@ -93,12 +87,6 @@
 
                     <local:DuoGridItem Header="Noserdog"
                                        Text="{Resx About_Credits_Noserdog}" />
-
-                    <local:DuoGridItem Header="OldClassicGamer"
-                                       Text="{Resx About_Credits_OldClassicGamer}" />
-
-                    <local:DuoGridItem Header="Pixelise"
-                                       Text="{Resx About_Credits_Pixelise}" />
 
                     <local:DuoGridItem Header="PluMGMK"
                                        Text="{Resx About_Credits_PluMGMK}" />
