@@ -261,18 +261,6 @@
   <data name="Config_Resolution" xml:space="preserve">
     <value>Upplösning</value>
   </data>
-  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
-    <value>Den horisontella skärmupplösningen</value>
-  </data>
-  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
-    <value>Den vertikala skärmupplösningen</value>
-  </data>
-  <data name="Config_LockRes" xml:space="preserve">
-    <value>Lås till skärmupplösningen</value>
-  </data>
-  <data name="Config_LockResInfo" xml:space="preserve">
-    <value>Låser den horisontella och vertikala upplösningen till de på den nuvarande skärmen</value>
-  </data>
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Fullskärm</value>
   </data>
@@ -528,12 +516,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Debug</value>
-  </data>
-  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
-    <value>Exception-nivån att visa</value>
-  </data>
-  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
-    <value>Exception-nivån för att visa debug information</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Säkerhetskopierings-sökvägen</value>
@@ -1207,7 +1189,7 @@ Försök igen?"</value>
     <value>Ett särskilt tack till AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski och alla andra Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, verktyg, per-nivå musik, Archive Explorer™, Rayman 2 översättningar, svensk (Sverige) programöversättning</value>
+    <value>Rayman Control Panel™, verktyg, per-nivå musik, Archive Explorer™, Rayman 2 översättningar</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Fix för handkontroller</value>
@@ -1449,12 +1431,6 @@ Försök igen?"</value>
   </data>
   <data name="Links_Local_GOGGames" xml:space="preserve">
     <value> GOG Galaxy spel</value>
-  </data>
-  <data name="TaskBarIcon_Open" xml:space="preserve">
-    <value>Öppna</value>
-  </data>
-  <data name="TaskBarIcon_Close" xml:space="preserve">
-    <value>Stäng</value>
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Länkar</value>

@@ -124,29 +124,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spanish (Spain) program translation, Catalan (Catalan) program translation.
-        /// </summary>
-        public static string About_Credits_Hakyra {
-            get {
-                return ResourceManager.GetString("About_Credits_Hakyra", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rayman 2 translations, Portuguese (Portugal) program translation.
         /// </summary>
         public static string About_Credits_HarukaTavares {
             get {
                 return ResourceManager.GetString("About_Credits_HarukaTavares", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Spanish (Mexico) program translation.
-        /// </summary>
-        public static string About_Credits_ICUP321 {
-            get {
-                return ResourceManager.GetString("About_Credits_ICUP321", resourceCulture);
             }
         }
         
@@ -178,24 +160,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Serbian (Cyrillic) program translation.
-        /// </summary>
-        public static string About_Credits_OldClassicGamer {
-            get {
-                return ResourceManager.GetString("About_Credits_OldClassicGamer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Polish (Poland) program translation.
-        /// </summary>
-        public static string About_Credits_Pixelise {
-            get {
-                return ResourceManager.GetString("About_Credits_Pixelise", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Per-level soundtrack utility, Rayman 2 translations.
         /// </summary>
         public static string About_Credits_PluMGMK {
@@ -205,7 +169,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Games page icon, program testing.
+        ///   Looks up a localized string similar to Program testing.
         /// </summary>
         public static string About_Credits_RayActivity {
             get {
@@ -214,7 +178,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer™, Rayman 2 translations, Swedish (Sweden) program translation.
+        ///   Looks up a localized string similar to Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer™, Rayman 2 translations.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
@@ -1511,6 +1475,33 @@ namespace RayCarrot.RCP.Metro {
         public static string BrowseBox_Browse {
             get {
                 return ResourceManager.GetString("BrowseBox_Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory does not exist.
+        /// </summary>
+        public static string BrowseBox_ValidationError_DirExists {
+            get {
+                return ResourceManager.GetString("BrowseBox_ValidationError_DirExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field is required.
+        /// </summary>
+        public static string BrowseBox_ValidationError_Empty {
+            get {
+                return ResourceManager.GetString("BrowseBox_ValidationError_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file does not exist.
+        /// </summary>
+        public static string BrowseBox_ValidationError_FileExists {
+            get {
+                return ResourceManager.GetString("BrowseBox_ValidationError_FileExists", resourceCulture);
             }
         }
         
@@ -3154,24 +3145,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lock to screen resolution.
-        /// </summary>
-        public static string Config_LockRes {
-            get {
-                return ResourceManager.GetString("Config_LockRes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locks the horizontal and vertical values to the ones of the current screen resolution.
-        /// </summary>
-        public static string Config_LockResInfo {
-            get {
-                return ResourceManager.GetString("Config_LockResInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mono.
         /// </summary>
         public static string Config_Mono {
@@ -3217,29 +3190,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The horizontal screen resolution.
-        /// </summary>
-        public static string Config_ResolutionHorizontalInfo {
-            get {
-                return ResourceManager.GetString("Config_ResolutionHorizontalInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3.
         /// </summary>
         public static string Config_ResolutionR2Info {
             get {
                 return ResourceManager.GetString("Config_ResolutionR2Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The vertical screen resolution.
-        /// </summary>
-        public static string Config_ResolutionVerticalInfo {
-            get {
-                return ResourceManager.GetString("Config_ResolutionVerticalInfo", resourceCulture);
             }
         }
         
@@ -3636,6 +3591,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_WidescreenVerticalInfo {
             get {
                 return ResourceManager.GetString("Config_WidescreenVerticalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to reset the app settings? This can not be undone..
+        /// </summary>
+        public static string ConfirmResetData {
+            get {
+                return ResourceManager.GetString("ConfirmResetData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm reset.
+        /// </summary>
+        public static string ConfirmResetDataHeader {
+            get {
+                return ResourceManager.GetString("ConfirmResetDataHeader", resourceCulture);
             }
         }
         
@@ -5799,25 +5772,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If a debugger is attached to the program the log viewer will automatically open. This can manually be opened from the debug page even without a debugger being attached. If the debug user level is not enabled, the log can still be viewed from the file it writes to under the following path:
-        ///{0}.
-        /// </summary>
-        public static string Help_RCP_Debug {
-            get {
-                return ResourceManager.GetString("Help_RCP_Debug", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Debugging.
-        /// </summary>
-        public static string Help_RCP_DebugHeader {
-            get {
-                return ResourceManager.GetString("Help_RCP_DebugHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently Rayman 2, Rayman M and Rayman Arena are the only supported games.
         ///
         ///During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2.
@@ -5834,29 +5788,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Help_RCP_GameInstallerHeader {
             get {
                 return ResourceManager.GetString("Help_RCP_GameInstallerHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Rayman Control Panel™ supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos; should not be included.
-        ///
-        ///-reset (Resets all app data before launch)
-        ///-install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
-        ///-ul {userLevel} (Sets the user level)
-        ///-l [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Help_RCP_LaunchArgs {
-            get {
-                return ResourceManager.GetString("Help_RCP_LaunchArgs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Launch Arguments.
-        /// </summary>
-        public static string Help_RCP_LaunchArgsHeader {
-            get {
-                return ResourceManager.GetString("Help_RCP_LaunchArgsHeader", resourceCulture);
             }
         }
         
@@ -6204,6 +6135,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Installer_UnhandledItemsHeader {
             get {
                 return ResourceManager.GetString("Installer_UnhandledItemsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid resolution. Must be in the format of &apos;Width x Height&apos;..
+        /// </summary>
+        public static string InvalidResolution {
+            get {
+                return ResourceManager.GetString("InvalidResolution", resourceCulture);
             }
         }
         
@@ -10681,24 +10621,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display exception level.
-        /// </summary>
-        public static string Settings_DebugExceptionLevel {
-            get {
-                return ResourceManager.GetString("Settings_DebugExceptionLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The exception level for displaying debug and trace information.
-        /// </summary>
-        public static string Settings_DebugExceptionLevelInfo {
-            get {
-                return ResourceManager.GetString("Settings_DebugExceptionLevelInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Debug.
         /// </summary>
         public static string Settings_DebugHeader {
@@ -10812,6 +10734,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_DisableDowngradeWarning {
             get {
                 return ResourceManager.GetString("Settings_DisableDowngradeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable game validation.
+        /// </summary>
+        public static string Settings_DisableGameValidation {
+            get {
+                return ResourceManager.GetString("Settings_DisableGameValidation", resourceCulture);
             }
         }
         
@@ -10969,6 +10900,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string Settings_ResetAppData {
+            get {
+                return ResourceManager.GetString("Settings_ResetAppData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search for installed games.
         /// </summary>
         public static string Settings_StartupGameFinder {
@@ -11010,6 +10950,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_SyncThemeInfo {
             get {
                 return ResourceManager.GetString("Settings_SyncThemeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show dialogs within windows.
+        /// </summary>
+        public static string Settings_UseChildWindows {
+            get {
+                return ResourceManager.GetString("Settings_UseChildWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabling this will show dialogs as separate blocking windows, while enabling it will show them inside of the window they originated from.
+        /// </summary>
+        public static string Settings_UseChildWindowsInfo {
+            get {
+                return ResourceManager.GetString("Settings_UseChildWindowsInfo", resourceCulture);
             }
         }
         
@@ -11109,24 +11067,6 @@ namespace RayCarrot.RCP.Metro {
         public static string SettingsPageHeader {
             get {
                 return ResourceManager.GetString("SettingsPageHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string TaskBarIcon_Close {
-            get {
-                return ResourceManager.GetString("TaskBarIcon_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open.
-        /// </summary>
-        public static string TaskBarIcon_Open {
-            get {
-                return ResourceManager.GetString("TaskBarIcon_Open", resourceCulture);
             }
         }
         
@@ -11890,15 +11830,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Utility_WIP {
             get {
                 return ResourceManager.GetString("Utility_WIP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Minimize to tray.
-        /// </summary>
-        public static string Window_MinimizeToTray {
-            get {
-                return ResourceManager.GetString("Window_MinimizeToTray", resourceCulture);
             }
         }
     }

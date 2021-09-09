@@ -270,18 +270,6 @@ hacer mas grande/mejorar los modos de baja resolución</value>
     <value>Resolución</value>
     <comment>Resolución</comment>
   </data>
-  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
-    <value>La Resolución de pantalla horizontal</value>
-  </data>
-  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
-    <value>La Resolución de pantalla Vertical</value>
-  </data>
-  <data name="Config_LockRes" xml:space="preserve">
-    <value>Bloquear a la resolución de pantalla</value>
-  </data>
-  <data name="Config_LockResInfo" xml:space="preserve">
-    <value>Bloquea los valores horizontales y verticales a los de la resolución actual.</value>
-  </data>
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Pantalla completa</value>
     <comment>Pantalla completa</comment>

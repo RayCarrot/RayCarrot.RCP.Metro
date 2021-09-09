@@ -261,18 +261,6 @@
   <data name="Config_Resolution" xml:space="preserve">
     <value>Resolution</value>
   </data>
-  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
-    <value>The horizontal screen resolution</value>
-  </data>
-  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
-    <value>The vertical screen resolution</value>
-  </data>
-  <data name="Config_LockRes" xml:space="preserve">
-    <value>Lock to screen resolution</value>
-  </data>
-  <data name="Config_LockResInfo" xml:space="preserve">
-    <value>Locks the horizontal and vertical values to the ones of the current screen resolution</value>
-  </data>
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Fullscreen</value>
   </data>
@@ -528,12 +516,6 @@ This is a growing project with more features planned on being added with future 
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Debug</value>
-  </data>
-  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
-    <value>Display exception level</value>
-  </data>
-  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
-    <value>The exception level for displaying debug and trace information</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Backup location</value>
@@ -1271,7 +1253,7 @@ gameDisplayName</comment>
     <value>Special thanks to AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer™, Rayman 2 translations, Swedish (Sweden) program translation</value>
+    <value>Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer™, Rayman 2 translations</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1560,26 +1542,6 @@ backupFamilyName</comment>
 userDataBaseDir
 registryBaseKeyPath</comment>
   </data>
-  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
-    <value>Launch Arguments</value>
-  </data>
-  <data name="Help_RCP_LaunchArgs" xml:space="preserve">
-    <value>The Rayman Control Panel™ supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}' should not be included.
-
--reset (Resets all app data before launch)
--install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
--ul {userLevel} (Sets the user level)
--loglevel {logLevel} (Sets the log level to log, default is Information)</value>
-  </data>
-  <data name="Help_RCP_DebugHeader" xml:space="preserve">
-    <value>Debugging</value>
-  </data>
-  <data name="Help_RCP_Debug" xml:space="preserve">
-    <value>If a debugger is attached to the program the log viewer will automatically open. This can manually be opened from the debug page even without a debugger being attached. If the debug user level is not enabled, the log can still be viewed from the file it writes to under the following path:
-{0}</value>
-    <comment>Arguments:
-logFilePath</comment>
-  </data>
   <data name="Help_Games" xml:space="preserve">
     <value>Games</value>
   </data>
@@ -1735,15 +1697,6 @@ Running an application in compatibility mode is done by selecting the option und
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Per-level soundtrack utility, Rayman M/Arena disc check removal</value>
-  </data>
-  <data name="About_Credits_ICUP321" xml:space="preserve">
-    <value>Spanish (Mexico) program translation</value>
-  </data>
-  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
-    <value>Serbian (Cyrillic) program translation</value>
-  </data>
-  <data name="About_Credits_Pixelise" xml:space="preserve">
-    <value>Polish (Poland) program translation</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Dutch (Netherlands) program translation, program testing</value>
@@ -1924,15 +1877,6 @@ downloadURL</comment>
   <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
     <value>Invalid link address</value>
   </data>
-  <data name="Window_MinimizeToTray" xml:space="preserve">
-    <value>Minimize to tray</value>
-  </data>
-  <data name="TaskBarIcon_Open" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="TaskBarIcon_Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Links</value>
   </data>
@@ -1962,7 +1906,7 @@ appDataLocations</comment>
     <value>Get beta updates</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Games page icon, program testing</value>
+    <value>Program testing</value>
   </data>
   <data name="Backup_GOGSyncWarning" xml:space="preserve">
     <value>This game might have its save files synced through GOG Galaxy. If so the backup/restore utility might not effect this game even though the operation succeeds.</value>
@@ -2846,9 +2790,6 @@ fileFormat</comment>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Rayman reverse engineering, Rayman Raving Rabbids mod</value>
-  </data>
-  <data name="About_Credits_Hakyra" xml:space="preserve">
-    <value>Spanish (Spain) program translation, Catalan (Catalan) program translation</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Utilities</value>
@@ -4260,5 +4201,35 @@ rcpURL</comment>
   </data>
   <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
     <value>Dance mode: turn</value>
+  </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Are you sure you want to reset the app settings? This can not be undone.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Confirm reset</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Invalid resolution. Must be in the format of 'Width x Height'.</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Show dialogs within windows</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Disabling this will show dialogs as separate blocking windows, while enabling it will show them inside of the window they originated from</value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Disable game validation</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>The file does not exist</value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>The directory does not exist</value>
   </data>
 </root>

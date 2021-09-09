@@ -837,12 +837,6 @@ Notícias:
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
     <value>Copia de Seguridad/Restauración</value>
   </data>
-  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
-    <value>Argumentos de iniciación</value>
-  </data>
-  <data name="Help_RCP_DebugHeader" xml:space="preserve">
-    <value>Depuración</value>
-  </data>
   <data name="Help_Games" xml:space="preserve">
     <value>Juegos</value>
   </data>
@@ -957,15 +951,6 @@ Notícias:
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilidad de banda sonora Rayman PlayStation, Eliminación de verificación de disco Rayman M/Arena</value>
-  </data>
-  <data name="About_Credits_ICUP321" xml:space="preserve">
-    <value>Programa de traducción al Español</value>
-  </data>
-  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
-    <value>Programa de traducción al Serbio</value>
-  </data>
-  <data name="About_Credits_Pixelise" xml:space="preserve">
-    <value>Programa de traducción al Polaco</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Programa de traducción al Holandés, prueba del programa</value>
@@ -1141,15 +1126,6 @@ Notícias:
   <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
     <value>Dirección de enlace inválido</value>
   </data>
-  <data name="Window_MinimizeToTray" xml:space="preserve">
-    <value>Minimizar para la barra de tareas</value>
-  </data>
-  <data name="TaskBarIcon_Open" xml:space="preserve">
-    <value>Abrir</value>
-  </data>
-  <data name="TaskBarIcon_Close" xml:space="preserve">
-    <value>Cerrar</value>
-  </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Hipervínculos de encabezado de página</value>
   </data>
@@ -1175,7 +1151,7 @@ Notícias:
     <value>Obtener actualizaciones beta</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Gráficos, prueba de programa</value>
+    <value>Prueba de programa</value>
   </data>
   <data name="Backup_GOGSyncWarning" xml:space="preserve">
     <value>Este juego podría tener sus archivos guardados sincronizados a través de GOG Galaxy. Si es así, la utilidad de copia de seguridad/restauración podría no afectar este juego a pesar de que la operación sea exitosa.</value>

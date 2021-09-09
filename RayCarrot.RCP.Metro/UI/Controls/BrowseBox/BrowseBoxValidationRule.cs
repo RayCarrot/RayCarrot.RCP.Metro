@@ -25,7 +25,6 @@ namespace RayCarrot.RCP.Metro
         {
             string input = (value ?? String.Empty).ToString();
 
-            // TODO: Localize
             switch (ValidationData.ValidationRule)
             {
                 default:
@@ -33,19 +32,19 @@ namespace RayCarrot.RCP.Metro
                     return ValidationResult.ValidResult;
 
                 case BrowseValidationRule.NotEmpty:
-                    return input.IsNullOrWhiteSpace() ? new ValidationResult(false, "Field is required") : ValidationResult.ValidResult;
+                    return input.IsNullOrWhiteSpace() ? new ValidationResult(false, Resources.BrowseBox_ValidationError_Empty) : ValidationResult.ValidResult;
 
                 case BrowseValidationRule.FileExists:
-                    return input.IsNullOrWhiteSpace() || File.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, "The file does not exist");
+                    return input.IsNullOrWhiteSpace() || File.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, Resources.BrowseBox_ValidationError_FileExists);
 
                 case BrowseValidationRule.FileExistsAndNotEmpty:
-                    return !input.IsNullOrWhiteSpace() && File.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, "The file does not exist");
+                    return !input.IsNullOrWhiteSpace() && File.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, Resources.BrowseBox_ValidationError_FileExists);
 
                 case BrowseValidationRule.DirectoryExists:
-                    return input.IsNullOrWhiteSpace() || Directory.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, "The directory does not exist");
+                    return input.IsNullOrWhiteSpace() || Directory.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, Resources.BrowseBox_ValidationError_DirExists);
 
                 case BrowseValidationRule.DirectoryExistsAndNotEmpty:
-                    return !input.IsNullOrWhiteSpace() && Directory.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, "The directory does not exist");
+                    return !input.IsNullOrWhiteSpace() && Directory.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, Resources.BrowseBox_ValidationError_DirExists);
             }
         }
 

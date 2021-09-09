@@ -261,18 +261,6 @@
   <data name="Config_Resolution" xml:space="preserve">
     <value>Resolutie</value>
   </data>
-  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
-    <value>De horizontale schermresolutie</value>
-  </data>
-  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
-    <value>De verticale schermresolutie</value>
-  </data>
-  <data name="Config_LockRes" xml:space="preserve">
-    <value>Vergrendel naar de schermresolutie</value>
-  </data>
-  <data name="Config_LockResInfo" xml:space="preserve">
-    <value>Vergrendelt de horizontale en verticale waardes naar de waardes van de huidige schermresolutie</value>
-  </data>
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Volledig scherm</value>
   </data>
@@ -527,12 +515,6 @@
   </data>
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Debug</value>
-  </data>
-  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
-    <value>Toon exception level</value>
-  </data>
-  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
-    <value>Het exception level voor het weergeven van debug- en traceerinformatie</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Back-up locatie</value>
@@ -1206,7 +1188,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer™, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
+    <value>Rayman Control Panel™, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer™, Rayman 2 vertalingen</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1473,24 +1455,6 @@ De back-ups an sich worden altijd opgeslagen in de '{0}' submap. Het is niet aan
 • Belangrijkste applicatiedata - {0}
 • Registerinstellingen - {1}</value>
   </data>
-  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
-    <value>Opstartargumenten</value>
-  </data>
-  <data name="Help_RCP_LaunchArgs" xml:space="preserve">
-    <value>Het Rayman Control Panel™ ondersteunt verscheidene opstartargumenten, hoofdzakelijk bedoeld voor het debuggen van de applicatie. Onderstaand een complete lijst met beschikbare opstartargumenten. Het '-' teken dient altijd meegenomen te worden. De '{}' duiden erop dat een keuze variabele gebruikt kan worden, waardoor de '{}' niet meegenomen dienen te worden.
- 
--reset (Reset alle app data voorafgaand aan het starten)
--install {filePath} (Verwijdert de Installer via het gespecificeerde pad - niet langer gebruikt vanaf versie 4.5.0)
--ul {userLevel} (stelt het gebruikersniveau)
--loglevel {loglevel} (stelt logniveau in; de standaardwaarde is 'Informatie')</value>
-  </data>
-  <data name="Help_RCP_DebugHeader" xml:space="preserve">
-    <value>Debuggen</value>
-  </data>
-  <data name="Help_RCP_Debug" xml:space="preserve">
-    <value>Als een debugger gelinkt is aan het programma, dan zalde log viewer automatisch geopend worden. De log viewer kan tevens handmatig worden geopend via de Debug pagina zonder dat er een debugger gelinkt is. Als er geen debug gebruikersnivea is gekozen, kan het log nog steeds ingezien worden via het bestand waarnaar het schrijft; via het volgende pad:
-{0}</value>
-  </data>
   <data name="Help_Games" xml:space="preserve">
     <value>Spellen</value>
   </data>
@@ -1646,15 +1610,6 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Per-Level soundtrack hulpprogramma, Rayman M/Arena schijfcontrole eliminatie</value>
-  </data>
-  <data name="About_Credits_ICUP321" xml:space="preserve">
-    <value>Spaanse (Mexico) programmavertaling</value>
-  </data>
-  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
-    <value>Servische (Cyrillisch) programmavertaling</value>
-  </data>
-  <data name="About_Credits_Pixelise" xml:space="preserve">
-    <value>Poolse (Polen) programmavertaling</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Nederlandse (Nederland) programmavertaling, programmatests</value>
@@ -1830,15 +1785,6 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
     <value>Ongeldig linkadres</value>
   </data>
-  <data name="Window_MinimizeToTray" xml:space="preserve">
-    <value>Minimaliseer naar systeemvak</value>
-  </data>
-  <data name="TaskBarIcon_Open" xml:space="preserve">
-    <value>Openen</value>
-  </data>
-  <data name="TaskBarIcon_Close" xml:space="preserve">
-    <value>Sluiten</value>
-  </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Links</value>
   </data>
@@ -1866,7 +1812,7 @@ Nieuws:
     <value>Verkrijg bèta-updates</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Pictogram spellenpagina, programmatests</value>
+    <value>Programmatests</value>
   </data>
   <data name="Backup_GOGSyncWarning" xml:space="preserve">
     <value>Het is mogelijk dat het spel zijn save files gesynchroniseerd heeft via GOG Galaxy. Als dat het geval is, raakt het hulpprogramma voor back-ups en herstel de betreffende game niet, ook al lijkt dat zo, doordat de bewerking wel wordt voltooid.</value>
@@ -2750,9 +2696,6 @@ Foutmelding: {1}</value>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Rayman reverse engineering, Rayman Raving Rabbids mod</value>
   </data>
-  <data name="About_Credits_Hakyra" xml:space="preserve">
-    <value>Spaanse (Spanje) programmavertaling, Catalaanse (Catalonië) programmavertaling</value>
-  </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Hulpprogramma's</value>
   </data>
@@ -3551,24 +3494,6 @@ Foutmelding: {1}</value>
   <data name="GameLink_R2Fix" xml:space="preserve">
     <value>Ray2Fix</value>
   </data>
-  <data name="Config_Device_Port" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="Config_Device_Irq" xml:space="preserve">
-    <value>Irq</value>
-  </data>
-  <data name="Config_Device_Dma" xml:space="preserve">
-    <value>Dma</value>
-  </data>
-  <data name="Config_Device_Param" xml:space="preserve">
-    <value>Param</value>
-  </data>
-  <data name="Config_Device_ID" xml:space="preserve">
-    <value>Device ID</value>
-  </data>
-  <data name="Config_Device_Cards" xml:space="preserve">
-    <value>Cards</value>
-  </data>
   <data name="Archive_ViewEditFile" xml:space="preserve">
     <value>Bekijken/Wijzigen</value>
   </data>
@@ -3640,6 +3565,24 @@ Foutmelding: {1}</value>
   </data>
   <data name="Config_Device" xml:space="preserve">
     <value>Apparaat</value>
+  </data>
+  <data name="Config_Device_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Config_Device_Irq" xml:space="preserve">
+    <value>Irq</value>
+  </data>
+  <data name="Config_Device_Dma" xml:space="preserve">
+    <value>Dma</value>
+  </data>
+  <data name="Config_Device_Param" xml:space="preserve">
+    <value>Param</value>
+  </data>
+  <data name="Config_Device_ID" xml:space="preserve">
+    <value>Device ID</value>
+  </data>
+  <data name="Config_Device_Cards" xml:space="preserve">
+    <value>Cards</value>
   </data>
   <data name="Config_Action_Left" xml:space="preserve">
     <value>Links</value>
@@ -3728,5 +3671,443 @@ Voor het handmatig updaten van het programma, ga je naar {1) en download je verv
   </data>
   <data name="Utilities_R1E_Homepage" xml:space="preserve">
     <value>Meer informatie</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
+    <value>Geheugenmods</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
+    <value>Schakelt de verwijderde features van het prototype in via een selectie van de mods die je wilt toepassen. Dit vereist dat het spel gestart is en werkt alleen samen met de GOG en Steam versies. Logischerwijs zijn de mods niet meer van kracht na het beëindigen van de sessie en vindt er een reset plaats.</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingHeader" xml:space="preserve">
+    <value>Toewijzing Toetsenbordtoetsen</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingToggle" xml:space="preserve">
+    <value>Maak gebruik van aangepaste toewijzing van toetsenbordtoetsen</value>
+  </data>
+  <data name="Mod_RRR_ApplyMemoryMod" xml:space="preserve">
+    <value>Toepassen op gestart spel</value>
+  </data>
+  <data name="Mod_RRR_BFModsHeader" xml:space="preserve">
+    <value>BF Mods</value>
+  </data>
+  <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
+    <value>Gemodde .bf-bestanden. Deze mods zullen uitsluitend gebruikt worden als het spel gestart wordt via de optie hieronder.</value>
+  </data>
+  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
+    <value>Spelmap</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
+    <value>Toepassen uitvoerbare patch</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatchInfo" xml:space="preserve">
+    <value>De uitvoerbare patch is vereist for gepatchte BF-bestanden vanwege een geheugenlimiet.</value>
+  </data>
+  <data name="Mod_RRR_RevertExePatch" xml:space="preserve">
+    <value>Ongedaan maken uitvoerbare patch</value>
+  </data>
+  <data name="Mod_RRR_DownloadBFPatch" xml:space="preserve">
+    <value>Downloaden gepatchte BF</value>
+  </data>
+  <data name="Mod_RRR_RemoveBFPatch" xml:space="preserve">
+    <value>Verwijderen gepatchte BF</value>
+  </data>
+  <data name="Mod_RRR_BFPatchesHeader" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="Mod_RRR_UpdateBFPatch" xml:space="preserve">
+    <value>Updaten gepatchte BF</value>
+  </data>
+  <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
+    <value>Starten met gepatchte BF</value>
+  </data>
+  <data name="ModsPageHeader" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeatures" xml:space="preserve">
+    <value>Inschakelen features prototype</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeaturesInfo" xml:space="preserve">
+    <value>Rayman's prototype gedrag is ingeschakeld in alle levels</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControls" xml:space="preserve">
+    <value>Toevoegen camera-besturing</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControlsInfo" xml:space="preserve">
+    <value>Camera-besturing is toegewezen aan de rechter (joy)stick</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuel" xml:space="preserve">
+    <value>Toevoegen Duel, de verloren minigame</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuelInfo" xml:space="preserve">
+    <value>"Bunnies are shooting all over the place" vervangt "Bunnies don't milk cows part 2". Speel het in multiplayer!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenu" xml:space="preserve">
+    <value>Inschakelen Playtest menu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenuInfo" xml:space="preserve">
+    <value>Niet aanbevolen. Het Playtest menu vervangt de selectie van het type spel, maar pauzeren of afsluiten van levels is niet mogelijk.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
+    <value>Voor een Xbox 360 controller is de besturing als volgt:
+A: Springen / Vasthouden in de lucht voor het gebruiken van de helikopter
+X: Aanvallen
+Y: Gebruiken (enter)haak
+LB: In-/uitschakelen licht / Vasthouden om het danstempo te bepalen, indien ingeschakeld
+LT: Kijkmodus, indien ingeschakeld
+RB: Aanvallen / Vasthouden voor het toepassen van een 'finisher', indien ingeschakeld
+RT: Ontwijkrol / Stampen / Rol en spring meerdere keren om te boosten, indien ingeschakeld
+D-Pad Up: In-/uitschakelen dansmodus. In dansmodus, maak gebruik van de ABXY-toetsen of gebruik de linker analoge stick voor het uitvoeen van dansbewegingen
+Linker analoge stick: beweeg Rayman
+Rechter analoge stick: camera-besturing, indien ingeschakeld
+Back: Noclip-modus
+Start: Pauzeren</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Toevoegen kijkmodus</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
+    <value>Een first-person kijkmodus is toegevoegd en toegewezen aan LT</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButton" xml:space="preserve">
+    <value>Toevoegen toets voor boosten</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButtonInfo" xml:space="preserve">
+    <value>Normaal gereserveerd voor een item niet aanwezig in het spel, het indrukken van RT zorgt ervoor dat Rayman heel snel sprint en schakelt tevens snelheidsaanvallen in</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishers" xml:space="preserve">
+    <value>Toevoegen 'finishers'</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishersInfo" xml:space="preserve">
+    <value>Vasthouden of ingedrukt houden van RB om 'finishers' toe te voegen aan je combo's</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
+    <value>Muren beklimmen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
+    <value>Stelt Rayman in staat zich vast te klampen aan elke muur door gebruik te maken van zijn (enter)haak</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpots" xml:space="preserve">
+    <value>Hangen vanaf grijppunten</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpotsInfo" xml:space="preserve">
+    <value>Breekt het bestaande haakgedrag, maar schakelt een gebroken systeem in om de haak te kunnen gebruiken als een touw om vanaf te slingeren en springen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX" xml:space="preserve">
+    <value>Veranderen graphics haak</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFXInfo" xml:space="preserve">
+    <value>Schakelt eerdere looks van Rayman's haak in</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_0" xml:space="preserve">
+    <value>Lijn</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
+    <value>Bliksem</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_2" xml:space="preserve">
+    <value>Vonken</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_3" xml:space="preserve">
+    <value>Touw</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowers" xml:space="preserve">
+    <value>Geüpgradede krachten</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowersInfo" xml:space="preserve">
+    <value>Stelt Rayman in staat de helikopter langer te gebruiken en, indien 'Muren beklimmen' is ingeschakeld, zich onbegrensd vast te klampen aan muren</value>
+  </data>
+  <data name="Mod_RRR_MemMod_Immortal" xml:space="preserve">
+    <value>Onsterfelijk</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ImmortalInfo" xml:space="preserve">
+    <value>Een ontwikkelaars cheat — Rayman is onsterfelijk</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempo" xml:space="preserve">
+    <value>Dansen: bepalen tempo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempoInfo" xml:space="preserve">
+    <value>In dansmodus, LB vasthouden resulteert in het starten van een beat waarop Rayman zal dansen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMoveset" xml:space="preserve">
+    <value>Dansen: groovy bewegingsset</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMovesetInfo" xml:space="preserve">
+    <value>Rayman maakt gebruik van verschillende dansbewegingen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostume" xml:space="preserve">
+    <value>Gebruiken geselecteerde vermomming</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostumeInfo" xml:space="preserve">
+    <value>Rayman's kostuum zal altijd gebaseerd zijn op de speler zijn kostuumselectie via het menu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntros" xml:space="preserve">
+    <value>Uitschakelen minigame intro's</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntrosInfo" xml:space="preserve">
+    <value>Minigame intro video's verandeen de staat van de wereld en deactiveren Rayman soms (in "Bunnies don't give gifts" bijvoorbeeld)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSound" xml:space="preserve">
+    <value>UItschakelen geluid voetstappen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSoundInfo" xml:space="preserve">
+    <value>Als BF-mods niet geactiveerd zijn, zijn Rayman's voetstappen te horen en in de meeste gevallen irritant — gebruik deze optie voor demping</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlippery" xml:space="preserve">
+    <value>Rayman minder glibberig maken</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlipperyInfo" xml:space="preserve">
+    <value>Rayman heeft standaard weinig 'grip'; deze instelling verbetert dat enigszins</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthMana" xml:space="preserve">
+    <value>Inschakelen gezondheid &amp; mana debug-scherm</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthManaInfo" xml:space="preserve">
+    <value>Wanneer Rayman een speciale aanval uitvoert of wordt geraakt, zal zijn HP en mana worden weergegeven</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsHeader" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItems" xml:space="preserve">
+    <value>Rabbids laten items vallen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItemsInfo" xml:space="preserve">
+    <value>Rabbids laten hun items vallen die vervolgens gebruikt kunnen worden door Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHP" xml:space="preserve">
+    <value>HP verhoging vijanden</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHPInfo" xml:space="preserve">
+    <value>Elke Rabbid heeft 100 HP</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowers" xml:space="preserve">
+    <value>Rabbids bezitten op willekeurige basis een prototype kracht </value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowersInfo" xml:space="preserve">
+    <value>Sommige Rabbids krijgen 1 van 4 prototype krachten. Ontdek ze terwijl je speelt!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MountsHeader" xml:space="preserve">
+    <value>Rijdieren</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMounts" xml:space="preserve">
+    <value>Temmen rijdieren</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMountsInfo" xml:space="preserve">
+    <value>Rijdieren zijn te temmen wanneer je ze voor het eerst berijdt</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEagles" xml:space="preserve">
+    <value>Vleermuizen gedragen zich als adelaars</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEaglesInfo" xml:space="preserve">
+    <value>Vleermuizen worden gigantisch en gedragen zich als een een adelaar o.b.v. verschillende animaties</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlums" xml:space="preserve">
+    <value>Varkens gedragen zich als pruimen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlumsInfo" xml:space="preserve">
+    <value>Varkens hebben het gedrag van pruimen en worden stuiterballen. Probeer ze maar eens op de kop van een Rabbid te gooien!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinos" xml:space="preserve">
+    <value>Neushoorns worden agressief</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinosInfo" xml:space="preserve">
+    <value>De neushoorns uit de race levels zullen je aanvallen. Ren voor je leven (of gebruik de cheat voor onsterfelijkheid)!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJump" xml:space="preserve">
+    <value>Robotspinnen kunnen springen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJumpInfo" xml:space="preserve">
+    <value>Wanneer je de spinachtige robots bestuurt, kun je springen zoals spinnen dat konden in het prototype.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShoot" xml:space="preserve">
+    <value>Vleermuizen kunnen schieten</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShootInfo" xml:space="preserve">
+    <value>Vleermuizen kunnen ;projectielen schieten met de Aanval-toets</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlying" xml:space="preserve">
+    <value>Schotels beginnen te vliegen</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlyingInfo" xml:space="preserve">
+    <value>Schotels vliegen heen en weer, waardoor ze moeilijker bereden kunnen worden</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
+    <value>Konijnenjachten</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTarget" xml:space="preserve">
+    <value>Raketwerpers hebben het gemunt op Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTargetInfo" xml:space="preserve">
+    <value>Raketten hebben Rayman als doel en 1 inslag betekent het einde van Rayman!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipods" xml:space="preserve">
+    <value>Vernietig bipods niet!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipodsInfo" xml:space="preserve">
+    <value>De meeste bipods begeven het standaard en wanneer niet in FPS-modus; deze instelling voorkomt dat.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
+    <value>Activeer alle activator triggers</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
+    <value>Forceert alle activator triggers om continu de 'true'-waarde te hebben. Dit zorgt voor chaos in veel levels en er zullen veel meer vijanden (en Globox baby's) zijn.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
+    <value>Activeer alle gebonden volume-triggers</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
+    <value>Sommige Rabbid 'spawn'-triggers zijn moeilijk te bereiken. Deze instelling schakelt ze in, maar let wel: dit veroorzaakt crashes in veel levels! </value>
+  </data>
+  <data name="Mod_RRR_KeyAction_0" xml:space="preserve">
+    <value>Springen</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_4" xml:space="preserve">
+    <value>Aanvallen</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_6" xml:space="preserve">
+    <value>Enterhaak</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_8" xml:space="preserve">
+    <value>Licht/Tempo</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_10" xml:space="preserve">
+    <value>Aanvallen (finisher)</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_12" xml:space="preserve">
+    <value>Kijkmodus</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_14" xml:space="preserve">
+    <value>Rollen/Stampen</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_16" xml:space="preserve">
+    <value>Noclip</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_18" xml:space="preserve">
+    <value>Pauzeren</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_24" xml:space="preserve">
+    <value>Dansmodus in-/uitschakelen</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_28" xml:space="preserve">
+    <value>Lopen</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FixSounds" xml:space="preserve">
+    <value>Repareer geluidseffecten</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer" xml:space="preserve">
+    <value>Verander speelbare karakter</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_BabyGlobox" xml:space="preserve">
+    <value>Baby Globox</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Serguei" xml:space="preserve">
+    <value>Serguei</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Rabbid" xml:space="preserve">
+    <value>Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid" xml:space="preserve">
+    <value>Grijze Rabbid-leider</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid" xml:space="preserve">
+    <value>Superman Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid" xml:space="preserve">
+    <value>Terminator Rabbid (Roze)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid" xml:space="preserve">
+    <value>Sam Fisher Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
+    <value>Nurgle Demon</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_BatSoundLikeEagle" xml:space="preserve">
+    <value>Vleermuis gaat klinken als adelaar</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider" xml:space="preserve">
+    <value>Robotspin gaat klinken als spin</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_CustomHelicoTexture" xml:space="preserve">
+    <value>Voeg aangepaste helikoptertextuur toe</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
+    <value>Voeg vacht toe aan Rabbids</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
+    <value>Schakel zaklamp in (in-/uitschakelen via LB)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
+    <value>Voeg zaklamp toe aan 'Bunnies Love Digging Tunnels'</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
+    <value>Voeg ongebruikte Rabbid items toe aan 'Bunnies Aren't Scared of the Dark'</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplySuccess" xml:space="preserve">
+    <value>Geheugenpatch succesvol toegepast</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
+    <value>De geheugenpatch kon níét worden toegepast</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
+    <value>De installatiemap van het spel is ongeldig</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
+    <value>Spelversie kan níét worden bepaald</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UnsupportedGameExe" xml:space="preserve">
+    <value>De spelversie is níét ondersteund</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchSuccess" xml:space="preserve">
+    <value>Het uitvoerbare bestand is succesvol gepatcht</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RevertExePatchSuccess" xml:space="preserve">
+    <value>De uitvoerbare patch is succesvol ongedaan gemaakt</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het patchen van het uitvoerbare bestand</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFSuccess" xml:space="preserve">
+    <value>Het gepatchte BF-bestand is verwijderd </value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFError" xml:space="preserve">
+    <value>Gepatchte BF-bestand kan níét worden verwijderd</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFSuccess" xml:space="preserve">
+    <value>Het gepatchte BF-bestand is succesvol geüpdatet</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van het gepatchte BF-bestand</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKill" xml:space="preserve">
+    <value>Verminder opgelopen schade</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKillInfo" xml:space="preserve">
+    <value>In plaats van een directe Game Over zijn hier nú 4 hits voor nodig</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigames" xml:space="preserve">
+    <value>Ontgrendel alles</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
+    <value>Een cheat voor ontwikkelaars. Alle levels in zowel Score Mode als de bonussectie zijn ontgrendeld; dit staat los van de geboekte voortgang in het spel.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Instellen cheat sheet</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
+    <value>Laat een verscheidenheid aan debug-informatie zien</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
+    <value>Dansmodus: draaien</value>
   </data>
 </root>

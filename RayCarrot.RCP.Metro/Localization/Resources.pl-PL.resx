@@ -261,18 +261,6 @@
   <data name="Config_Resolution" xml:space="preserve">
     <value>Rozdzielczość</value>
   </data>
-  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
-    <value>Pozioma rozdzielczość ekranu</value>
-  </data>
-  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
-    <value>Pionowa rozdzielczość ekranu</value>
-  </data>
-  <data name="Config_LockRes" xml:space="preserve">
-    <value>Użyj rozdzielczości ekranu</value>
-  </data>
-  <data name="Config_LockResInfo" xml:space="preserve">
-    <value>Używa poziomych i pionowych wartości obecnej rozdzielczości ekranu</value>
-  </data>
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Pełny ekran</value>
   </data>
@@ -528,12 +516,6 @@
   <data name="Settings_DebugHeader" xml:space="preserve">
     <value>Debug</value>
   </data>
-  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
-    <value>Pokaż poziom wyjątku</value>
-  </data>
-  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
-    <value>Poziom wyjątku dla wyświetlania informacji o debugowaniu i śledzenia</value>
-  </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Lokalizacja kopii zapasowej</value>
   </data>
@@ -780,16 +762,16 @@
     <value>Lokalizacja nie została znaleziona</value>
   </data>
   <data name="File_OpenLocationErrorHeader" xml:space="preserve">
-    <value>Błąd katalogu</value>
+    <value>Błąd folderu</value>
   </data>
   <data name="File_OpenLocationError" xml:space="preserve">
-    <value>Nie można otworzyć katalogu</value>
+    <value>Nie można otworzyć folderu</value>
   </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Wybierz folder instalacji</value>
   </data>
   <data name="LocateGame_InvalidLocation" xml:space="preserve">
-    <value>Wybrany katalog jest nieprawidłowy dla tej gry</value>
+    <value>Wybrany folder jest nieprawidłowy dla tej gry</value>
   </data>
   <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
     <value>Nieprawidłowa lokalizacja</value>
@@ -832,7 +814,7 @@
     <value>Tworzenie kopii zapasowej nie powiodło się</value>
   </data>
   <data name="Backup_MissingDirectoriesError" xml:space="preserve">
-    <value>Tworzenie kopii zapasowej dla {0} nie mogło się zakończyć, ponieważ nie znaleziono wszystkich określonych katalogów</value>
+    <value>Tworzenie kopii zapasowej dla {0} nie mogło się zakończyć, ponieważ nie znaleziono wszystkich określonych folderów</value>
   </data>
   <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
     <value>Ostrzeżenie użytkowe</value>
@@ -997,7 +979,7 @@ Aktualności:
     <value>Wybierz dysk, z którego chcesz zainstalować</value>
   </data>
   <data name="Installer_DriveNameConflict" xml:space="preserve">
-    <value>Wybrana płyta ma taką samą etykietę i ścieżkę główną jak poprzednio włożona. Z tego powodu instalator nie może ich rozróżnić. Proszę zmienić nazwę jednej z płyt i spróbować ponownie lub zamontować je jako różne katalogi główne.</value>
+    <value>Wybrana płyta ma taką samą etykietę i ścieżkę główną jak poprzednio włożona. Z tego powodu instalator nie może ich rozróżnić. Proszę zmienić nazwę jednej z płyt i spróbować ponownie lub zamontować je jako różne foldery główne.</value>
   </data>
   <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
     <value>Konflikt dysku</value>
@@ -1040,10 +1022,10 @@ Spróbować ponownie?</value>
     <value>Anuluj bieżącą instalację</value>
   </data>
   <data name="Installer_InvalidDirectory" xml:space="preserve">
-    <value>Podany katalog nie istnieje</value>
+    <value>Podany folder nie istnieje</value>
   </data>
   <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
-    <value>Nie znaleziono katalogu</value>
+    <value>Nie znaleziono folderu</value>
   </data>
   <data name="Installer_ShortcutName" xml:space="preserve">
     <value>Uruchom {0}</value>
@@ -1217,7 +1199,7 @@ Spróbować ponownie?</value>
     <value>Specjalne podziękowania dla AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski i wszystkich innych fanów Raymana!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer™, Tłumaczenie gry Rayman 2, Tłumaczenie szwedzkie (Szwecja) programu</value>
+    <value>Rayman Control Panel™, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer™, Tłumaczenie gry Rayman 2</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Łatki dla kontrolera</value>
@@ -1475,34 +1457,16 @@ Podczas instalacji musisz określić folder, w którym chcesz zainstalować grę
   <data name="Help_RCP_BackupRestore" xml:space="preserve">
     <value>Program ma funkcję tworzenia kopii zapasowych i przywracania dla wszystkich obsługiwanych gier. Kopie zapasowe są domyślnie przechowywane w folderze dokumentów, ale lokalizacja może zostać zmieniona w ustawieniach.
 
-Same kopie zapasowe są zawsze przechowywane w podkatalogu '{0}'. Nie zaleca się ręcznej modyfikacji tych plików.</value>
+Same kopie zapasowe są zawsze przechowywane w podfolderze '{0}'. Nie zaleca się ręcznej modyfikacji tych plików.</value>
   </data>
   <data name="Help_RCP_AppDataHeader" xml:space="preserve">
     <value>Lokalizacja App Data</value>
   </data>
   <data name="Help_RCP_AppData" xml:space="preserve">
-    <value>Program zapisuje swoje dane aplikacji głównie w lokalnym katalogu danych aplikacji bieżącego użytkownika, przy czym niektóre ustawienia są przechowywane w rejestrze. Poniżej znajduje się pełna lista lokalizacji, w których przechowywane są dane.
+    <value>Program zapisuje swoje dane aplikacji głównie w lokalnym folderze danych aplikacji bieżącego użytkownika, przy czym niektóre ustawienia są przechowywane w rejestrze. Poniżej znajduje się pełna lista lokalizacji, w których przechowywane są dane.
 
 • Główne dane aplikacji - {0}
 • Ustawienia rejestru - {1}</value>
-  </data>
-  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
-    <value>Argumenty startowe</value>
-  </data>
-  <data name="Help_RCP_LaunchArgs" xml:space="preserve">
-    <value>Rayman Control Panel™ obsługuje kilka argumentów uruchamiania, głównie przeznaczonych do debugowania aplikacji. Poniżej znajduje się pełna lista dostępnych argumentów uruchamiania. Znak '-' powinien zawsze być uwzględniany. Znaki '{}' pokazują, że można użyć niestandardowej zmiennej, w tym przypadku nie należy dołączać znaku '{}'.
-
--reset (resetuje wszystkie dane aplikacji przed uruchomieniem)
--install {filePath} (Usuwa instalator z podanej ścieżki — nie jest już używany od wersji 4.5.0)
--ul {userLevel} (ustawia poziom użytkownika)
--loglevel {logLevel} (Ustawia poziom logu na log, domyślnie jest to Informacja)</value>
-  </data>
-  <data name="Help_RCP_DebugHeader" xml:space="preserve">
-    <value>Debugowanie</value>
-  </data>
-  <data name="Help_RCP_Debug" xml:space="preserve">
-    <value>Jeśli debugger jest dołączony do programu, przeglądarka logów otworzy się automatycznie. Można ją otworzyć ręcznie ze strony debugowania, nawet bez dołączonego debugera. Jeśli poziom użytkownika debugowania nie jest włączony, dziennik można nadal przeglądać z pliku, w którym zapisuje, w następującej ścieżce:
-{0}</value>
   </data>
   <data name="Help_Games" xml:space="preserve">
     <value>Gry</value>
@@ -1548,7 +1512,7 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
     <value>Importowanie Map</value>
   </data>
   <data name="Help_Games_R1_ImportMaps" xml:space="preserve">
-    <value>Importowanie map odbywa się w programie Mapper. Jeśli wystąpi przy tym błąd, można spróbować przenieść plik z mapą do katalogu RayKit i zaimportować go stamtąd.</value>
+    <value>Importowanie map odbywa się w programie Mapper. Jeśli wystąpi przy tym błąd, można spróbować przenieść plik z mapą do folderu RayKit i zaimportować go stamtąd.</value>
   </data>
   <data name="Help_Games_R2" xml:space="preserve">
     <value>Rayman 2</value>
@@ -1662,15 +1626,6 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Narzędzie do ścieżki dźwiękowej na poziom, Usunięcie sprawdzania dysku Rayman M/Arena</value>
-  </data>
-  <data name="About_Credits_ICUP321" xml:space="preserve">
-    <value>Tłumaczenie hiszpańskie (Meksyk) programu</value>
-  </data>
-  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
-    <value>Tłumaczenie serbskie (Cyrylica) programu</value>
-  </data>
-  <data name="About_Credits_Pixelise" xml:space="preserve">
-    <value>Tłumaczenie polskie (Polska) programu</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Tłumaczenie holdenderskie (Holandia) programu</value>
@@ -1838,7 +1793,7 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
     <value>Plik logów</value>
   </data>
   <data name="Links_Local_Utilities" xml:space="preserve">
-    <value>Katalog narzędzi</value>
+    <value>Folder narzędzi</value>
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Dane aplikacji rejestru</value>
@@ -1848,15 +1803,6 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
   </data>
   <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
     <value>Nieprawidłowy adres linku</value>
-  </data>
-  <data name="Window_MinimizeToTray" xml:space="preserve">
-    <value>Zminimalizuj do zasobnika</value>
-  </data>
-  <data name="TaskBarIcon_Open" xml:space="preserve">
-    <value>Otwórz</value>
-  </data>
-  <data name="TaskBarIcon_Close" xml:space="preserve">
-    <value>Zamknij</value>
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Linki</value>
@@ -1886,7 +1832,7 @@ Aktualności:
     <value>Otrzymuj aktualizacje beta</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Ikona strony gier, testowanie programu</value>
+    <value>Testowanie programu</value>
   </data>
   <data name="Backup_GOGSyncWarning" xml:space="preserve">
     <value>Ta gra może mieć swoje pliki zapisu zsynchronizowane przez GOG Galaxy. Jeśli tak, narzędzie do tworzenia kopii zapasowych/przywracania może nie mieć wpływu na tę grę, nawet jeśli operacja się powiedzie.</value>
@@ -2511,7 +2457,7 @@ Komunikat o błędzie: {1}</value>
     <value>Folder {0} już istnieje. Czy chcesz to nadpisać?</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
-    <value>Zastąp katalog</value>
+    <value>Zastąp folder</value>
   </data>
   <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
     <value>Wyłącz ładowanie/zapisywanie pliku zapisu</value>
@@ -2776,9 +2722,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Inżynieria odwrotna Raymana, Rayman Szalone Kórliki mod</value>
-  </data>
-  <data name="About_Credits_Hakyra" xml:space="preserve">
-    <value>Tłumaczenie hiszpańskie (Hiszpania) programu, Tłumaczenie katalońskie (Katalonia) programu</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Narzędzia</value>
@@ -3129,7 +3072,7 @@ Komunikat o błędzie: {1}</value>
 </value>
   </data>
   <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
-    <value>Podany katalog wejściowy nie istnieje</value>
+    <value>Podany folder wejściowy nie istnieje</value>
   </data>
   <data name="Archive_CreateError" xml:space="preserve">
     <value>Wystąpił błąd podczas tworzenia archiwum</value>
@@ -3138,7 +3081,7 @@ Komunikat o błędzie: {1}</value>
     <value>Utwórz archiwum</value>
   </data>
   <data name="Archive_CreateInputDir" xml:space="preserve">
-    <value>Katalog wejściowy</value>
+    <value>Folder wejściowy</value>
   </data>
   <data name="Archive_CreateOutputFile" xml:space="preserve">
     <value>Plik wyjściowy</value>
@@ -3194,7 +3137,7 @@ Komunikat o błędzie: {1}</value>
     <value>Pobierz pliki:
 
 1. Naciśnij przycisk "Pobierz", aby pobrać ręcznie pliki.
-2. Przenieś pliki do katalogu docelowego. Jeśli są skompresowane, rozpakuj je.
+2. Przenieś pliki do folderu docelowego. Jeśli są skompresowane, rozpakuj je.
 3. Naciśnij 'OK', aby kontynuować.</value>
   </data>
   <data name="Download_ManualHeader" xml:space="preserve">
@@ -3204,7 +3147,7 @@ Komunikat o błędzie: {1}</value>
     <value>Pliki do pobrania</value>
   </data>
   <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Otwórz katalog docelowy</value>
+    <value>Otwórz folder docelowy</value>
   </data>
   <data name="Settings_ManualDownloads" xml:space="preserve">
     <value>Ręczne pobieranie plików</value>
@@ -3600,28 +3543,6 @@ Komunikat o błędzie: {1}</value>
   <data name="GameLink_R2Fix" xml:space="preserve">
     <value>Ray2Fix</value>
   </data>
-  <data name="Config_Device_Port" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="Config_Device_Irq" xml:space="preserve">
-    <value>Irq</value>
-  </data>
-  <data name="Config_Device_Dma" xml:space="preserve">
-    <value>Dma</value>
-    <comment>Dma</comment>
-  </data>
-  <data name="Config_Device_Param" xml:space="preserve">
-    <value>Param</value>
-    <comment>Param</comment>
-  </data>
-  <data name="Config_Device_ID" xml:space="preserve">
-    <value>Device ID</value>
-    <comment>Device ID</comment>
-  </data>
-  <data name="Config_Device_Cards" xml:space="preserve">
-    <value>Cards</value>
-    <comment>Cards</comment>
-  </data>
   <data name="Archive_ViewEditFile" xml:space="preserve">
     <value>Podgląd/Edycja</value>
   </data>
@@ -3694,6 +3615,28 @@ Komunikat o błędzie: {1}</value>
   <data name="Config_Device" xml:space="preserve">
     <value>Urządzenie</value>
   </data>
+  <data name="Config_Device_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Config_Device_Irq" xml:space="preserve">
+    <value>Irq</value>
+  </data>
+  <data name="Config_Device_Dma" xml:space="preserve">
+    <value>Dma</value>
+    <comment>Dma</comment>
+  </data>
+  <data name="Config_Device_Param" xml:space="preserve">
+    <value>Param</value>
+    <comment>Param</comment>
+  </data>
+  <data name="Config_Device_ID" xml:space="preserve">
+    <value>Device ID</value>
+    <comment>Device ID</comment>
+  </data>
+  <data name="Config_Device_Cards" xml:space="preserve">
+    <value>Cards</value>
+    <comment>Cards</comment>
+  </data>
   <data name="Config_Action_Left" xml:space="preserve">
     <value>Lewo</value>
   </data>
@@ -3731,7 +3674,7 @@ Komunikat o błędzie: {1}</value>
     <value>Wyrównanie kamery</value>
   </data>
   <data name="Config_Action_Look" xml:space="preserve">
-    <value>Tryb spojrzenia</value>
+    <value>Tryb rozglądania się</value>
   </data>
   <data name="Config_Action_Screenshot" xml:space="preserve">
     <value>Zrzut ekranu</value>
@@ -3780,5 +3723,455 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="Utilities_R1E_Homepage" xml:space="preserve">
     <value>Więcej informacji</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman Szalone Kórliki</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
+    <value>Modyfikacje pamięci</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
+    <value>Włącz usunięte prototypowe funkcje w grze, wybierając żądane mody, a następnie je zastosuj. Wymaga to uruchomionej gry i działa tylko z wersjami GOG i Steam. Zastosowane mody będą działały tylko wtedy, gdy gra jest uruchomiona i zostaną zresetowane po jej zamknięciu.
+</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingHeader" xml:space="preserve">
+    <value>Mapowanie przycisków klawiatury</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingToggle" xml:space="preserve">
+    <value>Użyj własnego mapowania przycisków klawiatury</value>
+  </data>
+  <data name="Mod_RRR_ApplyMemoryMod" xml:space="preserve">
+    <value>Zastosuj do uruchomionej gry</value>
+  </data>
+  <data name="Mod_RRR_BFModsHeader" xml:space="preserve">
+    <value>Mody BF</value>
+  </data>
+  <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
+    <value>Zmodyfikowane pliki .bf. Będą one używane tylko podczas uruchamiania gry z poniższej opcji.</value>
+  </data>
+  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
+    <value>Folder gry</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
+    <value>Zastosuj poprawkę wykonywalną </value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatchInfo" xml:space="preserve">
+    <value>Poprawka wykonywalna jest wymagana dla poprawionych plików BF ze względu na limit pamięci </value>
+  </data>
+  <data name="Mod_RRR_RevertExePatch" xml:space="preserve">
+    <value>Przywróć poprawkę wykonywalną </value>
+  </data>
+  <data name="Mod_RRR_DownloadBFPatch" xml:space="preserve">
+    <value>Pobierz poprawiony BF</value>
+  </data>
+  <data name="Mod_RRR_RemoveBFPatch" xml:space="preserve">
+    <value>Usuń poprawiony BF </value>
+  </data>
+  <data name="Mod_RRR_BFPatchesHeader" xml:space="preserve">
+    <value>Łatki</value>
+  </data>
+  <data name="Mod_RRR_UpdateBFPatch" xml:space="preserve">
+    <value>Zaktualizuj poprawione BF </value>
+  </data>
+  <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
+    <value>Uruchom z poprawionym BF </value>
+  </data>
+  <data name="ModsPageHeader" xml:space="preserve">
+    <value>Mody</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
+    <value>Główne</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeatures" xml:space="preserve">
+    <value>Włącz funkcje prototypowe </value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeaturesInfo" xml:space="preserve">
+    <value>Prototypowe zachowanie Raymana jest włączone na wszystkich poziomach</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControls" xml:space="preserve">
+    <value>Dodaj sterowanie kamerą </value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControlsInfo" xml:space="preserve">
+    <value>Sterowanie kamerą jest przypisane do prawego drążka </value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuel" xml:space="preserve">
+    <value>Dodaj "Duel", sekretną minigrę</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuelInfo" xml:space="preserve">
+    <value>"Bunnies are shooting all over the place" zastępuje "Bunnies don't milk cows part 2". Zagraj w to w trybie multiplayer!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenu" xml:space="preserve">
+    <value>Włącz "playtest" menu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenuInfo" xml:space="preserve">
+    <value>Niezalecane. Menu "playtest" zastępuje wybór typu gry, ale można zatrzymywać ani wychodzić z wczytanych już poziomów.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
+    <value>Dla kontrolera Xbox 360, sterowanie jest odwzorowane w następujący sposób:
+    A: Skok / Przytrzymaj będąc w powietrzu, aby użyć śmigła
+    X: Atak
+    Y: Użycie haka do chwytania
+    LB: Przełącz światło / Przytrzymaj, aby kontrolować tempo tańca, jeśli jest włączone 
+    LT: Tryb rozglądania się, jeśli jest włączony 
+    RB: Atak / Naciśnij lub przytrzymaj, aby użyć finisherów, jeśli są włączone
+    RT: Unik/ Uderzenie w ziemię / Wielokrotne turlanie i skok, aby zwiększyć prędkość, jeśli jest włączone
+    Krzyżak (d-pad) w górę: Przełączanie trybu tańca. W trybie tańca naciśnij ABXY lub użyj lewego drążka analogowego, aby wykonywać ruchy taneczne
+    Lewy drążek analogowy: Poruszanie Raymanem
+    Prawy drążek analogowy: Sterowanie kamerą, jeśli jest włączone
+    Back: Tryb noclip
+    Start: Pauza</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Dodaj tryb rozglądania się</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
+    <value>Tryb z perspektywy pierwszej osoby został dodany i zmapowany pod LT</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButton" xml:space="preserve">
+    <value>Dodaj przycisk doładowania </value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButtonInfo" xml:space="preserve">
+    <value>Normalnie zarezerwowane dla przedmiotu nieobecnego w grze, naciśnięcie RT sprawi, że Rayman będzie biegał naprawdę szybko i umożliwi szybkie ataki</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishers" xml:space="preserve">
+    <value>Dodaj ciosy kończące</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishersInfo" xml:space="preserve">
+    <value>Przytrzymaj lub naciśnij RB, aby dodać ciosy kończące do swoich combosów</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
+    <value>Wspinanie po ścianach</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
+    <value>Pozwala Raymanowi chwycić się dowolnej ściany za pomocą haka </value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpots" xml:space="preserve">
+    <value>Zawieś się na punktach zaczepienia</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpotsInfo" xml:space="preserve">
+    <value>Przerywa działanie haka, ale włącza zepsuty system używania haka jako liny do wieszania się i skakania z niego</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX" xml:space="preserve">
+    <value>Zmiana grafiki haka</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFXInfo" xml:space="preserve">
+    <value>Uruchamia wcześniejszy wygląd haku Raymana </value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_0" xml:space="preserve">
+    <value>Linia</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
+    <value>Błyskawice</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_2" xml:space="preserve">
+    <value>Iskry</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_3" xml:space="preserve">
+    <value>Lina</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
+    <value>Nic</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowers" xml:space="preserve">
+    <value>Ulepszone moce</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowersInfo" xml:space="preserve">
+    <value>Pozwala Raymanowi używać helikoptera przez dłuższy czas i, jeśli włączona jest opcja wspinania się po ścianach, trzymać się ich w nieskończoność</value>
+  </data>
+  <data name="Mod_RRR_MemMod_Immortal" xml:space="preserve">
+    <value>Nieśmiertelny</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ImmortalInfo" xml:space="preserve">
+    <value>Kod deweloperski - Rayman nie umiera</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempo" xml:space="preserve">
+    <value>Taniec: kontroluj tempo </value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempoInfo" xml:space="preserve">
+    <value>W trybie tańca, przytrzymanie LB rozpocznie rytm, do którego Rayman będzie tańczył</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMoveset" xml:space="preserve">
+    <value>Taniec: odjazdowe ruchy taneczne</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMovesetInfo" xml:space="preserve">
+    <value>Rayman używa różnych ruchów tanecznych</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostume" xml:space="preserve">
+    <value>Użyj wybranego przebrania</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostumeInfo" xml:space="preserve">
+    <value>Kostium Raymana będzie zawsze bazował na wyborze kostiumu gracza w menu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntros" xml:space="preserve">
+    <value>Wyłączenie filmików początkowych do minigier</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntrosInfo" xml:space="preserve">
+    <value>Filmiki początkowe do minigry zmieniają stan świata i czasami dezaktywują Raymana (np. Króliczki nie dają prezentów)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSound" xml:space="preserve">
+    <value>Wyłącz dźwięki kroków</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSoundInfo" xml:space="preserve">
+    <value>Jeśli mody BF nie są aktywowane, odgłos kroków Raymana w większości obszarów może być denerwujący - użyj tej opcji, aby go wyłączyć </value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlippery" xml:space="preserve">
+    <value>Uczyń Raymana mniej śliskim</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlipperyInfo" xml:space="preserve">
+    <value>Rayman jest domyślnie śliski, to nieznacznie to poprawi</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthMana" xml:space="preserve">
+    <value>Włącz wyświetlanie debugowania zdrowia i many </value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthManaInfo" xml:space="preserve">
+    <value>Za każdym razem, gdy Rayman wykona specjalny atak lub zostanie trafiony, jego HP i Mana zostaną wyświetlone </value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsHeader" xml:space="preserve">
+    <value>Kórliki</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItems" xml:space="preserve">
+    <value>Kórliki wyrzucają przedmioty </value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItemsInfo" xml:space="preserve">
+    <value>Kórliki wyrzucają swoje przedmioty, aby Rayman mógł ich użyć</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHP" xml:space="preserve">
+    <value>Zwiększona ilość HP przeciwnika</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHPInfo" xml:space="preserve">
+    <value>Każdy Kórlik ma 100 HP</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowers" xml:space="preserve">
+    <value>Kórliki otrzymują losowe moce prototypowe </value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowersInfo" xml:space="preserve">
+    <value>Niektóre Kórliki otrzymują jedną z 4 prototypowych mocy. Odkryj je podczas gry!
+
+</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MountsHeader" xml:space="preserve">
+    <value>Wierzchowce</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMounts" xml:space="preserve">
+    <value>Oswojone wierzchowce</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMountsInfo" xml:space="preserve">
+    <value>Wierzchowce stają się sterowalne przy pierwszej jeździe
+
+</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEagles" xml:space="preserve">
+    <value>Nietoperze zachowują się jak orły</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEaglesInfo" xml:space="preserve">
+    <value>Nietoperze stają się ogromne i zachowują się jak orzeł z różnymi animacjami </value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlums" xml:space="preserve">
+    <value>Świnie zachowują się jak śliwki</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlumsInfo" xml:space="preserve">
+    <value>Świnie zachowują się jak śliwki i stają się bardzo sprężyste. Spróbuj rzucić je na głowy królików!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinos" xml:space="preserve">
+    <value>Nosorożce stają się agresywne</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinosInfo" xml:space="preserve">
+    <value>Nosorożce z wyścigów będą cię atakować. Bądź gotowy na śmierć (lub użyj kodu na nieśmiertelność)! </value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJump" xml:space="preserve">
+    <value>Roboty-pająki potrafią skakać </value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJumpInfo" xml:space="preserve">
+    <value>
+Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prototypie
+
+</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShoot" xml:space="preserve">
+    <value>Nietoperze potrafią strzelać </value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShootInfo" xml:space="preserve">
+    <value>Nietoperze mogą strzelać pociskami za pomocą przycisku ataku</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlying" xml:space="preserve">
+    <value>Spodki zaczynają latać </value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlyingInfo" xml:space="preserve">
+    <value>Spodki latają dookoła, ale to sprawia, że trudniej je dosiąść </value>
+  </data>
+  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
+    <value>Polowanie na króliki</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTarget" xml:space="preserve">
+    <value>Wyrzutnie rakiet celują w Raymana
+</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTargetInfo" xml:space="preserve">
+    <value>Rakiety będą celować w Raymana, ale jedno trafienie z nich zabije Raymana!
+
+</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipods" xml:space="preserve">
+    <value>Nie niszcz dwójnóg</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipodsInfo" xml:space="preserve">
+    <value>Większość dwójnogów domyślnie zwija się, gdy nie są w trybie FPS. Zapobiega to ich zniszczeniu. </value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
+    <value>Aktywuj wszyskie wyzwalacze aktywatora</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
+    <value>Wymusza, aby wszystkie wyzwalacze aktywacyjne były stałe. Powoduje chaos na wielu poziomach i przywołuje znacznie więcej wrogów (i dzieci Globoksa) </value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
+    <value>Aktywuj wszystkie wyzwalacze </value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
+    <value>Niektóre wyzwalacze odradzania kórlików są trudne do osiągnięcia. Dzięki temu je uruchomisz, ale uważaj, powoduje to również awarie na wielu poziomach! </value>
+  </data>
+  <data name="Mod_RRR_KeyAction_0" xml:space="preserve">
+    <value>Skok</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_4" xml:space="preserve">
+    <value>Atak</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_6" xml:space="preserve">
+    <value>Hak</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_8" xml:space="preserve">
+    <value>Światło/Tempo</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_10" xml:space="preserve">
+    <value>Atak (cios kończący)</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_12" xml:space="preserve">
+    <value>Tryb rozglądania się</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_14" xml:space="preserve">
+    <value>Turlanie/Uderzenie w ziemię</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_16" xml:space="preserve">
+    <value>Noclip</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_18" xml:space="preserve">
+    <value>Pauza</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_24" xml:space="preserve">
+    <value>Przełącznik tańca</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_28" xml:space="preserve">
+    <value>Chód</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FixSounds" xml:space="preserve">
+    <value>Napraw efekty dźwiękowe</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer" xml:space="preserve">
+    <value>Zmień grywalnego bohatera</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_BabyGlobox" xml:space="preserve">
+    <value>Baby Globox</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Serguei" xml:space="preserve">
+    <value>Serguei</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Rabbid" xml:space="preserve">
+    <value>Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid" xml:space="preserve">
+    <value>Grey Leader Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid" xml:space="preserve">
+    <value>Superman Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid" xml:space="preserve">
+    <value>Terminator Rabbid (Różowy)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid" xml:space="preserve">
+    <value>Sam Fisher Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
+    <value>Nurgle Demon</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_BatSoundLikeEagle" xml:space="preserve">
+    <value>Spraw, by nietoperz brzmiał jak orzeł </value>
+  </data>
+  <data name="Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider" xml:space="preserve">
+    <value>Spraw, aby robot pająk brzmiał jak pająk</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_CustomHelicoTexture" xml:space="preserve">
+    <value>Dodaj niestandardową teksturę śmigła</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
+    <value>Dodaj futro kórlikom</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
+    <value>Włącz latarkę (przełącz za pomocą LB) </value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
+    <value>Dodaj latarkę do Bunnies Love Digging Tunnels</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
+    <value>Dodaj nieużywane przedmioty dla Kórlików do Bunnies Ares Of The Dark
+</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplySuccess" xml:space="preserve">
+    <value>Łatka pamięci zastosowana pomyślnie</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
+    <value>Nie można zastosować łatki pamięci </value>
+  </data>
+  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
+    <value>Folder instalacyjny gry jest nieprawidłowy</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
+    <value>Nie można ustalić wersji gry</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UnsupportedGameExe" xml:space="preserve">
+    <value>Wersja gry nie jest obsługiwana </value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchSuccess" xml:space="preserve">
+    <value>Plik wykonywalny został pomyślnie naprawiony</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RevertExePatchSuccess" xml:space="preserve">
+    <value>Poprawka wykonywalna została pomyślnie przywrócona</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchError" xml:space="preserve">
+    <value>Wystąpił błąd podczas naprawy pliku wykonywalnego</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFSuccess" xml:space="preserve">
+    <value>Poprawiony plik BF został usunięty</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFError" xml:space="preserve">
+    <value>Nie można usunąć poprawionego pliku BF </value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFSuccess" xml:space="preserve">
+    <value>Poprawiony plik BF został pomyślnie zaktualizowany</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFError" xml:space="preserve">
+    <value>Wystąpił błąd podczas aktualizacji poprawionego pliku BF</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKill" xml:space="preserve">
+    <value>Zmniejsz otrzymywane obrażenia </value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKillInfo" xml:space="preserve">
+    <value>Zamiast natychmiastowej śmierci, Rayman będzie umierał teraz po 4 trafieniach</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigames" xml:space="preserve">
+    <value>Odblokuj wszystko</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
+    <value>Kod programisty. Wszystko w trybie punktowym i sekcji bonusowej jest odblokowywane niezależnie od postępów w grze.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Wyświetl stronę z kodami</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
+    <value>Wyświetla różne informacje debugowania </value>
+  </data>
+  <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
+    <value>Tryb tańca: obrót</value>
   </data>
 </root>

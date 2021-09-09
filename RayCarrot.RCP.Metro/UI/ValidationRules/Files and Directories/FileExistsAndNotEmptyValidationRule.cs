@@ -19,8 +19,8 @@ namespace RayCarrot.RCP.Metro
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string input = (value ?? String.Empty).ToString();
-            // TODO: Localize
-            return !String.IsNullOrEmpty(input) && File.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, "The file does not exist");
+            
+            return !String.IsNullOrEmpty(input) && File.Exists(input) ? ValidationResult.ValidResult : new ValidationResult(false, Resources.BrowseBox_ValidationError_FileExists);
         }
     }
 }

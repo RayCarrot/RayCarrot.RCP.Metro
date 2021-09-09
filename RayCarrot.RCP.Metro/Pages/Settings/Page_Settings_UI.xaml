@@ -59,8 +59,7 @@
 
             <Separator />
 
-            <!-- TODO-UPDATE: Localize -->
-            <local:MenuItemIcon Header="Reset"
+            <local:MenuItemIcon Header="{Resx Settings_ResetAppData}"
                                 IconKind="Restore"
                                 Command="{Binding Path=ResetCommand, Mode=OneTime}"/>
 
@@ -282,9 +281,8 @@
                                       ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
                                       IsChecked="{Binding Path=UI_ShowProgressOnTaskBar}" />
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Show dialogs within windows"
-                                      ToolTip="Disabling this will show dialogs as separate blocking windows, while enabling it will show them inside of the window they originated from"
+                            <CheckBox Content="{Resx Settings_UseChildWindows}"
+                                      ToolTip="{Resx Settings_UseChildWindowsInfo}"
                                       IsChecked="{Binding Path=UI_UseChildWindows}" />
 
                         </StackPanel>
@@ -555,8 +553,7 @@
                                 <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                             </i:Interaction.Behaviors>
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Disable game validation"
+                            <CheckBox Content="{Resx Settings_DisableGameValidation}"
                                       IsChecked="{Binding Path=App_DisableGameValidation}" />
 
                             <CheckBox Content="{Resx Settings_ForceUpdates}"

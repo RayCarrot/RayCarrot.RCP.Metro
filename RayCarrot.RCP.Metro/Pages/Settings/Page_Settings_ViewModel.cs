@@ -318,8 +318,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task ResetAsync()
         {
-            // TODO-UPDATE: Localize
-            if (!await Services.MessageUI.DisplayMessageAsync("Are you sure you want to reset the app settings? This can not be undone.", "Confirm reset", MessageType.Question, true))
+            if (!await Services.MessageUI.DisplayMessageAsync(Resources.ConfirmResetData, Resources.ConfirmResetDataHeader, MessageType.Question, true))
             {
                 return;
             }

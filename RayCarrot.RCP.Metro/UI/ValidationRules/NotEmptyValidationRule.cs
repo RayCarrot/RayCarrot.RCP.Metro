@@ -17,8 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The validation result</returns>
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            // TODO: Localize
-            return String.IsNullOrWhiteSpace(value?.ToString()) ? new ValidationResult(false, "Field is required") : ValidationResult.ValidResult;
+            return String.IsNullOrWhiteSpace(value?.ToString()) ? new ValidationResult(false, Resources.BrowseBox_ValidationError_Empty) : ValidationResult.ValidResult;
         }
     }
 }

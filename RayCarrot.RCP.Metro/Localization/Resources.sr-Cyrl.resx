@@ -261,18 +261,6 @@
   <data name="Config_Resolution" xml:space="preserve">
     <value>Резолуција</value>
   </data>
-  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
-    <value>Хоризонтална резолуција екрана</value>
-  </data>
-  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
-    <value>Вертикална резолуција екрана</value>
-  </data>
-  <data name="Config_LockRes" xml:space="preserve">
-    <value>Закључај на резолуцију екрана</value>
-  </data>
-  <data name="Config_LockResInfo" xml:space="preserve">
-    <value>Закључава хоризонталне и вертикалне вредности према онима тренутне резолуције екрана</value>
-  </data>
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Цео екран</value>
   </data>
