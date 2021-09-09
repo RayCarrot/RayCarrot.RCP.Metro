@@ -31,6 +31,7 @@ Other changes:
 	• Fixed the version history window not being centered when opened from the about page
 	• Fixed certain browse boxes not allowing backslashes to be typed
 	• Fixed the file filter not working when specifying the output file when creating an archive
+	• Fixed the games page tab headers not updating when changing language
 
 
 -----   Version 11.3.0 - August 25, 2021   -----

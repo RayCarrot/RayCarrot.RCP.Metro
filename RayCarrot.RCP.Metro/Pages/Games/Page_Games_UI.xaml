@@ -57,7 +57,7 @@
                     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
                         <Setter Property="Visibility"
                                 Value="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}" />
-                        <Setter Property="Header" Value="{Binding Path=DisplayName.Value, Mode=OneTime}" />
+                        <Setter Property="Header" Value="{Binding Path=DisplayName.Value}" />
                         <Setter Property="local:TabItemAssist.IconKind"
                                 Value="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
                         <Setter Property="local:TabItemAssist.IconForeground"
