@@ -250,12 +250,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The binary serializer logger</returns>
         public IBinarySerializerLogger GetBinarySerializerLogger(string name = null, long? addr = null)
         {
-            if (Services.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
-                !Services.Data.BinarySerializationFileLogPath.Parent.DirectoryExists)
+            if (Services.Data.Binary_BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
+                !Services.Data.Binary_BinarySerializationFileLogPath.Parent.DirectoryExists)
                 return null;
 
             // Get the log file path
-            var logPath = Services.Data.BinarySerializationFileLogPath;
+            var logPath = Services.Data.Binary_BinarySerializationFileLogPath;
 
             // Only re-create the file if this is the first time we create a logger
             Stream logStream = !HasCreatedSerializerLogger ? File.Create(logPath) : File.OpenWrite(logPath);
@@ -334,7 +334,7 @@ namespace RayCarrot.RCP.Metro
             var manager = game.GetManager(type);
 
             // Add the game
-            Data.Games.Add(game, new UserData_GameData(type, installDirectory));
+            Data.Game_Games.Add(game, new UserData_GameData(type, installDirectory));
 
             Logger.Info("The game {0} has been added", game);
 
@@ -342,7 +342,7 @@ namespace RayCarrot.RCP.Metro
             await manager.PostGameAddAsync();
 
             // Add the game to the jump list
-            Data.JumpListItemIDCollection.AddRange(manager.GetJumpListItems().Select(x => x.ID));
+            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems().Select(x => x.ID));
         }
 
         /// <summary>
@@ -370,14 +370,14 @@ namespace RayCarrot.RCP.Metro
 
                 // Remove the game from the jump list
                 foreach (var item in manager.GetJumpListItems())
-                    Data.JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
+                    Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
 
                 // Remove game from installed games
-                if (Data.InstalledGames.Contains(game))
-                    Data.InstalledGames.Remove(game);
+                if (Data.Game_InstalledGames.Contains(game))
+                    Data.Game_InstalledGames.Remove(game);
 
                 // Remove the game
-                Data.Games.Remove(game);
+                Data.Game_Games.Remove(game);
 
                 // Run post game removal
                 await manager.PostGameRemovedAsync();
@@ -449,7 +449,7 @@ namespace RayCarrot.RCP.Metro
                 var finderItems = new List<GameFinder_GenericItem>(1);
 
                 // Create DOSBox finder item if it doesn't exist
-                if (!File.Exists(Data.DosBoxPath))
+                if (!File.Exists(Data.Emu_DOSBox_Path))
                 {
                     var names = new string[]
                     {
@@ -459,7 +459,7 @@ namespace RayCarrot.RCP.Metro
 
                     void foundAction(FileSystemPath installDir, object parameter)
                     {
-                        if (File.Exists(Data.DosBoxPath))
+                        if (File.Exists(Data.Emu_DOSBox_Path))
                         {
                             Logger.Warn("The DosBox executable was not added from the game finder due to already having been added");
                             return;
@@ -467,7 +467,7 @@ namespace RayCarrot.RCP.Metro
 
                         Logger.Info("The DosBox executable was found from the game finder");
 
-                        Data.DosBoxPath = installDir + "DOSBox.exe";
+                        Data.Emu_DOSBox_Path = installDir + "DOSBox.exe";
                     }
 
                     finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : null, foundAction, "DOSBox"));
@@ -542,7 +542,7 @@ namespace RayCarrot.RCP.Metro
                     return false;
                 }
 
-                if (Data.HandleDownloadsManually)
+                if (Data.App_HandleDownloadsManually)
                 {
                     var result = await Services.UI.DisplayMessageAsync(Resources.Download_ManualInstructions, Resources.Download_ManualHeader, MessageType.Information, true, new DialogMessageActionViewModel[]
                         {
@@ -796,7 +796,7 @@ namespace RayCarrot.RCP.Metro
                 CheckingForUpdates = true;
 
                 // Check for updates
-                var result = await Services.UpdaterManager.CheckAsync(Services.Data.ForceUpdate && isManualSearch, Services.Data.GetBetaUpdates || IsBeta);
+                var result = await Services.UpdaterManager.CheckAsync(Services.Data.Update_ForceUpdate && isManualSearch, Services.Data.Update_GetBetaUpdates || IsBeta);
 
                 // Check if there is an error
                 if (result.ErrorMessage != null)
@@ -804,7 +804,7 @@ namespace RayCarrot.RCP.Metro
                     await Services.MessageUI.DisplayExceptionMessageAsync(result.Exception,
                         String.Format(Resources.Update_CheckFailed, result.ErrorMessage, AppURLs.RCPBaseUrl), Resources.Update_ErrorHeader);
 
-                    Services.Data.IsUpdateAvailable = false;
+                    Services.Data.Update_IsUpdateAvailable = false;
 
                     return;
                 }
@@ -815,13 +815,13 @@ namespace RayCarrot.RCP.Metro
                     if (isManualSearch)
                         await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
-                    Services.Data.IsUpdateAvailable = false;
+                    Services.Data.Update_IsUpdateAvailable = false;
 
                     return;
                 }
 
                 // Indicate that a new update is available
-                Services.Data.IsUpdateAvailable = true;
+                Services.Data.Update_IsUpdateAvailable = true;
 
                 // Run as new task to mark this operation as finished
                 _ = Task.Run(async () =>

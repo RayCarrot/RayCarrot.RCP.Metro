@@ -184,9 +184,9 @@ namespace RayCarrot.RCP.Metro
                 // Arg 1: Program path
                 $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
                 // Arg 2: Dark mode
-                $"{Services.Data.DarkMode} " +
+                $"{Services.Data.Theme_DarkMode} " +
                 // Arg 3: User level
-                $"{Services.Data.UserLevel} " +
+                $"{Services.Data.App_UserLevel} " +
                 // Arg 4: Update URL
                 $"\"{result.DownloadURL}\" " +
                 // Arg 5: Current culture

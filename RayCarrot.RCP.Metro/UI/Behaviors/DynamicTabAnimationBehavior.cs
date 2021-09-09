@@ -22,7 +22,7 @@ namespace RayCarrot.RCP.Metro
             if (AssociatedObject.SelectedIndex == -1) 
                 return;
 
-            if (Services.Data.EnableAnimations)
+            if (Services.Data.UI_EnableAnimations)
                 TabControlHelper.SetTransition(AssociatedObject,
                     prevSelectedIndex > AssociatedObject.SelectedIndex ? TransitionType.Right : TransitionType.Left);
             else

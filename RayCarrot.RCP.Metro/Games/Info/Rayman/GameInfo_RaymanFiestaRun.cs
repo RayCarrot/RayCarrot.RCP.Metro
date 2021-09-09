@@ -30,12 +30,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game backup name
         /// </summary>
-        public override string BackupName => $"Rayman Fiesta Run ({Services.Data.FiestaRunVersion})";
+        public override string BackupName => $"Rayman Fiesta Run ({Services.Data.Game_FiestaRunVersion})";
 
         /// <summary>
         /// Gets the default file name for launching the game, if available
         /// </summary>
-        public override string DefaultFileName => GetFiestaRunFileName(Services.Data.FiestaRunVersion);
+        public override string DefaultFileName => GetFiestaRunFileName(Services.Data.Game_FiestaRunVersion);
 
         /// <summary>
         /// The options UI, if any is available

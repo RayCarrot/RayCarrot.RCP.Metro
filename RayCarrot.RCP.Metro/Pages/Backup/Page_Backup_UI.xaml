@@ -19,7 +19,7 @@
 
             <MenuItem Header="{Resx Backup_Compress}"
                       ToolTip="{Resx Backup_CompressInfo}"
-                      IsChecked="{Binding Path=Data.CompressBackups}"
+                      IsChecked="{Binding Path=Data.Backup_CompressBackups}"
                       IsCheckable="True" />
 
             <Separator />
@@ -49,7 +49,7 @@
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Settings_BackupLocation}" />
 
-            <local:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation}"
+            <local:BrowseBox SelectedPath="{Binding Path=Data.Backup_BackupLocation}"
                             UseCurrentPathAsDefaultLocationIfValid="True"
                             BrowseType="Directory"
                             PathValidation="DirectoryExistsAndNotEmpty"

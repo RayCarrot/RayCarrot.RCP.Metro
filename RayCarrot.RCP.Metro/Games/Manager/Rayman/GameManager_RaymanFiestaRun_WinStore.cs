@@ -28,17 +28,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the package name for the game
         /// </summary>
-        public override string PackageName => GetFiestaRunPackageName(Services.Data.FiestaRunVersion);
+        public override string PackageName => GetFiestaRunPackageName(Services.Data.Game_FiestaRunVersion);
 
         /// <summary>
         /// Gets the full package name for the game
         /// </summary>
-        public override string FullPackageName => GetFiestaRunFullPackageName(Services.Data.FiestaRunVersion);
+        public override string FullPackageName => GetFiestaRunFullPackageName(Services.Data.Game_FiestaRunVersion);
 
         /// <summary>
         /// Gets store ID for the game
         /// </summary>
-        public override string StoreID => GetStoreID(Services.Data.FiestaRunVersion);
+        public override string StoreID => GetStoreID(Services.Data.Game_FiestaRunVersion);
 
         /// <summary>
         /// Gets the purchase links for the game
@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
 
             // Return an empty path if not found
             return null;
-        }, (x, y) => Services.Data.FiestaRunVersion = y.CastTo<UserData_FiestaRunEdition>());
+        }, (x, y) => Services.Data.Game_FiestaRunVersion = y.CastTo<UserData_FiestaRunEdition>());
 
         #endregion
 
@@ -118,7 +118,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Set the version
-                    Services.Data.FiestaRunVersion = version;
+                    Services.Data.Game_FiestaRunVersion = version;
 
                     // Return the directory
                     return installDir;
@@ -151,7 +151,7 @@ namespace RayCarrot.RCP.Metro
             if (!SupportsWinStoreApps)
                 return Task.FromResult(false);
 
-            if (!((installDir + Game.GetGameInfo<GameInfo_RaymanFiestaRun>().GetFiestaRunFileName(parameter as UserData_FiestaRunEdition? ?? Services.Data.FiestaRunVersion)).FileExists))
+            if (!((installDir + Game.GetGameInfo<GameInfo_RaymanFiestaRun>().GetFiestaRunFileName(parameter as UserData_FiestaRunEdition? ?? Services.Data.Game_FiestaRunVersion)).FileExists))
                 return Task.FromResult(false);
 
             return Task.FromResult(true);
@@ -227,7 +227,7 @@ namespace RayCarrot.RCP.Metro
                 UserData_FiestaRunEdition.Default => "Ubisoft.RaymanFiestaRun",
                 UserData_FiestaRunEdition.Preload => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition",
                 UserData_FiestaRunEdition.Win10 => "Ubisoft.RaymanFiestaRunWindows10Edition",
-                _ => throw new ArgumentOutOfRangeException(nameof(Services.Data.FiestaRunVersion), Services.Data.FiestaRunVersion, null)
+                _ => throw new ArgumentOutOfRangeException(nameof(Services.Data.Game_FiestaRunVersion), Services.Data.Game_FiestaRunVersion, null)
             };
         }
 
@@ -243,7 +243,7 @@ namespace RayCarrot.RCP.Metro
                 UserData_FiestaRunEdition.Default => "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw",
                 UserData_FiestaRunEdition.Preload => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition_dbgk1hhpxymar",
                 UserData_FiestaRunEdition.Win10 => "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw",
-                _ => throw new ArgumentOutOfRangeException(nameof(Services.Data.FiestaRunVersion), Services.Data.FiestaRunVersion, null)
+                _ => throw new ArgumentOutOfRangeException(nameof(Services.Data.Game_FiestaRunVersion), Services.Data.Game_FiestaRunVersion, null)
             };
         }
 

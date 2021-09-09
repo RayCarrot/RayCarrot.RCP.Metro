@@ -24,14 +24,14 @@ namespace RayCarrot.RCP.Metro
 
             // Check if TPLS is installed under the default location
             if (!AppFilePaths.R1TPLSDir.DirectoryExists)
-                Data.TPLSData = null;
-            else if (Data.TPLSData == null)
-                Data.TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
+                Data.Utility_TPLSData = null;
+            else if (Data.Utility_TPLSData == null)
+                Data.Utility_TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
 
-            if (Data.TPLSData != null)
+            if (Data.Utility_TPLSData != null)
             {
-                _selectedRaymanVersion = Data.TPLSData.RaymanVersion;
-                _isEnabled = Data.TPLSData.IsEnabled;
+                _selectedRaymanVersion = Data.Utility_TPLSData.RaymanVersion;
+                _isEnabled = Data.Utility_TPLSData.IsEnabled;
             }
 
             VerifyTPLS();
@@ -78,10 +78,10 @@ namespace RayCarrot.RCP.Metro
             {
                 _selectedRaymanVersion = value;
 
-                if (Data.TPLSData != null)
+                if (Data.Utility_TPLSData != null)
                 {
-                    Data.TPLSData.RaymanVersion = value;
-                    _ = Task.Run(Data.TPLSData.UpdateConfigAsync);
+                    Data.Utility_TPLSData.RaymanVersion = value;
+                    _ = Task.Run(Data.Utility_TPLSData.UpdateConfigAsync);
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _isEnabled = value;
-                Data.TPLSData.IsEnabled = value;
+                Data.Utility_TPLSData.IsEnabled = value;
 
                 _ = Task.Run(async () => await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, RefreshFlags.GameInfo)));
             }
@@ -110,11 +110,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void VerifyTPLS()
         {
-            if (Data.TPLSData == null)
+            if (Data.Utility_TPLSData == null)
                 return;
 
             // Check if TPLS can be enabled (i.e. if the pre-9 version is still installed)
-            CanEnableTPLS = Data.TPLSData.DOSBoxFilePath.FileExists;
+            CanEnableTPLS = Data.Utility_TPLSData.DOSBoxFilePath.FileExists;
         }
 
         /// <summary>
@@ -143,10 +143,10 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Save
-                Services.Data.TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
+                Services.Data.Utility_TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
 
                 // Update the version
-                await Data.TPLSData.UpdateConfigAsync();
+                await Data.Utility_TPLSData.UpdateConfigAsync();
 
                 Logger.Info("The TPLS utility has been downloaded");
             }
@@ -172,11 +172,11 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                Services.File.DeleteDirectory(Services.Data.TPLSData.InstallDir);
+                Services.File.DeleteDirectory(Services.Data.Utility_TPLSData.InstallDir);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
-                Services.Data.TPLSData = null;
+                Services.Data.Utility_TPLSData = null;
 
                 Logger.Info("The TPLS utility has been uninstalled");
             }

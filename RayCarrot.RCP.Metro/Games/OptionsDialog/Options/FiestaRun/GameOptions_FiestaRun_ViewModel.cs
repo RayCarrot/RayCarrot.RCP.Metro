@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Metro
             Win10InstallDir = manager.GetPackageInstallDirectory(manager.GetFiestaRunPackageName(UserData_FiestaRunEdition.Win10));
 
             // Get the current version
-            _selectedFiestaRunVersion = Data.FiestaRunVersion;
+            _selectedFiestaRunVersion = Data.Game_FiestaRunVersion;
         }
 
         #endregion
@@ -118,7 +118,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Update the version
-                    Data.FiestaRunVersion = SelectedFiestaRunVersion;
+                    Data.Game_FiestaRunVersion = SelectedFiestaRunVersion;
 
                     // Get the new game data
                     UserData_GameData gameData = new UserData_GameData(GameType.WinStore, SelectedFiestaRunVersion switch
@@ -131,7 +131,7 @@ namespace RayCarrot.RCP.Metro
                     });
 
                     // Update the game data
-                    Services.Data.Games[Games.RaymanFiestaRun] = gameData;
+                    Services.Data.Game_Games[Games.RaymanFiestaRun] = gameData;
 
                     await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, RefreshFlags.GameInfo));
                 }

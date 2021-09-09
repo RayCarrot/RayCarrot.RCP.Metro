@@ -20,12 +20,12 @@
 
             <MenuItem Header="{Resx CategorizeGames}"
                       IsCheckable="True"
-                      IsChecked="{Binding Path=Data.CategorizeGames}" />
+                      IsChecked="{Binding Path=Data.UI_CategorizeGames}" />
 
             <MenuItem Header="{Resx Settings_DesignShowAllGames}"
                       ToolTip="{Resx Settings_DesignShowAllGamesInfo}"
                       IsCheckable="True"
-                      IsChecked="{Binding Path=Data.ShowNotInstalledGames}" />
+                      IsChecked="{Binding Path=Data.Game_ShowNotInstalledGames}" />
 
             <Separator />
 
@@ -86,7 +86,7 @@
                                                 <ItemsPanelTemplate>
                                                     <WrapPanel>
                                                         <i:Interaction.Behaviors>
-                                                            <i:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}" 
+                                                            <i:FluidMoveBehavior Duration="{Binding Path=Data.UI_EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}" 
                                                                                  AppliesTo="Children" />
                                                         </i:Interaction.Behaviors>
                                                     </WrapPanel>
@@ -105,7 +105,7 @@
                                     <TextBlock Text="{Resx Games_Installed}"
                                                Padding="10 0 0 0"
                                                Style="{StaticResource TextBlock.HeaderLarge}"
-                                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
+                                               Visibility="{Binding Path=Data.Game_ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
                                 </Grid>
 
                                 <ItemsControl Style="{StaticResource GamesDisplay}"
@@ -115,12 +115,12 @@
                                     <TextBlock Text="{Resx Games_NotInstalled}"
                                                Padding="10 0 0 0"
                                                Style="{StaticResource TextBlock.HeaderLarge}"
-                                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
+                                               Visibility="{Binding Path=Data.Game_ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
                                 </Grid>
 
                                 <ItemsControl Style="{StaticResource GamesDisplay}"
                                               ItemsSource="{Binding Path=NotInstalledGames}"
-                                              Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
+                                              Visibility="{Binding Path=Data.Game_ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
                             </StackPanel>
                         </ScrollViewer>
                     </DataTemplate>

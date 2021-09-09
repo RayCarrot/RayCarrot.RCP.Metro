@@ -169,7 +169,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Rabbids Go Home config is being set up");
 
             // Get the current launch data
-            var launchData = Data.RabbidsGoHomeLaunchData;
+            var launchData = Data.Game_RabbidsGoHomeLaunchData;
 
             if (launchData != null)
             {
@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Rabbids Go Home configuration is saving...");
 
             // Set the launch data
-            Data.RabbidsGoHomeLaunchData = EnableCustomSettings ?
+            Data.Game_RabbidsGoHomeLaunchData = EnableCustomSettings ?
                 new UserData_RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), Resolution.Width, Resolution.Height, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
                 null;
 

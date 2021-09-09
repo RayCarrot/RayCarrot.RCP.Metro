@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch arguments for the game
         /// </summary>
-        public override string GetLaunchArgs => Services.Data.RabbidsGoHomeLaunchData?.ToString();
+        public override string GetLaunchArgs => Services.Data.Game_RabbidsGoHomeLaunchData?.ToString();
 
         /// <summary>
         /// Gets the game finder item for this game
@@ -40,7 +40,7 @@ namespace RayCarrot.RCP.Metro
         public override Task PostGameRemovedAsync()
         {
             // Remove the game specific data
-            Services.Data.RabbidsGoHomeLaunchData = null;
+            Services.Data.Game_RabbidsGoHomeLaunchData = null;
 
             return base.PostGameRemovedAsync();
         }

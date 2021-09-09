@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh the update badge property based on if new update is available
             Data.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == nameof(Data.IsUpdateAvailable))
+                if (e.PropertyName == nameof(Data.Update_IsUpdateAvailable))
                     OnPropertyChanged(nameof(UpdateBadge));
             };
         }
@@ -51,7 +51,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The update badge, indicating if new updates are available
         /// </summary>
-        public string UpdateBadge => Data.IsUpdateAvailable ? "1" : null;
+        public string UpdateBadge => Data.Update_IsUpdateAvailable ? "1" : null;
 
         #endregion
 

@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         public GameOptions_EducationalDos_ViewModel()
         {
             // Get the games
-            GameItems = Data.EducationalDosBoxGames.Select(x => new GameOptions_EducationalDos_GameInfoItemViewModel(this, x, x.Name)).ToObservableCollection();
+            GameItems = Data.Game_EducationalDosBoxGames.Select(x => new GameOptions_EducationalDos_GameInfoItemViewModel(this, x, x.Name)).ToObservableCollection();
 
             // Create the commands
             AddGameCommand = new AsyncRelayCommand(AddGameAsync);
@@ -73,7 +73,7 @@ namespace RayCarrot.RCP.Metro
             var newItem = manager.GetNewEducationalDosBoxGameInfo(path.Value);
 
             // Add the game to the list of educational games
-            Data.EducationalDosBoxGames.Add(newItem);
+            Data.Game_EducationalDosBoxGames.Add(newItem);
 
             // Create the view model
             var vm = new GameOptions_EducationalDos_GameInfoItemViewModel(this, newItem, newItem.Name);
@@ -82,7 +82,7 @@ namespace RayCarrot.RCP.Metro
             GameItems.Add(vm);
 
             // Add to the jump list
-            Data.JumpListItemIDCollection.Add(newItem.ID);
+            Data.App_JumpListItemIDCollection.Add(newItem.ID);
 
             Logger.Info("A new educational game has been added with the name {0}", newItem.Name);
 
@@ -103,10 +103,10 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("The educational game options are saving...");
 
             // Clear the games
-            Data.EducationalDosBoxGames.Clear();
+            Data.Game_EducationalDosBoxGames.Clear();
 
             // Add the games
-            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new UserData_EducationalDosBoxGameData(x.GameData.InstallDir, x.GameData.LaunchName, x.GameData.ID)
+            Data.Game_EducationalDosBoxGames.AddRange(GameItems.Select(x => new UserData_EducationalDosBoxGameData(x.GameData.InstallDir, x.GameData.LaunchName, x.GameData.ID)
             {
                 LaunchMode = x.GameData.LaunchMode,
                 MountPath = x.GameData.MountPath,

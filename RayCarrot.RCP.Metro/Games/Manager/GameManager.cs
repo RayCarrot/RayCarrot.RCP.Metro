@@ -113,7 +113,7 @@ namespace RayCarrot.RCP.Metro
             process?.Dispose();
 
             // Check if the application should close
-            if (Services.Data.CloseAppOnGameLaunch)
+            if (Services.Data.App_CloseAppOnGameLaunch)
                 await App.Current.ShutdownRCFAppAsync(false);
         }
 
@@ -131,7 +131,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is valid, otherwise false</returns>
         public Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
-            if (Services.Data.Debug_DisableGameValidation)
+            if (Services.Data.App_DisableGameValidation)
                 return Task.FromResult(true);
 
             return IsDirectoryValidAsync(installDir, parameter);

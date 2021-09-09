@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         public void RefreshSelection()
         {
             PageSelection.Clear();
-            PageSelection.AddRange(Data.EducationalDosBoxGames.Select(x => $"{x.Name} ({x.LaunchMode})"));
+            PageSelection.AddRange(Data.Game_EducationalDosBoxGames.Select(x => $"{x.Name} ({x.LaunchMode})"));
 
             ResetSelectedPageSelectionIndex();
 
@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
 
         public override FileSystemPath GetConfigPath()
         {
-            var game = Data.EducationalDosBoxGames[SelectedPageSelectionIndex];
+            var game = Data.Game_EducationalDosBoxGames[SelectedPageSelectionIndex];
 
             Logger.Trace("Retrieving EDU config path for '{0} ({1})'", game.Name, game.LaunchMode);
 

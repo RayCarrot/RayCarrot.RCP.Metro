@@ -284,10 +284,10 @@ namespace RayCarrot.RCP.Metro
                     master.IsVisible = false;
 
                     // Set the categories visibility
-                    GameCategories.Where(x => !x.IsMaster).ForEach(x => x.IsVisible = Data.CategorizeGames);
+                    GameCategories.Where(x => !x.IsMaster).ForEach(x => x.IsVisible = Data.UI_CategorizeGames);
 
                     // Set the selected index
-                    SelectedCategoryIndex = Data.CategorizeGames ? GameCategories.FindItemIndex(x => !x.IsMaster) : GameCategories.FindItemIndex(x => x == master);
+                    SelectedCategoryIndex = Data.UI_CategorizeGames ? GameCategories.FindItemIndex(x => !x.IsMaster) : GameCategories.FindItemIndex(x => x == master);
                 }
                 catch (Exception ex)
                 {
@@ -327,7 +327,7 @@ namespace RayCarrot.RCP.Metro
 
         private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != nameof(Data.CategorizeGames))
+            if (e.PropertyName != nameof(Data.UI_CategorizeGames))
                 return;
 
             await RefreshCategorizedVisibilityAsync();

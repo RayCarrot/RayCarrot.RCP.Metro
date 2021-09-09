@@ -103,22 +103,22 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public CultureInfo CurrentCultureInfo
         {
-            get => new CultureInfo(Data.CurrentCulture);
+            get => new CultureInfo(Data.App_CurrentCulture);
             set
             {
                 if (value == null)
                     return;
 
-                Data.CurrentCulture = value.Name;
+                Data.App_CurrentCulture = value.Name;
             }
         }
 
         public bool ShowIncompleteTranslations
         {
-            get => Data.ShowIncompleteTranslations;
+            get => Data.App_ShowIncompleteTranslations;
             set
             {
-                Data.ShowIncompleteTranslations = value;
+                Data.App_ShowIncompleteTranslations = value;
                 RefreshLanguages();
             }
         }
@@ -155,7 +155,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Update the jump list items collection
-            Data.JumpListItemIDCollection = result.IncludedItems.Select(x => x.ID).ToList();
+            Data.App_JumpListItemIDCollection = result.IncludedItems.Select(x => x.ID).ToList();
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.JumpList));
@@ -204,9 +204,9 @@ namespace RayCarrot.RCP.Metro
                     // DOSBox files
                     LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
                     {
-                        new Page_Settings_LinkItemViewModel(new FileSystemPath(Data.DosBoxPath),
+                        new Page_Settings_LinkItemViewModel(new FileSystemPath(Data.Emu_DOSBox_Path),
                             Resources.Links_Local_DOSBox),
-                        new Page_Settings_LinkItemViewModel(new FileSystemPath(Data.DosBoxConfig),
+                        new Page_Settings_LinkItemViewModel(new FileSystemPath(Data.Emu_DOSBox_ConfigPath),
                             Resources.Links_Local_DOSBoxConfig, UserLevel.Technical)
                     });
 
@@ -300,7 +300,7 @@ namespace RayCarrot.RCP.Metro
 
         public void RefreshLanguages()
         {
-            LocalizationManager.RefreshLanguages(Data.ShowIncompleteTranslations);
+            LocalizationManager.RefreshLanguages(Data.App_ShowIncompleteTranslations);
             OnPropertyChanged(nameof(CurrentCultureInfo));
         }
 
@@ -344,7 +344,7 @@ namespace RayCarrot.RCP.Metro
             public new void Add(Page_Settings_LinkItemViewModel[] group)
             {
                 // Get the valid items
-                var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= Services.Data.UserLevel).ToArray();
+                var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= Services.Data.App_UserLevel).ToArray();
 
                 // If there are valid items, add them
                 if (validItems.Any())

@@ -243,7 +243,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Make sure we have write access to the backup location
-                    if (!FileManager.CheckDirectoryWriteAccess(Services.Data.BackupLocation + AppViewModel.BackupFamily))
+                    if (!FileManager.CheckDirectoryWriteAccess(Services.Data.Backup_BackupLocation + AppViewModel.BackupFamily))
                     {
                         Logger.Info("Backup failed - backup location lacks write access");
 
@@ -304,7 +304,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Check if the backup should be compressed
-                    bool compress = Services.Data.CompressBackups;
+                    bool compress = Services.Data.Backup_CompressBackups;
 
                     Logger.Debug(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
 

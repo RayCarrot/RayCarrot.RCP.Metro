@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
 
             ViewModel.DownloadComplete += ViewModelDownloadComplete;
 
-            if (Services.Data.ShowProgressOnTaskBar)
+            if (Services.Data.UI_ShowProgressOnTaskBar)
                 ViewModel.StatusUpdated += ViewModel_StatusUpdated;
         }
 

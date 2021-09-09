@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
             };
 
             // Set transition
-            WindowTransitionsEnabled = Services.Data?.EnableAnimations ?? true;
+            WindowTransitionsEnabled = Services.Data?.UI_EnableAnimations ?? true;
 
             Logger.Info("The window {0} has been created", this);
 

@@ -86,7 +86,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Check if any games have the same launch mode
-            if (Data.EducationalDosBoxGames.Any(x => x != GameData && x.LaunchMode != null && x.LaunchMode.Equals(result.LaunchMode, StringComparison.CurrentCultureIgnoreCase)))
+            if (Data.Game_EducationalDosBoxGames.Any(x => x != GameData && x.LaunchMode != null && x.LaunchMode.Equals(result.LaunchMode, StringComparison.CurrentCultureIgnoreCase)))
                 await Services.MessageUI.DisplayMessageAsync(Resources.LaunchModeConflict, Resources.LaunchModeConflictHeader, MessageType.Warning);
 
             // If the name is blank, add default name
@@ -158,7 +158,7 @@ namespace RayCarrot.RCP.Metro
 
             // Remove the game
             ParentVM.GameItems.Remove(this);
-            Data.EducationalDosBoxGames.Remove(GameData);
+            Data.Game_EducationalDosBoxGames.Remove(GameData);
 
             Logger.Info("The educational game has been removed");
 

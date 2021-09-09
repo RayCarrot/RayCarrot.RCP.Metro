@@ -40,7 +40,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the game can be uninstalled
         /// </summary>
-        public bool CanBeUninstalled => Services.Data.InstalledGames.Contains(Game);
+        public bool CanBeUninstalled => Services.Data.Game_InstalledGames.Contains(Game);
 
         #endregion
 
@@ -487,7 +487,7 @@ namespace RayCarrot.RCP.Metro
                 await Services.App.AddNewGameAsync(Game, DownloadType, gameDir);
 
                 // Add game to installed games
-                Services.Data.InstalledGames.Add(Game);
+                Services.Data.Game_InstalledGames.Add(Game);
 
                 // Refresh
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));

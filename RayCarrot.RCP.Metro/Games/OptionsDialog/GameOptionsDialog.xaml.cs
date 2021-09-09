@@ -104,7 +104,7 @@ namespace RayCarrot.RCP.Metro
 
         private void Page_Saved(object sender, EventArgs e)
         {
-            if (Services.Data.CloseConfigOnSave)
+            if (Services.Data.App_CloseConfigOnSave)
                 Close();
         }
 

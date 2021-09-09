@@ -17,21 +17,21 @@
         <Button Content="{Resx R1U_TPLSInstall}"
                 Command="{Binding Path=InstallTPLSCommand}"
                 HorizontalAlignment="Left"
-                Visibility="{Binding Path=Data.TPLSData, Converter={local:ObjectNullToVisibilityConverter}}" />
+                Visibility="{Binding Path=Data.Utility_TPLSData, Converter={local:ObjectNullToVisibilityConverter}}" />
 
         <Button Content="{Resx R1U_TPLSUninstall}"
                 Command="{Binding Path=UninstallTPLSCommand}"
                 HorizontalAlignment="Left"
-                Visibility="{Binding Path=Data.TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}" />
+                Visibility="{Binding Path=Data.Utility_TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}" />
 
         <mah:ToggleSwitch IsOn="{Binding Path=IsEnabled}"
                           IsEnabled="{Binding Path=CanEnableTPLS}"
-                          Visibility="{Binding Path=Data.TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                          Visibility="{Binding Path=Data.Utility_TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                           HorizontalAlignment="Left"
                           OnContent="{Resx SettingEnabled}"
                           OffContent="{Resx SettingDisabled}" />
 
-        <Grid Visibility="{Binding Path=Data.TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}">
+        <Grid Visibility="{Binding Path=Data.Utility_TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" MinWidth="110" />

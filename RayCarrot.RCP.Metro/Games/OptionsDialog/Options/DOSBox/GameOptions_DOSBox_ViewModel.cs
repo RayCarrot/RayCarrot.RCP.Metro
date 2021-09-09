@@ -41,10 +41,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public FileSystemPath MountPath
         {
-            get => Data.DosBoxGames[Game].MountPath;
+            get => Data.Game_DosBoxGames[Game].MountPath;
             set
             {
-                Data.DosBoxGames[Game].MountPath = value;
+                Data.Game_DosBoxGames[Game].MountPath = value;
                 _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameInfo));
             }
         }

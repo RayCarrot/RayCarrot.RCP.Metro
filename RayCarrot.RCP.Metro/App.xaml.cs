@@ -100,7 +100,7 @@ namespace RayCarrot.RCP.Metro
                     // Always reset the data first so any missing properties use the correct defaults
                     Services.Data.Reset();
 
-                    Services.Data.LastVersion = null; // Need to set to null before calling JsonConvert.PopulateObject or else it's ignored
+                    Services.Data.App_LastVersion = null; // Need to set to null before calling JsonConvert.PopulateObject or else it's ignored
 
                     // Populate the data from the file
                     JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), Services.Data);
@@ -134,12 +134,12 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("Setup: Setting theme");
 
             // Set the theme
-            this.SetTheme(Data.DarkMode, Data.SyncTheme);
+            this.SetTheme(Data.Theme_DarkMode, Data.Theme_SyncTheme);
 
             LogStartupTime("Setup: Setting culture");
 
             // Apply the current culture if defaulted
-            if (Data.CurrentCulture == LocalizationManager.DefaultCulture.Name)
+            if (Data.App_CurrentCulture == LocalizationManager.DefaultCulture.Name)
                 LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
 
             LogStartupTime("Setup: Setup WPF trace listener");
@@ -157,7 +157,7 @@ namespace RayCarrot.RCP.Metro
             Logger.Info("Current version is {0}", Services.App.CurrentAppVersion);
 
             // Check if it's a new version
-            if (Data.LastVersion < Services.App.CurrentAppVersion)
+            if (Data.App_LastVersion < Services.App.CurrentAppVersion)
             {
                 // Run post-update code
                 await PostUpdateAsync();
@@ -165,16 +165,16 @@ namespace RayCarrot.RCP.Metro
                 LogStartupTime("Setup: Post update has run");
 
                 // Update the last version
-                Data.LastVersion = Services.App.CurrentAppVersion;
+                Data.App_LastVersion = Services.App.CurrentAppVersion;
             }
             // Check if it's a lower version than previously recorded
-            else if (Data.LastVersion > Services.App.CurrentAppVersion)
+            else if (Data.App_LastVersion > Services.App.CurrentAppVersion)
             {
-                Logger.Warn("A newer version ({0}) has been recorded in the application data", Data.LastVersion);
+                Logger.Warn("A newer version ({0}) has been recorded in the application data", Data.App_LastVersion);
 
-                if (!Data.DisableDowngradeWarning)
+                if (!Data.Update_DisableDowngradeWarning)
                     await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, Services.App.CurrentAppVersion,
-                        Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
+                        Data.App_LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
             }
         }
 
@@ -188,7 +188,7 @@ namespace RayCarrot.RCP.Metro
             var window = new MainWindow();
 
             // Load previous state
-            Services.Data?.WindowState?.ApplyToWindow(window);
+            Services.Data?.UI_WindowState?.ApplyToWindow(window);
 
             return window;
         }
@@ -205,7 +205,7 @@ namespace RayCarrot.RCP.Metro
                 return;
             
             // Save window state
-            Services.Data.WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
+            Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
 
             Logger.Info("The application is exiting...");
 
@@ -304,8 +304,8 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("BasicStartup: Start basic startup");
 
             // Track changes to the user data
-            PreviousLinkItemStyle = Data.LinkItemStyle;
-            PreviousBackupLocation = Data.BackupLocation;
+            PreviousLinkItemStyle = Data.UI_LinkItemStyle;
+            PreviousBackupLocation = Data.Backup_BackupLocation;
 
             // Subscribe to when to refresh the jump list
             Services.App.RefreshRequired += (_, e) =>
@@ -329,7 +329,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     string ul = Services.InstanceData.Arguments[Services.InstanceData.Arguments.FindItemIndex(x => x == "-ul") + 1];
-                    Data.UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
+                    Data.App_UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
                 }
                 catch (Exception ex)
                 {
@@ -359,9 +359,9 @@ namespace RayCarrot.RCP.Metro
             // Update the application path
             FileSystemPath appPath = Assembly.GetEntryAssembly()?.Location;
 
-            if (appPath != Data.ApplicationPath)
+            if (appPath != Data.App_ApplicationPath)
             {
-                Data.ApplicationPath = appPath;
+                Data.App_ApplicationPath = appPath;
 
                 Logger.Info("The application path has been updated");
             }
@@ -374,13 +374,13 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("BasicStartup: Check for first launch");
 
             // Show first launch info
-            if (Data.IsFirstLaunch)
+            if (Data.App_IsFirstLaunch)
             {
                 // Close the splash screen
                 CloseSplashScreen();
 
                 new FirstLaunchInfoDialog().ShowDialog();
-                Data.IsFirstLaunch = false;
+                Data.App_IsFirstLaunch = false;
             }
 
             LogStartupTime("BasicStartup: Validating games");
@@ -396,33 +396,33 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private async Task PostUpdateAsync()
         {
-            if (Data.LastVersion < new Version(4, 0, 0, 6))
-                Data.EnableAnimations = true;
+            if (Data.App_LastVersion < new Version(4, 0, 0, 6))
+                Data.UI_EnableAnimations = true;
 
-            if (Data.LastVersion < new Version(4, 1, 1, 0))
-                Data.ShowIncompleteTranslations = false;
+            if (Data.App_LastVersion < new Version(4, 1, 1, 0))
+                Data.App_ShowIncompleteTranslations = false;
 
-            if (Data.LastVersion < new Version(4, 5, 0, 0))
+            if (Data.App_LastVersion < new Version(4, 5, 0, 0))
             {
-                Data.LinkItemStyle = UserData_LinkItemStyle.List;
-                Data.ApplicationPath = Assembly.GetEntryAssembly()?.Location;
-                Data.ForceUpdate = false;
-                Data.GetBetaUpdates = false;
+                Data.UI_LinkItemStyle = UserData_LinkItemStyle.List;
+                Data.App_ApplicationPath = Assembly.GetEntryAssembly()?.Location;
+                Data.Update_ForceUpdate = false;
+                Data.Update_GetBetaUpdates = false;
             }
 
-            if (Data.LastVersion < new Version(4, 6, 0, 0))
-                Data.LinkListHorizontalAlignment = HorizontalAlignment.Left;
+            if (Data.App_LastVersion < new Version(4, 6, 0, 0))
+                Data.UI_LinkListHorizontalAlignment = HorizontalAlignment.Left;
 
-            if (Data.LastVersion < new Version(5, 0, 0, 0))
+            if (Data.App_LastVersion < new Version(5, 0, 0, 0))
             {
-                Data.CompressBackups = true;
-                Data.FiestaRunVersion = UserData_FiestaRunEdition.Default;
+                Data.Backup_CompressBackups = true;
+                Data.Game_FiestaRunVersion = UserData_FiestaRunEdition.Default;
 
                 // Due to the fiesta run version system being changed the game has to be removed and then re-added
-                Data.Games.Remove(Games.RaymanFiestaRun);
+                Data.Game_Games.Remove(Games.RaymanFiestaRun);
 
                 // If a Fiesta Run backup exists the name needs to change to the new standard
-                var fiestaBackupDir = Data.BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
+                var fiestaBackupDir = Data.Backup_BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
 
                 if (fiestaBackupDir.DirectoryExists)
                 {
@@ -436,9 +436,9 @@ namespace RayCarrot.RCP.Metro
                         var isWin10 = appData["IsFiestaRunWin10Edition"].Value<bool>();
 
                         // Set the current edition
-                        Data.FiestaRunVersion = isWin10 ? UserData_FiestaRunEdition.Win10 : UserData_FiestaRunEdition.Default;
+                        Data.Game_FiestaRunVersion = isWin10 ? UserData_FiestaRunEdition.Win10 : UserData_FiestaRunEdition.Default;
 
-                        Services.File.MoveDirectory(fiestaBackupDir, Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
+                        Services.File.MoveDirectory(fiestaBackupDir, Data.Backup_BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
                     }
                     catch (Exception ex)
                     {
@@ -458,44 +458,44 @@ namespace RayCarrot.RCP.Metro
                     Logger.Error(ex, "Cleaning pre-5.0.0 temp");
                 }
 
-                Data.DisableDowngradeWarning = false;
+                Data.Update_DisableDowngradeWarning = false;
             }
 
-            if (Data.LastVersion < new Version(6, 0, 0, 0))
+            if (Data.App_LastVersion < new Version(6, 0, 0, 0))
             {
-                Data.EducationalDosBoxGames = null;
-                Data.RRR2LaunchMode = UserData_RRR2LaunchMode.AllGames;
-                Data.RabbidsGoHomeLaunchData = null;
+                Data.Game_EducationalDosBoxGames = null;
+                Data.Game_RRR2LaunchMode = UserData_RRR2LaunchMode.AllGames;
+                Data.Game_RabbidsGoHomeLaunchData = null;
             }
 
-            if (Data.LastVersion < new Version(6, 0, 0, 2))
+            if (Data.App_LastVersion < new Version(6, 0, 0, 2))
             {
                 // By default, add all games to the jump list collection
-                Data.JumpListItemIDCollection = Services.App.GetGames.
+                Data.App_JumpListItemIDCollection = Services.App.GetGames.
                     Where(x => x.IsAdded()).
                     Select(x => x.GetManager().GetJumpListItems().Select(y => y.ID)).
                     SelectMany(x => x).
                     ToList();
             }
 
-            if (Data.LastVersion < new Version(7, 0, 0, 0))
+            if (Data.App_LastVersion < new Version(7, 0, 0, 0))
             {
-                Data.IsUpdateAvailable = false;
+                Data.Update_IsUpdateAvailable = false;
 
-                if (Data.UserLevel == UserLevel.Normal)
-                    Data.UserLevel = UserLevel.Advanced;
+                if (Data.App_UserLevel == UserLevel.Normal)
+                    Data.App_UserLevel = UserLevel.Advanced;
             }
 
-            if (Data.LastVersion < new Version(7, 1, 0, 0))
-                Data.InstalledGames = new HashSet<Games>();
+            if (Data.App_LastVersion < new Version(7, 1, 0, 0))
+                Data.Game_InstalledGames = new HashSet<Games>();
 
-            if (Data.LastVersion < new Version(7, 1, 1, 0))
-                Data.CategorizeGames = true;
+            if (Data.App_LastVersion < new Version(7, 1, 1, 0))
+                Data.UI_CategorizeGames = true;
 
-            if (Data.LastVersion < new Version(7, 2, 0, 0))
-                Data.ShownRabbidsActivityCenterLaunchMessage = false;
+            if (Data.App_LastVersion < new Version(7, 2, 0, 0))
+                Data.Game_ShownRabbidsActivityCenterLaunchMessage = false;
 
-            if (Data.LastVersion < new Version(9, 0, 0, 0))
+            if (Data.App_LastVersion < new Version(9, 0, 0, 0))
             {
                 const string regUninstallKeyName = "RCP_Metro";
 
@@ -531,46 +531,46 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
 
-                if (Data.TPLSData != null)
+                if (Data.Utility_TPLSData != null)
                 {
-                    Data.TPLSData.IsEnabled = false;
+                    Data.Utility_TPLSData.IsEnabled = false;
                     await Services.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_TPLSUpdatePrompt);
                 }
             }
 
-            if (Data.LastVersion < new Version(9, 4, 0, 0))
+            if (Data.App_LastVersion < new Version(9, 4, 0, 0))
             {
                 Data.Archive_GF_GenerateMipmaps = true;
                 Data.Archive_GF_UpdateTransparency = UserData_Archive_GF_TransparencyMode.PreserveFormat;
             }
 
-            if (Data.LastVersion < new Version(9, 5, 0, 0))
-                Data.BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
+            if (Data.App_LastVersion < new Version(9, 5, 0, 0))
+                Data.Binary_BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
 
-            if (Data.LastVersion < new Version(10, 0, 0, 0))
+            if (Data.App_LastVersion < new Version(10, 0, 0, 0))
             {
-                Data.SyncTheme = false;
-                Data.HandleDownloadsManually = false;
+                Data.Theme_SyncTheme = false;
+                Data.App_HandleDownloadsManually = false;
             }
 
-            if (Data.LastVersion < new Version(10, 2, 0, 0))
+            if (Data.App_LastVersion < new Version(10, 2, 0, 0))
                 Data.Archive_GF_ForceGF8888Import = false;
 
-            if (Data.LastVersion < new Version(11, 0, 0, 0))
-                Data.ArchiveExplorerSortOption = UserData_Archive_Sort.Default;
+            if (Data.App_LastVersion < new Version(11, 0, 0, 0))
+                Data.Archive_ExplorerSortOption = UserData_Archive_Sort.Default;
 
-            if (Data.LastVersion < new Version(11, 1, 0, 0))
+            if (Data.App_LastVersion < new Version(11, 1, 0, 0))
             {
                 Data.Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
                 Data.Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
             }
 
-            if (Data.LastVersion < new Version(11, 3, 0, 0))
+            if (Data.App_LastVersion < new Version(11, 3, 0, 0))
                 Data.Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
 
-            if (Data.LastVersion < new Version(12, 0, 0, 0))
+            if (Data.App_LastVersion < new Version(12, 0, 0, 0))
             {
-                Data.Debug_DisableGameValidation = false;
+                Data.App_DisableGameValidation = false;
                 Data.UI_UseChildWindows = true;
             }
 
@@ -711,7 +711,7 @@ namespace RayCarrot.RCP.Metro
         private static async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
         {
             // Check for installed games
-            if (Services.Data.AutoLocateGames)
+            if (Services.Data.Game_AutoLocateGames)
                 await Services.App.RunGameFinderAsync();
         }
 
@@ -762,7 +762,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Check for updates
-            if (Services.Data.AutoUpdate)
+            if (Services.Data.Update_AutoUpdate)
                 await Services.App.CheckForUpdatesAsync(false);
         }
 
@@ -799,12 +799,12 @@ namespace RayCarrot.RCP.Metro
             {
                 switch (e.PropertyName)
                 {
-                    case nameof(AppUserData.DarkMode):
-                    case nameof(AppUserData.SyncTheme):
-                        this.SetTheme(Data.DarkMode, Data.SyncTheme);
+                    case nameof(AppUserData.Theme_DarkMode):
+                    case nameof(AppUserData.Theme_SyncTheme):
+                        this.SetTheme(Data.Theme_DarkMode, Data.Theme_SyncTheme);
                         break;
 
-                    case nameof(AppUserData.BackupLocation):
+                    case nameof(AppUserData.Backup_BackupLocation):
 
                         await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
 
@@ -816,13 +816,13 @@ namespace RayCarrot.RCP.Metro
 
                         Logger.Info("The backup location has been changed and old backups are being moved...");
 
-                        await Services.App.MoveBackupsAsync(PreviousBackupLocation, Data.BackupLocation);
+                        await Services.App.MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
 
-                        PreviousBackupLocation = Data.BackupLocation;
+                        PreviousBackupLocation = Data.Backup_BackupLocation;
 
                         break;
 
-                    case nameof(AppUserData.LinkItemStyle):
+                    case nameof(AppUserData.UI_LinkItemStyle):
                         static string GetStyleSource(UserData_LinkItemStyle linkItemStye) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Styles.LinkItem.{linkItemStye}.xaml";
 
                         // Get previous source
@@ -842,19 +842,19 @@ namespace RayCarrot.RCP.Metro
                         // Add new source
                         Resources.MergedDictionaries.Add(new ResourceDictionary
                         {
-                            Source = new Uri(GetStyleSource(Data.LinkItemStyle))
+                            Source = new Uri(GetStyleSource(Data.UI_LinkItemStyle))
                         });
 
-                        PreviousLinkItemStyle = Data.LinkItemStyle;
+                        PreviousLinkItemStyle = Data.UI_LinkItemStyle;
 
                         break;
 
-                    case nameof(AppUserData.RRR2LaunchMode):
+                    case nameof(AppUserData.Game_RRR2LaunchMode):
                         await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo));
                         break;
 
-                    case nameof(AppUserData.DosBoxPath):
-                    case nameof(AppUserData.DosBoxConfig):
+                    case nameof(AppUserData.Emu_DOSBox_Path):
+                    case nameof(AppUserData.Emu_DOSBox_ConfigPath):
                         await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
                         break;
                 }
@@ -874,7 +874,7 @@ namespace RayCarrot.RCP.Metro
             {
                 try
                 {
-                    if (Services.Data.JumpListItemIDCollection == null)
+                    if (Services.Data.App_JumpListItemIDCollection == null)
                     {
                         Logger.Warn("The jump could not refresh due to collection not existing");
 
@@ -892,7 +892,7 @@ namespace RayCarrot.RCP.Metro
                             // Keep only the included items
                             Where(x => x.IsIncluded).
                             // Keep custom order
-                            OrderBy(x => Services.Data.JumpListItemIDCollection.IndexOf(x.ID)).
+                            OrderBy(x => Services.Data.App_JumpListItemIDCollection.IndexOf(x.ID)).
                             // Create the jump tasks
                             Select(x => new JumpTask
                             {

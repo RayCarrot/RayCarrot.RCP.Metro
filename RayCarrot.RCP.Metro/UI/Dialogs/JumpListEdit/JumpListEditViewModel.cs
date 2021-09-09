@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Order the included games
-            Included = included.OrderBy(x => Services.Data.JumpListItemIDCollection.IndexOf(x.ID)).ToObservableCollection();
+            Included = included.OrderBy(x => Services.Data.App_JumpListItemIDCollection.IndexOf(x.ID)).ToObservableCollection();
         }
 
         #endregion

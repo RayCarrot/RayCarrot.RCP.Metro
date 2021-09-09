@@ -676,7 +676,7 @@ namespace RayCarrot.RCP.Metro
                                 if (exe.FileExists)
                                     programPath = exe;
                                 else
-                                    Services.Data.RemoveAssociatedProgram(ext);
+                                    Services.Data.Archive_RemoveAssociatedProgram(ext);
                             }
 
                             // If not we try and get the registered default program
@@ -730,7 +730,7 @@ namespace RayCarrot.RCP.Metro
                             if (asBinary)
                                 Services.Data.Archive_BinaryEditorExe = browseResult.SelectedFile;
                             else
-                                Services.Data.AddAssociatedProgram(ext, browseResult.SelectedFile);
+                                Services.Data.Archive_AddAssociatedProgram(ext, browseResult.SelectedFile);
 
                             programPath = browseResult.SelectedFile;
                         }

@@ -283,7 +283,7 @@ namespace RayCarrot.RCP.Metro
                     await App.AddNewGameAsync(Game, GameType.Win32, output);
 
                     // Add game to installed games
-                    Services.Data.InstalledGames.Add(Game);
+                    Services.Data.Game_InstalledGames.Add(Game);
 
                     // Refresh
                     await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));

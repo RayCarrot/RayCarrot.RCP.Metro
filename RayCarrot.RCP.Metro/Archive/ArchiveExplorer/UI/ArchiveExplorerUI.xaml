@@ -128,17 +128,17 @@
                             <local:MenuItemIcon Header="{Resx Archive_Sort}"
                                                 IconKind="Sort" >
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}" 
+                                <local:MenuItemIcon IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}" 
                                                     Header="{Resx Archive_Sort_Default}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked"/>
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}" 
+                                <local:MenuItemIcon IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}" 
                                                     Header="{Resx Archive_Sort_AlphabeticallyAscending}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked" />
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}" 
+                                <local:MenuItemIcon IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}" 
                                                     Header="{Resx Archive_Sort_AlphabeticalDescending}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked" />

@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
 
             VM.InstallationComplete += VM_InstallationComplete;
 
-            if (Services.Data.ShowProgressOnTaskBar)
+            if (Services.Data.UI_ShowProgressOnTaskBar)
                 VM.StatusUpdated += VM_StatusUpdated;
         }
 

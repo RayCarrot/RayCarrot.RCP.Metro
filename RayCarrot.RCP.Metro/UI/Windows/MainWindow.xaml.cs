@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                BackupPageTab.IsEnabled = Services.Data.Games?.Any() ?? false;
+                BackupPageTab.IsEnabled = Services.Data.Game_Games?.Any() ?? false;
             }
             catch (Exception ex)
             {

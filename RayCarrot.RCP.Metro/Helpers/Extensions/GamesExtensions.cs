@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game has been added, otherwise false</returns>
         public static bool IsAdded(this Games game)
         {
-            return Services.Data.Games.ContainsKey(game);
+            return Services.Data.Game_Games.ContainsKey(game);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath GetInstallDir(this Games game, bool throwIfNotFound = true)
         {
             // Get the game data
-            var data = Services.Data.Games.TryGetValue(game);
+            var data = Services.Data.Game_Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -95,7 +95,7 @@ namespace RayCarrot.RCP.Metro
         public static GameType GetGameType(this Games game)
         {
             // Get the game data
-            var data = Services.Data.Games.TryGetValue(game);
+            var data = Services.Data.Game_Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -113,7 +113,7 @@ namespace RayCarrot.RCP.Metro
         public static UserData_GameLaunchMode GetLaunchMode(this Games game)
         {
             // Get the game data
-            var data = Services.Data.Games.TryGetValue(game);
+            var data = Services.Data.Game_Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)

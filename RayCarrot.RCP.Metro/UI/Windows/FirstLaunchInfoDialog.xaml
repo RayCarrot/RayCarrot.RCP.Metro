@@ -50,10 +50,10 @@
                            DataContext="{Binding Source={x:Static local:Services.Data}}">
                     <CheckBox Content="{Resx Settings_StartupGameFinder}" 
                               Margin="10"
-                              IsChecked="{Binding Path=AutoLocateGames}"/>
+                              IsChecked="{Binding Path=Game_AutoLocateGames}"/>
                     <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
                               Margin="10"
-                              IsChecked="{Binding Path=AutoUpdate}"/>
+                              IsChecked="{Binding Path=Update_AutoUpdate}"/>
                 </WrapPanel>
 
             </Grid>

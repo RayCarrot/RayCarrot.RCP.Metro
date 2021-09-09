@@ -27,24 +27,24 @@
 
             <MenuItem Header="{Resx LinksPage_LinkStyleHeader}">
 
-                <MenuItem IsChecked="{Binding Path=Data.LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}" 
+                <MenuItem IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}" 
                           Header="{Resx LinksPage_LinkStyle_List}"
                           IsCheckable="True"/>
 
-                <MenuItem IsChecked="{Binding Path=Data.LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=Group}"
+                <MenuItem IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=Group}"
                           Header="{Resx LinksPage_LinkStyle_Group}"
                           IsCheckable="True"/>
 
             </MenuItem>
 
             <MenuItem Header="{Resx LinksPage_LinkAlignmentStyleHeader}"
-                      IsEnabled="{Binding Path=Data.LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}">
+                      IsEnabled="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}">
 
-                <MenuItem IsChecked="{Binding Path=Data.LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Left}" 
+                <MenuItem IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Left}" 
                           Header="{Resx LinksPage_LinkAlignmentStyle_Left}"
                           IsCheckable="True"/>
 
-                <MenuItem IsChecked="{Binding Path=Data.LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Stretch}"
+                <MenuItem IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Stretch}"
                           Header="{Resx LinksPage_LinkAlignmentStyle_Stretch}"
                           IsCheckable="True"/>
 
@@ -166,25 +166,25 @@
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
                                                           ToolTip="{Resx Settings_UserLevelNormalInfo}"
-                                                          IsChecked="{Binding Path=UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Normal}" />
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Normal}" />
 
                                 <!-- Advanced -->
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
                                                           ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
-                                                          IsChecked="{Binding Path=UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Advanced}" />
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Advanced}" />
 
                                 <!-- Technical -->
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
                                                           ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
-                                                          IsChecked="{Binding Path=UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Technical}" />
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Technical}" />
 
                                 <!-- Debug -->
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
                                                           ToolTip="{Resx Settings_UserLevelDebugInfo}"
-                                                          IsChecked="{Binding Path=UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
                                                           local:UserLevelAssist.MinUserLevel="Technical" />
 
                             </WrapPanel>
@@ -210,21 +210,21 @@
 
                             <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
                                       DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=CloseAppOnGameLaunch}" />
+                                      IsChecked="{Binding Path=App_CloseAppOnGameLaunch}" />
 
                             <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
                                       DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=CloseConfigOnSave}" />
+                                      IsChecked="{Binding Path=App_CloseConfigOnSave}" />
 
                             <CheckBox Content="{Resx Settings_GetBetaUpdates}"
                                       DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=GetBetaUpdates}"
+                                      IsChecked="{Binding Path=Update_GetBetaUpdates}"
                                       local:UserLevelAssist.MinUserLevel="Technical" />
 
                             <CheckBox Content="{Resx Settings_ManualDownloads}"
                                       ToolTip="{Resx Settings_ManualDownloadsInfo}"
                                       DataContext="{Binding Path=Data}"
-                                      IsChecked="{Binding Path=HandleDownloadsManually}"
+                                      IsChecked="{Binding Path=App_HandleDownloadsManually}"
                                       local:UserLevelAssist.MinUserLevel="Advanced" />
 
                             <StackPanel local:UserLevelAssist.MinUserLevel="Technical"
@@ -235,7 +235,7 @@
                                            Margin="0 0 0 8" />
 
                                 <local:BrowseBox FileFilter="Txt (*.txt)|*.txt"
-                                                SelectedPath="{Binding Path=BinarySerializationFileLogPath}"
+                                                SelectedPath="{Binding Path=Binary_BinarySerializationFileLogPath}"
                                                 ToolTip="{Resx Settings_BinarySerializationFileLogPathInfo}"
                                                 BrowseType="SaveFile" />
 
@@ -262,25 +262,25 @@
 
                             <CheckBox Content="{Resx Settings_SyncTheme}"
                                       ToolTip="{Resx Settings_SyncThemeInfo}"
-                                      IsChecked="{Binding Path=SyncTheme}" />
+                                      IsChecked="{Binding Path=Theme_SyncTheme}" />
 
-                            <metro:ToggleSwitch IsOn="{Binding Path=DarkMode}"
-                                                IsEnabled="{Binding Path=SyncTheme, Converter={local:InvertedBooleanConverter}}"
+                            <metro:ToggleSwitch IsOn="{Binding Path=Theme_DarkMode}"
+                                                IsEnabled="{Binding Path=Theme_SyncTheme, Converter={local:InvertedBooleanConverter}}"
                                                 HorizontalAlignment="Left"
                                                 OnContent="{Resx Settings_DesignDark}"
                                                 OffContent="{Resx Settings_DesignLight}" />
 
                             <CheckBox Content="{Resx Settings_DesignAnimations}"
                                       ToolTip="{Resx Settings_DesignAnimationsInfo}"
-                                      IsChecked="{Binding Path=EnableAnimations}" />
+                                      IsChecked="{Binding Path=UI_EnableAnimations}" />
 
                             <CheckBox Content="{Resx Settings_DesignSuccessMessages}"
                                       ToolTip="{Resx Settings_DesignSuccessMessagesInfo}"
-                                      IsChecked="{Binding Path=ShowActionComplete}" />
+                                      IsChecked="{Binding Path=App_ShowActionComplete}" />
 
                             <CheckBox Content="{Resx Settings_DesignShowTaskBarProgress}"
                                       ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
-                                      IsChecked="{Binding Path=ShowProgressOnTaskBar}" />
+                                      IsChecked="{Binding Path=UI_ShowProgressOnTaskBar}" />
 
                             <!-- TODO-UPDATE: Localize -->
                             <CheckBox Content="Show dialogs within windows"
@@ -307,10 +307,10 @@
                             </i:Interaction.Behaviors>
 
                             <CheckBox Content="{Resx Settings_StartupGameFinder}"
-                                      IsChecked="{Binding Path=AutoLocateGames}" />
+                                      IsChecked="{Binding Path=Game_AutoLocateGames}" />
 
                             <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
-                                      IsChecked="{Binding Path=AutoUpdate}" />
+                                      IsChecked="{Binding Path=Update_AutoUpdate}" />
 
                         </StackPanel>
 
@@ -480,7 +480,7 @@
                                            Margin="0 0 0 8" />
 
                                 <local:BrowseBox FileFilter="Exe (*.exe)|*.exe"
-                                                SelectedPath="{Binding Path=DosBoxPath}"
+                                                SelectedPath="{Binding Path=Emu_DOSBox_Path}"
                                                 ToolTip="{Resx Settings_DosBoxPathInfo}"
                                                 BrowseType="File"
                                                 PathValidation="FileExists" />
@@ -496,7 +496,7 @@
                                 <!-- IDEA: Localize -->
 
                                 <local:BrowseBox FileFilter="Conf (*.conf)|*.conf"
-                                                SelectedPath="{Binding Path=DosBoxConfig}"
+                                                SelectedPath="{Binding Path=Emu_DOSBox_ConfigPath}"
                                                 ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
                                                 BrowseType="File"
                                                 PathValidation="FileExists" />
@@ -557,13 +557,13 @@
 
                             <!-- TODO-UPDATE: Localize -->
                             <CheckBox Content="Disable game validation"
-                                      IsChecked="{Binding Path=Debug_DisableGameValidation}" />
+                                      IsChecked="{Binding Path=App_DisableGameValidation}" />
 
                             <CheckBox Content="{Resx Settings_ForceUpdates}"
-                                      IsChecked="{Binding Path=ForceUpdate}" />
+                                      IsChecked="{Binding Path=Update_ForceUpdate}" />
 
                             <CheckBox Content="{Resx Settings_DisableDowngradeWarning}"
-                                      IsChecked="{Binding Path=DisableDowngradeWarning}" />
+                                      IsChecked="{Binding Path=Update_DisableDowngradeWarning}" />
 
                         </StackPanel>
 
