@@ -151,6 +151,10 @@ namespace RayCarrot.RCP.Metro
 
             ViewModel.SelectedPage = unsavedPage;
 
+            // Don't show a dialog if the close button is disabled
+            if (!IsCloseButtonEnabled)
+                return;
+
             if (!await Services.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
                 return;
 

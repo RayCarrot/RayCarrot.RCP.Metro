@@ -59,6 +59,10 @@ namespace RayCarrot.RCP.Metro
             // Cancel the closing
             e.Cancel = true;
 
+            // Ignore if the close button is disabled
+            if (!IsCloseButtonEnabled)
+                return;
+
             // Attempt to cancel the installation
             await Task.Run(VM.AttemptCancelAsync);
         }
