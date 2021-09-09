@@ -38,9 +38,15 @@ namespace RayCarrot.RCP.Metro
             StartupEventsCalledAsyncLock = new AsyncLock();
             HasRunStartupEvents = false;
 
+#if DEBUG
             // Create the startup timer and start it
             AppStartupTimer = new Stopwatch();
             AppStartupTimer.Start();
+
+            StartupTimeLogs = new List<string>();
+#endif
+
+            LogStartupTime("BaseApp: Showing splash screen");
 
             // Create and show the splash screen if one is to be used
             if (splashScreenResourceName != null)
@@ -50,12 +56,12 @@ namespace RayCarrot.RCP.Metro
                 SplashScreen.Show(false);
             }
 
-            StartupTimeLogs = new List<string>();
-
             // Subscribe to events
             Startup += BaseRCFApp_Startup;
             DispatcherUnhandledException += BaseRCFApp_DispatcherUnhandledException;
             Exit += BaseRCFApp_Exit;
+
+            LogStartupTime("BaseApp: Checking Mutex");
 
             if (useMutex)
             {
@@ -364,6 +370,7 @@ namespace RayCarrot.RCP.Metro
             // Add startup time log
             LogStartupTime("MainWindow: Main window loaded");
 
+#if DEBUG
             // Stop the stopwatch
             AppStartupTimer.Stop();
 
@@ -373,6 +380,7 @@ namespace RayCarrot.RCP.Metro
 
             // Clear the startup time logs
             StartupTimeLogs.Clear();
+#endif
 
             using (await StartupEventsCalledAsyncLock.LockAsync())
             {
