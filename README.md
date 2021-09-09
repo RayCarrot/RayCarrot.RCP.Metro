@@ -1,82 +1,93 @@
-## Rayman Control Panel� (Metro)
-Rayman Control Panel� is an open source community project created by RayCarrot. The purpose of this program is to unify existing game patches and fixes, as well as allowing extended configuration, for all PC Rayman games. This program does not come with any games and requires the user to have them installed. For certain games it is possible installing them through the program using a game disc.
+# Rayman Control Panel™
+![Rayman Control Panel™](Screenshots/example_games.png)
+Rayman Control Panel™ is an open source community project created by [RayCarrot](https://github.com/RayCarrot). The purpose of this program is to unify existing game patches and fixes, as well as allowing extended configuration, for all PC Rayman games. This program does not come with any games and requires the user to have them installed. For certain games it is possible installing them through the program using a game disc.
 
+Note: This repository is only for the WPF version (4.0.0 and above). The WinForms version (1.0.0 - 3.2.2) repository has since been made private as it's no longer being maintained and is heavily outdated.
+
+# Features
 Main features:
-- Support for launching all installed Rayman PC games
+- Launcher for the PC Rayman games
 - Extended game configuration support
 - Game utilities, such as allowing per-level soundtrack in Rayman 1
 - Save data backup/restore tool
 - Disc installers to install select games from discs
-- General utilities, such as the Archive Explorer to modify archive files (.cnt, .ipk etc.)
+- General utilities, such as the Archive Explorer to modify archive files
+- Mods, such as enabling prototype features in Rayman Raving Rabbids
 
-This repository is only for the WPF redesign. The WinForms version (version 1.0.0 - 3.2.2) repository has since been made private as it's no longer being maintained and is heavily outdated.
+## Archive Explorer™
+![Archive Explorer™](Screenshots/example_archive_explorer.png)
 
-## Dependencies
-The Rayman Control Panel uses these main dependencies:
+The Archive Explorer™ is a tool within the Rayman Control Panel™ which allows supported game archive files to be viewed and edited. This allows textures to be replaced in games. 
 
-- [RayCarrot.IO](https://github.com/RayCarrot/RayCarrot.IO)
+Supported archive file types:
+- Rayman 1 .dat files
+- OpenSpace .cnt files
+- UbiArt .ipk files
+
+## Configuration
+![Game Config](Screenshots/example_config_r2.png)
+
+Each supported game has a configuration page where its settings can be changed. This allows for more options than the native configuration tools each game has, such as being able to run Rayman Raving Rabbids in windowed mode and change the language for Rayman 1.
+
+## Mods
+![Mods](Screenshots/example_mods_rrr.png)
+
+Different mods are available throughout the app, such as restoring unused prototype features in Rayman Raving Rabbids.
+
+## Utilities
+![Mods](Screenshots/example_utilities_origins.png)
+
+Utilities allows for more advanced modifications to the games, usually aimed at fixing a certain issue or allowing additional features. In Rayman Origins and Legends it can be used to enable the debug commands.
+
+## Progression
+![Mods](Screenshots/example_progression_origins.png)
+
+Most games have a page for viewing the progress in each save slot. The save data can also be exported to a JSON file.
+
+# Dependencies
+The Rayman Control Panel™ uses these main dependencies:
+
+### RayCarrot
 - [RayCarrot.UI](https://github.com/RayCarrot/RayCarrot.UI)
-- [RayCarrot.Binary](https://github.com/RayCarrot/RayCarrot.Binary)
+- [RayCarrot.IO](https://github.com/RayCarrot/RayCarrot.IO)
 - [RayCarrot.Windows.Registry](https://github.com/RayCarrot/RayCarrot.Windows.Registry)
+- [RayCarrot.Binary](https://github.com/RayCarrot/RayCarrot.Binary)
 - [RayCarrot.Rayman](https://github.com/RayCarrot/RayCarrot.Rayman)
-- [Costura.Fody](https://github.com/Fody/Costura)
-- [Infralution.Localization.Wpf](https://www.codeproject.com/Articles/35159/WPF-Localization-Using-RESX-Files)
-- [DotNetZip](https://github.com/haf/DotNetZip.Semverd)
-- [gong-wpf-dragdrop](https://github.com/punker76/gong-wpf-dragdrop)
-- [NLog](https://github.com/NLog/NLog)
-- [Magick.NET](https://github.com/dlemstra/Magick.NET)
+
+### WPF
 - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
 - [MahApps.Metro.SimpleChildWindow](https://github.com/punker76/MahApps.Metro.SimpleChildWindow)
 - [MahApps.Metro.IconPacks.Material](https://github.com/MahApps/MahApps.Metro.IconPacks)
+- [Infralution.Localization.Wpf](https://www.codeproject.com/Articles/35159/WPF-Localization-Using-RESX-Files)
+- [gong-wpf-dragdrop](https://github.com/punker76/gong-wpf-dragdrop)
+- [Microsoft.Xaml.Behaviors.Wpf](https://github.com/Microsoft/XamlBehaviorsWpf)
+- [XamlAnimatedGif](https://github.com/XamlAnimatedGif/XamlAnimatedGif)
+- [AutoCompleteTextBox](https://github.com/quicoli/WPF-AutoComplete-TextBox)
+- [WPFTextBoxAutoComplete](https://github.com/Nimgoble/WPFTextBoxAutoComplete)
+
+### Other
+- [Costura.Fody](https://github.com/Fody/Costura)
+- [DotNetZip](https://github.com/haf/DotNetZip.Semverd)
+- [NLog](https://github.com/NLog/NLog)
+- [Magick.NET](https://github.com/dlemstra/Magick.NET)
 - [Microsoft.PowerShell.5.ReferenceAssemblies](https://www.nuget.org/packages/Microsoft.PowerShell.5.ReferenceAssemblies)
 - [Microsoft.Windows.SDK.Contracts](https://www.nuget.org/packages/Microsoft.Windows.SDK.Contracts)
-- [Microsoft.Xaml.Behaviors.Wpf](https://github.com/Microsoft/XamlBehaviorsWpf)
 - [Microsoft-WindowsAPICodePack-Shell](https://github.com/contre/Windows-API-Code-Pack-1.1)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - [Nito.AsyncEx](https://github.com/StephenCleary/AsyncEx)
 - [PropertyChanged.Fody](https://github.com/Fody/PropertyChanged)
 - [Resource.Embedder](https://github.com/MarcStan/Resource.Embedder)
-- [XamlAnimatedGif](https://github.com/XamlAnimatedGif/XamlAnimatedGif)
-- [AutoCompleteTextBox](https://github.com/quicoli/WPF-AutoComplete-TextBox)
-- [WPFTextBoxAutoComplete](https://github.com/Nimgoble/WPFTextBoxAutoComplete)
 
-## Localization
-Starting with version 4.1.0 the Rayman Control Panel will support localization.
-
-As of now the following strings are not localized:
-- Version history
-- App news (from server manifest)
-- Exception messages (from Carrot Framework)
-- Certain dialogs (from Carrot Framework)
-- Game names
-- Debug page
-- License dialog
-
-For more information and information on how to contribute, check out the Steam discussion page here:
+# Localization
+From version 4.1.0 the Rayman Control Panel™ supports localized strings. For more information and information on how to contribute with translations, check out the Steam discussion page:
 [Rayman Control Panel - Localization](https://steamcommunity.com/groups/RaymanControlPanel/discussions/0/1812044473314212117/)
 
-## Contact
+# Contact
 You can contact me on the following places:
 
 - [Twitter](https://twitter.com/RayCarrot)
 - [Email](mailto:RayCarrotMaster@gmail.com)
 
-## Screenshots
-
-<div align="center">
-
-<img alt="Screenshot1" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot1.png">
-
-<img alt="Screenshot2" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot2.png">
-
-<img alt="Screenshot3" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot3.png">
-
-<img alt="Screenshot4" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot4.png">
-
-<img alt="Screenshot5" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot5.png">
-
-</div>
-
-## Licence
+# Licence
 
 [MIT License (MIT)](./LICENSE)
