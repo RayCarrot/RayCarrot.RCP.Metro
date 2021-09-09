@@ -654,9 +654,17 @@ namespace RayCarrot.RCP.Metro
             {
                 logConfig.AddRule(logLevel, LogLevel.Fatal, new FileTarget("file")
                 {
-                    // IDEA: Archive old logs?
-                    DeleteOldFileOnStartup = true,
+                    // Archive a maximum of 5 logs. This makes it easier going back to check errors which happened on older instances of the app.
+                    ArchiveOldFileOnStartup = true,
+                    ArchiveFileName = AppFilePaths.ArchiveLogFile.FullPath,
+                    MaxArchiveFiles = 5,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    
+                    // Keep the file open and disable concurrent writes to improve performance
+                    KeepFileOpen = true,
                     ConcurrentWrites = false,
+
+                    // Set the file path and layout
                     FileName = AppFilePaths.LogFile.FullPath,
                     Layout = logLayout,
                 });

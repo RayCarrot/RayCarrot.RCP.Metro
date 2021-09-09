@@ -44,6 +44,11 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath LogFile => UserDataBaseDir + "Temp\\Log.txt";
 
         /// <summary>
+        /// The archive log file path
+        /// </summary>
+        public static FileSystemPath ArchiveLogFile => UserDataBaseDir + "Temp\\Log_archived.txt";
+
+        /// <summary>
         /// The installation temp directory
         /// </summary>
         public static FileSystemPath InstallTempPath => UserDataBaseDir + "Temp\\Installation";

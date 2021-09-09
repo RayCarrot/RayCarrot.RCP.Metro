@@ -14,7 +14,7 @@ Other changes:
 • Improved scrolling with the mouse wheel over button mapping controls
 • The jump list edit dialog now opens faster
 • Replaced the logging framework with NLog
-	• The log file now gets recreated each time the application is launched rather than after reaching a certain size
+	• Opening the app will archive the previous log file up to 5 times rather than writing to the same one
 	• The log viewer is no longer enabled by default to avoid unnecessarily storing all logs
 	• The log viewer is now split into columns for each field with an info icon for optional exception details
 	• Removed the debug setting to display exceptions
