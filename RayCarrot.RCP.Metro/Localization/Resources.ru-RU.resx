@@ -4051,4 +4051,34 @@ Start: Пауза</value>
   <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
     <value>Режим танца: поворот</value>
   </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Вы уверены, что хотите сбросить настройки приложения? Этоьэт процесс нельзя будет отменить.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Подтверждение сброса</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Неверное разрешение. Значения должны быть записаными в формате 'Ширина х Высота'.</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Показывать диалоговые окна внутри окон</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Отключение этого параметра приведет к отображению диалоговых окон в виде отдельных блокирующих окон, а включение этого параметра позволит отображать их внутри окна, из которого они исходят</value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Отключить проверку игр</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Поле является обязательным</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>Файл не существует</value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>Папка не существует</value>
+  </data>
 </root>

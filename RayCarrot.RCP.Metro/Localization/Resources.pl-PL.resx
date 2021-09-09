@@ -4174,4 +4174,34 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
     <value>Tryb tańca: obrót</value>
   </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Czy na pewno chcesz zresetować ustawienia aplikacji? Czynności tej nie da się cofnąć.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Potwierdź reset</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Nieprawidłowa rozdzielczość. Musi być w formacie 'Szerokość x Wysokość'.</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Pokaż okna dialogowe w oknach</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Wyłączenie tej funkcji spowoduje wyświetlenie okien dialogowych jako oddzielnych okien blokujących, natomiast włączenie jej spowoduje wyświetlanie ich wewnątrz okna, z którego pochodzą</value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Wyłącz sprawdzanie poprawności gry</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Pole jest wymagane</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>Plik nie istnieje</value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>Folder nie istnieje</value>
+  </data>
 </root>
