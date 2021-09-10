@@ -14,6 +14,7 @@ Other changes:
 • Beta updates will now show update news in the update dialog message
 • Improved scrolling with the mouse wheel over button mapping controls
 • The jump list edit dialog now opens faster
+• Updated the updater
 • Replaced the logging framework with NLog
 	• Opening the app will archive the previous log file up to 5 times rather than writing to the same one
 	• The log viewer is no longer enabled by default to avoid unnecessarily storing all logs
