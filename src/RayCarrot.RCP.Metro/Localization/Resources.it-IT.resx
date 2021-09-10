@@ -4058,4 +4058,34 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
     <value>Modalità danza: turno</value>
   </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Sei sicuro di voler ripristinare le impostazioni dell'app? Questo non può essere annullato.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Conferma ripristino</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Ripristina patch all'eseguibile</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Risoluzione non valida. Deve essere nel formato 'Larghezza x Altezza'.</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Mostra i dialoghi all'interno delle finestre</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>La disabilitazione mostrerà le finestre di dialogo come finestre di blocco separate, mentre l'abilitazione le mostrerà all'interno della finestra da cui hanno avuto origine</value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Disabilita la convalida del gioco</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Il campo è obbligatiorio</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>il file non esiste</value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>La directory non esiste</value>
+  </data>
 </root>

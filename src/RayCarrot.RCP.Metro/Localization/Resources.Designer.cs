@@ -10963,7 +10963,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disabling this will show dialogs as separate blocking windows, while enabling it will show them inside of the window they originated from.
+        ///   Looks up a localized string similar to Disabling this will show dialogs as separate, blocking windows, while enabling it will show them inside of the window they originated from.
         /// </summary>
         public static string Settings_UseChildWindowsInfo {
             get {

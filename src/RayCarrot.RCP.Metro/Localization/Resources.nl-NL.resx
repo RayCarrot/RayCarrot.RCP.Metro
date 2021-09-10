@@ -4110,4 +4110,34 @@ Start: Pauzeren</value>
   <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
     <value>Dansmodus: draaien</value>
   </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Weet je zeker dat je de app-instellingen wilt resetten? Dit kan níét ongedaan worden gemaakt.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Bevestig reset</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Resetten</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Ongeldige resolutie. Dient in het format 'Breedte x Hoogte' te worden ingevuld.</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Laat dialogen binnen vensters zien</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Het uitschakelen van deze optie resulteert in het laten zien van dialogen in aparte, blokkerende vensters, terwijl het inschakelen resulteert in het integreren van de dialogen binnen het venster van waaruit ze zijn getriggerd.</value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Uitschakelen spelvalidatie</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Veld is vereist</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>Het bestand bestaat niet</value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>De map bestaat niet</value>
+  </data>
 </root>

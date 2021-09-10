@@ -4218,7 +4218,7 @@ rcpURL</comment>
     <value>Show dialogs within windows</value>
   </data>
   <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
-    <value>Disabling this will show dialogs as separate blocking windows, while enabling it will show them inside of the window they originated from</value>
+    <value>Disabling this will show dialogs as separate, blocking windows, while enabling it will show them inside of the window they originated from</value>
   </data>
   <data name="Settings_DisableGameValidation" xml:space="preserve">
     <value>Disable game validation</value>
