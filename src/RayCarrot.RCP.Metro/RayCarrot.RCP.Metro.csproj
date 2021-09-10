@@ -67,7 +67,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
-      <HintPath>..\References\Infralution.Localization.Wpf.dll</HintPath>
+      <HintPath>..\Libraries\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
@@ -323,8 +323,8 @@
       <DependentUpon>Mod_RRR_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mods\Mod_BaseViewModel.cs" />
-    <Compile Include="Pages\Mods\Page_Mods_ViewModel.cs" />
-    <Compile Include="Pages\Mods\Page_Mods_UI.xaml.cs">
+    <Compile Include="Pages\Page_Mods\Page_Mods_ViewModel.cs" />
+    <Compile Include="Pages\Page_Mods\Page_Mods_UI.xaml.cs">
       <DependentUpon>Page_Mods_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_AI2C_fctDef.cs" />
@@ -634,7 +634,7 @@
     <Compile Include="Games\Manager\Rayman\GameManager_Rayman2_Steam.cs" />
     <Compile Include="Games\Manager\Base\GameManager_Win32.cs" />
     <Compile Include="Games\Manager\Rayman\GameManager_Rayman1_DOSBox.cs" />
-    <Compile Include="Games\Backups\GameBackups_ExistingBackup.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_ExistingBackup.cs" />
     <Compile Include="Games\OptionsDialog\Progression\Base\GameProgression_BaseViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Progression\JungleRun\GameProgression_JungleRun_ViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\Utility_Rayman2_DiscPatch.cs" />
@@ -663,8 +663,8 @@
     <Compile Include="Games\OptionsDialog\Options\RavingRabbids2\GameOptions_RavingRabbids2_UI.xaml.cs">
       <DependentUpon>GameOptions_RavingRabbids2_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Backups\GameBackups_BackupInfo.cs" />
-    <Compile Include="Games\Backups\IGameBackups_BackupInfo.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_BackupInfo.cs" />
+    <Compile Include="Games\GameBackups\IGameBackups_BackupInfo.cs" />
     <Compile Include="UI\Dialogs\EducationalDosGameEdit\EducationalDosGameEditDialog.xaml.cs">
       <DependentUpon>EducationalDosGameEditDialog.xaml</DependentUpon>
     </Compile>
@@ -684,12 +684,12 @@
     <Compile Include="Games\OptionsDialog\Options\EducationalDos\GameOptions_EducationalDos_GameCollectionDropHandler.cs" />
     <Compile Include="Games\OptionsDialog\Options\PrintStudio\GameOptions_PrintStudio_ViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Options\FiestaRun\GameOptions_FiestaRun_ViewModel.cs" />
-    <Compile Include="Pages\Utilities\Page_Utilities_UI.xaml.cs">
+    <Compile Include="Pages\Page_Utilities\Page_Utilities_UI.xaml.cs">
       <DependentUpon>Page_Utilities_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppData\DataModels\UserData_FiestaRunEdition.cs" />
     <Compile Include="App\AppPage.cs" />
-    <Compile Include="Pages\Games\Page_Games_CategoryViewModel.cs" />
+    <Compile Include="Pages\Page_Games\Page_Games_CategoryViewModel.cs" />
     <Compile Include="Games\OptionsDialog\GameOptionsDialog_BasePageViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Config\GameOptionsDialog_ConfigPageViewModel.cs" />
     <Compile Include="Games\OptionsDialog\EmulatorConfig\GameOptionsDialog_EmulatorConfigPageViewModel.cs" />
@@ -756,7 +756,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Mods\Page_Mods_UI.xaml">
+    <Page Include="Pages\Page_Mods\Page_Mods_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -956,23 +956,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Help\Page_Help_UI.xaml">
+    <Page Include="Pages\Page_Help\Page_Help_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Debug\Page_Debug_UI.xaml">
+    <Page Include="Pages\Page_Debug\Page_Debug_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Backup\Page_Backup_UI.xaml">
+    <Page Include="Pages\Page_Backup\Page_Backup_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\About\Page_About_UI.xaml">
+    <Page Include="Pages\Page_About\Page_About_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Utilities\Page_Utilities_UI.xaml">
+    <Page Include="Pages\Page_Utilities\Page_Utilities_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1110,7 +1110,7 @@
     <Compile Include="UI\Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\About\Page_About_UI.xaml.cs">
+    <Compile Include="Pages\Page_About\Page_About_UI.xaml.cs">
       <DependentUpon>Page_About_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppData\DataModels\UserData_LinkItemStyle.cs" />
@@ -1166,11 +1166,11 @@
     <Compile Include="Utilities\UtilitiesContainer.xaml.cs">
       <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Help\Cheats\Page_Help_BaseCheatCodeItemViewModel.cs" />
-    <Compile Include="Pages\Help\Cheats\Page_Help_GenericCheatCodeItemViewModel.cs" />
-    <Compile Include="Pages\Settings\Page_Settings_LinkItemViewModel.cs" />
-    <Compile Include="Pages\Utilities\Page_Utilities_ViewModel.cs" />
-    <Compile Include="Pages\Help\Cheats\Page_Help_Rayman1CheatCodeItemViewModel.cs" />
+    <Compile Include="Pages\Page_Help\Cheats\Page_Help_BaseCheatCodeItemViewModel.cs" />
+    <Compile Include="Pages\Page_Help\Cheats\Page_Help_GenericCheatCodeItemViewModel.cs" />
+    <Compile Include="Pages\Page_Settings\Page_Settings_LinkItemViewModel.cs" />
+    <Compile Include="Pages\Page_Utilities\Page_Utilities_ViewModel.cs" />
+    <Compile Include="Pages\Page_Help\Cheats\Page_Help_Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="UI\Converters\Other\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="Emulators\DOSBox\Config\Emulator_DOSBox_AutoConfigData.cs" />
     <Compile Include="Emulators\DOSBox\Config\Emulator_DOSBox_AutoConfigManager.cs" />
@@ -1179,7 +1179,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Pages\About\Page_About_ViewModel.cs" />
+    <Compile Include="Pages\Page_About\Page_About_ViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\Translations\Utility_Rayman2_Translation_ViewModel.cs" />
     <Compile Include="App\Constants\AppURLs.cs" />
     <Compile Include="Helpers\ValueEventArgs.cs" />
@@ -1203,16 +1203,16 @@
     <Compile Include="Games\OptionsDialog\Config\UbiIni\UbiIni3\Config_Rayman3_ViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Config\UbiIni\UbiIni3\Config_RaymanArena_ViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Config\UbiIni\UbiIni3\Config_RaymanM_ViewModel.cs" />
-    <Compile Include="Pages\Help\Page_Help_UI.xaml.cs">
+    <Compile Include="Pages\Page_Help\Page_Help_UI.xaml.cs">
       <DependentUpon>Page_Help_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Backup\Page_Backup_UI.xaml.cs">
+    <Compile Include="Pages\Page_Backup\Page_Backup_UI.xaml.cs">
       <DependentUpon>Page_Backup_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Games\OptionsDialog\Config\UbiIni\UbiIni3\Config_UbiIni3_BaseViewModel.cs" />
-    <Compile Include="Pages\Help\Page_Help_ViewModel.cs" />
-    <Compile Include="Games\Backups\GameBackups_Directory.cs" />
-    <Compile Include="Games\Backups\GameBackups_Manager.cs" />
+    <Compile Include="Pages\Page_Help\Page_Help_ViewModel.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_Directory.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_Manager.cs" />
     <Compile Include="Installer\GameInstaller_Window.xaml.cs">
       <DependentUpon>GameInstaller_Window.xaml</DependentUpon>
     </Compile>
@@ -1228,8 +1228,8 @@
     <Compile Include="Installer\GameInstaller_Result.cs" />
     <Compile Include="Installer\GameInstaller_Item.cs" />
     <Compile Include="Installer\GameInstaller_ItemStage.cs" />
-    <Compile Include="Pages\Help\Page_Help_ItemViewModel.cs" />
-    <Compile Include="Pages\Backup\Page_Backup_ViewModel.cs" />
+    <Compile Include="Pages\Page_Help\Page_Help_ItemViewModel.cs" />
+    <Compile Include="Pages\Page_Backup\Page_Backup_ViewModel.cs" />
     <Compile Include="App\BaseRCPViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Config\Ray1\Config_Ray1_BaseViewModel.cs" />
     <Compile Include="Services\AppUI\AppUIManager.cs" />
@@ -1238,7 +1238,7 @@
     <Compile Include="AppData\DataModels\UserData_DosBoxOptions.cs" />
     <Compile Include="Emulators\DOSBox\Emulator_DOSBox_CyclesValidationRule.cs" />
     <Compile Include="Emulators\DOSBox\Emulator_DOSBox_ResolutionValidationRule.cs" />
-    <Compile Include="Pages\Backup\Page_Backup_ItemViewModel.cs" />
+    <Compile Include="Pages\Page_Backup\Page_Backup_ItemViewModel.cs" />
     <Compile Include="UI\Controls\ButtonMapper\ButtonMapperKeyItemViewModel.cs" />
     <Compile Include="Games\OptionsDialog\Config\UbiIni\Rayman2\Config_Rayman2_UI.xaml.cs">
       <DependentUpon>Config_Rayman2_UI.xaml</DependentUpon>
@@ -1261,23 +1261,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Games\Page_Games_UI.xaml.cs">
+    <Compile Include="Pages\Page_Games\Page_Games_UI.xaml.cs">
       <DependentUpon>Page_Games_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Debug\Page_Debug_UI.xaml.cs">
+    <Compile Include="Pages\Page_Debug\Page_Debug_UI.xaml.cs">
       <DependentUpon>Page_Debug_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Settings\Page_Settings_UI.xaml.cs">
+    <Compile Include="Pages\Page_Settings\Page_Settings_UI.xaml.cs">
       <DependentUpon>Page_Settings_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppData\AppUserData.cs" />
     <Compile Include="App\ActionItemViewModel.cs" />
     <Compile Include="App\AppViewModel.cs" />
-    <Compile Include="Pages\Debug\Page_Debug_ViewModel.cs" />
-    <Compile Include="Pages\Settings\Page_Settings_ViewModel.cs" />
-    <Compile Include="Pages\Games\Page_Games_ViewModel.cs" />
+    <Compile Include="Pages\Page_Debug\Page_Debug_ViewModel.cs" />
+    <Compile Include="Pages\Page_Settings\Page_Settings_ViewModel.cs" />
+    <Compile Include="Pages\Page_Games\Page_Games_ViewModel.cs" />
     <Compile Include="UI\Controls\OverflowButton\OverflowButtonItemViewModel.cs" />
-    <Compile Include="Pages\Games\Page_Games_GameViewModel.cs" />
+    <Compile Include="Pages\Page_Games\Page_Games_GameViewModel.cs" />
     <Compile Include="UI\Windows\AppNewsDialog.xaml.cs">
       <DependentUpon>AppNewsDialog.xaml</DependentUpon>
     </Compile>
@@ -1296,11 +1296,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Games\Page_Games_UI.xaml">
+    <Page Include="Pages\Page_Games\Page_Games_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Settings\Page_Settings_UI.xaml">
+    <Page Include="Pages\Page_Settings\Page_Settings_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1352,28 +1352,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\RayCarrot.Binary\RayCarrot.Binary\RayCarrot.Binary.csproj">
-      <Project>{fbbb053c-d02e-439d-b589-320fc21dd60c}</Project>
-      <Name>RayCarrot.Binary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj">
-      <Project>{e271dc05-6629-48d1-9423-fe4957eab807}</Project>
-      <Name>RayCarrot.IO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
-      <Project>{b3c0c9ee-0acb-4cd6-9dab-d9f3c741300d}</Project>
-      <Name>RayCarrot.Rayman</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.UI\RayCarrot.UI\RayCarrot.UI.csproj">
-      <Project>{d5fc22f6-391e-4ef1-8818-1c2256b2816a}</Project>
-      <Name>RayCarrot.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj">
-      <Project>{44d63afc-58d4-4f7e-9304-4abf40ebae29}</Project>
-      <Name>RayCarrot.Windows.Registry</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\GameIcons\Rayman2.png" />
@@ -1642,6 +1620,27 @@
       <Version>2.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\RayCarrot.Binary\RayCarrot.Binary\RayCarrot.Binary.csproj">
+      <Project>{0071584b-bce5-44a0-a267-b1ce9f0570b8}</Project>
+      <Name>RayCarrot.Binary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj">
+      <Project>{b8a6854c-6fe0-453a-8cd0-73aebf36f31e}</Project>
+      <Name>RayCarrot.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
+      <Project>{b3c0c9ee-0acb-4cd6-9dab-d9f3c741300d}</Project>
+      <Name>RayCarrot.Rayman</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\RayCarrot.UI\RayCarrot.UI\RayCarrot.UI.csproj">
+      <Project>{23294120-7eec-4095-9a0b-db2f8f8eff82}</Project>
+      <Name>RayCarrot.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj">
+      <Project>{c5cc479c-c135-4d80-8cfe-5c7b5e89ebb5}</Project>
+      <Name>RayCarrot.Windows.Registry</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
