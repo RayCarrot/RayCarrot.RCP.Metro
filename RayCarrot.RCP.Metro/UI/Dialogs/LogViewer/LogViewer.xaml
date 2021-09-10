@@ -93,25 +93,25 @@
 
                             <TextBlock Grid.Column="0"
                                        Text="{Binding Path=LogTime, Mode=OneTime, StringFormat=HH:mm:ss.fff}"
-                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
-                                       Margin="0 0 20 0" />
+                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}" />
 
                             <TextBlock Grid.Column="1"
                                        Text="{Binding Path=LoggerName, Mode=OneTime}"
                                        Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
-                                       Margin="0 0 10 0" />
+                                       Margin="20 0 0 0" />
 
                             <local:InfoIcon Grid.Column="2"
                                             Style="{StaticResource InfoIcon.Warning}"
                                             Visibility="{Binding Path=Exception, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
                                             Text="{Binding Path=Exception, Mode=OneTime}"
-                                            Margin="0 0 10 0" />
+                                            Margin="10 0 0 0" />
 
                             <TextBlock Grid.Column="3"
                                        Text="{Binding Path=LogMessage, Mode=OneTime}"
                                        Visibility="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}"
                                        Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
-                                       TextWrapping="Wrap" />
+                                       TextWrapping="Wrap" 
+                                       Margin="10 0 0 0"/>
 
                         </Grid>
                     </DataTemplate>
