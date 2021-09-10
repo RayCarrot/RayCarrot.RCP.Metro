@@ -612,6 +612,9 @@ namespace RayCarrot.RCP.Metro
                 // Show the dialog
                 dialog.ShowDialog();
 
+                // Need to focus the owner as otherwise a following child dialog will appear in the main window as it gains next focus
+                dialog.Owner.Focus();
+
                 Logger.Info("The download finished with the result of {0}", dialog.ViewModel.CurrentDownloadState);
 
                 // Return the result
