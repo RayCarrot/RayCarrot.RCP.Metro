@@ -742,12 +742,6 @@
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Вопрос</value>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Исключение</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>В приложении произошло исключение. Ниже приведена debug информация, доступная текущему уровню пользователя.</value>
-  </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>Указанный файл не удалось найти: {0}</value>
   </data>

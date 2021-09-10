@@ -741,12 +741,6 @@
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Mensagem de pergunta</value>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Excepção</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Ocorreu uma excepção na aplicação. Abaixo está a informação de depuração disponível para o nível de utilizador.</value>
-  </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>O ficheiro especificado não pode ser encontrado: {0}</value>
   </data>

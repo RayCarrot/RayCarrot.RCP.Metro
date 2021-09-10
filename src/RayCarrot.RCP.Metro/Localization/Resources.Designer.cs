@@ -4337,24 +4337,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exception.
-        /// </summary>
-        public static string ExceptionMessageHeader {
-            get {
-                return ResourceManager.GetString("ExceptionMessageHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An exception has occurred in the application. Below is the available debug information for the current user level..
-        /// </summary>
-        public static string ExceptionMessageInfo {
-            get {
-                return ResourceManager.GetString("ExceptionMessageInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select a file destination to export to.
         /// </summary>
         public static string ExportDestinationSelectionHeader {

@@ -742,12 +742,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Fråge-meddelande</value>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Fel</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån.</value>
-  </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>Den angivna filen kunde inte hittas: {0}</value>
   </data>

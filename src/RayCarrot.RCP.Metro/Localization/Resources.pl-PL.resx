@@ -743,12 +743,6 @@
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Komunikat z zapytaniem</value>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Wyjątek</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Wystąpił wyjątek w aplikacji. Poniżej znajdują się dostępne informacje debugowania dla bieżącego poziomu użytkownika.</value>
-  </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>Nie można znaleźć określonego pliku: {0}</value>
   </data>

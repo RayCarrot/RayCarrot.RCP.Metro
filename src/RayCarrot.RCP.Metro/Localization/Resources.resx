@@ -742,12 +742,6 @@ This is a growing project with more features planned on being added with future 
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Question Message</value>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Exception</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>An exception has occurred in the application. Below is the available debug information for the current user level.</value>
-  </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>The specified file could not be found: {0}</value>
     <comment>Arguments:

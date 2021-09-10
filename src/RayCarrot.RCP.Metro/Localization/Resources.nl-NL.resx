@@ -741,12 +741,6 @@
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Vraag</value>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Exception</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Een exceptie heeft zich voorgedaan in de applicatie. Hieronder de beschikbare debug informatie, op basis van het huidige gebruikersniveau.</value>
-  </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>Het gespecificeerde bestand kon niet gevonden worden: {0}</value>
   </data>

@@ -543,9 +543,6 @@
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Mensaje de pregunta</value>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Excepción</value>
-  </data>
   <data name="File_LocationNotFound" xml:space="preserve">
     <value>La localización no se pudo abrir</value>
   </data>
