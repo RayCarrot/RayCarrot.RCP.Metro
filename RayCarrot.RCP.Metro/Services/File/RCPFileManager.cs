@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex, "Launching file {0}");
+                Logger.Warn(ex, "Launching file {0}", file);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, file.FullPath));
             }
