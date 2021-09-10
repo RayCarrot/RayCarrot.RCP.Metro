@@ -1,5 +1,5 @@
 # Rayman Control Panel™
-![Rayman Control Panel™](Screenshots/example_games.png)
+![Rayman Control Panel™](img/example_games.png)
 Rayman Control Panel™ is an open source community project created by [RayCarrot](https://github.com/RayCarrot). The purpose of this program is to unify existing game patches and fixes, as well as allowing extended configuration, for all PC Rayman games. This program does not come with any games and requires the user to have them installed. For certain games it is possible installing them through the program using a game disc.
 
 Note: This repository is only for the WPF version (4.0.0 and above). The WinForms version (1.0.0 - 3.2.2) repository has since been made private as it's no longer being maintained and is heavily outdated.
@@ -15,7 +15,7 @@ Main features:
 - Mods, such as enabling prototype features in Rayman Raving Rabbids
 
 ## Archive Explorer™
-![Archive Explorer™](Screenshots/example_archive_explorer.png)
+![Archive Explorer™](img/example_archive_explorer.png)
 
 The Archive Explorer™ is a tool within the Rayman Control Panel™ which allows supported game archive files to be viewed and edited. This allows textures to be replaced in games. 
 
@@ -25,22 +25,22 @@ Supported archive file types:
 - UbiArt .ipk files
 
 ## Configuration
-![Game Config](Screenshots/example_config_r2.png)
+![Game Config](img/example_config_r2.png)
 
 Each supported game has a configuration page where its settings can be changed. This allows for more options than the native configuration tools each game has, such as being able to run Rayman Raving Rabbids in windowed mode and change the language for Rayman 1.
 
 ## Mods
-![Mods](Screenshots/example_mods_rrr.png)
+![Mods](img/example_mods_rrr.png)
 
 Different mods are available throughout the app, such as restoring unused prototype features in Rayman Raving Rabbids.
 
 ## Utilities
-![Mods](Screenshots/example_utilities_origins.png)
+![Mods](img/example_utilities_origins.png)
 
 Utilities allows for more advanced modifications to the games, usually aimed at fixing a certain issue or allowing additional features. In Rayman Origins and Legends it can be used to enable the debug commands.
 
 ## Progression
-![Mods](Screenshots/example_progression_origins.png)
+![Mods](img/example_progression_origins.png)
 
 Most games have a page for viewing the progress in each save slot. The save data can also be exported to a JSON file.
 
