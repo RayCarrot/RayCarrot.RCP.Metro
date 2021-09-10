@@ -11,11 +11,15 @@
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                  MinWidth="300" MinHeight="150"
+                  MinWidth="480" MinHeight="300"
                   Loaded="Downloader_OnLoadedAsync"
                   Closing="Downloader_OnClosingAsync"
                   d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
     <StackPanel Margin="10">
+
+        <Image Source="../Img/MessageIcons/Generic.png"
+               Width="128" Height="128"
+               Margin="0 8 0 16" />
 
         <TextBlock Text="{Resx Download_TotalProgress}"
                    HorizontalAlignment="Center"/>
@@ -30,6 +34,21 @@
         <ProgressBar Value="{Binding Path=ItemCurrentProgress}"
                      Maximum="{Binding Path=ItemMaxProgress}"
                      Margin="0 8"/>
+
+        <StackPanel local:UserLevelAssist.MinUserLevel="Technical">
+
+            <TextBlock Text="{Binding Path=DisplayInputSource}" 
+                       HorizontalAlignment="Center"
+                       Margin="0 2" />
+            <TextBlock Text="↓" 
+                       HorizontalAlignment="Center" 
+                       Visibility="{Binding Path=DisplayInputSource, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                       Margin="0 2" />
+            <TextBlock Text="{Binding Path=DisplayOutputSource}"
+                       HorizontalAlignment="Center"
+                       Margin="0 2" />
+
+        </StackPanel>
 
     </StackPanel>
 </local:BaseWindow>

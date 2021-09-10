@@ -140,6 +140,8 @@ namespace RayCarrot.RCP.Metro
                     // Get the absolute output path
                     FileSystemPath file = ServerTempDir.TempPath + Path.GetFileName(inputSource.AbsolutePath);
 
+                    DisplayInputSource = file;
+
                     // Open the zip file
                     using (var zip = ZipFile.OpenRead(file))
                     {
@@ -156,6 +158,8 @@ namespace RayCarrot.RCP.Metro
 
                             // Get the absolute output path
                             var outputPath = OutputDirectory + entryName;
+
+                            DisplayOutputSource = outputPath;
 
                             // Check if the entry is a directory
                             if (entryName.EndsWith("\\") && entry.Name == String.Empty)
@@ -197,6 +201,9 @@ namespace RayCarrot.RCP.Metro
                     // Delete the zip file
                     FileManager.DeleteFile(file);
                 }
+
+                DisplayInputSource = null;
+                DisplayOutputSource = null;
             });
         }
 
@@ -258,10 +265,18 @@ namespace RayCarrot.RCP.Metro
                 {
                     Logger.Info("The file {0} is being downloaded", item);
 
-                    await WCServer.DownloadFileTaskAsync(item, ServerTempDir.TempPath + Path.GetFileName(item.AbsolutePath));
+                    var output = ServerTempDir.TempPath + Path.GetFileName(item.AbsolutePath);
+
+                    DisplayInputSource = item.AbsolutePath;
+                    DisplayOutputSource = output;
+
+                    await WCServer.DownloadFileTaskAsync(item, output);
                     ItemCurrentProgress = 100;
                     CurrentStep++;
                 }
+
+                DisplayInputSource = null;
+                DisplayOutputSource = null;
 
                 WCServer.DownloadProgressChanged -= WCServer_DownloadProgressChanged;
             }
@@ -477,6 +492,9 @@ namespace RayCarrot.RCP.Metro
         /// The max item progress
         /// </summary>
         public double ItemMaxProgress { get; set; }
+
+        public string DisplayInputSource { get; set; }
+        public string DisplayOutputSource { get; set; }
 
         /// <summary>
         /// The current state of the download
