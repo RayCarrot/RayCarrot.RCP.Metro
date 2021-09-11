@@ -56,36 +56,28 @@
                                 <!-- Context Menu -->
 
                                 <TextBox.ContextMenu>
-                                    <ContextMenu Padding="5">
-                                        <MenuItem Header="_Cut" Command="Cut" >
-                                            <MenuItem.Icon>
-                                                <iconPacks:PackIconMaterial Kind="ContentCut" />
-                                            </MenuItem.Icon>
-                                        </MenuItem>
-                                        <MenuItem Header="_Copy" Command="Copy" >
-                                            <MenuItem.Icon>
-                                                <iconPacks:PackIconMaterial Kind="ContentCopy" />
-                                            </MenuItem.Icon>
-                                        </MenuItem>
-                                        <MenuItem Header="_Paste" Command="Paste" >
-                                            <MenuItem.Icon>
-                                                <iconPacks:PackIconMaterial Kind="ContentPaste" />
-                                            </MenuItem.Icon>
-                                        </MenuItem>
+                                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+                                        <MenuItem Header="{Resx ContextMenu_Cut}" 
+                                                  Command="ApplicationCommands.Cut"
+                                                  Icon="{iconPacks:Material ContentCut}" />
+                                        <MenuItem Header="{Resx ContextMenu_Copy}" 
+                                                  Command="ApplicationCommands.Copy"
+                                                  Icon="{iconPacks:Material ContentCopy}" />
+                                        <MenuItem Header="{Resx ContextMenu_Paste}" 
+                                                  Command="ApplicationCommands.Paste"
+                                                  Icon="{iconPacks:Material ContentPaste}" />
                                         <Separator />
-                                        <MenuItem Header="_Undo" Command="Undo" >
-                                            <MenuItem.Icon>
-                                                <iconPacks:PackIconMaterial Kind="Undo" />
-                                            </MenuItem.Icon>
-                                        </MenuItem>
+                                        <MenuItem Header="{Resx ContextMenu_Undo}" 
+                                                  Command="ApplicationCommands.Undo"
+                                                  Icon="{iconPacks:Material Undo}" />
+                                        <MenuItem Header="{Resx ContextMenu_Redo}" 
+                                                  Command="ApplicationCommands.Redo"
+                                                  Icon="{iconPacks:Material Undo}" />
                                         <Separator />
                                         <MenuItem x:Name="PART_OpenLocationMenuItem"
-                                                  Header="Open Location"
-                                                  IsEnabled="{TemplateBinding IsSelectedPathValid}">
-                                            <MenuItem.Icon>
-                                                <iconPacks:PackIconMaterial Kind="FolderOutline" />
-                                            </MenuItem.Icon>
-                                        </MenuItem>
+                                                  Header="{Resx ContextMenu_OpenLocation}"
+                                                  Icon="{iconPacks:Material FolderOutline}"
+                                                  IsEnabled="{TemplateBinding IsSelectedPathValid}" />
                                     </ContextMenu>
                                 </TextBox.ContextMenu>
 

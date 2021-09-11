@@ -3613,6 +3613,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string ContextMenu_Copy {
+            get {
+                return ResourceManager.GetString("ContextMenu_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        public static string ContextMenu_Cut {
+            get {
+                return ResourceManager.GetString("ContextMenu_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Location.
+        /// </summary>
+        public static string ContextMenu_OpenLocation {
+            get {
+                return ResourceManager.GetString("ContextMenu_OpenLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string ContextMenu_Paste {
+            get {
+                return ResourceManager.GetString("ContextMenu_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string ContextMenu_Redo {
+            get {
+                return ResourceManager.GetString("ContextMenu_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string ContextMenu_Undo {
+            get {
+                return ResourceManager.GetString("ContextMenu_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         public static string Continue {

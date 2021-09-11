@@ -4226,4 +4226,22 @@ rcpURL</comment>
   <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
     <value>The directory does not exist</value>
   </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Open Location</value>
+  </data>
 </root>
