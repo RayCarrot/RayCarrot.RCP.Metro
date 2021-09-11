@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro
 
         private void AssociatedObject_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (AssociatedObject.SelectedIndex == -1) 
+            if (AssociatedObject.SelectedIndex == -1 || AssociatedObject.SelectedIndex == prevSelectedIndex) 
                 return;
 
             if (Services.Data.UI_EnableAnimations)
