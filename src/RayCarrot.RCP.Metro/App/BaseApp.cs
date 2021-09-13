@@ -318,33 +318,30 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                if (ServiceProvider != null)
-                {
-                    // Handle the exception
-                    if (e?.Exception != null)
-                        Logger.Fatal(e.Exception, "Unhandled exception");
-
-                    Logger.Fatal("An unhandled exception has occurred");
-                }
+                // Log the exception
+                Logger.Fatal(e?.Exception, "Unhandled exception");
 
                 // Get the path to log to
-                FileSystemPath logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
+                string logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
 
                 // Write log
                 File.WriteAllLines(logPath, LogManager.Configuration.FindTargetByName<MemoryTarget>("memory")?.Logs ?? new string[]
                 {
                     "Service not available",
+                    Environment.NewLine,
                     e?.Exception?.ToString()
                 });
 
                 // Notify user
-                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception.Message}{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}" +
-                                $"A crash log has been created under {logPath}.", "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e?.Exception?.Message}" +
+                                $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}A crash log has been created under {logPath}.",
+                    "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception)
             {
                 // Notify user
-                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e?.Exception?.Message}{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}", "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e?.Exception?.Message}",
+                    "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
