@@ -17,6 +17,7 @@ Other changes:
 • The jump list edit dialog now opens faster
 • Updated the updater
 • Localized several previously non-localized strings
+• Updated the welcome window with options for the language and user level and removed the option to disable update checks
 • Replaced the logging framework with NLog
 	• Opening the app will archive the previous log file up to 5 times rather than writing to the same one
 	• The log viewer is no longer enabled by default to avoid unnecessarily storing all logs
@@ -25,7 +26,6 @@ Other changes:
 	• Added additional launch arguments for controlling the logging
 • Removed features
 	• Removed the option to minimize the app to the tray
-	• Removed the checkbox for disabling update checks in the welcome window
 	• Reduced the number of animations shown in the disc installer
 	• Removed credits for unfinished translations
 • Debug/technical changes

@@ -156,6 +156,7 @@
       <DependentUpon>ResolutionSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\Bool\EqualsToConverter.cs" />
+    <Compile Include="UI\Converters\Other\CultureNameToCultureInfoConverter.cs" />
     <Compile Include="UI\Dialogs\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
     <Compile Include="Helpers\Windows\WindowsHelpers.cs" />
