@@ -100,7 +100,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="{Resx Cancel}" Click="Cancel_Click" IsCancel="True"/>
                 <Button Content="{Resx Accept}" 
-                        Margin="10 0" 
+                        Margin="10 0 0 0" 
                         Click="Continue_ClickAsync" 
                         IsDefault="True"
                         IsEnabled="{Binding Path=SelectedItem, Converter={local:IsNotNullConverter}}"/>
