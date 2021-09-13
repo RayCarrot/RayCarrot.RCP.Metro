@@ -350,6 +350,9 @@ namespace RayCarrot.RCP.Metro
 
                 // Dispose
                 Dispose();
+
+                // Close the logger
+                LogManager.Shutdown();
             }
         }
 

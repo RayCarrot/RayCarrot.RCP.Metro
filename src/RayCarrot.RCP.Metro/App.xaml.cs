@@ -201,16 +201,19 @@ namespace RayCarrot.RCP.Metro
         protected override async Task OnCloseAsync(Window mainWindow)
         {
             // Make sure the user data has been loaded
-            if (Services.Data == null)
-                return;
-            
-            // Save window state
-            Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
+            if (Services.Data != null)
+            {
+                // Save window state
+                Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
 
-            Logger.Info("The application is exiting...");
+                Logger.Info("The application is exiting...");
 
-            // Save all user data
-            await Services.App.SaveUserDataAsync();
+                // Save all user data
+                await Services.App.SaveUserDataAsync();
+            }
+
+            // Close the logger
+            LogManager.Shutdown();
         }
 
         /// <summary>
