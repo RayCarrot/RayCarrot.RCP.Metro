@@ -4075,4 +4075,22 @@ Start: Пауза</value>
   <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
     <value>Папка не существует</value>
   </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Вырезать</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Открыть расположение</value>
+  </data>
 </root>

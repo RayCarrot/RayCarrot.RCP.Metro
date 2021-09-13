@@ -4198,4 +4198,22 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
     <value>Folder nie istnieje</value>
   </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Wytnij</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Kopiuj</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Wklej</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Cofnij</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Ponów</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Otwórz folder zawierający</value>
+  </data>
 </root>

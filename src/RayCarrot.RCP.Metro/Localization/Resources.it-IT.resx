@@ -4082,4 +4082,22 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
     <value>La directory non esiste</value>
   </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Taglia</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Incolla</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Ripristina</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Apri percorso</value>
+  </data>
 </root>

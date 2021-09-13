@@ -4146,4 +4146,52 @@ Start: Pausa</value>
   <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
     <value>Modo de dança: Virar</value>
   </data>
+  <data name="ConfirmResetData" xml:space="preserve">
+    <value>Tens a certeza que queres reiniciar as definições da aplicação? Isto não pode ser anulado.</value>
+  </data>
+  <data name="ConfirmResetDataHeader" xml:space="preserve">
+    <value>Confirmar reinicio</value>
+  </data>
+  <data name="Settings_ResetAppData" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="InvalidResolution" xml:space="preserve">
+    <value>Resolução inválida.  Deve estar num formato de "Largura X Altura".</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Exibir diálogos dentro das janelas</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Desactivar isto irá exibir diálogos como janelas bloqueantes, separadas, enquanto activar irá exibi-los dentro da janela de onde originaram</value>
+  </data>
+  <data name="Settings_DisableGameValidation" xml:space="preserve">
+    <value>Desactivar validação do jogo</value>
+  </data>
+  <data name="BrowseBox_ValidationError_Empty" xml:space="preserve">
+    <value>Campo obrigatório</value>
+  </data>
+  <data name="BrowseBox_ValidationError_FileExists" xml:space="preserve">
+    <value>O ficheiro não existe</value>
+  </data>
+  <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
+    <value>O directório não existe</value>
+  </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Cortar</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Copiar</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Colar</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Anular</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Refazer</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Abrir localização</value>
+  </data>
 </root>
