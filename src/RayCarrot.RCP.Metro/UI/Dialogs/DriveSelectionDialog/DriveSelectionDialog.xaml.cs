@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
 
             ViewModel = new DriveBrowserViewModel()
             {
-                Title = "Select a Drive"
+                Title = Metro.Resources.Browse_SelectDrive
             };
             DataContext = new DriveSelectionViewModel(ViewModel);
         }
@@ -85,22 +85,25 @@ namespace RayCarrot.RCP.Metro
         {
             DriveSelectionVM.UpdateReturnValue();
 
+            // Make sure a drive was selected
             if (DriveSelectionVM.Result.SelectedDrives == null || !DriveSelectionVM.Result.SelectedDrives.Any())
             {
-                await Services.MessageUI.DisplayMessageAsync("At least one drive has to be selected", "No drive selected", MessageType.Information);
+                Logger.Warn("No drive has been selected");
                 return;
             }
+
             if (!DriveSelectionVM.Result.SelectedDrives.Select(x => new FileSystemPath(x)).DirectoriesExist())
             {
-                await Services.MessageUI.DisplayMessageAsync("One or more of the selected drives could not be found", "Invalid selection", MessageType.Information);
+                Logger.Warn("Selected drive no longer exists");
                 await DriveSelectionVM.RefreshAsync();
                 return;
             }
+
             if (!DriveSelectionVM.BrowseVM.AllowNonReadyDrives && DriveSelectionVM.Result.SelectedDrives.Any(x =>
             {
                 try
                 {
-                    return !(new DriveInfo(x).IsReady);
+                    return !new DriveInfo(x).IsReady;
                 }
                 catch (Exception ex)
                 {
@@ -109,7 +112,7 @@ namespace RayCarrot.RCP.Metro
                 }
             }))
             {
-                await Services.MessageUI.DisplayMessageAsync("One or more of the selected drives are not ready", "Invalid selection", MessageType.Information);
+                Logger.Warn("One or more of the selected drives are not ready");
                 await DriveSelectionVM.RefreshAsync();
                 return;
             }
