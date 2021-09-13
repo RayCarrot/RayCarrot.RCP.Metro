@@ -202,7 +202,10 @@ namespace RayCarrot.RCP.Metro
         {
             if (!Metro.App.Current.IsLogViewerAvailable)
             {
-                await Services.MessageUI.DisplayMessageAsync("The log viewer is not enabled. Use the launch argument -logviewer to enabled it.", MessageType.Warning);
+                await Services.MessageUI.DisplayMessageAsync("The log viewer is not enabled. Use the launch argument -logviewer to enabled it. The log file will open instead.", MessageType.Warning);
+
+                await Services.File.LaunchFileAsync(AppFilePaths.LogFile);
+
                 return;
             }
 
