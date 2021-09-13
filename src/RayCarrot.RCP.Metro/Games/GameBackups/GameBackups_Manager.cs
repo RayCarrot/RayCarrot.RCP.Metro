@@ -254,9 +254,9 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Get the backup information and group items by ID
-                    var backupInfoByID = backupInformation.BackupDirectories.GroupBy(x => x.ID).ToList();
+                    var backupInfoByID = backupInformation.BackupDirectories.GroupBy(x => x.ID).ToArray();
 
-                    Logger.Debug("{0} backup directory ID groups were found", backupInfoByID.Count);
+                    Logger.Debug("{0} backup directory ID groups were found", backupInfoByID.Length);
 
                     // Get the backup info
                     var backupInfo = new List<GameBackups_Directory>();

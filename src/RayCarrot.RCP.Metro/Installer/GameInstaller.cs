@@ -484,7 +484,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (GameInstaller_DriveInfo drive in Drives)
                     {
                         // Get the item for this drive
-                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage == GameInstaller_ItemStage.Verified && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root).ToList();
+                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage == GameInstaller_ItemStage.Verified && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root).ToArray();
 
                         // Skip if there are no items
                         if (!items.Any())

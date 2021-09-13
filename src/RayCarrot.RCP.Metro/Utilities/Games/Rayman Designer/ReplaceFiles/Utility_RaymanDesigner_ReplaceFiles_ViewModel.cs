@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro
                 // Download each group
                 foreach (var group in groups)
                     // Download the files
-                    await App.DownloadAsync(group.Select(x => x.Item2).ToList(), false, group.Key);
+                    await App.DownloadAsync(group.Select(x => x.Item2).ToArray(), false, group.Key);
 
                 Logger.Info("The Rayman Designer files have been replaced");
 

@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         public GameFinder(IEnumerable<Games> games, IEnumerable<GameFinder_GenericItem> finderItems)
         {
             // Set properties
-            GamesToFind = games.ToList();
+            GamesToFind = new HashSet<Games>(games);
             FinderItems = finderItems?.ToArray() ?? new GameFinder_GenericItem[0];
             FoundFinderItems = new List<GameFinder_GenericItem>();
             Results = new List<GameFinder_BaseResult>();
@@ -207,7 +207,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The list of games which are left to be found
         /// </summary>
-        protected List<Games> GamesToFind { get; }
+        protected HashSet<Games> GamesToFind { get; }
 
         /// <summary>
         /// Gets the games which have been found

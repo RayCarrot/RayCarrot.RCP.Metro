@@ -96,13 +96,13 @@ namespace RayCarrot.RCP.Metro
 
                     Logger.Debug("A custom window of type {0} has been requested to show", windowType);
 
-                    // Get the currently available windows and copy them to a list
-                    var windows = Application.Current.Windows.Cast<Window>().ToList();
+                    // Get the currently available windows
+                    var windows = Application.Current.Windows;
 
                     // If no duplicates are allowed, make sure there is no Window of the same type
                     if (!flags.HasFlag(ShowWindowFlags.DuplicatesAllowed))
                     {
-                        var window = windows.Find(x => windowType == x.GetType());
+                        var window = windows.Cast<Window>().FirstOrDefault(x => windowType == x.GetType());
 
                         if (window != null)
                         {
