@@ -6,9 +6,9 @@ using Microsoft.Xaml.Behaviors;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Behavior with support for binding to a list of selected items for a <see cref="DataGrid"/>
+    /// Behavior with support for binding to a list of selected items for a <see cref="ListBox"/>
     /// </summary>
-    public class DataGridSelectedItemsBehavior : Behavior<DataGrid>
+    public class ListBoxSelectedItemsBehavior : Behavior<ListBox>
     {
         #region Overrides
 
@@ -44,7 +44,7 @@ namespace RayCarrot.RCP.Metro
             set => SetValue(SelectedItemsProperty, value);
         }
 
-        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register(nameof(SelectedItems), typeof(IList), typeof(DataGridSelectedItemsBehavior));
+        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register(nameof(SelectedItems), typeof(IList), typeof(ListBoxSelectedItemsBehavior));
 
         #endregion
     }

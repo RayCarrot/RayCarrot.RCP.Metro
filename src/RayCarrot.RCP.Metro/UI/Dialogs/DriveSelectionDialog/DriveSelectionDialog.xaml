@@ -5,9 +5,15 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             MinWidth="300" MinHeight="200"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="600"
-             Loaded="UserControl_LoadedAsync" d:DataContext="{d:DesignInstance local:DriveSelectionViewModel}">
+             d:DesignHeight="300" d:DesignWidth="500"
+             Loaded="UserControl_LoadedAsync" 
+             d:DataContext="{x:Static local:DesignTimeVM.DriveSelectionViewModel}">
     <UserControl.InputBindings>
 
         <!-- Refresh -->
@@ -22,85 +28,78 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" 
-                  Margin="5"
-                  AutoGenerateColumns="False" 
-                  CanUserAddRows="False" 
-                  CanUserDeleteRows="False" 
-                  CanUserReorderColumns="True"
-                  CanUserResizeColumns="True" 
-                  CanUserResizeRows="False" 
-                  CanUserSortColumns="True" 
-                  IsReadOnly="True" 
-                  PreviewKeyDown="DataGrid_KeyDownAsync"
-                  ItemsSource="{Binding Path=Drives}"
-                  SelectedItem="{Binding Path=SelectedItem}" 
-                  GridLinesVisibility="Horizontal"
-                  BorderThickness="0"
-                  SelectionMode="{Binding Path=BrowseVM.MultiSelection, Converter={local:BooleanToDataGridSelectionModeConverter}}">
+        <ListBox Grid.Row="0"
+                 Grid.IsSharedSizeScope="True"
+                 Margin="5"
+                 BorderThickness="{StaticResource Thickness.Border.Default}"
+                 metro:ControlsHelper.CornerRadius="{StaticResource CornerRadius.Default}"
+                 ItemsSource="{Binding Path=Drives}"
+                 SelectedItem="{Binding Path=SelectedItem}"
+                 SelectionMode="{Binding Path=BrowseVM.MultiSelection, Converter={local:BooleanToDataGridSelectionModeConverter}}">
             <i:Interaction.Behaviors>
-                <local:DataGridSelectedItemsBehavior SelectedItems="{Binding Path=SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <local:ListBoxSelectedItemsBehavior SelectedItems="{Binding Path=SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </i:Interaction.Behaviors>
 
-            <DataGrid.CellStyle>
-                <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
-                    <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <Setter Property="IsEnabled" Value="{Binding Path=IsReady, Mode=OneTime}" />
+                    <EventSetter Event="MouseDoubleClick" Handler="DriveItem_MouseDoubleClick" />
                 </Style>
-            </DataGrid.CellStyle>
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <Setter Property="IsEnabled" Value="{Binding Path=IsReady}" />
-                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_OnHandlerAsync" />
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
-                
-                <!-- Icon + Name -->
-                
-                <DataGridTemplateColumn Header="Name">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate DataType="local:DriveViewModel">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Path=Icon}" Width="16" Height="16"/>
-                                <TextBlock Text="{Binding Path=DisplayLabel}" Margin="10 0 2 0"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
-                <!-- Path -->
+            </ListBox.ItemContainerStyle>
 
-                <DataGridTextColumn Header="Path" Binding="{Binding Path=Path}"/>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Path" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Size" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Format" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Type" />
+                        </Grid.ColumnDefinitions>
 
-                <!-- Format -->
+                        <Image Grid.Column="0"
+                               Source="{Binding Path=Icon, Mode=OneTime}" 
+                               Width="16" Height="16"
+                               Margin="0 0 10 0"/>
 
-                <DataGridTextColumn Header="Format" Binding="{Binding Path=DisplayFormat}"/>
-                
-                <!-- Free Space -->
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Path=Path, Mode=OneTime}"
+                                   Margin="0 0 10 0" />
 
-                <DataGridTextColumn Header="Free Space" Binding="{Binding Path=DisplayFreeSpace}"/>
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Path=Label, Mode=OneTime}"
+                                   Margin="0 0 20 0" />
 
-                <!-- Total Size -->
+                        <TextBlock Grid.Column="3"
+                                   Margin="0 0 20 0">
+                            <Run Text="{Binding Path=UsedSpace, Mode=OneTime}"/>
+                            <Run Text="/"/>
+                            <Run Text="{Binding Path=TotalSize, Mode=OneTime}"/>
+                        </TextBlock>
 
-                <DataGridTextColumn Header="Total Size" Binding="{Binding Path=DisplayTotalSize}"/>
+                        <TextBlock Grid.Column="4"
+                                   Text="{Binding Path=Format, Mode=OneTime}"
+                                   Margin="0 0 20 0" />
 
-                <!-- Type -->
+                        <TextBlock Grid.Column="5"
+                                   Text="{Binding Path=Type, Mode=OneTime}"
+                                   Margin="0 0 5 0" />
 
-                <DataGridTextColumn Header="Type" Binding="{Binding Path=DisplayType}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
 
-                <!-- Is Ready -->
-
-                <DataGridTextColumn Header="Is Ready" Binding="{Binding Path=DisplayIsReady}"/>
-
-            </DataGrid.Columns>
-        </DataGrid>
+        </ListBox>
 
         <Grid Grid.Row="1" Margin="5">
-            <Button Content="Refresh" HorizontalAlignment="Left" Command="{Binding Path=RefreshCommand}"/>
+
+            <Button Content="{Resx Page_Refresh}" HorizontalAlignment="Left" Command="{Binding Path=RefreshCommand}"/>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Cancel" Click="Cancel_Click" IsCancel="True"/>
-                <Button Content="Continue" 
+                <Button Content="{Resx Cancel}" Click="Cancel_Click" IsCancel="True"/>
+                <Button Content="{Resx Accept}" 
                         Margin="10 0" 
                         Click="Continue_ClickAsync" 
                         IsDefault="True"

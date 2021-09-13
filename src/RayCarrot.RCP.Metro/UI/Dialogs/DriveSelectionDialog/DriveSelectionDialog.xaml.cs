@@ -70,12 +70,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the dialog should be resizable
         /// </summary>
-        public bool Resizable => true;
+        public bool Resizable => false;
 
         /// <summary>
         /// The base size for the dialog
         /// </summary>
-        public DialogBaseSize BaseSize => DialogBaseSize.Large;
+        public DialogBaseSize BaseSize => DialogBaseSize.Medium;
 
         #endregion
 
@@ -164,16 +164,7 @@ namespace RayCarrot.RCP.Metro
             CloseDialog?.Invoke(this, new EventArgs());
         }
 
-        private async void DataGrid_KeyDownAsync(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                e.Handled = true;
-                await AttemptConfirmAsync();
-            }
-        }
-
-        private async void DataGridRow_OnHandlerAsync(object sender, MouseButtonEventArgs e)
+        private async void DriveItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
             await AttemptConfirmAsync();
@@ -185,5 +176,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
+
     }
 }

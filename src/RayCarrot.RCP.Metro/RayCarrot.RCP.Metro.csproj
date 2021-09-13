@@ -123,6 +123,7 @@
     <Compile Include="App\Refresh\RefreshFlags.cs" />
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
+    <Compile Include="UI\Behaviors\ListBoxSelectedItemsBehavior.cs" />
     <Compile Include="UI\Behaviors\UpdateTextBoxBindingOnEnterBehavior.cs" />
     <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionValidationRule.cs" />
     <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionSelectionViewModel.cs" />
@@ -157,6 +158,7 @@
     </Compile>
     <Compile Include="UI\Converters\Bool\EqualsToConverter.cs" />
     <Compile Include="UI\Converters\Other\CultureNameToCultureInfoConverter.cs" />
+    <Compile Include="UI\DesignTimeVM.cs" />
     <Compile Include="UI\Dialogs\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
     <Compile Include="Helpers\Windows\WindowsHelpers.cs" />
@@ -204,7 +206,7 @@
     <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo5_Win32.cs" />
     <Compile Include="Helpers\Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="UI\AttachedProperties\UnifiedMargin.cs" />
-    <Compile Include="UI\Behaviors\DataGridSelectedItemsBehavior.cs" />
+    <Compile Include="UI\Behaviors\MultiSelectorSelectedItemsBehavior.cs" />
     <Compile Include="UI\Behaviors\FocusElementOnLoad.cs" />
     <Compile Include="UI\Behaviors\FocusScrollViewerOnLoad.cs" />
     <Compile Include="UI\Behaviors\UnifiedMarginBehavior.cs" />
