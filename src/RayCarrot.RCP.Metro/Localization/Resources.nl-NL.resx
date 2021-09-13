@@ -4134,4 +4134,22 @@ Start: Pauzeren</value>
   <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
     <value>De map bestaat niet</value>
   </data>
+  <data name="ContextMenu_Cut" xml:space="preserve">
+    <value>Knippen</value>
+  </data>
+  <data name="ContextMenu_Copy" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="ContextMenu_Paste" xml:space="preserve">
+    <value>Plakken</value>
+  </data>
+  <data name="ContextMenu_Undo" xml:space="preserve">
+    <value>Ongedaan maken</value>
+  </data>
+  <data name="ContextMenu_Redo" xml:space="preserve">
+    <value>Herstellen</value>
+  </data>
+  <data name="ContextMenu_OpenLocation" xml:space="preserve">
+    <value>Open Locatie</value>
+  </data>
 </root>
