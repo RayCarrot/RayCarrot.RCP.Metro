@@ -400,14 +400,15 @@ namespace RayCarrot.RCP.Metro
             TotalCurrentProgress = TotalMaxProgress;
             OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
 
-            // Flag the operation as complete
-            OperationRunning = false;
-
             CurrentDownloadState = DownloadState.Succeeded;
 
             Logger.Info("The download operation has completed");
 
             await Services.MessageUI.DisplayMessageAsync(Resources.Download_Success, Resources.Download_SuccessHeader, MessageType.Success);
+
+            // Flag the operation as complete
+            OperationRunning = false;
+
             OnDownloadComplete();
         }
 
