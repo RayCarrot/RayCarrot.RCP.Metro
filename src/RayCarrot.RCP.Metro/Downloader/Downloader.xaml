@@ -35,20 +35,24 @@
                      Maximum="{Binding Path=ItemMaxProgress}"
                      Margin="0 8"/>
 
-        <StackPanel local:UserLevelAssist.MinUserLevel="Technical">
+        <Viewbox local:UserLevelAssist.MinUserLevel="Technical" 
+                 Width="400" 
+                 StretchDirection="DownOnly">
+            <StackPanel>
 
-            <TextBlock Text="{Binding Path=DisplayInputSource}" 
-                       HorizontalAlignment="Center"
-                       Margin="0 2" />
-            <TextBlock Text="↓" 
-                       HorizontalAlignment="Center" 
-                       Visibility="{Binding Path=DisplayInputSource, Converter={local:InvertedObjectNullToVisibilityConverter}}"
-                       Margin="0 2" />
-            <TextBlock Text="{Binding Path=DisplayOutputSource}"
-                       HorizontalAlignment="Center"
-                       Margin="0 2" />
+                <TextBlock Text="{Binding Path=DisplayInputSource}" 
+                           HorizontalAlignment="Center"
+                           Margin="0 2" />
+                <TextBlock Text="↓" 
+                           HorizontalAlignment="Center" 
+                           Visibility="{Binding Path=DisplayInputSource, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                           Margin="0 2" />
+                <TextBlock Text="{Binding Path=DisplayOutputSource}"
+                           HorizontalAlignment="Center"
+                           Margin="0 2" />
 
-        </StackPanel>
+            </StackPanel>
+        </Viewbox>
 
     </StackPanel>
 </local:BaseWindow>
