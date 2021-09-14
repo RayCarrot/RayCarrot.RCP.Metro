@@ -20,7 +20,7 @@
                   Icon="{iconPacks:Material Undo}" />
         <MenuItem Header="{Resx ContextMenu_Redo}" 
                   Command="ApplicationCommands.Redo"
-                  Icon="{iconPacks:Material Undo}" />
+                  Icon="{iconPacks:Material Redo}" />
     </ContextMenu>
 
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">

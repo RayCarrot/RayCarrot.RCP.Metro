@@ -72,7 +72,7 @@
                                                   Icon="{iconPacks:Material Undo}" />
                                         <MenuItem Header="{Resx ContextMenu_Redo}" 
                                                   Command="ApplicationCommands.Redo"
-                                                  Icon="{iconPacks:Material Undo}" />
+                                                  Icon="{iconPacks:Material Redo}" />
                                         <Separator />
                                         <MenuItem x:Name="PART_OpenLocationMenuItem"
                                                   Header="{Resx ContextMenu_OpenLocation}"
