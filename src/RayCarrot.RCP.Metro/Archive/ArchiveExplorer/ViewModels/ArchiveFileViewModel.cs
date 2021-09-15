@@ -312,18 +312,14 @@ namespace RayCarrot.RCP.Metro
                 // If the stream has closed it's not an error
                 if (!ArchiveFileStream.CanRead)
                 {
-                    Logger.Debug(ex, "Initializing file");
+                    Logger.Debug(ex, "Error initializing file");
                 }
                 else
                 {
-                    Logger.Error(ex, "Initializing file");
+                    Logger.Error(ex, "Error initializing file of type {0}", FileType);
 
-                    // Initialize the file with default settings to allow the file to be exported and deleted
-                    SetFileType(new ArchiveFileType_Default());
-                    ResetMenuActions();
-                    IconKind = PackIconMaterialKind.FileAlertOutline;
-                    ThumbnailSource = null;
-                    IsInitialized = true;
+                    // Initialize the file in the error state
+                    InitializeAsError();
                 }
             }
             finally
@@ -331,6 +327,19 @@ namespace RayCarrot.RCP.Metro
                 if (!hadStream)
                     fileStream?.Dispose();
             }
+        }
+
+        /// <summary>
+        /// Initializes the file in the error state. This will allow the file to still be deleted and exported in its native format, but it
+        /// can no longer be converted using its actual format.
+        /// </summary>
+        public void InitializeAsError()
+        {
+            SetFileType(new ArchiveFileType_Error());
+            ResetMenuActions();
+            IconKind = FileType.Icon;
+            ThumbnailSource = null;
+            IsInitialized = true;
         }
 
         /// <summary>
@@ -463,12 +472,24 @@ namespace RayCarrot.RCP.Metro
             // Create the output file and open it
             using var fileStream = File.Create(filePath);
 
-            // Write the bytes directly to the stream if no format is specified
-            if (format == null)
-                stream.CopyTo(fileStream);
-            // Convert the file if the format is not the native one
-            else
-                FileType.ConvertTo(FileExtension, format, stream, fileStream, Manager);
+            try
+            {
+                // Write the bytes directly to the stream if no format is specified
+                if (format == null)
+                    stream.CopyTo(fileStream);
+                // Convert the file if the format is not the native one
+                else
+                    FileType.ConvertTo(FileExtension, format, stream, fileStream, Manager);
+            }
+            catch
+            {
+                // If writing to the file failed after it was created we delete the file
+                fileStream.Close();
+                Services.File.DeleteFile(filePath);
+
+                // Throw the exception
+                throw;
+            }
         }
 
         /// <summary>

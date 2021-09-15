@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The default icon kind for the type
         /// </summary>
-        public PackIconMaterialKind Icon => PackIconMaterialKind.FileOutline;
+        public virtual PackIconMaterialKind Icon => PackIconMaterialKind.FileOutline;
 
         /// <summary>
         /// Indicates if the specified manager supports files of this type

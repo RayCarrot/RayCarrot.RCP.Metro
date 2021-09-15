@@ -230,10 +230,10 @@ namespace RayCarrot.RCP.Metro
                     await Task.Run(async () =>
                     {
                         // Get the manager
-                        var manager = Archive.Manager;
+                        IArchiveDataManager manager = Archive.Manager;
 
                         // Save the selected format for each collection
-                        Dictionary<IArchiveFileType, FileExtension> selectedFormats = new Dictionary<IArchiveFileType, FileExtension>();
+                        var selectedFormats = new Dictionary<IArchiveFileType, FileExtension>();
 
                         try
                         {
@@ -247,23 +247,23 @@ namespace RayCarrot.RCP.Metro
                             else
                                 allDirs = this.GetAllChildren(true).ToArray();
 
-                            var fileIndex = 0;
-                            var filesCount = allDirs.SelectMany(x => x.Files).Count(x => !selectedFilesOnly || x.IsSelected);
+                            int fileIndex = 0;
+                            int filesCount = allDirs.SelectMany(x => x.Files).Count(x => !selectedFilesOnly || x.IsSelected);
 
                             // Handle each directory
-                            foreach (var item in allDirs)
+                            foreach (ArchiveDirectoryViewModel item in allDirs)
                             {
                                 // Get the directory path
-                                var path = result.SelectedDirectory + ExportDirName + item.FullPath.Remove(0, FullPath.Length).Trim(manager.PathSeparatorCharacter);
+                                FileSystemPath path = result.SelectedDirectory + ExportDirName + item.FullPath.Remove(0, FullPath.Length).Trim(manager.PathSeparatorCharacter);
 
                                 // Create the directory
                                 Directory.CreateDirectory(path);
 
                                 // Save each file
-                                foreach (var file in item.Files.Where(x => !selectedFilesOnly || x.IsSelected))
+                                foreach (ArchiveFileViewModel file in item.Files.Where(x => !selectedFilesOnly || x.IsSelected))
                                 {
                                     // Get the file stream
-                                    using var fileStream = file.GetDecodedFileStream();
+                                    using ArchiveFileStream fileStream = file.GetDecodedFileStream();
 
                                     // Initialize the file without loading the thumbnail
                                     file.InitializeFile(fileStream, ArchiveFileViewModel.ThumbnailLoadMode.None);
@@ -291,15 +291,41 @@ namespace RayCarrot.RCP.Metro
                                     }
 
                                     // Get the selected format
-                                    var format = forceNativeFormat || file.FileType is ArchiveFileType_Default ? null : selectedFormats[file.FileType];
+                                    FileExtension format = forceNativeFormat || file.FileType is ArchiveFileType_Default 
+                                        ? null 
+                                        : selectedFormats[file.FileType];
 
                                     // Get the final file name to use when exporting
-                                    FileSystemPath exportFileName = format == null ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
+                                    FileSystemPath exportFileName = format == null 
+                                        ? new FileSystemPath(file.FileName) 
+                                        : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
-                                    Archive.SetDisplayStatus($"{String.Format(Resources.Archive_ExportingFileStatus, file.FileName)}{Environment.NewLine}{++fileIndex}/{filesCount}");
+                                    Archive.SetDisplayStatus($"{String.Format(Resources.Archive_ExportingFileStatus, file.FileName)}" +
+                                                             $"{Environment.NewLine}{++fileIndex}/{filesCount}");
 
-                                    // Export the file
-                                    file.ExportFile(path + exportFileName, fileStream.Stream, format);
+                                    try
+                                    {
+                                        // Export the file
+                                        file.ExportFile(path + exportFileName, fileStream.Stream, format);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        // If the export failed for a native format we throw
+                                        if (format == null)
+                                            throw;
+
+                                        Logger.Error(ex, "Exporting archive file {0}", file.FileName);
+
+                                        // If the export failed and we tried converting it we instead export it as the native format
+                                        // Start by setting the file in the error state, thus changing the type
+                                        file.InitializeAsError();
+
+                                        // Seek to the beginning of the stream in case some bytes were read
+                                        fileStream.SeekToBeginning();
+
+                                        // Export the file as the native format
+                                        file.ExportFile(path + file.FileName, fileStream.Stream, null);
+                                    }
                                 }
                             }
                         }
