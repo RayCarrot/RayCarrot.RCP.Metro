@@ -221,7 +221,7 @@ namespace RayCarrot.RCP.Metro
                 Select(x => (lvlIds[x.Id.ID], x.BestTime)).
                 Select(x => new GameProgression_InfoItemViewModel(
                     Enum.Parse(typeof(GameProgression_Icon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<GameProgression_Icon>(), 
-                    new ConstLocString($"{x.Item1}: {x.BestTime:0.000}"), 
+                    new ConstLocString($"{x.Item1}: {TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}"), 
                     new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"))).
                 OrderBy(x => x.Content.Value));
 

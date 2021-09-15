@@ -18,6 +18,7 @@ Other changes:
 • The jump list edit dialog now opens faster
 • Updated the updater
 • Localized several previously non-localized strings
+• Normalized the way the times are displayed for game progression to minutes:seconds.milliseconds
 • Updated the welcome window with options for the language and user level and removed the option to disable update checks
 • Replaced the logging framework with NLog
 	• Opening the app will archive the previous log file up to 5 times rather than writing to the same one
@@ -36,6 +37,7 @@ Other changes:
 	• Added more dialog types to show from the debug page, with an option to show them async
 	• Debug symbols are no longer included in the executable
 • Bug fixes
+	• Fixed the times being shown incorrectly in the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
 	• Fixed the version history window not being centered when opened from the about page
 	• Fixed certain browse boxes not allowing backslashes to be typed
 	• Fixed the file filter not working when specifying the output file when creating an archive

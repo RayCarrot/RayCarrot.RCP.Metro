@@ -124,7 +124,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 
                 // Create the view model
-                progressItems[((i + 1) / 10) - 1 + 2] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Clock, new ConstLocString($"{worldNum}-{lvlNum}: {new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\:fff}"));
+                progressItems[((i + 1) / 10) - 1 + 2] = new GameProgression_InfoItemViewModel(GameProgression_Icon.RO_Clock, new ConstLocString($"{worldNum}-{lvlNum}: {new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\.fff}"));
             }
 
             // Set general progress info

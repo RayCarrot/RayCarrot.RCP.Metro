@@ -118,9 +118,9 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Get the time
-                var time = new TimeSpan((long)(value / (3600d / TimeSpan.TicksPerSecond)));
+                var time = TimeSpan.FromMilliseconds(1000d / 60 * value);
 
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Flag, new ConstLocString($"{longWorldNames[save.World]} {save.Level}: {time:ss\\:fff}")));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R1_Flag, new ConstLocString($"{longWorldNames[save.World]} {save.Level}: {time:mm\\:ss\\.fff}")));
             }
 
             Logger.Info("General progress info has been set");

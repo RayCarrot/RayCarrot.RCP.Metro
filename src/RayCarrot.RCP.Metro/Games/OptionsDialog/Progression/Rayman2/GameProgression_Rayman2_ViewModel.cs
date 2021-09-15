@@ -114,10 +114,10 @@ namespace RayCarrot.RCP.Metro
             };
 
             if (walkOfLifeTime > 120)
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\:ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_1))));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\.ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_1))));
 
             if (walkOfPowerTime > 120)
-                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\:ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_2))));
+                progressItems.Add(new GameProgression_InfoItemViewModel(GameProgression_Icon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\.ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_2))));
 
             Logger.Info("General progress info has been set");
 

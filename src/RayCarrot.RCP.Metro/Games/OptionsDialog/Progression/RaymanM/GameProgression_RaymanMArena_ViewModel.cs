@@ -123,7 +123,7 @@ namespace RayCarrot.RCP.Metro
                                 // Get the level icon
                                 Enum.Parse(typeof(GameProgression_Icon), $"RM_R{raceIndex}").CastTo<GameProgression_Icon>(), 
                                 // The value
-                                new GeneratedLocString(() => $"{getDescription()}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\:fff")) : value.ToString())}"),
+                                new GeneratedLocString(() => $"{getDescription()}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\.fff")) : value.ToString())}"),
                                 // The description (level name)
                                 new ResourceLocString($"RM_RaceName_{raceIndex}")));
                     }
