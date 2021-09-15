@@ -42,6 +42,7 @@ Other changes:
 	• Fixed certain browse boxes not allowing backslashes to be typed
 	• Fixed the file filter not working when specifying the output file when creating an archive
 	• Fixed the games page tab headers not updating when changing language
+	• Fixed the folder export failing in the Archive Explorer™ if one of the files could not be converted before being initialized
 
 
 -----   Version 11.3.0 - August 25, 2021   -----
