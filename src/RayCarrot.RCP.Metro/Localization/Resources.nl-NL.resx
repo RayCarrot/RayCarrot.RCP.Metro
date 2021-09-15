@@ -1498,7 +1498,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Rayman 2</value>
   </data>
   <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
-    <value>Spel Wordt Te Snel Afgespeeld</value>
+    <value>Spel wordt te snel afgespeeld</value>
   </data>
   <data name="Help_Games_R2_GameSpeed" xml:space="preserve">
     <value>Als Rayman 2 te snel wordt afgespeeld, gebruikmakende van nGlide, verander de verversingsfrequentie dan naar 120Hz. Dit dient zelfs gedaan te worden bij monitors die géén 120Hz ondersteunen.</value>
