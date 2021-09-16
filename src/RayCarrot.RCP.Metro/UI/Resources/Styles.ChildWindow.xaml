@@ -9,12 +9,14 @@
         <Setter Property="CloseByEscape" Value="True" />
         <Setter Property="AllowMove" Value="True" />
         <Setter Property="Padding" Value="15" />
-        <Setter Property="Icon">
+        <Setter Property="IconTemplate">
             <Setter.Value>
-                <metro:MultiFrameImage Width="30"
-                                       Height="30"
-                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                       Source="../../Img/RCP_Metro.ico" />
+                <DataTemplate>
+                    <metro:MultiFrameImage Width="30"
+                                           Height="30"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                           Source="../../Img/RCP_Metro.ico" />
+                </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
