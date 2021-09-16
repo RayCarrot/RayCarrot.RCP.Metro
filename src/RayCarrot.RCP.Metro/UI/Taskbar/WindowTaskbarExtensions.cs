@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Extension methods for <see cref="Window"/>
     /// </summary>
-    public static class WindowExtensions
+    public static class WindowTaskbarExtensions
     {
         /// <summary>
         /// Displays or updates a progress bar hosted in a taskbar button of the given WPF

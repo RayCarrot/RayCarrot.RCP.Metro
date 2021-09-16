@@ -160,6 +160,7 @@
     <Compile Include="UI\Converters\Bool\EqualsToConverter.cs" />
     <Compile Include="UI\Converters\Other\CultureNameToCultureInfoConverter.cs" />
     <Compile Include="UI\DesignTimeVM.cs" />
+    <Compile Include="Helpers\Extensions\WindowExtensions.cs" />
     <Compile Include="UI\Dialogs\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
     <Compile Include="Helpers\Windows\WindowsHelpers.cs" />
@@ -402,7 +403,7 @@
     <Compile Include="UI\Dialogs\UserInputResult.cs" />
     <Compile Include="UI\Dialogs\UserInputViewModel.cs" />
     <Compile Include="UI\Behaviors\DynamicTabAnimationBehavior.cs" />
-    <Compile Include="UI\Taskbar\WindowExtensions.cs" />
+    <Compile Include="UI\Taskbar\WindowTaskbarExtensions.cs" />
     <Compile Include="UI\ValidationRules\Files and Directories\DirectoryExistsAndNotEmptyValidationRule.cs" />
     <Compile Include="UI\ValidationRules\Files and Directories\DirectoryExistsValidationRule.cs" />
     <Compile Include="UI\ValidationRules\Files and Directories\FileExistsAndNotEmptyValidationRule.cs" />

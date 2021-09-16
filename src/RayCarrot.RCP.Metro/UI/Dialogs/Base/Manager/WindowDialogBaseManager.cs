@@ -38,8 +38,7 @@ namespace RayCarrot.RCP.Metro
                 return await dispatcher.Invoke(async () =>
                 {
                     // Get the parent window
-                    if (Services.Data.UI_UseChildWindows && (Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive)
-                         ?? Application.Current.MainWindow) is MetroWindow metroWindow)
+                    if (Services.Data.UI_UseChildWindows && GetChildWindowParent() is MetroWindow metroWindow)
                     {
                         // Create the child window
                         var childWin = new ChildWindow();
@@ -228,6 +227,31 @@ namespace RayCarrot.RCP.Metro
 
             // Set startup location
             window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
+        }
+
+        /// <summary>
+        /// Gets the parent window to use for showing the child window. If this returns null then no suitable window was found.
+        /// </summary>
+        /// <returns>The parent window, or null if none was found</returns>
+        public Window GetChildWindowParent()
+        {
+            // Start by checking if any windows are active, in which case we use that
+            Window activeWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive);
+
+            if (activeWin != null)
+                return activeWin;
+
+            // If no windows are active we check if there is a modal window
+            Window modalWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsModal());
+
+            if (modalWin != null)
+                return modalWin;
+
+            // If no windows are active or modal we try and get the main window
+            Window mainWin = Application.Current.MainWindow;
+
+            // Return the window. It might be null (if the application hasn't fully started) in which case no window was found.
+            return mainWin;
         }
 
         public void ConfigureChildWindow<VM>(ChildWindow window, IWindowBaseControl<VM> windowContent, object owner)
