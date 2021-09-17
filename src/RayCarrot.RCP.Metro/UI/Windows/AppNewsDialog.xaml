@@ -1,16 +1,10 @@
-﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.AppNewsDialog"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                  mc:Ignorable="d"
-                  WindowStartupLocation="CenterOwner"
-                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                  Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
-                  Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                  Title="{Resx AppNews_Title}" 
-                  Height="640" Width="960">
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.AppNewsDialog"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -38,4 +32,4 @@
                 IsCancel="True"/>
 
     </Grid>
-</local:BaseWindow>
+</local:WindowContentControl>

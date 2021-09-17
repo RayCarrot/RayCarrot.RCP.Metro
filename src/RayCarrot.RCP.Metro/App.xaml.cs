@@ -589,7 +589,7 @@ namespace RayCarrot.RCP.Metro
             CloseSplashScreen();
 
             // Show app news
-            new AppNewsDialog().ShowDialog();
+            await Services.DialogBaseManager.ShowWindowAsync(new AppNewsDialog());
         }
 
         /// <summary>

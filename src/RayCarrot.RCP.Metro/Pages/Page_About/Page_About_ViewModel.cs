@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Create commands
             OpenUrlCommand = new RelayCommand(x => App.OpenUrl(x?.ToString()));
-            ShowVersionHistoryCommand = new RelayCommand(ShowVersionHistory);
+            ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
             CheckForUpdatesCommand = new AsyncRelayCommand(async () => await App.CheckForUpdatesAsync(true));
             UninstallCommand = new AsyncRelayCommand(UninstallAsync);
 
@@ -60,9 +60,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Shows the application version history
         /// </summary>
-        public void ShowVersionHistory()
+        public async Task ShowVersionHistoryAsync()
         {
-            AppWindowsManager.ShowWindow<AppNewsDialog>();
+            await Services.DialogBaseManager.ShowWindowAsync(new AppNewsDialog());
         }
 
         /// <summary>
