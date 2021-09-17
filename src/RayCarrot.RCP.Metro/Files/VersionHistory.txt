@@ -3,7 +3,7 @@
 	• Redesigned the tab headers to use colored icons and underlines
 	• Controls now have rounded corners and slightly thicker borders
 	• Changed which areas of pages use scroll bars
-	• Dialog windows now appear within the parent window (this can be reverted back to the previous behavior in the settings)
+	• Windows now appear as popups within the parent window (this can be reverted back to the previous behavior in the settings)
 	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
 	• The download dialog has been redesigned and now shows the input/output paths for a user level of technical or higher
 	• The drive browser dialog has been redesigned
@@ -31,6 +31,7 @@ Other changes:
 	• Removed the option to minimize the app to the tray
 	• Reduced the number of animations shown in the disc installer
 	• Removed credits for unfinished translations
+	• Removed the unfinished Catalan translation
 • Debug/technical changes
 	• Added tabs to the debug page and information about the app launch arguments
 	• Added a debug setting for disabling the game validation
@@ -39,6 +40,7 @@ Other changes:
 	• Debug symbols are no longer included in the executable
 • Bug fixes
 	• Fixed the times being shown incorrectly in the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
+	• Fixed the progress during a download or install not showing on the taskbar icon
 	• Fixed the version history window not being centered when opened from the about page
 	• Fixed certain browse boxes not allowing backslashes to be typed
 	• Fixed the file filter not working when specifying the output file when creating an archive
