@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
             if (Services.Data.UI_UseChildWindows && Application.Current?.MainWindow is MetroWindow metroWindow)
             {
                 // Create the child window
-                var childWin = new ChildWindow();
+                var childWin = new RCPChildWindow();
 
                 // Configure the window
                 ConfigureChildWindow(childWin, windowContent, isModal);

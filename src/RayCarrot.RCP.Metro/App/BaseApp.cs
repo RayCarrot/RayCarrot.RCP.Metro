@@ -529,7 +529,12 @@ namespace RayCarrot.RCP.Metro
 
                     // Attempt to close all child windows, starting with the modal ones
                     foreach (ChildWindow childWindow in ChildWindowInstance.OpenChildWindows.OrderBy(x => x.IsModal ? 0 : 1).ToArray())
+                    {
+                        if (childWindow is RCPChildWindow {IsMinimized: true} c)
+                            c.Minimize();
+
                         childWindow.Close();
+                    }
 
                     // Yield so that the child windows fully close before we do the next check
                     await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);

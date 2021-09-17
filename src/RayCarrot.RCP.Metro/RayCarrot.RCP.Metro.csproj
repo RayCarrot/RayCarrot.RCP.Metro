@@ -124,6 +124,7 @@
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Error.cs" />
+    <Compile Include="UI\Controls\RCPChildWindow.cs" />
     <Compile Include="UI\Dialogs\Downloader\DownloaderResult.cs" />
     <Compile Include="Services\WindowDialog\RCPWindowDialogBaseManager.cs" />
     <Compile Include="UI\Behaviors\ListBoxSelectedItemsBehavior.cs" />

@@ -7,6 +7,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
+                  xmlns:system="clr-namespace:System;assembly=mscorlib"
                   mc:Ignorable="d"
                   Language="{UICulture}"
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -14,6 +15,22 @@
                   Width="960" Height="720"
                   MinWidth="800" MinHeight="750"
                   DataContext="{x:Static local:Services.App}">
+    <local:BaseWindow.RightWindowCommands>
+        <mah:WindowCommands ItemsSource="{Binding Source={x:Static local:RCPChildWindow.MinimizedWindows}, Mode=OneTime}"> 
+            <mah:WindowCommands.ItemTemplate>
+                <DataTemplate>
+                    <Button DataContext="{Binding Path=Window, Mode=OneTime}" 
+                            Command="{Binding Path=MinimizeCommand, Mode=OneTime}"
+                            ToolTip="{Binding Path=Title, Mode=OneTime}">
+                        <mah:MultiFrameImage Width="30"
+                                             Height="30"
+                                             RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                             Source="../../Img/RCP_Metro.ico" />
+                    </Button>
+                </DataTemplate>
+            </mah:WindowCommands.ItemTemplate>
+        </mah:WindowCommands>
+    </local:BaseWindow.RightWindowCommands>
     <local:BaseWindow.TitleTemplate>
         <DataTemplate>
             <Grid DataContext="{x:Static local:Services.App}">
