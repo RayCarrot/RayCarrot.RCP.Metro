@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
                 // Add file manager
                 AddFileManager<RCPFileManager>().
                 // Add dialog base manager
-                AddDialogBaseManager<WindowDialogBaseManager>().
+                AddDialogBaseManager<RCPWindowDialogBaseManager>().
                 // Add update manager
                 AddUpdateManager<RCPUpdaterManager>().
                 // Add the app view model
