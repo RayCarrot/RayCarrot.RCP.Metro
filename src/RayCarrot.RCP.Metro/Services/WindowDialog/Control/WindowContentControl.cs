@@ -64,10 +64,10 @@ namespace RayCarrot.RCP.Metro
                 // If we can close we flag to force close and then close the window again
                 if (canClose)
                 {
-                    _forceClose = true;
-
                     // Yield to make sure the closing event finishes running. You normally can't close a window while it's closing.
                     await Dispatcher.Yield();
+
+                    _forceClose = true;
 
                     WindowInstance.Close();
                 }
