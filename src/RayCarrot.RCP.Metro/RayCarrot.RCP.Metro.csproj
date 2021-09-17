@@ -161,13 +161,13 @@
     <Compile Include="UI\Converters\Other\CultureNameToCultureInfoConverter.cs" />
     <Compile Include="UI\DesignTimeVM.cs" />
     <Compile Include="Helpers\Extensions\WindowExtensions.cs" />
-    <Compile Include="UI\Dialogs\Base\ChildWindowInstance.cs" />
-    <Compile Include="UI\Dialogs\Base\IDialogWindowControl.cs" />
-    <Compile Include="UI\Dialogs\Base\IWindowControl.cs" />
-    <Compile Include="UI\Dialogs\Base\Manager\IDialogBaseManager.cs" />
-    <Compile Include="UI\Dialogs\Base\StandardWindowInstance.cs" />
-    <Compile Include="UI\Dialogs\Base\WindowInstance.cs" />
-    <Compile Include="UI\Dialogs\LogViewer\LogItemViewModel.cs" />
+    <Compile Include="Services\WindowDialog\Instance\ChildWindowInstance.cs" />
+    <Compile Include="Services\WindowDialog\Control\IDialogWindowControl.cs" />
+    <Compile Include="Services\WindowDialog\Control\IWindowControl.cs" />
+    <Compile Include="Services\WindowDialog\IDialogBaseManager.cs" />
+    <Compile Include="Services\WindowDialog\Instance\StandardWindowInstance.cs" />
+    <Compile Include="Services\WindowDialog\Instance\WindowInstance.cs" />
+    <Compile Include="UI\Windows\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
     <Compile Include="Helpers\Windows\WindowsHelpers.cs" />
     <Compile Include="Helpers\Windows\WindowsVersion.cs" />
@@ -378,18 +378,18 @@
     <Compile Include="UI\Converters\Visibility\IsTypeToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\Visibility\ObjectNullToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\Visibility\StringEmptyToVisibilityConverter.cs" />
-    <Compile Include="UI\Dialogs\Base\WindowContentControl.cs" />
-    <Compile Include="UI\Dialogs\Base\Manager\WindowDialogBaseManager.cs" />
+    <Compile Include="Services\WindowDialog\Control\WindowContentControl.cs" />
+    <Compile Include="Services\WindowDialog\WindowDialogBaseManager.cs" />
     <Compile Include="UI\Dialogs\DriveSelectionDialog\DriveSelectionDialog.xaml.cs">
       <DependentUpon>DriveSelectionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Dialogs\DriveSelectionDialog\DriveSelectionViewModel.cs" />
     <Compile Include="UI\Dialogs\DriveSelectionDialog\DriveViewModel.cs" />
-    <Compile Include="UI\Dialogs\LogViewer\LogLevelToBrushConverter.cs" />
-    <Compile Include="UI\Dialogs\LogViewer\LogViewer.xaml.cs">
+    <Compile Include="UI\Windows\LogViewer\LogLevelToBrushConverter.cs" />
+    <Compile Include="UI\Windows\LogViewer\LogViewer.xaml.cs">
       <DependentUpon>LogViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Dialogs\LogViewer\LogViewerViewModel.cs" />
+    <Compile Include="UI\Windows\LogViewer\LogViewerViewModel.cs" />
     <Compile Include="UI\Dialogs\Message\DialogMessageActionHandledEventArgs.cs" />
     <Compile Include="UI\Dialogs\Message\DialogMessageActionViewModel.cs" />
     <Compile Include="UI\Dialogs\Message\DialogMessageBox.xaml.cs">
@@ -402,8 +402,8 @@
     </Compile>
     <Compile Include="UI\Dialogs\StringInput\StringInputResult.cs" />
     <Compile Include="UI\Dialogs\StringInput\StringInputViewModel.cs" />
-    <Compile Include="UI\Dialogs\UserInputResult.cs" />
-    <Compile Include="UI\Dialogs\UserInputViewModel.cs" />
+    <Compile Include="Services\WindowDialog\ViewModels\UserInputResult.cs" />
+    <Compile Include="Services\WindowDialog\ViewModels\UserInputViewModel.cs" />
     <Compile Include="UI\Behaviors\DynamicTabAnimationBehavior.cs" />
     <Compile Include="UI\Taskbar\WindowTaskbarExtensions.cs" />
     <Compile Include="UI\ValidationRules\Files and Directories\DirectoryExistsAndNotEmptyValidationRule.cs" />
@@ -798,7 +798,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Dialogs\LogViewer\LogViewer.xaml">
+    <Page Include="UI\Windows\LogViewer\LogViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1652,5 +1652,6 @@
       <Name>RayCarrot.Windows.Registry</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
