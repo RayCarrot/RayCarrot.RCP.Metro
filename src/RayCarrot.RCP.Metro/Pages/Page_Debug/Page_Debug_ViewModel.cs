@@ -36,6 +36,7 @@ namespace RayCarrot.RCP.Metro
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
             ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
+            ThrowUnhandledExceptionAsyncCommand = new AsyncRelayCommand(ThrowUnhandledAsyncException);
             RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
             ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
 
@@ -430,6 +431,11 @@ namespace RayCarrot.RCP.Metro
             throw new Exception("Debug");
         }
 
+        public async Task ThrowUnhandledAsyncException()
+        {
+            await Task.Run(() => throw new Exception("Debug"));
+        }
+
         /// <summary>
         /// Runs the selected installer
         /// </summary>
@@ -455,6 +461,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand RefreshAllAsyncCommand { get; }
 
         public ICommand ThrowUnhandledExceptionCommand { get; }
+        
+        public ICommand ThrowUnhandledExceptionAsyncCommand { get; }
 
         public ICommand RunInstallerCommand { get; }
 

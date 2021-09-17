@@ -19,31 +19,35 @@
         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
             <local:MenuItemIcon Header="Show Applied Utilities"
-                                Command="{Binding Path=ShowInstalledUtilitiesCommand}"
+                                Command="{Binding Path=ShowInstalledUtilitiesCommand, Mode=OneTime}"
                                 IconKind="BriefcaseOutline"/>
 
             <local:MenuItemIcon Header="Show Log"
-                                Command="{Binding Path=ShowLogCommand}"
+                                Command="{Binding Path=ShowLogCommand, Mode=OneTime}"
                                 IconKind="Text"/>
 
             <local:MenuItemIcon Header="Restart as administrator"
-                                Command="{Binding Path=App.RestartAsAdminCommand}"
+                                Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
                                 IconKind="Security"/>
 
             <local:MenuItemIcon Header="Refresh all"
-                                Command="{Binding Path=RefreshAllCommand}"
+                                Command="{Binding Path=RefreshAllCommand, Mode=OneTime}"
                                 IconKind="Refresh"/>
 
             <local:MenuItemIcon Header="Refresh all async"
-                                Command="{Binding Path=RefreshAllAsyncCommand}"
+                                Command="{Binding Path=RefreshAllAsyncCommand, Mode=OneTime}"
                                 IconKind="Refresh"/>
 
             <local:MenuItemIcon Header="Throw unhandled exception"
-                                Command="{Binding Path=ThrowUnhandledExceptionCommand}"
+                                Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
+                                IconKind="Exclamation"/>
+
+            <local:MenuItemIcon Header="Throw unhandled exception async"
+                                Command="{Binding Path=ThrowUnhandledExceptionAsyncCommand, Mode=OneTime}"
                                 IconKind="Exclamation"/>
 
             <local:MenuItemIcon Header="Shutdown app"
-                                Command="{Binding Path=ShutdownAppCommand}"
+                                Command="{Binding Path=ShutdownAppCommand, Mode=OneTime}"
                                 IconKind="CloseOutline"/>
 
         </ContextMenu>
