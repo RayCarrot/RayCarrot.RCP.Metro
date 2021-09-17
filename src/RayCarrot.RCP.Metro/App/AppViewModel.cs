@@ -606,19 +606,13 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
 
-                // Create the download dialog
-                var dialog = new Downloader(new DownloaderViewModel(inputSources, outputDir, isCompressed));
+                // Show the downloader and get the result
+                var dialogResult = await Services.UI.DownloadAsync(new DownloaderViewModel(inputSources, outputDir, isCompressed));
 
-                // Show the dialog
-                dialog.ShowDialog();
-
-                // Need to focus the owner as otherwise a following child dialog will appear in the main window as it gains next focus
-                dialog.Owner.Focus();
-
-                Logger.Info("The download finished with the result of {0}", dialog.ViewModel.CurrentDownloadState);
+                Logger.Info("The download finished with the result of {0}", dialogResult.DownloadState);
 
                 // Return the result
-                return dialog.ViewModel.CurrentDownloadState == DownloaderViewModel.DownloadState.Succeeded;
+                return dialogResult.DownloadState == DownloaderViewModel.DownloadState.Succeeded;
             }
             catch (Exception ex)
             {

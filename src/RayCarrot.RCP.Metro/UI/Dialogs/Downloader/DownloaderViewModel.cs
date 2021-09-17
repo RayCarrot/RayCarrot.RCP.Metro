@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the downloader
     /// </summary>
-    public class DownloaderViewModel : BaseViewModel
+    public class DownloaderViewModel : UserInputViewModel
     {
         #region Constructors
 
@@ -33,6 +33,7 @@ namespace RayCarrot.RCP.Metro
             FileManager = Services.File;
 
             // Set properties
+            Title = Resources.Download_Title;
             CurrentDownloadState = DownloadState.Paused;
             TotalMaxProgress = InputSources.Count * 100;
 
@@ -326,8 +327,8 @@ namespace RayCarrot.RCP.Metro
             if (await Services.MessageUI.DisplayMessageAsync(Resources.Download_Cancel, Resources.Download_CancelHeader, MessageType.Question, true))
             {
                 Logger.Info("The downloader has been requested to cancel");
-                WCServer?.CancelAsync();
                 CancellationRequested = true;
+                WCServer?.CancelAsync();
             }
         }
 

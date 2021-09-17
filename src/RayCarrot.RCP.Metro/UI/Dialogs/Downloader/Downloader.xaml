@@ -1,23 +1,18 @@
-﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.Downloader"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                  mc:Ignorable="d"
-                  Title="{Resx Download_Title}"
-                  ResizeMode="NoResize"
-                  SizeToContent="WidthAndHeight"
-                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                  Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
-                  Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                  MinWidth="480" MinHeight="300"
-                  Loaded="Downloader_OnLoadedAsync"
-                  Closing="Downloader_OnClosingAsync"
-                  d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.Downloader"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            mc:Ignorable="d"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            MinWidth="480" MinHeight="300"
+                            d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
     <StackPanel Margin="10">
 
-        <Image Source="../Img/MessageIcons/Generic.png"
+        <Image Source="../../../Img/MessageIcons/Generic.png"
                Width="128" Height="128"
                Margin="0 8 0 16" />
 
@@ -55,4 +50,4 @@
         </Viewbox>
 
     </StackPanel>
-</local:BaseWindow>
+</local:WindowContentControl>

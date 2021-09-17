@@ -79,6 +79,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The browse drive result</returns>
         public Task<DriveBrowserResult> BrowseDriveAsync(DriveBrowserViewModel driveBrowserModel) => ShowDialogAsync(() => new DriveSelectionDialog(driveBrowserModel));
 
+        public Task<DownloaderResult> DownloadAsync(DownloaderViewModel viewModel) => ShowDialogAsync(() => new Downloader(viewModel));
+
         /// <summary>
         /// Displays a message to the user
         /// </summary>

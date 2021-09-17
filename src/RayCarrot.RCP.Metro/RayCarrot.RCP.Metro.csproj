@@ -124,6 +124,7 @@
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Error.cs" />
+    <Compile Include="UI\Dialogs\Downloader\DownloaderResult.cs" />
     <Compile Include="Services\WindowDialog\RCPWindowDialogBaseManager.cs" />
     <Compile Include="UI\Behaviors\ListBoxSelectedItemsBehavior.cs" />
     <Compile Include="UI\Behaviors\UpdateTextBoxBindingOnEnterBehavior.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Services\WindowDialog\IDialogBaseManager.cs" />
     <Compile Include="Services\WindowDialog\Instance\StandardWindowInstance.cs" />
     <Compile Include="Services\WindowDialog\Instance\WindowInstance.cs" />
+    <Compile Include="Helpers\Extensions\TaskExtensions.cs" />
     <Compile Include="UI\Windows\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
     <Compile Include="Helpers\Windows\WindowsHelpers.cs" />
@@ -1087,7 +1089,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Downloader\Downloader.xaml">
+    <Page Include="UI\Dialogs\Downloader\Downloader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1292,10 +1294,10 @@
     <Compile Include="UI\Windows\AppNewsDialog.xaml.cs">
       <DependentUpon>AppNewsDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Downloader\Downloader.xaml.cs">
+    <Compile Include="UI\Dialogs\Downloader\Downloader.xaml.cs">
       <DependentUpon>Downloader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Downloader\DownloaderViewModel.cs" />
+    <Compile Include="UI\Dialogs\Downloader\DownloaderViewModel.cs" />
     <Compile Include="UI\Windows\FirstLaunchInfoDialog.xaml.cs">
       <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
     </Compile>
