@@ -514,7 +514,7 @@ namespace RayCarrot.RCP.Metro
                 await Dispatcher.InvokeAsync(async () =>
                 {
                     // Attempt to close all windows except the main one
-                    foreach (Window window in Windows)
+                    foreach (Window window in Windows.Cast<Window>().ToArray())
                     {
                         // Ignore the main window for now
                         if (window == MainWindow)
@@ -527,14 +527,12 @@ namespace RayCarrot.RCP.Metro
                         window.Close();
                     }
 
-                    var t = ChildWindowInstance.OpenChildWindows;
-
                     // Attempt to close all child windows, starting with the modal ones
-                    foreach (ChildWindow childWindow in ChildWindowInstance.OpenChildWindows.OrderBy(x => x.IsModal ? 0 : 1))
+                    foreach (ChildWindow childWindow in ChildWindowInstance.OpenChildWindows.OrderBy(x => x.IsModal ? 0 : 1).ToArray())
                         childWindow.Close();
 
                     // Yield so that the child windows fully close before we do the next check
-                    await Dispatcher.Yield();
+                    await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);
 
                     // Make sure all other windows have been closed unless forcing a shut down
                     if (!forceShutDown && (Windows.Count > 1 || ChildWindowInstance.OpenChildWindows.Any()))
