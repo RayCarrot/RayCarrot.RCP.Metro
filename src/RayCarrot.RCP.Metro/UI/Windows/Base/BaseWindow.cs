@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Metro
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
             // Set owner window
-            var ownerWin = Application.Current?.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive) ?? Application.Current?.MainWindow;
+            var ownerWin = Application.Current?.MainWindow;
 
             if (ownerWin != this)
                 Owner = ownerWin;
