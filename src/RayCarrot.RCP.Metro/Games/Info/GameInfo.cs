@@ -1,12 +1,11 @@
-﻿using System;
+﻿using NLog;
+using RayCarrot.IO;
+using RayCarrot.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using MahApps.Metro.IconPacks;
-using RayCarrot.IO;
-using NLog;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -369,9 +368,11 @@ namespace RayCarrot.RCP.Metro
                             actions.Add(new OverflowButtonItemViewModel());
 
                         // Add disc installer action
-                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new RelayCommand(() =>
-                            // NOTE: This is a blocking dialog
-                            new GameInstaller_Window(Game).ShowDialog())));
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new AsyncRelayCommand(async () =>
+                        {
+                            // Show and run the installer
+                            await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstaller_Window(Game));
+                        })));
                     }
 
                     // If the last option is a separator, remove it

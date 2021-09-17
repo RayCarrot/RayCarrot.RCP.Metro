@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the game installer
     /// </summary>
-    public class GameInstaller_ViewModel : BaseRCPViewModel
+    public class GameInstaller_ViewModel : UserInputViewModel
     {
         #region Constructor
 
@@ -29,6 +29,10 @@ namespace RayCarrot.RCP.Metro
 
             // Set game
             Game = game;
+
+            // TODO-UPDATE: Localize
+            // Set title
+            Title = $"Install {game.GetGameInfo().DisplayName}";
 
             // Create cancellation token source
             CancellationTokenSource = new CancellationTokenSource();
@@ -118,7 +122,7 @@ namespace RayCarrot.RCP.Metro
             get => _createShortcutsForAllUsers;
             set
             {
-                if (value && !App.IsRunningAsAdmin)
+                if (value && !Services.App.IsRunningAsAdmin)
                 {
                     Task.Run(async () => await Services.MessageUI.DisplayMessageAsync(Resources.Installer_InstallAllUsersError, Resources.Installer_InstallAllUsersErrorHeader, MessageType.Warning));
 
@@ -280,13 +284,13 @@ namespace RayCarrot.RCP.Metro
                 if (result == GameInstaller_Result.Successful)
                 {
                     // Add the game
-                    await App.AddNewGameAsync(Game, GameType.Win32, output);
+                    await Services.App.AddNewGameAsync(Game, GameType.Win32, output);
 
                     // Add game to installed games
                     Services.Data.Game_InstalledGames.Add(Game);
 
                     // Refresh
-                    await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
+                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
 
                     if (CreateDesktopShortcut)
                         await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, displayName));

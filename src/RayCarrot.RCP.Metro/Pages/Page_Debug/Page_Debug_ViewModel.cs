@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Metro
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
             ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
-            RunInstallerCommand = new RelayCommand(RunInstaller);
+            RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
             ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
 
             // Get properties
@@ -433,9 +433,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Runs the selected installer
         /// </summary>
-        public void RunInstaller()
+        public async Task RunInstallerAsync()
         {
-            new GameInstaller_Window(SelectedInstaller).ShowDialog();
+            await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstaller_Window(SelectedInstaller));
         }
 
         #endregion

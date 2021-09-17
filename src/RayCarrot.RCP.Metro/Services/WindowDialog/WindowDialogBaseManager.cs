@@ -12,7 +12,12 @@ namespace RayCarrot.RCP.Metro
     {
         #region Protected Methods
 
-        protected static void ConfigureWindow(Window window, IWindowControl windowContent)
+        protected Dispatcher GetDispatcher()
+        {
+            return Application.Current?.Dispatcher ?? throw new Exception("A window can not be created before the application has been loaded and the dispatcher set");
+        }
+
+        protected void ConfigureWindow(Window window, IWindowControl windowContent)
         {
             // Set window properties
             window.Content = windowContent.UIContent;
@@ -30,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         protected Task ShowWindowAsync(IWindowControl windowContent, bool isModal, string title)
         {
             // Get the dispatcher
-            Dispatcher dispatcher = Application.Current?.Dispatcher ?? throw new Exception("A window can not be created before the application has been loaded and the dispatcher set");
+            Dispatcher dispatcher = GetDispatcher();
 
             // Run on UI thread
             return dispatcher.Invoke(() => ShowAsync(windowContent, isModal, title));
@@ -87,8 +92,11 @@ namespace RayCarrot.RCP.Metro
             // Show as a modal with the user input title
             await ShowWindowAsync(windowContent, true, windowContent.ViewModel.Title);
 
+            // Get the dispatcher
+            Dispatcher dispatcher = GetDispatcher();
+
             // Return the result
-            return windowContent.GetResult();
+            return dispatcher.Invoke(windowContent.GetResult);
         }
 
         public Task ShowWindowAsync(IWindowControl windowContent)

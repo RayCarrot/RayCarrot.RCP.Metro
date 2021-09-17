@@ -1,14 +1,14 @@
-﻿using System;
-using System.ComponentModel;
-using Microsoft.WindowsAPICodePack.Taskbar;
+﻿using Microsoft.WindowsAPICodePack.Taskbar;
+using System;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for GameInstaller.xaml
     /// </summary>
-    public partial class GameInstaller_Window : BaseWindow
+    public partial class GameInstaller_Window : WindowContentControl, IDialogWindowControl<GameInstaller_ViewModel, UserInputResult>
     {
         #region Constructor
 
@@ -20,81 +20,104 @@ namespace RayCarrot.RCP.Metro
             // Initialize components
             InitializeComponent();
 
-            // Set text properties
-            Title = $"Install {game.GetGameInfo().DisplayName}";
-
             // Create the view model
             DataContext = new GameInstaller_ViewModel(game);
 
-            VM.InstallationComplete += VM_InstallationComplete;
+            ViewModel.InstallationComplete += VM_InstallationComplete;
 
             if (Services.Data.UI_ShowProgressOnTaskBar)
-                VM.StatusUpdated += VM_StatusUpdated;
+                ViewModel.StatusUpdated += VM_StatusUpdated;
         }
 
         #endregion
 
-        #region Private Properties
+        #region Public Properties
 
         /// <summary>
         /// The view model
         /// </summary>
-        private GameInstaller_ViewModel VM => DataContext as GameInstaller_ViewModel;
+        public GameInstaller_ViewModel ViewModel => DataContext as GameInstaller_ViewModel;
+
+        #endregion
+
+        #region Protected Methods
+
+        protected override async Task<bool> ClosingAsync()
+        {
+            if (!await base.ClosingAsync())
+                return false;
+
+            if (!ViewModel.InstallerRunning)
+            {
+                ViewModel.InstallationComplete -= VM_InstallationComplete;
+                ViewModel.StatusUpdated -= VM_StatusUpdated;
+
+                // Close window normally
+                return true;
+            }
+
+            // Attempt to cancel the installation
+            Task.Run(ViewModel.AttemptCancelAsync).WithoutAwait("Canceling game installer");
+
+            return true;
+        }
+
+        protected override void Closed()
+        {
+            base.Closed();
+
+            Application.Current.MainWindow?.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress);
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public UserInputResult GetResult()
+        {
+            return new UserInputResult()
+            {
+                // TODO: Set if canceled
+            };
+        }
 
         #endregion
 
         #region Event Handlers
 
-        private async void GameInstaller_OnClosingAsync(object sender, CancelEventArgs e)
-        {
-            if (!VM.InstallerRunning)
-            {
-                VM.InstallationComplete -= VM_InstallationComplete;
-                VM.StatusUpdated -= VM_StatusUpdated;
-
-                // Close window normally
-                return;
-            }
-                
-            // Cancel the closing
-            e.Cancel = true;
-
-            // Ignore if the close button is disabled
-            if (!IsCloseButtonEnabled)
-                return;
-
-            // Attempt to cancel the installation
-            await Task.Run(VM.AttemptCancelAsync);
-        }
-
         private void VM_StatusUpdated(object sender, OperationProgressEventArgs e)
         {
             Dispatcher?.Invoke(() =>
             {
+                var win = Application.Current.MainWindow;
+
+                if (win == null)
+                    return;
+
                 // Set the progress
-                this.SetTaskbarProgressValue(new Progress(e.Progress.TotalProgress.Percentage, 100, 0));
+                win.SetTaskbarProgressValue(new Progress(e.Progress.TotalProgress.Percentage, 100, 0));
 
                 // Set the state
                 switch (e.State)
                 {
                     case OperationState.None:
-                        this.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress);
+                        win.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress);
                         break;
 
                     case OperationState.Running:
-                        this.SetTaskbarProgressState(TaskbarProgressBarState.Normal);
+                        win.SetTaskbarProgressState(TaskbarProgressBarState.Normal);
                         break;
 
                     case OperationState.Paused:
-                        this.SetTaskbarProgressState(TaskbarProgressBarState.Paused);
+                        win.SetTaskbarProgressState(TaskbarProgressBarState.Paused);
                         break;
 
                     case OperationState.Error:
-                        this.SetTaskbarProgressState(TaskbarProgressBarState.Error);
+                        win.SetTaskbarProgressState(TaskbarProgressBarState.Error);
                         break;
 
                     default:
-                        this.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress);
+                        win.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress);
                         break;
                 }
             });
@@ -102,7 +125,7 @@ namespace RayCarrot.RCP.Metro
 
         private void VM_InstallationComplete(object sender, EventArgs e)
         {
-            Close();
+            WindowInstance.Close();
         }
 
         #endregion
