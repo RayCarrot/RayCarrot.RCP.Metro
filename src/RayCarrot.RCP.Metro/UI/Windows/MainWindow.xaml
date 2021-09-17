@@ -11,8 +11,8 @@
                   Language="{UICulture}"
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   CloseWithEscape="False"
-                  Height="720"
-                  Width="960"
+                  Width="960" Height="720"
+                  MinWidth="800" MinHeight="750"
                   DataContext="{x:Static local:Services.App}">
     <local:BaseWindow.TitleTemplate>
         <DataTemplate>

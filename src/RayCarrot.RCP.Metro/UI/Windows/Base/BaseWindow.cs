@@ -25,8 +25,8 @@ namespace RayCarrot.RCP.Metro
             CloseWithEscape = true;
 
             // Set minimum size
-            MinWidth = 400;
-            MinHeight = 300;
+            MinWidth = 150;
+            MinHeight = 100;
             
             // Set title style
             TitleCharacterCasing = CharacterCasing.Normal;
