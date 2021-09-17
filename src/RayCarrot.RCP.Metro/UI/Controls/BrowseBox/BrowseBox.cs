@@ -235,7 +235,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case BrowseType.Drive:
-                        var driveResult = await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                        var driveResult = await Services.UI.BrowseDriveAsync(new DriveBrowserViewModel()
                         {
                             Title = SelectDriveHeader,
                             DefaultDirectory = UseCurrentPathAsDefaultLocationIfValid && IsPathValid() ? new FileSystemPath(SelectedPath).FullPath : InitialLocation,

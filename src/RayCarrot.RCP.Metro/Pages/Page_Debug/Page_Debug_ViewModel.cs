@@ -131,7 +131,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case DebugDialogType.Drive:
-                        await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                        await Services.UI.BrowseDriveAsync(new DriveBrowserViewModel()
                         {
                             Title = "Debug"
                         });
@@ -209,7 +209,7 @@ namespace RayCarrot.RCP.Metro
                 return;
             }
 
-            await new LogViewer().ShowWindowAsync();
+            LogViewer.Open();
         }
 
         /// <summary>

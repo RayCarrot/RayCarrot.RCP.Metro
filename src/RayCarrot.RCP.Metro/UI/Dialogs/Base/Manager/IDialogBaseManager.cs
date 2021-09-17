@@ -8,25 +8,10 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public interface IDialogBaseManager
     {
-        /// <summary>
-        /// Shows the dialog and returns when the dialog closes with a result
-        /// </summary>
-        /// <typeparam name="VM">The view model type</typeparam>
-        /// <typeparam name="R">The return type</typeparam>
-        /// <param name="dialog">The dialog to show</param>
-        /// <param name="owner">The owner window</param>
-        /// <returns>The result</returns>
-        Task<R> ShowDialogAsync<VM, R>(IDialogBaseControl<VM, R> dialog, object owner)
-            where VM : UserInputViewModel;
+        Task<Result> ShowDialogWindowAsync<UserInput, Result>(IDialogWindowControl<UserInput, Result> windowContent) 
+            where UserInput : UserInputViewModel
+            where Result : UserInputResult;
 
-        /// <summary>
-        /// Shows the Window without waiting for it to close
-        /// </summary>
-        /// <typeparam name="VM">The view model</typeparam>
-        /// <param name="windowContent">The window content to show</param>
-        /// <param name="owner">The owner window</param>
-        /// <returns>The window</returns>
-        Task<Window> ShowWindowAsync<VM>(IWindowBaseControl<VM> windowContent, object owner)
-            where VM : UserInputViewModel;
+        Task ShowWindowAsync(IWindowControl windowContent);
     }
 }

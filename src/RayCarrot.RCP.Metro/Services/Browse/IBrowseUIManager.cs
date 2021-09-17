@@ -28,12 +28,5 @@ namespace RayCarrot.RCP.Metro
         /// <param name="saveFileModel">The save file browser information</param>
         /// <returns>The save file result</returns>
         Task<SaveFileResult> SaveFileAsync(SaveFileViewModel saveFileModel);
-
-        /// <summary>
-        /// Allows the user to browse for a drive
-        /// </summary>
-        /// <param name="driveBrowserModel">The drive browser information</param>
-        /// <returns>The browse drive result</returns>
-        Task<DriveBrowserResult> BrowseDriveAsync(DriveBrowserViewModel driveBrowserModel);
     }
 }

@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The default action result
         /// </summary>
-        public object DefaultActionResult { get; set; }
+        public UserInputResult DefaultActionResult { get; set; }
 
         /// <summary>
         /// The dialog image source

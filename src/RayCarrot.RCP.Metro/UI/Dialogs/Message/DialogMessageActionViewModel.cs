@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The action result
         /// </summary>
-        public object ActionResult { get; set; }
+        public UserInputResult ActionResult { get; set; }
 
         /// <summary>
         /// True if this is the default action

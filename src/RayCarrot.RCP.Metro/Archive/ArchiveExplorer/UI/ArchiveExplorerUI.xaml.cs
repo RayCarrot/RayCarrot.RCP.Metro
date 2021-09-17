@@ -1,6 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using RayCarrot.IO;
-using System;
+﻿using RayCarrot.IO;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -13,7 +11,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for ArchiveExplorer.xaml
     /// </summary>
-    public partial class ArchiveExplorerUI : UserControl, IWindowBaseControl<ArchiveExplorerDialogViewModel>
+    public partial class ArchiveExplorerUI : WindowContentControl
     {
         #region Constructor
         
@@ -43,25 +41,33 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public ArchiveExplorerDialogViewModel ViewModel { get; }
 
-        /// <summary>
-        /// The dialog content
-        /// </summary>
-        public object UIContent => this;
+        public override IWindowControl.WindowResizeMode ResizeMode => IWindowControl.WindowResizeMode.ForceResizable;
 
-        /// <summary>
-        /// Indicates if the dialog should be resizable
-        /// </summary>
-        public bool Resizable => true;
+        #endregion
 
-        /// <summary>
-        /// The base size for the dialog
-        /// </summary>
-        public DialogBaseSize BaseSize => DialogBaseSize.Largest;
+        #region Protected Methods
 
-        /// <summary>
-        /// The window the control belongs to
-        /// </summary>
-        public MetroWindow ParentWindow { get; set; }
+        protected override void WindowAttached()
+        {
+            base.WindowAttached();
+
+            WindowInstance.Title = ViewModel.Title;
+        }
+
+        protected override bool Closing()
+        {
+            if (!base.Closing())
+                return false;
+
+            // Cancel the closing if an archive is running an operation
+            return !ViewModel.IsLoading;
+        }
+
+        protected override void Closed()
+        {
+            DataContext = null;
+            ViewModel?.Dispose();
+        }
 
         #endregion
 
@@ -85,14 +91,6 @@ namespace RayCarrot.RCP.Metro
                     DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Descending));
                     break;
             }
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            ViewModel?.Dispose();
         }
 
         #endregion
@@ -121,28 +119,12 @@ namespace RayCarrot.RCP.Metro
             // Refresh the sort
             RefreshSort();
 
-            // Get the parent window
-            ParentWindow = Window.GetWindow(this).CastTo<MetroWindow>();
-
             // Create events
-            ParentWindow.Closing += (ss, ee) =>
-            {
-                // Cancel the closing if an archive is running an operation (the window can otherwise be closed with F4 etc.)
-                if (ViewModel.IsLoading)
-                    ee.Cancel = true;
-            };
-
-            ParentWindow.Closed += (ss, ee) =>
-            {
-                DataContext = null;
-                ViewModel?.Dispose();
-            };
-
-            ViewModel.PropertyChanged += (ss, ee) =>
+            ViewModel.PropertyChanged += (_, ee) =>
             {
                 // Disable the closing button when loading
                 if (ee.PropertyName == nameof(ArchiveExplorerDialogViewModel.IsLoading))
-                    ParentWindow.IsCloseButtonEnabled = !ViewModel.IsLoading;
+                    WindowInstance.CanClose = !ViewModel.IsLoading;
             };
         }
 
@@ -240,15 +222,6 @@ namespace RayCarrot.RCP.Metro
             if (r.VisualHit.GetType() != typeof(ListBoxItem))
                 (sender as ListBox)?.UnselectAll();
         }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Invoke to request the dialog to close
-        /// </summary>
-        public event EventHandler CloseDialog;
 
         #endregion
     }

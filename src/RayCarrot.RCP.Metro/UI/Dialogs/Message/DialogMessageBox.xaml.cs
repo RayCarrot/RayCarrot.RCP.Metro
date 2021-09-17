@@ -1,12 +1,9 @@
-﻿using System;
-using System.Windows.Controls;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// A dialog message box with standard WPF controls
     /// </summary>
-    public partial class DialogMessageBox : UserControl, IDialogBaseControl<DialogMessageViewModel, object>
+    public partial class DialogMessageBox : WindowContentControl, IDialogWindowControl<DialogMessageViewModel, UserInputResult>
     {
         #region Constructor
 
@@ -35,7 +32,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The dialog result
         /// </summary>
-        protected object DialogResult { get; set; }
+        protected UserInputResult DialogResult { get; set; }
 
         #endregion
 
@@ -46,21 +43,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public DialogMessageViewModel ViewModel => DataContext as DialogMessageViewModel;
 
-        /// <summary>
-        /// The dialog content
-        /// </summary>
-        public object UIContent => this;
-
-        /// <summary>
-        /// Indicates if the dialog should be resizable
-        /// </summary>
-        public bool Resizable => false;
-
-        /// <summary>
-        /// The base size for the dialog
-        /// </summary>
-        public DialogBaseSize BaseSize => DialogBaseSize.Small;
-
         #endregion
 
         #region Public Methods
@@ -69,24 +51,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the current result
         /// </summary>
         /// <returns>The result</returns>
-        public object GetResult() => DialogResult;
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-
-        }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Invoke to request the dialog to close
-        /// </summary>
-        public event EventHandler CloseDialog;
+        public UserInputResult GetResult() => DialogResult;
 
         #endregion
 
@@ -99,7 +64,7 @@ namespace RayCarrot.RCP.Metro
             
             // Close if set to do so
             if (e.ShouldCloseDialog)
-                CloseDialog?.Invoke(this, new EventArgs());
+                WindowInstance.Close();
         }
 
         #endregion

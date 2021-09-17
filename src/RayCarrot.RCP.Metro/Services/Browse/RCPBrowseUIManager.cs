@@ -142,32 +142,5 @@ namespace RayCarrot.RCP.Metro
                 });
             });
         }
-
-        /// <summary>
-        /// Allows the user to browse for a drive
-        /// </summary>
-        /// <param name="driveBrowserModel">The drive browser information</param>
-        /// <returns>The browse drive result</returns>
-        public virtual async Task<DriveBrowserResult> BrowseDriveAsync(DriveBrowserViewModel driveBrowserModel)
-        {
-            if (Application.Current.Dispatcher == null)
-                throw new Exception("A drive selection dialog can not be shown when the application dispatcher is null");
-
-            if (LogRequests)
-                Logger.Trace("A browse drive dialog was opened with the title of: {0}", driveBrowserModel.Title);
-
-            // Create the dialog
-            var driveSelectionDialog = Application.Current.Dispatcher.Invoke(() => new DriveSelectionDialog(driveBrowserModel));
-
-            // Show the dialog and get the result
-            var result = await driveSelectionDialog.ShowDialogAsync();
-
-            Logger.Trace(result.CanceledByUser
-                ? "The browse drive dialog was canceled by the user"
-                : $"The browse drive dialog returned the selected drive paths {result.SelectedDrives.JoinItems(", ")}");
-
-            // Return the result
-            return result;
-        }
     }
 }

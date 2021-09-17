@@ -161,6 +161,12 @@
     <Compile Include="UI\Converters\Other\CultureNameToCultureInfoConverter.cs" />
     <Compile Include="UI\DesignTimeVM.cs" />
     <Compile Include="Helpers\Extensions\WindowExtensions.cs" />
+    <Compile Include="UI\Dialogs\Base\ChildWindowInstance.cs" />
+    <Compile Include="UI\Dialogs\Base\IDialogWindowControl.cs" />
+    <Compile Include="UI\Dialogs\Base\IWindowControl.cs" />
+    <Compile Include="UI\Dialogs\Base\Manager\IDialogBaseManager.cs" />
+    <Compile Include="UI\Dialogs\Base\StandardWindowInstance.cs" />
+    <Compile Include="UI\Dialogs\Base\WindowInstance.cs" />
     <Compile Include="UI\Dialogs\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
     <Compile Include="Helpers\Windows\WindowsHelpers.cs" />
@@ -372,12 +378,8 @@
     <Compile Include="UI\Converters\Visibility\IsTypeToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\Visibility\ObjectNullToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\Visibility\StringEmptyToVisibilityConverter.cs" />
-    <Compile Include="UI\Dialogs\Base\DialogBaseSize.cs" />
-    <Compile Include="UI\Dialogs\Base\IDialogBaseControl.cs" />
-    <Compile Include="UI\Dialogs\Base\IWindowBaseControl.cs" />
-    <Compile Include="UI\Dialogs\Base\Manager\IDialogBaseManager.cs" />
+    <Compile Include="UI\Dialogs\Base\WindowContentControl.cs" />
     <Compile Include="UI\Dialogs\Base\Manager\WindowDialogBaseManager.cs" />
-    <Compile Include="UI\Dialogs\DialogBaseControlExtensions.cs" />
     <Compile Include="UI\Dialogs\DriveSelectionDialog\DriveSelectionDialog.xaml.cs">
       <DependentUpon>DriveSelectionDialog.xaml</DependentUpon>
     </Compile>
@@ -531,7 +533,6 @@
     <Compile Include="Games\OptionsDialog\Progression\Rayman3\GameProgression_Rayman3_ViewModel.cs" />
     <Compile Include="App\Constants\AppFilePaths.cs" />
     <Compile Include="Localization\LocalizationManager.cs" />
-    <Compile Include="Services\Dialog\RCPDialogBaseManager.cs" />
     <Compile Include="Services\Message\RCPMessageUIManager.cs" />
     <Compile Include="AppData\DataModels\UserData_GameData.cs" />
     <Compile Include="AppData\DataModels\UserData_GameLaunchMode.cs" />

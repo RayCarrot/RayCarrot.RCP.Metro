@@ -167,7 +167,7 @@ namespace RayCarrot.RCP.Metro
                 OnStatusUpdated(OperationState.Paused);
 
                 // Get a drive from the user
-                var result = await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                var result = await Services.UI.BrowseDriveAsync(new DriveBrowserViewModel()
                 {
                     Title = Resources.Installer_BrowseDiscHeader,
                     MultiSelection = false,

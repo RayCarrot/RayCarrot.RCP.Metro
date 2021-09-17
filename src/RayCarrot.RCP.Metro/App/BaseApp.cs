@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using MahApps.Metro.Controls;
+using MahApps.Metro.SimpleChildWindow;
 using NLog;
 using NLog.Targets;
 
@@ -156,11 +157,6 @@ namespace RayCarrot.RCP.Metro
         /// Gets the <see cref="Application"/> object for the current <see cref="AppDomain"/> as a <see cref="BaseApp"/>.
         /// </summary>
         public new static BaseApp Current => Application.Current as BaseApp;
-
-        /// <summary>
-        /// Gets the active <see cref="Window"/>
-        /// </summary>
-        public Window CurrentActiveWindow => Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
 
         /// <summary>
         /// The common application data, or null if not available
@@ -531,8 +527,17 @@ namespace RayCarrot.RCP.Metro
                         window.Close();
                     }
 
+                    var t = ChildWindowInstance.OpenChildWindows;
+
+                    // Attempt to close all child windows, starting with the modal ones
+                    foreach (ChildWindow childWindow in ChildWindowInstance.OpenChildWindows.OrderBy(x => x.IsModal ? 0 : 1))
+                        childWindow.Close();
+
+                    // Yield so that the child windows fully close before we do the next check
+                    await Dispatcher.Yield();
+
                     // Make sure all other windows have been closed unless forcing a shut down
-                    if (!forceShutDown && Windows.Count > 1)
+                    if (!forceShutDown && (Windows.Count > 1 || ChildWindowInstance.OpenChildWindows.Any()))
                     {
                         Logger.Info("The shutdown was canceled due to one or more windows still being open");
 

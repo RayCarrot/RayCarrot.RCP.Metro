@@ -1,13 +1,16 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.GameTypeSelectionDialog"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-             mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance local:GameTypeSelectionViewModel}">
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.GameTypeSelectionDialog"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            MinWidth="150" MinHeight="100"
+                            mc:Ignorable="d"
+                            d:DataContext="{d:DesignInstance local:GameTypeSelectionViewModel}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" MinHeight="125" />
@@ -69,4 +72,4 @@
         </StackPanel>
 
     </Grid>
-</UserControl>
+</local:WindowContentControl>

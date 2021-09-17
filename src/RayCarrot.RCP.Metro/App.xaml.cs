@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
                 // Add file manager
                 AddFileManager<RCPFileManager>().
                 // Add dialog base manager
-                AddDialogBaseManager<RCPDialogBaseManager>().
+                AddDialogBaseManager<WindowDialogBaseManager>().
                 // Add update manager
                 AddUpdateManager<RCPUpdaterManager>().
                 // Add the app view model
@@ -779,26 +779,23 @@ namespace RayCarrot.RCP.Metro
                 await Services.App.CheckForUpdatesAsync(false);
         }
 
-        private async Task BaseApp_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
+        private Task BaseApp_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
         {
             if (Dispatcher == null)
                 throw new Exception("Dispatcher is null");
 
             // Run on UI thread
-            await Dispatcher.Invoke(async () =>
+            Dispatcher.Invoke(() =>
             {
                 // Show log viewer if available
                 if (IsLogViewerAvailable)
                 {
-                    var logViewer = new LogViewer();
-                    var win = await logViewer.ShowWindowAsync();
-
-                    // NOTE: This is a temporary solution to avoid the log viewer blocking the main window
-                    win.Owner = null;
-                    win.ShowInTaskbar = true;
+                    LogViewer.Open();
                     MainWindow?.Focus();
                 }
             });
+
+            return Task.CompletedTask;
         }
 
         private static void App_StartupEventsCompleted(object sender, EventArgs e)

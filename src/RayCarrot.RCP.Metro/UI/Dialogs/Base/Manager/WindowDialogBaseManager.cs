@@ -1,11 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.SimpleChildWindow;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Interop;
-using MahApps.Metro.Controls;
-using MahApps.Metro.SimpleChildWindow;
+using System.Windows.Threading;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,267 +12,127 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class WindowDialogBaseManager : IDialogBaseManager
     {
-        /// <summary>
-        /// Shows the dialog and returns when the dialog closes with a result
-        /// </summary>
-        /// <typeparam name="V">The view model type</typeparam>
-        /// <typeparam name="R">The return type</typeparam>
-        /// <param name="dialog">The dialog to show</param>
-        /// <param name="owner">The owner window</param>
-        /// <returns>The result</returns>
-        public async Task<R> ShowDialogAsync<V, R>(IDialogBaseControl<V, R> dialog, object owner)
-            where V : UserInputViewModel
-        {
-            using (dialog)
-            {
-                // Get the dispatcher
-                var dispatcher = Application.Current.Dispatcher;
+        #region Private Static Methods
 
-                // Make sure the dispatcher is not null
-                if (dispatcher == null)
-                    throw new Exception("A dialog can not be created before the application has been loaded");
-
-                // Run on UI thread
-                return await dispatcher.Invoke(async () =>
-                {
-                    // Get the parent window
-                    if (Services.Data.UI_UseChildWindows && GetChildWindowParent() is MetroWindow metroWindow)
-                    {
-                        // Create the child window
-                        var childWin = new ChildWindow();
-
-                        // Configure the window
-                        ConfigureChildWindow(childWin, dialog, owner);
-
-                        void Dialog_CloseDialog(object sender, EventArgs e) => childWin.Close();
-                        static void Window_Closing(object sender, CancelEventArgs e) => e.Cancel = true;
-
-                        var wasCloseEnabled = metroWindow.IsCloseButtonEnabled;
-                        metroWindow.Closing += Window_Closing;
-                        dialog.CloseDialog += Dialog_CloseDialog;
-                        metroWindow.IsCloseButtonEnabled = false;
-
-                        await metroWindow.ShowChildWindowAsync(childWin);
-
-                        metroWindow.Closing -= Window_Closing;
-                        dialog.CloseDialog -= Dialog_CloseDialog;
-                        metroWindow.IsCloseButtonEnabled = wasCloseEnabled;
-                    }
-                    else
-                    {
-                        // If there is no parent window we can't display the dialog as a child window, so fall back to a normal window
-                        var window = GetWindow();
-
-                        ConfigureWindow(window, dialog, owner);
-
-                        void DialogWin_CloseDialog(object sender, EventArgs e) => window.Close();
-
-                        // Close window on request
-                        dialog.CloseDialog += DialogWin_CloseDialog;
-
-                        // Show window as dialog
-                        window.ShowDialog();
-
-                        // Unsubscribe
-                        dialog.CloseDialog -= DialogWin_CloseDialog;
-                    }
-
-                    // Return the result
-                    return dialog.GetResult();
-                });
-            }
-        }
-
-        /// <summary>
-        /// Shows the Window without waiting for it to close
-        /// </summary>
-        /// <typeparam name="VM">The view model</typeparam>
-        /// <param name="windowContent">The window content to show</param>
-        /// <param name="owner">The owner window</param>
-        /// <returns>The window</returns>
-        public Task<Window> ShowWindowAsync<VM>(IWindowBaseControl<VM> windowContent, object owner)
-            where VM : UserInputViewModel
-        {
-            lock (Application.Current)
-            {
-                // Get the dispatcher
-                var dispatcher = Application.Current.Dispatcher;
-
-                // Make sure the dispatcher is not null
-                if (dispatcher == null)
-                    throw new Exception("A dialog can not be created before the application has been loaded");
-
-                // Run on UI thread
-                return Task.FromResult(dispatcher.Invoke(() =>
-                {
-                    // Create the window
-                    var window = GetWindow();
-
-                    // Configure the window
-                    ConfigureWindow(window, windowContent, owner);
-
-                    void Dialog_CloseDialog(object sender, EventArgs e)
-                    {
-                        window.Close();
-                    }
-
-                    void Dialog_Closed(object sender, EventArgs e)
-                    {
-                        windowContent.CloseDialog -= Dialog_CloseDialog;
-                        window.Closed -= Dialog_Closed;
-                    }
-
-                    // Close window on request
-                    windowContent.CloseDialog += Dialog_CloseDialog;
-                    window.Closed += Dialog_Closed;
-
-                    // Show the window
-                    AppWindowsManager.ShowWindow(window, AppWindowsManager.ShowWindowFlags.DuplicatesAllowed, windowContent.GetType().FullName);
-
-                    // Return the window
-                    return window;
-                }));
-            }
-        }
-
-        /// <summary>
-        /// Creates a new window with the specified content
-        /// </summary>
-        /// <typeparam name="VM">The view model</typeparam>
-        /// <param name="window">The window to configure</param>
-        /// <param name="windowContent">The window content to show</param>
-        /// <param name="owner">The owner window</param>
-        public virtual void ConfigureWindow<VM>(Window window, IWindowBaseControl<VM> windowContent, object owner)
-            where VM : UserInputViewModel
+        private static void ConfigureWindow(Window window, IWindowControl windowContent)
         {
             // Set window properties
             window.Content = windowContent.UIContent;
-            window.ResizeMode = windowContent.Resizable ? ResizeMode.CanResize : ResizeMode.NoResize;
-            window.Title = windowContent.ViewModel.Title ?? String.Empty;
-            window.SizeToContent = windowContent.Resizable ? SizeToContent.Manual : SizeToContent.WidthAndHeight;
-
-            // Set size properties
-            switch (windowContent.BaseSize)
-            {
-                case DialogBaseSize.Smallest:
-                    if (windowContent.Resizable)
-                    {
-                        window.Height = 100;
-                        window.Width = 150;
-                    }
-
-                    window.MinHeight = 100;
-                    window.MinWidth = 150;
-
-                    break;
-
-                case DialogBaseSize.Small:
-                    if (windowContent.Resizable)
-                    {
-                        window.Height = 200;
-                        window.Width = 250;
-                    }
-
-                    window.MinHeight = 200;
-                    window.MinWidth = 250;
-
-                    break;
-
-                case DialogBaseSize.Medium:
-                    if (windowContent.Resizable)
-                    {
-                        window.Height = 350;
-                        window.Width = 500;
-                    }
-
-                    window.MinHeight = 300;
-                    window.MinWidth = 400;
-
-                    break;
-
-                case DialogBaseSize.Large:
-                    if (windowContent.Resizable)
-                    {
-                        window.Height = 475;
-                        window.Width = 750;
-                    }
-
-                    window.MinHeight = 350;
-                    window.MinWidth = 500;
-
-                    break;
-
-                case DialogBaseSize.Largest:
-                    if (windowContent.Resizable)
-                    {
-                        window.Height = 600;
-                        window.Width = 900;
-                    }
-
-                    window.MinHeight = 500;
-                    window.MinWidth = 650;
-
-                    break;
-            }
-
-            // Set owner
-            if (owner is Window ow)
-                window.Owner = ow;
-            else if (owner is IntPtr oi)
-                new WindowInteropHelper(window).Owner = oi;
-            else
-                window.Owner = Application.Current?.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive);
+            window.ResizeMode = windowContent.ResizeMode == IWindowControl.WindowResizeMode.NoResize 
+                ? ResizeMode.NoResize 
+                : ResizeMode.CanResize;
+            window.SizeToContent = windowContent.ResizeMode == IWindowControl.WindowResizeMode.NoResize 
+                ? SizeToContent.WidthAndHeight 
+                : SizeToContent.Manual;
 
             // Set startup location
             window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
         }
 
-        /// <summary>
-        /// Gets the parent window to use for showing the child window. If this returns null then no suitable window was found.
-        /// </summary>
-        /// <returns>The parent window, or null if none was found</returns>
-        public Window GetChildWindowParent()
-        {
-            // Start by checking if any windows are active, in which case we use that
-            Window activeWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive);
-
-            if (activeWin != null)
-                return activeWin;
-
-            // If no windows are active we check if there is a modal window
-            Window modalWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsModal());
-
-            if (modalWin != null)
-                return modalWin;
-
-            // If no windows are active or modal we try and get the main window
-            Window mainWin = Application.Current.MainWindow;
-
-            // Return the window. It might be null (if the application hasn't fully started) in which case no window was found.
-            return mainWin;
-        }
-
-        public void ConfigureChildWindow<VM>(ChildWindow window, IWindowBaseControl<VM> windowContent, object owner)
-            where VM : UserInputViewModel
+        private static void ConfigureChildWindow(ChildWindow window, IWindowControl windowContent, bool isModal)
         {
             // Set window properties
             window.Content = windowContent.UIContent;
-            window.Title = windowContent.ViewModel.Title ?? String.Empty;
+            window.IsModal = isModal;
 
-            if (windowContent.Resizable)
+            if (windowContent.ResizeMode == IWindowControl.WindowResizeMode.ForceResizable)
             {
                 window.HorizontalContentAlignment = HorizontalAlignment.Stretch;
                 window.VerticalContentAlignment = VerticalAlignment.Stretch;
             }
         }
 
-        /// <summary>
-        /// Gets a new instance of a window
-        /// </summary>
-        /// <returns>The window instance</returns>
-        public virtual Window GetWindow()
+        private static Task ShowAsync(IWindowControl windowContent, bool isModal, string title)
         {
-            return new Window();
+            // Get the dispatcher
+            Dispatcher dispatcher = Application.Current?.Dispatcher ?? throw new Exception("A window can not be created before the application has been loaded and the dispatcher set");
+
+            // Run on UI thread
+            return dispatcher.Invoke(async () =>
+            {
+                // Show as a child window
+                if (Services.Data.UI_UseChildWindows && Application.Current?.MainWindow is MetroWindow metroWindow)
+                {
+                    // Create the child window
+                    var childWin = new ChildWindow();
+
+                    // Configure the window
+                    ConfigureChildWindow(childWin, windowContent, isModal);
+
+                    // Set the window instance
+                    windowContent.WindowInstance = new ChildWindowInstance(childWin);
+
+                    // Set the title
+                    if (title != null)
+                        windowContent.WindowInstance.Title = title;
+
+                    // Show the window
+                    await metroWindow.ShowChildWindowAsync(childWin);
+                }
+                // or show as a normal window
+                else
+                {
+                    // Create the window
+                    var window = new BaseWindow();
+
+                    // Configure the window
+                    ConfigureWindow(window, windowContent);
+
+                    // Set the window instance
+                    windowContent.WindowInstance = new StandardWindowInstance(window);
+
+                    // Set the title
+                    if (title != null)
+                        windowContent.WindowInstance.Title = title;
+
+                    if (isModal)
+                    {
+                        // Show the window as a dialog
+                        window.ShowDialog();
+                    }
+                    else
+                    {
+                        var tcs = new TaskCompletionSource<object>();
+
+                        void Window_Closed(object sender, EventArgs e)
+                        {
+                            window.Closed -= Window_Closed;
+                            tcs.TrySetResult(null);
+                        }
+
+                        window.Closed += Window_Closed;
+
+                        // Show the window
+                        window.Show();
+
+                        // Wait for the window to close
+                        await tcs.Task;
+                    }
+                }
+            });
         }
+
+        #endregion
+
+        #region Public Methods
+
+        public async Task<Result> ShowDialogWindowAsync<UserInput, Result>(IDialogWindowControl<UserInput, Result> windowContent)
+            where UserInput : UserInputViewModel
+            where Result : UserInputResult
+        {
+            // Show as a modal with the user input title
+            await ShowAsync(windowContent, true, windowContent.ViewModel.Title);
+
+            // Return the result
+            return windowContent.GetResult();
+        }
+
+        public Task ShowWindowAsync(IWindowControl windowContent)
+        {
+            // Show the window
+            return ShowAsync(windowContent, false, null);
+        }
+
+        #endregion
     }
 }

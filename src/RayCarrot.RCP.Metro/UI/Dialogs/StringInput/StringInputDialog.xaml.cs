@@ -1,13 +1,11 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for StringInputDialog.xaml
     /// </summary>
-    public partial class StringInputDialog : UserControl, IDialogBaseControl<StringInputViewModel, StringInputResult>
+    public partial class StringInputDialog : WindowContentControl, IDialogWindowControl<StringInputViewModel, StringInputResult>
     { 
         #region Constructor
 
@@ -37,21 +35,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public StringInputViewModel ViewModel { get; }
 
-        /// <summary>
-        /// The dialog content
-        /// </summary>
-        public object UIContent => this;
-
-        /// <summary>
-        /// Indicates if the dialog should be resizable
-        /// </summary>
-        public bool Resizable => false;
-
-        /// <summary>
-        /// The base size for the dialog
-        /// </summary>
-        public DialogBaseSize BaseSize => DialogBaseSize.Smallest;
-
         #endregion
 
         #region Public Methods
@@ -69,23 +52,6 @@ namespace RayCarrot.RCP.Metro
             };
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-
-        }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Invoke to request the dialog to close
-        /// </summary>
-        public event EventHandler CloseDialog;
-
         #endregion
 
         #region Event Handlers
@@ -95,13 +61,13 @@ namespace RayCarrot.RCP.Metro
             CanceledByUser = false;
 
             // Close the dialog
-            CloseDialog?.Invoke(this, new EventArgs());
+            WindowInstance.Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             // Close the dialog
-            CloseDialog?.Invoke(this, new EventArgs());
+            WindowInstance.Close();
         }
 
         #endregion

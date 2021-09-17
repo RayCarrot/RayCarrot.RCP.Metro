@@ -1,16 +1,17 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.ArchiveCreatorUI"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance local:ArchiveCreatorDialogViewModel}"
-             Language="{UICulture}"
-             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-             MinHeight="250"
-             MinWidth="400">
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.ArchiveCreatorUI"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            mc:Ignorable="d"
+                            d:DataContext="{d:DesignInstance local:ArchiveCreatorDialogViewModel}"
+                            Language="{UICulture}"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            MinHeight="250"
+                            MinWidth="400"
+                            MaxWidth="500">
     <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
                                 HorizontalContentAlignment="Stretch"
@@ -81,4 +82,4 @@
         </Grid>
 
     </local:LoaderContentControl>
-</UserControl>
+</local:WindowContentControl>

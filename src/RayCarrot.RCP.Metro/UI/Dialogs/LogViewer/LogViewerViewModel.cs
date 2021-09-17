@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for a log viewer
     /// </summary>
-    public class LogViewerViewModel : UserInputViewModel
+    public class LogViewerViewModel : BaseRCPViewModel
     {
         #region Constructor
 
@@ -17,9 +17,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public LogViewerViewModel()
         {
-            // Set a default title
-            Title = "Log Viewer";
-
             // Set properties
             LogItems = new ObservableCollection<LogItemViewModel>();
             ShowLogLevel = LogLevel.Info;

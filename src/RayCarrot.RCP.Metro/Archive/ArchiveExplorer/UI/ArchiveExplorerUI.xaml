@@ -1,19 +1,19 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.ArchiveExplorerUI"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:editors="http://wpfcontrols.com/"
-             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:wpfTextBoxAutoComplete="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
-             mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
-             Language="{UICulture}"
-             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-             MinHeight="400"
-             MinWidth="600">
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.ArchiveExplorerUI"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                            xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:editors="http://wpfcontrols.com/"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            xmlns:wpfTextBoxAutoComplete="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+                            mc:Ignorable="d"
+                            d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
+                            Language="{UICulture}"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            MinHeight="400"
+                            MinWidth="600">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -390,4 +390,4 @@
         </Grid>
 
     </local:LoaderContentControl>
-</UserControl>
+</local:WindowContentControl>

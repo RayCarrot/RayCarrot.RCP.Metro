@@ -20,94 +20,43 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region UserInput
+        #region Dialogs
 
-        public async Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel)
+        public async Task<Result> ShowDialogAsync<UserInput, Result>(Func<IDialogWindowControl<UserInput, Result>> createDialogFunc)
+            where UserInput : UserInputViewModel
+            where Result : UserInputResult
         {
-            Logger.Trace("A games selection dialog was opened");
-
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");
 
-            // Create the dialog and get the result
-            var result = await Application.Current.Dispatcher.Invoke(() => new GamesSelectionDialog(gamesSelectionViewModel)).ShowDialogAsync();
+            // Create the dialog on the UI thread
+            IDialogWindowControl<UserInput, Result> dialog = Application.Current.Dispatcher.Invoke(createDialogFunc);
+            string dialogTypeName = dialog.GetType().Name;
+
+            Logger.Trace("A dialog of type {0} was opened", dialogTypeName);
+
+            // Show the dialog and get the result
+            Result result = await Services.DialogBaseManager.ShowDialogWindowAsync(dialog);
 
             if (result == null)
-                Logger.Trace("The games selection dialog returned null");
+                Logger.Warn("The dialog of type {0} returned null", dialogTypeName);
             else if (result.CanceledByUser)
-                Logger.Trace("The games selection dialog was canceled by the user");
-            else
-                Logger.Trace("The games selection dialog returned the selected games {0}", result.SelectedGames.JoinItems(", "));
+                Logger.Trace("The dialog of type {0} was canceled by the user", dialogTypeName);
 
             // Return the result
             return result;
         }
 
-        public async Task<GameTypeSelectionResult> SelectGameTypeAsync(GameTypeSelectionViewModel gameTypeSelectionViewModel)
-        {
-            Logger.Trace("A game type selection dialog was opened");
+        public Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel) => ShowDialogAsync(() => new GamesSelectionDialog(gamesSelectionViewModel));
 
-            if (Application.Current.Dispatcher == null)
-                throw new Exception("The application does not have a valid dispatcher");
+        public Task<GameTypeSelectionResult> SelectGameTypeAsync(GameTypeSelectionViewModel gameTypeSelectionViewModel) => ShowDialogAsync(() => new GameTypeSelectionDialog(gameTypeSelectionViewModel));
 
-            // Create the dialog and get the result
-            var result = await Application.Current.Dispatcher.Invoke(() => new GameTypeSelectionDialog(gameTypeSelectionViewModel)).ShowDialogAsync();
+        public Task<EducationalDosGameEditResult> EditEducationalDosGameAsync(EducationalDosGameEditViewModel viewModel) => ShowDialogAsync(() => new EducationalDosGameEditDialog(viewModel));
 
-            if (result == null)
-                Logger.Trace("The game type selection dialog returned null");
-            else if (result.CanceledByUser)
-                Logger.Trace("The game type selection dialog was canceled by the user");
-            else
-                Logger.Trace("The game type selection dialog returned the selected type {0}", result.SelectedType);
-
-            // Return the result
-            return result;
-        }
-
-        public async Task<EducationalDosGameEditResult> EditEducationalDosGameAsync(EducationalDosGameEditViewModel viewModel)
-        {
-            Logger.Trace("An educational DOS game edit dialog was opened");
-
-            if (Application.Current.Dispatcher == null)
-                throw new Exception("The application does not have a valid dispatcher");
-
-            // Create the dialog and get the result
-            var result = await Application.Current.Dispatcher.Invoke(() => new EducationalDosGameEditDialog(viewModel)).ShowDialogAsync();
-
-            if (result == null)
-                Logger.Trace("The educational DOS game edit dialog returned null");
-            else if (result.CanceledByUser)
-                Logger.Trace("The educational DOS game edit dialog was canceled by the user");
-            else
-                Logger.Trace("The educational DOS game edit dialog returned the selected name {0}", result.Name);
-
-            // Return the result
-            return result;
-        }
-
-        public async Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel)
-        {
-            Logger.Trace("A jump list edit dialog was opened");
-
-            if (Application.Current.Dispatcher == null)
-                throw new Exception("The application does not have a valid dispatcher");
-
-            // Create the dialog and get the result
-            var result = await Application.Current.Dispatcher.Invoke(() => new JumpListEditDialog(viewModel)).ShowDialogAsync();
-
-            if (result == null)
-                Logger.Trace("The jump list edit dialog returned null");
-            else if (result.CanceledByUser)
-                Logger.Trace("The jump list edit dialog was canceled by the user");
-
-            // Return the result
-            return result;
-        }
+        public Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel) => ShowDialogAsync(() => new JumpListEditDialog(viewModel));
 
         public async Task<FileExtensionSelectionDialogResult> SelectFileExtensionAsync(FileExtensionSelectionDialogViewModel viewModel)
         {
-            Logger.Trace("A file extension selection dialog was opened");
-
             // If only one item is available, return it
             if (viewModel.FileFormats.Length == 1)
             {
@@ -118,22 +67,21 @@ namespace RayCarrot.RCP.Metro
                 };
             }
 
-            if (Application.Current.Dispatcher == null)
-                throw new Exception("The application does not have a valid dispatcher");
-
-            // Create the dialog and get the result
-            var result = await Application.Current.Dispatcher.Invoke(() => new FileExtensionSelectionDialog(viewModel)).ShowDialogAsync();
-
-            if (result == null)
-                Logger.Trace("The file extension selection dialog returned null");
-            else if (result.CanceledByUser)
-                Logger.Trace("The file extension selection dialog was canceled by the user");
-
-            // Return the result
-            return result;
+            return await ShowDialogAsync(() => new FileExtensionSelectionDialog(viewModel));
         }
 
-        /// <summary>Displays a message to the user</summary>
+        public Task<StringInputResult> GetStringInput(StringInputViewModel stringInputViewModel) => ShowDialogAsync(() => new StringInputDialog(stringInputViewModel));
+
+        /// <summary>
+        /// Allows the user to browse for a drive
+        /// </summary>
+        /// <param name="driveBrowserModel">The drive browser information</param>
+        /// <returns>The browse drive result</returns>
+        public Task<DriveBrowserResult> BrowseDriveAsync(DriveBrowserViewModel driveBrowserModel) => ShowDialogAsync(() => new DriveSelectionDialog(driveBrowserModel));
+
+        /// <summary>
+        /// Displays a message to the user
+        /// </summary>
         /// <param name="message">The message to display</param>
         /// <param name="header">The header for the message</param>
         /// <param name="messageType">The type of message, determining its visual appearance</param>
@@ -188,7 +136,7 @@ namespace RayCarrot.RCP.Metro
                     DisplayText = Resources.Cancel,
                     DisplayDescription = Resources.Cancel,
                     IsCancel = true,
-                    ActionResult = false
+                    ActionResult = new UserInputResult(),
                 });
 
             // Add additional actions
@@ -200,7 +148,10 @@ namespace RayCarrot.RCP.Metro
                 DisplayText = Resources.Ok,
                 DisplayDescription = Resources.Ok,
                 IsDefault = true,
-                ActionResult = true
+                ActionResult = new UserInputResult()
+                {
+                    CanceledByUser = false
+                },
             });
 
             // Run on the UI thread
@@ -214,36 +165,18 @@ namespace RayCarrot.RCP.Metro
                     MessageType = messageType,
                     DialogImageSource = GetImgSource(messageType).ToImageSource(),
                     DialogActions = actions,
-                    DefaultActionResult = false
+                    DefaultActionResult = new UserInputResult(),
                 };
 
                 // Create the message box
-                var d = new DialogMessageBox(vm);
+                var dialog = new DialogMessageBox(vm);
 
-                // Show the dialog and return the result
-                return await d.ShowDialogAsync(Application.Current.MainWindow) as bool? ?? false;
+                // Show the dialog and get the result
+                UserInputResult result = await Services.DialogBaseManager.ShowDialogWindowAsync(dialog);
+
+                // Return the result
+                return !result.CanceledByUser;
             });
-        }
-
-        public async Task<StringInputResult> GetStringInput(StringInputViewModel stringInputViewModel)
-        {
-            Logger.Trace("A string input dialog was opened");
-
-            if (Application.Current.Dispatcher == null)
-                throw new Exception("The application does not have a valid dispatcher");
-
-            // Create the dialog and get the result
-            var result = await Application.Current.Dispatcher.Invoke(() => new StringInputDialog(stringInputViewModel)).ShowDialogAsync();
-
-            if (result == null)
-                Logger.Trace("The string input dialog returned null");
-            else if (result.CanceledByUser)
-                Logger.Trace("The string input dialog was canceled by the user");
-            else
-                Logger.Trace("The string input dialog returned the selected string {0}", result.StringInput);
-
-            // Return the result
-            return result;
         }
 
         #endregion
@@ -266,8 +199,8 @@ namespace RayCarrot.RCP.Metro
                 Logger.Trace("An Archive Explorer window was opened");
 
                 // Run on UI thread
-                await Application.Current.Dispatcher.Invoke(() => 
-                    new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths))).ShowWindowAsync();
+                ArchiveExplorerUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths)));
+                await Services.DialogBaseManager.ShowWindowAsync(ui);
             }
             catch (Exception ex)
             {
@@ -290,7 +223,8 @@ namespace RayCarrot.RCP.Metro
             Logger.Trace("An Archive Creator window was opened");
 
             // Run on UI thread
-            await Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorUI(new ArchiveCreatorDialogViewModel(manager))).ShowWindowAsync();
+            ArchiveCreatorUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorUI(new ArchiveCreatorDialogViewModel(manager)));
+            await Services.DialogBaseManager.ShowWindowAsync(ui);
         }
 
         #endregion

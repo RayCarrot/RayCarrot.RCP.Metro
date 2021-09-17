@@ -1,11 +1,10 @@
-﻿using RayCarrot.IO;
-using NLog;
+﻿using NLog;
+using RayCarrot.IO;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -13,7 +12,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for DriveSelectionDialog.xaml
     /// </summary>
-    public partial class DriveSelectionDialog : UserControl, IDialogBaseControl<DriveBrowserViewModel, DriveBrowserResult>
+    public partial class DriveSelectionDialog : WindowContentControl, IDialogWindowControl<DriveBrowserViewModel, DriveBrowserResult>
     {
         #region Constructors
 
@@ -62,21 +61,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public DriveSelectionViewModel DriveSelectionVM => DataContext as DriveSelectionViewModel;
 
-        /// <summary>
-        /// The dialog content
-        /// </summary>
-        public object UIContent => this;
-
-        /// <summary>
-        /// Indicates if the dialog should be resizable
-        /// </summary>
-        public bool Resizable => false;
-
-        /// <summary>
-        /// The base size for the dialog
-        /// </summary>
-        public DialogBaseSize BaseSize => DialogBaseSize.Medium;
-
         #endregion
 
         #region Private Methods
@@ -118,7 +102,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             DriveSelectionVM.Result.CanceledByUser = false;
-            CloseDialog?.Invoke(this, new EventArgs());
+            WindowInstance.Close();
         }
 
         #endregion
@@ -135,23 +119,6 @@ namespace RayCarrot.RCP.Metro
             return DriveSelectionVM.Result;
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-
-        }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Invoke to request the dialog to close
-        /// </summary>
-        public event EventHandler CloseDialog;
-
         #endregion
 
         #region Event Handlers
@@ -164,7 +131,7 @@ namespace RayCarrot.RCP.Metro
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             DriveSelectionVM.Result.CanceledByUser = true;
-            CloseDialog?.Invoke(this, new EventArgs());
+            WindowInstance.Close();
         }
 
         private async void DriveItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
