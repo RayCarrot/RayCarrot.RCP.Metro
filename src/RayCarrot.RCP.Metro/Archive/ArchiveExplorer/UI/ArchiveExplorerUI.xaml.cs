@@ -1,6 +1,7 @@
 ﻿using RayCarrot.IO;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -54,9 +55,9 @@ namespace RayCarrot.RCP.Metro
             WindowInstance.Title = ViewModel.Title;
         }
 
-        protected override bool Closing()
+        protected override async Task<bool> ClosingAsync()
         {
-            if (!base.Closing())
+            if (!await base.ClosingAsync())
                 return false;
 
             // Cancel the closing if an archive is running an operation

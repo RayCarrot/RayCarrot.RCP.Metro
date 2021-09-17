@@ -46,9 +46,9 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Methods
 
-        protected override bool Closing()
+        protected override async Task<bool> ClosingAsync()
         {
-            if (!base.Closing())
+            if (!await base.ClosingAsync())
                 return false;
 
             if (!ViewModel.OperationRunning)

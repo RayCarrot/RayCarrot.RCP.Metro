@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for GameOptions.xaml
     /// </summary>
-    public partial class GameOptionsDialog : BaseWindow
+    public partial class GameOptionsDialog : WindowContentControl
     {
         #region Constructor
 
@@ -23,26 +23,12 @@ namespace RayCarrot.RCP.Metro
         {
             // Set up UI
             InitializeComponent();
-            
+
             // Create view model
             ViewModel = new GameOptionsDialog_ViewModel(game);
 
             // Subscribe to events
             Loaded += GameOptions_OnLoadedAsync;
-            Closing += GameOptions_OnClosingAsync;
-            Closed += Window_Closed;
-
-            // Set default height
-            if (ViewModel.Pages.Length > 1)
-                Height = 700;
-            else
-                SizeToContent = SizeToContent.Height;
-
-            // Set default width
-            if (ViewModel.Pages.Length >= 4)
-                Width = 700;
-            else
-                Width = 625;
         }
 
         #endregion
@@ -70,24 +56,65 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Methods
+
+        protected override void WindowAttached()
+        {
+            base.WindowAttached();
+
+            WindowInstance.Title = ViewModel.DisplayName;
+        }
+
+        protected override async Task<bool> ClosingAsync()
+        {
+            if (!await base.ClosingAsync())
+                return false;
+
+            // Always allow the window to close if it's set to force close
+            if (ForceClose)
+                return true;
+
+            // Cancel the closing if loading
+            if (ViewModel.IsLoading)
+                return false;
+
+            // Attempt to find the first page which has unsaved changes
+            var unsavedPage = ViewModel.Pages.FirstOrDefault(x => x.UnsavedChanges);
+
+            // If no page has unsaved changes we can close
+            if (unsavedPage == null)
+                return true;
+
+            // Go to the page with unsaved changes
+            ViewModel.SelectedPage = unsavedPage;
+
+            // Let the user decide if we should close and thus ignore the unsaved changes
+            return await Services.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true);
+        }
+
+        protected override void Closed()
+        {
+            base.Closed();
+
+            Services.App.RefreshRequired -= AppGameRefreshRequiredAsync;
+
+            foreach (var page in ViewModel.Pages)
+                page.Saved -= Page_Saved;
+
+            ViewModel?.Dispose();
+        }
+
+        #endregion
+
         #region Public Static Methods
 
         /// <summary>
         /// Shows a new instance of this <see cref="Window"/>
         /// </summary>
         /// <param name="game">The game to show the options for</param>
-        public static void Show(Games game)
+        public static Task ShowAsync(Games game)
         {
-            var groupNames = new List<string>
-            {
-                // The same game can only have one dialog opened at a time
-                game.ToString()
-            };
-
-            // Add game specific group names
-            groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
-
-            AppWindowsManager.ShowWindow(() => new GameOptionsDialog(game), AppWindowsManager.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
+            return Services.DialogBaseManager.ShowWindowAsync(new GameOptionsDialog(game));
         }
 
         #endregion
@@ -96,6 +123,8 @@ namespace RayCarrot.RCP.Metro
 
         private void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
         {
+            Loaded -= GameOptions_OnLoadedAsync;
+
             Services.App.RefreshRequired += AppGameRefreshRequiredAsync;
 
             foreach (var page in ViewModel.Pages)
@@ -105,17 +134,7 @@ namespace RayCarrot.RCP.Metro
         private void Page_Saved(object sender, EventArgs e)
         {
             if (Services.Data.App_CloseConfigOnSave)
-                Close();
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            Services.App.RefreshRequired -= AppGameRefreshRequiredAsync;
-
-            foreach (var page in ViewModel.Pages)
-                page.Saved -= Page_Saved;
-
-            ViewModel?.Dispose();
+                WindowInstance.Close();
         }
 
         private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
@@ -123,7 +142,7 @@ namespace RayCarrot.RCP.Metro
             if (e.GameCollectionModified && e.ModifiedGames.Contains(ViewModel.Game))
             {
                 ForceClose = true;
-                Close();
+                WindowInstance.Close();
 
                 return Task.CompletedTask;
             }
@@ -131,44 +150,11 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
-        private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)
-        {
-            if (ForceClose)
-                return;
-
-            if (ViewModel.IsLoading)
-            {
-                e.Cancel = true;
-                return;
-            }
-
-            var unsavedPage = ViewModel.Pages.FirstOrDefault(x => x.UnsavedChanges);
-
-            if (unsavedPage == null)
-                return;
-
-            e.Cancel = true;
-
-            ViewModel.SelectedPage = unsavedPage;
-
-            // Don't show a dialog if the close button is disabled
-            if (!IsCloseButtonEnabled)
-                return;
-
-            if (!await Services.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
-                return;
-
-            ForceClose = true;
-
-            // NOTE: Not the most elegant solution - but we can't call Close() from within a closing event
-            _ = Task.Run(() => Dispatcher?.Invoke(Close));
-        }
-
         private async void PagesTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => await ViewModel.LoadCurrentPageAsync();
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Close();
+            WindowInstance.Close();
         }
 
         #endregion
