@@ -124,9 +124,6 @@
   <data name="dinput_mapping" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rayman2\dinput_mapping.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="VersionHistory" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>versionhistory.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="dinput8_controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rayman3\dinput8_controller.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -165,5 +162,17 @@
   </data>
   <data name="License" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>license.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="VersionHistory_01_0_03_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>versionhistory\versionhistory_01.0_03.0.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="VersionHistory_04_0_06_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>versionhistory\versionhistory_04.0_06.0.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="VersionHistory_07_0_09_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>versionhistory\versionhistory_07.0_09.0.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="VersionHistory_10_0_12_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>versionhistory\versionhistory_10.0_12.0.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

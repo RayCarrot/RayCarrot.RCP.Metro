@@ -1405,6 +1405,9 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Files\VersionHistory\VersionHistory_07.0_09.0.txt" />
+    <Resource Include="Files\VersionHistory\VersionHistory_10.0_12.0.txt" />
+    <Resource Include="Files\VersionHistory\VersionHistory_04.0_06.0.txt" />
     <Resource Include="Utilities\General\ExternalTool\Ray1Editor\Screenshots\LayerEditor.png" />
     <Resource Include="Utilities\General\ExternalTool\Ray1Editor\Screenshots\ObjEditor.png" />
     <Resource Include="Utilities\General\ExternalTool\Ray1Editor\Screenshots\TileEditor.png" />
@@ -1546,7 +1549,7 @@
     <Resource Include="Installer\Games\RaymanM.txt" />
     <Content Include="Files\Rayman2\dinput_controller.dll" />
     <Content Include="Files\Rayman2\dinput_mapping.dll" />
-    <Resource Include="Files\VersionHistory.txt" />
+    <Resource Include="Files\VersionHistory\VersionHistory_01.0_03.0.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

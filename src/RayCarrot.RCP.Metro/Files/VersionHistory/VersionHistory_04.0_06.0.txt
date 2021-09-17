@@ -1,0 +1,260 @@
+﻿-----   Version 6.1.2 - October 10, 2019   -----
+• Updated the Portuguese translation of Rayman 2
+• Added support for installing the Polish version of Rayman M from a disc
+• Improved tab navigation
+• Updated reference to the WinRT SDK
+
+
+-----   Version 6.1.1 - September 29, 2019   -----
+• Updated the Portuguese translation of Rayman 2
+• Fixed a bug where setting the theme to light would not save
+
+
+-----   Version 6.1.0 - September 23, 2019   -----
+• Added a utility for Rayman Legends debug commands (Uplay version only)
+• Added support for version 1.21 (Chinese) in the PlayStation soundtrack utility for Rayman 1
+• Added the option to remove the disc check for Rayman M and Rayman Arena
+• The Rayman Origins map list no longer contains graph and subscene maps
+• The application can now be opened from the tray from a single click on the icon if minimized
+• Incorrectly formated paths will now be fixed when finding installed games from the Registry
+
+
+-----   Version 6.0.1 - September 9, 2019   -----
+• Removed the option to set the resolution for Rayman Raving Rabbids due to inconsistencies with getting the available resolutions
+
+
+-----   Version 6.0.0 - September 7, 2019   -----
+• Educational Rayman games, Rayman Raving Rabbids 2, Rabbids Go Home (DVD release) and Rabbids Big Bang are now supported
+• A configuration option for Rayman 2 has been added to change the graphics mode between DirectX and nGlide
+• The jump list can now be edited from the settings page
+• The application startup time has been improved
+• Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
+• The game finder can now find game installations from desktop shortcuts
+• Backups for Windows Store games no longer back up the entire package folder
+
+Other changes:
+• The list box in the Rayman Legends UbiRay utility now consists of radio buttons for clarity when selecting
+• Dialog windows now center the main window
+• The legacy data converter has been removed
+• Error messages will now include the exception message
+• Added option to refresh the backup page
+• Updated the backup system
+• Normalized the font size in the help page
+• Reorganized the settings page
+• Improved game icon quality
+• The Rayman 2, Rayman M/Arena and Rayman 3 configuration tools will now show if a patch can't be applied
+• The admin icon can now be clicked on to restart the app as administrator
+• Minor changes to how the widescreen patch is applied for Rayman 2
+• Session logging is now limited when not debugging to decrease the application memory usage
+• Added new debug options
+• Removed the upcoming features section from the debug page
+• Major code changes to how games are handled and the application refreshes
+• Fixed a bug where backups for Rayman by his Fans would not include the level times
+• Bug fixed for IO operations
+• Bug fixes
+
+
+-----   Version 5.0.0 - August 14, 2019   -----
+• Updated the Carrot Framework to version 3.0.0
+• Backups can now be compressed
+• The game language can now be changed for Rayman, Rayman Designer, Rayman by his Fans and Rayman 60 Levels
+• Rayman Fiesta Run Preload Edition is now supported. If multiple versions of Rayman Fiesta Run are installed, the default one to launch can now be selected.
+• Added support for version 1.10 in the PlayStation soundtrack utility for Rayman 1
+• The Rayman 2 swimming controls can now be remapped
+
+Other changes:
+• Utilities are now modular
+• Locating DOSBox games will now work even if they do not have a valid batch file
+• Added Rayman M cheat menu cheat code
+• Added Snagglebee to the credits for the PlayStation Soundtrack utility
+• Updated the purchase link for Rayman Fiesta Run to the Preload edition due to the previous ones being taken down from the store
+• Backups for Rayman Fiesta Run are now differentiated between the available versions to avoid errors on restore
+• Backups for Rayman Raving Rabbids have been improved, now backing up the latest files no matter the location
+• The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
+• Minor improvements to the game installer & links page
+• Cancellations are now longer displayed as errors in the log
+• Reworked the temp file system to no longer use a dedicated temp directory
+• Added a debug option to disable the downgrade warning
+• Added debug option to restart as administrator
+• Lowered default window height
+• Updated the updater to version 3.1.0
+• Reformatted the exception messages
+• Fixed a bug where Windows Store and Steam games would not show up in the jump list
+• Fixed a bug where the debug option to start TPLS would appear even if it wasn't installed
+• Fixed a bug where the progress of a download or install operation would not show in the task bar
+• Bug fixes
+
+
+-----   Version 4.6.0 - July 8, 2019   -----
+• The program has now been translated to Dutch (thanks 432 Hz!)
+• Added a splash screen
+• Cheat codes are now displayed in grids for readability
+• Added the option to change the link button alignment when in list view
+• The installer will now warn if the selected install location is not valid due to missing write permission
+• Operation requiring administration access are now run in a separate process
+• If the configuration data in a ubi.ini file was created for the first time the option to save will no longer be disabled by default
+• Fixed a bug where the initial ubi.ini permission change would fail and no error would be shown
+
+
+-----   Version 4.5.1 - June 24, 2019   -----
+• The install date for the program will now show the last update time rather than first install
+• Updated referenced assemblies
+• Fixed an error causing the installer to not finish due to unhandled items
+
+
+-----   Version 4.5.0 - June 13, 2019   -----
+• The program has now been translated to Portuguese (thanks Haruka Tavares!)
+• Added the links page
+• Added icons to page tabs
+• The settings button has been moved to the side
+• Added the option to minimize the application to the tray area
+• Added the option to show the program under installed programs
+• Added the option to uninstall the program
+• Updated the updater to version 3.0.0 with the new Metro redesign
+• Added the option to get beta releases through the updater
+
+Other changes:
+• Increased default window size
+• The application data is now indented for readability
+• The window title now indicates if the app is running as administrator
+• Added debug data output
+• Added debug option to force manual updates
+• Added a warning message to Rayman Forever backups if GOG Galaxy cloud sync is enabled
+• Updated the Rayman Forever game finder search to find the latest GOG version of the game
+• Minor changes to the credits in the about page
+• Removed the links from the debug page due to them now being available in the links page
+• Removed the log viewer commands
+• Fixed a bug where the jump list failed to create if a DOSBox game had been added without a DOSBox path being specified
+• Fixed a bug where the language would not set correctly if set to the default language
+• Fixed the scroll bar position on the about page
+• Fixed a bug where the configuration for Rayman Raving Rabbids, Rayman Origins and Rayman Legends could not be modified before running the games at least once
+• Bug fixes
+
+
+-----   Version 4.4.0 - May 21, 2019   -----
+• Added support for version 1.00 and two other versions of version 1.12 in the PlayStation soundtrack utility for Rayman 1
+• Added a shortcut to the dgVoodoo control panel file for Rayman 2 if the unofficial patch is used
+• Added real time data viewing and options for the PlayStation soundtrack Utility for Rayman 1 when the user level is set to debug
+• Set a max width for the tool tips
+• Improved tab navigation through custom controls
+• Fixed an issue where the game drop down list would stay in the same position after scrolling
+• Fixed a bug where the Rayman 2 configuration would fail to find the ubi.ini file if located in the Windows directory
+• Fixed a bug where browsing for a drive to mount would not work in the DOSBox configuration
+• Bug fixes
+
+
+-----   Version 4.3.2 - May 17, 2019   -----
+• Added list of upcoming features to the debug page
+• Fixed a bug where selecting a help item would collapse above nodes
+• Fixed a bug where the jump list shortcuts for desktop and DOSBox games would not launch in the correct directory
+• Fixed a bug where if an error occurred during applying additional game configuration settings, such as the Rayman 2 widescreen patch, the application would crash
+• Bug fixes
+
+
+-----   Version 4.3.1 - May 15, 2019   -----
+• Improved auto focusing on controls when switching pages
+• Fixed a bug where the some utilities would show as applied when they were not
+
+
+-----   Version 4.3.0 - May 14, 2019   -----
+• Redesigned the game options dialog
+• Added Steam group link in the about page
+• The game installer now defaults the install directory to the user's Program Files directory
+• Added more tool tips
+• Fixed the Discord link in the about page
+• Minor spelling fixes
+• Bug fixes
+
+
+-----   Version 4.2.2 - May 4, 2019   -----
+• Corrected the order of the Rayman Raving Rabbids aspect ratio options
+• Minor fixes to the PlayStation soundtrack utility (more versions will be added soon)
+• The backups correctly refresh when the backup location changes
+
+
+-----   Version 4.2.1 - April 26, 2019   -----
+• Launch options can now be modified in the game options
+
+
+-----   Version 4.2.0 - April 25, 2019   -----
+• Launch options have been added to games, allowing them to be run as administrator
+• The option to perform a backup on all games has been added
+• A debug option to refresh the jump list has been added
+• Bug fixes
+
+
+-----   Version 4.1.4 - April 25, 2019   -----
+• Bug fixes
+
+
+-----   Version 4.1.3 - April 24, 2019   -----
+• Fixed an issue with the program Easter Egg codes
+
+
+-----   Version 4.1.2 - April 23, 2019   -----
+• Fixed an issue where the controller fix for Rayman M/Arena/3 would not work
+
+
+-----   Version 4.1.1 - April 22, 2019   -----
+• Added a link to the Discord server in the about page
+• Removed feedback prompt
+• Added debug option to show languages with incomplete translations
+• Minor bug fixes
+
+
+-----   Version 4.1.0 - April 18, 2019   -----
+• The program now supports multiple languages
+• Dialog windows no longer show as blocking dialogs, thus allowing several windows to be open at once
+• Added Rayman Legends section to the help page
+• The option to move existing backups has been re-added when changing the backup location
+• Increased tool tip timeout on info icons
+• Utilities are now only shown when available
+• The Rayman 3 DirectPlay utility has been reworked and now shows the current state of DirectPlay
+• Added debug option to show applied utilities
+• Updates to the Carrot Framework and WPF implementation
+• Temporarily downgraded Fody to version 3.3.5 due to a bug with duplicate type names
+• Minor bug fixes
+
+
+-----   Version 4.0.1 - March 15, 2019   -----
+• Updated the about page
+• Updated the help page
+• Changed the jump list category to the default one to avoid pinning and removing jump list shortcuts
+• Fixed a bug where the ubi.ini handler would throw an exception when a duplicate key was parsed
+
+
+-----   Version 4.0.0 - March 14, 2019   -----
+• Windows Vista or higher is now required to run the application
+• Updated the program to use WPF instead of WinForms
+• Changed the theme to Metro theme with dark/light modes
+• Simplified game selection and utilities
+• Common DosBox commands can now be set using the new DosBox configuration dialog
+
+Other changes:
+• Utilities will now show if they require additional files to be downloaded
+• Rayman M/Arena are now treated as separate games
+• Windows Store games are now be found and launched using the WinRT API rather than Explorer
+• The Rayman 1 PlayStation soundtrack utility now works without launching it from the utilities page
+• Some Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
+• The Rayman 2 translation utility will now automatically download the correct textures file along with the translation
+• The option to revert back to the original Rayman Origins videos has been added
+• When selecting a map to load in Rayman Origins there is now a list of all available options
+• Improved the game installer
+• The logger now logs to a file
+• Bug fixes
+
+Removed features:
+• The links page has been removed
+• Game file names can no longer be changed
+• The option to reset the application data has been removed
+• Games can no longer be run as administrator. To solve this, force the game executable to run as administrator manually by going to its properties window in Explorer.
+• Configuration paths can no longer be set up manually
+• The game finder can not be run manually from the settings
+• The WinForms folder dialog can no longer be used
+• Shortcuts can no longer be created for the native game configuration programs. This can still be done manually by right-clicking on the executable in Explorer and creating a new shortcut.
+• Shortcuts can no longer be created for the game configuration tools.
+• Backups can no longer be created for multiple games at once
+• Several Rayman 2 configuration options were removed, including the nGlide settings. These can still be accessed from the game's native configuration tools.
+• Several Rayman Raving Rabbids configuration options were removed. These can still be accessed from within the game.
+• The Rayman Fiesta Run version can no longer be chosen. If both are installed, the Windows 10 edition is prioritized.
+• Digital versions of Rayman Origins can no longer be updated through the utilities. This is due to the GOG version recently receiving the 1.02 update it was previously missing.

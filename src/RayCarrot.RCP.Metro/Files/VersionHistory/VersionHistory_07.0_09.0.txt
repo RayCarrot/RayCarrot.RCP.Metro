@@ -1,0 +1,219 @@
+﻿-----   Version 9.5.0 - May 21, 2020   -----
+• Added support for Rayman Dictées
+• Reworked the binary serialization system. Logging can now be enabled for any serialized data.
+• Rayman 3 save files can now be converted back, imported and exported
+
+Other changes:
+• Added Eeeebray to the credits
+• The setting to enable beta updates is now tied to the Technical user level rather than the Debug one
+• Updated archive creation for Rayman Mini files to support the 1.2 update
+• Exporting the root of an archive file will no longer include the file extension in the directory name
+• Removed an error check for the IPK offsets, causing a crash when loading certain IPK files
+• Removed the debug option to analyze IPK files (the same thing can now be done with the serialization log)
+• The file logger now keeps the log file open during the application life cycle
+
+
+-----   Version 9.4.0 - March 12, 2020   -----
+• Added the option to create archives (.cnt and .ipk)
+• Added the progression tab for Rayman Origins and Legends
+• Added utilities for converting Rayman Origins and Legends save files
+• Added settings for if mipmaps should be generated and if the format should be automatically changed to support transparency when importing .gf files
+• Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
+• Rayman 3 save data can now be encoded
+• Removed the Rayman 1 map viewer utility (the project has migrated to Ray1Map, a Rayman 1 viewer/editor for all platforms by Adsolution, RayCarrot, Ryemanni and Droolie)
+
+Other changes:
+• Major changes to the Archive Explorer, .gf serializer and .ipk management
+	• Added the option to extract folders from the Archive Explorer (this exports the contents without converting the files)
+	• When repacking an archive it will no longer generate temporary files. The file importing is now done on a file by file basis, where each file is processed in memory.
+	• Batch importing in the Archive Explorer will now recognize file names with their original file extensions (such as .tga.ckd)
+	• Repacking .cnt files will now disable the encryption and checksum checks (non-replaced files will still be encrypted)
+	• Converting to and from .gf files is now much faster due to it accessing the .NET bitmap directly from memory (this was previously only done for transparent images)
+	• When converting an image to a .gf file it will now generate the matching number of mipmaps to the new resolution rather than keeping the original count (if set to generate mipmaps)
+	• IPK files with multiple offsets and a compressed memory block are now supported
+• The .gf file converter no longer uses configuration files. The format is now set from a dialog of options when converting back.
+• Dialog windows will no longer show in the task bar or application switcher as separate windows
+• Replaced the game installer logos with higher quality images
+• When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory
+• Added a debug option to analyze .ipk files
+• Fixed some minor tabbing issues
+• Fixed a bug where the app would crash if the link item style was changed
+• Bug fixes
+
+
+-----   Version 9.3.0 - February 10, 2020   -----
+• Added the decoder utilities category with utilities for decoding/encoding Rayman 1 .lng files, Rayman 2 .sna and .dsb files and Rayman 3 .sav files (currently only supports decoding)
+• The Rayman Legends UbiRay utility has been reworked. Rather than editing the save file, it now modifies the game to have UbiRay be available in the Heroes Gallery.
+• Updated the Rayman 2 DRM removal utility. The patch needs to be applied again for the new changes to take effect. If it was previously crashing it's recommended to revert the previous patch before applying.
+
+Other changes:
+• The Rayman 2 DRM removal utility can now be applied again if already applied without first reverting it
+• Added Rayman Fiesta Run (PC) to available game modes for the UbiArt localization converter utility
+• Major serializing refactoring
+• The .gf file converter only includes the supported game modes now (games on PC and iOS)
+• Changed the icon for the convert utilities tab
+• Added a loading indicator to the converter utilities
+• nGlide has been renamed to Glide since it can be used with other wrappers as well
+• Fixed a bug where changing the texture quality in Rayman M/Arena or 3 wouldn't always update correctly
+
+
+-----   Version 9.2.4 - February 2, 2020   -----
+• Added the utility for synchronizing the OpenSpace texture resolution to the game specific utilities sections
+• Changed the order of the Archive Explorer utilities
+
+
+-----   Version 9.2.3 - February 1, 2020   -----
+• Fixed a texture conflict when synchronizing textures for Rayman M/Arena and 3
+
+
+-----   Version 9.2.2 - January 31, 2020   -----
+• Fixed a bug where certain textures from Rayman M/Arena and 3 were read incorrectly for certain aspect ratios
+
+
+-----   Version 9.2.1 - January 31, 2020   -----
+• The mipmap count is now included when synchronizing textures for Rayman M/Arena and 3
+• Fixed a bug where synchronizing textures for Rayman M/Arena
+
+
+-----   Version 9.2.0 - January 31, 2020   -----
+• Added a general utility for synchronizing the OpenSpace texture resolution, allowing higher resolution textures to be used
+• Added a utility for removing the Rayman 2 pirate head DRM
+
+Other changes:
+• Added Robin, Steo and Szymski to the credits
+• The "PlayStation Soundtrack" utility has been renamed to "Per-Level Soundtrack"
+• Importing a transparent texture in the CNT Archive Explorer will no longer add transparency to the texture (and the other way around) to avoid graphical glitches
+• Created the new "other" utilities category
+• Replaced the "work in process" utilities category with info icons
+• Reworked the general utilities system to use the same utility base as the games
+• Utilities now show a loading indicator when loading
+• Minor changes to the credits
+• Fixed a bug where importing a directory in the Archive Explorer would crash if certain sub-directories didn't exist
+• Fixed a threading bug when refreshing the games page
+• Bug fixes
+
+
+-----   Version 9.1.1 - January 25, 2020   -----
+• Fixed a bug where loading the games would crash if certain games had not been added
+
+
+-----   Version 9.1.0 - January 25, 2020   -----
+• Added support for Rayman demos with the option to download them
+• Fixed a bug where converting back from certain formats would fail
+
+
+-----   Version 9.0.0 - January 20, 2020   -----
+• Added a utility for viewing/editing the .ipk files in Rayman Origins and Rayman Legends, allowing importing/exporting of textures and game files for UbiArt games
+• Added the utilities page for general utilities, such as viewing .cnt/.ipk archives and converting certain game files
+• Added the progression tab for Rayman 3
+• Remade the Rayman 1 PlayStation soundtrack utility using a new implementation by PluMGMK
+
+Other changes:
+• Removed the Rayman Control Panel API while keeping parts of the new modular structure for future projects
+• Removed the option to show the program under installed programs
+• Updated the icon in the updater
+• The primary ubi.ini path is no longer hard-coded
+• Temporarily disabled the vertical widescreen option for Rayman 2
+• The performance when repacking an archive and when loading thumbnails has been vastly improved
+• When exporting mipmaps of an image in the Archive Explorer it now only shows the supported file extensions for that operation
+• If repacking an archive file fails it will now restore the original file
+• Rayman Control Panel is now displayed as Rayman Control Panel™
+• Localization guidelines have been updated to not localize product names, such as Rayman Control Panel™
+• Fixed a bug where repacking an archive file to a smaller size would keep some old data, maintaining the original file size
+• Fixed a bug where certain tool tips would crash if the application ran through Wine on Mac
+• Fixed a bug where browsing for a DOSBox config path would not allow files of the correct extension
+• Fixed a bug where the application path would sometimes not be retrieved correctly
+• Bug fixes
+
+
+-----   Version 8.0.0 - January 3, 2020   -----
+• Added a utility for viewing/editing the .cnt files in Rayman 2, Rayman M/Arena and Rayman 3, allowing importing/exporting of textures
+• Updated the application icon
+• Updated the controller patch for Rayman M/Arena and Rayman 3 (it needs to be applied again to update)
+
+Other changes:
+• The Rayman Control Panel has been split into a family of libraries with an API for multiple projects in preparation for the upcoming project "Rayman Modding Panel"
+• The updater has been updated and unified between the Rayman Control Panel family
+• Updated the credits
+• Added languages Spanish (Spain) and Catalan (Catalan) as incomplete translations
+• Removed incomplete translation for German (Germany)
+• Added a debug tool to export Rayman 1 level maps
+• Fixed a minor memory issue when a Bitmap image was loaded
+• Fixed a bug where the configuration for games with a ubi.ini file would create a duplicate section if the section key didn't match case-sensitive
+• Fixed a bug where the configuration for games with a ubi.ini file would crash if the file didn't already exist
+• Bug fixes
+
+
+-----   Version 7.2.0 - December 20, 2019   -----
+• Added support for Rayman Activity Center, Rayman Raving Rabbids Activity Center (downloadable) and Rabbids Coding
+• Added a utility for repairing the configuration file in Rayman 1, fixing any potential sound issues
+• Added game configuration for Rayman Fiesta Run
+• Icons have been updated with their new outlined variants
+
+Other changes:
+• The text on buttons is no longer all capitalized
+• Removed the game purchase link for Rayman 2 due to not being available
+• Added Hakyra to the special thanks section in the credits
+• The app will now output the full exception if it crashes before the logging system has been setup
+• Added a debug option to show archive explorers, output API version info and increased the maximum size of the output text box
+• Laying the groundwork for splitting the Rayman Control Panel into multiple libraries and building an API
+• Fixed a bug which caused DOSBox related settings not to get used correctly (requires opening the options and saving to take effect)
+• Fixed a bug where the application could crash when refreshing the game list
+• Bug fixes
+
+
+-----   Version 7.1.1 - December 2, 2019   -----
+• Added an option for disabling game categorization
+• Moved game page settings to the game page overflow menu
+• Minor changes to the binary reader/writer
+• Fixed a bug where the Rayman Legends utilities would crash if no save data was present
+• Fixed a bug where creating a backup for Rayman Raving Rabbids as a desktop app would fail
+
+
+-----   Version 7.1.0 - November 28, 2019   -----
+• Added support for Rayman 3 Print Studio and fan-games
+• Added the progression tab for the game options dialog which shows the game progress from the save data (currently only available for Rayman Jungle Run - more games to follow)
+• Added the option to export/import save files to and from JSON (currently only available for Rayman Jungle Run - more games to follow)
+• Added a utility for converting the localization file for Rayman Origins, Rayman Fiesta Run and Rayman Legends
+• Added game configuration for Rayman Jungle Run, allowing the selection of additional Teensy characters
+• Added support for downloading select games directly from the program
+
+Other changes:
+• Categorized the games page
+• Games downloaded through the Rayman Control Panel or installed using its disc installer (post version 7.1.0) can now be uninstalled
+• Added purchase links for GOG and Uplay for Rayman Raving Rabbids
+• Added a link to the Rayman Reanimated Twitter page in the links page
+• Moved the settings page button back to the tab panel to avoid confusion with the overflow menu
+• Added Ryemanni, Droolie and MilesTheCreator to the special thanks section in the credits
+• Added a debug option to shutdown the application manually
+• Normalized the application shutdown. Manual app shutdowns will no longer skip the shutdown code (saving app data etc.).
+• If an update is found it will no longer run as a startup operation, avoiding the infinite loading icon
+• Fixed a bug where the app would crash if shut down from a background thread
+• Fixed a bug where the Rayman 2 disc installer would fail to copy over certain files
+• Bug fixes
+
+
+-----   Version 7.0.0 - October 31, 2019   -----
+• Added a utility for patching the disc version of Rayman 2, fixing the 'CD missing' error
+• Moved several options to overflow menus
+• Moved game information to a separate tab
+• Added the option to open Microsoft Store apps in the store
+• Added the option to manually run the game finder from the games page
+
+Other changes:
+• Major changes to the application startup. Several operation will now run in the background, such as checking for application updates (indicated by progress indicator in the corner).
+• Major code changes for how the games are handled
+• Defaulted the user level to 'advanced' rather than 'normal'
+• The game finder has been improved
+• Microsoft Store links now open directly in the store app rather than the web browser
+• The name "Windows Store" has been changed to "Microsoft Store" to reflect the official name change
+• The drive selection dialog will now only show discs, rather than all types of drives
+• All games now require a valid install directory (previously Steam and Microsoft Store games would not require that)
+• A badge will now show over the update button if a new update is available, but was postponed
+• Added ICUP321 to the credits
+• Removed the setting for not showing detailed game information
+• Secondary windows can now be closed with the escape key
+• The game options dialog now defaults to the config tab
+• Added more options to the debug page
+• Added an option to clear the logs shown in the log viewer
+• Bug fixes

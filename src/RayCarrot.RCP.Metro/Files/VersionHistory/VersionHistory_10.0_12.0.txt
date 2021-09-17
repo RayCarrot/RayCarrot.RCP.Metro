@@ -1,0 +1,189 @@
+﻿-----   Version 12.0.0 - September ??, 2021   -----
+• Visual changes:
+	• Redesigned the tab headers to use colored icons and underlines
+	• The app news window is now split into multiple pages
+	• Controls now have rounded corners and slightly thicker borders
+	• Changed which areas of pages use scroll bars
+	• Windows now appear as popups within the parent window (this can be reverted back to the previous behavior in the settings)
+	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
+	• The download dialog has been redesigned and now shows the input/output paths for a user level of technical or higher
+	• The drive browser dialog has been redesigned
+	• Updated the context menus to use icons and have undo/redo options
+	• Increased the minimum size of the window
+• Resolution selections in game configurations now have a drop-down for choosing a supported resolution
+• Added an option to reset all the app settings
+
+Other changes:
+• Major code and libraries refactoring
+• Beta updates will now show update news in the update dialog message
+• Improved scrolling with the mouse wheel over button mapping controls
+• The jump list edit dialog now opens faster
+• Updated the updater
+• Localized several previously non-localized strings
+• Normalized the way the times are displayed for game progression to minutes:seconds.milliseconds
+• Updated the welcome window with options for the language and user level and removed the option to disable update checks
+• Replaced the logging framework with NLog
+	• Opening the app will archive the previous log file up to 5 times rather than writing to the same one
+	• The log viewer is no longer enabled by default to avoid unnecessarily storing all logs
+	• The log viewer is now split into columns for each field with an info icon for optional exception details
+	• Removed the debug setting to display exceptions
+	• Added additional launch arguments for controlling the logging
+• Removed features
+	• Removed the option to minimize the app to the tray
+	• Reduced the number of animations shown in the disc installer
+	• Removed credits for unfinished translations
+	• Removed the unfinished Catalan translation
+• Debug/technical changes
+	• Added tabs to the debug page and information about the app launch arguments
+	• Added a debug setting for disabling the game validation
+	• Added a debug option to throw an unhandled exception for testing the crash handler
+	• Added more dialog types to show from the debug page, with an option to show them async
+	• Debug symbols are no longer included in the executable
+• Bug fixes
+	• Fixed the times being shown incorrectly in the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
+	• Fixed the progress during a download or install not showing on the taskbar icon
+	• Fixed the version history window not being centered when opened from the about page
+	• Fixed certain browse boxes not allowing backslashes to be typed
+	• Fixed the file filter not working when specifying the output file when creating an archive
+	• Fixed the games page tab headers not updating when changing language
+	• Fixed the folder export failing in the Archive Explorer™ if one of the files could not be converted before being initialized
+
+
+-----   Version 11.3.0 - August 25, 2021   -----
+• Added the mods page
+• Added a mod for Rayman Raving Rabbids, allowing unused prototype mechanics (such as full movement for Rayman) to be restored
+
+Other changes:
+• Updated the browse button icon to be outlined, matching the rest of the icons
+• Minor layout changes to the about page such as adding more space between the credits lines
+• Updated the save file backup for the Steam version of Rayman Raving Rabbids to include the VirtualStore redirected save location
+
+
+-----   Version 11.2.0 - July 5, 2021   -----
+• Updated the Archive Explorer™
+	• Thumbnails are now cached when switching between directories
+	• Add support for .wav files 
+	• Fixed a bug where dropping in a folder would cause an error to show 
+• Added support for Rayman Garden PLUS
+• Added the External Tools section under the utilities page
+• More information is now shown if an error occurs when checking for updates
+• Fixed the highlighting for flat buttons with an icon
+
+
+-----   Version 11.1.0 - May 20, 2021   -----
+• Updated the Archive Explorer™
+	• Files can now be viewed/edited directly
+	• Files can now be renamed
+	• Multiple files can now be selected at once, allowing extracting, exporting and deleting
+	• Added a status bar, showing the amount of files in the directory and the size of the selected files
+• Added game configuration for Rayman 1, Designer, by his Fans, 60 Levels and the educational games
+• The DOSBox game config has been moved to its own page
+• Removed the localization converter utilities (the converters can still be found under the main utilities page) and the Rayman 1 config repair utility (the config will automatically repair now when saving)
+
+Other changes:
+• Other changes to the Archive Explorer™
+	• Files can now be deselected by clicking in an empty area
+	• The compressed file size for files in an IPK archive now only shows if the file is compressed
+	• The file pointers now show as 64-bit addresses for files in an IPK archive
+	• The archive files for Rayman Arena now include the sound.cnt files
+	• If multiple loaded archive files share the same name they will now show the parent directory name
+	• Fixed a bug where files in the root directory of an archive would not be included in the search
+• The game information page has been merged with the options page
+• The mount option for the DOSBox games has been moved to the options page
+• The pages in the options dialog (such as the progression and config pages) now first load when they get selected
+• The serializer log will now append to the same file for the current session rather than recreate it for each serialized object
+• Minor optimization fixes and icon changes
+
+
+-----   Version 11.0.0 - April 29, 2021   -----
+• Updated the Archive Explorer™
+	• Files and directories can now be added/removed
+	• Multiple changes can be made to the archive before repacking
+	• An address bar and a search bar has been added
+	• Sorting options have been added
+	• Performance improvements
+	• Added support for archive files for Rayman Designer, Rayman by his Fans, Rayman 60 Levels and the educational games
+	• Added support for Xbox 360 IPK files in the Archive Explorer™ for Rayman Origins & Legends
+• Added support for Rayman ReDesigner
+• Added a utility for generating Rayman 1 PS1 passwords
+• Added the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
+• The program has now been translated to Italian (thanks ItzalDrake!)
+• Removed the links page (local links can now be found in the settings page)
+
+Other changes:
+• Updated the user interface
+	• The game specific Archive Explorer™ utilities have been replaced by a button in the game drop-down menus
+	• The settings page has been categorized into tabs
+	• The game options can now be quickly accessed by hovering on the launch button and selecting the new option
+	• Increased the default size of the main and news windows and increased the font size for the news text
+• Added a shortcut to the Ray2Fix config file for Rayman 2 if available
+• A link to view the game maps at raym.app is now available for each supported game in the drop-down menus
+• The app data now gets verified on launch, automatically correcting any invalid/corrupt values
+• Creating a new archive will now ignore system files when importing
+• The name "Uplay" has been changed to "Ubisoft Connect" to reflect the official name change
+• Added ItzalDrake to the credits
+• The language selection list is now sorted
+• Bug fixes
+
+
+-----   Version 10.3.1 - October 25, 2020   -----
+• Updated referenced assemblies
+
+
+-----   Version 10.3.0 - September 21, 2020   -----
+• The program has now been translated to Russian (thanks Rayman Universe - Рэйман и его Вселенная!)
+• Added support for Rayman Bowling 2
+
+
+-----   Version 10.2.1 - August 19, 2020   -----
+• Updated the updater
+
+
+-----   Version 10.2.0 - August 5, 2020   -----
+• The program has now been translated to Polish (thanks Fabiosek & Pixelise!)
+• Added the progression tab for Rayman M/Arena
+• Added a utility for converting Rayman M/Arena save files
+• The UbiArt localization converter utility can now handle Rayman Origins (3DS) files
+• The disc check removal option now supports a second version of Rayman M
+• Added an option to convert .gf files to 32-bit on import
+
+Other changes:
+• Added Fabiosek to the credits
+• The Archive Explorer now shows file pointers as hex values
+• Improved the Rayman 1 & 3 save file serialization
+• Removed option to directly download fan-games
+• Removed links to the Discord server due to it having been removed
+• Fixed a bug causing the drive selection dialog to crash if you sort the drives
+• Fixed a bug causing the offsets in the serialization log to be incorrect
+
+
+-----   Version 10.1.0 - June 18, 2020   -----
+• Added support for Rayman Redemption
+• Added a utility for decoding Tonic Trouble .sna/.dsb files
+• Added Tonic Trouble and Tonic Trouble Special Edition to the texture syncing utility
+
+Other changes:
+• The texture syncing tool now only modifies the primary size values
+• .cnt archive files can now exceed 2 GB when repacking (the game might however not be able to load these correctly)
+• Fixed a bug causing "desktop" not to be a valid option for the DOSBox config
+
+
+-----   Version 10.0.0 - June 2, 2020   -----
+• Added support for Rayman Premiers Clics and Rayman 1 Minigames
+• Added the progression tab for Rayman 1 and Rayman 2
+• Added utilities for converting Rayman 1 and Rayman 2 save and config files
+• Added a utility for decoding Rayman 1 & 2 save files, allowing Rayman 1 PC saves to be used on Rayman Classic or Pocket PC and vice versa
+• Major library updates. The Carrot Framework has been retired, splitting it into multiple smaller, non-dependent, libraries. MahApps.Metro has been updated to version 2.0.
+• The app theme can now be synced with the system theme (dark/light and accent color) on Windows 10
+• Added option to handle downloads manually
+
+Other changes:
+• The DOSBox game config now allows the fullscreen resolution to be set to "desktop"
+• Changes resulted from library updates:
+	• The Registry browser has been removed
+	• Removed the debug option to log API versions
+	• The window title, radio button and slider styles have changed to match the Windows 10 style
+• Updated the updater to use MahApps.Metro 2.0
+• Fixed a bug where generating mipmaps for a .gf file would fail
+• Fixed a bug where importing a Rayman 3 save file would fail
+• Fixed a bug where saving the DOSBox config for the educational games would give an error

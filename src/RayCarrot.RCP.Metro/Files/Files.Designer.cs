@@ -104,27 +104,23 @@ namespace RayCarrot.RCP.Metro {
         ///   Looks up a localized string similar to {
         ///  &quot;LocalUtilities&quot;: {
         ///    &quot;Rayman1&quot;: [
-        ///      &quot;R1TPLSUtility&quot;,
-        ///      &quot;R1CompleteSoundtrackUtility&quot;
+        ///      &quot;Utility_Rayman1_TPLS&quot;,
+        ///      &quot;Utility_Rayman1_CompleteSoundtrack&quot;
         ///    ],
         ///    &quot;RaymanDesigner&quot;: [
-        ///      &quot;RDReplaceFilesUtility&quot;,
-        ///      &quot;RDCreateConfigUtility&quot;
+        ///      &quot;Utility_RaymanDesigner_ReplaceFiles&quot;,
+        ///      &quot;Utility_RaymanDesigner_CreateConfig&quot;
         ///    ],
         ///    &quot;Rayman2&quot;: [
-        ///      &quot;R2GameSyncTextureInfoUtility&quot;,
-        ///      &quot;R2RemoveDRMUtility&quot;,
-        ///      &quot;R2DiscPatchUtility&quot;,
-        ///      &quot;R2TranslationUtility&quot;
+        ///      &quot;Utility_Rayman2_GameSyncTextureInfo&quot;,
+        ///      &quot;Utility_Rayman2_RemoveDRM&quot;,
+        ///      &quot;Utility_Rayman2_DiscPatch&quot;,
+        ///      &quot;Utility_Rayman2_Translation&quot;
         ///    ],
         ///    &quot;RaymanM&quot;: [
-        ///      &quot;RMGameSyncTextureInfoUtility&quot;
+        ///      &quot;Utility_RaymanM_GameSyncTextureInfo&quot;
         ///    ],
-        ///    &quot;RaymanArena&quot;: [
-        ///      &quot;RAGameSyncTextureInfoUtility&quot;
-        ///    ],
-        ///    &quot;Rayman3&quot;: [
-        /// [rest of string was truncated]&quot;;.
+        ///    &quot;Raym [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Games {
             get {
@@ -327,24 +323,79 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to -----   Version 3.2.2 - February 21, 2019   -----
+        ///• Fixed a bug which caused the game file name do be blank when reset to its default value
+        ///• Fixed a bug which caused the program to crash when a message box appeared prior to the app data being loaded
+        ///
+        ///
+        ///-----   Version 3.2.1 - January 31 2019   -----
+        ///• Added missing Rayman M/Arena cheat code
+        ///• Temporarily removed .NET Framework check
+        ///
+        ///
+        ///-----   Version 3.2.0 - January 28 2019   -----
+        ///• Added Slovak Rayman 2 translation by MixerX
+        ///• Added Rayman M/A [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string VersionHistory_01_0_03_0 {
+            get {
+                return ResourceManager.GetString("VersionHistory_01_0_03_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -----   Version 6.1.2 - October 10, 2019   -----
+        ///• Updated the Portuguese translation of Rayman 2
+        ///• Added support for installing the Polish version of Rayman M from a disc
+        ///• Improved tab navigation
+        ///• Updated reference to the WinRT SDK
+        ///
+        ///
+        ///-----   Version 6.1.1 - September 29, 2019   -----
+        ///• Updated the Portuguese translation of Rayman 2
+        ///• Fixed a bug where setting the theme to light would not save
+        ///
+        ///
+        ///-----   Version 6.1.0 - September 23, 2019   -----
+        ///• Added a utility for Rayman Legends debug comm [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string VersionHistory_04_0_06_0 {
+            get {
+                return ResourceManager.GetString("VersionHistory_04_0_06_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -----   Version 9.5.0 - May 21, 2020   -----
+        ///• Added support for Rayman Dictées
+        ///• Reworked the binary serialization system. Logging can now be enabled for any serialized data.
+        ///• Rayman 3 save files can now be converted back, imported and exported
+        ///
+        ///Other changes:
+        ///• Added Eeeebray to the credits
+        ///• The setting to enable beta updates is now tied to the Technical user level rather than the Debug one
+        ///• Updated archive creation for Rayman Mini files to support the 1.2 update
+        ///• Exporting the root of an arc [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string VersionHistory_07_0_09_0 {
+            get {
+                return ResourceManager.GetString("VersionHistory_07_0_09_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -----   Version 12.0.0 - September ??, 2021   -----
         ///• Visual changes:
         ///	• Redesigned the tab headers to use colored icons and underlines
         ///	• Controls now have rounded corners and slightly thicker borders
         ///	• Changed which areas of pages use scroll bars
-        ///
-        ///Other changes:
-        ///• Improved scrolling with the mouse wheel over button mapping controls
-        ///• Fixed the version history window not being centered when opened from the about page
-        ///
-        ///
-        ///-----   Version 11.3.0 - August 25, 2021   -----
-        ///• Added the mods page
-        ///• A [rest of string was truncated]&quot;;.
+        ///	• Windows now appear as popups within the parent window (this can be reverted back to the previous behavior in the settings)
+        ///	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
+        ///	• The download dia [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string VersionHistory {
+        public static string VersionHistory_10_0_12_0 {
             get {
-                return ResourceManager.GetString("VersionHistory", resourceCulture);
+                return ResourceManager.GetString("VersionHistory_10_0_12_0", resourceCulture);
             }
         }
     }
