@@ -1,9 +1,11 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using System;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for the utilities page
     /// </summary>
-    public class Page_Utilities_ViewModel : BaseRCPViewModel
+    public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
     {
         #region Constructor
 
@@ -80,6 +82,19 @@
         /// View models for the external tool utilities
         /// </summary>
         public UtilityViewModel[] ExternalToolViewModels { get; }
+
+        #endregion
+
+        #region Public Methods
+
+        public void Dispose()
+        {
+            ArchiveExplorerViewModels?.DisposeAll();
+            ConverterViewModels?.DisposeAll();
+            DecoderViewModels?.DisposeAll();
+            OtherViewModels?.DisposeAll();
+            ExternalToolViewModels?.DisposeAll();
+        }
 
         #endregion
     }

@@ -1,7 +1,5 @@
 ﻿using RayCarrot.UI;
-using System;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro
@@ -22,8 +20,6 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             ViewModel = new VM();
-
-            Loaded += VMUserControl_Loaded;
         }
 
         /// <summary>
@@ -33,8 +29,6 @@ namespace RayCarrot.RCP.Metro
         public VMUserControl(VM instance)
         {
             ViewModel = instance;
-
-            Loaded += VMUserControl_Loaded;
         }
 
         /// <summary>
@@ -44,17 +38,6 @@ namespace RayCarrot.RCP.Metro
         {
             get => DataContext as VM;
             set => DataContext = value;
-        }
-
-        private void VMUserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Attempt to get parent window
-            var window = Window.GetWindow(this);
-
-            if (window == null)
-                return;
-
-            window.Closed += (ss, ee) => (ViewModel as IDisposable)?.Dispose();
         }
     }
 }

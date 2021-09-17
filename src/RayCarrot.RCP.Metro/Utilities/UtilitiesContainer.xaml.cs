@@ -18,22 +18,6 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
             DataContextRoot.DataContext = this;
-            Loaded += UtilitiesContainer_Loaded;
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void UtilitiesContainer_Loaded(object sender, RoutedEventArgs e)
-        {
-            var win = Window.GetWindow(this);
-
-            if (win == null)
-                return;
-
-            win.Closing += (_, _) => Utilities?.DisposeAll();
-            Loaded -= UtilitiesContainer_Loaded;
         }
 
         #endregion

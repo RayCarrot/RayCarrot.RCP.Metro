@@ -16,5 +16,12 @@
         {
             Utilities = Utilities
         };
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            Utilities?.DisposeAll();
+        }
     }
 }
