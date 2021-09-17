@@ -75,9 +75,6 @@ namespace RayCarrot.RCP.Metro
                 // Add incomplete languages
                 Languages.AddRange(new CultureInfo[]
                 {
-                    // Catalan (Catalan)
-                    new CultureInfo("ca-ES"),
-
                     // Serbian (Cyrillic)
                     new CultureInfo("sr-Cyrl"), 
 

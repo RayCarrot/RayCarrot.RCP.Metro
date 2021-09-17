@@ -1339,7 +1339,6 @@
       <LastGenOutput>InstallerGames.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Localization\Resources.ca-ES.resx" />
     <EmbeddedResource Include="Localization\Resources.es-ES.resx" />
     <EmbeddedResource Include="Localization\Resources.es-MX.resx" />
     <EmbeddedResource Include="Localization\Resources.it-IT.resx" />
