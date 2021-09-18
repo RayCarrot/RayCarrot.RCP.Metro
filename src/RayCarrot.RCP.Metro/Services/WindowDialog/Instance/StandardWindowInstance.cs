@@ -22,11 +22,31 @@ namespace RayCarrot.RCP.Metro
             get => Window.Title;
             set => Window.Title = value;
         }
-
         public override bool CanClose
         {
             get => Window.IsCloseButtonEnabled;
             set => Window.IsCloseButtonEnabled = value;
+        }
+
+        public override double Width
+        {
+            get => Window.Width;
+            set => Window.Width = value;
+        }
+        public override double Height
+        {
+            get => Window.Height;
+            set => Window.Height = value;
+        }
+        public override double MinWidth
+        {
+            get => Window.MinWidth;
+            set => Window.MinWidth = value;
+        }
+        public override double MinHeight
+        {
+            get => Window.MinHeight;
+            set => Window.MinHeight = value;
         }
 
         public override void Close() => Window.Close();

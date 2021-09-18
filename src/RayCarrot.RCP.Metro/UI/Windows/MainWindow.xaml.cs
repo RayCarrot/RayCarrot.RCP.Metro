@@ -56,6 +56,36 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Methods
+
+        public void UpdateMinSize(bool updateWidth, bool updateHeight)
+        {
+            // If no child windows are open we use the default minimum sizes
+            if (!ChildWindowInstance.OpenChildWindows.Any())
+            {
+                MinWidth = DefaultMinWidth;
+                MinHeight = DefaultMinHeight;
+                LogManager.GetLogger("").Error($"{MinWidth}x{MinHeight}");
+                return;
+            }
+
+            // If there are child windows open we want to limit the minimum size to avoid resizing smaller than the open child windows
+            if (updateWidth)
+                // Get the max width of all the child windows. Include the padding on both sides and an additional margin to make sure
+                // the drop shadow and other elements are included
+                MinWidth = ChildWindowInstance.OpenChildWindows.
+                    Max(x => (x.IsMaximized ? x.MinContentWidth : x.ActualContentWidth) + x.Padding.Left + x.Padding.Right + 20);
+
+            // Do the same for the height, but add an extra margin for the title bar
+            if (updateHeight)
+                MinHeight = ChildWindowInstance.OpenChildWindows.
+                    Max(x => (x.IsMaximized ? x.MinContentHeight : x.ActualContentHeight) + x.Padding.Top + x.Padding.Bottom + 80);
+
+            LogManager.GetLogger("").Error($"{MinWidth}x{MinHeight}");
+        }
+
+        #endregion
+
         #region Event Handlers
 
         private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)

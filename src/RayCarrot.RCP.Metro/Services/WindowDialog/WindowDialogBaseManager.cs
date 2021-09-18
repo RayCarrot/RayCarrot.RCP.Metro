@@ -21,12 +21,14 @@ namespace RayCarrot.RCP.Metro
         {
             // Set window properties
             window.Content = windowContent.UIContent;
-            window.ResizeMode = windowContent.ResizeMode == IWindowControl.WindowResizeMode.NoResize
-                ? ResizeMode.NoResize
-                : ResizeMode.CanResize;
-            window.SizeToContent = windowContent.ResizeMode == IWindowControl.WindowResizeMode.NoResize
-                ? SizeToContent.WidthAndHeight
-                : SizeToContent.Manual;
+            window.ResizeMode = windowContent.IsResizable ? ResizeMode.CanResize : ResizeMode.NoResize;
+            window.SizeToContent = windowContent.IsResizable ? SizeToContent.Manual : SizeToContent.WidthAndHeight;
+
+            if (!windowContent.IsResizable)
+            {
+                window.MinWidth = 50;
+                window.MinHeight = 50;
+            }
 
             // Set startup location
             window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;

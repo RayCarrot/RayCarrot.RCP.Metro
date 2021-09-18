@@ -46,6 +46,8 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
+        public override bool IsResizable => true;
+
         /// <summary>
         /// The window view model
         /// </summary>
@@ -60,6 +62,10 @@ namespace RayCarrot.RCP.Metro
             base.WindowAttached();
 
             WindowInstance.Title = ViewModel.DisplayName;
+            WindowInstance.MinWidth = 500;
+            WindowInstance.MinHeight = 400;
+            WindowInstance.Width = 650;
+            WindowInstance.Height = 700;
         }
 
         protected override async Task<bool> ClosingAsync()

@@ -5,6 +5,7 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
     <Style TargetType="{x:Type local:RCPChildWindow}" BasedOn="{StaticResource {x:Type simpleChildWindow:ChildWindow}}">
+        <Setter Property="Visibility" Value="{Binding Path=IsMinimized, RelativeSource={RelativeSource Self}, Converter={local:InvertedBooleanToVisibilityConverter}}" />
         <Setter Property="OverlayBrush" Value="#10FFFFFF" />
         <Setter Property="ShowCloseButton" Value="True" />
         <Setter Property="CloseByEscape" Value="True" />
@@ -29,9 +30,10 @@
                                     Orientation="Horizontal"
                                     DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:RCPChildWindow}}">
 
+                            <!-- Minimize -->
                             <Button Height="{Binding Path=TitleBarHeight, Mode=OneWay}"
                                     Visibility="{Binding Path=IsModal, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                                    Command="{Binding Path=MinimizeCommand, Mode=OneTime}"
+                                    Command="{Binding Path=ToggleMinimizedCommand, Mode=OneTime}"
                                     Focusable="False"
                                     IsTabStop="True"
                                     Style="{DynamicResource MahApps.Styles.Button.MetroWindow.Light}">
@@ -44,9 +46,34 @@
                                       SnapsToDevicePixels="True" />
                             </Button>
 
+                            <!-- Maximize -->
+                            <Button Height="{Binding Path=TitleBarHeight, Mode=OneWay}"
+                                    Visibility="{Binding Path=CanMaximize, Converter={local:BooleanToVisibilityConverter}}"
+                                    Command="{Binding Path=ToggleMaximizedCommand, Mode=OneTime}"
+                                    Focusable="False"
+                                    IsTabStop="True"
+                                    Style="{DynamicResource MahApps.Styles.Button.MetroWindow.Light}">
+                                <Path x:Name="MaximizePath"
+                                      Data="F1M0,0L0,9 9,9 9,0 0,0 0,3 8,3 8,8 1,8 1,3z"
+                                      Width="10" Height="10"
+                                      VerticalAlignment="Center"
+                                      RenderOptions.EdgeMode="Aliased"
+                                      Stretch="Uniform"
+                                      Fill="{Binding Path=TitleForeground, Mode=OneWay}"
+                                      SnapsToDevicePixels="True" />
+                            </Button>
+
                         </StackPanel>
 
                     </Grid>
+
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:RCPChildWindow}}" Value="True">
+                            <Setter TargetName="MaximizePath" 
+                                    Property="Data" 
+                                    Value="F1M0,10L0,3 3,3 3,0 10,0 10,2 4,2 4,3 7,3 7,6 6,6 6,5 1,5 1,10z M1,10L7,10 7,7 10,7 10,2 9,2 9,6 6,6 6,9 1,9z" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

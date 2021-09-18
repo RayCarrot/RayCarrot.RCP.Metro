@@ -11,6 +11,11 @@ namespace RayCarrot.RCP.Metro
         public abstract string Title { get; set; }
         public abstract bool CanClose { get; set; }
 
+        public abstract double Width { get; set; }
+        public abstract double Height { get; set; }
+        public abstract double MinWidth { get; set; }
+        public abstract double MinHeight { get; set; }
+
         public abstract void Close();
         public abstract void Focus();
 

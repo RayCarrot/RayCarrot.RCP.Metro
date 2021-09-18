@@ -1,7 +1,5 @@
-﻿using System;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using NLog;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,9 +23,9 @@ namespace RayCarrot.RCP.Metro
             CloseWithEscape = true;
 
             // Set minimum size
-            MinWidth = 150;
-            MinHeight = 100;
-            
+            MinWidth = DefaultMinWidth;
+            MinHeight = DefaultMinHeight;
+
             // Set title style
             TitleCharacterCasing = CharacterCasing.Normal;
 
@@ -59,7 +57,7 @@ namespace RayCarrot.RCP.Metro
 
             Logger.Info("The window {0} has been created", this);
 
-            PreviewKeyDown += (s, e) =>
+            PreviewKeyDown += (_, e) =>
             {
                 if (CloseWithEscape && e.Key == Key.Escape)
                     Close();
@@ -67,6 +65,9 @@ namespace RayCarrot.RCP.Metro
         }
 
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        public const int DefaultMinWidth = 400;
+        public const int DefaultMinHeight = 300;
 
         /// <summary>
         /// Shows the <see cref="Window"/> as a dialog

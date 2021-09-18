@@ -12,8 +12,9 @@
                             d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
                             Language="{UICulture}"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                            MinHeight="400"
-                            MinWidth="600">
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            d:DesignMinWidth="600" d:DesignHeight="400">
 
     <UserControl.Resources>
         <ResourceDictionary>

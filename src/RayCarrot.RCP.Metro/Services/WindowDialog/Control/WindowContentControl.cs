@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro
         private bool _forceClose;
 
         public object UIContent => this;
-        public virtual IWindowControl.WindowResizeMode ResizeMode => IWindowControl.WindowResizeMode.NoResize;
+        public virtual bool IsResizable => false;
         public WindowInstance WindowInstance
         {
             get => _windowInstance;

@@ -531,7 +531,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (ChildWindow childWindow in ChildWindowInstance.OpenChildWindows.OrderBy(x => x.IsModal ? 0 : 1).ToArray())
                     {
                         if (childWindow is RCPChildWindow {IsMinimized: true} c)
-                            c.Minimize();
+                            c.ToggleMinimized();
 
                         childWindow.Close();
                     }

@@ -13,14 +13,13 @@
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   CloseWithEscape="False"
                   Width="960" Height="720"
-                  MinWidth="800" MinHeight="750"
                   DataContext="{x:Static local:Services.App}">
     <local:BaseWindow.RightWindowCommands>
         <mah:WindowCommands ItemsSource="{Binding Source={x:Static local:RCPChildWindow.MinimizedWindows}, Mode=OneTime}"> 
             <mah:WindowCommands.ItemTemplate>
                 <DataTemplate>
                     <Button DataContext="{Binding Path=Window, Mode=OneTime}" 
-                            Command="{Binding Path=MinimizeCommand, Mode=OneTime}"
+                            Command="{Binding Path=ToggleMinimizedCommand, Mode=OneTime}"
                             ToolTip="{Binding Path=Title, Mode=OneTime}">
                         <mah:MultiFrameImage Width="30"
                                              Height="30"

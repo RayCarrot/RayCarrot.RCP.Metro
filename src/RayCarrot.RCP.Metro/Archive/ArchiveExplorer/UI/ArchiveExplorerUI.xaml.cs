@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public ArchiveExplorerDialogViewModel ViewModel { get; }
 
-        public override IWindowControl.WindowResizeMode ResizeMode => IWindowControl.WindowResizeMode.ForceResizable;
+        public override bool IsResizable => true;
 
         #endregion
 
@@ -53,6 +53,10 @@ namespace RayCarrot.RCP.Metro
             base.WindowAttached();
 
             WindowInstance.Title = ViewModel.Title;
+            WindowInstance.MinWidth = 600;
+            WindowInstance.MinHeight = 400;
+            WindowInstance.Width = 900;
+            WindowInstance.Height = 600;
         }
 
         protected override async Task<bool> ClosingAsync()

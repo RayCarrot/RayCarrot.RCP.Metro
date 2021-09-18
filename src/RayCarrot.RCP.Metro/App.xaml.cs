@@ -956,6 +956,8 @@ namespace RayCarrot.RCP.Metro
         public bool IsLogViewerAvailable => LogViewerViewModel != null;
         public LogViewerViewModel LogViewerViewModel { get; set; }
 
+        public MainWindow ChildWindowsParent => MainWindow as MainWindow;
+
         #endregion
 
         #region Public Static Properties

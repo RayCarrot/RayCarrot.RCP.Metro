@@ -9,7 +9,7 @@
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                            Width="650" Height="700"
+                            d:DesignWidth="650" d:DesignHeight="700"
                             mc:Ignorable="d"
                             d:DataContext="{d:DesignInstance local:GameOptionsDialog_ViewModel}">
     <Grid Margin="10"

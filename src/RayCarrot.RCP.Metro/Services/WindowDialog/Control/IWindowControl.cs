@@ -15,7 +15,7 @@
         /// <summary>
         /// Indicates if the dialog should be resizable
         /// </summary>
-        WindowResizeMode ResizeMode { get; }
+        bool IsResizable { get; }
 
         /// <summary>
         /// The current window instance. This gets set by the manager when the window gets created.
@@ -23,12 +23,5 @@
         public WindowInstance WindowInstance { get; set; }
 
         #endregion
-
-        public enum WindowResizeMode
-        {
-            NoResize,
-            CanResize,
-            ForceResizable,
-        }
     }
 }

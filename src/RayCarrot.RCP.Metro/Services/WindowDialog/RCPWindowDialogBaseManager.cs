@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.SimpleChildWindow;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -9,23 +8,18 @@ namespace RayCarrot.RCP.Metro
     {
         #region Protected Methods
 
-        protected void ConfigureChildWindow(ChildWindow window, IWindowControl windowContent, bool isModal)
+        protected void ConfigureChildWindow(RCPChildWindow window, IWindowControl windowContent, bool isModal)
         {
             // Set window properties
             window.Content = windowContent.UIContent;
             window.IsModal = isModal;
-
-            if (windowContent.ResizeMode == IWindowControl.WindowResizeMode.ForceResizable)
-            {
-                window.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                window.VerticalContentAlignment = VerticalAlignment.Stretch;
-            }
+            window.CanMaximize = windowContent.IsResizable;
         }
 
         protected override Task ShowAsync(IWindowControl windowContent, bool isModal, string title)
         {
             // Show as a child window
-            if (Services.Data.UI_UseChildWindows && Application.Current?.MainWindow is MetroWindow metroWindow)
+            if (Services.Data.UI_UseChildWindows && App.Current?.ChildWindowsParent is MetroWindow metroWindow)
             {
                 // Create the child window
                 var childWin = new RCPChildWindow();
