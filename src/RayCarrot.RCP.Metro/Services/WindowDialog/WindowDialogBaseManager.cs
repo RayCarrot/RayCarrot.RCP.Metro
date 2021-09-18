@@ -91,20 +91,34 @@ namespace RayCarrot.RCP.Metro
             where UserInput : UserInputViewModel
             where Result : UserInputResult
         {
-            // Show as a modal with the user input title
-            await ShowWindowAsync(windowContent, true, windowContent.ViewModel.Title);
+            try
+            {
+                // Show as a modal with the user input title
+                await ShowWindowAsync(windowContent, true, windowContent.ViewModel.Title);
 
-            // Get the dispatcher
-            Dispatcher dispatcher = GetDispatcher();
+                // Get the dispatcher
+                Dispatcher dispatcher = GetDispatcher();
 
-            // Return the result
-            return dispatcher.Invoke(windowContent.GetResult);
+                // Return the result
+                return dispatcher.Invoke(windowContent.GetResult);
+            }
+            finally
+            {
+                windowContent.Dispose();
+            }
         }
 
         public Task ShowWindowAsync(IWindowControl windowContent)
         {
-            // Show the window
-            return ShowWindowAsync(windowContent, false, null);
+            try
+            {
+                // Show the window
+                return ShowWindowAsync(windowContent, false, null);
+            }
+            finally
+            {
+                windowContent.Dispose();
+            }
         }
 
         #endregion

@@ -1,9 +1,11 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using System;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// An abstract window control
     /// </summary>
-    public interface IWindowControl
+    public interface IWindowControl : IDisposable
     {
         #region Properties
 

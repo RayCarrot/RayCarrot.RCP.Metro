@@ -68,12 +68,6 @@ namespace RayCarrot.RCP.Metro
             return !ViewModel.IsLoading;
         }
 
-        protected override void Closed()
-        {
-            DataContext = null;
-            ViewModel?.Dispose();
-        }
-
         #endregion
 
         #region Public Methods
@@ -96,6 +90,14 @@ namespace RayCarrot.RCP.Metro
                     DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Descending));
                     break;
             }
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            DataContext = null;
+            ViewModel?.Dispose();
         }
 
         #endregion

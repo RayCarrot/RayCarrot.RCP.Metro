@@ -95,9 +95,13 @@ namespace RayCarrot.RCP.Metro
             return await Services.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true);
         }
 
-        protected override void Closed()
+        #endregion
+
+        #region Public Methods
+
+        public override void Dispose()
         {
-            base.Closed();
+            base.Dispose();
 
             Services.App.RefreshRequired -= AppGameRefreshRequiredAsync;
 

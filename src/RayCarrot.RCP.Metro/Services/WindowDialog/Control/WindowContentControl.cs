@@ -89,5 +89,7 @@ namespace RayCarrot.RCP.Metro
             _windowInstance.WindowClosing -= WindowInstance_WindowClosing;
             _windowInstance.WindowClosed -= WindowInstance_WindowClosed;
         }
+
+        public virtual void Dispose() { }
     }
 }
