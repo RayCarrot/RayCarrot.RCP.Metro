@@ -65,7 +65,6 @@ namespace RayCarrot.RCP.Metro
             {
                 MinWidth = DefaultMinWidth;
                 MinHeight = DefaultMinHeight;
-                LogManager.GetLogger("").Error($"{MinWidth}x{MinHeight}");
                 return;
             }
 
@@ -80,8 +79,6 @@ namespace RayCarrot.RCP.Metro
             if (updateHeight)
                 MinHeight = ChildWindowInstance.OpenChildWindows.
                     Max(x => (x.IsMaximized ? x.MinContentHeight : x.ActualContentHeight) + x.Padding.Top + x.Padding.Bottom + 80);
-
-            LogManager.GetLogger("").Error($"{MinWidth}x{MinHeight}");
         }
 
         #endregion
