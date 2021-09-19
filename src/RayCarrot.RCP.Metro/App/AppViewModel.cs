@@ -821,7 +821,7 @@ namespace RayCarrot.RCP.Metro
                 Services.Data.Update_IsUpdateAvailable = true;
 
                 // Run as new task to mark this operation as finished
-                _ = Task.Run(async () =>
+                Task.Run(async () =>
                 {
                     try
                     {
@@ -844,7 +844,7 @@ namespace RayCarrot.RCP.Metro
                         Logger.Error(ex, "Updating RCP");
                         await Services.MessageUI.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
                     }
-                });
+                }).WithoutAwait("Updating");
             }
             finally
             {
