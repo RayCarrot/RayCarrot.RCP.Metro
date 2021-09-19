@@ -452,8 +452,9 @@ namespace RayCarrot.RCP.Metro
 
             // If the item is selected, simply initialize the files, but without awaiting it
             if (dir.IsSelected)
+                // TODO: Cleaner way of doing this
                 // Run async without awaiting
-                _ = ChangeLoadedDirAsync(null, dir);
+                ChangeLoadedDirAsync(null, dir).WithoutAwait("Changed loaded directory");
             // Otherwise select the item and let it automatically get initialized
             else
                 dir.IsSelected = true;
