@@ -5,8 +5,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Nito.AsyncEx;
 using NLog;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,6 +28,8 @@ namespace RayCarrot.RCP.Metro
             UpdateDebugCommandsAsyncLock = new AsyncLock();
             DebugCommands = new Dictionary<string, string>();
             AvailableMaps = Files.RO_Levels.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Where(x => !x.Contains("graph") && !x.Contains("subscene")).ToArray();
+
+            UpdateDebugCommandsCommand = new AsyncRelayCommand(UpdateDebugCommandsAsync);
 
             // Get the Rayman Origins install directory
             var instDir = Games.RaymanOrigins.GetInstallDir();
@@ -68,6 +72,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Commands
+
+        public ICommand UpdateDebugCommandsCommand { get; }
+
+        #endregion
+
         #region Private Constants
 
         private const string InvincibilityKey = "player_nodamage";
@@ -85,8 +95,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Private Fields
-
-        private bool _isDebugModeEnabled = true;
 
         #endregion
 
@@ -109,15 +117,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if debug mode is enabled
         /// </summary>
-        public bool IsDebugModeEnabled
-        {
-            get => _isDebugModeEnabled;
-            set
-            {
-                _isDebugModeEnabled = value;
-                _ = UpdateDebugCommandsAsync();
-            }
-        }
+        public bool IsDebugModeEnabled { get; set; } = true;
 
         /// <summary>
         /// The available debug commands
@@ -144,8 +144,6 @@ namespace RayCarrot.RCP.Metro
                     DebugCommands[InvincibilityKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(InvincibilityKey);
-
-                _ = UpdateDebugCommandsAsync();
             }
         }
 
@@ -169,8 +167,6 @@ namespace RayCarrot.RCP.Metro
                     DebugCommands[MouseHiddenKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(MouseHiddenKey);
-
-                _ = UpdateDebugCommandsAsync();
             }
         }
 
@@ -194,8 +190,6 @@ namespace RayCarrot.RCP.Metro
                     DebugCommands[MaxZoomKey] = v ? "1" : "0";
                 else
                     DebugCommands.Remove(MaxZoomKey);
-
-                _ = UpdateDebugCommandsAsync();
             }
         }
 
@@ -211,8 +205,6 @@ namespace RayCarrot.RCP.Metro
                     DebugCommands[FramerateKey] = v.ToString(CultureInfo.InvariantCulture);
                 else
                     DebugCommands.Remove(FramerateKey);
-
-                _ = UpdateDebugCommandsAsync();
             }
         }
 
@@ -233,8 +225,6 @@ namespace RayCarrot.RCP.Metro
                     DebugCommands[MapKey] = v;
                 else
                     DebugCommands.Remove(MapKey);
-
-                _ = UpdateDebugCommandsAsync();
             }
         }
 
@@ -244,12 +234,7 @@ namespace RayCarrot.RCP.Metro
         public ROLanguages Language
         {
             get => Enum.TryParse(DebugCommands.TryGetValue(LanguageKey), out ROLanguages result) ? result : ROLanguages.English;
-            set
-            {
-                DebugCommands[LanguageKey] = ((int)value).ToString();
-
-                _ = UpdateDebugCommandsAsync();
-            }
+            set => DebugCommands[LanguageKey] = ((int)value).ToString();
         }
 
         #endregion
