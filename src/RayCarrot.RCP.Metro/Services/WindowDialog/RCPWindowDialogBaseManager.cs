@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.SimpleChildWindow;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -10,8 +11,30 @@ namespace RayCarrot.RCP.Metro
 
         protected void ConfigureChildWindow(RCPChildWindow window, IWindowControl windowContent, bool isModal)
         {
+            // Place the content within a transitioning content control for a transition when the window is opened
+            var content = new TransitioningContentControl()
+            {
+                FocusVisualStyle = null,
+                IsTabStop = false,
+                Transition = Services.Data.UI_EnableAnimations ? TransitionType.Left : TransitionType.Normal,
+                UseLayoutRounding = true,
+                Content = windowContent.UIContent,
+                RestartTransitionOnContentChange = true
+            };
+
+            // For some reason the transition doesn't start automatically here, so we manually reload it on load (might be because the Loaded event fires twice, probably once before it gets shown)
+            void Content_Loaded(object s, RoutedEventArgs e) => content.ReloadTransition();
+            void Content_Unloaded(object s, RoutedEventArgs e)
+            {
+                // Make sure to unsubscribe to the events
+                content.Unloaded -= Content_Unloaded;
+                content.Loaded -= Content_Loaded;
+            }
+            content.Loaded += Content_Loaded;
+            content.Unloaded += Content_Unloaded;
+
             // Set window properties
-            window.Content = windowContent.UIContent;
+            window.Content = content;
             window.IsModal = isModal;
             window.CanMaximize = windowContent.IsResizable;
         }
