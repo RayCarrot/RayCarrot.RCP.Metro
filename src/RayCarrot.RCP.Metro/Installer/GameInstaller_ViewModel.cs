@@ -261,7 +261,7 @@ namespace RayCarrot.RCP.Metro
                 InstallerRunning = true;
 
                 // Begin refreshing gifs
-                _ = Task.Run(async () => await RefreshGifsAsync());
+                Task.Run(async () => await RefreshGifsAsync()).WithoutAwait("Refreshed installed GIFs");
 
                 // Get the game display name
                 var displayName = Game.GetGameInfo().DisplayName;
