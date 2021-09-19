@@ -121,7 +121,16 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game to show the options for</param>
         public static Task ShowAsync(Games game)
         {
-            return Services.DialogBaseManager.ShowWindowAsync(new GameOptionsDialog(game));
+            var groupNames = new List<string>
+            {
+                // The same game can only have one dialog opened at a time
+                game.ToString()
+            };
+
+            // Add game specific group names
+            groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
+
+            return Services.DialogBaseManager.ShowWindowAsync(new GameOptionsDialog(game), ShowWindowFlags.DuplicateTypesAllowed, groupNames.ToArray());
         }
 
         #endregion

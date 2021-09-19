@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro
             where D : class, IDialogBaseManager, new()
         {
             // Add the service
-            services.AddTransient<IDialogBaseManager, D>();
+            services.AddSingleton<IDialogBaseManager, D>();
 
             // Return the service collection
             return services;

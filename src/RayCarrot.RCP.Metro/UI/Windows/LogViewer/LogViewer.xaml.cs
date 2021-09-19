@@ -41,8 +41,6 @@ namespace RayCarrot.RCP.Metro
 
         public static void Open()
         {
-            // TODO: Avoid multiple instances running at once
-
             var logViewer = new LogViewer();
             logViewer.Show();
 

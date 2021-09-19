@@ -124,6 +124,7 @@
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Error.cs" />
+    <Compile Include="Services\WindowDialog\ShowWindowFlags.cs" />
     <Compile Include="UI\Controls\RCPChildWindow.cs" />
     <Compile Include="UI\Dialogs\Downloader\DownloaderResult.cs" />
     <Compile Include="Services\WindowDialog\RCPWindowDialogBaseManager.cs" />
@@ -415,7 +416,6 @@
     <Compile Include="UI\ValidationRules\Files and Directories\FileExistsAndNotEmptyValidationRule.cs" />
     <Compile Include="UI\ValidationRules\Files and Directories\FileExistsValidationRule.cs" />
     <Compile Include="UI\ValidationRules\NotEmptyValidationRule.cs" />
-    <Compile Include="UI\Windows\Base\AppWindowsManager.cs" />
     <Compile Include="Utilities\General\Other\R1PasswordGenerator\Utility_R1PasswordGenerator_PasswordValidationRule.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\Utility_BaseGameSyncTextureInfo_UI.xaml.cs">
       <DependentUpon>Utility_BaseGameSyncTextureInfo_UI.xaml</DependentUpon>

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -12,6 +11,6 @@ namespace RayCarrot.RCP.Metro
             where UserInput : UserInputViewModel
             where Result : UserInputResult;
 
-        Task ShowWindowAsync(IWindowControl windowContent);
+        Task ShowWindowAsync(IWindowControl windowContent, ShowWindowFlags flags = ShowWindowFlags.None, params string[] groupNames);
     }
 }

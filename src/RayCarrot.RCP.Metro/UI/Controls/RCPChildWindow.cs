@@ -2,6 +2,7 @@
 using RayCarrot.UI;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,6 +22,23 @@ namespace RayCarrot.RCP.Metro
             ToggleMaximizedCommand = new RelayCommand(ToggleMaximized);
 
             ClosingFinished += RCPChildWindow_ClosingFinished;
+        }
+
+        #endregion
+
+        #region Other
+
+        public void BringToFront()
+        {
+            var container = Parent as Panel;
+            var elementOnTop = container?.Children.OfType<UIElement>().OrderBy(c => c.GetValue(Panel.ZIndexProperty)).LastOrDefault();
+
+            if (elementOnTop == null || Equals(elementOnTop, this)) 
+                return;
+            
+            var zIndexOnTop = (int)elementOnTop.GetValue(Panel.ZIndexProperty);
+            elementOnTop.SetCurrentValue(Panel.ZIndexProperty, zIndexOnTop - 1);
+            SetCurrentValue(Panel.ZIndexProperty, zIndexOnTop);
         }
 
         #endregion

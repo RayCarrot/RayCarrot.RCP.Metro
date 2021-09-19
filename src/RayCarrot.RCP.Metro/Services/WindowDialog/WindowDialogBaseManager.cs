@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NLog;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -10,6 +13,18 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class WindowDialogBaseManager : IDialogBaseManager
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
+        #region Protected Properties
+
+        protected HashSet<OpenWindowInstance> OpenWindows { get; } = new HashSet<OpenWindowInstance>();
+
+        #endregion
+
         #region Protected Methods
 
         protected Dispatcher GetDispatcher()
@@ -108,18 +123,62 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        public Task ShowWindowAsync(IWindowControl windowContent)
+        public async Task ShowWindowAsync(IWindowControl windowContent, ShowWindowFlags flags = ShowWindowFlags.None, params string[] groupNames)
         {
+            var openWindowInstance = new OpenWindowInstance(new WeakReference<IWindowControl>(windowContent), groupNames);
+
             try
             {
+                // Remove instances which have been collected by the GC
+                OpenWindows.RemoveWhere(x => !x.Window.TryGetTarget(out _));
+
+                Type contentType = windowContent.UIContent.GetType();
+
+                IWindowControl blockingWindow = OpenWindows.
+                    Select(x => x.Window.TryGetTarget(out IWindowControl w) ? new { Window = w, x.GroupNames } : null).
+                    FirstOrDefault(x =>
+                    {
+                        // Check for duplicate types
+                        if (!flags.HasFlag(ShowWindowFlags.DuplicateTypesAllowed) && x?.Window.UIContent.GetType() == contentType)
+                            return true;
+
+                        // Check for duplicate group names
+                        if (groupNames.Any() && x?.GroupNames.Any(groupNames.Contains) == true)
+                            return true;
+
+                        return false;
+                    })?.Window;
+
+                // If there is a window blocking this one from showing we return
+                if (blockingWindow != null)
+                {
+                    Logger.Info("The window is not being shown due to a window of the same type or ID being available", contentType);
+
+                    // Focus the blocking window
+                    if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))
+                        blockingWindow.WindowInstance?.Focus();
+
+                    return;
+                }
+
+                OpenWindows.Add(openWindowInstance);
+
                 // Show the window
-                return ShowWindowAsync(windowContent, false, null);
+                await ShowWindowAsync(windowContent, false, null);
             }
             finally
             {
+                OpenWindows.Remove(openWindowInstance);
+
                 windowContent.Dispose();
             }
         }
+
+        #endregion
+
+        #region Records
+
+        protected record OpenWindowInstance(WeakReference<IWindowControl> Window, string[] GroupNames);
 
         #endregion
     }

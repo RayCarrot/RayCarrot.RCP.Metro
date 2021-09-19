@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
         }
 
         public override void Close() => Window.Close();
-        public override void Focus() => Window.Focus();
+        public override void Focus() => Window.BringToFront();
 
         private void Window_Closing(object sender, CancelEventArgs e) => WindowClosing?.Invoke(sender, e);
         private void Window_IsOpenChanged(object sender, RoutedEventArgs e)
