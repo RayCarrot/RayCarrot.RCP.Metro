@@ -42,8 +42,6 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        private int _selectedPageSelectionIndex;
-
         #endregion
 
         #region Private Properties
@@ -100,15 +98,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The selected index of <see cref="PageSelection"/>
         /// </summary>
-        public int SelectedPageSelectionIndex
-        {
-            get => _selectedPageSelectionIndex;
-            set
-            {
-                _selectedPageSelectionIndex = value;
-                _ = OnSelectedPageSelectionIndexUpdatedAsync();
-            }
-        }
+        public int SelectedPageSelectionIndex { get; set; }
 
         #endregion
 
@@ -128,19 +118,20 @@ namespace RayCarrot.RCP.Metro
 
         protected virtual Task LoadAsync() => Task.CompletedTask;
         protected virtual Task<bool> SaveAsync() => Task.FromResult(false);
-        protected virtual Task OnSelectedPageSelectionIndexUpdatedAsync() => Task.CompletedTask;
         protected virtual Task OnGameInfoModified() => Task.CompletedTask;
         protected virtual void UseRecommended() { }
 
         protected void ResetSelectedPageSelectionIndex()
         {
-            _selectedPageSelectionIndex = 0;
+            SelectedPageSelectionIndex = 0;
             OnPropertyChanged(nameof(SelectedPageSelectionIndex));
         }
 
         #endregion
 
         #region Public Methods
+
+        public virtual Task OnSelectedPageSelectionIndexUpdatedAsync() => Task.CompletedTask;
 
         public async Task LoadPageAsync()
         {

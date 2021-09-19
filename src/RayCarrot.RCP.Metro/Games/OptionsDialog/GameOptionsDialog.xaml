@@ -117,7 +117,8 @@
 
                             <ComboBox Visibility="{Binding Path=PageSelection, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                                       ItemsSource="{Binding Path=PageSelection, Mode=OneTime}"
-                                      SelectedIndex="{Binding Path=SelectedPageSelectionIndex}" />
+                                      SelectedIndex="0"
+                                      SelectionChanged="SelectedPageSelection_OnSelectionChanged"/>
 
                         </StackPanel>
 

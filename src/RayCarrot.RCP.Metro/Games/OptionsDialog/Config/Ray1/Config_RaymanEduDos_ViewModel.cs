@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
             return Game.GetInstallDir() + $"{primary}{secondary}.CFG";
         }
 
-        protected override Task OnSelectedPageSelectionIndexUpdatedAsync()
+        public override Task OnSelectedPageSelectionIndexUpdatedAsync()
         {
             Logger.Trace("EDU config selection changed");
             return LoadPageAsync();
