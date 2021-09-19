@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
             };
 
             // Refresh category visibility
-            _ = Task.Run(async () => await RefreshCategorizedVisibilityAsync());
+            RefreshCategorizedVisibility();
 
             // Refresh on culture changed
             Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
@@ -67,7 +67,7 @@ namespace RayCarrot.RCP.Metro
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
 
             // Refresh visibility on setting change
-            Data.PropertyChanged += Data_PropertyChangedAsync;
+            Data.PropertyChanged += Data_PropertyChanged;
         }
 
         #endregion
@@ -270,15 +270,14 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Refreshes the visibility of the categories based on if the games should be categorized
         /// </summary>
-        /// <returns>The task</returns>
-        public async Task RefreshCategorizedVisibilityAsync()
+        public void RefreshCategorizedVisibility()
         {
-            using (await AsyncLock.LockAsync())
+            lock (GameCategories)
             {
                 try
                 {
                     // Get the master category
-                    var master = GameCategories.FirstOrDefault(x => x.IsMaster);
+                    var master = GameCategories.First(x => x.IsMaster);
 
                     // Set the master category visibility
                     master.IsVisible = false;
@@ -325,12 +324,12 @@ namespace RayCarrot.RCP.Metro
 
         #region Event Handlers
 
-        private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
+        private void Data_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != nameof(Data.UI_CategorizeGames))
                 return;
 
-            await RefreshCategorizedVisibilityAsync();
+            RefreshCategorizedVisibility();
         }
 
         #endregion
