@@ -6,7 +6,7 @@
 	• Changed which areas of pages use scroll bars
 	• Windows now appear as popups within the parent window (this can be reverted back to the previous behavior in the settings)
 	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
-	• The download dialog has been redesigned and now shows the input/output paths for a user level of technical or higher
+	• The download dialog has been redesigned and now shows the input/output paths when the user level is set to debug
 	• The drive browser dialog has been redesigned
 	• Updated the context menus to use icons and have undo/redo options
 	• Windows now have specific icons rather than using the app icon
