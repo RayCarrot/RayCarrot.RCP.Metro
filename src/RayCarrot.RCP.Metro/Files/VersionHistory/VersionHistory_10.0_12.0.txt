@@ -9,6 +9,7 @@
 	• The download dialog has been redesigned and now shows the input/output paths for a user level of technical or higher
 	• The drive browser dialog has been redesigned
 	• Updated the context menus to use icons and have undo/redo options
+	• Windows now have specific icons rather than using the app icon
 	• Changed the icon for the other utilities page
 • Resolution selections in game configurations now have a drop-down for choosing a supported resolution
 • Added an option to reset all the app settings

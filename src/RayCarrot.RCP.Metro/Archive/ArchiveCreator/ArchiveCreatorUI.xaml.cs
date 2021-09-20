@@ -45,6 +45,7 @@ namespace RayCarrot.RCP.Metro
             base.WindowAttached();
 
             WindowInstance.Title = ViewModel.Title;
+            WindowInstance.Icon = GenericIconKind.Window_ArchiveCreator;
         }
 
         protected override async Task<bool> ClosingAsync()

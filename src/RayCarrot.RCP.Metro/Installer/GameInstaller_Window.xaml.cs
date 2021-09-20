@@ -42,6 +42,13 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Methods
 
+        protected override void WindowAttached()
+        {
+            base.WindowAttached();
+
+            WindowInstance.Icon = GenericIconKind.Window_Installer;
+        }
+
         protected override async Task<bool> ClosingAsync()
         {
             if (!await base.ClosingAsync())

@@ -19,6 +19,7 @@ namespace RayCarrot.RCP.Metro
             base.WindowAttached();
 
             WindowInstance.Title = Metro.Resources.AppNews_Title;
+            WindowInstance.Icon = GenericIconKind.Window_AppNews;
             WindowInstance.MinWidth = 600;
             WindowInstance.MinHeight = 400;
             WindowInstance.Width = 960;

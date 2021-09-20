@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -31,6 +32,12 @@ namespace RayCarrot.RCP.Metro
         {
             get => Window.ShowCloseButton;
             set => Window.ShowCloseButton = value;
+        }
+
+        public override GenericIconKind Icon
+        {
+            get => Window.Icon as GenericIconKind? ?? GenericIconKind.None;
+            set => Window.Icon = value;
         }
 
         public override double Width

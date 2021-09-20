@@ -11,6 +11,8 @@ namespace RayCarrot.RCP.Metro
         public abstract string Title { get; set; }
         public abstract bool CanClose { get; set; }
 
+        public abstract GenericIconKind Icon { get; set; }
+
         public abstract double Width { get; set; }
         public abstract double Height { get; set; }
         public abstract double MinWidth { get; set; }

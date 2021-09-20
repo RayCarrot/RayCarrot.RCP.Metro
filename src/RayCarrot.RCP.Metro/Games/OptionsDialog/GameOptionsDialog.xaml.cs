@@ -61,6 +61,7 @@ namespace RayCarrot.RCP.Metro
             base.WindowAttached();
 
             WindowInstance.Title = ViewModel.DisplayName;
+            WindowInstance.Icon = GenericIconKind.Window_GameOptions;
             WindowInstance.MinWidth = 500;
             WindowInstance.MinHeight = 400;
             WindowInstance.Width = 650;

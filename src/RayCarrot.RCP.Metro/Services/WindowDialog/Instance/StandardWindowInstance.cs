@@ -28,6 +28,8 @@ namespace RayCarrot.RCP.Metro
             set => Window.IsCloseButtonEnabled = value;
         }
 
+        public override GenericIconKind Icon { get; set; }
+
         public override double Width
         {
             get => Window.Width;

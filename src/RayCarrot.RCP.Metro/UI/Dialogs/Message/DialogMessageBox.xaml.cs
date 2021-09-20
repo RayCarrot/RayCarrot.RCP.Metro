@@ -45,6 +45,17 @@
 
         #endregion
 
+        #region Protected Methods
+
+        protected override void WindowAttached()
+        {
+            base.WindowAttached();
+
+            WindowInstance.Icon = GenericIconKind.Window_DialogMessage;
+        }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>

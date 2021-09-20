@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:simpleChildWindow="http://metro.mahapps.com/winfx/xaml/simplechildwindow"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <Style TargetType="{x:Type local:RCPChildWindow}" BasedOn="{StaticResource {x:Type simpleChildWindow:ChildWindow}}">
         <Setter Property="Visibility" Value="{Binding Path=IsMinimized, RelativeSource={RelativeSource Self}, Converter={local:InvertedBooleanToVisibilityConverter}}" />
@@ -22,7 +23,6 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0"
-                                   Margin="10 0 0 0"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
 
@@ -80,10 +80,10 @@
         <Setter Property="IconTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <metro:MultiFrameImage Width="30"
-                                           Height="30"
-                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                           Source="../../Img/RCP_Metro.ico" />
+                    <iconPacks:PackIconMaterial Kind="{Binding Converter={local:GenericIconToIconKindConverter}}"
+                                                Foreground="{Binding Converter={local:GenericIconToBrushConverter}}"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

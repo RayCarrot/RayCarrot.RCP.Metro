@@ -15,6 +15,7 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
@@ -29,10 +30,15 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Play">PlayOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Admin">Security</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Map">MapMarkerOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.File">FileOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.CloudDownload">CloudDownloadOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Disc">Disc</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Purchase">BriefcaseOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Edit">PencilOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.News">TooltipTextOutline</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="Icons.EditJumpList">PencilBoxOutline</iconPacks:PackIconMaterialKind>
     
     <iconPacks:PackIconMaterialKind x:Key="Icons.Web">Earth</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Steam">Steam</iconPacks:PackIconMaterialKind>
@@ -129,5 +135,48 @@
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Utilities" 
                        IconKind="{StaticResource Icons.Utilities}"
                        IconColor="{StaticResource Colors.Utilities}" />
+
+    <local:GenericIcon x:Key="GenericIcons.Window_ArchiveExplorer" 
+                       IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
+                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_ArchiveCreator" 
+                       IconKind="{StaticResource Icons.Utilities_ArchiveCreator}"
+                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_GameOptions" 
+                       IconKind="{StaticResource Icons.Settings}"
+                       IconColor="{StaticResource Colors.Settings}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_Installer" 
+                       IconKind="{StaticResource Icons.Disc}"
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_Downloader" 
+                       IconKind="{StaticResource Icons.CloudDownload}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_DriveSelection" 
+                       IconKind="{StaticResource Icons.Disc}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_EducationalDosGameEdit" 
+                       IconKind="{StaticResource Icons.Edit}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_FileExtensionSelection" 
+                       IconKind="{StaticResource Icons.File}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_GamesSelection" 
+                       IconKind="{StaticResource Icons.Games}"
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_GameTypeSelection" 
+                       IconKind="{StaticResource Icons.Games}"
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_JumpListEdit" 
+                       IconKind="{StaticResource Icons.EditJumpList}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_DialogMessage" 
+                       IconKind="{StaticResource Icons.Info}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_StringInput" 
+                       IconKind="{StaticResource Icons.Edit}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_AppNews" 
+                       IconKind="{StaticResource Icons.News}"
+                       IconColor="{StaticResource Colors.Info}" />
     
 </ResourceDictionary>

@@ -21,10 +21,10 @@
                     <Button DataContext="{Binding Path=Window, Mode=OneTime}" 
                             Command="{Binding Path=ToggleMinimizedCommand, Mode=OneTime}"
                             ToolTip="{Binding Path=Title, Mode=OneTime}">
-                        <mah:MultiFrameImage Width="30"
-                                             Height="30"
-                                             RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                             Source="../../Img/RCP_Metro.ico" />
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}}"
+                                                    Foreground="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}}"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
                     </Button>
                 </DataTemplate>
             </mah:WindowCommands.ItemTemplate>

@@ -53,6 +53,7 @@ namespace RayCarrot.RCP.Metro
             base.WindowAttached();
 
             WindowInstance.Title = ViewModel.Title;
+            WindowInstance.Icon = GenericIconKind.Window_ArchiveExplorer;
             WindowInstance.MinWidth = 600;
             WindowInstance.MinHeight = 400;
             WindowInstance.Width = 900;
