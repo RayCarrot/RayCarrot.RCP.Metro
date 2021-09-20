@@ -1,12 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-using MahApps.Metro.Controls;
 
 namespace RayCarrot.RCP.Metro
 {
     public class StandardWindowInstance : WindowInstance
     {
-        public StandardWindowInstance(MetroWindow window)
+        public StandardWindowInstance(BaseIconWindow window)
         {
             _window = window ?? throw new ArgumentNullException(nameof(window));
 
@@ -14,8 +13,8 @@ namespace RayCarrot.RCP.Metro
             Window.Closed += Window_Closed;
         }
 
-        private MetroWindow _window;
-        public MetroWindow Window => _window ?? throw new InvalidOperationException("The window instance can't be accessed after the window has been closed");
+        private BaseIconWindow _window;
+        public BaseIconWindow Window => _window ?? throw new InvalidOperationException("The window instance can't be accessed after the window has been closed");
 
         public override string Title
         {
@@ -28,7 +27,11 @@ namespace RayCarrot.RCP.Metro
             set => Window.IsCloseButtonEnabled = value;
         }
 
-        public override GenericIconKind Icon { get; set; }
+        public override GenericIconKind Icon
+        {
+            get => Window.GenericIcon;
+            set => Window.GenericIcon = value;
+        }
 
         public override double Width
         {

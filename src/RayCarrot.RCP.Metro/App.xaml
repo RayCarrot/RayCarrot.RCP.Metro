@@ -35,6 +35,7 @@
                 <ResourceDictionary Source="UI/Resources/Styles.ChildWindow.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.LoaderContentControl.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.BrowseBox.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.Window.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

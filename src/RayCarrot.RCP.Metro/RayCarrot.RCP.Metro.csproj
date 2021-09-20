@@ -172,6 +172,7 @@
     <Compile Include="Services\WindowDialog\Instance\StandardWindowInstance.cs" />
     <Compile Include="Services\WindowDialog\Instance\WindowInstance.cs" />
     <Compile Include="Helpers\Extensions\TaskExtensions.cs" />
+    <Compile Include="UI\Windows\Base\BaseIconWindow.cs" />
     <Compile Include="UI\Windows\LogViewer\LogItemViewModel.cs" />
     <Compile Include="UI\Taskbar\TaskbarManagerExtensions.cs" />
     <Compile Include="Helpers\Windows\WindowsHelpers.cs" />
@@ -799,6 +800,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Controls\OverflowMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Resources\Styles.Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

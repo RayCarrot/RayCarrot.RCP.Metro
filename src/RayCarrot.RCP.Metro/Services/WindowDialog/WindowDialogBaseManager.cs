@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.Metro
         protected virtual async Task ShowAsync(IWindowControl windowContent, bool isModal, string title)
         {
             // Create the window
-            var window = new BaseWindow();
+            var window = new BaseIconWindow();
 
             // Configure the window
             ConfigureWindow(window, windowContent);
