@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,6 +22,8 @@ namespace RayCarrot.RCP.Metro
             GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
             OptionsContent = gameInfo.OptionsUI;
 
+            LaunchModeChangedCommand = new AsyncRelayCommand(LaunchModeChangedAsync);
+
             // Check if the launch mode can be changed
             CanChangeLaunchMode = Game.GetManager().SupportsGameLaunchMode;
 
@@ -34,6 +37,12 @@ namespace RayCarrot.RCP.Metro
             App.RefreshRequired += App_RefreshRequiredAsync;
             Services.InstanceData.CultureChanged += Data_CultureChanged;
         }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand LaunchModeChangedCommand { get; }
 
         #endregion
 
@@ -72,11 +81,7 @@ namespace RayCarrot.RCP.Metro
         public UserData_GameLaunchMode LaunchMode
         {
             get => GameData.LaunchMode;
-            set
-            {
-                GameData.LaunchMode = value;
-                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.LaunchInfo));
-            }
+            set => GameData.LaunchMode = value;
         }
 
         #endregion
@@ -114,6 +119,15 @@ namespace RayCarrot.RCP.Metro
         {
             DataContext = this
         };
+
+        #endregion
+
+        #region Public Methods
+
+        public async Task LaunchModeChangedAsync()
+        {
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.LaunchInfo));
+        }
 
         public override void Dispose()
         {

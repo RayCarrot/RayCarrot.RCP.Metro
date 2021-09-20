@@ -45,7 +45,12 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 Data.Game_DosBoxGames[Game].MountPath = value;
-                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameInfo));
+
+                // TODO: Find better solution to this. Ideally we would invoke the refresh from an event caused by the UI, but
+                // currently the BrowseBox does not have any event for when the path is changed. Doing this rather than discarding the task
+                // from the async refresh will ensure that any exceptions are handled correctly as the async void will take care of that.
+                Invoke();
+                async void Invoke() => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameInfo));
             }
         }
 

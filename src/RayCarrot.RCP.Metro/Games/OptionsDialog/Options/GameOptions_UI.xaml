@@ -9,7 +9,7 @@
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="650" d:DataContext="{d:DesignInstance local:GameOptionsDialog_ViewModel}">
+             d:DesignHeight="300" d:DesignWidth="650" d:DataContext="{d:DesignInstance local:GameOptionsDialog_OptionsPageViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
             <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
@@ -55,16 +55,19 @@
             </i:Interaction.Behaviors>
 
             <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
-                                     IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
-                                     ToolTip="{Resx GameOptions_LaunchMode_AsInvokerInfo}" />
+                                       IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
+                                       Command="{Binding Path=LaunchModeChangedCommand, Mode=OneTime}"
+                                       ToolTip="{Resx GameOptions_LaunchMode_AsInvokerInfo}" />
 
             <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
-                                     IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
-                                     ToolTip="{Resx GameOptions_LaunchMode_AsAdminOptionInfo}" />
+                                       IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
+                                       Command="{Binding Path=LaunchModeChangedCommand, Mode=OneTime}"
+                                       ToolTip="{Resx GameOptions_LaunchMode_AsAdminOptionInfo}" />
 
             <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
-                                     IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
-                                     ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}" />
+                                       IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
+                                       Command="{Binding Path=LaunchModeChangedCommand, Mode=OneTime}"
+                                       ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}" />
 
         </StackPanel>
 
