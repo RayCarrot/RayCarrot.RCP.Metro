@@ -51,7 +51,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public object UIContent => new Utility_Rayman1_TPLS_UI()
         {
-            DataContext = ViewModel
+            DataContext = ViewModel,
+            ViewModel = ViewModel,
         };
 
         /// <summary>

@@ -91,6 +91,8 @@ namespace RayCarrot.RCP.Metro
                         $"gameversion={GetVersionName(RaymanVersion)}",
                         "musicfile=Music.dat"
                     });
+
+                    Logger.Info("Updated TPLS config with version {0}", RaymanVersion);
                 }
             }
             catch (Exception ex)

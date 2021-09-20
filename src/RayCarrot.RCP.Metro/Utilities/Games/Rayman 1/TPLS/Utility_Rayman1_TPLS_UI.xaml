@@ -25,6 +25,7 @@
                 Visibility="{Binding Path=Data.Utility_TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}" />
 
         <mah:ToggleSwitch IsOn="{Binding Path=IsEnabled}"
+                          Command="{Binding Path=EnableToggledCommand, Mode=OneTime}"
                           IsEnabled="{Binding Path=CanEnableTPLS}"
                           Visibility="{Binding Path=Data.Utility_TPLSData, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                           HorizontalAlignment="Left"
@@ -43,7 +44,8 @@
                        Text="{Resx R1U_TPLSRaymanVersion}" />
 
             <ComboBox Grid.Column="1"
-                      SelectedIndex="{Binding Path=SelectedRaymanVersion, Converter={local:EnumToIntConverter}}">
+                      SelectionChanged="VersionSelection_OnSelectionChanged"
+                      SelectedIndex="{Binding Path=SelectedRaymanVersion, Converter={local:EnumToIntConverter}, Mode=OneWay}">
 
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_Auto}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_00}" />

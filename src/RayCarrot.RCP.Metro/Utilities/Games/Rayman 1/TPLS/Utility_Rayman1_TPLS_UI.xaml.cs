@@ -11,5 +11,26 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
         }
+
+        public Utility_Rayman1_TPLS_ViewModel ViewModel { get; init; }
+
+        private async void VersionSelection_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is not ComboBox c)
+                return;
+
+            var version = (Utility_Rayman1_TPLS_RaymanVersion)c.SelectedIndex;
+
+            if (version == ViewModel.SelectedRaymanVersion)
+                return;
+
+            ViewModel.SelectedRaymanVersion = version;
+
+            if (ViewModel.Data.Utility_TPLSData != null)
+            {
+                ViewModel.Data.Utility_TPLSData.RaymanVersion = ViewModel.SelectedRaymanVersion;
+                await ViewModel.Data.Utility_TPLSData.UpdateConfigAsync();
+            }
+        }
     }
 }

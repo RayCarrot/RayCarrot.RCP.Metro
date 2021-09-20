@@ -21,6 +21,7 @@ namespace RayCarrot.RCP.Metro
             // Create the commands
             InstallTPLSCommand = new AsyncRelayCommand(InstallTPLSAsync);
             UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
+            EnableToggledCommand = new AsyncRelayCommand(EnableToggledAsync);
 
             // Check if TPLS is installed under the default location
             if (!AppFilePaths.R1TPLSDir.DirectoryExists)
@@ -30,8 +31,8 @@ namespace RayCarrot.RCP.Metro
 
             if (Data.Utility_TPLSData != null)
             {
-                _selectedRaymanVersion = Data.Utility_TPLSData.RaymanVersion;
-                _isEnabled = Data.Utility_TPLSData.IsEnabled;
+                SelectedRaymanVersion = Data.Utility_TPLSData.RaymanVersion;
+                IsEnabled = Data.Utility_TPLSData.IsEnabled;
             }
 
             VerifyTPLS();
@@ -48,16 +49,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand InstallTPLSCommand { get; }
-
         public ICommand UninstallTPLSCommand { get; }
-
-        #endregion
-
-        #region Private Fields
-
-        private Utility_Rayman1_TPLS_RaymanVersion _selectedRaymanVersion;
-
-        private bool _isEnabled;
+        public ICommand EnableToggledCommand { get; }
 
         #endregion
 
@@ -71,35 +64,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The selected Rayman version
         /// </summary>
-        public Utility_Rayman1_TPLS_RaymanVersion SelectedRaymanVersion
-        {
-            get => _selectedRaymanVersion;
-            set
-            {
-                _selectedRaymanVersion = value;
-
-                if (Data.Utility_TPLSData != null)
-                {
-                    Data.Utility_TPLSData.RaymanVersion = value;
-                    _ = Task.Run(Data.Utility_TPLSData.UpdateConfigAsync);
-                }
-            }
-        }
+        public Utility_Rayman1_TPLS_RaymanVersion SelectedRaymanVersion { get; set; }
 
         /// <summary>
         /// Indicates if the utility is enabled
         /// </summary>
-        public bool IsEnabled
-        {
-            get => _isEnabled;
-            set
-            {
-                _isEnabled = value;
-                Data.Utility_TPLSData.IsEnabled = value;
-
-                _ = Task.Run(async () => await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, RefreshFlags.GameInfo)));
-            }
-        }
+        public bool IsEnabled { get; set; }
 
         #endregion
 
@@ -185,6 +155,13 @@ namespace RayCarrot.RCP.Metro
                 Logger.Error(ex, "Uninstalling TPLS");
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
             }
+        }
+
+        public async Task EnableToggledAsync()
+        {
+            Data.Utility_TPLSData.IsEnabled = IsEnabled;
+
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, RefreshFlags.GameInfo));
         }
 
         #endregion
