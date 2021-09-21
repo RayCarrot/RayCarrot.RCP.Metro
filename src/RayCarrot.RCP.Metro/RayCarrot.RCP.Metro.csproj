@@ -126,12 +126,14 @@
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Error.cs" />
     <Compile Include="Services\WindowDialog\ShowWindowFlags.cs" />
     <Compile Include="UI\Controls\RCPChildWindow.cs" />
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\GraphicsMode.cs" />
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\GraphicsModeToStringConverter.cs" />
     <Compile Include="UI\Dialogs\Downloader\DownloaderResult.cs" />
     <Compile Include="Services\WindowDialog\RCPWindowDialogBaseManager.cs" />
     <Compile Include="UI\Behaviors\ListBoxSelectedItemsBehavior.cs" />
     <Compile Include="UI\Behaviors\UpdateTextBoxBindingOnEnterBehavior.cs" />
-    <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionValidationRule.cs" />
-    <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionSelectionViewModel.cs" />
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\GraphicsModeValidationRule.cs" />
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\GraphicsModeSelectionViewModel.cs" />
     <Compile Include="Helpers\AsyncEvent\AsyncEventHandler.cs" />
     <Compile Include="Helpers\AsyncEvent\AsyncEventHandlertExtensions.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
@@ -158,8 +160,8 @@
     <Compile Include="Localization\LocString\ConstLocString.cs" />
     <Compile Include="Localization\LocString\GeneratedLocString.cs" />
     <Compile Include="Localization\LocString\ResourceLocString.cs" />
-    <Compile Include="UI\Controls\ResolutionSelectionViewModel\ResolutionSelection.xaml.cs">
-      <DependentUpon>ResolutionSelection.xaml</DependentUpon>
+    <Compile Include="UI\Controls\ResolutionSelectionViewModel\GraphicsModeSelection.xaml.cs">
+      <DependentUpon>GraphicsModeSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\Bool\EqualsToConverter.cs" />
     <Compile Include="UI\Converters\Other\CultureNameToCultureInfoConverter.cs" />
@@ -771,7 +773,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Controls\ResolutionSelectionViewModel\ResolutionSelection.xaml">
+    <Page Include="UI\Controls\ResolutionSelectionViewModel\GraphicsModeSelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

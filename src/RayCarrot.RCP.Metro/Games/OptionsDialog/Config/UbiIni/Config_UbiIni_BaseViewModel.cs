@@ -90,7 +90,7 @@ namespace RayCarrot.RCP.Metro
                 Logger.Info("The ubi.ini section for {0} was recreated", Game);
             }
 
-            Resolution.GetAvailableResolutions();
+            GraphicsMode.GetAvailableResolutions();
 
             // Import config data
             await ImportConfigAsync();

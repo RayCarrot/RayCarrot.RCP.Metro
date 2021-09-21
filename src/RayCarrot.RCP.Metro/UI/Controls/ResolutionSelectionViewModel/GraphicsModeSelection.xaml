@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.ResolutionSelection"
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.GraphicsModeSelection"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,16 +7,16 @@
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance local:ResolutionSelectionViewModel}">
-    <ComboBox ItemsSource="{Binding Path=AvailableResolutions, Mode=OneTime}" 
+             d:DataContext="{d:DesignInstance local:GraphicsModeSelectionViewModel}">
+    <ComboBox ItemsSource="{Binding Path=GraphicsModes, Mode=OneTime}" 
               HorizontalAlignment="Left"
               MinWidth="100"
-              IsEditable="True"
+              IsEditable="{Binding Path=AllowCustomGraphicsMode, Mode=OneWay}"
               metro:TextBoxHelper.Watermark="{Resx Config_Resolution}">
         <ComboBox.Text>
-            <Binding Path="SelectedResolution">
+            <Binding Path="SelectedGraphicsMode" Converter="{local:GraphicsModeToStringConverter}">
                 <Binding.ValidationRules>
-                    <local:ResolutionValidationRule />
+                    <local:GraphicsModeValidationRule />
                 </Binding.ValidationRules>
             </Binding>
         </ComboBox.Text>

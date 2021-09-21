@@ -6,8 +6,8 @@ namespace RayCarrot.RCP.Metro
     {
         protected GameOptionsDialog_ConfigPageViewModel() : base(new ResourceLocString(nameof(Resources.GameOptions_Config)), GenericIconKind.GameOptions_Config)
         {
-            Resolution = new ResolutionSelectionViewModel();
-            Resolution.ResolutionChanged += Resolution_ResolutionChanged;
+            GraphicsMode = new GraphicsModeSelectionViewModel();
+            GraphicsMode.GraphicsModeChanged += GraphicsMode_GraphicsModeChanged;
         }
 
         /// <summary>
@@ -16,11 +16,11 @@ namespace RayCarrot.RCP.Metro
         public override bool CanSave => true;
 
         /// <summary>
-        /// The game screen resolution
+        /// The graphics mode for the game, such as the resolution
         /// </summary>
-        public ResolutionSelectionViewModel Resolution { get; }
+        public GraphicsModeSelectionViewModel GraphicsMode { get; }
 
-        private void Resolution_ResolutionChanged(object sender, EventArgs e)
+        private void GraphicsMode_GraphicsModeChanged(object sender, EventArgs e)
         {
             UnsavedChanges = true;
         }
@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Metro
         {
             base.Dispose();
 
-            Resolution.ResolutionChanged -= Resolution_ResolutionChanged;
+            GraphicsMode.GraphicsModeChanged -= GraphicsMode_GraphicsModeChanged;
         }
     }
 }

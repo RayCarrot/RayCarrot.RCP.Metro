@@ -259,18 +259,12 @@ namespace RayCarrot.RCP.Metro
         {
             var gliMode = ConfigData.FormattedGLI_Mode;
 
-            Resolution.GetAvailableResolutions();
+            GraphicsMode.GetAvailableResolutions();
 
             if (gliMode != null)
-            {
-                Resolution.Width = gliMode.ResX;
-                Resolution.Height = gliMode.ResY;
-            }
+                GraphicsMode.SelectedGraphicsMode = new GraphicsMode(gliMode.ResX, gliMode.ResY);
             else
-            {
-                Resolution.Width = 800;
-                Resolution.Height = 600;
-            }
+                GraphicsMode.SelectedGraphicsMode = new GraphicsMode(800, 600);
 
             CurrentLanguage = ConfigData.FormattedLanguage ?? R2Languages.English;
 
@@ -335,8 +329,8 @@ namespace RayCarrot.RCP.Metro
             {
                 ColorMode = ConfigData.FormattedGLI_Mode?.ColorMode ?? 16,
                 IsWindowed = ConfigData.FormattedGLI_Mode?.IsWindowed ?? false,
-                ResX = Resolution.Width,
-                ResY = Resolution.Height,
+                ResX = GraphicsMode.Width,
+                ResY = GraphicsMode.Height,
             }.ToString();
 
             ConfigData.Language = CurrentLanguage.ToString();
@@ -515,7 +509,7 @@ namespace RayCarrot.RCP.Metro
                 if (WidescreenSupport)
                 {
                     // Get the aspect ratio
-                    float ratio = IsHorizontalWidescreen ? (float)Resolution.Height / Resolution.Width : (float)Resolution.Width / Resolution.Height;
+                    float ratio = IsHorizontalWidescreen ? (float)GraphicsMode.Height / GraphicsMode.Width : (float)GraphicsMode.Width / GraphicsMode.Height;
 
                     // Multiply by 4/3
                     ratio *= (4.0F / 3.0F);

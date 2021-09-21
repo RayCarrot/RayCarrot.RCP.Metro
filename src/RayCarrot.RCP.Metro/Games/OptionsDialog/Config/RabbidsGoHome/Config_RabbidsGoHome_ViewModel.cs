@@ -1,7 +1,6 @@
 ﻿using NLog;
 using System;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -140,9 +139,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="data">The data to import</param>
         private void ImportConfig(UserData_RabbidsGoHomeLaunchData data)
         {
-            Resolution.GetAvailableResolutions();
-            Resolution.Width = data.ResolutionX;
-            Resolution.Height = data.ResolutionY;
+            GraphicsMode.GetAvailableResolutions();
+            GraphicsMode.SelectedGraphicsMode = new GraphicsMode(data.ResolutionX, data.ResolutionY);
             Language = GetLanguage(data.Language);
             Fullscreen = data.IsFullscreen;
             VSync = data.IsVSyncEnabled;
@@ -200,7 +198,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set the launch data
             Data.Game_RabbidsGoHomeLaunchData = EnableCustomSettings ?
-                new UserData_RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), Resolution.Width, Resolution.Height, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
+                new UserData_RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), GraphicsMode.Width, GraphicsMode.Height, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
                 null;
 
             // Refresh

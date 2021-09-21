@@ -23,7 +23,7 @@
 
         </StackPanel>
 
-        <local:ResolutionSelection DataContext="{Binding Path=Resolution, Mode=OneTime}"/>
+        <local:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
 
         <StackPanel Orientation="Horizontal">
             <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={local:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"

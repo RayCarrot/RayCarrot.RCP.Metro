@@ -122,9 +122,10 @@ namespace RayCarrot.RCP.Metro
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Game} does not exist. Default values will be used.");
 
-                Resolution.GetAvailableResolutions(800, 600);
-                Resolution.Width = GetInt(ScreenWidthKey, (int)SystemParameters.PrimaryScreenWidth);
-                Resolution.Height = GetInt(ScreenHeightKey, (int)SystemParameters.PrimaryScreenHeight);
+                GraphicsMode.GetAvailableResolutions();
+                GraphicsMode.SelectedGraphicsMode = new GraphicsMode(
+                    width: GetInt(ScreenWidthKey, (int)SystemParameters.PrimaryScreenWidth), 
+                    height: GetInt(ScreenHeightKey, (int)SystemParameters.PrimaryScreenHeight));
                 FullscreenMode = GetInt(FullScreenKey, 1) == 1;
 
                 // Helper methods for getting values
@@ -155,8 +156,8 @@ namespace RayCarrot.RCP.Metro
 
                     Logger.Info("The key {0} has been opened", key.Name);
 
-                    key.SetValue(ScreenWidthKey, Resolution.Width.ToString());
-                    key.SetValue(ScreenHeightKey, Resolution.Height.ToString());
+                    key.SetValue(ScreenWidthKey, GraphicsMode.Width.ToString());
+                    key.SetValue(ScreenHeightKey, GraphicsMode.Height.ToString());
                     key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                 }
 

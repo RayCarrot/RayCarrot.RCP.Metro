@@ -3,11 +3,11 @@
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Interaction logic for ResolutionSelection.xaml
+    /// Interaction logic for GraphicsModeSelection.xaml
     /// </summary>
-    public partial class ResolutionSelection : UserControl
+    public partial class GraphicsModeSelection : UserControl
     {
-        public ResolutionSelection()
+        public GraphicsModeSelection()
         {
             InitializeComponent();
         }

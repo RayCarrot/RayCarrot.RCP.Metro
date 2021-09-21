@@ -19,7 +19,7 @@
         <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Resolution}" />
 
-        <local:ResolutionSelection DataContext="{Binding Path=Resolution, Mode=OneTime}"/>
+        <local:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
 
         <CheckBox Content="{Resx Config_Fullscreen}"
                   ToolTip="{Resx Config_FullscreenInfo}"
