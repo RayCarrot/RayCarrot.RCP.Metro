@@ -58,6 +58,12 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        public int SelectedGraphicsModeIndex
+        {
+            get => GraphicsModes.IndexOf(SelectedGraphicsMode);
+            set => SelectedGraphicsMode = GraphicsModes.ElementAtOrDefault(value);
+        }
+
         #endregion
 
         #region Public Methods

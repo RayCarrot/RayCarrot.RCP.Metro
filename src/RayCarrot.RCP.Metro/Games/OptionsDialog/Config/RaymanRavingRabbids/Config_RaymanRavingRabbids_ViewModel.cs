@@ -29,6 +29,8 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Constants
 
+        private const string GraphicsModeKey = "Mode";
+
         private const string WindowedModeKey = "WindowedMode";
 
         private const string DefaultControllerKey = "DefaultController";
@@ -102,6 +104,16 @@ namespace RayCarrot.RCP.Metro
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Games.RaymanRavingRabbids} does not exist. Default values will be used.");
 
+                GraphicsMode.MinGraphicsWidth = 640;
+                GraphicsMode.MinGraphicsHeight = 480;
+                GraphicsMode.SortMode = GraphicsModeSelectionViewModel.GraphicsSortMode.TotalPixels;
+                GraphicsMode.SortDirection = GraphicsModeSelectionViewModel.GraphicsSortDirection.Ascending;
+                GraphicsMode.AllowCustomGraphicsMode = false;
+                GraphicsMode.IncludeRefreshRate = true;
+                GraphicsMode.FilterMode = GraphicsModeSelectionViewModel.GraphicsFilterMode.WidthOrHeight;
+                GraphicsMode.GetAvailableResolutions();
+
+                GraphicsMode.SelectedGraphicsModeIndex = GetInt(GraphicsModeKey, 0);
                 FullscreenMode = GetInt(WindowedModeKey, 0) != 1;
                 UseController = GetInt(DefaultControllerKey, 0) == 1;
                 ScreenModeIndex = GetInt(ScreenModeKey, 1) - 1;
@@ -151,6 +163,7 @@ namespace RayCarrot.RCP.Metro
 
                     Logger.Info("The key {0} has been opened", key.Name);
 
+                    key.SetValue(GraphicsModeKey, GraphicsMode.SelectedGraphicsModeIndex);
                     key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
                     key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
                     key.SetValue(ScreenModeKey, ScreenModeIndex + 1);
