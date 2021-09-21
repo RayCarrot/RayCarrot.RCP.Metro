@@ -146,8 +146,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     Logger.Error(ex, "Getting drives");
                     
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync("An error occurred getting the drives", MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.DriveSelection_RefreshError, MessageType.Error);
                     
                     return;
                 }

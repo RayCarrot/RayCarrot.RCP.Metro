@@ -4244,4 +4244,10 @@ rcpURL</comment>
   <data name="ContextMenu_OpenLocation" xml:space="preserve">
     <value>Open Location</value>
   </data>
+  <data name="Installer_Title" xml:space="preserve">
+    <value>Install {0}</value>
+  </data>
+  <data name="DriveSelection_RefreshError" xml:space="preserve">
+    <value>An error occurred when finding available drives</value>
+  </data>
 </root>

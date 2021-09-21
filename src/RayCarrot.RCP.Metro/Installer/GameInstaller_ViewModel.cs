@@ -30,9 +30,8 @@ namespace RayCarrot.RCP.Metro
             // Set game
             Game = game;
 
-            // TODO-UPDATE: Localize
             // Set title
-            Title = $"Install {game.GetGameInfo().DisplayName}";
+            Title = String.Format(Resources.Installer_Title, game.GetGameInfo().DisplayName);
 
             // Create cancellation token source
             CancellationTokenSource = new CancellationTokenSource();

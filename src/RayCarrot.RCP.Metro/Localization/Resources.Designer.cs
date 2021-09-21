@@ -4292,6 +4292,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when finding available drives.
+        /// </summary>
+        public static string DriveSelection_RefreshError {
+            get {
+                return ResourceManager.GetString("DriveSelection_RefreshError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Launch mode.
         /// </summary>
         public static string EducationalConfig_LaunchMode {
@@ -6144,6 +6153,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Installer_SuccessHeader {
             get {
                 return ResourceManager.GetString("Installer_SuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install {0}.
+        /// </summary>
+        public static string Installer_Title {
+            get {
+                return ResourceManager.GetString("Installer_Title", resourceCulture);
             }
         }
         
