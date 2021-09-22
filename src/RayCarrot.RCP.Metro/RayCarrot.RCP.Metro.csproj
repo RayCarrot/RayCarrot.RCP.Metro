@@ -1589,13 +1589,13 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="gong-wpf-dragdrop">
-      <Version>2.4.1</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET-Q8-x86">
-      <Version>8.3.1</Version>
+      <Version>8.3.2</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET.SystemWindowsMedia">
-      <Version>4.0.6</Version>
+      <Version>4.0.7</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
       <Version>2.4.7</Version>
