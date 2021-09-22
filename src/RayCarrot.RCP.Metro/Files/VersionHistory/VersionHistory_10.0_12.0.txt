@@ -1,16 +1,9 @@
 ﻿-----   Version 12.0.0 - September ??, 2021   -----
 • Visual changes:
-	• Redesigned the tab headers to use colored icons and underlines
-	• The app news window is now split into multiple pages
-	• Controls now have rounded corners and slightly thicker borders
-	• Changed which areas of pages use scroll bars
-	• Windows now appear as popups within the parent window (this can be reverted back to the previous behavior in the settings)
-	• Tab transitions now move in the direction of the new selected tab rather than always in the same direction
-	• The download dialog has been redesigned and now shows the input/output paths when the user level is set to debug
-	• The drive browser dialog has been redesigned
-	• Updated the context menus to use icons and have undo/redo options
-	• Windows now have specific icons rather than using the app icon
-	• Changed the icon for the other utilities page
+	• Tab headers use colored icons and underlines
+	• Controls have rounded corners and slightly thicker borders
+	• Windows appear as popups within the main window (this can be reverted back to the previous behavior in the settings)
+	• Windows have specific icons rather than using the app icon
 • Resolution selections in game configurations now have a drop-down for choosing a supported resolution
 • Added a resolution and framerate selection in the Rayman Raving Rabbids configuration
 • Added an option to reset all the app settings
@@ -23,12 +16,20 @@ Other changes:
 • Updated the updater
 • Localized several previously non-localized strings
 • Normalized the way the times are displayed for game progression to minutes:seconds.milliseconds
-• Updated the welcome window with options for the language and user level and removed the option to disable update checks
+• Visual changes:
+	• The scrollable areas of pages has changed to avoid layout issues
+	• Tab transitions move in the direction of the new selected tab rather than always in the same direction
+	• The app news window is split into multiple pages
+	• The download dialog has been redesigned and now shows the input/output paths when the user level is set to debug
+	• The drive browser dialog has been redesigned
+	• The welcome window has been redesigned with options for the language and user level, while removing the option to disable update checks (this can still be done in the settings page)
+	• The context menus use icons and undo/redo options
+	• The icon has changed for the other utilities page
 • Replaced the logging framework with NLog
 	• Opening the app will archive the previous log file up to 5 times rather than writing to the same one
 	• The log viewer is no longer enabled by default to avoid unnecessarily storing all logs
 	• The log viewer is now split into columns for each field with an info icon for optional exception details
-	• Removed the debug setting to display exceptions
+	• Removed the debug setting to display exception messages as they occur
 	• Added additional launch arguments for controlling the logging
 • Removed features
 	• Removed the option to minimize the app to the tray
