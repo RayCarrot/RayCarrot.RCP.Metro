@@ -379,7 +379,7 @@ namespace RayCarrot.RCP.Metro
             // Show first launch info
             if (Data.App_IsFirstLaunch || 
                 // Show if updated to version 12 due to it having been changed
-                Data.App_LastVersion < new Version(12, 0, 0, 2))
+                Data.App_LastVersion < new Version(12, 0, 0, 5))
             {
                 // Close the splash screen
                 CloseSplashScreen();
