@@ -1450,9 +1450,9 @@ tempDir2</comment>
     <value>Welcome to the Rayman Control Panel™</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>This program allows quick and easy access to all your installed Rayman games on your computer. From here you'll be able to launch them and their configuration programs, configure them directly from this program with added options (such as button mapping, widescreen support and more) and backup/restore each game's save files.
-Missing any Rayman games on your computer? You can easily access the available digital shops to purchase them or use the disc installer to install from any disc.
-To get started, check the boxes you want below and press 'Continue' to get to the game selection menu.</value>
+    <value>This program is an unofficial open source community project created by RayCarrot. It allows quick and easy access to all installed PC Rayman games on your computer, with additional features such as extended configuration support, utilities, save file backups, save data management, texture modifications and more.
+Supported games can be installed directly from their disc through the program.
+To get started, change the settings you want below and press 'Continue'. The settings can be changed at any time in the settings page.</value>
   </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>Your configuration changes have not been saved. Do you want to exit and discard them?</value>
@@ -4208,12 +4208,6 @@ rcpURL</comment>
   <data name="InvalidResolution" xml:space="preserve">
     <value>Invalid resolution. Must be in the format of 'Width x Height'.</value>
   </data>
-  <data name="Settings_UseChildWindows" xml:space="preserve">
-    <value>Show dialogs within windows</value>
-  </data>
-  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
-    <value>Disabling this will show dialogs as separate, blocking windows, while enabling it will show them inside of the window they originated from</value>
-  </data>
   <data name="Settings_DisableGameValidation" xml:space="preserve">
     <value>Disable game validation</value>
   </data>
@@ -4249,5 +4243,11 @@ rcpURL</comment>
   </data>
   <data name="DriveSelection_RefreshError" xml:space="preserve">
     <value>An error occurred when finding available drives</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Show windows as popups</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Enabling this will show windows, such as the game options window or message dialogs, as popups within in the main window. Disabling this will show them as separate windows.</value>
   </data>
 </root>

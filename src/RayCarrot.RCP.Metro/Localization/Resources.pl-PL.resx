@@ -1389,9 +1389,6 @@ Spróbować ponownie?</value>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
     <value>Witamy w Rayman Control Panel™</value>
   </data>
-  <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>Ten program pozwala na szybki i łatwy dostęp do wszystkich zainstalowanych gier Rayman na twoim komputerze. Stąd będziesz mógł uruchamiać je i ich programy konfiguracyjne, konfigurować je bezpośrednio z tego programu z dodatkowymi opcjami (takimi jak mapowanie przycisków, obsługa panoramiczna i więcej) oraz tworzyć kopie zapasowe/przywracać pliki zapisu każdej gry. Brakuje ci jakichkolwiek gier Rayman na twoim komputerze? Możesz łatwo uzyskać dostęp do dostępnych sklepów cyfrowych, aby je kupić lub skorzystać z instalatora płyt, aby zainstalować je z dowolnego dysku. Aby rozpocząć, zaznacz wybrane pola poniżej i naciśnij 'Kontynuuj', aby przejść do menu wyboru gier.</value>
-  </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>Twoje zmiany konfiguracyjne nie zostały zapisane. Czy chcesz wyjść i je porzucić?</value>
   </data>
@@ -1616,7 +1613,6 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel™</value>
-    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Narzędzie do ścieżki dźwiękowej na poziom, Usunięcie sprawdzania dysku Rayman M/Arena</value>
@@ -1872,11 +1868,9 @@ Aktualności:
   </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
-    <comment>trj8p</comment>
   </data>
   <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
     <value>raylives</value>
-    <comment>raylives</comment>
   </data>
   <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
     <value>[TAB]bertrand</value>
@@ -1886,11 +1880,9 @@ Aktualności:
   </data>
   <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
     <value>2x2rmfmf</value>
-    <comment>2x2rmfmf</comment>
   </data>
   <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
     <value>goldfist</value>
-    <comment>goldfist</comment>
   </data>
   <data name="Cheats_R1_FistPowerInput3" xml:space="preserve">
     <value>[TAB]antoine</value>
@@ -1900,11 +1892,9 @@ Aktualności:
   </data>
   <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
     <value>en5gol2g</value>
-    <comment>en5gol2g</comment>
   </data>
   <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
     <value>power</value>
-    <comment>power</comment>
   </data>
   <data name="Cheats_R1_AllPowerUpsInput3" xml:space="preserve">
     <value>[TAB]benoit</value>
@@ -1914,11 +1904,9 @@ Aktualności:
   </data>
   <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
     <value>kom0ogdk</value>
-    <comment>kom0ogdk</comment>
   </data>
   <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
     <value>raypoint</value>
-    <comment>raypoint</comment>
   </data>
   <data name="Cheats_R1_FullHealthInput3" xml:space="preserve">
     <value>[TAB]christ</value>
@@ -1928,11 +1916,9 @@ Aktualności:
   </data>
   <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
     <value>86e40g91</value>
-    <comment>86e40g91</comment>
   </data>
   <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
     <value>raywiz</value>
-    <comment>raywiz</comment>
   </data>
   <data name="Cheats_R1_10TingsInput3" xml:space="preserve">
     <value>[TAB]jojo</value>
@@ -1943,11 +1929,9 @@ Aktualności:
   </data>
   <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
     <value>o8feh</value>
-    <comment>o8feh</comment>
   </data>
   <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
     <value>winmap</value>
-    <comment>winmap</comment>
   </data>
   <data name="Cheats_R1_SkipLevelInput3" xml:space="preserve">
     <value>[TAB]cyril</value>
@@ -1969,32 +1953,27 @@ Aktualności:
   </data>
   <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
     <value>freq10</value>
-    <comment>freq10</comment>
   </data>
   <data name="Cheats_R1_80RefreshRateTitle" xml:space="preserve">
     <value>Częstotliwość odświeżania 80 MHz</value>
   </data>
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq80</value>
-    <comment>freq80</comment>
   </data>
   <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
     <value>Efekt soczewki</value>
   </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
-    <comment>lens</comment>
   </data>
   <data name="Cheats_R1_AllLevelsTitle" xml:space="preserve">
     <value>Odblokuj wszystkie poziomy</value>
   </data>
   <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
     <value>4ctrepfj</value>
-    <comment>4ctrepfj</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
     <value>alworld</value>
-    <comment>alworld</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
     <value>[TAB]francois</value>
@@ -2005,11 +1984,9 @@ Aktualności:
   </data>
   <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
     <value>b76b7081</value>
-    <comment>b76b7081</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
     <value>cbray</value>
-    <comment>cbray</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput3" xml:space="preserve">
     <value>[TAB]olivier</value>
@@ -2085,35 +2062,30 @@ Aktualności:
   </data>
   <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
     <value>glowfist</value>
-    <comment>glowfist</comment>
   </data>
   <data name="Cheats_R2_RestoreHealthTitle" xml:space="preserve">
     <value>Przywrócenie zdrowia</value>
   </data>
   <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
     <value>gimmelife</value>
-    <comment>gimmelife</comment>
   </data>
   <data name="Cheats_R2_5LumsTitle" xml:space="preserve">
     <value>Zyskanie 5 żółtych lumów</value>
   </data>
   <data name="Cheats_R2_5LumsInput" xml:space="preserve">
     <value>gimmelumz</value>
-    <comment>gimmelumz</comment>
   </data>
   <data name="Cheats_R2_LevelSelectionTitle" xml:space="preserve">
     <value>Przejście do dowolnego poziomu</value>
   </data>
   <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
     <value>gothere</value>
-    <comment>gothere</comment>
   </data>
   <data name="Cheats_R2_GrappleTitle" xml:space="preserve">
     <value>Odblokuj moc chwytania</value>
   </data>
   <data name="Cheats_R2_GrappleInput" xml:space="preserve">
     <value>hangon</value>
-    <comment>hangon</comment>
   </data>
   <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
     <value>Zyskanie maksymalnego zdrowia</value>
@@ -2132,35 +2104,30 @@ Aktualności:
   </data>
   <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
     <value>NOMOVIES</value>
-    <comment>NOMOVIES</comment>
   </data>
   <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
     <value>Nowe ekrany ładowania</value>
   </data>
   <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
     <value>allvign</value>
-    <comment>allvign</comment>
   </data>
   <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
     <value>Wyłącz Murfy'ego</value>
   </data>
   <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
     <value>nomoremurfy</value>
-    <comment>nomoremurfy</comment>
   </data>
   <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
     <value>Uzyskaj dostęp do ukrytego obszaru w Grobowcu Starożytnych</value>
   </data>
   <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
     <value>playjeff</value>
-    <comment>playjeff</comment>
   </data>
   <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
     <value>Uzyskaj dostęp do Menezis</value>
   </data>
   <data name="Cheats_R2_MenezisInput" xml:space="preserve">
     <value>shootemup</value>
-    <comment>shootemup</comment>
   </data>
   <data name="Cheats_RM" xml:space="preserve">
     <value>Music team:
@@ -2174,14 +2141,12 @@ Przytrzymaj L1 + R1 w menu (lub odpowiednik na aktualnie używanym kontrolerze),
   </data>
   <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
     <value>esc</value>
-    <comment>esc</comment>
   </data>
   <data name="Cheats_RM3_ReverseMapTitle" xml:space="preserve">
     <value>Odwróć mapę</value>
   </data>
   <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
     <value>reverse</value>
-    <comment>reverse</comment>
   </data>
   <data name="Cheats_RM_UnlockBattlesTitle" xml:space="preserve">
     <value>Odblokuj wszystkie poziomy bitewne</value>
@@ -2275,11 +2240,9 @@ Przytrzymaj L1 + R1 w menu (lub odpowiednik na aktualnie używanym kontrolerze),
   </data>
   <data name="FiestaRunVersion_Preload" xml:space="preserve">
     <value>Preload Edition</value>
-    <comment>Preload Edition</comment>
   </data>
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
-    <comment>Windows 10 Edition</comment>
   </data>
   <data name="Config_FiestaRunVersion" xml:space="preserve">
     <value>Wersja Rayman Fiesta Run</value>
@@ -2304,7 +2267,6 @@ Przytrzymaj L1 + R1 w menu (lub odpowiednik na aktualnie używanym kontrolerze),
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
-    <comment>1.10</comment>
   </data>
   <data name="Utilities_RequiresAdmin" xml:space="preserve">
     <value>To narzędzie wymaga działania aplikacji z uprawnieniami administratora</value>
@@ -2379,7 +2341,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
-    <comment>Big file</comment>
   </data>
   <data name="GoHomeConfig_Commands" xml:space="preserve">
     <value>Polecenia niestandardowe</value>
@@ -2564,7 +2525,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
-    <comment>Rayman</comment>
   </data>
   <data name="GamesPage_Category_Rabbids" xml:space="preserve">
     <value>Kórliki</value>
@@ -2709,7 +2669,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>
-    <comment>Archive Explorer™</comment>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Wystąpił błąd w Archive Explorer ™ i program musi zostać zamknięty</value>
@@ -2740,7 +2699,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>
-    <comment>Archive Explorer™</comment>
   </data>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Konwerterowanie</value>
@@ -2911,115 +2869,87 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Dawno, dawno temu</value>
-    <comment>Once upon a Time</comment>
   </data>
   <data name="RL_LevelName_1_2" xml:space="preserve">
     <value>Straszny zamek</value>
-    <comment>Creepy Castle</comment>
   </data>
   <data name="RL_LevelName_1_3" xml:space="preserve">
     <value>Czarodziejski las</value>
-    <comment>Enchanted Forest</comment>
   </data>
   <data name="RL_LevelName_1_4" xml:space="preserve">
     <value>Trasa linowa</value>
-    <comment>Ropes Course</comment>
   </data>
   <data name="RL_LevelName_1_5" xml:space="preserve">
     <value>Ruchome piaski</value>
-    <comment>Quick Sand</comment>
   </data>
   <data name="RL_LevelName_1_6" xml:space="preserve">
     <value>Jak ustrzelić smoka</value>
-    <comment>How to Shoot your Dragon</comment>
   </data>
   <data name="RL_LevelName_2_1" xml:space="preserve">
     <value>Ray i magiczna fasola</value>
-    <comment>Ray and the Beanstalk</comment>
   </data>
   <data name="RL_LevelName_2_2" xml:space="preserve">
     <value>Wichry dziwaczności</value>
-    <comment>The Winds of Strange</comment>
   </data>
   <data name="RL_LevelName_2_3" xml:space="preserve">
     <value>Zamek w chmurach</value>
-    <comment>Castle in the Clouds</comment>
   </data>
   <data name="RL_LevelName_2_4" xml:space="preserve">
     <value>Na wysokich obrotach</value>
-    <comment>Altitude Quickness</comment>
   </data>
   <data name="RL_LevelName_2_5" xml:space="preserve">
     <value>Żabo-LOT-em bliżej</value>
-    <comment>When Toads Fly</comment>
   </data>
   <data name="RL_LevelName_3_1" xml:space="preserve">
     <value>Ja cię kwaczę!</value>
-    <comment>What the Duck?</comment>
   </data>
   <data name="RL_LevelName_3_2" xml:space="preserve">
     <value>Zepsuty do szpiku kości</value>
-    <comment>Spoiled Rotten</comment>
   </data>
   <data name="RL_LevelName_3_3" xml:space="preserve">
     <value>Nadzienie matką głupich</value>
-    <comment>I've Got a Filling</comment>
   </data>
   <data name="RL_LevelName_3_4" xml:space="preserve">
     <value>Węże w cieście</value>
-    <comment>Snakes on a Cake</comment>
   </data>
   <data name="RL_LevelName_3_5" xml:space="preserve">
     <value>Lucha Libre i wielki pościg</value>
-    <comment>Lucha Libre Get Away</comment>
   </data>
   <data name="RL_LevelName_4_1" xml:space="preserve">
     <value>Tajemnicza nadmuchiwana wyspa</value>
-    <comment>The Mysterious Inflatable Island</comment>
   </data>
   <data name="RL_LevelName_4_2" xml:space="preserve">
     <value>Zwodnicze światła</value>
-    <comment>The Deadly Lights</comment>
   </data>
   <data name="RL_LevelName_4_3" xml:space="preserve">
     <value>Pałac z głębin</value>
-    <comment>Mansion of the Deep</comment>
   </data>
   <data name="RL_LevelName_4_4" xml:space="preserve">
     <value>Stacja-infiltracja</value>
-    <comment>Infiltration Station</comment>
   </data>
   <data name="RL_LevelName_4_5" xml:space="preserve">
     <value>Zasadzka w windzie</value>
-    <comment>Elevator Ambush</comment>
   </data>
   <data name="RL_LevelName_4_6" xml:space="preserve">
     <value>Zawsze się znajdzie grubsza ryba</value>
-    <comment>There's Always a Bigger Fish</comment>
   </data>
   <data name="RL_LevelName_5_1" xml:space="preserve">
     <value>Tarcza w górę... i w dół</value>
-    <comment>Shields Up... and Down</comment>
   </data>
   <data name="RL_LevelName_5_2" xml:space="preserve">
     <value>Mroczne stwory powstają</value>
-    <comment>The Dark Creatures Rise</comment>
   </data>
   <data name="RL_LevelName_5_3" xml:space="preserve">
     <value>Niesamowity labirynt</value>
-    <comment>The Amazing Maze</comment>
   </data>
   <data name="RL_LevelName_5_4" xml:space="preserve">
     <value>Lawą, mości panowie!</value>
-    <comment>The Great Lava Pursuit</comment>
   </data>
   <data name="RL_LevelName_5_5" xml:space="preserve">
     <value>Otoczony i niebezpieczny</value>
-    <comment>Swarmed and Dangerous</comment>
   </data>
   <data name="RL_LevelName_5_6" xml:space="preserve">
     <value>Piekło uciekło</value>
-    <comment>Hell Breaks Loose</comment>
   </data>
   <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
     <value>Pliki zapisu gry Rayman Legends</value>
@@ -3121,11 +3051,9 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>Scieżka Życia</value>
-    <comment>The Walk of Life</comment>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>Scieżka Mocy</value>
-    <comment>The Walk of Power</comment>
   </data>
   <data name="Download_ManualInstructions" xml:space="preserve">
     <value>Pobierz pliki:
@@ -3193,67 +3121,51 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="RM_RaceName_0" xml:space="preserve">
     <value>Ruiny</value>
-    <comment>First Ruins</comment>
   </data>
   <data name="RM_RaceName_1" xml:space="preserve">
     <value>Wieża Nebula</value>
-    <comment>Nebulous Tower</comment>
   </data>
   <data name="RM_RaceName_2" xml:space="preserve">
     <value>Mroczne Podziemia</value>
-    <comment>Dark Sewer</comment>
   </data>
   <data name="RM_RaceName_3" xml:space="preserve">
     <value>Plaża</value>
-    <comment>Dawn Sand</comment>
   </data>
   <data name="RM_RaceName_4" xml:space="preserve">
     <value>Kanion</value>
-    <comment>Water Canyon</comment>
   </data>
   <data name="RM_RaceName_5" xml:space="preserve">
     <value>Kraina Wodospadów</value>
-    <comment>Thousand Waterfalls</comment>
   </data>
   <data name="RM_RaceName_6" xml:space="preserve">
     <value>Leśne Podskoki</value>
-    <comment>Forest Jump</comment>
   </data>
   <data name="RM_RaceName_7" xml:space="preserve">
     <value>Port</value>
-    <comment>Zenith Harbour</comment>
   </data>
   <data name="RM_RaceName_8" xml:space="preserve">
     <value>Hiszpański Galeon</value>
-    <comment>Treasure Ship</comment>
   </data>
   <data name="RM_RaceName_9" xml:space="preserve">
     <value>Labirynt Rur</value>
-    <comment>Pipe Maze</comment>
   </data>
   <data name="RM_RaceName_10" xml:space="preserve">
     <value>Fabryka Lawy</value>
-    <comment>Lava Factory</comment>
   </data>
   <data name="RM_RaceName_11" xml:space="preserve">
     <value>Elektryczny Finał</value>
-    <comment>Electric Final</comment>
   </data>
   <data name="RM_RaceName_12" xml:space="preserve">
     <value>Przyszłość</value>
-    <comment>Future</comment>
   </data>
   <data name="RM_RaceName_13" xml:space="preserve">
     <value>Big Bang</value>
-    <comment>Big Bang</comment>
   </data>
   <data name="RM_RaceName_14" xml:space="preserve">
     <value>Stres Szybkości</value>
-    <comment>Speed Stress</comment>
   </data>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Urodzony Ślizgacz</value>
-    <comment>Born To Slide</comment>
   </data>
   <data name="Help_Cheats_Description" xml:space="preserve">
     <value>Opis</value>
@@ -3617,19 +3529,15 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="Config_Device_Dma" xml:space="preserve">
     <value>Dma</value>
-    <comment>Dma</comment>
   </data>
   <data name="Config_Device_Param" xml:space="preserve">
     <value>Param</value>
-    <comment>Param</comment>
   </data>
   <data name="Config_Device_ID" xml:space="preserve">
     <value>Device ID</value>
-    <comment>Device ID</comment>
   </data>
   <data name="Config_Device_Cards" xml:space="preserve">
     <value>Cards</value>
-    <comment>Cards</comment>
   </data>
   <data name="Config_Action_Left" xml:space="preserve">
     <value>Lewo</value>
@@ -4179,12 +4087,6 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   </data>
   <data name="InvalidResolution" xml:space="preserve">
     <value>Nieprawidłowa rozdzielczość. Musi być w formacie 'Szerokość x Wysokość'.</value>
-  </data>
-  <data name="Settings_UseChildWindows" xml:space="preserve">
-    <value>Pokaż okna dialogowe w oknach</value>
-  </data>
-  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
-    <value>Wyłączenie tej funkcji spowoduje wyświetlenie okien dialogowych jako oddzielnych okien blokujących, natomiast włączenie jej spowoduje wyświetlanie ich wewnątrz okna, z którego pochodzą</value>
   </data>
   <data name="Settings_DisableGameValidation" xml:space="preserve">
     <value>Wyłącz sprawdzanie poprawności gry</value>

@@ -173,11 +173,9 @@
   </data>
   <data name="MountOption_FileInfo" xml:space="preserve">
     <value>Indica que la ruta de montaje es un archivo</value>
-    <comment>Indica que la ruta de montaje es un archivo</comment>
   </data>
   <data name="MountOption_DriveInfo" xml:space="preserve">
     <value>Indica que la ruta de montaje es una unidad o disco</value>
-    <comment>Indica que la ruta de montaje es una unidad o disco</comment>
   </data>
   <data name="DosBoxSettingsHeader" xml:space="preserve">
     <value>Ajustes de DOSBox</value>
@@ -187,7 +185,6 @@
   </data>
   <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
     <value>Pantalla completa</value>
-    <comment>Pantalla completa</comment>
   </data>
   <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
     <value>Iniciar DOSBox en pantalla Completa</value>
@@ -256,102 +253,78 @@ hacer mas grande/mejorar los modos de baja resolución</value>
   </data>
   <data name="DosBoxOptions_Commands" xml:space="preserve">
     <value>Comandos de DOSBox</value>
-    <comment>Comandos de DOSBox</comment>
   </data>
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(Opcional)</value>
-    <comment>(Opcional)</comment>
   </data>
   <data name="DosBoxOptions_Recommended" xml:space="preserve">
     <value>Usar las configuraciones recomendadas</value>
-    <comment>Usar las configuraciones recomendadas</comment>
   </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Resolución</value>
-    <comment>Resolución</comment>
   </data>
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Pantalla completa</value>
-    <comment>Pantalla completa</comment>
   </data>
   <data name="Config_FullscreenInfo" xml:space="preserve">
     <value>Haz que el juego se ejecute en pantalla completa, del caso contrario ejecutalo en modo ventana</value>
   </data>
   <data name="Config_Graphics" xml:space="preserve">
     <value>Gráficos</value>
-    <comment>Gráficos</comment>
   </data>
   <data name="Config_TriLinear" xml:space="preserve">
     <value>TriLinear</value>
-    <comment>TriLinear</comment>
   </data>
   <data name="Config_TnL" xml:space="preserve">
     <value>Transform y Lighting</value>
-    <comment>Transform y Lightning</comment>
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Desmarca esta opcion si hay errores gráficos en el juego.</value>
-    <comment>Desmarca esto si hay fallas gráficas en el juego.</comment>
   </data>
   <data name="Config_DynamicShadows" xml:space="preserve">
     <value>Sombras dinámicas</value>
-    <comment>Sombras dinámicas</comment>
   </data>
   <data name="Config_StaticShadows" xml:space="preserve">
     <value>Sombras estáticas</value>
-    <comment>Sombras estáticas</comment>
   </data>
   <data name="Config_Textures" xml:space="preserve">
     <value>Texturas</value>
-    <comment>Texturas</comment>
   </data>
   <data name="Config_Textures16" xml:space="preserve">
     <value>16 bits</value>
-    <comment>17 bits</comment>
   </data>
   <data name="Config_Textures32" xml:space="preserve">
     <value>34 bits</value>
-    <comment>33 bits</comment>
   </data>
   <data name="Config_Compressed" xml:space="preserve">
     <value>Comprimidos</value>
-    <comment>Comprimidos</comment>
   </data>
   <data name="Config_Video" xml:space="preserve">
     <value>Vídeo</value>
-    <comment>Vídeo</comment>
   </data>
   <data name="Config_VideoGood" xml:space="preserve">
     <value>Buena calidad</value>
-    <comment>Buena calidad</comment>
   </data>
   <data name="Config_VideoBad" xml:space="preserve">
     <value>Mala calidad</value>
-    <comment>Mala calidad</comment>
   </data>
   <data name="Config_VideoAuto" xml:space="preserve">
     <value>Ajuste automático de calidad</value>
-    <comment>Ajuste automático de calidad</comment>
   </data>
   <data name="Config_Video16Bpp" xml:space="preserve">
     <value>16 bits por pixel</value>
-    <comment>17 bits por pixel</comment>
   </data>
   <data name="Config_Video32Bpp" xml:space="preserve">
     <value>34 bits por pixel</value>
-    <comment>33 bits por pixel</comment>
   </data>
   <data name="Config_Language" xml:space="preserve">
     <value>Idioma</value>
-    <comment>Idioma</comment>
   </data>
   <data name="Config_Controller" xml:space="preserve">
     <value>Mando</value>
-    <comment>Controlador</comment>
   </data>
   <data name="Config_UseController" xml:space="preserve">
     <value>Usar mando conectado</value>
-    <comment>Usar controlador conectado</comment>
   </data>
   <data name="Config_ControllerInfo" xml:space="preserve">
     <value>Si el mando no es reconocido, puedes habilitar soporte del mando aquí.</value>
@@ -367,7 +340,6 @@ hacer mas grande/mejorar los modos de baja resolución</value>
   </data>
   <data name="Config_Network" xml:space="preserve">
     <value>Red</value>
-    <comment>Red</comment>
   </data>
   <data name="Config_ResolutionR2Info" xml:space="preserve">
     <value>Si NO se ha habilitado el soporte para pantalla ancha, la imagen se verá deformada</value>
@@ -406,19 +378,15 @@ Configuración de las teclas del teclado</value>
   </data>
   <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
     <value>Acción</value>
-    <comment>Acción</comment>
   </data>
   <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
     <value>Tecla</value>
-    <comment>Tecla</comment>
   </data>
   <data name="Config_ButtonMappingReset" xml:space="preserve">
     <value>Reiniciar</value>
-    <comment>Reiniciar</comment>
   </data>
   <data name="Config_RRRScreenMode" xml:space="preserve">
     <value>Modo de pantalla</value>
-    <comment>Modo de pantalla</comment>
   </data>
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value> 
@@ -429,80 +397,63 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
-    <comment>Créditos</comment>
   </data>
   <data name="About_UpdateHistory" xml:space="preserve">
     <value>Historia de actualizaciones</value>
-    <comment>Historia de actualizaciones</comment>
   </data>
   <data name="About_UpdateCheck" xml:space="preserve">
     <value>Comprobar si hay una nueva actualización</value>
-    <comment>Chequear por nuevas actualizaciones</comment>
   </data>
   <data name="About_GitHub" xml:space="preserve">
     <value>GitHub</value>
-    <comment>GitHub</comment>
   </data>
   <data name="About_Twitter" xml:space="preserve">
     <value>Twitter</value>
-    <comment>Twitter</comment>
   </data>
   <data name="About_YouTube" xml:space="preserve">
     <value>YouTube</value>
-    <comment>YouTube</comment>
   </data>
   <data name="About_Email" xml:space="preserve">
     <value>Correo electrónico</value>
-    <comment>Correo electrónico</comment>
   </data>
   <data name="Backup_LastBackupDate" xml:space="preserve">
     <value>Última copia de seguridad</value>
-    <comment>Última copia de seguridad</comment>
   </data>
   <data name="Backup_LastBackupSize" xml:space="preserve">
     <value>Tamaño de copia de seguridad</value>
-    <comment>Tamaño de copia de seguridad</comment>
   </data>
   <data name="Backup_Backup" xml:space="preserve">
     <value>Copia de Seguridad</value>
-    <comment>Copia de Seguridad</comment>
   </data>
   <data name="Backup_Restore" xml:space="preserve">
     <value>Restaurar</value>
-    <comment>Restaurar</comment>
   </data>
   <data name="Games_Installed" xml:space="preserve">
     <value>Instalado</value>
-    <comment>Instalado</comment>
   </data>
   <data name="Games_NotInstalled" xml:space="preserve">
     <value>No instalado</value>
-    <comment>No instalado</comment>
   </data>
   <data name="Help_CategoryHelp" xml:space="preserve">
     <value>Seleccionar la ayuda disponible de las categorias de la izquierda</value>
   </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Nível de usuario</value>
-    <comment>Nível de usuario</comment>
   </data>
   <data name="Settings_UserLevelInfo" xml:space="preserve">
     <value>El Nivel de usuario determina que opciones y información estan disponibles dentro de la aplicación. Como más alto sea el nivel de usuario, más avanzadas serán las opciones y más información será mostrada hacia el usuario</value>
   </data>
   <data name="Settings_UserLevelNormal" xml:space="preserve">
     <value>Normal</value>
-    <comment>Normal</comment>
   </data>
   <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
     <value>Usuario Normal - Opción recomendada para la mayoría de usuarios. Ofrece todas las opciones por defecto. Sin detalles técnicos ni opciones mas avanzadas.</value>
   </data>
   <data name="Settings_UserLevelAdvanced" xml:space="preserve">
     <value>Avanzado</value>
-    <comment>Avanzado</comment>
   </data>
   <data name="Settings_UserLevelTechnical" xml:space="preserve">
     <value>Técnico</value>
-    <comment>Técnico</comment>
   </data>
   <data name="Settings_UserLevelDebug" xml:space="preserve">
     <value>Depurador</value>
@@ -512,27 +463,21 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Settings_LanguageContribute" xml:space="preserve">
     <value>Contribuir en las traducciones</value>
-    <comment>Contribuir con traducciones</comment>
   </data>
   <data name="Settings_DesignHeader" xml:space="preserve">
     <value>Diseño</value>
-    <comment>Diseño</comment>
   </data>
   <data name="Settings_DesignLight" xml:space="preserve">
     <value>Claro</value>
-    <comment>Luz</comment>
   </data>
   <data name="Settings_DesignDark" xml:space="preserve">
     <value>Oscuro</value>
-    <comment>Oscuro</comment>
   </data>
   <data name="Settings_DesignAnimations" xml:space="preserve">
     <value>Activar animaciones</value>
-    <comment>Activar animaciones</comment>
   </data>
   <data name="Settings_DesignSuccessMessages" xml:space="preserve">
     <value>Mostrar mensajes de éxito</value>
-    <comment>Mostrar mensajes de éxito</comment>
   </data>
   <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
     <value>Mostrar un mensaje cuando una operación haya sido exitosa.</value>
@@ -548,7 +493,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Settings_DosBoxHeader" xml:space="preserve">
     <value>DOSBox</value>
-    <comment>DOSBox</comment>
   </data>
   <data name="Settings_DosBoxPath" xml:space="preserve">
     <value>Ruta del archivo de DOSBox </value>
@@ -559,79 +503,60 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Localización de Copia de Seguridad</value>
-    <comment>Localización de Copia de Seguridad</comment>
   </data>
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Inicio</value>
-    <comment>Inicio</comment>
   </data>
   <data name="Settings_StartupGameFinder" xml:space="preserve">
     <value>Buscar juegos instalados</value>
-    <comment>Buscar juegos instalados</comment>
   </data>
   <data name="Settings_StartupUpdateCheck" xml:space="preserve">
     <value>Buscar actualizaciones del programa</value>
-    <comment>Buscar actualizaciones del programa</comment>
   </data>
   <data name="Settings_GeneralHeader" xml:space="preserve">
     <value>General</value>
-    <comment>General</comment>
   </data>
   <data name="R1U_TPLSInstall" xml:space="preserve">
     <value>Instalar</value>
-    <comment>Instalar</comment>
   </data>
   <data name="R1U_TPLSUninstall" xml:space="preserve">
     <value>Desinstalar</value>
-    <comment>Desinstalar</comment>
   </data>
   <data name="SettingEnabled" xml:space="preserve">
     <value>Activado</value>
-    <comment>Activado</comment>
   </data>
   <data name="SettingDisabled" xml:space="preserve">
     <value>Desactivado</value>
-    <comment>Desactivado</comment>
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
     <value>Versión de Rayman</value>
-    <comment>Versión de Rayman</comment>
   </data>
   <data name="R1U_CompleteOSTHeader" xml:space="preserve">
     <value>Banda sonora completa</value>
-    <comment>Banda sonora completa</comment>
   </data>
   <data name="R1U_CompleteOSTReplace" xml:space="preserve">
     <value>Reemplazar con la banda sonora completa</value>
-    <comment>Reemplazar con la banda sonora completa</comment>
   </data>
   <data name="R1U_CompleteOSTRevert" xml:space="preserve">
     <value>Revertir de vuelta para la banda sonora incompleta</value>
-    <comment>Revertir de vuelta para la banda sonora incompleta</comment>
   </data>
   <data name="R2U_TranslationsHeader" xml:space="preserve">
     <value>Traducciones no oficiales</value>
-    <comment>Traducciones no-oficiales</comment>
   </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Aplicar</value>
-    <comment>Aplicar</comment>
   </data>
   <data name="R3U_DirectPlayHeader" xml:space="preserve">
     <value>DirectPlay</value>
-    <comment>DirectPlay</comment>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Reemplazar archivos infectados</value>
-    <comment>Reemplazar archivos infectados</comment>
   </data>
   <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
     <value>Idioma</value>
-    <comment>Idioma</comment>
   </data>
   <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
     <value>Reemplazar</value>
-    <comment>Reemplazar</comment>
   </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Videos de Alta Calidad</value>
@@ -641,113 +566,87 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="ROU_DebugCommandsMap" xml:space="preserve">
     <value>Mapa</value>
-    <comment>Mapa</comment>
   </data>
   <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
     <value>Esto va a permitir un mapa específico a ser cargado en vez del menú principal al iniciar el juego.</value>
-    <comment>Esto va a permitir un mapa específico a ser cargado en vez del menú principal al iniciar el juego.</comment>
   </data>
   <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
     <value>Idioma</value>
-    <comment>Idioma</comment>
   </data>
   <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
     <value>Esto va a cambiar el idioma del juego</value>
   </data>
   <data name="ROU_UpdateHeader" xml:space="preserve">
     <value>Actualizar a 1.02 (Versión de disco)</value>
-    <comment>Actualizar a 1.02 (Versión de disco)</comment>
   </data>
   <data name="ROU_UpdateInfo" xml:space="preserve">
     <value>En el caso que Rayman Origins no este actualizado a la versión 1.0.2 (La última) utiliza esta herramienta para actualizar el juego</value>
   </data>
   <data name="ROU_UpdateUpdate" xml:space="preserve">
     <value>Actualizar</value>
-    <comment>Actualizar</comment>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Abrir página de la tienda</value>
-    <comment>Abrir página de la tienda</comment>
   </data>
   <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
     <value>Abrir página de la comunidad</value>
-    <comment>Abrir página de la comunidad</comment>
   </data>
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Abrir ubicación del juego</value>
-    <comment>Abrir localización</comment>
   </data>
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>Opciones</value>
-    <comment>Opciones</comment>
   </data>
   <data name="GameDisplay_Launch" xml:space="preserve">
     <value>Iniciar</value>
-    <comment>Iniciar</comment>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Instalar por el disco</value>
-    <comment>Instalar por el disco</comment>
   </data>
   <data name="GameDisplay_Locate" xml:space="preserve">
     <value>Localizar</value>
-    <comment>Localizar</comment>
   </data>
   <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
     <value>Comprar en GOG</value>
-    <comment>Comprar por GOG</comment>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
     <value>Comprar en Ubisoft Connect</value>
-    <comment>Comprar por Uplay</comment>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Comprar en Steam</value>
-    <comment>Comprar por Steam</comment>
   </data>
   <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
     <value>Comprar en Microsoft Store</value>
-    <comment>Comprar por Microsoft Store</comment>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mappeador</value>
-    <comment>Mapper</comment>
   </data>
   <data name="GameLink_Setup" xml:space="preserve">
     <value>Setup</value>
-    <comment>Setup</comment>
   </data>
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>Configuración nGlide</value>
-    <comment>Configuración nGlide</comment>
   </data>
   <data name="ActionSucceeded" xml:space="preserve">
     <value>Acción exitosa</value>
-    <comment>Acción exitosa</comment>
   </data>
   <data name="MessageHeader_Generic" xml:space="preserve">
     <value>Mensaje Genérico</value>
-    <comment>Mensaje Genérico</comment>
   </data>
   <data name="MessageHeader_Information" xml:space="preserve">
     <value>Mensaje de información</value>
-    <comment>Mensaje de información</comment>
   </data>
   <data name="MessageHeader_Error" xml:space="preserve">
     <value>Mensaje de error</value>
-    <comment>Mensaje de error</comment>
   </data>
   <data name="MessageHeader_Warning" xml:space="preserve">
     <value>Mensaje de aviso</value>
-    <comment>Mensaje de aviso</comment>
   </data>
   <data name="MessageHeader_Success" xml:space="preserve">
     <value>Mensaje de éxito</value>
-    <comment>Mensaje de éxito</comment>
   </data>
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Mensaje de pregunta</value>
-    <comment>Mensaje de pregunta</comment>
   </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>El archivo especificado no ha sido encontrado</value>
@@ -792,7 +691,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Update_UnknownError" xml:space="preserve">
     <value>Error desconocido</value>
-    <comment>Error desconocido</comment>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Se ha encontrado una nueva versión</value>
@@ -802,7 +700,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
     <value>Compatibilidad</value>
-    <comment>Compatibilidad</comment>
   </data>
   <data name="Help_RCP_Compatibility" xml:space="preserve">
     <value>Se necesita Windows Vista como minimo para ejecutar el programa, se recomienda Windows 7 o superior.
@@ -810,11 +707,9 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
     <value>Instalador del juego</value>
-    <comment>Instalador de juego</comment>
   </data>
   <data name="Help_Games_R1" xml:space="preserve">
     <value>Rayman 3</value>
-    <comment>Rayman 2</comment>
   </data>
   <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
     <value>Emulador de MS-DOS</value>
@@ -830,7 +725,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Help_Games_RMA" xml:space="preserve">
     <value>Rayman M/Arena</value>
-    <comment>Rayman M/Arena</comment>
   </data>
   <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
     <value>Faltan Texturas
@@ -838,15 +732,12 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Help_Games_R3" xml:space="preserve">
     <value>Rayman 3</value>
-    <comment>Rayman 4</comment>
   </data>
   <data name="Help_Games_RRR" xml:space="preserve">
     <value>Rayman Raving Rabbids</value>
-    <comment>Rayman Raving Rabbids</comment>
   </data>
   <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
     <value>Error jade_enr.exe</value>
-    <comment>Error jade_enr.exe</comment>
   </data>
   <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
     <value>4:3</value>
@@ -856,11 +747,9 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
     <value>16:9</value>
-    <comment>16:10</comment>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel™</value>
-    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
     <value>Ejecutar como administrador (Opcional)</value>
@@ -870,7 +759,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="GameOptions_Config" xml:space="preserve">
     <value>Configuración</value>
-    <comment>Configuración</comment>
   </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
@@ -916,89 +804,69 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
-    <comment>lens</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
     <value>4ctrepfj</value>
-    <comment>4ctrepfj</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
     <value>alworld</value>
-    <comment>alworld</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
     <value>b76b7081</value>
-    <comment>b76b7082</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
     <value>cbray</value>
-    <comment>cbray</comment>
   </data>
   <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
     <value>glowfist</value>
-    <comment>glowfist</comment>
   </data>
   <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
     <value>gimmelife</value>
-    <comment>gimmelife</comment>
   </data>
   <data name="Cheats_R2_5LumsInput" xml:space="preserve">
     <value>gimmelumz</value>
-    <comment>gimmelumz</comment>
   </data>
   <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
     <value>gothere</value>
-    <comment>gothere</comment>
   </data>
   <data name="Cheats_R2_GrappleInput" xml:space="preserve">
     <value>hangon</value>
-    <comment>hangon</comment>
   </data>
   <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
     <value>NOMOVIES</value>
-    <comment>NOMOVIES</comment>
   </data>
   <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
     <value>allvign</value>
-    <comment>allvign</comment>
   </data>
   <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
     <value>nomoremurfy</value>
-    <comment>nomoremurfy</comment>
   </data>
   <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
     <value>playjeff</value>
-    <comment>playjeff</comment>
   </data>
   <data name="Cheats_R2_MenezisInput" xml:space="preserve">
     <value>shootemup</value>
-    <comment>shootemup</comment>
   </data>
   <data name="FiestaRunVersion_Preload" xml:space="preserve">
     <value>Preload Edition</value>
-    <comment>Preload Edition</comment>
   </data>
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
-    <comment>Windows 10 Edition</comment>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
   </data>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
-    <comment>Big file</comment>
   </data>
   <data name="R2Config_Graphics_DirectX" xml:space="preserve">
     <value>DirectX</value>
-    <comment>DirectX</comment>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
     <value>Glide</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
-    <comment>Rayman</comment>
   </data>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>No se han encontrado archivos de importación.
@@ -1022,195 +890,147 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>
-    <comment>Archive Explorer™</comment>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>
-    <comment>Archive Explorer™</comment>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
-    <comment>Once upon a Time</comment>
   </data>
   <data name="RL_LevelName_1_2" xml:space="preserve">
     <value>Creepy Castle</value>
-    <comment>Creepy Castle</comment>
   </data>
   <data name="RL_LevelName_1_3" xml:space="preserve">
     <value>Enchanted Forest</value>
-    <comment>Enchanted Forest</comment>
   </data>
   <data name="RL_LevelName_1_4" xml:space="preserve">
     <value>Ropes Course</value>
-    <comment>Ropes Course</comment>
   </data>
   <data name="RL_LevelName_1_5" xml:space="preserve">
     <value>Quick Sand</value>
-    <comment>Quick Sand</comment>
   </data>
   <data name="RL_LevelName_1_6" xml:space="preserve">
     <value>How to Shoot your Dragon</value>
-    <comment>How to Shoot your Dragon</comment>
   </data>
   <data name="RL_LevelName_2_1" xml:space="preserve">
     <value>Ray and the Beanstalk</value>
-    <comment>Ray and the Beanstalk</comment>
   </data>
   <data name="RL_LevelName_2_2" xml:space="preserve">
     <value>The Winds of Strange</value>
-    <comment>The Winds of Strange</comment>
   </data>
   <data name="RL_LevelName_2_3" xml:space="preserve">
     <value>Castle in the Clouds</value>
-    <comment>Castle in the Clouds</comment>
   </data>
   <data name="RL_LevelName_2_4" xml:space="preserve">
     <value>Altitude Quickness</value>
-    <comment>Altitude Quickness</comment>
   </data>
   <data name="RL_LevelName_2_5" xml:space="preserve">
     <value>When Toads Fly</value>
-    <comment>When Toads Fly</comment>
   </data>
   <data name="RL_LevelName_3_1" xml:space="preserve">
     <value>What the Duck?</value>
-    <comment>What the Duck?</comment>
   </data>
   <data name="RL_LevelName_3_2" xml:space="preserve">
     <value>Spoiled Rotten</value>
-    <comment>Spoiled Rotten</comment>
   </data>
   <data name="RL_LevelName_3_3" xml:space="preserve">
     <value>I've Got a Filling</value>
-    <comment>I've Got a Filling</comment>
   </data>
   <data name="RL_LevelName_3_4" xml:space="preserve">
     <value>Snakes on a Cake</value>
-    <comment>Snakes on a Cake</comment>
   </data>
   <data name="RL_LevelName_3_5" xml:space="preserve">
     <value>Lucha Libre Get Away</value>
-    <comment>Lucha Libre Get Away</comment>
   </data>
   <data name="RL_LevelName_4_1" xml:space="preserve">
     <value>The Mysterious Inflatable Island</value>
-    <comment>The Mysterious Inflatable Island</comment>
   </data>
   <data name="RL_LevelName_4_2" xml:space="preserve">
     <value>The Deadly Lights</value>
-    <comment>The Deadly Lights</comment>
   </data>
   <data name="RL_LevelName_4_3" xml:space="preserve">
     <value>Mansion of the Deep</value>
-    <comment>Mansion of the Deep</comment>
   </data>
   <data name="RL_LevelName_4_4" xml:space="preserve">
     <value>Infiltration Station</value>
-    <comment>Infiltration Station</comment>
   </data>
   <data name="RL_LevelName_4_5" xml:space="preserve">
     <value>Elevator Ambush</value>
-    <comment>Elevator Ambush</comment>
   </data>
   <data name="RL_LevelName_4_6" xml:space="preserve">
     <value>There's Always a Bigger Fish</value>
-    <comment>There's Always a Bigger Fish</comment>
   </data>
   <data name="RL_LevelName_5_1" xml:space="preserve">
     <value>Shields Up... and Down</value>
-    <comment>Shields Up... and Down</comment>
   </data>
   <data name="RL_LevelName_5_2" xml:space="preserve">
     <value>The Dark Creatures Rise</value>
-    <comment>The Dark Creatures Rise</comment>
   </data>
   <data name="RL_LevelName_5_3" xml:space="preserve">
     <value>The Amazing Maze</value>
-    <comment>The Amazing Maze</comment>
   </data>
   <data name="RL_LevelName_5_4" xml:space="preserve">
     <value>The Great Lava Pursuit</value>
-    <comment>The Great Lava Pursuit</comment>
   </data>
   <data name="RL_LevelName_5_5" xml:space="preserve">
     <value>Swarmed and Dangerous</value>
-    <comment>Swarmed and Dangerous</comment>
   </data>
   <data name="RL_LevelName_5_6" xml:space="preserve">
     <value>Hell Breaks Loose</value>
-    <comment>Hell Breaks Loose</comment>
   </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
-    <comment>The Walk of Life</comment>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-    <comment>The Walk of Power</comment>
   </data>
   <data name="RM_RaceName_0" xml:space="preserve">
     <value>First Ruins</value>
-    <comment>First Ruins</comment>
   </data>
   <data name="RM_RaceName_1" xml:space="preserve">
     <value>Nebulous Tower</value>
-    <comment>Nebulous Tower</comment>
   </data>
   <data name="RM_RaceName_2" xml:space="preserve">
     <value>Dark Sewer</value>
-    <comment>Dark Sewer</comment>
   </data>
   <data name="RM_RaceName_3" xml:space="preserve">
     <value>Dawn Sand</value>
-    <comment>Dawn Sand</comment>
   </data>
   <data name="RM_RaceName_4" xml:space="preserve">
     <value>Water Canyon</value>
-    <comment>Water Canyon</comment>
   </data>
   <data name="RM_RaceName_5" xml:space="preserve">
     <value>Thousand Waterfalls</value>
-    <comment>Thousand Waterfalls</comment>
   </data>
   <data name="RM_RaceName_6" xml:space="preserve">
     <value>Forest Jump</value>
-    <comment>Forest Jump</comment>
   </data>
   <data name="RM_RaceName_7" xml:space="preserve">
     <value>Zenith Harbour</value>
-    <comment>Zenith Harbour</comment>
   </data>
   <data name="RM_RaceName_8" xml:space="preserve">
     <value>Treasure Ship</value>
-    <comment>Treasure Ship</comment>
   </data>
   <data name="RM_RaceName_9" xml:space="preserve">
     <value>Pipe Maze</value>
-    <comment>Pipe Maze</comment>
   </data>
   <data name="RM_RaceName_10" xml:space="preserve">
     <value>Lava Factory</value>
-    <comment>Lava Factory</comment>
   </data>
   <data name="RM_RaceName_11" xml:space="preserve">
     <value>Electric Final</value>
-    <comment>Electric Final</comment>
   </data>
   <data name="RM_RaceName_12" xml:space="preserve">
     <value>Future</value>
-    <comment>Future</comment>
   </data>
   <data name="RM_RaceName_13" xml:space="preserve">
     <value>Big Bang</value>
-    <comment>Big Bang</comment>
   </data>
   <data name="RM_RaceName_14" xml:space="preserve">
     <value>Speed Stress</value>
-    <comment>Speed Stress</comment>
   </data>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
-    <comment>Born To Slide</comment>
   </data>
   <data name="GameLink_R2Fix" xml:space="preserve">
     <value>Ray2Fix</value>
@@ -1223,18 +1043,14 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Config_Device_Dma" xml:space="preserve">
     <value>Dma</value>
-    <comment>Dma</comment>
   </data>
   <data name="Config_Device_Param" xml:space="preserve">
     <value>Param</value>
-    <comment>Param</comment>
   </data>
   <data name="Config_Device_ID" xml:space="preserve">
     <value>Device ID</value>
-    <comment>Device ID</comment>
   </data>
   <data name="Config_Device_Cards" xml:space="preserve">
     <value>Cards</value>
-    <comment>Cards</comment>
   </data>
 </root>

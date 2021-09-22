@@ -1377,11 +1377,6 @@ Riprovare?</value>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
     <value>Benvenuto nel Rayman Control Panel™</value>
   </data>
-  <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>Questo programma consente un accesso rapido e semplice a tutti i giochi Rayman installati sul computer. Da qui sarai in grado di avviarli e lanciare i loro programmi di configurazione, configurarli direttamente da questo programma con opzioni aggiuntive (come mappatura dei pulsanti, supporto widescreen e altro) e eseguire il backup/ripristino dei file di salvataggio di ogni gioco.
-Mancano giochi Rayman sul tuo computer? È possibile accedere facilmente ai negozi digitali disponibili per acquistarli o utilizzare il programma di installazione del disco per eseguire l'installazione da qualsiasi disco.
-Per iniziare, seleziona le caselle desiderate di seguito e premi 'Continua' per accedere al menu di selezione dei giochi.</value>
-  </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>Le modifiche alla configurazione non sono state salvate. Vuoi uscire e scartarle?</value>
   </data>
@@ -1411,7 +1406,6 @@ Per iniziare, seleziona le caselle desiderate di seguito e premi 'Continua' per 
   </data>
   <data name="Help_RCP" xml:space="preserve">
     <value>Rayman Control Panel™</value>
-    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Aggiornamenti</value>
@@ -1856,11 +1850,9 @@ Novità:
   </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
-    <comment>trj8p</comment>
   </data>
   <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
     <value>raylives</value>
-    <comment>raylives</comment>
   </data>
   <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
     <value>[TAB]bertrand</value>
@@ -1948,7 +1940,6 @@ Novità:
   </data>
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq82</value>
-    <comment>freq81</comment>
   </data>
   <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
     <value>Effetto lente</value>
@@ -2256,7 +2247,6 @@ Tieni premuto L1 + R1 nel menu (o l'equivalente sul controller attualmente in us
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
-    <comment>1.11</comment>
   </data>
   <data name="Utilities_RequiresAdmin" xml:space="preserve">
     <value>Questa utilità richiede che l'applicazione venga eseguita come amministratore</value>
@@ -3512,19 +3502,15 @@ Messaggio di errore: {1} </value>
   </data>
   <data name="Config_Device_Dma" xml:space="preserve">
     <value>Dma</value>
-    <comment>Dma</comment>
   </data>
   <data name="Config_Device_Param" xml:space="preserve">
     <value>Param</value>
-    <comment>Param</comment>
   </data>
   <data name="Config_Device_ID" xml:space="preserve">
     <value>Device ID</value>
-    <comment>Device ID</comment>
   </data>
   <data name="Config_Device_Cards" xml:space="preserve">
     <value>Cards</value>
-    <comment>Cards</comment>
   </data>
   <data name="Config_Action_Left" xml:space="preserve">
     <value>Sinistra</value>
@@ -4063,12 +4049,6 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   </data>
   <data name="InvalidResolution" xml:space="preserve">
     <value>Risoluzione non valida. Deve essere nel formato 'Larghezza x Altezza'.</value>
-  </data>
-  <data name="Settings_UseChildWindows" xml:space="preserve">
-    <value>Mostra i dialoghi all'interno delle finestre</value>
-  </data>
-  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
-    <value>La disabilitazione mostrerà le finestre di dialogo come finestre di blocco separate, mentre l'abilitazione le mostrerà all'interno della finestra da cui hanno avuto origine</value>
   </data>
   <data name="Settings_DisableGameValidation" xml:space="preserve">
     <value>Disabilita la convalida del gioco</value>

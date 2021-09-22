@@ -4544,9 +4544,9 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This program allows quick and easy access to all your installed Rayman games on your computer. From here you&apos;ll be able to launch them and their configuration programs, configure them directly from this program with added options (such as button mapping, widescreen support and more) and backup/restore each game&apos;s save files.
-        ///Missing any Rayman games on your computer? You can easily access the available digital shops to purchase them or use the disc installer to install from any disc.
-        ///To get started, check [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to This program is an unofficial open source community project created by RayCarrot. It allows quick and easy access to all installed PC Rayman games on your computer, with additional features such as extended configuration support, utilities, save file backups, save data management, texture modifications and more.
+        ///Supported games can be installed directly from their disc through the program.
+        ///To get started, change the settings you want below and press &apos;Continue&apos;. The settings can be changed at any time in t [rest of string was truncated]&quot;;.
         /// </summary>
         public static string FirstLaunchInfo_Text {
             get {
@@ -11008,7 +11008,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show dialogs within windows.
+        ///   Looks up a localized string similar to Show windows as popups.
         /// </summary>
         public static string Settings_UseChildWindows {
             get {
@@ -11017,7 +11017,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disabling this will show dialogs as separate, blocking windows, while enabling it will show them inside of the window they originated from.
+        ///   Looks up a localized string similar to Enabling this will show windows, such as the game options window or message dialogs, as popups within in the main window. Disabling this will show them as separate windows..
         /// </summary>
         public static string Settings_UseChildWindowsInfo {
             get {

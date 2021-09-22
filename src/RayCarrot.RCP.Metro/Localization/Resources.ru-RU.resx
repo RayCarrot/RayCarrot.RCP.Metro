@@ -1377,11 +1377,6 @@
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
     <value>Добро пожаловать в Rayman Control Panel™</value>
   </data>
-  <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>Эта программа обеспечивает быстрый и удобный доступ ко всем установленным играм серии Rayman на вашем компьютере. Здесь Вы сможете запускать их и их программы конфигурации, настраивать их непосредственно из этой программы с добавленными опциями (такими как переназначение кнопок, поддержка широкоэкранных мониторов и многое другое) и создавать/восстанавливать резервные копии файлов сохранения каждой игры.
-На вашем компьютере отсутствуют какие-либо игры серии Rayman? Вы можете легко перейти в доступные цифровые магазины, чтобы приобрести их, или использовать установщик игр на дисках для установки с любого диска.
-Чтобы начать, отметьте нужные Вам пункты ниже и нажмите "Продолжить", чтобы перейти в меню выбора игры.</value>
-  </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>Ваши изменения настроек не были сохранены. Вы действительно хотите выйти и сбросить их?</value>
   </data>
@@ -2332,7 +2327,6 @@
   </data>
   <data name="R2Config_Graphics_DirectX" xml:space="preserve">
     <value>DirectX</value>
-    <comment>DirectX</comment>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
     <value>Glide</value>
@@ -3507,19 +3501,15 @@
   </data>
   <data name="Config_Device_Dma" xml:space="preserve">
     <value>Dma</value>
-    <comment>Dma</comment>
   </data>
   <data name="Config_Device_Param" xml:space="preserve">
     <value>Param</value>
-    <comment>Param</comment>
   </data>
   <data name="Config_Device_ID" xml:space="preserve">
     <value>Device ID</value>
-    <comment>Device ID</comment>
   </data>
   <data name="Config_Device_Cards" xml:space="preserve">
     <value>Cards</value>
-    <comment>Cards</comment>
   </data>
   <data name="Config_Action_Left" xml:space="preserve">
     <value>Влево</value>
@@ -4058,12 +4048,6 @@ Start: Пауза</value>
   </data>
   <data name="InvalidResolution" xml:space="preserve">
     <value>Неверное разрешение. Значения должны быть записаными в формате 'Ширина х Высота'.</value>
-  </data>
-  <data name="Settings_UseChildWindows" xml:space="preserve">
-    <value>Показывать диалоговые окна внутри окон</value>
-  </data>
-  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
-    <value>Отключение этого параметра приведет к отображению диалоговых окон в виде отдельных блокирующих окон, а включение этого параметра позволит отображать их внутри окна, из которого они исходят</value>
   </data>
   <data name="Settings_DisableGameValidation" xml:space="preserve">
     <value>Отключить проверку игр</value>

@@ -944,7 +944,6 @@ Notícias:
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel™</value>
-    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilidad de banda sonora Rayman PlayStation, Eliminación de verificación de disco Rayman M/Arena</value>
@@ -1164,142 +1163,111 @@ Notícias:
   </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
-    <comment>trj8p</comment>
   </data>
   <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
     <value>raylives</value>
-    <comment>raylives</comment>
   </data>
   <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
     <value>2x2rmfmf</value>
-    <comment>2x2rmfmf</comment>
   </data>
   <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
     <value>goldfist</value>
-    <comment>goldfist</comment>
   </data>
   <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
     <value>en5gol2g</value>
-    <comment>en5gol2g</comment>
   </data>
   <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
     <value>power</value>
-    <comment>power</comment>
   </data>
   <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
     <value>kom0ogdk</value>
-    <comment>kom0ogdk</comment>
   </data>
   <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
     <value>raypoint</value>
-    <comment>raypoint</comment>
   </data>
   <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
     <value>86e40g91</value>
-    <comment>86e40g91</comment>
   </data>
   <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
     <value>raywiz</value>
-    <comment>raywiz</comment>
   </data>
   <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
     <value>o8feh</value>
-    <comment>o8feh</comment>
   </data>
   <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
     <value>winmap</value>
-    <comment>winmap</comment>
   </data>
   <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
     <value>freq10</value>
-    <comment>freq10</comment>
   </data>
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq80</value>
-    <comment>freq80</comment>
   </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
-    <comment>lens</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
     <value>4ctrepfj</value>
-    <comment>4ctrepfj</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
     <value>alworld</value>
-    <comment>alworld</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
     <value>b76b7081</value>
-    <comment>b76b7081</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
     <value>cbray</value>
-    <comment>cbray</comment>
   </data>
   <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
     <value>glowfist</value>
-    <comment>glowfist</comment>
   </data>
   <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
     <value>gimmelife</value>
-    <comment>gimmelife</comment>
   </data>
   <data name="Cheats_R2_5LumsInput" xml:space="preserve">
     <value>gimmelumz</value>
-    <comment>gimmelumz</comment>
   </data>
   <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
     <value>gothere</value>
-    <comment>gothere</comment>
   </data>
   <data name="Cheats_R2_GrappleInput" xml:space="preserve">
     <value>hangon</value>
-    <comment>hangon</comment>
   </data>
   <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
     <value>Saltar cinemáticos</value>
   </data>
   <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
     <value>NOMOVIES</value>
-    <comment>NOMOVIES</comment>
   </data>
   <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
     <value>Nuevas pantallas de carga</value>
   </data>
   <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
     <value>allvign</value>
-    <comment>allvign</comment>
   </data>
   <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
     <value>Desactivar Murfy</value>
   </data>
   <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
     <value>nomoremurfy</value>
-    <comment>nomoremurfy</comment>
   </data>
   <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
     <value>Acceder el área oculta en el Tumbo de los Antiguos</value>
   </data>
   <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
     <value>playjeff</value>
-    <comment>playjeff</comment>
   </data>
   <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
     <value>Acceder Menezis</value>
   </data>
   <data name="Cheats_R2_MenezisInput" xml:space="preserve">
     <value>shootemup</value>
-    <comment>shootemup</comment>
   </data>
   <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
     <value>esc</value>
-    <comment>esc</comment>
   </data>
   <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
     <value>reverse</value>
-    <comment>reverse</comment>
   </data>
   <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
     <value>Desbloquear todos los niveles de carrera</value>
@@ -1318,221 +1286,168 @@ Notícias:
   </data>
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
-    <comment>Windows 10 Edition</comment>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
-    <comment>1.10</comment>
   </data>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
-    <comment>Big file</comment>
   </data>
   <data name="R2Config_Graphics_DirectX" xml:space="preserve">
     <value>DirectX</value>
-    <comment>DirectX</comment>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
     <value>Glide</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
-    <comment>Rayman</comment>
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>
-    <comment>Archive Explorer™</comment>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>
-    <comment>Archive Explorer™</comment>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
-    <comment>Once upon a Time</comment>
   </data>
   <data name="RL_LevelName_1_2" xml:space="preserve">
     <value>Creepy Castle</value>
-    <comment>Creepy Castle</comment>
   </data>
   <data name="RL_LevelName_1_3" xml:space="preserve">
     <value>Enchanted Forest</value>
-    <comment>Enchanted Forest</comment>
   </data>
   <data name="RL_LevelName_1_4" xml:space="preserve">
     <value>Ropes Course</value>
-    <comment>Ropes Course</comment>
   </data>
   <data name="RL_LevelName_1_5" xml:space="preserve">
     <value>Quick Sand</value>
-    <comment>Quick Sand</comment>
   </data>
   <data name="RL_LevelName_1_6" xml:space="preserve">
     <value>How to Shoot your Dragon</value>
-    <comment>How to Shoot your Dragon</comment>
   </data>
   <data name="RL_LevelName_2_1" xml:space="preserve">
     <value>Ray and the Beanstalk</value>
-    <comment>Ray and the Beanstalk</comment>
   </data>
   <data name="RL_LevelName_2_2" xml:space="preserve">
     <value>The Winds of Strange</value>
-    <comment>The Winds of Strange</comment>
   </data>
   <data name="RL_LevelName_2_3" xml:space="preserve">
     <value>Castle in the Clouds</value>
-    <comment>Castle in the Clouds</comment>
   </data>
   <data name="RL_LevelName_2_4" xml:space="preserve">
     <value>Altitude Quickness</value>
-    <comment>Altitude Quickness</comment>
   </data>
   <data name="RL_LevelName_2_5" xml:space="preserve">
     <value>When Toads Fly</value>
-    <comment>When Toads Fly</comment>
   </data>
   <data name="RL_LevelName_3_1" xml:space="preserve">
     <value>What the Duck?</value>
-    <comment>What the Duck?</comment>
   </data>
   <data name="RL_LevelName_3_2" xml:space="preserve">
     <value>Spoiled Rotten</value>
-    <comment>Spoiled Rotten</comment>
   </data>
   <data name="RL_LevelName_3_3" xml:space="preserve">
     <value>I've Got a Filling</value>
-    <comment>I've Got a Filling</comment>
   </data>
   <data name="RL_LevelName_3_4" xml:space="preserve">
     <value>Snakes on a Cake</value>
-    <comment>Snakes on a Cake</comment>
   </data>
   <data name="RL_LevelName_3_5" xml:space="preserve">
     <value>Lucha Libre Get Away</value>
-    <comment>Lucha Libre Get Away</comment>
   </data>
   <data name="RL_LevelName_4_1" xml:space="preserve">
     <value>The Mysterious Inflatable Island</value>
-    <comment>The Mysterious Inflatable Island</comment>
   </data>
   <data name="RL_LevelName_4_2" xml:space="preserve">
     <value>The Deadly Lights</value>
-    <comment>The Deadly Lights</comment>
   </data>
   <data name="RL_LevelName_4_3" xml:space="preserve">
     <value>Mansion of the Deep</value>
-    <comment>Mansion of the Deep</comment>
   </data>
   <data name="RL_LevelName_4_4" xml:space="preserve">
     <value>Infiltration Station</value>
-    <comment>Infiltration Station</comment>
   </data>
   <data name="RL_LevelName_4_5" xml:space="preserve">
     <value>Elevator Ambush</value>
-    <comment>Elevator Ambush</comment>
   </data>
   <data name="RL_LevelName_4_6" xml:space="preserve">
     <value>There's Always a Bigger Fish</value>
-    <comment>There's Always a Bigger Fish</comment>
   </data>
   <data name="RL_LevelName_5_1" xml:space="preserve">
     <value>Shields Up... and Down</value>
-    <comment>Shields Up... and Down</comment>
   </data>
   <data name="RL_LevelName_5_2" xml:space="preserve">
     <value>The Dark Creatures Rise</value>
-    <comment>The Dark Creatures Rise</comment>
   </data>
   <data name="RL_LevelName_5_3" xml:space="preserve">
     <value>The Amazing Maze</value>
-    <comment>The Amazing Maze</comment>
   </data>
   <data name="RL_LevelName_5_4" xml:space="preserve">
     <value>The Great Lava Pursuit</value>
-    <comment>The Great Lava Pursuit</comment>
   </data>
   <data name="RL_LevelName_5_5" xml:space="preserve">
     <value>Swarmed and Dangerous</value>
-    <comment>Swarmed and Dangerous</comment>
   </data>
   <data name="RL_LevelName_5_6" xml:space="preserve">
     <value>Hell Breaks Loose</value>
-    <comment>Hell Breaks Loose</comment>
   </data>
   <data name="R2_BonusLevelName_1" xml:space="preserve">
     <value>The Walk of Life</value>
-    <comment>The Walk of Life</comment>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
-    <comment>The Walk of Power</comment>
   </data>
   <data name="About_Credits_Fabiosek" xml:space="preserve">
     <value>Programa de traducción al Polaco</value>
   </data>
   <data name="RM_RaceName_0" xml:space="preserve">
     <value>First Ruins</value>
-    <comment>First Ruins</comment>
   </data>
   <data name="RM_RaceName_1" xml:space="preserve">
     <value>Nebulous Tower</value>
-    <comment>Nebulous Tower</comment>
   </data>
   <data name="RM_RaceName_2" xml:space="preserve">
     <value>Dark Sewer</value>
-    <comment>Dark Sewer</comment>
   </data>
   <data name="RM_RaceName_3" xml:space="preserve">
     <value>Dawn Sand</value>
-    <comment>Dawn Sand</comment>
   </data>
   <data name="RM_RaceName_4" xml:space="preserve">
     <value>Water Canyon</value>
-    <comment>Water Canyon</comment>
   </data>
   <data name="RM_RaceName_5" xml:space="preserve">
     <value>Thousand Waterfalls</value>
-    <comment>Thousand Waterfalls</comment>
   </data>
   <data name="RM_RaceName_6" xml:space="preserve">
     <value>Forest Jump</value>
-    <comment>Forest Jump</comment>
   </data>
   <data name="RM_RaceName_7" xml:space="preserve">
     <value>Zenith Harbour</value>
-    <comment>Zenith Harbour</comment>
   </data>
   <data name="RM_RaceName_8" xml:space="preserve">
     <value>Treasure Ship</value>
-    <comment>Treasure Ship</comment>
   </data>
   <data name="RM_RaceName_9" xml:space="preserve">
     <value>Pipe Maze</value>
-    <comment>Pipe Maze</comment>
   </data>
   <data name="RM_RaceName_10" xml:space="preserve">
     <value>Lava Factory</value>
-    <comment>Lava Factory</comment>
   </data>
   <data name="RM_RaceName_11" xml:space="preserve">
     <value>Electric Final</value>
-    <comment>Electric Final</comment>
   </data>
   <data name="RM_RaceName_12" xml:space="preserve">
     <value>Future</value>
-    <comment>Future</comment>
   </data>
   <data name="RM_RaceName_13" xml:space="preserve">
     <value>Big Bang</value>
-    <comment>Big Bang</comment>
   </data>
   <data name="RM_RaceName_14" xml:space="preserve">
     <value>Speed Stress</value>
-    <comment>Speed Stress</comment>
   </data>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
-    <comment>Born To Slide</comment>
   </data>
   <data name="GameLink_R2Fix" xml:space="preserve">
     <value>Ray2Fix</value>
@@ -1545,18 +1460,14 @@ Notícias:
   </data>
   <data name="Config_Device_Dma" xml:space="preserve">
     <value>Dma</value>
-    <comment>Dma</comment>
   </data>
   <data name="Config_Device_Param" xml:space="preserve">
     <value>Param</value>
-    <comment>Param</comment>
   </data>
   <data name="Config_Device_ID" xml:space="preserve">
     <value>Device ID</value>
-    <comment>Device ID</comment>
   </data>
   <data name="Config_Device_Cards" xml:space="preserve">
     <value>Cards</value>
-    <comment>Cards</comment>
   </data>
 </root>
