@@ -1,6 +1,6 @@
 ﻿-----   Version 12.0.0 - September ??, 2021   -----
 • Visual changes:
-	• Tab headers use colored icons and underlines
+	• Page headers use colored icons and underlines
 	• Controls have rounded corners and slightly thicker borders
 	• Windows appear as popups within the main window (this can be reverted back to the previous behavior in the settings)
 	• Windows have specific icons rather than using the app icon
@@ -18,11 +18,11 @@ Other changes:
 • Normalized the way the times are displayed for game progression to minutes:seconds.milliseconds
 • Visual changes:
 	• The scrollable areas of pages has changed to avoid layout issues
-	• Tab transitions move in the direction of the new selected tab rather than always in the same direction
+	• Page transitions move in the direction of the new selected page rather than always in the same direction
 	• The app news window is split into multiple pages
 	• The download dialog has been redesigned and now shows the input/output paths when the user level is set to debug
 	• The drive browser dialog has been redesigned
-	• The welcome window has been redesigned with options for the language and user level, while removing the option to disable update checks (this can still be done in the settings page)
+	• The welcome window has been redesigned with added options for the language and user level, while removing the option to disable update checks (this can still be done in the settings page)
 	• The context menus use icons and undo/redo options
 	• The icon has changed for the other utilities page
 • Replaced the logging framework with NLog
@@ -37,18 +37,18 @@ Other changes:
 	• Removed credits for unfinished translations
 	• Removed the unfinished Catalan translation
 • Debug/technical changes
-	• Added tabs to the debug page and information about the app launch arguments
+	• Added pages to the debug page and information about the app launch arguments
 	• Added a debug setting for disabling the game validation
 	• Added a debug option to throw an unhandled exception for testing the crash handler
 	• Added more dialog types to show from the debug page, with an option to show them async
 	• Debug symbols are no longer included in the executable
 • Bug fixes
-	• Fixed the times being shown incorrectly in the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
+	• Fixed the times being shown incorrectly in the progression page for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
 	• Fixed the progress during a download or install not showing on the taskbar icon
 	• Fixed the version history window not being centered when opened from the about page
 	• Fixed certain browse boxes not allowing backslashes to be typed
 	• Fixed the file filter not working when specifying the output file when creating an archive
-	• Fixed the games page tab headers not updating when changing language
+	• Fixed the games page headers not updating when changing language
 	• Fixed the folder export failing in the Archive Explorer™ if one of the files could not be converted before being initialized
 
 
