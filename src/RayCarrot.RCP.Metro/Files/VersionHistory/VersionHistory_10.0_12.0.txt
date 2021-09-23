@@ -43,6 +43,7 @@ Other changes:
 	• Added more dialog types to show from the debug page, with an option to show them async
 	• Debug symbols are no longer included in the executable
 • Bug fixes
+	• Fixed a bug where the texture sync utility for Rayman 2 would cause certain maps to crash
 	• Fixed the times being shown incorrectly in the progression page for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
 	• Fixed the progress during a download or install not showing on the taskbar icon
 	• Fixed the version history window not being centered when opened from the about page

@@ -244,6 +244,21 @@ namespace RayCarrot.RCP.Metro
                     var gfHeight = gf.Height;
                     var gfWidth = gf.Width;
 
+                    if (gameSettings.EngineVersion == OpenSpaceEngineVersion.Rayman2)
+                    {
+                        var flags_TextureCaps = BitConverter.ToUInt32(data, i - pathLength - sizeOffset - 8);
+                        var flags_CyclingMode = data[i - pathLength - sizeOffset + 41];
+
+                        if ((flags_CyclingMode & 0x4) != 0)
+                            gfWidth *= 2; // Mirror X
+
+                        if ((flags_CyclingMode & 0x8) != 0)
+                            gfHeight *= 2; // Mirror Y
+
+                        if ((flags_TextureCaps & 0x400) != 0)
+                            gfHeight /= 2;
+                    }
+
                     // Correct the aspect ratio
                     if (snaWidth < snaHeight)
                     {
