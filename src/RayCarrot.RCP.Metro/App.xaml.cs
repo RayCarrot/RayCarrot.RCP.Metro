@@ -860,7 +860,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.Game_RRR2LaunchMode):
-                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo));
+                        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
                         break;
 
                     case nameof(AppUserData.Emu_DOSBox_Path):

@@ -240,7 +240,7 @@ namespace RayCarrot.RCP.Metro
                                 string path = x.Path;
 
                                 // Create the command
-                                var command = new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(path))?.Dispose());
+                                var command = new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
 
                                 if (x.Icon != GenericIconKind.None)
                                     return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -511,7 +511,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// A game file link which can be accessed from the game
         /// </summary>
-        public record GameFileLink(string Header, FileSystemPath Path, GenericIconKind Icon = GenericIconKind.None);
+        public record GameFileLink(string Header, FileSystemPath Path, GenericIconKind Icon = GenericIconKind.None, string Arguments = null);
 
         #endregion
     }

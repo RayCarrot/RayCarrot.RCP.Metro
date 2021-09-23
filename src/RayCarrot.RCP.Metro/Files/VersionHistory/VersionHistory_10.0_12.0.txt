@@ -16,6 +16,7 @@ Other changes:
 • Updated the updater
 • Localized several previously non-localized strings
 • Normalized the way the times are displayed for game progression to minutes:seconds.milliseconds
+• Launching the Rayman Raving Rabbids 2 setup will now use the selected game mode to have it use the correct configuration
 • Visual changes:
 	• The scrollable areas of pages has changed to avoid layout issues
 	• Page transitions move in the direction of the new selected page rather than always in the same direction
