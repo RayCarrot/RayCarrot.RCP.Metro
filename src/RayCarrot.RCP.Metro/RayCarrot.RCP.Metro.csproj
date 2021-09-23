@@ -611,7 +611,7 @@
     <Compile Include="Games\Info\Rayman\GameInfo_RaymanOrigins.cs" />
     <Compile Include="Games\Info\Rabbids\GameInfo_RabbidsGoHome.cs" />
     <Compile Include="Games\Info\Rabbids\GameInfo_RaymanRavingRabbids2.cs" />
-    <Compile Include="Games\Info\Rabbids\GameInfo_RabbidsGoHomeRaymanRavingRabbids.cs" />
+    <Compile Include="Games\Info\Rabbids\GameInfo_RaymanRavingRabbids.cs" />
     <Compile Include="Games\Info\Rayman\GameInfo_RaymanArena.cs" />
     <Compile Include="Games\Info\Rayman\GameInfo_Rayman3.cs" />
     <Compile Include="Games\Info\Rayman\GameInfo_RaymanM.cs" />
