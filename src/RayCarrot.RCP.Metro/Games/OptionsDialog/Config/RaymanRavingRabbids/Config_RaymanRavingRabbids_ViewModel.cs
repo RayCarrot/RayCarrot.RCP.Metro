@@ -40,6 +40,8 @@ namespace RayCarrot.RCP.Metro
         private const string Value_WindowedMode = "WindowedMode";
         private const string Value_DefaultController = "DefaultController";
         private const string Value_ScreenMode = "ScreenMode";
+        private const string Value_VideoAdapter = "Video Adapter";
+        private const string Value_Format = "Format";
 
         #endregion
 
@@ -199,6 +201,11 @@ namespace RayCarrot.RCP.Metro
                     key.SetValue(Value_WindowedMode, FullscreenMode ? 0 : 1);
                     key.SetValue(Value_DefaultController, UseController ? 1 : 0);
                     key.SetValue(Value_ScreenMode, ScreenModeIndex + 1);
+                    // NOTE: We're always setting this to 0 for now since the way the game handles it is unreliable. This should work in the
+                    //       majority of cases. It might be a problem if the video adapter used by RCP differs from the one the game sees as index 0
+                    key.SetValue(Value_VideoAdapter, 0);
+                    // NOTE: We default this to D3DFMT_X8R8G8B8 (https://docs.microsoft.com/en-us/windows/win32/direct3d9/d3dformat)
+                    key.SetValue(Value_Format, 22);
                 });
 
                 Logger.Info("{0} configuration has been saved", Game);
