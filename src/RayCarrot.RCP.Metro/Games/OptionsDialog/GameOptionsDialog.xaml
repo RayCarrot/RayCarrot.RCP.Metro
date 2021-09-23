@@ -78,7 +78,7 @@
 
             <metro:MetroAnimatedTabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-                    <Setter Property="Header" Value="{Binding Path=PageName.Value, Mode=OneTime}" />
+                    <Setter Property="Header" Value="{Binding Path=PageName.Value}" />
                     <Setter Property="local:TabItemAssist.IconKind" Value="{Binding Path=PageIcon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
                     <Setter Property="local:TabItemAssist.IconForeground" Value="{Binding Path=PageIcon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}" />
                 </Style>
