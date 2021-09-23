@@ -11,6 +11,15 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPageViewModel
     {
+        #region Constructor
+
+        public Config_RaymanRavingRabbids_ViewModel(Games game)
+        {
+            Game = game;
+        }
+
+        #endregion
+
         #region Logger
 
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -20,22 +29,24 @@ namespace RayCarrot.RCP.Metro
         #region Private Fields
 
         private bool _fullscreenMode;
-
         private bool _useController;
-
         private int _screenModeIndex;
 
         #endregion
 
         #region Private Constants
 
-        private const string GraphicsModeKey = "Mode";
+        private const string Value_GraphicsMode = "Mode";
+        private const string Value_WindowedMode = "WindowedMode";
+        private const string Value_DefaultController = "DefaultController";
+        private const string Value_ScreenMode = "ScreenMode";
 
-        private const string WindowedModeKey = "WindowedMode";
+        #endregion
 
-        private const string DefaultControllerKey = "DefaultController";
+        #region Protected Properties
 
-        private const string ScreenModeKey = "ScreenMode";
+        protected Games Game { get; }
+        protected virtual string Key_BasePath => AppFilePaths.RaymanRavingRabbidsRegistryKey;
 
         #endregion
 
@@ -85,6 +96,56 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Methods
 
+        // TODO: Do not hard-code the GUID
+        protected virtual string GetGUID() => "{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
+
+        protected void LoadRegistryKey(string keyName, Action<RegistryKey> loadAction)
+        {
+            // Open the key. This will return null if it doesn't exist.
+            using RegistryKey key = RegistryHelpers.GetKeyFromFullPath(RegistryHelpers.CombinePaths(Key_BasePath, GetGUID(), keyName), RegistryView.Default);
+
+            // Log
+            if (key != null)
+                Logger.Info("The key {0} has been opened", keyName);
+            else
+                Logger.Info("The key {0} for {1} does not exist. Default values will be used.", keyName, Game);
+
+            // Load the values
+            loadAction(key);
+        }
+
+        protected void SaveRegistryKey(string keyName, Action<RegistryKey> saveAction)
+        {
+            // Get the key path
+            var keyPath = RegistryHelpers.CombinePaths(Key_BasePath, GetGUID(), keyName);
+
+            RegistryKey key;
+
+            // Create the key if it doesn't exist
+            if (!RegistryHelpers.KeyExists(keyPath))
+            {
+                key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
+
+                Logger.Info("The Registry key {0} has been created", key?.Name);
+            }
+            else
+            {
+                key = RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, true);
+            }
+
+            using (key)
+            {
+                if (key == null)
+                    throw new Exception("The Registry key could not be created");
+
+                Logger.Info("The key {0} has been opened", key.Name);
+
+                saveAction(key);
+            }
+        }
+
+        protected int GetValue_DWORD(RegistryKey key, string name, int defaultValue) => (int)(key?.GetValue(name, defaultValue) ?? defaultValue);
+
         protected override object GetPageUI() => new Config_RaymanRavingRabbids_UI()
         {
             DataContext = this
@@ -96,31 +157,24 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task LoadAsync()
         {
-            Logger.Info("Rayman Raving Rabbids config is being set up");
+            Logger.Info("{0} config is being set up", Game);
 
-            using (var key = RegistryHelpers.GetKeyFromFullPath(RegistryHelpers.CombinePaths(AppFilePaths.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default))
+            GraphicsMode.MinGraphicsWidth = 640;
+            GraphicsMode.MinGraphicsHeight = 480;
+            GraphicsMode.SortMode = GraphicsModeSelectionViewModel.GraphicsSortMode.TotalPixels;
+            GraphicsMode.SortDirection = GraphicsModeSelectionViewModel.GraphicsSortDirection.Ascending;
+            GraphicsMode.AllowCustomGraphicsMode = false;
+            GraphicsMode.IncludeRefreshRate = true;
+            GraphicsMode.FilterMode = GraphicsModeSelectionViewModel.GraphicsFilterMode.WidthOrHeight;
+            GraphicsMode.GetAvailableResolutions();
+
+            LoadRegistryKey("Basic video", key =>
             {
-                Logger.Info(key != null
-                    ? $"The key {key.Name} has been opened"
-                    : $"The key for {Games.RaymanRavingRabbids} does not exist. Default values will be used.");
-
-                GraphicsMode.MinGraphicsWidth = 640;
-                GraphicsMode.MinGraphicsHeight = 480;
-                GraphicsMode.SortMode = GraphicsModeSelectionViewModel.GraphicsSortMode.TotalPixels;
-                GraphicsMode.SortDirection = GraphicsModeSelectionViewModel.GraphicsSortDirection.Ascending;
-                GraphicsMode.AllowCustomGraphicsMode = false;
-                GraphicsMode.IncludeRefreshRate = true;
-                GraphicsMode.FilterMode = GraphicsModeSelectionViewModel.GraphicsFilterMode.WidthOrHeight;
-                GraphicsMode.GetAvailableResolutions();
-
-                GraphicsMode.SelectedGraphicsModeIndex = GetInt(GraphicsModeKey, 0);
-                FullscreenMode = GetInt(WindowedModeKey, 0) != 1;
-                UseController = GetInt(DefaultControllerKey, 0) == 1;
-                ScreenModeIndex = GetInt(ScreenModeKey, 1) - 1;
-
-                // Helper methods for getting values
-                int GetInt(string valueName, int defaultValue) => Int32.TryParse(key?.GetValue(valueName, defaultValue).ToString(), out int result) ? result : defaultValue;
-            }
+                GraphicsMode.SelectedGraphicsModeIndex = GetValue_DWORD(key, Value_GraphicsMode, 0);
+                FullscreenMode = GetValue_DWORD(key, Value_WindowedMode, 0) == 0;
+                UseController = GetValue_DWORD(key, Value_DefaultController, 0) > 0;
+                ScreenModeIndex = GetValue_DWORD(key, Value_ScreenMode, 1) - 1;
+            });
 
             UnsavedChanges = false;
 
@@ -135,47 +189,25 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task<bool> SaveAsync()
         {
-            Logger.Info("Rayman Raving Rabbids configuration is saving...");
+            Logger.Info("{0} configuration is saving...", Game);
 
             try
             {
-                // Get the key path
-                var keyPath = RegistryHelpers.CombinePaths(AppFilePaths.RaymanRavingRabbidsRegistryKey, "Basic video");
-
-                RegistryKey key;
-
-                // Create the key if it doesn't exist
-                if (!RegistryHelpers.KeyExists(keyPath))
+                SaveRegistryKey("Basic video", key =>
                 {
-                    key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
+                    key.SetValue(Value_GraphicsMode, GraphicsMode.SelectedGraphicsModeIndex);
+                    key.SetValue(Value_WindowedMode, FullscreenMode ? 0 : 1);
+                    key.SetValue(Value_DefaultController, UseController ? 1 : 0);
+                    key.SetValue(Value_ScreenMode, ScreenModeIndex + 1);
+                });
 
-                    Logger.Info("The Registry key {0} has been created", key?.Name);
-                }
-                else
-                {
-                    key = RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, true);
-                }
-
-                using (key)
-                {
-                    if (key == null)
-                        throw new Exception("The Registry key could not be created");
-
-                    Logger.Info("The key {0} has been opened", key.Name);
-
-                    key.SetValue(GraphicsModeKey, GraphicsMode.SelectedGraphicsModeIndex);
-                    key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
-                    key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
-                    key.SetValue(ScreenModeKey, ScreenModeIndex + 1);
-                }
-
-                Logger.Info("Rayman Raving Rabbids configuration has been saved");
+                Logger.Info("{0} configuration has been saved", Game);
 
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Saving Rayman Raving Rabbids registry data");
+                Logger.Error(ex, "Saving {0} registry data", Game);
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
                 return false;
             }
