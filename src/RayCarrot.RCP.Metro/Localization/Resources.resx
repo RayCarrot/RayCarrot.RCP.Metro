@@ -4240,6 +4240,8 @@ rcpURL</comment>
   </data>
   <data name="Installer_Title" xml:space="preserve">
     <value>Install {0}</value>
+    <comment>Arguments:
+gameName</comment>
   </data>
   <data name="DriveSelection_RefreshError" xml:space="preserve">
     <value>An error occurred when finding available drives</value>

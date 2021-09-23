@@ -1127,7 +1127,7 @@ Spróbować ponownie?</value>
     <value>Kod Lime</value>
   </data>
   <data name="SecretCodes_Secret" xml:space="preserve">
-    <value>Właśnie wprowadziłeś tajny kod! Niestety, ale nic on nic on nie powoduje.</value>
+    <value>Właśnie wprowadziłeś tajny kod! Niestety, ale nic on nie powoduje.</value>
   </data>
   <data name="SecretCodes_SecretHeader" xml:space="preserve">
     <value>Sekretny kod</value>
@@ -4117,5 +4117,20 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   </data>
   <data name="ContextMenu_OpenLocation" xml:space="preserve">
     <value>Otwórz folder zawierający</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Program jest nieoficjalnym projektem społeczności open source stworzonym przez użytkownika RayCarrot. Umożliwia szybki i łatwy dostęp do wszystkich zainstalowanych na komputerze gier z serii Rayman, z dodatkowymi funkcjami, takimi jak rozszerzona obsługa konfiguracji, narzędzia, kopie zapasowe plików, zarządzanie zapisanymi danymi, modyfikacje tekstur i wiele innych. Obsługiwane gry mogą być instalowane bezpośrednio z płyty poprzez program. Aby rozpocząć, zmień ustawienia, które chcesz poniżej i naciśnij 'Kontynuuj'. Ustawienia mogą być zmienione w dowolnym momencie na stronie ustawień.</value>
+  </data>
+  <data name="Installer_Title" xml:space="preserve">
+    <value>Zainstaluj {0}</value>
+  </data>
+  <data name="DriveSelection_RefreshError" xml:space="preserve">
+    <value>Wystąpił błąd podczas wyszukiwania dostępnych napędów</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Pokaż okna jako wyskakujące</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Włączenie tej opcji spowoduje wyświetlenie okien, takich jak okno opcji gry lub okna dialogowe wiadomości, jako wyskakujące okienka w oknie głównym. Wyłączenie tej opcji spowoduje, że będą one wyświetlane jako osobne okna.</value>
   </data>
 </root>

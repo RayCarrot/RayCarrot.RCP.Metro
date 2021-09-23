@@ -388,7 +388,7 @@
     <value>Le opzioni della modalità schermo si comporteranno in modo diverso a seconda della risoluzione selezionata. Di solito mantenere la modalità 4:3 abilitata consentirà alla visuale del gioco di non essere allungata su diversi formati. </value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel™ è un progetto comunitario open source creato da RayCarrot. Questo software è un unico file eseguibile gratuito con l'intento di accedere facilmente alle impostazioni e alle correzioni per i vari titoli di Rayman rilasciati per Windows.
+    <value>Rayman Control Panel™ è un progetto open source della community creato da RayCarrot. Questo software è un unico file eseguibile gratuito con l'intento di accedere facilmente alle impostazioni e alle correzioni per i vari titoli di Rayman rilasciati per Windows.
 Questo è un progetto in crescita con ulteriori funzionalità pianificate per essere aggiunte con aggiornamenti futuri. Le utilità e i vari strumenti di configurazione sono stati creati con l'aiuto di vari membri della comunità Rayman, tutti indicati di seguito.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
@@ -4079,5 +4079,22 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   </data>
   <data name="ContextMenu_OpenLocation" xml:space="preserve">
     <value>Apri percorso</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Questo programma è un progetto open source della community creato da RayCarrot. Consente un accesso rapido e semplice a tutti i giochi Rayman per PC installati sul computer, con funzionalità aggiuntive come supporto per la configurazione estesa, utilità, backup dei file di salvataggio, gestione dei dati di salvataggio, modifiche alle texture e altro ancora.
+I giochi supportati possono essere installati direttamente dal loro disco tramite il programma.
+Per iniziare, modifica le impostazioni che desideri di seguito e premi 'Continua'. Le impostazioni possono essere modificate in qualsiasi momento nella pagina delle impostazioni. </value>
+  </data>
+  <data name="Installer_Title" xml:space="preserve">
+    <value>Installa {0}</value>
+  </data>
+  <data name="DriveSelection_RefreshError" xml:space="preserve">
+    <value>Si è verificato un errore durante la ricerca delle unità disponibili</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Mostra le finestre come popup</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>L'abilitazione mostrerà le finestre, come la finestra delle opzioni di gioco o le finestre di dialogo dei messaggi, come popup all'interno della finestra principale. La disabilitazione li mostrerà come finestre separate.</value>
   </data>
 </root>
