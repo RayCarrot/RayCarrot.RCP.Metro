@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Shell;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -77,16 +78,16 @@ namespace RayCarrot.RCP.Metro
         /// <param name="destinationDirectory">The destination of the shortcut file</param>
         /// <param name="targetFile">The file the shortcut targets</param>
         /// <param name="arguments">Optional launch arguments</param>
-        public static void CreateFileShortcut(string shortcutName, string destinationDirectory, string targetFile, string arguments = null)
+        public static void CreateFileShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory, FileSystemPath targetFile, string arguments = null)
         {
-            IWshShortcut shortcut = (IWshShortcut)new WshShell().CreateShortcut(destinationDirectory + Path.ChangeExtension(shortcutName, ".lnk"));
+            IWshShortcut shortcut = (IWshShortcut)new WshShell().CreateShortcut(destinationDirectory + shortcutName.ChangeFileExtension(new FileExtension(".lnk")));
 
             shortcut.TargetPath = targetFile;
 
             if (arguments != null)
                 shortcut.Arguments = arguments;
 
-            shortcut.WorkingDirectory = Path.GetDirectoryName(targetFile);
+            shortcut.WorkingDirectory = targetFile.Parent;
 
             shortcut.Save();
         }
@@ -97,9 +98,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="shortcutName">The name of the shortcut file</param>
         /// <param name="destinationDirectory">The path of the directory</param>
         /// <param name="targetURL">The URL</param>
-        public static void CreateURLShortcut(string shortcutName, string destinationDirectory, string targetURL)
+        public static void CreateURLShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory, string targetURL)
         {
-            using StreamWriter writer = new StreamWriter(destinationDirectory + Path.ChangeExtension(shortcutName, ".url"));
+            using StreamWriter writer = new StreamWriter(destinationDirectory + shortcutName.ChangeFileExtension(new FileExtension(".url")));
 
             writer.WriteLine("[InternetShortcut]");
             writer.WriteLine("URL=" + targetURL);
@@ -112,7 +113,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="shortcutPath">The shortcut file</param>
         /// <returns></returns>
-        public static string GetShortCutArguments(string shortcutPath) =>
+        public static string GetShortCutArguments(FileSystemPath shortcutPath) =>
             GetShortCutTargetInfo(shortcutPath).Arguments;
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="shortcutPath">The shortcut file</param>
         /// <returns></returns>
-        public static string GetShortCutTarget(string shortcutPath) =>
+        public static string GetShortCutTarget(FileSystemPath shortcutPath) =>
             GetShortCutTargetInfo(shortcutPath).TargetPath;
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="shortcutPath">The shortcut file</param>
         /// <returns>The target info</returns>
-        public static IWshShortcut GetShortCutTargetInfo(string shortcutPath) =>
+        public static IWshShortcut GetShortCutTargetInfo(FileSystemPath shortcutPath) =>
             ((IWshShortcut)new WshShell().CreateShortcut(shortcutPath));
 
         /// <summary>
@@ -202,7 +203,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="targetPath">The target to remove on reboot</param>
         /// <exception cref="Win32Exception"/>
-        public static void DeleteOnReboot(string targetPath)
+        public static void DeleteOnReboot(FileSystemPath targetPath)
         {
             if (!MoveFileEx(targetPath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
                 throw new Win32Exception();
@@ -214,7 +215,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="filePath">The file to check</param>
         /// <param name="errorCode">The error code in case the operation fails</param>
         /// <returns>The executable path, or null if none was found</returns>
-        public static string FindExecutableForFile(string filePath, out uint? errorCode)
+        public static string FindExecutableForFile(FileSystemPath filePath, out uint? errorCode)
         {
             var executable = new StringBuilder(1024);
             
