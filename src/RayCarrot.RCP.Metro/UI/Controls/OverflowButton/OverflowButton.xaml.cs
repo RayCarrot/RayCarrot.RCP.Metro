@@ -171,6 +171,12 @@ namespace RayCarrot.RCP.Metro
             PopupControl.IsOpen = false;
         }
 
+        private void SecondaryButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Close the popup
+            PopupControl.IsOpen = false;
+        }
+
         #endregion
     }
 }

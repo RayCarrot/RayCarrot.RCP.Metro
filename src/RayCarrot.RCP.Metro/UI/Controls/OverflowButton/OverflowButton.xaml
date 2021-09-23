@@ -70,7 +70,8 @@
                                 SnapsToDevicePixels="True"
                                 Style="{DynamicResource MahApps.Styles.Button.Split.Arrow}"
                                 Visibility="{Binding Path=ShowSecondaryButton, Converter={local:BooleanToVisibilityConverter}}"
-                                Command="{Binding Path=SecondaryCommand}">
+                                Command="{Binding Path=SecondaryCommand}"
+                                Click="SecondaryButton_OnClick">
 
                             <iconPacks:PackIconMaterial Width="14"
                                                         Height="14"
