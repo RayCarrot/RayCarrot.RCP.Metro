@@ -124,6 +124,10 @@
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Error.cs" />
+    <Compile Include="Games\OptionsDialog\Config\RaymanRavingRabbids\Config_RaymanRavingRabbids2_UI.xaml.cs">
+      <DependentUpon>Config_RaymanRavingRabbids2_UI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Games\OptionsDialog\Config\RaymanRavingRabbids\Config_RaymanRavingRabbids2_ViewModel.cs" />
     <Compile Include="Services\WindowDialog\ShowWindowFlags.cs" />
     <Compile Include="UI\Controls\RCPChildWindow.cs" />
     <Compile Include="UI\Controls\ResolutionSelectionViewModel\GraphicsMode.cs" />
@@ -742,6 +746,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Emulators\DOSBox\Emulator_DOSBox_ConfigUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Games\OptionsDialog\Config\RaymanRavingRabbids\Config_RaymanRavingRabbids2_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

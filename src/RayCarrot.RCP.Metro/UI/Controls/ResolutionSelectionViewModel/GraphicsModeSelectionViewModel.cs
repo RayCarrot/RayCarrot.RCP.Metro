@@ -45,6 +45,9 @@ namespace RayCarrot.RCP.Metro
         public int MinGraphicsWidth { get; set; } = 0;
         public int MinGraphicsHeight { get; set; } = 0;
 
+        public int MaxGraphicsWidth { get; set; } = Int32.MaxValue;
+        public int MaxGraphicsHeight { get; set; } = Int32.MaxValue;
+
         public int Width => SelectedGraphicsMode?.Width ?? 0;
         public int Height => SelectedGraphicsMode?.Height ?? 0;
 
@@ -91,9 +94,13 @@ namespace RayCarrot.RCP.Metro
                         bool isValid = FilterMode switch
                         {
                             GraphicsFilterMode.WidthAndHeight => width >= MinGraphicsWidth &&
-                                                                 height >= MinGraphicsHeight,
-                            GraphicsFilterMode.WidthOrHeight => width >= MinGraphicsWidth ||
-                                                                height >= MinGraphicsHeight,
+                                                                 height >= MinGraphicsHeight &&
+                                                                 width <= MaxGraphicsWidth &&
+                                                                 height <= MaxGraphicsHeight,
+                            GraphicsFilterMode.WidthOrHeight => (width >= MinGraphicsWidth ||
+                                                                height >= MinGraphicsHeight) &&
+                                                                (width <= MaxGraphicsWidth ||
+                                                                height <= MaxGraphicsHeight),
                             _ => throw new Exception($"Filter mode {FilterMode} is not valid")
                         };
 

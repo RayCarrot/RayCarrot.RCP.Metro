@@ -4,6 +4,7 @@
 	• Controls have rounded corners and slightly thicker borders
 	• Windows appear as popups within the main window (this can be reverted back to the previous behavior in the settings)
 	• Windows have specific icons rather than using the app icon
+• Added game configuration for Rayman Raving Rabbids 2
 • Resolution selections in game configurations now have a drop-down for choosing a supported resolution
 • Added a resolution and framerate selection in the Rayman Raving Rabbids configuration
 • Added an option to reset all the app settings

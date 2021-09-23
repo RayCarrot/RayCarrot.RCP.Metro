@@ -56,6 +56,11 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement OptionsUI => new GameOptions_RavingRabbids2_UI();
 
         /// <summary>
+        /// The config page view model, if any is available
+        /// </summary>
+        public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanRavingRabbids2_ViewModel(Game);
+
+        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
