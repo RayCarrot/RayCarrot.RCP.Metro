@@ -66,7 +66,7 @@ namespace RayCarrot.RCP.Metro
             // Attempt to cancel the installation
             Task.Run(ViewModel.AttemptCancelAsync).WithoutAwait("Canceling game installer");
 
-            return true;
+            return false;
         }
 
         protected override void Closed()
