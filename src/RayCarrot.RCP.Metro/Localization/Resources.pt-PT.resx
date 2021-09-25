@@ -4094,4 +4094,19 @@ Start: Pausa</value>
   <data name="ContextMenu_OpenLocation" xml:space="preserve">
     <value>Abrir localização</value>
   </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Este programa é um projecto comunitário de open source criado por RayCarrot. Permite um acesso rápido e fácil a todos os jogos Rayman para PC instalados no teu computador, com características adicionais tais como suporte de configuração extensiva, utilitários, cópias de segurança de ficheiros de progressão, manutenção de ficheiros de progressão, modificações de texturas e mais. Jogos suportados podem ser instalados directamente do seu disco através do programa. Para começar, muda as configurações que tu queres abaixo e pressiona "Continuar". As configurações podem ser alteradas a qualquer altura na página das configurações.</value>
+  </data>
+  <data name="Installer_Title" xml:space="preserve">
+    <value>Instalar {0}</value>
+  </data>
+  <data name="DriveSelection_RefreshError" xml:space="preserve">
+    <value>Ocorreu um erro ao procurar drives disponíveis</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Exibir janelas como popups</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Activar isto irá exibir janelas, tais como a janela de opções de jogo ou diálogos de mensagem, como popups dentro da janela principal. Desactivar isto irá exibi-las como janelas separadas. </value>
+  </data>
 </root>
