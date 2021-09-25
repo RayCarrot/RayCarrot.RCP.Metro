@@ -2,8 +2,6 @@
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Update urls to be lower-case
-
     /// <summary>
     /// Commons URLs used in the Rayman Control Panel
     /// </summary>
@@ -29,27 +27,27 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The base resource URL
         /// </summary>
-        public const string BaseResourceUrl = RCPBaseUrl + "Resources/9.0.0/";
+        public const string BaseResourceUrl = RCPBaseUrl + "resources/12.0.0/";
 
         /// <summary>
         /// The base URL for downloading utilities
         /// </summary>
-        public const string UtilityBaseUrl = BaseResourceUrl + "Utilities/";
+        public const string UtilityBaseUrl = BaseResourceUrl + "utilities/";
 
         /// <summary>
         /// The base URL for downloading mods
         /// </summary>
-        public const string ModsBaseUrl = BaseResourceUrl + "Mods/";
+        public const string ModsBaseUrl = BaseResourceUrl + "mods/";
 
         /// <summary>
         /// The base URL for downloading games
         /// </summary>
-        public const string GamesBaseUrl = BaseResourceUrl + "Games/";
+        public const string GamesBaseUrl = BaseResourceUrl + "games/";
 
         /// <summary>
         /// The base URL for downloading demos
         /// </summary>
-        public const string DemosBaseUrl = BaseResourceUrl + "Demos/";
+        public const string DemosBaseUrl = BaseResourceUrl + "demos/";
 
         #endregion
 
@@ -141,107 +139,107 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The Rayman 1 TPLS utility URL
         /// </summary>
-        public const string R1_TPLS_Url = UtilityBaseUrl + "R1/TPLS.zip";
+        public const string R1_TPLS_Url = UtilityBaseUrl + "r1/TPLS.zip";
 
         /// <summary>
         /// The Rayman 1 complete soundtrack utility URL
         /// </summary>
-        public const string R1_CompleteOST_URL = UtilityBaseUrl + "R1/CompleteOST.zip";
+        public const string R1_CompleteOST_URL = UtilityBaseUrl + "r1/CompleteOST.zip";
 
         /// <summary>
         /// The Rayman 1 incomplete soundtrack utility URL
         /// </summary>
-        public const string R1_IncompleteOST_URL = UtilityBaseUrl + "R1/IncompleteOST.zip";
+        public const string R1_IncompleteOST_URL = UtilityBaseUrl + "r1/IncompleteOST.zip";
 
         /// <summary>
         /// The Rayman Designer CLIENT.EXE replacement URL
         /// </summary>
-        public const string RD_ClientExe_URL = UtilityBaseUrl + "R1/RayKit/CLIENT.EXE";
+        public const string RD_ClientExe_URL = UtilityBaseUrl + "r1/raykit/CLIENT.EXE";
 
         /// <summary>
         /// The Rayman Designer STARTUP.EXE replacement URL
         /// </summary>
-        public const string RD_StartupExe_URL = UtilityBaseUrl + "R1/RayKit/STARTUP.EXE";
+        public const string RD_StartupExe_URL = UtilityBaseUrl + "r1/raykit/STARTUP.EXE";
 
         /// <summary>
         /// The Rayman Designer RAYRUN.EXE replacement URL
         /// </summary>
-        public const string RD_RayrunExe_URL = UtilityBaseUrl + "R1/RayKit/RAYRUN.EXE";
+        public const string RD_RayrunExe_URL = UtilityBaseUrl + "r1/raykit/RAYRUN.EXE";
 
         /// <summary>
         /// The Rayman Designer English MAPPER.EXE replacement URL
         /// </summary>
-        public const string RD_USMapperExe_URL = UtilityBaseUrl + "R1/RayKit/US/MAPPER.EXE";
+        public const string RD_USMapperExe_URL = UtilityBaseUrl + "r1/raykit/us/MAPPER.EXE";
 
         /// <summary>
         /// The Rayman Designer French MAPPER.EXE replacement URL
         /// </summary>
-        public const string RD_FRMapperExe_URL = UtilityBaseUrl + "R1/RayKit/FR/MAPPER.EXE";
+        public const string RD_FRMapperExe_URL = UtilityBaseUrl + "r1/raykit/fr/MAPPER.EXE";
 
         /// <summary>
         /// The Rayman Designer German MAPPER.EXE replacement URL
         /// </summary>
-        public const string RD_ALMapperExe_URL = UtilityBaseUrl + "R1/RayKit/AL/MAPPER.EXE";
+        public const string RD_ALMapperExe_URL = UtilityBaseUrl + "r1/raykit/al/MAPPER.EXE";
 
         /// <summary>
         /// The Rayman 2 original fix.sna URL
         /// </summary>
-        public const string R2_OriginalFixSna_URL = UtilityBaseUrl + "R2/Translation_Original/Fix.sna";
+        public const string R2_OriginalFixSna_URL = UtilityBaseUrl + "r2/translation_original/Fix.sna";
 
         /// <summary>
         /// The Rayman 2 original textures.cnt URL
         /// </summary>
-        public const string R2_OriginalTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Original/Textures.cnt";
+        public const string R2_OriginalTexturesCnt_URL = UtilityBaseUrl + "r2/translation_original/Textures.cnt";
 
         /// <summary>
         /// The Rayman 2 Irish fix.sna URL
         /// </summary>
-        public const string R2_IrishFixSna_URL = UtilityBaseUrl + "R2/Translation_Irish/Fix.sna";
+        public const string R2_IrishFixSna_URL = UtilityBaseUrl + "r2/translation_irish/Fix.sna";
 
         /// <summary>
         /// The Rayman 2 Swedish fix.sna URL
         /// </summary>
-        public const string R2_SwedishFixSna_URL = UtilityBaseUrl + "R2/Translation_Swedish/Fix.sna";
+        public const string R2_SwedishFixSna_URL = UtilityBaseUrl + "r2/translation_swedish/Fix.sna";
 
         /// <summary>
         /// The Rayman 2 Swedish textures.cnt URL
         /// </summary>
-        public const string R2_SwedishTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Swedish/Textures.cnt";
+        public const string R2_SwedishTexturesCnt_URL = UtilityBaseUrl + "r2/translation_swedish/Textures.cnt";
 
         /// <summary>
         /// The Rayman 2 Portuguese fix.sna URL
         /// </summary>
-        public const string R2_PortugueseFixSna_URL = UtilityBaseUrl + "R2/Translation_Portuguese/Fix.sna";
+        public const string R2_PortugueseFixSna_URL = UtilityBaseUrl + "r2/translation_portuguese/Fix.sna";
 
         /// <summary>
         /// The Rayman 2 Portuguese textures.cnt URL
         /// </summary>
-        public const string R2_PortugueseTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Portuguese/Textures.cnt";
+        public const string R2_PortugueseTexturesCnt_URL = UtilityBaseUrl + "r2/translation_portuguese/Textures.cnt";
 
         /// <summary>
         /// The Rayman 2 Slovak fix.sna URL
         /// </summary>
-        public const string R2_SlovakFixSna_URL = UtilityBaseUrl + "R2/Translation_Slovak/Fix.sna";
+        public const string R2_SlovakFixSna_URL = UtilityBaseUrl + "r2/translation_slovak/Fix.sna";
 
         /// <summary>
         /// The Rayman 2 Slovak textures.cnt URL
         /// </summary>
-        public const string R2_SlovakTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Slovak/Textures.cnt";
+        public const string R2_SlovakTexturesCnt_URL = UtilityBaseUrl + "r2/translation_slovak/Textures.cnt";
 
         /// <summary>
         /// The Rayman Origins original videos URL
         /// </summary>
-        public const string RO_OriginalVideos_URL = UtilityBaseUrl + "RO/OriginalVideos.zip";
+        public const string RO_OriginalVideos_URL = UtilityBaseUrl + "rO/OriginalVideos.zip";
 
         /// <summary>
         /// The Rayman Origins high quality videos URL
         /// </summary>
-        public const string RO_HQVideos_URL = UtilityBaseUrl + "RO/HQVideos.zip";
+        public const string RO_HQVideos_URL = UtilityBaseUrl + "rO/HQVideos.zip";
 
         /// <summary>
         /// The Rayman Origins updater URL
         /// </summary>
-        public const string RO_Updater_URL = UtilityBaseUrl + "RO/Updater.zip";
+        public const string RO_Updater_URL = UtilityBaseUrl + "rO/Updater.zip";
 
         #endregion
 
@@ -250,12 +248,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The Rayman Raving Rabbids patched Big File (Steam) URL
         /// </summary>
-        public const string RRR_PatchedBF_Steam_URL = ModsBaseUrl + "RRR/RRR_Patched_Steam.zip";
+        public const string RRR_PatchedBF_Steam_URL = ModsBaseUrl + "rrr/RRR_Patched_Steam.zip";
 
         /// <summary>
         /// The Rayman Raving Rabbids patched Big File (GOG) URL
         /// </summary>
-        public const string RRR_PatchedBF_GOG_URL = ModsBaseUrl + "RRR/RRR_Patched_GOG.zip";
+        public const string RRR_PatchedBF_GOG_URL = ModsBaseUrl + "rrr/RRR_Patched_GOG.zip";
 
         #endregion
 
