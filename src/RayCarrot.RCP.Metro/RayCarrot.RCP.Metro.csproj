@@ -124,6 +124,8 @@
     <Compile Include="App\UserLevel.cs" />
     <Compile Include="App\Logging\WPFTraceListener.cs" />
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Error.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_RaymanRavingRabbidsDemo.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_RaymanRavingRabbidsDemo_Win32.cs" />
     <Compile Include="Games\OptionsDialog\Config\RaymanRavingRabbids\Config_RaymanRavingRabbids2_UI.xaml.cs">
       <DependentUpon>Config_RaymanRavingRabbids2_UI.xaml</DependentUpon>
     </Compile>
@@ -1421,6 +1423,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\Demo_RaymanRavingRabbids.png" />
     <Resource Include="Files\VersionHistory\VersionHistory_07.0_09.0.txt" />
     <Resource Include="Files\VersionHistory\VersionHistory_10.0_12.0.txt" />
     <Resource Include="Files\VersionHistory\VersionHistory_04.0_06.0.txt" />

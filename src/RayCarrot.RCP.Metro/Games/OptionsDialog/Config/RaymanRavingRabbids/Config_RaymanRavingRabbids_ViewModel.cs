@@ -98,8 +98,15 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Methods
 
-        // TODO: Do not hard-code the GUID
-        protected virtual string GetGUID() => "{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
+        protected virtual string GetGUID()
+        {
+            return Game switch
+            {
+                Games.RaymanRavingRabbids => "{05D2C1BC-A857-4493-9BDA-C7707CACB937}",
+                Games.Demo_RaymanRavingRabbids => "{F38BE118-6BE7-45b4-9688-58E8712C63FD}",
+                _ => throw new Exception("Unsupported game")
+            };
+        }
 
         protected void LoadRegistryKey(string keyName, Action<RegistryKey> loadAction)
         {

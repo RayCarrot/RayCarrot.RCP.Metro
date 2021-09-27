@@ -131,7 +131,12 @@ namespace RayCarrot.RCP.Metro
         /// The Rayman 1 Demo 2 download URL
         /// </summary>
         public const string Games_R1Demo2_Url = DemosBaseUrl + "Rayman_1_Demo_2.zip";
-        
+
+        /// <summary>
+        /// The Rayman Raving Rabbids Demo download URL
+        /// </summary>
+        public const string Games_RRRDemo_Url = DemosBaseUrl + "RRR_Demo.zip";
+
         #endregion
 
         #region Utilities

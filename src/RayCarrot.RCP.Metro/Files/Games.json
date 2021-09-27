@@ -125,6 +125,9 @@
     "Demo_Rayman3_5": {
       "Win32": "GameManager_Rayman3Demo5_Win32"
     },
+    "Demo_RaymanRavingRabbids": {
+      "Win32": "GameManager_RaymanRavingRabbidsDemo_Win32"
+    },
 
     "Ray1Minigames": {
       "Win32": "GameManager_Ray1Minigames_Win32"
@@ -198,6 +201,7 @@
     "Demo_Rayman3_3": "GameInfo_Rayman3Demo3",
     "Demo_Rayman3_4": "GameInfo_Rayman3Demo4",
     "Demo_Rayman3_5": "GameInfo_Rayman3Demo5",
+    "Demo_RaymanRavingRabbids": "GameInfo_RaymanRavingRabbidsDemo",
 
     "Ray1Minigames": "GameInfo_Ray1Minigames",
     "EducationalDos": "GameInfo_EducationalDos",

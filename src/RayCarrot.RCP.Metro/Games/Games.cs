@@ -120,6 +120,8 @@ namespace RayCarrot.RCP.Metro
         Demo_Rayman3_4,
         Demo_Rayman3_5,
 
+        Demo_RaymanRavingRabbids,
+
         #endregion
 
         #region Other
