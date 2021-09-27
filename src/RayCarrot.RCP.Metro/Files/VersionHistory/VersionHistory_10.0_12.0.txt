@@ -1,4 +1,12 @@
-﻿-----   Version 12.0.0 - September 25, 2021   -----
+﻿-----   Version 12.0.1 - September ??, 2021   -----
+• Added support for the Rayman Raving Rabbids demo
+• Updated the layout of the welcome page
+• Added a debug option to change the app accent color
+• Added a debug option to show the welcome window
+• Fixed a bug where some text wouldn't be in the correct language if not set to English
+
+
+-----   Version 12.0.0 - September 25, 2021   -----
 • Visual changes:
 	• Page headers use colored icons and underlines
 	• Controls have rounded corners and slightly thicker borders
