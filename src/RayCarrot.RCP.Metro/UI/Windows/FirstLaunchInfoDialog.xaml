@@ -10,7 +10,8 @@
                   Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                   Title="{Resx FirstLaunchInfo_Title}"
-                  Height="520" Width="800">
+                  SizeToContent="Height"
+                  Width="750">
     <Window.Resources>
 
         <!-- TODO: Unify thicknesses in app resources -->
@@ -18,9 +19,10 @@
         <Thickness x:Key="FirstLaunchDialog.Thickness.VerticalLarge">0 0 0 8</Thickness>
 
     </Window.Resources>
-    <Grid Margin="5">
+    <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -30,122 +32,125 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <ScrollViewer Grid.Column="0" Padding="10">
-                <StackPanel DataContext="{Binding Source={x:Static local:Services.Data}}">
+            <ScrollViewer Grid.Column="0">
+                <StackPanel>
                     <TextBlock HorizontalAlignment="Center"
                                Style="{StaticResource TextBlock.HeaderLarge}"
                                TextWrapping="Wrap"
                                Text="{Resx FirstLaunchInfo_Header}"
-                               Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}"/>
+                               Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}"/>
 
                     <TextBlock TextWrapping="Wrap"
                                FontSize="14"
                                Text="{Resx FirstLaunchInfo_Text}"
                                Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}" />
 
-                    <Separator Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}" />
-
-                    <!-- Language -->
-
-                    <StackPanel>
-
-                        <TextBlock Text="{Resx Settings_Language}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}"
-                                   Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}"/>
-
-                        <ComboBox SelectedItem="{Binding Path=App_CurrentCulture, Converter={local:CultureNameToCultureInfoConverter}}"
-                                  ItemsSource="{Binding Source={x:Static local:LocalizationManager.Languages}}"
-                                  HorizontalAlignment="Left"
-                                  MinWidth="150"
-                                  Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}">
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="{x:Type ComboBoxItem}"
-                                       BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                                    <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-
-                    </StackPanel>
-
-                    <!-- User Level -->
-
-                    <StackPanel>
-
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}">
-                            <TextBlock Text="{Resx Settings_UserLevel}"
-                                           Style="{StaticResource TextBlock.HeaderLarge}" />
-
-                            <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
-
-                        </StackPanel>
-
-                        <WrapPanel Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}">
-                            <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
-                            </i:Interaction.Behaviors>
-
-                            <!-- Normal -->
-
-                            <local:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
-                                                       ToolTip="{Resx Settings_UserLevelNormalInfo}"
-                                                       IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Normal}" />
-
-                            <!-- Advanced -->
-
-                            <local:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
-                                                       ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
-                                                       IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Advanced}" />
-
-                            <!-- Technical -->
-
-                            <local:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
-                                                       ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
-                                                       IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Technical}" />
-
-                            <!-- Debug (only show if debug was set from before) -->
-
-                            <local:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
-                                                       ToolTip="{Resx Settings_UserLevelDebugInfo}"
-                                                       IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
-                                                       local:UserLevelAssist.MinUserLevel="Debug" />
-
-                        </WrapPanel>
-
-                    </StackPanel>
-
-                    <!-- Startup -->
-
-                    <StackPanel>
-
-                        <TextBlock Text="{Resx Settings_StartupHeader}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" 
-                                   Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}"/>
-
-                        <CheckBox Content="{Resx Settings_StartupGameFinder}"
-                                  IsChecked="{Binding Path=Game_AutoLocateGames}"/>
-
-                    </StackPanel>
-
                 </StackPanel>
             </ScrollViewer>
 
             <Image Grid.Column="1"
                    Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
-                   Height="256"
-                   Width="256" 
-                   RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                   Height="128"
+                   Width="128" />
 
         </Grid>
 
-        <Button Grid.Row="1"
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" DataContext="{Binding Source={x:Static local:Services.Data}}">
+
+            <Separator Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}" />
+
+            <!-- Language -->
+
+            <StackPanel>
+
+                <TextBlock Text="{Resx Settings_Language}"
+                           Style="{StaticResource TextBlock.HeaderLarge}"
+                           Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}" />
+
+                <ComboBox SelectedItem="{Binding Path=App_CurrentCulture, Converter={local:CultureNameToCultureInfoConverter}}"
+                          ItemsSource="{Binding Source={x:Static local:LocalizationManager.Languages}}"
+                          HorizontalAlignment="Left"
+                          MinWidth="150"
+                          Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}"
+                               BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                            <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                            <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+            </StackPanel>
+
+            <!-- User Level -->
+
+            <StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}">
+                    <TextBlock Text="{Resx Settings_UserLevel}"
+                               Style="{StaticResource TextBlock.HeaderLarge}" />
+
+                    <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
+
+                </StackPanel>
+
+                <WrapPanel Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}">
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                    </i:Interaction.Behaviors>
+
+                    <!-- Normal -->
+
+                    <local:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
+                                               ToolTip="{Resx Settings_UserLevelNormalInfo}"
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Normal}" />
+
+                    <!-- Advanced -->
+
+                    <local:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
+                                               ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Advanced}" />
+
+                    <!-- Technical -->
+
+                    <local:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
+                                               ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Technical}" />
+
+                    <!-- Debug (only show if debug was set from before) -->
+
+                    <local:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
+                                               ToolTip="{Resx Settings_UserLevelDebugInfo}"
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
+                                               local:UserLevelAssist.MinUserLevel="Debug" />
+
+                </WrapPanel>
+
+            </StackPanel>
+
+            <!-- Startup -->
+
+            <StackPanel>
+
+                <TextBlock Text="{Resx Settings_StartupHeader}"
+                           Style="{StaticResource TextBlock.HeaderLarge}"
+                           Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}" />
+
+                <CheckBox Content="{Resx Settings_StartupGameFinder}"
+                          IsChecked="{Binding Path=Game_AutoLocateGames}"
+                          Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}" />
+
+            </StackPanel>
+        </StackPanel>
+
+        <Button Grid.Row="2"
                 Content="{Resx Continue}"
                 IsDefault="True"
                 IsCancel="True"
