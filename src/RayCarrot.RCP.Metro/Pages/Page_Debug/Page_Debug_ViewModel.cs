@@ -31,6 +31,7 @@ namespace RayCarrot.RCP.Metro
             // Create commands
             ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
             ShowLogCommand = new AsyncRelayCommand(ShowLogAsync);
+            ShowWelcomeWindowCommand = new RelayCommand(ShowWelcomeWindow);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
             RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
@@ -211,6 +212,14 @@ namespace RayCarrot.RCP.Metro
             }
 
             LogViewer.Open();
+        }
+
+        /// <summary>
+        /// Shows the welcome window
+        /// </summary>
+        public void ShowWelcomeWindow()
+        {
+            new FirstLaunchInfoDialog().ShowDialog();
         }
 
         /// <summary>
@@ -451,6 +460,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand ShowDialogCommand { get; }
 
         public ICommand ShowLogCommand { get; }
+
+        public ICommand ShowWelcomeWindowCommand { get; }
 
         public ICommand ShowInstalledUtilitiesCommand { get; }
 

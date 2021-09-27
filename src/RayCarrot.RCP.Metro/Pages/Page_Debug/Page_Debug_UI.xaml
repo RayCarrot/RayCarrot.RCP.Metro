@@ -26,6 +26,10 @@
                                 Command="{Binding Path=ShowLogCommand, Mode=OneTime}"
                                 IconKind="Text"/>
 
+            <local:MenuItemIcon Header="Show Welcome Window"
+                                Command="{Binding Path=ShowWelcomeWindowCommand, Mode=OneTime}"
+                                IconKind="InformationOutline"/>
+
             <local:MenuItemIcon Header="Restart as administrator"
                                 Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
                                 IconKind="Security"/>
