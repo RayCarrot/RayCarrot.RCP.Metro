@@ -31,7 +31,7 @@ namespace RayCarrot.RCP.Metro
 
         protected override string GetValue()
         {
-            var v = Resources.ResourceManager.GetString(ResourceKey);
+            var v = Resources.ResourceManager.GetString(ResourceKey, Services.InstanceData.CurrentCulture);
 
             if (FormatArgs.Any() && v != null)
                 v = String.Format(v, FormatArgs);
