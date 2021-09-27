@@ -1,4 +1,4 @@
-﻿-----   Version 12.0.1 - September ??, 2021   -----
+﻿-----   Version 12.1.0 - September 27, 2021   -----
 • Added support for the Rayman Raving Rabbids demo
 • Updated the layout of the welcome page
 • Added a debug option to change the app accent color
