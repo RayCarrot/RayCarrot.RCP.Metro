@@ -11852,7 +11852,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility requires additonal files to be downloaded.
+        ///   Looks up a localized string similar to This utility requires additional files to be downloaded.
         /// </summary>
         public static string Utility_AdditionalFilesRequired {
             get {

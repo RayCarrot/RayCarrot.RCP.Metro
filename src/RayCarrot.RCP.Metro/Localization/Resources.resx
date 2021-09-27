@@ -1085,7 +1085,7 @@ gameDisplayName</comment>
     <value>Installation canceled</value>
   </data>
   <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
-    <value>This utility requires additonal files to be downloaded</value>
+    <value>This utility requires additional files to be downloaded</value>
   </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Invalid format</value>
