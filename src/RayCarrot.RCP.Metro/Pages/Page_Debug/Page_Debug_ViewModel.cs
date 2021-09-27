@@ -11,6 +11,8 @@ using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using ControlzEx.Theming;
 using Newtonsoft.Json;
 using NLog;
 
@@ -40,10 +42,12 @@ namespace RayCarrot.RCP.Metro
             ThrowUnhandledExceptionAsyncCommand = new AsyncRelayCommand(ThrowUnhandledAsyncException);
             RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
             ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
+            UpdateThemeCommand = new RelayCommand(UpdateTheme);
 
             // Get properties
             AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
             SelectedInstaller = AvailableInstallers.First();
+            SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
         }
 
         #endregion
@@ -82,6 +86,8 @@ namespace RayCarrot.RCP.Metro
         /// The selected game installer
         /// </summary>
         public Games SelectedInstaller { get; set; }
+
+        public Color SelectedAccentColor { get; set; }
 
         #endregion
 
@@ -453,6 +459,21 @@ namespace RayCarrot.RCP.Metro
             await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstaller_Window(SelectedInstaller));
         }
 
+        public void UpdateTheme()
+        {
+            Theme newTheme = new Theme(
+                name: "DebugTheme", 
+                displayName: "DebugTheme", 
+                baseColorScheme: Data.Theme_DarkMode ? "Dark" : "Light", 
+                colorScheme: SelectedAccentColor.ToString(), 
+                primaryAccentColor: SelectedAccentColor, 
+                showcaseBrush: new SolidColorBrush(SelectedAccentColor), 
+                isRuntimeGenerated: true, 
+                isHighContrast: false);
+            
+            ThemeManager.Current.ChangeTheme(Metro.App.Current, newTheme);
+        }
+
         #endregion
 
         #region Commands
@@ -478,6 +499,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand RunInstallerCommand { get; }
 
         public ICommand ShutdownAppCommand { get; }
+
+        public ICommand UpdateThemeCommand { get; }
 
         #endregion
 

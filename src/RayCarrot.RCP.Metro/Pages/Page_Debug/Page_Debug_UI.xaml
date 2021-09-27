@@ -308,6 +308,39 @@
 
         </TabItem>
 
+        <!-- Theme -->
+
+        <TabItem local:TabItemAssist.IconKind="PaletteOutline"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 Header="Theme">
+
+            <ScrollViewer>
+                <StackPanel Margin="2 0">
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                    </i:Interaction.Behaviors>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="Accent Color"
+                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+
+                        <metro:ColorCanvas SelectedColor="{Binding Path=SelectedAccentColor}" />
+
+                        <Button Content="Apply"
+                                HorizontalAlignment="Left"
+                                Command="{Binding Path=UpdateThemeCommand, Mode=OneTime}"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </TabItem>
+
     </metro:MetroAnimatedTabControl>
 
     <i:Interaction.Behaviors>
