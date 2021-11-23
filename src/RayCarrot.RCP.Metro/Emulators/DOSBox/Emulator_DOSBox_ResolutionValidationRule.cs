@@ -2,50 +2,49 @@
 using System.Globalization;
 using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+public class Emulator_DOSBox_ResolutionValidationRule : ValidationRule
 {
-    public class Emulator_DOSBox_ResolutionValidationRule : ValidationRule
+    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
     {
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        if (!(value is string s))
+            return new ValidationResult(false, value == null ? Resources.DosBoxResolutionValidation_NullOrEmpty : Resources.DosBoxResolutionValidation_InvalidFormat);
+
+        if (s.Equals("original", StringComparison.CurrentCultureIgnoreCase) || s.Equals("desktop", StringComparison.CurrentCultureIgnoreCase))
+            return ValidationResult.ValidResult;
+
+        if (s.IsNullOrWhiteSpace())
+            return new ValidationResult(false, Resources.DosBoxResolutionValidation_NullOrEmpty);
+
+        bool first = true;
+        bool secondValid = false;
+
+        foreach (char c in s)
         {
-            if (!(value is string s))
-                return new ValidationResult(false, value == null ? Resources.DosBoxResolutionValidation_NullOrEmpty : Resources.DosBoxResolutionValidation_InvalidFormat);
-
-            if (s.Equals("original", StringComparison.CurrentCultureIgnoreCase) || s.Equals("desktop", StringComparison.CurrentCultureIgnoreCase))
-                return ValidationResult.ValidResult;
-
-            if (s.IsNullOrWhiteSpace())
-                return new ValidationResult(false, Resources.DosBoxResolutionValidation_NullOrEmpty);
-
-            bool first = true;
-            bool secondValid = false;
-
-            foreach (char c in s)
+            if (Char.IsDigit(c))
             {
-                if (Char.IsDigit(c))
-                {
-                    if (!first)
-                        secondValid = true;
-
-                    continue;
-                }
-
-                if (c != 'x')
-                    return new ValidationResult(false, String.Format(Resources.DosBoxResolutionValidation_InvalidCharacter, c));
-
                 if (!first)
-                    return new ValidationResult(false, Resources.DosBoxResolutionValidation_MultipleSeparators);
+                    secondValid = true;
 
-                first = false;
+                continue;
             }
 
-            if (first)
-                return new ValidationResult(false, Resources.DosBoxResolutionValidation_MissingSeparator);
+            if (c != 'x')
+                return new ValidationResult(false, String.Format(Resources.DosBoxResolutionValidation_InvalidCharacter, c));
 
-            if (!secondValid)
-                return new ValidationResult(false, Resources.DosBoxResolutionValidation_InvalidHeight);
+            if (!first)
+                return new ValidationResult(false, Resources.DosBoxResolutionValidation_MultipleSeparators);
 
-            return ValidationResult.ValidResult;
+            first = false;
         }
+
+        if (first)
+            return new ValidationResult(false, Resources.DosBoxResolutionValidation_MissingSeparator);
+
+        if (!secondValid)
+            return new ValidationResult(false, Resources.DosBoxResolutionValidation_InvalidHeight);
+
+        return ValidationResult.ValidResult;
     }
 }

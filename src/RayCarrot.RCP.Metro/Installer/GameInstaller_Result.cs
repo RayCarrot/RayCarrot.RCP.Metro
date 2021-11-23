@@ -1,23 +1,22 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The result for a game installation
+/// </summary>
+public enum GameInstaller_Result
 {
     /// <summary>
-    /// The result for a game installation
+    /// The installation was successful
     /// </summary>
-    public enum GameInstaller_Result
-    {
-        /// <summary>
-        /// The installation was successful
-        /// </summary>
-        Successful,
+    Successful,
 
-        /// <summary>
-        /// The installation failed without resources being cleaned up
-        /// </summary>
-        Failed,
+    /// <summary>
+    /// The installation failed without resources being cleaned up
+    /// </summary>
+    Failed,
 
-        /// <summary>
-        /// The installation was canceled by the user
-        /// </summary>
-        Canceled,
-    }
+    /// <summary>
+    /// The installation was canceled by the user
+    /// </summary>
+    Canceled,
 }

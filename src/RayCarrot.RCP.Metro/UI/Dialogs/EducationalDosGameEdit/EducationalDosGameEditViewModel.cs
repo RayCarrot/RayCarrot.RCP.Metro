@@ -2,57 +2,56 @@
 using System.Linq;
 using RayCarrot.IO;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// View model for editing an educational DOS game
+/// </summary>
+public class EducationalDosGameEditViewModel : UserInputViewModel
 {
+    #region Constructor
+
     /// <summary>
-    /// View model for editing an educational DOS game
+    /// Default constructor
     /// </summary>
-    public class EducationalDosGameEditViewModel : UserInputViewModel
+    /// <param name="game">The game to edit</param>
+    /// <param name="availableLaunchModes">The available launch modes, or null to automatically retrieve them</param>
+    public EducationalDosGameEditViewModel(UserData_EducationalDosBoxGameData game, string[] availableLaunchModes = null)
     {
-        #region Constructor
+        // Get the available launch modes
+        AvailableLaunchModes = availableLaunchModes ??
+                               Directory.GetDirectories(game.InstallDir + "PCMAP", "*", SearchOption.TopDirectoryOnly).
+                                   Select(x => new FileSystemPath(x).Name).
+                                   ToArray();
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="game">The game to edit</param>
-        /// <param name="availableLaunchModes">The available launch modes, or null to automatically retrieve them</param>
-        public EducationalDosGameEditViewModel(UserData_EducationalDosBoxGameData game, string[] availableLaunchModes = null)
-        {
-            // Get the available launch modes
-            AvailableLaunchModes = availableLaunchModes ??
-                                   Directory.GetDirectories(game.InstallDir + "PCMAP", "*", SearchOption.TopDirectoryOnly).
-                                       Select(x => new FileSystemPath(x).Name).
-                                       ToArray();
-
-            MountPath = game.MountPath;
-            LaunchMode = game.LaunchMode ?? AvailableLaunchModes.FirstOrDefault();
-            Name = game.Name;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The selected mount path
-        /// </summary>
-        public FileSystemPath MountPath { get; set; }
-
-        /// <summary>
-        /// The available launch modes
-        /// </summary>
-        public string[] AvailableLaunchModes { get; }
-
-        /// <summary>
-        /// The selected launch mode
-        /// </summary>
-        public string LaunchMode { get; set; }
-
-        /// <summary>
-        /// The selected name
-        /// </summary>
-        public string Name { get; set; }
-
-        #endregion
+        MountPath = game.MountPath;
+        LaunchMode = game.LaunchMode ?? AvailableLaunchModes.FirstOrDefault();
+        Name = game.Name;
     }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// The selected mount path
+    /// </summary>
+    public FileSystemPath MountPath { get; set; }
+
+    /// <summary>
+    /// The available launch modes
+    /// </summary>
+    public string[] AvailableLaunchModes { get; }
+
+    /// <summary>
+    /// The selected launch mode
+    /// </summary>
+    public string LaunchMode { get; set; }
+
+    /// <summary>
+    /// The selected name
+    /// </summary>
+    public string Name { get; set; }
+
+    #endregion
 }

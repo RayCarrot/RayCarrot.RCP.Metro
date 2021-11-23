@@ -1,48 +1,47 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The available pages
+/// </summary>
+public enum AppPage
 {
     /// <summary>
-    /// The available pages
+    /// The games page
     /// </summary>
-    public enum AppPage
-    {
-        /// <summary>
-        /// The games page
-        /// </summary>
-        Games,
+    Games,
 
-        /// <summary>
-        /// The backup/restore page
-        /// </summary>
-        BackupRestore,
+    /// <summary>
+    /// The backup/restore page
+    /// </summary>
+    BackupRestore,
 
-        /// <summary>
-        /// The utilities page
-        /// </summary>
-        Utilities,
+    /// <summary>
+    /// The utilities page
+    /// </summary>
+    Utilities,
 
-        /// <summary>
-        /// The mods page
-        /// </summary>
-        Mods,
+    /// <summary>
+    /// The mods page
+    /// </summary>
+    Mods,
 
-        /// <summary>
-        /// The settings page
-        /// </summary>
-        Settings,
+    /// <summary>
+    /// The settings page
+    /// </summary>
+    Settings,
 
-        /// <summary>
-        /// The help page
-        /// </summary>
-        Help,
+    /// <summary>
+    /// The help page
+    /// </summary>
+    Help,
 
-        /// <summary>
-        /// The help page
-        /// </summary>
-        About,
+    /// <summary>
+    /// The help page
+    /// </summary>
+    About,
 
-        /// <summary>
-        /// The debug page
-        /// </summary>
-        Debug
-    }
+    /// <summary>
+    /// The debug page
+    /// </summary>
+    Debug
 }

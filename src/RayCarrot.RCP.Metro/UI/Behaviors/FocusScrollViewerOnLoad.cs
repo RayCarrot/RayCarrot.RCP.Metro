@@ -3,36 +3,35 @@ using System.Windows.Controls;
 using Microsoft.Xaml.Behaviors;
 using System.Windows.Media;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Behavior for focusing the parent <see cref="ScrollViewer"/> on load
+/// </summary>
+public class FocusScrollViewerOnLoad : Behavior<FrameworkElement>
 {
-    /// <summary>
-    /// Behavior for focusing the parent <see cref="ScrollViewer"/> on load
-    /// </summary>
-    public class FocusScrollViewerOnLoad : Behavior<FrameworkElement>
+    protected override void OnAttached()
     {
-        protected override void OnAttached()
-        {
-            AssociatedObject.Loaded += AssociatedObject_Loaded;       
-        }
+        AssociatedObject.Loaded += AssociatedObject_Loaded;       
+    }
 
-        protected override void OnDetaching()
-        {
-            AssociatedObject.Loaded -= AssociatedObject_Loaded;
-        }
+    protected override void OnDetaching()
+    {
+        AssociatedObject.Loaded -= AssociatedObject_Loaded;
+    }
 
-        private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
-        {
-            GetRootScrollViewer()?.Focus();
-        }
+    private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
+    {
+        GetRootScrollViewer()?.Focus();
+    }
 
-        private ScrollViewer GetRootScrollViewer()
-        {
-            DependencyObject el = AssociatedObject;
+    private ScrollViewer GetRootScrollViewer()
+    {
+        DependencyObject el = AssociatedObject;
 
-            while (el != null && !(el is ScrollViewer))
-                el = VisualTreeHelper.GetParent(el);
+        while (el != null && !(el is ScrollViewer))
+            el = VisualTreeHelper.GetParent(el);
 
-            return el as ScrollViewer;
-        }
+        return el as ScrollViewer;
     }
 }

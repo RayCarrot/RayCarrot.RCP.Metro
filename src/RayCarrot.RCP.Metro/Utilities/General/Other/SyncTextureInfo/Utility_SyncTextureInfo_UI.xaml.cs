@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Interaction logic for Utility_SyncTextureInfo_UI.xaml
+/// </summary>
+public partial class Utility_SyncTextureInfo_UI : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Utility_SyncTextureInfo_UI.xaml
-    /// </summary>
-    public partial class Utility_SyncTextureInfo_UI : UserControl
+    public Utility_SyncTextureInfo_UI()
     {
-        public Utility_SyncTextureInfo_UI()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -1,31 +1,30 @@
 ﻿using RayCarrot.IO;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Options for a DOSBox game
+/// </summary>
+public class UserData_DosBoxOptions
 {
+    #region Constructor
+
     /// <summary>
-    /// Options for a DOSBox game
+    /// Default constructor
     /// </summary>
-    public class UserData_DosBoxOptions
+    public UserData_DosBoxOptions()
     {
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public UserData_DosBoxOptions()
-        {
-            MountPath = FileSystemPath.EmptyPath;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The file or directory to mount
-        /// </summary>
-        public FileSystemPath MountPath { get; set; }
-
-        #endregion
+        MountPath = FileSystemPath.EmptyPath;
     }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// The file or directory to mount
+    /// </summary>
+    public FileSystemPath MountPath { get; set; }
+
+    #endregion
 }

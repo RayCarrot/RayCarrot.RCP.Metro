@@ -4,43 +4,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Extension methods for <see cref="Bitmap"/>
+/// </summary>
+public static class BitmapExtensions
 {
     /// <summary>
-    /// Extension methods for <see cref="Bitmap"/>
+    /// Converts a <see cref="Bitmap"/> to an <see cref="ImageSource"/>
     /// </summary>
-    public static class BitmapExtensions
+    /// <param name="bmp"></param>
+    /// <param name="disposeBitmap">Indicates if the bitmap image should be disposed</param>
+    /// <returns></returns>
+    public static ImageSource ToImageSource(this Bitmap bmp, bool disposeBitmap = true)
     {
-        /// <summary>
-        /// Converts a <see cref="Bitmap"/> to an <see cref="ImageSource"/>
-        /// </summary>
-        /// <param name="bmp"></param>
-        /// <param name="disposeBitmap">Indicates if the bitmap image should be disposed</param>
-        /// <returns></returns>
-        public static ImageSource ToImageSource(this Bitmap bmp, bool disposeBitmap = true)
+        try
         {
+            var rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+
+            BitmapData bitmapData = bmp.LockBits(rect, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+
             try
             {
-                var rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+                var size = (rect.Width * rect.Height) * 4;
 
-                BitmapData bitmapData = bmp.LockBits(rect, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-
-                try
-                {
-                    var size = (rect.Width * rect.Height) * 4;
-
-                    return BitmapSource.Create(bmp.Width, bmp.Height, bmp.HorizontalResolution, bmp.VerticalResolution, PixelFormats.Bgra32, null, bitmapData.Scan0, size, bitmapData.Stride);
-                }
-                finally
-                {
-                    bmp.UnlockBits(bitmapData);
-                }
+                return BitmapSource.Create(bmp.Width, bmp.Height, bmp.HorizontalResolution, bmp.VerticalResolution, PixelFormats.Bgra32, null, bitmapData.Scan0, size, bitmapData.Stride);
             }
             finally
             {
-                if (disposeBitmap)
-                    bmp.Dispose();
+                bmp.UnlockBits(bitmapData);
             }
+        }
+        finally
+        {
+            if (disposeBitmap)
+                bmp.Dispose();
         }
     }
 }

@@ -6,123 +6,122 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NLog;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// View model for the educational DOS games options
+/// </summary>
+public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
 {
+    #region Constructor
+
     /// <summary>
-    /// View model for the educational DOS games options
+    /// Default constructor
     /// </summary>
-    public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
+    public GameOptions_EducationalDos_ViewModel()
     {
-        #region Constructor
+        // Get the games
+        GameItems = Data.Game_EducationalDosBoxGames.Select(x => new GameOptions_EducationalDos_GameInfoItemViewModel(this, x, x.Name)).ToObservableCollection();
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public GameOptions_EducationalDos_ViewModel()
-        {
-            // Get the games
-            GameItems = Data.Game_EducationalDosBoxGames.Select(x => new GameOptions_EducationalDos_GameInfoItemViewModel(this, x, x.Name)).ToObservableCollection();
-
-            // Create the commands
-            AddGameCommand = new AsyncRelayCommand(AddGameAsync);
-        }
-
-        #endregion
-
-        #region Logger
-
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        #endregion
-
-        #region Commands
-
-        public ICommand AddGameCommand { get; }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The educational games
-        /// </summary>
-        public ObservableCollection<GameOptions_EducationalDos_GameInfoItemViewModel> GameItems { get; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Adds a new educational game to the app
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task AddGameAsync()
-        {
-            Logger.Info("A new educational game is being added...");
-
-            // Get the manager
-            var manager = Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>();
-
-            // Locate the new game
-            var path = await Games.EducationalDos.GetManager().LocateAsync();
-
-            if (path == null)
-                return;
-
-            // Get the game info
-            var newItem = manager.GetNewEducationalDosBoxGameInfo(path.Value);
-
-            // Add the game to the list of educational games
-            Data.Game_EducationalDosBoxGames.Add(newItem);
-
-            // Create the view model
-            var vm = new GameOptions_EducationalDos_GameInfoItemViewModel(this, newItem, newItem.Name);
-
-            // Add the view model
-            GameItems.Add(vm);
-
-            // Add to the jump list
-            Data.App_JumpListItemIDCollection.Add(newItem.ID);
-
-            Logger.Info("A new educational game has been added with the name {0}", newItem.Name);
-
-            // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
-                RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
-
-            // Edit the game
-            await vm.EditGameAsync();
-        }
-
-        /// <summary>
-        /// Saves the changes made from the game items
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task SaveAsync()
-        {
-            Logger.Info("The educational game options are saving...");
-
-            // Clear the games
-            Data.Game_EducationalDosBoxGames.Clear();
-
-            // Add the games
-            Data.Game_EducationalDosBoxGames.AddRange(GameItems.Select(x => new UserData_EducationalDosBoxGameData(x.GameData.InstallDir, x.GameData.LaunchName, x.GameData.ID)
-            {
-                LaunchMode = x.GameData.LaunchMode,
-                MountPath = x.GameData.MountPath,
-                Name = x.GameData.Name
-            }));
-
-            // Refresh the default game
-            Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>().RefreshDefault();
-
-            // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
-                RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
-
-            Logger.Info("The educational game options have saved");
-        }
-
-        #endregion
+        // Create the commands
+        AddGameCommand = new AsyncRelayCommand(AddGameAsync);
     }
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Commands
+
+    public ICommand AddGameCommand { get; }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// The educational games
+    /// </summary>
+    public ObservableCollection<GameOptions_EducationalDos_GameInfoItemViewModel> GameItems { get; }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Adds a new educational game to the app
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task AddGameAsync()
+    {
+        Logger.Info("A new educational game is being added...");
+
+        // Get the manager
+        var manager = Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>();
+
+        // Locate the new game
+        var path = await Games.EducationalDos.GetManager().LocateAsync();
+
+        if (path == null)
+            return;
+
+        // Get the game info
+        var newItem = manager.GetNewEducationalDosBoxGameInfo(path.Value);
+
+        // Add the game to the list of educational games
+        Data.Game_EducationalDosBoxGames.Add(newItem);
+
+        // Create the view model
+        var vm = new GameOptions_EducationalDos_GameInfoItemViewModel(this, newItem, newItem.Name);
+
+        // Add the view model
+        GameItems.Add(vm);
+
+        // Add to the jump list
+        Data.App_JumpListItemIDCollection.Add(newItem.ID);
+
+        Logger.Info("A new educational game has been added with the name {0}", newItem.Name);
+
+        // Refresh
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+            RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
+
+        // Edit the game
+        await vm.EditGameAsync();
+    }
+
+    /// <summary>
+    /// Saves the changes made from the game items
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task SaveAsync()
+    {
+        Logger.Info("The educational game options are saving...");
+
+        // Clear the games
+        Data.Game_EducationalDosBoxGames.Clear();
+
+        // Add the games
+        Data.Game_EducationalDosBoxGames.AddRange(GameItems.Select(x => new UserData_EducationalDosBoxGameData(x.GameData.InstallDir, x.GameData.LaunchName, x.GameData.ID)
+        {
+            LaunchMode = x.GameData.LaunchMode,
+            MountPath = x.GameData.MountPath,
+            Name = x.GameData.Name
+        }));
+
+        // Refresh the default game
+        Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>().RefreshDefault();
+
+        // Refresh
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+            RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
+
+        Logger.Info("The educational game options have saved");
+    }
+
+    #endregion
 }

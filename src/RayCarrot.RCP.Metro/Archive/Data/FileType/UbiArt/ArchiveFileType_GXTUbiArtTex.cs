@@ -1,25 +1,24 @@
 ﻿using RayCarrot.IO;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// A GXT UbiArt texture file type (PS Vita)
+/// </summary>
+public class ArchiveFileType_GXTUbiArtTex : ArchiveFileType_BaseUbiArtTex
 {
     /// <summary>
-    /// A GXT UbiArt texture file type (PS Vita)
+    /// The format
     /// </summary>
-    public class ArchiveFileType_GXTUbiArtTex : ArchiveFileType_BaseUbiArtTex
-    {
-        /// <summary>
-        /// The format
-        /// </summary>
-        protected override FileExtension Format => new FileExtension(".gxt");
+    protected override FileExtension Format => new FileExtension(".gxt");
 
-        /// <summary>
-        /// The magic header for the format
-        /// </summary>
-        protected override uint? FormatMagic => 0x47585400;
+    /// <summary>
+    /// The magic header for the format
+    /// </summary>
+    protected override uint? FormatMagic => 0x47585400;
 
-        /// <summary>
-        /// Indicates if the format is fully supported and can be read as an image
-        /// </summary>
-        protected override bool IsFormatSupported => false;
-    }
+    /// <summary>
+    /// Indicates if the format is fully supported and can be read as an image
+    /// </summary>
+    protected override bool IsFormatSupported => false;
 }

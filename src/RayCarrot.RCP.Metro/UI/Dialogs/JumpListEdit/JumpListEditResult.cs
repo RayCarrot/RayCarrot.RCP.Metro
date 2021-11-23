@@ -1,22 +1,21 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Result for the jump list editor
+/// </summary>
+public class JumpListEditResult : UserInputResult
 {
     /// <summary>
-    /// Result for the jump list editor
+    /// Default constructor
     /// </summary>
-    public class JumpListEditResult : UserInputResult
+    /// <param name="includedItems">The included items</param>
+    public JumpListEditResult(JumpListItemViewModel[] includedItems)
     {
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="includedItems">The included items</param>
-        public JumpListEditResult(JumpListItemViewModel[] includedItems)
-        {
-            IncludedItems = includedItems;
-        }
-
-        /// <summary>
-        /// The included items
-        /// </summary>
-        public JumpListItemViewModel[] IncludedItems { get; }
+        IncludedItems = includedItems;
     }
+
+    /// <summary>
+    /// The included items
+    /// </summary>
+    public JumpListItemViewModel[] IncludedItems { get; }
 }

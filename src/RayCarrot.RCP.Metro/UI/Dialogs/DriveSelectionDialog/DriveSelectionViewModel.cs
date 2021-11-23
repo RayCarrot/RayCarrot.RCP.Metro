@@ -13,267 +13,266 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// View model for a drive selection
+/// </summary>
+public class DriveSelectionViewModel : BaseViewModel
 {
+    #region Constructor
+
     /// <summary>
-    /// View model for a drive selection
+    /// Creates a new instance of <see cref="DriveSelectionViewModel"/> with default values
     /// </summary>
-    public class DriveSelectionViewModel : BaseViewModel
+    public DriveSelectionViewModel()
     {
-        #region Constructor
+        RefreshAsyncLock = new AsyncLock();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="DriveSelectionViewModel"/> with default values
-        /// </summary>
-        public DriveSelectionViewModel()
+        BrowseVM = new DriveBrowserViewModel()
         {
-            RefreshAsyncLock = new AsyncLock();
-
-            BrowseVM = new DriveBrowserViewModel()
+            AllowedTypes = new DriveType[]
             {
-                AllowedTypes = new DriveType[]
-                {
-                    DriveType.CDRom,
-                    DriveType.Fixed,
-                    DriveType.Network,
-                    DriveType.Removable
-                },
-                AllowNonReadyDrives = false,
-                MultiSelection = false,
-                Title = Resources.Browse_SelectDrive
-            };
-            Setup();
-            Drives = new ObservableCollection<DriveViewModel>();
-        }
+                DriveType.CDRom,
+                DriveType.Fixed,
+                DriveType.Network,
+                DriveType.Removable
+            },
+            AllowNonReadyDrives = false,
+            MultiSelection = false,
+            Title = Resources.Browse_SelectDrive
+        };
+        Setup();
+        Drives = new ObservableCollection<DriveViewModel>();
+    }
 
-        /// <summary>
-        /// Creates a new instance of <see cref="DriveSelectionViewModel"/> with a browse view model
-        /// </summary>
-        public DriveSelectionViewModel(DriveBrowserViewModel browseVM)
+    /// <summary>
+    /// Creates a new instance of <see cref="DriveSelectionViewModel"/> with a browse view model
+    /// </summary>
+    public DriveSelectionViewModel(DriveBrowserViewModel browseVM)
+    {
+        RefreshAsyncLock = new AsyncLock();
+
+        BrowseVM = browseVM;
+        Setup();
+        Drives = new ObservableCollection<DriveViewModel>();
+    }
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Private Properties
+
+    private AsyncLock RefreshAsyncLock { get; }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// The browse view model
+    /// </summary>
+    public DriveBrowserViewModel BrowseVM { get; }
+
+    /// <summary>
+    /// The currently available drives
+    /// </summary>
+    public ObservableCollection<DriveViewModel> Drives { get; }
+
+    /// <summary>
+    /// The current result
+    /// </summary>
+    public DriveBrowserResult Result { get; set; }
+
+    /// <summary>
+    /// The currently selected item
+    /// </summary>
+    public DriveViewModel SelectedItem { get; set; }
+
+    /// <summary>
+    /// The currently selected items
+    /// </summary>
+    public IList SelectedItems { get; set; }
+
+    #endregion
+
+    #region Private Methods
+
+    /// <summary>
+    /// Sets up the view model
+    /// </summary>
+    private void Setup()
+    {
+        Result = new DriveBrowserResult()
         {
-            RefreshAsyncLock = new AsyncLock();
+            CanceledByUser = true
+        };
+    }
 
-            BrowseVM = browseVM;
-            Setup();
-            Drives = new ObservableCollection<DriveViewModel>();
-        }
+    #endregion
 
-        #endregion
+    #region Public Methods
 
-        #region Logger
+    /// <summary>
+    /// Updates the return value
+    /// </summary>
+    public void UpdateReturnValue()
+    {
+        Result.SelectedDrive = SelectedItem?.Path ?? FileSystemPath.EmptyPath;
+        Result.SelectedDrives = SelectedItems?.Cast<DriveViewModel>().Select(x => x?.Path ?? FileSystemPath.EmptyPath) ?? new FileSystemPath[]{};
+    }
 
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        #endregion
-
-        #region Private Properties
-
-        private AsyncLock RefreshAsyncLock { get; }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The browse view model
-        /// </summary>
-        public DriveBrowserViewModel BrowseVM { get; }
-
-        /// <summary>
-        /// The currently available drives
-        /// </summary>
-        public ObservableCollection<DriveViewModel> Drives { get; }
-
-        /// <summary>
-        /// The current result
-        /// </summary>
-        public DriveBrowserResult Result { get; set; }
-
-        /// <summary>
-        /// The currently selected item
-        /// </summary>
-        public DriveViewModel SelectedItem { get; set; }
-
-        /// <summary>
-        /// The currently selected items
-        /// </summary>
-        public IList SelectedItems { get; set; }
-
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Sets up the view model
-        /// </summary>
-        private void Setup()
+    /// <summary>
+    /// Refreshes the available drives
+    /// </summary>
+    public async Task RefreshAsync()
+    {
+        using (await RefreshAsyncLock.LockAsync())
         {
-            Result = new DriveBrowserResult()
+            Drives.Clear();
+
+            DriveInfo[] drives;
+
+            try
             {
-                CanceledByUser = true
-            };
-        }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Updates the return value
-        /// </summary>
-        public void UpdateReturnValue()
-        {
-            Result.SelectedDrive = SelectedItem?.Path ?? FileSystemPath.EmptyPath;
-            Result.SelectedDrives = SelectedItems?.Cast<DriveViewModel>().Select(x => x?.Path ?? FileSystemPath.EmptyPath) ?? new FileSystemPath[]{};
-        }
-
-        /// <summary>
-        /// Refreshes the available drives
-        /// </summary>
-        public async Task RefreshAsync()
-        {
-            using (await RefreshAsyncLock.LockAsync())
+                drives = DriveInfo.GetDrives();
+            }
+            catch (Exception ex)
             {
-                Drives.Clear();
+                Logger.Error(ex, "Getting drives");
+                    
+                await Services.MessageUI.DisplayMessageAsync(Resources.DriveSelection_RefreshError, MessageType.Error);
+                    
+                return;
+            }
 
-                DriveInfo[] drives;
+            foreach (var drive in drives)
+            {
+                if (BrowseVM.AllowedTypes != null && !BrowseVM.AllowedTypes.Contains(drive.DriveType))
+                    continue;
+
+                ImageSource icon = null;
+                string label = null;
+                string path;
+                string format = null;
+                ByteSize? freeSpace = null;
+                ByteSize? totalSize = null;
+                DriveType? type = null;
+                bool? ready = null;
 
                 try
                 {
-                    drives = DriveInfo.GetDrives();
+                    label = drive.VolumeLabel;
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, "Getting drives");
-                    
-                    await Services.MessageUI.DisplayMessageAsync(Resources.DriveSelection_RefreshError, MessageType.Error);
-                    
-                    return;
+                    Logger.Debug(ex, "Getting drive label");
                 }
 
-                foreach (var drive in drives)
+                try
                 {
-                    if (BrowseVM.AllowedTypes != null && !BrowseVM.AllowedTypes.Contains(drive.DriveType))
-                        continue;
-
-                    ImageSource icon = null;
-                    string label = null;
-                    string path;
-                    string format = null;
-                    ByteSize? freeSpace = null;
-                    ByteSize? totalSize = null;
-                    DriveType? type = null;
-                    bool? ready = null;
+                    path = drive.Name;
 
                     try
                     {
-                        label = drive.VolumeLabel;
+                        using var shellObj = ShellObject.FromParsingName(path);
+                        var thumb = shellObj.Thumbnail;
+                        thumb.CurrentSize = new System.Windows.Size(16, 16);
+                        icon = thumb.GetTransparentBitmap()?.ToImageSource();
                     }
                     catch (Exception ex)
                     {
-                        Logger.Debug(ex, "Getting drive label");
+                        Logger.Debug(ex, "Getting drive icon");
                     }
-
-                    try
-                    {
-                        path = drive.Name;
-
-                        try
-                        {
-                            using var shellObj = ShellObject.FromParsingName(path);
-                            var thumb = shellObj.Thumbnail;
-                            thumb.CurrentSize = new System.Windows.Size(16, 16);
-                            icon = thumb.GetTransparentBitmap()?.ToImageSource();
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Debug(ex, "Getting drive icon");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Debug(ex, "Getting drive name");
-                        continue;
-                    }
-
-                    try
-                    {
-                        format = drive.DriveFormat;
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Debug(ex, "Getting drive format");
-                    }
-
-                    try
-                    {
-                        freeSpace = ByteSize.FromBytes(drive.TotalFreeSpace);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Debug(ex, "Getting drive freeSpace");
-                    }
-
-                    try
-                    {
-                        totalSize = ByteSize.FromBytes(drive.TotalSize);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Debug(ex, "Getting drive totalSize");
-                    }
-
-                    try
-                    {
-                        type = drive.DriveType;
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Debug(ex, "Getting drive type");
-                    }
-
-                    try
-                    {
-                        ready = drive.IsReady;
-                        if (!drive.IsReady && !BrowseVM.AllowNonReadyDrives)
-                            continue;
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Debug(ex, "Getting drive ready");
-                        if (!BrowseVM.AllowNonReadyDrives)
-                            continue;
-                    }
-
-                    // Create the view model
-                    var vm = new DriveViewModel()
-                    {
-                        Path = path,
-                        Icon = icon,
-                        Format = format,
-                        Label = label,
-                        Type = type,
-                        FreeSpace = freeSpace,
-                        TotalSize = totalSize,
-                        IsReady = ready
-                    };
-
-                    Drives.Add(vm);
                 }
+                catch (Exception ex)
+                {
+                    Logger.Debug(ex, "Getting drive name");
+                    continue;
+                }
+
+                try
+                {
+                    format = drive.DriveFormat;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Debug(ex, "Getting drive format");
+                }
+
+                try
+                {
+                    freeSpace = ByteSize.FromBytes(drive.TotalFreeSpace);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Debug(ex, "Getting drive freeSpace");
+                }
+
+                try
+                {
+                    totalSize = ByteSize.FromBytes(drive.TotalSize);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Debug(ex, "Getting drive totalSize");
+                }
+
+                try
+                {
+                    type = drive.DriveType;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Debug(ex, "Getting drive type");
+                }
+
+                try
+                {
+                    ready = drive.IsReady;
+                    if (!drive.IsReady && !BrowseVM.AllowNonReadyDrives)
+                        continue;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Debug(ex, "Getting drive ready");
+                    if (!BrowseVM.AllowNonReadyDrives)
+                        continue;
+                }
+
+                // Create the view model
+                var vm = new DriveViewModel()
+                {
+                    Path = path,
+                    Icon = icon,
+                    Format = format,
+                    Label = label,
+                    Type = type,
+                    FreeSpace = freeSpace,
+                    TotalSize = totalSize,
+                    IsReady = ready
+                };
+
+                Drives.Add(vm);
             }
         }
-
-        #endregion
-
-        #region Commands
-
-        private ICommand _RefreshCommand;
-
-        /// <summary>
-        /// A command for <see cref="RefreshAsync"/>
-        /// </summary>
-        public ICommand RefreshCommand => _RefreshCommand ??= new AsyncRelayCommand(RefreshAsync);
-
-        #endregion
     }
+
+    #endregion
+
+    #region Commands
+
+    private ICommand _RefreshCommand;
+
+    /// <summary>
+    /// A command for <see cref="RefreshAsync"/>
+    /// </summary>
+    public ICommand RefreshCommand => _RefreshCommand ??= new AsyncRelayCommand(RefreshAsync);
+
+    #endregion
 }

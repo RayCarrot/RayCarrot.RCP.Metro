@@ -1,13 +1,12 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// User input result for a game type selection
+/// </summary>
+public class GameTypeSelectionResult : UserInputResult
 {
     /// <summary>
-    /// User input result for a game type selection
+    /// The selected game type
     /// </summary>
-    public class GameTypeSelectionResult : UserInputResult
-    {
-        /// <summary>
-        /// The selected game type
-        /// </summary>
-        public GameType SelectedType { get; set; }
-    }
+    public GameType SelectedType { get; set; }
 }

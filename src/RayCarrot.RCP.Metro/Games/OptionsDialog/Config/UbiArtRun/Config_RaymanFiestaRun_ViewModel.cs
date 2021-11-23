@@ -1,23 +1,22 @@
 ﻿using System.Threading.Tasks;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// View model for the Rayman Fiesta Run configuration
+/// </summary>
+public class Config_RaymanFiestaRun_ViewModel : Config_UbiArtRun_BaseViewModel
 {
     /// <summary>
-    /// View model for the Rayman Fiesta Run configuration
+    /// Default constructor
     /// </summary>
-    public class Config_RaymanFiestaRun_ViewModel : Config_UbiArtRun_BaseViewModel
+    public Config_RaymanFiestaRun_ViewModel() : base(Games.RaymanFiestaRun) 
+    { }
+
+    protected override Task OnGameInfoModified() => LoadPageAsync();
+
+    protected override object GetPageUI() => new Config_RaymanFiestaRun_UI()
     {
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public Config_RaymanFiestaRun_ViewModel() : base(Games.RaymanFiestaRun) 
-        { }
-
-        protected override Task OnGameInfoModified() => LoadPageAsync();
-
-        protected override object GetPageUI() => new Config_RaymanFiestaRun_UI()
-        {
-            DataContext = this
-        };
-    }
+        DataContext = this
+    };
 }

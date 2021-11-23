@@ -1,33 +1,32 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The available game categories
+/// </summary>
+public enum GameCategory
 {
     /// <summary>
-    /// The available game categories
+    /// The Rayman game category
     /// </summary>
-    public enum GameCategory
-    {
-        /// <summary>
-        /// The Rayman game category
-        /// </summary>
-        Rayman,
+    Rayman,
 
-        /// <summary>
-        /// The Rabbids game category
-        /// </summary>
-        Rabbids,
+    /// <summary>
+    /// The Rabbids game category
+    /// </summary>
+    Rabbids,
 
-        /// <summary>
-        /// The demo game category
-        /// </summary>
-        Demo,
+    /// <summary>
+    /// The demo game category
+    /// </summary>
+    Demo,
 
-        /// <summary>
-        /// The fan-game category
-        /// </summary>
-        Fan,
+    /// <summary>
+    /// The fan-game category
+    /// </summary>
+    Fan,
 
-        /// <summary>
-        /// The other category
-        /// </summary>
-        Other
-    }
+    /// <summary>
+    /// The other category
+    /// </summary>
+    Other
 }

@@ -3,77 +3,76 @@ using RayCarrot.Rayman.Ray1;
 using System.Threading.Tasks;
 using RayCarrot.Rayman;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Utility view model for converting Rayman 1 .cfg files
+/// </summary>
+public class Utility_Converter_R1Config_ViewModel : Utility_BaseConverter_ViewModel<GameMode>
 {
+    #region Constructor
+
     /// <summary>
-    /// Utility view model for converting Rayman 1 .cfg files
+    /// Default constructor
     /// </summary>
-    public class Utility_Converter_R1Config_ViewModel : Utility_BaseConverter_ViewModel<GameMode>
+    public Utility_Converter_R1Config_ViewModel()
     {
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public Utility_Converter_R1Config_ViewModel()
+        GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman1PC, new[]
         {
-            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman1PC, new[]
-            {
-                GameMode.Rayman1PC,
-                GameMode.RayKitPC,
-                GameMode.RayFanPC,
-                GameMode.Ray60nPC,
-            });
-        }
-
-        #endregion
-
-        #region Public Override Properties
-
-        /// <summary>
-        /// The game mode selection
-        /// </summary>
-        public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
-
-        #endregion
-
-        #region Public Override Methods
-
-        /// <summary>
-        /// Converts from the format
-        /// </summary>
-        /// <returns>The task</returns>
-        public override async Task ConvertFromAsync()
-        {
-            var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
-            var settings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
-
-            await ConvertFromAsync<Rayman1PCConfigData>(settings, (data, filePath) =>
-            {
-                // Save the data
-                SerializeJSON(data, filePath);
-            }, new FileFilterItem("*.cfg", "CFG").ToString(), new[]
-            {
-                ".json"
-            }, GameModeSelection.SelectedValue.GetGame()?.GetInstallDir(false));
-        }
-
-        /// <summary>
-        /// Converts to the format
-        /// </summary>
-        /// <returns>The task</returns>
-        public override async Task ConvertToAsync()
-        {
-            var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
-            var settings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
-
-            await ConvertToAsync(settings, (filePath, format) =>
-            {
-                // Read the data
-                return DeserializeJSON<Rayman1PCConfigData>(filePath);
-            }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".cfg"));
-        }
-
-        #endregion
+            GameMode.Rayman1PC,
+            GameMode.RayKitPC,
+            GameMode.RayFanPC,
+            GameMode.Ray60nPC,
+        });
     }
+
+    #endregion
+
+    #region Public Override Properties
+
+    /// <summary>
+    /// The game mode selection
+    /// </summary>
+    public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
+
+    #endregion
+
+    #region Public Override Methods
+
+    /// <summary>
+    /// Converts from the format
+    /// </summary>
+    /// <returns>The task</returns>
+    public override async Task ConvertFromAsync()
+    {
+        var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
+        var settings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
+
+        await ConvertFromAsync<Rayman1PCConfigData>(settings, (data, filePath) =>
+        {
+            // Save the data
+            SerializeJSON(data, filePath);
+        }, new FileFilterItem("*.cfg", "CFG").ToString(), new[]
+        {
+            ".json"
+        }, GameModeSelection.SelectedValue.GetGame()?.GetInstallDir(false));
+    }
+
+    /// <summary>
+    /// Converts to the format
+    /// </summary>
+    /// <returns>The task</returns>
+    public override async Task ConvertToAsync()
+    {
+        var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
+        var settings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
+
+        await ConvertToAsync(settings, (filePath, format) =>
+        {
+            // Read the data
+            return DeserializeJSON<Rayman1PCConfigData>(filePath);
+        }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".cfg"));
+    }
+
+    #endregion
 }

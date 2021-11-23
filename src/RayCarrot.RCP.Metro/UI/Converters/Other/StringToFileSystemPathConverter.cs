@@ -2,21 +2,20 @@
 using System.Globalization;
 using RayCarrot.IO;
 
-namespace RayCarrot.RCP.Metro
-{
-    /// <summary>
-    /// Converts a <see cref="String"/> to a <see cref="FileSystemPath"/>
-    /// </summary>
-    public class StringToFileSystemPathConverter : BaseValueConverter<StringToFileSystemPathConverter, string, FileSystemPath>
-    {
-        public override FileSystemPath ConvertValue(string value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
+namespace RayCarrot.RCP.Metro;
 
-        public override string ConvertValueBack(FileSystemPath value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
+/// <summary>
+/// Converts a <see cref="String"/> to a <see cref="FileSystemPath"/>
+/// </summary>
+public class StringToFileSystemPathConverter : BaseValueConverter<StringToFileSystemPathConverter, string, FileSystemPath>
+{
+    public override FileSystemPath ConvertValue(string value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return value;
+    }
+
+    public override string ConvertValueBack(FileSystemPath value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return value;
     }
 }

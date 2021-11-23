@@ -3,52 +3,51 @@ using System.IO;
 using RayCarrot.IO;
 using NLog;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Drive information for a game installation
+/// </summary>
+public class GameInstaller_DriveInfo
 {
     /// <summary>
-    /// Drive information for a game installation
+    /// Default constructor
     /// </summary>
-    public class GameInstaller_DriveInfo
+    /// <param name="root">The root directory</param>
+    /// <param name="volumeLabel">The volume label</param>
+    public GameInstaller_DriveInfo(FileSystemPath root, string volumeLabel)
     {
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="root">The root directory</param>
-        /// <param name="volumeLabel">The volume label</param>
-        public GameInstaller_DriveInfo(FileSystemPath root, string volumeLabel)
+        Root = root;
+        VolumeLabel = volumeLabel;
+    }
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    /// <summary>
+    /// The root directory
+    /// </summary>
+    public FileSystemPath Root { get; }
+
+    /// <summary>
+    /// The volume label
+    /// </summary>
+    public string VolumeLabel { get; }
+
+    /// <summary>
+    /// True if the drive is available, false if not
+    /// </summary>
+    public bool IsAvailable
+    {
+        get
         {
-            Root = root;
-            VolumeLabel = volumeLabel;
-        }
-
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        /// <summary>
-        /// The root directory
-        /// </summary>
-        public FileSystemPath Root { get; }
-
-        /// <summary>
-        /// The volume label
-        /// </summary>
-        public string VolumeLabel { get; }
-
-        /// <summary>
-        /// True if the drive is available, false if not
-        /// </summary>
-        public bool IsAvailable
-        {
-            get
+            try
             {
-                try
-                {
-                    return Root.DirectoryExists && new DriveInfo(Root).VolumeLabel == VolumeLabel;
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error(ex, "Checking if saved drive is available");
-                    return false;
-                }
+                return Root.DirectoryExists && new DriveInfo(Root).VolumeLabel == VolumeLabel;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Checking if saved drive is available");
+                return false;
             }
         }
     }

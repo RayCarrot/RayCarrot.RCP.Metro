@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Interaction logic for RaymanRavingRabbidsModUI.xaml
+/// </summary>
+public partial class Mod_RRR_UI : UserControl
 {
-    /// <summary>
-    /// Interaction logic for RaymanRavingRabbidsModUI.xaml
-    /// </summary>
-    public partial class Mod_RRR_UI : UserControl
+    public Mod_RRR_UI()
     {
-        public Mod_RRR_UI()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

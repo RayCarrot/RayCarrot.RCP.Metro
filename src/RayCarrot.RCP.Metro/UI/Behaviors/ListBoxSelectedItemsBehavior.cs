@@ -3,49 +3,48 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Xaml.Behaviors;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Behavior with support for binding to a list of selected items for a <see cref="ListBox"/>
+/// </summary>
+public class ListBoxSelectedItemsBehavior : Behavior<ListBox>
 {
-    /// <summary>
-    /// Behavior with support for binding to a list of selected items for a <see cref="ListBox"/>
-    /// </summary>
-    public class ListBoxSelectedItemsBehavior : Behavior<ListBox>
+    #region Overrides
+
+    protected override void OnAttached()
     {
-        #region Overrides
-
-        protected override void OnAttached()
-        {
-            AssociatedObject.SelectionChanged += CustomDataGrid_SelectionChanged;
-        }
-
-        protected override void OnDetaching()
-        {
-            AssociatedObject.SelectionChanged -= CustomDataGrid_SelectionChanged;
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void CustomDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedItems = AssociatedObject.SelectedItems;
-        }
-
-        #endregion
-
-        #region Dependency Properties
-
-        /// <summary>
-        /// The collection of selected items
-        /// </summary>
-        public IList SelectedItems
-        {
-            get => (IList)GetValue(SelectedItemsProperty);
-            set => SetValue(SelectedItemsProperty, value);
-        }
-
-        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register(nameof(SelectedItems), typeof(IList), typeof(ListBoxSelectedItemsBehavior));
-
-        #endregion
+        AssociatedObject.SelectionChanged += CustomDataGrid_SelectionChanged;
     }
+
+    protected override void OnDetaching()
+    {
+        AssociatedObject.SelectionChanged -= CustomDataGrid_SelectionChanged;
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void CustomDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        SelectedItems = AssociatedObject.SelectedItems;
+    }
+
+    #endregion
+
+    #region Dependency Properties
+
+    /// <summary>
+    /// The collection of selected items
+    /// </summary>
+    public IList SelectedItems
+    {
+        get => (IList)GetValue(SelectedItemsProperty);
+        set => SetValue(SelectedItemsProperty, value);
+    }
+
+    public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register(nameof(SelectedItems), typeof(IList), typeof(ListBoxSelectedItemsBehavior));
+
+    #endregion
 }

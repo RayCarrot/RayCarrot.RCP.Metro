@@ -1,20 +1,19 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Design time view models
+/// </summary>
+public static class DesignTimeVM
 {
-    /// <summary>
-    /// Design time view models
-    /// </summary>
-    public static class DesignTimeVM
+    public static DriveSelectionViewModel DriveSelectionViewModel
     {
-        public static DriveSelectionViewModel DriveSelectionViewModel
+        get
         {
-            get
-            {
-                var vm = new DriveSelectionViewModel();
+            var vm = new DriveSelectionViewModel();
 
-                _ = vm.RefreshAsync();
+            _ = vm.RefreshAsync();
 
-                return vm;
-            }
+            return vm;
         }
     }
 }

@@ -4,27 +4,26 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+public class Utility_R1PasswordGenerator_PasswordValidationRule : ValidationRule
 {
-    public class Utility_R1PasswordGenerator_PasswordValidationRule : ValidationRule
+    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
     {
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-        {
-            var supportedChars = Rayman1PS1Password.GetSupportedCharacters();
+        var supportedChars = Rayman1PS1Password.GetSupportedCharacters();
 
-            if (!(value is string s))
-                return new ValidationResult(false, Resources.R1Passwords_Invalid);
+        if (!(value is string s))
+            return new ValidationResult(false, Resources.R1Passwords_Invalid);
 
-            if (s.Length != 10)
-                return new ValidationResult(false, Resources.R1Passwords_InvalidLength);
+        if (s.Length != 10)
+            return new ValidationResult(false, Resources.R1Passwords_InvalidLength);
 
-            var invalidChar = s.Select(x => (char?)x).FirstOrDefault(x => !supportedChars.Any(c => c.ToString().Equals(x.ToString(), StringComparison.InvariantCultureIgnoreCase)));
+        var invalidChar = s.Select(x => (char?)x).FirstOrDefault(x => !supportedChars.Any(c => c.ToString().Equals(x.ToString(), StringComparison.InvariantCultureIgnoreCase)));
 
-            if (invalidChar != null)
-                return new ValidationResult(false, String.Format(Resources.R1Passwords_InvalidChar, invalidChar));
+        if (invalidChar != null)
+            return new ValidationResult(false, String.Format(Resources.R1Passwords_InvalidChar, invalidChar));
 
-            return ValidationResult.ValidResult;
+        return ValidationResult.ValidResult;
 
-        }
     }
 }

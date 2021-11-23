@@ -1,17 +1,16 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The Rayman Activity Center (Win32) game manager
+/// </summary>
+public sealed class GameManager_RaymanActivityCenter_Win32 : GameManager_Win32
 {
+    #region Public Overrides
+
     /// <summary>
-    /// The Rayman Activity Center (Win32) game manager
+    /// The game
     /// </summary>
-    public sealed class GameManager_RaymanActivityCenter_Win32 : GameManager_Win32
-    {
-        #region Public Overrides
+    public override Games Game => Games.RaymanActivityCenter;
 
-        /// <summary>
-        /// The game
-        /// </summary>
-        public override Games Game => Games.RaymanActivityCenter;
-
-        #endregion
-    }
+    #endregion
 }

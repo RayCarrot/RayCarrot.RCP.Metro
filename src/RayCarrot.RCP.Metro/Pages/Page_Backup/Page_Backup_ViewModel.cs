@@ -9,178 +9,177 @@ using Nito.AsyncEx;
 using NLog;
 using RayCarrot.UI;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// View model for the backup page
+/// </summary>
+public class Page_Backup_ViewModel : BaseRCPViewModel
 {
+    #region Constructor
+
     /// <summary>
-    /// View model for the backup page
+    /// Default constructor
     /// </summary>
-    public class Page_Backup_ViewModel : BaseRCPViewModel
+    public Page_Backup_ViewModel()
     {
-        #region Constructor
+        // Create commands
+        RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync()));
+        BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public Page_Backup_ViewModel()
+        // Create properties
+        AsyncLock = new AsyncLock();
+        GameBackupItems = new ObservableCollection<Page_Backup_ItemViewModel>();
+
+        // Enable collection synchronization
+        BindingOperations.EnableCollectionSynchronization(GameBackupItems, Application.Current);
+
+        // Refresh on app refresh
+        App.RefreshRequired += async (s, e) =>
         {
-            // Create commands
-            RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync()));
-            BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
+            if (e.BackupsModified || e.GameCollectionModified)
+                await Task.Run(async () => await RefreshAsync());
+        };
 
-            // Create properties
-            AsyncLock = new AsyncLock();
-            GameBackupItems = new ObservableCollection<Page_Backup_ItemViewModel>();
+        // Refresh on culture changed
+        Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
 
-            // Enable collection synchronization
-            BindingOperations.EnableCollectionSynchronization(GameBackupItems, Application.Current);
+        // Refresh on startup
+        Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
+    }
 
-            // Refresh on app refresh
-            App.RefreshRequired += async (s, e) =>
-            {
-                if (e.BackupsModified || e.GameCollectionModified)
-                    await Task.Run(async () => await RefreshAsync());
-            };
+    #endregion
 
-            // Refresh on culture changed
-            Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+    #region Logger
 
-            // Refresh on startup
-            Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
-        }
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        #endregion
+    #endregion
 
-        #region Logger
+    #region Private Properties
 
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    /// <summary>
+    /// The async lock for refreshing the backup items
+    /// </summary>
+    private AsyncLock AsyncLock { get; }
 
-        #endregion
+    #endregion
 
-        #region Private Properties
+    #region Public Properties   
 
-        /// <summary>
-        /// The async lock for refreshing the backup items
-        /// </summary>
-        private AsyncLock AsyncLock { get; }
+    /// <summary>
+    /// The game backup items
+    /// </summary>
+    public ObservableCollection<Page_Backup_ItemViewModel> GameBackupItems { get; }
 
-        #endregion
+    #endregion
 
-        #region Public Properties   
+    #region Commands
 
-        /// <summary>
-        /// The game backup items
-        /// </summary>
-        public ObservableCollection<Page_Backup_ItemViewModel> GameBackupItems { get; }
+    public ICommand RefreshCommand { get; }
 
-        #endregion
+    public ICommand BackupAllCommand { get; }
 
-        #region Commands
+    #endregion
 
-        public ICommand RefreshCommand { get; }
+    #region Public Methods
 
-        public ICommand BackupAllCommand { get; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Refreshes the backup items
-        /// </summary>
-        /// <returns></returns>
-        public async Task RefreshAsync()
+    /// <summary>
+    /// Refreshes the backup items
+    /// </summary>
+    /// <returns></returns>
+    public async Task RefreshAsync()
+    {
+        using (await AsyncLock.LockAsync())
         {
-            using (await AsyncLock.LockAsync())
-            {
-                try
-                {
-                    // Clear current items
-                    GameBackupItems.Clear();
-
-                    // Enumerate the saved games
-                    foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
-                    {
-                        // Enumerate the backup info
-                        foreach (IGameBackups_BackupInfo info in game.GetGameInfo().GetBackupInfos)
-                        {
-                            // Refresh the info
-                            await info.RefreshAsync();
-
-                            // Create the backup item
-                            var backupItem = new Page_Backup_ItemViewModel(game, info);
-
-                            // Add the item
-                            GameBackupItems.Add(backupItem);
-
-                            // Refresh the item
-                            await backupItem.RefreshAsync();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Fatal(ex, "Refreshing backups");
-                    throw;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Performs a backup on all games
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task BackupAllAsync()
-        {
-            // Make sure no backups are running
-            if (GameBackupItems.Any(x => x.PerformingBackupRestore))
-                return;
-
             try
             {
-                GameBackupItems.ForEach(x => x.PerformingBackupRestore = true);
+                // Clear current items
+                GameBackupItems.Clear();
 
-                // Confirm backup
-                if (!await Services.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
+                // Enumerate the saved games
+                foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                 {
-                    Logger.Info("Backup canceled");
-
-                    return;
-                }
-
-                int completed = 0;
-
-                // Perform the backups
-                await Task.Run(async () =>
-                {
-                    foreach (Page_Backup_ItemViewModel game in GameBackupItems)
+                    // Enumerate the backup info
+                    foreach (IGameBackups_BackupInfo info in game.GetGameInfo().GetBackupInfos)
                     {
-                        game.ShowBackupRestoreIndicator = true;
+                        // Refresh the info
+                        await info.RefreshAsync();
 
-                        if (await Services.Backup.BackupAsync(game.BackupInfo))
-                            completed++;
+                        // Create the backup item
+                        var backupItem = new Page_Backup_ItemViewModel(game, info);
 
-                        game.ShowBackupRestoreIndicator = false;
+                        // Add the item
+                        GameBackupItems.Add(backupItem);
+
+                        // Refresh the item
+                        await backupItem.RefreshAsync();
                     }
-                });
-
-                if (completed == GameBackupItems.Count)
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
-                else
-                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
-
-                // Refresh the item
-                await Task.Run(async () => await RefreshAsync());
-            }
-            finally
-            {
-                foreach (var x in GameBackupItems)
-                {
-                    x.PerformingBackupRestore = false;
-                    x.ShowBackupRestoreIndicator= false;
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.Fatal(ex, "Refreshing backups");
+                throw;
             }
         }
-
-        #endregion
     }
+
+    /// <summary>
+    /// Performs a backup on all games
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task BackupAllAsync()
+    {
+        // Make sure no backups are running
+        if (GameBackupItems.Any(x => x.PerformingBackupRestore))
+            return;
+
+        try
+        {
+            GameBackupItems.ForEach(x => x.PerformingBackupRestore = true);
+
+            // Confirm backup
+            if (!await Services.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
+            {
+                Logger.Info("Backup canceled");
+
+                return;
+            }
+
+            int completed = 0;
+
+            // Perform the backups
+            await Task.Run(async () =>
+            {
+                foreach (Page_Backup_ItemViewModel game in GameBackupItems)
+                {
+                    game.ShowBackupRestoreIndicator = true;
+
+                    if (await Services.Backup.BackupAsync(game.BackupInfo))
+                        completed++;
+
+                    game.ShowBackupRestoreIndicator = false;
+                }
+            });
+
+            if (completed == GameBackupItems.Count)
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
+            else
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
+
+            // Refresh the item
+            await Task.Run(async () => await RefreshAsync());
+        }
+        finally
+        {
+            foreach (var x in GameBackupItems)
+            {
+                x.PerformingBackupRestore = false;
+                x.ShowBackupRestoreIndicator= false;
+            }
+        }
+    }
+
+    #endregion
 }

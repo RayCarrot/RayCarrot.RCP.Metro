@@ -1,23 +1,22 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The available modes for the admin worker
+/// </summary>
+public enum AdminWorkerMode
 {
     /// <summary>
-    /// The available modes for the admin worker
+    /// Grants full control to the specified file
     /// </summary>
-    public enum AdminWorkerMode
-    {
-        /// <summary>
-        /// Grants full control to the specified file
-        /// </summary>
-        GrantFullControl,
+    GrantFullControl,
 
-        /// <summary>
-        /// Restarts the Rayman Control Panel as administrator
-        /// </summary>
-        RestartAsAdmin,
+    /// <summary>
+    /// Restarts the Rayman Control Panel as administrator
+    /// </summary>
+    RestartAsAdmin,
 
-        /// <summary>
-        /// Restarts the Rayman Control Panel with the specified arguments
-        /// </summary>
-        RestartWithArgs,
-    }
+    /// <summary>
+    /// Restarts the Rayman Control Panel with the specified arguments
+    /// </summary>
+    RestartWithArgs,
 }

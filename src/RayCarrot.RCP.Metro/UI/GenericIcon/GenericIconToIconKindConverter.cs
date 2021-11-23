@@ -2,13 +2,12 @@
 using System.Globalization;
 using MahApps.Metro.IconPacks;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+public class GenericIconToIconKindConverter : BaseValueConverter<GenericIconToIconKindConverter, GenericIconKind, PackIconMaterialKind>
 {
-    public class GenericIconToIconKindConverter : BaseValueConverter<GenericIconToIconKindConverter, GenericIconKind, PackIconMaterialKind>
+    public override PackIconMaterialKind ConvertValue(GenericIconKind value, Type targetType, object parameter, CultureInfo culture)
     {
-        public override PackIconMaterialKind ConvertValue(GenericIconKind value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((GenericIcon)App.Current.FindResource($"GenericIcons.{value}")).IconKind;
-        }
+        return ((GenericIcon)App.Current.FindResource($"GenericIcons.{value}")).IconKind;
     }
 }

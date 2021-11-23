@@ -1,38 +1,37 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The types of messages to display
+/// </summary>
+public enum MessageType
 {
     /// <summary>
-    /// The types of messages to display
+    /// A generic message
     /// </summary>
-    public enum MessageType
-    {
-        /// <summary>
-        /// A generic message
-        /// </summary>
-        Generic,
+    Generic,
 
-        /// <summary>
-        /// An informative message
-        /// </summary>
-        Information,
+    /// <summary>
+    /// An informative message
+    /// </summary>
+    Information,
 
-        /// <summary>
-        /// An error message
-        /// </summary>
-        Error,
+    /// <summary>
+    /// An error message
+    /// </summary>
+    Error,
 
-        /// <summary>
-        /// A warning message
-        /// </summary>
-        Warning,
+    /// <summary>
+    /// A warning message
+    /// </summary>
+    Warning,
 
-        /// <summary>
-        /// A success message
-        /// </summary>
-        Success,
+    /// <summary>
+    /// A success message
+    /// </summary>
+    Success,
 
-        /// <summary>
-        /// A message as a question
-        /// </summary>
-        Question
-    }
+    /// <summary>
+    /// A message as a question
+    /// </summary>
+    Question
 }

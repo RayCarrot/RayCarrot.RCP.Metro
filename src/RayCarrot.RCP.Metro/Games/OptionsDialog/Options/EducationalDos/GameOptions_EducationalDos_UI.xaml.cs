@@ -1,14 +1,13 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Interaction logic for GameOptions_EducationalDos_UI.xaml
+/// </summary>
+public partial class GameOptions_EducationalDos_UI : VMUserControl<GameOptions_EducationalDos_ViewModel>
 {
-    /// <summary>
-    /// Interaction logic for GameOptions_EducationalDos_UI.xaml
-    /// </summary>
-    public partial class GameOptions_EducationalDos_UI : VMUserControl<GameOptions_EducationalDos_ViewModel>
+    public GameOptions_EducationalDos_UI()
     {
-        public GameOptions_EducationalDos_UI()
-        {
-            InitializeComponent();
-            EducationalGameCollectionDropHandler.ViewModel = ViewModel;
-        }
+        InitializeComponent();
+        EducationalGameCollectionDropHandler.ViewModel = ViewModel;
     }
 }

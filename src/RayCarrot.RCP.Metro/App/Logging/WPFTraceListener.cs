@@ -1,52 +1,51 @@
 ﻿using NLog;
 using System.Diagnostics;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The default trace listener implementation
+/// </summary>
+public class WPFTraceListener : TraceListener
 {
+    #region Private Static Properties
+
+    private static WPFTraceListener Instance { get; } = new WPFTraceListener();
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Public Static Methods
+
     /// <summary>
-    /// The default trace listener implementation
+    /// Sets up the trace listener
     /// </summary>
-    public class WPFTraceListener : TraceListener
+    public static void Setup()
     {
-        #region Private Static Properties
+        if (PresentationTraceSources.DataBindingSource.Listeners.Contains(Instance))
+            return;
 
-        private static WPFTraceListener Instance { get; } = new WPFTraceListener();
-
-        #endregion
-
-        #region Logger
-
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        #endregion
-
-        #region Public Static Methods
-
-        /// <summary>
-        /// Sets up the trace listener
-        /// </summary>
-        public static void Setup()
-        {
-            if (PresentationTraceSources.DataBindingSource.Listeners.Contains(Instance))
-                return;
-
-            PresentationTraceSources.DataBindingSource.Listeners.Add(Instance);
-        }
-
-        #endregion
-
-        #region Public Override Methods
-
-        public override void Write(string message)
-        {
-            Logger.Warn(message);
-        }
-
-        public override void WriteLine(string message)
-        {
-            Logger.Warn(message);
-        }
-
-        #endregion
+        PresentationTraceSources.DataBindingSource.Listeners.Add(Instance);
     }
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override void Write(string message)
+    {
+        Logger.Warn(message);
+    }
+
+    public override void WriteLine(string message)
+    {
+        Logger.Warn(message);
+    }
+
+    #endregion
 }

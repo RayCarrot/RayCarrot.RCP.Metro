@@ -1,29 +1,28 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// An archive directory, containing an array of <see cref="ArchiveFileItem"/>
+/// </summary>
+public class ArchiveDirectory
 {
     /// <summary>
-    /// An archive directory, containing an array of <see cref="ArchiveFileItem"/>
+    /// Default constructor
     /// </summary>
-    public class ArchiveDirectory
+    /// <param name="directoryName">The full path of the directory, or empty if the root</param>
+    /// <param name="files">The files in the directory</param>
+    public ArchiveDirectory(string directoryName, ArchiveFileItem[] files)
     {
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="directoryName">The full path of the directory, or empty if the root</param>
-        /// <param name="files">The files in the directory</param>
-        public ArchiveDirectory(string directoryName, ArchiveFileItem[] files)
-        {
-            DirectoryName = directoryName;
-            Files = files;
-        }
-
-        /// <summary>
-        /// The full path of the directory, or empty if the root
-        /// </summary>
-        public string DirectoryName { get; }
-
-        /// <summary>
-        /// The files in the directory
-        /// </summary>
-        public ArchiveFileItem[] Files { get; }
+        DirectoryName = directoryName;
+        Files = files;
     }
+
+    /// <summary>
+    /// The full path of the directory, or empty if the root
+    /// </summary>
+    public string DirectoryName { get; }
+
+    /// <summary>
+    /// The files in the directory
+    /// </summary>
+    public ArchiveFileItem[] Files { get; }
 }

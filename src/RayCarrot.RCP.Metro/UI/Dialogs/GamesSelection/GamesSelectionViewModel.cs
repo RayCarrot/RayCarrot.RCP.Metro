@@ -1,55 +1,54 @@
 ﻿using System.Linq;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// View model for a games selection
+/// </summary>
+public class GamesSelectionViewModel : UserInputViewModel
 {
     /// <summary>
-    /// View model for a games selection
+    /// Default constructor
     /// </summary>
-    public class GamesSelectionViewModel : UserInputViewModel
+    public GamesSelectionViewModel()
+    {
+        Title = "Select games";
+        Games = Services.App.GetGames.Select(x => new GamesItem(x)).ToArray();
+    }
+
+    /// <summary>
+    /// The selected games
+    /// </summary>
+    public GamesItem[] Games { get; }
+
+    /// <summary>
+    /// A game item
+    /// </summary>
+    public class GamesItem : BaseRCPViewModel
     {
         /// <summary>
         /// Default constructor
         /// </summary>
-        public GamesSelectionViewModel()
+        /// <param name="game">The game</param>
+        public GamesItem(Games game)
         {
-            Title = "Select games";
-            Games = Services.App.GetGames.Select(x => new GamesItem(x)).ToArray();
+            Game = game;
+            DisplayName = game.GetGameInfo().DisplayName;
         }
 
         /// <summary>
-        /// The selected games
+        /// Indicates if the item is selected
         /// </summary>
-        public GamesItem[] Games { get; }
+        public bool IsSelected { get; set; }
 
         /// <summary>
-        /// A game item
+        /// The game
         /// </summary>
-        public class GamesItem : BaseRCPViewModel
-        {
-            /// <summary>
-            /// Default constructor
-            /// </summary>
-            /// <param name="game">The game</param>
-            public GamesItem(Games game)
-            {
-                Game = game;
-                DisplayName = game.GetGameInfo().DisplayName;
-            }
+        public Games Game { get; }
 
-            /// <summary>
-            /// Indicates if the item is selected
-            /// </summary>
-            public bool IsSelected { get; set; }
-
-            /// <summary>
-            /// The game
-            /// </summary>
-            public Games Game { get; }
-
-            /// <summary>
-            /// The game display name
-            /// </summary>
-            public string DisplayName { get; }
-        }
+        /// <summary>
+        /// The game display name
+        /// </summary>
+        public string DisplayName { get; }
     }
 }

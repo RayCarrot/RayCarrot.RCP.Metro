@@ -1,33 +1,32 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The game types supported by the Rayman Control Panel
+/// </summary>
+public enum GameType
 {
     /// <summary>
-    /// The game types supported by the Rayman Control Panel
+    /// A Win32 game
     /// </summary>
-    public enum GameType
-    {
-        /// <summary>
-        /// A Win32 game
-        /// </summary>
-        Win32,
+    Win32,
 
-        /// <summary>
-        /// A Steam game
-        /// </summary>
-        Steam,
+    /// <summary>
+    /// A Steam game
+    /// </summary>
+    Steam,
 
-        /// <summary>
-        /// A Windows store game
-        /// </summary>
-        WinStore,
+    /// <summary>
+    /// A Windows store game
+    /// </summary>
+    WinStore,
 
-        /// <summary>
-        /// A DOSBox game
-        /// </summary>
-        DosBox,
+    /// <summary>
+    /// A DOSBox game
+    /// </summary>
+    DosBox,
 
-        /// <summary>
-        /// An education DOSBox game
-        /// </summary>
-        EducationalDosBox,
-    }
+    /// <summary>
+    /// An education DOSBox game
+    /// </summary>
+    EducationalDosBox,
 }

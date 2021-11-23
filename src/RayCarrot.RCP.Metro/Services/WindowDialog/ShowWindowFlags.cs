@@ -1,26 +1,25 @@
 ﻿using System;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The available flags to use on <see cref="IDialogBaseManager.ShowWindowAsync"/>
+/// </summary>
+[Flags]
+public enum ShowWindowFlags
 {
     /// <summary>
-    /// The available flags to use on <see cref="IDialogBaseManager.ShowWindowAsync"/>
+    /// No flags
     /// </summary>
-    [Flags]
-    public enum ShowWindowFlags
-    {
-        /// <summary>
-        /// No flags
-        /// </summary>
-        None = 0,
+    None = 0,
 
-        /// <summary>
-        /// Indicates that several windows using the same content type are allowed
-        /// </summary>
-        DuplicateTypesAllowed = 1 << 0,
+    /// <summary>
+    /// Indicates that several windows using the same content type are allowed
+    /// </summary>
+    DuplicateTypesAllowed = 1 << 0,
 
-        /// <summary>
-        /// Indicates that the blocking window preventing the current one from being shown should not be focused
-        /// </summary>
-        DoNotFocusBlockingWindow = 1 << 1,
-    }
+    /// <summary>
+    /// Indicates that the blocking window preventing the current one from being shown should not be focused
+    /// </summary>
+    DoNotFocusBlockingWindow = 1 << 1,
 }

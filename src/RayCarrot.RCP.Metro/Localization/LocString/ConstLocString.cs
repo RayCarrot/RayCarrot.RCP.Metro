@@ -1,20 +1,19 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+public class ConstLocString : LocalizedString
 {
-    public class ConstLocString : LocalizedString
+    public ConstLocString(string stringValue) : base(refreshOnCultureChanged: false)
     {
-        public ConstLocString(string stringValue) : base(refreshOnCultureChanged: false)
-        {
-            StringValue = stringValue;
+        StringValue = stringValue;
 
-            // Refresh the value
-            RefreshValue();
-        }
+        // Refresh the value
+        RefreshValue();
+    }
 
-        private string StringValue { get; }
+    private string StringValue { get; }
 
-        protected override string GetValue()
-        {
-            return StringValue;
-        }
+    protected override string GetValue()
+    {
+        return StringValue;
     }
 }

@@ -1,28 +1,27 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// The browse types
+/// </summary>
+public enum BrowseType
 {
     /// <summary>
-    /// The browse types
+    /// Save file browsing
     /// </summary>
-    public enum BrowseType
-    {
-        /// <summary>
-        /// Save file browsing
-        /// </summary>
-        SaveFile,
+    SaveFile,
         
-        /// <summary>
-        /// File browsing
-        /// </summary>
-        File,
+    /// <summary>
+    /// File browsing
+    /// </summary>
+    File,
         
-        /// <summary>
-        /// Directory browsing
-        /// </summary>
-        Directory,
+    /// <summary>
+    /// Directory browsing
+    /// </summary>
+    Directory,
 
-        /// <summary>
-        /// Drive browsing
-        /// </summary>
-        Drive,
-    }
+    /// <summary>
+    /// Drive browsing
+    /// </summary>
+    Drive,
 }
