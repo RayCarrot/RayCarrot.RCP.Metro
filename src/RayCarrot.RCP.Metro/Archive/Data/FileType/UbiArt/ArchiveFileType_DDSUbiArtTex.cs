@@ -1,4 +1,5 @@
-﻿using ImageMagick;
+﻿#nullable disable
+using ImageMagick;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;

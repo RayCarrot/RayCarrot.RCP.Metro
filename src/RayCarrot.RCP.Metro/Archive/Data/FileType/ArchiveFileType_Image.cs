@@ -1,4 +1,5 @@
-﻿using ImageMagick;
+﻿#nullable disable
+using ImageMagick;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using System.IO;

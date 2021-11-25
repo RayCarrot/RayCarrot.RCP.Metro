@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Media;

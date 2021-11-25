@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.IconPacks;
+﻿#nullable disable
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro;
 

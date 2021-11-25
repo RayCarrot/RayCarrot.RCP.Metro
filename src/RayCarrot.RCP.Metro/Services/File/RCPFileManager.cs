@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿#nullable disable
+using Microsoft.VisualBasic.FileIO;
 using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 using System;

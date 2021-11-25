@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿#nullable disable
+using System.Windows;
 using System.Windows.Controls;
 using MahApps.Metro.IconPacks;
 

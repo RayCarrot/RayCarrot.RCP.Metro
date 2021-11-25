@@ -1,4 +1,5 @@
-﻿using RayCarrot.Rayman;
+﻿#nullable disable
+using RayCarrot.Rayman;
 using System.Collections.Generic;
 using System.Windows.Input;
 

@@ -1,4 +1,5 @@
-﻿using IniParser.Model;
+﻿#nullable disable
+using IniParser.Model;
 using RayCarrot.IO;
 using NLog;
 using RayCarrot.Rayman.UbiIni;

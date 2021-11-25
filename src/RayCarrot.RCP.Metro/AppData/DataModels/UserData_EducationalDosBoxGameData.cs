@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Text.RegularExpressions;
 using RayCarrot.IO;
 

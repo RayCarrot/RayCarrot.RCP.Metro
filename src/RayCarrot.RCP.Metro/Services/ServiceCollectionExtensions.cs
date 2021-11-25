@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿#nullable disable
+using Microsoft.Extensions.DependencyInjection;
 
 namespace RayCarrot.RCP.Metro;
 

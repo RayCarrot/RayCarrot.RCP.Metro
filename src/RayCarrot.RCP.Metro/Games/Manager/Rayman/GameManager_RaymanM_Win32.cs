@@ -1,4 +1,5 @@
-﻿using RayCarrot.Rayman.UbiIni;
+﻿#nullable disable
+using RayCarrot.Rayman.UbiIni;
 
 namespace RayCarrot.RCP.Metro;
 

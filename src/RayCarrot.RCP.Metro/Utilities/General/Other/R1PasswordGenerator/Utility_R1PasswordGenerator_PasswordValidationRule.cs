@@ -1,4 +1,5 @@
-﻿using RayCarrot.Rayman.Ray1;
+﻿#nullable disable
+using RayCarrot.Rayman.Ray1;
 using System;
 using System.Globalization;
 using System.Linq;

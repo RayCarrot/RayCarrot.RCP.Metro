@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿#nullable disable
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace RayCarrot.RCP.Metro;

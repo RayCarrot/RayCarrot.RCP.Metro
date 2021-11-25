@@ -1,4 +1,5 @@
-﻿using RayCarrot.Binary;
+﻿#nullable disable
+using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;

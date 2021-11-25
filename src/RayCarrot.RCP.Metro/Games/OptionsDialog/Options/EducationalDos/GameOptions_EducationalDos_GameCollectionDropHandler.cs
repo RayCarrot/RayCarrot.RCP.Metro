@@ -1,4 +1,5 @@
-﻿using GongSolutions.Wpf.DragDrop;
+﻿#nullable disable
+using GongSolutions.Wpf.DragDrop;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

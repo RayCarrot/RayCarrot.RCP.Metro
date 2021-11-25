@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿#nullable disable
+using System.Windows;
 using Microsoft.Xaml.Behaviors;
 
 namespace RayCarrot.RCP.Metro;

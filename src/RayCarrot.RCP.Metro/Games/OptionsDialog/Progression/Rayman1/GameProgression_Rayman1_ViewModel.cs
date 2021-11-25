@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;

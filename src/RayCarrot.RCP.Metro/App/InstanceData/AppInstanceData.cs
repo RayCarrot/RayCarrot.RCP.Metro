@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using NLog;
 using System.Diagnostics;
 using System.Globalization;

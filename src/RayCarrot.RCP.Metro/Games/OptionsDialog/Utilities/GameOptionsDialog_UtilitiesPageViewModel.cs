@@ -1,4 +1,5 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿#nullable disable
+namespace RayCarrot.RCP.Metro;
 
 public class GameOptionsDialog_UtilitiesPageViewModel : GameOptionsDialog_BasePageViewModel
 {

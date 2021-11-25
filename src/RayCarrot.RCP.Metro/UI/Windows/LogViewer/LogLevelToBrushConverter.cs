@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿#nullable disable
+using NLog;
 using System;
 using System.Globalization;
 using System.Windows.Media;

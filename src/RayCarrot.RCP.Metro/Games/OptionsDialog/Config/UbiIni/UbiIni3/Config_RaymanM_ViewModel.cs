@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿#nullable disable
+using System.Threading.Tasks;
 using RayCarrot.Rayman.UbiIni;
 
 namespace RayCarrot.RCP.Metro;

@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿#nullable disable
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;
 

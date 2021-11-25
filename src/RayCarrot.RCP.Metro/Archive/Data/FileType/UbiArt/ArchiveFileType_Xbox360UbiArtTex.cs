@@ -1,4 +1,5 @@
-﻿using ImageMagick;
+﻿#nullable disable
+using ImageMagick;
 using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;

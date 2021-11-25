@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Taskbar;
+﻿#nullable disable
+using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Windows;
 using System.Windows.Interop;
 

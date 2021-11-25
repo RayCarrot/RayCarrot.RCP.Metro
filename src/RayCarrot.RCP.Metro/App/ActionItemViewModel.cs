@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿#nullable disable
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;

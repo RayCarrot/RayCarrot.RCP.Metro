@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿#nullable disable
+using NLog;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;

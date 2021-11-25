@@ -1,4 +1,5 @@
-﻿using RayCarrot.UI;
+﻿#nullable disable
+using RayCarrot.UI;
 using System;
 
 namespace RayCarrot.RCP.Metro;

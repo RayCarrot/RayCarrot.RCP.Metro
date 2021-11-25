@@ -1,4 +1,5 @@
-﻿using ByteSizeLib;
+﻿#nullable disable
+using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
 using RayCarrot.IO;

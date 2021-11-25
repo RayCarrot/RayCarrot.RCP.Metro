@@ -1,4 +1,5 @@
-﻿using RayCarrot.Binary;
+﻿#nullable disable
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro;
 

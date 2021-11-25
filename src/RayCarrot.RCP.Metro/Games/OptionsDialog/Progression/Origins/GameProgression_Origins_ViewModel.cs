@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿#nullable disable
+using Newtonsoft.Json;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using System;

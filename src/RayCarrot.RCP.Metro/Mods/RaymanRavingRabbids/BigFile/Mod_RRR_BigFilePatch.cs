@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#nullable disable
+using System.Linq;
 using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro;
