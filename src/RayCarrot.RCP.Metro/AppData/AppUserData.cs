@@ -6,12 +6,14 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The application user data
 /// </summary>
+[SuppressPropertyChangedWarnings] // Suppress warnings since we use the legacy private setter properties
 public class AppUserData : BaseViewModel
 {
     #region Public Methods

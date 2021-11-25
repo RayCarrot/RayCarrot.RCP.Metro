@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using NLog;
+using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -233,6 +234,7 @@ public class AppViewModel : BaseViewModel
 
     #region Protected Methods
 
+    [SuppressPropertyChangedWarnings]
     protected virtual void OnSelectedPageChanged(PropertyChangedEventArgs<AppPage> e)
     {
         SelectedPageChanged?.Invoke(this, e);

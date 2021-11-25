@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
+using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -179,6 +180,7 @@ public class GraphicsModeSelectionViewModel : BaseRCPViewModel
 
     #region Events
 
+    [SuppressPropertyChangedWarnings]
     protected virtual void OnGraphicsModeChanged() => GraphicsModeChanged?.Invoke(this, EventArgs.Empty);
 
     public event EventHandler GraphicsModeChanged;
