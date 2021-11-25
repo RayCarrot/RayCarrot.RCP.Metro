@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Windows.Media;
 using NLog;
 
@@ -19,7 +18,7 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <param name="workingDirectory">The working directory for the launch path</param>
     /// <param name="launchArguments">The item launch arguments</param>
     /// <param name="id">The item ID</param>
-    public JumpListItemViewModel(string name, string iconSource, string launchPath, string workingDirectory, string launchArguments, string id)
+    public JumpListItemViewModel(string name, string? iconSource, string launchPath, string? workingDirectory, string? launchArguments, string id)
     {
         Name = name;
         IconSource = iconSource;
@@ -55,12 +54,12 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The item icon resource path
     /// </summary>
-    public string IconSource { get; }
+    public string? IconSource { get; }
 
     /// <summary>
     /// The item icon image source
     /// </summary>
-    public ImageSource IconImageSource { get; set; }
+    public ImageSource? IconImageSource { get; set; }
 
     /// <summary>
     /// The item launch path
@@ -70,12 +69,12 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The working directory for the launch path
     /// </summary>
-    public string WorkingDirectory { get; }
+    public string? WorkingDirectory { get; }
 
     /// <summary>
     /// The item launch arguments
     /// </summary>
-    public string LaunchArguments { get; }
+    public string? LaunchArguments { get; }
 
     /// <summary>
     /// The item ID

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using ByteSizeLib;
+﻿using ByteSizeLib;
 using Newtonsoft.Json;
 using Nito.AsyncEx;
 using RayCarrot.Binary;
@@ -40,7 +39,7 @@ public class AppViewModel : BaseViewModel
     /// Default constructor
     /// </summary>'
     /// <param name="startupLogAction">Optional startup logging action</param>
-    public AppViewModel(Action<string> startupLogAction = null)
+    public AppViewModel(Action<string>? startupLogAction = null)
     {
         startupLogAction?.Invoke("AppVM: Creating app view model");
 
@@ -78,7 +77,8 @@ public class AppViewModel : BaseViewModel
         var gameConfig = Files.Games;
 
         // Set up the games manager
-        GamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter());
+        GamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter()) 
+                       ?? throw new InvalidOperationException("Deserialized game manager is null");
 
         startupLogAction?.Invoke("AppVM: Finished reading game config");
     }
@@ -238,7 +238,7 @@ public class AppViewModel : BaseViewModel
     [SuppressPropertyChangedWarnings]
     protected virtual void OnSelectedPageChanged(PropertyChangedEventArgs<AppPage> e)
     {
-        SelectedPageChanged?.Invoke(this, e);
+        SelectedPageChanged(this, e);
     }
 
     #endregion
@@ -251,14 +251,14 @@ public class AppViewModel : BaseViewModel
     /// <param name="name">An optional name for the logging session</param>
     /// <param name="addr">An optional address for the logging session</param>
     /// <returns>The binary serializer logger</returns>
-    public IBinarySerializerLogger GetBinarySerializerLogger(string name = null, long? addr = null)
+    public IBinarySerializerLogger? GetBinarySerializerLogger(string? name = null, long? addr = null)
     {
         if (Services.Data.Binary_BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
             !Services.Data.Binary_BinarySerializationFileLogPath.Parent.DirectoryExists)
             return null;
 
         // Get the log file path
-        var logPath = Services.Data.Binary_BinarySerializationFileLogPath;
+        FileSystemPath logPath = Services.Data.Binary_BinarySerializationFileLogPath;
 
         // Only re-create the file if this is the first time we create a logger
         Stream logStream = !HasCreatedSerializerLogger ? File.Create(logPath) : File.OpenWrite(logPath);
@@ -287,7 +287,7 @@ public class AppViewModel : BaseViewModel
         var utilities = GamesManager.LocalUtilities.TryGetValue(game);
 
         if (utilities == null)
-            return new IUtility[0]; 
+            return Array.Empty<IUtility>(); 
 
         return utilities.
             // Create a new instance of each utility
@@ -308,7 +308,7 @@ public class AppViewModel : BaseViewModel
             Logger.Debug("A refresh is being requested");
 
             // Await the refresh event
-            await (RefreshRequired?.RaiseAsync(this, eventArgs) ?? Task.CompletedTask);
+            await RefreshRequired.RaiseAsync(this, eventArgs);
         }
     }
 
@@ -334,7 +334,7 @@ public class AppViewModel : BaseViewModel
         }
 
         // Get the manager
-        var manager = game.GetManager(type);
+        GameManager manager = game.GetManager(type);
 
         // Add the game
         Data.Game_Games.Add(game, new UserData_GameData(type, installDirectory));
@@ -359,12 +359,12 @@ public class AppViewModel : BaseViewModel
         try
         {
             // Get the manager
-            var manager = game.GetManager();
+            GameManager manager = game.GetManager();
 
             if (!forceRemove)
             {
                 // Get applied utilities
-                var appliedUtilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
+                IList<string> appliedUtilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
 
                 // Warn about applied utilities, if any
                 if (appliedUtilities.Any() && !await Services.MessageUI.DisplayMessageAsync($"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{appliedUtilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
@@ -444,17 +444,17 @@ public class AppViewModel : BaseViewModel
         try
         {
             // Get all games which have not been added
-            var games = GetGames.Where(x => !x.IsAdded()).ToArray();
+            Games[] games = GetGames.Where(x => !x.IsAdded()).ToArray();
 
             Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
 
             // Get additional finder items
-            var finderItems = new List<GameFinder_GenericItem>(1);
+            List<GameFinder_GenericItem> finderItems = new(1);
 
             // Create DOSBox finder item if it doesn't exist
             if (!File.Exists(Data.Emu_DOSBox_Path))
             {
-                var names = new string[]
+                string[] names = 
                 {
                     "DosBox",
                     "Dos Box"
@@ -477,7 +477,7 @@ public class AppViewModel : BaseViewModel
             }
 
             // Run the game finder and get the result
-            var foundItems = await new GameFinder(games, finderItems).FindGamesAsync();
+            IReadOnlyList<GameFinder_BaseResult> foundItems = await new GameFinder(games, finderItems).FindGamesAsync();
 
             // Add the found items
             foreach (var foundItem in foundItems)
@@ -494,8 +494,15 @@ public class AppViewModel : BaseViewModel
             if (foundItems.Count > 0)
             {
                 // Split into found games and items and sort
-                var gameFinderResults = foundItems.OfType<GameFinder_GameResult>().OrderBy(x => x.Game).Select(x => x.DisplayName);
-                var finderResults = foundItems.OfType<GameFinder_GenericResult>().OrderBy(x => x.DisplayName).Select(x => x.DisplayName);
+                IEnumerable<string> gameFinderResults = foundItems.
+                    OfType<GameFinder_GameResult>().
+                    OrderBy(x => x.Game).
+                    Select(x => x.DisplayName);
+                
+                IEnumerable<string> finderResults = foundItems.
+                    OfType<GameFinder_GenericResult>().
+                    OrderBy(x => x.DisplayName).
+                    Select(x => x.DisplayName);
 
                 await Services.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
@@ -547,7 +554,7 @@ public class AppViewModel : BaseViewModel
 
             if (Data.App_HandleDownloadsManually)
             {
-                var result = await Services.UI.DisplayMessageAsync(Resources.Download_ManualInstructions, Resources.Download_ManualHeader, MessageType.Information, true, new DialogMessageActionViewModel[]
+                bool result = await Services.UI.DisplayMessageAsync(Resources.Download_ManualInstructions, Resources.Download_ManualHeader, MessageType.Information, true, new DialogMessageActionViewModel[]
                 {
                     // Download files
                     new DialogMessageActionViewModel
@@ -587,18 +594,20 @@ public class AppViewModel : BaseViewModel
                 try
                 {
                     ByteSize size = ByteSize.FromBytes(0);
-                    foreach (var item in inputSources)
+                    foreach (Uri item in inputSources)
                     {
-                        var webRequest = WebRequest.Create(item);
+                        WebRequest webRequest = WebRequest.Create(item);
                         webRequest.Method = "HEAD";
 
-                        using var webResponse = webRequest.GetResponse();
+                        using WebResponse webResponse = webRequest.GetResponse();
                         size = size.Add(ByteSize.FromBytes(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
                     }
 
                     Logger.Debug("The size of the download has been retrieved as {0}", size);
 
-                    if (!await Services.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    string msg = isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize;
+
+                    if (!await Services.MessageUI.DisplayMessageAsync(String.Format(msg, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
                 catch (Exception ex)
@@ -610,7 +619,7 @@ public class AppViewModel : BaseViewModel
             }
 
             // Show the downloader and get the result
-            var dialogResult = await Services.UI.DownloadAsync(new DownloaderViewModel(inputSources, outputDir, isCompressed));
+            DownloaderResult dialogResult = await Services.UI.DownloadAsync(new DownloaderViewModel(inputSources, outputDir, isCompressed));
 
             Logger.Info("The download finished with the result of {0}", dialogResult.DownloadState);
 
@@ -645,8 +654,8 @@ public class AppViewModel : BaseViewModel
             try
             {
                 // Get the complete paths
-                var oldLocation = oldPath + BackupFamily;
-                var newLocation = newPath + BackupFamily;
+                FileSystemPath oldLocation = oldPath + BackupFamily;
+                FileSystemPath newLocation = newPath + BackupFamily;
 
                 // Make sure the old location has backups
                 if (!oldLocation.DirectoryExists || !Directory.GetFileSystemEntries(oldLocation).Any())
@@ -796,7 +805,7 @@ public class AppViewModel : BaseViewModel
             CheckingForUpdates = true;
 
             // Check for updates
-            var result = await Services.UpdaterManager.CheckAsync(Services.Data.Update_ForceUpdate && isManualSearch, Services.Data.Update_GetBetaUpdates || IsBeta);
+            UpdaterCheckResult result = await Services.UpdaterManager.CheckAsync(Services.Data.Update_ForceUpdate && isManualSearch, Services.Data.Update_GetBetaUpdates || IsBeta);
 
             // Check if there is an error
             if (result.ErrorMessage != null)
@@ -828,8 +837,8 @@ public class AppViewModel : BaseViewModel
             {
                 try
                 {
-                    var isBeta = result.IsBetaUpdate;
-                    var message = String.Format(!isBeta 
+                    bool isBeta = result.IsBetaUpdate;
+                    string message = String.Format(!isBeta 
                         ? Resources.Update_UpdateAvailable 
                         : Resources.Update_BetaUpdateAvailable, result.DisplayNews);
 
@@ -889,12 +898,12 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Occurs when a refresh is required for the app
     /// </summary>
-    public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired;
+    public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired = (_, _) => Task.CompletedTask;
 
     /// <summary>
     /// Occurs when the selected page changes
     /// </summary>
-    public event EventHandler<PropertyChangedEventArgs<AppPage>> SelectedPageChanged;
+    public event EventHandler<PropertyChangedEventArgs<AppPage>> SelectedPageChanged = delegate { };
 
     #endregion
 
@@ -941,11 +950,12 @@ public class AppViewModel : BaseViewModel
         /// <param name="t">The object type to create from</param>
         /// <returns>The object</returns>
         public T CreateCachedInstance<T>(Type t)
+            where T : notnull
         {
             if (InstanceCache.ContainsKey(t))
                 return (T)InstanceCache[t];
 
-            var obj = t.CreateInstance<T>();
+            T obj = t.CreateInstance<T>();
             InstanceCache[t] = obj;
             return obj;
         }

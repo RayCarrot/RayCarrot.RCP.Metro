@@ -1,5 +1,4 @@
-﻿#nullable disable
-using NLog;
+﻿using NLog;
 using System.Diagnostics;
 
 namespace RayCarrot.RCP.Metro;

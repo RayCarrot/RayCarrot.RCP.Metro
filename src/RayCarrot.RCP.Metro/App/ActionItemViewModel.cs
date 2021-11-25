@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;
@@ -18,7 +17,7 @@ public class ActionItemViewModel : BaseRCPViewModel
     /// <param name="iconKind">The item icon kind</param>
     /// <param name="command">The item command</param>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public ActionItemViewModel(string header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal)
+    public ActionItemViewModel(string? header, GenericIconKind iconKind, ICommand? command, UserLevel minUserLevel = UserLevel.Normal)
     {
         Header = header;
         IconKind = iconKind;
@@ -33,7 +32,7 @@ public class ActionItemViewModel : BaseRCPViewModel
     /// <param name="iconSource">The icon source</param>
     /// <param name="command">The item command</param>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public ActionItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal)
+    public ActionItemViewModel(string? header, ImageSource? iconSource, ICommand? command, UserLevel minUserLevel = UserLevel.Normal)
     {
         iconSource?.Freeze();
 
@@ -50,7 +49,7 @@ public class ActionItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The item header
     /// </summary>
-    public string Header { get; }
+    public string? Header { get; }
 
     /// <summary>
     /// The item icon kind
@@ -60,12 +59,12 @@ public class ActionItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The icon source
     /// </summary>
-    public ImageSource IconSource { get; }
+    public ImageSource? IconSource { get; }
 
     /// <summary>
     /// The item command
     /// </summary>
-    public ICommand Command { get; }
+    public ICommand? Command { get; }
 
     /// <summary>
     /// The minimum user level for the action

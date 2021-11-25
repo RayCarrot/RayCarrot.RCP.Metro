@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -14,7 +13,7 @@ public class PropertyChangedEventArgs<T> : EventArgs
     /// </summary>
     /// <param name="oldValue">The old value</param>
     /// <param name="newValue">The new value</param>
-    public PropertyChangedEventArgs(T oldValue, T newValue)
+    public PropertyChangedEventArgs(T? oldValue, T? newValue)
     {
         OldValue = oldValue;
         NewValue = newValue;
@@ -23,12 +22,12 @@ public class PropertyChangedEventArgs<T> : EventArgs
     /// <summary>
     /// The old value
     /// </summary>
-    public T OldValue { get; }
+    public T? OldValue { get; }
 
     /// <summary>
     /// The new value
     /// </summary>
-    public T NewValue { get; }
+    public T? NewValue { get; }
 }
 
 /// <summary>

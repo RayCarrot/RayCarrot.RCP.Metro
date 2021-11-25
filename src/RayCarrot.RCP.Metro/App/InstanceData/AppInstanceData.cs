@@ -1,8 +1,6 @@
-﻿#nullable disable
-using System;
-using NLog;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -35,9 +33,9 @@ public class AppInstanceData : IAppInstanceData
 
     private UserLevel _currentUserLevel;
 
-    private CultureInfo _currentCulture;
+    private CultureInfo? _currentCulture;
 
-    private string[] _arguments;
+    private string[]? _arguments;
 
     #endregion
 
@@ -64,14 +62,14 @@ public class AppInstanceData : IAppInstanceData
             Logger.Info("The user level has changed from {0} to {1}", oldValue, CurrentUserLevel);
 
             // Fire event
-            UserLevelChanged?.Invoke(this, new PropertyChangedEventArgs<UserLevel>(oldValue, CurrentUserLevel));
+            UserLevelChanged(this, new PropertyChangedEventArgs<UserLevel>(oldValue, CurrentUserLevel));
         }
     }
 
     /// <summary>
     /// The current culture in the framework
     /// </summary>
-    public CultureInfo CurrentCulture
+    public CultureInfo? CurrentCulture
     {
         get => _currentCulture;
         set
@@ -89,14 +87,14 @@ public class AppInstanceData : IAppInstanceData
             Logger.Info("The current culture has changed from {0} to {1}", oldValue, CurrentCulture);
 
             // Fire event
-            CultureChanged?.Invoke(this, new PropertyChangedEventArgs<CultureInfo>(oldValue, CurrentCulture));
+            CultureChanged(this, new PropertyChangedEventArgs<CultureInfo>(oldValue, CurrentCulture));
         }
     }
 
     /// <summary>
     /// The launch arguments for the current application
     /// </summary>
-    public string[] Arguments
+    public string[]? Arguments
     {
         get => _arguments;
         set
@@ -119,12 +117,12 @@ public class AppInstanceData : IAppInstanceData
     /// <summary>
     /// Occurs when the <see cref="CurrentUserLevel"/> changes
     /// </summary>
-    public event PropertyChangedEventHandler<UserLevel> UserLevelChanged;
+    public event PropertyChangedEventHandler<UserLevel> UserLevelChanged = delegate { };
 
     /// <summary>
     /// Occurs when the <see cref="CurrentCulture"/> changes
     /// </summary>
-    public event PropertyChangedEventHandler<CultureInfo> CultureChanged;
+    public event PropertyChangedEventHandler<CultureInfo> CultureChanged = delegate { };
 
     #endregion
 }

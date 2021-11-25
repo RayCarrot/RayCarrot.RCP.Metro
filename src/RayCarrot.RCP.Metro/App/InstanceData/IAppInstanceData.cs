@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -16,12 +15,12 @@ public interface IAppInstanceData
     /// <summary>
     /// The current culture in the framework
     /// </summary>
-    CultureInfo CurrentCulture { get; set; }
+    CultureInfo? CurrentCulture { get; set; }
 
     /// <summary>
     /// The launch arguments for the current application
     /// </summary>
-    string[] Arguments { get; set; }
+    string[]? Arguments { get; set; }
 
     /// <summary>
     /// Occurs when the <see cref="CurrentUserLevel"/> changes

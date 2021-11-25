@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
 
@@ -46,7 +45,7 @@ public class CultureChangedWeakEventManager : WeakEventManager
         get
         {
             Type managerType = typeof(CultureChangedWeakEventManager);
-            CultureChangedWeakEventManager manager = (CultureChangedWeakEventManager)GetCurrentManager(managerType);
+            var manager = (CultureChangedWeakEventManager?)GetCurrentManager(managerType);
 
             // at first use, create and register a new manager
             if (manager == null)

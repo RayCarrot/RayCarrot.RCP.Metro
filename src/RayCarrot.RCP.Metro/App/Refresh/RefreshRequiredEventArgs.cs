@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,9 +30,9 @@ public class RefreshRequiredEventArgs : EventArgs
     /// </summary>
     /// <param name="modifiedGames">The games which have been modified</param>
     /// <param name="flags">The refresh flags indicating what has been modified</param>
-    public RefreshRequiredEventArgs(IEnumerable<Games> modifiedGames, RefreshFlags flags)
+    public RefreshRequiredEventArgs(IEnumerable<Games>? modifiedGames, RefreshFlags flags)
     {
-        ModifiedGames = modifiedGames?.ToArray() ?? new Games[0];
+        ModifiedGames = modifiedGames?.ToArray() ?? Array.Empty<Games>();
         Flags = flags;
     }
 

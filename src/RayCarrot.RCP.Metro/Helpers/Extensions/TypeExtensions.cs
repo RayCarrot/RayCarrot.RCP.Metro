@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace RayCarrot.RCP.Metro;
@@ -9,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class TypeExtensions
 {
-#pragma warning disable CS1574 // // XML comment has cref attribute that could not be resolved
+#pragma warning disable CS1574 // XML comment has cref attribute that could not be resolved
 
     /// <summary>
     /// Creates a new instance of the specified <see cref="Type"/>
@@ -108,7 +107,7 @@ public static class TypeExtensions
     /// <exception cref="System.Runtime.InteropServices.COMException">type is a COM object but the class identifier used to obtain the type is invalid, or the identified class is not registered</exception>
     /// <exception cref="TypeLoadException">type is not a valid type</exception>
     /// <exception cref="InvalidCastException">The type instance can not be converted to the specified type</exception>
-    public static T CreateInstance<T>(this Type type) => (T)Activator.CreateInstance(type);
+    public static T CreateInstance<T>(this Type type) where T : notnull => (T)Activator.CreateInstance(type);
 
 #pragma warning restore CS1574
 }

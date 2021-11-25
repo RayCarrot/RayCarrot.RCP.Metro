@@ -1,5 +1,4 @@
-﻿#nullable disable
-using RayCarrot.UI;
+﻿using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -10,9 +9,9 @@ public abstract class BaseRCPViewModel : BaseViewModel
 {
     #region Private Fields
 
-    private AppUserData _data;
+    private AppUserData? _data;
 
-    private AppViewModel _app;
+    private AppViewModel? _app;
 
     #endregion
 

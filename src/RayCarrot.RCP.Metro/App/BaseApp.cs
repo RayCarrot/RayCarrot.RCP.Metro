@@ -1,8 +1,4 @@
-﻿#nullable disable
-using Microsoft.Extensions.DependencyInjection;
-using Nito.AsyncEx;
-using RayCarrot.IO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -15,7 +11,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using MahApps.Metro.Controls;
-using MahApps.Metro.SimpleChildWindow;
+using Microsoft.Extensions.DependencyInjection;
+using Nito.AsyncEx;
 using NLog;
 using NLog.Targets;
 
@@ -34,7 +31,7 @@ public abstract class BaseApp : Application
     /// <param name="useMutex">Indicates if a <see cref="Mutex"/> should be used to only allow a single instance of the application.
     /// This requires a valid GUID in the entry assembly.</param>
     /// <param name="splashScreenResourceName">The resource name for a splash screen if one is to be used</param>
-    protected BaseApp(bool useMutex, string splashScreenResourceName = null)
+    protected BaseApp(bool useMutex, string? splashScreenResourceName = null)
     {
         // Create properties
         StartupEventsCalledAsyncLock = new AsyncLock();
@@ -99,12 +96,12 @@ public abstract class BaseApp : Application
     /// <summary>
     /// The splash screen, if one is used
     /// </summary>
-    private SplashScreen SplashScreen { get; }
+    private SplashScreen? SplashScreen { get; }
 
     /// <summary>
     /// The mutex
     /// </summary>
-    private Mutex Mutex { get; }
+    private Mutex? Mutex { get; }
 
     /// <summary>
     /// Indicates if the startup events have run
@@ -124,12 +121,12 @@ public abstract class BaseApp : Application
     /// <summary>
     /// The timer for the application startup
     /// </summary>
-    private Stopwatch AppStartupTimer { get; }
+    private Stopwatch? AppStartupTimer { get; }
 
     /// <summary>
     /// The startup time logs to log once the app has started to improve performance
     /// </summary>
-    private List<string> StartupTimeLogs { get; }
+    private List<string>? StartupTimeLogs { get; }
 
     #endregion
 
@@ -148,7 +145,7 @@ public abstract class BaseApp : Application
     /// <summary>
     /// The service provider for this application
     /// </summary>
-    protected IServiceProvider ServiceProvider { get; private set; }
+    protected IServiceProvider? ServiceProvider { get; private set; }
 
     #endregion
 
@@ -157,12 +154,12 @@ public abstract class BaseApp : Application
     /// <summary>
     /// Gets the <see cref="Application"/> object for the current <see cref="AppDomain"/> as a <see cref="BaseApp"/>.
     /// </summary>
-    public new static BaseApp Current => Application.Current as BaseApp;
+    public new static BaseApp Current => Application.Current as BaseApp ?? throw new InvalidOperationException($"Current app is not a valid {nameof(BaseApp)}");
 
     /// <summary>
     /// The common application data, or null if not available
     /// </summary>
-    public IAppInstanceData InstanceData => GetService<IAppInstanceData>();
+    public IAppInstanceData? InstanceData => GetService<IAppInstanceData>();
 
     #endregion
 
@@ -172,7 +169,7 @@ public abstract class BaseApp : Application
     /// Handles the application startup
     /// </summary>
     /// <param name="args">The launch arguments</param>
-    private async void AppStartupAsync(string[] args)
+    private async void AppStartupAsync(string[]? args)
     {
         LogStartupTime("Startup: App startup begins");
 
@@ -235,14 +232,14 @@ public abstract class BaseApp : Application
     /// <summary>
     /// Sets up the application data and services
     /// </summary>
-    private void SetupAppData(string[] args)
+    private void SetupAppData(string[]? args)
     {
         LogStartupTime("AppData: Setting up application data");
 
         // Set up the services
-        var services = GetServices(args);
+        IServiceCollection services = GetServices(args);
 
-        // If there is no app data we add a default one
+        // If there is no instance data we add a default one
         if (services.All(x => x.ServiceType != typeof(IAppInstanceData)))
             services.AddSingleton<IAppInstanceData>(new AppInstanceData());
 
@@ -252,7 +249,8 @@ public abstract class BaseApp : Application
         ServiceProvider = services.BuildServiceProvider();
 
         // Retrieve arguments
-        InstanceData.Arguments = args;
+        if (InstanceData != null) 
+            InstanceData.Arguments = args;
 
         // Log that the build is complete
         Logger.Info("The service provider has been built with {0} services", services.Count);
@@ -271,7 +269,7 @@ public abstract class BaseApp : Application
     [Conditional("DEBUG")]
     protected void LogStartupTime(string logDescription)
     {
-        StartupTimeLogs.Add($"Startup: {AppStartupTimer.ElapsedMilliseconds} ms - {logDescription}");
+        StartupTimeLogs?.Add($"Startup: {AppStartupTimer?.ElapsedMilliseconds} ms - {logDescription}");
     }
 
     /// <summary>
@@ -316,7 +314,7 @@ public abstract class BaseApp : Application
         try
         {
             // Log the exception
-            Logger.Fatal(e?.Exception, "Unhandled exception");
+            Logger.Fatal(e.Exception, "Unhandled exception");
 
             // Get the path to log to
             string logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
@@ -326,18 +324,18 @@ public abstract class BaseApp : Application
             {
                 "Service not available",
                 Environment.NewLine,
-                e?.Exception?.ToString()
+                e.Exception?.ToString() ?? "<No Exception>"
             });
 
             // Notify user
-            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e?.Exception?.Message}" +
+            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception?.Message}" +
                             $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}A crash log has been created under {logPath}.",
                 "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         catch (Exception)
         {
             // Notify user
-            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e?.Exception?.Message}",
+            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception?.Message}",
                 "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         finally
@@ -369,10 +367,10 @@ public abstract class BaseApp : Application
 
 #if DEBUG
         // Stop the stopwatch
-        AppStartupTimer.Stop();
+        AppStartupTimer?.Stop();
 
         // Log all startup time logs
-        foreach (string log in StartupTimeLogs)
+        foreach (string log in StartupTimeLogs!)
             Logger.Debug(log);
 
         // Clear the startup time logs
@@ -410,7 +408,7 @@ public abstract class BaseApp : Application
         e.Cancel = true;
 
         // Don't close if the close button is disabled
-        if (sender is MetroWindow {IsCloseButtonEnabled: false})
+        if (sender is MetroWindow { IsCloseButtonEnabled: false })
             return;
 
         // If already is closing, ignore
@@ -438,7 +436,7 @@ public abstract class BaseApp : Application
     /// </summary>
     /// <param name="args">The launch arguments</param>
     /// <returns>The services to use</returns>
-    protected abstract IServiceCollection GetServices(string[] args);
+    protected abstract IServiceCollection GetServices(string[]? args);
 
     #endregion
 
@@ -449,29 +447,20 @@ public abstract class BaseApp : Application
     /// </summary>
     /// <param name="args">The launch arguments</param>
     /// <returns>The task</returns>
-    protected virtual Task OnSetupAsync(string[] args)
-    {
-        return Task.CompletedTask;
-    }
+    protected virtual Task OnSetupAsync(string[]? args) => Task.CompletedTask;
 
     /// <summary>
     /// An optional method to override which runs when closing
     /// </summary>
     /// <param name="mainWindow">The main Window of the application</param>
     /// <returns>The task</returns>
-    protected virtual Task OnCloseAsync(Window mainWindow)
-    {
-        return Task.CompletedTask;
-    }
+    protected virtual Task OnCloseAsync(Window? mainWindow) => Task.CompletedTask;
 
     /// <summary>
     /// Override to run when another instance of the program is found running
     /// </summary>
     /// <param name="args">The launch arguments</param>
-    protected virtual void OnOtherInstanceFound(string[] args)
-    {
-
-    }
+    protected virtual void OnOtherInstanceFound(string[]? args) { }
 
     /// <summary>
     /// Optional initial setup to run. Can be used to check if the environment is valid
@@ -479,10 +468,7 @@ public abstract class BaseApp : Application
     /// </summary>
     /// <param name="args">The launch arguments</param>
     /// <returns>True if the setup finished successfully or false if the application has to shut down</returns>
-    protected virtual Task<bool> InitialSetupAsync(string[] args)
-    {
-        return Task.FromResult(true);
-    }
+    protected virtual Task<bool> InitialSetupAsync(string[]? args) => Task.FromResult(true);
 
     /// <summary>
     /// Disposes any disposable application objects
@@ -529,9 +515,9 @@ public abstract class BaseApp : Application
                 }
 
                 // Attempt to close all child windows, starting with the modal ones
-                foreach (ChildWindow childWindow in ChildWindowInstance.OpenChildWindows.OrderBy(x => x.IsModal ? 0 : 1).ToArray())
+                foreach (RCPChildWindow childWindow in ChildWindowInstance.OpenChildWindows.OrderBy(x => x.IsModal ? 0 : 1).ToArray())
                 {
-                    if (childWindow is RCPChildWindow {IsMinimized: true} c)
+                    if (childWindow is {IsMinimized: true} c)
                         c.ToggleMinimized();
 
                     childWindow.Close();
@@ -583,7 +569,7 @@ public abstract class BaseApp : Application
     /// </summary>
     /// <typeparam name="T">The type of service</typeparam>
     /// <returns>The requested object of the specified type or null if not available</returns>
-    public T GetService<T>() where T : class => ServiceProvider?.GetService<T>();
+    public T? GetService<T>() where T : class => ServiceProvider?.GetService<T>();
 
     #endregion
 
@@ -592,12 +578,12 @@ public abstract class BaseApp : Application
     /// <summary>
     /// Contains events to be called once after startup completes
     /// </summary>
-    protected event AsyncEventHandler<EventArgs> LocalStartupComplete;
+    protected event AsyncEventHandler<EventArgs>? LocalStartupComplete;
 
     /// <summary>
     /// Occurs when all event handlers subscribed to <see cref="StartupComplete"/> have finished
     /// </summary>
-    protected event EventHandler StartupEventsCompleted;
+    protected event EventHandler? StartupEventsCompleted;
 
     #endregion
 
@@ -606,7 +592,7 @@ public abstract class BaseApp : Application
     /// <summary>
     /// Occurs on startup, after the main window has been loaded
     /// </summary>
-    public event AsyncEventHandler<EventArgs> StartupComplete
+    public event AsyncEventHandler<EventArgs>? StartupComplete
     {
         add
         {
