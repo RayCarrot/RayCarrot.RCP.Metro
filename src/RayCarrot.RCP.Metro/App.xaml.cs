@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
@@ -186,7 +185,7 @@ public partial class App : BaseApp
     protected override Window GetMainWindow()
     {
         // Create the window
-        var window = new MainWindow();
+        MainWindow window = new();
 
         // Load previous state
         Services.Data?.UI_WindowState?.ApplyToWindow(window);
@@ -199,7 +198,7 @@ public partial class App : BaseApp
     /// </summary>
     /// <param name="mainWindow">The main Window of the application</param>
     /// <returns>The task</returns>
-    protected override async Task OnCloseAsync(Window mainWindow)
+    protected override async Task OnCloseAsync(Window? mainWindow)
     {
         // Make sure the user data has been loaded
         if (Services.Data != null)
@@ -277,7 +276,7 @@ public partial class App : BaseApp
                 return true;
 
             // Create license popup dialog
-            var licenseDialog = new LicenseDialog();
+            LicenseDialog licenseDialog = new();
 
             // Close the splash screen
             CloseSplashScreen();
@@ -319,7 +318,7 @@ public partial class App : BaseApp
 
             return Task.CompletedTask;
         };
-        Services.InstanceData.CultureChanged += (s, e) => RefreshJumpList();
+        Services.InstanceData.CultureChanged += (_, _) => RefreshJumpList();
 
         // Subscribe to when the app has finished setting up
         StartupComplete += App_StartupComplete_GameFinder_Async;
@@ -428,7 +427,7 @@ public partial class App : BaseApp
             Data.Game_Games.Remove(Games.RaymanFiestaRun);
 
             // If a Fiesta Run backup exists the name needs to change to the new standard
-            var fiestaBackupDir = Data.Backup_BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
+            FileSystemPath fiestaBackupDir = Data.Backup_BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
 
             if (fiestaBackupDir.DirectoryExists)
             {
@@ -439,12 +438,17 @@ public partial class App : BaseApp
                         new JsonTextReader(x).RunAndDispose(y => JsonSerializer.Create().Deserialize(y))).CastTo<JObject>();
 
                     // Get the previous Fiesta Run version
-                    var isWin10 = appData["IsFiestaRunWin10Edition"].Value<bool>();
+                    bool? isWin10 = appData["IsFiestaRunWin10Edition"]?.Value<bool>();
 
-                    // Set the current edition
-                    Data.Game_FiestaRunVersion = isWin10 ? UserData_FiestaRunEdition.Win10 : UserData_FiestaRunEdition.Default;
+                    if (isWin10 != null)
+                    {
+                        // Set the current edition
+                        Data.Game_FiestaRunVersion = isWin10.Value 
+                            ? UserData_FiestaRunEdition.Win10 
+                            : UserData_FiestaRunEdition.Default;
 
-                    Services.File.MoveDirectory(fiestaBackupDir, Data.Backup_BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
+                        Services.File.MoveDirectory(fiestaBackupDir, Data.Backup_BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -506,7 +510,7 @@ public partial class App : BaseApp
             const string regUninstallKeyName = "RCP_Metro";
 
             // Since support has been removed for showing the program under installed programs we now have to remove the key
-            var keyPath = RegistryHelpers.CombinePaths(CommonRegistryPaths.InstalledPrograms, regUninstallKeyName);
+            string keyPath = RegistryHelpers.CombinePaths(CommonRegistryPaths.InstalledPrograms, regUninstallKeyName);
 
             // Check if the key exists
             if (RegistryHelpers.KeyExists(keyPath))
@@ -517,7 +521,7 @@ public partial class App : BaseApp
                     try
                     {
                         // Open the parent key
-                        using var parentKey = RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
+                        using RegistryKey parentKey = RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
 
                         // Delete the sub-key
                         parentKey.DeleteSubKey(regUninstallKeyName);
@@ -600,10 +604,10 @@ public partial class App : BaseApp
     private static async Task ValidateGamesAsync()
     {
         // Keep track of removed games
-        var removed = new List<Games>();
+        List<Games> removed = new();
 
         // Make sure every game is valid
-        foreach (var game in Services.App.GetGames)
+        foreach (Games game in Services.App.GetGames)
         {
             // Check if it has been added
             if (!game.IsAdded())
@@ -639,8 +643,8 @@ public partial class App : BaseApp
         // On debug we default it to log trace
         LogLevel logLevel = LogLevel.Trace;
 #else
-            // If not on debug we default to log info
-            LogLevel logLevel = LogLevel.Info;
+        // If not on debug we default to log info
+        LogLevel logLevel = LogLevel.Info;
 #endif
 
         // Allow the log level to be specified from a launch argument
@@ -695,7 +699,7 @@ public partial class App : BaseApp
                 // Await to avoid blocking
                 await Dispatcher.InvokeAsync(() =>
                 {
-                    var log = new LogItemViewModel(logEvent.Level, logEvent.Exception, logEvent.TimeStamp, logEvent.LoggerName, logEvent.FormattedMessage);
+                    LogItemViewModel log = new(logEvent.Level, logEvent.Exception, logEvent.TimeStamp, logEvent.LoggerName, logEvent.FormattedMessage);
                     log.IsVisible = log.LogLevel >= LogViewerViewModel.ShowLogLevel;
                     LogViewerViewModel.LogItems.Add(log);
                 });
@@ -837,7 +841,7 @@ public partial class App : BaseApp
                     static string GetStyleSource(UserData_LinkItemStyle linkItemStye) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Styles.LinkItem.{linkItemStye}.xaml";
 
                     // Get previous source
-                    var oldSource = GetStyleSource(PreviousLinkItemStyle);
+                    string oldSource = GetStyleSource(PreviousLinkItemStyle);
 
                     // Remove old source
                     foreach (ResourceDictionary resourceDictionary in Resources.MergedDictionaries)
@@ -930,10 +934,12 @@ public partial class App : BaseApp
 
     #region Private Properties
 
+#nullable disable
     /// <summary>
     /// The app user data
     /// </summary>
     private AppUserData Data { get; set; }
+#nullable restore
 
     /// <summary>
     /// The async lock for <see cref="Data_PropertyChangedAsync"/>
@@ -955,9 +961,9 @@ public partial class App : BaseApp
     #region Public Properties
 
     public bool IsLogViewerAvailable => LogViewerViewModel != null;
-    public LogViewerViewModel LogViewerViewModel { get; set; }
+    public LogViewerViewModel? LogViewerViewModel { get; set; }
 
-    public MainWindow ChildWindowsParent => MainWindow as MainWindow;
+    public MainWindow? ChildWindowsParent => MainWindow as MainWindow;
 
     #endregion
 
@@ -966,7 +972,7 @@ public partial class App : BaseApp
     /// <summary>
     /// The current application
     /// </summary>
-    public new static App Current => Application.Current as App;
+    public new static App Current => Application.Current as App ?? throw new InvalidOperationException("Current app is not of a valid type");
 
     #endregion
 }

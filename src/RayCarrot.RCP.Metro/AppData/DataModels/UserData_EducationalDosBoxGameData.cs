@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using RayCarrot.IO;
 
@@ -16,7 +15,7 @@ public class UserData_EducationalDosBoxGameData
     /// <param name="installDir">The game install directory</param>
     /// <param name="launchName">The launch name</param>
     /// <param name="id">The game ID</param>
-    public UserData_EducationalDosBoxGameData(FileSystemPath installDir, string launchName, string id = null)
+    public UserData_EducationalDosBoxGameData(FileSystemPath installDir, string launchName, string? id = null)
     {
         InstallDir = installDir;
         LaunchName = launchName;
@@ -50,7 +49,7 @@ public class UserData_EducationalDosBoxGameData
     /// <summary>
     /// The launch mode argument
     /// </summary>
-    public string LaunchMode { get; set; }
+    public string? LaunchMode { get; set; }
 
     /// <summary>
     /// The mount path

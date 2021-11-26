@@ -20,7 +20,7 @@ public interface IAppInstanceData
     /// <summary>
     /// The launch arguments for the current application
     /// </summary>
-    string[]? Arguments { get; set; }
+    string[] Arguments { get; set; }
 
     /// <summary>
     /// Occurs when the <see cref="CurrentUserLevel"/> changes

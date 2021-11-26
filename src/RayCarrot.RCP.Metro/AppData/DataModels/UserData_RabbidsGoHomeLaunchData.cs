@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿using System;
 using System.Text;
 
 namespace RayCarrot.RCP.Metro;
@@ -20,7 +20,7 @@ public class UserData_RabbidsGoHomeLaunchData
         IsVSyncEnabled = true;
         IsFullscreen = true;
         VersionIndex = 5;
-        OptionalCommands = new string[0];
+        OptionalCommands = Array.Empty<string>();
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ public class UserData_RabbidsGoHomeLaunchData
     public override string ToString()
     {
         // Create the string builder
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
 
         // Add the big file path
         sb.Append($"\"{BigFile}\"");

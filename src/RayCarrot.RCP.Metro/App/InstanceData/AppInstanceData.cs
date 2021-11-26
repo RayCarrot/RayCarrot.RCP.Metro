@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using NLog;
 
@@ -19,6 +20,7 @@ public class AppInstanceData : IAppInstanceData
     {
         CurrentUserLevel = UserLevel.Normal;
         CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
+        _arguments = Array.Empty<string>();
     }
 
     #endregion
@@ -35,7 +37,7 @@ public class AppInstanceData : IAppInstanceData
 
     private CultureInfo? _currentCulture;
 
-    private string[]? _arguments;
+    private string[] _arguments;
 
     #endregion
 
@@ -94,7 +96,7 @@ public class AppInstanceData : IAppInstanceData
     /// <summary>
     /// The launch arguments for the current application
     /// </summary>
-    public string[]? Arguments
+    public string[] Arguments
     {
         get => _arguments;
         set

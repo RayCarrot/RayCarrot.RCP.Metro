@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.IO;
@@ -92,9 +91,9 @@ public class UserData_TPLSData
                     $"gameversion={GetVersionName(RaymanVersion)}",
                     "musicfile=Music.dat"
                 });
-
-                Logger.Info("Updated TPLS config with version {0}", RaymanVersion);
             }
+
+            Logger.Info("Updated TPLS config with version {0}", RaymanVersion);
         }
         catch (Exception ex)
         {

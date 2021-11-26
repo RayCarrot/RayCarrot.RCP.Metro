@@ -169,7 +169,7 @@ public abstract class BaseApp : Application
     /// Handles the application startup
     /// </summary>
     /// <param name="args">The launch arguments</param>
-    private async void AppStartupAsync(string[]? args)
+    private async void AppStartupAsync(string[] args)
     {
         LogStartupTime("Startup: App startup begins");
 
@@ -232,7 +232,7 @@ public abstract class BaseApp : Application
     /// <summary>
     /// Sets up the application data and services
     /// </summary>
-    private void SetupAppData(string[]? args)
+    private void SetupAppData(string[] args)
     {
         LogStartupTime("AppData: Setting up application data");
 
@@ -436,7 +436,7 @@ public abstract class BaseApp : Application
     /// </summary>
     /// <param name="args">The launch arguments</param>
     /// <returns>The services to use</returns>
-    protected abstract IServiceCollection GetServices(string[]? args);
+    protected abstract IServiceCollection GetServices(string[] args);
 
     #endregion
 
@@ -447,7 +447,7 @@ public abstract class BaseApp : Application
     /// </summary>
     /// <param name="args">The launch arguments</param>
     /// <returns>The task</returns>
-    protected virtual Task OnSetupAsync(string[]? args) => Task.CompletedTask;
+    protected virtual Task OnSetupAsync(string[] args) => Task.CompletedTask;
 
     /// <summary>
     /// An optional method to override which runs when closing
@@ -460,7 +460,7 @@ public abstract class BaseApp : Application
     /// Override to run when another instance of the program is found running
     /// </summary>
     /// <param name="args">The launch arguments</param>
-    protected virtual void OnOtherInstanceFound(string[]? args) { }
+    protected virtual void OnOtherInstanceFound(string[] args) { }
 
     /// <summary>
     /// Optional initial setup to run. Can be used to check if the environment is valid
@@ -468,7 +468,7 @@ public abstract class BaseApp : Application
     /// </summary>
     /// <param name="args">The launch arguments</param>
     /// <returns>True if the setup finished successfully or false if the application has to shut down</returns>
-    protected virtual Task<bool> InitialSetupAsync(string[]? args) => Task.FromResult(true);
+    protected virtual Task<bool> InitialSetupAsync(string[] args) => Task.FromResult(true);
 
     /// <summary>
     /// Disposes any disposable application objects
