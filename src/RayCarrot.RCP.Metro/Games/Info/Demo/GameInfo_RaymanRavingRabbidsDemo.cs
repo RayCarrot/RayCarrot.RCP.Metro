@@ -24,12 +24,7 @@ public sealed class GameInfo_RaymanRavingRabbidsDemo : GameInfo
     /// <summary>
     /// The game display name
     /// </summary>
-    public override string DisplayName => "Rayman Raving Rabbids Demo";
-
-    /// <summary>
-    /// The game backup name
-    /// </summary>
-    public override string BackupName => "Rayman Raving Rabbids Demo";
+    public override string DisplayName => "Rayman Raving Rabbids Demo (2006/11/06)";
 
     /// <summary>
     /// Gets the launch name for the game

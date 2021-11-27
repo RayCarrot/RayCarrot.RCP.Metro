@@ -19,12 +19,7 @@ public sealed class GameInfo_Rayman3Demo4 : GameInfo_BaseRayman3Demo
     /// <summary>
     /// The game display name
     /// </summary>
-    public override string DisplayName => "Rayman 3 Demo 4";
-
-    /// <summary>
-    /// The game backup name
-    /// </summary>
-    public override string BackupName => "Rayman 3 Demo 4";
+    public override string DisplayName => "Rayman 3 Demo (2003/01/29)";
 
     /// <summary>
     /// The download URLs for the game if it can be downloaded. All sources must be compressed.

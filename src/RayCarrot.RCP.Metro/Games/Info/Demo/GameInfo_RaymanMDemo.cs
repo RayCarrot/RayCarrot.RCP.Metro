@@ -40,7 +40,7 @@ public sealed class GameInfo_RaymanMDemo : GameInfo
     /// <summary>
     /// The game display name
     /// </summary>
-    public override string DisplayName => "Rayman M Demo";
+    public override string DisplayName => "Rayman M Demo (2002/06/27)";
 
     /// <summary>
     /// The game backup name

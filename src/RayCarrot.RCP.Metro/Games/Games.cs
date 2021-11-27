@@ -118,8 +118,8 @@ public enum Games
     Demo_Rayman3_1,
     Demo_Rayman3_2,
     Demo_Rayman3_3,
-    Demo_Rayman3_4,
     Demo_Rayman3_5,
+    Demo_Rayman3_4,
 
     Demo_RaymanRavingRabbids,
 

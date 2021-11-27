@@ -53,7 +53,7 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// The game backup name
     /// </summary>
-    public abstract string BackupName { get; }
+    public virtual string BackupName => throw new InvalidOperationException($"The game {Game} has no backup name associated with it");
 
     /// <summary>
     /// Gets the default file name for launching the game, if available

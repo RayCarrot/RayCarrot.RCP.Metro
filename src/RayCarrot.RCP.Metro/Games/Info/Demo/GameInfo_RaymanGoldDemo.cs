@@ -28,12 +28,7 @@ public sealed class GameInfo_RaymanGoldDemo : GameInfo
     /// <summary>
     /// The game display name
     /// </summary>
-    public override string DisplayName => "Rayman Gold Demo";
-
-    /// <summary>
-    /// The game backup name
-    /// </summary>
-    public override string BackupName => "Rayman Gold Demo";
+    public override string DisplayName => "Rayman Gold Demo (1997/09/30)";
 
     /// <summary>
     /// Gets the launch name for the game
