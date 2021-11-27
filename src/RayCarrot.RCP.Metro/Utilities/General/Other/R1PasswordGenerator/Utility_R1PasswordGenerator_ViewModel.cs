@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using NLog;
 using RayCarrot.Rayman.Ray1;
-using RayCarrot.UI;
 using System;
 using System.Globalization;
 using System.Linq;

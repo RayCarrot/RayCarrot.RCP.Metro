@@ -13,7 +13,6 @@ using AutoCompleteTextBox.Editors;
 using ByteSizeLib;
 using Nito.AsyncEx;
 using NLog;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 

@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using MahApps.Metro.SimpleChildWindow;
-using RayCarrot.UI;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;

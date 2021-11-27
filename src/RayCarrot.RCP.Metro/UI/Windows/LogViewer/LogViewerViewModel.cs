@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using NLog;
-using RayCarrot.UI;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 

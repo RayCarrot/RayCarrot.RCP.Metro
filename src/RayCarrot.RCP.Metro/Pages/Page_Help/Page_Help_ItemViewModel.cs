@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System.Collections.ObjectModel;
 using System.Linq;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 

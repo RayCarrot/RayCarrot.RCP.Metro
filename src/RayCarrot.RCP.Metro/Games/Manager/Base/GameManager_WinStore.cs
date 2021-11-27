@@ -10,7 +10,6 @@ using Windows.ApplicationModel;
 using Windows.Management.Deployment;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 /*

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
-using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro;
 

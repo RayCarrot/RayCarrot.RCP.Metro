@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
 using System.Windows.Input;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 

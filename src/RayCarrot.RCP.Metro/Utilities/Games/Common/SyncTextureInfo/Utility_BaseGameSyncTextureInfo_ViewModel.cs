@@ -8,7 +8,6 @@ using RayCarrot.IO;
 using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 

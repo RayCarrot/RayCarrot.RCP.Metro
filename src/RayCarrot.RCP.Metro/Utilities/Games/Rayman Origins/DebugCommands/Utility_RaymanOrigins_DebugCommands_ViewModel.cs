@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Nito.AsyncEx;
 using NLog;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 

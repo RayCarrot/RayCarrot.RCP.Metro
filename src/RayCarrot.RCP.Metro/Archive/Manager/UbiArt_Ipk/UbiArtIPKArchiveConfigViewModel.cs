@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 

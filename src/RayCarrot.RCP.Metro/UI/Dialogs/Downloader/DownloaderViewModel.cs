@@ -7,7 +7,6 @@ using System.Net;
 using System.Threading.Tasks;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro;
 

@@ -2,7 +2,6 @@
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

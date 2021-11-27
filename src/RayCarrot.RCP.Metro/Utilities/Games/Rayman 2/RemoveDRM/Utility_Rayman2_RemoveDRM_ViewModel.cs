@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using RayCarrot.IO;
-using RayCarrot.UI;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29009.5
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro", "RayCarrot.RCP.Metro\RayCarrot.RCP.Metro.csproj", "{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.RCP.Metro", "RayCarrot.RCP.Metro\RayCarrot.RCP.Metro.csproj", "{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Updater", "RayCarrot.RCP.Metro.Updater\RayCarrot.RCP.Updater.csproj", "{001CD0CA-D3A9-446D-B93A-CB941D98C25C}"
 EndProject
@@ -20,8 +20,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.IO", "..\..\..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj", "{B8A6854C-6FE0-453A-8CD0-73AEBF36F31E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.Rayman", "..\..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj", "{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.UI", "..\..\..\RayCarrot.UI\RayCarrot.UI\RayCarrot.UI.csproj", "{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Windows.Registry", "..\..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj", "{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}"
 EndProject
@@ -89,14 +87,6 @@ Global
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|x86.ActiveCfg = Release|Any CPU
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|x86.Build.0 = Release|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Debug|x86.Build.0 = Debug|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Release|x86.ActiveCfg = Release|Any CPU
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82}.Release|x86.Build.0 = Release|Any CPU
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -116,13 +106,12 @@ Global
 		{0071584B-BCE5-44A0-A267-B1CE9F0570B8} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{B8A6854C-6FE0-453A-8CD0-73AEBF36F31E} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
-		{23294120-7EEC-4095-9A0B-DB2F8F8EFF82} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ExcelExportMode = MultipleSheets
-		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
-		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
 		RESX_TaskErrorCategory = Message
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
+		RESX_ExcelExportMode = MultipleSheets
 	EndGlobalSection
 EndGlobal

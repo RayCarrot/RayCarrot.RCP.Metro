@@ -10,7 +10,6 @@ using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;

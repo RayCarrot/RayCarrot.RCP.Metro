@@ -2,7 +2,6 @@
 using Nito.AsyncEx;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.UI;
 using System;
 using System.IO;
 using System.Linq;

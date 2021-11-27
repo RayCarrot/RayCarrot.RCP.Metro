@@ -1,6 +1,4 @@
-﻿using RayCarrot.UI;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The base view model to use for the Rayman Control Panel

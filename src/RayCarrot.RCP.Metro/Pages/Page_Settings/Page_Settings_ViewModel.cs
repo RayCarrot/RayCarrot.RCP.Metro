@@ -3,7 +3,6 @@ using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using System;
 using System.Collections.ObjectModel;

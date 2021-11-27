@@ -98,7 +98,6 @@
 		<ProjectReference Include="..\..\..\..\RayCarrot.Binary\RayCarrot.Binary\RayCarrot.Binary.csproj" />
 		<ProjectReference Include="..\..\..\..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj" />
 		<ProjectReference Include="..\..\..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj" />
-		<ProjectReference Include="..\..\..\..\RayCarrot.UI\RayCarrot.UI\RayCarrot.UI.csproj" />
 		<ProjectReference Include="..\..\..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj" />
 	</ItemGroup>
 
