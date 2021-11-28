@@ -18,9 +18,8 @@
         <!-- Image -->
 
         <Image Grid.Row="0"
-               Source="{Binding Path=IconSource, Mode=OneTime}"
-               Height="128"
-               Width="128"/>
+               Style="{StaticResource Image.GameIcon}"
+               Source="{Binding Path=IconSource, Mode=OneTime}" />
 
         <!-- Title -->
 

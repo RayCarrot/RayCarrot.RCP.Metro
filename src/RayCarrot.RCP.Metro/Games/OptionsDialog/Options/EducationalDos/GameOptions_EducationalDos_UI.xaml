@@ -68,8 +68,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"
+                                   Style="{StaticResource Image.GameIconSmallest}"
                                    Source="../../../../Img/GameIcons/EducationalDos.png"
-                                   Height="32" Width="32"
                                    Margin="0 0 8 0" />
 
                             <TextBlock Grid.Column="1"
