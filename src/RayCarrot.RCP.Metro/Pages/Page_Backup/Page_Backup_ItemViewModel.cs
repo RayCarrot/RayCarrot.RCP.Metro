@@ -30,6 +30,7 @@ public class Page_Backup_ItemViewModel : BaseRCPViewModel
         LatestAvailableBackupVersion = backupInfo.LatestAvailableBackupVersion;
         BackupInfo = backupInfo;
         IconSource = gameInfo.IconSource;
+        IsDemo = gameInfo.IsDemo;
         DisplayName = backupInfo.GameDisplayName;
 
         // If the type if DOSBox, check if GOG cloud sync is being used
@@ -79,6 +80,11 @@ public class Page_Backup_ItemViewModel : BaseRCPViewModel
     /// The game icon source
     /// </summary>
     public string IconSource { get; }
+
+    /// <summary>
+    /// Indicates if the game is a demo
+    /// </summary>
+    public bool IsDemo { get; }
 
     /// <summary>
     /// The game display name

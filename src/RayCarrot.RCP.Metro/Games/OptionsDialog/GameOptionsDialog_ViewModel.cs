@@ -29,17 +29,18 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
             
         // Get the info
-        var gameInfo = game.GetGameInfo();
+        GameInfo gameInfo = game.GetGameInfo();
 
         // Set properties
         Game = game;
         DisplayName = gameInfo.DisplayName;
         IconSource = gameInfo.IconSource;
+        IsDemo = gameInfo.IsDemo;
         CanUninstall = gameInfo.CanBeUninstalled;
         PageLoadLock = new AsyncLock();
 
         // Create the page collection
-        var pages = new List<GameOptionsDialog_BasePageViewModel>();
+        List<GameOptionsDialog_BasePageViewModel> pages = new();
 
         // Add the options page
         pages.Add(new GameOptionsDialog_OptionsPageViewModel(Game));
@@ -57,14 +58,14 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             pages.Add(configViewModel);
 
         // Add the emulator config page
-        var emu = gameInfo.Emulator;
-        var emuConfigViewModel = emu?.GameConfigViewModel;
+        Emulator emu = gameInfo.Emulator;
+        GameOptionsDialog_EmulatorConfigPageViewModel emuConfigViewModel = emu?.GameConfigViewModel;
 
         if (emuConfigViewModel != null)
             pages.Add(emuConfigViewModel);
 
         // Add the utilities page
-        var utilities = App.GetUtilities(Game).Select(x => new UtilityViewModel(x)).ToArray();
+        UtilityViewModel[] utilities = App.GetUtilities(Game).Select(x => new UtilityViewModel(x)).ToArray();
 
         if (utilities.Any())
             pages.Add(new GameOptionsDialog_UtilitiesPageViewModel(utilities));
@@ -113,6 +114,11 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     /// The icons source
     /// </summary>
     public string IconSource { get; }
+
+    /// <summary>
+    /// Indicates if the game is a demo
+    /// </summary>
+    public bool IsDemo { get; }
 
     public AsyncLock PageLoadLock { get; }
 

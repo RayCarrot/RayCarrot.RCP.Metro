@@ -17,9 +17,9 @@
 
         <!-- Image -->
 
-        <Image Grid.Row="0"
-               Style="{StaticResource Image.GameIcon}"
-               Source="{Binding Path=IconSource, Mode=OneTime}" />
+        <local:GameIcon Grid.Row="0"
+                        IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
+                        Source="{Binding Path=IconSource, Mode=OneTime}" />
 
         <!-- Title -->
 

@@ -29,13 +29,13 @@
                 <ResourceDictionary Source="UI/Resources/Styles.MenuItem.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.Button.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.NumericUpDown.xaml" />
-                <ResourceDictionary Source="UI/Resources/Styles.Image.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.AutoCompleteTextBox.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.LinkItem.List.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.DuoGridItem.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.ChildWindow.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.LoaderContentControl.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.BrowseBox.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.GameIcon.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.Window.xaml" />
 
             </ResourceDictionary.MergedDictionaries>

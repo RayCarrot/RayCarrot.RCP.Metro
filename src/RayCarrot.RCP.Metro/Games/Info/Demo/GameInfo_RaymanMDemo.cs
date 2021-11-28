@@ -15,6 +15,8 @@ public sealed class GameInfo_RaymanMDemo : GameInfo
 {
     #region Protected Override Properties
 
+    protected override string IconName => $"RaymanMDemo";
+
     /// <summary>
     /// Gets the backup directories for the game
     /// </summary>
@@ -51,6 +53,11 @@ public sealed class GameInfo_RaymanMDemo : GameInfo
     /// Gets the launch name for the game
     /// </summary>
     public override string DefaultFileName => "RaymanM.exe";
+
+    /// <summary>
+    /// Indicates if the game is a demo
+    /// </summary>
+    public override bool IsDemo => true;
 
     /// <summary>
     /// Indicates if the game can be downloaded

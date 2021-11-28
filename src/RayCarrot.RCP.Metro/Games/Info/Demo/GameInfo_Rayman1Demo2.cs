@@ -10,6 +10,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_Rayman1Demo2 : GameInfo
 {
+    #region Protected Override Properties
+
+    protected override string IconName => $"Rayman1Demo";
+
+    #endregion
+
     #region Public Override Properties
 
     /// <summary>
@@ -31,6 +37,11 @@ public sealed class GameInfo_Rayman1Demo2 : GameInfo
     /// Gets the launch name for the game
     /// </summary>
     public override string DefaultFileName => "RAYMAN.EXE";
+
+    /// <summary>
+    /// Indicates if the game is a demo
+    /// </summary>
+    public override bool IsDemo => true;
 
     /// <summary>
     /// Indicates if the game can be downloaded

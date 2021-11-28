@@ -39,10 +39,9 @@
             <dd:DragDrop.DragAdornerTemplate>
                 <DataTemplate>
 
-                    <Image Source="../../../../Img/GameIcons/EducationalDos.png"
-                           Height="16"
-                           Width="16"
-                           Margin="0 0 8 0" />
+                    <local:GameIcon IconSize="Smallest"
+                                    Source="../../../../Img/GameIcons/EducationalDos.png"
+                                    Margin="0 0 8 0" />
 
                 </DataTemplate>
             </dd:DragDrop.DragAdornerTemplate>
@@ -67,10 +66,10 @@
 
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0"
-                                   Style="{StaticResource Image.GameIconSmallest}"
-                                   Source="../../../../Img/GameIcons/EducationalDos.png"
-                                   Margin="0 0 8 0" />
+                            <local:GameIcon Grid.Column="0"
+                                            IconSize="Smallest"
+                                            Source="../../../../Img/GameIcons/EducationalDos.png"
+                                            Margin="0 0 8 0" />
 
                             <TextBlock Grid.Column="1"
                                        TextWrapping="Wrap"

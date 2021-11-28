@@ -34,7 +34,7 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// The icon source for the game
     /// </summary>
-    public string IconSource => $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{Game}.png";
+    public string IconSource => $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{IconName}.png";
 
     /// <summary>
     /// Indicates if the game can be uninstalled
@@ -68,6 +68,11 @@ public abstract class GameInfo : BaseGameData
     #endregion
 
     #region Protected Virtual Properties
+
+    /// <summary>
+    /// The file name (without extensions) for the icon
+    /// </summary>
+    protected virtual string IconName => $"{Game}";
 
     /// <summary>
     /// Gets the backup directories for the game
@@ -125,6 +130,11 @@ public abstract class GameInfo : BaseGameData
     /// The group names to use for the options, config and utility dialog
     /// </summary>
     public virtual IEnumerable<string> DialogGroupNames => new string[0];
+
+    /// <summary>
+    /// Indicates if the game is a demo
+    /// </summary>
+    public virtual bool IsDemo => false;
 
     /// <summary>
     /// Indicates if the game can be located. If set to false the game is required to be downloadable.
@@ -318,6 +328,7 @@ public abstract class GameInfo : BaseGameData
                     game: Game, 
                     displayName: DisplayName, 
                     iconSource: IconSource, 
+                    isDemo: IsDemo,
                     mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), 
                     secondaryAction: optionsAction, 
                     launchActions: actions);
@@ -385,7 +396,7 @@ public abstract class GameInfo : BaseGameData
                     : downloadItem;
 
                 // Return the view model
-                return new Page_Games_GameViewModel(Game, DisplayName, IconSource, mainAction, null, actions);
+                return new Page_Games_GameViewModel(Game, DisplayName, IconSource, IsDemo, mainAction, null, actions);
             }
         }
         catch (Exception ex)
