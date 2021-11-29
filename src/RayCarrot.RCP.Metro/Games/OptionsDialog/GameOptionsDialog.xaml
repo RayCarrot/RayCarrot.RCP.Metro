@@ -114,6 +114,8 @@
 
                             <Button Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx DosBoxOptions_Recommended}"
+                                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                                    local:ButtonAssist.IconKind="AutoFix"
                                     Command="{Binding Path=UseRecommendedCommand}" />
 
                             <ComboBox Visibility="{Binding Path=PageSelection, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityConverter}}"
@@ -129,11 +131,15 @@
                                     HorizontalAlignment="Right">
 
                             <Button Content="{Resx Cancel}"
+                                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                                    local:ButtonAssist.IconKind="CloseOutline"
                                     Margin="0 0 10 0"
                                     IsCancel="True"
                                     Click="CancelButton_OnClick" />
 
                             <Button Content="{Resx Save}"
+                                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                                    local:ButtonAssist.IconKind="ContentSaveOutline"
                                     IsEnabled="{Binding Path=UnsavedChanges}"
                                     Command="{Binding Path=SaveCommand, Mode=OneTime}" />
 
