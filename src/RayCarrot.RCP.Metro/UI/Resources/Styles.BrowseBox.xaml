@@ -87,19 +87,12 @@
 
                             <Button Grid.Column="1"
                                     x:Name="PART_BrowseButton"
+                                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                                    local:ButtonAssist.IconKind="FolderOutline"
+                                    Content="{Resx BrowseBox_Browse}"
                                     IsEnabled="{TemplateBinding CanBrowse}"
                                     Margin="10 0 0 0"
-                                    AllowDrop="True">
-                                <StackPanel Orientation="Horizontal">
-                                    <iconPacks:PackIconMaterial Kind="FolderOutline"
-                                                                VerticalAlignment="Center"/>
-
-                                    <TextBlock Margin="10 0" 
-                                               Text="{Resx BrowseBox_Browse}" 
-                                               VerticalAlignment="Center"/>
-
-                                </StackPanel>
-                            </Button>
+                                    AllowDrop="True" />
 
                         </Grid>
                     </Border>

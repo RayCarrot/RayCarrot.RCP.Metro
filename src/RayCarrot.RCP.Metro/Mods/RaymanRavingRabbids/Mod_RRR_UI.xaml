@@ -156,17 +156,10 @@
             <Button Grid.Row="2"
                     Command="{Binding Path=ApplyMemoryPatchCommand, Mode=OneTime}"
                     HorizontalAlignment="Left"
-                    Margin="{StaticResource Thickness.Vertical}">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="AutoFix"
-                                                VerticalAlignment="Center" />
-
-                    <TextBlock Margin="10 0"
-                               Text="{Resx Mod_RRR_ApplyMemoryMod}"
-                               VerticalAlignment="Center" />
-
-                </StackPanel>
-            </Button>
+                    Margin="{StaticResource Thickness.Vertical}"
+                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                    local:ButtonAssist.IconKind="AutoFix"
+                    Content="{Resx Mod_RRR_ApplyMemoryMod}" />
 
         </Grid>
 
@@ -222,67 +215,39 @@
                 <Button HorizontalAlignment="Left"
                         ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=ApplyExePatchCommand, Mode=OneTime}"
-                        Visibility="{Binding Path=IsExePatched, Converter={local:InvertedBooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal">
-                        <iconPacks:PackIconMaterial Kind="AutoFix"
-                                                    VerticalAlignment="Center" />
+                        Visibility="{Binding Path=IsExePatched, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                        ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                        local:ButtonAssist.IconKind="AutoFix"
+                        Content="{Resx Mod_RRR_ApplyExePatch}"/>
 
-                        <TextBlock Margin="10 0"
-                                   Text="{Resx Mod_RRR_ApplyExePatch}"
-                                   VerticalAlignment="Center" />
-
-                    </StackPanel>
-                </Button>
-
-                <!-- Revert Exe Patch -->
+                    <!-- Revert Exe Patch -->
 
                 <Button HorizontalAlignment="Left"
                         ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=RevertExePatchCommand, Mode=OneTime}"
-                        Visibility="{Binding Path=IsExePatched, Converter={local:BooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal">
-                        <iconPacks:PackIconMaterial Kind="UndoVariant"
-                                                    VerticalAlignment="Center" />
-
-                        <TextBlock Margin="10 0"
-                                   Text="{Resx Mod_RRR_RevertExePatch}"
-                                   VerticalAlignment="Center" />
-
-                    </StackPanel>
-                </Button>
+                        Visibility="{Binding Path=IsExePatched, Converter={local:BooleanToVisibilityConverter}}"
+                        ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                        local:ButtonAssist.IconKind="UndoVariant"
+                        Content="{Resx Mod_RRR_RevertExePatch}" />
 
                 <!-- Download Patched BF -->
 
                 <Button HorizontalAlignment="Left"
                         IsEnabled="{Binding Path=CanDownloadPatchedBF}"
                         Command="{Binding Path=DownloadPatchedBFCommand, Mode=OneTime}"
-                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:InvertedBooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal">
-                        <iconPacks:PackIconMaterial Kind="DownloadOutline"
-                                                    VerticalAlignment="Center" />
-
-                        <TextBlock Margin="10 0"
-                                   Text="{Resx Mod_RRR_DownloadBFPatch}"
-                                   VerticalAlignment="Center" />
-
-                    </StackPanel>
-                </Button>
+                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                        ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                        local:ButtonAssist.IconKind="DownloadOutline"
+                        Content="{Resx Mod_RRR_DownloadBFPatch}" />
 
                 <!-- Remove Patched BF -->
 
                 <Button HorizontalAlignment="Left"
                         Command="{Binding Path=RemovePatchedBFCommand, Mode=OneTime}"
-                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:BooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal">
-                        <iconPacks:PackIconMaterial Kind="DeleteOutline"
-                                                    VerticalAlignment="Center" />
-
-                        <TextBlock Margin="10 0"
-                                   Text="{Resx Mod_RRR_RemoveBFPatch}"
-                                   VerticalAlignment="Center" />
-
-                    </StackPanel>
-                </Button>
+                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:BooleanToVisibilityConverter}}"
+                        ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                        local:ButtonAssist.IconKind="DeleteOutline"
+                        Content="{Resx Mod_RRR_RemoveBFPatch}" />
 
             </StackPanel>
 
@@ -344,31 +309,17 @@
 
                 <Button Command="{Binding Path=UpdatePatchedBFCommand, Mode=OneTime}"
                         HorizontalAlignment="Left"
-                        IsEnabled="{Binding Path=CanUpdatePatchedBF}">
-                    <StackPanel Orientation="Horizontal">
-                        <iconPacks:PackIconMaterial Kind="FileEditOutline"
-                                                    VerticalAlignment="Center" />
-
-                        <TextBlock Margin="10 0"
-                                   Text="{Resx Mod_RRR_UpdateBFPatch}"
-                                   VerticalAlignment="Center" />
-
-                    </StackPanel>
-                </Button>
+                        IsEnabled="{Binding Path=CanUpdatePatchedBF}"
+                        ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                        local:ButtonAssist.IconKind="FileEditOutline"
+                        Content="{Resx Mod_RRR_UpdateBFPatch}" />
 
                 <Button Command="{Binding Path=LaunchWithPatchedBFCommand, Mode=OneTime}"
                         HorizontalAlignment="Left"
-                        IsEnabled="{Binding Path=IsPatchedBFDownloaded}">
-                    <StackPanel Orientation="Horizontal">
-                        <iconPacks:PackIconMaterial Kind="PlayOutline"
-                                                    VerticalAlignment="Center" />
-
-                        <TextBlock Margin="10 0"
-                                   Text="{Resx Mod_RRR_LaunchBFPatch}"
-                                   VerticalAlignment="Center" />
-
-                    </StackPanel>
-                </Button>
+                        IsEnabled="{Binding Path=IsPatchedBFDownloaded}"
+                        ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                        local:ButtonAssist.IconKind="PlayOutline"
+                        Content="{Resx Mod_RRR_LaunchBFPatch}" />
 
             </StackPanel>
 
