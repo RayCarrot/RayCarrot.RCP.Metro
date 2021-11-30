@@ -32,5 +32,10 @@ public class FilePatcher_Patch
     /// </summary>
     public PatchEntry[] PatchEntries { get; }
 
-    public record PatchEntry(long PatchOffset, byte[] OriginalBytes, byte[] PatchedBytes);
+    public record PatchEntry(long PatchOffset, byte[] OriginalBytes, PatchedBytesRevision[] PatchRevisions)
+    {
+        public PatchEntry(long PatchOffset, byte[] OriginalBytes, byte[] PatchedBytes) : 
+            this(PatchOffset, OriginalBytes, new PatchedBytesRevision(0, PatchedBytes).YieldToArray()) { }
+    }
+    public record PatchedBytesRevision(int Version, byte[] Bytes);
 }

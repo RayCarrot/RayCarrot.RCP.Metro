@@ -53,27 +53,30 @@ public class FilePatcher
     #region Public Methods
 
     /// <summary>
-    /// Checks if the game is not patched
+    /// Retrieves the patch state
     /// </summary>
-    /// <returns>True if the game is not patched or false if it is. Null is returned if the game file can not be found or if neither the original or patched bytes are found.</returns>
-    public bool? GetIsOriginal()
+    /// <returns>The patch state</returns>
+    public PatchState GetPatchState()
     {
         Logger.Info("Getting if game file is patched or original");
 
         try
         {
             // Get the file size
-            var fileSize = (uint)GameFile.GetSize().Bytes;
+            uint fileSize = (uint)GameFile.GetSize().Bytes;
 
             // Find matching patch
-            var patch = Patches.FirstOrDefault(x => x.FileSize == fileSize);
+            int patchIndex = Patches.FindItemIndex(x => x.FileSize == fileSize);
 
-            if (patch == null)
+            if (patchIndex == -1)
             {
                 Logger.Warn("The game file size does not match any available patch");
                 return null;
             }
 
+            FilePatcher_Patch patch = Patches[patchIndex];
+
+            // IDEA: Check all patch entries?
             // Check the first patch entry
             FilePatcher_Patch.PatchEntry patchEntry = patch.PatchEntries[0];
 
@@ -87,27 +90,33 @@ public class FilePatcher
                 stream.Position = patchEntry.PatchOffset;
 
                 // Read the bytes
-                var read = stream.Read(currentBytes, 0, currentBytes.Length);
+                int read = stream.Read(currentBytes, 0, currentBytes.Length);
 
                 Logger.Info("{0}/{1} bytes were read from the game file", read, currentBytes.Length);
             }
 
-            // Check if they match
+            // Check if they match the original
             if (currentBytes.SequenceEqual(patchEntry.OriginalBytes))
             {
                 Logger.Info("The game file was detected as original");
-                return true;
+                return new PatchState(patchIndex, false);
             }
-            else if (currentBytes.SequenceEqual(patchEntry.PatchedBytes))
+
+            // Check if it's patches, checking revisions starting with newest first
+            bool isOutdated = false;
+            foreach (FilePatcher_Patch.PatchedBytesRevision revision in patchEntry.PatchRevisions.OrderByDescending(x => x.Version))
             {
-                Logger.Info("The game file was detected as patched");
-                return false;
+                if (currentBytes.SequenceEqual(revision.Bytes))
+                {
+                    Logger.Info($"The game file was detected as patched with version {revision.Version}");
+                    return new PatchState(patchIndex, true, revision.Version, isOutdated);
+                }
+
+                isOutdated = true;
             }
-            else
-            {
-                Logger.Warn("The game file was detected as unknown");
-                return null;
-            }
+
+            Logger.Warn("The game file patch state could not be determined");
+            return null;
         }
         catch (Exception ex)
         {
@@ -119,8 +128,8 @@ public class FilePatcher
     /// <summary>
     /// Patches the game
     /// </summary>
-    /// <param name="useOriginalBytes">True if the original bytes should be used, otherwise false</param>
-    public void PatchFile(bool useOriginalBytes)
+    /// <param name="applyPatch">True if the latest patch should be applied or false to revert the patch</param>
+    public void PatchFile(bool applyPatch)
     {
         Logger.Info("Patching game file...");
 
@@ -130,7 +139,7 @@ public class FilePatcher
             using Stream stream = File.Open(GameFile, FileMode.Open, FileAccess.Write);
 
             // Find matching patch
-            var patch = Patches.First(x => x.FileSize == stream.Length);
+            FilePatcher_Patch patch = Patches.First(x => x.FileSize == stream.Length);
 
             // Apply each patch entry
             foreach (FilePatcher_Patch.PatchEntry patchEntry in patch.PatchEntries)
@@ -138,8 +147,15 @@ public class FilePatcher
                 // Set the position
                 stream.Position = patchEntry.PatchOffset;
 
+                byte[] bytes;
+
+                if (applyPatch)
+                    bytes = patchEntry.PatchRevisions.OrderBy(x => x.Version).Last().Bytes;
+                else
+                    bytes = patchEntry.OriginalBytes;
+
                 // Write the bytes
-                stream.Write(useOriginalBytes ? patchEntry.OriginalBytes : patchEntry.PatchedBytes, 0, patchEntry.OriginalBytes.Length);
+                stream.Write(bytes, 0, patchEntry.OriginalBytes.Length);
             }
 
             Logger.Info("Game file was patched");
@@ -150,6 +166,12 @@ public class FilePatcher
             throw;
         }
     }
+
+    #endregion
+
+    #region Records
+
+    public record PatchState(int PatchIndex, bool IsPatched, int PatchVersion = -1, bool IsVersionOutdated = false);
 
     #endregion
 }

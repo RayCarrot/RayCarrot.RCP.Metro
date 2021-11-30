@@ -359,7 +359,8 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         ControllerSupport = dinputType == DinputType.Controller;
 
         // Check if the disc check has been removed
-        CanRemoveDiscCheck = Patches != null;
+        FilePatcher_Patch[] patches = Patches;
+        CanRemoveDiscCheck = patches != null;
 
         if (CanRemoveDiscCheck)
         {
@@ -369,29 +370,33 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
             // Check if it exists
             if (gameFile.FileExists)
             {
-                Patcher = new FilePatcher(gameFile, Patches);
+                Patcher = new FilePatcher(gameFile, patches);
 
-                var result = Patcher.GetIsOriginal();
+                FilePatcher.PatchState patchState = Patcher.GetPatchState();
 
-                if (result == true)
+                if (patchState == null)
+                {
+                    CanRemoveDiscCheck = false;
+
+                    Logger.Info("The game disc checker status could not be read");
+                }
+                else if (!patchState.IsPatched)
                 {
                     IsDiscCheckRemoved = false;
                     CanRemoveDiscCheck = true;
 
                     Logger.Info("The game has not been modified to remove the disc checker");
                 }
-                else if (result == false)
+                else if (patchState.IsPatched)
                 {
                     IsDiscCheckRemoved = true;
                     CanRemoveDiscCheck = true;
 
                     Logger.Info("The game has been modified to remove the disc checker");
-                }
-                else if (result == null)
-                {
-                    CanRemoveDiscCheck = false;
 
-                    Logger.Info("The game disc checker status could not be read");
+                    // TODO-UPDATE: Show to user?
+                    if (patchState.IsVersionOutdated)
+                        Logger.Info("The applied disc checker patch version is currently outdated");
                 }
             }
             else
@@ -513,13 +518,18 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
                 {
                     Patcher = new FilePatcher(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, Patches);
 
-                    var result = Patcher.GetIsOriginal();
+                    FilePatcher.PatchState patchState = Patcher.GetPatchState();
 
-                    if (result == true && IsDiscCheckRemoved)
-                        Patcher.PatchFile(false);
+                    if (patchState != null)
+                    {
+                        // Apply patch if set to do so and not already patched or the current patch is outdated
+                        if ((!patchState.IsPatched || patchState.IsVersionOutdated) && IsDiscCheckRemoved)
+                            Patcher.PatchFile(true);
 
-                    else if (result == false && !IsDiscCheckRemoved)
-                        Patcher.PatchFile(true);
+                        // Revert patch if set to do so and currently patched
+                        else if (patchState.IsPatched && !IsDiscCheckRemoved)
+                            Patcher.PatchFile(false);
+                    }
                 }
                 catch (Exception ex)
                 {

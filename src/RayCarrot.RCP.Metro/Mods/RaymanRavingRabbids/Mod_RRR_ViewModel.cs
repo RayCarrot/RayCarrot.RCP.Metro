@@ -592,16 +592,9 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     {
         Logger.Info("Checking if RRR exe is patched");
 
-        bool? isOriginal = ExePatcher.GetIsOriginal();
+        FilePatcher.PatchState patchState = ExePatcher.GetPatchState();
 
-        if (isOriginal == true)
-            Logger.Info("RRR exe is not patched");
-        else if (isOriginal == false)
-            Logger.Info("RRR exe is patched");
-        else if (isOriginal == null)
-            Logger.Info("Could not determine if RRR exe is patched");
-            
-        return isOriginal == false;
+        return patchState is { IsPatched: true };
     }
 
     public bool CheckIsPatchedBFDownloaded()
@@ -636,7 +629,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             }
 
             // Patch the file
-            ExePatcher.PatchFile(!enablePatch);
+            ExePatcher.PatchFile(enablePatch);
 
             // Update patched state
             IsExePatched = enablePatch;
