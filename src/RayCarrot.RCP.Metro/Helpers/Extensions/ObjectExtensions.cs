@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using System;
+using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -37,4 +38,26 @@ public static class ObjectExtensions
             return max;
         else return val;
     }
+
+    /// <summary>
+    /// Yields the object as an <see cref="IEnumerable{T}"/>
+    /// </summary>
+    /// <typeparam name="T">The object type</typeparam>
+    /// <param name="obj">The object to yield</param>
+    /// <returns>The enumerator for the object</returns>
+    public static IEnumerable<T> Yield<T>(this T obj)
+    {
+        yield return obj;
+    }
+
+    /// <summary>
+    /// Yields the object to an array
+    /// </summary>
+    /// <typeparam name="T">The object type</typeparam>
+    /// <param name="obj">The object to yield</param>
+    /// <returns>The array with the object as its only item</returns>
+    public static T[] YieldToArray<T>(this T obj) => new T[]
+    {
+        obj
+    };
 }
