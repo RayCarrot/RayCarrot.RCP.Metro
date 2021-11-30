@@ -64,16 +64,12 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
         
     #region Protected Methods
 
-    /// <summary>
-    /// Loads and sets up the current configuration properties
-    /// </summary>
-    /// <returns>The task</returns>
     protected override async Task LoadAsync()
     {
         Logger.Info("{0} config is being set up", Game);
 
         // Run setup code
-        await OnSetupAsync();
+        bool unsavedChanges = await OnSetupAsync();
 
         // Load the configuration data
         ConfigData = await LoadConfigAsync();
@@ -97,7 +93,7 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
         await ImportConfigAsync();
 
         // If the data was recreated we mark that there are unsaved changes available
-        UnsavedChanges = recreated;
+        UnsavedChanges = recreated || unsavedChanges;
 
         Logger.Info("All section properties have been loaded");
     }
@@ -146,8 +142,8 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
     /// <summary>
     /// Override to run on setup
     /// </summary>
-    /// <returns>The task</returns>
-    protected virtual Task OnSetupAsync() => Task.CompletedTask;
+    /// <returns>True if there are unsaved changes, otherwise false</returns>
+    protected virtual Task<bool> OnSetupAsync() => Task.FromResult(false);
 
     /// <summary>
     /// Override to run on saving

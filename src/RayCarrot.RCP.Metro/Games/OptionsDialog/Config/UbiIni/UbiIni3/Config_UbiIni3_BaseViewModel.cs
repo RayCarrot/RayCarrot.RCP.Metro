@@ -349,7 +349,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
     /// Setup
     /// </summary>
     /// <returns>The task</returns>
-    protected override async Task OnSetupAsync()
+    protected override async Task<bool> OnSetupAsync()
     {
         // Get the current dinput type
         var dinputType = CanModifyGame ? GetCurrentDinput() : DinputType.Unknown;
@@ -357,6 +357,9 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         Logger.Info("The dinput type has been retrieved as {0}", dinputType);
 
         ControllerSupport = dinputType == DinputType.Controller;
+
+        // Default to false
+        bool isAppliedPatchOutdated = false;
 
         // Check if the disc check has been removed
         FilePatcher_Patch[] patches = Patches;
@@ -394,9 +397,12 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
 
                     Logger.Info("The game has been modified to remove the disc checker");
 
-                    // TODO-UPDATE: Show to user?
+                    // TODO-UPDATE: Show in UI?
                     if (patchState.IsVersionOutdated)
+                    {
                         Logger.Info("The applied disc checker patch version is currently outdated");
+                        isAppliedPatchOutdated = true;
+                    }
                 }
             }
             else
@@ -446,6 +452,8 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
                 Logger.Error(ex, "Creating ubi.ini file");
             }
         }
+
+        return isAppliedPatchOutdated;
     }
 
     /// <summary>

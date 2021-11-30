@@ -342,11 +342,7 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<R2UbiIniHand
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Setup
-    /// </summary>
-    /// <returns>The task</returns>
-    protected override async Task OnSetupAsync()
+    protected override async Task<bool> OnSetupAsync()
     {
         // Get the config path
         ConfigPath = GetUbiIniPath();
@@ -385,6 +381,8 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<R2UbiIniHand
                 throw;
             }
         }
+
+        return false;
     }
 
     /// <summary>
