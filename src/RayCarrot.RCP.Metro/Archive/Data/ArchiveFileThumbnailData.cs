@@ -1,9 +1,8 @@
-﻿#nullable disable
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Archive file thumbnail data
 /// </summary>
-public record ArchiveFileThumbnailData(ImageSource Thumbnail, DuoGridItemViewModel[] FileInfo);
+public record ArchiveFileThumbnailData(ImageSource? Thumbnail, DuoGridItemViewModel[] FileInfo);

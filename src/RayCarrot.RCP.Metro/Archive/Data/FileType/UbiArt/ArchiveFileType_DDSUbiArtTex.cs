@@ -1,5 +1,4 @@
-﻿#nullable disable
-using ImageMagick;
+﻿using ImageMagick;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
@@ -12,7 +11,7 @@ public class ArchiveFileType_DDSUbiArtTex : ArchiveFileType_BaseUbiArtTex
     /// <summary>
     /// The format
     /// </summary>
-    protected override FileExtension Format => new FileExtension(".dds");
+    protected override FileExtension Format => new(".dds");
 
     /// <summary>
     /// The magick format

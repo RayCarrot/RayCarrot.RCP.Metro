@@ -1,11 +1,11 @@
-﻿#nullable disable
-using MahApps.Metro.IconPacks;
+﻿using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -94,7 +94,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <summary>
     /// The image source for the thumbnail
     /// </summary>
-    public ImageSource ThumbnailSource { get; set; }
+    public ImageSource? ThumbnailSource { get; set; }
 
     /// <summary>
     /// The archive file stream
@@ -150,7 +150,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         set
         {
             _isInitialized = value;
-            CanImport = FileType?.ImportFormats?.Any() == true;
+            CanImport = FileType?.ImportFormats.Any() == true;
         }
     }
 
@@ -169,12 +169,12 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <summary>
     /// The file type (available after having been initialized once)
     /// </summary>
-    public IArchiveFileType FileType { get; set; }
+    public IArchiveFileType? FileType { get; set; }
 
     /// <summary>
     /// The file extension
     /// </summary>
-    public FileExtension FileExtension => new FileExtension(FileName);
+    public FileExtension FileExtension => new(FileName);
 
     /// <summary>
     /// Indicates if the file has pending imports
@@ -201,8 +201,8 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <returns>The file stream with the decoded data</returns>
     public ArchiveFileStream GetDecodedFileStream()
     {
-        ArchiveFileStream encodedStream = null;
-        ArchiveFileStream decodedStream = null;
+        ArchiveFileStream? encodedStream = null;
+        ArchiveFileStream? decodedStream = null;
 
         try
         {
@@ -218,13 +218,13 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             // Check if the data was decoded
             if (decodedStream.Stream.Length > 0)
             {
-                encodedStream?.Dispose();
+                encodedStream.Dispose();
                 decodedStream.SeekToBeginning();
                 return decodedStream;
             }
             else
             {
-                decodedStream?.Dispose();
+                decodedStream.Dispose();
                 encodedStream.SeekToBeginning();
                 return encodedStream;
             }
@@ -241,6 +241,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         }
     }
 
+    [MemberNotNull(nameof(FileType))]
     public void SetFileType(IArchiveFileType type) => FileType = type;
 
     /// <summary>
@@ -248,9 +249,10 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// </summary>
     /// <param name="fileStream">The file stream, if available</param>
     /// <param name="thumbnailLoadMode">Indicates how the thumbnail should be loaded</param>
-    public void InitializeFile(ArchiveFileStream fileStream = null, ThumbnailLoadMode thumbnailLoadMode = ThumbnailLoadMode.LoadThumbnail)
+    [MemberNotNull(nameof(FileType))]
+    public void InitializeFile(ArchiveFileStream? fileStream = null, ThumbnailLoadMode thumbnailLoadMode = ThumbnailLoadMode.LoadThumbnail)
     {
-        var hadStream = fileStream != null;
+        bool hadStream = fileStream != null;
 
         try
         {
@@ -262,7 +264,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
 
             FileDisplayInfo.Add(new DuoGridItemViewModel(Resources.Archive_FileInfo_Dir, FileData.Directory));
 
-            FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
+            FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), FileData.ArchiveEntry));
 
             fileStream.SeekToBeginning();
 
@@ -275,7 +277,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             if (thumbnailLoadMode != ThumbnailLoadMode.None)
             {
                 // Get the thumbnail data
-                if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !Archive.ThumbnailCache.TryGetCachedItem(this, out ArchiveFileThumbnailData thumb))
+                if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !Archive.ThumbnailCache.TryGetCachedItem(this, out ArchiveFileThumbnailData? thumb))
                 {
                     fileStream.SeekToBeginning();
 
@@ -287,7 +289,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                 }
 
                 // Get the thumbnail image
-                var img = thumb.Thumbnail;
+                ImageSource? img = thumb.Thumbnail;
 
                 // Freeze the image to avoid thread errors
                 img?.Freeze();
@@ -300,7 +302,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             }
 
             // Set icon
-            IconKind = FileType.Icon;
+            IconKind = FileType!.Icon;
 
             // Set file type
             FileDisplayInfo.Add(new DuoGridItemViewModel(Resources.Archive_FileInfo_Type, FileType.TypeDisplayName, UserLevel.Advanced));
@@ -313,6 +315,14 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             if (!ArchiveFileStream.CanRead)
             {
                 Logger.Debug(ex, "Error initializing file");
+
+                // Even though we've marked that FileType always gets set in this method there is a potential that it doesn't get
+                // set if reaching this point while being null. This should never happen, but let's log as an error in case.
+                if (FileType == null)
+                {
+                    Logger.Error($"The file type is null when exiting {nameof(InitializeFile)}!");
+                    InitializeAsError();
+                }
             }
             else
             {
@@ -333,11 +343,12 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// Initializes the file in the error state. This will allow the file to still be deleted and exported in its native format, but it
     /// can no longer be converted using its actual format.
     /// </summary>
+    [MemberNotNull(nameof(FileType))]
     public void InitializeAsError()
     {
         SetFileType(new ArchiveFileType_Error());
         ResetMenuActions();
-        IconKind = FileType.Icon;
+        IconKind = FileType!.Icon;
         ThumbnailSource = null;
         IsInitialized = true;
     }
@@ -359,9 +370,12 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
 
     protected void ResetMenuActions()
     {
+        if (FileType == null)
+            throw new Exception("The file type must be set before resetting menu actions");
+
         // Get formats from the type
-        var importFormats = FileType.ImportFormats;
-        var exportFormats = FileType.ExportFormats;
+        FileExtension[] importFormats = FileType.ImportFormats;
+        FileExtension[] exportFormats = FileType.ExportFormats;
 
         // Remove previous export formats
         FileExports.Clear();
@@ -398,7 +412,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// </summary>
     /// <param name="format">The format to export as</param>
     /// <returns>The task</returns>
-    public async Task ExportFileAsync(FileExtension format = null)
+    public async Task ExportFileAsync(FileExtension? format = null)
     {
         Logger.Trace("The archive file {0} is being exported as {1}", FileName, format?.FileExtensions ?? "original");
 
@@ -409,7 +423,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             using (await Archive.ArchiveLock.LockAsync())
             {
                 // Get the output path
-                var result = await Services.BrowseUI.SaveFileAsync(format != null ? new SaveFileViewModel()
+                SaveFileResult result = await Services.BrowseUI.SaveFileAsync(format != null ? new SaveFileViewModel()
                 {
                     Title = Resources.Archive_ExportHeader,
                     DefaultName = new FileSystemPath(FileName).ChangeFileExtension(format.GetPrimaryFileExtension(), true),
@@ -432,7 +446,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                     try
                     {
                         // Get the file data
-                        using var fileStream = GetDecodedFileStream();
+                        using ArchiveFileStream fileStream = GetDecodedFileStream();
 
                         // Export the file
                         ExportFile(result.SelectedFileLocation, fileStream.Stream, format);
@@ -465,21 +479,28 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <param name="stream">The file stream to export</param>
     /// <param name="format">The format to export as, or null to not convert it</param>
     /// <returns>The task</returns>
-    public void ExportFile(FileSystemPath filePath, Stream stream, FileExtension format)
+    public void ExportFile(FileSystemPath filePath, Stream stream, FileExtension? format)
     {
         Logger.Trace("An archive file is being exported as {0}", format);
 
         // Create the output file and open it
-        using var fileStream = File.Create(filePath);
+        using FileStream fileStream = File.Create(filePath);
 
         try
         {
             // Write the bytes directly to the stream if no format is specified
             if (format == null)
+            {
                 stream.CopyTo(fileStream);
+            }
             // Convert the file if the format is not the native one
             else
+            {
+                if (FileType == null)
+                    throw new Exception("The file type must be set before exporting the file with a format specified");
+
                 FileType.ConvertTo(FileExtension, format, stream, fileStream, Manager);
+            }
         }
         catch
         {
@@ -500,6 +521,9 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     {
         Logger.Trace("The archive file {0} is being imported...", FileName);
 
+        if (FileType == null)
+            throw new Exception("The file type must be set before importing the file");
+
         // Run as a load operation
         using (Archive.LoadOperation.Run())
         {
@@ -507,7 +531,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             using (await Archive.ArchiveLock.LockAsync())
             {
                 // Get the file
-                var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
                     Title = Resources.Archive_ImportFileHeader,
                     ExtensionFilter = new FileFilterItemCollection(FileType.ImportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
@@ -540,7 +564,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     public void ImportFile(FileSystemPath file, bool convert)
     {
         // Open the file to be imported
-        using var importFile = File.OpenRead(file);
+        using FileStream importFile = File.OpenRead(file);
 
         // Import the file
         ImportFile(importFile, file.FileExtension, convert);
@@ -549,11 +573,16 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     public void ImportFile(Stream importFile, FileExtension fileExtension, bool convert)
     {
         // Memory stream for converted data
-        using var memStream = new MemoryStream();
+        using MemoryStream memStream = new MemoryStream();
 
         // Convert from the imported file to the memory stream
         if (convert)
+        {
+            if (FileType == null)
+                throw new Exception("The file type must be set before importing and converting the file");
+
             FileType.ConvertFrom(fileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+        }
 
         // Replace the file with the import data
         if (ReplaceFile(convert ? memStream : importFile))
@@ -567,7 +596,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <returns>True if the file should be added as a new modified file, otherwise false</returns>
     public bool ReplaceFile(Stream inputStream)
     {
-        var wasModified = HasPendingImport;
+        bool wasModified = HasPendingImport;
 
         // Reset position
         inputStream.Position = 0;
@@ -635,7 +664,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <param name="asBinary">Indicates if the file should be opened as a binary file</param>
     /// <param name="readOnly">Indicates if the file should be opened as read-only</param>
     /// <returns>The task</returns>
-    public async Task EditFileAsync(FileExtension ext, bool convert, bool asBinary, bool readOnly)
+    public async Task EditFileAsync(FileExtension? ext, bool convert, bool asBinary, bool readOnly)
     {
         Logger.Trace("The archive file {0} is being opened...", FileName);
 
@@ -657,7 +686,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                 try
                 {
                     // Get a temporary file
-                    using var tempFile = new TempFile(asBinary ? new FileExtension(".bin") : ext);
+                    using TempFile tempFile = new(asBinary ? new FileExtension(".bin") : ext);
 
                     using HashAlgorithm sha1 = HashAlgorithm.Create();
 
@@ -667,13 +696,20 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                     using (var decodedData = GetDecodedFileStream())
                     {
                         // Create the temporary file
-                        using var temp = File.Create(tempFile.TempPath);
+                        using FileStream temp = File.Create(tempFile.TempPath);
 
                         // Copy the file data to the temporary file
                         if (!convert)
+                        {
                             decodedData.Stream.CopyTo(temp);
+                        }
                         else
+                        {
+                            if (FileType == null)
+                                throw new Exception("The file type must be set before editing and converting the file");
+
                             FileType.ConvertTo(FileExtension, ext, decodedData.Stream, temp, Manager);
+                        }
 
                         temp.Position = 0;
 
@@ -814,13 +850,16 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
 
     public async Task RenameFileAsync()
     {
+        if (FileType == null)
+            throw new Exception("The file type must be set before the file can be renamed");
+
         // Run as a load operation
         using (Archive.LoadOperation.Run())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
             {
-                var result = await Services.UI.GetStringInput(new StringInputViewModel
+                StringInputResult result = await Services.UI.GetStringInput(new StringInputViewModel
                 {
                     Title = Resources.Archive_SetFileName,
                     HeaderText = Resources.Archive_SetFileName,
@@ -830,8 +869,8 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                 if (result.CanceledByUser)
                     return;
 
-                var newName = result.StringInput;
-                var dir = ArchiveDirectory;
+                string newName = result.StringInput;
+                ArchiveDirectoryViewModel dir = ArchiveDirectory;
 
                 // Check if the name conflicts with an existing file
                 if (ArchiveDirectory.Files.Any(x => x.FileName.Equals(newName, StringComparison.OrdinalIgnoreCase)))
@@ -841,7 +880,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                 }
 
                 // Create a new file
-                var newFile = new ArchiveFileViewModel(new ArchiveFileItem(Manager, newName, dir.FullPath, Manager.GetNewFileEntry(Archive.ArchiveData, dir.FullPath, newName)), dir);
+                ArchiveFileViewModel newFile = new(new ArchiveFileItem(Manager, newName, dir.FullPath, Manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir.FullPath, newName)), dir);
 
                 // Set the file type
                 newFile.SetFileType(FileType);
@@ -871,7 +910,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         BindingOperations.DisableCollectionSynchronization(FileDisplayInfo);
 
         // Dispose the file data
-        FileData?.Dispose();
+        FileData.Dispose();
     }
 
     #endregion

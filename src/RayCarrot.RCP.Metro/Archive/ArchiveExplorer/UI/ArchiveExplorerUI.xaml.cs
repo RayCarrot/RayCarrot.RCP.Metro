@@ -1,5 +1,4 @@
-﻿#nullable disable
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -99,7 +98,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
         base.Dispose();
 
         DataContext = null;
-        ViewModel?.Dispose();
+        ViewModel.Dispose();
     }
 
     #endregion
@@ -167,7 +166,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
             return;
 
         // Get the currently selected directory
-        var dir = ViewModel.SelectedDir;
+        ArchiveDirectoryViewModel? dir = ViewModel.SelectedDir;
 
         if (dir == null)
             return;

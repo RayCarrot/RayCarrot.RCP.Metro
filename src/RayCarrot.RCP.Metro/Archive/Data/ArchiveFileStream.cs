@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.IO;
 
 namespace RayCarrot.RCP.Metro;
@@ -28,10 +27,11 @@ public class ArchiveFileStream : IDisposable
     public ArchiveFileStream(Stream stream, bool shouldDispose)
     {
         _stream = stream;
+        GetStream = () => _stream;
         ShouldDispose = shouldDispose;
     }
 
-    private Stream _stream;
+    private Stream? _stream;
 
     /// <summary>
     /// The function for getting the stream

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -94,7 +93,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
         // Get the file entry
-        var file = fileEntry.CastTo<Rayman1PCArchiveEntry>();
+        var file = (Rayman1PCArchiveEntry)fileEntry;
 
         // Update the size
         file.FileSize = (uint)inputStream.Length;
@@ -103,7 +102,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         file.XORKey = 0;
 
         // Calculate the checksum
-        var c = new Checksum8Calculator();
+        Checksum8Calculator c = new();
         c.AddBytes(inputStream.ReadRemainingBytes());
         file.Checksum = c.ChecksumValue;
 
@@ -140,15 +139,15 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
+    public void WriteArchive(IDisposable? generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
     {
         Logger.Info("An R1 PC archive is being repacked...");
 
         // Get the archive data
-        var data = archive.CastTo<Rayman1PCArchiveData>();
+        var data = (Rayman1PCArchiveData)archive;
 
         // Create the file generator
-        using var fileGenerator = new ArchiveFileGenerator<Rayman1PCArchiveEntry>();
+        using ArchiveFileGenerator<Rayman1PCArchiveEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -161,7 +160,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         data.Files = archiveFiles.Select(x => x.Entry).ToArray();
 
         // Set the current pointer position to the header size
-        var pointer = data.GetHeaderSize(Settings);
+        uint pointer = data.GetHeaderSize(Settings);
 
         // Load each file
         foreach (var file in archiveFiles)
@@ -170,13 +169,13 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             file.Entry.FileName = ProcessFileName(file.Entry.FileName);
 
             // Get the file entry
-            var entry = file.Entry;
+            Rayman1PCArchiveEntry entry = file.Entry;
 
             // Add to the generator
             fileGenerator.Add(entry, () =>
             {
                 // Get the file stream to write to the archive
-                var fileStream = file.FileItem.GetFileData(generator).Stream;
+                Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
                 // Set the pointer
                 entry.FileOffset = pointer;
@@ -212,11 +211,11 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
     {
         // Get the data
-        var data = archive.CastTo<Rayman1PCArchiveData>();
+        var data = (Rayman1PCArchiveData)archive;
 
         Logger.Info("The files are being retrieved for an R1 PC archive");
 
-        var fileExt = fileName.StartsWith("VIGNET", StringComparison.OrdinalIgnoreCase) || fileName.StartsWith("WldDesc", StringComparison.OrdinalIgnoreCase) ? ".pcx" : ".dat";
+        string fileExt = fileName.StartsWith("VIGNET", StringComparison.OrdinalIgnoreCase) || fileName.StartsWith("WldDesc", StringComparison.OrdinalIgnoreCase) ? ".pcx" : ".dat";
 
         // Return the data
         return new ArchiveData(new ArchiveDirectory[]
@@ -236,7 +235,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        Rayman1PCArchiveData data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
 
         Logger.Info("Read R1 PC archive file with {0} files", data.Files.Length);
 
@@ -250,7 +249,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public object CreateArchive()
     {
         // Create the archive data
-        var archive = new Rayman1PCArchiveData();
+        Rayman1PCArchiveData archive = new();
 
         Config.ConfigureArchiveData(archive);
 
@@ -306,7 +305,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The size, or null if it could not be determined</returns>
     public long? GetFileSize(object fileEntry, bool encoded)
     {
-        var entry = fileEntry.CastTo<Rayman1PCArchiveEntry>();
+        var entry = (Rayman1PCArchiveEntry)fileEntry;
 
         return entry.FileSize;
     }
@@ -318,7 +317,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    public event EventHandler<ValueEventArgs<ArchiveFileItem>> OnWritingFileToArchive;
+    public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
 
     #endregion
 
@@ -326,7 +325,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
     public static FileSystemPath[] GetArchiveFiles(FileSystemPath gameDir)
     {
-        var nonArchiveDatFiles = new string[]
+        string[] nonArchiveDatFiles = 
         {
             "ALLFIX.DAT",
             "BIGRAY.DAT",
@@ -334,7 +333,10 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             "INTRO.DAT",
         };
 
-        return Directory.GetFiles(gameDir, "*.dat", SearchOption.AllDirectories).Where(x => !nonArchiveDatFiles.Any(f => Path.GetFileName(x).Equals(f, StringComparison.OrdinalIgnoreCase))).Select(x => new FileSystemPath(x)).ToArray();
+        return Directory.GetFiles(gameDir, "*.dat", SearchOption.AllDirectories).
+            Where(x => !nonArchiveDatFiles.Any(f => Path.GetFileName(x).Equals(f, StringComparison.OrdinalIgnoreCase))).
+            Select(x => new FileSystemPath(x)).
+            ToArray();
     }
 
     #endregion

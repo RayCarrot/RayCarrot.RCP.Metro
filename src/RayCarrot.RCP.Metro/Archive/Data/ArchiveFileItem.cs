@@ -1,6 +1,6 @@
-﻿#nullable disable
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -46,15 +46,22 @@ public class ArchiveFileItem : IDisposable
     public string Directory { get; }
     public object ArchiveEntry { get; }
 
-    public Stream PendingImport { get; protected set; }
+    public Stream? PendingImport { get; protected set; }
+
+    [MemberNotNullWhen(true, nameof(PendingImport))]
     public bool IsPendingImport => PendingImport != null;
 
     public FileExtension FileExtension => new FileExtension(FileName);
 
-    public ArchiveFileStream GetFileData(IDisposable generator)
+    public ArchiveFileStream GetFileData(IDisposable? generator)
     {
+        if (!IsPendingImport && generator == null)
+            throw new ArgumentNullException(nameof(generator), "A generator must be specified if there is no pending import");
+
         // Get the stream
-        var stream = IsPendingImport ? new ArchiveFileStream(PendingImport, false) : new ArchiveFileStream(() => Manager.GetFileData(generator, ArchiveEntry), true);
+        ArchiveFileStream stream = IsPendingImport 
+            ? new ArchiveFileStream(PendingImport, false) 
+            : new ArchiveFileStream(() => Manager.GetFileData(generator!, ArchiveEntry), true);
             
         // Seek to the beginning
         stream.SeekToBeginning();
@@ -63,6 +70,7 @@ public class ArchiveFileItem : IDisposable
         return stream;
     }
 
+    [MemberNotNull(nameof(PendingImport))]
     public void SetPendingImport(Stream import)
     {
         PendingImport?.Dispose();
@@ -72,10 +80,10 @@ public class ArchiveFileItem : IDisposable
     public IArchiveFileType GetFileType(ArchiveFileStream stream)
     {
         // Get types supported by the current manager
-        var types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
+        IArchiveFileType[] types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
 
         // First attempt to find matching file type based off of the file extension to avoid having to read the file
-        var match = types.FirstOrDefault(x => x.IsOfType(FileExtension));
+        IArchiveFileType? match = types.FirstOrDefault(x => x.IsOfType(FileExtension));
 
         // If no match, check the data
         if (match == null)
@@ -87,12 +95,8 @@ public class ArchiveFileItem : IDisposable
             match = types.FirstOrDefault(x => x.IsOfType(FileExtension, fileStream, Manager));
         }
 
-        // If still null, set to default
-        if (match == null)
-            match = DefaultFileType;
-
-        // Return the type
-        return match;
+        // Return the type and set to default if still null
+        return match ?? DefaultFileType;
     }
 
     private static IArchiveFileType[] FileTypes { get; }

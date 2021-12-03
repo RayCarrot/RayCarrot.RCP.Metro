@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿using System;
 using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro;
@@ -29,6 +29,9 @@ public class Ray1PCArchiveConfigViewModel : BaseViewModel
                 PrimaryVersion = "KIT";
                 SecondaryVersion = "KIT";
                 break;
+
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 

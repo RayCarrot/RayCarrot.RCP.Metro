@@ -1,5 +1,4 @@
-﻿#nullable disable
-using MahApps.Metro.IconPacks;
+﻿using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using System;
 using System.IO;
@@ -49,12 +48,12 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <summary>
     /// The supported formats to import from
     /// </summary>
-    public FileExtension[] ImportFormats => new FileExtension[0];
+    public FileExtension[] ImportFormats => Array.Empty<FileExtension>();
 
     /// <summary>
     /// The supported formats to export to
     /// </summary>
-    public FileExtension[] ExportFormats => new FileExtension[0];
+    public FileExtension[] ExportFormats => Array.Empty<FileExtension>();
 
     /// <summary>
     /// Loads the thumbnail and display info for the file
@@ -64,7 +63,7 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="width">The thumbnail width</param>
     /// <param name="manager">The manager</param>
     /// <returns>The thumbnail data</returns>
-    public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager) => new(null, new DuoGridItemViewModel[0]);
+    public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager) => new(null, Array.Empty<DuoGridItemViewModel>());
 
     /// <summary>
     /// Converts the file data to the specified format

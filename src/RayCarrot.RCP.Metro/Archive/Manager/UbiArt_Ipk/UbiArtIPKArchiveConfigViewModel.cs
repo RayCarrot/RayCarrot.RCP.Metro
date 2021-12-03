@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using RayCarrot.IO;
@@ -74,7 +73,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
     /// <summary>
     /// The file extensions to compress
     /// </summary>
-    public IEnumerable<FileExtension> CompressedFileExtensions => CompressedExtensions?.Split(',').Select(x => new FileExtension(x));
+    public IEnumerable<FileExtension> CompressedFileExtensions => CompressedExtensions.Split(',').Select(x => new FileExtension(x));
 
     #endregion
 

@@ -1,9 +1,10 @@
-﻿#nullable disable
+﻿using System;
 using ImageMagick;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using System.IO;
 using System.Linq;
+using System.Windows.Media.Imaging;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -68,12 +69,12 @@ public class ArchiveFileType_Image : IArchiveFileType
     public virtual ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Get the image
-        using var img = GetImage(inputStream.Stream, fileExtension, manager);
+        using MagickImage img = GetImage(inputStream.Stream, fileExtension, manager);
 
         // Resize to a thumbnail
         img.Thumbnail(width, (int)(img.Height / ((double)img.Width / width)));
 
-        var thumb = img.ToBitmapSource();
+        BitmapSource thumb = img.ToBitmapSource();
 
         return new ArchiveFileThumbnailData(thumb, new DuoGridItemViewModel[]
         {
@@ -93,10 +94,10 @@ public class ArchiveFileType_Image : IArchiveFileType
     public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
     {
         // Get the image
-        using var img = GetImage(inputStream, inputFormat, manager);
+        using MagickImage img = GetImage(inputStream, inputFormat, manager);
 
         // Write to stream as new format
-        img.Write(outputStream, MagickFormatInfo.Create(outputFormat.FileExtensions).Format);
+        img.Write(outputStream, GetMagickFormat(outputFormat.FileExtensions));
     }
 
     /// <summary>
@@ -136,7 +137,7 @@ public class ArchiveFileType_Image : IArchiveFileType
     public void ConvertFrom(FileExtension inputFormat, MagickFormat outputFormat, Stream inputStream, Stream outputStream)
     {
         // Get the image in specified format
-        using var img = new MagickImage(inputStream, MagickFormatInfo.Create(inputFormat.FileExtensions).Format);
+        using MagickImage img = new(inputStream, GetMagickFormat(inputFormat.FileExtensions));
 
         // Write to stream as native format
         img.Write(outputStream, outputFormat);
@@ -149,7 +150,17 @@ public class ArchiveFileType_Image : IArchiveFileType
     /// <returns>The file extension</returns>
     protected FileExtension GetFormat(MagickFormat format) => new FileExtension($".{format}");
 
-    protected MagickFormat GetMagickFormat(FileExtension data) => MagickFormatInfo.Create(data.PrimaryFileExtension).Format;
+    protected MagickFormat GetMagickFormat(FileExtension ext) => GetMagickFormat(ext.PrimaryFileExtension);
+
+    protected MagickFormat GetMagickFormat(string ext)
+    {
+        MagickFormatInfo? formatInfo = MagickFormatInfo.Create(ext);
+
+        if (formatInfo == null)
+            throw new Exception($"Invalid file extension {ext}");
+
+        return formatInfo.Format;
+    }
 
     /// <summary>
     /// The supported image formats

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +23,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
         // Set properties
         Title = Resources.Archive_CreateHeader;
         Manager = manager;
+        DisplayStatus = String.Empty;
     }
 
     #endregion
@@ -118,7 +118,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
 
             return await Task.Run(async () =>
             {
-                ArchiveFileItem[] archiveFiles = null;
+                ArchiveFileItem[]? archiveFiles = null;
 
                 try
                 {
@@ -133,9 +133,9 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                     }
 
                     // Create a new archive
-                    var archive = Manager.CreateArchive();
+                    object archive = Manager.CreateArchive();
 
-                    var inputFiles = InputDirectory.
+                    FileSystemPath[] inputFiles = InputDirectory.
                         GetDirectoryInfo().
                         GetFiles("*", Manager.CanModifyDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly).
                         Where(x => !x.Attributes.HasFlag(FileAttributes.System)).
@@ -144,18 +144,18 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
 
                     archiveFiles = inputFiles.Select(x =>
                     {
-                        var relativePath = x - InputDirectory;
-                        var dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar, Manager.PathSeparatorCharacter);
-                        var file = relativePath.Name;
+                        FileSystemPath relativePath = x - InputDirectory;
+                        string dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar, Manager.PathSeparatorCharacter);
+                        string file = relativePath.Name;
 
-                        var archiveEntry = Manager.GetNewFileEntry(archive, dir, file);
+                        object archiveEntry = Manager.GetNewFileEntry(archive, dir, file);
 
-                        var archiveFileItem = new ArchiveFileItem(Manager, file, dir, archiveEntry);
+                        ArchiveFileItem archiveFileItem = new(Manager, file, dir, archiveEntry);
 
                         // IDEA: If not encoded there's no need to copy the stream, instead just use origin file
 
                         // Open the file to be imported
-                        using var inputStream = File.OpenRead(x);
+                        using FileStream inputStream = File.OpenRead(x);
 
                         // Get the temp stream to store the pending import data
                         archiveFileItem.SetPendingImport(File.Create(Path.GetTempFileName()));
@@ -171,7 +171,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                     }).ToArray();
 
                     // Open the output file
-                    using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
+                    using FileStream outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
 
                     // Write the archive
                     Manager.WriteArchive(null, archive, outputStream, archiveFiles);

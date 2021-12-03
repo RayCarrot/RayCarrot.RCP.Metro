@@ -1,5 +1,4 @@
-﻿#nullable disable
-using ImageMagick;
+﻿using ImageMagick;
 using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -22,16 +21,16 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
     /// <summary>
     /// The supported formats to import from
     /// </summary>
-    public override FileExtension[] ImportFormats => new FileExtension[0];
+    public override FileExtension[] ImportFormats => Array.Empty<FileExtension>();
 
     /// <summary>
     /// The format
     /// </summary>
     protected override FileExtension Format => new FileExtension(".dds_xbox");
 
-    public override bool IsOfType(Stream inputStream, IArchiveDataManager manager, UbiArtTEXData tex)
+    public override bool IsOfType(Stream inputStream, IArchiveDataManager manager, UbiArtTEXData? tex)
     {
-        var settings = manager.SerializerSettings.CastTo<UbiArtSettings>();
+        UbiArtSettings settings = (UbiArtSettings)manager.SerializerSettings;
 
         // TODO: Find better way to check this
         return settings.Platform == Platform.Xbox360;
@@ -50,12 +49,12 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
         ReadTEXHeader(inputStream, manager);
 
         // Serialize data
-        var imgData = BinarySerializableHelpers.ReadFromStream<UbiArtXbox360Texture>(inputStream, manager.SerializerSettings, logger: Services.App.GetBinarySerializerLogger());
+        UbiArtXbox360Texture imgData = BinarySerializableHelpers.ReadFromStream<UbiArtXbox360Texture>(inputStream, manager.SerializerSettings, logger: Services.App.GetBinarySerializerLogger());
 
         // Get the untiled image data
-        var untiledImgData = imgData.Untile(true);
+        byte[] untiledImgData = imgData.Untile(true);
 
-        DDSParser.DDSStruct header = new DDSParser.DDSStruct
+        DDSParser.DDSStruct header = new()
         {
             pixelformat = new DDSParser.DDSStruct.pixelformatstruct()
             {
@@ -66,7 +65,7 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
             depth = 1
         };
 
-        var rawImgData = imgData.CompressionType switch
+        byte[] rawImgData = imgData.CompressionType switch
         {
             UbiArtXbox360Texture.TextureCompressionType.DXT1 => DDSParser.DecompressDXT1(header, untiledImgData),
             UbiArtXbox360Texture.TextureCompressionType.DXT3 => DDSParser.DecompressDXT3(header, untiledImgData),

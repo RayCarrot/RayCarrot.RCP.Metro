@@ -1,5 +1,4 @@
-﻿#nullable disable
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -11,7 +10,7 @@ public class ArchiveFileType_GXTUbiArtTex : ArchiveFileType_BaseUbiArtTex
     /// <summary>
     /// The format
     /// </summary>
-    protected override FileExtension Format => new FileExtension(".gxt");
+    protected override FileExtension Format => new(".gxt");
 
     /// <summary>
     /// The magic header for the format

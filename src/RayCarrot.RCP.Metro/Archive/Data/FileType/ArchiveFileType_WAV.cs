@@ -1,5 +1,4 @@
-﻿#nullable disable
-using MahApps.Metro.IconPacks;
+﻿using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using System;
 using System.IO;
@@ -49,12 +48,12 @@ public class ArchiveFileType_WAV : IArchiveFileType
     /// <summary>
     /// The supported formats to import from
     /// </summary>
-    public virtual FileExtension[] ImportFormats => new FileExtension[0];
+    public virtual FileExtension[] ImportFormats => Array.Empty<FileExtension>();
 
     /// <summary>
     /// The supported formats to export to
     /// </summary>
-    public virtual FileExtension[] ExportFormats => new FileExtension[0];
+    public virtual FileExtension[] ExportFormats => Array.Empty<FileExtension>();
 
     /// <summary>
     /// Loads the thumbnail and display info for the file

@@ -1,16 +1,14 @@
-﻿#nullable disable
-using MahApps.Metro.IconPacks;
-using RayCarrot.Binary;
-using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using MahApps.Metro.IconPacks;
 using NLog;
+using RayCarrot.Binary;
+using RayCarrot.IO;
+using RayCarrot.Rayman.OpenSpace;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro;
@@ -93,15 +91,15 @@ public class ArchiveFileType_GF : IArchiveFileType
     public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Load the file
-        var file = GetFileContent(inputStream.Stream, manager);
+        OpenSpaceGFFile file = GetFileContent(inputStream.Stream, manager);
 
         // Load the raw bitmap data
-        var rawBmp = file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width)));
+        RawBitmapData rawBmp = file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width)));
 
         var format = rawBmp.PixelFormat == PixelFormat.Format32bppArgb ? PixelFormats.Bgra32 : PixelFormats.Bgr24;
 
         // Get a thumbnail source
-        var thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, format, null, rawBmp.PixelData, (rawBmp.Width * format.BitsPerPixel + 7) / 8);
+        BitmapSource thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, format, null, rawBmp.PixelData, (rawBmp.Width * format.BitsPerPixel + 7) / 8);
 
         // Get the thumbnail with the specified size
         return new ArchiveFileThumbnailData(thumbnailSource, new DuoGridItemViewModel[]
@@ -124,7 +122,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     public void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
     {
         // Get the image format
-        var imgFormat = outputFormat.PrimaryFileExtension switch
+        ImageFormat imgFormat = outputFormat.PrimaryFileExtension switch
         {
             ".png" => ImageFormat.Png,
             ".jpeg" => ImageFormat.Jpeg,
@@ -134,7 +132,7 @@ public class ArchiveFileType_GF : IArchiveFileType
         };
 
         // Get the bitmap
-        using var bmp = GetFileContent(inputStream, manager).GetRawBitmapData().GetBitmap();
+        using Bitmap bmp = GetFileContent(inputStream, manager).GetRawBitmapData().GetBitmap();
 
         // Save the bitmap to the output stream
         bmp.Save(outputStream, imgFormat);
@@ -152,7 +150,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     public void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
     {
         // Load the bitmap
-        using var bmp = new Bitmap(inputStream);
+        using Bitmap bmp = new Bitmap(inputStream);
 
         // Load the current file
         OpenSpaceGFFile gf = GetFileContent(currentFileStream.Stream, manager);
@@ -162,7 +160,7 @@ public class ArchiveFileType_GF : IArchiveFileType
         RawBitmapData rawBitmapData;
 
         // Get the bitmap lock
-        using (var bmpLock = new BitmapLock(bmp))
+        using (BitmapLock bmpLock = new(bmp))
         {
             // Get the raw bitmap data
             rawBitmapData = new RawBitmapData(bmp.Width, bmp.Height, bmpLock.Pixels, bmp.PixelFormat);
@@ -176,12 +174,12 @@ public class ArchiveFileType_GF : IArchiveFileType
             {
                 // NOTE: Only 24 and 32 bpp bitmaps are supported
                 // Check if the imported file is transparent
-                var isTransparent = bmp.PixelFormat switch
+                bool? isTransparent = bmp.PixelFormat switch
                 {
                     PixelFormat.Format32bppArgb => (Services.Data.Archive_GF_UpdateTransparency == UserData_Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
                                                     bmpLock.UtilizesAlpha()),
                     PixelFormat.Format24bppRgb => false,
-                    _ => (bool?)null
+                    _ => null
                 };
 
                 // NOTE: Currently only supported for formats with 3 or 4 channels
@@ -192,7 +190,7 @@ public class ArchiveFileType_GF : IArchiveFileType
             }
         }
 
-        var oldRepeatByte = gf.RepeatByte;
+        byte oldRepeatByte = gf.RepeatByte;
 
         // Import the bitmap
         gf.ImportFromBitmap((OpenSpaceSettings)manager.SerializerSettings, rawBitmapData, Services.Data.Archive_GF_GenerateMipmaps);

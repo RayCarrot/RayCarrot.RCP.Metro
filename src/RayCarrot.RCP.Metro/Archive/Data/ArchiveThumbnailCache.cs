@@ -1,6 +1,6 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -60,7 +60,7 @@ public class ArchiveThumbnailCache : IDisposable
     {
         lock (Lock)
         {
-            var clearCount = count.Clamp(0, Cache.Count);
+            int clearCount = count.Clamp(0, Cache.Count);
 
             for (int i = 0; i < clearCount; i++)
             {
@@ -84,20 +84,20 @@ public class ArchiveThumbnailCache : IDisposable
         AddEntry(file.FullFilePath, new CacheEntry(new WeakReference<ArchiveFileViewModel>(file), thumb));
     }
 
-    public bool TryGetCachedItem(ArchiveFileViewModel file, out ArchiveFileThumbnailData thumb)
+    public bool TryGetCachedItem(ArchiveFileViewModel file, [MaybeNullWhen(false)] out ArchiveFileThumbnailData thumb)
     {
         // Default to null
         thumb = null;
 
         // Get the path
-        var path = file.FullFilePath;
+        string path = file.FullFilePath;
 
         // Check if the path exists in the cache
         if (!Cache.ContainsKey(path))
             return false;
 
         // Get the cached entry
-        var entry = Cache[path];
+        CacheEntry entry = Cache[path];
 
         // Check if the file instance matches
         if (entry.File.TryGetTarget(out ArchiveFileViewModel f) && f == file)

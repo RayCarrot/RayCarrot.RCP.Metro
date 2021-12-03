@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿using System;
 using System.IO;
 using System.Linq;
 using ImageMagick;
@@ -45,7 +45,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
             return false;
 
         // Set the Stream position
-        var tex = ReadTEXHeader(inputStream, manager);
+        UbiArtTEXData? tex = ReadTEXHeader(inputStream, manager);
 
         // Check for type match
         if (IsOfType(inputStream, manager, tex))
@@ -55,10 +55,10 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         if (FormatMagic != null)
         {
             // Use a reader
-            using var reader = new Reader(inputStream, manager.SerializerSettings.Endian, true);
+            using Reader reader = new(inputStream, manager.SerializerSettings.Endian, true);
 
             // Get the magic header
-            var magic = reader.ReadUInt32();
+            uint magic = reader.ReadUInt32();
 
             // Check if it matches the magic
             return magic == FormatMagic;
@@ -67,7 +67,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         return false;
     }
 
-    public virtual bool IsOfType(Stream inputStream, IArchiveDataManager manager, UbiArtTEXData tex) => false;
+    public virtual bool IsOfType(Stream inputStream, IArchiveDataManager manager, UbiArtTEXData? tex) => false;
 
     /// <summary>
     /// The supported formats to import from
@@ -75,7 +75,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     public override FileExtension[] ImportFormats => IsFormatSupported ? new FileExtension[]
     {
         Format
-    }.Concat(base.ImportFormats.Where(x => x != Format)).ToArray() : new FileExtension[0];
+    }.Concat(base.ImportFormats.Where(x => x != Format)).ToArray() : Array.Empty<FileExtension>();
 
     /// <summary>
     /// The supported formats to export to
@@ -100,7 +100,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     {
         // Only load thumbnails for supported formats
         if (!IsFormatSupported)
-            return new ArchiveFileThumbnailData(null, new DuoGridItemViewModel[0]);
+            return new ArchiveFileThumbnailData(null, Array.Empty<DuoGridItemViewModel>());
         else
             return base.LoadThumbnail(inputStream, fileExtension, width, manager);
     }
@@ -145,7 +145,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         Stream inputStream, Stream outputStream, IArchiveDataManager manager)
     {
         // Get the current TEX data
-        var tex = ReadTEXHeader(currentFileStream.Stream, manager);
+        UbiArtTEXData? tex = ReadTEXHeader(currentFileStream.Stream, manager);
 
         // If there's no TEX header we handle the image data directly
         if (tex == null)
@@ -158,16 +158,16 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         else
         {
             // Get the image in specified format
-            using var img = new MagickImage(inputStream, MagickFormatInfo.Create(inputFormat.FileExtensions).Format);
+            using MagickImage img = new(inputStream, GetMagickFormat(inputFormat.FileExtensions));
 
             // Change the type to the output format
             img.Format = MagickFormat;
 
             // Get the image bytes
-            var bytes = img.ToByteArray();
+            byte[] bytes = img.ToByteArray();
 
             // Create a TEX file
-            var texFile = new UbiArtTEXFileData()
+            UbiArtTEXFileData texFile = new()
             {
                 TexHeader = tex,
                 ImageData = bytes
@@ -214,14 +214,14 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <param name="inputStream">The input stream</param>
     /// <param name="manager">The manager</param>
     /// <returns>The TEX header, if available</returns>
-    protected UbiArtTEXData ReadTEXHeader(Stream inputStream, IArchiveDataManager manager)
+    protected UbiArtTEXData? ReadTEXHeader(Stream inputStream, IArchiveDataManager manager)
     {
         // Use a reader
-        using var reader = new Reader(inputStream, manager.SerializerSettings.Endian, true);
+        using Reader reader = new Reader(inputStream, manager.SerializerSettings.Endian, true);
 
         // Check if it's in a TEX wrapper
         inputStream.Position = 4;
-        var usesTexWrapper = reader.ReadUInt32() == TEXHeader;
+        bool usesTexWrapper = reader.ReadUInt32() == TEXHeader;
 
         // Reset the position
         inputStream.Position = 0;

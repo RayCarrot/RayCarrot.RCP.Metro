@@ -1,8 +1,8 @@
-﻿#nullable disable
-using Nito.AsyncEx;
+﻿using Nito.AsyncEx;
 using RayCarrot.IO;
 using NLog;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +25,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
     /// <param name="loadOperation">The operation to use when running an async operation which needs to load</param>
     /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
     /// <param name="isDuplicateName">Indicates if the name of the archive matches the name of another loaded archive</param>
-    public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel, bool isDuplicateName) : base(filePath.Name)
+    public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel, bool isDuplicateName) : base(null, filePath.Name, null)
     {
         Logger.Info("An archive view model is being created for {0}", filePath.Name);
 
@@ -40,9 +40,9 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         // Create commands
         SaveCommand = new AsyncRelayCommand(SaveAsync);
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
-            
-        // Create the file stream
-        ArchiveFileStream = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+
+        // Open the file stream
+        OpenFile();
     }
 
     #endregion
@@ -85,17 +85,12 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
     /// <summary>
     /// The archive file generator
     /// </summary>
-    public IDisposable ArchiveFileGenerator { get; set; }
+    public IDisposable? ArchiveFileGenerator { get; set; }
 
     /// <summary>
     /// The operation to use when running an async operation which needs to load
     /// </summary>
     public Operation LoadOperation { get; }
-
-    /// <summary>
-    /// The archive the directory belongs to
-    /// </summary>
-    public override ArchiveViewModel Archive => this;
 
     /// <summary>
     /// The archive file stream
@@ -105,7 +100,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
     /// <summary>
     /// The data for the loaded archive
     /// </summary>
-    public object ArchiveData { get; set; }
+    public object? ArchiveData { get; set; }
 
     /// <summary>
     /// The lock to use when accessing the archive stream
@@ -145,12 +140,12 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
     /// <summary>
     /// Gets the currently selected item
     /// </summary>
-    public ArchiveDirectoryViewModel SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FirstOrDefault(x => x.IsSelected);
+    public ArchiveDirectoryViewModel? SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FirstOrDefault(x => x.IsSelected);
        
     /// <summary>
     /// The text to display for the save prompt if there are modified files
     /// </summary>
-    public string ModifiedFilesDisplayText { get; protected set; }
+    public string? ModifiedFilesDisplayText { get; protected set; }
 
     /// <summary>
     /// Indicates if there are modified files
@@ -162,6 +157,12 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
     #endregion
 
     #region Protected Methods
+
+    [MemberNotNull(nameof(ArchiveFileStream))]
+    protected void OpenFile()
+    {
+        ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+    }
 
     /// <summary>
     /// Clears and disposes every item
@@ -212,7 +213,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         ArchiveData = Manager.LoadArchive(ArchiveFileStream);
 
         // Load the archive
-        var data = Manager.LoadArchiveData(ArchiveData, ArchiveFileStream, FilePath.Name);
+        ArchiveData data = Manager.LoadArchiveData(ArchiveData, ArchiveFileStream, FilePath.Name);
 
         // Dispose the current generator
         ArchiveFileGenerator?.Dispose();
@@ -221,7 +222,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         ArchiveFileGenerator = data.Generator;
 
         // Add each directory
-        foreach (var dir in data.Directories)
+        foreach (ArchiveDirectory dir in data.Directories)
         {
             // Check if it's the root directory
             if (dir.DirectoryName == String.Empty)
@@ -261,8 +262,10 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
             {
-                // Find the selected item ID
-                var selected = SelectedItem.FullID;
+                // Find the selected item path
+                string? selectedDirAddr = ExplorerDialogViewModel.SelectedDir == null 
+                    ? null 
+                    : ExplorerDialogViewModel.GetDirectoryAddress(ExplorerDialogViewModel.SelectedDir);
 
                 // Run as a task
                 await Task.Run(async () =>
@@ -276,26 +279,32 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
                     try
                     {
                         // Get a temporary file path to write to
-                        using var tempOutputFile = new TempFile(false);
+                        using TempFile tempOutputFile = new(false);
 
                         // Create the file and get the stream
-                        using (var outputStream = File.Create(tempOutputFile.TempPath))
+                        using (FileStream outputStream = File.Create(tempOutputFile.TempPath))
                         {
                             // Write to the stream
-                            Manager.WriteArchive(ArchiveFileGenerator, ArchiveData, outputStream, this.GetAllChildren<ArchiveDirectoryViewModel>(true).SelectMany(x => x.Files).Select(x => x.FileData).ToArray());
+                            Manager.WriteArchive(
+                                generator: ArchiveFileGenerator, 
+                                archive: ArchiveData ?? throw new Exception("Archive data has not been loaded"), 
+                                outputFileStream: outputStream, 
+                                files: this.GetAllChildren<ArchiveDirectoryViewModel>(true).
+                                    SelectMany(x => x.Files).
+                                    Select(x => x.FileData).
+                                    ToArray());
                         }
 
                         // Dispose the archive file stream
                         ArchiveFileStream.Dispose();
 
                         ArchiveData = null;
-                        ArchiveFileStream = null;
 
                         // If the operation succeeded, replace the archive file with the temporary output
                         Services.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
                         // Re-open the file stream
-                        ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+                        OpenFile();
                     }
                     catch (Exception ex)
                     {
@@ -304,20 +313,17 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
                         // Re-open the file stream if closed
-                        if (ArchiveFileStream == null)
-                            ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+                        if (ArchiveFileStream.SafeFileHandle?.IsClosed != false)
+                            OpenFile();
                     }
                 });
 
                 // Reload the archive
                 LoadArchive();
 
-                // Get the previously selected item
-                var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FirstOrDefault(x => x.FullID.SequenceEqual(selected));
-
                 // Load the previously selected directory if it still exists
-                if (previouslySelectedItem != null)
-                    ExplorerDialogViewModel.LoadDirectory(previouslySelectedItem);
+                if (selectedDirAddr != null)
+                    ExplorerDialogViewModel.LoadDirectory(selectedDirAddr);
 
                 Archive.SetDisplayStatus(String.Empty);
             }
@@ -368,7 +374,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         base.Dispose();
 
         // Dispose the stream
-        ArchiveFileStream?.Dispose();
+        ArchiveFileStream.Dispose();
 
         // Dispose every directory
         ClearAndDisposeItems();
@@ -377,7 +383,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         ArchiveFileGenerator?.Dispose();
 
         // Dispose the cache
-        ThumbnailCache?.Dispose();
+        ThumbnailCache.Dispose();
 
         Logger.Info("The archive {0} has been disposed", DisplayName);
     }

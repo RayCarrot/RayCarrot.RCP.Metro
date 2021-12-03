@@ -1,5 +1,4 @@
-﻿#nullable disable
-using RayCarrot.Binary;
+﻿using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;
 using RayCarrot.Rayman;
@@ -94,7 +93,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
         // Get the file entry
-        var entry = fileEntry.CastTo<UbiArtIPKFileEntry>();
+        var entry = (UbiArtIPKFileEntry)fileEntry;
 
         // Set the file size
         entry.Size = (uint)inputStream.Length;
@@ -142,15 +141,15 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
+    public void WriteArchive(IDisposable? generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
     {
         Logger.Info("An IPK archive is being repacked...");
 
         // Get the archive data
-        var data = archive.CastTo<UbiArtIpkData>();
+        var data = (UbiArtIpkData)archive;
 
         // Create the file generator
-        using var fileGenerator = new ArchiveFileGenerator<UbiArtIPKFileEntry>();
+        using ArchiveFileGenerator<UbiArtIPKFileEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -164,7 +163,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         data.FilesCount = (uint)data.Files.Length;
 
         // Save the old base offset
-        var oldBaseOffset = data.BaseOffset;
+        uint oldBaseOffset = data.BaseOffset;
 
         // Keep track of the current pointer position
         ulong currentOffset = 0;
@@ -173,7 +172,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         foreach (var file in archiveFiles)
         {
             // Get the file
-            var entry = file.Entry;
+            UbiArtIPKFileEntry entry = file.Entry;
 
             // Reset the offset array to always contain 1 item
             entry.Offsets = new ulong[]
@@ -188,11 +187,11 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             fileGenerator.Add(entry, () =>
             {
                 // When reading the original file we need to use the old base offset
-                var newBaseOffset = data.BaseOffset;
+                uint newBaseOffset = data.BaseOffset;
                 data.BaseOffset = oldBaseOffset;
 
                 // Get the file bytes to write to the archive
-                var fileStream = file.FileItem.GetFileData(generator).Stream;
+                Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
                 data.BaseOffset = newBaseOffset;
 
@@ -233,7 +232,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
     {
         // Get the data
-        var data = archive.CastTo<UbiArtIpkData>();
+        var data = (UbiArtIpkData)archive;
 
         Logger.Info("The directories are being retrieved for an IPK archive");
 
@@ -263,7 +262,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        var data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        UbiArtIpkData data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
 
         Logger.Info("Read IPK file ({0}) with {1} files", data.Version, data.FilesCount);
 
@@ -277,7 +276,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public object CreateArchive()
     {
         // Create the data
-        var data = new UbiArtIpkData();
+        UbiArtIpkData data = new();
 
         // Configure the data
         Config.ConfigureIpkData(data);
@@ -331,7 +330,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <returns>The size, or null if it could not be determined</returns>
     public long? GetFileSize(object fileEntry, bool encoded)
     {
-        var entry = fileEntry.CastTo<UbiArtIPKFileEntry>();
+        var entry = (UbiArtIPKFileEntry)fileEntry;
 
         return encoded ? entry.ArchiveSize : entry.Size;
     }
@@ -343,7 +342,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    public event EventHandler<ValueEventArgs<ArchiveFileItem>> OnWritingFileToArchive;
+    public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
 
     #endregion
 }

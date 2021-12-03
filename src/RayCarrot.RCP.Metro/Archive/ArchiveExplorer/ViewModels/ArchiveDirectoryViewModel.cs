@@ -1,6 +1,4 @@
-﻿#nullable disable
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -11,6 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using MahApps.Metro.IconPacks;
+using NLog;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
@@ -24,41 +23,17 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     #region Constructors
 
     /// <summary>
-    /// Creates a directory item view model with a directory name from an instance
-    /// </summary>
-    /// <param name="dirName">The directory name</param>
-    protected ArchiveDirectoryViewModel(string dirName) : base(dirName)
-    {
-        // Create the file collection
-        Files = new ObservableCollection<ArchiveFileViewModel>();
-
-        // Create commands
-        ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
-        ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
-        ImportCommand = new AsyncRelayCommand(ImportAsync);
-        CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
-        DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
-        ExtractSelectedFilesCommand = new AsyncRelayCommand(async () => await ExportAsync(true, true));
-        ExportSelectedFilesCommand = new AsyncRelayCommand(async () => await ExportAsync(false, true));
-        DeleteSelectedFilesCommand = new AsyncRelayCommand(DeleteSelectedFilesAsync);
-        RenameSelectedFileCommand = new AsyncRelayCommand(RenameSelectedFileAsync);
-        AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
-
-        // Enable collection synchronization
-        BindingOperations.EnableCollectionSynchronization(Files, Application.Current);
-        BindingOperations.EnableCollectionSynchronization(this, Application.Current);
-    }
-
-    /// <summary>
     /// Creates a directory item view model with the parent and directory name
     /// </summary>
-    /// <param name="parent">The parent directory</param>
+    /// <param name="parent">The parent directory or null if it's the root</param>
     /// <param name="dirName">The directory name</param>
-    /// <param name="archive">The archive the directory belongs to</param>
-    protected ArchiveDirectoryViewModel(ArchiveDirectoryViewModel parent, string dirName, ArchiveViewModel archive) : base(parent, dirName)
+    /// <param name="archive">The archive the directory belongs to, or null if this is the archive</param>
+    protected ArchiveDirectoryViewModel(ArchiveDirectoryViewModel? parent, string dirName, ArchiveViewModel? archive) : base(parent, dirName)
     {
-        // Set properties
-        Archive = archive;
+        // Set the archive this directory belongs to
+        Archive = archive 
+                  ?? this as ArchiveViewModel 
+                  ?? throw new ArgumentNullException(nameof(archive), $"Archive can't be null if not of type {nameof(ArchiveViewModel)}");
 
         // Create the file collection
         Files = new ObservableCollection<ArchiveFileViewModel>();
@@ -93,7 +68,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     /// <summary>
     /// The archive the directory belongs to
     /// </summary>
-    public virtual ArchiveViewModel Archive { get; }
+    public ArchiveViewModel Archive { get; }
 
     /// <summary>
     /// The files
@@ -186,7 +161,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     public ArchiveDirectoryViewModel Add(string dirName)
     {
         // Create the item
-        var item = new ArchiveDirectoryViewModel(this, dirName, Archive);
+        ArchiveDirectoryViewModel item = new(this, dirName, Archive);
 
         // Add the item
         Add(item);
@@ -210,7 +185,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             using (await Archive.ArchiveLock.LockAsync())
             {
                 // Get the output path
-                var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                 {
                     Title = Resources.Archive_ExportHeader
                 });
@@ -233,7 +208,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                     IArchiveDataManager manager = Archive.Manager;
 
                     // Save the selected format for each collection
-                    var selectedFormats = new Dictionary<IArchiveFileType, FileExtension>();
+                    Dictionary<IArchiveFileType, FileExtension?> selectedFormats = new();
 
                     try
                     {
@@ -274,7 +249,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                 if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && file.FileType is not ArchiveFileType_Default)
                                 {
                                     // Get the available extensions
-                                    var ext = new string[]
+                                    string[] ext = new string[]
                                     {
                                         Resources.Archive_Export_Format_Original
                                     }.Concat(file.FileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
@@ -287,11 +262,15 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                         extResult.SelectedFileFormat = ext.First();
 
                                     // Add the selected format
-                                    selectedFormats.Add(file.FileType, extResult.SelectedFileFormat == ext.First() ? null : new FileExtension(extResult.SelectedFileFormat));
+                                    FileExtension? e = extResult.SelectedFileFormat == ext.First() 
+                                        ? null
+                                        : new FileExtension(extResult.SelectedFileFormat);
+
+                                    selectedFormats.Add(file.FileType, e);
                                 }
 
                                 // Get the selected format
-                                FileExtension format = forceNativeFormat || file.FileType is ArchiveFileType_Default 
+                                FileExtension? format = forceNativeFormat || file.FileType is ArchiveFileType_Default 
                                     ? null 
                                     : selectedFormats[file.FileType];
 
@@ -361,7 +340,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             using (await Archive.ArchiveLock.LockAsync())
             {
                 // Get the directory
-                var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                 {
                     Title = Resources.Archive_ImportDirectoryHeader,
                 });
@@ -373,15 +352,15 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                 await Task.Run(async () =>
                 {
                     // Keep track of the number of files getting imported
-                    var imported = 0;
+                    int imported = 0;
 
                     try
                     {
                         // Enumerate each directory view model
-                        foreach (var dir in this.GetAllChildren(true))
+                        foreach (ArchiveDirectoryViewModel dir in this.GetAllChildren(true))
                         {
                             // Enumerate each file
-                            foreach (var file in dir.Files)
+                            foreach (ArchiveFileViewModel file in dir.Files)
                             {
                                 // Get the file directory, relative to the selected directory
                                 FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
@@ -390,7 +369,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                     continue;
 
                                 // Get the base file path
-                                var baseFilePath = fileDir + new FileSystemPath(file.FileName);
+                                FileSystemPath baseFilePath = fileDir + new FileSystemPath(file.FileName);
 
                                 // Get the file path, without an extension
                                 FileSystemPath filePath = baseFilePath.RemoveFileExtension(true);
@@ -400,7 +379,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                     continue;
 
                                 // Get the file stream
-                                using var fileStream = file.GetDecodedFileStream();
+                                using ArchiveFileStream fileStream = file.GetDecodedFileStream();
 
                                 // Initialize the file without loading the thumbnail
                                 file.InitializeFile(fileStream, ArchiveFileViewModel.ThumbnailLoadMode.None);
@@ -417,10 +396,10 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                 }
 
                                 // Attempt to find a file for each supported extension
-                                foreach (var ext in file.FileType.ImportFormats)
+                                foreach (FileExtension ext in file.FileType.ImportFormats)
                                 {
                                     // Get the path
-                                    var fullFilePath = filePath.ChangeFileExtension(ext);
+                                    FileSystemPath fullFilePath = filePath.ChangeFileExtension(ext);
 
                                     // Make sure the file exists
                                     if (!fullFilePath.FileExists)
@@ -465,7 +444,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
             {
-                var result = await Services.UI.GetStringInput(new StringInputViewModel
+                StringInputResult result = await Services.UI.GetStringInput(new StringInputViewModel
                 {
                     Title = Resources.Archive_CreateDir_Header,
                     HeaderText = Resources.Archive_CreateDir_Header,
@@ -516,7 +495,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             using (await Archive.ArchiveLock.LockAsync())
             {
                 // Remove from parent directory
-                Parent.Remove(this);
+                Parent!.Remove(this);
 
                 // Dispose the directory and the sub-directory
                 this.GetAllChildren(true).DisposeAll();
@@ -533,13 +512,13 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
 
     public async Task DeleteSelectedFilesAsync()
     {
-        foreach (var file in GetSelectedFiles().ToArray())
+        foreach (ArchiveFileViewModel file in GetSelectedFiles().ToArray())
             await file.DeleteFileAsync();
     }
 
     public async Task RenameSelectedFileAsync()
     {
-        var selectedFile = GetSelectedFiles().FirstOrDefault();
+        ArchiveFileViewModel? selectedFile = GetSelectedFiles().FirstOrDefault();
 
         if (selectedFile != null)
             await selectedFile.RenameFileAsync();
@@ -556,7 +535,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             using (await Archive.ArchiveLock.LockAsync())
             {
                 // Get the files
-                var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
                     Title = Resources.Archive_AddFiles_Header,
                     MultiSelection = true
@@ -574,17 +553,17 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     public async Task AddFilesAsync(IEnumerable<FileSystemPath> files)
     {
         // Get the manager
-        var manager = Archive.Manager;
+        IArchiveDataManager manager = Archive.Manager;
 
-        var modifiedCount = 0;
+        int modifiedCount = 0;
 
         // Add every file
-        foreach (var file in files)
+        foreach (FileSystemPath file in files)
         {
-            var fileName = file.Name;
-            var dir = FullPath;
+            string fileName = file.Name;
+            string dir = FullPath;
 
-            var existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
+            ArchiveFileViewModel? existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
 
             // Check if the file name conflicts with an existing file
             if (existingFile != null)
@@ -596,9 +575,9 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             try
             {
                 // Open the file as a stream
-                using var fileStream = File.OpenRead(file);
+                using FileStream fileStream = File.OpenRead(file);
 
-                var fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
+                ArchiveFileViewModel fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir, fileName)), this);
 
                 // Replace the file with the import data
                 if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))

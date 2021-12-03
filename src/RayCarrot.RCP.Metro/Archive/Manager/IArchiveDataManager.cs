@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using RayCarrot.Binary;
@@ -40,7 +39,7 @@ public interface IArchiveDataManager
     /// <summary>
     /// Gets the configuration UI to use for creator
     /// </summary>
-    object GetCreatorUIConfig { get; }
+    object? GetCreatorUIConfig { get; }
 
     /// <summary>
     /// Encodes the file data from the input stream, or nothing if the data does not need to be encoded
@@ -73,7 +72,7 @@ public interface IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files);
+    void WriteArchive(IDisposable? generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files);
 
     /// <summary>
     /// Loads the archive data
@@ -125,5 +124,5 @@ public interface IArchiveDataManager
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    event EventHandler<ValueEventArgs<ArchiveFileItem>> OnWritingFileToArchive;
+    event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
 }

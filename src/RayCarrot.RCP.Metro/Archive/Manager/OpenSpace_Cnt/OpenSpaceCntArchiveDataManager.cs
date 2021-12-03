@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -63,7 +62,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Gets the configuration UI to use for creator
     /// </summary>
-    public object GetCreatorUIConfig => null;
+    public object? GetCreatorUIConfig => null;
 
     public OpenSpaceSettings Settings { get; }
 
@@ -80,7 +79,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
         // Get the file entry
-        var file = fileEntry.CastTo<OpenSpaceCntFileEntry>();
+        var file = (OpenSpaceCntFileEntry)fileEntry;
 
         // Update the size
         file.Size = (uint)inputStream.Length;
@@ -119,15 +118,15 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
+    public void WriteArchive(IDisposable? generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
     {
         Logger.Info("A CNT archive is being repacked...");
 
         // Get the archive data
-        var data = archive.CastTo<OpenSpaceCntData>();
+        var data = (OpenSpaceCntData)archive;
 
         // Create the file generator
-        using var fileGenerator = new ArchiveFileGenerator<OpenSpaceCntFileEntry>();
+        using ArchiveFileGenerator<OpenSpaceCntFileEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -146,7 +145,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
             file.Entry.DirectoryIndex = file.FileItem.Directory == String.Empty ? -1 : data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
 
         // Set the current pointer position to the header size
-        var pointer = data.GetHeaderSize(Settings);
+        uint pointer = data.GetHeaderSize(Settings);
 
         // Disable checksum
         data.IsChecksumUsed = false;
@@ -160,7 +159,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         foreach (var file in archiveFiles)
         {
             // Get the file entry
-            var entry = file.Entry;
+            OpenSpaceCntFileEntry entry = file.Entry;
 
             // Reset checksum and XOR key
             entry.Checksum = 0;
@@ -170,7 +169,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
             fileGenerator.Add(entry, () =>
             {
                 // Get the file stream to write to the archive
-                var fileStream = file.FileItem.GetFileData(generator).Stream;
+                Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
                 // Set the pointer
                 entry.Pointer = pointer;
@@ -206,7 +205,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
     {
         // Get the data
-        var data = archive.CastTo<OpenSpaceCntData>();
+        var data = (OpenSpaceCntData)archive;
 
         Logger.Info("The directories are being retrieved for a CNT archive");
 
@@ -245,7 +244,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        OpenSpaceCntData data = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
 
         Logger.Info("Read CNT file with {0} files and {1} directories", data.Files.Length, data.Directories.Length);
 
@@ -308,7 +307,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <returns>The size, or null if it could not be determined</returns>
     public long? GetFileSize(object fileEntry, bool encoded)
     {
-        var entry = fileEntry.CastTo<OpenSpaceCntFileEntry>();
+        var entry = (OpenSpaceCntFileEntry)fileEntry;
 
         return entry.Size;
     }
@@ -320,7 +319,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    public event EventHandler<ValueEventArgs<ArchiveFileItem>> OnWritingFileToArchive;
+    public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
 
     #endregion
 }
