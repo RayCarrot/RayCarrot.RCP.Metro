@@ -204,7 +204,8 @@ public partial class App : BaseApp
         if (Services.Data != null)
         {
             // Save window state
-            Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
+            if (mainWindow != null)
+                Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
 
             Logger.Info("The application is exiting...");
 

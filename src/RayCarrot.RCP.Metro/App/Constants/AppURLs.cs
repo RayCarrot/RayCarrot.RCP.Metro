@@ -323,7 +323,7 @@ public static class AppURLs
     /// <param name="folder">The game folder, as a relative path</param>
     /// <param name="vol">Optional volume argument</param>
     /// <returns>The URL</returns>
-    public static string GetRay1MapGameURL(string mode, string folder, string vol = null) => $"{Ray1MapBaseUrl}?mode={mode}&folder={folder}{(vol != null ? $"&vol={vol}" : String.Empty)}";
+    public static string GetRay1MapGameURL(string mode, string folder, string? vol = null) => $"{Ray1MapBaseUrl}?mode={mode}&folder={folder}{(vol != null ? $"&vol={vol}" : String.Empty)}";
 
     #endregion
 }
