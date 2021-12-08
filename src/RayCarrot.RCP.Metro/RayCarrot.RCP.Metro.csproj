@@ -120,6 +120,7 @@
 		<Resource Include="Files\VersionHistory\VersionHistory_10.0_12.0.txt" />
 		<Resource Include="Files\VersionHistory\VersionHistory_04.0_06.0.txt" />
 		<Resource Include="Files\License.txt" />
+		<Resource Include="Fonts\RaymanOrigins.ttf" />
 		<Resource Include="Img\RCP_Metro.ico" />
 		<Resource Include="Files\RaymanLegends\RL_Levels.txt" />
 		<Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
