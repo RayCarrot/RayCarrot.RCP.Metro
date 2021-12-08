@@ -61,6 +61,8 @@ public sealed class GameInfo_RaymanArena : GameInfo
     /// </summary>
     public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_RaymanArena_ViewModel();
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanMArena(Game).Yield();
+
     /// <summary>
     /// Optional RayMap URL
     /// </summary>

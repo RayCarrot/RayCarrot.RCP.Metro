@@ -11,6 +11,11 @@ public enum AppPage
     Games,
 
     /// <summary>
+    /// The progression page
+    /// </summary>
+    Progression,
+
+    /// <summary>
     /// The backup/restore page
     /// </summary>
     BackupRestore,

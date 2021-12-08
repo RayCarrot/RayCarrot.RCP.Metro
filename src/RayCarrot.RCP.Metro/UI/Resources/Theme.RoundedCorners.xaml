@@ -6,6 +6,7 @@
     <!-- Default control styles using rounded corners. The border thickness is also increased to help with the effect. -->
 
     <CornerRadius x:Key="CornerRadius.Default">3</CornerRadius>
+    <CornerRadius x:Key="CornerRadius.Large">8</CornerRadius>
     <Thickness x:Key="Thickness.Border.Default">2</Thickness>
     <system:Double x:Key="StrokeThickness.Shape.Default">2</system:Double>
 

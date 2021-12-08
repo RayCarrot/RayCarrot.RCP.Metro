@@ -1,0 +1,213 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <ItemsPanelTemplate x:Key="ItemsPanelTemplate.Horizontal" x:Shared="False">
+        <StackPanel Orientation="Horizontal" />
+    </ItemsPanelTemplate>
+
+    <!-- Progression Data Item (Horizontal) -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Horizontal" DataType="{x:Type local:ProgressionDataViewModel}">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{Binding Path=IconImageSource, Mode=OneTime}"
+                   VerticalAlignment="Center"
+                   Margin="0 0 8 0" />
+
+            <TextBlock Text="{Binding Path=Text.Value}"
+                       FontSize="22"
+                       FontFamily="{StaticResource Font.RaymanOrigins}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 15 0" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Progression Data Item (Vertical) -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Vertical" DataType="{x:Type local:ProgressionDataViewModel}">
+        <Grid Margin="0 0 0 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0"
+                   Source="{Binding Path=IconImageSource, Mode=OneTime}"
+                   VerticalAlignment="Center"
+                   Margin="0 0 8 0" />
+
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Path=Text.Value}"
+                       FontSize="18"
+                       FontFamily="../../Fonts/#Rayman Origins"
+                       VerticalAlignment="Center" />
+
+            <TextBlock Grid.Column="2"
+                       Text="{Binding Path=Description.Value}"
+                       VerticalAlignment="Center" />
+        </Grid>
+    </DataTemplate>
+
+    <!-- Progression Slot Percentage -->
+
+    <DataTemplate x:Key="DataTemplate.SlotPercentage" DataType="{x:Type local:ProgressionSlotViewModel}">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        TextElement.FontSize="22"
+                        TextElement.FontFamily="../../Fonts/#Rayman Origins"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <TextBlock Text="{Binding Path=Percentage, StringFormat=0.##, Mode=OneTime}" />
+                <TextBlock Text=" %" />
+
+            </StackPanel>
+
+            <metro:MetroProgressBar Grid.Row="1"
+                                    Foreground="{Binding Path=ProgressBrush, Mode=OneTime}"
+                                    Minimum="0"
+                                    Maximum="100"
+                                    Width="80"
+                                    HorizontalAlignment="Right"
+                                    Value="{Binding Path=Percentage, Mode=OneTime}" />
+
+
+        </Grid>
+    </DataTemplate>
+
+    <!-- Progression Game Header -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionGameHeader" DataType="{x:Type local:ProgressionGameViewModel}">
+        <Grid Margin="15 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Image -->
+
+            <local:GameIcon Grid.Row="0"
+                            IconSize="Small"
+                            IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
+                            Source="{Binding Path=IconSource, Mode=OneTime}"
+                            Margin="0 0 15 0" />
+
+            <!-- Title -->
+
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource TextBlock.HeaderLarge}"
+                       Text="{Binding Path=DisplayName, Mode=OneTime}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       TextWrapping="WrapWithOverflow"
+                       MaxWidth="510"
+                       Margin="0 0 25 0" />
+
+            <!-- Primary Data Items -->
+
+            <ItemsControl Grid.Column="2"
+                          Visibility="{Binding Path=IsExpanded, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                          ItemsSource="{Binding Path=PrimarySlot.PrimaryDataItems}"
+                          ItemsPanel="{StaticResource ItemsPanelTemplate.Horizontal}"
+                          ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Horizontal}"
+                          Margin="0 0 10 0" />
+
+            <!-- Percentage -->
+
+            <Grid Grid.Column="3"
+                  HorizontalAlignment="Right"
+                  Visibility="{Binding Path=IsLoading, Converter={local:InvertedBooleanToVisibilityConverter}}">
+                <ContentPresenter Content="{Binding Path=PrimarySlot}" 
+                                  ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
+            </Grid>
+
+            <!-- Loading -->
+
+            <Grid Grid.Column="3"
+                  HorizontalAlignment="Right"
+                  Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}">
+                <metro:ProgressRing />
+            </Grid>
+
+        </Grid>
+    </DataTemplate>
+
+    <!-- Progression Slot Header -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionSlotHeader" DataType="{x:Type local:ProgressionSlotViewModel}">
+        <Grid Margin="15 4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Title -->
+
+            <TextBlock Grid.Column="0"
+                       Style="{StaticResource TextBlock.HeaderLarge}"
+                       Text="{Binding Path=Name.Value}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       TextWrapping="WrapWithOverflow"
+                       Margin="0 0 25 0" />
+
+            <!-- Data Items -->
+
+            <ItemsControl Grid.Column="1"
+                          ItemsSource="{Binding Path=PrimaryDataItems}"
+                          ItemsPanel="{StaticResource ItemsPanelTemplate.Horizontal}"
+                          ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Horizontal}"
+                          Margin="0 0 10 0" />
+
+            <!-- Percentage -->
+
+            <Grid Grid.Column="2"
+                  HorizontalAlignment="Right">
+                <ContentPresenter Content="{Binding}" 
+                                  ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
+            </Grid>
+
+        </Grid>
+    </DataTemplate>
+
+    <!-- Progression Slot -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionSlot" DataType="{x:Type local:ProgressionSlotViewModel}">
+        <Expander Margin="0 0 0 8"
+                  Header="{Binding}"
+                  HeaderTemplate="{StaticResource DataTemplate.ProgressionSlotHeader}">
+            <Grid>
+                <ItemsControl ItemsSource="{Binding Path=DataItems}"
+                              ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Vertical}"
+                              Margin="0 0 0 -8" />
+            </Grid>
+        </Expander>
+    </DataTemplate>
+
+    <!-- Progression Game -->
+
+    <DataTemplate x:Key="DataTemplate.ProgressionGame" DataType="{x:Type local:ProgressionGameViewModel}">
+        <Expander Margin="0 0 0 15"
+                  Header="{Binding}"
+                  HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
+                  IsExpanded="{Binding Path=IsExpanded}">
+            <Grid IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
+                <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
+                              ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"/>
+            </Grid>
+        </Expander>
+    </DataTemplate>
+
+</ResourceDictionary>

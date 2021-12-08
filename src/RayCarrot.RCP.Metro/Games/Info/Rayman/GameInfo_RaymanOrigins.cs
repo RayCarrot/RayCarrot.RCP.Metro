@@ -62,6 +62,8 @@ public sealed class GameInfo_RaymanOrigins : GameInfo
     /// </summary>
     public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_Origins_ViewModel();
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanOrigins().Yield();
+
     /// <summary>
     /// Gets the file links for the game
     /// </summary>

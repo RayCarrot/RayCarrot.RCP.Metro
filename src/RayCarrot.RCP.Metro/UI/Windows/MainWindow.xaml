@@ -183,6 +183,15 @@
                 <local:Page_Games_UI />
             </TabItem>
 
+            <!-- Progression -->
+
+            <TabItem Header="{Resx Progression_Header}"
+                     local:TabItemAssist.IconKind="{StaticResource Icons.GameOptions_Progression}"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Progression}"
+                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Progression}">
+                <local:Page_Progression_UI />
+            </TabItem>
+
             <!-- Backup/Restore -->
 
             <TabItem x:Name="BackupPageTab"  

@@ -1,0 +1,46 @@
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.Page_Progression_UI"
+                x:TypeArguments="local:Page_Progression_ViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                IsTabStop="False"
+                mc:Ignorable="d"
+                d:DesignWidth="800"
+                d:DataContext="{d:DesignInstance local:Page_Progression_ViewModel}">
+    <local:IBasePage.OverflowMenu>
+        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+
+            <local:MenuItemIcon Header="{Resx Page_Refresh}"
+                                IconKind="Refresh"
+                                Command="{Binding Path=RefreshCommand}" />
+
+        </ContextMenu>
+    </local:IBasePage.OverflowMenu>
+
+    <Control.Resources>
+        <ResourceDictionary Source="Progression.DataTemplates.xaml" />
+    </Control.Resources>
+
+    <Grid Margin="15">
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <i:Interaction.Behaviors>
+                <local:FocusScrollViewerOnLoad />
+            </i:Interaction.Behaviors>
+
+            <!-- Games -->
+
+            <ItemsControl ItemsSource="{Binding Path=GameItems, Mode=OneTime}"
+                          ItemTemplate="{StaticResource DataTemplate.ProgressionGame}"/>
+
+        </ScrollViewer>
+
+    </Grid>
+
+</local:BasePage>

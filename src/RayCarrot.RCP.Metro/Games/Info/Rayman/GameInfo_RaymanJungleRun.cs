@@ -54,6 +54,8 @@ public sealed class GameInfo_RaymanJungleRun : GameInfo
     /// </summary>
     public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_JungleRun_ViewModel();
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanJungleRun().Yield();
+
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
