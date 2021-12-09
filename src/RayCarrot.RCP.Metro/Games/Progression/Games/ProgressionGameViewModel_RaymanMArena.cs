@@ -67,8 +67,8 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
             // Get completed challenges
             int raceCompleted = 0;
             int battleCompleted = 0;
-            const int maxRace = 40;
-            const int maxBattle = 13 * 3;
+            int maxRace = Game == Games.Demo_RaymanM ? 15 : 40;
+            int maxBattle = Game == Games.Demo_RaymanM ? 15 : 13 * 3;
 
             void AddRaceCompleted(IEnumerable<int> values) => raceCompleted += values.Skip(17 * slotIndex).Take(17).Count(x => x == 2);
             void AddBattleCompleted(IEnumerable<int> values) => battleCompleted += values.Skip(13 * slotIndex).Take(13).Count(x => x == 2);

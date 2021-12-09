@@ -77,6 +77,8 @@ public sealed class GameInfo_RaymanMDemo : GameInfo
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanMDemo_ViewModel();
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanMArena(Game).Yield();
+
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
