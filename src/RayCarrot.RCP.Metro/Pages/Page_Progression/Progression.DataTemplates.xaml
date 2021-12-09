@@ -117,11 +117,43 @@
             <!-- Primary Data Items -->
 
             <ItemsControl Grid.Column="2"
-                          Visibility="{Binding Path=IsExpanded, Converter={local:InvertedBooleanToVisibilityConverter}}"
                           ItemsSource="{Binding Path=PrimarySlot.PrimaryDataItems}"
                           ItemsPanel="{StaticResource ItemsPanelTemplate.Horizontal}"
                           ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Horizontal}"
-                          Margin="0 0 10 0" />
+                          Margin="0 0 10 0">
+                <ItemsControl.Style>
+                    <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <BeginStoryboard.Storyboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                 From="1"
+                                                                 To="0"
+                                                                 Duration="0:0:0.22" />
+                                            </Storyboard>
+                                        </BeginStoryboard.Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <BeginStoryboard.Storyboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                 From="0"
+                                                                 To="1"
+                                                                 Duration="0:0:0.22" />
+                                            </Storyboard>
+                                        </BeginStoryboard.Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ItemsControl.Style>
+            </ItemsControl>
 
             <!-- Percentage -->
 
