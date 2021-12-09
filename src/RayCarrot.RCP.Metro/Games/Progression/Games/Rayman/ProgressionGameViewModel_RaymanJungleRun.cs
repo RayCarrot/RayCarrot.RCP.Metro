@@ -105,8 +105,8 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             }
 
             // Add general progress info first
-            progressItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.RO_Lum, new ConstLocString($"{collectedLums}/{availableLums}")));
-            progressItems.Insert(1, new ProgressionDataViewModel(true, GameProgression_Icon.RO_RedTooth, new ConstLocString($"{collectedTeeth}/{availableTeeth}")));
+            progressItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.RO_Lum, collectedLums, availableLums));
+            progressItems.Insert(1, new ProgressionDataViewModel(true, GameProgression_Icon.RO_RedTooth, collectedTeeth, availableTeeth));
 
             Slots.Add(new ProgressionSlotViewModel(null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems)
             {
