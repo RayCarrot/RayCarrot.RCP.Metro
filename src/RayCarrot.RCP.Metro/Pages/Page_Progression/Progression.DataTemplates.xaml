@@ -199,15 +199,16 @@
     <!-- Progression Game -->
 
     <DataTemplate x:Key="DataTemplate.ProgressionGame" DataType="{x:Type local:ProgressionGameViewModel}">
-        <Expander Margin="0 0 0 15"
-                  Header="{Binding}"
-                  HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
-                  IsExpanded="{Binding Path=IsExpanded}">
-            <Grid IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
-                <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
-                              ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"/>
-            </Grid>
-        </Expander>
+        <local:Card Margin="8" Padding="0">
+            <Expander Header="{Binding}"
+                      HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
+                      IsExpanded="{Binding Path=IsExpanded}">
+                <Grid IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
+                    <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
+                                  ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"/>
+                </Grid>
+            </Expander>
+        </local:Card>
     </DataTemplate>
 
 </ResourceDictionary>

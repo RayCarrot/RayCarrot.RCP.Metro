@@ -42,9 +42,9 @@
     </Storyboard>
 
     <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
-        <!-- TODO-UPDATE: Fix colors, have them work in light mode -->
-        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Button.Flat.Background.Pressed}" />
-        <Setter Property="metro:HeaderedControlHelper.HeaderBackground" Value="{DynamicResource MahApps.Brushes.Button.Flat.Background.Pressed}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="metro:HeaderedControlHelper.HeaderForeground" Value="{DynamicResource MahApps.Colors.ThemeForeground}" />
+        <Setter Property="metro:HeaderedControlHelper.HeaderBackground" Value="Transparent" />
 
         <Setter Property="metro:HeaderedControlHelper.HeaderMargin" Value="10 0 0 0" />
         <Setter Property="Padding" Value="10 0" />
@@ -58,7 +58,7 @@
                 
                 Modified from https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/MaterialDesignThemes.Wpf/Themes/MaterialDesignTheme.Expander.xaml
                 
-                Only thing changed was the addition of Border.LayoutTransform
+                Only thing changed was the addition of Border.LayoutTransform and forced header foreground
                 
                 -->
                 <ControlTemplate TargetType="{x:Type Expander}">
@@ -90,17 +90,8 @@
                                               FontWeight="{TemplateBinding metro:HeaderedControlHelper.HeaderFontWeight}"
                                               IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                               Style="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(metro:ExpanderHelper.HeaderDownStyle)}"
-                                              UseLayoutRounding="False">
-                                    <ToggleButton.Foreground>
-                                        <MultiBinding Converter="{x:Static metro:BackgroundToForegroundConverter.Instance}">
-                                            <Binding Mode="OneWay"
-                                                     Path="(metro:HeaderedControlHelper.HeaderBackground)"
-                                                     RelativeSource="{RelativeSource TemplatedParent}" />
-                                            <Binding Mode="OneWay"
-                                                     Path="(metro:HeaderedControlHelper.HeaderForeground)"
-                                                     RelativeSource="{RelativeSource TemplatedParent}" />
-                                        </MultiBinding>
-                                    </ToggleButton.Foreground>
+                                              UseLayoutRounding="False"
+                                              Foreground="{TemplateBinding metro:HeaderedControlHelper.HeaderForeground}">
                                 </ToggleButton>
                             </Border>
                             <Border x:Name="ExpandSite"
