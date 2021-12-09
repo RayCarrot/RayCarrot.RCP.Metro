@@ -106,7 +106,10 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                     new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"))).
                 OrderBy(x => x.Text.Value));
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems));
+            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems)
+            {
+                FilePath = saveFile
+            });
 
             Logger.Info("Rayman Legends slot has been loaded");
         }

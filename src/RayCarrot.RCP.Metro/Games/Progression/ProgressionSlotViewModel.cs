@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Media;
+using NLog;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -31,12 +35,16 @@ public class ProgressionSlotViewModel : BaseViewModel
         Is100Percent = percentage == 100;
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     public LocalizedString Name { get; }
     public int Index { get; }
     public int? CollectiblesCount { get; }
     public int? TotalCollectiblesCount { get; }
     public double Percentage { get; }
     public bool Is100Percent { get; }
+
+    public FileSystemPath FilePath { get; init; }
 
     public Brush ProgressBrush
     {
@@ -51,6 +59,32 @@ public class ProgressionSlotViewModel : BaseViewModel
         }
     }
 
+    public ObservableCollection<DuoGridItemViewModel> InfoItems { get; } = new();
+
     public ObservableCollection<ProgressionDataViewModel> PrimaryDataItems { get; }
     public ObservableCollection<ProgressionDataViewModel> DataItems { get; }
+
+    protected Task LoadInfoItemsAsync() => Task.CompletedTask;
+
+    public virtual async Task RefreshInfoItemsAsync(Games game)
+    {
+        try
+        {
+            InfoItems.Clear();
+
+            if (FilePath.FileExists)
+            {
+                // TODO-UPDATE: Localize
+                InfoItems.Add(new DuoGridItemViewModel("File", FilePath));
+                InfoItems.Add(new DuoGridItemViewModel("Size", await Task.Run(() => FilePath.GetSize().ToString())));
+                InfoItems.Add(new DuoGridItemViewModel("Last Modified", FilePath.GetFileInfo().LastWriteTime.ToShortDateString()));
+            }
+
+            await LoadInfoItemsAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Error refreshing info items for {0}", game);
+        }
+    }
 }

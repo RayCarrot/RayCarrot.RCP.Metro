@@ -118,7 +118,15 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
 
                     if (!game.Slots.Any())
                         GameItems.Remove(game);
+                }
 
+                // Load slot infos
+                foreach (ProgressionGameViewModel game in GameItems)
+                {
+                    foreach (ProgressionSlotViewModel slot in game.Slots)
+                    {
+                        await slot.RefreshInfoItemsAsync(game.Game);
+                    }
                 }
 
                 Logger.Info("Refreshed progression game items");

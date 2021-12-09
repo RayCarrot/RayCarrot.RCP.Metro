@@ -57,7 +57,10 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
                 new ProgressionDataViewModel(true, GameProgression_Icon.R1_Cage, cages, 102),
                 new ProgressionDataViewModel(false, GameProgression_Icon.R1_Continue, saveData.ContinuesCount),
                 new ProgressionDataViewModel(false, GameProgression_Icon.R1_Life, saveData.StatusBar.LivesCount),
-            }));
+            })
+            {
+                FilePath = filePath
+            });
 
             Logger.Info("Rayman 1 slot has been loaded");
         }

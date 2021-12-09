@@ -7,6 +7,19 @@
         <StackPanel Orientation="Horizontal" />
     </ItemsPanelTemplate>
 
+    <Style x:Key="Separator.Bold" x:Shared="False" TargetType="{x:Type Separator}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Separator}">
+                    <Border Height="1" 
+                            SnapsToDevicePixels="true" 
+                            BorderBrush="{TemplateBinding Foreground}" 
+                            BorderThickness="0 0 0 1"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Progression Data Item (Horizontal) -->
 
     <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Horizontal" DataType="{x:Type local:ProgressionDataViewModel}">
@@ -220,11 +233,33 @@
         <Expander Margin="0 0 0 8"
                   Header="{Binding}"
                   HeaderTemplate="{StaticResource DataTemplate.ProgressionSlotHeader}">
-            <Grid>
-                <ItemsControl ItemsSource="{Binding Path=DataItems}"
+            <StackPanel>
+
+                <ItemsControl Grid.IsSharedSizeScope="True"
+                              Margin="0 0 0 8"
+                              ItemsSource="{Binding Path=InfoItems, Mode=OneTime}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:DuoGridItem Text="{Binding Path=Text}"
+                                               Header="{Binding Path=Header}"
+                                               MinUserLevel="{Binding Path=MinUserLevel}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Separator Style="{StaticResource Separator.Bold}"
+                           Margin="0 0 0 8"
+                           Visibility="{Binding Path=InfoItems, Converter={local:EnumerableEmptyVisibilityConverter}}"/>
+
+                <!-- TODO-UPDATE: Localize -->
+                <TextBlock Style="{StaticResource TextBlock.Header}"
+                           Text="Current Progress"
+                           Margin="0 0 0 8" />
+
+                <ItemsControl ItemsSource="{Binding Path=DataItems, Mode=OneTime}"
                               ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Vertical}"
                               Margin="0 0 0 -8" />
-            </Grid>
+            </StackPanel>
         </Expander>
     </DataTemplate>
 

@@ -108,7 +108,10 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             progressItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.RO_Lum, new ConstLocString($"{collectedLums}/{availableLums}")));
             progressItems.Insert(1, new ProgressionDataViewModel(true, GameProgression_Icon.RO_RedTooth, new ConstLocString($"{collectedTeeth}/{availableTeeth}")));
 
-            Slots.Add(new ProgressionSlotViewModel(null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems));
+            Slots.Add(new ProgressionSlotViewModel(null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems)
+            {
+                FilePath = filePath
+            });
 
             Logger.Info("Rayman Jungle Run slot has been loaded");
         }

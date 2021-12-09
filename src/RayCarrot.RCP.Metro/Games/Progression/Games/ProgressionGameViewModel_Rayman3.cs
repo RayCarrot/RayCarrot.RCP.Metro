@@ -68,7 +68,10 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
                 new ProgressionDataViewModel(false, GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
             };
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems));
+            Slots.Add(new ProgressionSlotViewModel(new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems)
+            {
+                FilePath = filePath
+            });
 
             Logger.Info("Rayman 3 slot has been loaded");
 

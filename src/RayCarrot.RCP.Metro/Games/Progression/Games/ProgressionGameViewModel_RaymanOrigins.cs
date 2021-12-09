@@ -121,7 +121,10 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Medal, lumAttack3, 51));
             progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Trophy, timeAttack2, 31));
 
-            Slots.Add(new ProgressionSlotViewModel(null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems));
+            Slots.Add(new ProgressionSlotViewModel(null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems)
+            {
+                FilePath = filePath
+            });
 
             Logger.Info("Rayman Origins slot has been loaded");
         }

@@ -118,7 +118,10 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 AddRaceItem("sg_racelevels_bestnumber_lums", () => Resources.Progression_RM_Lums, false);
             }
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems));
+            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems)
+            {
+                FilePath = filePath
+            });
 
             Logger.Info("Rayman M/Arena slot has been loaded");
         }
