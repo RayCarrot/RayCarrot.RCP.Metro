@@ -173,8 +173,10 @@
             <Grid Grid.Column="3"
                   HorizontalAlignment="Right"
                   Visibility="{Binding Path=IsLoading, Converter={local:InvertedBooleanToVisibilityConverter}}">
-                <ContentPresenter Content="{Binding Path=PrimarySlot}" 
-                                  ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
+                <Grid Visibility="{Binding Path=PrimarySlot, Converter={local:InvertedObjectNullToVisibilityConverter}}">
+                    <ContentPresenter Content="{Binding Path=PrimarySlot}" 
+                                      ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
+                </Grid>
             </Grid>
 
             <!-- Loading -->

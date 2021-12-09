@@ -15,6 +15,12 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    {
+        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
+        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
+    };
+
     protected override async Task LoadSlotsAsync()
     {
         if (!InstallDir.DirectoryExists)

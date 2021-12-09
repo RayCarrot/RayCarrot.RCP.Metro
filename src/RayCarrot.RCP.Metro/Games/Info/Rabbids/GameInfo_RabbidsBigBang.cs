@@ -49,5 +49,7 @@ public sealed class GameInfo_RabbidsBigBang : GameInfo
     /// </summary>
     public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RabbidsBigBang().Yield();
+
     #endregion
 }

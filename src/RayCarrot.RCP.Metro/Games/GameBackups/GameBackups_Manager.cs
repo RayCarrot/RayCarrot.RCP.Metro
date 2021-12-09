@@ -235,7 +235,7 @@ public class GameBackups_Manager
     /// </summary>
     /// <param name="backupInformation">The backup information</param>
     /// <returns>True if the backup was successful</returns>
-    public async Task<bool> BackupAsync(IGameBackups_BackupInfo backupInformation)
+    public async Task<bool> BackupAsync(GameBackups_BackupInfo backupInformation)
     {
         using (await AsyncLock.LockAsync())
         {
@@ -370,7 +370,7 @@ public class GameBackups_Manager
     /// </summary>
     /// <param name="backupInformation">The backup information</param>
     /// <returns>True if the backup was successful</returns>
-    public async Task<bool> RestoreAsync(IGameBackups_BackupInfo backupInformation)
+    public async Task<bool> RestoreAsync(GameBackups_BackupInfo backupInformation)
     {
         using (await AsyncLock.LockAsync())
         {

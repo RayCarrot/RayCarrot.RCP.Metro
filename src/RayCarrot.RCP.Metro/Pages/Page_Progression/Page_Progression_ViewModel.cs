@@ -112,13 +112,8 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
                     GameItems.AddRange(game.GetGameInfo().GetProgressionGameViewModels);
 
                 // Load the game items
-                foreach (ProgressionGameViewModel game in GameItems.ToArray())
-                {
+                foreach (ProgressionGameViewModel game in GameItems)
                     await game.LoadAsync();
-
-                    if (!game.Slots.Any())
-                        GameItems.Remove(game);
-                }
 
                 // Load slot infos
                 foreach (ProgressionGameViewModel game in GameItems)

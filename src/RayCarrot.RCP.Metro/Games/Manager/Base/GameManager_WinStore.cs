@@ -320,9 +320,9 @@ public abstract class GameManager_WinStore : GameManager
     /// </summary>
     /// <param name="fullPackageName">The full package name</param>
     /// <returns>The backup directories</returns>
-    public static List<GameBackups_Directory> GetWinStoreBackupDirs(string fullPackageName)
+    public static GameBackups_Directory[] GetWinStoreBackupDirs(string fullPackageName)
     {
-        return new List<GameBackups_Directory>()
+        return new GameBackups_Directory[]
         {
             new GameBackups_Directory(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + fullPackageName, SearchOption.AllDirectories, "*", "0", 0),
             new GameBackups_Directory(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + fullPackageName + "LocalState", SearchOption.TopDirectoryOnly, "*", "0", 1)

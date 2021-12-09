@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using NLog;
@@ -15,6 +16,11 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
     public ProgressionGameViewModel_RaymanMArena(Games game) : base(game) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    {
+        new GameBackups_Directory(Game.GetInstallDir() + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
+    };
 
     protected override async Task LoadSlotsAsync()
     {

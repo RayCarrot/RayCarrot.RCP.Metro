@@ -48,6 +48,19 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanFiestaRun_ViewModel();
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels
+    {
+        get
+        {
+            var manager = Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore);
+
+            // Get every installed version
+            IEnumerable<UserData_FiestaRunEdition> versions = EnumHelpers.GetValues<UserData_FiestaRunEdition>().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);
+
+            return versions.Select(x => new ProgressionGameViewModel_RaymanFiestaRun(x, $"{Games.RaymanFiestaRun.GetGameInfo().DisplayName} {manager.GetFiestaRunEditionDisplayName(x)}"));
+        }
+    }
+
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
@@ -56,7 +69,7 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     /// <summary>
     /// Gets the backup directories for the game
     /// </summary>
-    public override IList<IGameBackups_BackupInfo> GetBackupInfos
+    public override IList<GameBackups_BackupInfo> GetBackupInfos
     {
         get
         {
@@ -70,7 +83,7 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
             {
                 var backupName = $"Rayman Fiesta Run ({x})";
 
-                return new GameBackups_BackupInfo(backupName, GameManager_WinStore.GetWinStoreBackupDirs(manager.GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetGameInfo().DisplayName} {manager.GetFiestaRunEditionDisplayName(x)}") as IGameBackups_BackupInfo;
+                return new GameBackups_BackupInfo(backupName, GameManager_WinStore.GetWinStoreBackupDirs(manager.GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetGameInfo().DisplayName} {manager.GetFiestaRunEditionDisplayName(x)}");
             }).ToArray();
         }
     }

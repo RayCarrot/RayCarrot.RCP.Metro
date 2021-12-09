@@ -15,6 +15,11 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    {
+        new GameBackups_Directory(Game.GetInstallDir() + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
+    };
+
     protected override async Task LoadSlotsAsync()
     {
         FileSystemPath saveDir = InstallDir + "GAMEDATA" + "SaveGame";

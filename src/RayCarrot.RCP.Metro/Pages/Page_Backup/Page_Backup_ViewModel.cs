@@ -101,7 +101,7 @@ public class Page_Backup_ViewModel : BaseRCPViewModel
                 foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                 {
                     // Enumerate the backup info
-                    foreach (IGameBackups_BackupInfo info in game.GetGameInfo().GetBackupInfos)
+                    foreach (GameBackups_BackupInfo info in game.GetGameInfo().GetBackupInfos)
                     {
                         // Refresh the info
                         await info.RefreshAsync();

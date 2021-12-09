@@ -17,6 +17,11 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    {
+        new GameBackups_Directory(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends", SearchOption.AllDirectories, "*", "0", 0)
+    };
+
     /// <summary>
     /// Gets the level ID's for each level
     /// </summary>

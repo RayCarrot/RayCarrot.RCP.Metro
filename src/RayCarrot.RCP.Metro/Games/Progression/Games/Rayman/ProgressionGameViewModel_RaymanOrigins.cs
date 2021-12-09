@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -16,6 +17,11 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
     public ProgressionGameViewModel_RaymanOrigins() : base(Games.RaymanOrigins) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    {
+        new GameBackups_Directory(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins", SearchOption.AllDirectories, "*", "0", 0)
+    };
 
     protected override async Task LoadSlotsAsync()
     {

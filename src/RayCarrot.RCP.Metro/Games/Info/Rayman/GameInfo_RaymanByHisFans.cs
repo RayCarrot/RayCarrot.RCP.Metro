@@ -70,7 +70,7 @@ public sealed class GameInfo_RaymanByHisFans : GameInfo
     /// </summary>
     public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_RaymanDesigner_ViewModel(Game);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanDesigner(Game).Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanByHisFans().Yield();
 
     /// <summary>
     /// Optional RayMap URL

@@ -22,7 +22,7 @@ public class Page_Backup_ItemViewModel : BaseRCPViewModel
     /// </summary>
     /// <param name="game">The game</param>
     /// <param name="backupInfo">The backup info</param>
-    public Page_Backup_ItemViewModel(Games game, IGameBackups_BackupInfo backupInfo)
+    public Page_Backup_ItemViewModel(Games game, GameBackups_BackupInfo backupInfo)
     {
         // Get the info
         var gameInfo = game.GetGameInfo();
@@ -69,7 +69,7 @@ public class Page_Backup_ItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The backup info
     /// </summary>
-    public IGameBackups_BackupInfo BackupInfo { get; }
+    public GameBackups_BackupInfo BackupInfo { get; }
 
     /// <summary>
     /// Indicates if there is a backup available to restore from

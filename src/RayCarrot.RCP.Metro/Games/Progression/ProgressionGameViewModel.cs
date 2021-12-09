@@ -34,10 +34,13 @@ public abstract class ProgressionGameViewModel : BaseViewModel
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
 
+    protected virtual string BackupName => Game.GetGameInfo().BackupName;
+    protected virtual GameBackups_Directory[] BackupDirectories => Array.Empty<GameBackups_Directory>();
+
     public ObservableCollection<ProgressionSlotViewModel> Slots { get; }
     public ProgressionSlotViewModel? PrimarySlot { get; private set; }
 
-    protected abstract Task LoadSlotsAsync();
+    protected virtual Task LoadSlotsAsync() => Task.CompletedTask;
 
     public async Task LoadAsync()
     {

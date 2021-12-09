@@ -13,9 +13,28 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanDesigner(Games game) : base(game) { }
+    protected ProgressionGameViewModel_RaymanDesigner(Games game) : base(game) { }
+    public ProgressionGameViewModel_RaymanDesigner() : base(Games.RaymanDesigner) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    {
+        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
+        new GameBackups_Directory(Game.GetInstallDir() + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
+        //
+        // Note:
+        // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
+        // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
+        // correct mapper directories within each world directory
+        //
+        new GameBackups_Directory(Game.GetInstallDir() + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
+        new GameBackups_Directory(Game.GetInstallDir() + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
+        new GameBackups_Directory(Game.GetInstallDir() + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
+        new GameBackups_Directory(Game.GetInstallDir() + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
+        new GameBackups_Directory(Game.GetInstallDir() + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
+        new GameBackups_Directory(Game.GetInstallDir() + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
+    };
 
     protected override async Task LoadSlotsAsync()
     {

@@ -8,11 +8,7 @@ using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
-
-/// <summary>
-/// Base backup info to use for <see cref="IGameBackups_BackupInfo"/>
-/// </summary>
-public class GameBackups_BackupInfo : IGameBackups_BackupInfo
+public class GameBackups_BackupInfo
 {
     #region Constructor
 

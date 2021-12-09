@@ -65,6 +65,8 @@ public sealed class GameInfo_RaymanRavingRabbids : GameInfo
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanRavingRabbids_ViewModel(Game);
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanRavingRabbids().Yield();
+
     /// <summary>
     /// Gets the file links for the game
     /// </summary>

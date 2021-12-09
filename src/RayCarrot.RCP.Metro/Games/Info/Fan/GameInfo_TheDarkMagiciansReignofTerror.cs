@@ -63,5 +63,7 @@ public sealed class GameInfo_TheDarkMagiciansReignofTerror : GameInfo
         Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Rayman__Dark_Magician_s_reign_of_terror_"
     };
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_TheDarkMagiciansReignofTerror().Yield();
+
     #endregion
 }

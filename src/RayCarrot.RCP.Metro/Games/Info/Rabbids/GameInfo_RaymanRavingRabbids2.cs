@@ -69,5 +69,7 @@ public sealed class GameInfo_RaymanRavingRabbids2 : GameInfo
         new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "SettingsApplication.exe", Arguments: $"/{Services.Data.Game_RRR2LaunchMode.ToString().ToLower()}")
     };
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanRavingRabbids2().Yield();
+
     #endregion
 }

@@ -26,7 +26,7 @@ public sealed class GameInfo_RaymanDesigner : GameInfo
         // Note:
         // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
         // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
-        // correct mapper directories withing each world directory
+        // correct mapper directories within each world directory
         //
         new GameBackups_Directory(Game.GetInstallDir() + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
         new GameBackups_Directory(Game.GetInstallDir() + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
@@ -80,7 +80,7 @@ public sealed class GameInfo_RaymanDesigner : GameInfo
     /// </summary>
     public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_RaymanDesigner_ViewModel(Game);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanDesigner(Game).Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanDesigner().Yield();
 
     /// <summary>
     /// Optional RayMap URL

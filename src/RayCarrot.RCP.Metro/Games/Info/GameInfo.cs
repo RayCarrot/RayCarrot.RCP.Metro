@@ -116,15 +116,15 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// Gets the backup infos from the directories specified from <see cref="GetBackupDirectories"/>
     /// </summary>
-    public virtual IList<IGameBackups_BackupInfo> GetBackupInfos
+    public virtual IList<GameBackups_BackupInfo> GetBackupInfos
     {
         get
         {
             var backupDirectories = GetBackupDirectories;
 
             return backupDirectories == null
-                ? new List<IGameBackups_BackupInfo>()
-                : new List<IGameBackups_BackupInfo>()
+                ? new List<GameBackups_BackupInfo>()
+                : new List<GameBackups_BackupInfo>()
                 {
                     new GameBackups_BackupInfo(BackupName, backupDirectories, DisplayName)
                 };

@@ -55,5 +55,7 @@ public sealed class GameInfo_RaymanRedemption : GameInfo
     /// </summary>
     public override bool CanBeDownloaded => false;
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanRedemption().Yield();
+
     #endregion
 }

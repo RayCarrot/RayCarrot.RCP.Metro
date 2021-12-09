@@ -52,6 +52,16 @@ public sealed class GameInfo_EducationalDos : GameInfo
     /// </summary>
     public override FrameworkElement OptionsUI => new GameOptions_EducationalDos_UI();
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels
+    {
+        get
+        {
+            return Services.Data.Game_EducationalDosBoxGames.
+                Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).
+                Select(x => new ProgressionGameViewModel_EducationalDos(x));
+        }
+    }
+
     /// <summary>
     /// Optional RayMap URL
     /// </summary>
@@ -65,7 +75,7 @@ public sealed class GameInfo_EducationalDos : GameInfo
     /// <summary>
     /// Gets the backup directories for the game
     /// </summary>
-    public override IList<IGameBackups_BackupInfo> GetBackupInfos
+    public override IList<GameBackups_BackupInfo> GetBackupInfos
     {
         get
         {
@@ -83,7 +93,7 @@ public sealed class GameInfo_EducationalDos : GameInfo
                         new GameBackups_Directory(x.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{x.LaunchMode}??.SAV", "0", 0),
                         new GameBackups_Directory(x.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{x.LaunchMode}.CFG", "1", 0)
                     }, x.Name);
-            }).ToArray<IGameBackups_BackupInfo>();
+            }).ToArray();
         }
     }
 
