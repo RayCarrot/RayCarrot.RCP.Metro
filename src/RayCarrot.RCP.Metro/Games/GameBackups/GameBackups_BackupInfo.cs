@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,6 +7,7 @@ using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
+
 public class GameBackups_BackupInfo
 {
     #region Constructor
@@ -74,17 +74,22 @@ public class GameBackups_BackupInfo
     /// The existing backups for this game, ordered by priority.
     /// The first backup in the collection is always the one to restore.
     /// </summary>
-    public GameBackups_ExistingBackup[] ExistingBackups { get; set; }
+    public GameBackups_ExistingBackup[]? ExistingBackups { get; set; }
+
+    /// <summary>
+    /// Gets the primary backup to be used when restoring
+    /// </summary>
+    public GameBackups_ExistingBackup? GetPrimaryBackup => ExistingBackups?.FirstOrDefault();
 
     /// <summary>
     /// The backup directories to use when performing a backup
     /// </summary>
-    public GameBackups_Directory[] BackupDirectories { get; set; }
+    public GameBackups_Directory[]? BackupDirectories { get; set; }
 
     /// <summary>
     /// The backup directories to use when performing a restore
     /// </summary>
-    public GameBackups_Directory[] RestoreDirectories { get; set; }
+    public GameBackups_Directory[]? RestoreDirectories { get; set; }
 
     /// <summary>
     /// The latest available backup version
@@ -108,10 +113,10 @@ public class GameBackups_BackupInfo
     {
         try
         {
-            var path = Services.Data.Backup_BackupLocation + AppViewModel.BackupFamily;
+            FileSystemPath path = Services.Data.Backup_BackupLocation + AppViewModel.BackupFamily;
 
             if (!path.DirectoryExists)
-                return new GameBackups_ExistingBackup[0];
+                return Array.Empty<GameBackups_ExistingBackup>();
 
             return Directory.GetFileSystemEntries(path, $"{BackupName}*", SearchOption.TopDirectoryOnly).
                 Select(x => new GameBackups_ExistingBackup(x)).
@@ -123,7 +128,7 @@ public class GameBackups_BackupInfo
         {
             Logger.Error(ex, "Getting existing backups");
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GetExistingBackupsError, GameDisplayName));
-            return new GameBackups_ExistingBackup[0];
+            return Array.Empty<GameBackups_ExistingBackup>();
         }
     }
 
@@ -140,10 +145,12 @@ public class GameBackups_BackupInfo
         ExistingBackups = await GetExistingBackupsAsync();
 
         // Get the latest backup version to restore from
-        LatestAvailableRestoreVersion = ExistingBackups.FirstOrDefault()?.BackupVersion ?? -1;
+        LatestAvailableRestoreVersion = GetPrimaryBackup?.BackupVersion ?? -1;
 
-        BackupDirectories = AllBackupDirectories.TryGetValue(LatestAvailableBackupVersion) ?? new GameBackups_Directory[0];
-        RestoreDirectories = LatestAvailableRestoreVersion == -1 ? new GameBackups_Directory[0] : AllBackupDirectories.TryGetValue(LatestAvailableRestoreVersion) ?? new GameBackups_Directory[0];
+        BackupDirectories = AllBackupDirectories.TryGetValue(LatestAvailableBackupVersion) ?? Array.Empty<GameBackups_Directory>();
+        RestoreDirectories = LatestAvailableRestoreVersion == -1 
+            ? Array.Empty<GameBackups_Directory>() 
+            : AllBackupDirectories.TryGetValue(LatestAvailableRestoreVersion) ?? Array.Empty<GameBackups_Directory>();
     }
 
     #endregion

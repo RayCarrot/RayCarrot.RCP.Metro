@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <ItemsPanelTemplate x:Key="ItemsPanelTemplate.Horizontal" x:Shared="False">
         <StackPanel Orientation="Horizontal" />
@@ -106,6 +107,8 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <!-- Image -->
@@ -171,7 +174,7 @@
             <!-- Percentage -->
 
             <Grid Grid.Column="3"
-                  HorizontalAlignment="Right"
+                  Margin="0 0 25 0" 
                   Visibility="{Binding Path=IsLoading, Converter={local:InvertedBooleanToVisibilityConverter}}">
                 <Grid Visibility="{Binding Path=PrimarySlot, Converter={local:InvertedObjectNullToVisibilityConverter}}">
                     <ContentPresenter Content="{Binding Path=PrimarySlot}" 
@@ -182,9 +185,76 @@
             <!-- Loading -->
 
             <Grid Grid.Column="3"
-                  HorizontalAlignment="Right"
                   Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}">
                 <metro:ProgressRing />
+            </Grid>
+
+            <!-- Backup Options -->
+
+            <StackPanel Grid.Column="4"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        IsEnabled="{Binding Path=IsPerformingBackupRestore, Converter={local:InvertedBooleanConverter}}"
+                        Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={local:InvertedBooleanToVisibilityHiddenConverter}}">
+                <Button Style="{StaticResource Button.Flat}"
+                        ToolTip="{Resx Backup_Backup}"
+                        Command="{Binding Path=BackupCommand, Mode=OneTime}"
+                        Margin="0 0 10 0">
+                    <iconpacks:PackIconMaterial Background="Transparent"
+                                                Kind="FolderUploadOutline"
+                                                Width="20"
+                                                Height="20" />
+                </Button>
+                <Button Style="{StaticResource Button.Flat}"
+                        ToolTip="{Resx Backup_Restore}"
+                        Command="{Binding Path=RestoreCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=CanRestoreBackup, Converter={local:BooleanToVisibilityHiddenConverter}}"
+                        Margin="0 0 10 0">
+                    <iconpacks:PackIconMaterial Background="Transparent"
+                                                Kind="FolderDownloadOutline"
+                                                Width="20"
+                                                Height="20" />
+                </Button>
+            </StackPanel>
+
+            <!-- Backup Loading -->
+
+            <Grid Grid.Column="4"
+                  Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={local:BooleanToVisibilityHiddenConverter}}"
+                  Margin="0 0 10 0">
+                <metro:ProgressRing />
+            </Grid>
+
+            <!-- Backup Status -->
+
+            <Grid Grid.Column="5" 
+                  VerticalAlignment="Center"
+                  Width="20">
+                <!-- TODO-UPDATE: Localize -->
+                <iconpacks:PackIconMaterial Kind="CheckboxMarkedCircle"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=UpToDate}"
+                                            ToolTip="Backed up"
+                                            Foreground="#4CAF50"
+                                            Width="20"
+                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
+                <iconpacks:PackIconMaterial Kind="CloseCircle"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Outdated}"
+                                            ToolTip="Not backed up"
+                                            Foreground="#F44336"
+                                            Width="20"
+                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
+                <iconpacks:PackIconMaterial Kind="AlertCircle"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Error}"
+                                            ToolTip="Error reading backup"
+                                            Foreground="#F44336"
+                                            Width="20"
+                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
+                <iconpacks:PackIconMaterial Kind="SyncCircle"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Syncing}"
+                                            ToolTip="Syncing..."
+                                            Foreground="#3F51B5"
+                                            Width="20"
+                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
             </Grid>
 
         </Grid>
@@ -220,8 +290,7 @@
 
             <!-- Percentage -->
 
-            <Grid Grid.Column="2"
-                  HorizontalAlignment="Right">
+            <Grid Grid.Column="2">
                 <ContentPresenter Content="{Binding}" 
                                   ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
             </Grid>
@@ -251,7 +320,7 @@
 
                 <Separator Style="{StaticResource Separator.Bold}"
                            Margin="0 0 0 8"
-                           Visibility="{Binding Path=InfoItems, Converter={local:EnumerableEmptyVisibilityConverter}}"/>
+                           Visibility="{Binding Path=HasInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
 
                 <!-- TODO-UPDATE: Localize -->
                 <TextBlock Style="{StaticResource TextBlock.Header}"
@@ -272,10 +341,26 @@
             <Expander Header="{Binding}"
                       HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
                       IsExpanded="{Binding Path=IsExpanded}">
-                <Grid IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
+                <StackPanel IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
+                    <ItemsControl Grid.IsSharedSizeScope="True"
+                                  Margin="0 0 0 8"
+                                  ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:DuoGridItem Text="{Binding Path=Text}"
+                                                   Header="{Binding Path=Header}"
+                                                   MinUserLevel="{Binding Path=MinUserLevel}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Separator Style="{StaticResource Separator.Bold}"
+                               Margin="0 0 0 8"
+                               Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
+
                     <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
                                   ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"/>
-                </Grid>
+                </StackPanel>
             </Expander>
         </local:Card>
     </DataTemplate>

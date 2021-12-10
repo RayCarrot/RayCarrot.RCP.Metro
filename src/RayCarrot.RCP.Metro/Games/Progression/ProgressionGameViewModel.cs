@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Nito.AsyncEx;
 using NLog;
 using RayCarrot.IO;
 
@@ -19,13 +22,22 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         IsDemo = gameInfo.IsDemo;
         DisplayName = displayName ?? gameInfo.DisplayName;
         InstallDir = game.GetInstallDir(false);
-        
+
+        BackupInfoItems = new ObservableCollection<DuoGridItemViewModel>();
+        AsyncLock = new AsyncLock();
         Slots = new ObservableCollection<ProgressionSlotViewModel>();
+
+        BackupCommand = new AsyncRelayCommand(BackupAsync);
+        RestoreCommand = new AsyncRelayCommand(RestoreAsync);
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    public ICommand BackupCommand { get; }
+    public ICommand RestoreCommand { get; }
+
     protected FileSystemPath InstallDir { get; }
+    protected AsyncLock AsyncLock { get; }
 
     public Games Game { get; }
     public string IconSource { get; }
@@ -35,7 +47,15 @@ public abstract class ProgressionGameViewModel : BaseViewModel
     public bool IsExpanded { get; set; }
 
     protected virtual string BackupName => Game.GetGameInfo().BackupName;
-    protected virtual GameBackups_Directory[] BackupDirectories => Array.Empty<GameBackups_Directory>();
+    protected abstract GameBackups_Directory[] BackupDirectories { get; }
+    public BackupStatus CurrentBackupStatus { get; set; }
+    public bool IsGOGCloudSyncUsed { get; set; }
+    public GameBackups_BackupInfo? BackupInfo { get; set; }
+    public ObservableCollection<DuoGridItemViewModel> BackupInfoItems { get; }
+    public bool HasBackupInfoItems { get; set; }
+    public bool IsPerformingBackupRestore { get; set; }
+    public bool ShowBackupRestoreIndicator { get; set; }
+    public bool CanRestoreBackup { get; set; }
 
     public ObservableCollection<ProgressionSlotViewModel> Slots { get; }
     public ProgressionSlotViewModel? PrimarySlot { get; private set; }
@@ -44,29 +64,240 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
     public async Task LoadAsync()
     {
-        if (IsLoading)
+        using (await AsyncLock.LockAsync())
+        {
+            IsLoading = true;
+
+            try
+            {
+                Slots.Clear();
+
+                await LoadSlotsAsync();
+
+                PrimarySlot = Slots.OrderBy(x => x.Percentage).LastOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Failed to load progression for {0} ({1})", Game, DisplayName);
+
+                Slots.Clear();
+                PrimarySlot = null;
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+    }
+
+    public async Task LoadBackupAsync()
+    {
+        using (await AsyncLock.LockAsync())
+        {
+            Logger.Trace($"Loading backup for {Game}");
+
+            CurrentBackupStatus = BackupStatus.Syncing;
+
+            // Create backup info if null
+            BackupInfo ??= new GameBackups_BackupInfo(BackupName, BackupDirectories, DisplayName);
+
+            // Run as a task
+            await Task.Run(async () =>
+            {
+                // Refresh backup info
+                await BackupInfo.RefreshAsync();
+
+                // If the type is DOSBox, check if GOG cloud sync is being used
+                if (Game.GetGameType() == GameType.DosBox)
+                {
+                    try
+                    {
+                        FileSystemPath cloudSyncDir = Game.GetInstallDir(false).Parent + "cloud_saves";
+                        IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.GetFileSystemEntries(cloudSyncDir).Any();
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error(ex, "Getting if DOSBox game is using GOG cloud sync");
+                        IsGOGCloudSyncUsed = false;
+                    }
+                }
+                else
+                {
+                    IsGOGCloudSyncUsed = false;
+                }
+            });
+
+            // Get the primary backup
+            GameBackups_ExistingBackup? backup = BackupInfo.GetPrimaryBackup;
+
+            BackupInfoItems.Clear();
+
+            // NOTE: Not localized due to being debug only
+            BackupInfoItems.Add(new DuoGridItemViewModel("Latest backup version", BackupInfo.LatestAvailableBackupVersion.ToString(), UserLevel.Debug));
+
+            HasBackupInfoItems = Services.Data.App_UserLevel == UserLevel.Debug;
+
+            if (backup != null)
+            {
+                try
+                {
+                    // NOTE: Not localized due to being debug only
+                    BackupInfoItems.Add(new DuoGridItemViewModel("Backup version", backup.BackupVersion.ToString(), UserLevel.Debug));
+                    BackupInfoItems.Add(new DuoGridItemViewModel("Is backup compressed", backup.IsCompressed.ToString(), UserLevel.Debug));
+
+                    // Get the backup date
+                    // TODO-UPDATE: Localize
+                    BackupInfoItems.Add(new DuoGridItemViewModel("Backup date", backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString()));
+
+                    // Get the backup size
+                    // TODO-UPDATE: Localize
+                    BackupInfoItems.Add(new DuoGridItemViewModel("Backup size", backup.Path.GetSize().ToString()));
+
+                    // TODO-UPDATE: Implement - compare files to backup to check for differences
+                    CurrentBackupStatus = BackupStatus.UpToDate;
+
+                    HasBackupInfoItems = true;
+                    CanRestoreBackup = true;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Getting existing backup info");
+
+                    CanRestoreBackup = false;
+                    CurrentBackupStatus = BackupStatus.Error;
+
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, DisplayName));
+                }
+            }
+            else
+            {
+                CanRestoreBackup = false;
+                CurrentBackupStatus = BackupStatus.None;
+            }
+        }
+    }
+
+    public async Task BackupAsync()
+    {
+        if (IsPerformingBackupRestore)
             return;
 
-        IsLoading = true;
+        if (BackupInfo == null)
+            return;
 
         try
         {
-            Slots.Clear();
+            using (await AsyncLock.LockAsync())
+            {
+                IsPerformingBackupRestore = true;
 
-            await LoadSlotsAsync();
+                Logger.Trace($"Performing backup on {Game}");
 
-            PrimarySlot = Slots.OrderBy(x => x.Percentage).LastOrDefault();
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Failed to load progression for {0} ({1})", Game, DisplayName);
+                // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
+                if (IsGOGCloudSyncUsed)
+                    await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
-            Slots.Clear();
-            PrimarySlot = null;
+                // Refresh the backup info
+                await BackupInfo.RefreshAsync();
+
+                // Confirm backup if one already exists
+                if (BackupInfo.ExistingBackups.Any() && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                {
+                    Logger.Info("Backup canceled");
+                    return;
+                }
+
+                ShowBackupRestoreIndicator = true;
+
+                bool backupResult;
+
+                try
+                {
+                    // Perform the backup
+                    backupResult = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo));
+                }
+                finally
+                {
+                    ShowBackupRestoreIndicator = false;
+                }
+
+                if (backupResult)
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
+            }
+
+            await LoadBackupAsync();
         }
         finally
         {
-            IsLoading = false;
+            IsPerformingBackupRestore = false;
         }
+    }
+
+    public async Task RestoreAsync()
+    {
+        if (IsPerformingBackupRestore)
+            return;
+
+        if (BackupInfo == null)
+            return;
+
+        if (!CanRestoreBackup)
+            return;
+
+        try
+        {
+            using (await AsyncLock.LockAsync())
+            {
+                IsPerformingBackupRestore = true;
+
+                Logger.Trace($"Performing restore on {Game}");
+
+                // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
+                if (IsGOGCloudSyncUsed)
+                    await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
+
+                // Refresh the backup info
+                await BackupInfo.RefreshAsync();
+
+                // Confirm restore
+                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
+                {
+                    Logger.Info("Restore canceled");
+
+                    return;
+                }
+
+                ShowBackupRestoreIndicator = true;
+
+                bool backupResult;
+
+                try
+                {
+                    // Perform the restore
+                    backupResult = await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo));
+                }
+                finally
+                {
+                    ShowBackupRestoreIndicator = false;
+                }
+
+                if (backupResult)
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
+            }
+        }
+        finally
+        {
+            IsPerformingBackupRestore = false;
+            await LoadBackupAsync();
+        }
+    }
+
+    public enum BackupStatus
+    {
+        None,
+        UpToDate,
+        Outdated,
+        Syncing,
+        Error,
     }
 }

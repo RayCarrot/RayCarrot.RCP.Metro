@@ -379,7 +379,7 @@ public class GameBackups_Manager
             try
             {
                 // Get the backup directory
-                var existingBackup = backupInformation.ExistingBackups.FirstOrDefault();
+                var existingBackup = backupInformation.GetPrimaryBackup;
 
                 // Make sure a backup exists
                 if (existingBackup == null)

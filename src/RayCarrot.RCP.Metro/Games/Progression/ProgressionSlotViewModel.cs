@@ -60,6 +60,7 @@ public class ProgressionSlotViewModel : BaseViewModel
     }
 
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; } = new();
+    public bool HasInfoItems { get; set; }
 
     public ObservableCollection<ProgressionDataViewModel> PrimaryDataItems { get; }
     public ObservableCollection<ProgressionDataViewModel> DataItems { get; }
@@ -78,6 +79,11 @@ public class ProgressionSlotViewModel : BaseViewModel
                 InfoItems.Add(new DuoGridItemViewModel("File", FilePath));
                 InfoItems.Add(new DuoGridItemViewModel("Size", await Task.Run(() => FilePath.GetSize().ToString())));
                 InfoItems.Add(new DuoGridItemViewModel("Last Modified", FilePath.GetFileInfo().LastWriteTime.ToShortDateString()));
+                HasInfoItems = true;
+            }
+            else
+            {
+                HasInfoItems = false;
             }
 
             await LoadInfoItemsAsync();

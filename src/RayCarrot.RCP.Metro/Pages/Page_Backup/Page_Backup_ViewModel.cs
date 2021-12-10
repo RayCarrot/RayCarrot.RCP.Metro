@@ -113,7 +113,7 @@ public class Page_Backup_ViewModel : BaseRCPViewModel
                         GameBackupItems.Add(backupItem);
 
                         // Refresh the item
-                        await backupItem.RefreshAsync();
+                        //await backupItem.RefreshAsync();
                     }
                 }
             }

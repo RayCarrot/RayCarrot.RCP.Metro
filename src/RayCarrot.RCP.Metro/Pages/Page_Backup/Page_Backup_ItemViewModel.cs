@@ -162,142 +162,19 @@ public class Page_Backup_ItemViewModel : BaseRCPViewModel
     /// Refreshes the item
     /// </summary>
     /// <returns>The task</returns>
-    public async Task RefreshAsync()
-    {
-        try
-        {
-            var backupLocation = BackupInfo.ExistingBackups.FirstOrDefault();
-
-            if (backupLocation == null)
-            {
-                // NOTE: Not localized
-                DebugInfo = $"LatestBackupVersion = {LatestAvailableBackupVersion}";
-
-                return;
-            }
-
-            // Get the backup date
-            LastBackup = backupLocation.Path.GetFileSystemInfo().LastWriteTime;
-
-            // Get the backup size
-            BackupSize = backupLocation.Path.GetSize();
-
-            BackupVersion = backupLocation.BackupVersion;
-            IsCompressed = backupLocation.IsCompressed;
-
-            // NOTE: Not localized
-            DebugInfo = $"IsCompressed = {IsCompressed}" +
-                        $"{Environment.NewLine}" +
-                        $"BackupVersion = {BackupVersion}" +
-                        $"{Environment.NewLine}" +
-                        $"LatestBackupVersion = {LatestAvailableBackupVersion}";
-
-            CanRestore = true;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting backup info");
-
-            CanRestore = false;
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, BackupInfo.GameDisplayName));
-        }
-    }
+    public Task RefreshAsync() => throw new NotSupportedException("Obsolete");
 
     /// <summary>
     /// Restores the previous backup
     /// </summary>
     /// <returns>The task</returns>
-    public async Task RestoreAsync()
-    {
-        if (PerformingBackupRestore)
-            return;
-
-        // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
-        if (IsGOGCloudSyncUsed)
-            await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
-
-        try
-        {
-            PerformingBackupRestore = true;
-
-            // Refresh the backup info
-            await BackupInfo.RefreshAsync();
-
-            // Confirm restore
-            if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
-            {
-                Logger.Info("Restore canceled");
-
-                return;
-            }
-
-            ShowBackupRestoreIndicator = true;
-
-            // Perform the restore
-            if (await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo)))
-            {
-                ShowBackupRestoreIndicator = false;
-
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
-            }
-        }
-        finally
-        {
-            PerformingBackupRestore = false;
-            ShowBackupRestoreIndicator = false;
-        }
-    }
+    public Task RestoreAsync() => throw new NotSupportedException("Obsolete");
 
     /// <summary>
     /// Performs a new backup
     /// </summary>
     /// <returns>The task</returns>
-    public async Task BackupAsync()
-    {
-        if (PerformingBackupRestore)
-            return;
-
-        // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
-        if (IsGOGCloudSyncUsed)
-            await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
-
-        try
-        {
-            PerformingBackupRestore = true;
-
-            // Refresh the backup info
-            await BackupInfo.RefreshAsync();
-
-            // Confirm backup if one already exists
-            if (BackupInfo.ExistingBackups.Any() && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
-            {
-                Logger.Info("Backup canceled");
-                return;
-            }
-
-            ShowBackupRestoreIndicator = true;
-
-            // Perform the backup
-            if (await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo)))
-            {
-                ShowBackupRestoreIndicator = false;
-
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
-            }
-
-            // Refresh the backup info
-            await BackupInfo.RefreshAsync();
-
-            // Refresh the item
-            await RefreshAsync();
-        }
-        finally
-        {
-            PerformingBackupRestore = false;
-            ShowBackupRestoreIndicator = false;
-        }
-    }
+    public Task BackupAsync() => throw new NotSupportedException("Obsolete");
 
     #endregion
 }
