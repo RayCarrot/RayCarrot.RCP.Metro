@@ -25,6 +25,7 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
 
         // Create commands
         RefreshCommand = new AsyncRelayCommand(RefreshAsync);
+        BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
 
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(GameItems, Application.Current);
@@ -62,6 +63,7 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
     #region Commands
 
     public ICommand RefreshCommand { get; }
+    public ICommand BackupAllCommand { get; }
 
     #endregion
 
@@ -135,6 +137,39 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
                 Logger.Fatal(ex, "Refreshing progression");
                 throw;
             }
+        }
+    }
+
+    public async Task BackupAllAsync()
+    {
+        // Make sure no backups are running
+        if (GameItems.Any(x => x.IsPerformingBackupRestore))
+            return;
+
+        // Lock
+        using (await AsyncLock.LockAsync())
+        {
+            // Confirm backup
+            if (!await Services.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
+            {
+                Logger.Info("Backup canceled");
+
+                return;
+            }
+
+            int completed = 0;
+
+            // Perform each backup
+            foreach (ProgressionGameViewModel game in GameItems)
+            {
+                if (await game.BackupAsync(true))
+                    completed++;
+            }
+
+            if (completed == GameItems.Count)
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
+            else
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
         }
     }
 

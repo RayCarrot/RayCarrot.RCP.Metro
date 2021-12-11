@@ -16,11 +16,6 @@ public enum AppPage
     Progression,
 
     /// <summary>
-    /// The backup/restore page
-    /// </summary>
-    BackupRestore,
-
-    /// <summary>
     /// The utilities page
     /// </summary>
     Utilities,

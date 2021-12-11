@@ -27,7 +27,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         AsyncLock = new AsyncLock();
         Slots = new ObservableCollection<ProgressionSlotViewModel>();
 
-        BackupCommand = new AsyncRelayCommand(BackupAsync);
+        BackupCommand = new AsyncRelayCommand(async () => await BackupAsync());
         RestoreCommand = new AsyncRelayCommand(RestoreAsync);
     }
 
@@ -146,12 +146,12 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                     BackupInfoItems.Add(new DuoGridItemViewModel("Is backup compressed", backup.IsCompressed.ToString(), UserLevel.Debug));
 
                     // Get the backup date
-                    // TODO-UPDATE: Localize
-                    BackupInfoItems.Add(new DuoGridItemViewModel("Backup date", backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString()));
+                    // TODO-UPDATE: Update localized character casing
+                    BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupDate, backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString()));
 
                     // Get the backup size
-                    // TODO-UPDATE: Localize
-                    BackupInfoItems.Add(new DuoGridItemViewModel("Backup size", backup.Path.GetSize().ToString()));
+                    // TODO-UPDATE: Update localized character casing
+                    BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupSize, backup.Path.GetSize().ToString()));
 
                     // TODO-UPDATE: Implement - compare files to backup to check for differences
                     CurrentBackupStatus = BackupStatus.UpToDate;
@@ -177,13 +177,15 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         }
     }
 
-    public async Task BackupAsync()
+    public async Task<bool> BackupAsync(bool fromBatchOperation = false)
     {
         if (IsPerformingBackupRestore)
-            return;
+            return false;
 
         if (BackupInfo == null)
-            return;
+            return false;
+
+        bool success;
 
         try
         {
@@ -194,34 +196,34 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 Logger.Trace($"Performing backup on {Game}");
 
                 // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
-                if (IsGOGCloudSyncUsed)
+                if (IsGOGCloudSyncUsed && !fromBatchOperation)
                     await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
                 // Refresh the backup info
                 await BackupInfo.RefreshAsync();
 
                 // Confirm backup if one already exists
-                if (BackupInfo.ExistingBackups.Any() && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                if (!fromBatchOperation && 
+                    BackupInfo.ExistingBackups.Any() && 
+                    !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
                     Logger.Info("Backup canceled");
-                    return;
+                    return false;
                 }
 
                 ShowBackupRestoreIndicator = true;
 
-                bool backupResult;
-
                 try
                 {
                     // Perform the backup
-                    backupResult = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo));
+                    success = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo));
                 }
                 finally
                 {
                     ShowBackupRestoreIndicator = false;
                 }
 
-                if (backupResult)
+                if (success && !fromBatchOperation)
                     await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
             }
 
@@ -231,6 +233,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         {
             IsPerformingBackupRestore = false;
         }
+
+        return success;
     }
 
     public async Task RestoreAsync()

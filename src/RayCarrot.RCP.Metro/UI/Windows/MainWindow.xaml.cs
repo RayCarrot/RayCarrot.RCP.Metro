@@ -37,21 +37,21 @@ public partial class MainWindow : BaseWindow
     #region Private Methods
 
     /// <summary>
-    /// Refreshes the enabled state of the backup page based on if there are any games available
+    /// Refreshes the enabled state of the progression page based on if there are any games available
     /// </summary>
-    private void RefreshBackupPageEnabled() => Dispatcher?.Invoke(() =>
+    private void RefreshProgressionPageEnabled() => Dispatcher?.Invoke(() =>
     {
-        if (BackupPageTab == null)
+        if (ProgressionPageTab == null)
             return;
 
         try
         {
-            BackupPageTab.IsEnabled = Services.Data.Game_Games?.Any() ?? false;
+            ProgressionPageTab.IsEnabled = Services.Data.Game_Games?.Any() ?? false;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Refreshing backup page enabled");
-            BackupPageTab.IsEnabled = true;
+            Logger.Error(ex, "Refreshing progression page enabled");
+            ProgressionPageTab.IsEnabled = true;
         }
     });
 
@@ -88,17 +88,17 @@ public partial class MainWindow : BaseWindow
 
     private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
     {
-        // Disable the backup page tab when there are no games
+        // Disable the progression page tab when there are no games
         if (e.GameCollectionModified)
-            RefreshBackupPageEnabled();
+            RefreshProgressionPageEnabled();
 
         return Task.CompletedTask;
     }
 
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        // Refresh if the backup page should be enabled
-        RefreshBackupPageEnabled();
+        // Refresh if the progression page should be enabled
+        RefreshProgressionPageEnabled();
 
         // Set the data context for each overflow item
         foreach (var page in PageTabControl.Items.

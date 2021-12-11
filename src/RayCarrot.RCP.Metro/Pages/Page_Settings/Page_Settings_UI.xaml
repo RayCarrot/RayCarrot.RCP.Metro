@@ -226,6 +226,19 @@
                                       IsChecked="{Binding Path=App_HandleDownloadsManually}"
                                       local:UserLevelAssist.MinUserLevel="Advanced" />
 
+                            <StackPanel DataContext="{Binding Path=Data}">
+
+                                <TextBlock Style="{StaticResource TextBlock.Header}"
+                                           Text="{Resx Settings_BackupLocation}"
+                                           Margin="0 0 0 8"  />
+
+                                <local:BrowseBox SelectedPath="{Binding Path=Backup_BackupLocation}"
+                                                 UseCurrentPathAsDefaultLocationIfValid="True"
+                                                 BrowseType="Directory"
+                                                 PathValidation="DirectoryExistsAndNotEmpty" />
+
+                            </StackPanel>
+
                             <StackPanel local:UserLevelAssist.MinUserLevel="Technical"
                                         DataContext="{Binding Path=Data}">
 

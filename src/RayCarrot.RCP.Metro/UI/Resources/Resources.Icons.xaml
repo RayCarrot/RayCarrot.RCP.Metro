@@ -6,7 +6,7 @@
     <!-- Icons -->
 
     <iconPacks:PackIconMaterialKind x:Key="Icons.Games">GamepadVariantOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="Icons.Backup">BackupRestore</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Progression">TrophyVariantOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities">BriefcaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Mods">CircleEditOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Settings">CogOutline</iconPacks:PackIconMaterialKind>
@@ -25,7 +25,6 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Settings_Emulator">FileCogOutline</iconPacks:PackIconMaterialKind>
     
     <iconPacks:PackIconMaterialKind x:Key="Icons.GameOptions_Config">WrenchOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="Icons.GameOptions_Progression">TrophyVariantOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="Icons.Play">PlayOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Admin">Security</iconPacks:PackIconMaterialKind>
@@ -124,7 +123,7 @@
                        IconKind="{StaticResource Icons.Settings}" 
                        IconColor="{StaticResource Colors.Settings}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Progression" 
-                       IconKind="{StaticResource Icons.GameOptions_Progression}"
+                       IconKind="{StaticResource Icons.Progression}"
                        IconColor="{StaticResource Colors.Progression}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Config" 
                        IconKind="{StaticResource Icons.GameOptions_Config}"
