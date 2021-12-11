@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -60,7 +61,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
     public ObservableCollection<ProgressionSlotViewModel> Slots { get; }
     public ProgressionSlotViewModel? PrimarySlot { get; private set; }
 
-    protected virtual Task LoadSlotsAsync() => Task.CompletedTask;
+    protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync() => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
 
     public async Task LoadAsync()
     {
@@ -72,7 +73,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
             {
                 Slots.Clear();
 
-                await LoadSlotsAsync();
+                await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync())
+                    Slots.Add(slot);
 
                 PrimarySlot = Slots.OrderBy(x => x.Percentage).LastOrDefault();
             }

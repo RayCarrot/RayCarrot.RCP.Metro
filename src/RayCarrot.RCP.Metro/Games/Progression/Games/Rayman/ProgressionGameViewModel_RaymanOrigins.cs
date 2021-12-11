@@ -23,7 +23,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
         new GameBackups_Directory(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins", SearchOption.AllDirectories, "*", "0", 0)
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         // Get the save data directory
         FileSystemPath saveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins" + "Savegame";
@@ -34,7 +34,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
         if (lvlConfig == null)
         {
             Logger.Error("Rayman Origins level config is null");
-            return;
+            yield break;
         }
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
@@ -127,10 +127,10 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Medal, lumAttack3, 51));
             progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Trophy, timeAttack2, 31));
 
-            Slots.Add(new ProgressionSlotViewModel(null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems)
+            yield return new ProgressionSlotViewModel(null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems)
             {
                 FilePath = filePath
-            });
+            };
 
             Logger.Info("Rayman Origins slot has been loaded");
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,13 +17,13 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
     protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_WinStore>().FullPackageName);
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         string packageName = Game.GetManager<GameManager_WinStore>().FullPackageName;
         FileSystemPath saveFile = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + packageName + "LocalState" + "playerprefs.dat";
 
         if (!saveFile.FileExists)
-            return;
+            yield break;
 
         Logger.Info("Rabbids Big Bang save is being loaded...");
 
@@ -52,10 +51,10 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
             }
         }
 
-        Slots.Add(new ProgressionSlotViewModel(null, 0, score, maxScore, new ProgressionDataViewModel[]
+        yield return new ProgressionSlotViewModel(null, 0, score, maxScore, new ProgressionDataViewModel[]
         {
             new ProgressionDataViewModel(true, GameProgression_Icon.RabbidsBigBang_Score, score, maxScore),
-        }));
+        });
 
         Logger.Info("Rabbids Big Bang save has been loaded");
     }

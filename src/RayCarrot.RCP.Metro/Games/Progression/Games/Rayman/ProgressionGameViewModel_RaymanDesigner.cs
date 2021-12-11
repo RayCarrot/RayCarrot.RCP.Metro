@@ -36,7 +36,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         FileSystemPath saveDir = InstallDir + "PCMAP";
 
@@ -46,7 +46,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         if (!saveDir.DirectoryExists)
         {
             Logger.Info("Saves were not loaded due to not being found");
-            return;
+            yield break;
         }
 
         string[] shortWorldNames = { "", "JUN", "MUS", "MON", "IMA", "CAV", "CAK" };
@@ -117,7 +117,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         // Add levels completed
         progressItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.R1_Flag, levelsFinished, levelsCount));
 
-        Slots.Add(new ProgressionSlotViewModel(null, 0, levelsFinished, levelsCount, progressItems));
+        yield return new ProgressionSlotViewModel(null, 0, levelsFinished, levelsCount, progressItems);
 
         Logger.Info("Rayman Designer slot has been loaded");
     }

@@ -24,7 +24,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         // Get the save data directory
         FileSystemPath saveDir = InstallDir + "Data";
@@ -34,7 +34,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         FileSystemPath saveGamePath = saveDir + "SaveGame";
 
         if (!configFilePath.FileExists)
-            return;
+            yield break;
 
         Rayman2PCConfigData config = await Task.Run(() =>
         {
@@ -119,10 +119,10 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
             string percentage = saveSlot.SlotDisplayName.Substring(separatorIndex + 1);
             double parsedPercentage = Double.TryParse(percentage, NumberStyles.Any, CultureInfo.InvariantCulture, out double p) ? p : 0;
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(name), (int)saveSlot.SlotIndex, parsedPercentage, progressItems)
+            yield return new ProgressionSlotViewModel(new ConstLocString(name), (int)saveSlot.SlotIndex, parsedPercentage, progressItems)
             {
                 FilePath = slotFilePath
-            });
+            };
 
             Logger.Info("Rayman 2 slot has been loaded");
         }

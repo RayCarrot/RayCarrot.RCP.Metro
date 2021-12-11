@@ -17,7 +17,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
 
     protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_WinStore>().FullPackageName);
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
 
@@ -110,10 +110,10 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             progressItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.RO_Lum, collectedLums, availableLums));
             progressItems.Insert(1, new ProgressionDataViewModel(true, GameProgression_Icon.RO_RedTooth, collectedTeeth, availableTeeth));
 
-            Slots.Add(new ProgressionSlotViewModel(null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems)
+            yield return new ProgressionSlotViewModel(null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems)
             {
                 FilePath = filePath
-            });
+            };
 
             Logger.Info("Rayman Jungle Run slot has been loaded");
         }

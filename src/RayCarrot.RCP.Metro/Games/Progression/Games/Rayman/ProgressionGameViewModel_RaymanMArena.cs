@@ -22,7 +22,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         // Get the save data directory
         FileSystemPath saveDir = InstallDir + "MENU" + "SaveGame";
@@ -34,7 +34,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
         if (!filePath.FileExists)
         {
             Logger.Info("Slot was not loaded due to not being found");
-            return;
+            yield break;
         }
 
         // Deserialize the save data
@@ -124,10 +124,10 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 AddRaceItem("sg_racelevels_bestnumber_lums", () => Resources.Progression_RM_Lums, false);
             }
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems)
+            yield return new ProgressionSlotViewModel(new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems)
             {
                 FilePath = filePath
-            });
+            };
 
             Logger.Info("Rayman M/Arena slot has been loaded");
         }

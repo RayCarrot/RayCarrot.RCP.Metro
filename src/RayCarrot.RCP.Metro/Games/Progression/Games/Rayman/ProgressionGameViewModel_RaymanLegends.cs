@@ -57,7 +57,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
         { 3600674311, "5-6" }
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         FileSystemPath saveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends";
 
@@ -111,10 +111,10 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                     new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"))).
                 OrderBy(x => x.Text.Value));
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems)
+            yield return new ProgressionSlotViewModel(new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems)
             {
                 FilePath = saveFile
-            });
+            };
 
             Logger.Info("Rayman Legends slot has been loaded");
         }

@@ -93,6 +93,7 @@
 		</PackageReference>
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
 		<PackageReference Include="Resource.Embedder" Version="2.1.1" />
+		<PackageReference Include="System.Linq.Async" Version="5.1.0" />
 		<PackageReference Include="WPFTextBoxAutoComplete" Version="1.0.5" />
 		<PackageReference Include="XamlAnimatedGif" Version="2.0.2" />
 	</ItemGroup>

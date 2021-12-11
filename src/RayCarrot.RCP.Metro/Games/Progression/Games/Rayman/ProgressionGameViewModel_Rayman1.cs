@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using NLog;
@@ -21,10 +22,10 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         if (!InstallDir.DirectoryExists)
-            return;
+            yield break;
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
@@ -58,7 +59,7 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
             // Get total amount of cages
             int cages = saveData.Wi_Save_Zone.Sum(x => x.Cages);
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString(saveData.SaveName.ToUpper()), saveIndex, cages, 102, new ProgressionDataViewModel[]
+            yield return new ProgressionSlotViewModel(new ConstLocString(saveData.SaveName.ToUpper()), saveIndex, cages, 102, new ProgressionDataViewModel[]
             {
                 new ProgressionDataViewModel(true, GameProgression_Icon.R1_Cage, cages, 102),
                 new ProgressionDataViewModel(false, GameProgression_Icon.R1_Continue, saveData.ContinuesCount),
@@ -66,7 +67,7 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
             })
             {
                 FilePath = filePath
-            });
+            };
 
             Logger.Info("Rayman 1 slot has been loaded");
         }

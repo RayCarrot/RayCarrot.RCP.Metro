@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using NLog;
@@ -20,7 +21,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         FileSystemPath saveDir = InstallDir + "GAMEDATA" + "SaveGame";
 
@@ -73,10 +74,10 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
                 new ProgressionDataViewModel(false, GameProgression_Icon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
             };
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems)
+            yield return new ProgressionSlotViewModel(new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems)
             {
                 FilePath = filePath
-            });
+            };
 
             Logger.Info("Rayman 3 slot has been loaded");
 

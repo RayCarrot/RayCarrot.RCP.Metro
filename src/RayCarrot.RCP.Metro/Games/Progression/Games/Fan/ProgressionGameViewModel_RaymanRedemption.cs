@@ -74,12 +74,12 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
         new GameBackups_Directory(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption", SearchOption.AllDirectories, "*", "0", 0),
     };
 
-    protected override async Task LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
     {
         FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption";
 
         if (!saveDir.DirectoryExists)
-            return;
+            yield break;
 
         // Potential other data to show:
         // levelTime{x} = 36 level times, 2 are unused
@@ -187,7 +187,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             double percentage = Math.Floor(totalProgress / (double)352 * 100);
 
-            Slots.Add(new ProgressionSlotViewModel(new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, new ProgressionDataViewModel[]
+            yield return new ProgressionSlotViewModel(new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, new ProgressionDataViewModel[]
             {
                 new ProgressionDataViewModel(true, GameProgression_Icon.R1_LevelExit, levelsCompleted, maxLevelsCompleted),
                 new ProgressionDataViewModel(true, GameProgression_Icon.R1_Cage, cages, maxCages),
@@ -201,7 +201,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
             }.Concat(magicianBonusDataItems))
             {
                 FilePath = filePath
-            });
+            };
 
             Logger.Info("Rayman Redemption slot has been loaded");
         }
