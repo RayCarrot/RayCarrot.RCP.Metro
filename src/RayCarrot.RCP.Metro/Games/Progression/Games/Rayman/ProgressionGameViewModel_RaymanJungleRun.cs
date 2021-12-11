@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
@@ -17,29 +15,28 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
 
     protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_WinStore>().FullPackageName);
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
-            Logger.Info("Rayman Jungle Run slot {0} is being loaded...", saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
             // Get the file path
             FileSystemPath filePath = saveDir + $"slot{saveIndex + 1}.dat";
 
-            // Make sure the file exists
-            if (!filePath.FileExists)
+            // Deserialize the data
+            UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC);
+            JungleRunPCSaveData? saveData = await SerializeFileDataAsync<JungleRunPCSaveData>(fileSystem, filePath, settings);
+
+            if (saveData == null)
             {
-                Logger.Info("Slot was not loaded due to not being found");
+                Logger.Info("{0} slot was not found", Game);
                 continue;
             }
 
-            // Deserialize and return the data
-            UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC);
-            JungleRunPCSaveData saveData = await Task.Run(() => BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(filePath, settings, Services.App.GetBinarySerializerLogger(filePath.Name)));
-
-            Logger.Info("Rayman Jungle Run slot has been deserialized");
+            Logger.Info("{0} slot has been deserialized", Game);
 
             // Create the collection with items for each time trial level + general information
             List<ProgressionDataViewModel> progressItems = new();
@@ -92,8 +89,8 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 string fullLevelNumber = (lvl + 11).ToString();
 
                 // Get the world and level numbers
-                var worldNum = fullLevelNumber[0].ToString();
-                var lvlNum = fullLevelNumber[1].ToString();
+                string worldNum = fullLevelNumber[0].ToString();
+                string lvlNum = fullLevelNumber[1].ToString();
 
                 // If the level is 0, correct the numbers to be level 10
                 if (lvlNum == "0")
@@ -115,7 +112,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 FilePath = filePath
             };
 
-            Logger.Info("Rayman Jungle Run slot has been loaded");
+            Logger.Info("{0} slot has been loaded", Game);
         }
     }
 }

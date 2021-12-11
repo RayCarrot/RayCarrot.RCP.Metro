@@ -115,7 +115,7 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
 
                 // Load the game items
                 foreach (ProgressionGameViewModel game in GameItems)
-                    await game.LoadAsync();
+                    await game.LoadProgressAsync();
 
                 // Load backups
                 foreach (ProgressionGameViewModel game in GameItems)

@@ -324,11 +324,6 @@
                            Margin="0 0 0 8"
                            Visibility="{Binding Path=HasInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
 
-                <!-- TODO-UPDATE: Localize -->
-                <TextBlock Style="{StaticResource TextBlock.Header}"
-                           Text="Current Progress"
-                           Margin="0 0 0 8" />
-
                 <ItemsControl ItemsSource="{Binding Path=DataItems, Mode=OneTime}"
                               ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Vertical}"
                               Margin="0 0 0 -8" />
@@ -360,8 +355,27 @@
                                Margin="0 0 0 8"
                                Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
 
+                    <!-- TODO-UPDATE: Localize -->
+                    <TextBlock Style="{StaticResource TextBlock.Header}"
+                               Text="Current Progress"
+                               Margin="0 0 0 8" />
+
                     <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
+                                  ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
+                                  Margin="0 0 0 8"/>
+
+                    <Separator Style="{StaticResource Separator.Bold}"
+                               Margin="0 0 0 8"/>
+
+                    <!-- TODO-UPDATE: Localize -->
+                    <TextBlock Style="{StaticResource TextBlock.Header}"
+                               Text="Backup Progress"
+                               Margin="0 0 0 8" />
+
+                    <ItemsControl ItemsSource="{Binding Path=BackupSlots, Mode=OneTime}"
                                   ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"/>
+
+
                 </StackPanel>
             </Expander>
         </local:Card>

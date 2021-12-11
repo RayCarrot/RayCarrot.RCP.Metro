@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Nito.AsyncEx;
 using NLog;
+using RayCarrot.Binary;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -27,6 +29,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         BackupInfoItems = new ObservableCollection<DuoGridItemViewModel>();
         AsyncLock = new AsyncLock();
         Slots = new ObservableCollection<ProgressionSlotViewModel>();
+        BackupSlots = new ObservableCollection<ProgressionSlotViewModel>();
 
         BackupCommand = new AsyncRelayCommand(async () => await BackupAsync());
         RestoreCommand = new AsyncRelayCommand(RestoreAsync);
@@ -59,11 +62,49 @@ public abstract class ProgressionGameViewModel : BaseViewModel
     public bool CanRestoreBackup { get; set; }
 
     public ObservableCollection<ProgressionSlotViewModel> Slots { get; }
+    public ObservableCollection<ProgressionSlotViewModel> BackupSlots { get; }
     public ProgressionSlotViewModel? PrimarySlot { get; private set; }
 
-    protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync() => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
+    protected Task<T?> SerializeFileDataAsync<T>(FileSystemWrapper fileSystem, FileSystemPath filePath, BinarySerializerSettings settings, IDataEncoder? encoder = null)
+        where T : class, IBinarySerializable, new()
+    {
+        return Task.Run(() =>
+        {
+            Stream? fileStream = null;
+            Stream? decodedStream = null;
 
-    public async Task LoadAsync()
+            try
+            {
+                fileStream = fileSystem.ReadFile(filePath);
+
+                if (fileStream == null)
+                    return null;
+
+                if (encoder != null)
+                {
+                    // Create a memory stream
+                    decodedStream = new MemoryStream();
+
+                    // Decode the data
+                    encoder.Decode(fileStream, decodedStream);
+
+                    // Set the position
+                    decodedStream.Position = 0;
+                }
+
+                return BinarySerializableHelpers.ReadFromStream<T>(decodedStream ?? fileStream, settings, Services.App.GetBinarySerializerLogger(filePath.Name));
+            }
+            finally
+            {
+                fileStream?.Dispose();
+                decodedStream?.Dispose();
+            }
+        });
+    }
+
+    protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem) => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
+
+    public async Task LoadProgressAsync()
     {
         using (await AsyncLock.LockAsync())
         {
@@ -73,7 +114,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
             {
                 Slots.Clear();
 
-                await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync())
+                await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(new PhysicalFileSystemWrapper()))
                     Slots.Add(slot);
 
                 PrimarySlot = Slots.OrderBy(x => x.Percentage).LastOrDefault();
@@ -141,6 +182,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
             if (backup != null)
             {
+                // Load backup info
                 try
                 {
                     // NOTE: Not localized due to being debug only
@@ -169,6 +211,21 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                     CurrentBackupStatus = BackupStatus.Error;
 
                     await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, DisplayName));
+                }
+
+                // Load backup progression
+                try
+                {
+                    BackupSlots.Clear();
+
+                    await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(new BackupFileSystemWrapper()))
+                        BackupSlots.Add(slot);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Failed to load backup progression for {0} ({1})", Game, DisplayName);
+
+                    BackupSlots.Clear();
                 }
             }
             else
@@ -305,5 +362,25 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         Outdated,
         Syncing,
         Error,
+    }
+
+    protected abstract class FileSystemWrapper
+    {
+        public abstract Stream? ReadFile(string filePath);
+        public abstract IEnumerable<string> GetFiles(string dirPath);
+        public abstract IEnumerable<string> GetDirectories(string dirPath);
+    }
+    protected class PhysicalFileSystemWrapper : FileSystemWrapper
+    {
+        public override Stream? ReadFile(string filePath) => !File.Exists(filePath) ? null : File.OpenRead(filePath);
+        public override IEnumerable<string> GetFiles(string dirPath) => !Directory.Exists(dirPath) ? Enumerable.Empty<string>() : Directory.GetFiles(dirPath);
+        public override IEnumerable<string> GetDirectories(string dirPath) => !Directory.Exists(dirPath) ? Enumerable.Empty<string>() : Directory.GetDirectories(dirPath);
+    }
+    protected class BackupFileSystemWrapper : FileSystemWrapper
+    {
+        // TODO-UPDATE: Implement
+        public override Stream? ReadFile(string filePath) => null;
+        public override IEnumerable<string> GetFiles(string dirPath) => Enumerable.Empty<string>();
+        public override IEnumerable<string> GetDirectories(string dirPath) => Enumerable.Empty<string>();
     }
 }

@@ -74,12 +74,9 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
         new GameBackups_Directory(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption", SearchOption.AllDirectories, "*", "0", 0),
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption";
-
-        if (!saveDir.DirectoryExists)
-            yield break;
 
         // Potential other data to show:
         // levelTime{x} = 36 level times, 2 are unused
@@ -93,18 +90,22 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
         {
             FileSystemPath filePath = saveDir + $"rayrede{saveIndex + 1}.txt";
 
-            if (!filePath.Exists)
-                continue;
+            Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
-            Logger.Info("Rayman Redemption slot {0} is being loaded...", saveIndex);
-
-            GameMaker_DSMap saveData = await Task.Run(() =>
+            GameMaker_DSMap? saveData = await Task.Run(() =>
             {
-                // Read the file as a string
-                string fileTxt = File.ReadAllText(filePath);
+                // Get the file
+                using Stream? file = fileSystem.ReadFile(filePath);
+
+                if (file == null)
+                    return null;
+
+                // Read into a string
+                using StreamReader reader = new(file);
+                string str = reader.ReadToEnd();
 
                 // Convert the hex string to bytes
-                byte[] bytes = StringToByteArray(fileTxt);
+                byte[] bytes = StringToByteArray(str);
 
                 // Use a memory stream
                 using MemoryStream mem = new(bytes);
@@ -114,7 +115,13 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
                 return BinarySerializableHelpers.ReadFromStream<GameMaker_DSMap>(mem, settings, Services.App.GetBinarySerializerLogger());
             });
 
-            Logger.Info("Rayman Redemption slot has been deserialized");
+            if (saveData == null)
+            {
+                Logger.Info("{0} slot was not found", Game);
+                continue;
+            }
+
+            Logger.Info("{0} slot has been deserialized", Game);
 
             string saveName = saveData.GetValue("savename0").StringValue + 
                               saveData.GetValue("savename1").StringValue + 
@@ -203,7 +210,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
                 FilePath = filePath
             };
 
-            Logger.Info("Rayman Redemption slot has been loaded");
+            Logger.Info("{0} slot has been loaded", Game);
         }
     }
 }

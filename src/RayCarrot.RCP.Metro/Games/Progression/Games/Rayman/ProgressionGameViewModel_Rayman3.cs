@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
@@ -21,34 +21,25 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveDir = InstallDir + "GAMEDATA" + "SaveGame";
 
         int index = 0;
 
-        foreach (FileSystemPath filePath in Directory.GetFiles(saveDir, "*.sav", SearchOption.TopDirectoryOnly))
+        foreach (FileSystemPath filePath in fileSystem.GetFiles(saveDir).
+                     Where(x => x.EndsWith(".sav", StringComparison.InvariantCultureIgnoreCase)))
         {
-            Logger.Info("Rayman 3 slot {0} is being loaded...", filePath.Name);
+            Logger.Info("{0} slot {1} is being loaded...", Game, filePath.Name);
 
-            Rayman3PCSaveData saveData = await Task.Run(() =>
+            OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC);
+            Rayman3PCSaveData? saveData = await SerializeFileDataAsync<Rayman3PCSaveData>(fileSystem, filePath, settings, new Rayman3SaveDataEncoder());
+
+            if (saveData == null)
             {
-                // Open the file in a stream
-                using FileStream fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read);
-
-                // Create a memory stream
-                using MemoryStream memStream = new MemoryStream();
-
-                // Decode the data
-                new Rayman3SaveDataEncoder().Decode(fileStream, memStream);
-
-                // Set the position
-                memStream.Position = 0;
-
-                // Deserialize the data
-                OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC);
-                return BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, settings, Services.App.GetBinarySerializerLogger(filePath.Name));
-            });
+                Logger.Info("{0} slot was not found", Game);
+                continue;
+            }
 
             Logger.Info("Slot has been deserialized");
 
@@ -79,7 +70,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
                 FilePath = filePath
             };
 
-            Logger.Info("Rayman 3 slot has been loaded");
+            Logger.Info("{0} slot has been loaded", Game);
 
             index++;
         }

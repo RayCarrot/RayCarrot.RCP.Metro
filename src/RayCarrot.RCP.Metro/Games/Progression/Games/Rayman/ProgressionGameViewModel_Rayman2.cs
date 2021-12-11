@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
@@ -24,7 +22,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
         FileSystemPath saveDir = InstallDir + "Data";
@@ -33,55 +31,25 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         FileSystemPath configFilePath = saveDir + "Options" + "Current.cfg";
         FileSystemPath saveGamePath = saveDir + "SaveGame";
 
-        if (!configFilePath.FileExists)
+        OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC);
+        Rayman2PCConfigData? config = await SerializeFileDataAsync<Rayman2PCConfigData>(fileSystem, configFilePath, settings, new Rayman12PCSaveDataEncoder());
+
+        if (config == null)
             yield break;
-
-        Rayman2PCConfigData config = await Task.Run(() =>
-        {
-            // Create streams
-            using FileStream saveFileStream = File.OpenRead(configFilePath);
-            using MemoryStream decodedDataStream = new MemoryStream();
-
-            // Decode the save file
-            new Rayman12PCSaveDataEncoder().Decode(saveFileStream, decodedDataStream);
-
-            // Set position to 0
-            decodedDataStream.Position = 0;
-
-            // Get the serialized data
-            return BinarySerializableHelpers.ReadFromStream<Rayman2PCConfigData>(decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC), Services.App.GetBinarySerializerLogger(configFilePath.Name));
-        });
 
         foreach (Rayman2PCConfigSlotData saveSlot in config.Slots)
         {
             FileSystemPath slotFilePath = saveGamePath + $"Slot{saveSlot.SlotIndex}" + "General.sav";
 
-            Logger.Info("Rayman 2 slot {0} is being loaded...", saveSlot.SlotIndex);
+            Logger.Info("{0} slot {1} is being loaded...", Game, saveSlot.SlotIndex);
 
-            // Make sure the file exists
-            if (!slotFilePath.FileExists)
+            Rayman2PCSaveData? saveData = await SerializeFileDataAsync<Rayman2PCSaveData>(fileSystem, slotFilePath, settings, new Rayman12PCSaveDataEncoder());
+
+            if (saveData == null)
             {
-                Logger.Info("Slot was not loaded due to not being found");
+                Logger.Info("{0} slot was not found", Game);
                 continue;
             }
-
-            Rayman2PCSaveData saveData = await Task.Run(() =>
-            {
-                // Open the file in a stream
-                using var fileStream = File.Open(slotFilePath, FileMode.Open, FileAccess.Read);
-
-                // Create a memory stream
-                using var memStream = new MemoryStream();
-
-                // Decode the data
-                new Rayman12PCSaveDataEncoder().Decode(fileStream, memStream);
-
-                // Set the position
-                memStream.Position = 0;
-
-                // Deserialize and return the data
-                return BinarySerializableHelpers.ReadFromStream<Rayman2PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC), Services.App.GetBinarySerializerLogger(slotFilePath.Name));
-            });
 
             Logger.Info("Slot has been deserialized");
 
@@ -124,7 +92,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
                 FilePath = slotFilePath
             };
 
-            Logger.Info("Rayman 2 slot has been loaded");
+            Logger.Info("{0} slot has been loaded", Game);
         }
     }
 }

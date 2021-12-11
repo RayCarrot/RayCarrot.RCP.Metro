@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
@@ -36,18 +34,11 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveDir = InstallDir + "PCMAP";
 
-        Logger.Info("Rayman Designer saves from {0} is being loaded...", saveDir.Name);
-
-        // Make sure the directory exists
-        if (!saveDir.DirectoryExists)
-        {
-            Logger.Info("Saves were not loaded due to not being found");
-            yield break;
-        }
+        Logger.Info("{0} saves from {1} is being loaded...", Game, saveDir.Name);
 
         string[] shortWorldNames = { "", "JUN", "MUS", "MON", "IMA", "CAV", "CAK" };
         string[] longWorldNames = { "", "Jungle", "Music", "Mountain", "Image", "Cave", "Cake" };
@@ -55,8 +46,11 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         List<ProgressionDataViewModel> progressItems = new();
 
         // Find every .sct file
-        foreach (var save in Directory.GetFiles(saveDir, "*.sct", SearchOption.TopDirectoryOnly).Select(sct =>
+        foreach (var save in fileSystem.GetFiles(saveDir).Select(sct =>
         {
+            if (!sct.EndsWith(".sct", StringComparison.InvariantCultureIgnoreCase))
+                return null;
+
             string fileName = ((FileSystemPath)sct).RemoveFileExtension().Name;
 
             if (fileName.Length != 5)
@@ -79,22 +73,20 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             };
         }).Where(x => x != null).OrderBy(x => x!.World).ThenBy(x => x!.Level))
         {
-            int value = await Task.Run(() =>
+            Ray1Settings settings = Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC);
+            RaymanDesignerSaveData? saveData = await SerializeFileDataAsync<RaymanDesignerSaveData>(fileSystem, save!.FilePath, settings);
+
+            if (saveData == null)
             {
-                // Open the file in a stream
-                using FileStream fileStream = File.Open(save!.FilePath, FileMode.Open, FileAccess.Read);
+                Logger.Info("{0} slot was not found", Game);
+                continue;
+            }
 
-                // Deserialize the data
-                Ray1Settings settings = Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC);
-                RaymanDesignerSaveData saveData = BinarySerializableHelpers.ReadFromStream<RaymanDesignerSaveData>(fileStream, settings, Services.App.GetBinarySerializerLogger(save.FilePath.Name));
-
-                // Get the save value
-                return saveData.GetDecodedValue(save.World, save.Level, Game == Games.RaymanDesigner ? RaymanDesignerSaveData.SaveRevision.KIT : RaymanDesignerSaveData.SaveRevision.FAN_60N);
-            });
+            int value = saveData.GetDecodedValue(save.World, save.Level, Game == Games.RaymanDesigner ? RaymanDesignerSaveData.SaveRevision.KIT : RaymanDesignerSaveData.SaveRevision.FAN_60N);
 
             if (value == -1)
             {
-                Logger.Warn("Invalid save value for {0}", save!.FilePath.Name);
+                Logger.Warn("Invalid save value for {0}", save.FilePath.Name);
                 continue;
             }
 
@@ -119,6 +111,6 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
 
         yield return new ProgressionSlotViewModel(null, 0, levelsFinished, levelsCount, progressItems);
 
-        Logger.Info("Rayman Designer slot has been loaded");
+        Logger.Info("{0} slot has been loaded", Game);
     }
 }

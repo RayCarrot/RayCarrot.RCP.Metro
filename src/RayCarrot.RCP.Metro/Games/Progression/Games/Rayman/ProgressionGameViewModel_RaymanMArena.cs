@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
@@ -22,24 +20,23 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
         new GameBackups_Directory(Game.GetInstallDir() + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
         FileSystemPath saveDir = InstallDir + "MENU" + "SaveGame";
         FileSystemPath filePath = saveDir + "raymanm.sav";
 
-        Logger.Info("Rayman M/Arena save file {0} is being loaded...", filePath.Name);
-
-        // Make sure the file exists
-        if (!filePath.FileExists)
-        {
-            Logger.Info("Slot was not loaded due to not being found");
-            yield break;
-        }
+        Logger.Info("{0} save file {1} is being loaded...", Game, filePath.Name);
 
         // Deserialize the save data
         OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC);
-        RaymanMPCSaveData saveData = await Task.Run(() => BinarySerializableHelpers.ReadFromFile<RaymanMPCSaveData>(filePath, settings, Services.App.GetBinarySerializerLogger(filePath.Name)));
+        RaymanMPCSaveData? saveData = await SerializeFileDataAsync<RaymanMPCSaveData>(fileSystem, filePath, settings);
+
+        if (saveData == null)
+        {
+            Logger.Info("{0} save was not found", Game);
+            yield break;
+        }
 
         Logger.Info("Save file has been deserialized");
 
@@ -129,7 +126,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 FilePath = filePath
             };
 
-            Logger.Info("Rayman M/Arena slot has been loaded");
+            Logger.Info("{0} slot has been loaded", Game);
         }
     }
 }

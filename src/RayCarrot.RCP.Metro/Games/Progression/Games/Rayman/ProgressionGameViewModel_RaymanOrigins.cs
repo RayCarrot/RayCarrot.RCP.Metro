@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
@@ -23,7 +21,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
         new GameBackups_Directory(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins", SearchOption.AllDirectories, "*", "0", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
         FileSystemPath saveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins" + "Savegame";
@@ -41,18 +39,17 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
         {
             FileSystemPath filePath = saveDir + "Savegame_0";
 
-            Logger.Info("Rayman Origins slot {0} is being loaded...", saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
-            // Make sure the file exists
-            if (!filePath.FileExists)
+            // Deserialize the data
+            UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC);
+            var saveData = (await SerializeFileDataAsync<OriginsPCSaveData>(fileSystem, filePath, settings))?.SaveData;
+
+            if (saveData == null)
             {
-                Logger.Info("Slot was not loaded due to not being found");
+                Logger.Info("{0} slot was not found", Game);
                 continue;
             }
-
-            // Deserialize and get the data
-            UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC);
-            OriginsPCSaveData.PersistentGameData_Universe saveData = await Task.Run(() => BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(filePath, settings, Services.App.GetBinarySerializerLogger(filePath.Name)).SaveData);
 
             Logger.Info("Slot has been deserialized");
 
@@ -83,7 +80,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
                 cageMaps += lvl.Value.Object.CageMapPassedDoors.Length;
 
                 // Get the best time attack score
-                var timeAttack = lvl.Value.Object.BestTimeAttack;
+                uint timeAttack = lvl.Value.Object.BestTimeAttack;
 
                 // Compare the time attack score with the targets
                 if (timeAttack <= level.Time1)
@@ -92,7 +89,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
                     timeAttack2++;
 
                 // Get the best lum attack score
-                var lumAttack = lvl.Value.Object.BestLumAttack;
+                uint lumAttack = lvl.Value.Object.BestLumAttack;
 
                 // Compare the lum attack score with the targets
                 if (lumAttack >= mission.LumAttack1)
@@ -132,7 +129,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
                 FilePath = filePath
             };
 
-            Logger.Info("Rayman Origins slot has been loaded");
+            Logger.Info("{0} slot has been loaded", Game);
         }
     }
 

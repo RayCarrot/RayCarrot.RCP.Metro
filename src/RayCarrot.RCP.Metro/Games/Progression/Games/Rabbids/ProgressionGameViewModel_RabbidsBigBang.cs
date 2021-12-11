@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using NLog;
 using RayCarrot.Binary;
 using RayCarrot.IO;
@@ -17,24 +16,22 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
     protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_WinStore>().FullPackageName);
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync()
+    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         string packageName = Game.GetManager<GameManager_WinStore>().FullPackageName;
         FileSystemPath saveFile = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + packageName + "LocalState" + "playerprefs.dat";
 
-        if (!saveFile.FileExists)
-            yield break;
+        Logger.Info("{0} save is being loaded...", Game);
 
-        Logger.Info("Rabbids Big Bang save is being loaded...");
+        Unity_PlayerPrefs? saveData = await SerializeFileDataAsync<Unity_PlayerPrefs>(fileSystem, saveFile, new BinarySerializerSettings(Endian.Little, Encoding.UTF8));
 
-        Unity_PlayerPrefs saveData = await Task.Run(() =>
+        if (saveData == null)
         {
-            // Deserialize the data
-            BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
-            return BinarySerializableHelpers.ReadFromFile<Unity_PlayerPrefs>(saveFile, settings, Services.App.GetBinarySerializerLogger());
-        });
+            Logger.Info("{0} save was not found", Game);
+            yield break;
+        }
 
-        Logger.Info("Rabbids Big Bang save has been deserialized");
+        Logger.Info("{0} save has been deserialized", Game);
 
         const int maxScore = 12 * 45 * 3;
 
@@ -51,11 +48,16 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
             }
         }
 
-        yield return new ProgressionSlotViewModel(null, 0, score, maxScore, new ProgressionDataViewModel[]
+        ProgressionDataViewModel[] progressItems =
         {
             new ProgressionDataViewModel(true, GameProgression_Icon.RabbidsBigBang_Score, score, maxScore),
-        });
+        };
 
-        Logger.Info("Rabbids Big Bang save has been loaded");
+        yield return new ProgressionSlotViewModel(null, 0, score, maxScore, progressItems)
+        {
+            FilePath = saveFile
+        };
+
+        Logger.Info("{0} save has been loaded", Game);
     }
 }
