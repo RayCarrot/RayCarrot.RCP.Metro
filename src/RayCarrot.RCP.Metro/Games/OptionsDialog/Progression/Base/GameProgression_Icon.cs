@@ -104,6 +104,9 @@ public enum GameProgression_Icon
     RL_Inv_5_5,
     RL_Inv_5_6,
 
+    // Rabbids Big Bang
+    RabbidsBigBang_Score,
+
     // Rayman Redemption
     Redemption_Token,
     Redemption_Present,

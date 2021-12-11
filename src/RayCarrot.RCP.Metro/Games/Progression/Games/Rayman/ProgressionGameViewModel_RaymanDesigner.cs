@@ -119,6 +119,6 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
 
         Slots.Add(new ProgressionSlotViewModel(null, 0, levelsFinished, levelsCount, progressItems));
 
-        Logger.Info("Rayman 3 slot has been loaded");
+        Logger.Info("Rayman Designer slot has been loaded");
     }
 }
