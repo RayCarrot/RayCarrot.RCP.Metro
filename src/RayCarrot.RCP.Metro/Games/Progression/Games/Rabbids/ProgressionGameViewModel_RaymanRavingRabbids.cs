@@ -171,156 +171,156 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         "",
     };
 
-    private static double[] GetMinigameMaxScores
+    private static float[] GetMinigameMaxScores
     {
         get
         {
-            double[] MG_score_max = new double[150];
+            float[] MG_score_max = new float[150];
 
-            MG_score_max[0] = 28000.0;
-            MG_score_max[1] = 36000.0;
-            MG_score_max[2] = 34000.0;
-            MG_score_max[3] = 30000.0;
-            MG_score_max[4] = 28000.0;
-            MG_score_max[5] = 28000.0;
-            MG_score_max[6] = 27000.0;
-            MG_score_max[7] = 308.0; // Note: This is actually the max score for MG 17. The actual max score for MG 7 is supposed to be 28000.0
-            MG_score_max[8] = 33000.0;
-            MG_score_max[9] = 38000.0;
-            MG_score_max[10] = 210.0;
-            MG_score_max[11] = 395.0;
-            MG_score_max[12] = 255.0;
-            MG_score_max[13] = 150.0;
-            MG_score_max[14] = 235.0;
-            MG_score_max[15] = 155.0;
-            MG_score_max[16] = 285.0;
-            MG_score_max[17] = 312.0;  // - (equal to record 0 for MG 17, so: MG_score_max[17] = 312.0)
-            MG_score_max[18] = 295.0;
-            MG_score_max[19] = 340.0;
-            MG_score_max[20] = 20000.0;
-            MG_score_max[21] = 22.0;
-            MG_score_max[22] = 145.0;
-            MG_score_max[23] = 80.0;
-            MG_score_max[24] = 7.0;
-            MG_score_max[25] = 130.0;
-            MG_score_max[26] = 0.1;
-            MG_score_max[27] = 10.0;
-            MG_score_max[28] = 55.0;
-            MG_score_max[29] = 85.0;
-            MG_score_max[30] = 170.0;
-            MG_score_max[31] = 32.0;
-            MG_score_max[32] = 10200.0;
-            MG_score_max[33] = 470.0;
-            MG_score_max[34] = 3000.0;
-            MG_score_max[35] = 3100.0;
-            MG_score_max[36] = 20.5;
-            MG_score_max[37] = 3178.0;
-            MG_score_max[38] = 800.0;
-            MG_score_max[39] = 4088.0;
-            MG_score_max[40] = 88.0;
-            MG_score_max[41] = 90.0;
-            MG_score_max[42] = 55.0;
-            MG_score_max[43] = 30.0;
-            MG_score_max[44] = 1868.0;
-            MG_score_max[45] = 40.0;
-            MG_score_max[46] = 400.0;
-            MG_score_max[47] = 1000.0;
-            MG_score_max[48] = 4000.0;
-            MG_score_max[49] = 60.0;
-            MG_score_max[50] = 10.0;
-            MG_score_max[51] = 43.0;
-            MG_score_max[52] = 11.0;
-            MG_score_max[53] = 3000.0;
-            MG_score_max[54] = 30.0;
-            MG_score_max[55] = 85.0;
-            MG_score_max[56] = 275.0;
-            MG_score_max[57] = 3000.0;
-            MG_score_max[58] = 1300.0;
-            MG_score_max[59] = 21.0;
-            MG_score_max[60] = 23.0;
-            MG_score_max[61] = 600.0;
-            MG_score_max[62] = 400.0;
-            MG_score_max[63] = 1000.0;
-            MG_score_max[64] = 75000.0;
-            MG_score_max[65] = 25000.0;
-            MG_score_max[66] = 20.0;
-            MG_score_max[67] = 14.0;
-            MG_score_max[68] = 3000.0;
-            MG_score_max[69] = 21.0;
-            MG_score_max[70] = 5600.0;
-            MG_score_max[71] = 3000.0;
-            MG_score_max[72] = 40.0;
-            MG_score_max[73] = 170.0;
-            MG_score_max[74] = 800.0;
-            MG_score_max[75] = 0.15000001;
-            MG_score_max[76] = 7600.0;
-            MG_score_max[77] = 30.0;
-            MG_score_max[78] = 2088.0;
-            MG_score_max[79] = 2668.0;
-            MG_score_max[80] = 3198.0;
-            MG_score_max[81] = 2358.0;
-            MG_score_max[82] = 2478.0;
-            MG_score_max[83] = 2658.0;
-            MG_score_max[84] = 2528.0;
-            MG_score_max[85] = 2908.0;
-            MG_score_max[86] = 2288.0;
-            MG_score_max[87] = 3538.0;
-            MG_score_max[88] = 2568.0;
-            MG_score_max[89] = 2928.0;
-            MG_score_max[90] = 155.0;
-            MG_score_max[91] = 395.0;
-            MG_score_max[92] = 257.0;
-            MG_score_max[93] = 155.0;
-            MG_score_max[94] = 207.0;
-            MG_score_max[95] = 157.0;
-            MG_score_max[96] = 287.0;
-            MG_score_max[97] = 313.0;
-            MG_score_max[98] = 297.0;
-            MG_score_max[99] = 313.0;
-            MG_score_max[100] = 28000.0;
-            MG_score_max[101] = 36000.0;
-            MG_score_max[102] = 34000.0;
-            MG_score_max[103] = 30000.0;
-            MG_score_max[104] = 28000.0;
-            MG_score_max[105] = 28000.0;
-            MG_score_max[106] = 27000.0;
-            MG_score_max[107] = 28000.0;
-            MG_score_max[108] = 33000.0;
-            MG_score_max[109] = 38000.0;
-            MG_score_max[110] = 22000.0;
-            MG_score_max[111] = 30000.0;
-            MG_score_max[112] = 28000.0;
-            MG_score_max[113] = 24000.0;
-            MG_score_max[114] = 22000.0;
-            MG_score_max[115] = 22000.0;
-            MG_score_max[116] = 12000.0;
-            MG_score_max[117] = 22000.0;
-            MG_score_max[118] = 24000.0;
-            MG_score_max[119] = 32000.0;
-            MG_score_max[120] = 3000.0;
-            MG_score_max[121] = 5000.0;
-            MG_score_max[122] = 5000.0;
-            MG_score_max[123] = 5000.0;
-            MG_score_max[124] = 5000.0;
-            MG_score_max[125] = 10000.0;
-            MG_score_max[126] = 10000.0;
-            MG_score_max[127] = 10000.0;
+            MG_score_max[0] = 28000;
+            MG_score_max[1] = 36000;
+            MG_score_max[2] = 34000;
+            MG_score_max[3] = 30000;
+            MG_score_max[4] = 28000;
+            MG_score_max[5] = 28000;
+            MG_score_max[6] = 27000;
+            MG_score_max[7] = 308; // Note: This is actually the max score for MG 17. The actual max score for MG 7 is supposed to be 28000.0
+            MG_score_max[8] = 33000;
+            MG_score_max[9] = 38000;
+            MG_score_max[10] = 210;
+            MG_score_max[11] = 395;
+            MG_score_max[12] = 255;
+            MG_score_max[13] = 150;
+            MG_score_max[14] = 235;
+            MG_score_max[15] = 155;
+            MG_score_max[16] = 285;
+            MG_score_max[17] = 312;  // - (equal to record 0 for MG 17, so: MG_score_max[17] = 312.0)
+            MG_score_max[18] = 295;
+            MG_score_max[19] = 340;
+            MG_score_max[20] = 20000;
+            MG_score_max[21] = 22;
+            MG_score_max[22] = 145;
+            MG_score_max[23] = 80;
+            MG_score_max[24] = 7;
+            MG_score_max[25] = 130;
+            MG_score_max[26] = 0.1f;
+            MG_score_max[27] = 10;
+            MG_score_max[28] = 55;
+            MG_score_max[29] = 85;
+            MG_score_max[30] = 170;
+            MG_score_max[31] = 32;
+            MG_score_max[32] = 10200;
+            MG_score_max[33] = 470;
+            MG_score_max[34] = 3000;
+            MG_score_max[35] = 3100;
+            MG_score_max[36] = 20.5f;
+            MG_score_max[37] = 3178;
+            MG_score_max[38] = 800;
+            MG_score_max[39] = 4088;
+            MG_score_max[40] = 88;
+            MG_score_max[41] = 90;
+            MG_score_max[42] = 55;
+            MG_score_max[43] = 30;
+            MG_score_max[44] = 1868;
+            MG_score_max[45] = 40;
+            MG_score_max[46] = 400;
+            MG_score_max[47] = 1000;
+            MG_score_max[48] = 4000;
+            MG_score_max[49] = 60;
+            MG_score_max[50] = 10;
+            MG_score_max[51] = 43;
+            MG_score_max[52] = 11;
+            MG_score_max[53] = 3000;
+            MG_score_max[54] = 30;
+            MG_score_max[55] = 85;
+            MG_score_max[56] = 275;
+            MG_score_max[57] = 3000;
+            MG_score_max[58] = 1300;
+            MG_score_max[59] = 21;
+            MG_score_max[60] = 23;
+            MG_score_max[61] = 600;
+            MG_score_max[62] = 400;
+            MG_score_max[63] = 1000;
+            MG_score_max[64] = 75000;
+            MG_score_max[65] = 25000;
+            MG_score_max[66] = 20;
+            MG_score_max[67] = 14;
+            MG_score_max[68] = 3000;
+            MG_score_max[69] = 21;
+            MG_score_max[70] = 5600;
+            MG_score_max[71] = 3000;
+            MG_score_max[72] = 40;
+            MG_score_max[73] = 170;
+            MG_score_max[74] = 800;
+            MG_score_max[75] = 0.15000001f;
+            MG_score_max[76] = 7600;
+            MG_score_max[77] = 30;
+            MG_score_max[78] = 2088;
+            MG_score_max[79] = 2668;
+            MG_score_max[80] = 3198;
+            MG_score_max[81] = 2358;
+            MG_score_max[82] = 2478;
+            MG_score_max[83] = 2658;
+            MG_score_max[84] = 2528;
+            MG_score_max[85] = 2908;
+            MG_score_max[86] = 2288;
+            MG_score_max[87] = 3538;
+            MG_score_max[88] = 2568;
+            MG_score_max[89] = 2928;
+            MG_score_max[90] = 155;
+            MG_score_max[91] = 395;
+            MG_score_max[92] = 257;
+            MG_score_max[93] = 155;
+            MG_score_max[94] = 207;
+            MG_score_max[95] = 157;
+            MG_score_max[96] = 287;
+            MG_score_max[97] = 313;
+            MG_score_max[98] = 297;
+            MG_score_max[99] = 313;
+            MG_score_max[100] = 28000;
+            MG_score_max[101] = 36000;
+            MG_score_max[102] = 34000;
+            MG_score_max[103] = 30000;
+            MG_score_max[104] = 28000;
+            MG_score_max[105] = 28000;
+            MG_score_max[106] = 27000;
+            MG_score_max[107] = 28000;
+            MG_score_max[108] = 33000;
+            MG_score_max[109] = 38000;
+            MG_score_max[110] = 22000;
+            MG_score_max[111] = 30000;
+            MG_score_max[112] = 28000;
+            MG_score_max[113] = 24000;
+            MG_score_max[114] = 22000;
+            MG_score_max[115] = 22000;
+            MG_score_max[116] = 12000;
+            MG_score_max[117] = 22000;
+            MG_score_max[118] = 24000;
+            MG_score_max[119] = 32000;
+            MG_score_max[120] = 3000;
+            MG_score_max[121] = 5000;
+            MG_score_max[122] = 5000;
+            MG_score_max[123] = 5000;
+            MG_score_max[124] = 5000;
+            MG_score_max[125] = 10000;
+            MG_score_max[126] = 10000;
+            MG_score_max[127] = 10000;
 
-            MG_score_max[140] = 103.0;
+            MG_score_max[140] = 103;
 
             // If PC
-            MG_score_max[21] = 24.0;
-            MG_score_max[23] = 80.0;
-            MG_score_max[24] = 10.0;
-            MG_score_max[29] = 85.0;
-            MG_score_max[30] = 170.0;
-            MG_score_max[47] = 1000.0;
-            MG_score_max[49] = 60.0;
-            MG_score_max[56] = 275.0;
-            MG_score_max[63] = 1000.0;
-            MG_score_max[72] = 39.5;
-            MG_score_max[73] = 170.0;
-            MG_score_max[76] = 7600.0;
+            MG_score_max[21] = 24;
+            MG_score_max[23] = 80;
+            MG_score_max[24] = 10;
+            MG_score_max[29] = 85;
+            MG_score_max[30] = 170;
+            MG_score_max[47] = 1000;
+            MG_score_max[49] = 60;
+            MG_score_max[56] = 275;
+            MG_score_max[63] = 1000;
+            MG_score_max[72] = 39.5f;
+            MG_score_max[73] = 170;
+            MG_score_max[76] = 7600;
 
             return MG_score_max;
         }
@@ -477,23 +477,23 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         }
     }
 
-    private static int ConvertScore(double max, int type, int mgID, float score)
+    private static int ConvertScore(float max, int type, int mgID, float score)
     {
         // Check if the score should be used as is
         if ((type & 0x100) != 0)
             return (int)score;
 
-        double scaledScore;
+        float scaledScore;
 
         // Bunnies like surprises
         if (mgID == 64)
         {
-            double v3 = score - 50000.0;
+            float v3 = score - 50000;
 
             if (v3 <= 0)
                 v3 = 0;
 
-            scaledScore = v3 / (max - 50000.0);
+            scaledScore = v3 / (max - 50000);
 
             if (scaledScore > 1)
                 return 1 * 1000;
@@ -506,7 +506,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             if (score < 0.001)
                 return 0 * 1000;
 
-            double v5;
+            float v5;
 
             if ((BitHelpers.ExtractBits(type, 8, 8) & 0x80u) == 0)
                 v5 = max / score;
@@ -562,7 +562,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         }
 
         string[] names = MinigameNames;
-        double[] maxScores = GetMinigameMaxScores;
+        float[] maxScores = GetMinigameMaxScores;
         int[] types = GetMinigameTypes;
 
         List<ProgressionDataViewModel> scoreDataItems = new();
