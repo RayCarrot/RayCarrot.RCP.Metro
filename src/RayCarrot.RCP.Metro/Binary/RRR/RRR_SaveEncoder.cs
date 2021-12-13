@@ -14,6 +14,9 @@ public class RRR_SaveEncoder : IDataEncoder
         // Read the magic header which determines if it's encoded
         uint header = file.ReadUInt32();
 
+        // Go back to the start of the stream
+        file.BaseStream.Position = 0;
+
         // Check if it's encoded
         if (header is not (0xC0DE1BAF or 0xC0DE2BAF))
         {
@@ -21,9 +24,6 @@ public class RRR_SaveEncoder : IDataEncoder
             inputStream.CopyTo(outputStream);
             return;
         }
-
-        // Go back to the start of the stream
-        file.BaseStream.Position = 0;
 
         int[] v73 = new int[32];
         byte[] v74 = new byte[8];
