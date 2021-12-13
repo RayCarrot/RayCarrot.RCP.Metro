@@ -16,7 +16,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    // TODO-UPDATE: Localize and fix formatting
+    // TODO-UPDATE: Localize
     private static string[] MinigameNames => new[]
     {
         "Bunnies don't like being disturbed on holiday",
@@ -614,7 +614,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
             string name = char0 + char1 + char2;
 
-            if (score != 0 && (types[mgID] & 0x100) == 0)
+            if (score != 0 && (types[mgID] & 0x100) == 0 && mgID != 64)
                 scoreDataItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RRR_Star, score, 1000, new ConstLocString(names[mgID])));
 
             scoreDataItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RRR_Trophy, new ConstLocString($"{name}: {playerHighScore}"), new ConstLocString(names[mgID])));
