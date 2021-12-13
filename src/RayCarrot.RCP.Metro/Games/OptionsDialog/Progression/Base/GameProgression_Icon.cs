@@ -107,6 +107,7 @@ public enum GameProgression_Icon
     // Rayman Raving Rabbids
     RRR_Plunger,
     RRR_Trophy,
+    RRR_Star,
 
     // Rabbids Big Bang
     RabbidsBigBang_Score,

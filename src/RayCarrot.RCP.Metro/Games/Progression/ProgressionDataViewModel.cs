@@ -16,7 +16,7 @@ public class ProgressionDataViewModel : BaseViewModel
         Description = description;
     }
 
-    public ProgressionDataViewModel(bool isPrimaryItem, GameProgression_Icon icon, int value)
+    public ProgressionDataViewModel(bool isPrimaryItem, GameProgression_Icon icon, int value, LocalizedString? description = null)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
@@ -25,13 +25,15 @@ public class ProgressionDataViewModel : BaseViewModel
             NumberGroupSeparator = " ",
             NumberDecimalDigits = 0
         }));
+        Description = description;
     }
 
-    public ProgressionDataViewModel(bool isPrimaryItem, GameProgression_Icon icon, int value, int max)
+    public ProgressionDataViewModel(bool isPrimaryItem, GameProgression_Icon icon, int value, int max, LocalizedString? description = null)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
         Text = new ConstLocString($"{value} / {max}");
+        Description = description;
     }
 
     public bool IsPrimaryItem { get; }
