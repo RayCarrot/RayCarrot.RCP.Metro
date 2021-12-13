@@ -558,7 +558,10 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             yield return new ProgressionSlotViewModel(new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, new ProgressionDataViewModel[]
             {
                 new ProgressionDataViewModel(true, GameProgression_Icon.RRR_Plunger, slot.SlotDesc.Progress_Days, 15),
-            });
+            })
+            {
+                FilePath = saveFile
+            };
         }
 
         string[] names = MinigameNames;
@@ -625,7 +628,10 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         // Add score slot
         // TODO-UPDATE: Localize
-        yield return new ProgressionSlotViewModel(new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems);
+        yield return new ProgressionSlotViewModel(new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems)
+        {
+            FilePath = saveFile
+        };
 
         Logger.Info("{0} save has been loaded", Game);
     }
