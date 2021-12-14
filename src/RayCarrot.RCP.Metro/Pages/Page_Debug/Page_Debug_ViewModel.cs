@@ -195,6 +195,13 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
                     });
                     break;
 
+                case DebugDialogType.ProgramSelection:
+                    await Services.UI.GetProgram(new ProgramSelectionViewModel()
+                    {
+                        Title = "Debug",
+                    });
+                    break;
+
                 default:
                     await Services.MessageUI.DisplayMessageAsync("Invalid selection");
                     break;
@@ -550,6 +557,8 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
         FileExtensionSelection,
 
         StringInput,
+
+        ProgramSelection,
     }
 
     /// <summary>

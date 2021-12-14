@@ -35,6 +35,7 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Disc">Disc</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Purchase">BriefcaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Edit">PencilOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Program">ApplicationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.News">TooltipTextOutline</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="Icons.EditJumpList">PencilBoxOutline</iconPacks:PackIconMaterialKind>
@@ -170,6 +171,9 @@
                        IconColor="{StaticResource Colors.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_StringInput" 
                        IconKind="{StaticResource Icons.Edit}"
+                       IconColor="{StaticResource Colors.Info}" />
+    <local:GenericIcon x:Key="GenericIcons.Window_ProgramSelection" 
+                       IconKind="{StaticResource Icons.Program}"
                        IconColor="{StaticResource Colors.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_AppNews" 
                        IconKind="{StaticResource Icons.News}"

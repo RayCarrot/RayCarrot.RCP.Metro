@@ -43,5 +43,6 @@ public enum GenericIconKind
     Window_JumpListEdit,
     Window_DialogMessage,
     Window_StringInput,
+    Window_ProgramSelection,
     Window_AppNews,
 }

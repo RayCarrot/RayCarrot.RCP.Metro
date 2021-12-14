@@ -73,6 +73,8 @@ public class AppUIManager
 
     public Task<StringInputResult> GetStringInput(StringInputViewModel stringInputViewModel) => ShowDialogAsync(() => new StringInputDialog(stringInputViewModel));
 
+    public Task<ProgramSelectionResult> GetProgram(ProgramSelectionViewModel programSelectionViewModel) => ShowDialogAsync(() => new ProgramSelectionDialog(programSelectionViewModel));
+
     /// <summary>
     /// Allows the user to browse for a drive
     /// </summary>
