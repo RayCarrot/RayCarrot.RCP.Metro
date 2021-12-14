@@ -89,9 +89,9 @@ public class ProgressionSlotViewModel : BaseViewModel
             if (Is100Percent)
                 return new SolidColorBrush(Color.FromRgb(76, 175, 80));
             else if (Percentage >= 50)
-                return new SolidColorBrush(Color.FromRgb(33, 150, 243));
+                return new SolidColorBrush(Color.FromRgb(255, 238, 88));
             else
-                return new SolidColorBrush(Color.FromRgb(255, 87, 34));
+                return new SolidColorBrush(Color.FromRgb(239, 83, 80));
         }
     }
 
