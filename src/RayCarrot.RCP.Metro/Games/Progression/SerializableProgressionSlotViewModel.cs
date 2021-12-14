@@ -62,18 +62,23 @@ public class SerializableProgressionSlotViewModel<FileObj> : ProgressionSlotView
             data = JsonHelpers.DeserializeFromFile<FileObj>(filePath);
         }
 
-        // TODO-UPDATE: Rather than OpenWrite we backup file to temp, delete and restore if error - look at WriteToFile as well
-        using Stream serializeStream = ImportEncoder == null ? File.OpenWrite(FilePath) : new MemoryStream();
+        // Write to a memory stream first so that if there is an error it doesn't corrupt the file. Normally we don't want to do this
+        // since it uses a lot of memory, however most saves are encoded anyway (thus requiring this) and save files are normally
+        // quite small, unlike archives.
+        using Stream serializeStream = new MemoryStream();
 
-        // Import the data
+        // Write the serializable object to the stream
         BinarySerializableHelpers.WriteToStream(data, serializeStream, Settings, Services.App.GetBinarySerializerLogger(FilePath.Name));
+
+        serializeStream.Position = 0;
+
+        // Create the save file to write to
+        using Stream fileStream = File.Create(FilePath);
 
         // If there is an encoder we need to encode the data
         if (ImportEncoder != null)
-        {
-            serializeStream.Position = 0;
-            using Stream fileStream = File.OpenWrite(FilePath);
             ImportEncoder.Encode(serializeStream, fileStream);
-        }
+        else
+            serializeStream.CopyTo(fileStream);
     }
 }
