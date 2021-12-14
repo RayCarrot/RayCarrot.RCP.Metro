@@ -664,6 +664,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             GetExportObject = x => x.ScoreSlot,
             SetImportObject = (x, o) => x.ScoreSlot = (RRR_SaveSlot)o,
             ExportedType = typeof(RRR_SaveSlot),
+            SlotGroup = 1,
         };
 
         Logger.Info("{0} save has been loaded", Game);

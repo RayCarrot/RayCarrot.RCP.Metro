@@ -104,6 +104,26 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
     protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem) => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
 
+    protected virtual ProgressionSlotViewModel? GetPrimarySlot()
+    {
+        // Get the slot with the highest percentage from each group
+        ProgressionSlotViewModel[] slots = Slots.
+            GroupBy(x => x.SlotGroup).
+            Select(g => g.OrderBy(x => x.Percentage).LastOrDefault()).
+            ToArray();
+
+        double totalPercentage = 0;
+        List<ProgressionDataViewModel> dataItems = new();
+
+        foreach (ProgressionSlotViewModel slot in slots)
+        {
+            totalPercentage += slot.Percentage / slots.Length;
+            dataItems.AddRange(slot.DataItems);
+        }
+
+        return new ProgressionSlotViewModel(this, null, -1, totalPercentage, dataItems);
+    }
+
     public async Task LoadProgressAsync()
     {
         using (await AsyncLock.LockAsync())
@@ -120,7 +140,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 Slots.Clear();
                 Slots.AddRange(slots);
 
-                PrimarySlot = Slots.OrderBy(x => x.Percentage).LastOrDefault();
+                PrimarySlot = GetPrimarySlot();
             }
             catch (Exception ex)
             {

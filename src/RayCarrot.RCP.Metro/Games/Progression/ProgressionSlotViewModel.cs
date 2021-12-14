@@ -80,6 +80,8 @@ public class ProgressionSlotViewModel : BaseViewModel
     public double Percentage { get; }
     public bool Is100Percent { get; }
 
+    public int SlotGroup { get; init; }
+
     public FileSystemPath FilePath { get; init; }
 
     public Brush ProgressBrush
