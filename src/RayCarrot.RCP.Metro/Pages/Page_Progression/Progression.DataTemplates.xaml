@@ -381,7 +381,7 @@
             <Expander Header="{Binding}"
                       HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
                       IsExpanded="{Binding Path=IsExpanded}">
-                <StackPanel IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
+                <StackPanel>
                     <ItemsControl Grid.IsSharedSizeScope="True"
                                   Margin="0 0 0 8"
                                   ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}">

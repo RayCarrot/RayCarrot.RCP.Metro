@@ -112,10 +112,13 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
             try
             {
-                Slots.Clear();
+                // Save in temporary array. We could add to the Slots collection after each one has been asynchronously loaded
+                // thus having them appear as they load in the UI, however this causes the UI to flash when refreshing an
+                // already expanded game since the slots will all be removed and then re-added immediately after
+                ProgressionSlotViewModel[] slots = await LoadSlotsAsync(new PhysicalFileSystemWrapper()).ToArrayAsync();
 
-                await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(new PhysicalFileSystemWrapper()))
-                    Slots.Add(slot);
+                Slots.Clear();
+                Slots.AddRange(slots);
 
                 PrimarySlot = Slots.OrderBy(x => x.Percentage).LastOrDefault();
             }
@@ -281,12 +284,12 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 {
                     ShowBackupRestoreIndicator = false;
                 }
-
-                if (success && !fromBatchOperation)
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
             }
 
             await LoadBackupAsync();
+
+            if (success && !fromBatchOperation)
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
         }
         finally
         {
@@ -309,6 +312,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
         try
         {
+            bool backupResult;
+
             using (await AsyncLock.LockAsync())
             {
                 IsPerformingBackupRestore = true;
@@ -332,8 +337,6 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
                 ShowBackupRestoreIndicator = true;
 
-                bool backupResult;
-
                 try
                 {
                     // Perform the restore
@@ -343,10 +346,12 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 {
                     ShowBackupRestoreIndicator = false;
                 }
-
-                if (backupResult)
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
             }
+
+            await LoadProgressAsync();
+
+            if (backupResult)
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
         }
         finally
         {
