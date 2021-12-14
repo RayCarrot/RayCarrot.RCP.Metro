@@ -44,24 +44,26 @@
         <Grid Margin="0 0 0 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="DataHeader" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0"
                    Source="{Binding Path=IconImageSource, Mode=OneTime}"
-                   VerticalAlignment="Center"
                    Width="48" Height="48"
+                   VerticalAlignment="Center"
                    Margin="0 0 8 0" />
 
             <TextBlock Grid.Column="1"
-                       Text="{Binding Path=Text.Value}"
-                       FontSize="18"
-                       FontFamily="../../Fonts/#Rayman Origins"
-                       VerticalAlignment="Center" />
+                       Style="{StaticResource TextBlock.HeaderLarge}"
+                       Text="{Binding Path=Header.Value}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 15 0" />
 
             <TextBlock Grid.Column="2"
-                       Text="{Binding Path=Description.Value}"
+                       Text="{Binding Path=Text.Value}"
+                       FontSize="18"
+                       FontFamily="{StaticResource Font.RaymanOrigins}"
                        VerticalAlignment="Center" />
         </Grid>
     </DataTemplate>
@@ -79,7 +81,7 @@
             <StackPanel Grid.Row="0"
                         Orientation="Horizontal"
                         TextElement.FontSize="22"
-                        TextElement.FontFamily="../../Fonts/#Rayman Origins"
+                        TextElement.FontFamily="{StaticResource Font.RaymanOrigins}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
 
@@ -366,6 +368,7 @@
 
                 <ItemsControl ItemsSource="{Binding Path=DataItems, Mode=OneTime}"
                               ItemTemplate="{StaticResource DataTemplate.ProgressionDataItem.Vertical}"
+                              Grid.IsSharedSizeScope="True"
                               Margin="0 0 0 -8" />
             </StackPanel>
         </Expander>

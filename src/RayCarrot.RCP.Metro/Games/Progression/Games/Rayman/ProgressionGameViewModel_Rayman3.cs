@@ -52,17 +52,18 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
             // Create the collection with items for each level + general information
             ProgressionDataViewModel[] progressItems = 
             {
-                new ProgressionDataViewModel(true, ProgressionIcon.R3_Cage, saveData.TotalCages, 60),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_TotalHeader}: {saveData.TotalScore.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level1Header}: {saveData.Levels[0].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level2Header}: {saveData.Levels[1].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level3Header}: {saveData.Levels[2].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level4Header}: {saveData.Levels[3].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level5Header}: {saveData.Levels[4].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level6Header}: {saveData.Levels[5].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level7Header}: {saveData.Levels[6].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level8Header}: {saveData.Levels[7].Score.ToString("n", formatInfo)}")),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new GeneratedLocString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
+                // TODO-UPDATE: Localize
+                new ProgressionDataViewModel(isPrimaryItem: true, icon: ProgressionIcon.R3_Cage, header: new ConstLocString("Cages"), value: saveData.TotalCages, max: 60),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ConstLocString("Total score"), saveData.TotalScore),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level3Header)), saveData.Levels[2].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level4Header)), saveData.Levels[3].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level5Header)), saveData.Levels[4].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level6Header)), saveData.Levels[5].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level7Header)), saveData.Levels[6].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level8Header)), saveData.Levels[7].Score),
+                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
             };
 
             yield return new SerializableProgressionSlotViewModel<Rayman3PCSaveData>(this, new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems, saveData, settings)

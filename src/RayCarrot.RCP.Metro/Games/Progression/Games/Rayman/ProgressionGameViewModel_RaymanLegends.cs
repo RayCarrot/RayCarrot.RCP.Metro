@@ -84,17 +84,21 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
             int teensies = saveData.Levels.Select(x => x.Value.Object.FreedPrisoners.Length).Sum() + saveData.LuckyTicketRewardList.Count(x => x.Type == 5);
 
             // Add general progress info
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RL_Teensy, teensies, 700));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, saveData.Score.LocalLumsCount));
+            // TODO-UPDATE: Localize
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RL_Teensy, new ConstLocString("Teensies"), teensies, 700));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, new ConstLocString("Lums"), saveData.Score.LocalLumsCount));
 
             // Add rank
-            progressItems.Add(new ProgressionDataViewModel(true, Enum.Parse(typeof(ProgressionIcon), $"RL_Rank{saveData.Profile.StatusIcon}").CastTo<ProgressionIcon>(), (int)saveData.Profile.StatusIcon, 11));
+            var rankIcon = (ProgressionIcon)Enum.Parse(typeof(ProgressionIcon), $"RL_Rank{saveData.Profile.StatusIcon}");
+            // TODO-UPDATE: Localize
+            progressItems.Add(new ProgressionDataViewModel(true, rankIcon, new ConstLocString("Rank"), (int)saveData.Profile.StatusIcon, 11));
 
             // Add cups
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Bronze, (int)saveData.Profile.BronzeMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Silver, (int)saveData.Profile.SilverMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Gold, (int)saveData.Profile.GoldMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Diamond, (int)saveData.Profile.DiamondMedals));
+            // TODO-UPDATE: Localize
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Bronze, new ConstLocString("Bronze cups"), (int)saveData.Profile.BronzeMedals));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Silver, new ConstLocString("Silver cups"), (int)saveData.Profile.SilverMedals));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Gold, new ConstLocString("Gold cups"), (int)saveData.Profile.GoldMedals));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Diamond, new ConstLocString("Diamond cups"), (int)saveData.Profile.DiamondMedals));
 
             // Get the level IDs
             Dictionary<uint, string> lvlIds = GetLevelIDs;
@@ -104,11 +108,12 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                 Select(x => x.Value.Object).
                 Where(x => x.BestTime > 0).
                 Select(x => (lvlIds[x.Id.ID], x.BestTime)).
-                Select(x => new ProgressionDataViewModel(false,
-                    Enum.Parse(typeof(ProgressionIcon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIcon>(),
-                    new ConstLocString($"{x.Item1}: {TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}"),
-                    new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"))).
-                OrderBy(x => x.Text.Value));
+                OrderBy(x => x.Item1).
+                Select(x => new ProgressionDataViewModel(
+                    isPrimaryItem: false,
+                    icon: Enum.Parse(typeof(ProgressionIcon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIcon>(),
+                    header: new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"),
+                    text: new ConstLocString($"{TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}"))));
 
             yield return new SerializableProgressionSlotViewModel<LegendsPCSaveData>(this, new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems, saveFileData, settings)
             {

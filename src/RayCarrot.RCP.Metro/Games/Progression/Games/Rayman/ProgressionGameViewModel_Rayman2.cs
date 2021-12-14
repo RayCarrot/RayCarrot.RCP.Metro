@@ -71,15 +71,35 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 
             List<ProgressionDataViewModel> progressItems = new()
             {
-                new ProgressionDataViewModel(true, ProgressionIcon.R2_Lum, lums, 1000),
-                new ProgressionDataViewModel(true, ProgressionIcon.R2_Cage, cages, 80),
+                // TODO-UPDATE: Localize
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.R2_Lum, 
+                    header: new ConstLocString("Lums"), 
+                    value: lums, 
+                    max: 1000),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.R2_Cage, 
+                    header: new ConstLocString("Cages"), 
+                    value: cages, 
+                    max: 80),
             };
 
             if (walkOfLifeTime > 120)
-                progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\.ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_1))));
+                progressItems.Add(new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.R2_Clock, 
+                    header: new ResourceLocString(nameof(Resources.R2_BonusLevelName_1)), 
+                    text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\.ff}")));
 
             if (walkOfPowerTime > 120)
-                progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.R2_Clock, new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\.ff}"), new ResourceLocString(nameof(Resources.R2_BonusLevelName_2))));
+                // TODO-UPDATE: Localize
+                progressItems.Add(new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.R2_Clock,
+                    header: new ResourceLocString(nameof(Resources.R2_BonusLevelName_2)),
+                    text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\.ff}")));
 
             // Get the name and percentage
             int separatorIndex = saveSlot.SlotDisplayName.LastIndexOf((char)0x20);

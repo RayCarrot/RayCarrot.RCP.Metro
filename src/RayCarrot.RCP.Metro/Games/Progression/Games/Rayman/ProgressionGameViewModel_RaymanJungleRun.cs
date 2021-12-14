@@ -100,12 +100,28 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 }
 
                 // Add the item
-                progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RO_Clock, new ConstLocString($"{worldNum}-{lvlNum}: {new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\.fff}")));
+                // TODO-UPDATE: Localize
+                progressItems.Add(new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.RO_Clock, 
+                    header: new ConstLocString($"{worldNum}-{lvlNum}"), 
+                    text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\.fff}")));
             }
 
             // Add general progress info first
-            progressItems.Insert(0, new ProgressionDataViewModel(true, ProgressionIcon.RO_Lum, collectedLums, availableLums));
-            progressItems.Insert(1, new ProgressionDataViewModel(true, ProgressionIcon.RO_RedTooth, collectedTeeth, availableTeeth));
+            // TODO-UPDATE: Localize
+            progressItems.Insert(0, new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RO_Lum, 
+                header: new ConstLocString("Lums"), 
+                value: collectedLums, 
+                max: availableLums));
+            progressItems.Insert(1, new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RO_RedTooth, 
+                header: new ConstLocString("Teeth"), 
+                value: collectedTeeth, 
+                max: availableTeeth));
 
             yield return new SerializableProgressionSlotViewModel<JungleRunPCSaveData>(this, null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems, saveData, settings)
             {

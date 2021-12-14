@@ -47,7 +47,7 @@
         <Setter Property="metro:HeaderedControlHelper.HeaderBackground" Value="Transparent" />
 
         <Setter Property="metro:HeaderedControlHelper.HeaderMargin" Value="10 0 0 0" />
-        <Setter Property="Padding" Value="10 0" />
+        <Setter Property="Padding" Value="15 0" />
 
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="metro:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Large}" />

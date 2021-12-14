@@ -174,7 +174,11 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
             {
                 var icon = (ProgressionIcon)Enum.Parse(typeof(ProgressionIcon), $"Redemption_Magician{x.Index}");
                 var time = TimeSpan.FromSeconds(x.TimeValue / 60);
-                return new ProgressionDataViewModel(false, icon, new ConstLocString($"{time:mm\\:ss\\.fff}"), new ConstLocString(magicianLevelNames[x.Index]));
+                return new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: icon, 
+                    header: new ConstLocString(magicianLevelNames[x.Index]), 
+                    text: new ConstLocString($"{time:mm\\:ss\\.fff}"));
             });
 
             int totalProgress = levelsCompleted +
@@ -196,15 +200,58 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             var dataItems = new ProgressionDataViewModel[]
             {
-                new ProgressionDataViewModel(true, ProgressionIcon.R1_LevelExit, levelsCompleted, maxLevelsCompleted),
-                new ProgressionDataViewModel(true, ProgressionIcon.R1_Cage, cages, maxCages),
-                new ProgressionDataViewModel(true, ProgressionIcon.Redemption_Token, tokens, maxTokens),
-                new ProgressionDataViewModel(true, ProgressionIcon.Redemption_Present, presents, maxPresents),
-                new ProgressionDataViewModel(false, ProgressionIcon.Redemption_RaymanSkin, raymanSkins, maxRaymanSkins),
-                new ProgressionDataViewModel(false, ProgressionIcon.Redemption_BzzitSkin, bzzitSkins, maxBzzitSkins),
-                new ProgressionDataViewModel(false, ProgressionIcon.Redemption_CheckpointSkin, checkpointSkins, maxCheckpointSkins),
-                new ProgressionDataViewModel(false, ProgressionIcon.R1_Ting, tings),
-                new ProgressionDataViewModel(false, ProgressionIcon.R1_Life, new ConstLocString(lives)),
+                // TODO-UPDATE: Localize
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.R1_LevelExit, 
+                    header: new ConstLocString("Levels completed"), 
+                    value: levelsCompleted, max: maxLevelsCompleted),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.R1_Cage, 
+                    header: new ConstLocString("Cages"), 
+                    value: cages, 
+                    max: maxCages),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.Redemption_Token, 
+                    header: new ConstLocString("Tokens"), 
+                    value: tokens, 
+                    max: maxTokens),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.Redemption_Present, 
+                    header: new ConstLocString("Presents"), 
+                    value: presents, 
+                    max: maxPresents),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.Redemption_RaymanSkin, 
+                    header: new ConstLocString("Rayman skins"), 
+                    value: raymanSkins, 
+                    max: maxRaymanSkins),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.Redemption_BzzitSkin, 
+                    header: new ConstLocString("Bzzit skins"), 
+                    value: bzzitSkins, 
+                    max: maxBzzitSkins),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.Redemption_CheckpointSkin, 
+                    header: new ConstLocString("Checkpoint skins"), 
+                    value: checkpointSkins, 
+                    max: maxCheckpointSkins),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.R1_Ting, 
+                    header: new ConstLocString("Tings"), 
+                    value: tings),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.R1_Life, 
+                    header: new ConstLocString("Lives"), 
+                    text: new ConstLocString(lives)),
             }.Concat(magicianBonusDataItems);
 
             yield return new SerializableProgressionSlotViewModel<GameMaker_DSMap>(this, new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, dataItems, saveData, settings)

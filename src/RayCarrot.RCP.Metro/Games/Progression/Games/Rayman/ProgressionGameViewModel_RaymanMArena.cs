@@ -84,8 +84,9 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
             AddBattleCompleted(GetValues("sg_battlelevels_mode3"));
 
             // Add completed challenges
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Race, raceCompleted, maxRace));
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Battle, battleCompleted, maxBattle));
+            // TODO-UPDATE: Localize
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Race, new ConstLocString("Races finished"), raceCompleted, maxRace));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Battle, new ConstLocString("Battles finished"), battleCompleted, maxBattle));
 
             // Add records for every race
             for (int raceIndex = 0; raceIndex < 16; raceIndex++)
@@ -101,13 +102,15 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
                     // Only add if it has valid data
                     if ((isTime && value > 0) || (!isTime && value > -22))
-                        progressItems.Add(new ProgressionDataViewModel(false,
+                        // TODO-UPDATE: Update localization for the get description
+                        progressItems.Add(new ProgressionDataViewModel(
+                            isPrimaryItem: false,
                             // Get the level icon
-                            Enum.Parse(typeof(ProgressionIcon), $"RM_R{raceIndex}").CastTo<ProgressionIcon>(),
+                            icon: Enum.Parse(typeof(ProgressionIcon), $"RM_R{raceIndex}").CastTo<ProgressionIcon>(),
+                            // The header
+                            header: new GeneratedLocString(() => $"{Resources.ResourceManager.GetString($"RM_RaceName_{raceIndex}", Services.InstanceData.CurrentCulture)} ({getDescription()})"),
                             // The value
-                            new GeneratedLocString(() => $"{getDescription()}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\.fff")) : value.ToString())}"),
-                            // The description (level name)
-                            new ResourceLocString($"RM_RaceName_{raceIndex}")));
+                            text: new GeneratedLocString(() => $"{(isTime ? GetTime(value).ToString("mm\\:ss\\.fff") : value.ToString())}")));
                 }
 
                 AddRaceItem("sg_racelevels_bestlap_training", () => Resources.Progression_RM_LapTraining);

@@ -8,15 +8,15 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class ProgressionDataViewModel : BaseViewModel
 {
-    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, LocalizedString text, LocalizedString? description = null)
+    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, LocalizedString header, LocalizedString text)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
         Text = text;
-        Description = description;
+        Header = header;
     }
 
-    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, int value, LocalizedString? description = null)
+    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, LocalizedString header, int value)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
@@ -25,15 +25,15 @@ public class ProgressionDataViewModel : BaseViewModel
             NumberGroupSeparator = " ",
             NumberDecimalDigits = 0
         }));
-        Description = description;
+        Header = header;
     }
 
-    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, int value, int max, LocalizedString? description = null)
+    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, LocalizedString header, int value, int max)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
         Text = new ConstLocString($"{value} / {max}");
-        Description = description;
+        Header = header;
     }
 
     public bool IsPrimaryItem { get; }
@@ -48,6 +48,6 @@ public class ProgressionDataViewModel : BaseViewModel
     /// </summary>
     public ImageSource? IconImageSource => new ImageSourceConverter().ConvertFrom($"{AppViewModel.WPFApplicationBasePath}Img/ProgressionIcons/{Icon}.png") as ImageSource;
 
+    public LocalizedString Header { get; }
     public LocalizedString Text { get; }
-    public LocalizedString? Description { get; }
 }

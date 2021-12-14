@@ -51,7 +51,13 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         ProgressionDataViewModel[] progressItems =
         {
-            new ProgressionDataViewModel(true, ProgressionIcon.RabbidsBigBang_Score, score, maxScore),
+            // TODO-UPDATE: Localize
+            new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RabbidsBigBang_Score, 
+                header: new ConstLocString("Stars"), 
+                value: score, 
+                max: maxScore),
         };
 
         yield return new SerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, saveData, settings)
