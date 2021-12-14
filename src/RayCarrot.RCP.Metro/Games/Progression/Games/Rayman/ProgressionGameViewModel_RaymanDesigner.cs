@@ -44,6 +44,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         string[] longWorldNames = { "", "Jungle", "Music", "Mountain", "Image", "Cave", "Cake" };
 
         List<ProgressionDataViewModel> progressItems = new();
+        Dictionary<string, int> levelTimes = new();
 
         // Find every .sct file
         foreach (var save in fileSystem.GetFiles(saveDir).Select(sct =>
@@ -90,6 +91,8 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
                 continue;
             }
 
+            levelTimes.Add(save.FilePath.Name, value);
+
             // Get the time
             TimeSpan time = TimeSpan.FromMilliseconds(1000d / 60 * value);
 
@@ -119,9 +122,36 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             value: levelsFinished, 
             max: levelsCount));
 
-        // TODO-UPDATE: Allow export/import, have dictionary of levels in JSON file
-        yield return new ProgressionSlotViewModel(this, null, 0, levelsFinished, levelsCount, progressItems);
+        yield return new RaymanDesignerProgressionSlotViewModel(this, null, 0, levelsFinished, levelsCount, progressItems, levelTimes, saveDir);
 
         Logger.Info("{0} slot has been loaded", Game);
+    }
+
+    private class RaymanDesignerProgressionSlotViewModel : ProgressionSlotViewModel
+    {
+        public RaymanDesignerProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, int collectiblesCount, int totalCollectiblesCount, IEnumerable<ProgressionDataViewModel> dataItems, Dictionary<string, int> levelTimes, FileSystemPath saveDir) : base(game, name, index, collectiblesCount, totalCollectiblesCount, dataItems)
+        {
+            LevelTimes = levelTimes;
+            SaveDir = saveDir;
+            CanExport = true;
+            CanImport = false;
+        }
+
+        public Dictionary<string, int> LevelTimes { get; }
+        public FileSystemPath SaveDir { get; }
+
+        protected override void ExportSlot(FileSystemPath filePath)
+        {
+            JsonHelpers.SerializeToFile(LevelTimes, filePath);
+        }
+
+        protected override void ImportSlot(FileSystemPath filePath)
+        {
+            // Read the JSON file
+            Dictionary<string, int> lvlTimes = JsonHelpers.DeserializeFromFile<Dictionary<string, int>>(filePath);
+
+            // TODO-UPDATE: Implement - encode level time back to encrypted format and write to files
+            throw new NotImplementedException();
+        }
     }
 }
