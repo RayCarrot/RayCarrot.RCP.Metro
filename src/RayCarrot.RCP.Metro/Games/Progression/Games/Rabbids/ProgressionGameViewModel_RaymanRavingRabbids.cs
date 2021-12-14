@@ -555,12 +555,20 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             if (slot.SlotDesc.Time == 0)
                 continue;
 
-            yield return new ProgressionSlotViewModel(new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, new ProgressionDataViewModel[]
+            ProgressionDataViewModel[] dataItems =
             {
                 new ProgressionDataViewModel(true, GameProgression_Icon.RRR_Plunger, slot.SlotDesc.Progress_Days, 15),
-            })
+            };
+
+            int storySlotIndex = saveIndex;
+
+            yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, saveData, settings)
             {
-                FilePath = saveFile
+                FilePath = saveFile,
+                GetExportObject = x => x.StorySlots[storySlotIndex],
+                SetImportObject = (x, o) => x.StorySlots[storySlotIndex] = (RRR_SaveSlot)o,
+                ExportedType = typeof(RRR_SaveSlot),
+                // NOTE: Don't need to specify an encoder since the game can read decoded files
             };
         }
 
@@ -628,9 +636,12 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         // Add score slot
         // TODO-UPDATE: Localize
-        yield return new ProgressionSlotViewModel(new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems)
+        yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems, saveData, settings)
         {
-            FilePath = saveFile
+            FilePath = saveFile,
+            GetExportObject = x => x.ScoreSlot,
+            SetImportObject = (x, o) => x.ScoreSlot = (RRR_SaveSlot)o,
+            ExportedType = typeof(RRR_SaveSlot),
         };
 
         Logger.Info("{0} save has been loaded", Game);

@@ -270,6 +270,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <!-- Title -->
@@ -296,6 +297,45 @@
                 <ContentPresenter Content="{Binding}" 
                                   ContentTemplate="{StaticResource DataTemplate.SlotPercentage}" />
             </Grid>
+
+            <!-- Import/Export Options -->
+
+            <StackPanel Grid.Column="3"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Margin="0 0 -10 0">
+                <Button Style="{StaticResource Button.Flat}"
+                        Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                        ToolTip="{Resx Progression_Export}"
+                        Visibility="{Binding Path=CanExport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                        Margin="25 0 10 0">
+                    <iconpacks:PackIconMaterial Background="Transparent"
+                                                Kind="FileExportOutline"
+                                                Width="20"
+                                                Height="20" />
+                </Button>
+                <Button Style="{StaticResource Button.Flat}"
+                        Command="{Binding Path=ImportCommand, Mode=OneTime}"
+                        ToolTip="{Resx Progression_Import}"
+                        Visibility="{Binding Path=CanImport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                        Margin="0 0 10 0">
+                    <iconpacks:PackIconMaterial Background="Transparent"
+                                                Kind="FileImportOutline"
+                                                Width="20"
+                                                Height="20" />
+                </Button>
+                <!-- TODO-UPDATE: Localize -->
+                <Button Style="{StaticResource Button.Flat}"
+                        Command="{Binding Path=EditCommand, Mode=OneTime}"
+                        ToolTip="Edit"
+                        Visibility="{Binding Path=CanImport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                        Margin="0 0 10 0">
+                    <iconpacks:PackIconMaterial Background="Transparent"
+                                                Kind="FileDocumentEditOutline"
+                                                Width="20"
+                                                Height="20" />
+                </Button>
+            </StackPanel>
 
         </Grid>
     </DataTemplate>
@@ -374,7 +414,6 @@
 
                     <ItemsControl ItemsSource="{Binding Path=BackupSlots, Mode=OneTime}"
                                   ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"/>
-
 
                 </StackPanel>
             </Expander>

@@ -92,6 +92,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
+            BinarySerializerSettings settings = new(Endian.Little, Encoding.ASCII);
             GameMaker_DSMap? saveData = await Task.Run(() =>
             {
                 // Get the file
@@ -111,7 +112,6 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
                 using MemoryStream mem = new(bytes);
 
                 // Deserialize the data
-                BinarySerializerSettings settings = new(Endian.Little, Encoding.ASCII);
                 return BinarySerializableHelpers.ReadFromStream<GameMaker_DSMap>(mem, settings, Services.App.GetBinarySerializerLogger());
             });
 
@@ -194,7 +194,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             double percentage = Math.Floor(totalProgress / (double)352 * 100);
 
-            yield return new ProgressionSlotViewModel(new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, new ProgressionDataViewModel[]
+            var dataItems = new ProgressionDataViewModel[]
             {
                 new ProgressionDataViewModel(true, GameProgression_Icon.R1_LevelExit, levelsCompleted, maxLevelsCompleted),
                 new ProgressionDataViewModel(true, GameProgression_Icon.R1_Cage, cages, maxCages),
@@ -205,7 +205,9 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
                 new ProgressionDataViewModel(false, GameProgression_Icon.Redemption_CheckpointSkin, checkpointSkins, maxCheckpointSkins),
                 new ProgressionDataViewModel(false, GameProgression_Icon.R1_Ting, tings),
                 new ProgressionDataViewModel(false, GameProgression_Icon.R1_Life, new ConstLocString(lives)),
-            }.Concat(magicianBonusDataItems))
+            }.Concat(magicianBonusDataItems);
+
+            yield return new SerializableProgressionSlotViewModel<GameMaker_DSMap>(this, new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, dataItems, saveData, settings)
             {
                 FilePath = filePath
             };

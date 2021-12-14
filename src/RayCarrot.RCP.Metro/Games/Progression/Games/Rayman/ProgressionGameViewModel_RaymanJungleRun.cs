@@ -107,7 +107,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             progressItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.RO_Lum, collectedLums, availableLums));
             progressItems.Insert(1, new ProgressionDataViewModel(true, GameProgression_Icon.RO_RedTooth, collectedTeeth, availableTeeth));
 
-            yield return new ProgressionSlotViewModel(null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems)
+            yield return new SerializableProgressionSlotViewModel<JungleRunPCSaveData>(this, null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems, saveData, settings)
             {
                 FilePath = filePath
             };

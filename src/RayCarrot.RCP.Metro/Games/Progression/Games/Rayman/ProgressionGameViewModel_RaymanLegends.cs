@@ -65,13 +65,15 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
             // Deserialize the data
             UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, Platform.PC);
-            var saveData = (await SerializeFileDataAsync<LegendsPCSaveData>(fileSystem, saveFile, settings))?.SaveData;
+            LegendsPCSaveData? saveFileData = await SerializeFileDataAsync<LegendsPCSaveData>(fileSystem, saveFile, settings);
 
-            if (saveData == null)
+            if (saveFileData == null)
             {
                 Logger.Info("{0} slot was not found", Game);
                 continue;
             }
+
+            var saveData = saveFileData.SaveData;
 
             Logger.Info("Slot has been deserialized");
 
@@ -108,9 +110,12 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                     new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"))).
                 OrderBy(x => x.Text.Value));
 
-            yield return new ProgressionSlotViewModel(new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems)
+            yield return new SerializableProgressionSlotViewModel<LegendsPCSaveData>(this, new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems, saveFileData, settings)
             {
-                FilePath = saveFile
+                FilePath = saveFile,
+                GetExportObject = x => x.SaveData,
+                SetImportObject = (x, o) => x.SaveData = (LegendsPCSaveData.PersistentGameData_Universe)o,
+                ExportedType = typeof(LegendsPCSaveData.PersistentGameData_Universe)
             };
 
             Logger.Info("{0} slot has been loaded", Game);

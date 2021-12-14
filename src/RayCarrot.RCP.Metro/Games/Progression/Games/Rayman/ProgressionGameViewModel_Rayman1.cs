@@ -49,9 +49,10 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
                 new ProgressionDataViewModel(false, GameProgression_Icon.R1_Life, saveData.StatusBar.LivesCount),
             };
 
-            yield return new ProgressionSlotViewModel(new ConstLocString(saveData.SaveName.ToUpper()), saveIndex, cages, 102, dataItems)
+            yield return new SerializableProgressionSlotViewModel<Rayman1PCSaveData>(this, new ConstLocString(saveData.SaveName.ToUpper()), saveIndex, cages, 102, dataItems, saveData, settings)
             {
-                FilePath = filePath
+                FilePath = filePath,
+                ImportEncoder = new Rayman12PCSaveDataEncoder(),
             };
 
             Logger.Info("{0} slot has been loaded", Game);

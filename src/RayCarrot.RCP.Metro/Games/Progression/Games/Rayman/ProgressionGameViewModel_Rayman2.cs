@@ -87,9 +87,10 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
             string percentage = saveSlot.SlotDisplayName.Substring(separatorIndex + 1);
             double parsedPercentage = Double.TryParse(percentage, NumberStyles.Any, CultureInfo.InvariantCulture, out double p) ? p : 0;
 
-            yield return new ProgressionSlotViewModel(new ConstLocString(name), (int)saveSlot.SlotIndex, parsedPercentage, progressItems)
+            yield return new SerializableProgressionSlotViewModel<Rayman2PCSaveData>(this, new ConstLocString(name), (int)saveSlot.SlotIndex, parsedPercentage, progressItems, saveData, settings)
             {
-                FilePath = slotFilePath
+                FilePath = slotFilePath,
+                ImportEncoder = new Rayman12PCSaveDataEncoder(),
             };
 
             Logger.Info("{0} slot has been loaded", Game);

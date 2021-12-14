@@ -43,13 +43,15 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
 
             // Deserialize the data
             UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC);
-            var saveData = (await SerializeFileDataAsync<OriginsPCSaveData>(fileSystem, filePath, settings))?.SaveData;
+            OriginsPCSaveData saveFileData = (await SerializeFileDataAsync<OriginsPCSaveData>(fileSystem, filePath, settings));
 
-            if (saveData == null)
+            if (saveFileData == null)
             {
                 Logger.Info("{0} slot was not found", Game);
                 continue;
             }
+
+            OriginsPCSaveData.PersistentGameData_Universe saveData = saveFileData.SaveData;
 
             Logger.Info("Slot has been deserialized");
 
@@ -124,9 +126,13 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Medal, lumAttack3, 51));
             progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Trophy, timeAttack2, 31));
 
-            yield return new ProgressionSlotViewModel(null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems)
+            yield return new SerializableProgressionSlotViewModel<OriginsPCSaveData>(this, null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems, saveFileData, settings)
             {
-                FilePath = filePath
+                FilePath = filePath,
+                GetExportObject = x => x.SaveData,
+                SetImportObject = (x, o) => x.SaveData = (OriginsPCSaveData.PersistentGameData_Universe)o,
+                ExportedType = typeof(OriginsPCSaveData.PersistentGameData_Universe),
+                CanImport = false, // TODO: Allow importing. Current issue is the game fails to load modified saves - checksum in header?
             };
 
             Logger.Info("{0} slot has been loaded", Game);

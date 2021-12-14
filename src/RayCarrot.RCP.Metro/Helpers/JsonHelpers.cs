@@ -45,17 +45,16 @@ public static class JsonHelpers
     /// <summary>
     /// Deserializes an object from a file
     /// </summary>
-    /// <typeparam name="T">The type of object to return</typeparam>
     /// <param name="filePath">The file to deserialize</param>
     /// <param name="type">The type of object to deserialize</param>
     /// <param name="converters">Optional converters to use</param>
     /// <returns>The deserialized object</returns>
-    public static T DeserializeFromFile<T>(string filePath, Type type, params JsonConverter[] converters)
+    public static object DeserializeFromFile(string filePath, Type type, params JsonConverter[] converters)
     {
         // Read the JSON
         var json = File.ReadAllText(filePath);
 
         // Return the deserialized object
-        return (T)JsonConvert.DeserializeObject(json, type, converters.AppendToArray(new ByteArrayHexConverter()));
+        return JsonConvert.DeserializeObject(json, type, converters.AppendToArray(new ByteArrayHexConverter()));
     }
 }

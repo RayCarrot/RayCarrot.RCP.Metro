@@ -23,7 +23,8 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         Logger.Info("{0} save is being loaded...", Game);
 
-        Unity_PlayerPrefs? saveData = await SerializeFileDataAsync<Unity_PlayerPrefs>(fileSystem, saveFile, new BinarySerializerSettings(Endian.Little, Encoding.UTF8));
+        BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
+        Unity_PlayerPrefs? saveData = await SerializeFileDataAsync<Unity_PlayerPrefs>(fileSystem, saveFile, settings);
 
         if (saveData == null)
         {
@@ -53,9 +54,10 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
             new ProgressionDataViewModel(true, GameProgression_Icon.RabbidsBigBang_Score, score, maxScore),
         };
 
-        yield return new ProgressionSlotViewModel(null, 0, score, maxScore, progressItems)
+        yield return new SerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, saveData, settings)
         {
-            FilePath = saveFile
+            FilePath = saveFile,
+            CanImport = false, // TODO: Allow importing by setting the file size and checksum (CRC-32) when saving
         };
 
         Logger.Info("{0} save has been loaded", Game);
