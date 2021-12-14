@@ -8,6 +8,7 @@
 		<LangVersion>10.0</LangVersion>
 		<UseWPF>true</UseWPF>
 		<Nullable>enable</Nullable>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 		<!-- Appears to be required when using framework earlier than net5 -->
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 	</PropertyGroup>
