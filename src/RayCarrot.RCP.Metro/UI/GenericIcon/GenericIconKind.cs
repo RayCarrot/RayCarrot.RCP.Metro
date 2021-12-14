@@ -26,7 +26,6 @@ public enum GenericIconKind
     GameDisplay_Purchase,
 
     GameOptions_General,
-    GameOptions_Progression,
     GameOptions_Config,
     GameOptions_Emulator,
     GameOptions_Utilities,

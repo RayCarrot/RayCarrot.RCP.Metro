@@ -65,11 +65,6 @@ public sealed class GameInfo_RaymanByHisFans : GameInfo
     /// </summary>
     public override FrameworkElement OptionsUI => new GameOptions_DOSBox_UI(Game);
 
-    /// <summary>
-    /// The progression view model, if any is available
-    /// </summary>
-    public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_RaymanDesigner_ViewModel(Game);
-
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanByHisFans().Yield();
 
     /// <summary>

@@ -58,11 +58,6 @@ public sealed class GameInfo_Rayman2 : GameInfo
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_Rayman2_ViewModel();
 
-    /// <summary>
-    /// The progression view model, if any is available
-    /// </summary>
-    public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_Rayman2_ViewModel();
-
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_Rayman2().Yield();
 
     /// <summary>

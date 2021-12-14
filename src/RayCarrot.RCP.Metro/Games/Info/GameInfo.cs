@@ -94,11 +94,6 @@ public abstract class GameInfo : BaseGameData
     public virtual GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => null;
 
     /// <summary>
-    /// The progression view model, if any is available
-    /// </summary>
-    public virtual GameProgression_BaseViewModel ProgressionViewModel => null;
-
-    /// <summary>
     /// The progression game view models
     /// </summary>
     public virtual IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => Enumerable.Empty<ProgressionGameViewModel>();

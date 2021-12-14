@@ -121,10 +121,10 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             int teeth = saveData.Levels.Select(x => x.Value.Object.ISDs.Select(y => y.Value.Object.TakenTooth.Length)).SelectMany(x => x).Sum();
 
             // Add general progress info
-            progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Electoon, electoons, 246));
-            progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_RedTooth, teeth, 10));
-            progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Medal, lumAttack3, 51));
-            progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RO_Trophy, timeAttack2, 31));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Electoon, electoons, 246));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_RedTooth, teeth, 10));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Medal, lumAttack3, 51));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Trophy, timeAttack2, 31));
 
             yield return new SerializableProgressionSlotViewModel<OriginsPCSaveData>(this, null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems, saveFileData, settings)
             {

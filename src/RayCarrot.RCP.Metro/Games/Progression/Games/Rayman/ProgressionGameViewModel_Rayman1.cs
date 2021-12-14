@@ -44,9 +44,9 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
 
             ProgressionDataViewModel[] dataItems =
             {
-                new ProgressionDataViewModel(true, GameProgression_Icon.R1_Cage, cages, 102),
-                new ProgressionDataViewModel(false, GameProgression_Icon.R1_Continue, saveData.ContinuesCount),
-                new ProgressionDataViewModel(false, GameProgression_Icon.R1_Life, saveData.StatusBar.LivesCount),
+                new ProgressionDataViewModel(true, ProgressionIcon.R1_Cage, cages, 102),
+                new ProgressionDataViewModel(false, ProgressionIcon.R1_Continue, saveData.ContinuesCount),
+                new ProgressionDataViewModel(false, ProgressionIcon.R1_Life, saveData.StatusBar.LivesCount),
             };
 
             yield return new SerializableProgressionSlotViewModel<Rayman1PCSaveData>(this, new ConstLocString(saveData.SaveName.ToUpper()), saveIndex, cages, 102, dataItems, saveData, settings)

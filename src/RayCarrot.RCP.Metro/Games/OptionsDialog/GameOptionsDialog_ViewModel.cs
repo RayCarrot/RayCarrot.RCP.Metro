@@ -45,12 +45,6 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         // Add the options page
         pages.Add(new GameOptionsDialog_OptionsPageViewModel(Game));
 
-        // Add the progression page
-        var progressionViewModel = gameInfo.ProgressionViewModel;
-
-        if (progressionViewModel != null)
-            pages.Add(new GameOptionsDialog_ProgressionPageViewModel(progressionViewModel));
-
         // Add the config page
         var configViewModel = gameInfo.ConfigPageViewModel;
 

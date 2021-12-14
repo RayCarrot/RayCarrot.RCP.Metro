@@ -557,7 +557,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
             ProgressionDataViewModel[] dataItems =
             {
-                new ProgressionDataViewModel(true, GameProgression_Icon.RRR_Plunger, slot.SlotDesc.Progress_Days, 15),
+                new ProgressionDataViewModel(true, ProgressionIcon.RRR_Plunger, slot.SlotDesc.Progress_Days, 15),
             };
 
             int storySlotIndex = saveIndex;
@@ -626,13 +626,13 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             string name = char0 + char1 + char2;
 
             if (score != 0 && (types[mgID] & 0x100) == 0 && mgID != 64)
-                scoreDataItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RRR_Star, score, 1000, new ConstLocString(names[mgID])));
+                scoreDataItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RRR_Star, score, 1000, new ConstLocString(names[mgID])));
 
-            scoreDataItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RRR_Trophy, new ConstLocString($"{name}: {playerHighScore}"), new ConstLocString(names[mgID])));
+            scoreDataItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RRR_Trophy, new ConstLocString($"{name}: {playerHighScore}"), new ConstLocString(names[mgID])));
         }
 
         // Add total score
-        scoreDataItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.RRR_Star, totalScore, maxScore));
+        scoreDataItems.Insert(0, new ProgressionDataViewModel(true, ProgressionIcon.RRR_Star, totalScore, maxScore));
 
         // Add score slot
         // TODO-UPDATE: Localize

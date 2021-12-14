@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class ProgressionDataViewModel : BaseViewModel
 {
-    public ProgressionDataViewModel(bool isPrimaryItem, GameProgression_Icon icon, LocalizedString text, LocalizedString? description = null)
+    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, LocalizedString text, LocalizedString? description = null)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
@@ -16,7 +16,7 @@ public class ProgressionDataViewModel : BaseViewModel
         Description = description;
     }
 
-    public ProgressionDataViewModel(bool isPrimaryItem, GameProgression_Icon icon, int value, LocalizedString? description = null)
+    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, int value, LocalizedString? description = null)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
@@ -28,7 +28,7 @@ public class ProgressionDataViewModel : BaseViewModel
         Description = description;
     }
 
-    public ProgressionDataViewModel(bool isPrimaryItem, GameProgression_Icon icon, int value, int max, LocalizedString? description = null)
+    public ProgressionDataViewModel(bool isPrimaryItem, ProgressionIcon icon, int value, int max, LocalizedString? description = null)
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
@@ -41,7 +41,7 @@ public class ProgressionDataViewModel : BaseViewModel
     /// <summary>
     /// The icon
     /// </summary>
-    public GameProgression_Icon Icon { get; }
+    public ProgressionIcon Icon { get; }
 
     /// <summary>
     /// The icon as an image source

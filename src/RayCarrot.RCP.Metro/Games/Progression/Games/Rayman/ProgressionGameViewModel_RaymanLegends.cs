@@ -84,17 +84,17 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
             int teensies = saveData.Levels.Select(x => x.Value.Object.FreedPrisoners.Length).Sum() + saveData.LuckyTicketRewardList.Count(x => x.Type == 5);
 
             // Add general progress info
-            progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RL_Teensy, teensies, 700));
-            progressItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RL_Lum, saveData.Score.LocalLumsCount));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RL_Teensy, teensies, 700));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, saveData.Score.LocalLumsCount));
 
             // Add rank
-            progressItems.Add(new ProgressionDataViewModel(true, Enum.Parse(typeof(GameProgression_Icon), $"RL_Rank{saveData.Profile.StatusIcon}").CastTo<GameProgression_Icon>(), (int)saveData.Profile.StatusIcon, 11));
+            progressItems.Add(new ProgressionDataViewModel(true, Enum.Parse(typeof(ProgressionIcon), $"RL_Rank{saveData.Profile.StatusIcon}").CastTo<ProgressionIcon>(), (int)saveData.Profile.StatusIcon, 11));
 
             // Add cups
-            progressItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RL_Bronze, (int)saveData.Profile.BronzeMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RL_Silver, (int)saveData.Profile.SilverMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RL_Gold, (int)saveData.Profile.GoldMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.RL_Diamond, (int)saveData.Profile.DiamondMedals));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Bronze, (int)saveData.Profile.BronzeMedals));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Silver, (int)saveData.Profile.SilverMedals));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Gold, (int)saveData.Profile.GoldMedals));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Diamond, (int)saveData.Profile.DiamondMedals));
 
             // Get the level IDs
             Dictionary<uint, string> lvlIds = GetLevelIDs;
@@ -105,7 +105,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                 Where(x => x.BestTime > 0).
                 Select(x => (lvlIds[x.Id.ID], x.BestTime)).
                 Select(x => new ProgressionDataViewModel(false,
-                    Enum.Parse(typeof(GameProgression_Icon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<GameProgression_Icon>(),
+                    Enum.Parse(typeof(ProgressionIcon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIcon>(),
                     new ConstLocString($"{x.Item1}: {TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}"),
                     new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"))).
                 OrderBy(x => x.Text.Value));

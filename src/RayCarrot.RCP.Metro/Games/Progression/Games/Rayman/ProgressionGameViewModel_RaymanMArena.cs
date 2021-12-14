@@ -84,8 +84,8 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
             AddBattleCompleted(GetValues("sg_battlelevels_mode3"));
 
             // Add completed challenges
-            progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RM_Race, raceCompleted, maxRace));
-            progressItems.Add(new ProgressionDataViewModel(true, GameProgression_Icon.RM_Battle, battleCompleted, maxBattle));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Race, raceCompleted, maxRace));
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Battle, battleCompleted, maxBattle));
 
             // Add records for every race
             for (int raceIndex = 0; raceIndex < 16; raceIndex++)
@@ -103,7 +103,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                     if ((isTime && value > 0) || (!isTime && value > -22))
                         progressItems.Add(new ProgressionDataViewModel(false,
                             // Get the level icon
-                            Enum.Parse(typeof(GameProgression_Icon), $"RM_R{raceIndex}").CastTo<GameProgression_Icon>(),
+                            Enum.Parse(typeof(ProgressionIcon), $"RM_R{raceIndex}").CastTo<ProgressionIcon>(),
                             // The value
                             new GeneratedLocString(() => $"{getDescription()}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\.fff")) : value.ToString())}"),
                             // The description (level name)

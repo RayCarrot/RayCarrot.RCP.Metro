@@ -1,10 +1,9 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The available progression icons
 /// </summary>
-public enum GameProgression_Icon
+public enum ProgressionIcon
 {
     // Rayman 1
     R1_Cage,

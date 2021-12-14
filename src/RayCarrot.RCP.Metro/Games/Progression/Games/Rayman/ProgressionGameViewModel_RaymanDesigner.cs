@@ -93,7 +93,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             // Get the time
             TimeSpan time = TimeSpan.FromMilliseconds(1000d / 60 * value);
 
-            progressItems.Add(new ProgressionDataViewModel(false, GameProgression_Icon.R1_Flag, new ConstLocString($"{longWorldNames[save!.World]} {save.Level}: {time:mm\\:ss\\.fff}")));
+            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.R1_Flag, new ConstLocString($"{longWorldNames[save!.World]} {save.Level}: {time:mm\\:ss\\.fff}")));
         }
 
         int levelsCount = Game switch
@@ -107,7 +107,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         int levelsFinished = progressItems.Count;
 
         // Add levels completed
-        progressItems.Insert(0, new ProgressionDataViewModel(true, GameProgression_Icon.R1_Flag, levelsFinished, levelsCount));
+        progressItems.Insert(0, new ProgressionDataViewModel(true, ProgressionIcon.R1_Flag, levelsFinished, levelsCount));
 
         // TODO-UPDATE: Allow export/import, have dictionary of levels in JSON file
         yield return new ProgressionSlotViewModel(this, null, 0, levelsFinished, levelsCount, progressItems);

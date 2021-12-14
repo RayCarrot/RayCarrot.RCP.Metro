@@ -122,9 +122,6 @@
     <local:GenericIcon x:Key="GenericIcons.GameOptions_General" 
                        IconKind="{StaticResource Icons.Settings}" 
                        IconColor="{StaticResource Colors.Settings}" />
-    <local:GenericIcon x:Key="GenericIcons.GameOptions_Progression" 
-                       IconKind="{StaticResource Icons.Progression}"
-                       IconColor="{StaticResource Colors.Progression}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Config" 
                        IconKind="{StaticResource Icons.GameOptions_Config}"
                        IconColor="{StaticResource Colors.GameConfig}" />

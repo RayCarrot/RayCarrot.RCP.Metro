@@ -49,11 +49,6 @@ public sealed class GameInfo_RaymanJungleRun : GameInfo
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanJungleRun_ViewModel();
 
-    /// <summary>
-    /// The progression view model, if any is available
-    /// </summary>
-    public override GameProgression_BaseViewModel ProgressionViewModel => new GameProgression_JungleRun_ViewModel();
-
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanJungleRun().Yield();
 
     /// <summary>
