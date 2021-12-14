@@ -22,8 +22,8 @@
                  Text="{Binding Path=StringInput}" />
         
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <Button Content="Cancel" Click="CancelButton_Click" IsCancel="True"/>
-            <Button Content="Continue" Margin="10 0" Click="OKButton_Click" IsDefault="True"/>
+            <Button Content="{Resx Cancel}" Click="CancelButton_Click" IsCancel="True"/>
+            <Button Content="{Resx Accept}" Margin="10 0" Click="OKButton_Click" IsDefault="True"/>
         </StackPanel>
     </Grid>
 </local:WindowContentControl>
