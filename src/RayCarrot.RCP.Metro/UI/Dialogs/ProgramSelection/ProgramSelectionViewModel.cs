@@ -25,7 +25,7 @@ public class ProgramSelectionViewModel : UserInputViewModel
         set
         {
             _programFilePath = value;
-            IsValid = ProgramFilePath.FileExists;
+            IsValid = ProgramFilePath.FileExists && ProgramFilePath.FileExtension == new FileExtension(".exe");
         }
     }
 
