@@ -19,7 +19,7 @@ public sealed class Operation
     {
         StartAction = startAction;
         DisposeAction = disposeAction;
-        LockOperation = lockOperation;
+        DisposableLock = lockOperation ? new AsyncLock() : null;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public sealed class Operation
         StartAction?.Invoke();
 
         // Create the disposable action
-        return new DisposableAction(DisposeAction, LockOperation);
+        return new DisposableAction(DisposeAction, DisposableLock);
     }
 
     /// <summary>
@@ -46,9 +46,9 @@ public sealed class Operation
     private Action DisposeAction { get; }
 
     /// <summary>
-    /// Indicates if the operation should be locked
+    /// The disposable lock
     /// </summary>
-    private bool LockOperation { get; }
+    private AsyncLock DisposableLock { get; }
 
     /// <summary>
     /// The disposable wrapper
@@ -59,13 +59,11 @@ public sealed class Operation
         /// Default constructor
         /// </summary>
         /// <param name="disposeAction">The action to run after running the operation</param>
-        /// <param name="lockOperation">Indicates if the operation should be locked</param>
-        public DisposableAction(Action disposeAction, bool lockOperation)
+        /// <param name="disposableLock">The disposable lock, or null if not used</param>
+        public DisposableAction(Action disposeAction, AsyncLock disposableLock)
         {
             DisposeAction = disposeAction;
-
-            if (lockOperation)
-                DisposableLock = new AsyncLock().Lock();
+            DisposableLock = disposableLock?.Lock();
         }
 
         /// <summary>
