@@ -25,11 +25,18 @@
 
             <local:MenuItemIcon Header="{Resx Backup_BackupAll}"
                                 IconKind="FolderUploadOutline"
-                                Command="{Binding Path=BackupAllCommand}" />
+                                Command="{Binding Path=BackupAllCommand, Mode=OneTime}" />
 
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
-                                Command="{Binding Path=RefreshCommand}" />
+                                Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
+
+            <Separator />
+
+            <!-- TODO-UPDATE: Localize -->
+            <local:MenuItemIcon Header="Change save editor program"
+                                IconKind="ApplicationOutline"
+                                Command="{Binding Path=ChangeSaveEditProgramCommand, Mode=OneTime}" />
 
         </ContextMenu>
     </local:IBasePage.OverflowMenu>

@@ -26,6 +26,7 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
         // Create commands
         RefreshCommand = new AsyncRelayCommand(RefreshAsync);
         BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
+        ChangeSaveEditProgramCommand = new AsyncRelayCommand(ChangeSaveEditProgramAsync);
 
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(GameItems, Application.Current);
@@ -64,6 +65,7 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
 
     public ICommand RefreshCommand { get; }
     public ICommand BackupAllCommand { get; }
+    public ICommand ChangeSaveEditProgramCommand { get; }
 
     #endregion
 
@@ -171,6 +173,20 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
             else
                 await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
         }
+    }
+
+    public async Task ChangeSaveEditProgramAsync()
+    {
+        ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
+        {
+            // TODO-UPDATE: Localize
+            Title = "Select an executable for editing JSON save files",
+        });
+
+        if (programResult.CanceledByUser)
+            return;
+
+        Data.Progression_SaveEditorExe = programResult.ProgramFilePath;
     }
 
     #endregion
