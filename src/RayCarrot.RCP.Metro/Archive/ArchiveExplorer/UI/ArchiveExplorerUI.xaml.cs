@@ -172,7 +172,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
             return;
 
         // Run as a load operation
-        using (dir.Archive.LoadOperation.Run())
+        using (await dir.Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await dir.Archive.ArchiveLock.LockAsync())

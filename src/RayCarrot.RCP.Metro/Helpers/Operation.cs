@@ -1,5 +1,5 @@
-﻿#nullable disable
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro;
@@ -14,25 +14,35 @@ public sealed class Operation
     /// </summary>
     /// <param name="startAction">The action to run before running the operation</param>
     /// <param name="disposeAction">The action to run after running the operation</param>
-    /// <param name="lockOperation">Indicates if the operation should be locked</param>
-    public Operation(Action startAction, Action disposeAction, bool lockOperation)
+    public Operation(Action startAction, Action disposeAction)
     {
         StartAction = startAction;
         DisposeAction = disposeAction;
-        DisposableLock = lockOperation ? new AsyncLock() : null;
+        DisposableLock = new AsyncLock();
     }
 
     /// <summary>
     /// Runs the operation
     /// </summary>
     /// <returns>The disposable wrapper</returns>
-    public DisposableAction Run()
+    public async Task<IDisposable> RunAsync()
     {
-        // Run start action
-        StartAction?.Invoke();
+        // Await the lock and get the disposable
+        IDisposable d = await DisposableLock.LockAsync();
+
+        try
+        {
+            // Run start action
+            StartAction.Invoke();
+        }
+        catch
+        {
+            d.Dispose();
+            throw;
+        }
 
         // Create the disposable action
-        return new DisposableAction(DisposeAction, DisposableLock);
+        return new DisposableAction(DisposeAction, d);
     }
 
     /// <summary>
@@ -59,27 +69,27 @@ public sealed class Operation
         /// Default constructor
         /// </summary>
         /// <param name="disposeAction">The action to run after running the operation</param>
-        /// <param name="disposableLock">The disposable lock, or null if not used</param>
-        public DisposableAction(Action disposeAction, AsyncLock disposableLock)
+        /// <param name="disposableLock">The disposable lock</param>
+        public DisposableAction(Action disposeAction, IDisposable disposableLock)
         {
             DisposeAction = disposeAction;
-            DisposableLock = disposableLock?.Lock();
+            DisposableLock = disposableLock;
         }
-
-        /// <summary>
-        /// The disposable lock
-        /// </summary>
-        private IDisposable DisposableLock { get; }
 
         /// <summary>
         /// The action to run after running the operation
         /// </summary>
         private Action DisposeAction { get; }
 
+        /// <summary>
+        /// The disposable lock
+        /// </summary>
+        private IDisposable DisposableLock { get; }
+
         public void Dispose()
         {
-            DisposeAction?.Invoke();
-            DisposableLock?.Dispose();
+            DisposeAction.Invoke();
+            DisposableLock.Dispose();
         }
     }
 }

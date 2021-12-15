@@ -179,7 +179,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     public async Task ExportAsync(bool forceNativeFormat, bool selectedFilesOnly = false)
     {
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -334,7 +334,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     public async Task ImportAsync()
     {
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -439,7 +439,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             return;
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -489,7 +489,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
         Logger.Trace("The archive directory {0} is being removed...", DisplayName);
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -529,7 +529,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
         Logger.Trace("Files are being added to {0}", FullPath);
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())

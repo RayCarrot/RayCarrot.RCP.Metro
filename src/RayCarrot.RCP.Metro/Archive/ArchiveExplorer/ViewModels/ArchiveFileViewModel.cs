@@ -417,7 +417,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         Logger.Trace("The archive file {0} is being exported as {1}", FileName, format?.FileExtensions ?? "original");
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -525,7 +525,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             throw new Exception("The file type must be set before importing the file");
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -630,7 +630,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         Logger.Trace("The archive file {0} is being removed...", FileName);
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -678,7 +678,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         ext ??= FileExtension;
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -852,7 +852,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             throw new Exception("The file type must be set before the file can be renamed");
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())

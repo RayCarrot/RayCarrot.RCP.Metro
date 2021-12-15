@@ -60,7 +60,7 @@ public class AppViewModel : BaseViewModel
 
         startupLogAction?.Invoke("AppVM: Creating locks & commands");
 
-        LoadOperation = new Operation(() => IsLoading = true, () => IsLoading = false, true);
+        LoadOperation = new Operation(() => IsLoading = true, () => IsLoading = false);
 
         // Create locks
         SaveUserDataAsyncLock = new AsyncLock();

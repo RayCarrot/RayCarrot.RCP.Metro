@@ -257,7 +257,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         Logger.Info("The archive {0} is being repacked", DisplayName);
 
         // Run as a load operation
-        using (Archive.LoadOperation.Run())
+        using (await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())

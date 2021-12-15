@@ -51,7 +51,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
             Manager = manager;
 
             // Create the load action
-            Operation load = new(() => IsLoading = true, () => IsLoading = false, true);
+            Operation load = new(() => IsLoading = true, () => IsLoading = false);
 
             // Get the archives
             Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this, filePaths.Any(f => f != x && f.Name == x.Name))).ToArray();

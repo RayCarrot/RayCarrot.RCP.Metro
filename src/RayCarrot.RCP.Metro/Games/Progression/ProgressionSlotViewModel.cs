@@ -220,7 +220,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
     {
         Logger.Trace("Progression slot for {0} is being opened for editing...", Game.Game);
 
-        using (App.LoadOperation.Run())
+        using (await App.LoadOperation.RunAsync())
         {
             try
             {
