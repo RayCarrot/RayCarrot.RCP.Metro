@@ -32,6 +32,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
