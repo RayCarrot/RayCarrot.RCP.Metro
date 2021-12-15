@@ -9,9 +9,10 @@
                   xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
                   xmlns:system="clr-namespace:System;assembly=mscorlib"
                   mc:Ignorable="d"
-                  Language="{UICulture}"
+                  Language="{UICulture}" 
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   CloseWithEscape="False"
+                  IsCloseButtonEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}"
                   Width="960" Height="720"
                   DataContext="{x:Static local:Services.App}">
     <local:BaseWindow.RightWindowCommands>
@@ -255,6 +256,11 @@
                           VerticalAlignment="Bottom"
                           Margin="5"
                           Visibility="{Binding Path=IsStartupRunning, Converter={local:BooleanToVisibilityConverter}}" />
+
+        <mah:ProgressRing HorizontalAlignment="Right"
+                          VerticalAlignment="Bottom"
+                          Margin="5"
+                          Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}" />
 
     </Grid>
 </local:BaseWindow>

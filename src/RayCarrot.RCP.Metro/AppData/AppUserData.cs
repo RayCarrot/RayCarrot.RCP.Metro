@@ -83,6 +83,9 @@ public class AppUserData : BaseViewModel
         Backup_BackupLocation = Environment.SpecialFolder.MyDocuments.GetFolderPath();
         Backup_CompressBackups = true;
 
+        // Progression
+        Progression_SaveEditorExe = FileSystemPath.EmptyPath;
+
         // Archive
         Archive_GF_GenerateMipmaps = true;
         Archive_GF_UpdateTransparency = UserData_Archive_GF_TransparencyMode.PreserveFormat;
@@ -370,6 +373,15 @@ public class AppUserData : BaseViewModel
     /// Indicates if backups should be compressed
     /// </summary>
     public bool Backup_CompressBackups { get; set; }
+
+    #endregion
+
+    #region Progression
+
+    /// <summary>
+    /// The file path to the exe file used for editing JSON save files
+    /// </summary>
+    public FileSystemPath Progression_SaveEditorExe { get; set; }
 
     #endregion
 

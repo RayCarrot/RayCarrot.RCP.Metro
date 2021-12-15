@@ -500,6 +500,10 @@ public abstract class BaseApp : Application
         {
             await Dispatcher.InvokeAsync(async () =>
             {
+                // Don't close if loading
+                if (Services.App.IsLoading)
+                    return;
+
                 // Attempt to close all windows except the main one
                 foreach (Window window in Windows.Cast<Window>().ToArray())
                 {

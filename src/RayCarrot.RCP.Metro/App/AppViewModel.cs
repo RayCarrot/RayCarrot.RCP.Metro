@@ -60,6 +60,8 @@ public class AppViewModel : BaseViewModel
 
         startupLogAction?.Invoke("AppVM: Creating locks & commands");
 
+        LoadOperation = new Operation(() => IsLoading = true, () => IsLoading = false, true);
+
         // Create locks
         SaveUserDataAsyncLock = new AsyncLock();
         MoveBackupsAsyncLock = new AsyncLock();
@@ -220,6 +222,16 @@ public class AppViewModel : BaseViewModel
     /// Indicates if the application startup is running
     /// </summary>
     public bool IsStartupRunning { get; set; }
+
+    /// <summary>
+    /// The operation to use when running an async operation which needs to load
+    /// </summary>
+    public Operation LoadOperation { get; }
+
+    /// <summary>
+    /// Indicates if a <see cref="LoadOperation"/> is running, thus preventing the app from closing
+    /// </summary>
+    public bool IsLoading { get; set; }
 
     #endregion
 

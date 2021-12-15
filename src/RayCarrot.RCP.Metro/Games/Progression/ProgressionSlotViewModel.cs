@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,7 +13,7 @@ using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionSlotViewModel : BaseViewModel
+public class ProgressionSlotViewModel : BaseRCPViewModel
 {
     #region Constructors
 
@@ -215,8 +218,93 @@ public class ProgressionSlotViewModel : BaseViewModel
 
     public async Task EditAsync()
     {
-        // TODO-UPDATE: Implement
-        throw new NotImplementedException();
+        Logger.Trace("Progression slot for {0} is being opened for editing...", Game.Game);
+
+        using (App.LoadOperation.Run())
+        {
+            try
+            {
+                // Create a temporary file
+                using TempFile tempFile = new(new FileExtension(".json"));
+
+                using HashAlgorithm sha1 = HashAlgorithm.Create();
+
+                // Export the slot to the temp file
+                ExportSlot(tempFile.TempPath);
+
+                IEnumerable<byte> originalHash;
+
+                // Get the original file hash
+                using (var tmpFile = File.OpenRead(tempFile.TempPath))
+                    originalHash = sha1.ComputeHash(tmpFile);
+
+                // Get the program to open the file with
+                FileSystemPath programPath = Data.Progression_SaveEditorExe;
+
+                // Have the user select a program if it doesn't exist
+                if (!programPath.FileExists)
+                {
+                    ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
+                    {
+                        // TODO-UPDATE: Localize
+                        Title = "Select an executable for editing JSON save files",
+                    });
+
+                    if (programResult.CanceledByUser)
+                        return;
+
+                    programPath = programResult.ProgramFilePath;
+                    Data.Progression_SaveEditorExe = programPath;
+                }
+
+                // Open the file
+                using (Process? p = await Services.File.LaunchFileAsync(programPath, arguments: $"\"{tempFile.TempPath}\""))
+                {
+                    // Ignore if the file wasn't opened
+                    if (p == null)
+                    {
+                        Logger.Trace("The file was not opened");
+                        return;
+                    }
+
+                    // Wait for the file to close...
+                    await p.WaitForExitAsync();
+                }
+
+                // Open the temp file
+                using FileStream tempFileStream = new(tempFile.TempPath, FileMode.Open, FileAccess.Read);
+
+                // Get the new hash
+                byte[] newHash = sha1.ComputeHash(tempFileStream);
+
+                tempFileStream.Position = 0;
+
+                // Check if the file has been modified
+                if (!originalHash.SequenceEqual(newHash))
+                {
+                    Logger.Trace("The file was modified");
+
+                    // Import the modified data
+                    ImportSlot(tempFile.TempPath);
+
+                    // Reload data
+                    await Game.LoadProgressAsync();
+
+                    // TODO-UPDATE: Localize
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The save file has been successfully modified");
+                }
+                else
+                {
+                    Logger.Trace("The file was not modified");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Opening progression slot file for editing");
+
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
+            }
+        }
     }
 
     #endregion
