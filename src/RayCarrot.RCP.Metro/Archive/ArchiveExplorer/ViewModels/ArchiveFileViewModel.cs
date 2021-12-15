@@ -772,24 +772,22 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                     // If it's still null we ask the user for the program to use
                     if (programPath == null)
                     {
-                        var e = asBinary ? Resources.Archive_EditBinary.ToLower() : $"{ext}";
+                        string e = asBinary ? Resources.Archive_EditBinary.ToLower() : $"{ext}";
 
-                        var browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+                        ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
                         {
                             Title = String.Format(Resources.Archive_SelectEditExe, e),
-                            ExtensionFilter = new FileFilterItem("*.exe", "Exe").StringRepresentation,
-                            DefaultDirectory = Environment.SpecialFolder.ProgramFiles.GetFolderPath()
                         });
 
-                        if (browseResult.CanceledByUser)
+                        if (programResult.CanceledByUser)
                             return;
 
                         if (asBinary)
-                            Services.Data.Archive_BinaryEditorExe = browseResult.SelectedFile;
+                            Services.Data.Archive_BinaryEditorExe = programResult.ProgramFilePath;
                         else
-                            Services.Data.Archive_AddAssociatedProgram(ext, browseResult.SelectedFile);
+                            Services.Data.Archive_AddAssociatedProgram(ext, programResult.ProgramFilePath);
 
-                        programPath = browseResult.SelectedFile;
+                        programPath = programResult.ProgramFilePath;
                     }
 
                     // If read-only set the attribute
@@ -859,7 +857,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
             {
-                StringInputResult result = await Services.UI.GetStringInput(new StringInputViewModel
+                StringInputResult result = await Services.UI.GetStringInputAsync(new StringInputViewModel
                 {
                     Title = Resources.Archive_SetFileName,
                     HeaderText = Resources.Archive_SetFileName,

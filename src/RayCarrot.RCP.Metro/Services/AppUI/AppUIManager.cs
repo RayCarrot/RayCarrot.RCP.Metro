@@ -71,9 +71,9 @@ public class AppUIManager
         return await ShowDialogAsync(() => new FileExtensionSelectionDialog(viewModel));
     }
 
-    public Task<StringInputResult> GetStringInput(StringInputViewModel stringInputViewModel) => ShowDialogAsync(() => new StringInputDialog(stringInputViewModel));
+    public Task<StringInputResult> GetStringInputAsync(StringInputViewModel stringInputViewModel) => ShowDialogAsync(() => new StringInputDialog(stringInputViewModel));
 
-    public Task<ProgramSelectionResult> GetProgram(ProgramSelectionViewModel programSelectionViewModel) => ShowDialogAsync(() => new ProgramSelectionDialog(programSelectionViewModel));
+    public Task<ProgramSelectionResult> GetProgramAsync(ProgramSelectionViewModel programSelectionViewModel) => ShowDialogAsync(() => new ProgramSelectionDialog(programSelectionViewModel));
 
     /// <summary>
     /// Allows the user to browse for a drive

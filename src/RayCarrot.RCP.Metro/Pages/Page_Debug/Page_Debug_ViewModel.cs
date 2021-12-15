@@ -188,7 +188,7 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
                     break;
 
                 case DebugDialogType.StringInput:
-                    await Services.UI.GetStringInput(new StringInputViewModel()
+                    await Services.UI.GetStringInputAsync(new StringInputViewModel()
                     {
                         Title = "Debug",
                         HeaderText = "Specify a string"
@@ -196,7 +196,7 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
                     break;
 
                 case DebugDialogType.ProgramSelection:
-                    await Services.UI.GetProgram(new ProgramSelectionViewModel()
+                    await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
                     {
                         Title = "Debug",
                     });

@@ -444,7 +444,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
             {
-                StringInputResult result = await Services.UI.GetStringInput(new StringInputViewModel
+                StringInputResult result = await Services.UI.GetStringInputAsync(new StringInputViewModel
                 {
                     Title = Resources.Archive_CreateDir_Header,
                     HeaderText = Resources.Archive_CreateDir_Header,
