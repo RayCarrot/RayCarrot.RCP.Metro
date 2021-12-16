@@ -181,6 +181,7 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
         {
             // TODO-UPDATE: Localize
             Title = "Select an executable for editing JSON save files",
+            ProgramFilePath = Data.Progression_SaveEditorExe,
         });
 
         if (programResult.CanceledByUser)
