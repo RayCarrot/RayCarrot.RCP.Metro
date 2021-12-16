@@ -257,8 +257,20 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                     Data.Progression_SaveEditorExe = programPath;
                 }
 
+                string args = String.Empty;
+
+                // Add specific arguments for common editor programs so that they open a new instance. If not then the new
+                // process will close immediately as it will re-use the already existing one which means the WaitForExitAsync
+                // won't wait for the program to close.
+                if (programPath.Name == "Code.exe") // VS Code
+                    args += $"--new-window ";
+                else if (programPath.Name == "notepad++.exe") // Notepad++
+                    args += $"-multiInst ";
+
+                args += $"\"{tempFile.TempPath}\"";
+
                 // Open the file
-                using (Process? p = await Services.File.LaunchFileAsync(programPath, arguments: $"\"{tempFile.TempPath}\""))
+                using (Process? p = await Services.File.LaunchFileAsync(programPath, arguments: args))
                 {
                     // Ignore if the file wasn't opened
                     if (p == null)
