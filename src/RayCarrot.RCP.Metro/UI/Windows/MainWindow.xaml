@@ -252,15 +252,25 @@
 
         </mah:MetroAnimatedTabControl>
 
+        <!-- Startup loading indicator (does not block UI) -->
+
         <mah:ProgressRing HorizontalAlignment="Right"
                           VerticalAlignment="Bottom"
                           Margin="5"
                           Visibility="{Binding Path=IsStartupRunning, Converter={local:BooleanToVisibilityConverter}}" />
 
-        <mah:ProgressRing HorizontalAlignment="Right"
-                          VerticalAlignment="Bottom"
-                          Margin="5"
-                          Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}" />
+        <!-- Load operation indicator (blocks the UI) -->
+
+        <Grid Background="#10FFFFFF"
+              ClipToBounds="True"
+              FocusVisualStyle="{x:Null}"
+              KeyboardNavigation.TabNavigation="None"
+              Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}">
+
+            <mah:ProgressRing HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+
+        </Grid>
 
     </Grid>
 </local:BaseWindow>
