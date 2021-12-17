@@ -382,9 +382,8 @@
             <Expander Header="{Binding}"
                       HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
                       IsExpanded="{Binding Path=IsExpanded}">
-                <StackPanel>
+                <StackPanel Margin="0 0 0 8">
                     <ItemsControl Grid.IsSharedSizeScope="True"
-                                  Margin="0 0 0 8"
                                   ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -395,29 +394,38 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <Separator Style="{StaticResource Separator.Bold}"
-                               Margin="0 0 0 8"
-                               Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
+                    <StackPanel Visibility="{Binding Path=HasSlots, Converter={local:BooleanToVisibilityConverter}}">
 
-                    <!-- TODO-UPDATE: Localize -->
-                    <TextBlock Style="{StaticResource TextBlock.Header}"
-                               Text="Current Progress"
-                               Margin="0 0 0 8" />
+                        <Separator Style="{StaticResource Separator.Bold}"
+                                   Margin="0 8 0 8"
+                                   Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
 
-                    <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
-                                  ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
-                                  Margin="0 0 0 8"/>
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Style="{StaticResource TextBlock.Header}"
+                                   Text="Current Progress"
+                                   Margin="0 0 0 8" />
 
-                    <Separator Style="{StaticResource Separator.Bold}"
-                               Margin="0 0 0 8"/>
+                        <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
+                                      ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
+                                      Margin="0 0 0 -8"/>
 
-                    <!-- TODO-UPDATE: Localize -->
-                    <TextBlock Style="{StaticResource TextBlock.Header}"
-                               Text="Backup Progress"
-                               Margin="0 0 0 8" />
+                    </StackPanel>
 
-                    <ItemsControl ItemsSource="{Binding Path=BackupSlots, Mode=OneTime}"
-                                  ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"/>
+                    <StackPanel Visibility="{Binding Path=HasBackupSlots, Converter={local:BooleanToVisibilityConverter}}">
+
+                        <Separator Style="{StaticResource Separator.Bold}"
+                                   Margin="0 8 0 8"/>
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Style="{StaticResource TextBlock.Header}"
+                                   Text="Backup Progress"
+                                   Margin="0 0 0 8" />
+
+                        <ItemsControl ItemsSource="{Binding Path=BackupSlots, Mode=OneTime}"
+                                      ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
+                                      Margin="0 0 0 -8"/>
+
+                    </StackPanel>
 
                 </StackPanel>
             </Expander>

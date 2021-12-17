@@ -63,6 +63,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
     public ObservableCollection<ProgressionSlotViewModel> Slots { get; }
     public ObservableCollection<ProgressionSlotViewModel> BackupSlots { get; }
+    public bool HasSlots { get; set; }
+    public bool HasBackupSlots { get; set; }
     public ProgressionSlotViewModel? PrimarySlot { get; private set; }
 
     protected Task<T?> SerializeFileDataAsync<T>(FileSystemWrapper fileSystem, FileSystemPath filePath, BinarySerializerSettings settings, IDataEncoder? encoder = null)
@@ -153,6 +155,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
             {
                 IsLoading = false;
             }
+
+            HasSlots = Slots.Any();
         }
     }
 
@@ -250,6 +254,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
 
                     BackupSlots.Clear();
                 }
+
+                HasBackupSlots = BackupSlots.Any();
             }
             else
             {
