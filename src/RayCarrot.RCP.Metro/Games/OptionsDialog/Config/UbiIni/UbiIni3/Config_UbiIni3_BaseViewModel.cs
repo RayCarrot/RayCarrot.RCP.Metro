@@ -266,6 +266,8 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         }
     }
 
+    public bool IsDiscPatchOutdated { get; set; }
+
     /// <summary>
     /// Indicates if dynamic shadows are enabled
     /// </summary>
@@ -397,7 +399,6 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
 
                     Logger.Info("The game has been modified to remove the disc checker");
 
-                    // TODO-UPDATE: Show in UI?
                     if (patchState.IsVersionOutdated)
                     {
                         Logger.Info("The applied disc checker patch version is currently outdated");
@@ -416,6 +417,8 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         {
             Logger.Trace("The disc checker can not be removed for this game");
         }
+
+        IsDiscPatchOutdated = isAppliedPatchOutdated;
 
         // If the primary config file does not exist, create a new one
         if (!AppFilePaths.UbiIniPath1.FileExists)
@@ -538,6 +541,8 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
                         else if (patchState.IsPatched && !IsDiscCheckRemoved)
                             Patcher.PatchFile(false);
                     }
+
+                    IsDiscPatchOutdated = false;
                 }
                 catch (Exception ex)
                 {

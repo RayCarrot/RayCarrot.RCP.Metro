@@ -11,7 +11,7 @@
         <Setter Property="Foreground" Value="Red" />
     </Style>
 
-    <Style x:Key="InfoIcon.WorkInProgress" TargetType="{x:Type local:InfoIcon}">
+    <Style x:Key="InfoIcon.Notice" TargetType="{x:Type local:InfoIcon}">
         <Setter Property="IconKind" Value="InformationOutline" />
         <Setter Property="Foreground" Value="DarkOrange" />
     </Style>

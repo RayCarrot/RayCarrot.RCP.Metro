@@ -40,7 +40,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
 
         BindingOperations.EnableCollectionSynchronization(StatusBarItems, Application.Current);
 
-        // TODO-UPDATE: Do not load the archives in the constructor! Create a separate init method or similar.
+        // TODO: Do not load the archives in the constructor! Create a separate init method or similar.
 
         try
         {

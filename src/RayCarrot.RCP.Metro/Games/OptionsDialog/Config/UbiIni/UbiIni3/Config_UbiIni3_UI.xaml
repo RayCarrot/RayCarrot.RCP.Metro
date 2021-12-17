@@ -207,13 +207,17 @@
         <StackPanel Orientation="Horizontal"
                     Visibility="{Binding Path=CanRemoveDiscCheck, Converter={local:BooleanToVisibilityConverter}}">
 
-            <local:AdminButton
-                Visibility="{Binding Path=CanModifyGame, Converter={local:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                Margin="0 0 5 0" />
+            <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={local:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                               Margin="0 0 5 0" />
 
             <CheckBox Content="{Resx Config_DisableDiscCheck}"
                       IsChecked="{Binding Path=IsDiscCheckRemoved}"
                       IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <local:InfoIcon Style="{StaticResource InfoIcon.Notice}"
+                            Text="The applied patch is outdated. Keep the patch enabled and save to update it to the newest version."
+                            Visibility="{Binding Path=IsDiscPatchOutdated, Converter={local:BooleanToVisibilityConverter}}"/>
 
         </StackPanel>
 
