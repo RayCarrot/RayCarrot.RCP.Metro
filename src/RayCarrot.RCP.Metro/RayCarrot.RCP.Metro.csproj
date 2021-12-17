@@ -31,6 +31,25 @@
 		<!-- Custom entry point. -->
 		<StartupObject>RayCarrot.RCP.Metro.Entry</StartupObject>
 	</PropertyGroup>
+	
+	<!-- Fody (Debug) -->
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<WeaverConfiguration>
+			<Weavers>
+				<PropertyChanged />
+			</Weavers>
+		</WeaverConfiguration>
+	</PropertyGroup>
+	
+	<!-- Fody (Release) -->
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<WeaverConfiguration>
+			<Weavers>
+				<Costura IncludeDebugSymbols="false" ExcludeAssemblies="Magick.Native-Q8-x86" />
+				<PropertyChanged />
+			</Weavers>
+		</WeaverConfiguration>
+	</PropertyGroup>
 
 	<!-- Common references -->
 	<ItemGroup>
@@ -117,7 +136,6 @@
 		<EmbeddedResource Include="costura32\Magick.Native-Q8-x86.dll" />
 
 		<!-- Resources -->
-		<Resource Include="FodyWeavers.xml" />
 		<Resource Include="Files\VersionHistory\VersionHistory_07.0_09.0.txt" />
 		<Resource Include="Files\VersionHistory\VersionHistory_10.0_12.0.txt" />
 		<Resource Include="Files\VersionHistory\VersionHistory_04.0_06.0.txt" />
