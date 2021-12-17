@@ -14,7 +14,7 @@
                 <ControlTemplate TargetType="{x:Type Separator}">
                     <Border Height="1" 
                             SnapsToDevicePixels="true" 
-                            BorderBrush="{TemplateBinding Foreground}" 
+                            BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}" 
                             BorderThickness="0 0 0 1"/>
                 </ControlTemplate>
             </Setter.Value>
