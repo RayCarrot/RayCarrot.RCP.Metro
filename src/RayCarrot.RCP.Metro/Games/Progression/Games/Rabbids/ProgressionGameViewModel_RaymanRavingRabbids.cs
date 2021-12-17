@@ -477,6 +477,237 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         }
     }
 
+    // Indexing here is different than other arrays
+    private static World[] GetWorlds => new World[]
+    {
+        // 0
+        new World(1, 0x3D00C452, 0, "_main_fix", 0, -1, -1, -1),
+        // 1
+        new World(2, 0x3D00C456, 0, "_main_logo", 0, -1, -1, -1),
+        // 2
+        new World(3, 0x47000B84, 0, "_main_menu", 0, -1, -1, -1),
+        // 3
+        new World(4, 0x4902D989, 0, "_main_E3endscreen", 0, -1, -1, -1),
+        // 4
+        new World(5, 0x4902DE8F, 0, "_main_pad", 0, -1, -1, -1),
+        // 5
+        new World(6, 0x4902EA59, 0, "_main_bootup", 0, -1, -1, -1),
+        // 6
+        new World(7, 0x3D0129BE, 0, "_main_credits", 0, -1, -1, -1),
+        // 7
+        new World(601, 0x1B0053C5, 0, "Pulp_Fiction_Easy", 1, 44, 0, 4),
+        // 8
+        new World(602, 0x1B005AFD, 0, "Chic_Good_Times_Easy", 1, 79, 1, 4),
+        // 9
+        new World(603, 0x1B005B14, 0, "Cindy_Lauper_Easy", 1, 78, 2, 4),
+        // 10
+        new World(604, 0x1B005B16, 0, "Hip_Hip_Hooray_Easy", 1, 80, 3, 4),
+        // 11
+        new World(605, 0x1B005B18, 0, "La_Bamba_Easy", 1, 81, 4, 4),
+        // 12
+        new World(606, 0x1B005B1A, 0, "Rock_n_Roll_Easy", 1, 82, 5, 4),
+        // 13
+        new World(607, 0x1B005B1C, 0, "Dance_07_Easy", 1, 83, 6, 4),
+        // 14
+        new World(608, 0x1B005A85, 0, "Pulp_Fiction_Hard", 1, 84, 7, 4),
+        // 15
+        new World(609, 0x1B005B13, 0, "Chic_Good_Times_Hard", 1, 85, 8, 4),
+        // 16
+        new World(610, 0x1B005B15, 0, "Cindy_Lauper_Hard", 1, 86, 9, 4),
+        // 17
+        new World(611, 0x1B005B17, 0, "Hip_Hop_Hooray_Hard", 1, 87, 10, 4),
+        // 18
+        new World(612, 0x1B005B19, 0, "La_Bamba_Hard", 1, 88, 11, 4),
+        // 19
+        new World(613, 0x1B005B1B, 0, "Rock_n_roll_Hard", 1, 89, 12, 4),
+        // 20
+        new World(614, 0x1B005B1D, 0, "Dance_14_Hard", 1, 39, 13, 4),
+        // 21
+        new World(615, 0x1B005B1E, 0, "Pulp_Fiction_Hardcore", 1, 37, 14, 4),
+        // 22
+        new World(701, 0x1B005F6A, 0, "PulpFiction_Easy_MULTI", 8, 44, -1, -1),
+        // 23
+        new World(702, 0x1B005F7F, 0, "ChicGoodTimes_Easy_MULTI", 8, 79, -1, -1),
+        // 24
+        new World(703, 0x1B005F87, 0, "CindyLauper_Easy_MULTI", 8, 78, -1, -1),
+        // 25
+        new World(704, 0x1B005F8F, 0, "HipHopHooray_Easy_MULTI", 8, 80, -1, -1),
+        // 26
+        new World(705, 0x1B005F97, 0, "LaBamba_Easy_MULTI", 8, 81, -1, -1),
+        // 27
+        new World(706, 0x1B005F9F, 0, "Rock_n_roll_Easy_MULTI", 8, 82, -1, -1),
+        // 28
+        new World(707, 0x1B005FA7, 0, "DANSE07_Easy_MULTI", 8, 83, -1, -1),
+        // 29
+        new World(708, 0x1B005F7B, 0, "PulpFiction_Hard_MULTI", 8, 84, -1, -1),
+        // 30
+        new World(709, 0x1B005F83, 0, "ChicGoodTimes_Hard _MULTI", 8, 85, -1, -1),
+        // 31
+        new World(710, 0x1B005F8B, 0, "CindyLauper_Hard _MULTI", 8, 86, -1, -1),
+        // 32
+        new World(711, 0x1B005F93, 0, "HipHopHooray_Hard _MULTI", 8, 87, -1, -1),
+        // 33
+        new World(712, 0x1B005F9B, 0, "LaBamba_Hard _MULTI", 8, 88, -1, -1),
+        // 34
+        new World(713, 0x1B005FA3, 0, "Rock_n_Roll_Hard _MULTI_", 8, 89, -1, -1),
+        // 35
+        new World(714, 0x1B005FAB, 0, "Danse_14_Hard_MULTI", 8, 39, -1, -1),
+        // 36
+        new World(715, 0x1B005FAF, 0, "Pulp_Fiction_Hardcore_MULTI", 8, 37, -1, -1),
+        // 37
+        new World(400, 0xC2003349, 0, "FPS00_TUTORIAL", 2, 3, 0, 5),
+        // 38
+        new World(401, 0xD007D0B, 0, "FPS01_BEACH01", 2, 0, 1, 5),
+        // 39
+        new World(402, 0xC2002C1D, 0, "FPS02_TRAIN_WESTERN", 2, 5, 3, 5),
+        // 40
+        new World(403, 0x3A00352B, 0, "FPS03_CIMETIERE_MORT", 2, 8, 4, 5),
+        // 41
+        new World(404, 0x17002D66, 1, "FPS04_CHARIOT_MINE", 2, 6, 6, 5),
+        // 42
+        new World(405, 0x2900556D, 0, "FPS05_CANYON_DESERT", 2, 4, 7, 5),
+        // 43
+        new World(406, 0xB013816, 0, "FPS06_BEACH_02", 2, 1, 9, 5),
+        // 44
+        new World(407, 0xB01261C, 0, "FPS07_VILLE_WESTERN", 2, 2, 10, 5),
+        // 45
+        new World(408, 0x29006B44, 0, "FPS08_COURSE_MORT", 2, 9, 12, 5),
+        // 46
+        new World(409, 0xD007E79, 0, "FPS09_DOOM_BASE", 2, 7, 14, 5),
+        // 47
+        new World(202, 0xC10272B9, 0, "Course Atolls", 3, 21, 0, 1),
+        // 48
+        new World(203, 0xC10272B5, 0, "Lancer de Vache", 3, 22, 0, 2),
+        // 49
+        new World(207, 0x1B00566A, 0, "Restau Lapin", 3, 38, 0, 3),
+        // 50
+        new World(209, 0x2010E83, 0, "Toilettes Zone", 3, 23, 1, 1),
+        // 51
+        new World(201, 0xC10272B4, 0, "Corde a Sauter", 3, 20, 1, 2),
+        // 52
+        new World(208, 0x1B0054E7, 0, "Lancer Biere", 3, 25, 1, 3),
+        // 53
+        new World(210, 0x1B0054EF, 0, "Chariot Shadok", 3, 30, 2, 1),
+        // 54
+        new World(211, 0xC10274D3, 0, "Tirage de vers", 3, 29, 2, 2),
+        // 55
+        new World(216, 0xDF003C8D, 0, "Equilibre", 3, 36, 2, 3),
+        // 56
+        new World(204, 0x2010F0B, 0, "Traite des Vaches", 3, 24, 3, 1),
+        // 57
+        new World(218, 0x3A0031E4, 0, "Bat dans Atolls", 3, 28, 3, 2),
+        // 58
+        new World(223, 0x9E00E9A7, 0, "Cerveaux Lapin", 3, 67, 3, 3),
+        // 59
+        new World(205, 0x1B0056F8, 0, "Simon", 3, 46, 4, 1),
+        // 60
+        new World(206, 0x1B005701, 0, "Tape Taupe", 3, 47, 4, 2),
+        // 61
+        new World(226, 0x1B0058B2, 0, "123_Soleil", 3, 72, 4, 3),
+        // 62
+        new World(212, 0x52006BB4, 0, "Medailles-Demineur", 3, 27, 5, 1),
+        // 63
+        new World(236, 0xDD001721, 0, "Lapin Marteau", 3, 73, 5, 2),
+        // 64
+        new World(227, 0xDD001633, 0, "LapinPunaise", 3, 74, 5, 3),
+        // 65
+        new World(220, 0x1B0058BB, 0, "Lapin foot", 3, 32, 6, 1),
+        // 66
+        new World(224, 0x1B00570A, 0, "Lapin Maillard", 3, 64, 6, 2),
+        // 67
+        new World(809, 0x52007498, 0, "Equilibre Variante 1", 4, 59, 6, 3),
+        // 68
+        new World(802, 0xDE00140C, 0, "Toilette Zone avec Piétons", 4, 49, 7, 1),
+        // 69
+        new World(225, 0x7200B413, 0, "Curling", 3, 75, 7, 2),
+        // 70
+        new World(222, 0x1B00571C, 0, "Fight Arene", 3, 66, 7, 3),
+        // 71
+        new World(215, 0xDE001469, 0, "Aspire a Laine", 3, 58, 8, 1),
+        // 72
+        new World(214, 0x1B005713, 0, "Lancer couteaux", 3, 65, 8, 2),
+        // 73
+        new World(221, 0x2600D797, 0, "Paparazzi", 3, 35, 8, 3),
+        // 74
+        new World(228, 0x1B00584D, 0, "Encerclement", 3, 76, 9, 1),
+        // 75
+        new World(808, 0x1B005C12, 0, "Traite des vaches Variante", 4, 50, 9, 2),
+        // 76
+        new World(811, 0xDD00179B, 0, "Demineur Variante", 4, 52, 9, 3),
+        // 77
+        new World(217, 0x9E00E8F6, 0, "Reve Lapin (Cubes)", 3, 45, 10, 1),
+        // 78
+        new World(807, 0xDE0014C7, 0, "Tape_taupes_Variante", 4, 63, 10, 2),
+        // 79
+        new World(803, 0x9E00E970, 0, "Ride Mini Bat - Variante1", 4, 54, 10, 3),
+        // 80
+        new World(219, 0x1B0054FB, 0, "Bowling", 3, 33, 11, 1),
+        // 81
+        new World(813, 0x1B005EEB, 0, "Curling Variante 2", 4, 26, 11, 2),
+        // 82
+        new World(239, 0xDE001529, 0, "Grappin Soucoupe", 3, 77, 11, 3),
+        // 83
+        new World(810, 0x520074AD, 0, "Equilibre Variante 2", 4, 60, 12, 1),
+        // 84
+        new World(805, 0x9E00E964, 0, "Corde a Sauter - Variante1", 4, 48, 12, 2),
+        // 85
+        new World(812, 0xDD0017B4, 0, "Simon Variante 2", 4, 62, 12, 3),
+        // 86
+        new World(238, 0xD9019B8D, 0, "Mastermind", 3, 70, 13, 1),
+        // 87
+        new World(801, 0x2600D849, 0, "Tir les Vers - Variante1", 4, 55, 13, 2),
+        // 88
+        new World(804, 0x9E00E93F, 0, "Chariot Shadok - Variante1", 4, 56, 13, 3),
+        // 89
+        new World(505, 0x1B0054F3, 0, "Chute Libre", 5, 31, 14, 1),
+        // 90
+        new World(814, 0x1B005EF8, 0, "Fight Arene Variante", 4, 69, 14, 2),
+        // 91
+        new World(815, 0x1B005A31, 0, "Resto Lapin Variante", 4, 61, 14, 3),
+        // 92
+        new World(237, 0xDD0017F9, 0, "Duel", 3, -1, -1, -1),
+        // 93
+        new World(501, 0xDB000ABB, 0, "La Course des Morts", 5, 40, 5, 5),
+        // 94
+        new World(502, 0xC1027747, 0, "La Course des Morts Reverse", 5, 41, 11, 5),
+        // 95
+        new World(503, 0xC1027523, 0, "Phaco Atoll", 5, 42, 2, 5),
+        // 96
+        new World(504, 0xC10277B1, 0, "Phaco Western", 5, 51, 13, 5),
+        // 97
+        new World(213, 0x5200779C, 0, "Chute Libre variante", 3, 43, 8, 5),
+        // 98
+        new World(100, 0xDB001435, 0, "Cachot", 6, -1, -1, -1),
+        // 99
+        new World(101, 0x2011497, 0, "Arene", 6, -1, -1, -1),
+        // 100
+        new World(303, 0x3501767B, 0, "Tests cine", 7, -1, -1, -1),
+        // 101
+        new World(305, 0x8F014095, 0, "Test Mapping", 7, -1, -1, -1),
+        // 102
+        new World(306, 738202144, 0, "Test Synchro Son", 7, -1, -1, -1),
+        // 103
+        new World(307, 0x1B005673, 0, "Test Tri Selectif", 7, -1, -1, -1),
+        // 104
+        new World(308, 0x1B005682, 0, "Test Resto", 7, -1, -1, -1),
+        // 105
+        new World(309, 0x1B005690, 0, "Test Gladiator", 7, -1, -1, -1),
+        // 106
+        new World(310, 0x4800E48F, 0, "Test Mire", 7, -1, -1, -1),
+        // 107
+        new World(311, 0x1B00584D, 0, "Test Encerclement", 7, -1, -1, -1),
+        // 108
+        new World(312, 0x1B0058BB, 0, "Test Foot", 7, -1, -1, -1),
+        // 109
+        new World(313, 0x1B0058B2, 0, "Test 1/2/3 soleil", 7, -1, -1, -1),
+        // 110
+        new World(301, 0x201149B, 1, "Gladiator Lapins Taupes", 7, -1, -1, -1),
+        // 111
+        new World(301, 0x201149B, 1, "Gladiator Lapins Taupes", 7, -1, -1, -1),
+        // 112
+        new World(315, 0x87002A3B, 0, "Prefabs Sound", 7, -1, -1, -1),
+    };
+
     private static int ConvertScore(float max, int type, int mgID, float score)
     {
         // Check if the score should be used as is
@@ -547,13 +778,29 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         Logger.Info("Save has been deserialized");
 
+        World[] worlds = GetWorlds;
+
         // Add save slots
         for (int saveIndex = 0; saveIndex < saveData.StorySlots.Length; saveIndex++)
         {
             RRR_SaveSlot slot = saveData.StorySlots[saveIndex];
 
+            // Make sure the slot isn't empty
             if (slot.SlotDesc.Time == 0)
                 continue;
+
+            int completedMinigames = 0;
+
+            // Enumerate every world used in story mode
+            foreach (World w in worlds.Where(x => x.MG_Journey != -1))
+            {
+                // Get the bit array index
+                int index = 2 * w.MG_ID + 5001;
+
+                // Check if it has been completed
+                if ((slot.Univers.Flag_speciaux_sauve[index >> 5] & (1 << (index & 0x1F))) != 0)
+                    completedMinigames++;
+            }
 
             ProgressionDataViewModel[] dataItems =
             {
@@ -564,6 +811,13 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
                     header: new ConstLocString("Days"), 
                     value: slot.SlotDesc.Progress_Days, 
                     max: 15),
+                // TODO-UPDATE: Localize
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.RRR_Trophy, 
+                    header: new ConstLocString("Completed minigames"), 
+                    value: completedMinigames, 
+                    max: 5 * 15),
             };
 
             int storySlotIndex = saveIndex;
@@ -591,7 +845,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         for (int mgID = 0; mgID < 128; mgID++)
         {
             // Find player top score
-            int[] playerScores = Enumerable.Range(0, 3).Where(i => saveData.ScoreSlot.Univers.MG_record_pn[mgID * 3 * 3 + i * 3] >= 0).ToArray();
+            int[] playerScores = Enumerable.Range(0, 3).Where(i => saveData.ScoreSlot.Univers.MG_record_pn[mgID * 3 * 3 + i * 3] > 0).ToArray();
 
             bool isAscending = (types[mgID] & 0x8000) != 0;
             float defaultScore = isAscending ? 0 : 100000000000000;
@@ -668,5 +922,29 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         };
 
         Logger.Info("{0} save has been loaded", Game);
+    }
+
+    private class World
+    {
+        public World(int id, uint key, int entry, string name, int menu, int mgId, int mgJourney, int mgDoor)
+        {
+            ID = id;
+            Key = key;
+            Entry = entry;
+            Name = name;
+            Menu = menu;
+            MG_ID = mgId;
+            MG_Journey = mgJourney;
+            MG_Door = mgDoor;
+        }
+
+        public int ID { get; }
+        public uint Key { get; }
+        public int Entry { get; }
+        public string Name { get; }
+        public int Menu { get; }
+        public int MG_ID { get; }
+        public int MG_Journey { get; }
+        public int MG_Door { get; }
     }
 }
