@@ -338,6 +338,17 @@
                                                 Width="20"
                                                 Height="20" />
                 </Button>
+
+                <Button Style="{StaticResource Button.Flat}"
+                        Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
+                        ToolTip="{Resx GameDisplay_OpenLocation}"
+                        Visibility="{Binding Path=CanOpenLocation, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                        Margin="0 0 10 0">
+                    <iconpacks:PackIconMaterial Background="Transparent"
+                                                Kind="FolderOutline"
+                                                Width="20"
+                                                Height="20" />
+                </Button>
             </StackPanel>
 
         </Grid>

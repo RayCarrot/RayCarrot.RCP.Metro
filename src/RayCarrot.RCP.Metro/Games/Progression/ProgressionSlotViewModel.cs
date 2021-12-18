@@ -32,6 +32,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         ExportCommand = new AsyncRelayCommand(ExportAsync);
         ImportCommand = new AsyncRelayCommand(ImportAsync);
         EditCommand = new AsyncRelayCommand(EditAsync);
+        OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
     }
 
     public ProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, double percentage, IEnumerable<ProgressionDataViewModel> dataItems)
@@ -49,6 +50,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         ExportCommand = new AsyncRelayCommand(ExportAsync);
         ImportCommand = new AsyncRelayCommand(ImportAsync);
         EditCommand = new AsyncRelayCommand(EditAsync);
+        OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
     }
 
     #endregion
@@ -64,12 +66,19 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
     public ICommand ExportCommand { get; }
     public ICommand ImportCommand { get; }
     public ICommand EditCommand { get; }
+    public ICommand OpenLocationCommand { get; }
 
     #endregion
 
     #region Private Properties
 
     private string DefaultExportName => $"{FilePath.RemoveFileExtension().Name}_{Name.Value}.json";
+
+    #endregion
+
+    #region Private Fields
+
+    private readonly FileSystemPath _filePath;
 
     #endregion
 
@@ -85,7 +94,17 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
     public int SlotGroup { get; init; }
 
-    public FileSystemPath FilePath { get; init; }
+    public FileSystemPath FilePath
+    {
+        get => _filePath;
+        init
+        {
+            _filePath = value;
+            CanOpenLocation = value.FileExists;
+        }
+    }
+
+    public bool CanOpenLocation { get; set; }
 
     public Brush ProgressBrush
     {
@@ -317,6 +336,11 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
             }
         }
+    }
+
+    public async Task OpenLocationAsync()
+    {
+        await Services.File.OpenExplorerLocationAsync(FilePath);
     }
 
     #endregion
