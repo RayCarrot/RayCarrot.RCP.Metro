@@ -84,12 +84,12 @@ public class GameBackups_BackupInfo
     /// <summary>
     /// The backup directories to use when performing a backup
     /// </summary>
-    public GameBackups_Directory[]? BackupDirectories { get; set; }
+    public GameBackups_Directory[]? BackupDirectories { get; protected set; }
 
     /// <summary>
     /// The backup directories to use when performing a restore
     /// </summary>
-    public GameBackups_Directory[]? RestoreDirectories { get; set; }
+    public GameBackups_Directory[]? RestoreDirectories { get; protected set; }
 
     /// <summary>
     /// The latest available backup version
@@ -151,6 +151,9 @@ public class GameBackups_BackupInfo
         RestoreDirectories = LatestAvailableRestoreVersion == -1 
             ? Array.Empty<GameBackups_Directory>() 
             : AllBackupDirectories.TryGetValue(LatestAvailableRestoreVersion) ?? Array.Empty<GameBackups_Directory>();
+
+        if (BackupDirectories.GroupBy(x => x.ID).Any(x => x.Count() > 1))
+            throw new InvalidOperationException("Multiple backup directories can not use the same ID starting from version 12.2.0");
     }
 
     #endregion

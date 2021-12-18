@@ -757,7 +757,6 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
-        new GameBackups_Directory(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + Game.GetInstallDir().RemoveRoot(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)

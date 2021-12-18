@@ -304,7 +304,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 try
                 {
                     // Perform the backup
-                    success = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo));
+                    // TODO-UPDATE: Set source
+                    success = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo, ProgramDataSource.Auto));
                 }
                 finally
                 {
@@ -366,7 +367,8 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 try
                 {
                     // Perform the restore
-                    backupResult = await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo));
+                    // TODO-UPDATE: Set source
+                    backupResult = await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo, ProgramDataSource.Auto));
                 }
                 finally
                 {
