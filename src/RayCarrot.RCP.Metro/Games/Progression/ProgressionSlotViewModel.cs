@@ -267,6 +267,11 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                     {
                         // TODO-UPDATE: Localize
                         Title = "Select an executable for editing JSON save files",
+                        FileExtensions = new FileExtension[]
+                        {
+                            new FileExtension(".json"),
+                            new FileExtension(".txt"),
+                        }
                     });
 
                     if (programResult.CanceledByUser)

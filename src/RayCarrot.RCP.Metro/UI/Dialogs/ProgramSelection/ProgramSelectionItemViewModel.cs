@@ -18,6 +18,7 @@ public class ProgramSelectionItemViewModel : BaseViewModel
     public string Name { get; }
     public ImageSource? IconImageSource { get; set; }
     public FileSystemPath FilePath { get; }
+    public bool IsRecommended { get; init; }
 
     public void LoadIcon()
     {

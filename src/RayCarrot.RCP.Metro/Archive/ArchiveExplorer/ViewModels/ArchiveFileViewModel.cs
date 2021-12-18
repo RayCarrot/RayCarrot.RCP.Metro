@@ -777,6 +777,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                         ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
                         {
                             Title = String.Format(Resources.Archive_SelectEditExe, e),
+                            FileExtensions = asBinary ? null : new FileExtension[] { ext },
                         });
 
                         if (programResult.CanceledByUser)

@@ -22,25 +22,38 @@
                  ItemsSource="{Binding Path=Programs}"
                  SelectedItem="{Binding Path=SelectedProgram}">
 
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <Setter Property="IsEnabled" Value="{Binding Converter={local:IsNotNullConverter}}" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="Transparent" 
-                          ToolTip="{Binding Path=FilePath, Mode=OneTime}"
-                          Margin="2 4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Grid>
 
-                        <Image Grid.Column="0"
-                               Source="{Binding Path=IconImageSource, Mode=OneTime}"
-                               Width="32" Height="32"
-                               VerticalAlignment="Center"
-                               Margin="0 0 8 0" />
+                        <Grid Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}" 
+                              Background="Transparent" 
+                              ToolTip="{Binding Path=FilePath, Mode=OneTime}"
+                              Margin="2 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="1" 
+                            <Image Grid.Column="0"
+                                   Source="{Binding Path=IconImageSource, Mode=OneTime}"
+                                   Width="32" Height="32"
                                    VerticalAlignment="Center"
-                                   Text="{Binding Path=Name, Mode=OneTime}" />
+                                   Margin="0 0 8 0" />
+
+                            <TextBlock Grid.Column="1" 
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Path=Name, Mode=OneTime}" />
+
+                        </Grid>
+
+                        <Separator Visibility="{Binding Converter={local:ObjectNullToVisibilityConverter}}" />
 
                     </Grid>
                 </DataTemplate>
