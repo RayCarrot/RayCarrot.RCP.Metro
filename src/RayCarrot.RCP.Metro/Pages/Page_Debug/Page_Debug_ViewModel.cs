@@ -371,10 +371,7 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
                         AddLine("Dialog group names", info.DialogGroupNames.JoinItems(", "));
                             
                         if (info.IsAdded)
-                        {
-                            AddLine("Backup directories", JsonConvert.SerializeObject(info.GetBackupInfos));
                             AddLine("Game file links", JsonConvert.SerializeObject(info.GetGameFileLinks));
-                        }
 
                         DataOutput += Environment.NewLine;
                         DataOutput += "------------------------------------------";

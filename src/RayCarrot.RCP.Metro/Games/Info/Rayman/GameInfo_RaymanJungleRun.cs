@@ -8,15 +8,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_RaymanJungleRun : GameInfo
 {
-    #region Protected Override Properties
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected override IList<GameBackups_Directory> GetBackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_WinStore>().FullPackageName);
-
-    #endregion
-
     #region Public Override Properties
 
     /// <summary>

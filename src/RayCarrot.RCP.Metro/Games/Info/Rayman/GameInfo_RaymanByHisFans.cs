@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -13,21 +12,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_RaymanByHisFans : GameInfo
 {
-    #region Protected Override Properties
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected override IList<GameBackups_Directory> GetBackupDirectories => new GameBackups_Directory[]
-    {
-        // NOTE: Due to a mistake where the .sct files were not included in previous backups we need to keep this version for legacy support
-        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
-        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "0", 1),
-        new GameBackups_Directory(Game.GetInstallDir() + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 1),
-    };
-
-    #endregion
-
     #region Public Override Properties
 
     /// <summary>

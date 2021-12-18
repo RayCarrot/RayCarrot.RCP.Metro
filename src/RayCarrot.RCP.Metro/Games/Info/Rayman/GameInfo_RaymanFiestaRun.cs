@@ -66,28 +66,6 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     /// </summary>
     public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
 
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    public override IList<GameBackups_BackupInfo> GetBackupInfos
-    {
-        get
-        {
-            var manager = Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore);
-
-            // Get every installed version
-            var versions = EnumHelpers.GetValues<UserData_FiestaRunEdition>().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);
-
-            // Return a backup info for each version
-            return versions.Select(x =>
-            {
-                var backupName = $"Rayman Fiesta Run ({x})";
-
-                return new GameBackups_BackupInfo(backupName, GameManager_WinStore.GetWinStoreBackupDirs(manager.GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetGameInfo().DisplayName} {manager.GetFiestaRunEditionDisplayName(x)}");
-            }).ToArray();
-        }
-    }
-
     #endregion
 
     #region Public Methods

@@ -1,9 +1,6 @@
 ﻿#nullable disable
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -12,18 +9,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_RaymanRavingRabbids2 : GameInfo
 {
-    #region Protected Override Properties
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected override IList<GameBackups_Directory> GetBackupDirectories => new GameBackups_Directory[]
-    {
-        new GameBackups_Directory(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "RRR2", SearchOption.TopDirectoryOnly, "*", "0", 0)
-    };
-
-    #endregion
-
     #region Public Overrides
 
     /// <summary>

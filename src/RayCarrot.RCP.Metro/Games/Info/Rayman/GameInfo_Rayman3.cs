@@ -1,9 +1,8 @@
 ﻿#nullable disable
+using System.Collections.Generic;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
-using System.Collections.Generic;
-using System.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -12,18 +11,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_Rayman3 : GameInfo
 {
-    #region Protected Override Properties
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected override IList<GameBackups_Directory> GetBackupDirectories => new List<GameBackups_Directory>()
-    {
-        new GameBackups_Directory(Game.GetInstallDir() + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
-    };
-
-    #endregion
-
     #region Public Override Properties
 
     /// <summary>

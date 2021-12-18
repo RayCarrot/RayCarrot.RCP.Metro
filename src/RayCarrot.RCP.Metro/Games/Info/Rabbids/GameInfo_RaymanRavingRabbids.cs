@@ -1,8 +1,5 @@
 ﻿#nullable disable
-using RayCarrot.IO;
-using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -11,28 +8,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_RaymanRavingRabbids : GameInfo
 {
-    #region Protected Override Properties
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected override IList<GameBackups_Directory> GetBackupDirectories
-    {
-        get
-        {
-            // By default the save file is located in the game directory, but if not running as admin it might get redirected to VirtualStore
-            var dirs = new List<GameBackups_Directory>()
-            {
-                new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
-                new GameBackups_Directory(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + Game.GetInstallDir().RemoveRoot(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
-            };
-
-            return dirs;
-        }
-    }
-
-    #endregion
-
     #region Public Override Properties
 
     /// <summary>

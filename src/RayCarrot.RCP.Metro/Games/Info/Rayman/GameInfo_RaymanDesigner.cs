@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -13,31 +12,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_RaymanDesigner : GameInfo
 {
-    #region Protected Override Properties
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected override IList<GameBackups_Directory> GetBackupDirectories => new GameBackups_Directory[]
-    {
-        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
-        //
-        // Note:
-        // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
-        // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
-        // correct mapper directories within each world directory
-        //
-        new GameBackups_Directory(Game.GetInstallDir() + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
-    };
-
-    #endregion
-
     #region Public Override Properties
 
     /// <summary>

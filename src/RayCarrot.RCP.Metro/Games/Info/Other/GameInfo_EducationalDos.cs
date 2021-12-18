@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using RayCarrot.IO;
@@ -66,36 +65,6 @@ public sealed class GameInfo_EducationalDos : GameInfo
     /// Optional RayMap URL
     /// </summary>
     public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
-
-    /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    public override IList<GameBackups_BackupInfo> GetBackupInfos
-    {
-        get
-        {
-            // Get the games with a launch mode
-            var games = Services.Data.Game_EducationalDosBoxGames.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).ToArray();
-
-            // Return a collection of the backup infos for the available games
-            return games.Select(x =>
-            {
-                var backupName = $"Educational Games - {x.LaunchMode}";
-
-                return new GameBackups_BackupInfo(backupName,
-                    new GameBackups_Directory[]
-                    {
-                        new GameBackups_Directory(x.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{x.LaunchMode}??.SAV", "0", 0),
-                        new GameBackups_Directory(x.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{x.LaunchMode}.CFG", "1", 0)
-                    }, x.Name);
-            }).ToArray();
-        }
-    }
 
     /// <summary>
     /// Indicates if the game has archives which can be opened

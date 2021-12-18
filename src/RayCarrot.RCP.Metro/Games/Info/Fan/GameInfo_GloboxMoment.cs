@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using System.IO;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
@@ -11,18 +10,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameInfo_GloboxMoment : GameInfo
 {
-    #region Protected Override Properties
-
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected override IList<GameBackups_Directory> GetBackupDirectories => new GameBackups_Directory[]
-    {
-        new GameBackups_Directory(Environment.SpecialFolder.ApplicationData.GetFolderPath() + "MMFApplications", SearchOption.TopDirectoryOnly, "globoxmoment.ini", "0", 0),
-    };
-
-    #endregion
-
     #region Public Override Properties
 
     /// <summary>

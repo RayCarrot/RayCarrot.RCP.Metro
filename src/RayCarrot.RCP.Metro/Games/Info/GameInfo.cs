@@ -74,11 +74,6 @@ public abstract class GameInfo : BaseGameData
     /// </summary>
     protected virtual string IconName => $"{Game}";
 
-    /// <summary>
-    /// Gets the backup directories for the game
-    /// </summary>
-    protected virtual IList<GameBackups_Directory> GetBackupDirectories => null;
-
     #endregion
 
     #region Public Virtual Properties
@@ -107,24 +102,6 @@ public abstract class GameInfo : BaseGameData
     /// Optional RayMap URL
     /// </summary>
     public virtual string RayMapURL => null;
-
-    /// <summary>
-    /// Gets the backup infos from the directories specified from <see cref="GetBackupDirectories"/>
-    /// </summary>
-    public virtual IList<GameBackups_BackupInfo> GetBackupInfos
-    {
-        get
-        {
-            var backupDirectories = GetBackupDirectories;
-
-            return backupDirectories == null
-                ? new List<GameBackups_BackupInfo>()
-                : new List<GameBackups_BackupInfo>()
-                {
-                    new GameBackups_BackupInfo(BackupName, backupDirectories, DisplayName)
-                };
-        }
-    }
 
     /// <summary>
     /// The group names to use for the options, config and utility dialog
