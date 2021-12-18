@@ -42,7 +42,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"
-                                   Source="{Binding Path=IconImageSource, Mode=OneTime}"
+                                   Source="{Binding Path=IconImageSource}"
                                    Width="32" Height="32"
                                    VerticalAlignment="Center"
                                    Margin="0 0 8 0" />
