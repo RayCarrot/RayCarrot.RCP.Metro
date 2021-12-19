@@ -30,7 +30,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
         // Deserialize the save data
         OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC);
-        RaymanMPCSaveData? saveData = await SerializeFileDataAsync<RaymanMPCSaveData>(fileSystem, filePath, settings);
+        (RaymanMPCSaveData? saveData, filePath) = await SerializeFileDataAsync<RaymanMPCSaveData>(fileSystem, filePath, settings);
 
         if (saveData == null)
         {

@@ -28,7 +28,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
 
             // Deserialize the data
             UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC);
-            JungleRunPCSaveData? saveData = await SerializeFileDataAsync<JungleRunPCSaveData>(fileSystem, filePath, settings);
+            (JungleRunPCSaveData? saveData, filePath) = await SerializeFileDataAsync<JungleRunPCSaveData>(fileSystem, filePath, settings);
 
             if (saveData == null)
             {

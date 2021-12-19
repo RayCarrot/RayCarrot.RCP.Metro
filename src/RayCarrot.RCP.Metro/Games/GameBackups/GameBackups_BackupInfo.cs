@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.IO;
 using NLog;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -84,12 +84,12 @@ public class GameBackups_BackupInfo
     /// <summary>
     /// The backup directories to use when performing a backup
     /// </summary>
-    public GameBackups_Directory[]? BackupDirectories { get; protected set; }
+    public BackupSearchPattern[]? BackupDirectories { get; protected set; }
 
     /// <summary>
     /// The backup directories to use when performing a restore
     /// </summary>
-    public GameBackups_Directory[]? RestoreDirectories { get; protected set; }
+    public BackupSearchPattern[]? RestoreDirectories { get; protected set; }
 
     /// <summary>
     /// The latest available backup version
@@ -100,6 +100,8 @@ public class GameBackups_BackupInfo
     /// The latest available backup version to restore
     /// </summary>
     public int LatestAvailableRestoreVersion { get; set; }
+
+    public bool HasVirtualStoreVersion => AllBackupDirectories.SelectMany(x => x.Value).Any(x => x.HasVirtualStoreVersion);
 
     #endregion
 
@@ -140,17 +142,22 @@ public class GameBackups_BackupInfo
     /// Refreshes the backup info
     /// </summary>
     /// <returns>The task</returns>
-    public async Task RefreshAsync()
+    public async Task RefreshAsync(ProgramDataSource dataSource)
     {
         ExistingBackups = await GetExistingBackupsAsync();
 
         // Get the latest backup version to restore from
         LatestAvailableRestoreVersion = GetPrimaryBackup?.BackupVersion ?? -1;
 
-        BackupDirectories = AllBackupDirectories.TryGetValue(LatestAvailableBackupVersion) ?? Array.Empty<GameBackups_Directory>();
+        BackupDirectories = AllBackupDirectories.TryGetValue(LatestAvailableBackupVersion)?.
+            SelectMany(x => x.GetBackupSearchPatterns(dataSource, ProgressionDirectory.OperationType.Read)).
+            ToArray() ?? Array.Empty<BackupSearchPattern>();
+        
         RestoreDirectories = LatestAvailableRestoreVersion == -1 
-            ? Array.Empty<GameBackups_Directory>() 
-            : AllBackupDirectories.TryGetValue(LatestAvailableRestoreVersion) ?? Array.Empty<GameBackups_Directory>();
+            ? Array.Empty<BackupSearchPattern>() 
+            : AllBackupDirectories.TryGetValue(LatestAvailableRestoreVersion)?.
+                SelectMany(x => x.GetBackupSearchPatterns(dataSource, ProgressionDirectory.OperationType.Write)).
+                ToArray() ?? Array.Empty<BackupSearchPattern>();
 
         if (BackupDirectories.GroupBy(x => x.ID).Any(x => x.Count() > 1))
             throw new InvalidOperationException("Multiple backup directories can not use the same ID starting from version 12.2.0");

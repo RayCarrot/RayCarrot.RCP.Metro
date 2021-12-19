@@ -13,8 +13,10 @@ using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro;
 
-public abstract class ProgressionGameViewModel : BaseViewModel
+public abstract class ProgressionGameViewModel : BaseRCPViewModel
 {
+    #region Constructor
+
     protected ProgressionGameViewModel(Games game, string? displayName = null)
     {
         // Get the info
@@ -31,14 +33,28 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         Slots = new ObservableCollection<ProgressionSlotViewModel>();
         BackupSlots = new ObservableCollection<ProgressionSlotViewModel>();
 
+        UpdateProgramDataSourceCommand = new AsyncRelayCommand(UpdateProgramDataSourceAsync);
         BackupCommand = new AsyncRelayCommand(async () => await BackupAsync());
         RestoreCommand = new AsyncRelayCommand(RestoreAsync);
     }
 
+    #endregion
+
+    #region Logger
+
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    #endregion
+
+    #region Commands
+
+    public ICommand UpdateProgramDataSourceCommand { get; }
     public ICommand BackupCommand { get; }
     public ICommand RestoreCommand { get; }
+
+    #endregion
+
+    #region Properties
 
     protected FileSystemPath InstallDir { get; }
     protected AsyncLock AsyncLock { get; }
@@ -60,6 +76,13 @@ public abstract class ProgressionGameViewModel : BaseViewModel
     public bool IsPerformingBackupRestore { get; set; }
     public bool ShowBackupRestoreIndicator { get; set; }
     public bool CanRestoreBackup { get; set; }
+    public bool CanChangeProgramDataSource { get; set; }
+
+    public ProgramDataSource ProgramDataSource
+    {
+        get => Data.Backup_GameDataSources.TryGetValue(BackupName, ProgramDataSource.Auto);
+        set => Data.Backup_GameDataSources[BackupName] = value;
+    }
 
     public ObservableCollection<ProgressionSlotViewModel> Slots { get; }
     public ObservableCollection<ProgressionSlotViewModel> BackupSlots { get; }
@@ -67,20 +90,24 @@ public abstract class ProgressionGameViewModel : BaseViewModel
     public bool HasBackupSlots { get; set; }
     public ProgressionSlotViewModel? PrimarySlot { get; private set; }
 
-    protected Task<T?> SerializeFileDataAsync<T>(FileSystemWrapper fileSystem, FileSystemPath filePath, BinarySerializerSettings settings, IDataEncoder? encoder = null)
+    #endregion
+
+    #region Protected Methods
+
+    protected Task<(T? data, FileSystemPath dataFilePath)> SerializeFileDataAsync<T>(FileSystemWrapper fileSystem, FileSystemPath filePath, BinarySerializerSettings settings, IDataEncoder? encoder = null)
         where T : class, IBinarySerializable, new()
     {
-        return Task.Run(() =>
+        return Task.Run<(T? data, FileSystemPath dataFilePath)>(() =>
         {
             Stream? fileStream = null;
             Stream? decodedStream = null;
 
             try
             {
-                fileStream = fileSystem.ReadFile(filePath);
+                (fileStream, filePath) = fileSystem.ReadFile(filePath);
 
                 if (fileStream == null)
-                    return null;
+                    return default;
 
                 if (encoder != null)
                 {
@@ -94,7 +121,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                     decodedStream.Position = 0;
                 }
 
-                return BinarySerializableHelpers.ReadFromStream<T>(decodedStream ?? fileStream, settings, Services.App.GetBinarySerializerLogger(filePath.Name));
+                return (BinarySerializableHelpers.ReadFromStream<T>(decodedStream ?? fileStream, settings, Services.App.GetBinarySerializerLogger(filePath.Name)), filePath);
             }
             finally
             {
@@ -114,6 +141,9 @@ public abstract class ProgressionGameViewModel : BaseViewModel
             Select(g => g.OrderBy(x => x.Percentage).LastOrDefault()).
             ToArray();
 
+        if (!slots.Any())
+            return null;
+
         double totalPercentage = 0;
         List<ProgressionDataViewModel> dataItems = new();
 
@@ -124,6 +154,17 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         }
 
         return new ProgressionSlotViewModel(this, null, -1, totalPercentage, dataItems);
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public async Task UpdateProgramDataSourceAsync()
+    {
+        await LoadProgressAsync();
+        await LoadBackupAsync();
+        await LoadSlotInfoItemsAsync();
     }
 
     public async Task LoadProgressAsync()
@@ -137,7 +178,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 // Save in temporary array. We could add to the Slots collection after each one has been asynchronously loaded
                 // thus having them appear as they load in the UI, however this causes the UI to flash when refreshing an
                 // already expanded game since the slots will all be removed and then re-added immediately after
-                ProgressionSlotViewModel[] slots = await LoadSlotsAsync(new PhysicalFileSystemWrapper()).ToArrayAsync();
+                ProgressionSlotViewModel[] slots = await LoadSlotsAsync(new PhysicalFileSystemWrapper(ProgramDataSource)).ToArrayAsync();
 
                 Slots.Clear();
                 Slots.AddRange(slots);
@@ -175,7 +216,9 @@ public abstract class ProgressionGameViewModel : BaseViewModel
             await Task.Run(async () =>
             {
                 // Refresh backup info
-                await BackupInfo.RefreshAsync();
+                await BackupInfo.RefreshAsync(ProgramDataSource);
+
+                CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || Data.Backup_GameDataSources.ContainsKey(BackupName);
 
                 // If the type is DOSBox, check if GOG cloud sync is being used
                 if (Game.GetGameType() == GameType.DosBox)
@@ -262,7 +305,27 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 CanRestoreBackup = false;
                 CurrentBackupStatus = BackupStatus.None;
             }
+
+            // Add more debug info (not localized). Only add if user level is Debug to avoid slowing down the loading.
+            if (Data.App_UserLevel >= UserLevel.Debug)
+            {
+                foreach (BackupSearchPattern dir in BackupInfo.BackupDirectories!)
+                {
+                    BackupInfoItems.Add(new DuoGridItemViewModel($"BackupDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
+                }
+
+                foreach (BackupSearchPattern dir in BackupInfo.RestoreDirectories!)
+                {
+                    BackupInfoItems.Add(new DuoGridItemViewModel($"RestoreDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
+                }
+            }
         }
+    }
+
+    public async Task LoadSlotInfoItemsAsync()
+    {
+        foreach (ProgressionSlotViewModel slot in Slots)
+            await slot.RefreshInfoItemsAsync(Game);
     }
 
     public async Task<bool> BackupAsync(bool fromBatchOperation = false)
@@ -288,7 +351,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                     await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
                 // Refresh the backup info
-                await BackupInfo.RefreshAsync();
+                await BackupInfo.RefreshAsync(ProgramDataSource);
 
                 // Confirm backup if one already exists
                 if (!fromBatchOperation && 
@@ -304,8 +367,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 try
                 {
                     // Perform the backup
-                    // TODO-UPDATE: Set source
-                    success = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo, ProgramDataSource.Auto));
+                    success = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo));
                 }
                 finally
                 {
@@ -352,7 +414,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                     await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
                 // Refresh the backup info
-                await BackupInfo.RefreshAsync();
+                await BackupInfo.RefreshAsync(ProgramDataSource);
 
                 // Confirm restore
                 if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
@@ -367,8 +429,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
                 try
                 {
                     // Perform the restore
-                    // TODO-UPDATE: Set source
-                    backupResult = await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo, ProgramDataSource.Auto));
+                    backupResult = await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo));
                 }
                 finally
                 {
@@ -377,6 +438,7 @@ public abstract class ProgressionGameViewModel : BaseViewModel
             }
 
             await LoadProgressAsync();
+            await LoadSlotInfoItemsAsync();
 
             if (backupResult)
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
@@ -388,6 +450,10 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         }
     }
 
+    #endregion
+
+    #region Enums
+
     public enum BackupStatus
     {
         None,
@@ -397,23 +463,71 @@ public abstract class ProgressionGameViewModel : BaseViewModel
         Error,
     }
 
+    #endregion
+
+    #region Classes
+
     protected abstract class FileSystemWrapper
     {
-        public abstract Stream? ReadFile(string filePath);
-        public abstract IEnumerable<string> GetFiles(string dirPath);
+        public abstract (Stream? fileStream, string filePath) ReadFile(string filePath);
+        public abstract IEnumerable<string> GetFiles(string dirPath, string fileExt);
         public abstract IEnumerable<string> GetDirectories(string dirPath);
     }
     protected class PhysicalFileSystemWrapper : FileSystemWrapper
     {
-        public override Stream? ReadFile(string filePath) => !File.Exists(filePath) ? null : File.OpenRead(filePath);
-        public override IEnumerable<string> GetFiles(string dirPath) => !Directory.Exists(dirPath) ? Enumerable.Empty<string>() : Directory.GetFiles(dirPath);
-        public override IEnumerable<string> GetDirectories(string dirPath) => !Directory.Exists(dirPath) ? Enumerable.Empty<string>() : Directory.GetDirectories(dirPath);
+        public PhysicalFileSystemWrapper(ProgramDataSource dataSource)
+        {
+            DataSource = dataSource;
+        }
+
+        public ProgramDataSource DataSource { get; }
+
+        protected string GetFile(string path)
+        {
+            string fileName = Path.GetFileName(path);
+            ProgressionDirectory dir = new(Path.GetDirectoryName(path), SearchOption.TopDirectoryOnly, fileName);
+            return Path.Combine(dir.GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).First().DirPath, fileName);
+        }
+
+        protected string GetDir(string path, string fileExt)
+        {
+            ProgressionDirectory dir = new(path, SearchOption.TopDirectoryOnly, $"*{fileExt}");
+            return dir.GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).First().DirPath;
+        }
+
+        public override (Stream? fileStream, string filePath) ReadFile(string filePath)
+        {
+            filePath = GetFile(filePath);
+            return !File.Exists(filePath) 
+                ? default 
+                : (File.OpenRead(filePath), filePath);
+        }
+
+        public override IEnumerable<string> GetFiles(string dirPath, string fileExt)
+        {
+            dirPath = GetDir(dirPath, fileExt);
+            return !Directory.Exists(dirPath) 
+                ? Enumerable.Empty<string>() 
+                : Directory.GetFiles(dirPath, $"*{fileExt}", SearchOption.TopDirectoryOnly);
+        }
+
+        public override IEnumerable<string> GetDirectories(string dirPath)
+        {
+            // NOTE: Currently not supported to use redirected paths for this method
+            //dirPath = GetDir(dirPath);
+
+            return !Directory.Exists(dirPath) 
+                ? Enumerable.Empty<string>() 
+                : Directory.GetDirectories(dirPath);
+        }
     }
     protected class BackupFileSystemWrapper : FileSystemWrapper
     {
         // TODO-UPDATE: Implement
-        public override Stream? ReadFile(string filePath) => null;
-        public override IEnumerable<string> GetFiles(string dirPath) => Enumerable.Empty<string>();
+        public override (Stream? fileStream, string filePath) ReadFile(string filePath) => default;
+        public override IEnumerable<string> GetFiles(string dirPath, string fileExt) => Enumerable.Empty<string>();
         public override IEnumerable<string> GetDirectories(string dirPath) => Enumerable.Empty<string>();
     }
+
+    #endregion
 }

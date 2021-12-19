@@ -47,11 +47,8 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         Dictionary<string, int> levelTimes = new();
 
         // Find every .sct file
-        foreach (var save in fileSystem.GetFiles(saveDir).Select(sct =>
+        foreach (var save in fileSystem.GetFiles(saveDir, ".sct").Select(sct =>
         {
-            if (!sct.EndsWith(".sct", StringComparison.InvariantCultureIgnoreCase))
-                return null;
-
             string fileName = ((FileSystemPath)sct).RemoveFileExtension().Name;
 
             if (fileName.Length != 5)
@@ -75,7 +72,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         }).Where(x => x != null).OrderBy(x => x!.World).ThenBy(x => x!.Level))
         {
             Ray1Settings settings = Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC);
-            RaymanDesignerSaveData? saveData = await SerializeFileDataAsync<RaymanDesignerSaveData>(fileSystem, save!.FilePath, settings);
+            (RaymanDesignerSaveData? saveData, _) = await SerializeFileDataAsync<RaymanDesignerSaveData>(fileSystem, save!.FilePath, settings);
 
             if (saveData == null)
             {

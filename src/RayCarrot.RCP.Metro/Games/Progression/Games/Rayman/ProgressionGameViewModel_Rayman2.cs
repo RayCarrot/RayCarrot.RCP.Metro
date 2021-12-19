@@ -32,7 +32,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         FileSystemPath saveGamePath = saveDir + "SaveGame";
 
         OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC);
-        Rayman2PCConfigData? config = await SerializeFileDataAsync<Rayman2PCConfigData>(fileSystem, configFilePath, settings, new Rayman12PCSaveDataEncoder());
+        (Rayman2PCConfigData? config, configFilePath) = await SerializeFileDataAsync<Rayman2PCConfigData>(fileSystem, configFilePath, settings, new Rayman12PCSaveDataEncoder());
 
         if (config == null)
             yield break;
@@ -43,7 +43,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveSlot.SlotIndex);
 
-            Rayman2PCSaveData? saveData = await SerializeFileDataAsync<Rayman2PCSaveData>(fileSystem, slotFilePath, settings, new Rayman12PCSaveDataEncoder());
+            (Rayman2PCSaveData? saveData, slotFilePath) = await SerializeFileDataAsync<Rayman2PCSaveData>(fileSystem, slotFilePath, settings, new Rayman12PCSaveDataEncoder());
 
             if (saveData == null)
             {

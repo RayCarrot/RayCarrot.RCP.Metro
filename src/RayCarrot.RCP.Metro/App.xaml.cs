@@ -586,7 +586,10 @@ public partial class App : BaseApp
         }
 
         if (Data.App_LastVersion < new Version(12, 2, 0, 0))
+        {
             Data.Progression_SaveEditorExe = FileSystemPath.EmptyPath;
+            Data.Backup_GameDataSources = new Dictionary<string, ProgramDataSource>();
+        }
 
         // Re-deploy files
         await Services.App.DeployFilesAsync(true);

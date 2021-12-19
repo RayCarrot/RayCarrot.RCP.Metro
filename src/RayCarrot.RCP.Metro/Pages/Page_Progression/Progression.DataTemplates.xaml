@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-                    xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+                    xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
 
     <ItemsPanelTemplate x:Key="ItemsPanelTemplate.Horizontal" x:Shared="False">
         <StackPanel Orientation="Horizontal" />
@@ -394,6 +395,8 @@
                       HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
                       IsExpanded="{Binding Path=IsExpanded}">
                 <StackPanel Margin="0 0 0 8">
+
+                    <!-- Backup info -->
                     <ItemsControl Grid.IsSharedSizeScope="True"
                                   ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}">
                         <ItemsControl.ItemTemplate>
@@ -405,11 +408,68 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
+                    <!-- Data source -->
+                    <StackPanel Visibility="{Binding Path=CanChangeProgramDataSource, Converter={local:BooleanToVisibilityConverter}}">
+
+                        <Separator Style="{StaticResource Separator.Bold}"
+                                   Margin="0 8 0 8"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 8">
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <TextBlock Style="{StaticResource TextBlock.Header}"
+                                       Text="Data source"
+                                       VerticalAlignment="Center"/>
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <local:InfoIcon Text="For older applications Windows will in some cases redirect save/config files to the VirtualStore if the application is not running as admin. The side effect of this is that you will have different save/config files being used for the game depending on if you're running it as admin or not.
+                                            By changing the data source here you can choose which location is used for backups and the progression view." />
+
+                        </StackPanel>
+
+                        <WrapPanel>
+                            <!-- TODO-UPDATE: Localize -->
+                            <local:RadioButtonExtended Content="Auto"
+                                                       ToolTip="When creating a new backup or using the save files for the progression view then the location with the most recent files is chosen. When restoring a backup it will restore to both locations."
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter=Auto}"
+                                                       Margin="0 0 8 0">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Checked">
+                                        <b:InvokeCommandAction Command="{Binding Path=UpdateProgramDataSourceCommand, Mode=OneTime}"/>
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </local:RadioButtonExtended>
+                            <!-- TODO-UPDATE: Localize -->
+                            <local:RadioButtonExtended Content="Default"
+                                                       ToolTip="The default location is always used. This corresponds to the location the game uses when it is running as admin."
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}"
+                                                       Margin="0 0 8 0" >
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Checked">
+                                        <b:InvokeCommandAction Command="{Binding Path=UpdateProgramDataSourceCommand, Mode=OneTime}"/>
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </local:RadioButtonExtended>
+                            <!-- TODO-UPDATE: Localize -->
+                            <local:RadioButtonExtended Content="VirtualStore"
+                                                       ToolTip="The VirtualStore location is always used. This corresponds to the location the game uses when it is not running as admin."
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter=VirtualStore}" >
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Checked">
+                                        <b:InvokeCommandAction Command="{Binding Path=UpdateProgramDataSourceCommand, Mode=OneTime}"/>
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </local:RadioButtonExtended>
+                        </WrapPanel>
+
+                    </StackPanel>
+
+                    <!-- Slots -->
                     <StackPanel Visibility="{Binding Path=HasSlots, Converter={local:BooleanToVisibilityConverter}}">
 
                         <Separator Style="{StaticResource Separator.Bold}"
-                                   Margin="0 8 0 8"
-                                   Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
+                                   Margin="0 8 0 8"/>
 
                         <!-- TODO-UPDATE: Localize -->
                         <TextBlock Style="{StaticResource TextBlock.Header}"
@@ -422,6 +482,7 @@
 
                     </StackPanel>
 
+                    <!-- Backup slots -->
                     <StackPanel Visibility="{Binding Path=HasBackupSlots, Converter={local:BooleanToVisibilityConverter}}">
 
                         <Separator Style="{StaticResource Separator.Bold}"

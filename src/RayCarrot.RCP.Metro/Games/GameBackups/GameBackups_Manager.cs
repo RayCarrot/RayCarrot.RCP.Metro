@@ -271,9 +271,8 @@ public class GameBackups_Manager
     /// Performs a backup on the game
     /// </summary>
     /// <param name="backupInformation">The backup information</param>
-    /// <param name="source">The data source to use</param>
     /// <returns>True if the backup was successful</returns>
-    public async Task<bool> BackupAsync(GameBackups_BackupInfo backupInformation, ProgramDataSource source)
+    public async Task<bool> BackupAsync(GameBackups_BackupInfo backupInformation)
     {
         using (await AsyncLock.LockAsync())
         {
@@ -295,13 +294,8 @@ public class GameBackups_Manager
                 if (backupInformation.BackupDirectories is null)
                     throw new InvalidOperationException("A backup can only be performed on an info object with valid directories");
 
-                // Get the backup directories to use
-                BackupSearchPattern[] backupDirs = backupInformation.BackupDirectories.
-                    SelectMany(x => x.GetBackupSearchPatterns(source, GameBackups_Directory.OperationType.Read)).
-                    ToArray();
-
                 // Make sure all the directories to back up exist
-                if (!backupDirs.Select(x => x.SearchPattern.DirPath).DirectoriesExist())
+                if (!backupInformation.BackupDirectories.Select(x => x.SearchPattern.DirPath).DirectoriesExist())
                 {
                     Logger.Info("Backup failed - the input directories could not be found");
 
@@ -317,8 +311,8 @@ public class GameBackups_Manager
 
                 // Perform the backup and keep track if it succeeded
                 bool success = await (compress ? 
-                    PerformCompressedBackupAsync(backupDirs, backupInformation.CompressedBackupLocation, backupInformation.GameDisplayName) : 
-                    PerformBackupAsync(backupDirs, backupInformation.BackupLocation, backupInformation.GameDisplayName));
+                    PerformCompressedBackupAsync(backupInformation.BackupDirectories, backupInformation.CompressedBackupLocation, backupInformation.GameDisplayName) : 
+                    PerformBackupAsync(backupInformation.BackupDirectories, backupInformation.BackupLocation, backupInformation.GameDisplayName));
 
                 if (!success)
                     return false;
@@ -350,9 +344,8 @@ public class GameBackups_Manager
     /// Restores a backup on the game
     /// </summary>
     /// <param name="backupInformation">The backup information</param>
-    /// <param name="source">The data source to use</param>
     /// <returns>True if the backup was successful</returns>
-    public async Task<bool> RestoreAsync(GameBackups_BackupInfo backupInformation, ProgramDataSource source)
+    public async Task<bool> RestoreAsync(GameBackups_BackupInfo backupInformation)
     {
         using (await AsyncLock.LockAsync())
         {
@@ -376,13 +369,8 @@ public class GameBackups_Manager
                 if (backupInformation.RestoreDirectories is null)
                     throw new InvalidOperationException("A restore can only be performed on an info object with valid directories");
 
-                // Get the restore directories
-                BackupSearchPattern[] restoreDirs = backupInformation.RestoreDirectories.
-                    SelectMany(x => x.GetBackupSearchPatterns(source, GameBackups_Directory.OperationType.Write)).
-                    ToArray();
-
                 // Make sure we have write access to the restore destinations
-                if (restoreDirs.Any(x => !FileManager.CheckDirectoryWriteAccess(x.SearchPattern.DirPath)))
+                if (backupInformation.RestoreDirectories.Any(x => !FileManager.CheckDirectoryWriteAccess(x.SearchPattern.DirPath)))
                 {
                     Logger.Info("Restore failed - one or more restore destinations lack write access");
 
@@ -408,7 +396,7 @@ public class GameBackups_Manager
                         }
 
                         // Move existing files to temp in case the restore fails    
-                        foreach (BackupSearchPattern item in restoreDirs)
+                        foreach (BackupSearchPattern item in backupInformation.RestoreDirectories)
                         {
                             // Make sure the directory exists
                             if (!item.SearchPattern.DirPath.DirectoryExists)
@@ -428,7 +416,7 @@ public class GameBackups_Manager
                         hasCreatedTempBackup = true;
 
                         // Restore each backup directory
-                        foreach (BackupSearchPattern item in restoreDirs)
+                        foreach (BackupSearchPattern item in backupInformation.RestoreDirectories)
                         {
                             // Get the combined directory path
                             var dirPath = (existingBackup.IsCompressed ? archiveTempDir.TempPath : existingBackup.Path) + item.ID;
@@ -443,7 +431,7 @@ public class GameBackups_Manager
                         // Delete restored files if restore began
                         if (hasCreatedTempBackup)
                         {
-                            foreach (BackupSearchPattern item in restoreDirs)
+                            foreach (BackupSearchPattern item in backupInformation.RestoreDirectories)
                             {
                                 // Make sure the directory exists
                                 if (!item.SearchPattern.DirPath.DirectoryExists)
@@ -466,7 +454,7 @@ public class GameBackups_Manager
                         }
 
                         // Restore temp backup
-                        foreach (BackupSearchPattern item in restoreDirs)
+                        foreach (BackupSearchPattern item in backupInformation.RestoreDirectories)
                         {
                             // Get the combined directory path
                             var dirPath = tempDir.TempPath + item.ID;

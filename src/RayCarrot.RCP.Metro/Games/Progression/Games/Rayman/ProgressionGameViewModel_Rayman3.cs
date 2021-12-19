@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using NLog;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -27,13 +24,14 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
         int index = 0;
 
-        foreach (FileSystemPath filePath in fileSystem.GetFiles(saveDir).
-                     Where(x => x.EndsWith(".sav", StringComparison.InvariantCultureIgnoreCase)))
+        foreach (FileSystemPath slotFilePath in fileSystem.GetFiles(saveDir, ".sav"))
         {
+            FileSystemPath filePath = slotFilePath;
+
             Logger.Info("{0} slot {1} is being loaded...", Game, filePath.Name);
 
             OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC);
-            Rayman3PCSaveData? saveData = await SerializeFileDataAsync<Rayman3PCSaveData>(fileSystem, filePath, settings, new Rayman3SaveDataEncoder());
+            (Rayman3PCSaveData? saveData, filePath) = await SerializeFileDataAsync<Rayman3PCSaveData>(fileSystem, filePath, settings, new Rayman3SaveDataEncoder());
 
             if (saveData == null)
             {
@@ -42,12 +40,6 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
             }
 
             Logger.Info("Slot has been deserialized");
-
-            NumberFormatInfo formatInfo = new()
-            {
-                NumberGroupSeparator = " ",
-                NumberDecimalDigits = 0
-            };
 
             // Create the collection with items for each level + general information
             ProgressionDataViewModel[] progressItems = 

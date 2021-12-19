@@ -126,12 +126,7 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
 
                 // Load slot infos
                 foreach (ProgressionGameViewModel game in GameItems)
-                {
-                    foreach (ProgressionSlotViewModel slot in game.Slots)
-                    {
-                        await slot.RefreshInfoItemsAsync(game.Game);
-                    }
-                }
+                    await game.LoadSlotInfoItemsAsync();
 
                 Logger.Info("Refreshed progression game items");
             }

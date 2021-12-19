@@ -761,13 +761,12 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        // TODO-UPDATE: Check both dir and virtual store - find better solution for dealing with VirtualStore redirection
-        FileSystemPath saveFile = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + Game.GetInstallDir().RemoveRoot() + "Rayman4.sav";
+        FileSystemPath saveFile = InstallDir + "Rayman4.sav"; // TODO-UPDATE: This path gets passed into slot VM - wrong
 
         Logger.Info("{0} save is being loaded...", Game);
 
         BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
-        RRR_SaveFile? saveData = await SerializeFileDataAsync<RRR_SaveFile>(fileSystem, saveFile, settings, new RRR_SaveEncoder());
+        (RRR_SaveFile? saveData, saveFile) = await SerializeFileDataAsync<RRR_SaveFile>(fileSystem, saveFile, settings, new RRR_SaveEncoder());
 
         if (saveData == null)
         {

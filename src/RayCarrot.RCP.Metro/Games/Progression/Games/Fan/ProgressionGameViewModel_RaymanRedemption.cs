@@ -96,23 +96,26 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
             GameMaker_DSMap? saveData = await Task.Run(() =>
             {
                 // Get the file
-                using Stream? file = fileSystem.ReadFile(filePath);
+                (Stream? file, filePath) = fileSystem.ReadFile(filePath);
 
-                if (file == null)
-                    return null;
+                using (file)
+                {
+                    if (file == null)
+                        return null;
 
-                // Read into a string
-                using StreamReader reader = new(file);
-                string str = reader.ReadToEnd();
+                    // Read into a string
+                    using StreamReader reader = new(file);
+                    string str = reader.ReadToEnd();
 
-                // Convert the hex string to bytes
-                byte[] bytes = StringToByteArray(str);
+                    // Convert the hex string to bytes
+                    byte[] bytes = StringToByteArray(str);
 
-                // Use a memory stream
-                using MemoryStream mem = new(bytes);
+                    // Use a memory stream
+                    using MemoryStream mem = new(bytes);
 
-                // Deserialize the data
-                return BinarySerializableHelpers.ReadFromStream<GameMaker_DSMap>(mem, settings, Services.App.GetBinarySerializerLogger());
+                    // Deserialize the data
+                    return BinarySerializableHelpers.ReadFromStream<GameMaker_DSMap>(mem, settings, Services.App.GetBinarySerializerLogger());
+                }
             });
 
             if (saveData == null)

@@ -24,7 +24,7 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
         Logger.Info("{0} save is being loaded...", Game);
 
         BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
-        Unity_PlayerPrefs? saveData = await SerializeFileDataAsync<Unity_PlayerPrefs>(fileSystem, saveFile, settings);
+        (Unity_PlayerPrefs? saveData, saveFile) = await SerializeFileDataAsync<Unity_PlayerPrefs>(fileSystem, saveFile, settings);
 
         if (saveData == null)
         {
