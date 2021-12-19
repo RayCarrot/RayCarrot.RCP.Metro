@@ -175,7 +175,18 @@ public class ProgramSelectionViewModel : UserInputViewModel
 
                 // Make sure the file exists
                 if (!targetFile.FileExists)
-                    continue;
+                {
+                    // Due to RCP being run as a 32-bit program (12.2.0) it will have issues getting certain paths when run on a
+                    // 64-bit system. We could set RCP to run as AnyCPU, but then we need to include two binaries for ImageMagick
+                    // which will use 20 MB more space. For now we attempt to solve the path issue with a fallback way of getting the
+                    // shortcut target based on the working directory. This will solve most issues, but isn't ideal.
+
+                    FileSystemPath workingDir = WindowsHelpers.GetShortCutTargetInfo(shortcutFile).WorkingDirectory;
+                    targetFile = workingDir + targetFile.Name;
+
+                    if (!targetFile.FileExists)
+                        continue;
+                }
 
                 // Ignore if not an exe file
                 if (!targetFile.Name.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase))

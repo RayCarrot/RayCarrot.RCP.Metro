@@ -8,7 +8,9 @@
 		<LangVersion>10.0</LangVersion>
 		<UseWPF>true</UseWPF>
 		<Nullable>enable</Nullable>
-		<PlatformTarget>AnyCPU</PlatformTarget>
+		<!-- Although AnyCPU would be an ideal setting due to how some Windows APIs work, it does complicate things with ImageMagick
+			 as that has a separate native library for x86/x64. For now we're hard-coding it to always use x86. -->
+		<PlatformTarget>x86</PlatformTarget>
 		<!-- Appears to be required when using framework earlier than net5 -->
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 	</PropertyGroup>
