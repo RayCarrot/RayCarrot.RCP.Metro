@@ -88,34 +88,27 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
-            FileSystemPath filePath = saveDir + $"rayrede{saveIndex + 1}.txt";
+            FileSystemPath filePath = fileSystem.GetFile(saveDir + $"rayrede{saveIndex + 1}.txt");
 
+            if (!filePath.FileExists)
+                continue;
+            
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
             BinarySerializerSettings settings = new(Endian.Little, Encoding.ASCII);
             GameMaker_DSMap? saveData = await Task.Run(() =>
             {
-                // Get the file
-                (Stream? file, filePath) = fileSystem.ReadFile(filePath);
+                // Read the file as a string
+                string str = File.ReadAllText(filePath);
 
-                using (file)
-                {
-                    if (file == null)
-                        return null;
+                // Convert the hex string to bytes
+                byte[] bytes = StringToByteArray(str);
 
-                    // Read into a string
-                    using StreamReader reader = new(file);
-                    string str = reader.ReadToEnd();
+                // Use a memory stream
+                using MemoryStream mem = new(bytes);
 
-                    // Convert the hex string to bytes
-                    byte[] bytes = StringToByteArray(str);
-
-                    // Use a memory stream
-                    using MemoryStream mem = new(bytes);
-
-                    // Deserialize the data
-                    return BinarySerializableHelpers.ReadFromStream<GameMaker_DSMap>(mem, settings, Services.App.GetBinarySerializerLogger());
-                }
+                // Deserialize the data
+                return BinarySerializableHelpers.ReadFromStream<GameMaker_DSMap>(mem, settings, Services.App.GetBinarySerializerLogger());
             });
 
             if (saveData == null)

@@ -47,7 +47,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         Dictionary<string, int> levelTimes = new();
 
         // Find every .sct file
-        foreach (var save in fileSystem.GetFiles(saveDir, ".sct").Select(sct =>
+        foreach (var save in fileSystem.GetFiles(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sct")).Select(sct =>
         {
             string fileName = ((FileSystemPath)sct).RemoveFileExtension().Name;
 
@@ -72,7 +72,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         }).Where(x => x != null).OrderBy(x => x!.World).ThenBy(x => x!.Level))
         {
             Ray1Settings settings = Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC);
-            (RaymanDesignerSaveData? saveData, _) = await SerializeFileDataAsync<RaymanDesignerSaveData>(fileSystem, save!.FilePath, settings);
+            RaymanDesignerSaveData? saveData = await SerializeFileDataAsync<RaymanDesignerSaveData>(save!.FilePath, settings);
 
             if (saveData == null)
             {
@@ -110,16 +110,19 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
 
         int levelsFinished = progressItems.Count;
 
-        // Add levels completed
-        // TODO-UPDATE: Localize
-        progressItems.Insert(0, new ProgressionDataViewModel(
-            isPrimaryItem: true, 
-            icon: ProgressionIcon.R1_Flag, 
-            header: new ConstLocString("Levels completed"), 
-            value: levelsFinished, 
-            max: levelsCount));
+        if (levelsFinished > 0)
+        {
+            // Add levels completed
+            // TODO-UPDATE: Localize
+            progressItems.Insert(0, new ProgressionDataViewModel(
+                isPrimaryItem: true,
+                icon: ProgressionIcon.R1_Flag,
+                header: new ConstLocString("Levels completed"),
+                value: levelsFinished,
+                max: levelsCount));
 
-        yield return new RaymanDesignerProgressionSlotViewModel(this, null, 0, levelsFinished, levelsCount, progressItems, levelTimes, saveDir);
+            yield return new RaymanDesignerProgressionSlotViewModel(this, null, 0, levelsFinished, levelsCount, progressItems, levelTimes, saveDir);
+        }
 
         Logger.Info("{0} slot has been loaded", Game);
     }

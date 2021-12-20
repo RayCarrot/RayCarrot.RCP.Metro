@@ -12,7 +12,7 @@ public class ProgressionDirectory
     #region Constructor
 
     /// <summary>
-    /// Default constructor
+    /// Constructor with parameters for each search pattern value
     /// </summary>
     /// <param name="dirPath">The directory path</param>
     /// <param name="searchOption">The search option to use when finding files and sub directories</param>
@@ -25,6 +25,13 @@ public class ProgressionDirectory
         VirtualStoreDirPath = GetVirtualStoreFilePath() + DirPath.RemoveRoot();
         HasVirtualStoreVersion = VirtualStoreDirPath.DirectoryExists;
     }
+
+    /// <summary>
+    /// Constructor with parameters for a search pattern
+    /// </summary>
+    /// <param name="searchPattern">The search pattern</param>
+    public ProgressionDirectory(IOSearchPattern searchPattern) : this(searchPattern.DirPath, searchPattern.SearchOption, searchPattern.SearchPattern) 
+    { }
 
     #endregion
 

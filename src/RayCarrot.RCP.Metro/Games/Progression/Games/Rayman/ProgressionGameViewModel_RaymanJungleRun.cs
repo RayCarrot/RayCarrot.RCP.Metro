@@ -24,11 +24,11 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
             // Get the file path
-            FileSystemPath filePath = saveDir + $"slot{saveIndex + 1}.dat";
+            FileSystemPath filePath = fileSystem.GetFile(saveDir + $"slot{saveIndex + 1}.dat");
 
             // Deserialize the data
             UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC);
-            (JungleRunPCSaveData? saveData, filePath) = await SerializeFileDataAsync<JungleRunPCSaveData>(fileSystem, filePath, settings);
+            JungleRunPCSaveData? saveData = await SerializeFileDataAsync<JungleRunPCSaveData>(filePath, settings);
 
             if (saveData == null)
             {

@@ -37,13 +37,13 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
-            FileSystemPath filePath = saveDir + "Savegame_0";
+            FileSystemPath filePath = fileSystem.GetFile(saveDir + $"Savegame_{saveIndex}");
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
             // Deserialize the data
             UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC);
-            (OriginsPCSaveData? saveFileData, filePath) = (await SerializeFileDataAsync<OriginsPCSaveData>(fileSystem, filePath, settings));
+            OriginsPCSaveData? saveFileData = (await SerializeFileDataAsync<OriginsPCSaveData>(filePath, settings));
 
             if (saveFileData == null)
             {

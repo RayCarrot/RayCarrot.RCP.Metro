@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -94,21 +95,19 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     #region Protected Methods
 
-    protected Task<(T? data, FileSystemPath dataFilePath)> SerializeFileDataAsync<T>(FileSystemWrapper fileSystem, FileSystemPath filePath, BinarySerializerSettings settings, IDataEncoder? encoder = null)
+    protected Task<T?> SerializeFileDataAsync<T>(FileSystemPath filePath, BinarySerializerSettings settings, IDataEncoder? encoder = null)
         where T : class, IBinarySerializable, new()
     {
-        return Task.Run<(T? data, FileSystemPath dataFilePath)>(() =>
+        return Task.Run(() =>
         {
-            Stream? fileStream = null;
+            if (!filePath.FileExists)
+                return null;
+
+            Stream? fileStream = File.OpenRead(filePath);
             Stream? decodedStream = null;
 
             try
             {
-                (fileStream, filePath) = fileSystem.ReadFile(filePath);
-
-                if (fileStream == null)
-                    return default;
-
                 if (encoder != null)
                 {
                     // Create a memory stream
@@ -121,7 +120,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
                     decodedStream.Position = 0;
                 }
 
-                return (BinarySerializableHelpers.ReadFromStream<T>(decodedStream ?? fileStream, settings, Services.App.GetBinarySerializerLogger(filePath.Name)), filePath);
+                return BinarySerializableHelpers.ReadFromStream<T>(decodedStream ?? fileStream, settings, Services.App.GetBinarySerializerLogger(filePath.Name));
             }
             finally
             {
@@ -175,10 +174,13 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
             try
             {
+                PhysicalFileSystemWrapper fileWrapper = new(ProgramDataSource);
+                await fileWrapper.InitAsync();
+
                 // Save in temporary array. We could add to the Slots collection after each one has been asynchronously loaded
                 // thus having them appear as they load in the UI, however this causes the UI to flash when refreshing an
                 // already expanded game since the slots will all be removed and then re-added immediately after
-                ProgressionSlotViewModel[] slots = await LoadSlotsAsync(new PhysicalFileSystemWrapper(ProgramDataSource)).ToArrayAsync();
+                ProgressionSlotViewModel[] slots = await LoadSlotsAsync(fileWrapper).ToArrayAsync();
 
                 Slots.Clear();
                 Slots.AddRange(slots);
@@ -288,7 +290,11 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
                 {
                     BackupSlots.Clear();
 
-                    await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(new BackupFileSystemWrapper()))
+                    using BackupFileSystemWrapper backupFileSystemWrapper = new(BackupInfo);
+
+                    await backupFileSystemWrapper.InitAsync();
+
+                    await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(backupFileSystemWrapper))
                         BackupSlots.Add(slot);
                 }
                 catch (Exception ex)
@@ -469,10 +475,12 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     protected abstract class FileSystemWrapper
     {
-        public abstract (Stream? fileStream, string filePath) ReadFile(string filePath);
-        public abstract IEnumerable<string> GetFiles(string dirPath, string fileExt);
-        public abstract IEnumerable<string> GetDirectories(string dirPath);
+        public virtual Task InitAsync() => Task.CompletedTask;
+
+        public abstract FileSystemPath GetFile(FileSystemPath filePath);
+        public abstract IEnumerable<string> GetFiles(IOSearchPattern searchPattern);
     }
+
     protected class PhysicalFileSystemWrapper : FileSystemWrapper
     {
         public PhysicalFileSystemWrapper(ProgramDataSource dataSource)
@@ -482,51 +490,111 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
         public ProgramDataSource DataSource { get; }
 
-        protected string GetFile(string path)
+        public override FileSystemPath GetFile(FileSystemPath filePath)
         {
-            string fileName = Path.GetFileName(path);
-            ProgressionDirectory dir = new(Path.GetDirectoryName(path), SearchOption.TopDirectoryOnly, fileName);
+            string fileName = filePath.Name;
+            ProgressionDirectory dir = new(filePath.Parent, SearchOption.TopDirectoryOnly, fileName);
             return Path.Combine(dir.GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).First().DirPath, fileName);
         }
 
-        protected string GetDir(string path, string fileExt)
+        public override IEnumerable<string> GetFiles(IOSearchPattern searchPattern)
         {
-            ProgressionDirectory dir = new(path, SearchOption.TopDirectoryOnly, $"*{fileExt}");
-            return dir.GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).First().DirPath;
-        }
+            // Convert the search pattern using the current data source
+            searchPattern = new ProgressionDirectory(searchPattern).
+                GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).
+                First();
 
-        public override (Stream? fileStream, string filePath) ReadFile(string filePath)
-        {
-            filePath = GetFile(filePath);
-            return !File.Exists(filePath) 
-                ? default 
-                : (File.OpenRead(filePath), filePath);
-        }
-
-        public override IEnumerable<string> GetFiles(string dirPath, string fileExt)
-        {
-            dirPath = GetDir(dirPath, fileExt);
-            return !Directory.Exists(dirPath) 
+            return !searchPattern.DirPath.DirectoryExists
                 ? Enumerable.Empty<string>() 
-                : Directory.GetFiles(dirPath, $"*{fileExt}", SearchOption.TopDirectoryOnly);
-        }
-
-        public override IEnumerable<string> GetDirectories(string dirPath)
-        {
-            // NOTE: Currently not supported to use redirected paths for this method
-            //dirPath = GetDir(dirPath);
-
-            return !Directory.Exists(dirPath) 
-                ? Enumerable.Empty<string>() 
-                : Directory.GetDirectories(dirPath);
+                : searchPattern.GetFiles();
         }
     }
-    protected class BackupFileSystemWrapper : FileSystemWrapper
+
+    protected class BackupFileSystemWrapper : FileSystemWrapper, IDisposable
     {
-        // TODO-UPDATE: Implement
-        public override (Stream? fileStream, string filePath) ReadFile(string filePath) => default;
-        public override IEnumerable<string> GetFiles(string dirPath, string fileExt) => Enumerable.Empty<string>();
-        public override IEnumerable<string> GetDirectories(string dirPath) => Enumerable.Empty<string>();
+        public BackupFileSystemWrapper(GameBackups_BackupInfo backupInfo)
+        {
+            Backup = backupInfo.GetPrimaryBackup;
+            RestoreDirectories = backupInfo.RestoreDirectories ?? throw new Exception($"Restore directories must be set");
+
+            if (Backup == null)
+                return;
+
+            if (Backup.IsCompressed)
+            {
+                TempExtractDir = new TempDirectory(true);
+                BackupDir = TempExtractDir.TempPath;
+            }
+            else
+            {
+                BackupDir = Backup.Path;
+            }
+        }
+
+        public GameBackups_ExistingBackup? Backup { get; }
+        public BackupSearchPattern[] RestoreDirectories { get; }
+        public FileSystemPath BackupDir { get; }
+        public TempDirectory? TempExtractDir { get; }
+
+        public override async Task InitAsync()
+        {
+            if (Backup is null || TempExtractDir is null)
+                return;
+
+            await Task.Run(() =>
+            {
+                using ZipArchive zip = new(File.OpenRead(Backup.Path));
+                zip.ExtractToDirectory(TempExtractDir.TempPath);
+            });
+        }
+
+        public override FileSystemPath GetFile(FileSystemPath filePath)
+        {
+            if (Backup == null)
+                return FileSystemPath.EmptyPath;
+
+            foreach (BackupSearchPattern dir in RestoreDirectories)
+            {
+                if (!filePath.FullPath.StartsWith(dir.SearchPattern.DirPath))
+                    continue;
+                
+                FileSystemPath backupPath = BackupDir + dir.ID + (filePath - dir.SearchPattern.DirPath);
+
+                if (backupPath.FileExists)
+                    return backupPath;
+            }
+
+            return FileSystemPath.EmptyPath;
+        }
+
+        public override IEnumerable<string> GetFiles(IOSearchPattern searchPattern)
+        {
+            if (Backup == null)
+                return Enumerable.Empty<string>();
+
+            FileSystemPath backupDir = FileSystemPath.EmptyPath;
+
+            foreach (BackupSearchPattern dir in RestoreDirectories)
+            {
+                FileSystemPath backupPath = BackupDir + dir.ID + (searchPattern.DirPath - dir.SearchPattern.DirPath);
+
+                if (backupPath.DirectoryExists)
+                {
+                    backupDir = backupPath;
+                    break;
+                }
+            }
+
+            if (!backupDir.DirectoryExists)
+                return Enumerable.Empty<string>();
+
+            return new IOSearchPattern(backupDir, searchPattern.SearchOption, searchPattern.SearchPattern).GetFiles();
+        }
+
+        public void Dispose()
+        {
+            TempExtractDir?.Dispose();
+        }
     }
 
     #endregion

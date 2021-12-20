@@ -17,20 +17,20 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Game.GetInstallDir() + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
+        new GameBackups_Directory(Game.GetInstallDir() + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
         FileSystemPath saveDir = InstallDir + "MENU" + "SaveGame";
-        FileSystemPath filePath = saveDir + "raymanm.sav";
+        FileSystemPath filePath = fileSystem.GetFile(saveDir + "raymanm.sav");
 
         Logger.Info("{0} save file {1} is being loaded...", Game, filePath.Name);
 
         // Deserialize the save data
         OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC);
-        (RaymanMPCSaveData? saveData, filePath) = await SerializeFileDataAsync<RaymanMPCSaveData>(fileSystem, filePath, settings);
+        RaymanMPCSaveData? saveData = await SerializeFileDataAsync<RaymanMPCSaveData>(filePath, settings);
 
         if (saveData == null)
         {

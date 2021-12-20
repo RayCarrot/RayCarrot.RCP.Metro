@@ -19,12 +19,14 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         string packageName = Game.GetManager<GameManager_WinStore>().FullPackageName;
-        FileSystemPath saveFile = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + packageName + "LocalState" + "playerprefs.dat";
+
+        FileSystemPath saveFile = fileSystem.GetFile(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
+                                                     "Packages" + packageName + "LocalState" + "playerprefs.dat");
 
         Logger.Info("{0} save is being loaded...", Game);
 
         BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
-        (Unity_PlayerPrefs? saveData, saveFile) = await SerializeFileDataAsync<Unity_PlayerPrefs>(fileSystem, saveFile, settings);
+        Unity_PlayerPrefs? saveData = await SerializeFileDataAsync<Unity_PlayerPrefs>(saveFile, settings);
 
         if (saveData == null)
         {

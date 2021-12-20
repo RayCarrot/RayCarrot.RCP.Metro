@@ -24,14 +24,12 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
         int index = 0;
 
-        foreach (FileSystemPath slotFilePath in fileSystem.GetFiles(saveDir, ".sav"))
+        foreach (FileSystemPath filePath in fileSystem.GetFiles(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sav")))
         {
-            FileSystemPath filePath = slotFilePath;
-
             Logger.Info("{0} slot {1} is being loaded...", Game, filePath.Name);
 
             OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC);
-            (Rayman3PCSaveData? saveData, filePath) = await SerializeFileDataAsync<Rayman3PCSaveData>(fileSystem, filePath, settings, new Rayman3SaveDataEncoder());
+            Rayman3PCSaveData? saveData = await SerializeFileDataAsync<Rayman3PCSaveData>(filePath, settings, new Rayman3SaveDataEncoder());
 
             if (saveData == null)
             {

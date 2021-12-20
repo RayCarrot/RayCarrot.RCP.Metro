@@ -59,15 +59,13 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
     {
         FileSystemPath saveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends";
 
-        foreach (FileSystemPath slotSaveFile in fileSystem.GetDirectories(saveDir).Select(x => new FileSystemPath(x) + "RaymanSave_0"))
+        foreach (FileSystemPath saveFile in fileSystem.GetFiles(new IOSearchPattern(saveDir, SearchOption.AllDirectories, "RaymanSave_0")))
         {
-            FileSystemPath saveFile = slotSaveFile;
-
             Logger.Info("{0} slot {1} is being loaded...", Game, saveFile.Parent.Name);
 
             // Deserialize the data
             UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, Platform.PC);
-            (LegendsPCSaveData? saveFileData, saveFile) = await SerializeFileDataAsync<LegendsPCSaveData>(fileSystem, saveFile, settings);
+            LegendsPCSaveData? saveFileData = await SerializeFileDataAsync<LegendsPCSaveData>(saveFile, settings);
 
             if (saveFileData == null)
             {
