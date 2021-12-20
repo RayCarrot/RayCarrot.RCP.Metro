@@ -361,9 +361,10 @@
         <Expander Margin="0 0 0 8"
                   Header="{Binding}"
                   HeaderTemplate="{StaticResource DataTemplate.ProgressionSlotHeader}">
-            <StackPanel>
+            <StackPanel Margin="0 8 0 0">
 
                 <ItemsControl Grid.IsSharedSizeScope="True"
+                              Visibility="{Binding Path=HasInfoItems, Converter={local:BooleanToVisibilityConverter}}"
                               Margin="0 0 0 8"
                               ItemsSource="{Binding Path=InfoItems, Mode=OneTime}">
                     <ItemsControl.ItemTemplate>
@@ -394,25 +395,11 @@
             <Expander Header="{Binding}"
                       HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
                       IsExpanded="{Binding Path=IsExpanded}">
-                <StackPanel Margin="0 0 0 8">
-
-                    <!-- Backup info -->
-                    <ItemsControl Grid.IsSharedSizeScope="True"
-                                  ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <local:DuoGridItem Text="{Binding Path=Text}"
-                                                   Header="{Binding Path=Header}"
-                                                   MinUserLevel="{Binding Path=MinUserLevel}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                <StackPanel Margin="0 8 0 0">
 
                     <!-- Data source -->
-                    <StackPanel Visibility="{Binding Path=CanChangeProgramDataSource, Converter={local:BooleanToVisibilityConverter}}">
 
-                        <Separator Style="{StaticResource Separator.Bold}"
-                                   Margin="0 8 0 8"/>
+                    <StackPanel Visibility="{Binding Path=CanChangeProgramDataSource, Converter={local:BooleanToVisibilityConverter}}">
 
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 0 0 8">
@@ -428,7 +415,7 @@
 
                         </StackPanel>
 
-                        <WrapPanel>
+                        <WrapPanel Margin="0 0 0 8">
                             <!-- TODO-UPDATE: Localize -->
                             <local:RadioButtonExtended Content="Auto"
                                                        ToolTip="When creating a new backup or using the save files for the progression view then the location with the most recent files is chosen. When restoring a backup it will restore to both locations."
@@ -463,41 +450,100 @@
                             </local:RadioButtonExtended>
                         </WrapPanel>
 
+                        <Separator Style="{StaticResource Separator.Bold}"
+                                   Margin="0 0 0 8">
+                            <Separator.Visibility>
+                                <MultiBinding>
+                                    <MultiBinding.Converter>
+                                        <local:BooleanOrToVisibilityMultiConverter />
+                                    </MultiBinding.Converter>
+
+                                    <Binding Path="HasSlots" />
+                                    <Binding Path="HasBackupSlots" />
+                                    
+                                </MultiBinding>
+                            </Separator.Visibility>
+                        </Separator>
+
                     </StackPanel>
 
                     <!-- Slots -->
+
                     <StackPanel Visibility="{Binding Path=HasSlots, Converter={local:BooleanToVisibilityConverter}}">
 
-                        <Separator Style="{StaticResource Separator.Bold}"
-                                   Margin="0 8 0 8"/>
-
-                        <!-- TODO-UPDATE: Localize -->
-                        <TextBlock Style="{StaticResource TextBlock.Header}"
-                                   Text="Current Progress"
-                                   Margin="0 0 0 8" />
-
                         <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
-                                      ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
-                                      Margin="0 0 0 -8"/>
-
-                    </StackPanel>
-
-                    <!-- Backup slots -->
-                    <StackPanel Visibility="{Binding Path=HasBackupSlots, Converter={local:BooleanToVisibilityConverter}}">
+                                      ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}" />
 
                         <Separator Style="{StaticResource Separator.Bold}"
-                                   Margin="0 8 0 8"/>
+                                   Margin="0 0 0 8">
+                            <Separator.Visibility>
+                                <MultiBinding>
+                                    <MultiBinding.Converter>
+                                        <local:BooleanOrToVisibilityMultiConverter />
+                                    </MultiBinding.Converter>
 
-                        <!-- TODO-UPDATE: Localize -->
-                        <TextBlock Style="{StaticResource TextBlock.Header}"
-                                   Text="Backup Progress"
-                                   Margin="0 0 0 8" />
+                                    <Binding Path="HasBackupSlots" />
 
-                        <ItemsControl ItemsSource="{Binding Path=BackupSlots, Mode=OneTime}"
-                                      ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
-                                      Margin="0 0 0 -8"/>
+                                </MultiBinding>
+                            </Separator.Visibility>
+                        </Separator>
 
                     </StackPanel>
+
+                    <!-- Backup -->
+
+                    <Expander Margin="0 0 0 8">
+                        <Expander.Visibility>
+                            <MultiBinding>
+                                <MultiBinding.Converter>
+                                    <local:BooleanOrToVisibilityMultiConverter />
+                                </MultiBinding.Converter>
+
+                                <Binding Path="HasBackupInfoItems" />
+                                <Binding Path="HasBackupSlots" />
+
+                            </MultiBinding>
+                        </Expander.Visibility>
+
+                        <Expander.Header>
+                            <!-- TODO-UPDATE: Localize -->
+                            <TextBlock Style="{StaticResource TextBlock.HeaderLarge}"
+                                       Text="Backup"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="15 4" />
+                        </Expander.Header>
+
+                        <StackPanel Margin="0 8 0 0">
+
+                            <!-- Backup info -->
+
+                            <ItemsControl Grid.IsSharedSizeScope="True"
+                                          ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}"
+                                          Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"
+                                          Margin="0 0 0 8">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:DuoGridItem Text="{Binding Path=Text}"
+                                                           Header="{Binding Path=Header}"
+                                                           MinUserLevel="{Binding Path=MinUserLevel}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <Separator Style="{StaticResource Separator.Bold}"
+                                       Visibility="{Binding Path=HasBackupSlots, Converter={local:BooleanToVisibilityConverter}}"
+                                       Margin="0 0 0 8"/>
+
+                            <!-- Backup slots -->
+
+                            <ItemsControl ItemsSource="{Binding Path=BackupSlots, Mode=OneTime}"
+                                          ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}"
+                                          Margin="0 0 0 -8" />
+
+                        </StackPanel>
+
+                    </Expander>
 
                 </StackPanel>
             </Expander>
