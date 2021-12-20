@@ -125,8 +125,8 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
     public ObservableCollection<ProgressionDataViewModel> PrimaryDataItems { get; }
     public ObservableCollection<ProgressionDataViewModel> DataItems { get; }
 
-    public bool CanExport { get; init; }
-    public bool CanImport { get; init; }
+    public bool CanExport { get; set; }
+    public bool CanImport { get; set; }
 
     #endregion
 

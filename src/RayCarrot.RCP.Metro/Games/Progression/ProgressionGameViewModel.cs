@@ -295,7 +295,13 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
                     await backupFileSystemWrapper.InitAsync();
 
                     await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(backupFileSystemWrapper))
+                    {
                         BackupSlots.Add(slot);
+
+                        // Don't allow importing or opening the save location for backup slots. Exporting is still allowed.
+                        slot.CanImport = false;
+                        slot.CanOpenLocation = false;
+                    }
                 }
                 catch (Exception ex)
                 {
