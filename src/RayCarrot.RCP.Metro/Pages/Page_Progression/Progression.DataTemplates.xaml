@@ -248,12 +248,6 @@
                                             Foreground="#F44336"
                                             Width="20"
                                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
-                <iconpacks:PackIconMaterial Kind="AlertCircle"
-                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Error}"
-                                            ToolTip="Error reading backup"
-                                            Foreground="#F44336"
-                                            Width="20"
-                                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
                 <iconpacks:PackIconMaterial Kind="SyncCircle"
                                             Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Syncing}"
                                             ToolTip="Syncing..."
@@ -459,7 +453,7 @@
                                     </MultiBinding.Converter>
 
                                     <Binding Path="HasSlots" />
-                                    <Binding Path="HasBackupSlots" />
+                                    <Binding Path="HasBackup" />
                                     
                                 </MultiBinding>
                             </Separator.Visibility>
@@ -482,7 +476,7 @@
                                         <local:BooleanOrToVisibilityMultiConverter />
                                     </MultiBinding.Converter>
 
-                                    <Binding Path="HasBackupSlots" />
+                                    <Binding Path="HasBackup" />
 
                                 </MultiBinding>
                             </Separator.Visibility>
@@ -492,18 +486,14 @@
 
                     <!-- Backup -->
 
-                    <Expander Margin="0 0 0 8">
-                        <Expander.Visibility>
-                            <MultiBinding>
-                                <MultiBinding.Converter>
-                                    <local:BooleanOrToVisibilityMultiConverter />
-                                </MultiBinding.Converter>
-
-                                <Binding Path="HasBackupInfoItems" />
-                                <Binding Path="HasBackupSlots" />
-
-                            </MultiBinding>
-                        </Expander.Visibility>
+                    <Expander Margin="0 0 0 8"
+                              Visibility="{Binding Path=HasBackup, Converter={local:BooleanToVisibilityConverter}}"
+                              IsExpanded="{Binding Path=IsBackupViewExpanded}">
+                        <metro:ExpanderHelper.HeaderDownStyle>
+                            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Styles.ToggleButton.ExpanderHeader.Down}">
+                                <Setter Property="Command" Value="{Binding Path=LoadBackupViewCommand, Mode=OneTime}" />
+                            </Style>
+                        </metro:ExpanderHelper.HeaderDownStyle>
 
                         <Expander.Header>
                             <!-- TODO-UPDATE: Localize -->

@@ -35,6 +35,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         BackupSlots = new ObservableCollection<ProgressionSlotViewModel>();
 
         UpdateProgramDataSourceCommand = new AsyncRelayCommand(UpdateProgramDataSourceAsync);
+        LoadBackupViewCommand = new AsyncRelayCommand(LoadBackupViewAsync);
         BackupCommand = new AsyncRelayCommand(async () => await BackupAsync());
         RestoreCommand = new AsyncRelayCommand(RestoreAsync);
     }
@@ -50,8 +51,15 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     #region Commands
 
     public ICommand UpdateProgramDataSourceCommand { get; }
+    public ICommand LoadBackupViewCommand { get; }
     public ICommand BackupCommand { get; }
     public ICommand RestoreCommand { get; }
+
+    #endregion
+
+    #region Private Fields
+
+    private bool _hasLoadedBackupView;
 
     #endregion
 
@@ -66,6 +74,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     public string DisplayName { get; }
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
+    public bool IsBackupViewExpanded { get; set; }
 
     protected virtual string BackupName => Game.GetGameInfo().BackupName;
     protected abstract GameBackups_Directory[] BackupDirectories { get; }
@@ -78,6 +87,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     public bool ShowBackupRestoreIndicator { get; set; }
     public bool CanRestoreBackup { get; set; }
     public bool CanChangeProgramDataSource { get; set; }
+    public bool HasBackup { get; set; }
 
     public ProgramDataSource ProgramDataSource
     {
@@ -90,6 +100,113 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     public bool HasSlots { get; set; }
     public bool HasBackupSlots { get; set; }
     public ProgressionSlotViewModel? PrimarySlot { get; private set; }
+
+    #endregion
+
+    #region Private Methods
+
+    private void CheckForGOGCloudSync()
+    {
+        // If the type is DOSBox, check if GOG cloud sync is being used
+        if (Game.GetGameType() == GameType.DosBox)
+        {
+            try
+            {
+                FileSystemPath cloudSyncDir = Game.GetInstallDir(false).Parent + "cloud_saves";
+                IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.EnumerateFileSystemEntries(cloudSyncDir).Any();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Getting if DOSBox game is using GOG cloud sync");
+                IsGOGCloudSyncUsed = false;
+            }
+        }
+        else
+        {
+            IsGOGCloudSyncUsed = false;
+        }
+    }
+
+    private async Task LoadBackupInfoAsync(GameBackups_ExistingBackup? backup)
+    {
+        BackupInfoItems.Clear();
+
+        // NOTE: Not localized due to being debug only
+        BackupInfoItems.Add(new DuoGridItemViewModel("Latest backup version", BackupInfo!.LatestAvailableBackupVersion.ToString(), UserLevel.Debug));
+
+        HasBackupInfoItems = Services.Data.App_UserLevel == UserLevel.Debug;
+
+        if (backup != null)
+        {
+            // Load backup info
+            try
+            {
+                // NOTE: Not localized due to being debug only
+                BackupInfoItems.Add(new DuoGridItemViewModel("Backup version", backup.BackupVersion.ToString(), UserLevel.Debug));
+                BackupInfoItems.Add(new DuoGridItemViewModel("Is backup compressed", backup.IsCompressed.ToString(), UserLevel.Debug));
+
+                // Get the backup date
+                // TODO-UPDATE: Update localized character casing
+                BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupDate, backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString()));
+
+                // Get the backup size
+                // TODO-UPDATE: Update localized character casing
+                BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupSize, backup.Path.GetSize().ToString()));
+
+                HasBackupInfoItems = true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Getting existing backup info");
+
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, DisplayName));
+            }
+        }
+
+        // Add more debug info (not localized). Only add if user level is Debug to avoid slowing down the loading.
+        if (Data.App_UserLevel >= UserLevel.Debug)
+        {
+            foreach (BackupSearchPattern dir in BackupInfo.BackupDirectories!)
+            {
+                BackupInfoItems.Add(new DuoGridItemViewModel($"BackupDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
+            }
+
+            foreach (BackupSearchPattern dir in BackupInfo.RestoreDirectories!)
+            {
+                BackupInfoItems.Add(new DuoGridItemViewModel($"RestoreDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
+            }
+        }
+    }
+
+    private async Task LoadBackupSlotsAsync()
+    {
+        // Load backup progression
+        try
+        {
+            BackupSlots.Clear();
+
+            using BackupFileSystemWrapper backupFileSystemWrapper = new(BackupInfo!);
+
+            await backupFileSystemWrapper.InitAsync();
+
+            await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(backupFileSystemWrapper))
+            {
+                BackupSlots.Add(slot);
+
+                // Don't allow importing or opening the save location for backup slots. Exporting is still allowed.
+                slot.CanImport = false;
+                slot.CanOpenLocation = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Failed to load backup progression for {0} ({1})", Game, DisplayName);
+
+            BackupSlots.Clear();
+        }
+
+        HasBackupSlots = BackupSlots.Any();
+    }
 
     #endregion
 
@@ -161,9 +278,24 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     public async Task UpdateProgramDataSourceAsync()
     {
+        Logger.Trace($"Updating program data source for {DisplayName}");
+
         await LoadProgressAsync();
         await LoadBackupAsync();
         await LoadSlotInfoItemsAsync();
+    }
+
+    public async Task LoadBackupViewAsync()
+    {
+        if (_hasLoadedBackupView)
+            return;
+
+        Logger.Trace($"First time loading backup view for {DisplayName}");
+
+        await LoadBackupInfoAsync(BackupInfo?.GetPrimaryBackup);
+        await LoadBackupSlotsAsync();
+
+        _hasLoadedBackupView = true;
     }
 
     public async Task LoadProgressAsync()
@@ -203,133 +335,46 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         }
     }
 
-    public async Task LoadBackupAsync()
+    public async Task LoadBackupAsync(bool refreshBackupView = false)
     {
         using (await AsyncLock.LockAsync())
         {
             Logger.Trace($"Loading backup for {Game}");
 
+            // Set the status to syncing while the data is being loaded
             CurrentBackupStatus = BackupStatus.Syncing;
 
             // Create backup info if null
             BackupInfo ??= new GameBackups_BackupInfo(BackupName, BackupDirectories, DisplayName);
 
-            // Run as a task
-            await Task.Run(async () =>
-            {
-                // Refresh backup info
-                await BackupInfo.RefreshAsync(ProgramDataSource);
+            // Refresh backup info
+            await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource));
 
-                CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || Data.Backup_GameDataSources.ContainsKey(BackupName);
+            // Determine if the program data source can be modified
+            CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || Data.Backup_GameDataSources.ContainsKey(BackupName);
 
-                // If the type is DOSBox, check if GOG cloud sync is being used
-                if (Game.GetGameType() == GameType.DosBox)
-                {
-                    try
-                    {
-                        FileSystemPath cloudSyncDir = Game.GetInstallDir(false).Parent + "cloud_saves";
-                        IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.GetFileSystemEntries(cloudSyncDir).Any();
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error(ex, "Getting if DOSBox game is using GOG cloud sync");
-                        IsGOGCloudSyncUsed = false;
-                    }
-                }
-                else
-                {
-                    IsGOGCloudSyncUsed = false;
-                }
-            });
+            // Check if GOG cloud sync is in use
+            CheckForGOGCloudSync();
 
             // Get the primary backup
             GameBackups_ExistingBackup? backup = BackupInfo.GetPrimaryBackup;
 
-            BackupInfoItems.Clear();
+            // Mark that we can restore a backup if there is one
+            CanRestoreBackup = backup != null;
+            
+            // Indicate if there is an existing backup or not
+            HasBackup = backup != null;
 
-            // NOTE: Not localized due to being debug only
-            BackupInfoItems.Add(new DuoGridItemViewModel("Latest backup version", BackupInfo.LatestAvailableBackupVersion.ToString(), UserLevel.Debug));
+            // TODO-UPDATE: Set state based on if it's up to date or not
+            CurrentBackupStatus = BackupStatus.UpToDate;
 
-            HasBackupInfoItems = Services.Data.App_UserLevel == UserLevel.Debug;
-
-            if (backup != null)
+            // Update the backup view if it was previously loaded
+            if (_hasLoadedBackupView)
             {
-                // Load backup info
-                try
-                {
-                    // NOTE: Not localized due to being debug only
-                    BackupInfoItems.Add(new DuoGridItemViewModel("Backup version", backup.BackupVersion.ToString(), UserLevel.Debug));
-                    BackupInfoItems.Add(new DuoGridItemViewModel("Is backup compressed", backup.IsCompressed.ToString(), UserLevel.Debug));
+                Logger.Trace($"Reloading backup view for {DisplayName}");
 
-                    // Get the backup date
-                    // TODO-UPDATE: Update localized character casing
-                    BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupDate, backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString()));
-
-                    // Get the backup size
-                    // TODO-UPDATE: Update localized character casing
-                    BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupSize, backup.Path.GetSize().ToString()));
-
-                    // TODO-UPDATE: Implement - compare files to backup to check for differences
-                    CurrentBackupStatus = BackupStatus.UpToDate;
-
-                    HasBackupInfoItems = true;
-                    CanRestoreBackup = true;
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error(ex, "Getting existing backup info");
-
-                    CanRestoreBackup = false;
-                    CurrentBackupStatus = BackupStatus.Error;
-
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, DisplayName));
-                }
-
-                // Load backup progression
-                try
-                {
-                    BackupSlots.Clear();
-
-                    using BackupFileSystemWrapper backupFileSystemWrapper = new(BackupInfo);
-
-                    await backupFileSystemWrapper.InitAsync();
-
-                    await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(backupFileSystemWrapper))
-                    {
-                        BackupSlots.Add(slot);
-
-                        // Don't allow importing or opening the save location for backup slots. Exporting is still allowed.
-                        slot.CanImport = false;
-                        slot.CanOpenLocation = false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error(ex, "Failed to load backup progression for {0} ({1})", Game, DisplayName);
-
-                    BackupSlots.Clear();
-                }
-
-                HasBackupSlots = BackupSlots.Any();
-            }
-            else
-            {
-                CanRestoreBackup = false;
-                CurrentBackupStatus = BackupStatus.None;
-            }
-
-            // Add more debug info (not localized). Only add if user level is Debug to avoid slowing down the loading.
-            if (Data.App_UserLevel >= UserLevel.Debug)
-            {
-                foreach (BackupSearchPattern dir in BackupInfo.BackupDirectories!)
-                {
-                    BackupInfoItems.Add(new DuoGridItemViewModel($"BackupDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
-                }
-
-                foreach (BackupSearchPattern dir in BackupInfo.RestoreDirectories!)
-                {
-                    BackupInfoItems.Add(new DuoGridItemViewModel($"RestoreDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
-                }
+                await LoadBackupInfoAsync(backup);
+                await LoadBackupSlotsAsync();
             }
         }
     }
@@ -472,7 +517,6 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         UpToDate,
         Outdated,
         Syncing,
-        Error,
     }
 
     #endregion

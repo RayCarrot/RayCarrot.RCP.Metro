@@ -56,13 +56,13 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 // Check if the level is a normal level
                 if ((lvl + 1) % 10 != 0)
                 {
-                    Logger.Trace("Level index {0} is a normal level", lvl);
+                    // Logger.Trace("Level index {0} is a normal level", lvl);
 
                     // Get the collected lums
                     collectedLums += levelData.LumsRecord;
                     availableLums += 100;
 
-                    Logger.Trace("{0} Lums have been collected", levelData.LumsRecord);
+                    // Logger.Trace("{0} Lums have been collected", levelData.LumsRecord);
 
                     // Check if the level is 100% complete
                     if (levelData.LumsRecord >= 100)
@@ -71,17 +71,17 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                     continue;
                 }
 
-                Logger.Trace("Level index {0} is a time trial level", lvl);
+                // Logger.Trace("Level index {0} is a time trial level", lvl);
 
                 // Make sure the level has been completed
                 if (levelData.RecordTime == 0)
                 {
-                    Logger.Trace("Level has not been completed");
+                    // Logger.Trace("Level has not been completed");
 
                     continue;
                 }
 
-                Logger.Trace("Level has been completed with the record time {0}", levelData.RecordTime);
+                // Logger.Trace("Level has been completed with the record time {0}", levelData.RecordTime);
 
                 collectedTeeth++;
 
