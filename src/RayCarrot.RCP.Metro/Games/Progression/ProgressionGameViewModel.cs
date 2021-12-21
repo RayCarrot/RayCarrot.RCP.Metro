@@ -208,6 +208,106 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         HasBackupSlots = BackupSlots.Any();
     }
 
+    private BackupStatus GetBackupStatus(GameBackups_ExistingBackup backup)
+    {
+        // If the backup is not using the latest version we always mark it as being outdated
+        if (backup.BackupVersion < BackupInfo!.LatestAvailableBackupVersion)
+            return BackupStatus.Outdated;
+
+        // There are several ways we could compare the current progress with the backup data. The most accurate is checking if the
+        // bytes match, but that's slow. The faster way is to check the files, write dates and file sizes.
+
+        ZipArchive? compressedBackup = null;
+
+        if (backup.IsCompressed)
+            compressedBackup = new ZipArchive(File.OpenRead(backup.Path));
+
+        try
+        {
+            DateTime backupDate = backup.Path.GetFileSystemInfo().LastWriteTime;
+            BackupSearchPattern[] backupDirs = BackupInfo.BackupDirectories!;
+
+            // Get the current progress files
+            var currentFiles = backupDirs.Select(x => new
+            {
+                ID = x.ID,
+                Files = x.SearchPattern.GetFiles(),
+                BasePath = x.SearchPattern.DirPath,
+            }).SelectMany(x => x.Files.Select(f => new
+            {
+                ID = x.ID,
+                FilePath = (FileSystemPath)f,
+                RelativeFilePath = (FileSystemPath)Path.Combine(x.ID, new FileSystemPath(f) - x.BasePath),
+            }));
+
+            int filesCount = 0;
+
+            foreach (var f in currentFiles)
+            {
+                FileInfo fileInfo = f.FilePath.GetFileInfo();
+
+                // Check write date. If it's later than the backup then we assume the backup is outdated.
+                if (fileInfo.LastWriteTime > backupDate)
+                    return BackupStatus.Outdated;
+
+                if (compressedBackup != null)
+                {
+                    // Attempt to get the matching file in the backup
+                    ZipArchiveEntry? entry = compressedBackup.GetEntry(f.RelativeFilePath);
+
+                    // If it doesn't exist the backup is outdated
+                    if (entry == null)
+                        return BackupStatus.Outdated;
+
+                    // Check the file size
+                    if (entry.Length != fileInfo.Length)
+                        return BackupStatus.Outdated;
+                }
+                else
+                {
+                    FileSystemPath path = backup.Path + f.RelativeFilePath;
+
+                    // Check if the file exists
+                    if (!path.FileExists)
+                        return BackupStatus.Outdated;
+
+                    // Check the file size
+                    if (path.GetFileInfo().Length != fileInfo.Length)
+                        return BackupStatus.Outdated;
+                }
+
+                filesCount++;
+            }
+
+            // Make sure the backup doesn't have additional files not in the current progress
+            if (compressedBackup != null)
+            {
+                if (compressedBackup.Entries.Count != filesCount)
+                    return BackupStatus.Outdated;
+            }
+            else
+            {
+                if (Directory.EnumerateFiles(backup.Path, "*", SearchOption.AllDirectories).Count() != filesCount)    
+                    return BackupStatus.Outdated;
+            }
+
+            // If all checks passed we assume the backup is up to date
+            return BackupStatus.UpToDate;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Getting backup status for {0}", DisplayName);
+
+            // TODO-UPDATE: Show error message
+
+            return BackupStatus.None;
+        }
+        finally
+        {
+            compressedBackup?.Dispose();
+        }
+    }
+
     #endregion
 
     #region Protected Methods
@@ -335,7 +435,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         }
     }
 
-    public async Task LoadBackupAsync(bool refreshBackupView = false)
+    public async Task LoadBackupAsync()
     {
         using (await AsyncLock.LockAsync())
         {
@@ -365,8 +465,8 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             // Indicate if there is an existing backup or not
             HasBackup = backup != null;
 
-            // TODO-UPDATE: Set state based on if it's up to date or not
-            CurrentBackupStatus = BackupStatus.UpToDate;
+            // Get the current backup status
+            CurrentBackupStatus = backup != null ? await Task.Run(() => GetBackupStatus(backup)) : BackupStatus.None;
 
             // Update the backup view if it was previously loaded
             if (_hasLoadedBackupView)

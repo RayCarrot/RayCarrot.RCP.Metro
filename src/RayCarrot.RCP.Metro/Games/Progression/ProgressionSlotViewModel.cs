@@ -232,6 +232,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         // Reload data
         await Game.LoadProgressAsync();
         await Game.LoadSlotInfoItemsAsync();
+        await Game.LoadBackupAsync();
 
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ImportSuccess);
     }
@@ -327,6 +328,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                     // Reload data
                     await Game.LoadProgressAsync();
                     await Game.LoadSlotInfoItemsAsync();
+                    await Game.LoadBackupAsync();
 
                     // TODO-UPDATE: Localize
                     await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The save file has been successfully modified");
