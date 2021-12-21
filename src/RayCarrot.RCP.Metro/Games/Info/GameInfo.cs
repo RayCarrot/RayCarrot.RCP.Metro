@@ -174,6 +174,8 @@ public abstract class GameInfo : BaseGameData
     /// </summary>
     public virtual Emulator Emulator => null;
 
+    public virtual bool AutoAddToJumpList => Category != GameCategory.Demo;
+
     #endregion
 
     #region Public Virtual Methods

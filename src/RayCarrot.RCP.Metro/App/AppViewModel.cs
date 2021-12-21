@@ -356,7 +356,8 @@ public class AppViewModel : BaseViewModel
         await manager.PostGameAddAsync();
 
         // Add the game to the jump list
-        Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems().Select(x => x.ID));
+        if (game.GetGameInfo().AutoAddToJumpList)
+            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems().Select(x => x.ID));
     }
 
     /// <summary>
