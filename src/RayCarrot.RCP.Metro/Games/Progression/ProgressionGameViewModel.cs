@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BinarySerializer;
 using Nito.AsyncEx;
 using NLog;
 using RayCarrot.Binary;
@@ -347,6 +348,24 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         });
     }
 
+    protected Task<T?> SerializeFileDataAsync<T>(Context context, string fileName, IStreamEncoder? encoder = null)
+        where T : BinarySerializable, new()
+    {
+        return Task.Run(() =>
+        {
+            PhysicalFile file = encoder == null
+                ? new LinearFile(context, fileName)
+                : new EncodedLinearFile(context, fileName, encoder);
+
+            if (!File.Exists(file.SourcePath))
+                return null;
+
+            context.AddFile(file);
+
+            return FileFactory.Read<T>(fileName, context);
+        });
+    }
+
     protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem) => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
 
     protected virtual ProgressionSlotViewModel? GetPrimarySlot()
@@ -628,7 +647,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         public virtual Task InitAsync() => Task.CompletedTask;
 
         public abstract FileSystemPath GetFile(FileSystemPath filePath);
-        public abstract IEnumerable<string> GetFiles(IOSearchPattern searchPattern);
+        public abstract IOSearchPattern? GetDirectory(IOSearchPattern searchPattern);
     }
 
     protected class PhysicalFileSystemWrapper : FileSystemWrapper
@@ -647,16 +666,16 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             return Path.Combine(dir.GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).First().DirPath, fileName);
         }
 
-        public override IEnumerable<string> GetFiles(IOSearchPattern searchPattern)
+        public override IOSearchPattern? GetDirectory(IOSearchPattern searchPattern)
         {
             // Convert the search pattern using the current data source
             searchPattern = new ProgressionDirectory(searchPattern).
                 GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).
                 First();
 
-            return !searchPattern.DirPath.DirectoryExists
-                ? Enumerable.Empty<string>() 
-                : searchPattern.GetFiles();
+            return searchPattern.DirPath.DirectoryExists 
+                ? searchPattern 
+                : null;
         }
     }
 
@@ -717,10 +736,10 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             return FileSystemPath.EmptyPath;
         }
 
-        public override IEnumerable<string> GetFiles(IOSearchPattern searchPattern)
+        public override IOSearchPattern? GetDirectory(IOSearchPattern searchPattern)
         {
             if (Backup == null)
-                return Enumerable.Empty<string>();
+                return null;
 
             FileSystemPath backupDir = FileSystemPath.EmptyPath;
 
@@ -736,9 +755,9 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             }
 
             if (!backupDir.DirectoryExists)
-                return Enumerable.Empty<string>();
+                return null;
 
-            return new IOSearchPattern(backupDir, searchPattern.SearchOption, searchPattern.SearchPattern).GetFiles();
+            return new IOSearchPattern(backupDir, searchPattern.SearchOption, searchPattern.SearchPattern);
         }
 
         public void Dispose()

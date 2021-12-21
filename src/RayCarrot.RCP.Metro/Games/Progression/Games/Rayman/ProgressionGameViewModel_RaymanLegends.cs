@@ -59,7 +59,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
     {
         FileSystemPath saveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends";
 
-        foreach (FileSystemPath saveFile in fileSystem.GetFiles(new IOSearchPattern(saveDir, SearchOption.AllDirectories, "RaymanSave_0")))
+        foreach (FileSystemPath saveFile in fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.AllDirectories, "RaymanSave_0"))?.GetFiles() ?? Enumerable.Empty<string>())
         {
             Logger.Info("{0} slot {1} is being loaded...", Game, saveFile.Parent.Name);
 

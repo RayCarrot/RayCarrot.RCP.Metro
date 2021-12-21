@@ -301,12 +301,12 @@
                         local:UserLevelAssist.MinUserLevel="Technical"
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
-                        Margin="0 0 -10 0">
+                        Margin="25 0 -10 0">
                 <Button Style="{StaticResource Button.Flat}"
                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_Export}"
                         Visibility="{Binding Path=CanExport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
-                        Margin="25 0 10 0">
+                        Margin="0 0 10 0">
                     <iconpacks:PackIconMaterial Background="Transparent"
                                                 Kind="FileExportOutline"
                                                 Width="20"

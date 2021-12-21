@@ -1,9 +1,9 @@
 ﻿#nullable disable
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameMaker_DSMapDataObject : IBinarySerializable
+public class GameMaker_DSMapDataObject : BinarySerializable
 {
     public ObjectType Type { get; set; }
 
@@ -14,7 +14,7 @@ public class GameMaker_DSMapDataObject : IBinarySerializable
     public int StringLength { get; set; }
     public string StringValue { get; set; }
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
         Type = s.Serialize<ObjectType>(Type, name: nameof(Type));
 
@@ -30,7 +30,7 @@ public class GameMaker_DSMapDataObject : IBinarySerializable
                 break;
 
             default:
-                throw new BinarySerializableException($"Unsupported object type {Type}");
+                throw new BinarySerializableException(this, $"Unsupported object type {Type}");
         }
     }
 

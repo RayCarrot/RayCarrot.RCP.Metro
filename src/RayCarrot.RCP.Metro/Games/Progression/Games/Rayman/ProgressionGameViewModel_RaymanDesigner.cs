@@ -47,7 +47,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         Dictionary<string, int> levelTimes = new();
 
         // Find every .sct file
-        foreach (var save in fileSystem.GetFiles(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sct")).Select(sct =>
+        foreach (var save in (fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sct"))?.GetFiles() ?? Enumerable.Empty<string>()).Select(sct =>
         {
             string fileName = ((FileSystemPath)sct).RemoveFileExtension().Name;
 

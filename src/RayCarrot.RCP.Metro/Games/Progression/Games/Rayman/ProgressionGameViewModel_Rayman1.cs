@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer.Ray1;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -22,14 +21,20 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
+        FileSystemPath? installDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir, SearchOption.TopDirectoryOnly, "*.SAV"))?.DirPath;
+
+        if (installDir == null)
+            yield break;
+
+        using RCPContext context = new(installDir);
+
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
-            FileSystemPath filePath = fileSystem.GetFile(InstallDir + $"RAYMAN{saveIndex + 1}.SAV");
+            string fileName = $"RAYMAN{saveIndex + 1}.SAV";
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
-            Ray1Settings settings = Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC);
-            Rayman1PCSaveData? saveData = await SerializeFileDataAsync<Rayman1PCSaveData>(filePath, settings, new Rayman12PCSaveDataEncoder());
+            PC_SaveFile? saveData = await SerializeFileDataAsync<PC_SaveFile>(context, fileName, new PC_SaveEncoder());
 
             if (saveData == null)
             {
@@ -63,11 +68,16 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
                     value: saveData.StatusBar.LivesCount),
             };
 
-            yield return new SerializableProgressionSlotViewModel<Rayman1PCSaveData>(this, new ConstLocString(saveData.SaveName.ToUpper()), saveIndex, cages, 102, dataItems, saveData, settings)
-            {
-                FilePath = filePath,
-                ImportEncoder = new Rayman12PCSaveDataEncoder(),
-            };
+            yield return new BinarySerializableProgressionSlotViewModel<PC_SaveFile>(
+                game: this, 
+                name: new ConstLocString(saveData.SaveName.ToUpper()), 
+                index: saveIndex, 
+                collectiblesCount: cages, 
+                totalCollectiblesCount: 102, 
+                dataItems: dataItems, 
+                context: context, 
+                serializable: saveData, 
+                fileName: fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }

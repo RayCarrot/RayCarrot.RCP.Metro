@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using NLog;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -24,7 +25,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
         int index = 0;
 
-        foreach (FileSystemPath filePath in fileSystem.GetFiles(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sav")))
+        foreach (FileSystemPath filePath in fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sav"))?.GetFiles() ?? Enumerable.Empty<string>())
         {
             Logger.Info("{0} slot {1} is being loaded...", Game, filePath.Name);
 
