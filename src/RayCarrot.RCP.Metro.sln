@@ -23,6 +23,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.Rayman", "..\..\.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Windows.Registry", "..\..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj", "{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binary", "Binary", "{7467979D-E630-4407-97D2-8EBAE531D746}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer", "..\submodules\BinarySerializer\src\BinarySerializer.csproj", "{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.PS1", "..\submodules\BinarySerializer.PS1\src\BinarySerializer.PS1.csproj", "{7CF69CB9-C09C-4515-A925-09BCB34D01C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySerializer.Ray1", "..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1\BinarySerializer.Ray1.csproj", "{B896FFE5-025E-4688-9E68-6AD2F282F534}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +103,30 @@ Global
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}.Release|x86.ActiveCfg = Release|Any CPU
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5}.Release|x86.Build.0 = Release|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Debug|x86.Build.0 = Debug|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Release|x86.ActiveCfg = Release|Any CPU
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C}.Release|x86.Build.0 = Release|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Debug|x86.Build.0 = Debug|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1}.Release|x86.Build.0 = Release|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Debug|x86.Build.0 = Debug|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Release|x86.ActiveCfg = Release|Any CPU
+		{B896FFE5-025E-4688-9E68-6AD2F282F534}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,11 +139,14 @@ Global
 		{B8A6854C-6FE0-453A-8CD0-73AEBF36F31E} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
 		{C5CC479C-C135-4D80-8CFE-5C7B5E89EBB5} = {C4961690-46B5-41C8-BF26-0F1E20E0F59F}
+		{4232E835-98BC-41D6-BCFA-7CC2BD4C258C} = {7467979D-E630-4407-97D2-8EBAE531D746}
+		{7CF69CB9-C09C-4515-A925-09BCB34D01C1} = {7467979D-E630-4407-97D2-8EBAE531D746}
+		{B896FFE5-025E-4688-9E68-6AD2F282F534} = {7467979D-E630-4407-97D2-8EBAE531D746}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_TaskErrorCategory = Message
-		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
-		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
 		RESX_ExcelExportMode = MultipleSheets
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_TaskErrorCategory = Message
 	EndGlobalSection
 EndGlobal

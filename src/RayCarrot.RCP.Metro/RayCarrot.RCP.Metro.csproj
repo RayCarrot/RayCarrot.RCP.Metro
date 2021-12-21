@@ -126,6 +126,9 @@
 		<ProjectReference Include="..\..\..\..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj" />
 		<ProjectReference Include="..\..\..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj" />
 		<ProjectReference Include="..\..\..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj" />
+		<ProjectReference Include="..\..\submodules\BinarySerializer.PS1\src\BinarySerializer.PS1.csproj" />
+		<ProjectReference Include="..\..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1\BinarySerializer.Ray1.csproj" />
+		<ProjectReference Include="..\..\submodules\BinarySerializer\src\BinarySerializer.csproj" />
 	</ItemGroup>
 
 	<!-- Resources -->

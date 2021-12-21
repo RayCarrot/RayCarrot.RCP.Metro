@@ -766,7 +766,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
             {
                 var loggerName = $"{PatchedBFFilePath.Name} - Patch ({bfMod.Header.Value})";
-                var s = new BinarySerializer(serializerSettings, bfFileStream, App.GetBinarySerializerLogger(name: loggerName));
+                var s = new Binary.BinarySerializer(serializerSettings, bfFileStream, App.GetBinarySerializerLogger(name: loggerName));
 
                 foreach (Mod_RRR_BigFilePatch patch in bfMod.Patches)
                 {
