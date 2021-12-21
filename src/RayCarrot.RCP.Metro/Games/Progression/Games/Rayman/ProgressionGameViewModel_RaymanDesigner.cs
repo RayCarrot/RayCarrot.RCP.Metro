@@ -150,7 +150,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             // Read the JSON file
             Dictionary<string, int> lvlTimes = JsonHelpers.DeserializeFromFile<Dictionary<string, int>>(filePath);
 
-            // TODO-UPDATE: Implement - encode level time back to encrypted format and write to files
+            // TODO: Implement - encode level time back to encrypted format and write to files
             throw new NotImplementedException();
         }
     }

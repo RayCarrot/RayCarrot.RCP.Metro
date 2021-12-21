@@ -1,4 +1,5 @@
-﻿#nullable disable
+﻿using System;
+using System.Linq;
 using ControlzEx.Theming;
 using System.Windows;
 
@@ -9,6 +10,31 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class ApplicationExtensions
 {
+    private static void SetLocalThemes(Application app, string colorScheme)
+    {
+        // TODO: Find better way of doing this. Perhaps add our custom colors to the theme manager?
+
+        static string GetThemeStyleSource(string colorScheme) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Theme.Colors.{colorScheme}.xaml";
+
+        // Get previous source
+        string lightSource = GetThemeStyleSource(ThemeManager.BaseColorLight);
+        string darkSource = GetThemeStyleSource(ThemeManager.BaseColorDark);
+
+        // Remove old source
+        foreach (ResourceDictionary resourceDictionary in app.Resources.MergedDictionaries.ToArray())
+        {
+            if (String.Equals(resourceDictionary.Source?.ToString(), lightSource, StringComparison.OrdinalIgnoreCase) ||
+                String.Equals(resourceDictionary.Source?.ToString(), darkSource, StringComparison.OrdinalIgnoreCase))
+                app.Resources.MergedDictionaries.Remove(resourceDictionary);
+        }
+
+        // Add new source
+        app.Resources.MergedDictionaries.Add(new ResourceDictionary
+        {
+            Source = new Uri(GetThemeStyleSource(colorScheme))
+        });
+    }
+
     /// <summary>
     /// Sets the application theme
     /// </summary>
@@ -28,5 +54,10 @@ public static class ApplicationExtensions
             ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.DoNotSync;
             ThemeManager.Current.ChangeTheme(app, $"{(darkMode ? "Dark" : "Light")}.{color}");
         }
+
+        Theme? theme = ThemeManager.Current.DetectTheme(app);
+
+        if (theme != null)
+            SetLocalThemes(app, theme.BaseColorScheme);
     }
 }

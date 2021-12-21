@@ -50,8 +50,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <!-- TODO-UPDATE: Have this change in light mode -->
-        <Setter Property="Background" Value="#FF424242" />
+        <Setter Property="Background" Value="{DynamicResource Colors.Card.Background}" />
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Padding" Value="8"/>
