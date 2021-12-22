@@ -1,14 +1,12 @@
-﻿#nullable disable
-using RayCarrot.Binary;
-using RayCarrot.IO;
-using NLog;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.Ray1;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BinarySerializer;
+using BinarySerializer.Ray1;
+using NLog;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -20,23 +18,23 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// Default constructor for a specific game
     /// </summary>
     /// <param name="game">The DosBox game</param>
-    /// <param name="ray1Game">The Rayman 1 game</param>
+    /// <param name="engineVersion">The Rayman 1 engine version</param>
     /// <param name="langMode">The language mode to use</param>
-    protected Config_Ray1_BaseViewModel(Games game, Ray1Game ray1Game, LanguageMode langMode)
+    protected Config_Ray1_BaseViewModel(Games game, Ray1EngineVersion engineVersion, LanguageMode langMode)
     {
         Game = game;
-        Ray1Game = ray1Game;
+        EngineVersion = engineVersion;
         LangMode = langMode;
-        IsVoicesVolumeAvailable = Ray1Game != Ray1Game.Rayman1;
+        IsVoicesVolumeAvailable = EngineVersion is Ray1EngineVersion.PC_Edu or Ray1EngineVersion.PC_Kit or Ray1EngineVersion.PC_Fan;
 
-        FrameRateOptions_Values = new Rayman1Freq[]
+        FrameRateOptions_Values = new PC_Freq[]
         {
-            Rayman1Freq.Freq_50,
-            Rayman1Freq.Freq_60,
-            Rayman1Freq.Freq_70,
-            Rayman1Freq.Freq_80,
-            Rayman1Freq.Freq_100,
-            Rayman1Freq.Freq_Max
+            PC_Freq.Freq_50,
+            PC_Freq.Freq_60,
+            PC_Freq.Freq_70,
+            PC_Freq.Freq_80,
+            PC_Freq.Freq_100,
+            PC_Freq.Freq_Max
         };
         FrameRateOptions_Names = new string[]
         {
@@ -72,7 +70,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
 
     #region Private Fields
 
-    private R1Languages _gameLanguage;
+    private PC_Language _gameLanguage;
     private bool _isMusicEnabled;
     private bool _isStero;
     private int _soundVolume;
@@ -113,9 +111,9 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     public Games Game { get; }
 
     /// <summary>
-    /// The Rayman 1 game
+    /// The Rayman 1 engine version
     /// </summary>
-    public Ray1Game Ray1Game { get; }
+    public Ray1EngineVersion EngineVersion { get; }
 
     /// <summary>
     /// The language mode to use
@@ -125,12 +123,17 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <summary>
     /// The game configuration
     /// </summary>
-    public Rayman1PCConfigData Config { get; set; }
+    public PC_ConfigFile? Config { get; set; }
 
     /// <summary>
-    /// The file path for the config file
+    /// The file name for the config file
     /// </summary>
-    public FileSystemPath ConfigFilePath { get; set; }
+    public string? ConfigFileName { get; set; }
+
+    /// <summary>
+    /// The serializer context
+    /// </summary>
+    public Context? Context { get; set; }
 
     // Language
 
@@ -140,24 +143,24 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     public bool IsGameLanguageAvailable { get; set; }
 
     /// <summary>
-    /// Indicates if <see cref="R1Languages.English"/> is available
+    /// Indicates if <see cref="PC_Language.English"/> is available
     /// </summary>
     public bool IsEnglishAvailable { get; set; } = true;
 
     /// <summary>
-    /// Indicates if <see cref="R1Languages.French"/> is available
+    /// Indicates if <see cref="PC_Language.French"/> is available
     /// </summary>
     public bool IsFrenchAvailable { get; set; } = true;
 
     /// <summary>
-    /// Indicates if <see cref="R1Languages.German"/> is available
+    /// Indicates if <see cref="PC_Language.German"/> is available
     /// </summary>
     public bool IsGermanAvailable { get; set; } = true;
 
     /// <summary>
     /// The selected game language, if any
     /// </summary>
-    public R1Languages GameLanguage
+    public PC_Language GameLanguage
     {
         get => _gameLanguage;
         set
@@ -243,7 +246,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
     }
 
-    public Rayman1Freq[] FrameRateOptions_Values { get; }
+    public PC_Freq[] FrameRateOptions_Values { get; }
     public string[] FrameRateOptions_Names { get; }
 
     public int SelectedFrameRateOption
@@ -256,7 +259,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
     }
 
-    public Rayman1Freq FrameRate
+    public PC_Freq FrameRate
     {
         get => FrameRateOptions_Values[SelectedFrameRateOption];
         set => SelectedFrameRateOption = FrameRateOptions_Values.FindItemIndex(x => x == value);
@@ -448,12 +451,19 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     {
         Logger.Info("{0} config is being set up", Game);
 
-        ConfigFilePath = GetConfigPath();
+        // Get the config file name
+        ConfigFileName = GetConfigFileName();
 
-        if (ConfigFilePath.FileExists)
+        // Create the context to use
+        Context = new RCPContext(Game.GetInstallDir());
+        Context.AddSettings(new Ray1Settings(EngineVersion));
+        Context.AddFile(new LinearFile(Context, ConfigFileName));
+
+        // Read the file if it exists
+        if (File.Exists(Context.GetAbsoluteFilePath(ConfigFileName)))
         {
-            // If a config file exists we read it
-            Config = BinarySerializableHelpers.ReadFromFile<Rayman1PCConfigData>(ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
+            using (Context)
+                Config = FileFactory.Read<PC_ConfigFile>(ConfigFileName, Context);
 
             // Default all languages to be available. Sadly there is no way to determine which languages a specific release can use as most releases have all languages in the files, but have it hard-coded in the exe to only pick a specific one.
             IsEnglishAvailable = true;
@@ -571,6 +581,9 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
 
         try
         {
+            if (Config == null)
+                throw new Exception("Saving can not be done before the config has been loaded");
+
             // If game language is available, update it
             if (IsGameLanguageAvailable)
             {
@@ -617,8 +630,8 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
             Config.DeviceID = (uint)DeviceID;
             Config.NumCard = (byte)NumCard;
 
-            // Save the config file
-            BinarySerializableHelpers.WriteToFile(Config, ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
+            using (Context)
+                FileFactory.Write(ConfigFileName, Config, Context);
 
             return true;
         }
@@ -637,7 +650,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         IsStero = true;
         ShowBackground = true;
         ShowParallaxBackground = true;
-        FrameRate = Rayman1Freq.Freq_60;
+        FrameRate = PC_Freq.Freq_60;
         ZoneOfPlay = 0;
         Port = 544;
         IRQ = 5;
@@ -650,14 +663,15 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
 
     #region Public Methods
 
-    public abstract FileSystemPath GetConfigPath();
+    public abstract string GetConfigFileName();
 
     public override void Dispose()
     {
         // Dispose base
         base.Dispose();
 
-        KeyItems?.DisposeAll();
+        Context?.Dispose();
+        KeyItems.DisposeAll();
     }
 
     #endregion
@@ -665,14 +679,14 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     #region Protected Methods
 
     /// <summary>
-    /// Creates a new instance of <see cref="Rayman1PCConfigData"/> with default values for the specific game
+    /// Creates a new instance of <see cref="PC_ConfigFile"/> with default values for the specific game
     /// </summary>
     /// <returns>The config instance</returns>
-    protected Rayman1PCConfigData CreateDefaultConfig()
+    protected PC_ConfigFile CreateDefaultConfig()
     {
-        return new Rayman1PCConfigData
+        return new PC_ConfigFile
         {
-            Language = R1Languages.English,
+            Language = PC_Language.English,
             Port = 544,
             Irq = 5,
             Dma = 5,
@@ -725,7 +739,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// </summary>
     /// <param name="batchFile">The batch file to get the language from</param>
     /// <returns>The language or null if none was found</returns>
-    protected R1Languages? GetBatchFileanguage(FileSystemPath batchFile)
+    protected PC_Language? GetBatchFileanguage(FileSystemPath batchFile)
     {
         try
         {
@@ -744,13 +758,13 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
                 string lang = line.Substring(index + 4);
 
                 if (lang.Equals("usa", StringComparison.InvariantCultureIgnoreCase))
-                    return R1Languages.English;
+                    return PC_Language.English;
 
                 if (lang.Equals("fr", StringComparison.InvariantCultureIgnoreCase))
-                    return R1Languages.French;
+                    return PC_Language.French;
 
                 if (lang.Equals("al", StringComparison.InvariantCultureIgnoreCase))
-                    return R1Languages.German;
+                    return PC_Language.German;
 
                 return null;
             }
@@ -771,15 +785,15 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <param name="language">The language</param>
     /// <param name="game">The game to set the language for</param>
     /// <returns>The task</returns>
-    protected async Task SetBatchFileLanguageAsync(FileSystemPath batchFile, R1Languages language, Games game)
+    protected async Task SetBatchFileLanguageAsync(FileSystemPath batchFile, PC_Language language, Games game)
     {
         try
         {
             var lang = language switch
             {
-                R1Languages.English => "usa",
-                R1Languages.French => "fr",
-                R1Languages.German => "al",
+                PC_Language.English => "usa",
+                PC_Language.French => "fr",
+                PC_Language.German => "al",
                 _ => throw new ArgumentOutOfRangeException(nameof(language), language, null)
             };
 

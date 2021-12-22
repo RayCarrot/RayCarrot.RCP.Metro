@@ -1,11 +1,9 @@
-﻿#nullable disable
-using RayCarrot.IO;
-using RayCarrot.Rayman.Ray1;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BinarySerializer.Ray1;
 using NLog;
 using RayCarrot.Rayman;
 
@@ -13,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
 {
-    public Config_RaymanEduDos_ViewModel(Games game) : base(game, Ray1Game.RayEdu, LanguageMode.None)
+    public Config_RaymanEduDos_ViewModel(Games game) : base(game, Ray1EngineVersion.PC_Edu, LanguageMode.None)
     {
         PageSelection = new ObservableCollection<string>();
         RefreshSelection();
@@ -31,7 +29,7 @@ public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
         Logger.Trace("EDU config selection has been modified with {0} items", PageSelection.Count);
     }
 
-    public override FileSystemPath GetConfigPath()
+    public override string GetConfigFileName()
     {
         var game = Data.Game_EducationalDosBoxGames[SelectedPageSelectionIndex];
 
@@ -50,7 +48,7 @@ public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
 
         var secondary = game.LaunchMode;
 
-        return Game.GetInstallDir() + $"{primary}{secondary}.CFG";
+        return $"{primary}{secondary}.CFG";
     }
 
     public override Task OnSelectedPageSelectionIndexUpdatedAsync()

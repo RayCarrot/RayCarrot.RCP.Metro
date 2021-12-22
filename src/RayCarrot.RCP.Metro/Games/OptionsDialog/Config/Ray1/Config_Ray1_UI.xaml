@@ -97,7 +97,7 @@
                   IsChecked="{Binding Path=ShowBackground}" />
 
         <CheckBox Content="{Resx Config_ScrollBackground}"
-                  Visibility="{Binding Path=Ray1Game, Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
+                  Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
                   IsEnabled="{Binding Path=ShowBackground}"
                   IsChecked="{Binding Path=ShowParallaxBackground}" />
 
@@ -112,11 +112,11 @@
                   SelectedIndex="{Binding Path=SelectedFrameRateOption}" />
 
         <TextBlock Style="{StaticResource TextBlock.Header}"
-                   Visibility="{Binding Path=Ray1Game, Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
+                   Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
                    Text="{Resx Config_Border}" />
 
         <Slider Value="{Binding Path=ZoneOfPlay}"
-                Visibility="{Binding Path=Ray1Game, Converter={local:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
+                Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
                 Minimum="0"
                 Maximum="3"
                 TickPlacement="BottomRight"
