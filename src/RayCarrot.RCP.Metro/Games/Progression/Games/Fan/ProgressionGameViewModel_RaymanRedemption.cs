@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using NLog;
 using RayCarrot.IO;
 
@@ -64,7 +63,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
         // healthmax - max is 7
         // Achievements (separate from the slots)
 
-        using RCPContext context = new(saveDir, defaultStringEncoding: Encoding.ASCII);
+        using RCPContext context = new(saveDir);
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {

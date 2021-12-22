@@ -1,15 +1,15 @@
 ﻿#nullable disable
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class RRR_SaveFile : IBinarySerializable
+public class RRR_SaveFile : BinarySerializable
 {
     public RRR_SaveSlot[] StorySlots { get; set; }
     public RRR_SaveSlot ScoreSlot { get; set; }
     public RRR_SaveSlot ConfigSlot { get; set; }
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
         StorySlots = s.SerializeObjectArray<RRR_SaveSlot>(StorySlots, 3, name: nameof(StorySlots));
         ScoreSlot = s.SerializeObject<RRR_SaveSlot>(ScoreSlot, name: nameof(ScoreSlot));

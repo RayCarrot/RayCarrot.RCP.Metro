@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using BinarySerializer;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -765,8 +763,9 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         Logger.Info("{0} save is being loaded...", Game);
 
-        BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
-        RRR_SaveFile? saveData = await SerializeFileDataAsync<RRR_SaveFile>(saveFile, settings, new RRR_SaveEncoder());
+        using RCPContext context = new(saveFile.Parent);
+
+        RRR_SaveFile? saveData = await SerializeFileDataAsync<RRR_SaveFile>(context, saveFile.Name, new RRR_SaveEncoder());
 
         if (saveData == null)
         {
@@ -820,13 +819,11 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
             int storySlotIndex = saveIndex;
 
-            yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, saveData, settings)
+            yield return new BinarySerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, context, saveData, saveFile.Name)
             {
-                FilePath = saveFile,
                 GetExportObject = x => x.StorySlots[storySlotIndex],
                 SetImportObject = (x, o) => x.StorySlots[storySlotIndex] = (RRR_SaveSlot)o,
                 ExportedType = typeof(RRR_SaveSlot),
-                // NOTE: Don't need to specify an encoder since the game can read decoded files
             };
         }
 
@@ -910,9 +907,8 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         // Add score slot
         // TODO-UPDATE: Localize
-        yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems, saveData, settings)
+        yield return new BinarySerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems, context, saveData, saveFile.Name)
         {
-            FilePath = saveFile,
             GetExportObject = x => x.ScoreSlot,
             SetImportObject = (x, o) => x.ScoreSlot = (RRR_SaveSlot)o,
             ExportedType = typeof(RRR_SaveSlot),

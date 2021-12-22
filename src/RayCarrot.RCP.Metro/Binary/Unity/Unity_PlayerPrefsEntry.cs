@@ -1,9 +1,10 @@
 ﻿#nullable disable
-using RayCarrot.Binary;
+using System.Text;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Unity_PlayerPrefsEntry : IBinarySerializable
+public class Unity_PlayerPrefsEntry : BinarySerializable
 {
     public byte Type { get; set; }
     public int KeyLength { get; set; }
@@ -14,11 +15,11 @@ public class Unity_PlayerPrefsEntry : IBinarySerializable
     public int StringValueLength { get; set; }
     public string StringValue { get; set; }
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
         Type = s.Serialize<byte>(Type, name: nameof(Type));
         KeyLength = s.Serialize<int>(KeyLength, name: nameof(KeyLength));
-        Key = s.SerializeString(Key, KeyLength, name: nameof(Key));
+        Key = s.SerializeString(Key, KeyLength, Encoding.UTF8, name: nameof(Key));
 
         switch ((char)Type)
         {
@@ -32,11 +33,11 @@ public class Unity_PlayerPrefsEntry : IBinarySerializable
 
             case 's':
                 StringValueLength = s.Serialize<int>(StringValueLength, name: nameof(StringValueLength));
-                StringValue = s.SerializeString(StringValue, StringValueLength, name: nameof(StringValue));
+                StringValue = s.SerializeString(StringValue, StringValueLength, Encoding.UTF8, name: nameof(StringValue));
                 break;
 
             default:
-                throw new BinarySerializableException($"Unsupported data type {Type}");
+                throw new BinarySerializableException(this, $"Unsupported data type {Type}");
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿#nullable disable
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class RRR_UniversSave : IBinarySerializable
+public class RRR_UniversSave : BinarySerializable
 {
     public int CAM_SensHoriz { get; set; }
     public int MENU_i_ShowInterface { get; set; }
@@ -54,7 +54,7 @@ public class RRR_UniversSave : IBinarySerializable
     public int PROG_i_ES { get; set; }
     public float PROG_GameCumul_KongMort { get; set; }
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
         CAM_SensHoriz = s.Serialize<int>(CAM_SensHoriz, name: nameof(CAM_SensHoriz));
         MENU_i_ShowInterface = s.Serialize<int>(MENU_i_ShowInterface, name: nameof(MENU_i_ShowInterface));
@@ -106,13 +106,13 @@ public class RRR_UniversSave : IBinarySerializable
         PROG_GameCumul_KongMort = s.Serialize<float>(PROG_GameCumul_KongMort, name: nameof(PROG_GameCumul_KongMort));
     }
 
-    public class Jade_Vector : IBinarySerializable
+    public class Jade_Vector : BinarySerializable
     {
         public float X { get; set; }
         public float Y { get; set; }
         public float Z { get; set; }
 
-        public void Serialize(IBinarySerializer s)
+        public override void SerializeImpl(SerializerObject s)
         {
             X = s.Serialize<float>(X, name: nameof(X));
             Y = s.Serialize<float>(Y, name: nameof(Y));

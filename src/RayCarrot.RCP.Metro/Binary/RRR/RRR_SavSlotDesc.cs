@@ -1,9 +1,9 @@
 ﻿#nullable disable
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class RRR_SavSlotDesc : IBinarySerializable
+public class RRR_SavSlotDesc : BinarySerializable
 {
     public string Name { get; set; }
     public uint GameTime { get; set; } // Seconds since 1970
@@ -30,7 +30,7 @@ public class RRR_SavSlotDesc : IBinarySerializable
 
     public int Dummy { get; set; }
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
         Name = s.SerializeString(Name, 32, name: nameof(Name));
         GameTime = s.Serialize<uint>(GameTime, name: nameof(GameTime));

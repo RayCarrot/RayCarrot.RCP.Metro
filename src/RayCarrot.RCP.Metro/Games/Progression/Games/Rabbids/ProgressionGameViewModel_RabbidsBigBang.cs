@@ -23,10 +23,12 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
         FileSystemPath saveFile = fileSystem.GetFile(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
                                                      "Packages" + packageName + "LocalState" + "playerprefs.dat");
 
+        using RCPContext context = new(saveFile.Parent);
+
         Logger.Info("{0} save is being loaded...", Game);
 
         BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
-        Unity_PlayerPrefs? saveData = await SerializeFileDataAsync<Unity_PlayerPrefs>(saveFile, settings);
+        Unity_PlayerPrefs? saveData = await SerializeFileDataAsync<Unity_PlayerPrefs>(context, saveFile.Name);
 
         if (saveData == null)
         {
@@ -62,11 +64,7 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
                 max: maxScore),
         };
 
-        yield return new SerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, saveData, settings)
-        {
-            FilePath = saveFile,
-            CanImport = false, // TODO: Allow importing by setting the file size and checksum (CRC-32) when saving
-        };
+        yield return new BinarySerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
 
         Logger.Info("{0} save has been loaded", Game);
     }

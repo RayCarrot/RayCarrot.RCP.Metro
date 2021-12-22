@@ -1,37 +1,20 @@
 ﻿#nullable disable
-using System.Collections.Generic;
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Unity_PlayerPrefs : IBinarySerializable
+public class Unity_PlayerPrefs : BinarySerializable
 {
-    public int Checksum { get; set; }
     public int FileSize { get; set; }
     public Unity_PlayerPrefsEntry[] Entries { get; set; }
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
-        Checksum = s.Serialize<int>(Checksum, name: nameof(Checksum));
-        FileSize = s.Serialize<int>(FileSize, name: nameof(FileSize));
-
-        if (s.IsReading)
+        s.DoChecksum(new ChecksumCRC32Calculator(), () =>
         {
-            List<Unity_PlayerPrefsEntry> entries = new();
+            FileSize = s.Serialize<int>(FileSize, name: nameof(FileSize));
 
-            int index = 0;
-
-            while (s.Stream.Position < s.Stream.Length)
-            {
-                entries.Add(s.SerializeObject<Unity_PlayerPrefsEntry>(default, name: $"{nameof(entries)}[{index}]"));
-                index++;
-            }
-
-            Entries = entries.ToArray();
-        }
-        else
-        {
-            Entries = s.SerializeObjectArray<Unity_PlayerPrefsEntry>(Entries, Entries.Length, name: nameof(Entries));
-        }
+            Entries = s.SerializeObjectArrayUntil<Unity_PlayerPrefsEntry>(Entries, _ => s.CurrentFileOffset >= s.CurrentLength, name: nameof(Entries));
+        }, ChecksumPlacement.Before, name: "Checksum");
     }
 }

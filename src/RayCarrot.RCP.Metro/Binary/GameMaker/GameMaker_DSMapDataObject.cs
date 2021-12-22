@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using System.Text;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
@@ -26,7 +27,7 @@ public class GameMaker_DSMapDataObject : BinarySerializable
 
             case ObjectType.String:
                 StringLength = s.Serialize<int>(StringLength, name: nameof(StringLength));
-                StringValue = s.SerializeString(StringValue, StringLength, name: nameof(StringValue));
+                StringValue = s.SerializeString(StringValue, StringLength, Encoding.ASCII, name: nameof(StringValue));
                 break;
 
             default:

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.IO;
-using RayCarrot.Binary;
-using RayCarrot.Rayman;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class RRR_SaveEncoder : IDataEncoder
+public class RRR_SaveEncoder : IStreamEncoder
 {
-    public void Decode(Stream inputStream, Stream outputStream)
+    public string Name => nameof(RRR_SaveEncoder);
+
+    public Stream DecodeStream(Stream s)
     {
-        using Reader file = new(inputStream, Endian.Little, leaveOpen: true);
+        using Reader file = new(s, true, leaveOpen: true);
+
+        MemoryStream outputStream = new();
 
         // Read the magic header which determines if it's encoded
         uint header = file.ReadUInt32();
@@ -21,8 +24,8 @@ public class RRR_SaveEncoder : IDataEncoder
         if (header is not (0xC0DE1BAF or 0xC0DE2BAF))
         {
             // If it's not encoded we simply copy over the stream
-            inputStream.CopyTo(outputStream);
-            return;
+            s.CopyTo(outputStream);
+            return outputStream;
         }
 
         int[] v73 = new int[32];
@@ -134,10 +137,15 @@ public class RRR_SaveEncoder : IDataEncoder
                 ++j;
             }
         }
+
+        return outputStream;
     }
 
-    public void Encode(Stream inputStream, Stream outputStream)
+    public Stream EncodeStream(Stream s)
     {
-        throw new NotImplementedException();
+        // Copy the data. The game can read decoded files.
+        MemoryStream outputStream = new();
+        s.CopyTo(outputStream);
+        return outputStream;
     }
 }
