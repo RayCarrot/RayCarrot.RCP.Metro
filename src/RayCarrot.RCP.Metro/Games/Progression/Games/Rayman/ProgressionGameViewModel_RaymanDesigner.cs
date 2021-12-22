@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer.Ray1;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -38,16 +37,24 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
     {
         FileSystemPath saveDir = InstallDir + "PCMAP";
 
-        Logger.Info("{0} saves from {1} is being loaded...", Game, saveDir.Name);
-
         string[] shortWorldNames = { "", "JUN", "MUS", "MON", "IMA", "CAV", "CAK" };
         string[] longWorldNames = { "", "Jungle", "Music", "Mountain", "Image", "Cave", "Cake" };
 
         List<ProgressionDataViewModel> progressItems = new();
         Dictionary<string, int> levelTimes = new();
 
+        IOSearchPattern? dir = fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sct"));
+
+        if (dir == null)
+            yield break;
+
+        Logger.Info("{0} saves from {1} are being loaded...", Game, saveDir.Name);
+
+        using RCPContext context = new(dir.DirPath);
+        context.AddSettings(new Ray1Settings(Game == Games.RaymanDesigner ? Ray1EngineVersion.PC_Kit : Ray1EngineVersion.PC_Fan));
+
         // Find every .sct file
-        foreach (var save in (fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sct"))?.GetFiles() ?? Enumerable.Empty<string>()).Select(sct =>
+        foreach (var save in dir.GetFiles().Select(sct =>
         {
             string fileName = ((FileSystemPath)sct).RemoveFileExtension().Name;
 
@@ -71,8 +78,11 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             };
         }).Where(x => x != null).OrderBy(x => x!.World).ThenBy(x => x!.Level))
         {
-            Ray1Settings settings = Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC);
-            RaymanDesignerSaveData? saveData = await SerializeFileDataAsync<RaymanDesignerSaveData>(save!.FilePath, settings);
+            var settings = context.GetSettings<Ray1Settings>();
+            settings.World = (World)save!.World;
+            settings.Level = save.Level;
+
+            PC_LevelTime? saveData = await SerializeFileDataAsync<PC_LevelTime>(context, save.FilePath.Name);
 
             if (saveData == null)
             {
@@ -80,7 +90,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
                 continue;
             }
 
-            int value = saveData.GetDecodedValue(save.World, save.Level, Game == Games.RaymanDesigner ? RaymanDesignerSaveData.SaveRevision.KIT : RaymanDesignerSaveData.SaveRevision.FAN_60N);
+            int value = saveData.Value;
 
             if (value == -1)
             {
