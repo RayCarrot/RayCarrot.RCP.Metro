@@ -7,3 +7,6 @@
 [submodule "submodules/BinarySerializer.PS1"]
 	path = submodules/BinarySerializer.PS1
 	url = https://github.com/BinarySerializer/BinarySerializer.PS1
+[submodule "submodules/BinarySerializer.OpenSpace"]
+	path = submodules/BinarySerializer.OpenSpace
+	url = https://github.com/BinarySerializer/BinarySerializer.OpenSpace
