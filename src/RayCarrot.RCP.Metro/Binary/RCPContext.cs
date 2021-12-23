@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro;
 public class RCPContext : Context
 {
     public RCPContext(string basePath, Encoding? defaultStringEncoding = null) 
-        : base(basePath, new RCPSerializerSettings(defaultStringEncoding), new RCPSerializerLog(), null, new RCPLogger())
+        : base(basePath, new RCPSerializerSettings(defaultStringEncoding), new RCPSerializerLog(), new RCPFileManager(), new RCPLogger())
     { }
 
     private class RCPSerializerSettings : SerializerSettings
@@ -53,6 +53,12 @@ public class RCPContext : Context
             _logWriter?.Dispose();
             _logWriter = null;
         }
+    }
+
+    public class RCPFileManager : DefaultFileManager
+    {
+        // Force back slash to be used as certain older Win32 APIs don't work well with forward slash
+        public override PathSeparatorChar SeparatorCharacter => PathSeparatorChar.BackSlash;
     }
 
     private class RCPLogger : ILogger
