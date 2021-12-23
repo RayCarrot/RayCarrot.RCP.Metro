@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using BinarySerializer.OpenSpace;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -25,25 +24,27 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
-        FileSystemPath saveDir = InstallDir + "Data";
+        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "Data", SearchOption.AllDirectories, "*.cfg"));
 
-        // Get the paths
-        FileSystemPath configFilePath = fileSystem.GetFile(saveDir + "Options" + "Current.cfg");
-        FileSystemPath saveGamePath = saveDir + "SaveGame";
-
-        OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC);
-        Rayman2PCConfigData? config = await SerializeFileDataAsync<Rayman2PCConfigData>(configFilePath, settings, new Rayman12PCSaveDataEncoder());
-
-        if (config == null)
+        if (saveDir == null)
             yield break;
 
-        foreach (Rayman2PCConfigSlotData saveSlot in config.Slots)
+        // Create the context
+        using RCPContext context = new(saveDir.DirPath);
+
+        // Read the config file
+        R2ConfigFile? config = await SerializeFileDataAsync<R2ConfigFile>(context, @"Options\Current.cfg", new R2SaveEncoder());
+
+        if (config == null)
+            yield break; 
+
+        foreach (R2ConfigSlot saveSlot in config.Slots)
         {
-            FileSystemPath slotFilePath = fileSystem.GetFile(saveGamePath + $"Slot{saveSlot.SlotIndex}" + "General.sav");
+            string slotFilePath = $@"SaveGame\Slot{saveSlot.SlotIndex}\General.sav";
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveSlot.SlotIndex);
 
-            Rayman2PCSaveData? saveData= await SerializeFileDataAsync<Rayman2PCSaveData>(slotFilePath, settings, new Rayman12PCSaveDataEncoder());
+            R2GeneralSaveFile? saveData= await SerializeFileDataAsync<R2GeneralSaveFile>(context, slotFilePath, new R2SaveEncoder());
 
             if (saveData == null)
             {
@@ -107,11 +108,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
             string percentage = saveSlot.SlotDisplayName.Substring(separatorIndex + 1);
             double parsedPercentage = Double.TryParse(percentage, NumberStyles.Any, CultureInfo.InvariantCulture, out double p) ? p : 0;
 
-            yield return new SerializableProgressionSlotViewModel<Rayman2PCSaveData>(this, new ConstLocString(name), (int)saveSlot.SlotIndex, parsedPercentage, progressItems, saveData, settings)
-            {
-                FilePath = slotFilePath,
-                ImportEncoder = new Rayman12PCSaveDataEncoder(),
-            };
+            yield return new BinarySerializableProgressionSlotViewModel<R2GeneralSaveFile>(this, new ConstLocString(name), saveSlot.SlotIndex, parsedPercentage, progressItems, context, saveData, slotFilePath);
 
             Logger.Info("{0} slot has been loaded", Game);
         }
