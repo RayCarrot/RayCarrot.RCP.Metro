@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer.OpenSpace;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,14 +22,19 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
-        FileSystemPath saveDir = InstallDir + "MENU" + "SaveGame";
-        FileSystemPath filePath = fileSystem.GetFile(saveDir + "raymanm.sav");
+        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*.sav"));
 
-        Logger.Info("{0} save file {1} is being loaded...", Game, filePath.Name);
+        if (saveDir == null)
+            yield break;
+
+        FileSystemPath saveFileName = "raymanm.sav";
+
+        Logger.Info("{0} save file {1} is being loaded...", Game, saveFileName);
+
+        using RCPContext context = new(saveDir.DirPath);
 
         // Deserialize the save data
-        OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC);
-        RaymanMPCSaveData? saveData = await SerializeFileDataAsync<RaymanMPCSaveData>(filePath, settings);
+        RMSaveFile? saveData = await SerializeFileDataAsync<RMSaveFile>(context, saveFileName);
 
         if (saveData == null)
         {
@@ -41,7 +45,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
         Logger.Info("Save file has been deserialized");
 
         // Helper for getting the entry from a specific key
-        int[] GetValues(string key) => saveData.Items.First(x => x.Key == key).Values;
+        IEnumerable<int> GetValues(string key) => saveData.Items.First(x => x.Key == key).Values.Select(x => x.IntValue);
 
         // Helper for getting the time from an integer
         static TimeSpan GetTime(int value)
@@ -58,7 +62,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
         for (int slotIndex = 0; slotIndex < 8; slotIndex++)
         {
             // Get the save name
-            string name = saveData.Items.First(x => x.Key == "sg_names").StringValues[slotIndex];
+            string name = saveData.Items.First(x => x.Key == "sg_names").Values[slotIndex].StringValue;
 
             // Make sure it's valid
             if (name.Contains("No Data"))
@@ -98,7 +102,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 void AddRaceItem(string key, Func<string> getDescription, bool isTime = true)
                 {
                     // Get the value
-                    var value = GetValues(key)[index];
+                    var value = GetValues(key).ElementAt(index);
 
                     // Only add if it has valid data
                     if ((isTime && value > 0) || (!isTime && value > -22))
@@ -124,10 +128,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 AddRaceItem("sg_racelevels_bestnumber_lums", () => Resources.Progression_RM_Lums, false);
             }
 
-            yield return new SerializableProgressionSlotViewModel<RaymanMPCSaveData>(this, new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, saveData, settings)
-            {
-                FilePath = filePath
-            };
+            yield return new BinarySerializableProgressionSlotViewModel<RMSaveFile>(this, new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }
