@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using BinarySerializer.OpenSpace;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,16 +19,22 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        FileSystemPath saveDir = InstallDir + "GAMEDATA" + "SaveGame";
+        IOSearchPattern? dir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*.sav"));
+
+        if (dir == null)
+            yield break;
 
         int index = 0;
 
-        foreach (FileSystemPath filePath in fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sav"))?.GetFiles() ?? Enumerable.Empty<string>())
-        {
-            Logger.Info("{0} slot {1} is being loaded...", Game, filePath.Name);
+        using RCPContext context = new(dir.DirPath);
 
-            OpenSpaceSettings settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC);
-            Rayman3PCSaveData? saveData = await SerializeFileDataAsync<Rayman3PCSaveData>(filePath, settings, new Rayman3SaveDataEncoder());
+        foreach (FileSystemPath filePath in dir.GetFiles())
+        {
+            string fileName = filePath.Name;
+
+            Logger.Info("{0} slot {1} is being loaded...", Game, fileName);
+
+            R3SaveFile? saveData = await SerializeFileDataAsync<R3SaveFile>(context, fileName, new R3SaveEncoder());
 
             if (saveData == null)
             {
@@ -57,11 +61,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
             };
 
-            yield return new SerializableProgressionSlotViewModel<Rayman3PCSaveData>(this, new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems, saveData, settings)
-            {
-                FilePath = filePath,
-                ImportEncoder = new Rayman3SaveDataEncoder(),
-            };
+            yield return new BinarySerializableProgressionSlotViewModel<R3SaveFile>(this, new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
 
