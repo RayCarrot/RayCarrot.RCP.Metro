@@ -10,3 +10,6 @@
 [submodule "submodules/BinarySerializer.OpenSpace"]
 	path = submodules/BinarySerializer.OpenSpace
 	url = https://github.com/BinarySerializer/BinarySerializer.OpenSpace
+[submodule "submodules/BinarySerializer.UbiArt"]
+	path = submodules/BinarySerializer.UbiArt
+	url = https://github.com/BinarySerializer/BinarySerializer.UbiArt
