@@ -1,11 +1,10 @@
-﻿#nullable disable
-using NLog;
-using RayCarrot.Rayman.Ray1;
+﻿using NLog;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -26,9 +25,9 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
         LoadPasswordCommand = new AsyncRelayCommand(LoadPasswordAsync);
 
         // Set up selection
-        ModeSelection = new EnumSelectionViewModel<Rayman1PS1Password.PasswordMode>(Rayman1PS1Password.PasswordMode.NTSC, new Rayman1PS1Password.PasswordMode[]
+        ModeSelection = new EnumSelectionViewModel<PS1Password.PasswordMode>(PS1Password.PasswordMode.NTSC, new PS1Password.PasswordMode[]
         {
-            Rayman1PS1Password.PasswordMode.NTSC,
+            PS1Password.PasswordMode.NTSC,
             //R1_PS1_Password.PasswordMode.PAL, // TODO: Support the PAL version
         });
 
@@ -38,11 +37,11 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_0)), ProcessUnlockedChange, canIsUnlockedBeModified: false),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_1)), ProcessUnlockedChange),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_2)), ProcessUnlockedChange, link: 4),
-            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_3)), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.Moskito),
+            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_3)), ProcessUnlockedChange, branched: true, bossFlag: FinBossLevel.Moskito),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_4)), ProcessUnlockedChange),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_5)), ProcessUnlockedChange),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_6)), ProcessUnlockedChange, link: 8),
-            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_7)), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.MrSax),
+            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_7)), ProcessUnlockedChange, branched: true, bossFlag: FinBossLevel.MrSax),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_8)), ProcessUnlockedChange),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_9)), ProcessUnlockedChange),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_10)), ProcessUnlockedChange),
@@ -51,8 +50,8 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_13)), ProcessUnlockedChange),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_14)), ProcessUnlockedChange),
             new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_15)), ProcessUnlockedChange),
-            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_16)), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrSkops),
-            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_17)), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrDark, hasCages: false)
+            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_16)), ProcessUnlockedChange, bossFlag: FinBossLevel.MrSkops),
+            new LevelViewModel(new ResourceLocString(nameof(Resources.R1_LevelName_17)), ProcessUnlockedChange, bossFlag: FinBossLevel.MrDark, hasCages: false)
         };
 
         // First level should always be unlocked
@@ -74,7 +73,7 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
     /// <summary>
     /// The game mode selection
     /// </summary>
-    public EnumSelectionViewModel<Rayman1PS1Password.PasswordMode> ModeSelection { get; }
+    public EnumSelectionViewModel<PS1Password.PasswordMode> ModeSelection { get; }
 
     /// <summary>
     /// The game levels which can be modified
@@ -169,7 +168,7 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
         CorrectData();
 
         // Create a save
-        var save = new Rayman1PS1Password.SaveData
+        var save = new PS1Password.SaveData
         {
             LivesCount = (byte)LivesCount,
             Continues = (byte)ContinuesCount
@@ -187,7 +186,7 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
             save.FinBossLevel = save.FinBossLevel.SetFlag(lev.BossFlag, lev.BeatBoss);
 
         // Set flags
-        save.FinBossLevel = save.FinBossLevel.SetFlag(Rayman1FinBossLevelFlags.HelpedMusician, HasHelpedTheMusician);
+        save.FinBossLevel = save.FinBossLevel.SetFlag(FinBossLevel.HelpedMusician, HasHelpedTheMusician);
 
         // Validate the password
         var error = save.Validate();
@@ -200,7 +199,7 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
         }
 
         // Get the password
-        var password = new Rayman1PS1Password(save, ModeSelection.SelectedValue);
+        var password = new PS1Password(save, ModeSelection.SelectedValue);
 
         Password = password.ToString().ToUpper();
     }
@@ -212,7 +211,7 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
         if (!validationRule.IsValid)
             return;
 
-        var password = new Rayman1PS1Password(Password, ModeSelection.SelectedValue);
+        var password = new PS1Password(Password, ModeSelection.SelectedValue);
         var save = password.Decode();
 
         if (save == null)
@@ -236,7 +235,12 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
             lev.BeatBoss = save.FinBossLevel.HasFlag(lev.BossFlag);
 
         // Set flags
-        HasHelpedTheMusician = save.FinBossLevel.HasFlag(Rayman1FinBossLevelFlags.HelpedMusician);
+        HasHelpedTheMusician = save.FinBossLevel.HasFlag(FinBossLevel.HelpedMusician);
+    }
+
+    public void Dispose()
+    {
+        Levels.DisposeAll();
     }
 
     #endregion
@@ -252,7 +256,7 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
 
     public class LevelViewModel : BaseRCPViewModel, IDisposable
     {
-        public LevelViewModel(LocalizedString levelName, Action<LevelViewModel> onChangedIsUnlocked, bool branched = false, int link = -1, bool canIsUnlockedBeModified = true, Rayman1FinBossLevelFlags bossFlag = Rayman1FinBossLevelFlags.None, bool hasCages = true)
+        public LevelViewModel(LocalizedString levelName, Action<LevelViewModel> onChangedIsUnlocked, bool branched = false, int link = -1, bool canIsUnlockedBeModified = true, FinBossLevel bossFlag = FinBossLevel.None, bool hasCages = true)
         {
             LevelName = levelName;
             OnChangedIsUnlocked = onChangedIsUnlocked;
@@ -288,8 +292,8 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
         }
         public bool HasCages { get; }
         public bool HasAllCages { get; set; }
-        public Rayman1FinBossLevelFlags BossFlag { get; }
-        public bool HasBoss => BossFlag != Rayman1FinBossLevelFlags.None;
+        public FinBossLevel BossFlag { get; }
+        public bool HasBoss => BossFlag != FinBossLevel.None;
         public bool BeatBoss { get; set; }
 
         public void SetIsUnlocked(bool isUnlocked)
@@ -306,14 +310,9 @@ public class Utility_R1PasswordGenerator_ViewModel : BaseRCPViewModel, IDisposab
 
         public void Dispose()
         {
-            LevelName?.Dispose();
+            LevelName.Dispose();
         }
     }
 
     #endregion
-
-    public void Dispose()
-    {
-        Levels?.DisposeAll();
-    }
 }
