@@ -37,15 +37,16 @@ namespace RayCarrot.RCP.Updater
             //  - User level (UserLevel)
             //  - Update URL (string)
             //  - Culture (string)
+            //  - Web security protocol (int)
             //
 
             // Retrieve the arguments
             string[] args = e.Args;
 
             // Make sure we have 5 arguments
-            if (args.Length != 5)
+            if (args.Length != 6)
             {
-                ShutdownApplication("The number of launch arguments need to be 5");
+                ShutdownApplication("The number of launch arguments need to be 6");
                 return;
             }
 
@@ -60,7 +61,7 @@ namespace RayCarrot.RCP.Updater
             }
 
             // Get the dark mode value
-            var darkMode = !Boolean.TryParse(args[1], out bool dm) || dm;
+            bool darkMode = !Boolean.TryParse(args[1], out bool dm) || dm;
 
             // Set the app theme
             ThemeManager.Current.ChangeTheme(this, $"{(darkMode ? "Dark" : "Light")}.Purple");
@@ -83,6 +84,22 @@ namespace RayCarrot.RCP.Updater
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error setting culture", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            // Get the web security protocol
+            int webSecurityProtocol = Int32.TryParse(args[5], out int s) ? s : 0;
+
+            // Set if not default (0)
+            if (webSecurityProtocol != 0)
+            {
+                try
+                {
+                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)webSecurityProtocol;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error setting web security protocol", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
             // Create and show the main window

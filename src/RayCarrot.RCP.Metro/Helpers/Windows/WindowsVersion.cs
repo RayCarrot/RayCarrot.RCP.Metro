@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The available Windows OS versions
@@ -67,7 +66,7 @@ public enum WindowsVersion
     Win81,
 
     /// <summary>
-    /// Windows 10
+    /// Windows 10/11
     /// </summary>
-    Win10
+    Win10,
 }

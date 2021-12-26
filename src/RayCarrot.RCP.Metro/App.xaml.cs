@@ -1,23 +1,24 @@
-﻿using Microsoft.Win32;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Nito.AsyncEx;
-using RayCarrot.IO;
-using RayCarrot.Windows.Registry;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shell;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Nito.AsyncEx;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using RayCarrot.IO;
+using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -368,6 +369,21 @@ public partial class App : BaseApp
             Data.App_ApplicationPath = appPath;
 
             Logger.Info("The application path has been updated");
+        }
+
+        LogStartupTime("BasicStartup: Initialize web protocol");
+
+        try
+        {
+            // On Windows 7 the default TLS version is 1.0. As of December 2021 raym.app where RCP is hosted only supports
+            // TLS 1.2 and 1.3 thus causing any web requests to fail on Windows 7. Since we don't want to have to hard-code the protocol
+            // to use on modern system we only do so on Windows 7, leaving it as the system default otherwise (TLS 1.2 or higher)
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8 && AppViewModel.WindowsVersion != WindowsVersion.Unknown)
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Initializing web protocol");
         }
 
         LogStartupTime("BasicStartup: Deploy files");

@@ -31,7 +31,7 @@ public abstract class UpdaterManager : IUpdaterManager
         Exception exception = null;
         JObject manifest = null;
         Version latestFoundVersion;
-
+        
         try
         {
             // Create the web client
@@ -180,6 +180,17 @@ public abstract class UpdaterManager : IUpdaterManager
             return false;
         }
 
+        int webSecurityProtocolType = 0;
+
+        try
+        {
+            webSecurityProtocolType = (int)ServicePointManager.SecurityProtocol;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Failed to get current web security protocol");
+        }
+
         // Launch the updater and capture the process
         using var updateProcess = await Services.File.LaunchFileAsync(AppFilePaths.UpdaterFilePath, asAdmin, 
             // Arg 1: Program path
@@ -191,7 +202,9 @@ public abstract class UpdaterManager : IUpdaterManager
             // Arg 4: Update URL
             $"\"{result.DownloadURL}\" " +
             // Arg 5: Current culture
-            $"\"{Services.InstanceData.CurrentCulture}\"");
+            $"\"{Services.InstanceData.CurrentCulture}\" " +
+            // Arg 6: Web security protocol type
+            $"{webSecurityProtocolType}");
 
         // Make sure we have a valid process
         if (updateProcess == null)

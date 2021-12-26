@@ -17,6 +17,8 @@ Other changes:
 • Demo games are no longer automatically added to the jump list
 • Added icons to more buttons
 • Disabled flat buttons now have a different foreground color
+• Updated the updater
+• Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
 • Fixed some strings not being localized in the string input dialog
 • Fixed a bug where the Archive Explorer™ would crash if a file was selected in another archive than the one being repacked
 • Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used
