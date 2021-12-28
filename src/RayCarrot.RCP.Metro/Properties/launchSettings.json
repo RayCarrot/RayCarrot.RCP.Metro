@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "RCP (with log viewer)": {
+      "commandName": "Project",
+      "commandLineArgs": "-logviewer"
+    },
+    "RCP": {
+      "commandName": "Project"
+    }
+  }
+}
