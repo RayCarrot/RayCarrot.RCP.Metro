@@ -6,6 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:Config_RaymanRavingRabbids_ViewModel}">
@@ -45,6 +47,20 @@
 
         <CheckBox Content="{Resx Config_UseController}"
                   IsChecked="{Binding Path=UseController}" />
+
+        <!-- TODO-UPDATE: Add info icon explaining it doesn't trigger until loading slot and might require backing out to menu again -->
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource TextBlock.Header}"
+                   Text="Cheats" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <CheckBox Content="Invert horizontal camera"
+                  IsEnabled="{Binding Path=CanModifyCheats}"
+                  IsChecked="{Binding Path=Cheat_InvertHor}" />
+
+        <CheckBox Content="Old movie"
+                  IsEnabled="{Binding Path=CanModifyCheats}"
+                  IsChecked="{Binding Path=Cheat_OldMovie}" />
 
     </StackPanel>
 </UserControl>

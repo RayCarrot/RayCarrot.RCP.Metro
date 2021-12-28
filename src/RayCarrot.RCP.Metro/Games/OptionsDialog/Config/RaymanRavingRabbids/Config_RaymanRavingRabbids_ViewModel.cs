@@ -1,9 +1,12 @@
-﻿#nullable disable
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using BinarySerializer;
 using Microsoft.Win32;
 using NLog;
+using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
-using System;
-using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -32,6 +35,8 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
     private bool _fullscreenMode;
     private bool _useController;
     private int _screenModeIndex;
+    private bool _cheatInvertHor;
+    private bool _cheatOldMovie;
 
     #endregion
 
@@ -95,6 +100,32 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
         }
     }
 
+    public bool Cheat_InvertHor
+    {
+        get => _cheatInvertHor;
+        set
+        {
+            _cheatInvertHor = value;
+            UnsavedChanges = true;
+            HasModifiedCheats = true;
+        }
+    }
+
+    public bool Cheat_OldMovie
+    {
+        get => _cheatOldMovie;
+        set
+        {
+            _cheatOldMovie = value;
+            UnsavedChanges = true;
+            HasModifiedCheats = true;
+        }
+    }
+
+    public bool CanModifyCheats { get; set; }
+
+    public bool HasModifiedCheats { get; set; }
+
     #endregion
 
     #region Protected Methods
@@ -109,7 +140,7 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
         };
     }
 
-    protected void LoadRegistryKey(string keyName, Action<RegistryKey> loadAction)
+    protected void LoadRegistryKey(string keyName, Action<RegistryKey?> loadAction)
     {
         // Open the key. This will return null if it doesn't exist.
         using RegistryKey key = RegistryHelpers.GetKeyFromFullPath(RegistryHelpers.CombinePaths(Key_BasePath, GetGUID(), keyName), RegistryView.Default);
@@ -154,7 +185,7 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
         }
     }
 
-    protected int GetValue_DWORD(RegistryKey key, string name, int defaultValue) => (int)(key?.GetValue(name, defaultValue) ?? defaultValue);
+    protected int GetValue_DWORD(RegistryKey? key, string name, int defaultValue) => (int)(key?.GetValue(name, defaultValue) ?? defaultValue);
 
     protected override object GetPageUI() => new Config_RaymanRavingRabbids_UI()
     {
@@ -186,7 +217,38 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
             ScreenModeIndex = GetValue_DWORD(key, Value_ScreenMode, 1) - 1;
         });
 
+        CanModifyCheats = true;
+
+        try
+        {
+            Logger.Info("Loading cheats from save file");
+
+            ProgressionDirectory saveDir = new(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav");
+            FileSystemPath saveDirPath = saveDir.GetReadSearchPattern(ProgramDataSource.Auto).DirPath;
+
+            using RCPContext context = new(saveDirPath);
+
+            RRR_SaveFile? saveData = context.ReadFileData<RRR_SaveFile>("Rayman4.sav", new RRR_SaveEncoder());
+
+            if (saveData != null)
+            {
+                Cheat_InvertHor = saveData.StorySlots.Any(x => x.Univers.VID_gi_InvertHoriz != 0);
+                Cheat_OldMovie = saveData.StorySlots.Any(x => x.Univers.VID_gi_ModeOldMovie != 0);
+            }
+            else
+            {
+                Logger.Info("Save file could not be loaded");
+                CanModifyCheats = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            CanModifyCheats = false;
+            Logger.Info(ex, "Error when loading RRR save");
+        }
+
         UnsavedChanges = false;
+        HasModifiedCheats = false;
 
         Logger.Info("All values have been loaded");
 
@@ -215,6 +277,39 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
                 // NOTE: We default this to D3DFMT_X8R8G8B8 (https://docs.microsoft.com/en-us/windows/win32/direct3d9/d3dformat)
                 key.SetValue(Value_Format, 22);
             });
+
+            // Only modify the save files if the cheat options have been modified
+            if (HasModifiedCheats && CanModifyCheats)
+            {
+                Logger.Info("Saving cheats to save files");
+
+                ProgressionDirectory saveDir = new(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav");
+
+                // TODO: Have this respect the data source setting in the progression page? Save for reading then.
+                foreach (FileSystemPath saveDirPath in saveDir.GetWriteSearchPatterns(ProgramDataSource.Auto).Select(x => x.DirPath))
+                {
+                    using RCPContext context = new(saveDirPath);
+
+                    const string saveFileName = "Rayman4.sav";
+
+                    RRR_SaveFile? saveData = context.ReadFileData<RRR_SaveFile>(saveFileName, new RRR_SaveEncoder());
+
+                    if (saveData != null)
+                    {
+                        foreach (RRR_SaveSlot slot in saveData.StorySlots)
+                        {
+                            slot.Univers.VID_gi_InvertHoriz = Cheat_InvertHor ? 1 : 0;
+                            slot.Univers.VID_gi_ModeOldMovie = Cheat_OldMovie ? 1 : 0;
+                        }
+
+                        FileFactory.Write<RRR_SaveFile>(saveFileName, context);
+                    }
+                    else
+                    {
+                        Logger.Warn("Cheats could not be saved to save not being found");
+                    }
+                }
+            }
 
             Logger.Info("{0} configuration has been saved", Game);
 
