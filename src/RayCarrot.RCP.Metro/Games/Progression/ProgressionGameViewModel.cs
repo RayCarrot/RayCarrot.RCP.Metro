@@ -12,6 +12,7 @@ using NLog;
 using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using Endian = BinarySerializer.Endian;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -348,14 +349,14 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         });
     }
 
-    protected Task<T?> SerializeFileDataAsync<T>(Context context, string fileName, IStreamEncoder? encoder = null)
+    protected Task<T?> SerializeFileDataAsync<T>(Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
         where T : BinarySerializable, new()
     {
         return Task.Run(() =>
         {
             PhysicalFile file = encoder == null
-                ? new LinearFile(context, fileName)
-                : new EncodedLinearFile(context, fileName, encoder);
+                ? new LinearFile(context, fileName, endian)
+                : new EncodedLinearFile(context, fileName, encoder, endian);
 
             if (!File.Exists(file.SourcePath))
                 return null;

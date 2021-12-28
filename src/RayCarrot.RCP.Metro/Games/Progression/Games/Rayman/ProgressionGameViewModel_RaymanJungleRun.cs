@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using BinarySerializer;
+using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -17,18 +18,28 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
+        FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
+                                 "Packages" + 
+                                 Game.GetManager<GameManager_WinStore>().FullPackageName + 
+                                 "LocalState";
+        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
+
+        if (saveDir is null)
+            yield break;
+
+        using RCPContext context = new(saveDir.DirPath);
+        UbiArtSettings settings = new(EngineVersion.RaymanJungleRun, Platform.PC);
+        context.AddSettings(settings);
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
             // Get the file path
-            FileSystemPath filePath = fileSystem.GetFile(saveDir + $"slot{saveIndex + 1}.dat");
+            string fileName = $"slot{saveIndex + 1}.dat";
 
             // Deserialize the data
-            UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC);
-            JungleRunPCSaveData? saveData = await SerializeFileDataAsync<JungleRunPCSaveData>(filePath, settings);
+            JungleRun_SaveData? saveData = await SerializeFileDataAsync<JungleRun_SaveData>(context, fileName, endian: Endian.Little);
 
             if (saveData == null)
             {
@@ -45,13 +56,13 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             int collectedLums = 0;
             int availableLums = 0;
             int collectedTeeth = 0;
-            int availableTeeth = saveData.Levels.Length;
+            int availableTeeth = saveData.LevelInfos.Length;
 
             // Enumerate each level
-            for (int lvl = 0; lvl < saveData.Levels.Length; lvl++)
+            for (int lvl = 0; lvl < saveData.LevelInfos.Length; lvl++)
             {
                 // Get the level data
-                JungleRunPCSaveDataLevel levelData = saveData.Levels[lvl];
+                JungleRun_SaveDataLevel levelData = saveData.LevelInfos[lvl];
 
                 // Check if the level is a normal level
                 if ((lvl + 1) % 10 != 0)
@@ -123,10 +134,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 value: collectedTeeth, 
                 max: availableTeeth));
 
-            yield return new SerializableProgressionSlotViewModel<JungleRunPCSaveData>(this, null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems, saveData, settings)
-            {
-                FilePath = filePath
-            };
+            yield return new BinarySerializableProgressionSlotViewModel<JungleRun_SaveData>(this, null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }
