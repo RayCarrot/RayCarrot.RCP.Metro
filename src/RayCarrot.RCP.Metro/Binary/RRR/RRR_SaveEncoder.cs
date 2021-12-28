@@ -146,6 +146,7 @@ public class RRR_SaveEncoder : IStreamEncoder
         // Copy the data. The game can read decoded files.
         MemoryStream outputStream = new();
         s.CopyTo(outputStream);
+        outputStream.Position = 0;
         return outputStream;
     }
 }
