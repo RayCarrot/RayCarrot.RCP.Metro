@@ -626,15 +626,14 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         {
             string fileName = filePath.Name;
             ProgressionDirectory dir = new(filePath.Parent, SearchOption.TopDirectoryOnly, fileName);
-            return Path.Combine(dir.GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).First().DirPath, fileName);
+            return Path.Combine(dir.GetReadSearchPattern(DataSource).DirPath, fileName);
         }
 
         public override IOSearchPattern? GetDirectory(IOSearchPattern searchPattern)
         {
             // Convert the search pattern using the current data source
             searchPattern = new ProgressionDirectory(searchPattern).
-                GetSearchPatterns(DataSource, ProgressionDirectory.OperationType.Read).
-                First();
+                GetReadSearchPattern(DataSource);
 
             return searchPattern.DirPath.DirectoryExists 
                 ? searchPattern 

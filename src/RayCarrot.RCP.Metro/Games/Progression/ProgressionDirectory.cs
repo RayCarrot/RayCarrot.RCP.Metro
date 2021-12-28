@@ -137,9 +137,15 @@ public class ProgressionDirectory
 
     #region Public Methods
 
-    public IEnumerable<IOSearchPattern> GetSearchPatterns(ProgramDataSource source, OperationType operation)
+    public IOSearchPattern GetReadSearchPattern(ProgramDataSource source)
     {
-        if (source == ProgramDataSource.Auto && operation == OperationType.Write)
+        // Find and return a single matching directory path to use
+        return new IOSearchPattern(GetBackupDirPath(source), SearchOption, SearchPattern);
+    }
+
+    public IEnumerable<IOSearchPattern> GetWriteSearchPatterns(ProgramDataSource source)
+    {
+        if (source == ProgramDataSource.Auto)
         {
             // Return both paths if available. If the source if auto then we want to write to both locations.
             yield return new IOSearchPattern(DirPath, SearchOption, SearchPattern);
@@ -149,26 +155,8 @@ public class ProgressionDirectory
         }
         else
         {
-            // Find and return a single matching directory path to use
-            yield return new IOSearchPattern(GetBackupDirPath(source), SearchOption, SearchPattern);
+            yield return GetReadSearchPattern(source);
         }
-    }
-
-    #endregion
-
-    #region Enums
-
-    public enum OperationType
-    {
-        /// <summary>
-        /// Reading from the game progress (backup)
-        /// </summary>
-        Read,
-
-        /// <summary>
-        /// Writing to the game progress (restore)
-        /// </summary>
-        Write,
     }
 
     #endregion

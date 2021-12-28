@@ -150,13 +150,13 @@ public class GameBackups_BackupInfo
         LatestAvailableRestoreVersion = GetPrimaryBackup?.BackupVersion ?? -1;
 
         BackupDirectories = AllBackupDirectories.TryGetValue(LatestAvailableBackupVersion)?.
-            SelectMany(x => x.GetBackupSearchPatterns(dataSource, ProgressionDirectory.OperationType.Read)).
+            Select(x => x.GetBackupReadSearchPattern(dataSource)).
             ToArray() ?? Array.Empty<BackupSearchPattern>();
         
         RestoreDirectories = LatestAvailableRestoreVersion == -1 
             ? Array.Empty<BackupSearchPattern>() 
             : AllBackupDirectories.TryGetValue(LatestAvailableRestoreVersion)?.
-                SelectMany(x => x.GetBackupSearchPatterns(dataSource, ProgressionDirectory.OperationType.Write)).
+                SelectMany(x => x.GetBackupWriteSearchPatterns(dataSource)).
                 ToArray() ?? Array.Empty<BackupSearchPattern>();
 
         if (BackupDirectories.GroupBy(x => x.ID).Any(x => x.Count() > 1))

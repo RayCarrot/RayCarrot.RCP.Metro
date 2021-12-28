@@ -44,8 +44,10 @@ public class GameBackups_Directory : ProgressionDirectory
 
     #region Public Methods
 
-    public IEnumerable<BackupSearchPattern> GetBackupSearchPatterns(ProgramDataSource source, OperationType operation) =>
-        GetSearchPatterns(source, operation).Select(x => new BackupSearchPattern(ID, x));
+    public BackupSearchPattern GetBackupReadSearchPattern(ProgramDataSource source) => new(ID, GetReadSearchPattern(source));
+
+    public IEnumerable<BackupSearchPattern> GetBackupWriteSearchPatterns(ProgramDataSource source) =>
+        GetWriteSearchPatterns(source).Select(x => new BackupSearchPattern(ID, x));
 
     #endregion
 }
