@@ -35,7 +35,7 @@ public class ByteArrayHexConverter : JsonConverter<byte[]>
     public override byte[] ReadJson(JsonReader reader, Type objectType, byte[] existingValue, bool hasExistingValue,
         JsonSerializer serializer)
     {
-        return reader.Value.ToString().Split(' ').Select(x => Byte.Parse(x, NumberStyles.HexNumber)).ToArray();
+        return reader.Value?.ToString().Split(' ').Select(x => Byte.Parse(x, NumberStyles.HexNumber)).ToArray();
     }
 
     /// <summary>
@@ -46,6 +46,6 @@ public class ByteArrayHexConverter : JsonConverter<byte[]>
     /// <param name="serializer">The calling serializer.</param>
     public override void WriteJson(JsonWriter writer, byte[] value, JsonSerializer serializer)
     {
-        writer.WriteValue(value.Select(p => p.ToString("X2")).JoinItems(" "));
+        writer.WriteValue(value?.Select(p => p.ToString("X2")).JoinItems(" "));
     }
 }
