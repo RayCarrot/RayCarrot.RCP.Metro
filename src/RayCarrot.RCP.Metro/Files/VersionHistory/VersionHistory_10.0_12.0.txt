@@ -1,6 +1,6 @@
 ﻿-----   Version 12.2.0 - January ??, 2022   -----
 • Replaced the backup/restore and game specific progression pages with the new progression page
-	• Added progression for Rayman M Demo, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
+	• Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
 	• If a backup was performed for a game it will now show the status, indicating if the backup is outdated
 	• The progression data for backups can now be viewed and compared to the current data
 	• More information is shown for the save slots, including an option to open its file location

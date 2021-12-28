@@ -103,6 +103,10 @@ public enum ProgressionIcon
     RL_Inv_5_5,
     RL_Inv_5_6,
 
+    // Rayman Fiesta Run
+    RFR_Crown,
+    RFR_Nightmare,
+
     // Rayman Raving Rabbids
     RRR_Plunger,
     RRR_Trophy,
