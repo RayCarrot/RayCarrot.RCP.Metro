@@ -1,12 +1,12 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.IO;
+using System.Windows.Media;
 using NLog;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -117,18 +117,20 @@ public class AppUIManager
             };
 
         // Helper method for getting the image source for the message type
-        static Bitmap GetImgSource(MessageType mt)
+        static string GetImgSource(MessageType mt)
         {
-            return mt switch
+            string name = mt switch
             {
-                MessageType.Generic => Images.Generic,
-                MessageType.Information => Images.Generic,
-                MessageType.Error => Images.Error,
-                MessageType.Warning => Images.Info,
-                MessageType.Question => Images.Question,
-                MessageType.Success => Images.Happy,
-                _ => Images.Generic
+                MessageType.Generic => "Generic",
+                MessageType.Information => "Generic",
+                MessageType.Error => "Error",
+                MessageType.Warning => "Info",
+                MessageType.Question => "Question",
+                MessageType.Success => "Happy",
+                _ => "Generic"
             };
+
+            return $"{AppViewModel.WPFApplicationBasePath}Img/MessageIcons/{name}.png";
         }
 
         // Create the message actions
@@ -168,7 +170,7 @@ public class AppUIManager
                 MessageText = message,
                 Title = headerMessage,
                 MessageType = messageType,
-                DialogImageSource = GetImgSource(messageType).ToImageSource(),
+                DialogImageSource = (ImageSource)new ImageSourceConverter().ConvertFromString(GetImgSource(messageType)),
                 DialogActions = actions,
                 DefaultActionResult = new UserInputResult(),
             };
