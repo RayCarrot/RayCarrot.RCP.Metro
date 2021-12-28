@@ -1,36 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using RayCarrot.Binary;
+using BinarySerializer;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro;
 
 public class SerializableProgressionSlotViewModel<FileObj> : ProgressionSlotViewModel
-    where FileObj : IBinarySerializable, new()
+    where FileObj : BinarySerializable, new()
 {
-    public SerializableProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, int collectiblesCount, int totalCollectiblesCount, IEnumerable<ProgressionDataViewModel> dataItems, FileObj serializable, IBinarySerializerSettings settings) : base(game, name, index, collectiblesCount, totalCollectiblesCount, dataItems)
+    public SerializableProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, int collectiblesCount, int totalCollectiblesCount, IEnumerable<ProgressionDataViewModel> dataItems, Context context, FileObj serializable, string fileName) : base(game, name, index, collectiblesCount, totalCollectiblesCount, dataItems)
     {
+        Context = context;
         Serializable = serializable;
-        Settings = settings;
+        FileName = fileName;
+        FilePath = Context.GetAbsoluteFilePath(fileName);
 
         CanExport = true;
         CanImport = true;
     }
 
-    public SerializableProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, double percentage, IEnumerable<ProgressionDataViewModel> dataItems, FileObj serializable, IBinarySerializerSettings settings) : base(game, name, index, percentage, dataItems)
+    public SerializableProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, double percentage, IEnumerable<ProgressionDataViewModel> dataItems, Context context, FileObj serializable, string fileName) : base(game, name, index, percentage, dataItems)
     {
+        Context = context;
         Serializable = serializable;
-        Settings = settings;
+        FileName = fileName;
+        FilePath = Context.GetAbsoluteFilePath(fileName);
 
         CanExport = true;
         CanImport = true;
     }
 
+    public Context Context { get; }
     public FileObj Serializable { get; }
-    public IBinarySerializerSettings Settings { get; }
-    public IDataEncoder? ImportEncoder { get; init; }
+    public string FileName { get; }
 
     public Func<FileObj, object>? GetExportObject { get; init; }
     public Action<FileObj, object>? SetImportObject { get; init; }
@@ -62,23 +64,8 @@ public class SerializableProgressionSlotViewModel<FileObj> : ProgressionSlotView
             data = JsonHelpers.DeserializeFromFile<FileObj>(filePath);
         }
 
-        // Write to a memory stream first so that if there is an error it doesn't corrupt the file. Normally we don't want to do this
-        // since it uses a lot of memory, however most saves are encoded anyway (thus requiring this) and save files are normally
-        // quite small, unlike archives.
-        using Stream serializeStream = new MemoryStream();
-
-        // Write the serializable object to the stream
-        BinarySerializableHelpers.WriteToStream(data, serializeStream, Settings, Services.App.GetBinarySerializerLogger(FilePath.Name));
-
-        serializeStream.Position = 0;
-
-        // Create the save file to write to
-        using Stream fileStream = File.Create(FilePath);
-
-        // If there is an encoder we need to encode the data
-        if (ImportEncoder != null)
-            ImportEncoder.Encode(serializeStream, fileStream);
-        else
-            serializeStream.CopyTo(fileStream);
+        // TODO-UPDATE: Keep copy of original file in case of error
+        using (Context)
+            FileFactory.Write<FileObj>(FileName, data, Context);
     }
 }

@@ -212,7 +212,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
                     text: new ConstLocString(lives)),
             }.Concat(magicianBonusDataItems);
 
-            yield return new BinarySerializableProgressionSlotViewModel<GameMaker_DSMap>(this, new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, dataItems, context, saveData, fileName);
+            yield return new SerializableProgressionSlotViewModel<GameMaker_DSMap>(this, new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, dataItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }

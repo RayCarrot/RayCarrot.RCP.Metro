@@ -68,7 +68,7 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
                     value: saveData.StatusBar.LivesCount),
             };
 
-            yield return new BinarySerializableProgressionSlotViewModel<PC_SaveFile>(
+            yield return new SerializableProgressionSlotViewModel<PC_SaveFile>(
                 game: this, 
                 name: new ConstLocString(saveData.SaveName.ToUpper()), 
                 index: saveIndex, 

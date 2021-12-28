@@ -134,7 +134,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 value: collectedTeeth, 
                 max: availableTeeth));
 
-            yield return new BinarySerializableProgressionSlotViewModel<JungleRun_SaveData>(this, null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems, context, saveData, fileName);
+            yield return new SerializableProgressionSlotViewModel<JungleRun_SaveData>(this, null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }

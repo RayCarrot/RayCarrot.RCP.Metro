@@ -9,10 +9,7 @@ using System.Windows.Input;
 using BinarySerializer;
 using Nito.AsyncEx;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using Endian = BinarySerializer.Endian;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -313,41 +310,6 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     #endregion
 
     #region Protected Methods
-
-    protected Task<T?> SerializeFileDataAsync<T>(FileSystemPath filePath, BinarySerializerSettings settings, IDataEncoder? encoder = null)
-        where T : class, IBinarySerializable, new()
-    {
-        return Task.Run(() =>
-        {
-            if (!filePath.FileExists)
-                return null;
-
-            Stream? fileStream = File.OpenRead(filePath);
-            Stream? decodedStream = null;
-
-            try
-            {
-                if (encoder != null)
-                {
-                    // Create a memory stream
-                    decodedStream = new MemoryStream();
-
-                    // Decode the data
-                    encoder.Decode(fileStream, decodedStream);
-
-                    // Set the position
-                    decodedStream.Position = 0;
-                }
-
-                return BinarySerializableHelpers.ReadFromStream<T>(decodedStream ?? fileStream, settings, Services.App.GetBinarySerializerLogger(filePath.Name));
-            }
-            finally
-            {
-                fileStream?.Dispose();
-                decodedStream?.Dispose();
-            }
-        });
-    }
 
     protected Task<T?> SerializeFileDataAsync<T>(Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
         where T : BinarySerializable, new()

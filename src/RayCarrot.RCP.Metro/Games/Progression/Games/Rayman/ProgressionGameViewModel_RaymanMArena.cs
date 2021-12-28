@@ -128,7 +128,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 AddRaceItem("sg_racelevels_bestnumber_lums", () => Resources.Progression_RM_Lums, false);
             }
 
-            yield return new BinarySerializableProgressionSlotViewModel<RMSaveFile>(this, new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
+            yield return new SerializableProgressionSlotViewModel<RMSaveFile>(this, new ConstLocString(name.TrimEnd()), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }

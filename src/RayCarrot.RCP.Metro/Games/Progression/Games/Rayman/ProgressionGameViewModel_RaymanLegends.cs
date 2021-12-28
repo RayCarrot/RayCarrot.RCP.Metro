@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer;
+using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -57,15 +57,23 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        FileSystemPath saveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends";
+        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends", SearchOption.AllDirectories, "RaymanSave_0"));
 
-        foreach (FileSystemPath saveFile in fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.AllDirectories, "RaymanSave_0"))?.GetFiles() ?? Enumerable.Empty<string>())
+        if (saveDir is null)
+            yield break;
+
+        using RCPContext context = new(saveDir.DirPath);
+        UbiArtSettings settings = new(EngineVersion.RaymanLegends, Platform.PC);
+        context.AddSettings(settings);
+
+        foreach (FileSystemPath saveFile in saveDir.GetFiles())
         {
             Logger.Info("{0} slot {1} is being loaded...", Game, saveFile.Parent.Name);
 
+            string saveFileName = saveFile - saveDir.DirPath;
+
             // Deserialize the data
-            UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, Platform.PC);
-            LegendsPCSaveData? saveFileData = await SerializeFileDataAsync<LegendsPCSaveData>(saveFile, settings);
+            Legends_SaveData? saveFileData = await SerializeFileDataAsync<Legends_SaveData>(context, saveFileName, endian: Endian.Big);
 
             if (saveFileData == null)
             {
@@ -73,7 +81,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                 continue;
             }
 
-            var saveData = saveFileData.SaveData;
+            Legends_SaveData.RO2_PersistentGameData_Universe saveData = saveFileData.SaveData;
 
             Logger.Info("Slot has been deserialized");
 
@@ -115,12 +123,11 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                     header: new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"),
                     text: new ConstLocString($"{TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}"))));
 
-            yield return new SerializableProgressionSlotViewModel<LegendsPCSaveData>(this, new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems, saveFileData, settings)
+            yield return new SerializableProgressionSlotViewModel<Legends_SaveData>(this, new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems, context, saveFileData, saveFileName)
             {
-                FilePath = saveFile,
-                GetExportObject = x => x.SaveData,
-                SetImportObject = (x, o) => x.SaveData = (LegendsPCSaveData.PersistentGameData_Universe)o,
-                ExportedType = typeof(LegendsPCSaveData.PersistentGameData_Universe)
+                //GetExportObject = x => x.SaveData,
+                //SetImportObject = (x, o) => x.SaveData = (Legends_SaveData.RO2_PersistentGameData_Universe)o,
+                //ExportedType = typeof(Legends_SaveData.RO2_PersistentGameData_Universe)
             };
 
             Logger.Info("{0} slot has been loaded", Game);

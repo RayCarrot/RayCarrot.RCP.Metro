@@ -819,7 +819,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
             int storySlotIndex = saveIndex;
 
-            yield return new BinarySerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, context, saveData, saveFile.Name)
+            yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, context, saveData, saveFile.Name)
             {
                 GetExportObject = x => x.StorySlots[storySlotIndex],
                 SetImportObject = (x, o) => x.StorySlots[storySlotIndex] = (RRR_SaveSlot)o,
@@ -907,7 +907,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         // Add score slot
         // TODO-UPDATE: Localize
-        yield return new BinarySerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems, context, saveData, saveFile.Name)
+        yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems, context, saveData, saveFile.Name)
         {
             GetExportObject = x => x.ScoreSlot,
             SetImportObject = (x, o) => x.ScoreSlot = (RRR_SaveSlot)o,

@@ -64,7 +64,7 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
                 max: maxScore),
         };
 
-        yield return new BinarySerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
+        yield return new SerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
 
         Logger.Info("{0} save has been loaded", Game);
     }

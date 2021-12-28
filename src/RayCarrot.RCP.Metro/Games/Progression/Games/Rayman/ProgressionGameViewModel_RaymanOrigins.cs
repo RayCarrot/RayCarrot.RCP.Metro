@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer;
+using BinarySerializer.UbiArt;
 using Newtonsoft.Json;
 using NLog;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -24,7 +24,10 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
-        FileSystemPath saveDir = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins" + "Savegame";
+        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins" + "Savegame", SearchOption.TopDirectoryOnly, "*"));
+
+        if (saveDir is null)
+            yield break;
 
         // Get the level configuration
         ROLevelConfig? lvlConfig = JsonConvert.DeserializeObject<ROLevelConfig>(Files.RO_LevelConfig);
@@ -35,15 +38,18 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             yield break;
         }
 
+        using RCPContext context = new(saveDir.DirPath);
+        UbiArtSettings settings = new(EngineVersion.RaymanOrigins, Platform.PC);
+        context.AddSettings(settings);
+
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
-            FileSystemPath filePath = fileSystem.GetFile(saveDir + $"Savegame_{saveIndex}");
+            string fileName = $"Savegame_{saveIndex}";
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
             // Deserialize the data
-            UbiArtSettings settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC);
-            OriginsPCSaveData? saveFileData = (await SerializeFileDataAsync<OriginsPCSaveData>(filePath, settings));
+            Origins_SaveData? saveFileData = await SerializeFileDataAsync<Origins_SaveData>(context, fileName, endian: Endian.Big);
 
             if (saveFileData == null)
             {
@@ -51,7 +57,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
                 continue;
             }
 
-            OriginsPCSaveData.PersistentGameData_Universe saveData = saveFileData.SaveData;
+            Origins_SaveData.Ray_PersistentGameData_Universe saveData = saveFileData.SaveData;
 
             Logger.Info("Slot has been deserialized");
 
@@ -75,7 +81,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
                     continue;
 
                 // Check if the level has been completed
-                if (lvl.Value.Object.LevelState == OriginsPCSaveData.SPOT_STATE.COMPLETED)
+                if (lvl.Value.Object.LevelState == Origins_SaveData.SPOT_STATE.COMPLETED)
                     completed++;
 
                 // Get the number of completed cage maps (between 0-2)
@@ -127,12 +133,11 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Medal, new ConstLocString("Lum medals"), lumAttack3, 51));
             progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Trophy, new ConstLocString("Speed trophies"), timeAttack2, 31));
 
-            yield return new SerializableProgressionSlotViewModel<OriginsPCSaveData>(this, null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems, saveFileData, settings)
+            yield return new SerializableProgressionSlotViewModel<Origins_SaveData>(this, null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems, context, saveFileData, fileName)
             {
-                FilePath = filePath,
-                GetExportObject = x => x.SaveData,
-                SetImportObject = (x, o) => x.SaveData = (OriginsPCSaveData.PersistentGameData_Universe)o,
-                ExportedType = typeof(OriginsPCSaveData.PersistentGameData_Universe),
+                //GetExportObject = x => x.SaveData,
+                //SetImportObject = (x, o) => x.SaveData = (Origins_SaveData.Ray_PersistentGameData_Universe)o,
+                //ExportedType = typeof(Origins_SaveData.Ray_PersistentGameData_Universe),
                 CanImport = false, // TODO: Allow importing. Current issue is the game fails to load modified saves - checksum in header?
             };
 
