@@ -73,7 +73,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
             string saveFileName = saveFile - saveDir.DirPath;
 
             // Deserialize the data
-            Legends_SaveData? saveFileData = await SerializeFileDataAsync<Legends_SaveData>(context, saveFileName, endian: Endian.Big);
+            Legends_SaveData? saveFileData = await context.ReadFileDataAsync<Legends_SaveData>(saveFileName, endian: Endian.Big);
 
             if (saveFileData == null)
             {

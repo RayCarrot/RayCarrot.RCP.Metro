@@ -34,7 +34,7 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
-            PC_SaveFile? saveData = await SerializeFileDataAsync<PC_SaveFile>(context, fileName, new PC_SaveEncoder());
+            PC_SaveFile? saveData = await context.ReadFileDataAsync<PC_SaveFile>(fileName, new PC_SaveEncoder());
 
             if (saveData == null)
             {

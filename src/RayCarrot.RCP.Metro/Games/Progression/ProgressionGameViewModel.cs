@@ -312,22 +312,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     #region Protected Methods
 
     protected Task<T?> SerializeFileDataAsync<T>(Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
-        where T : BinarySerializable, new()
-    {
-        return Task.Run(() =>
-        {
-            PhysicalFile file = encoder == null
-                ? new LinearFile(context, fileName, endian)
-                : new EncodedLinearFile(context, fileName, encoder, endian);
-
-            if (!File.Exists(file.SourcePath))
-                return null;
-
-            context.AddFile(file);
-
-            return FileFactory.Read<T>(fileName, context);
-        });
-    }
+        where T : BinarySerializable, new() => context.ReadFileDataAsync<T>(fileName, encoder, endian);
 
     protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem) => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
 

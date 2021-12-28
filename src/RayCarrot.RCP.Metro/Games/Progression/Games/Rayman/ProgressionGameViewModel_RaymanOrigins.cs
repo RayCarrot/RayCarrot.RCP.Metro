@@ -49,7 +49,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
             // Deserialize the data
-            Origins_SaveData? saveFileData = await SerializeFileDataAsync<Origins_SaveData>(context, fileName, endian: Endian.Big);
+            Origins_SaveData? saveFileData = await context.ReadFileDataAsync<Origins_SaveData>(fileName, endian: Endian.Big);
 
             if (saveFileData == null)
             {

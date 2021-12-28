@@ -33,7 +33,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         using RCPContext context = new(saveDir.DirPath);
 
         // Read the config file
-        R2ConfigFile? config = await SerializeFileDataAsync<R2ConfigFile>(context, @"Options\Current.cfg", new R2SaveEncoder());
+        R2ConfigFile? config = await context.ReadFileDataAsync<R2ConfigFile>(@"Options\Current.cfg", new R2SaveEncoder());
 
         if (config == null)
             yield break; 
@@ -44,7 +44,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveSlot.SlotIndex);
 
-            R2GeneralSaveFile? saveData= await SerializeFileDataAsync<R2GeneralSaveFile>(context, slotFilePath, new R2SaveEncoder());
+            R2GeneralSaveFile? saveData= await context.ReadFileDataAsync<R2GeneralSaveFile>(slotFilePath, new R2SaveEncoder());
 
             if (saveData == null)
             {
