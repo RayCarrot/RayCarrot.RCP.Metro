@@ -9,8 +9,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class RCPContext : Context
 {
-    public RCPContext(string basePath, Encoding? defaultStringEncoding = null) 
-        : base(basePath, new RCPSerializerSettings(defaultStringEncoding), new RCPSerializerLog(), new RCPFileManager(), new RCPLogger())
+    public RCPContext(string basePath, Encoding? defaultStringEncoding = null, ISerializerLog? log = null) 
+        : base(basePath, new RCPSerializerSettings(defaultStringEncoding), log ?? new RCPSerializerLog(), new RCPFileManager(), new RCPLogger())
     { }
 
     private class RCPSerializerSettings : SerializerSettings

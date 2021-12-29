@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -22,19 +21,11 @@ public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
             new UtilityViewModel(new Utility_ArchiveExplorer_CNT()),
             new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
         };
+        SerializersViewModel = new Serializers_ViewModel();
         ConverterViewModels = new UtilityViewModel[]
         {
-            new UtilityViewModel(new Utility_Converter_R1Save()),
-            new UtilityViewModel(new Utility_Converter_R1Config()),
-            new UtilityViewModel(new Utility_Converter_R2Save()),
-            new UtilityViewModel(new Utility_Converter_R2Config()),
             new UtilityViewModel(new Utility_Converter_GF()),
-            new UtilityViewModel(new Utility_Converter_RMSave()),
-            new UtilityViewModel(new Utility_Converter_R3Save()),
             new UtilityViewModel(new Utility_Converter_LOC()),
-            new UtilityViewModel(new Utility_Converter_ROSave()),
-            new UtilityViewModel(new Utility_Converter_RJRSave()),
-            new UtilityViewModel(new Utility_Converter_RLSave()),
         };
         DecoderViewModels = new UtilityViewModel[]
         {
@@ -64,6 +55,8 @@ public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
     /// </summary>
     public UtilityViewModel[] ArchiveExplorerViewModels { get; }
 
+    public Serializers_ViewModel SerializersViewModel { get; }
+
     /// <summary>
     /// View models for the converter utilities
     /// </summary>
@@ -90,12 +83,14 @@ public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
 
     public void Dispose()
     {
-        ArchiveExplorerViewModels?.DisposeAll();
-        ConverterViewModels?.DisposeAll();
-        DecoderViewModels?.DisposeAll();
-        OtherViewModels?.DisposeAll();
-        ExternalToolViewModels?.DisposeAll();
+        ArchiveExplorerViewModels.DisposeAll();
+        SerializersViewModel.Dispose();
+        ConverterViewModels.DisposeAll();
+        DecoderViewModels.DisposeAll();
+        OtherViewModels.DisposeAll();
+        ExternalToolViewModels.DisposeAll();
     }
 
     #endregion
 }
+

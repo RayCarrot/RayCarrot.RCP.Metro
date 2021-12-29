@@ -16,6 +16,7 @@
 
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
