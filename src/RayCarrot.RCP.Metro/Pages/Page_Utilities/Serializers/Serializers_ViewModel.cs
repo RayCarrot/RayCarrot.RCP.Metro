@@ -65,22 +65,32 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
             InitContext = x => x.AddSettings(new UbiArtSettings(EngineVersion.RaymanOrigins, Platform.PC)),
             Game = Games.RaymanOrigins,
             Endian = Endian.Big,
+            GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins",
         };
         Serializers_TypeModeData mode_UbiArt_RL = new()
         {
             InitContext = x => x.AddSettings(new UbiArtSettings(EngineVersion.RaymanLegends, Platform.PC)),
             Game = Games.RaymanLegends,
             Endian = Endian.Big,
+            GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends",
         };
         Serializers_TypeModeData mode_UbiArt_RJR = new()
         {
             InitContext = x => x.AddSettings(new UbiArtSettings(EngineVersion.RaymanJungleRun, Platform.PC)),
             Game = Games.RaymanJungleRun,
+            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
+                                  "Packages" + 
+                                  Games.RaymanJungleRun.GetManager<GameManager_WinStore>().FullPackageName + 
+                                  "LocalState",
         };
         Serializers_TypeModeData mode_UbiArt_RFR = new()
         {
             InitContext = x => x.AddSettings(new UbiArtSettings(EngineVersion.RaymanFiestaRun, Platform.PC)),
             Game = Games.RaymanFiestaRun,
+            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
+                                  "Packages" + 
+                                  Games.RaymanFiestaRun.GetManager<GameManager_WinStore>().FullPackageName + 
+                                  "LocalState",
         };
 
         // TODO-UPDATE: Localize
@@ -221,7 +231,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
             IsLoading = true;
 
             // Attempt to get a default directory
-            FileSystemPath? defaultDir = SelectedType.SelectedMode.Data.Game?.GetInstallDir(false);
+            FileSystemPath? defaultDir = SelectedType.SelectedMode.Data.GetDefaultDir();
 
             // Make sure the directory exists
             if (defaultDir?.DirectoryExists != true)
@@ -284,7 +294,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
             IsLoading = true;
 
             // Attempt to get a default directory
-            FileSystemPath? defaultDir = SelectedType.SelectedMode.Data.Game?.GetInstallDir(false);
+            FileSystemPath? defaultDir = SelectedType.SelectedMode.Data.GetDefaultDir();
 
             // Make sure the directory exists
             if (defaultDir?.DirectoryExists != true)
