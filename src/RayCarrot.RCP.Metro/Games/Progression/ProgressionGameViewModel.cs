@@ -311,9 +311,6 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     #region Protected Methods
 
-    protected Task<T?> SerializeFileDataAsync<T>(Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
-        where T : BinarySerializable, new() => context.ReadFileDataAsync<T>(fileName, encoder, endian);
-
     protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem) => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
 
     protected virtual ProgressionSlotViewModel? GetPrimarySlot()
@@ -563,6 +560,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
             await LoadProgressAsync();
             await LoadSlotInfoItemsAsync();
+            await LoadBackupAsync();
 
             if (backupResult)
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
@@ -570,7 +568,6 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         finally
         {
             IsPerformingBackupRestore = false;
-            await LoadBackupAsync();
         }
     }
 
