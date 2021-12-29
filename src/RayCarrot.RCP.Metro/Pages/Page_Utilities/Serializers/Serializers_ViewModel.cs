@@ -93,12 +93,12 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
                                   "LocalState",
         };
 
-        // TODO-UPDATE: Localize
+        // TODO-UPDATE: Localize & include file ext in all the names
         Types = new ObservableCollection<Serializers_TypeViewModel>()
         {
             new Serializers_TypeViewModel<PC_SaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1SaveHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension(".sav") },
+                fileExtension: new FileExtension(".sav"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman 1 (PC)"), 
@@ -107,7 +107,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<PC_ConfigFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1ConfigHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension(".cfg") },
+                fileExtension: new FileExtension(".cfg"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman 1 (PC)"), mode_Ray1_PC),
@@ -119,7 +119,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<R2GeneralSaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2SaveHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension(".sav") },
+                fileExtension: new FileExtension(".sav"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman 2 (PC)"), 
@@ -128,7 +128,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<R2ConfigFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2ConfigHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension(".cfg") },
+                fileExtension: new FileExtension(".cfg"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman 2 (PC)"), 
@@ -137,7 +137,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<RMSaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RMSaveHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension(".sav") },
+                fileExtension: new FileExtension(".sav"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman M (PC)"), mode_OpenSpace_RM),
@@ -146,7 +146,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<R3SaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R3SaveHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension(".sav") },
+                fileExtension: new FileExtension(".sav"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman 3 (PC)"), 
@@ -155,7 +155,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<Origins_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_ROSaveHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension("") },
+                fileExtension: new FileExtension(""),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman Origins (PC)"), mode_UbiArt_RO),
@@ -163,7 +163,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<Legends_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RLSaveHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension("") },
+                fileExtension: new FileExtension(""),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman Legends (PC)"), mode_UbiArt_RL),
@@ -171,7 +171,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<JungleRun_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RJRSaveHeader)),
-                fileExtensions: new FileExtension[] { new FileExtension(".dat") },
+                fileExtension: new FileExtension(".dat"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman Jungle Run (PC/Android/iOS)"), mode_UbiArt_RJR),
@@ -179,7 +179,7 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             new Serializers_TypeViewModel<FiestaRun_SaveData>(
                 name: new ConstLocString("Rayman Fiesta Run Save File"),
-                fileExtensions: new FileExtension[] { new FileExtension(".dat") },
+                fileExtension: new FileExtension(".dat"),
                 modes: new ObservableCollection<Serializers_TypeModeViewModel>()
                 {
                     new Serializers_TypeModeViewModel(new ConstLocString("Rayman Fiesta Run (PC/Android/iOS)"), mode_UbiArt_RFR),
@@ -240,9 +240,10 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
+                // TODO-UPDATE: Update localization
                 Title = Resources.Utilities_Converter_FileSelectionHeader,
                 DefaultDirectory = defaultDir?.FullPath,
-                ExtensionFilter = new FileFilterItemCollection(SelectedType.FileExtensions.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString(),
+                ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
                 MultiSelection = true
             });
 
@@ -303,9 +304,10 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
+                // TODO-UPDATE: Update localization
                 Title = Resources.Utilities_Converter_FileSelectionHeader,
                 DefaultDirectory = defaultDir?.FullPath,
-                ExtensionFilter = new FileFilterItemCollection(SelectedType.FileExtensions.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString(),
+                ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
                 MultiSelection = true
             });
 
@@ -370,8 +372,73 @@ public class Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
     public async Task SerializeAsync()
     {
-        // TODO-UPDATE: Implement
-        throw new NotImplementedException();
+        if (IsLoading)
+            return;
+
+        try
+        {
+            IsLoading = true;
+
+            // Allow the user to select the files
+            FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            {
+                // TODO-UPDATE: Update localization
+                Title = Resources.Utilities_Converter_FileSelectionHeader,
+                ExtensionFilter = new FileFilterItem("*.json", "JSON").ToString(),
+                MultiSelection = true,
+            });
+
+            if (fileResult.CanceledByUser || !fileResult.SelectedFiles.Any())
+                return;
+
+            // Allow the user to select the destination directory
+            DirectoryBrowserResult destinationResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            {
+                Title = Resources.Browse_DestinationHeader,
+            });
+
+            if (destinationResult.CanceledByUser)
+                return;
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    using RCPContext context = new(destinationResult.SelectedDirectory);
+                    SelectedType.SelectedMode.Data.InitContext(context);
+
+                    // Serialize every file
+                    foreach (FileSystemPath file in fileResult.SelectedFiles)
+                    {
+                        // Get the destination file
+                        FileSystemPath destinationFile = destinationResult.SelectedDirectory + file.Name;
+
+                        // Set the file extension
+                        destinationFile = destinationFile.ChangeFileExtension(SelectedType.FileExtension).GetNonExistingFileName();
+
+                        // Deserialize the file JSON
+                        object data = JsonHelpers.DeserializeFromFile(file, SelectedType.Type);
+
+                        // Serialize the data to the destination file
+                        SelectedType.Serialize(context, destinationFile.Name, data);
+                    }
+                });
+
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The files were successfully serialized");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Serializing files");
+
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The files could not be serialized");
+            }
+        }
+        finally
+        {
+            IsLoading = false;
+        }
     }
 
     public void Dispose()

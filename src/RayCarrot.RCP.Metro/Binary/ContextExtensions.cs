@@ -26,4 +26,16 @@ public static class ContextExtensions
     {
         return Task.Run(() => context.ReadFileData<T>(fileName, encoder, endian));
     }
+
+    public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
+        where T : BinarySerializable, new()
+    {
+        PhysicalFile file = encoder == null
+            ? new LinearFile(context, fileName, endian)
+            : new EncodedLinearFile(context, fileName, encoder, endian);
+
+        context.AddFile(file);
+
+        FileFactory.Write(fileName, obj, context);
+    }
 }

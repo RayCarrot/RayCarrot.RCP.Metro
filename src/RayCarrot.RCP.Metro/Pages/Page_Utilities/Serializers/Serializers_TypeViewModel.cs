@@ -8,10 +8,11 @@ namespace RayCarrot.RCP.Metro;
 
 public abstract class Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
 {
-    protected Serializers_TypeViewModel(LocalizedString name, FileExtension[] fileExtensions, ObservableCollection<Serializers_TypeModeViewModel> modes)
+    protected Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, ObservableCollection<Serializers_TypeModeViewModel> modes)
     {
+        Type = type;
         Name = name;
-        FileExtensions = fileExtensions;
+        FileExtension = fileExtension;
         Modes = modes;
 
         if (!Modes.Any())
@@ -20,13 +21,15 @@ public abstract class Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
         SelectedMode = Modes.First();
     }
 
+    public Type Type { get; }
     public LocalizedString Name { get; }
-    public FileExtension[] FileExtensions { get; }
+    public FileExtension FileExtension { get; }
 
     public ObservableCollection<Serializers_TypeModeViewModel> Modes { get; }
     public Serializers_TypeModeViewModel SelectedMode { get; set; }
 
     public abstract object? Deserialize(Context context, string fileName);
+    public abstract void Serialize(Context context, string fileName, object obj);
 
     public void Dispose()
     {
@@ -38,11 +41,16 @@ public abstract class Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
 public class Serializers_TypeViewModel<T> : Serializers_TypeViewModel
     where T : BinarySerializable, new()
 {
-    public Serializers_TypeViewModel(LocalizedString name, FileExtension[] fileExtensions, ObservableCollection<Serializers_TypeModeViewModel> modes) : base(name, fileExtensions, modes)
+    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, ObservableCollection<Serializers_TypeModeViewModel> modes) : base(typeof(T), name, fileExtension, modes)
     { }
 
     public override object? Deserialize(Context context, string fileName)
     {
         return context.ReadFileData<T>(fileName, SelectedMode.Data.Encoder, SelectedMode.Data.Endian);
+    }
+
+    public override void Serialize(Context context, string fileName, object obj)
+    {
+        context.WriteFileData<T>(fileName, (T)obj, SelectedMode.Data.Encoder, SelectedMode.Data.Endian);
     }
 }
