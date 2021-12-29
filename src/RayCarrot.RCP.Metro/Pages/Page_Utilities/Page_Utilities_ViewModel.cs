@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the utilities page
 /// </summary>
-public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
+public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
 {
     #region Constructor
 
@@ -14,68 +16,85 @@ public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
     /// </summary>
     public Page_Utilities_ViewModel()
     {
-        // Create view models
-        ArchiveExplorerViewModels = new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_ArchiveExplorer_R1()),
-            new UtilityViewModel(new Utility_ArchiveExplorer_CNT()),
-            new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
-        };
-        SerializersViewModel = new Serializers_ViewModel();
-        ConverterViewModels = new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_Converter_GF()),
-            new UtilityViewModel(new Utility_Converter_LOC()),
-        };
-        DecoderViewModels = new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_Decoder_R1Lng()),
-            new UtilityViewModel(new Utility_Decoder_R12Save()),
-            new UtilityViewModel(new Utility_Decoder_TTSnaDsb()),
-            new UtilityViewModel(new Utility_Decoder_R2SnaDsb()),
-            new UtilityViewModel(new Utility_Decoder_R3Save()),
-        };
-        OtherViewModels = new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_SyncTextureInfo()),
-            new UtilityViewModel(new Utility_R1PasswordGenerator()),
-        };
-        ExternalToolViewModels = new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_Ray1Editor()),
-        };
+        ArchiveExplorerViewModels = new ObservableCollection<UtilityViewModel>();
+        ConverterViewModels = new ObservableCollection<UtilityViewModel>();
+        DecoderViewModels = new ObservableCollection<UtilityViewModel>();
+        OtherViewModels = new ObservableCollection<UtilityViewModel>();
+        ExternalToolViewModels = new ObservableCollection<UtilityViewModel>();
     }
 
     #endregion
 
     #region Public Properties
 
+    public override AppPage Page => AppPage.Utilities;
+
     /// <summary>
     /// View models for the Archive Explorer utilities
     /// </summary>
-    public UtilityViewModel[] ArchiveExplorerViewModels { get; }
+    public ObservableCollection<UtilityViewModel> ArchiveExplorerViewModels { get; }
 
-    public Serializers_ViewModel SerializersViewModel { get; }
+    public Serializers_ViewModel? SerializersViewModel { get; set; }
 
     /// <summary>
     /// View models for the converter utilities
     /// </summary>
-    public UtilityViewModel[] ConverterViewModels { get; }
+    public ObservableCollection<UtilityViewModel> ConverterViewModels { get; }
 
     /// <summary>
     /// View models for the decoder utilities
     /// </summary>
-    public UtilityViewModel[] DecoderViewModels { get; }
+    public ObservableCollection<UtilityViewModel> DecoderViewModels { get; }
 
     /// <summary>
     /// View models for the other utilities
     /// </summary>
-    public UtilityViewModel[] OtherViewModels { get; }
+    public ObservableCollection<UtilityViewModel> OtherViewModels { get; }
 
     /// <summary>
     /// View models for the external tool utilities
     /// </summary>
-    public UtilityViewModel[] ExternalToolViewModels { get; }
+    public ObservableCollection<UtilityViewModel> ExternalToolViewModels { get; }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override Task InitializeAsync()
+    {
+        // Create view models
+        ArchiveExplorerViewModels.AddRange(new UtilityViewModel[]
+        {
+            new UtilityViewModel(new Utility_ArchiveExplorer_R1()),
+            new UtilityViewModel(new Utility_ArchiveExplorer_CNT()),
+            new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
+        });
+        SerializersViewModel = new Serializers_ViewModel();
+        ConverterViewModels.AddRange(new UtilityViewModel[]
+        {
+            new UtilityViewModel(new Utility_Converter_GF()),
+            new UtilityViewModel(new Utility_Converter_LOC()),
+        });
+        DecoderViewModels.AddRange(new UtilityViewModel[]
+        {
+            new UtilityViewModel(new Utility_Decoder_R1Lng()),
+            new UtilityViewModel(new Utility_Decoder_R12Save()),
+            new UtilityViewModel(new Utility_Decoder_TTSnaDsb()),
+            new UtilityViewModel(new Utility_Decoder_R2SnaDsb()),
+            new UtilityViewModel(new Utility_Decoder_R3Save()),
+        });
+        OtherViewModels.AddRange(new UtilityViewModel[]
+        {
+            new UtilityViewModel(new Utility_SyncTextureInfo()),
+            new UtilityViewModel(new Utility_R1PasswordGenerator()),
+        });
+        ExternalToolViewModels.AddRange(new UtilityViewModel[]
+        {
+            new UtilityViewModel(new Utility_Ray1Editor()),
+        });
+
+        return Task.CompletedTask;
+    }
 
     #endregion
 
@@ -84,7 +103,7 @@ public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
     public void Dispose()
     {
         ArchiveExplorerViewModels.DisposeAll();
-        SerializersViewModel.Dispose();
+        SerializersViewModel?.Dispose();
         ConverterViewModels.DisposeAll();
         DecoderViewModels.DisposeAll();
         OtherViewModels.DisposeAll();
@@ -93,4 +112,3 @@ public class Page_Utilities_ViewModel : BaseRCPViewModel, IDisposable
 
     #endregion
 }
-

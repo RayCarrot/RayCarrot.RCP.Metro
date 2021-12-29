@@ -39,7 +39,7 @@
         <!-- TODO-UPDATE: Localize -->
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Serializers}"
                  local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
-                 DataContext="{Binding Path=SerializersViewModel, Mode=OneTime}"
+                 DataContext="{Binding Path=SerializersViewModel}"
                  Header="Serializers">
 
             <Grid Margin="0 8">
