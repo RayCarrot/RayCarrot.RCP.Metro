@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿using System.Threading.Tasks;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// View model for the mods page
 /// </summary>
-public class Page_Mods_ViewModel : BaseRCPViewModel
+public class Page_Mods_ViewModel : BasePageViewModel
 { 
     /// <summary>
     /// Default constructor
@@ -17,32 +17,19 @@ public class Page_Mods_ViewModel : BaseRCPViewModel
         {
             new Mod_RRR_ViewModel(),
         };
-
-        App.SelectedPageChanged += App_SelectedPageChangedAsync;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    private bool _hasInitialized;
+    public override AppPage Page => AppPage.Mods;
+    public Mod_BaseViewModel[] Mods { get; }
 
-    private async void App_SelectedPageChangedAsync(object sender, PropertyChangedEventArgs<AppPage> e)
+    protected override async Task InitializeAsync()
     {
-        if (e.NewValue != AppPage.Mods)
-            return;
-
-        if (_hasInitialized)
-            return;
-
-        _hasInitialized = true;
-
         foreach (var mod in Mods)
         {
             Logger.Info("Initializing mod {0}", mod.Header.Value);
             await mod.InitializeAsync();
         }
-
-        Logger.Info("Initialized mods");
     }
-
-    public Mod_BaseViewModel[] Mods { get; }
 }

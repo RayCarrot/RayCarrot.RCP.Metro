@@ -11,7 +11,7 @@ using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Page_Progression_ViewModel : BaseRCPViewModel
+public class Page_Progression_ViewModel : BasePageViewModel
 {
     #region Constructor
 
@@ -38,8 +38,6 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
             if (e.BackupsModified || e.GameCollectionModified)
                 await Task.Run(async () => await RefreshAsync());
         };
-
-        App.SelectedPageChanged += App_SelectedPageChangedAsync;
     }
 
     #endregion
@@ -47,12 +45,6 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
-    #region Private Fields
-
-    private bool _hasInitialized;
 
     #endregion
 
@@ -72,35 +64,15 @@ public class Page_Progression_ViewModel : BaseRCPViewModel
 
     #region Public Properties
 
+    public override AppPage Page => AppPage.Progression;
     public ObservableCollection<ProgressionGameViewModel> GameItems { get; }
-
-    #endregion
-
-    #region Event Handlers
-
-    private async void App_SelectedPageChangedAsync(object sender, PropertyChangedEventArgs<AppPage> e)
-    {
-        if (e.NewValue != AppPage.Progression)
-            return;
-
-        if (_hasInitialized)
-            return;
-
-        _hasInitialized = true;
-
-        await RefreshAsync();
-
-        Logger.Info("Initialized progression");
-    }
 
     #endregion
 
     #region Public Methods
 
-    /// <summary>
-    /// Refreshes the backup items
-    /// </summary>
-    /// <returns></returns>
+    protected override Task InitializeAsync() => RefreshAsync();
+
     public async Task RefreshAsync()
     {
         using (await AsyncLock.LockAsync())
