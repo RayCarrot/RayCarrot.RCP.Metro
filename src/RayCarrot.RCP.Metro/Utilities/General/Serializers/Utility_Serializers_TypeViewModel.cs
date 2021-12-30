@@ -6,9 +6,9 @@ using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
-public abstract class Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
+public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
 {
-    protected Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, ObservableCollection<Serializers_TypeModeViewModel> modes)
+    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_Serializers_TypeModeViewModel> modes)
     {
         Type = type;
         Name = name;
@@ -25,8 +25,8 @@ public abstract class Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
     public LocalizedString Name { get; }
     public FileExtension FileExtension { get; }
 
-    public ObservableCollection<Serializers_TypeModeViewModel> Modes { get; }
-    public Serializers_TypeModeViewModel SelectedMode { get; set; }
+    public ObservableCollection<Utility_Serializers_TypeModeViewModel> Modes { get; }
+    public Utility_Serializers_TypeModeViewModel SelectedMode { get; set; }
 
     public abstract object? Deserialize(Context context, string fileName);
     public abstract void Serialize(Context context, string fileName, object obj);
@@ -38,10 +38,10 @@ public abstract class Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
     }
 }
 
-public class Serializers_TypeViewModel<T> : Serializers_TypeViewModel
+public class Serializers_TypeViewModel<T> : Utility_Serializers_TypeViewModel
     where T : BinarySerializable, new()
 {
-    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, ObservableCollection<Serializers_TypeModeViewModel> modes) : base(typeof(T), name, fileExtension, modes)
+    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_Serializers_TypeModeViewModel> modes) : base(typeof(T), name, fileExtension, modes)
     { }
 
     public override object? Deserialize(Context context, string fileName)

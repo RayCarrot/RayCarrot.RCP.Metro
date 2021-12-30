@@ -4,9 +4,9 @@ using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
-public record Serializers_TypeModeData
+public record Utility_Serializers_TypeModeData
 {
-    public Serializers_TypeModeData()
+    public Utility_Serializers_TypeModeData()
     {
         InitContext = delegate { };
         Endian = Endian.Little;

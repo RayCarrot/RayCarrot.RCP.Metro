@@ -34,7 +34,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     /// </summary>
     public ObservableCollection<UtilityViewModel> ArchiveExplorerViewModels { get; }
 
-    public Serializers_ViewModel? SerializersViewModel { get; set; }
+    public Utility_Serializers_ViewModel? SerializersViewModel { get; set; }
 
     /// <summary>
     /// View models for the converter utilities
@@ -69,7 +69,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
             new UtilityViewModel(new Utility_ArchiveExplorer_CNT()),
             new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
         });
-        SerializersViewModel = new Serializers_ViewModel();
+        SerializersViewModel = new Utility_Serializers_ViewModel();
         ConverterViewModels.AddRange(new UtilityViewModel[]
         {
             new UtilityViewModel(new Utility_Converter_GF()),
