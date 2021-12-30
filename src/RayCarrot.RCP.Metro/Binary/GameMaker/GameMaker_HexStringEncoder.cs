@@ -9,10 +9,10 @@ public class GameMaker_HexStringEncoder : IStreamEncoder
 {
     public string Name => nameof(GameMaker_HexStringEncoder);
 
-    public Stream DecodeStream(Stream s)
+    public void DecodeStream(Stream input, Stream output)
     {
         // Use a reader to read as a string
-        using StreamReader reader = new(s, Encoding.ASCII, true, 1024, true);
+        using StreamReader reader = new(input, Encoding.ASCII, true, 1024, true);
 
         // Read string
         string str = reader.ReadToEnd();
@@ -20,11 +20,10 @@ public class GameMaker_HexStringEncoder : IStreamEncoder
         // Convert the hex string to bytes
         byte[] bytes = StringToByteArray(str);
 
-        // Return as a memory stream
-        return new MemoryStream(bytes);
+        output.Write(bytes, 0, bytes.Length);
     }
 
-    public Stream EncodeStream(Stream s)
+    public void EncodeStream(Stream input, Stream output)
     {
         // TODO-UPDATE: Implement
         throw new NotImplementedException();

@@ -8,11 +8,9 @@ public class RRR_SaveEncoder : IStreamEncoder
 {
     public string Name => nameof(RRR_SaveEncoder);
 
-    public Stream DecodeStream(Stream s)
+    public void DecodeStream(Stream input, Stream output)
     {
-        using Reader file = new(s, true, leaveOpen: true);
-
-        MemoryStream outputStream = new();
+        using Reader file = new(input, true, leaveOpen: true);
 
         // Read the magic header which determines if it's encoded
         uint header = file.ReadUInt32();
@@ -24,8 +22,8 @@ public class RRR_SaveEncoder : IStreamEncoder
         if (header is not (0xC0DE1BAF or 0xC0DE2BAF))
         {
             // If it's not encoded we simply copy over the stream
-            s.CopyTo(outputStream);
-            return outputStream;
+            input.CopyTo(output);
+            return;
         }
 
         int[] v73 = new int[32];
@@ -133,20 +131,15 @@ public class RRR_SaveEncoder : IStreamEncoder
             else
             {
                 int v70 = inputBuffer[v67] << (8 - (v74[j & 7] & 7));
-                outputStream.WriteByte((byte)(BitHelpers.ExtractBits(v70, 8, 0) + BitHelpers.ExtractBits(v70, 8, 8)));
+                output.WriteByte((byte)(BitHelpers.ExtractBits(v70, 8, 0) + BitHelpers.ExtractBits(v70, 8, 8)));
                 ++j;
             }
         }
-
-        return outputStream;
     }
 
-    public Stream EncodeStream(Stream s)
+    public void EncodeStream(Stream input, Stream output)
     {
         // Copy the data. The game can read decoded files.
-        MemoryStream outputStream = new();
-        s.CopyTo(outputStream);
-        outputStream.Position = 0;
-        return outputStream;
+        input.CopyTo(output);
     }
 }
