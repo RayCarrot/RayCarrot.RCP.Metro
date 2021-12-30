@@ -39,10 +39,9 @@
         <!-- TODO-UPDATE: Localize -->
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Serializers}"
                  local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
-                 DataContext="{Binding Path=SerializersViewModel}"
                  Header="Serializers">
 
-            <local:Utility_Serializers_UI />
+            <local:Utility_Serializers_UI DataContext="{Binding Path=SerializersViewModel}" />
 
         </TabItem>
 
@@ -64,9 +63,8 @@
                  local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Decoder_Header}">
 
-            <ScrollViewer>
-                <local:UtilitiesContainer Utilities="{Binding Path=DecoderViewModels, Mode=OneTime}" />
-            </ScrollViewer>
+            <local:Utility_Decoders_UI DataContext="{Binding Path=DecodersViewModel}"
+                                       VerticalAlignment="Top"/>
 
         </TabItem>
 

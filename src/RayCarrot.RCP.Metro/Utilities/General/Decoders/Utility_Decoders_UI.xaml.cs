@@ -4,11 +4,11 @@ using System.Windows.Controls;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// Interaction logic for Utility_BaseDecoder_UI.xaml
+/// Interaction logic for Utility_Decoders_UI.xaml
 /// </summary>
-public partial class Utility_BaseDecoder_UI : UserControl
+public partial class Utility_Decoders_UI : UserControl
 {
-    public Utility_BaseDecoder_UI()
+    public Utility_Decoders_UI()
     {
         InitializeComponent();
     }

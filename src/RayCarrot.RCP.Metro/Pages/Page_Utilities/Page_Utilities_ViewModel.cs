@@ -18,7 +18,6 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     {
         ArchiveExplorerViewModels = new ObservableCollection<UtilityViewModel>();
         ConverterViewModels = new ObservableCollection<UtilityViewModel>();
-        DecoderViewModels = new ObservableCollection<UtilityViewModel>();
         OtherViewModels = new ObservableCollection<UtilityViewModel>();
         ExternalToolViewModels = new ObservableCollection<UtilityViewModel>();
     }
@@ -29,31 +28,11 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
 
     public override AppPage Page => AppPage.Utilities;
 
-    /// <summary>
-    /// View models for the Archive Explorer utilities
-    /// </summary>
     public ObservableCollection<UtilityViewModel> ArchiveExplorerViewModels { get; }
-
     public Utility_Serializers_ViewModel? SerializersViewModel { get; set; }
-
-    /// <summary>
-    /// View models for the converter utilities
-    /// </summary>
     public ObservableCollection<UtilityViewModel> ConverterViewModels { get; }
-
-    /// <summary>
-    /// View models for the decoder utilities
-    /// </summary>
-    public ObservableCollection<UtilityViewModel> DecoderViewModels { get; }
-
-    /// <summary>
-    /// View models for the other utilities
-    /// </summary>
+    public Utility_Decoders_ViewModel? DecodersViewModel { get; set; }
     public ObservableCollection<UtilityViewModel> OtherViewModels { get; }
-
-    /// <summary>
-    /// View models for the external tool utilities
-    /// </summary>
     public ObservableCollection<UtilityViewModel> ExternalToolViewModels { get; }
 
     #endregion
@@ -75,14 +54,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
             new UtilityViewModel(new Utility_Converter_GF()),
             new UtilityViewModel(new Utility_Converter_LOC()),
         });
-        DecoderViewModels.AddRange(new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_Decoder_R1Lng()),
-            new UtilityViewModel(new Utility_Decoder_R12Save()),
-            new UtilityViewModel(new Utility_Decoder_TTSnaDsb()),
-            new UtilityViewModel(new Utility_Decoder_R2SnaDsb()),
-            new UtilityViewModel(new Utility_Decoder_R3Save()),
-        });
+        DecodersViewModel = new Utility_Decoders_ViewModel();
         OtherViewModels.AddRange(new UtilityViewModel[]
         {
             new UtilityViewModel(new Utility_SyncTextureInfo()),
@@ -105,7 +77,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
         ArchiveExplorerViewModels.DisposeAll();
         SerializersViewModel?.Dispose();
         ConverterViewModels.DisposeAll();
-        DecoderViewModels.DisposeAll();
+        DecodersViewModel?.Dispose();
         OtherViewModels.DisposeAll();
         ExternalToolViewModels.DisposeAll();
     }

@@ -18,42 +18,56 @@
 
         <Grid Margin="0 0 0 10">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" MinWidth="60" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Column="0"
-                      Margin="0 0 10 0"
-                      ItemsSource="{Binding Path=Types, Mode=OneTime}"
-                      SelectedItem="{Binding Path=SelectedType}"
-                      DisplayMemberPath="Name.Value" />
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Column="1"
-                      DataContext="{Binding Path=SelectedType}"
-                      ItemsSource="{Binding Path=Modes, Mode=OneTime}"
-                      SelectedItem="{Binding Path=SelectedMode}"
-                      DisplayMemberPath="Name.Value"
-                      Margin="0 0 10 0" />
+                <ComboBox Grid.Column="0"
+                          Margin="0 0 10 0"
+                          ItemsSource="{Binding Path=Types, Mode=OneTime}"
+                          SelectedItem="{Binding Path=SelectedType}"
+                          DisplayMemberPath="Name.Value" />
 
-            <!-- TODO-UPDATE: Localize -->
-            <Button Grid.Column="2"
-                    Margin="0 0 10 0"
-                    Content="Log"
-                    Command="{Binding Path=LogCommand, Mode=OneTime}" />
+                <ComboBox Grid.Column="1"
+                          DataContext="{Binding Path=SelectedType}"
+                          ItemsSource="{Binding Path=Modes, Mode=OneTime}"
+                          SelectedItem="{Binding Path=SelectedMode}"
+                          DisplayMemberPath="Name.Value"
+                          Margin="0 0 10 0" />
 
-            <!-- TODO-UPDATE: Localize -->
-            <Button Grid.Column="3"
-                    Margin="0 0 10 0"
-                    Content="Deserialize to JSON"
-                    Command="{Binding Path=DeserializeCommand, Mode=OneTime}" />
+            </Grid>
 
-            <!-- TODO-UPDATE: Localize -->
-            <Button Grid.Column="4"
-                    Content="Serialize from JSON"
-                    Command="{Binding Path=SerializeCommand, Mode=OneTime}" />
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- TODO-UPDATE: Localize -->
+                <Button Grid.Column="0"
+                        Margin="0 0 10 0"
+                        Content="Log"
+                        Command="{Binding Path=LogCommand, Mode=OneTime}" />
+
+                <!-- TODO-UPDATE: Localize -->
+                <Button Grid.Column="1"
+                        Margin="0 0 10 0"
+                        Content="Deserialize to JSON"
+                        Command="{Binding Path=DeserializeCommand, Mode=OneTime}" />
+
+                <!-- TODO-UPDATE: Localize -->
+                <Button Grid.Column="2"
+                        Content="Serialize from JSON"
+                        Command="{Binding Path=SerializeCommand, Mode=OneTime}" />
+
+            </Grid>
 
         </Grid>
 
