@@ -55,6 +55,13 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
                 encoder: new R3SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
                 game: Games.Rayman3),
+
+            // TODO-UPDATE: Localize
+            new Utility_Decoders_TypeViewModel(
+                name: new ConstLocString("Rayman Raving Rabbids Save Files (.sav)"), 
+                encoder: new RRR_SaveEncoder(),
+                getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
+                game: Games.RaymanRavingRabbids),
         };
         SelectedType = Types.First();
 
