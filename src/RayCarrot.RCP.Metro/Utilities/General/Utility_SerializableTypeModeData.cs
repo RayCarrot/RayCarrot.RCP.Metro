@@ -4,18 +4,26 @@ using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
-public record Utility_Serializers_TypeModeData
+public record Utility_SerializableTypeModeData
 {
-    public Utility_Serializers_TypeModeData()
+    public Utility_SerializableTypeModeData()
     {
-        InitContext = delegate { };
         Endian = Endian.Little;
         GetDefaultDir = () => Game?.GetInstallDir(false);
     }
 
-    public Action<Context> InitContext { get; init; }
+    public Func<object>? GetSettings { get; init; }
     public Games? Game { get; init; }
     public IStreamEncoder? Encoder { get; init; }
     public Endian Endian { get; init; }
     public Func<FileSystemPath?> GetDefaultDir { get; init; }
+
+    public void InitContext(Context context)
+    {
+        if (GetSettings is not null)
+        {
+            object settings = GetSettings();
+            context.AddSettings(settings, settings.GetType());
+        }
+    }
 }

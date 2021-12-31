@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 
 public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
 {
-    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_Serializers_TypeModeViewModel> modes)
+    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_SerializableTypeModeViewModel> modes)
     {
         Type = type;
         Name = name;
@@ -25,8 +25,8 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
     public LocalizedString Name { get; }
     public FileExtension FileExtension { get; }
 
-    public ObservableCollection<Utility_Serializers_TypeModeViewModel> Modes { get; }
-    public Utility_Serializers_TypeModeViewModel SelectedMode { get; set; }
+    public ObservableCollection<Utility_SerializableTypeModeViewModel> Modes { get; }
+    public Utility_SerializableTypeModeViewModel SelectedMode { get; set; }
 
     public abstract object? Deserialize(Context context, string fileName);
     public abstract void Serialize(Context context, string fileName, object obj);
@@ -41,7 +41,7 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
 public class Serializers_TypeViewModel<T> : Utility_Serializers_TypeViewModel
     where T : BinarySerializable, new()
 {
-    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_Serializers_TypeModeViewModel> modes) : base(typeof(T), name, fileExtension, modes)
+    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(typeof(T), name, fileExtension, modes)
     { }
 
     public override object? Deserialize(Context context, string fileName)

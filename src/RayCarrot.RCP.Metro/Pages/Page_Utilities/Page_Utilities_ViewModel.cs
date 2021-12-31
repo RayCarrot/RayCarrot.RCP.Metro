@@ -17,7 +17,6 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     public Page_Utilities_ViewModel()
     {
         ArchiveExplorerViewModels = new ObservableCollection<UtilityViewModel>();
-        ConverterViewModels = new ObservableCollection<UtilityViewModel>();
         OtherViewModels = new ObservableCollection<UtilityViewModel>();
         ExternalToolViewModels = new ObservableCollection<UtilityViewModel>();
     }
@@ -30,7 +29,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
 
     public ObservableCollection<UtilityViewModel> ArchiveExplorerViewModels { get; }
     public Utility_Serializers_ViewModel? SerializersViewModel { get; set; }
-    public ObservableCollection<UtilityViewModel> ConverterViewModels { get; }
+    public Utility_Converters_ViewModel? ConvertersViewModel { get; set; }
     public Utility_Decoders_ViewModel? DecodersViewModel { get; set; }
     public ObservableCollection<UtilityViewModel> OtherViewModels { get; }
     public ObservableCollection<UtilityViewModel> ExternalToolViewModels { get; }
@@ -49,11 +48,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
             new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
         });
         SerializersViewModel = new Utility_Serializers_ViewModel();
-        ConverterViewModels.AddRange(new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_Converter_GF()),
-            new UtilityViewModel(new Utility_Converter_LOC()),
-        });
+        ConvertersViewModel = new Utility_Converters_ViewModel();
         DecodersViewModel = new Utility_Decoders_ViewModel();
         OtherViewModels.AddRange(new UtilityViewModel[]
         {
@@ -76,7 +71,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     {
         ArchiveExplorerViewModels.DisposeAll();
         SerializersViewModel?.Dispose();
-        ConverterViewModels.DisposeAll();
+        ConvertersViewModel?.Dispose();
         DecodersViewModel?.Dispose();
         OtherViewModels.DisposeAll();
         ExternalToolViewModels.DisposeAll();

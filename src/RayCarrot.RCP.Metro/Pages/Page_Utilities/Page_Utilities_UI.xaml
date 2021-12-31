@@ -51,9 +51,8 @@
                  local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
                  Header="{Resx Utilities_Converter_Header}">
 
-            <ScrollViewer>
-                <local:UtilitiesContainer Utilities="{Binding Path=ConverterViewModels, Mode=OneTime}" />
-            </ScrollViewer>
+            <local:Utility_Converters_UI DataContext="{Binding Path=ConvertersViewModel}"
+                                         VerticalAlignment="Top" />
 
         </TabItem>
 
