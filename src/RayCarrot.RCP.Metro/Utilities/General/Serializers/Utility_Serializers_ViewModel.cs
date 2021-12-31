@@ -297,7 +297,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             {
                 await Task.Run(() =>
                 {
-                    SerializerLog log = new();
+                    MemorySerializerLog log = new();
 
                     using RCPContext context = new(fileResult.SelectedFiles.First().Parent, log: log);
                     SelectedType.SelectedMode.Data.InitContext(context);
@@ -488,29 +488,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
     {
         Log = null;
         Types.DisposeAll();
-    }
-
-    #endregion
-
-    #region Classes
-
-    private class SerializerLog : ISerializerLog
-    {
-        public bool IsEnabled => true;
-
-        private StringBuilder? _stringBuilder = new();
-
-        public string? GetString => _stringBuilder?.ToString();
-
-        public void Log(object? obj)
-        {
-            _stringBuilder?.AppendLine(obj != null ? obj.ToString() : String.Empty);
-        }
-
-        public void Dispose()
-        {
-            _stringBuilder = null;
-        }
     }
 
     #endregion
