@@ -60,6 +60,10 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
         {
             Game = Games.Rayman3,
         };
+        Utility_Serializers_TypeModeData mode_Jade_RRR = new()
+        {
+            Game = Games.RaymanRavingRabbids,
+        };
         Utility_Serializers_TypeModeData mode_UbiArt_RO = new()
         {
             InitContext = x => x.AddSettings(new UbiArtSettings(EngineVersion.RaymanOrigins, Platform.PC)),
@@ -91,6 +95,19 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                                   "Packages" + 
                                   Games.RaymanFiestaRun.GetManager<GameManager_WinStore>().FullPackageName + 
                                   "LocalState",
+        };
+        Utility_Serializers_TypeModeData mode_Unity_RBB = new()
+        {
+            Game = Games.RabbidsBigBang,
+            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+                                  "Packages" + 
+                                  Games.RabbidsBigBang.GetManager<GameManager_WinStore>().FullPackageName + 
+                                  "LocalState",
+        };
+        Utility_Serializers_TypeModeData mode_GameMaker_Redemption = new()
+        {
+            Game = Games.RaymanRedemption,
+            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption",
         };
 
         // TODO-UPDATE: Localize & include file ext in all the names
@@ -153,6 +170,15 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                         mode_OpenSpace_R3 with { Encoder = new R3SaveEncoder() }),
                 }),
 
+            new Serializers_TypeViewModel<RRR_SaveFile>(
+                name: new ConstLocString("Rayman Raving Rabbids Save Files (.sav)"),
+                fileExtension: new FileExtension(".sav"),
+                modes: new ObservableCollection<Utility_Serializers_TypeModeViewModel>()
+                {
+                    new Utility_Serializers_TypeModeViewModel(new ConstLocString("Rayman Raving Rabbids (PC)"),
+                        mode_Jade_RRR with { Encoder = new RRR_SaveEncoder() }),
+                }),
+
             new Serializers_TypeViewModel<Origins_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_ROSaveHeader)),
                 fileExtension: new FileExtension(""),
@@ -183,6 +209,23 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 modes: new ObservableCollection<Utility_Serializers_TypeModeViewModel>()
                 {
                     new Utility_Serializers_TypeModeViewModel(new ConstLocString("Rayman Fiesta Run (PC/Android/iOS)"), mode_UbiArt_RFR),
+                }),
+
+            new Serializers_TypeViewModel<Unity_PlayerPrefs>(
+                name: new ConstLocString("Unity Player Preferences / Rabbids Big Bang Save File (.dat)"),
+                fileExtension: new FileExtension(".dat"),
+                modes: new ObservableCollection<Utility_Serializers_TypeModeViewModel>()
+                {
+                    new Utility_Serializers_TypeModeViewModel(new ConstLocString("Unity"), mode_Unity_RBB),
+                }),
+
+            new Serializers_TypeViewModel<GameMaker_DSMap>(
+                name: new ConstLocString("Game Maker DS Map / Rayman Redemption Save File (.txt)"),
+                fileExtension: new FileExtension(".txt"),
+                modes: new ObservableCollection<Utility_Serializers_TypeModeViewModel>()
+                {
+                    new Utility_Serializers_TypeModeViewModel(new ConstLocString("Game Maker"), 
+                        mode_GameMaker_Redemption with { Encoder = new GameMaker_HexStringEncoder() }),
                 }),
         };
 
