@@ -27,16 +27,25 @@ public class RCPContext : Context
     public class RCPSerializerLog : ISerializerLog
     {
         private static bool _hasBeenCreated;
-        public bool IsEnabled => !Services.Data.Binary_BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace();
+
+        private bool _isInvalid;
+
+        public bool IsEnabled => !_isInvalid && Services.Data.Binary_IsSerializationLogEnabled;
 
         private StreamWriter? _logWriter;
 
-        protected StreamWriter LogWriter => _logWriter ??= GetFile();
+        protected StreamWriter? LogWriter => _logWriter ??= GetFile();
 
         public string LogFile => Services.Data.Binary_BinarySerializationFileLogPath;
 
-        public StreamWriter GetFile()
+        public StreamWriter? GetFile()
         {
+            if (!File.Exists(LogFile))
+            {
+                _isInvalid = true;
+                return null;
+            }
+
             StreamWriter w = new(File.Open(LogFile, _hasBeenCreated ? FileMode.Append : FileMode.Create, FileAccess.Write, FileShare.ReadWrite), Encoding.UTF8);
             _hasBeenCreated = true;
             return w;
@@ -45,7 +54,7 @@ public class RCPContext : Context
         public void Log(object? obj)
         {
             if (IsEnabled)
-                LogWriter.WriteLine(obj != null ? obj.ToString() : String.Empty);
+                LogWriter?.WriteLine(obj != null ? obj.ToString() : String.Empty);
         }
 
         public void Dispose()

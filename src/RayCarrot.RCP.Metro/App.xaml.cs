@@ -605,6 +605,7 @@ public partial class App : BaseApp
         {
             Data.Progression_SaveEditorExe = FileSystemPath.EmptyPath;
             Data.Backup_GameDataSources = new Dictionary<string, ProgramDataSource>();
+            Data.Binary_IsSerializationLogEnabled = false;
         }
 
         // Re-deploy files

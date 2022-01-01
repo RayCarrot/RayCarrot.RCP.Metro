@@ -96,6 +96,7 @@ public class AppUserData : BaseViewModel
         Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
 
         // Binary
+        Binary_IsSerializationLogEnabled = false;
         Binary_BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
     }
 
@@ -122,6 +123,9 @@ public class AppUserData : BaseViewModel
 
         // Archive
         Archive_AssociatedPrograms ??= new Dictionary<string, FileSystemPath>();
+
+        if (!Binary_BinarySerializationFileLogPath.FileExists)
+            Binary_IsSerializationLogEnabled = false;
     }
 
     #endregion
@@ -446,6 +450,11 @@ public class AppUserData : BaseViewModel
     /// The binary serialization logging file path
     /// </summary>
     public FileSystemPath Binary_BinarySerializationFileLogPath { get; set; }
+
+    /// <summary>
+    /// Indicates if the serialization log is enabled
+    /// </summary>
+    public bool Binary_IsSerializationLogEnabled { get; set; }
 
     #endregion
 

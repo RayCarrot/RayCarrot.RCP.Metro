@@ -264,7 +264,8 @@ public class AppViewModel : BaseViewModel
     /// <returns>The binary serializer logger</returns>
     public IBinarySerializerLogger? GetBinarySerializerLogger(string? name = null, long? addr = null)
     {
-        if (Services.Data.Binary_BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
+        if (!Services.Data.Binary_IsSerializationLogEnabled || 
+            Services.Data.Binary_BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
             !Services.Data.Binary_BinarySerializationFileLogPath.Parent.DirectoryExists)
             return null;
 
