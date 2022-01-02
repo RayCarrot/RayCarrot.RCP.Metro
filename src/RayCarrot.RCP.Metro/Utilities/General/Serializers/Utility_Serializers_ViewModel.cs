@@ -9,6 +9,8 @@ using BinarySerializer.Ray1;
 using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.IO;
+using EngineVersion = BinarySerializer.UbiArt.EngineVersion;
+using Platform = BinarySerializer.UbiArt.Platform;
 
 namespace RayCarrot.RCP.Metro;
 

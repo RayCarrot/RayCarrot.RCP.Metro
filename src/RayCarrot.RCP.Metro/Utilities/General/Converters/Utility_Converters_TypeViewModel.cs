@@ -1,6 +1,8 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using BinarySerializer;
 using RayCarrot.IO;
 
@@ -40,7 +42,8 @@ public abstract class Utility_Converters_TypeViewModel : BaseRCPViewModel, IDisp
     }
 
     public abstract void Convert(Context context, string inputFileName, FileSystemPath outputFilePath);
-    public abstract void ConvertBack(Context context, FileSystemPath inputFilePath, string outputFileName);
+    public virtual Task<object?> GetConvertBackStateAsync() => Task.FromResult<object?>(new object());
+    public abstract void ConvertBack(Context context, FileSystemPath inputFilePath, string outputFileName, object state);
 
     public void Dispose()
     {

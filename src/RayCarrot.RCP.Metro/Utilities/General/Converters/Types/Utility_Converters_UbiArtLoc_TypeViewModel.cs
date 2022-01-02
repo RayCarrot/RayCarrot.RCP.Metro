@@ -51,7 +51,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
         }
     }
 
-    public override void ConvertBack(Context context, FileSystemPath inputFilePath, string outputFileName)
+    public override void ConvertBack(Context context, FileSystemPath inputFilePath, string outputFileName, object state)
     {
         UbiArtSettings settings = context.GetSettings<UbiArtSettings>();
 
