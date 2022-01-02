@@ -27,6 +27,8 @@ public class Utility_Ray1Editor : IUtility
     /// </summary>
     public string DisplayHeader => Resources.Utilities_R1E_Header;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_Ray1Editor;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

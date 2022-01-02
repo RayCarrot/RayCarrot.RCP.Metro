@@ -27,6 +27,8 @@ public class Utility_R1PasswordGenerator : IUtility
     /// </summary>
     public string DisplayHeader => Resources.Utilities_R1Passwords_Header;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_R1PasswordGenerator;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

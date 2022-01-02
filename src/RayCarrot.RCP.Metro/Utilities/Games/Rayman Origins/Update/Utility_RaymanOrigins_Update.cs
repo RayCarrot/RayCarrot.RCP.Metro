@@ -27,6 +27,8 @@ public class Utility_RaymanOrigins_Update : IUtility
     /// </summary>
     public string DisplayHeader => Resources.ROU_UpdateHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_RaymanOrigins_Update;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

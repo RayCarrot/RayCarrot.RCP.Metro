@@ -28,6 +28,8 @@ public class Utility_Rayman2_RemoveDRM : IUtility
     /// </summary>
     public string DisplayHeader => Resources.R2U_RemoveDRM_Header;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_Rayman2_RemoveDRM;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

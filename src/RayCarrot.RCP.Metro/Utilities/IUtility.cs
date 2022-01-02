@@ -14,6 +14,11 @@ public interface IUtility
     string DisplayHeader { get; }
 
     /// <summary>
+    /// The utility icon
+    /// </summary>
+    GenericIconKind Icon { get; }
+
+    /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
     string InfoText { get; }

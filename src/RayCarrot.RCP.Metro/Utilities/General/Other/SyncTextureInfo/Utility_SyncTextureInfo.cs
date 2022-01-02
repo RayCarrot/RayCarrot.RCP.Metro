@@ -27,6 +27,8 @@ public class Utility_SyncTextureInfo : IUtility
     /// </summary>
     public string DisplayHeader => Resources.Utilities_SyncTextureInfo_Header;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_SyncTextureInfo;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

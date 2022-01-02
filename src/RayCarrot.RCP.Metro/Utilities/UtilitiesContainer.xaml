@@ -24,6 +24,12 @@
                     <Separator x:Name="ItemSeparator"/>
 
                     <StackPanel Orientation="Horizontal">
+
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" 
+                                                    Foreground="{Binding Path=IconKind, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}"
+                                                    Margin="0 0 7 0"
+                                                    VerticalAlignment="Center"/>
+
                         <TextBlock Style="{StaticResource TextBlock.Header}"
                                    Text="{Binding Path=DisplayHeader.Value}" />
 

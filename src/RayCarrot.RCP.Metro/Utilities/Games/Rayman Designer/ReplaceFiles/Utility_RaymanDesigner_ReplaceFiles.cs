@@ -27,6 +27,8 @@ public class Utility_RaymanDesigner_ReplaceFiles : IUtility
     /// </summary>
     public string DisplayHeader => Resources.RDU_ReplaceFilesHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_RaymanDesigner_ReplaceFiles;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

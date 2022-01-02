@@ -27,6 +27,8 @@ public class Utility_RaymanLegends_UbiRay : IUtility
     /// </summary>
     public string DisplayHeader => Resources.RLU_UbiRayHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_RaymanLegends_UbiRay;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

@@ -27,6 +27,8 @@ public class Utility_ArchiveExplorer_CNT : IUtility
     /// </summary>
     public string DisplayHeader => Resources.Utilities_ArchiveExplorer_CNTHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_ArchiveExplorer;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

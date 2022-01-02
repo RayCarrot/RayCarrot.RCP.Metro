@@ -27,6 +27,8 @@ public class Utility_Rayman3_DirectPlay : IUtility
     /// </summary>
     public string DisplayHeader => Resources.R3U_DirectPlayHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_Rayman3_DirectPlay;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

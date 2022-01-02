@@ -18,6 +18,7 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     {
         Utility = utility;
         DisplayHeader = new GeneratedLocString(() => Utility.DisplayHeader);
+        IconKind = utility.Icon;
         InfoText = new GeneratedLocString(() => Utility.InfoText);
         WarningText = new GeneratedLocString(() => Utility.WarningText);
     }
@@ -35,6 +36,8 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     /// The utility header
     /// </summary>
     public LocalizedString DisplayHeader { get; }
+
+    public GenericIconKind IconKind { get; }
 
     /// <summary>
     /// The utility info

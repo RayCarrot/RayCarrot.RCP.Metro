@@ -27,6 +27,8 @@ public class Utility_Rayman1_TPLS : IUtility
     /// </summary>
     public string DisplayHeader => Resources.R1U_TPLSHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_Rayman1_TPLS;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

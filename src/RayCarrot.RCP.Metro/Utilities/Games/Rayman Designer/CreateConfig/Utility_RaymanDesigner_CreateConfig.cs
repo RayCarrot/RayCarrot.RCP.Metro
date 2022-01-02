@@ -27,6 +27,8 @@ public class Utility_RaymanDesigner_CreateConfig : IUtility
     /// </summary>
     public string DisplayHeader => Resources.RDU_CreateConfigHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_RaymanDesigner_CreateConfig;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

@@ -27,6 +27,8 @@ public class Utility_RaymanLegends_DebugCommands : IUtility
     /// </summary>
     public string DisplayHeader => Resources.ROU_DebugCommandsHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_RaymanLegends_DebugCommands;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>

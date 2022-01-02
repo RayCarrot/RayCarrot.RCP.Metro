@@ -14,7 +14,6 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Info">InformationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
@@ -45,6 +44,23 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Steam">Steam</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Microsoft">MicrosoftWindows</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_SyncTextureInfo">FileSyncOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman1_CompleteSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman2_DiscPatch">Disc</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman2_RemoveDRM">Pirate</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman2_Translation">Alphabetical</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman3_DirectPlay">ApplicationCogOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanDesigner_CreateConfig">FileCogOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanDesigner_ReplaceFiles">FileReplaceOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanLegends_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanLegends_UbiRay">AccountOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanOrigins_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanOrigins_HQVideos">VideoOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanOrigins_Update">Update</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_R1PasswordGenerator">KeyOutline</iconPacks:PackIconMaterialKind>
     <!-- Colors -->
 
     <SolidColorBrush x:Key="Colors.Games" Color="#9C27B0" />
@@ -179,5 +195,57 @@
     <local:GenericIcon x:Key="GenericIcons.Window_AppNews" 
                        IconKind="{StaticResource Icons.News}"
                        IconColor="{StaticResource Colors.Info}" />
+
+    <local:GenericIcon x:Key="GenericIcons.Utilities_SyncTextureInfo" 
+                       IconKind="{StaticResource Icons.Utilities_SyncTextureInfo}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman1_CompleteSoundtrack" 
+                       IconKind="{StaticResource Icons.Utilities_Rayman1_CompleteSoundtrack}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman1_TPLS" 
+                       IconKind="{StaticResource Icons.Utilities_Rayman1_TPLS}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman2_DiscPatch" 
+                       IconKind="{StaticResource Icons.Utilities_Rayman2_DiscPatch}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman2_RemoveDRM" 
+                       IconKind="{StaticResource Icons.Utilities_Rayman2_RemoveDRM}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman2_Translation" 
+                       IconKind="{StaticResource Icons.Utilities_Rayman2_Translation}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman3_DirectPlay" 
+                       IconKind="{StaticResource Icons.Utilities_Rayman3_DirectPlay}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanDesigner_CreateConfig" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanDesigner_CreateConfig}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanDesigner_ReplaceFiles" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanDesigner_ReplaceFiles}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanLegends_DebugCommands" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanLegends_DebugCommands}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanLegends_UbiRay" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanLegends_UbiRay}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanOrigins_DebugCommands" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanOrigins_DebugCommands}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanOrigins_HQVideos" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanOrigins_HQVideos}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanOrigins_Update" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanOrigins_Update}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_ArchiveExplorer" 
+                       IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
+                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Ray1Editor" 
+                       IconKind="{StaticResource Icons.Utilities_Ray1Editor}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_R1PasswordGenerator" 
+                       IconKind="{StaticResource Icons.Utilities_R1PasswordGenerator}"
+                       IconColor="{StaticResource Colors.Utilities}" />
     
 </ResourceDictionary>

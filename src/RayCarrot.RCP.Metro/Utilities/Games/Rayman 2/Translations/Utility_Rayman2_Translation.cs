@@ -27,6 +27,8 @@ public class Utility_Rayman2_Translation : IUtility
     /// </summary>
     public string DisplayHeader => Resources.R2U_TranslationsHeader;
 
+    public GenericIconKind Icon => GenericIconKind.Utilities_Rayman2_Translation;
+
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
