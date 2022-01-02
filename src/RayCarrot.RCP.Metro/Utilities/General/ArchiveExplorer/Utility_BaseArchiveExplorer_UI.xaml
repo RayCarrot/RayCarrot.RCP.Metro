@@ -16,16 +16,14 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="1.5*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <ComboBox Grid.Column="0"
                       ItemsSource="{Binding Path=GameModeSelection.AvailableValues, Mode=OneTime}"
-                      SelectedItem="{Binding Path=GameModeSelection.SelectedValue}">
+                      SelectedItem="{Binding Path=GameModeSelection.SelectedValue}"
+                      Margin="0 0 10 0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
@@ -33,13 +31,22 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Button Grid.Column="2"
-                    Content="{Resx Utilities_ArchiveExplorer_Open}"
-                    Command="{Binding Path=OpenArchiveExplorerCommand, Mode=OneTime}" />
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="4"
-                    Content="{Resx Utilities_ArchiveExplorer_Create}"
-                    Command="{Binding Path=CreateArchiveCommand, Mode=OneTime}" />
+                <Button Grid.Column="0"
+                        Content="{Resx Utilities_ArchiveExplorer_Open}"
+                        Command="{Binding Path=OpenArchiveExplorerCommand, Mode=OneTime}" 
+                        Margin="0 0 10 0"/>
+
+                <Button Grid.Column="1"
+                        Content="{Resx Utilities_ArchiveExplorer_Create}"
+                        Command="{Binding Path=CreateArchiveCommand, Mode=OneTime}" />
+
+            </Grid>
 
         </Grid>
 

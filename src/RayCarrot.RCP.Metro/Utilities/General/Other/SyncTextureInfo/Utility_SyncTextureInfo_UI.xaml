@@ -17,14 +17,14 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="1.5*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <ComboBox Grid.Column="0"
                           ItemsSource="{Binding Path=GameModeSelection.AvailableValues, Mode=OneTime}"
-                          SelectedItem="{Binding Path=GameModeSelection.SelectedValue}">
+                          SelectedItem="{Binding Path=GameModeSelection.SelectedValue}"
+                          Margin="0 0 10 0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
@@ -32,7 +32,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <Button Grid.Column="2"
+                <Button Grid.Column="1"
                         Content="{Resx Utilities_SyncTextureInfo_Sync}"
                         Command="{Binding Path=CorrectTextureInfoCommand, Mode=OneTime}" />
 
