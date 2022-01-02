@@ -63,4 +63,7 @@ public enum GenericIconKind
     Utilities_ArchiveExplorer,
     Utilities_Ray1Editor,
     Utilities_R1PasswordGenerator,
+    Utilities_Converters,
+    Utilities_Decoders,
+    Utilities_Serializers
 }

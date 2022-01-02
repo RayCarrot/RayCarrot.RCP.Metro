@@ -17,6 +17,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     public Page_Utilities_ViewModel()
     {
         ArchiveExplorerViewModels = new ObservableCollection<UtilityViewModel>();
+        BinaryToolViewModels = new ObservableCollection<UtilityViewModel>();
         OtherViewModels = new ObservableCollection<UtilityViewModel>();
         ExternalToolViewModels = new ObservableCollection<UtilityViewModel>();
     }
@@ -28,9 +29,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     public override AppPage Page => AppPage.Utilities;
 
     public ObservableCollection<UtilityViewModel> ArchiveExplorerViewModels { get; }
-    public Utility_Serializers_ViewModel? SerializersViewModel { get; set; }
-    public Utility_Converters_ViewModel? ConvertersViewModel { get; set; }
-    public Utility_Decoders_ViewModel? DecodersViewModel { get; set; }
+    public ObservableCollection<UtilityViewModel> BinaryToolViewModels { get; }
     public ObservableCollection<UtilityViewModel> OtherViewModels { get; }
     public ObservableCollection<UtilityViewModel> ExternalToolViewModels { get; }
 
@@ -47,9 +46,12 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
             new UtilityViewModel(new Utility_ArchiveExplorer_CNT()),
             new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
         });
-        SerializersViewModel = new Utility_Serializers_ViewModel();
-        ConvertersViewModel = new Utility_Converters_ViewModel();
-        DecodersViewModel = new Utility_Decoders_ViewModel();
+        BinaryToolViewModels.AddRange(new UtilityViewModel[]
+        {
+            new UtilityViewModel(new Utility_Serializers()),
+            new UtilityViewModel(new Utility_Converters()),
+            new UtilityViewModel(new Utility_Decoders()),
+        });
         OtherViewModels.AddRange(new UtilityViewModel[]
         {
             new UtilityViewModel(new Utility_SyncTextureInfo()),
@@ -70,9 +72,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     public void Dispose()
     {
         ArchiveExplorerViewModels.DisposeAll();
-        SerializersViewModel?.Dispose();
-        ConvertersViewModel?.Dispose();
-        DecodersViewModel?.Dispose();
+        BinaryToolViewModels.DisposeAll();
         OtherViewModels.DisposeAll();
         ExternalToolViewModels.DisposeAll();
     }

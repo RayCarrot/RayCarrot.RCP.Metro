@@ -79,7 +79,8 @@
                  VerticalScrollBarVisibility="Auto"
                  HorizontalScrollBarVisibility="Auto"
                  FontFamily="{StaticResource Font.Consolas}"
-                 FontSize="14" />
+                 FontSize="14"
+                 MaxHeight="500" />
 
     </Grid>
 </UserControl>

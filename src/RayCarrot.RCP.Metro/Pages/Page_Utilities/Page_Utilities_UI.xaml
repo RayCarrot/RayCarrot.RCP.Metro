@@ -34,36 +34,16 @@
 
         </TabItem>
 
-        <!-- Serializers -->
+        <!-- Binary Tools -->
 
         <!-- TODO-UPDATE: Localize -->
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Serializers}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_BinaryTools}"
                  local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
-                 Header="Serializers">
+                 Header="Binary Tools">
 
-            <local:Utility_Serializers_UI DataContext="{Binding Path=SerializersViewModel}" />
-
-        </TabItem>
-
-        <!-- Converters -->
-
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Converters}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
-                 Header="{Resx Utilities_Converter_Header}">
-
-            <local:Utility_Converters_UI DataContext="{Binding Path=ConvertersViewModel}"
-                                         VerticalAlignment="Top" />
-
-        </TabItem>
-
-        <!-- Decoders -->
-
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Decoders}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
-                 Header="{Resx Utilities_Decoder_Header}">
-
-            <local:Utility_Decoders_UI DataContext="{Binding Path=DecodersViewModel}"
-                                       VerticalAlignment="Top"/>
+            <ScrollViewer>
+                <local:UtilitiesContainer Utilities="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
+            </ScrollViewer>
 
         </TabItem>
 

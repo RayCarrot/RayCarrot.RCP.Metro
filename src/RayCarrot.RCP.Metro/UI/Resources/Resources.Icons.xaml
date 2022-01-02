@@ -15,9 +15,7 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_BinaryTools">Hexadecimal</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
 
@@ -61,6 +59,10 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_R1PasswordGenerator">KeyOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
+
     <!-- Colors -->
 
     <SolidColorBrush x:Key="Colors.Games" Color="#9C27B0" />
@@ -246,6 +248,15 @@
                        IconColor="{StaticResource Colors.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_R1PasswordGenerator" 
                        IconKind="{StaticResource Icons.Utilities_R1PasswordGenerator}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Converters" 
+                       IconKind="{StaticResource Icons.Utilities_Converters}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Decoders" 
+                       IconKind="{StaticResource Icons.Utilities_Decoders}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_Serializers" 
+                       IconKind="{StaticResource Icons.Utilities_Serializers}"
                        IconColor="{StaticResource Colors.Utilities}" />
     
 </ResourceDictionary>
