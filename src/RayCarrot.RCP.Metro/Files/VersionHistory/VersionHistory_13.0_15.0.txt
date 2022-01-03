@@ -3,10 +3,17 @@
 	• Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
 	• If a backup was performed for a game it will now show the status, indicating if the backup is outdated
 	• The progression data for backups can now be viewed and compared to the current data
-	• More information is shown for the save slots, including an option to open its file location
 	• If the save data has been redirected to VirtualStore there will now be an option to choose the data source to use
 	• Save slots which can be imported can now also be directly edited as JSON data
 	• Games where the save data can't be imported can now still have it be exported (such as for Rayman Designer and Rayman Origins)
+• Utilities changes
+	• Added a new serializers utility with an option for showing the file serialization log
+	• The converter and decoder utilities have all been re-implemented, with some converters moved to the new serializers utility
+	• Added serializers for Rayman Raving Rabbids save files, Rayman Fiesta Run save files, Unity Player Preferences and Game Maker DS Map txt files
+	• Add a decoder for Rayman Raving Rabbids save files
+	• Removed the decoder for Rayman 1 language files
+	• The UbiArt localization file converter now produces more readable JSON files
+	• Added icons to the utility headers and normalized some layouts
 • Added cheat toggles to the Rayman Raving Rabbids config
 • Updated the Rayman Arena disc removal to make it work even when there is no available disc drive (save the changes in the config to apply the updated patch)
 
