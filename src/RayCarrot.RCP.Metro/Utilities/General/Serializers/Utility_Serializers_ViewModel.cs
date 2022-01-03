@@ -369,7 +369,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
             try
             {
-
                 await Task.Run(() =>
                 {
                     using RCPContext context = new(fileResult.SelectedFiles.First().Parent);
