@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
+[Obsolete]
 public static class OpenSpaceGFFileExtensions
 {
     /// <summary>

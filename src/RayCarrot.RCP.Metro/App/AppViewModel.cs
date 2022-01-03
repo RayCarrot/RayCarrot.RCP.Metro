@@ -145,6 +145,7 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Indicates if a serializer logger has been created during the app life-cycle
     /// </summary>
+    [Obsolete]
     private bool HasCreatedSerializerLogger { get; set; }
 
     #endregion
@@ -262,6 +263,7 @@ public class AppViewModel : BaseViewModel
     /// <param name="name">An optional name for the logging session</param>
     /// <param name="addr">An optional address for the logging session</param>
     /// <returns>The binary serializer logger</returns>
+    [Obsolete]
     public IBinarySerializerLogger? GetBinarySerializerLogger(string? name = null, long? addr = null)
     {
         if (!Services.Data.Binary_IsSerializationLogEnabled || 

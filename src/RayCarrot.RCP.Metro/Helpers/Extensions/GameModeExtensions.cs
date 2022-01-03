@@ -7,6 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Extension methods for <see cref="GameMode"/>
 /// </summary>
+[Obsolete]
 public static class GameModeExtensions
 {
     /// <summary>

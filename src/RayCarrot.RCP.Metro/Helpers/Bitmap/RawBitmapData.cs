@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace RayCarrot.RCP.Metro;
@@ -6,6 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Raw image data
 /// </summary>
+[Obsolete("Use BitmapSource instead")]
 public class RawBitmapData
 {
     /// <summary>
