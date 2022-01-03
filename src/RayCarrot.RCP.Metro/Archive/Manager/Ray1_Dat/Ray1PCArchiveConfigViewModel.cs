@@ -1,5 +1,5 @@
 ﻿using System;
-using RayCarrot.Rayman.Ray1;
+using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -16,16 +16,15 @@ public class Ray1PCArchiveConfigViewModel : BaseViewModel
     /// <param name="settings">The settings when serializing the data</param>
     public Ray1PCArchiveConfigViewModel(Ray1Settings settings)
     {
-        Settings = settings;
-
-        switch (settings.Game)
+        switch (settings.EngineVersion)
         {
-            case Ray1Game.RayEdu:
+            case Ray1EngineVersion.PC_Edu:
                 PrimaryVersion = "EDU";
                 SecondaryVersion = "EDU";
                 break;
 
-            case Ray1Game.RayKit:
+            case Ray1EngineVersion.PC_Kit:
+            case Ray1EngineVersion.PC_Fan:
                 PrimaryVersion = "KIT";
                 SecondaryVersion = "KIT";
                 break;
@@ -38,11 +37,6 @@ public class Ray1PCArchiveConfigViewModel : BaseViewModel
     #endregion
 
     #region Public Properties
-
-    /// <summary>
-    /// The settings when serializing the data
-    /// </summary>
-    public Ray1Settings Settings { get; }
 
     /// <summary>
     /// The primary version. Usually KIT, EDU or QUI.
@@ -62,11 +56,11 @@ public class Ray1PCArchiveConfigViewModel : BaseViewModel
     /// Configures the archive data with the default settings for the current settings
     /// </summary>
     /// <param name="data">The archive data to configure</param>
-    public void ConfigureArchiveData(Rayman1PCArchiveData data)
+    public void ConfigureArchiveData(PC_FileArchive data)
     {
         data.PrimaryKitHeader = PrimaryVersion;
         data.SecondaryKitHeader = SecondaryVersion;
-        data.Short_0A = 256;
+        data.Ushort_0A = 256;
     }
 
     #endregion

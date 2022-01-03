@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer;
 using BinarySerializer.Ray1;
 using ByteSizeLib;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.Ray1;
-using Ray1Settings = RayCarrot.Rayman.Ray1.Ray1Settings;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,10 +20,35 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="configViewModel">The configuration view model</param>
-    public Ray1PCArchiveDataManager(Ray1PCArchiveConfigViewModel configViewModel)
+    /// <param name="settings">The game settings</param>
+    public Ray1PCArchiveDataManager(Rayman.Ray1.Ray1Settings settings)
     {
-        Config = configViewModel;
+        Settings = settings;
+
+        Ray1EngineVersion engineVersion;
+
+        switch (settings.Game)
+        {
+            case Rayman.Ray1.Ray1Game.Rayman1:
+                engineVersion = Ray1EngineVersion.PC;
+                break;
+
+            case Rayman.Ray1.Ray1Game.RayEdu:
+                engineVersion = Ray1EngineVersion.PC_Edu;
+                break;
+
+            // TODO-UPDATE: Differentiate between KIT and FAN
+            case Rayman.Ray1.Ray1Game.RayKit:
+                engineVersion = Ray1EngineVersion.PC_Kit;
+                break;
+            
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        Ray1Settings contextSettings = new(engineVersion);
+        ContextSettings = contextSettings;
+        Config = new Ray1PCArchiveConfigViewModel(contextSettings);
     }
 
     #endregion
@@ -57,9 +79,9 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The serializer settings to use for the archive
     /// </summary>
-    public BinarySerializerSettings SerializerSettings => Settings;
+    public Binary.BinarySerializerSettings SerializerSettings => Settings;
 
-    public object ContextSettings => throw new NotImplementedException();
+    public object ContextSettings { get; }
 
     /// <summary>
     /// The default archive file name to use when creating an archive
@@ -77,7 +99,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The settings when serializing the data
     /// </summary>
-    protected Ray1Settings Settings => Config.Settings;
+    protected Rayman.Ray1.Ray1Settings Settings { get; }
 
     /// <summary>
     /// The configuration view model
@@ -97,7 +119,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
         // Get the file entry
-        var file = (Rayman1PCArchiveEntry)fileEntry;
+        var file = (PC_FileArchiveEntry)fileEntry;
 
         // Update the size
         file.FileSize = (uint)inputStream.Length;
@@ -105,9 +127,12 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         // Remove the encryption
         file.XORKey = 0;
 
+        // TODO-UPDATE: Do this when writing
         // Calculate the checksum
         Checksum8Calculator c = new();
-        c.AddBytes(inputStream.ReadRemainingBytes());
+        var buffer = new byte[inputStream.Length - inputStream.Position];
+        inputStream.Read(buffer, 0, buffer.Length);
+        c.AddBytes(buffer, 0, buffer.Length);
         file.Checksum = c.ChecksumValue;
 
         inputStream.Position = 0;
@@ -121,11 +146,11 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="fileEntry">The file entry for the file to decode</param>
     public void DecodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
-        var entry = (Rayman1PCArchiveEntry)fileEntry;
+        var entry = (PC_FileArchiveEntry)fileEntry;
 
         if (entry.XORKey != 0)
             // Decrypt the bytes
-            new XORDataEncoder(entry.XORKey).Decode(inputStream, outputStream);
+            new Rayman.XORDataEncoder(entry.XORKey).Decode(inputStream, outputStream);
     }
 
     /// <summary>
@@ -134,7 +159,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<Rayman1PCArchiveEntry>>().GetFileStream((Rayman1PCArchiveEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<Rayman.IArchiveFileGenerator<PC_FileArchiveEntry>>().GetFileStream((PC_FileArchiveEntry)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -148,23 +173,24 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         Logger.Info("An R1 PC archive is being repacked...");
 
         // Get the archive data
-        var data = (Rayman1PCArchiveData)archive;
+        var data = (PC_FileArchive)archive;
 
         // Create the file generator
-        using ArchiveFileGenerator<Rayman1PCArchiveEntry> fileGenerator = new();
+        using Rayman.ArchiveFileGenerator<PC_FileArchiveEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
         {
-            Entry = (Rayman1PCArchiveEntry)x.ArchiveEntry,
+            Entry = (PC_FileArchiveEntry)x.ArchiveEntry,
             FileItem = x
         }).ToArray();
 
         // Set files and directories
-        data.Files = archiveFiles.Select(x => x.Entry).ToArray();
+        data.Entries = archiveFiles.Select(x => x.Entry).ToArray();
 
         // Set the current pointer position to the header size
-        uint pointer = data.GetHeaderSize(Settings);
+        data.RecalculateSize();
+        uint pointer = (uint)data.Size;
 
         // Load each file
         foreach (var file in archiveFiles)
@@ -173,7 +199,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             file.Entry.FileName = ProcessFileName(file.Entry.FileName);
 
             // Get the file entry
-            Rayman1PCArchiveEntry entry = file.Entry;
+            PC_FileArchiveEntry entry = file.Entry;
 
             // Add to the generator
             fileGenerator.Add(entry, () =>
@@ -194,13 +220,29 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             });
         }
 
-        // Write the files
-        data.WriteArchiveContent(outputFileStream, fileGenerator);
+        // Make sure we have a generator for each file
+        if (fileGenerator.Count != data.Entries.Length)
+            throw new Binary.BinarySerializableException("The .dat file can't be serialized without a file generator for each file");
+
+        // Write the file contents
+        foreach (PC_FileArchiveEntry file in data.Entries)
+        {
+            // Get the file stream
+            using Stream fileStream = fileGenerator.GetFileStream(file);
+
+            // Set the position to the pointer
+            outputFileStream.Position = file.FileOffset;
+
+            // Write the contents from the generator
+            fileStream.CopyTo(outputFileStream);
+        }
 
         outputFileStream.Position = 0;
 
         // Serialize the data
-        BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((Ray1Settings)ContextSettings);
+        c.WriteStreamData(outputFileStream, data, leaveOpen: true);
 
         Logger.Info("The R1 PC archive has been repacked");
     }
@@ -215,7 +257,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
     {
         // Get the data
-        var data = (Rayman1PCArchiveData)archive;
+        var data = (PC_FileArchive)archive;
 
         Logger.Info("The files are being retrieved for an R1 PC archive");
 
@@ -224,8 +266,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         // Return the data
         return new ArchiveData(new ArchiveDirectory[]
         {
-            new ArchiveDirectory(String.Empty, data.Files.Select(f => new ArchiveFileItem(this, $"{f.FileName}{fileExt}", String.Empty, f)).ToArray())
-        }, data.GetArchiveContent(archiveFileStream));
+            new ArchiveDirectory(String.Empty, data.Entries.Select(f => new ArchiveFileItem(this, $"{f.FileName}{fileExt}", String.Empty, f)).ToArray())
+        }, new Rayman1PCArchiveGenerator(archiveFileStream));
     }
 
     /// <summary>
@@ -239,9 +281,11 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        Rayman1PCArchiveData data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((Ray1Settings)ContextSettings);
+        PC_FileArchive data = c.ReadStreamData<PC_FileArchive>(archiveFileStream, leaveOpen: true);
 
-        Logger.Info("Read R1 PC archive file with {0} files", data.Files.Length);
+        Logger.Info("Read R1 PC archive file with {0} files", data.Entries.Length);
 
         return data;
     }
@@ -253,7 +297,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public object CreateArchive()
     {
         // Create the archive data
-        Rayman1PCArchiveData archive = new();
+        PC_FileArchive archive = new();
 
         Config.ConfigureArchiveData(archive);
 
@@ -268,12 +312,12 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The info items to display</returns>
     public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
     {
-        var entry = (Rayman1PCArchiveEntry)fileEntry;
-        var archiveData = (Rayman1PCArchiveData)archive;
+        var entry = (PC_FileArchiveEntry)fileEntry;
+        var archiveData = (PC_FileArchive)archive;
 
         yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
 
-        if (archiveData.Files.Contains(entry))
+        if (archiveData.Entries.Contains(entry))
             yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.FileOffset:X8}", UserLevel.Technical);
             
         yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.XORKey != 0}", UserLevel.Advanced);
@@ -288,7 +332,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The file entry object</returns>
     public object GetNewFileEntry(object archive, string directory, string fileName)
     {
-        return new Rayman1PCArchiveEntry()
+        return new PC_FileArchiveEntry()
         {
             FileName = ProcessFileName(fileName)
         };
@@ -309,7 +353,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <returns>The size, or null if it could not be determined</returns>
     public long? GetFileSize(object fileEntry, bool encoded)
     {
-        var entry = (Rayman1PCArchiveEntry)fileEntry;
+        var entry = (PC_FileArchiveEntry)fileEntry;
 
         return entry.FileSize;
     }
@@ -341,6 +385,62 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             Where(x => !nonArchiveDatFiles.Any(f => Path.GetFileName(x).Equals(f, StringComparison.OrdinalIgnoreCase))).
             Select(x => new FileSystemPath(x)).
             ToArray();
+    }
+
+    #endregion
+
+    #region Classes
+
+    /// <summary>
+    /// The archive file generator for .cnt files
+    /// </summary>
+    private class Rayman1PCArchiveGenerator : Rayman.IArchiveFileGenerator<PC_FileArchiveEntry>
+    {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="archiveStream">The archive file stream</param>
+        public Rayman1PCArchiveGenerator(Stream archiveStream)
+        {
+            // Get the stream
+            Stream = archiveStream;
+        }
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        protected Stream Stream { get; }
+
+        /// <summary>
+        /// Gets the number of files which can be retrieved from the generator
+        /// </summary>
+        public int Count => throw new InvalidOperationException("The count can not be retrieved for this generator");
+
+        /// <summary>
+        /// Gets the file stream for the specified key
+        /// </summary>
+        /// <param name="fileEntry">The file entry to get the stream for</param>
+        /// <returns>The stream</returns>
+        public Stream GetFileStream(PC_FileArchiveEntry fileEntry)
+        {
+            // Set the position
+            Stream.Position = fileEntry.FileOffset;
+
+            // Create the buffer
+            byte[] buffer = new byte[fileEntry.FileSize];
+
+            // Read the bytes into the buffer
+            Stream.Read(buffer, 0, buffer.Length);
+
+            // Return the buffer
+            return new MemoryStream(buffer);
+        }
+
+        /// <summary>
+        /// Disposes the generator
+        /// </summary>
+        public void Dispose()
+        { }
     }
 
     #endregion

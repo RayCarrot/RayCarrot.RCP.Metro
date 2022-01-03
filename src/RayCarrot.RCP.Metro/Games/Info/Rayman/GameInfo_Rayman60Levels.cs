@@ -69,7 +69,7 @@ public sealed class GameInfo_Rayman60Levels : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(new Ray1PCArchiveConfigViewModel(Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC)));
+    public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC));
 
     /// <summary>
     /// Gets the archive file paths for the game

@@ -34,7 +34,7 @@ public class Utility_ArchiveExplorer_R1_ViewModel : Utility_BaseArchiveExplorer_
         var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
         var gameSettings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
 
-        return new Ray1PCArchiveDataManager(new Ray1PCArchiveConfigViewModel(gameSettings));
+        return new Ray1PCArchiveDataManager(gameSettings);
     }
 
     /// <summary>
