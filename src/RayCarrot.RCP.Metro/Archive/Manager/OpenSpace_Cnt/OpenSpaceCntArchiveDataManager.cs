@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer.OpenSpace;
 using ByteSizeLib;
 using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
+using OpenSpaceSettings = RayCarrot.Rayman.OpenSpace.OpenSpaceSettings;
+using Platform = RayCarrot.Rayman.Platform;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -22,7 +25,50 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
-    public OpenSpaceCntArchiveDataManager(OpenSpaceSettings settings) => Settings = settings;
+    public OpenSpaceCntArchiveDataManager(OpenSpaceSettings settings)
+    {
+        Settings = settings;
+
+        BinarySerializer.OpenSpace.Platform platform = settings.Platform switch
+        {
+            Platform.Nintendo64 => BinarySerializer.OpenSpace.Platform.Nintendo64,
+            Platform.GameCube => BinarySerializer.OpenSpace.Platform.NintendoGameCube,
+            Platform.NintendoDS => BinarySerializer.OpenSpace.Platform.NintendoDS,
+            Platform.Nintendo3DS => BinarySerializer.OpenSpace.Platform.Nintendo3DS,
+            Platform.DreamCast => BinarySerializer.OpenSpace.Platform.Dreamcast,
+            Platform.PlayStation2 => BinarySerializer.OpenSpace.Platform.PlayStation2,
+            Platform.PlayStation3 => BinarySerializer.OpenSpace.Platform.PlayStation3,
+            Platform.Xbox360 => BinarySerializer.OpenSpace.Platform.Xbox360,
+            Platform.PC => BinarySerializer.OpenSpace.Platform.PC,
+            Platform.Mac => BinarySerializer.OpenSpace.Platform.Mac,
+            Platform.iOS => BinarySerializer.OpenSpace.Platform.iOS,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        EngineVersion engineVersion = settings.Game switch
+        {
+            OpenSpaceGame.TonicTrouble => EngineVersion.TonicTrouble,
+            OpenSpaceGame.TonicTroubleSpecialEdition => EngineVersion.TonicTroubleSpecialEdition,
+            OpenSpaceGame.PlaymobilHype => EngineVersion.PlaymobilHype,
+            OpenSpaceGame.PlaymobilAlex => EngineVersion.PlaymobilAlex,
+            OpenSpaceGame.PlaymobilLaura => EngineVersion.PlaymobilLaura,
+            OpenSpaceGame.Rayman2 => EngineVersion.Rayman2,
+            OpenSpaceGame.Rayman2Demo => EngineVersion.Rayman2Demo,
+            OpenSpaceGame.Rayman2Revolution => EngineVersion.Rayman2Revolution,
+            OpenSpaceGame.RaymanRush => EngineVersion.RaymanRush,
+            OpenSpaceGame.RaymanRavingRabbids => EngineVersion.RaymanRavingRabbids,
+            OpenSpaceGame.DonaldDuckQuackAttack => EngineVersion.DonaldDuckQuackAttack,
+            OpenSpaceGame.RaymanM => EngineVersion.RaymanM,
+            OpenSpaceGame.RaymanArena => EngineVersion.RaymanArena,
+            OpenSpaceGame.Rayman3 => EngineVersion.Rayman3,
+            OpenSpaceGame.DonaldDuckPK => EngineVersion.DonaldDuckPK,
+            OpenSpaceGame.Dinosaur => EngineVersion.Dinosaur,
+            OpenSpaceGame.LargoWinch => EngineVersion.LargoWinch,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        ContextSettings = new BinarySerializer.OpenSpace.OpenSpaceSettings(engineVersion, platform);
+    }
 
     #endregion
 
@@ -53,6 +99,8 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// The serializer settings to use for the archive
     /// </summary>
     public BinarySerializerSettings SerializerSettings => Settings;
+
+    public object ContextSettings { get; }
 
     /// <summary>
     /// The default archive file name to use when creating an archive

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer.Ray1;
 using ByteSizeLib;
 using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
+using Ray1Settings = RayCarrot.Rayman.Ray1.Ray1Settings;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -56,6 +58,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// The serializer settings to use for the archive
     /// </summary>
     public BinarySerializerSettings SerializerSettings => Settings;
+
+    public object ContextSettings => throw new NotImplementedException();
 
     /// <summary>
     /// The default archive file name to use when creating an archive

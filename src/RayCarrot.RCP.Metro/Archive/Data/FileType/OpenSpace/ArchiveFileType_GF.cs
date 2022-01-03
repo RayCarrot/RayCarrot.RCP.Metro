@@ -4,11 +4,10 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using BinarySerializer.OpenSpace;
 using MahApps.Metro.IconPacks;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Rayman.OpenSpace;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro;
@@ -41,7 +40,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// </summary>
     /// <param name="manager">The manager to check</param>
     /// <returns>True if supported, otherwise false</returns>
-    public bool IsSupported(IArchiveDataManager manager) => manager.SerializerSettings is OpenSpaceSettings;
+    public bool IsSupported(IArchiveDataManager manager) => manager.ContextSettings is OpenSpaceSettings;
 
     /// <summary>
     /// Indicates if a file with the specifies file extension is of this type
@@ -91,7 +90,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Load the file
-        OpenSpaceGFFile file = GetFileContent(inputStream.Stream, manager);
+        GF file = GetFileContent(inputStream.Stream, manager);
 
         // Load the raw bitmap data
         RawBitmapData rawBmp = file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width)));
@@ -105,9 +104,9 @@ public class ArchiveFileType_GF : IArchiveFileType
         return new ArchiveFileThumbnailData(thumbnailSource, new DuoGridItemViewModel[]
         {
             new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{file.Width}x{file.Height}"),
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_HasAlpha, $"{file.GFPixelFormat.SupportsTransparency()}"),
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Mipmaps, $"{file.RealMipmapCount}"),
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{file.GFPixelFormat.ToString().Replace("Format_", "")}", UserLevel.Technical),
+            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_HasAlpha, $"{file.PixelFormat.SupportsTransparency()}"),
+            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Mipmaps, $"{file.ExclusiveMipmapCount}"),
+            new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{file.PixelFormat.ToString().Replace("Format_", "")}", UserLevel.Technical),
         });
     }
 
@@ -153,7 +152,7 @@ public class ArchiveFileType_GF : IArchiveFileType
         using Bitmap bmp = new Bitmap(inputStream);
 
         // Load the current file
-        OpenSpaceGFFile gf = GetFileContent(currentFileStream.Stream, manager);
+        GF gf = GetFileContent(currentFileStream.Stream, manager);
 
         // IDEA: If bmp is not in supported format, then convert it?
 
@@ -167,7 +166,7 @@ public class ArchiveFileType_GF : IArchiveFileType
 
             // Force the new pixel format to be 888 or 8888 if set to do so
             if (Services.Data.Archive_GF_ForceGF8888Import)
-                gf.GFPixelFormat = gf.GFPixelFormat.SupportsTransparency() ? OpenSpaceGFFormat.Format_32bpp_BGRA_8888 : OpenSpaceGFFormat.Format_24bpp_BGR_888;
+                gf.PixelFormat = gf.PixelFormat.SupportsTransparency() ? GF_Format.Format_32bpp_BGRA_8888 : GF_Format.Format_24bpp_BGR_888;
 
             // Check if the format should be updated for transparency
             if (Services.Data.Archive_GF_UpdateTransparency != UserData_Archive_GF_TransparencyMode.PreserveFormat)
@@ -186,19 +185,21 @@ public class ArchiveFileType_GF : IArchiveFileType
                 // Check if the format should be updated for transparency
                 if (gf.Channels >= 3 && isTransparent != null)
                     // Update the format
-                    gf.GFPixelFormat = isTransparent.Value ? OpenSpaceGFFormat.Format_32bpp_BGRA_8888 : OpenSpaceGFFormat.Format_24bpp_BGR_888;
+                    gf.PixelFormat = isTransparent.Value ? GF_Format.Format_32bpp_BGRA_8888 : GF_Format.Format_24bpp_BGR_888;
             }
         }
 
         byte oldRepeatByte = gf.RepeatByte;
 
         // Import the bitmap
-        gf.ImportFromBitmap((OpenSpaceSettings)manager.SerializerSettings, rawBitmapData, Services.Data.Archive_GF_GenerateMipmaps);
+        gf.ImportFromBitmap((OpenSpaceSettings)manager.ContextSettings, rawBitmapData, Services.Data.Archive_GF_GenerateMipmaps);
 
         Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 
         // Serialize the data to get the bytes
-        BinarySerializableHelpers.WriteToStream(gf, outputStream, manager.SerializerSettings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((OpenSpaceSettings)manager.ContextSettings);
+        c.WriteStreamData(outputStream, gf, leaveOpen: true);
     }
 
     #endregion
@@ -211,10 +212,13 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// <param name="fileStream">The file stream</param>
     /// <param name="manager">The data manager</param>
     /// <returns>The deserialized file</returns>
-    public OpenSpaceGFFile GetFileContent(Stream fileStream, IArchiveDataManager manager)
+    public GF GetFileContent(Stream fileStream, IArchiveDataManager manager)
     {
-        // Serialize the data
-        return BinarySerializableHelpers.ReadFromStream<OpenSpaceGFFile>(fileStream, manager.SerializerSettings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+
+        c.AddSettings((OpenSpaceSettings)manager.ContextSettings);
+
+        return c.ReadStreamData<GF>(fileStream, leaveOpen: true);
     }
 
     #endregion

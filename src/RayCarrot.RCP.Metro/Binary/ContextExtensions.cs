@@ -21,6 +21,18 @@ public static class ContextExtensions
         return FileFactory.Read<T>(fileName, context);
     }
 
+    public static T ReadStreamData<T>(this Context context, Stream stream, Endian endian = Endian.Little, bool leaveOpen = false)
+        where T : BinarySerializable, new()
+    {
+        const string name = "Stream";
+
+        BinaryFile file = new StreamFile(context, name, stream, endian, leaveOpen: leaveOpen);
+
+        context.AddFile(file);
+
+        return FileFactory.Read<T>(name, context);
+    }
+
     public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
         where T : BinarySerializable, new()
     {
@@ -37,5 +49,17 @@ public static class ContextExtensions
         context.AddFile(file);
 
         FileFactory.Write(fileName, obj, context);
+    }
+
+    public static void WriteStreamData<T>(this Context context, Stream stream, T obj, Endian endian = Endian.Little, bool leaveOpen = false)
+        where T : BinarySerializable, new()
+    {
+        const string name = "Stream";
+
+        BinaryFile file = new StreamFile(context, name, stream, endian, leaveOpen: leaveOpen);
+
+        context.AddFile(file);
+
+        FileFactory.Write(name, obj, context);
     }
 }

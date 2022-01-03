@@ -29,7 +29,8 @@ public interface IArchiveDataManager
     /// <summary>
     /// The serializer settings to use for the archive
     /// </summary>
-    BinarySerializerSettings SerializerSettings { get; }
+    BinarySerializerSettings SerializerSettings { get; } // Old
+    object ContextSettings { get; } // New, keep here while migrating to BinarySerializer
 
     /// <summary>
     /// The default archive file name to use when creating an archive

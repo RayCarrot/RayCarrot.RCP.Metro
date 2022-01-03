@@ -57,6 +57,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// </summary>
     public BinarySerializerSettings SerializerSettings => Settings;
 
+    public object ContextSettings => throw new NotImplementedException();
+
     /// <summary>
     /// The default archive file name to use when creating an archive
     /// </summary>
