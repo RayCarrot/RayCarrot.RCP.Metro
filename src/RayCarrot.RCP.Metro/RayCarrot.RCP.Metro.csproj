@@ -24,7 +24,7 @@
     <RootNamespace>RayCarrot.RCP.Metro</RootNamespace>
     <AssemblyName>RayCarrot.RCP.Metro</AssemblyName>
     <ApplicationIcon>Img\RCP_Metro.ico</ApplicationIcon>
-    <Version>12.1.0.0</Version>
+    <Version>13.0.0.0</Version>
     <Authors>RayCarrot</Authors>
     <Product>Rayman Control Panel</Product>
     <RepositoryUrl>https://github.com/RayCarrot/RayCarrot.RCP.Metro</RepositoryUrl>
@@ -142,9 +142,10 @@
     <EmbeddedResource Include="costura32\Magick.Native-Q8-x86.dll" />
 
     <!-- Resources -->
+    <Resource Include="Files\VersionHistory\VersionHistory_04.0_06.0.txt" />
     <Resource Include="Files\VersionHistory\VersionHistory_07.0_09.0.txt" />
     <Resource Include="Files\VersionHistory\VersionHistory_10.0_12.0.txt" />
-    <Resource Include="Files\VersionHistory\VersionHistory_04.0_06.0.txt" />
+    <Resource Include="Files\VersionHistory\VersionHistory_13.0_15.0.txt" />
     <Resource Include="Files\License.txt" />
     <Resource Include="Fonts\RaymanOrigins.ttf" />
     <Resource Include="Img\RCP_Metro.ico" />
@@ -168,11 +169,21 @@
 
   <!-- Resource files (resx) -->
   <ItemGroup>
+    <Compile Update="Files\Files.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Files.resx</DependentUpon>
+    </Compile>
     <Compile Update="Localization\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Update="Files\Files.resx">
+      <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Files.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Localization\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

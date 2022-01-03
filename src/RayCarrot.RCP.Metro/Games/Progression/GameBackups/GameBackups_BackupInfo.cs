@@ -160,7 +160,7 @@ public class GameBackups_BackupInfo
                 ToArray() ?? Array.Empty<BackupSearchPattern>();
 
         if (BackupDirectories.GroupBy(x => x.ID).Any(x => x.Count() > 1))
-            throw new InvalidOperationException("Multiple backup directories can not use the same ID starting from version 12.2.0");
+            throw new InvalidOperationException("Multiple backup directories can not use the same ID starting from version 13.0.0");
     }
 
     #endregion

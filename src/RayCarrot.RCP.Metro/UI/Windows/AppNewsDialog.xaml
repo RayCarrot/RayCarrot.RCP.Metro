@@ -61,10 +61,18 @@
 
             <TabItem local:TabItemAssist.IconKind="History"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
-                     IsSelected="True"
                      Header="10.0 - 12.0">
 
                 <TextBox Text="{Binding Source={x:Static local:Files.VersionHistory_10_0_12_0}, Mode=OneTime}" />
+
+            </TabItem>
+
+            <TabItem local:TabItemAssist.IconKind="History"
+                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                     IsSelected="True"
+                     Header="13.0 - 15.0">
+
+                <TextBox Text="{Binding Source={x:Static local:Files.VersionHistory_13_0_15_0}, Mode=OneTime}" />
 
             </TabItem>
 

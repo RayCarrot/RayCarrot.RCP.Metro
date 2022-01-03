@@ -175,4 +175,7 @@
   <data name="VersionHistory_10_0_12_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>versionhistory\versionhistory_10.0_12.0.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="VersionHistory_13.0_15.0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>versionhistory\versionhistory_13.0_15.0.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>
