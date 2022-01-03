@@ -312,7 +312,7 @@
 
         <TabItem local:TabItemAssist.IconKind="PaletteOutline"
                  local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
-                 Header="Theme">
+                 Header="User Interface">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
@@ -333,6 +333,19 @@
                         <Button Content="Apply"
                                 HorizontalAlignment="Left"
                                 Command="{Binding Path=UpdateThemeCommand, Mode=OneTime}"/>
+
+                    </StackPanel>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="Options"
+                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+
+                        <CheckBox Content="Show grid lines"
+                                  IsChecked="{Binding Path=ShowGridLines}" />
 
                     </StackPanel>
 

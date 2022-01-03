@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using ControlzEx.Theming;
@@ -58,6 +59,12 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Private Fields
+
+    private bool _showGridLines;
+
+    #endregion
+
     #region Public Properties
 
     /// <summary>
@@ -88,6 +95,28 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
     public Games SelectedInstaller { get; set; }
 
     public Color SelectedAccentColor { get; set; }
+
+    public bool ShowGridLines
+    {
+        get => _showGridLines;
+        set
+        {
+            _showGridLines = value;
+
+            Application app = Application.Current;
+            
+            if (_showGridLines)
+                app.Resources.Add(typeof(Grid), new Style(typeof(Grid))
+                {
+                    Setters =
+                    {
+                        new Setter(Grid.ShowGridLinesProperty, true)
+                    }
+                });
+            else
+                app.Resources.Remove(typeof(Grid));
+        }
+    }
 
     #endregion
 
