@@ -7,10 +7,6 @@ using ByteSizeLib;
 using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
-using OpenSpaceSettings = RayCarrot.Rayman.OpenSpace.OpenSpaceSettings;
-using Platform = RayCarrot.Rayman.Platform;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -25,49 +21,49 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
-    public OpenSpaceCntArchiveDataManager(OpenSpaceSettings settings)
+    public OpenSpaceCntArchiveDataManager(Rayman.OpenSpace.OpenSpaceSettings settings)
     {
         Settings = settings;
 
-        BinarySerializer.OpenSpace.Platform platform = settings.Platform switch
+        Platform platform = settings.Platform switch
         {
-            Platform.Nintendo64 => BinarySerializer.OpenSpace.Platform.Nintendo64,
-            Platform.GameCube => BinarySerializer.OpenSpace.Platform.NintendoGameCube,
-            Platform.NintendoDS => BinarySerializer.OpenSpace.Platform.NintendoDS,
-            Platform.Nintendo3DS => BinarySerializer.OpenSpace.Platform.Nintendo3DS,
-            Platform.DreamCast => BinarySerializer.OpenSpace.Platform.Dreamcast,
-            Platform.PlayStation2 => BinarySerializer.OpenSpace.Platform.PlayStation2,
-            Platform.PlayStation3 => BinarySerializer.OpenSpace.Platform.PlayStation3,
-            Platform.Xbox360 => BinarySerializer.OpenSpace.Platform.Xbox360,
-            Platform.PC => BinarySerializer.OpenSpace.Platform.PC,
-            Platform.Mac => BinarySerializer.OpenSpace.Platform.Mac,
-            Platform.iOS => BinarySerializer.OpenSpace.Platform.iOS,
+            Rayman.Platform.Nintendo64 => Platform.Nintendo64,
+            Rayman.Platform.GameCube => Platform.NintendoGameCube,
+            Rayman.Platform.NintendoDS => Platform.NintendoDS,
+            Rayman.Platform.Nintendo3DS => Platform.Nintendo3DS,
+            Rayman.Platform.DreamCast => Platform.Dreamcast,
+            Rayman.Platform.PlayStation2 => Platform.PlayStation2,
+            Rayman.Platform.PlayStation3 => Platform.PlayStation3,
+            Rayman.Platform.Xbox360 => Platform.Xbox360,
+            Rayman.Platform.PC => Platform.PC,
+            Rayman.Platform.Mac => Platform.Mac,
+            Rayman.Platform.iOS => Platform.iOS,
             _ => throw new ArgumentOutOfRangeException()
         };
 
         EngineVersion engineVersion = settings.Game switch
         {
-            OpenSpaceGame.TonicTrouble => EngineVersion.TonicTrouble,
-            OpenSpaceGame.TonicTroubleSpecialEdition => EngineVersion.TonicTroubleSpecialEdition,
-            OpenSpaceGame.PlaymobilHype => EngineVersion.PlaymobilHype,
-            OpenSpaceGame.PlaymobilAlex => EngineVersion.PlaymobilAlex,
-            OpenSpaceGame.PlaymobilLaura => EngineVersion.PlaymobilLaura,
-            OpenSpaceGame.Rayman2 => EngineVersion.Rayman2,
-            OpenSpaceGame.Rayman2Demo => EngineVersion.Rayman2Demo,
-            OpenSpaceGame.Rayman2Revolution => EngineVersion.Rayman2Revolution,
-            OpenSpaceGame.RaymanRush => EngineVersion.RaymanRush,
-            OpenSpaceGame.RaymanRavingRabbids => EngineVersion.RaymanRavingRabbids,
-            OpenSpaceGame.DonaldDuckQuackAttack => EngineVersion.DonaldDuckQuackAttack,
-            OpenSpaceGame.RaymanM => EngineVersion.RaymanM,
-            OpenSpaceGame.RaymanArena => EngineVersion.RaymanArena,
-            OpenSpaceGame.Rayman3 => EngineVersion.Rayman3,
-            OpenSpaceGame.DonaldDuckPK => EngineVersion.DonaldDuckPK,
-            OpenSpaceGame.Dinosaur => EngineVersion.Dinosaur,
-            OpenSpaceGame.LargoWinch => EngineVersion.LargoWinch,
+            Rayman.OpenSpace.OpenSpaceGame.TonicTrouble => EngineVersion.TonicTrouble,
+            Rayman.OpenSpace.OpenSpaceGame.TonicTroubleSpecialEdition => EngineVersion.TonicTroubleSpecialEdition,
+            Rayman.OpenSpace.OpenSpaceGame.PlaymobilHype => EngineVersion.PlaymobilHype,
+            Rayman.OpenSpace.OpenSpaceGame.PlaymobilAlex => EngineVersion.PlaymobilAlex,
+            Rayman.OpenSpace.OpenSpaceGame.PlaymobilLaura => EngineVersion.PlaymobilLaura,
+            Rayman.OpenSpace.OpenSpaceGame.Rayman2 => EngineVersion.Rayman2,
+            Rayman.OpenSpace.OpenSpaceGame.Rayman2Demo => EngineVersion.Rayman2Demo,
+            Rayman.OpenSpace.OpenSpaceGame.Rayman2Revolution => EngineVersion.Rayman2Revolution,
+            Rayman.OpenSpace.OpenSpaceGame.RaymanRush => EngineVersion.RaymanRush,
+            Rayman.OpenSpace.OpenSpaceGame.RaymanRavingRabbids => EngineVersion.RaymanRavingRabbids,
+            Rayman.OpenSpace.OpenSpaceGame.DonaldDuckQuackAttack => EngineVersion.DonaldDuckQuackAttack,
+            Rayman.OpenSpace.OpenSpaceGame.RaymanM => EngineVersion.RaymanM,
+            Rayman.OpenSpace.OpenSpaceGame.RaymanArena => EngineVersion.RaymanArena,
+            Rayman.OpenSpace.OpenSpaceGame.Rayman3 => EngineVersion.Rayman3,
+            Rayman.OpenSpace.OpenSpaceGame.DonaldDuckPK => EngineVersion.DonaldDuckPK,
+            Rayman.OpenSpace.OpenSpaceGame.Dinosaur => EngineVersion.Dinosaur,
+            Rayman.OpenSpace.OpenSpaceGame.LargoWinch => EngineVersion.LargoWinch,
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        ContextSettings = new BinarySerializer.OpenSpace.OpenSpaceSettings(engineVersion, platform);
+        ContextSettings = new OpenSpaceSettings(engineVersion, platform);
     }
 
     #endregion
@@ -112,7 +108,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// </summary>
     public object? GetCreatorUIConfig => null;
 
-    public OpenSpaceSettings Settings { get; }
+    public Rayman.OpenSpace.OpenSpaceSettings Settings { get; }
 
     #endregion
 
@@ -127,10 +123,10 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
         // Get the file entry
-        var file = (OpenSpaceCntFileEntry)fileEntry;
+        var file = (CNT_File)fileEntry;
 
         // Update the size
-        file.Size = (uint)inputStream.Length;
+        file.FileSize = (uint)inputStream.Length;
 
         // Remove the encryption
         file.FileXORKey = new byte[4];
@@ -144,11 +140,11 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <param name="fileEntry">The file entry for the file to decode</param>
     public void DecodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
-        var entry = (OpenSpaceCntFileEntry)fileEntry;
+        var entry = (CNT_File)fileEntry;
 
         if (entry.FileXORKey.Any(x => x != 0))
             // Decrypt the bytes
-            new MultiXORDataEncoder(entry.FileXORKey, true).Decode(inputStream, outputStream);
+            new Rayman.MultiXORDataEncoder(entry.FileXORKey, true).Decode(inputStream, outputStream);
     }
 
     /// <summary>
@@ -157,7 +153,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetFileStream((OpenSpaceCntFileEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<Rayman.IArchiveFileGenerator<CNT_File>>().GetFileStream((CNT_File)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -171,15 +167,15 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         Logger.Info("A CNT archive is being repacked...");
 
         // Get the archive data
-        var data = (OpenSpaceCntData)archive;
+        var data = (CNT)archive;
 
         // Create the file generator
-        using ArchiveFileGenerator<OpenSpaceCntFileEntry> fileGenerator = new();
+        using Rayman.ArchiveFileGenerator<CNT_File> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
         {
-            Entry = (OpenSpaceCntFileEntry)x.ArchiveEntry,
+            Entry = (CNT_File)x.ArchiveEntry,
             FileItem = x
         }).ToArray();
 
@@ -193,25 +189,25 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
             file.Entry.DirectoryIndex = file.FileItem.Directory == String.Empty ? -1 : data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
 
         // Set the current pointer position to the header size
-        uint pointer = data.GetHeaderSize(Settings);
+        data.RecalculateSize();
+        uint pointer = (uint)data.Size;
 
         // Disable checksum
         data.IsChecksumUsed = false;
-        data.DirChecksum = 0;
 
         // NOTE: We can't disable the XOR key entirely as that would disable it for the file bytes too, which would require them all to be decrypted
         // Reset XOR keys
-        data.XORKey = 0;
+        data.StringsXORKey = 0;
 
         // Load each file
         foreach (var file in archiveFiles)
         {
             // Get the file entry
-            OpenSpaceCntFileEntry entry = file.Entry;
+            CNT_File entry = file.Entry;
 
             // Reset checksum and XOR key
-            entry.Checksum = 0;
-            entry.XORKey = 0;
+            entry.FileChecksum = 0;
+            entry.Pre_FileNameXORKey = 0;
 
             // Add to the generator
             fileGenerator.Add(entry, () =>
@@ -220,10 +216,10 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
                 Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
                 // Set the pointer
-                entry.Pointer = pointer;
+                entry.FileOffset = pointer;
 
                 // Update the pointer by the file size
-                pointer += entry.Size;
+                pointer += entry.FileSize;
 
                 // Invoke event
                 OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
@@ -232,13 +228,29 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
             });
         }
 
-        // Write the files
-        data.WriteArchiveContent(outputFileStream, fileGenerator);
+        // Make sure we have a generator for each file
+        if (fileGenerator.Count != data.Files.Length)
+            throw new BinarySerializableException("The .cnt file can't be serialized without a file generator for each file");
+
+        // Write the file contents
+        foreach (CNT_File file in data.Files)
+        {
+            // Get the file stream
+            using Stream fileStream = fileGenerator.GetFileStream(file);
+
+            // Set the position to the pointer
+            outputFileStream.Position = file.FileOffset;
+
+            // Write the contents from the generator
+            fileStream.CopyTo(outputFileStream);
+        }
 
         outputFileStream.Position = 0;
 
         // Serialize the data
-        BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((OpenSpaceSettings)ContextSettings);
+        c.WriteStreamData(outputFileStream, data, leaveOpen: true);
 
         Logger.Info("The CNT archive has been repacked");
     }
@@ -253,7 +265,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
     {
         // Get the data
-        var data = (OpenSpaceCntData)archive;
+        var data = (CNT)archive;
 
         Logger.Info("The directories are being retrieved for a CNT archive");
 
@@ -278,7 +290,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         }
 
         // Return the data
-        return new ArchiveData(GetDirectories(), data.GetArchiveContent(archiveFileStream));
+        return new ArchiveData(GetDirectories(), new CNTFileGenerator(archiveFileStream));
     }
 
     /// <summary>
@@ -292,7 +304,9 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        OpenSpaceCntData data = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((OpenSpaceSettings)ContextSettings);
+        CNT data = c.ReadStreamData<CNT>(archiveFileStream, leaveOpen: true);
 
         Logger.Info("Read CNT file with {0} files and {1} directories", data.Files.Length, data.Directories.Length);
 
@@ -306,7 +320,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     public object CreateArchive()
     {
         // Create the .cnt data
-        return new OpenSpaceCntData
+        return new CNT
         {
             // Disable the XOR encryption
             IsXORUsed = false
@@ -321,13 +335,13 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <returns>The info items to display</returns>
     public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
     {
-        var entry = (OpenSpaceCntFileEntry)fileEntry;
-        var cnt = (OpenSpaceCntData)archive;
+        var entry = (CNT_File)fileEntry;
+        var cnt = (CNT)archive;
 
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.Size)}");
+        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
 
         if (cnt.Files.Contains(entry))
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Pointer:X8}", UserLevel.Technical);
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.FileOffset:X8}", UserLevel.Technical);
             
         yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
     }
@@ -341,7 +355,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <returns>The file entry object</returns>
     public object GetNewFileEntry(object archive, string directory, string fileName)
     {
-        return new OpenSpaceCntFileEntry()
+        return new CNT_File()
         {
             FileName = fileName
         };
@@ -355,9 +369,9 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <returns>The size, or null if it could not be determined</returns>
     public long? GetFileSize(object fileEntry, bool encoded)
     {
-        var entry = (OpenSpaceCntFileEntry)fileEntry;
+        var entry = (CNT_File)fileEntry;
 
-        return entry.Size;
+        return entry.FileSize;
     }
 
     #endregion
@@ -368,6 +382,59 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// Occurs when a file is being written to an archive
     /// </summary>
     public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
+
+    #endregion
+
+    #region Classes
+
+    private class CNTFileGenerator : Rayman.IArchiveFileGenerator<CNT_File>
+    {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="archiveStream">The archive file stream</param>
+        public CNTFileGenerator(Stream archiveStream)
+        {
+            // Get the stream
+            Stream = archiveStream;
+        }
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        private Stream Stream { get; }
+
+        /// <summary>
+        /// Gets the number of files which can be retrieved from the generator
+        /// </summary>
+        public int Count => throw new InvalidOperationException("The count can not be retrieved for this generator");
+
+        /// <summary>
+        /// Gets the file stream for the specified key
+        /// </summary>
+        /// <param name="fileEntry">The file entry to get the stream for</param>
+        /// <returns>The stream</returns>
+        public Stream GetFileStream(CNT_File fileEntry)
+        {
+            // Set the position
+            Stream.Position = fileEntry.FileOffset;
+
+            // Create the buffer
+            byte[] buffer = new byte[fileEntry.FileSize];
+
+            // Read the bytes into the buffer
+            Stream.Read(buffer, 0, buffer.Length);
+
+            // Return the buffer
+            return new MemoryStream(buffer);
+        }
+
+        /// <summary>
+        /// Disposes the generator
+        /// </summary>
+        public void Dispose()
+        { }
+    }
 
     #endregion
 }
