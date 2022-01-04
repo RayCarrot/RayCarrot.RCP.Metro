@@ -34,7 +34,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
             where LocString : BinarySerializable, new()
             where UAString : UbiArtString, new()
         {
-            LocalizationData<LocString, UAString>? obj = ReadFile<LocalizationData<LocString, UAString>>(context, inputFileName);
+            Localisation_Template<LocString, UAString>? obj = ReadFile<Localisation_Template<LocString, UAString>>(context, inputFileName);
 
             if (obj is null)
                 return;
@@ -68,9 +68,9 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
         {
             ConvertedLocData<LocString, UAString> obj = JsonHelpers.DeserializeFromFile<ConvertedLocData<LocString, UAString>>(inputFilePath);
 
-            WriteFile(context, outputFileName, new LocalizationData<LocString, UAString>
+            WriteFile(context, outputFileName, new Localisation_Template<LocString, UAString>
             {
-                Strings = obj.Strings?.Select(x => new LocStringValuePair<LocString>
+                Strings = obj.Strings?.Select(x => new LocTextValuePair<LocString>
                 {
                     Key = x.Key,
                     Value = x.Value.Select(y => new UbiArtKeyObjValuePair<int, LocString>
@@ -79,7 +79,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
                         Value = y.Value
                     }).ToArray()
                 }).ToArray(),
-                Audio = obj.Audio?.Select(y => new UbiArtKeyObjValuePair<int, LocalizationAudio<UAString>>
+                Audio = obj.Audio?.Select(y => new UbiArtKeyObjValuePair<int, LocAudio<UAString>>
                 {
                     Key = y.Key,
                     Value = y.Value
@@ -95,7 +95,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
         where UAString : UbiArtString, new()
     {
         public Dictionary<int, Dictionary<int, LocString>>? Strings { get; init; }
-        public Dictionary<int, LocalizationAudio<UAString>>? Audio { get; init; }
+        public Dictionary<int, LocAudio<UAString>>? Audio { get; init; }
         public UAString[]? Paths { get; init; }
         public uint[]? Unknown { get; init; }
     }

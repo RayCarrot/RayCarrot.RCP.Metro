@@ -1,10 +1,8 @@
-﻿using ImageMagick;
-using RayCarrot.Binary;
-using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.UbiArt;
-using System;
+﻿using System;
 using System.IO;
+using BinarySerializer.UbiArt;
+using ImageMagick;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -28,9 +26,9 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
     /// </summary>
     protected override FileExtension Format => new FileExtension(".dds_xbox");
 
-    public override bool IsOfType(Stream inputStream, IArchiveDataManager manager, UbiArtTEXData? tex)
+    public override bool IsOfType(Stream inputStream, IArchiveDataManager manager, TextureCooked? tex)
     {
-        UbiArtSettings settings = (UbiArtSettings)manager.SerializerSettings;
+        UbiArtSettings settings = (UbiArtSettings)manager.ContextSettings;
 
         // TODO: Find better way to check this
         return settings.Platform == Platform.Xbox360;
@@ -49,7 +47,13 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
         ReadTEXHeader(inputStream, manager);
 
         // Serialize data
-        UbiArtXbox360Texture imgData = BinarySerializableHelpers.ReadFromStream<UbiArtXbox360Texture>(inputStream, manager.SerializerSettings, logger: Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((UbiArtSettings)manager.ContextSettings);
+        TextureCooked_Xbox360 imgData = c.ReadStreamData<TextureCooked_Xbox360>(inputStream, leaveOpen: true, onPreSerialize: x =>
+        {
+            x.Pre_SerializeImageData = true;
+            x.Pre_FileSize = inputStream.Length;
+        }, endian: ((UbiArtIPKArchiveDataManager)manager).Endian);
 
         // Get the untiled image data
         byte[] untiledImgData = imgData.Untile(true);
@@ -67,9 +71,9 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
 
         byte[] rawImgData = imgData.CompressionType switch
         {
-            UbiArtXbox360Texture.TextureCompressionType.DXT1 => DDSParser.DecompressDXT1(header, untiledImgData),
-            UbiArtXbox360Texture.TextureCompressionType.DXT3 => DDSParser.DecompressDXT3(header, untiledImgData),
-            UbiArtXbox360Texture.TextureCompressionType.DXT5 => DDSParser.DecompressDXT5(header, untiledImgData),
+            TextureCooked_Xbox360.TextureCompressionType.DXT1 => DDSParser.DecompressDXT1(header, untiledImgData),
+            TextureCooked_Xbox360.TextureCompressionType.DXT3 => DDSParser.DecompressDXT3(header, untiledImgData),
+            TextureCooked_Xbox360.TextureCompressionType.DXT5 => DDSParser.DecompressDXT5(header, untiledImgData),
             _ => throw new ArgumentOutOfRangeException(nameof(imgData.CompressionType), imgData.CompressionType, null)
         };
 

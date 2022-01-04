@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ByteSizeLib;
+using Endian = BinarySerializer.Endian;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -25,6 +26,10 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public UbiArtIPKArchiveDataManager(UbiArtIPKArchiveConfigViewModel configViewModel)
     {
         Config = configViewModel;
+        ContextSettings = new BinarySerializer.UbiArt.UbiArtSettings(
+            (BinarySerializer.UbiArt.EngineVersion)Enum.Parse(typeof(BinarySerializer.UbiArt.EngineVersion), Config.Settings.Game.ToString()),
+            (BinarySerializer.UbiArt.Platform)Enum.Parse(typeof(BinarySerializer.UbiArt.Platform), Config.Settings.Platform.ToString()));
+        Endian = (Endian)Enum.Parse(typeof(Endian), Config.Settings.Endian.ToString());
     }
 
     #endregion
@@ -57,7 +62,9 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// </summary>
     public BinarySerializerSettings SerializerSettings => Settings;
 
-    public object ContextSettings => throw new NotImplementedException();
+    public object ContextSettings { get; }
+
+    public Endian Endian { get; }
 
     /// <summary>
     /// The default archive file name to use when creating an archive
