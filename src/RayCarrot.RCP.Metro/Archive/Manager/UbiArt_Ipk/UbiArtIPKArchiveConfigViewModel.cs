@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BinarySerializer.UbiArt;
 using RayCarrot.IO;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -56,7 +56,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
         get
         {
             // Create dummy data
-            var dummyData = new UbiArtIpkData();
+            BundleBootHeader dummyData = new();
 
             // Configure it...
             ConfigureIpkData(dummyData);
@@ -83,16 +83,16 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
     /// Configures the .ipk data with the default settings for the current settings
     /// </summary>
     /// <param name="data">The .ipk data to configure</param>
-    public void ConfigureIpkData(UbiArtIpkData data)
+    public void ConfigureIpkData(BundleBootHeader data)
     {
         // Set default properties based on settings
-        switch (Settings.Game)
+        switch (Settings.EngineVersion)
         {
-            case UbiArtGame.RaymanOrigins:
+            case EngineVersion.RaymanOrigins:
 
                 switch (Settings.Platform)
                 {
-                    case Rayman.Platform.Wii:
+                    case Platform.Wii:
                         data.Version = 3;
                         data.Unknown1 = 6;
                         data.Unknown3 = false;
@@ -103,7 +103,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
-                    case Rayman.Platform.Nintendo3DS:
+                    case Platform.Nintendo3DS:
                         data.Version = 4;
                         data.Unknown1 = 5;
                         data.Unknown3 = false;
@@ -114,7 +114,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
-                    case Rayman.Platform.PlayStation3:
+                    case Platform.PlayStation3:
                         data.Version = 3;
                         data.Unknown1 = 3;
                         data.Unknown3 = false;
@@ -125,7 +125,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
-                    case Rayman.Platform.PSVita:
+                    case Platform.PSVita:
                         data.Version = 3;
                         data.Unknown1 = 7;
                         data.Unknown3 = false;
@@ -136,7 +136,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
-                    case Rayman.Platform.PC:
+                    case Platform.PC:
                         data.Version = 3;
                         data.Unknown1 = 0;
                         data.Unknown3 = false;
@@ -153,11 +153,11 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case UbiArtGame.RaymanLegends:
+            case EngineVersion.RaymanLegends:
 
                 switch (Settings.Platform)
                 {
-                    case Rayman.Platform.WiiU:
+                    case Platform.WiiU:
                         data.Version = 5;
                         data.Unknown1 = 6;
                         data.Unknown3 = false;
@@ -168,7 +168,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 84435;
                         break;
 
-                    case Rayman.Platform.NintendoSwitch:
+                    case Platform.NintendoSwitch:
                         data.Version = 7;
                         data.Unknown1 = 10;
                         data.Unknown3 = false;
@@ -179,7 +179,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
-                    case Rayman.Platform.PSVita:
+                    case Platform.PSVita:
                         data.Version = 5;
                         data.Unknown1 = 6;
                         data.Unknown3 = false;
@@ -190,7 +190,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 0;
                         break;
 
-                    case Rayman.Platform.PlayStation4:
+                    case Platform.PlayStation4:
                         data.Version = 7;
                         data.Unknown1 = 8;
                         data.Unknown3 = false;
@@ -201,7 +201,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 117321;
                         break;
 
-                    case Rayman.Platform.PC:
+                    case Platform.PC:
                         data.Version = 5;
                         data.Unknown1 = 0;
                         data.Unknown3 = false;
@@ -218,11 +218,11 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case UbiArtGame.RaymanAdventures:
+            case EngineVersion.RaymanAdventures:
 
                 switch (Settings.Platform)
                 {
-                    case Rayman.Platform.Android:
+                    case Platform.Android:
                         data.Version = 8;
                         data.Unknown1 = 12;
                         data.Unknown2 = 11;
@@ -234,7 +234,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 277220;
                         break;
 
-                    case Rayman.Platform.iOS:
+                    case Platform.iOS:
                         data.Version = 8;
                         data.Unknown1 = 12;
                         data.Unknown2 = 19;
@@ -252,11 +252,11 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case UbiArtGame.RaymanMini:
+            case EngineVersion.RaymanMini:
 
                 switch (Settings.Platform)
                 {
-                    case Rayman.Platform.Mac:
+                    case Platform.Mac:
                         data.Version = 8;
                         data.Unknown1 = 12;
                         data.Unknown2 = 11;
@@ -274,11 +274,11 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case UbiArtGame.JustDance2017:
+            case EngineVersion.JustDance2017:
 
                 switch (Settings.Platform)
                 {
-                    case Rayman.Platform.WiiU:
+                    case Platform.WiiU:
                         data.Version = 5;
                         data.Unknown1 = 8;
                         data.Unknown2 = 0;
@@ -296,11 +296,11 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case UbiArtGame.ValiantHearts:
+            case EngineVersion.ValiantHearts:
 
                 switch (Settings.Platform)
                 {
-                    case Rayman.Platform.Android:
+                    case Platform.Android:
                         data.Version = 7;
                         data.Unknown1 = 10;
                         data.Unknown2 = 0;
@@ -319,12 +319,12 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case UbiArtGame.ChildOfLight:
+            case EngineVersion.ChildOfLight:
 
                 switch (Settings.Platform)
                 {
                     // NOTE: This is based on the demo
-                    case Rayman.Platform.PC:
+                    case Platform.PC:
                         data.Version = 7;
                         data.Unknown1 = 0;
                         data.Unknown2 = 0;
@@ -336,7 +336,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                         data.EngineVersion = 30765;
                         break;
 
-                    case Rayman.Platform.PSVita:
+                    case Platform.PSVita:
                         data.Version = 7;
                         data.Unknown1 = 6;
                         data.Unknown2 = 0;
@@ -354,11 +354,11 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case UbiArtGame.GravityFalls:
+            case EngineVersion.GravityFalls:
 
                 switch (Settings.Platform)
                 {
-                    case Rayman.Platform.Nintendo3DS:
+                    case Platform.Nintendo3DS:
                         data.Version = 7;
                         data.Unknown1 = 10;
                         data.Unknown2 = 0;
@@ -377,7 +377,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 break;
 
             default:
-                throw new ArgumentOutOfRangeException(nameof(Settings.Game), Settings.Game, null);
+                throw new ArgumentOutOfRangeException(nameof(Settings.EngineVersion), Settings.EngineVersion, null);
         }
     }
 
@@ -386,7 +386,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
     /// </summary>
     /// <param name="entry">The file entry to check</param>
     /// <returns>True if the file should be compressed, otherwise false</returns>
-    public bool ShouldCompress(UbiArtIPKFileEntry entry)
+    public bool ShouldCompress(BundleFile_FileEntry entry)
     {
         return CompressionMode switch
         {
@@ -405,7 +405,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
     /// </summary>
     /// <param name="data">The .ipk data to check</param>
     /// <returns>True if the data block should be compressed, otherwise false</returns>
-    public bool ShouldCompress(UbiArtIpkData data)
+    public bool ShouldCompress(BundleBootHeader data)
     {
         return CompressionMode switch
         {

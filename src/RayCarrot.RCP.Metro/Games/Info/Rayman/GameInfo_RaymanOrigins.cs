@@ -58,7 +58,7 @@ public sealed class GameInfo_RaymanOrigins : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new UbiArtIPKArchiveDataManager(new UbiArtIPKArchiveConfigViewModel(UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed));
+    public override IArchiveDataManager GetArchiveDataManager => new UbiArtIPKArchiveDataManager(UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 
     /// <summary>
     /// Gets the archive file paths for the game

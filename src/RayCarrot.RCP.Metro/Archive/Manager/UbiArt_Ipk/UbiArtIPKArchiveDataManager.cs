@@ -1,14 +1,12 @@
-﻿using RayCarrot.Binary;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using NLog;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.UbiArt;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer;
+using BinarySerializer.UbiArt;
 using ByteSizeLib;
-using Endian = BinarySerializer.Endian;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -22,14 +20,16 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="configViewModel">The configuration view model</param>
-    public UbiArtIPKArchiveDataManager(UbiArtIPKArchiveConfigViewModel configViewModel)
+    /// <param name="settings">The game settings</param>
+    /// <param name="compressionMode">The file compression mode</param>
+    public UbiArtIPKArchiveDataManager(Rayman.UbiArt.UbiArtSettings settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode compressionMode)
     {
-        Config = configViewModel;
-        ContextSettings = new BinarySerializer.UbiArt.UbiArtSettings(
-            (BinarySerializer.UbiArt.EngineVersion)Enum.Parse(typeof(BinarySerializer.UbiArt.EngineVersion), Config.Settings.Game.ToString()),
-            (BinarySerializer.UbiArt.Platform)Enum.Parse(typeof(BinarySerializer.UbiArt.Platform), Config.Settings.Platform.ToString()));
-        Endian = (Endian)Enum.Parse(typeof(Endian), Config.Settings.Endian.ToString());
+        UbiArtSettings contextSettings = new(
+            (EngineVersion)Enum.Parse(typeof(EngineVersion), settings.Game.ToString()),
+            (Platform)Enum.Parse(typeof(Platform), settings.Platform.ToString()));
+
+        Config = new UbiArtIPKArchiveConfigViewModel(contextSettings, compressionMode);
+        Endian = (Endian)Enum.Parse(typeof(Endian), settings.Endian.ToString());
     }
 
     #endregion
@@ -60,9 +60,9 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The serializer settings to use for the archive
     /// </summary>
-    public BinarySerializerSettings SerializerSettings => Settings;
+    public Binary.BinarySerializerSettings SerializerSettings => throw new NotSupportedException();
 
-    public object ContextSettings { get; }
+    public object ContextSettings => Settings;
 
     public Endian Endian { get; }
 
@@ -102,17 +102,17 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
         // Get the file entry
-        var entry = (UbiArtIPKFileEntry)fileEntry;
+        var entry = (BundleFile_FileEntry)fileEntry;
 
         // Set the file size
-        entry.Size = (uint)inputStream.Length;
+        entry.FileSize = (uint)inputStream.Length;
 
         // Return the data as is if the file should not be compressed
         if (!Config.ShouldCompress(entry))
             return;
 
         // Compress the bytes
-        UbiArtIpkData.GetEncoder(entry.IPKVersion, entry.Size).Encode(inputStream, outputStream);
+        BundleBootHeader.GetEncoder(entry.Pre_BundleVersion, entry.FileSize).EncodeStream(inputStream, outputStream);
 
         Logger.Trace("The file {0} has been compressed", entry.Path.FileName);
 
@@ -128,11 +128,11 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="fileEntry">The file entry for the file to decode</param>
     public void DecodeFile(Stream inputStream, Stream outputStream, object fileEntry)
     {
-        var entry = (UbiArtIPKFileEntry)fileEntry;
+        var entry = (BundleFile_FileEntry)fileEntry;
 
         // Decompress the data if compressed
         if (entry.IsCompressed)
-            UbiArtIpkData.GetEncoder(entry.IPKVersion, entry.Size).Decode(inputStream, outputStream);
+            BundleBootHeader.GetEncoder(entry.Pre_BundleVersion, entry.FileSize).DecodeStream(inputStream, outputStream);
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetFileStream((UbiArtIPKFileEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<Rayman.IArchiveFileGenerator<BundleFile_FileEntry>>().GetFileStream((BundleFile_FileEntry)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -155,24 +155,24 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         Logger.Info("An IPK archive is being repacked...");
 
         // Get the archive data
-        var data = (UbiArtIpkData)archive;
+        var data = (BundleFile)archive;
 
         // Create the file generator
-        using ArchiveFileGenerator<UbiArtIPKFileEntry> fileGenerator = new();
+        using Rayman.ArchiveFileGenerator<BundleFile_FileEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
         {
-            Entry = (UbiArtIPKFileEntry)x.ArchiveEntry,
+            Entry = (BundleFile_FileEntry)x.ArchiveEntry,
             FileItem = x
         }).ToArray();
 
         // Set the files
-        data.Files = archiveFiles.Select(x => x.Entry).ToArray();
-        data.FilesCount = (uint)data.Files.Length;
+        data.FilePack.Files = archiveFiles.Select(x => x.Entry).ToArray();
+        data.BootHeader.FilesCount = (uint)data.FilePack.Files.Length;
 
         // Save the old base offset
-        uint oldBaseOffset = data.BaseOffset;
+        uint oldBaseOffset = data.BootHeader.BaseOffset;
 
         // Keep track of the current pointer position
         ulong currentOffset = 0;
@@ -181,7 +181,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         foreach (var file in archiveFiles)
         {
             // Get the file
-            UbiArtIPKFileEntry entry = file.Entry;
+            BundleFile_FileEntry entry = file.Entry;
 
             // Reset the offset array to always contain 1 item
             entry.Offsets = new ulong[]
@@ -190,19 +190,19 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             };
 
             // Set the count
-            entry.OffsetCount = (uint)entry.Offsets.Length;
+            entry.OffsetsCount = (uint)entry.Offsets.Length;
 
             // Add to the generator
             fileGenerator.Add(entry, () =>
             {
                 // When reading the original file we need to use the old base offset
-                uint newBaseOffset = data.BaseOffset;
-                data.BaseOffset = oldBaseOffset;
+                uint newBaseOffset = data.BootHeader.BaseOffset;
+                data.BootHeader.BaseOffset = oldBaseOffset;
 
                 // Get the file bytes to write to the archive
                 Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
-                data.BaseOffset = newBaseOffset;
+                data.BootHeader.BaseOffset = newBaseOffset;
 
                 // Set the offset
                 entry.Offsets[0] = currentOffset;
@@ -218,17 +218,105 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         }
 
         // Set the base offset
-        data.BaseOffset = data.GetHeaderSize(Settings);
+        data.RecalculateSize();
+        data.BootHeader.BaseOffset = (uint)data.Size;
 
         // Write the files
-        data.WriteArchiveContent(outputFileStream, fileGenerator, Config.ShouldCompress(data));
+
+        WriteArchiveContent(data, outputFileStream, fileGenerator, Config.ShouldCompress(data.BootHeader));
 
         outputFileStream.Position = 0;
 
         // Serialize the data
-        BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((UbiArtSettings)ContextSettings);
+        c.WriteStreamData(outputFileStream, data, leaveOpen: true, endian: Endian);
 
         Logger.Info("The IPK archive has been repacked");
+    }
+
+    private void WriteArchiveContent(BundleFile bundle, Stream stream, Rayman.IArchiveFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock)
+    {
+        // Make sure we have a generator for each file
+        if (fileGenerator.Count != bundle.FilePack.Files.Length)
+            throw new Exception("The .ipk file can't be serialized without a file generator for each file");
+
+        TempFile? tempDecompressedBlockFile = null;
+        FileStream? tempDecompressedBlockFileStream = null;
+
+        try
+        {
+            // Create a temporary file to use if the block should be compressed
+            if (compressBlock)
+            {
+                tempDecompressedBlockFile = new TempFile(true);
+                tempDecompressedBlockFileStream = new FileStream(tempDecompressedBlockFile.TempPath, FileMode.Open);
+            }
+
+            // Get the stream to write the files to
+            Stream currentStream = compressBlock ? tempDecompressedBlockFileStream! : stream;
+
+            // Write the file contents
+            foreach (BundleFile_FileEntry file in bundle.FilePack.Files)
+            {
+                // Get the file stream from the generator
+                using Stream fileStream = fileGenerator.GetFileStream(file);
+
+                // Make sure the size matches
+                if (fileStream.Length != file.ArchiveSize)
+                    throw new Exception("The archived file size does not match the bytes retrieved from the generator");
+
+                // Handle every file offset
+                foreach (ulong offset in file.Offsets)
+                {
+                    // Set the position
+                    currentStream.Position = (long)(compressBlock ? offset : (offset + bundle.BootHeader.BaseOffset));
+
+                    // Write the bytes
+                    fileStream.CopyTo(currentStream);
+                    fileStream.Position = 0;
+                }
+            }
+
+            // Handle the data if it should be compressed
+            if (compressBlock)
+            {
+                // Get the length
+                long decompressedSize = tempDecompressedBlockFileStream!.Length;
+
+                // Create a temporary file for the final compressed data
+                using TempFile tempCompressedBlockFile = new(true);
+                using FileStream tempCompressedBlockFileStream = new(tempCompressedBlockFile.TempPath, FileMode.Open);
+
+                tempDecompressedBlockFileStream.Position = 0;
+
+                // Compress the data
+                BundleBootHeader.GetEncoder(bundle.BootHeader.Version, -1).EncodeStream(tempDecompressedBlockFileStream, tempCompressedBlockFileStream);
+
+                tempCompressedBlockFileStream.Position = 0;
+
+                // Set the .ipk stream position
+                stream.Position = bundle.BootHeader.BaseOffset;
+
+                // Write the data to main stream
+                tempCompressedBlockFileStream.CopyTo(stream);
+
+                // Update the size
+                bundle.BootHeader.BlockCompressedSize = (uint)tempCompressedBlockFileStream.Length;
+                bundle.BootHeader.BlockSize = (uint)decompressedSize;
+            }
+            else
+            {
+                // Reset the size
+                bundle.BootHeader.BlockCompressedSize = 0;
+                bundle.BootHeader.BlockSize = 0;
+            }
+        }
+        finally
+        {
+            tempDecompressedBlockFile?.Dispose();
+            tempDecompressedBlockFileStream?.Dispose();
+        }
     }
 
     /// <summary>
@@ -241,7 +329,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
     {
         // Get the data
-        var data = (UbiArtIpkData)archive;
+        var data = (BundleFile)archive;
 
         Logger.Info("The directories are being retrieved for an IPK archive");
 
@@ -249,7 +337,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         IEnumerable<ArchiveDirectory> GetDirectories()
         {
             // Add the directories to the collection
-            foreach (var file in data.Files.GroupBy(x => x.Path.DirectoryPath))
+            foreach (var file in data.FilePack.Files.GroupBy(x => x.Path.DirectoryPath))
             {
                 // Return each directory with the available files, including the root directory
                 yield return new ArchiveDirectory(file.Key, file.Select(x => new ArchiveFileItem(this, x.Path.FileName, x.Path.DirectoryPath, x)).ToArray());
@@ -257,7 +345,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         }
 
         // Return the data
-        return new ArchiveData(GetDirectories(), data.GetArchiveContent(archiveFileStream));
+        return new ArchiveData(GetDirectories(), new IPKFileGenerator(data, archiveFileStream));
     }
 
     /// <summary>
@@ -271,9 +359,11 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        UbiArtIpkData data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, Services.App.GetBinarySerializerLogger());
+        using RCPContext c = new(String.Empty);
+        c.AddSettings((UbiArtSettings)ContextSettings);
+        BundleFile data = c.ReadStreamData<BundleFile>(archiveFileStream, leaveOpen: true, endian: Endian);
 
-        Logger.Info("Read IPK file ({0}) with {1} files", data.Version, data.FilesCount);
+        Logger.Info("Read IPK file ({0}) with {1} files", data.BootHeader.Version, data.FilePack.Files.Length);
 
         return data;
     }
@@ -285,10 +375,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public object CreateArchive()
     {
         // Create the data
-        UbiArtIpkData data = new();
+        BundleFile data = new()
+        {
+            BootHeader = new BundleBootHeader(),
+            FilePack = new FilePackMaster(),
+        };
 
         // Configure the data
-        Config.ConfigureIpkData(data);
+        Config.ConfigureIpkData(data.BootHeader);
 
         return data;
     }
@@ -301,16 +395,16 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <returns>The info items to display</returns>
     public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
     {
-        var entry = (UbiArtIPKFileEntry)fileEntry;
-        var ipk = (UbiArtIpkData)archive;
+        var entry = (BundleFile_FileEntry)fileEntry;
+        var ipk = (BundleFile)archive;
 
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.Size)}");
+        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
 
         if (entry.IsCompressed)
             yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_SizeComp, $"{ByteSize.FromBytes(entry.CompressedSize)}");
 
-        if (ipk.Files.Contains(entry))
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Offsets.First() + ipk.BaseOffset:X16}", UserLevel.Technical);
+        if (ipk.FilePack.Files.Contains(entry))
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Offsets.First() + ipk.BootHeader.BaseOffset:X16}", UserLevel.Technical);
             
         yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsComp, $"{entry.IsCompressed}");
     }
@@ -324,10 +418,10 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <returns>The file entry object</returns>
     public object GetNewFileEntry(object archive, string directory, string fileName)
     {
-        return new UbiArtIPKFileEntry
+        return new BundleFile_FileEntry
         {
-            Path = new UbiArtPath(this.CombinePaths(directory, fileName)),
-            IPKVersion = ((UbiArtIpkData)archive).Version
+            Path = new BinarySerializer.UbiArt.Path(this.CombinePaths(directory, fileName)),
+            Pre_BundleVersion = ((BundleFile)archive).BootHeader.Version
         };
     }
 
@@ -339,9 +433,9 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <returns>The size, or null if it could not be determined</returns>
     public long? GetFileSize(object fileEntry, bool encoded)
     {
-        var entry = (UbiArtIPKFileEntry)fileEntry;
+        var entry = (BundleFile_FileEntry)fileEntry;
 
-        return encoded ? entry.ArchiveSize : entry.Size;
+        return encoded ? entry.ArchiveSize : entry.FileSize;
     }
 
     #endregion
@@ -352,6 +446,117 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// Occurs when a file is being written to an archive
     /// </summary>
     public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
+
+    #endregion
+
+    #region Classes
+
+    /// <summary>
+    /// The archive file generator for .ipk files
+    /// </summary>
+    private class IPKFileGenerator : Rayman.IArchiveFileGenerator<BundleFile_FileEntry>
+    {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="ipkData">The .ipk file data</param>
+        /// <param name="archiveStream">The archive file stream</param>
+        public IPKFileGenerator(BundleFile ipkData, Stream archiveStream)
+        {
+            // Get the .ipk data
+            IPKData = ipkData;
+
+            // If the block is compressed, decompress it to a temporary file
+            if (ipkData.BootHeader.IsBlockCompressed)
+            {
+                // Get the temp path and create the file
+                TempFile = new TempFile(true);
+
+                // Set the stream to the temp file
+                Stream = File.Open(TempFile.TempPath, FileMode.Open, FileAccess.ReadWrite);
+
+                // Set the archive stream position
+                archiveStream.Position = ipkData.BootHeader.BaseOffset;
+
+                byte[] buffer = new byte[IPKData.BootHeader.BlockCompressedSize];
+                archiveStream.Read(buffer, 0, buffer.Length);
+
+                // Create a memory stream
+                using var memStream = new MemoryStream(buffer);
+
+                // Decompress the block
+                BundleBootHeader.GetEncoder(IPKData.BootHeader.Version, IPKData.BootHeader.BlockSize).DecodeStream(memStream, Stream);
+
+                // Set the stream to be disposed
+                DisposeStream = true;
+            }
+            else
+            {
+                // Set the stream to the .ipk archive
+                Stream = archiveStream;
+
+                // Set the stream not to be disposed
+                DisposeStream = false;
+            }
+        }
+
+        private TempFile? TempFile { get; }
+
+        /// <summary>
+        /// The .ipk file data
+        /// </summary>
+        private BundleFile IPKData { get; }
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        private Stream Stream { get; }
+
+        /// <summary>
+        /// Indicates if the stream should be disposed
+        /// </summary>
+        private bool DisposeStream { get; }
+
+        /// <summary>
+        /// Gets the number of files which can be retrieved from the generator
+        /// </summary>
+        public int Count => IPKData.FilePack.Files.Length;
+
+        /// <summary>
+        /// Gets the file stream for the specified key
+        /// </summary>
+        /// <param name="fileEntry">The file entry to get the stream for</param>
+        /// <returns>The stream</returns>
+        public Stream GetFileStream(BundleFile_FileEntry fileEntry)
+        {
+            // Make sure we have offsets
+            if (fileEntry.Offsets?.Any() != true)
+                throw new Exception("No offsets were found");
+
+            // NOTE: We only care about getting the bytes from the first offset as they all point to identical bytes (this is used for memory optimization on certain platforms)
+            var offset = fileEntry.Offsets.First();
+
+            // Set the position
+            Stream.Position = (long)(IPKData.BootHeader.IsBlockCompressed ? offset : (offset + IPKData.BootHeader.BaseOffset));
+
+            byte[] buffer = new byte[fileEntry.ArchiveSize];
+            Stream.Read(buffer, 0, buffer.Length);
+
+            // Read the bytes into the buffer
+            return new MemoryStream(buffer);
+        }
+
+        /// <summary>
+        /// Disposes the generator
+        /// </summary>
+        public void Dispose()
+        {
+            if (DisposeStream)
+                Stream?.Dispose();
+
+            TempFile?.Dispose();
+        }
+    }
 
     #endregion
 }

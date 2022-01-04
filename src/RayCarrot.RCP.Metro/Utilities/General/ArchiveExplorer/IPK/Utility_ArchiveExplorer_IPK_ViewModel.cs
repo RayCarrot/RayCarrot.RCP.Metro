@@ -48,10 +48,10 @@ public class Utility_ArchiveExplorer_IPK_ViewModel : Utility_BaseArchiveExplorer
         var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
         var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-        return new UbiArtIPKArchiveDataManager(new UbiArtIPKArchiveConfigViewModel(settings, 
+        return new UbiArtIPKArchiveDataManager(settings, 
             mode == ArchiveMode.Explorer 
                 ? UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed 
-                : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting));
+                : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting);
     }
 
     /// <summary>
