@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 
 public static class ContextExtensions
 {
-    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little, Action<T>? onPreSerialize = null)
+    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
         PhysicalFile file = encoder == null
@@ -22,7 +22,7 @@ public static class ContextExtensions
         return FileFactory.Read<T>(fileName, context, (_, o) => onPreSerialize?.Invoke(o));
     }
 
-    public static T ReadStreamData<T>(this Context context, Stream stream, Endian endian = Endian.Little, bool leaveOpen = false, Action<T>? onPreSerialize = null)
+    public static T ReadStreamData<T>(this Context context, Stream stream, Endian? endian = null, bool leaveOpen = false, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
         const string name = "Stream";
@@ -34,13 +34,13 @@ public static class ContextExtensions
         return FileFactory.Read<T>(name, context, (_, o) => onPreSerialize?.Invoke(o));
     }
 
-    public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little, Action<T>? onPreSerialize = null)
+    public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
         return Task.Run(() => context.ReadFileData<T>(fileName, encoder, endian, onPreSerialize));
     }
 
-    public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
+    public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian? endian = null)
         where T : BinarySerializable, new()
     {
         PhysicalFile file = encoder == null
@@ -52,7 +52,7 @@ public static class ContextExtensions
         FileFactory.Write(fileName, obj, context);
     }
 
-    public static void WriteStreamData<T>(this Context context, Stream stream, T obj, Endian endian = Endian.Little, bool leaveOpen = false)
+    public static void WriteStreamData<T>(this Context context, Stream stream, T obj, Endian? endian = null, bool leaveOpen = false)
         where T : BinarySerializable, new()
     {
         const string name = "Stream";
