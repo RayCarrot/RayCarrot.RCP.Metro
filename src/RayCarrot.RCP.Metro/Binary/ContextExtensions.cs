@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using BinarySerializer;
 
@@ -6,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 
 public static class ContextExtensions
 {
-    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
+    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
         PhysicalFile file = encoder == null
@@ -18,10 +19,10 @@ public static class ContextExtensions
 
         context.AddFile(file);
 
-        return FileFactory.Read<T>(fileName, context);
+        return FileFactory.Read<T>(fileName, context, (_, o) => onPreSerialize?.Invoke(o));
     }
 
-    public static T ReadStreamData<T>(this Context context, Stream stream, Endian endian = Endian.Little, bool leaveOpen = false)
+    public static T ReadStreamData<T>(this Context context, Stream stream, Endian endian = Endian.Little, bool leaveOpen = false, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
         const string name = "Stream";
@@ -30,13 +31,13 @@ public static class ContextExtensions
 
         context.AddFile(file);
 
-        return FileFactory.Read<T>(name, context);
+        return FileFactory.Read<T>(name, context, (_, o) => onPreSerialize?.Invoke(o));
     }
 
-    public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little)
+    public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian endian = Endian.Little, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
-        return Task.Run(() => context.ReadFileData<T>(fileName, encoder, endian));
+        return Task.Run(() => context.ReadFileData<T>(fileName, encoder, endian, onPreSerialize));
     }
 
     public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian endian = Endian.Little)

@@ -29,10 +29,10 @@ public abstract class Utility_Converters_TypeViewModel : BaseRCPViewModel, IDisp
     public abstract FileExtension SourceFileExtension { get; }
     public abstract string[] ConvertFormats { get; }
 
-    protected T? ReadFile<T>(Context context, string fileName)
+    protected T? ReadFile<T>(Context context, string fileName, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
-        return context.ReadFileData<T>(fileName, SelectedMode.Data.Encoder, SelectedMode.Data.Endian);
+        return context.ReadFileData<T>(fileName, SelectedMode.Data.Encoder, SelectedMode.Data.Endian, onPreSerialize);
     }
 
     protected void WriteFile<T>(Context context, string fileName, T obj)
