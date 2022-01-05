@@ -7,6 +7,7 @@
 	• Save slots which can be imported can now also be directly edited as JSON data
 	• Games where the save data can't be imported can now still have it be exported (such as for Rayman Designer and Rayman Origins)
 • Utilities changes
+	• Moved most general utilities to the new binary tools page
 	• Added a new serializers utility with an option for showing the file serialization log
 	• The converter and decoder utilities have all been re-implemented, with some converters moved to the new serializers utility
 	• Added serializers for Rayman Raving Rabbids save files, Rayman Fiesta Run save files, Unity Player Preferences and Game Maker DS Map txt files
@@ -16,6 +17,7 @@
 	• Added icons to the utility headers and normalized some layouts
 • Added cheat toggles to the Rayman Raving Rabbids config
 • Updated the Rayman Arena disc removal to make it work even when there is no available disc drive (save the changes in the config to apply the updated patch)
+• Migrated the code from using RayCarrot.Binary/Rayman to BinarySerializer for binary data parsing, utilizing much of the same code as in Ray1Map
 
 Other changes:
 • Added a new dialog for selecting a program to use for certain file types in the Archive Explorer™ and progression page (previously the file selection dialog was used)
