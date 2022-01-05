@@ -86,9 +86,9 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
     public void ConfigureIpkData(BundleBootHeader data)
     {
         // Set default properties based on settings
-        switch (Settings.EngineVersion)
+        switch (Settings.Game)
         {
-            case EngineVersion.RaymanOrigins:
+            case Game.RaymanOrigins:
 
                 switch (Settings.Platform)
                 {
@@ -153,7 +153,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case EngineVersion.RaymanLegends:
+            case Game.RaymanLegends:
 
                 switch (Settings.Platform)
                 {
@@ -218,7 +218,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case EngineVersion.RaymanAdventures:
+            case Game.RaymanAdventures:
 
                 switch (Settings.Platform)
                 {
@@ -252,7 +252,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case EngineVersion.RaymanMini:
+            case Game.RaymanMini:
 
                 switch (Settings.Platform)
                 {
@@ -274,7 +274,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case EngineVersion.JustDance2017:
+            case Game.JustDance2017:
 
                 switch (Settings.Platform)
                 {
@@ -296,7 +296,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case EngineVersion.ValiantHearts:
+            case Game.ValiantHearts:
 
                 switch (Settings.Platform)
                 {
@@ -319,7 +319,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case EngineVersion.ChildOfLight:
+            case Game.ChildOfLight:
 
                 switch (Settings.Platform)
                 {
@@ -354,7 +354,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case EngineVersion.GravityFalls:
+            case Game.GravityFalls:
 
                 switch (Settings.Platform)
                 {
@@ -377,7 +377,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
                 break;
 
             default:
-                throw new ArgumentOutOfRangeException(nameof(Settings.EngineVersion), Settings.EngineVersion, null);
+                throw new ArgumentOutOfRangeException(nameof(Settings.Game), Settings.Game, null);
         }
     }
 

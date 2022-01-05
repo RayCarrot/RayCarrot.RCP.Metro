@@ -63,7 +63,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
             yield break;
 
         using RCPContext context = new(saveDir.DirPath);
-        UbiArtSettings settings = new(EngineVersion.RaymanLegends, Platform.PC);
+        UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC);
         context.AddSettings(settings);
 
         foreach (FileSystemPath saveFile in saveDir.GetFiles())

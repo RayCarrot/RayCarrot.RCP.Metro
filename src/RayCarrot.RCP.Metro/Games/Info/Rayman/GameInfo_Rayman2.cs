@@ -1,9 +1,8 @@
 ﻿#nullable disable
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BinarySerializer.OpenSpace;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -103,7 +102,7 @@ public sealed class GameInfo_Rayman2 : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new OpenSpaceCntArchiveDataManager(OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC));
+    public override IArchiveDataManager GetArchiveDataManager => new OpenSpaceCntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC));
 
     /// <summary>
     /// Gets the archive file paths for the game

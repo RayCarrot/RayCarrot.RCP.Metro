@@ -40,7 +40,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// </summary>
     /// <param name="manager">The manager to check</param>
     /// <returns>True if supported, otherwise false</returns>
-    public bool IsSupported(IArchiveDataManager manager) => manager.ContextSettings is OpenSpaceSettings;
+    public bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<OpenSpaceSettings>() is true;
 
     /// <summary>
     /// Indicates if a file with the specifies file extension is of this type
@@ -191,15 +191,15 @@ public class ArchiveFileType_GF : IArchiveFileType
 
         byte oldRepeatByte = gf.RepeatByte;
 
+        OpenSpaceSettings settings = manager.Context!.GetSettings<OpenSpaceSettings>();
+
         // Import the bitmap
-        gf.ImportFromBitmap((OpenSpaceSettings)manager.ContextSettings, rawBitmapData, Services.Data.Archive_GF_GenerateMipmaps);
+        gf.ImportFromBitmap(settings, rawBitmapData, Services.Data.Archive_GF_GenerateMipmaps);
 
         Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 
         // Serialize the data to get the bytes
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((OpenSpaceSettings)manager.ContextSettings);
-        c.WriteStreamData(outputStream, gf, leaveOpen: true);
+        manager.Context.WriteStreamData(outputStream, gf, leaveOpen: true);
     }
 
     #endregion
@@ -214,11 +214,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// <returns>The deserialized file</returns>
     public GF GetFileContent(Stream fileStream, IArchiveDataManager manager)
     {
-        using RCPContext c = new(String.Empty);
-
-        c.AddSettings((OpenSpaceSettings)manager.ContextSettings);
-
-        return c.ReadStreamData<GF>(fileStream, leaveOpen: true);
+        return manager.Context!.ReadStreamData<GF>(fileStream, leaveOpen: true);
     }
 
     #endregion

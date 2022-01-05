@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using System;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
@@ -40,7 +41,8 @@ public class Utility_ArchiveExplorer_CNT_ViewModel : Utility_BaseArchiveExplorer
         var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
         var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-        return new OpenSpaceCntArchiveDataManager(gameSettings);
+        throw new NotImplementedException();
+        //return new OpenSpaceCntArchiveDataManager(gameSettings);
     }
 
     /// <summary>

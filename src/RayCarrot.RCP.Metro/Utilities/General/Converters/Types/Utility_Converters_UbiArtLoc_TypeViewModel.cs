@@ -11,9 +11,9 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
 {
     public Utility_Converters_UbiArtLoc_TypeViewModel(LocalizedString name, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(name, modes) { }
 
-    public override FileExtension SourceFileExtension => ((UbiArtSettings)SelectedMode.Data.GetSettings!()).EngineVersion switch
+    public override FileExtension SourceFileExtension => ((UbiArtSettings)SelectedMode.Data.GetSettings!()).Game switch
     {
-        EngineVersion.RaymanOrigins or EngineVersion.RaymanFiestaRun => new FileExtension(".loc"),
+        Game.RaymanOrigins or Game.RaymanFiestaRun => new FileExtension(".loc"),
         _ => new FileExtension(".loc8"),
     };
 
@@ -23,9 +23,9 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
     {
         UbiArtSettings settings = context.GetSettings<UbiArtSettings>();
 
-        if (settings.EngineVersion == EngineVersion.RaymanFiestaRun)
+        if (settings.Game == Game.RaymanFiestaRun)
             defaultConvert<UbiArtObjKeyObjValuePair<String16, String16>, String16>();
-        else if (settings.EngineVersion == EngineVersion.RaymanOrigins)
+        else if (settings.Game == Game.RaymanOrigins)
             defaultConvert<String16, String16>();
         else
             defaultConvert<String8, String8>();
@@ -55,9 +55,9 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
     {
         UbiArtSettings settings = context.GetSettings<UbiArtSettings>();
 
-        if (settings.EngineVersion == EngineVersion.RaymanFiestaRun)
+        if (settings.Game == Game.RaymanFiestaRun)
             defaultConvert<UbiArtObjKeyObjValuePair<String16, String16>, String16>();
-        else if (settings.EngineVersion == EngineVersion.RaymanOrigins)
+        else if (settings.Game == Game.RaymanOrigins)
             defaultConvert<String16, String16>();
         else
             defaultConvert<String8, String8>();

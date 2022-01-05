@@ -9,20 +9,14 @@ namespace RayCarrot.RCP.Metro;
 
 public class RCPContext : Context
 {
-    public RCPContext(string basePath, Encoding? defaultStringEncoding = null, ISerializerLog? log = null) 
-        : base(basePath, new RCPSerializerSettings(defaultStringEncoding), log ?? new RCPSerializerLog(), new RCPFileManager(), new RCPLogger())
+    public RCPContext(string basePath, ISerializerSettings? settings = null, ISerializerLog? log = null) 
+        : base(
+            basePath: basePath, 
+            settings: settings ?? new SerializerSettings(ignoreCacheOnRead: true), 
+            serializerLog: log ?? new RCPSerializerLog(), 
+            fileManager: new RCPFileManager(), 
+            logger: new RCPLogger())
     { }
-
-    private class RCPSerializerSettings : SerializerSettings
-    {
-        public RCPSerializerSettings(Encoding? defaultStringEncoding = null) : base(defaultStringEncoding: defaultStringEncoding)
-        {
-            
-        }
-
-        public override bool CreateBackupOnWrite => false;
-        public override bool SavePointersForRelocation => false;
-    }
 
     public class RCPSerializerLog : ISerializerLog
     {

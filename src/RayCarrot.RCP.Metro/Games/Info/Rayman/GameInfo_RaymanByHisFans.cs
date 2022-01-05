@@ -1,9 +1,8 @@
 ﻿#nullable disable
 using System.Collections.Generic;
 using System.Windows;
+using BinarySerializer.Ray1;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -69,7 +68,7 @@ public sealed class GameInfo_RaymanByHisFans : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC));
+    public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Fan));
 
     /// <summary>
     /// Gets the archive file paths for the game

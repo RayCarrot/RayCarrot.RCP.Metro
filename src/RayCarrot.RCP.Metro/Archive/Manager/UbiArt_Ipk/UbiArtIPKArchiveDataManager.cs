@@ -20,16 +20,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="settings">The game settings</param>
+    /// <param name="settings">The settings when serializing the data</param>
     /// <param name="compressionMode">The file compression mode</param>
-    public UbiArtIPKArchiveDataManager(Rayman.UbiArt.UbiArtSettings settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode compressionMode)
+    public UbiArtIPKArchiveDataManager(UbiArtSettings settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode compressionMode)
     {
-        UbiArtSettings contextSettings = new(
-            (EngineVersion)Enum.Parse(typeof(EngineVersion), settings.Game.ToString()),
-            (Platform)Enum.Parse(typeof(Platform), settings.Platform.ToString()));
+        Context = new RCPContext(String.Empty, new SerializerSettings(defaultEndian: settings.GetEndian, ignoreCacheOnRead: true));
+        Context.AddSettings(settings);
 
-        Config = new UbiArtIPKArchiveConfigViewModel(contextSettings, compressionMode);
-        Endian = (Endian)Enum.Parse(typeof(Endian), settings.Endian.ToString());
+        Config = new UbiArtIPKArchiveConfigViewModel(settings, compressionMode);
     }
 
     #endregion
@@ -41,6 +39,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     #endregion
 
     #region Public Properties
+
+    public Context Context { get; }
 
     /// <summary>
     /// Indicates if directories can be created and deleted
@@ -58,15 +58,6 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     public FileExtension ArchiveFileExtension => new FileExtension(".ipk");
 
     /// <summary>
-    /// The serializer settings to use for the archive
-    /// </summary>
-    public Binary.BinarySerializerSettings SerializerSettings => throw new NotSupportedException();
-
-    public object ContextSettings => Settings;
-
-    public Endian Endian { get; }
-
-    /// <summary>
     /// The default archive file name to use when creating an archive
     /// </summary>
     public string DefaultArchiveFileName => "patch_PC.ipk";
@@ -80,14 +71,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     };
 
     /// <summary>
-    /// The settings when serializing the data
-    /// </summary>
-    protected UbiArtSettings Settings => Config.Settings;
-
-    /// <summary>
     /// The configuration view model
     /// </summary>
     protected UbiArtIPKArchiveConfigViewModel Config { get; }
+
+    /// <summary>
+    /// The settings when serializing the data
+    /// </summary>
+    protected UbiArtSettings Settings => Config.Settings;
 
     #endregion
 
@@ -228,9 +219,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         outputFileStream.Position = 0;
 
         // Serialize the data
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((UbiArtSettings)ContextSettings);
-        c.WriteStreamData(outputFileStream, data, leaveOpen: true, endian: Endian);
+        Context.WriteStreamData(outputFileStream, data, leaveOpen: true);
 
         Logger.Info("The IPK archive has been repacked");
     }
@@ -359,9 +348,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((UbiArtSettings)ContextSettings);
-        BundleFile data = c.ReadStreamData<BundleFile>(archiveFileStream, leaveOpen: true, endian: Endian);
+        BundleFile data = Context.ReadStreamData<BundleFile>(archiveFileStream, leaveOpen: true);
 
         Logger.Info("Read IPK file ({0}) with {1} files", data.BootHeader.Version, data.FilePack.Files.Length);
 
@@ -436,6 +423,11 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         var entry = (BundleFile_FileEntry)fileEntry;
 
         return encoded ? entry.ArchiveSize : entry.FileSize;
+    }
+
+    public void Dispose()
+    {
+        Context.Dispose();
     }
 
     #endregion

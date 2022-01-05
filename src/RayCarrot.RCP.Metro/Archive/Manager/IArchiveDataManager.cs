@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using RayCarrot.Binary;
+using BinarySerializer;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
@@ -9,8 +9,13 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Defines an archive data manager
 /// </summary>
-public interface IArchiveDataManager
+public interface IArchiveDataManager : IDisposable
 {
+    /// <summary>
+    /// The serializer context
+    /// </summary>
+    Context? Context { get; }
+
     /// <summary>
     /// The path separator character to use. This is usually \ or /.
     /// </summary>
@@ -25,12 +30,6 @@ public interface IArchiveDataManager
     /// The file extension for the archive file
     /// </summary>
     FileExtension ArchiveFileExtension { get; }
-
-    /// <summary>
-    /// The serializer settings to use for the archive
-    /// </summary>
-    BinarySerializerSettings SerializerSettings { get; } // Old
-    object ContextSettings { get; } // New, keep here while migrating to BinarySerializer
 
     /// <summary>
     /// The default archive file name to use when creating an archive

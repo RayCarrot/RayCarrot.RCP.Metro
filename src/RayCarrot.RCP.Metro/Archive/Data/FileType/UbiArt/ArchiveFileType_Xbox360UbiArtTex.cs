@@ -28,7 +28,7 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
 
     public override bool IsOfType(Stream inputStream, IArchiveDataManager manager, TextureCooked? tex)
     {
-        UbiArtSettings settings = (UbiArtSettings)manager.ContextSettings;
+        UbiArtSettings settings = manager.Context!.GetSettings<UbiArtSettings>();
 
         // TODO: Find better way to check this
         return settings.Platform == Platform.Xbox360;
@@ -47,13 +47,11 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
         ReadTEXHeader(inputStream, manager);
 
         // Serialize data
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((UbiArtSettings)manager.ContextSettings);
-        TextureCooked_Xbox360 imgData = c.ReadStreamData<TextureCooked_Xbox360>(inputStream, leaveOpen: true, onPreSerialize: x =>
+        TextureCooked_Xbox360 imgData = manager.Context!.ReadStreamData<TextureCooked_Xbox360>(inputStream, leaveOpen: true, onPreSerialize: x =>
         {
             x.Pre_SerializeImageData = true;
             x.Pre_FileSize = inputStream.Length;
-        }, endian: ((UbiArtIPKArchiveDataManager)manager).Endian);
+        });
 
         // Get the untiled image data
         byte[] untiledImgData = imgData.Untile(true);

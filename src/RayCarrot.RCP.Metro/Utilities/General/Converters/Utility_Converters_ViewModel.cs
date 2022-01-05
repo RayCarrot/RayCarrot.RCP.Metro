@@ -8,7 +8,6 @@ using BinarySerializer.OpenSpace;
 using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.IO;
-using EngineVersion = BinarySerializer.UbiArt.EngineVersion;
 using Platform = BinarySerializer.UbiArt.Platform;
 
 namespace RayCarrot.RCP.Metro;
@@ -111,24 +110,24 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
                 {
                     new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Origins"), new Utility_SerializableTypeModeData
                     {
-                        GetSettings = () => new UbiArtSettings(EngineVersion.RaymanOrigins, Platform.PC),
+                        GetSettings = () => new UbiArtSettings(Game.RaymanOrigins, Platform.PC),
                         Game = Games.RaymanOrigins,
                         Endian = Endian.Big,
                     }),
                     new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Origins (3DS)"), new Utility_SerializableTypeModeData
                     {
-                        GetSettings = () => new UbiArtSettings(EngineVersion.RaymanOrigins, Platform.Nintendo3DS),
+                        GetSettings = () => new UbiArtSettings(Game.RaymanOrigins, Platform.Nintendo3DS),
                         Endian = Endian.Little,
                     }),
                     new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Legends"), new Utility_SerializableTypeModeData
                     {
-                        GetSettings = () => new UbiArtSettings(EngineVersion.RaymanLegends, Platform.PC),
+                        GetSettings = () => new UbiArtSettings(Game.RaymanLegends, Platform.PC),
                         Game = Games.RaymanLegends,
                         Endian = Endian.Big,
                     }),
                     new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Fiesta Run"), new Utility_SerializableTypeModeData
                     {
-                        GetSettings = () => new UbiArtSettings(EngineVersion.RaymanFiestaRun, Platform.PC),
+                        GetSettings = () => new UbiArtSettings(Game.RaymanFiestaRun, Platform.PC),
                         Game = Games.RaymanFiestaRun,
                         Endian = Endian.Big,
                     }),

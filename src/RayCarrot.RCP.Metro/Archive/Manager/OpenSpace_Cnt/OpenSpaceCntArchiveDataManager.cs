@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BinarySerializer;
 using BinarySerializer.OpenSpace;
 using ByteSizeLib;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using NLog;
 
@@ -21,49 +21,12 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
-    public OpenSpaceCntArchiveDataManager(Rayman.OpenSpace.OpenSpaceSettings settings)
+    public OpenSpaceCntArchiveDataManager(OpenSpaceSettings settings)
     {
         Settings = settings;
 
-        Platform platform = settings.Platform switch
-        {
-            Rayman.Platform.Nintendo64 => Platform.Nintendo64,
-            Rayman.Platform.GameCube => Platform.NintendoGameCube,
-            Rayman.Platform.NintendoDS => Platform.NintendoDS,
-            Rayman.Platform.Nintendo3DS => Platform.Nintendo3DS,
-            Rayman.Platform.DreamCast => Platform.Dreamcast,
-            Rayman.Platform.PlayStation2 => Platform.PlayStation2,
-            Rayman.Platform.PlayStation3 => Platform.PlayStation3,
-            Rayman.Platform.Xbox360 => Platform.Xbox360,
-            Rayman.Platform.PC => Platform.PC,
-            Rayman.Platform.Mac => Platform.Mac,
-            Rayman.Platform.iOS => Platform.iOS,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-
-        EngineVersion engineVersion = settings.Game switch
-        {
-            Rayman.OpenSpace.OpenSpaceGame.TonicTrouble => EngineVersion.TonicTrouble,
-            Rayman.OpenSpace.OpenSpaceGame.TonicTroubleSpecialEdition => EngineVersion.TonicTroubleSpecialEdition,
-            Rayman.OpenSpace.OpenSpaceGame.PlaymobilHype => EngineVersion.PlaymobilHype,
-            Rayman.OpenSpace.OpenSpaceGame.PlaymobilAlex => EngineVersion.PlaymobilAlex,
-            Rayman.OpenSpace.OpenSpaceGame.PlaymobilLaura => EngineVersion.PlaymobilLaura,
-            Rayman.OpenSpace.OpenSpaceGame.Rayman2 => EngineVersion.Rayman2,
-            Rayman.OpenSpace.OpenSpaceGame.Rayman2Demo => EngineVersion.Rayman2Demo,
-            Rayman.OpenSpace.OpenSpaceGame.Rayman2Revolution => EngineVersion.Rayman2Revolution,
-            Rayman.OpenSpace.OpenSpaceGame.RaymanRush => EngineVersion.RaymanRush,
-            Rayman.OpenSpace.OpenSpaceGame.RaymanRavingRabbids => EngineVersion.RaymanRavingRabbids,
-            Rayman.OpenSpace.OpenSpaceGame.DonaldDuckQuackAttack => EngineVersion.DonaldDuckQuackAttack,
-            Rayman.OpenSpace.OpenSpaceGame.RaymanM => EngineVersion.RaymanM,
-            Rayman.OpenSpace.OpenSpaceGame.RaymanArena => EngineVersion.RaymanArena,
-            Rayman.OpenSpace.OpenSpaceGame.Rayman3 => EngineVersion.Rayman3,
-            Rayman.OpenSpace.OpenSpaceGame.DonaldDuckPK => EngineVersion.DonaldDuckPK,
-            Rayman.OpenSpace.OpenSpaceGame.Dinosaur => EngineVersion.Dinosaur,
-            Rayman.OpenSpace.OpenSpaceGame.LargoWinch => EngineVersion.LargoWinch,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-
-        ContextSettings = new OpenSpaceSettings(engineVersion, platform);
+        Context = new RCPContext(String.Empty, new SerializerSettings(defaultEndian: settings.GetEndian, ignoreCacheOnRead: true));
+        Context.AddSettings(settings);
     }
 
     #endregion
@@ -75,6 +38,8 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     #endregion
 
     #region Public Properties
+
+    public Context Context { get; }
 
     /// <summary>
     /// The path separator character to use. This is usually \ or /.
@@ -92,13 +57,6 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     public FileExtension ArchiveFileExtension => new FileExtension(".cnt");
 
     /// <summary>
-    /// The serializer settings to use for the archive
-    /// </summary>
-    public BinarySerializerSettings SerializerSettings => Settings;
-
-    public object ContextSettings { get; }
-
-    /// <summary>
     /// The default archive file name to use when creating an archive
     /// </summary>
     public string DefaultArchiveFileName => "Textures.cnt";
@@ -108,7 +66,10 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// </summary>
     public object? GetCreatorUIConfig => null;
 
-    public Rayman.OpenSpace.OpenSpaceSettings Settings { get; }
+    /// <summary>
+    /// The settings when serializing the data
+    /// </summary>
+    public OpenSpaceSettings Settings { get; }
 
     #endregion
 
@@ -230,7 +191,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
 
         // Make sure we have a generator for each file
         if (fileGenerator.Count != data.Files.Length)
-            throw new BinarySerializableException("The .cnt file can't be serialized without a file generator for each file");
+            throw new Exception("The .cnt file can't be serialized without a file generator for each file");
 
         // Write the file contents
         foreach (CNT_File file in data.Files)
@@ -248,9 +209,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         outputFileStream.Position = 0;
 
         // Serialize the data
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((OpenSpaceSettings)ContextSettings);
-        c.WriteStreamData(outputFileStream, data, leaveOpen: true);
+        Context.WriteStreamData(outputFileStream, data, leaveOpen: true);
 
         Logger.Info("The CNT archive has been repacked");
     }
@@ -304,9 +263,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((OpenSpaceSettings)ContextSettings);
-        CNT data = c.ReadStreamData<CNT>(archiveFileStream, leaveOpen: true);
+        CNT data = Context.ReadStreamData<CNT>(archiveFileStream, leaveOpen: true);
 
         Logger.Info("Read CNT file with {0} files and {1} directories", data.Files.Length, data.Directories.Length);
 
@@ -372,6 +329,11 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         var entry = (CNT_File)fileEntry;
 
         return entry.FileSize;
+    }
+
+    public void Dispose()
+    {
+        Context.Dispose();
     }
 
     #endregion

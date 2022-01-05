@@ -28,7 +28,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             yield break;
 
         using RCPContext context = new(saveDir.DirPath);
-        UbiArtSettings settings = new(EngineVersion.RaymanJungleRun, Platform.PC);
+        UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanJungleRun, Platform.PC);
         context.AddSettings(settings);
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)

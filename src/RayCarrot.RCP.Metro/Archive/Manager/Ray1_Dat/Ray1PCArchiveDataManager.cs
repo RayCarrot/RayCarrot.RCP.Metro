@@ -21,34 +21,14 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The game settings</param>
-    public Ray1PCArchiveDataManager(Rayman.Ray1.Ray1Settings settings)
+    public Ray1PCArchiveDataManager(Ray1Settings settings)
     {
         Settings = settings;
 
-        Ray1EngineVersion engineVersion;
+        Context = new RCPContext(String.Empty, new SerializerSettings(defaultEndian: Endian.Little, ignoreCacheOnRead: true));
+        Context.AddSettings(settings);
 
-        switch (settings.Game)
-        {
-            case Rayman.Ray1.Ray1Game.Rayman1:
-                engineVersion = Ray1EngineVersion.PC;
-                break;
-
-            case Rayman.Ray1.Ray1Game.RayEdu:
-                engineVersion = Ray1EngineVersion.PC_Edu;
-                break;
-
-            // TODO-UPDATE: Differentiate between KIT and FAN
-            case Rayman.Ray1.Ray1Game.RayKit:
-                engineVersion = Ray1EngineVersion.PC_Kit;
-                break;
-            
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        Ray1Settings contextSettings = new(engineVersion);
-        ContextSettings = contextSettings;
-        Config = new Ray1PCArchiveConfigViewModel(contextSettings);
+        Config = new Ray1PCArchiveConfigViewModel(settings);
     }
 
     #endregion
@@ -60,6 +40,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     #endregion
 
     #region Public Properties
+
+    public Context Context { get; }
 
     /// <summary>
     /// The path separator character to use. This is usually \ or /.
@@ -77,13 +59,6 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     public FileExtension ArchiveFileExtension => new FileExtension(".dat");
 
     /// <summary>
-    /// The serializer settings to use for the archive
-    /// </summary>
-    public Binary.BinarySerializerSettings SerializerSettings => Settings;
-
-    public object ContextSettings { get; }
-
-    /// <summary>
     /// The default archive file name to use when creating an archive
     /// </summary>
     public string DefaultArchiveFileName => "Archive.dat";
@@ -97,14 +72,14 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     };
 
     /// <summary>
-    /// The settings when serializing the data
-    /// </summary>
-    protected Rayman.Ray1.Ray1Settings Settings { get; }
-
-    /// <summary>
     /// The configuration view model
     /// </summary>
     protected Ray1PCArchiveConfigViewModel Config { get; }
+
+    /// <summary>
+    /// The settings when serializing the data
+    /// </summary>
+    public Ray1Settings Settings { get; }
 
     #endregion
 
@@ -240,9 +215,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         outputFileStream.Position = 0;
 
         // Serialize the data
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((Ray1Settings)ContextSettings);
-        c.WriteStreamData(outputFileStream, data, leaveOpen: true);
+        Context.WriteStreamData(outputFileStream, data, leaveOpen: true);
 
         Logger.Info("The R1 PC archive has been repacked");
     }
@@ -281,9 +254,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         archiveFileStream.Position = 0;
 
         // Load the current file
-        using RCPContext c = new(String.Empty);
-        c.AddSettings((Ray1Settings)ContextSettings);
-        PC_FileArchive data = c.ReadStreamData<PC_FileArchive>(archiveFileStream, leaveOpen: true);
+        PC_FileArchive data = Context.ReadStreamData<PC_FileArchive>(archiveFileStream, leaveOpen: true);
 
         Logger.Info("Read R1 PC archive file with {0} files", data.Entries.Length);
 
@@ -356,6 +327,11 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         var entry = (PC_FileArchiveEntry)fileEntry;
 
         return entry.FileSize;
+    }
+
+    public void Dispose()
+    {
+        Context.Dispose();
     }
 
     #endregion

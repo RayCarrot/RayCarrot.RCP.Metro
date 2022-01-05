@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using System;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 
@@ -48,10 +49,11 @@ public class Utility_ArchiveExplorer_IPK_ViewModel : Utility_BaseArchiveExplorer
         var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
         var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-        return new UbiArtIPKArchiveDataManager(settings, 
-            mode == ArchiveMode.Explorer 
-                ? UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed 
-                : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting);
+        throw new NotImplementedException();
+        //return new UbiArtIPKArchiveDataManager(settings, 
+        //    mode == ArchiveMode.Explorer 
+        //        ? UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed 
+        //        : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting);
     }
 
     /// <summary>

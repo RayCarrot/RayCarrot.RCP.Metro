@@ -605,6 +605,9 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
         // Dispose the status bar items
         StatusBarItems?.DisposeAll();
 
+        // Dispose the manager
+        Manager.Dispose();
+
         // Disable collection synchronization
         BindingOperations.DisableCollectionSynchronization(StatusBarItems);
     }

@@ -59,7 +59,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
             yield break;
 
         using RCPContext context = new(saveDir.DirPath);
-        UbiArtSettings settings = new(EngineVersion.RaymanFiestaRun, Platform.PC);
+        UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC);
         context.AddSettings(settings);
 
         Logger.Info("{0} slot is being loaded...", Game);

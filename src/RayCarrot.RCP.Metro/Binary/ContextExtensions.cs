@@ -19,7 +19,14 @@ public static class ContextExtensions
 
         context.AddFile(file);
 
-        return FileFactory.Read<T>(fileName, context, (_, o) => onPreSerialize?.Invoke(o));
+        try
+        {
+            return FileFactory.Read<T>(fileName, context, (_, o) => onPreSerialize?.Invoke(o));
+        }
+        finally
+        {
+            context.RemoveFile(file);
+        }
     }
 
     public static T ReadStreamData<T>(this Context context, Stream stream, Endian? endian = null, bool leaveOpen = false, Action<T>? onPreSerialize = null)
@@ -31,7 +38,14 @@ public static class ContextExtensions
 
         context.AddFile(file);
 
-        return FileFactory.Read<T>(name, context, (_, o) => onPreSerialize?.Invoke(o));
+        try
+        {
+            return FileFactory.Read<T>(name, context, (_, o) => onPreSerialize?.Invoke(o));
+        }
+        finally
+        {
+            context.RemoveFile(file);
+        }
     }
 
     public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null)
@@ -49,7 +63,14 @@ public static class ContextExtensions
 
         context.AddFile(file);
 
-        FileFactory.Write(fileName, obj, context);
+        try
+        {
+            FileFactory.Write(fileName, obj, context);
+        }
+        finally
+        {
+            context.RemoveFile(file);
+        }
     }
 
     public static void WriteStreamData<T>(this Context context, Stream stream, T obj, Endian? endian = null, bool leaveOpen = false)
@@ -61,6 +82,13 @@ public static class ContextExtensions
 
         context.AddFile(file);
 
-        FileFactory.Write(name, obj, context);
+        try
+        {
+            FileFactory.Write(name, obj, context);
+        }
+        finally
+        {
+            context.RemoveFile(file);
+        }
     }
 }

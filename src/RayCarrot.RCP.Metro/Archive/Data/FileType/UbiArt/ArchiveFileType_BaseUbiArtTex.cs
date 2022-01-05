@@ -5,7 +5,6 @@ using BinarySerializer;
 using BinarySerializer.UbiArt;
 using ImageMagick;
 using RayCarrot.IO;
-using Endian = RayCarrot.Binary.Endian;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -24,7 +23,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// </summary>
     /// <param name="manager">The manager to check</param>
     /// <returns>True if supported, otherwise false</returns>
-    public override bool IsSupported(IArchiveDataManager manager) => manager.ContextSettings is UbiArtSettings;
+    public override bool IsSupported(IArchiveDataManager manager) => manager.Context?.HasSettings<UbiArtSettings>() is true;
 
     /// <summary>
     /// Indicates if a file with the specifies file extension is of this type
@@ -56,7 +55,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         if (FormatMagic != null)
         {
             // Use a reader
-            using Reader reader = new(inputStream, manager.SerializerSettings.Endian == Endian.Little, true);
+            using Reader reader = new(inputStream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
 
             // Get the magic header
             uint magic = reader.ReadUInt32();
@@ -178,9 +177,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
             tex.Pre_SerializeImageData = true;
 
             // Write the TEX file
-            using RCPContext c = new(String.Empty);
-            c.AddSettings((UbiArtSettings)manager.ContextSettings);
-            c.WriteStreamData(outputStream, tex, leaveOpen: true, endian: ((UbiArtIPKArchiveDataManager)manager).Endian);
+            manager.Context!.WriteStreamData(outputStream, tex, leaveOpen: true);
         }
     }
 
@@ -216,7 +213,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     protected TextureCooked? ReadTEXHeader(Stream inputStream, IArchiveDataManager manager)
     {
         // Use a reader
-        using Reader reader = new(inputStream, manager.SerializerSettings.Endian == Endian.Little, true);
+        using Reader reader = new(inputStream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
 
         // Check if it's in a TEX wrapper
         inputStream.Position = 4;
@@ -229,9 +226,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         if (usesTexWrapper)
         {
             // Serialize the header
-            using RCPContext c = new(String.Empty);
-            c.AddSettings((UbiArtSettings)manager.ContextSettings);
-            return c.ReadStreamData<TextureCooked>(inputStream, leaveOpen: true, onPreSerialize: x => x.Pre_SerializeImageData = false, endian: ((UbiArtIPKArchiveDataManager)manager).Endian);
+            return manager.Context.ReadStreamData<TextureCooked>(inputStream, leaveOpen: true, onPreSerialize: x => x.Pre_SerializeImageData = false);
         }
 
         return null;

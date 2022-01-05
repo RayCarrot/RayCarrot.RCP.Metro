@@ -271,8 +271,10 @@ public abstract class GameInfo : BaseGameData
                 {
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, GenericIconKind.GameDisplay_Archive, new AsyncRelayCommand(async () =>
                     {
+                        using IArchiveDataManager archiveDataManager = GetArchiveDataManager;
+
                         // Show the archive explorer
-                        await Services.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
+                        await Services.UI.ShowArchiveExplorerAsync(archiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
                     }), UserLevel.Advanced));
                 }
 

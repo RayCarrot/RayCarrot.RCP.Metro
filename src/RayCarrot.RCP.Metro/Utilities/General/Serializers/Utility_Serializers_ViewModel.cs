@@ -9,7 +9,6 @@ using BinarySerializer.Ray1;
 using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.IO;
-using EngineVersion = BinarySerializer.UbiArt.EngineVersion;
 using Platform = BinarySerializer.UbiArt.Platform;
 
 namespace RayCarrot.RCP.Metro;
@@ -67,21 +66,21 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
         };
         Utility_SerializableTypeModeData mode_UbiArt_RO = new()
         {
-            GetSettings = () => new UbiArtSettings(EngineVersion.RaymanOrigins, Platform.PC),
+            GetSettings = () => new UbiArtSettings(Game.RaymanOrigins, Platform.PC),
             Game = Games.RaymanOrigins,
             Endian = Endian.Big,
             GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins",
         };
         Utility_SerializableTypeModeData mode_UbiArt_RL = new()
         {
-            GetSettings = () => new UbiArtSettings(EngineVersion.RaymanLegends, Platform.PC),
+            GetSettings = () => new UbiArtSettings(Game.RaymanLegends, Platform.PC),
             Game = Games.RaymanLegends,
             Endian = Endian.Big,
             GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends",
         };
         Utility_SerializableTypeModeData mode_UbiArt_RJR = new()
         {
-            GetSettings = () => new UbiArtSettings(EngineVersion.RaymanJungleRun, Platform.PC),
+            GetSettings = () => new UbiArtSettings(Game.RaymanJungleRun, Platform.PC),
             Game = Games.RaymanJungleRun,
             GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
                                   "Packages" + 
@@ -90,7 +89,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
         };
         Utility_SerializableTypeModeData mode_UbiArt_RFR = new()
         {
-            GetSettings = () => new UbiArtSettings(EngineVersion.RaymanFiestaRun, Platform.PC),
+            GetSettings = () => new UbiArtSettings(Game.RaymanFiestaRun, Platform.PC),
             Game = Games.RaymanFiestaRun,
             GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
                                   "Packages" + 

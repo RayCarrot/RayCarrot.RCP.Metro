@@ -91,7 +91,8 @@ public abstract class Utility_BaseArchiveExplorer_ViewModel<GameMode> : BaseRCPV
             return;
 
         // Show the Archive Explorer
-        await Services.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
+        using (manager)
+            await Services.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
     }
 
     /// <summary>
@@ -100,8 +101,10 @@ public abstract class Utility_BaseArchiveExplorer_ViewModel<GameMode> : BaseRCPV
     /// <returns>The task</returns>
     public async Task CreateArchiveAsync()
     {
+        using IArchiveDataManager manager = GetArchiveDataManager(ArchiveMode.Creator);
+
         // Show the Archive Creator
-        await Services.UI.ShowArchiveCreatorAsync(GetArchiveDataManager(ArchiveMode.Creator));
+        await Services.UI.ShowArchiveCreatorAsync(manager);
     }
 
     #endregion
