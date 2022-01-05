@@ -1,15 +1,12 @@
-﻿#nullable disable
-using RayCarrot.IO;
-using RayCarrot.Rayman.UbiArt;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Binary;
+using BinarySerializer.UbiArt;
 using NLog;
-using RayCarrot.Rayman;
+using RayCarrot.IO;
 
 // ReSharper disable StringLiteralTypo
 
@@ -45,8 +42,10 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
             // Set the position
             fileStream.Position = patchInfo.Offset;
 
-            // Get the byte from that position to see if the patch has been applied
-            IsApplied = !fileStream.Read(patchInfo.Patch.OriginalBytes.Length).SequenceEqual(patchInfo.Patch.OriginalBytes);
+            // Get the bytes from that position to see if the patch has been applied
+            byte[] buffer = new byte[patchInfo.Patch.OriginalBytes.Length];
+            fileStream.Read(buffer, 0, buffer.Length);
+            IsApplied = !buffer.SequenceEqual(patchInfo.Patch.OriginalBytes);
         }
         catch (Exception ex)
         {
@@ -64,6 +63,13 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Commands
+
+    public ICommand ApplyCommand { get; }
+    public ICommand RevertCommand { get; }
+
+    #endregion
+
     #region Protected Properties
 
     /// <summary>
@@ -72,13 +78,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     protected Patch[] GetPatches => new Patch[]
     {
         // This makes UbiRay be treated as a normal costume (type 0)
-        new Patch("sgscontainer.ckd", 17841, new byte[]
-        {
-            0
-        }, new byte[]
-        {
-            1
-        }), 
+        new Patch("sgscontainer.ckd", 17841, new byte[] { 0 }, new byte[] { 1 }), 
 
         // This fixes the character description
         new Patch("costumerayman_ubi.act.ckd", 414, GetBytes(6426), GetBytes(5095)), 
@@ -103,14 +103,6 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
 
     #endregion
 
-    #region Commands
-
-    public ICommand ApplyCommand { get; }
-
-    public ICommand RevertCommand { get; }
-
-    #endregion
-
     #region Protected Methods
 
     /// <summary>
@@ -128,13 +120,16 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     protected IEnumerable<PatchInfo> GetPatchInfos(Stream ipkStream)
     {
         // Deserialize the IPK file
-        var ipk = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(ipkStream, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, Platform.PC), Services.App.GetBinarySerializerLogger(IPKFilePath.Name));
+        using RCPContext context = new(String.Empty);
+        UbiArtSettings settings = new(Game.RaymanLegends, Platform.PC);
+        context.AddSettings(settings);
+        BundleFile ipk = context.ReadStreamData<BundleFile>(ipkStream, settings.GetEndian, leaveOpen: true);
 
         // Enumerate every patch
         foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))
         {
             // Get the file
-            var file = ipk.Files.FirstOrDefault(x => x.Path.FileName == patchGroup.Key);
+            BundleFile_FileEntry? file = ipk.FilePack.Files.FirstOrDefault(x => x.Path.FileName == patchGroup.Key);
 
             // Make sure we found the file
             if (file == null)
@@ -148,7 +143,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
             foreach (Patch patch in patchGroup)
             {
                 // Get the offset of the byte in the file to change
-                yield return new PatchInfo(patch, (long)(ipk.BaseOffset + file.Offsets.First() + (uint)patch.FileOffset));
+                yield return new PatchInfo(patch, (long)(ipk.BootHeader.BaseOffset + file.Offsets.First() + (uint)patch.FileOffset));
             }
         }
     }
@@ -168,8 +163,10 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
             // Set the position
             fileStream.Position = patchInfo.Offset;
 
+            byte[] bytes = usePatchedBytes ? patchInfo.Patch.PatchedBytes : patchInfo.Patch.OriginalBytes;
+
             // Modify the bytes
-            fileStream.Write(usePatchedBytes ? patchInfo.Patch.PatchedBytes : patchInfo.Patch.OriginalBytes);
+            fileStream.Write(bytes, 0, bytes.Length);
         }
     }
 
@@ -229,40 +226,10 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Records
 
-    #region Classes
-
-    protected class Patch
-    {
-        public Patch(string fileName, int fileOffset, byte[] patchedBytes, byte[] originalBytes)
-        {
-            FileName = fileName;
-            FileOffset = fileOffset;
-            PatchedBytes = patchedBytes;
-            OriginalBytes = originalBytes;
-        }
-
-        public string FileName { get; }
-
-        public int FileOffset { get; }
-
-        public byte[] PatchedBytes { get; }
-
-        public byte[] OriginalBytes { get; }
-    }
-
-    protected class PatchInfo
-    {
-        public PatchInfo(Patch patch, long offset)
-        {
-            Patch = patch;
-            Offset = offset;
-        }
-
-        public Patch Patch { get; }
-
-        public long Offset { get; }
-    }
+    protected record PatchInfo(Patch Patch, long Offset);
+    protected record Patch(string FileName, int FileOffset, byte[] PatchedBytes, byte[] OriginalBytes);
 
     #endregion
 }
