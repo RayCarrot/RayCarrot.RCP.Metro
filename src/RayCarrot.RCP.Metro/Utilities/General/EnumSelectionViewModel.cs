@@ -1,5 +1,6 @@
-﻿#nullable disable
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,16 +16,16 @@ public class EnumSelectionViewModel<T> : BaseRCPViewModel
     /// </summary>
     /// <param name="defaultValue">The default selected value</param>
     /// <param name="availableValues">The available values to select</param>
-    public EnumSelectionViewModel(T defaultValue, T[] availableValues)
+    public EnumSelectionViewModel(T defaultValue, IEnumerable<T> availableValues)
     {
-        AvailableValues = availableValues;
+        AvailableValues = new ObservableCollection<T>(availableValues);
         SelectedValue = defaultValue;
     }
 
     /// <summary>
     /// The available values to select
     /// </summary>
-    public T[] AvailableValues { get; }
+    public ObservableCollection<T> AvailableValues { get; }
 
     /// <summary>
     /// The currently selected value

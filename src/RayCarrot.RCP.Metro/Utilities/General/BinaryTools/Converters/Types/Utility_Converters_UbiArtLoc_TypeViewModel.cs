@@ -11,7 +11,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
 {
     public Utility_Converters_UbiArtLoc_TypeViewModel(LocalizedString name, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(name, modes) { }
 
-    public override FileExtension SourceFileExtension => ((UbiArtSettings)SelectedMode.Data.GetSettings!()).Game switch
+    public override FileExtension SourceFileExtension => ((UbiArtSettings)SelectedMode.GetSettings()!).Game switch
     {
         Game.RaymanOrigins or Game.RaymanFiestaRun => new FileExtension(".loc"),
         _ => new FileExtension(".loc8"),
@@ -34,7 +34,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
             where LocString : BinarySerializable, new()
             where UAString : UbiArtString, new()
         {
-            Localisation_Template<LocString, UAString>? obj = ReadFile<Localisation_Template<LocString, UAString>>(context, inputFileName);
+            Localisation_Template<LocString, UAString>? obj = ReadFile<Localisation_Template<LocString, UAString>>(context, settings.GetEndian, inputFileName);
 
             if (obj is null)
                 return;
@@ -68,7 +68,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
         {
             ConvertedLocData<LocString, UAString> obj = JsonHelpers.DeserializeFromFile<ConvertedLocData<LocString, UAString>>(inputFilePath);
 
-            WriteFile(context, outputFileName, new Localisation_Template<LocString, UAString>
+            WriteFile(context, settings.GetEndian, outputFileName, new Localisation_Template<LocString, UAString>
             {
                 Strings = obj.Strings?.Select(x => new LocTextValuePair<LocString>
                 {

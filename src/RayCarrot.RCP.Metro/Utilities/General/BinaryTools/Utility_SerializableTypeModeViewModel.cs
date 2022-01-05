@@ -1,20 +1,37 @@
 ﻿using System;
+using BinarySerializer;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Utility_SerializableTypeModeViewModel : BaseViewModel, IDisposable
+public class Utility_SerializableTypeModeViewModel : BaseViewModel
 {
-    public Utility_SerializableTypeModeViewModel(LocalizedString name, Utility_SerializableTypeModeData data)
+    public Utility_SerializableTypeModeViewModel(string displayName, Games? game = null) : this(null, displayName, game) { }
+
+    public Utility_SerializableTypeModeViewModel(Enum? gameMode, string? displayName = null, Games? game = null)
     {
-        Name = name;
-        Data = data;
+        GameModeBaseAttribute? attr = gameMode?.GetAttribute<GameModeBaseAttribute>();
+
+        GameMode = gameMode;
+        DisplayName = displayName ?? attr?.DisplayName ?? "NULL";
+        Game = game ?? attr?.Game;
+        GetDefaultDir = () => Game?.GetInstallDir(false);
     }
 
-    public LocalizedString Name { get; }
-    public Utility_SerializableTypeModeData Data { get; }
+    protected Enum? GameMode { get; }
 
-    public void Dispose()
+    public string DisplayName { get; }
+    public Games? Game { get; }
+    public IStreamEncoder? Encoder { get; init; }
+    public Func<FileSystemPath?> GetDefaultDir { get; init; }
+
+    public object? GetSettings() => GameMode?.GetAttribute<GameModeBaseAttribute>()?.GetSettingsObject();
+
+    public void InitContext(Context context)
     {
-        Name.Dispose();
+        object? settings = GetSettings();
+
+        if (settings is not null)
+            context.AddSettings(settings, settings.GetType());
     }
 }

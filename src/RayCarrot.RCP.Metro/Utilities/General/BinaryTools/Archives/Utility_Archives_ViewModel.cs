@@ -3,9 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using BinarySerializer.OpenSpace;
-using BinarySerializer.Ray1;
-using BinarySerializer.UbiArt;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
@@ -21,25 +18,20 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
             new Utility_Archives_TypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_R1Header)),
                 fileExtension: new FileExtension(".dat"),
-                getManagerFunc: (data, mode) => new Ray1PCArchiveDataManager((Ray1Settings)data),
-                modes: new Ray1GameMode[] 
+                getManagerFunc: (data, mode) => new Ray1PCArchiveDataManager(data.GetAttribute<Ray1GameModeInfoAttribute>().GetSettings()),
+                modes: new EnumSelectionViewModel<Enum>(Ray1GameMode.RaymanDesigner_PC, new Enum[]
                 {
                     Ray1GameMode.RaymanEducational_PC,
                     Ray1GameMode.RaymanDesigner_PC,
                     Ray1GameMode.RaymanByHisFans_PC,
                     Ray1GameMode.Rayman60Levels_PC,
-                }.Select(x => x.GetAttribute<Ray1GameModeInfoAttribute>()).
-                Select(x => new Utility_Archives_ModeViewModel(
-                    name: new ConstLocString(x.DisplayName), 
-                    game: x.Game, 
-                    data: new Ray1Settings(x.EngineVersion))).
-                ToObservableCollection()),
+                })),
 
             new Utility_Archives_TypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_CNTHeader)),
                 fileExtension: new FileExtension(".cnt"),
-                getManagerFunc: (data, mode) => new OpenSpaceCntArchiveDataManager((OpenSpaceSettings)data),
-                modes: new OpenSpaceGameMode[] 
+                getManagerFunc: (data, mode) => new OpenSpaceCntArchiveDataManager(data.GetAttribute<OpenSpaceGameModeInfoAttribute>().GetSettings()),
+                modes: new EnumSelectionViewModel<Enum>(OpenSpaceGameMode.Rayman2_PC, new Enum[]
                 {
                     OpenSpaceGameMode.Rayman2_PC,
                     OpenSpaceGameMode.Rayman2_Demo1_PC,
@@ -51,20 +43,15 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
                     OpenSpaceGameMode.TonicTrouble_SE_PC,
                     OpenSpaceGameMode.DonaldDuck_PC,
                     OpenSpaceGameMode.PlaymobilHype_PC,
-                }.Select(x => x.GetAttribute<OpenSpaceGameModeInfoAttribute>()).
-                Select(x => new Utility_Archives_ModeViewModel(
-                    name: new ConstLocString(x.DisplayName),
-                    game: x.Game,
-                    data: new OpenSpaceSettings(x.EngineVersion, x.Platform))).
-                ToObservableCollection()),
+                })),
 
             new Utility_Archives_TypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_IPKHeader)),
                 fileExtension: new FileExtension(".ipk"),
-                getManagerFunc: (data, mode) => new UbiArtIPKArchiveDataManager((UbiArtSettings)data, mode == Utility_Archives_TypeViewModel.ArchiveMode.Explorer 
+                getManagerFunc: (data, mode) => new UbiArtIPKArchiveDataManager(data.GetAttribute<UbiArtGameModeInfoAttribute>().GetSettings(), mode == Utility_Archives_TypeViewModel.ArchiveMode.Explorer 
                     ? UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed 
                     : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting),
-                modes: new UbiArtGameMode[]
+                modes: new EnumSelectionViewModel<Enum>(UbiArtGameMode.RaymanOrigins_PC, new Enum[]
                 {
                     UbiArtGameMode.RaymanOrigins_PC,
                     UbiArtGameMode.RaymanOrigins_PS3,
@@ -85,12 +72,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
                     UbiArtGameMode.ChildOfLight_PSVita,
                     UbiArtGameMode.ValiantHearts_Android,
                     UbiArtGameMode.GravityFalls_3DS,
-                }.Select(x => x.GetAttribute<UbiArtGameModeInfoAttribute>()).
-                Select(x => new Utility_Archives_ModeViewModel(
-                    name: new ConstLocString(x.DisplayName),
-                    game: x.Game,
-                    data: new UbiArtSettings(x.UbiArtGame, x.Platform))).
-                ToObservableCollection()),
+                })),
         };
         SelectedType = Types.First();
 
@@ -122,7 +104,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
             Title = Resources.Utilities_ArchiveExplorer_FileSelectionHeader,
-            DefaultDirectory = SelectedType.SelectedMode.Game?.GetInstallDir(false).FullPath,
+            DefaultDirectory = SelectedType.Modes.SelectedValue.GetAttribute<GameModeBaseAttribute>()?.Game?.GetInstallDir(false).FullPath,
             ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
             MultiSelection = true,
         });

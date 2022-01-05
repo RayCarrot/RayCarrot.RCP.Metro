@@ -8,11 +8,12 @@ namespace RayCarrot.RCP.Metro;
 
 public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDisposable
 {
-    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_SerializableTypeModeViewModel> modes)
+    protected Utility_Serializers_TypeViewModel(Type type, LocalizedString name, FileExtension fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes)
     {
         Type = type;
         Name = name;
         FileExtension = fileExtension;
+        GetEndianFunc = getEndianFunc;
         Modes = modes;
 
         if (!Modes.Any())
@@ -25,6 +26,8 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
     public LocalizedString Name { get; }
     public FileExtension FileExtension { get; }
 
+    public Func<Context, Endian> GetEndianFunc { get; }
+
     public ObservableCollection<Utility_SerializableTypeModeViewModel> Modes { get; }
     public Utility_SerializableTypeModeViewModel SelectedMode { get; set; }
 
@@ -34,23 +37,22 @@ public abstract class Utility_Serializers_TypeViewModel : BaseRCPViewModel, IDis
     public void Dispose()
     {
         Name.Dispose();
-        Modes.DisposeAll();
     }
 }
 
 public class Serializers_TypeViewModel<T> : Utility_Serializers_TypeViewModel
     where T : BinarySerializable, new()
 {
-    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(typeof(T), name, fileExtension, modes)
+    public Serializers_TypeViewModel(LocalizedString name, FileExtension fileExtension, Func<Context, Endian> getEndianFunc, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(typeof(T), name, fileExtension, getEndianFunc, modes)
     { }
 
     public override object? Deserialize(Context context, string fileName)
     {
-        return context.ReadFileData<T>(fileName, SelectedMode.Data.Encoder, SelectedMode.Data.Endian);
+        return context.ReadFileData<T>(fileName, SelectedMode.Encoder, GetEndianFunc(context));
     }
 
     public override void Serialize(Context context, string fileName, object obj)
     {
-        context.WriteFileData<T>(fileName, (T)obj, SelectedMode.Data.Encoder, SelectedMode.Data.Endian);
+        context.WriteFileData<T>(fileName, (T)obj, SelectedMode.Encoder, GetEndianFunc(context));
     }
 }

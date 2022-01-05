@@ -21,5 +21,6 @@ public sealed class UbiArtGameModeInfoAttribute : GameModeBaseAttribute
     public Game UbiArtGame { get; }
     public Platform Platform { get; }
 
+    public override object GetSettingsObject() => GetSettings();
     public UbiArtSettings GetSettings() => new UbiArtSettings(UbiArtGame, Platform);
 }

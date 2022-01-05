@@ -100,16 +100,17 @@ public static class EnumExtensions
     /// <typeparam name="T">The type of attribute to retrieve</typeparam>
     /// <param name="value">The enum value to get the attribute for</param>
     /// <returns>The attribute instance</returns>
-    public static T GetAttribute<T>(this Enum value) where T : Attribute
+    public static T GetAttribute<T>(this Enum value) 
+        where T : Attribute
     {
         if (value == null)
             throw new ArgumentNullException(nameof(value));
 
         // Get the member info for the value
-        var memberInfo = value.GetType().GetMember(value.ToString());
+        MemberInfo[] memberInfo = value.GetType().GetMember(value.ToString());
 
         // Get the attribute
-        var attributes = memberInfo.First().GetCustomAttributes<T>(false);
+        IEnumerable<T> attributes = memberInfo.First().GetCustomAttributes<T>(false);
 
         // Return the first attribute
         return attributes.FirstOrDefault();

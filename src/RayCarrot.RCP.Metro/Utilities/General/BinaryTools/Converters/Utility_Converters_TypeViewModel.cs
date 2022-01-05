@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,16 +28,16 @@ public abstract class Utility_Converters_TypeViewModel : BaseRCPViewModel, IDisp
     public abstract FileExtension SourceFileExtension { get; }
     public abstract string[] ConvertFormats { get; }
 
-    protected T? ReadFile<T>(Context context, string fileName, Action<T>? onPreSerialize = null)
+    protected T? ReadFile<T>(Context context, Endian endian, string fileName, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {
-        return context.ReadFileData<T>(fileName, SelectedMode.Data.Encoder, SelectedMode.Data.Endian, onPreSerialize);
+        return context.ReadFileData<T>(fileName, SelectedMode.Encoder, endian, onPreSerialize);
     }
 
-    protected void WriteFile<T>(Context context, string fileName, T obj)
+    protected void WriteFile<T>(Context context, Endian endian, string fileName, T obj)
         where T : BinarySerializable, new()
     {
-        context.WriteFileData<T>(fileName, obj, SelectedMode.Data.Encoder, SelectedMode.Data.Endian);
+        context.WriteFileData<T>(fileName, obj, SelectedMode.Encoder, endian);
     }
 
     public abstract void Convert(Context context, string inputFileName, FileSystemPath outputFilePath);
@@ -48,6 +47,5 @@ public abstract class Utility_Converters_TypeViewModel : BaseRCPViewModel, IDisp
     public void Dispose()
     {
         Name.Dispose();
-        Modes.DisposeAll();
     }
 }

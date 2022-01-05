@@ -9,7 +9,6 @@ using BinarySerializer.Ray1;
 using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.IO;
-using Platform = BinarySerializer.UbiArt.Platform;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -19,213 +18,157 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
     public Utility_Serializers_ViewModel()
     {
-        Utility_SerializableTypeModeData mode_Ray1_PC = new()
-        {
-            GetSettings = () => new Ray1Settings(Ray1EngineVersion.PC),
-            Game = Games.Rayman1,
-        };
-        Utility_SerializableTypeModeData mode_Ray1_PC_Edu = new()
-        {
-            GetSettings = () => new Ray1Settings(Ray1EngineVersion.PC_Edu),
-            Game = Games.EducationalDos,
-        };
-        Utility_SerializableTypeModeData mode_Ray1_PC_Kit = new()
-        {
-            GetSettings = () => new Ray1Settings(Ray1EngineVersion.PC_Kit),
-            Game = Games.RaymanDesigner,
-        };
-        Utility_SerializableTypeModeData mode_Ray1_PC_Fan = new()
-        {
-            GetSettings = () => new Ray1Settings(Ray1EngineVersion.PC_Fan),
-            Game = Games.RaymanByHisFans,
-        };
-        Utility_SerializableTypeModeData mode_Ray1_PC_60n = new()
-        {
-            GetSettings = () => new Ray1Settings(Ray1EngineVersion.PC_Fan),
-            Game = Games.Rayman60Levels,
-        };
-        Utility_SerializableTypeModeData mode_OpenSpace_R2 = new()
-        {
-            Game = Games.Rayman2,
-        };
-        Utility_SerializableTypeModeData mode_OpenSpace_RM = new()
-        {
-            Game = Games.RaymanM,
-        };
-        Utility_SerializableTypeModeData mode_OpenSpace_RA = new()
-        {
-            Game = Games.RaymanArena,
-        };
-        Utility_SerializableTypeModeData mode_OpenSpace_R3 = new()
-        {
-            Game = Games.Rayman3,
-        };
-        Utility_SerializableTypeModeData mode_Jade_RRR = new()
-        {
-            Game = Games.RaymanRavingRabbids,
-        };
-        Utility_SerializableTypeModeData mode_UbiArt_RO = new()
-        {
-            GetSettings = () => new UbiArtSettings(Game.RaymanOrigins, Platform.PC),
-            Game = Games.RaymanOrigins,
-            Endian = Endian.Big,
-            GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins",
-        };
-        Utility_SerializableTypeModeData mode_UbiArt_RL = new()
-        {
-            GetSettings = () => new UbiArtSettings(Game.RaymanLegends, Platform.PC),
-            Game = Games.RaymanLegends,
-            Endian = Endian.Big,
-            GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends",
-        };
-        Utility_SerializableTypeModeData mode_UbiArt_RJR = new()
-        {
-            GetSettings = () => new UbiArtSettings(Game.RaymanJungleRun, Platform.PC),
-            Game = Games.RaymanJungleRun,
-            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
-                                  "Packages" + 
-                                  Games.RaymanJungleRun.GetManager<GameManager_WinStore>().FullPackageName + 
-                                  "LocalState",
-        };
-        Utility_SerializableTypeModeData mode_UbiArt_RFR = new()
-        {
-            GetSettings = () => new UbiArtSettings(Game.RaymanFiestaRun, Platform.PC),
-            Game = Games.RaymanFiestaRun,
-            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
-                                  "Packages" + 
-                                  Games.RaymanFiestaRun.GetManager<GameManager_WinStore>().FullPackageName + 
-                                  "LocalState",
-        };
-        Utility_SerializableTypeModeData mode_Unity_RBB = new()
-        {
-            Game = Games.RabbidsBigBang,
-            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-                                  "Packages" + 
-                                  Games.RabbidsBigBang.GetManager<GameManager_WinStore>().FullPackageName + 
-                                  "LocalState",
-        };
-        Utility_SerializableTypeModeData mode_GameMaker_Redemption = new()
-        {
-            Game = Games.RaymanRedemption,
-            GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption",
-        };
-
         // TODO-UPDATE: Localize & include file ext in all the names
         Types = new ObservableCollection<Utility_Serializers_TypeViewModel>()
         {
             new Serializers_TypeViewModel<PC_SaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
+                getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman 1 (PC)"), 
-                        mode_Ray1_PC with { Encoder = new PC_SaveEncoder() }),
+                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.Rayman1_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<PC_ConfigFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R1ConfigHeader)),
                 fileExtension: new FileExtension(".cfg"),
+                getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman 1 (PC)"), mode_Ray1_PC),
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Educational (PC)"), mode_Ray1_PC_Edu),
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Designer (PC)"), mode_Ray1_PC_Kit),
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman by his Fans (PC)"), mode_Ray1_PC_Fan),
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman 60 Levels (PC)"), mode_Ray1_PC_60n),
+                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.Rayman1_PC),
+                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.RaymanEducational_PC),
+                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.RaymanDesigner_PC),
+                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.RaymanByHisFans_PC),
+                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.Rayman60Levels_PC),
                 }),
 
             new Serializers_TypeViewModel<R2GeneralSaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
+                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman 2 (PC)"), 
-                        mode_OpenSpace_R2 with { Encoder = new PC_SaveEncoder() }),
+                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<R2ConfigFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2ConfigHeader)),
                 fileExtension: new FileExtension(".cfg"),
+                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman 2 (PC)"), 
-                        mode_OpenSpace_R2 with { Encoder = new PC_SaveEncoder() }),
+                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<RMSaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RMSaveHeader)),
                 fileExtension: new FileExtension(".sav"),
+                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman M (PC)"), mode_OpenSpace_RM),
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Arena (PC)"), mode_OpenSpace_RA),
+                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.RaymanM_PC),
+                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.RaymanArena_PC),
                 }),
 
             new Serializers_TypeViewModel<R3SaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R3SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
+                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman 3 (PC)"), 
-                        mode_OpenSpace_R3 with { Encoder = new R3SaveEncoder() }),
+                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman3_PC) { Encoder = new R3SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<RRR_SaveFile>(
                 name: new ConstLocString("Rayman Raving Rabbids Save Files (.sav)"),
                 fileExtension: new FileExtension(".sav"),
+                getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Raving Rabbids (PC)"),
-                        mode_Jade_RRR with { Encoder = new RRR_SaveEncoder() }),
+                    new Utility_SerializableTypeModeViewModel("Rayman Raving Rabbids (PC)", Games.RaymanRavingRabbids) { Encoder = new RRR_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<Origins_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_ROSaveHeader)),
                 fileExtension: new FileExtension(""),
+                getEndianFunc: c => c.GetSettings<UbiArtSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Origins (PC)"), mode_UbiArt_RO),
+                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanOrigins_PC)
+                    {
+                        GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins"
+                    },
                 }),
 
             new Serializers_TypeViewModel<Legends_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RLSaveHeader)),
                 fileExtension: new FileExtension(""),
+                getEndianFunc: c => c.GetSettings<UbiArtSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Legends (PC)"), mode_UbiArt_RL),
+                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanLegends_PC)
+                    {
+                        GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends"
+                    },
                 }),
 
             new Serializers_TypeViewModel<JungleRun_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RJRSaveHeader)),
                 fileExtension: new FileExtension(".dat"),
+                getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Jungle Run (PC/Android/iOS)"), mode_UbiArt_RJR),
+                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanJungleRun_PC, "Rayman Jungle Run (PC/Android/iOS)")
+                    {
+                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+                                              "Packages" +
+                                              Games.RaymanJungleRun.GetManager<GameManager_WinStore>().FullPackageName +
+                                              "LocalState"
+                    },
                 }),
 
             new Serializers_TypeViewModel<FiestaRun_SaveData>(
                 name: new ConstLocString("Rayman Fiesta Run Save File"),
                 fileExtension: new FileExtension(".dat"),
+                getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Rayman Fiesta Run (PC/Android/iOS)"), mode_UbiArt_RFR),
+                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanFiestaRun_PC, "Rayman Fiesta Run (PC/Android/iOS)")
+                    {
+                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+                                              "Packages" +
+                                              Games.RaymanFiestaRun.GetManager<GameManager_WinStore>().FullPackageName +
+                                              "LocalState"
+                    },
                 }),
 
             new Serializers_TypeViewModel<Unity_PlayerPrefs>(
                 name: new ConstLocString("Unity Player Preferences / Rabbids Big Bang Save File (.dat)"),
                 fileExtension: new FileExtension(".dat"),
+                getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Unity"), mode_Unity_RBB),
+                    new Utility_SerializableTypeModeViewModel("Unity")
+                    {
+                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
+                                              "Packages" + 
+                                              Games.RabbidsBigBang.GetManager<GameManager_WinStore>().FullPackageName + 
+                                              "LocalState"
+                    },
                 }),
 
             new Serializers_TypeViewModel<GameMaker_DSMap>(
                 name: new ConstLocString("Game Maker DS Map / Rayman Redemption Save File (.txt)"),
                 fileExtension: new FileExtension(".txt"),
+                getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(new ConstLocString("Game Maker"), 
-                        mode_GameMaker_Redemption with { Encoder = new GameMaker_HexStringEncoder() }),
+                    new Utility_SerializableTypeModeViewModel("Game Maker")
+                    {
+                        Encoder = new GameMaker_HexStringEncoder(),
+                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption"
+                    },
                 }),
         };
 
@@ -274,7 +217,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             IsLoading = true;
 
             // Attempt to get a default directory
-            FileSystemPath? defaultDir = SelectedType.SelectedMode.Data.GetDefaultDir();
+            FileSystemPath? defaultDir = SelectedType.SelectedMode.GetDefaultDir();
 
             // Make sure the directory exists
             if (defaultDir?.DirectoryExists != true)
@@ -300,7 +243,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     MemorySerializerLog log = new();
 
                     using RCPContext context = new(fileResult.SelectedFiles.First().Parent, log: log);
-                    SelectedType.SelectedMode.Data.InitContext(context);
+                    SelectedType.SelectedMode.InitContext(context);
 
                     try
                     {
@@ -338,7 +281,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             IsLoading = true;
 
             // Attempt to get a default directory
-            FileSystemPath? defaultDir = SelectedType.SelectedMode.Data.GetDefaultDir();
+            FileSystemPath? defaultDir = SelectedType.SelectedMode.GetDefaultDir();
 
             // Make sure the directory exists
             if (defaultDir?.DirectoryExists != true)
@@ -371,7 +314,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 await Task.Run(() =>
                 {
                     using RCPContext context = new(fileResult.SelectedFiles.First().Parent);
-                    SelectedType.SelectedMode.Data.InitContext(context);
+                    SelectedType.SelectedMode.InitContext(context);
 
                     // Deserialize every file
                     foreach (FileSystemPath file in fileResult.SelectedFiles)
@@ -447,7 +390,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 await Task.Run(() =>
                 {
                     using RCPContext context = new(destinationResult.SelectedDirectory);
-                    SelectedType.SelectedMode.Data.InitContext(context);
+                    SelectedType.SelectedMode.InitContext(context);
 
                     // Serialize every file
                     foreach (FileSystemPath file in fileResult.SelectedFiles)

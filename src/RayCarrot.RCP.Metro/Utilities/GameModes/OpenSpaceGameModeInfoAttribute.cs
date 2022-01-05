@@ -21,5 +21,6 @@ public sealed class OpenSpaceGameModeInfoAttribute : GameModeBaseAttribute
     public EngineVersion EngineVersion { get; }
     public Platform Platform { get; }
 
+    public override object GetSettingsObject() => GetSettings();
     public OpenSpaceSettings GetSettings() => new OpenSpaceSettings(EngineVersion, Platform);
 }
