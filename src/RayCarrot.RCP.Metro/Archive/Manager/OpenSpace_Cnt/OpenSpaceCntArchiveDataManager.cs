@@ -104,8 +104,13 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         var entry = (CNT_File)fileEntry;
 
         if (entry.FileXORKey.Any(x => x != 0))
+        {
+            int maxXORLength = (int)(entry.FileSize - entry.FileSize % entry.FileXORKey.Length);
+
             // Decrypt the bytes
-            new Rayman.MultiXORDataEncoder(entry.FileXORKey, true).Decode(inputStream, outputStream);
+            new XOREncoder(new XORArrayCalculator(entry.FileXORKey, maxLength: maxXORLength), inputStream.Length - inputStream.Position).
+                DecodeStream(inputStream, outputStream);
+        }
     }
 
     /// <summary>

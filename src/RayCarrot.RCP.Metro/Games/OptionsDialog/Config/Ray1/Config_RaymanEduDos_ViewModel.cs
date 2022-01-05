@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BinarySerializer;
 using BinarySerializer.Ray1;
 using NLog;
-using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -38,15 +38,11 @@ public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
         var installDir = Game.GetInstallDir();
 
         // Get the primary name
-        string primary;
-
-        using (var reader = File.OpenRead(installDir + "PCMAP" + "COMMON.DAT"))
-        {
-            var p = reader.Read(5);
-            primary = Encoding.UTF8.GetString(p).TrimEnd('\0');
-        }
-
-        var secondary = game.LaunchMode;
+        using FileStream stream = File.OpenRead(installDir + "PCMAP" + "COMMON.DAT");
+        using Reader reader = new(stream);
+        string? primary = reader.ReadString(5, Encoding.UTF8);
+        
+        string? secondary = game.LaunchMode;
 
         return $"{primary}{secondary}.CFG";
     }

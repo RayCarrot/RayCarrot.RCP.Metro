@@ -125,7 +125,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
         if (entry.XORKey != 0)
             // Decrypt the bytes
-            new Rayman.XORDataEncoder(entry.XORKey).Decode(inputStream, outputStream);
+            new XOREncoder(new XOR8Calculator(entry.XORKey), inputStream.Length - inputStream.Position).
+                DecodeStream(inputStream, outputStream);
     }
 
     /// <summary>

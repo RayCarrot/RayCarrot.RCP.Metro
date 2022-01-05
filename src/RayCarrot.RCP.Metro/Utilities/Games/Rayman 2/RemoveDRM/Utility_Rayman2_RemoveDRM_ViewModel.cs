@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using RayCarrot.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BinarySerializer;
+using BinarySerializer.OpenSpace;
 using Newtonsoft.Json;
 using NLog;
-using RayCarrot.Rayman;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -114,10 +115,10 @@ public class Utility_Rayman2_RemoveDRM_ViewModel : BaseRCPViewModel
                         Services.File.CopyFile(sna.Key, AppFilePaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
 
                     // Create the encoder
-                    var encoder = new Rayman2SNADataEncoder();
+                    var encoder = new R2SNADataEncoder();
 
                     // Read the file bytes and decode it
-                    var bytes = encoder.Decode(File.ReadAllBytes(sna.Key));
+                    var bytes = encoder.DecodeBuffer(File.ReadAllBytes(sna.Key));
 
                     // Modify each offset
                     foreach (var offset in sna.Value)
@@ -130,7 +131,7 @@ public class Utility_Rayman2_RemoveDRM_ViewModel : BaseRCPViewModel
                     }
 
                     // Encode and write the bytes
-                    File.WriteAllBytes(sna.Key, encoder.Encode(bytes));
+                    File.WriteAllBytes(sna.Key, encoder.EncodeBuffer(bytes));
                 }
             });
 
