@@ -87,7 +87,7 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
                 var installDir = Game.GetInstallDir();
 
                 // Get the settings
-                var attr = GameMode.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                var attr = GameMode.GetAttribute<Rayman.OpenSpace.OpenSpaceGameModeInfoAttribute>();
                 var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
                 // Get the file extension for the level data files

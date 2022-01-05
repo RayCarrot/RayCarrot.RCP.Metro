@@ -1,21 +1,22 @@
 ﻿#nullable disable
+using System;
 using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The IPK Archive Explorer utility
+/// The archives utility
 /// </summary>
-public class Utility_ArchiveExplorer_IPK : IUtility
+public class Utility_Archives : IUtility
 {
     #region Constructor
 
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_ArchiveExplorer_IPK()
+    public Utility_Archives()
     {
-        ViewModel = new Utility_ArchiveExplorer_IPK_ViewModel();
+        ViewModel = new Utility_Archives_ViewModel();
     }
 
     #endregion
@@ -25,7 +26,7 @@ public class Utility_ArchiveExplorer_IPK : IUtility
     /// <summary>
     /// The header for the utility. This property is retrieved again when the current culture is changed.
     /// </summary>
-    public string DisplayHeader => Resources.Utilities_ArchiveExplorer_IPKHeader;
+    public string DisplayHeader => Resources.Utilities_ArchiveExplorer_Header;
 
     public GenericIconKind Icon => GenericIconKind.Utilities_ArchiveExplorer;
 
@@ -52,10 +53,7 @@ public class Utility_ArchiveExplorer_IPK : IUtility
     /// <summary>
     /// The utility UI content
     /// </summary>
-    public object UIContent => new Utility_BaseArchiveExplorer_UI()
-    {
-        DataContext = ViewModel
-    };
+    public object UIContent => new Utility_Archives_UI() { DataContext = ViewModel };
 
     /// <summary>
     /// Indicates if the utility requires administration privileges
@@ -71,7 +69,7 @@ public class Utility_ArchiveExplorer_IPK : IUtility
     /// Retrieves a list of applied utilities from this utility
     /// </summary>
     /// <returns>The applied utilities</returns>
-    public IEnumerable<string> GetAppliedUtilities() => new string[0];
+    public IEnumerable<string> GetAppliedUtilities() => Array.Empty<string>();
 
     #endregion
 
@@ -80,7 +78,7 @@ public class Utility_ArchiveExplorer_IPK : IUtility
     /// <summary>
     /// The view model
     /// </summary>
-    public Utility_ArchiveExplorer_IPK_ViewModel ViewModel { get; }
+    public Utility_Archives_ViewModel ViewModel { get; }
 
     #endregion
 }

@@ -84,7 +84,7 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
             var syncResult = await Task.Run(() =>
             {
                 // Get the settings
-                var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                var attr = GameModeSelection.SelectedValue.GetAttribute<Rayman.OpenSpace.OpenSpaceGameModeInfoAttribute>();
                 var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
                 // Get the file extension for the level data files

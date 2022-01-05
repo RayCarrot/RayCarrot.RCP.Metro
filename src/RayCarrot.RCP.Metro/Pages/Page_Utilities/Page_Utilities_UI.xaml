@@ -22,18 +22,6 @@
             <local:FocusElementOnLoad />
         </i:Interaction.Behaviors>
 
-        <!-- Archive Explorer -->
-
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.ArchiveExplorer}"
-                 Header="{Resx Utilities_ArchiveExplorer_Header}">
-
-            <ScrollViewer>
-                <local:UtilitiesContainer Utilities="{Binding Path=ArchiveExplorerViewModels, Mode=OneTime}" />
-            </ScrollViewer>
-
-        </TabItem>
-
         <!-- Binary Tools -->
 
         <!-- TODO-UPDATE: Localize -->

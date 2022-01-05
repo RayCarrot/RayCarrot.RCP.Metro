@@ -16,7 +16,6 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     /// </summary>
     public Page_Utilities_ViewModel()
     {
-        ArchiveExplorerViewModels = new ObservableCollection<UtilityViewModel>();
         BinaryToolViewModels = new ObservableCollection<UtilityViewModel>();
         OtherViewModels = new ObservableCollection<UtilityViewModel>();
         ExternalToolViewModels = new ObservableCollection<UtilityViewModel>();
@@ -28,7 +27,6 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
 
     public override AppPage Page => AppPage.Utilities;
 
-    public ObservableCollection<UtilityViewModel> ArchiveExplorerViewModels { get; }
     public ObservableCollection<UtilityViewModel> BinaryToolViewModels { get; }
     public ObservableCollection<UtilityViewModel> OtherViewModels { get; }
     public ObservableCollection<UtilityViewModel> ExternalToolViewModels { get; }
@@ -40,14 +38,9 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     protected override Task InitializeAsync()
     {
         // Create view models
-        ArchiveExplorerViewModels.AddRange(new UtilityViewModel[]
-        {
-            new UtilityViewModel(new Utility_ArchiveExplorer_R1()),
-            new UtilityViewModel(new Utility_ArchiveExplorer_CNT()),
-            new UtilityViewModel(new Utility_ArchiveExplorer_IPK()),
-        });
         BinaryToolViewModels.AddRange(new UtilityViewModel[]
         {
+            new UtilityViewModel(new Utility_Archives()),
             new UtilityViewModel(new Utility_Serializers()),
             new UtilityViewModel(new Utility_Converters()),
             new UtilityViewModel(new Utility_Decoders()),
@@ -71,7 +64,6 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
 
     public void Dispose()
     {
-        ArchiveExplorerViewModels.DisposeAll();
         BinaryToolViewModels.DisposeAll();
         OtherViewModels.DisposeAll();
         ExternalToolViewModels.DisposeAll();
