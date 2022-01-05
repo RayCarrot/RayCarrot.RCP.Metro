@@ -26,7 +26,7 @@
 
         <!-- TODO-UPDATE: Localize -->
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_BinaryTools}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.ArchiveExplorer}"
                  Header="Binary Tools">
 
             <ScrollViewer>
@@ -50,7 +50,7 @@
         <!-- External Tools -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
+                 local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
                  Header="{Resx Utilities_ExternalTools_Header}">
 
             <ScrollViewer>
