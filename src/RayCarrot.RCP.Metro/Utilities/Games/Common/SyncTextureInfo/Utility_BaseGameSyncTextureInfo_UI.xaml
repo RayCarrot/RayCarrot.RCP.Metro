@@ -10,7 +10,7 @@
 
     <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}">
         <Button Content="{Resx Utilities_SyncTextureInfo_Sync}"
-                Command="{Binding Path=CorrectTextureInfoCommand, Mode=OneTime}"
+                Command="{Binding Path=SyncTextureInfoCommand, Mode=OneTime}"
                 HorizontalAlignment="Left"/>
     </local:LoaderContentControl>
 

@@ -1,13 +1,12 @@
-﻿#nullable disable
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BinarySerializer.OpenSpace;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -24,13 +23,15 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     /// <param name="game">The game</param>
     /// <param name="gameMode">The game mode</param>
     /// <param name="gameDataDirNames">The game data directory names</param>
-    public Utility_BaseGameSyncTextureInfo_ViewModel(Games game, GameMode gameMode, string[] gameDataDirNames)
+    public Utility_BaseGameSyncTextureInfo_ViewModel(Games game, OpenSpaceGameMode gameMode, string[] gameDataDirNames)
     {
+        // Set properties
         Game = game;
         GameMode = gameMode;
         GameDataDirNames = gameDataDirNames;
+
         // Create commands
-        CorrectTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
+        SyncTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
     }
 
     #endregion
@@ -38,6 +39,12 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Commands
+
+    public ICommand SyncTextureInfoCommand { get; }
 
     #endregion
 
@@ -51,7 +58,7 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     /// <summary>
     /// The game mode
     /// </summary>
-    protected GameMode GameMode { get; }
+    protected OpenSpaceGameMode GameMode { get; }
 
     /// <summary>
     /// The game data directory names
@@ -81,26 +88,33 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
         {
             IsLoading = true;
 
-            var syncResult = await Task.Run(() =>
+            TextureInfoEditResult syncResult = await Task.Run(() =>
             {
                 // Get the game install directory
-                var installDir = Game.GetInstallDir();
+                FileSystemPath installDir = Game.GetInstallDir();
 
                 // Get the settings
-                var attr = GameMode.GetAttribute<Rayman.OpenSpace.OpenSpaceGameModeInfoAttribute>();
-                var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
+                OpenSpaceGameModeInfoAttribute attr = GameMode.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                OpenSpaceSettings gameSettings = attr.GetSettings();
 
                 // Get the file extension for the level data files
-                var fileExt = GetLevelFileExtension(gameSettings);
+                string fileExt = GetLevelFileExtension(gameSettings);
 
                 // Get the level data files
-                var dataFiles = GameDataDirNames.Select(x => Directory.GetFiles(installDir + x, $"*{fileExt}", SearchOption.AllDirectories).Select(y => new FileSystemPath(y))).SelectMany(x => x);
+                IEnumerable<FileSystemPath> dataFiles = GameDataDirNames.
+                    Select(x => Directory.GetFiles(installDir + x, $"*{fileExt}", SearchOption.AllDirectories).
+                        Select(y => new FileSystemPath(y))).
+                    SelectMany(x => x);
 
                 // Get the .cnt file names
-                var fileNames = GetCntFileNames(gameSettings);
+                string[] fileNames = GetCntFileNames(gameSettings);
 
                 // Get the full paths and only keep the ones which exist
-                var cntFiles = GameDataDirNames.Select(dataDir => fileNames.Select(cnt => installDir + dataDir + cnt).Where(cntPath => cntPath.FileExists)).SelectMany(x => x);
+                IEnumerable<FileSystemPath> cntFiles = GameDataDirNames.
+                    Select(dataDir => fileNames.
+                        Select(cnt => installDir + dataDir + cnt).
+                        Where(cntPath => cntPath.FileExists)).
+                    SelectMany(x => x);
 
                 // Sync the texture info
                 return EditTextureInfo(gameSettings, dataFiles, cntFiles);
@@ -119,12 +133,6 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
             IsLoading = false;
         }
     }
-
-    #endregion
-
-    #region Commands
-
-    public ICommand CorrectTextureInfoCommand { get; }
 
     #endregion
 }

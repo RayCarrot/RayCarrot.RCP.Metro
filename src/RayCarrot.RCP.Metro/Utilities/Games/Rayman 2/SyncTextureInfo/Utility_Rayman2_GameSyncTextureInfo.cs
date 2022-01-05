@@ -1,7 +1,4 @@
-﻿#nullable disable
-using RayCarrot.Rayman;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The sync texture info utility for Rayman 2
@@ -11,7 +8,7 @@ public class Utility_Rayman2_GameSyncTextureInfo : Utility_BaseGameSyncTextureIn
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_Rayman2_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.Rayman2, GameMode.Rayman2PC, new string[]
+    public Utility_Rayman2_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.Rayman2, OpenSpaceGameMode.Rayman2_PC, new string[]
     {
         "Data"
     }))

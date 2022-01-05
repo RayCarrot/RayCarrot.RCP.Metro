@@ -20,4 +20,6 @@ public sealed class UbiArtGameModeInfoAttribute : GameModeBaseAttribute
 
     public Game UbiArtGame { get; }
     public Platform Platform { get; }
+
+    public UbiArtSettings GetSettings() => new UbiArtSettings(UbiArtGame, Platform);
 }

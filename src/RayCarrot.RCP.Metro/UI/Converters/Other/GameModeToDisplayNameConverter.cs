@@ -1,6 +1,4 @@
-﻿#nullable disable
-using RayCarrot.Rayman;
-using System;
+﻿using System;
 using System.Globalization;
 
 namespace RayCarrot.RCP.Metro;

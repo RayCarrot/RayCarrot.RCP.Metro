@@ -1,7 +1,4 @@
-﻿#nullable disable
-using RayCarrot.Rayman;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The sync texture info utility for Rayman Arena
@@ -11,7 +8,7 @@ public class Utility_RaymanArena_GameSyncTextureInfo : Utility_BaseGameSyncTextu
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanArena_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.RaymanArena, GameMode.RaymanArenaPC, new string[]
+    public Utility_RaymanArena_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.RaymanArena, OpenSpaceGameMode.RaymanArena_PC, new string[]
     {
         "MenuBin",
         "TribeBin",

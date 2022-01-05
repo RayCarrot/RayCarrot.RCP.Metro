@@ -29,7 +29,7 @@
 
             <Button Grid.Column="1"
                     Content="{Resx Utilities_SyncTextureInfo_Sync}"
-                    Command="{Binding Path=CorrectTextureInfoCommand, Mode=OneTime}" />
+                    Command="{Binding Path=SyncTextureInfoCommand, Mode=OneTime}" />
 
         </Grid>
     </local:LoaderContentControl>

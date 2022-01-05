@@ -17,4 +17,6 @@ public sealed class Ray1GameModeInfoAttribute : GameModeBaseAttribute
     }
 
     public Ray1EngineVersion EngineVersion { get; }
+
+    public Ray1Settings GetSettings() => new Ray1Settings(EngineVersion);
 }

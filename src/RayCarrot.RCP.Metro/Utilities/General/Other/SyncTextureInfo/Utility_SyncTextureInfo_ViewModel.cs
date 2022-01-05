@@ -1,13 +1,11 @@
-﻿#nullable disable
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BinarySerializer.OpenSpace;
 using NLog;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -24,17 +22,17 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
     public Utility_SyncTextureInfo_ViewModel()
     {
         // Create commands
-        CorrectTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
+        SyncTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
 
         // Set up selection
-        GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman2PC, new GameMode[]
+        GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2_PC, new OpenSpaceGameMode[]
         {
-            GameMode.Rayman2PC,
-            GameMode.RaymanMPC,
-            GameMode.RaymanArenaPC,
-            GameMode.Rayman3PC,
-            GameMode.TonicTroublePC,
-            GameMode.TonicTroubleSEPC,
+            OpenSpaceGameMode.Rayman2_PC,
+            OpenSpaceGameMode.RaymanM_PC,
+            OpenSpaceGameMode.RaymanArena_PC,
+            OpenSpaceGameMode.Rayman3_PC,
+            OpenSpaceGameMode.TonicTrouble_PC,
+            OpenSpaceGameMode.TonicTrouble_SE_PC,
         });
     }
 
@@ -46,12 +44,18 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
 
     #endregion
 
+    #region Commands
+
+    public ICommand SyncTextureInfoCommand { get; }
+
+    #endregion
+
     #region Public Properties
 
     /// <summary>
     /// The game mode selection
     /// </summary>
-    public EnumSelectionViewModel<GameMode> GameModeSelection { get; }
+    public EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
 
     /// <summary>
     /// Indicates if the utility is loading
@@ -68,10 +72,12 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
     /// <returns>The task</returns>
     public async Task SyncTextureInfoAsync()
     {
-        var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+        OpenSpaceGameModeInfoAttribute attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+
+        DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
         {
             Title = Resources.Utilities_SyncTextureInfo_SelectDirHeader,
-            DefaultDirectory = GameModeSelection.SelectedValue.GetGame()?.GetInstallDir(false) ?? FileSystemPath.EmptyPath
+            DefaultDirectory = attr.Game?.GetInstallDir(false) ?? FileSystemPath.EmptyPath
         });
 
         if (result.CanceledByUser)
@@ -81,11 +87,10 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
         {
             IsLoading = true;
 
-            var syncResult = await Task.Run(() =>
+            TextureInfoEditResult syncResult = await Task.Run(() =>
             {
                 // Get the settings
-                var attr = GameModeSelection.SelectedValue.GetAttribute<Rayman.OpenSpace.OpenSpaceGameModeInfoAttribute>();
-                var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
+                OpenSpaceSettings gameSettings = attr.GetSettings();
 
                 // Get the file extension for the level data files
                 var fileExt = GetLevelFileExtension(gameSettings);
@@ -116,12 +121,6 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
             IsLoading = false;
         }
     }
-
-    #endregion
-
-    #region Commands
-
-    public ICommand CorrectTextureInfoCommand { get; }
 
     #endregion
 }
