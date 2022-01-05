@@ -20,6 +20,7 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
     {
         Types = new ObservableCollection<Utility_Converters_TypeViewModel>()
         {
+            // TODO-UPDATE: Set game
             new Utility_Converters_OpenSpaceGF_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_GFHeader)),
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()

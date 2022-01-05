@@ -12,7 +12,7 @@
              d:DataContext="{d:DesignInstance local:Utility_Converters_ViewModel}">
 
     <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}">
-        <Grid Margin="0 8">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*" />
                 <ColumnDefinition Width="*" />
