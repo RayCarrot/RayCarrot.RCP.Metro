@@ -2,9 +2,9 @@
 using IniParser.Model;
 using RayCarrot.IO;
 using NLog;
-using RayCarrot.Rayman.UbiIni;
 using System;
 using System.Threading.Tasks;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 /// <typeparam name="Handler">The config handler</typeparam>
 public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_ConfigPageViewModel
-    where Handler : UbiIniHandler
+    where Handler : UbiIniData
 {
     #region Constructor
 
@@ -178,17 +178,16 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
     #region Protected Classes
 
     /// <summary>
-    /// Provides support to duplicate a section
-    /// in a ubi ini file
+    /// Provides support to duplicate a section in a ubi ini file
     /// </summary>
-    protected class DuplicateSectionUbiIniHandler : UbiIniHandler
+    protected class DuplicateSectionUbiIniData : UbiIniData
     {
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="path">The path of the ubi.ini file</param>
         /// <param name="sectionKey">The name of the section to retrieve, usually the name of the game</param>
-        public DuplicateSectionUbiIniHandler(FileSystemPath path, string sectionKey) : base(path, sectionKey)
+        public DuplicateSectionUbiIniData(FileSystemPath path, string sectionKey) : base(path, sectionKey)
         {
 
         }

@@ -1,11 +1,11 @@
 ﻿#nullable disable
-using ByteSizeLib;
-using RayCarrot.IO;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using ByteSizeLib;
 using NLog;
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.IO;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro;
 /// Base config view model for Rayman M, Rayman Arena and Rayman 3
 /// </summary>
 public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_UbiIni_BaseViewModel<Handler>
-    where Handler : UbiIniHandler
+    where Handler : UbiIniData
     where Language : Enum
 {
     #region Constructor
@@ -474,7 +474,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
                 var sectionData = ConfigData.GetSectionData();
 
                 // Load the file data
-                var secondaryDataHandler = new DuplicateSectionUbiIniHandler(AppFilePaths.UbiIniPath2, ConfigData.SectionKey);
+                var secondaryDataHandler = new DuplicateSectionUbiIniData(AppFilePaths.UbiIniPath2, ConfigData.SectionKey);
 
                 // Duplicate the data
                 secondaryDataHandler.Duplicate(sectionData);

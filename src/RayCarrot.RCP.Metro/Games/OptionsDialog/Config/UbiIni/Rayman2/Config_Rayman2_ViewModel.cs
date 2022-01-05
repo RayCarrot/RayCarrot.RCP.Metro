@@ -7,16 +7,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.IO;
 using NLog;
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.IO;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the Rayman 2 configuration
 /// </summary>
-public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<R2UbiIniHandler>
+public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_Rayman2>
 {
     #region Constructor
 
@@ -245,10 +245,10 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<R2UbiIniHand
     /// Loads the <see cref="Config_UbiIni_BaseViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<R2UbiIniHandler> LoadConfigAsync()
+    protected override Task<UbiIniData_Rayman2> LoadConfigAsync()
     {
         // Load the configuration data
-        return Task.FromResult(new R2UbiIniHandler(ConfigPath));
+        return Task.FromResult(new UbiIniData_Rayman2(ConfigPath));
     }
 
     /// <summary>

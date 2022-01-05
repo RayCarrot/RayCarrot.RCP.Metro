@@ -1,6 +1,6 @@
 ﻿#nullable disable
 using System.Collections.Generic;
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -28,7 +28,7 @@ public sealed class GameManager_Rayman3_Win32 : GameManager_Win32
     /// <summary>
     /// Gets the game finder item for this game
     /// </summary>
-    public override GameFinder_GameItem GameFinderItem => new GameFinder_GameItem(R3UbiIniHandler.SectionName, "Rayman 3", new string[]
+    public override GameFinder_GameItem GameFinderItem => new GameFinder_GameItem(UbiIniData_Rayman3.SectionName, "Rayman 3", new string[]
     {
         "Rayman 3",
         "Rayman: 3",

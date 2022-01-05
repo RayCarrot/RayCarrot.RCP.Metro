@@ -93,6 +93,7 @@
     </PackageReference>
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
+    <PackageReference Include="ini-parser" Version="2.5.2" />
     <PackageReference Include="Magick.NET-Q8-x86" Version="8.5.0" />
     <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="4.0.10" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />

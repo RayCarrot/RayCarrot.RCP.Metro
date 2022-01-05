@@ -1,5 +1,5 @@
 ﻿#nullable disable
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -18,7 +18,7 @@ public sealed class GameManager_RaymanArena_Win32 : GameManager_Win32
     /// <summary>
     /// Gets the game finder item for this game
     /// </summary>
-    public override GameFinder_GameItem GameFinderItem => new GameFinder_GameItem(RAUbiIniHandler.SectionName, "Rayman Arena", new string[]
+    public override GameFinder_GameItem GameFinderItem => new GameFinder_GameItem(UbiIniData_RaymanArena.SectionName, "Rayman Arena", new string[]
     {
         "Rayman Arena",
         "Rayman: Arena",

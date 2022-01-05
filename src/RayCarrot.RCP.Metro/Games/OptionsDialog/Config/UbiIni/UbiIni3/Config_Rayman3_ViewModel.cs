@@ -1,13 +1,13 @@
 ﻿#nullable disable
 using System.Threading.Tasks;
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the Rayman 3 configuration
 /// </summary>
-public class Config_Rayman3_ViewModel : Config_UbiIni3_BaseViewModel<R3UbiIniHandler, R3Languages>
+public class Config_Rayman3_ViewModel : Config_UbiIni3_BaseViewModel<UbiIniData_Rayman3, R3Languages>
 {
     #region Constructor
 
@@ -54,10 +54,10 @@ public class Config_Rayman3_ViewModel : Config_UbiIni3_BaseViewModel<R3UbiIniHan
     /// Loads the <see cref="Config_UbiIni_BaseViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<R3UbiIniHandler> LoadConfigAsync()
+    protected override Task<UbiIniData_Rayman3> LoadConfigAsync()
     {
         // Load the configuration data
-        return Task.FromResult(new R3UbiIniHandler(AppFilePaths.UbiIniPath1));
+        return Task.FromResult(new UbiIniData_Rayman3(AppFilePaths.UbiIniPath1));
     }
 
     /// <summary>

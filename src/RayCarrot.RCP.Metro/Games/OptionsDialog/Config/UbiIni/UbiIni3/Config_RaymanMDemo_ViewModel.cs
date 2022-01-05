@@ -1,6 +1,6 @@
 ﻿#nullable disable
 using System.Threading.Tasks;
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -11,14 +11,7 @@ public class Config_RaymanMDemo_ViewModel : Config_RaymanM_ViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    /// <param name="game">The game</param>
-    public Config_RaymanMDemo_ViewModel() : base(Games.Demo_RaymanM)
-    {
-
-    }
+    public Config_RaymanMDemo_ViewModel() : base(Games.Demo_RaymanM) { }
 
     #endregion
 
@@ -37,10 +30,10 @@ public class Config_RaymanMDemo_ViewModel : Config_RaymanM_ViewModel
     /// Loads the <see cref="Config_UbiIni_BaseViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<RMUbiIniHandler> LoadConfigAsync()
+    protected override Task<UbiIniData_RaymanM> LoadConfigAsync()
     {
         // Load the configuration data
-        return Task.FromResult<RMUbiIniHandler>(new RMDemoUbiIniHandler(AppFilePaths.UbiIniPath1));
+        return Task.FromResult<UbiIniData_RaymanM>(new UbiIniData_RaymanMDemo(AppFilePaths.UbiIniPath1));
     }
 
     #endregion

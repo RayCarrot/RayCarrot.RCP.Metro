@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using IniParser;
 using Microsoft.Win32;
-using RayCarrot.IO;
 using NLog;
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.IO;
+using RayCarrot.RCP.Metro.Ini;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;

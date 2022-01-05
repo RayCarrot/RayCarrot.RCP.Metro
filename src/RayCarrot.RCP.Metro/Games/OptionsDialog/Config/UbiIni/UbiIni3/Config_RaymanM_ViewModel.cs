@@ -1,13 +1,13 @@
 ﻿#nullable disable
 using System.Threading.Tasks;
-using RayCarrot.Rayman.UbiIni;
+using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the Rayman M configuration
 /// </summary>
-public class Config_RaymanM_ViewModel : Config_UbiIni3_BaseViewModel<RMUbiIniHandler, RMLanguages>
+public class Config_RaymanM_ViewModel : Config_UbiIni3_BaseViewModel<UbiIniData_RaymanM, RMLanguages>
 {
     #region Constructor
 
@@ -94,10 +94,10 @@ public class Config_RaymanM_ViewModel : Config_UbiIni3_BaseViewModel<RMUbiIniHan
     /// Loads the <see cref="Config_UbiIni_BaseViewModel{Handler}.ConfigData"/>
     /// </summary>
     /// <returns>The config data</returns>
-    protected override Task<RMUbiIniHandler> LoadConfigAsync()
+    protected override Task<UbiIniData_RaymanM> LoadConfigAsync()
     {
         // Load the configuration data
-        return Task.FromResult(new RMUbiIniHandler(AppFilePaths.UbiIniPath1));
+        return Task.FromResult(new UbiIniData_RaymanM(AppFilePaths.UbiIniPath1));
     }
 
     /// <summary>
@@ -106,7 +106,7 @@ public class Config_RaymanM_ViewModel : Config_UbiIni3_BaseViewModel<RMUbiIniHan
     /// <returns>The task</returns>
     protected override Task ImportConfigAsync()
     {
-        var gliMode = ConfigData.FormattedGLI_Mode;
+        RayGLI_Mode gliMode = ConfigData.FormattedGLI_Mode;
 
         if (gliMode != null)
         {
