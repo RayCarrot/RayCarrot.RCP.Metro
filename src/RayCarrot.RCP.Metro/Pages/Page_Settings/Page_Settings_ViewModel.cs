@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.IO;
 using NLog;
@@ -20,7 +19,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// View model for the settings page
 /// </summary>
-public class Page_Settings_ViewModel : BaseRCPViewModel
+public class Page_Settings_ViewModel : BasePageViewModel
 {
     #region Constructor
 
@@ -43,17 +42,15 @@ public class Page_Settings_ViewModel : BaseRCPViewModel
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(LocalLinkItems, this);
 
-        // Refresh on startup
-        Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync(true, true);
-
-        Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
-        Services.InstanceData.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
-        Data.PropertyChanged += (s, e) =>
+        // Refresh when needed
+        Services.InstanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
+        Services.InstanceData.UserLevelChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
+        Data.PropertyChanged += (_, e) =>
         {
             if (e.PropertyName == nameof(Data.Archive_AssociatedPrograms))
                 RefreshAssociatedPrograms();
         };
-        AssociatedPrograms.CollectionChanged += (s, e) =>
+        AssociatedPrograms.CollectionChanged += (_, e) =>
         {
             // For now you can only remove items from the UI
             if (e.Action == NotifyCollectionChangedAction.Remove)
@@ -78,11 +75,8 @@ public class Page_Settings_ViewModel : BaseRCPViewModel
     #region Commands
 
     public ICommand ContributeLocalizationCommand { get; }
-
     public ICommand EditJumpListCommand { get; }
-
     public ICommand RefreshCommand { get; }
-
     public ICommand ResetCommand { get; }
 
     #endregion
@@ -98,10 +92,12 @@ public class Page_Settings_ViewModel : BaseRCPViewModel
 
     #region Public Properties
 
+    public override AppPage Page => AppPage.Settings;
+
     /// <summary>
     /// The current culture info
     /// </summary>
-    public CultureInfo CurrentCultureInfo
+    public CultureInfo? CurrentCultureInfo
     {
         get => new CultureInfo(Data.App_CurrentCulture);
         set
@@ -133,6 +129,11 @@ public class Page_Settings_ViewModel : BaseRCPViewModel
     #endregion
 
     #region Public Methods
+
+    protected override Task InitializeAsync()
+    {
+        return RefreshAsync(true, true);
+    }
 
     /// <summary>
     /// Opens the URL for contributing to localizing the program

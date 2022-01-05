@@ -1,7 +1,6 @@
-﻿#nullable disable
-using RayCarrot.IO;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -16,13 +15,14 @@ using System.Windows.Media;
 using ControlzEx.Theming;
 using Newtonsoft.Json;
 using NLog;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the debug page
 /// </summary>
-public class Page_Debug_ViewModel : BaseRCPViewModel
+public class Page_Debug_ViewModel : BasePageViewModel
 {
     #region Constructor
 
@@ -44,11 +44,6 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
         RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
         ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
         UpdateThemeCommand = new RelayCommand(UpdateTheme);
-
-        // Get properties
-        AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
-        SelectedInstaller = AvailableInstallers.First();
-        SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
     }
 
     #endregion
@@ -59,6 +54,23 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Commands
+
+    public ICommand ShowDialogCommand { get; }
+    public ICommand ShowLogCommand { get; }
+    public ICommand ShowWelcomeWindowCommand { get; }
+    public ICommand ShowInstalledUtilitiesCommand { get; }
+    public ICommand RefreshDataOutputCommand { get; }
+    public ICommand RefreshAllCommand { get; }
+    public ICommand RefreshAllAsyncCommand { get; }
+    public ICommand ThrowUnhandledExceptionCommand { get; }
+    public ICommand ThrowUnhandledExceptionAsyncCommand { get; }
+    public ICommand RunInstallerCommand { get; }
+    public ICommand ShutdownAppCommand { get; }
+    public ICommand UpdateThemeCommand { get; }
+
+    #endregion
+
     #region Private Fields
 
     private bool _showGridLines;
@@ -66,6 +78,8 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
     #endregion
 
     #region Public Properties
+
+    public override AppPage Page => AppPage.Debug;
 
     /// <summary>
     /// The selected dialog type
@@ -82,12 +96,12 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
     /// <summary>
     /// The current data output
     /// </summary>
-    public string DataOutput { get; set; }
+    public string? DataOutput { get; set; }
 
     /// <summary>
     /// The available game installers
     /// </summary>
-    public Games[] AvailableInstallers { get; }
+    public ObservableCollection<Games>? AvailableInstallers { get; set; }
 
     /// <summary>
     /// The selected game installer
@@ -121,6 +135,16 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
     #endregion
 
     #region Methods
+
+    protected override Task InitializeAsync()
+    {
+        // Set properties
+        AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToObservableCollection();
+        SelectedInstaller = AvailableInstallers.First();
+        SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
+
+        return Task.CompletedTask;
+    }
 
     /// <summary>
     /// Shows the selected dialog
@@ -298,9 +322,9 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
             switch (SelectedDataOutputType)
             {
                 case DebugDataOutputType.ReferencedAssemblies:
-                    foreach (AssemblyName assemblyName in Assembly.GetEntryAssembly()?.GetReferencedAssemblies() ?? new AssemblyName[0])
+                    foreach (AssemblyName assemblyName in Assembly.GetEntryAssembly()?.GetReferencedAssemblies() ?? Array.Empty<AssemblyName>())
                     {
-                        Assembly assembly = null;
+                        Assembly? assembly = null;
 
                         try
                         {
@@ -506,34 +530,6 @@ public class Page_Debug_ViewModel : BaseRCPViewModel
             
         ThemeManager.Current.ChangeTheme(Metro.App.Current, newTheme);
     }
-
-    #endregion
-
-    #region Commands
-
-    public ICommand ShowDialogCommand { get; }
-
-    public ICommand ShowLogCommand { get; }
-
-    public ICommand ShowWelcomeWindowCommand { get; }
-
-    public ICommand ShowInstalledUtilitiesCommand { get; }
-
-    public ICommand RefreshDataOutputCommand { get; }
-
-    public ICommand RefreshAllCommand { get; }
-
-    public ICommand RefreshAllAsyncCommand { get; }
-
-    public ICommand ThrowUnhandledExceptionCommand { get; }
-        
-    public ICommand ThrowUnhandledExceptionAsyncCommand { get; }
-
-    public ICommand RunInstallerCommand { get; }
-
-    public ICommand ShutdownAppCommand { get; }
-
-    public ICommand UpdateThemeCommand { get; }
 
     #endregion
 

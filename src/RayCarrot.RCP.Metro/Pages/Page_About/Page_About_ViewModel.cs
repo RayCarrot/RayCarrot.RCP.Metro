@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,13 +18,17 @@ public class Page_About_ViewModel : BaseRCPViewModel
     public Page_About_ViewModel()
     {
         // Create commands
-        OpenUrlCommand = new RelayCommand(x => App.OpenUrl(x?.ToString()));
+        OpenUrlCommand = new RelayCommand(x =>
+        {
+            if (x is not null)
+                App.OpenUrl(x.ToString());
+        });
         ShowVersionHistoryCommand = new AsyncRelayCommand(ShowVersionHistoryAsync);
         CheckForUpdatesCommand = new AsyncRelayCommand(async () => await App.CheckForUpdatesAsync(true));
         UninstallCommand = new AsyncRelayCommand(UninstallAsync);
 
         // Refresh the update badge property based on if new update is available
-        Data.PropertyChanged += (s, e) =>
+        Data.PropertyChanged += (_, e) =>
         {
             if (e.PropertyName == nameof(Data.Update_IsUpdateAvailable))
                 OnPropertyChanged(nameof(UpdateBadge));
@@ -51,7 +54,7 @@ public class Page_About_ViewModel : BaseRCPViewModel
     /// <summary>
     /// The update badge, indicating if new updates are available
     /// </summary>
-    public string UpdateBadge => Data.Update_IsUpdateAvailable ? "1" : null;
+    public string? UpdateBadge => Data.Update_IsUpdateAvailable ? "1" : null;
 
     #endregion
 

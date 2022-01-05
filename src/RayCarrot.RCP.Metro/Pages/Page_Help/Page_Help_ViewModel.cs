@@ -1,15 +1,15 @@
-﻿#nullable disable
-using NLog;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the help page
 /// </summary>
-public class Page_Help_ViewModel : BaseRCPViewModel
+public class Page_Help_ViewModel : BasePageViewModel
 {
     #region Constructor
 
@@ -18,9 +18,7 @@ public class Page_Help_ViewModel : BaseRCPViewModel
     /// </summary>
     public Page_Help_ViewModel()
     {
-        Refresh();
-
-        Services.InstanceData.CultureChanged += (s, e) => Refresh();
+        Services.InstanceData.CultureChanged += (_, _) => Refresh();
     }
 
     #endregion
@@ -31,7 +29,24 @@ public class Page_Help_ViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Public Properties
+
+    public override AppPage Page => AppPage.Help;
+
+    /// <summary>
+    /// The help items
+    /// </summary>
+    public ObservableCollection<Page_Help_ItemViewModel>? HelpItems { get; set; }
+
+    #endregion
+
     #region Public Methods
+
+    protected override Task InitializeAsync()
+    {
+        Refresh();
+        return Task.CompletedTask;
+    }
 
     /// <summary>
     /// Refreshes the help items
@@ -333,15 +348,6 @@ public class Page_Help_ViewModel : BaseRCPViewModel
         Logger.Info("The help items have refreshed");
         Logger.Debug("The help items refresh time was {0} ms", time.ElapsedMilliseconds);
     }
-
-    #endregion
-
-    #region Public Properties
-
-    /// <summary>
-    /// The help items
-    /// </summary>
-    public ObservableCollection<Page_Help_ItemViewModel> HelpItems { get; set; }
 
     #endregion
 }

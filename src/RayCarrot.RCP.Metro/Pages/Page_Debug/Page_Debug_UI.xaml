@@ -244,7 +244,7 @@
                             </Grid.ColumnDefinitions>
 
                             <ComboBox Grid.Column="0" 
-                                      ItemsSource="{Binding Path=AvailableInstallers, Mode=OneTime}"
+                                      ItemsSource="{Binding Path=AvailableInstallers}"
                                       SelectedItem="{Binding Path=SelectedInstaller}"/>
 
                             <Button Grid.Column="2" 

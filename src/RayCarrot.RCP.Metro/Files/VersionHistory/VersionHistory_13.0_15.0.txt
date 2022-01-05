@@ -23,6 +23,7 @@ Other changes:
 • Added a new dialog for selecting a program to use for certain file types in the Archive Explorer™ and progression page (previously the file selection dialog was used)
 • The backup location setting has been moved to the settings page
 • Add toggle for enabling or disabling the serialization log rather than it being dependant on the specified file path existing
+• The main pages now load when first navigated to thus slightly reducing the startup time
 • Updated game icons
 • Updated demo game names to include their dates
 • Demo games are no longer automatically added to the jump list
