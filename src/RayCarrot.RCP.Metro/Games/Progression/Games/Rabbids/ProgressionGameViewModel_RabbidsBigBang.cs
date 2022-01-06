@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NLog;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
@@ -27,7 +25,6 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         Logger.Info("{0} save is being loaded...", Game);
 
-        BinarySerializerSettings settings = new(Endian.Little, Encoding.UTF8);
         Unity_PlayerPrefs? saveData = await context.ReadFileDataAsync<Unity_PlayerPrefs>(saveFile.Name);
 
         if (saveData == null)

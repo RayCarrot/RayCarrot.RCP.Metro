@@ -1,7 +1,6 @@
 ﻿using ByteSizeLib;
 using Newtonsoft.Json;
 using Nito.AsyncEx;
-using RayCarrot.Binary;
 using RayCarrot.IO;
 using System;
 using System.Collections.Generic;
@@ -142,12 +141,6 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     private AsyncLock OnRefreshRequiredAsyncLock { get; }
 
-    /// <summary>
-    /// Indicates if a serializer logger has been created during the app life-cycle
-    /// </summary>
-    [Obsolete]
-    private bool HasCreatedSerializerLogger { get; set; }
-
     #endregion
 
     #region Public Properties
@@ -256,40 +249,6 @@ public class AppViewModel : BaseViewModel
     #endregion
 
     #region Public Methods
-
-    /// <summary>
-    /// Gets the binary serializer logger to use
-    /// </summary>
-    /// <param name="name">An optional name for the logging session</param>
-    /// <param name="addr">An optional address for the logging session</param>
-    /// <returns>The binary serializer logger</returns>
-    [Obsolete]
-    public IBinarySerializerLogger? GetBinarySerializerLogger(string? name = null, long? addr = null)
-    {
-        if (!Services.Data.Binary_IsSerializationLogEnabled || 
-            Services.Data.Binary_BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
-            !Services.Data.Binary_BinarySerializationFileLogPath.Parent.DirectoryExists)
-            return null;
-
-        // Get the log file path
-        FileSystemPath logPath = Services.Data.Binary_BinarySerializationFileLogPath;
-
-        // Only re-create the file if this is the first time we create a logger
-        Stream logStream = !HasCreatedSerializerLogger ? File.Create(logPath) : File.OpenWrite(logPath);
-
-        logStream.Seek(0, SeekOrigin.End);
-
-        HasCreatedSerializerLogger = true;
-
-        var logger = new BinarySerializerFileLogger(logStream);
-
-        if (logStream.Length > 0)
-            logger.WriteLogLine(String.Empty);
-
-        logger.WriteLogLine($"=== Serializing{(name != null ? $" {name}" : String.Empty)}{(addr != null ? $" at 0x{addr:X8}" : String.Empty)} ===");
-
-        return logger;
-    }
 
     /// <summary>
     /// Gets new instances of utilities for a specific game

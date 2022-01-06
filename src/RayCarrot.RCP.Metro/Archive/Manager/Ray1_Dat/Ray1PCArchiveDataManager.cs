@@ -201,7 +201,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
         // Make sure we have a generator for each file
         if (fileGenerator.Count != data.Entries.Length)
-            throw new Binary.BinarySerializableException("The .dat file can't be serialized without a file generator for each file");
+            throw new Exception("The .dat file can't be serialized without a file generator for each file");
 
         // Write the file contents
         foreach (PC_FileArchiveEntry file in data.Entries)
