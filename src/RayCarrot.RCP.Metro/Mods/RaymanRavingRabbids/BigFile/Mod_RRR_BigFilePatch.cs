@@ -1,6 +1,6 @@
 ﻿#nullable disable
 using System.Linq;
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -29,7 +29,7 @@ public class Mod_RRR_BigFilePatch
 
     #region Public Methods
 
-    public void Apply(Binary.BinarySerializer s, JADE_BIG_BigFile bf, int patchToApply)
+    public void Apply(BinaryDeserializer s, Jade_BIG_BigFile bf, int patchToApply, BinaryFile file)
     {
         uint keyToPos = bf.KeyToPos[FileKey];
 
@@ -38,7 +38,7 @@ public class Mod_RRR_BigFilePatch
             uint newSize = Sizes[patchToApply];
 
             // Write new size
-            s.Stream.Position = keyToPos;
+            s.Goto(new Pointer(keyToPos, file));
             s.Serialize<uint>(newSize, name: "Size");
         }
 
@@ -47,7 +47,7 @@ public class Mod_RRR_BigFilePatch
         byte[] bytesToWrite = PatchBytes[patchToApply];
 
         // Write patched bytes
-        s.Stream.Position = offsetToWriteTo;
+        s.Goto(new Pointer(offsetToWriteTo, file));
         s.SerializeArray<byte>(bytesToWrite, bytesToWrite.Length, name: "PatchBytes");
 
         if ((Mode == WriteMode.Insert && Sizes != null) || (patchToApply == 0 && Sizes != null))
@@ -67,14 +67,14 @@ public class Mod_RRR_BigFilePatch
         }
     }
 
-    public int GetAppliedPatch(BinaryDeserializer s, JADE_BIG_BigFile bf)
+    public int GetAppliedPatch(BinaryDeserializer s, Jade_BIG_BigFile bf, BinaryFile file)
     {
         uint keyToPos = bf.KeyToPos[FileKey];
 
         if (Sizes != null && PatchBytes.Length == 2)
         {
             // Read the current size
-            s.Stream.Position = keyToPos;
+            s.Goto(new Pointer(keyToPos, file));
             uint size = s.Serialize<uint>(default, name: "CurrentSize");
 
             if (size == Sizes[1])
@@ -86,7 +86,7 @@ public class Mod_RRR_BigFilePatch
         uint fileStartOffset = keyToPos + 4;
         uint offsetToWriteTo = fileStartOffset + FileOffset;
 
-        s.Stream.Position = offsetToWriteTo;
+        s.Goto(new Pointer(offsetToWriteTo, file));
         byte[] bytes = s.SerializeArray<byte>(default, PatchBytes[1].Length, name: "CurrentBytes");
 
         for (int i = 1; i < PatchBytes.Length; i++)

@@ -1,11 +1,12 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class JADE_BIG_BigFile : IBinarySerializable
+// TODO: Replace this with BinarySerializer.Jade class once that is finished
+public class Jade_BIG_BigFile : BinarySerializable
 {
     public static readonly byte[] XORKey = { 0xb3, 0x98, 0xcc, 0x66 };
     public static uint HeaderLength => 44;
@@ -23,11 +24,11 @@ public class JADE_BIG_BigFile : IBinarySerializable
     public uint UniverseKey { get; set; } // First file it loads
 
     public long FatFilesOffset { get; set; }
-    public JADE_BIG_FatFile[] FatFiles { get; set; }
+    public Jade_BIG_FatFile[] FatFiles { get; set; }
 
     public Dictionary<uint, uint> KeyToPos { get; } = new Dictionary<uint, uint>();
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
         BIG_gst = s.SerializeString(BIG_gst, 4, name: nameof(BIG_gst));
 
@@ -47,9 +48,9 @@ public class JADE_BIG_BigFile : IBinarySerializable
         UniverseKey = s.Serialize<uint>(UniverseKey, name: nameof(UniverseKey));
             
         if (Version >= 43)
-            throw new NotImplementedException("V43: Not implemented in RayCarrot.Binary");
+            throw new NotImplementedException("V43: Not implemented in RCP");
             
-        FatFilesOffset = s.Stream.Position;
+        FatFilesOffset = s.CurrentAbsoluteOffset;
         SerializeFatFiles(s);
 
         foreach (var fat in FatFiles)
@@ -61,22 +62,20 @@ public class JADE_BIG_BigFile : IBinarySerializable
         }
     }
 
-    public void SerializeFatFiles(IBinarySerializer s)
+    public void SerializeFatFiles(SerializerObject s)
     {
-        s.Stream.Position = FatFilesOffset;
+        s.Goto(new Pointer(FatFilesOffset, Offset.File));
+        
         XORIfNecessary(s, () => 
         {
-            FatFiles = s.SerializeObjectArray<JADE_BIG_FatFile>(FatFiles, (int)NumFat, onPreSerializing: (_, ff) => 
-            {
-                ff.Pre_Big = this;
-            }, name: nameof(FatFiles));
+            FatFiles = s.SerializeObjectArray<Jade_BIG_FatFile>(FatFiles, (int)NumFat, onPreSerialize: x => x.Pre_Big = this, name: nameof(FatFiles));
         });
     }
 
-    public void XORIfNecessary(IBinarySerializer s, Action action)
+    public void XORIfNecessary(SerializerObject s, Action action)
     {
         if (BIG_gst == "BUG")
-            throw new NotImplementedException("Not implemented in RayCarrot.Binary version");
+            throw new NotImplementedException("Not implemented in RCP version");
         else
             action();
     }

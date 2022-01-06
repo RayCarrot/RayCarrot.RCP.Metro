@@ -1,24 +1,24 @@
 ﻿#nullable disable
-using RayCarrot.Binary;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class JADE_BIG_FatFile : IBinarySerializable
+public class Jade_BIG_FatFile : BinarySerializable
 {
     public static uint HeaderLength => 0x18;
 
-    public JADE_BIG_BigFile Pre_Big { get; set; } // Set in OnPreSerialize
+    public Jade_BIG_BigFile Pre_Big { get; set; } // Set in OnPreSerialize
 
     public uint MaxFile { get; set; } // File count
     public uint MaxDir { get; set; } // Directory count
-    public uint PosFat { get; set; } // offset of file list
+    public uint PosFat { get; set; } // Offset of file list
     public int NextPosFat { get; set; }
     public uint FirstIndex { get; set; }
     public uint LastIndex { get; set; }
 
     public FileReference[] Files { get; set; }
 
-    public void Serialize(IBinarySerializer s)
+    public override void SerializeImpl(SerializerObject s)
     {
         MaxFile = s.Serialize<uint>(MaxFile, name: nameof(MaxFile));
         MaxDir = s.Serialize<uint>(MaxDir, name: nameof(MaxDir));
@@ -27,21 +27,19 @@ public class JADE_BIG_FatFile : IBinarySerializable
         FirstIndex = s.Serialize<uint>(FirstIndex, name: nameof(FirstIndex));
         LastIndex = s.Serialize<uint>(LastIndex, name: nameof(LastIndex));
 
-        s.Stream.Position = PosFat;
+        s.Goto(new Pointer(PosFat, Offset.File));
         Files = s.SerializeObjectArray<FileReference>(Files, (int)MaxFile, name: nameof(Files));
 
         if (NextPosFat != -1)
-            s.Stream.Position = NextPosFat - HeaderLength;
+            s.Goto(new Pointer(NextPosFat - HeaderLength, Offset.File));
     }
 
-    public class FileReference : IBinarySerializable
+    public class FileReference : BinarySerializable
     {
-        public static uint StructSize => 0x8;
-
         public uint FileOffset { get; set; }
         public uint Key { get; set; }
 
-        public void Serialize(IBinarySerializer s)
+        public override void SerializeImpl(SerializerObject s)
         {
             FileOffset = s.Serialize<uint>(FileOffset, name: nameof(FileOffset));
             Key = s.Serialize<uint>(Key, name: nameof(Key));

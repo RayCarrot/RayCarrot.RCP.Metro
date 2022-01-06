@@ -1,15 +1,14 @@
 ﻿#nullable disable
-using RayCarrot.IO;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Binary;
+using BinarySerializer;
+using NLog;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -728,19 +727,27 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
         try
         {
-            using Stream bfFileStream = File.Open(PatchedBFFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            // Create context
+            using RCPContext context = new(PatchedBFFilePath.Parent, new RCPSerializerSettings()
+            {
+                DefaultStringEncoding = Encoding.GetEncoding(1252)
+            });
 
-            var serializerSettings = new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(1252));
-            JADE_BIG_BigFile bf = BinarySerializableHelpers.ReadFromStream<JADE_BIG_BigFile>(bfFileStream, serializerSettings, App.GetBinarySerializerLogger(name: PatchedBFFilePath.Name));
+            // Add the file to the context
+            LinearFile file = context.AddFile(new LinearFile(context, PatchedBFFilePath.Name));
+
+            // Read the file
+            Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(PatchedBFFilePath.Name, context);
+
+            BinaryDeserializer s = context.Deserializer;
 
             foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
             {
-                var loggerName = $"{PatchedBFFilePath.Name} - Patch ({bfMod.Header.Value})";
-                var s = new BinaryDeserializer(serializerSettings, bfFileStream, App.GetBinarySerializerLogger(name: loggerName));
+                s.Log($"Patch ({bfMod.Header.Value})");
 
-                var patch = bfMod.Patches[0];
+                Mod_RRR_BigFilePatch patch = bfMod.Patches[0];
 
-                bfMod.SelectedPatch = patch.GetAppliedPatch(s, bf);
+                bfMod.SelectedPatch = patch.GetAppliedPatch(s, bf, file);
             }
         }
         catch (Exception ex)
@@ -758,22 +765,31 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
         try
         {
-            using Stream bfFileStream = File.Open(PatchedBFFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+            // Create context
+            using RCPContext context = new(PatchedBFFilePath.Parent, new RCPSerializerSettings()
+            {
+                DefaultStringEncoding = Encoding.GetEncoding(1252)
+            });
 
-            var serializerSettings = new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(1252));
-            JADE_BIG_BigFile bf = BinarySerializableHelpers.ReadFromStream<JADE_BIG_BigFile>(bfFileStream, serializerSettings, App.GetBinarySerializerLogger(name: PatchedBFFilePath.Name));
+            // Add the file to the context
+            LinearFile file = context.AddFile(new LinearFile(context, PatchedBFFilePath.Name));
+
+            // Read the file
+            Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(PatchedBFFilePath.Name, context);
+
+            BinaryDeserializer s = context.Deserializer;
 
             foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
             {
-                var loggerName = $"{PatchedBFFilePath.Name} - Patch ({bfMod.Header.Value})";
-                var s = new Binary.BinarySerializer(serializerSettings, bfFileStream, App.GetBinarySerializerLogger(name: loggerName));
+                s.Log($"Patch ({bfMod.Header.Value})");
 
                 foreach (Mod_RRR_BigFilePatch patch in bfMod.Patches)
                 {
                     patch.Apply(
                         s: s,
                         bf: bf,
-                        patchToApply: bfMod.SelectedPatch);
+                        patchToApply: bfMod.SelectedPatch,
+                        file: file);
                 }
             }
 
