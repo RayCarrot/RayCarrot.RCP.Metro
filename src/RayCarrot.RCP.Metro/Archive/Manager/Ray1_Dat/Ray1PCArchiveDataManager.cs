@@ -135,7 +135,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<Rayman.IArchiveFileGenerator<PC_FileArchiveEntry>>().GetFileStream((PC_FileArchiveEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<PC_FileArchiveEntry>>().GetFileStream((PC_FileArchiveEntry)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -152,7 +152,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         var data = (PC_FileArchive)archive;
 
         // Create the file generator
-        using Rayman.ArchiveFileGenerator<PC_FileArchiveEntry> fileGenerator = new();
+        using ArchiveFileGenerator<PC_FileArchiveEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -371,7 +371,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The archive file generator for .cnt files
     /// </summary>
-    private class Rayman1PCArchiveGenerator : Rayman.IArchiveFileGenerator<PC_FileArchiveEntry>
+    private class Rayman1PCArchiveGenerator : IArchiveFileGenerator<PC_FileArchiveEntry>
     {
         /// <summary>
         /// Default constructor

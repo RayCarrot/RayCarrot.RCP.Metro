@@ -119,7 +119,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<Rayman.IArchiveFileGenerator<CNT_File>>().GetFileStream((CNT_File)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<CNT_File>>().GetFileStream((CNT_File)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -136,7 +136,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         var data = (CNT)archive;
 
         // Create the file generator
-        using Rayman.ArchiveFileGenerator<CNT_File> fileGenerator = new();
+        using ArchiveFileGenerator<CNT_File> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -354,7 +354,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
 
     #region Classes
 
-    private class CNTFileGenerator : Rayman.IArchiveFileGenerator<CNT_File>
+    private class CNTFileGenerator : IArchiveFileGenerator<CNT_File>
     {
         /// <summary>
         /// Default constructor

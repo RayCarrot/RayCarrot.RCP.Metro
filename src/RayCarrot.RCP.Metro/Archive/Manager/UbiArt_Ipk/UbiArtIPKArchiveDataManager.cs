@@ -132,7 +132,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<Rayman.IArchiveFileGenerator<BundleFile_FileEntry>>().GetFileStream((BundleFile_FileEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<BundleFile_FileEntry>>().GetFileStream((BundleFile_FileEntry)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -149,7 +149,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         var data = (BundleFile)archive;
 
         // Create the file generator
-        using Rayman.ArchiveFileGenerator<BundleFile_FileEntry> fileGenerator = new();
+        using ArchiveFileGenerator<BundleFile_FileEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -224,7 +224,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         Logger.Info("The IPK archive has been repacked");
     }
 
-    private void WriteArchiveContent(BundleFile bundle, Stream stream, Rayman.IArchiveFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock)
+    private void WriteArchiveContent(BundleFile bundle, Stream stream, IArchiveFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock)
     {
         // Make sure we have a generator for each file
         if (fileGenerator.Count != bundle.FilePack.Files.Length)
@@ -446,7 +446,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The archive file generator for .ipk files
     /// </summary>
-    private class IPKFileGenerator : Rayman.IArchiveFileGenerator<BundleFile_FileEntry>
+    private class IPKFileGenerator : IArchiveFileGenerator<BundleFile_FileEntry>
     {
         /// <summary>
         /// Default constructor
