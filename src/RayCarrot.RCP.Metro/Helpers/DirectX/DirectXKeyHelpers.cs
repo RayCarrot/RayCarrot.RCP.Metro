@@ -1,6 +1,4 @@
-﻿#nullable disable
-using RayCarrot.Rayman;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro;
