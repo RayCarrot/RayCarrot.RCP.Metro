@@ -86,6 +86,7 @@ public class AppUserData : BaseViewModel
 
         // Progression
         Progression_SaveEditorExe = FileSystemPath.EmptyPath;
+        Progression_ShownEditSaveWarning = false;
 
         // Archive
         Archive_GF_GenerateMipmaps = true;
@@ -395,6 +396,11 @@ public class AppUserData : BaseViewModel
     /// The file path to the exe file used for editing JSON save files
     /// </summary>
     public FileSystemPath Progression_SaveEditorExe { get; set; }
+
+    /// <summary>
+    /// Indicates if the warning for editing save files has been shown
+    /// </summary>
+    public bool Progression_ShownEditSaveWarning { get; set; }
 
     #endregion
 

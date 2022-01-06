@@ -604,6 +604,7 @@ public partial class App : BaseApp
         if (Data.App_LastVersion < new Version(13, 0, 0, 0))
         {
             Data.Progression_SaveEditorExe = FileSystemPath.EmptyPath;
+            Data.Progression_ShownEditSaveWarning = false;
             Data.Backup_GameDataSources = new Dictionary<string, ProgramDataSource>();
             Data.Binary_IsSerializationLogEnabled = false;
         }

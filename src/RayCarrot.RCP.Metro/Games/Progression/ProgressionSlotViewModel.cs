@@ -130,6 +130,27 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Private Methods
+
+    protected async Task<bool> ConfirmSaveEditingAsync()
+    {
+        // Always return true if the warning has already been shown
+        if (Data.Progression_ShownEditSaveWarning) 
+            return true;
+        
+        // TODO-UPDATE: Localize
+        bool confirmResult = await Services.MessageUI.DisplayMessageAsync("Editing save files may corrupt them if done incorrectly. It is highly recommended to keep a backup before proceeding. Continue?", "Confirm save file editing", MessageType.Question, true);
+
+        if (!confirmResult)
+            return false;
+
+        Data.Progression_ShownEditSaveWarning = true;
+
+        return true;
+    }
+
+    #endregion
+
     #region Protected Methods
 
     protected Task LoadInfoItemsAsync() => Task.CompletedTask;
@@ -201,6 +222,9 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
     public async Task ImportAsync()
     {
+        if (!await ConfirmSaveEditingAsync())
+            return;
+
         // Get the input file
         FileBrowserResult inputResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
@@ -239,6 +263,9 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
     public async Task EditAsync()
     {
+        if (!await ConfirmSaveEditingAsync())
+            return;
+
         Logger.Trace("Progression slot for {0} is being opened for editing...", Game.Game);
 
         using (await App.LoadOperation.RunAsync())
