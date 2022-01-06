@@ -25,7 +25,10 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     {
         Settings = settings;
 
-        Context = new RCPContext(String.Empty, new SerializerSettings(defaultEndian: Endian.Little, ignoreCacheOnRead: true));
+        Context = new RCPContext(String.Empty, new RCPSerializerSettings()
+        {
+            DefaultEndianness = Endian.Little
+        });
         Context.AddSettings(settings);
 
         Config = new Ray1PCArchiveConfigViewModel(settings);

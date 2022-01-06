@@ -24,7 +24,10 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="compressionMode">The file compression mode</param>
     public UbiArtIPKArchiveDataManager(UbiArtSettings settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode compressionMode)
     {
-        Context = new RCPContext(String.Empty, new SerializerSettings(defaultEndian: settings.GetEndian, ignoreCacheOnRead: true));
+        Context = new RCPContext(String.Empty, new RCPSerializerSettings()
+        {
+            DefaultEndianness = settings.GetEndian
+        });
         Context.AddSettings(settings);
 
         Config = new UbiArtIPKArchiveConfigViewModel(settings, compressionMode);

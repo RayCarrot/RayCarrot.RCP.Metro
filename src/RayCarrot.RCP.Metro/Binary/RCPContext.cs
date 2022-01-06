@@ -9,10 +9,10 @@ namespace RayCarrot.RCP.Metro;
 
 public class RCPContext : Context
 {
-    public RCPContext(string basePath, ISerializerSettings? settings = null, ISerializerLog? log = null) 
+    public RCPContext(string basePath, RCPSerializerSettings? settings = null, ISerializerLog? log = null) 
         : base(
             basePath: basePath, 
-            settings: settings ?? new SerializerSettings(ignoreCacheOnRead: true), 
+            settings: settings ?? new RCPSerializerSettings(), 
             serializerLog: log ?? new RCPSerializerLog(), 
             fileManager: new RCPFileManager(), 
             logger: new RCPLogger())
@@ -82,5 +82,14 @@ public class RCPContext : Context
         {
             Logger.Error("BinarySerializer: {0}", log);
         }
+    }
+}
+
+public class RCPSerializerSettings : SerializerSettings
+{
+    public RCPSerializerSettings()
+    {
+        // Disable caching by default as it's rarely used in RCP
+        IgnoreCacheOnRead = true;
     }
 }
