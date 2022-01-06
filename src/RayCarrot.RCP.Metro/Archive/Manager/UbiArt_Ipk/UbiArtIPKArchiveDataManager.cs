@@ -211,20 +211,33 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             });
         }
 
-        // Set the base offset
-        data.RecalculateSize();
-        data.BootHeader.BaseOffset = (uint)data.Size;
+        BinaryFile binaryFile = new StreamFile(Context, "Stream", outputFileStream, leaveOpen: true);
 
-        // Write the files
+        try
+        {
+            Context.AddFile(binaryFile);
 
-        WriteArchiveContent(data, outputFileStream, fileGenerator, Config.ShouldCompress(data.BootHeader));
+            // Initialize the data
+            data.Init(binaryFile.StartPointer);
 
-        outputFileStream.Position = 0;
+            // Set the base offset
+            data.RecalculateSize();
+            data.BootHeader.BaseOffset = (uint)data.Size;
 
-        // Serialize the data
-        Context.WriteStreamData(outputFileStream, data, leaveOpen: true);
+            // Write the files
+            WriteArchiveContent(data, outputFileStream, fileGenerator, Config.ShouldCompress(data.BootHeader));
 
-        Logger.Info("The IPK archive has been repacked");
+            outputFileStream.Position = 0;
+
+            // Serialize the data
+            FileFactory.Write(binaryFile.FilePath, data, Context);
+
+            Logger.Info("The IPK archive has been repacked");
+        }
+        finally
+        {
+            Context.RemoveFile(binaryFile);
+        }
     }
 
     private void WriteArchiveContent(BundleFile bundle, Stream stream, IArchiveFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock)

@@ -157,69 +157,83 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
             // Set the directory index
             file.Entry.DirectoryIndex = file.FileItem.Directory == String.Empty ? -1 : data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
 
-        // Set the current pointer position to the header size
-        data.RecalculateSize();
-        uint pointer = (uint)data.Size;
+        BinaryFile binaryFile = new StreamFile(Context, "Stream", outputFileStream, leaveOpen: true);
 
-        // Disable checksum
-        data.IsChecksumUsed = false;
-
-        // NOTE: We can't disable the XOR key entirely as that would disable it for the file bytes too, which would require them all to be decrypted
-        // Reset XOR keys
-        data.StringsXORKey = 0;
-
-        // Load each file
-        foreach (var file in archiveFiles)
+        try
         {
-            // Get the file entry
-            CNT_File entry = file.Entry;
+            Context.AddFile(binaryFile);
 
-            // Reset checksum and XOR key
-            entry.FileChecksum = 0;
-            entry.Pre_FileNameXORKey = 0;
+            // Initialize the data
+            data.Init(binaryFile.StartPointer);
 
-            // Add to the generator
-            fileGenerator.Add(entry, () =>
+            // Set the current pointer position to the header size
+            data.RecalculateSize();
+            uint pointer = (uint)data.Size;
+
+            // Disable checksum
+            data.IsChecksumUsed = false;
+
+            // NOTE: We can't disable the XOR key entirely as that would disable it for the file bytes too, which would require them all to be decrypted
+            // Reset XOR keys
+            data.StringsXORKey = 0;
+
+            // Load each file
+            foreach (var file in archiveFiles)
             {
-                // Get the file stream to write to the archive
-                Stream fileStream = file.FileItem.GetFileData(generator).Stream;
+                // Get the file entry
+                CNT_File entry = file.Entry;
 
-                // Set the pointer
-                entry.FileOffset = pointer;
+                // Reset checksum and XOR key
+                entry.FileChecksum = 0;
+                entry.Pre_FileNameXORKey = 0;
 
-                // Update the pointer by the file size
-                pointer += entry.FileSize;
+                // Add to the generator
+                fileGenerator.Add(entry, () =>
+                {
+                    // Get the file stream to write to the archive
+                    Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
-                // Invoke event
-                OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
+                    // Set the pointer
+                    entry.FileOffset = pointer;
 
-                return fileStream;
-            });
+                    // Update the pointer by the file size
+                    pointer += entry.FileSize;
+
+                    // Invoke event
+                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
+
+                    return fileStream;
+                });
+            }
+
+            // Make sure we have a generator for each file
+            if (fileGenerator.Count != data.Files.Length)
+                throw new Exception("The .cnt file can't be serialized without a file generator for each file");
+
+            // Write the file contents
+            foreach (CNT_File file in data.Files)
+            {
+                // Get the file stream
+                using Stream fileStream = fileGenerator.GetFileStream(file);
+
+                // Set the position to the pointer
+                outputFileStream.Position = file.FileOffset;
+
+                // Write the contents from the generator
+                fileStream.CopyTo(outputFileStream);
+            }
+
+            outputFileStream.Position = 0;
+
+            // Serialize the data
+            FileFactory.Write(binaryFile.FilePath, data, Context);
+
+            Logger.Info("The CNT archive has been repacked");
         }
-
-        // Make sure we have a generator for each file
-        if (fileGenerator.Count != data.Files.Length)
-            throw new Exception("The .cnt file can't be serialized without a file generator for each file");
-
-        // Write the file contents
-        foreach (CNT_File file in data.Files)
+        finally
         {
-            // Get the file stream
-            using Stream fileStream = fileGenerator.GetFileStream(file);
-
-            // Set the position to the pointer
-            outputFileStream.Position = file.FileOffset;
-
-            // Write the contents from the generator
-            fileStream.CopyTo(outputFileStream);
+            Context.RemoveFile(binaryFile);
         }
-
-        outputFileStream.Position = 0;
-
-        // Serialize the data
-        Context.WriteStreamData(outputFileStream, data, leaveOpen: true);
-
-        Logger.Info("The CNT archive has been repacked");
     }
 
     /// <summary>

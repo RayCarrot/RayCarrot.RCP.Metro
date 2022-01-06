@@ -167,61 +167,75 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         // Set files and directories
         data.Entries = archiveFiles.Select(x => x.Entry).ToArray();
 
-        // Set the current pointer position to the header size
-        data.RecalculateSize();
-        uint pointer = (uint)data.Size;
+        BinaryFile binaryFile = new StreamFile(Context, "Stream", outputFileStream, leaveOpen: true);
 
-        // Load each file
-        foreach (var file in archiveFiles)
+        try
         {
-            // Process the file name
-            file.Entry.FileName = ProcessFileName(file.Entry.FileName);
+            Context.AddFile(binaryFile);
 
-            // Get the file entry
-            PC_FileArchiveEntry entry = file.Entry;
+            // Initialize the data
+            data.Init(binaryFile.StartPointer);
 
-            // Add to the generator
-            fileGenerator.Add(entry, () =>
+            // Set the current pointer position to the header size
+            data.RecalculateSize();
+            uint pointer = (uint)data.Size;
+
+            // Load each file
+            foreach (var file in archiveFiles)
             {
-                // Get the file stream to write to the archive
-                Stream fileStream = file.FileItem.GetFileData(generator).Stream;
+                // Process the file name
+                file.Entry.FileName = ProcessFileName(file.Entry.FileName);
 
-                // Set the pointer
-                entry.FileOffset = pointer;
+                // Get the file entry
+                PC_FileArchiveEntry entry = file.Entry;
 
-                // Update the pointer by the file size
-                pointer += entry.FileSize;
+                // Add to the generator
+                fileGenerator.Add(entry, () =>
+                {
+                    // Get the file stream to write to the archive
+                    Stream fileStream = file.FileItem.GetFileData(generator).Stream;
 
-                // Invoke event
-                OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
+                    // Set the pointer
+                    entry.FileOffset = pointer;
 
-                return fileStream;
-            });
+                    // Update the pointer by the file size
+                    pointer += entry.FileSize;
+
+                    // Invoke event
+                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
+
+                    return fileStream;
+                });
+            }
+
+            // Make sure we have a generator for each file
+            if (fileGenerator.Count != data.Entries.Length)
+                throw new Exception("The .dat file can't be serialized without a file generator for each file");
+
+            // Write the file contents
+            foreach (PC_FileArchiveEntry file in data.Entries)
+            {
+                // Get the file stream
+                using Stream fileStream = fileGenerator.GetFileStream(file);
+
+                // Set the position to the pointer
+                outputFileStream.Position = file.FileOffset;
+
+                // Write the contents from the generator
+                fileStream.CopyTo(outputFileStream);
+            }
+
+            outputFileStream.Position = 0;
+
+            // Serialize the data
+            FileFactory.Write(binaryFile.FilePath, data, Context);
+
+            Logger.Info("The R1 PC archive has been repacked");
         }
-
-        // Make sure we have a generator for each file
-        if (fileGenerator.Count != data.Entries.Length)
-            throw new Exception("The .dat file can't be serialized without a file generator for each file");
-
-        // Write the file contents
-        foreach (PC_FileArchiveEntry file in data.Entries)
+        finally
         {
-            // Get the file stream
-            using Stream fileStream = fileGenerator.GetFileStream(file);
-
-            // Set the position to the pointer
-            outputFileStream.Position = file.FileOffset;
-
-            // Write the contents from the generator
-            fileStream.CopyTo(outputFileStream);
+            Context.RemoveFile(binaryFile);
         }
-
-        outputFileStream.Position = 0;
-
-        // Serialize the data
-        Context.WriteStreamData(outputFileStream, data, leaveOpen: true);
-
-        Logger.Info("The R1 PC archive has been repacked");
     }
 
     /// <summary>
