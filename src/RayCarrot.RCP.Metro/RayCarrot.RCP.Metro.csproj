@@ -158,8 +158,6 @@
     <!-- Content -->
     <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
     <Content Include="Files\Programs\AdminWorker.exe" />
-    <Content Include="Files\Rayman2\GXSetup_GOG.exe" />
-    <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
     <Content Include="Files\Programs\Uninstaller.exe" />
     <Content Include="Files\Rayman2\dinput_controller.dll" />

@@ -45,7 +45,6 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_SyncTextureInfo">FileSyncOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman1_CompleteSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman2_DiscPatch">Disc</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman2_RemoveDRM">Pirate</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman2_Translation">Alphabetical</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Rayman3_DirectPlay">ApplicationCogOutline</iconPacks:PackIconMaterialKind>
@@ -206,9 +205,6 @@
                        IconColor="{StaticResource Colors.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman1_TPLS" 
                        IconKind="{StaticResource Icons.Utilities_Rayman1_TPLS}"
-                       IconColor="{StaticResource Colors.Utilities}" />
-    <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman2_DiscPatch" 
-                       IconKind="{StaticResource Icons.Utilities_Rayman2_DiscPatch}"
                        IconColor="{StaticResource Colors.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman2_RemoveDRM" 
                        IconKind="{StaticResource Icons.Utilities_Rayman2_RemoveDRM}"

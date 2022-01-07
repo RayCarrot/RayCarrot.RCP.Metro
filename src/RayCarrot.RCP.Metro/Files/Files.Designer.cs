@@ -129,16 +129,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] GXSetup_GOG {
-            get {
-                object obj = ResourceManager.GetObject("GXSetup_GOG", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copyright (c) 2021 RayCarrot
         ///
         ///Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -208,16 +198,6 @@ namespace RayCarrot.RCP.Metro {
         public static byte[] Rayman_Control_Panel_Updater {
             get {
                 object obj = ResourceManager.GetObject("Rayman_Control_Panel_Updater", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Rayman2_GOG {
-            get {
-                object obj = ResourceManager.GetObject("Rayman2_GOG", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -293,22 +273,6 @@ namespace RayCarrot.RCP.Metro {
         public static string RO_Levels {
             get {
                 return ResourceManager.GetString("RO_Levels", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [Rayman2]
-        ///GLI_Mode = 1 - 640 x 480 x 16
-        ///Language =English
-        ///GLI_DllFile = GliDX6
-        ///GLI_Dll = DirectX6
-        ///GLI_Driver = display
-        ///GLI_Device = Direct3D HAL
-        ///ParticuleRate = High.
-        /// </summary>
-        public static string ubi {
-            get {
-                return ResourceManager.GetString("ubi", resourceCulture);
             }
         }
         
@@ -409,7 +373,7 @@ namespace RayCarrot.RCP.Metro {
         ///	• Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
         ///	• If a backup was performed for a game it will now show the status, indicating if the backup is outdated
         ///	• The progression data for backups can now be viewed and compared to the current data
-        ///	• More information is shown for the save slots [rest of string was truncated]&quot;;.
+        ///	• If the save data has been redirected to Virt [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory_13_0_15_0 {
             get {

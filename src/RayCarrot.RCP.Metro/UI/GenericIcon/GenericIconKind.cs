@@ -49,7 +49,6 @@ public enum GenericIconKind
     Utilities_SyncTextureInfo,
     Utilities_Rayman1_CompleteSoundtrack,
     Utilities_Rayman1_TPLS,
-    Utilities_Rayman2_DiscPatch,
     Utilities_Rayman2_RemoveDRM,
     Utilities_Rayman2_Translation,
     Utilities_Rayman3_DirectPlay,
