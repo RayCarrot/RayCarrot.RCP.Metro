@@ -70,6 +70,7 @@ public class AppUserData : BaseViewModel
         Utility_TPLSData = null;
 
         // Mod
+        Mod_RRR_ToggleStates = new Dictionary<string, UserData_Mod_RRR_ToggleState>();
         Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
 
         // Update
@@ -115,8 +116,9 @@ public class AppUserData : BaseViewModel
         Game_Games ??= new Dictionary<Games, UserData_GameData>();
         Game_DosBoxGames ??= new Dictionary<Games, UserData_DosBoxOptions>();
         Game_InstalledGames ??= new HashSet<Games>();
-            
+
         // Mod
+        Mod_RRR_ToggleStates ??= new Dictionary<string, UserData_Mod_RRR_ToggleState>();
         Mod_RRR_KeyboardButtonMapping ??= new Dictionary<int, Key>();
 
         // Backup
@@ -334,6 +336,11 @@ public class AppUserData : BaseViewModel
     #endregion
 
     #region Mod
+
+    /// <summary>
+    /// The saves toggle states for the Rayman Raving Rabbids memory mod
+    /// </summary>
+    public Dictionary<string, UserData_Mod_RRR_ToggleState> Mod_RRR_ToggleStates { get; set; }
 
     /// <summary>
     /// The saved button mapping for the Rayman Raving Rabbids memory mod

@@ -256,6 +256,14 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 }),
         };
 
+        for (int i = 0; i < MemoryModSections.Count; i++)
+        {
+            for (int j = 0; j < MemoryModSections[i].ModToggles.Count; j++)
+            {
+                MemoryModSections[i].ModToggles[j].Init($"{i}_{j}");
+            }
+        }
+
         IsCustomButtonMappingEnabled = true;
         UseCustomButtonMapping = true;
 

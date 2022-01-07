@@ -607,6 +607,7 @@ public partial class App : BaseApp
             Data.Progression_ShownEditSaveWarning = false;
             Data.Backup_GameDataSources = new Dictionary<string, ProgramDataSource>();
             Data.Binary_IsSerializationLogEnabled = false;
+            Data.Mod_RRR_ToggleStates = new Dictionary<string, UserData_Mod_RRR_ToggleState>();
         }
 
         // Re-deploy files
