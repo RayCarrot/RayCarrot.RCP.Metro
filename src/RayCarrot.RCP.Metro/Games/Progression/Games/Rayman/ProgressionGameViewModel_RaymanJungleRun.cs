@@ -52,11 +52,11 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             // Create the collection with items for each time trial level + general information
             List<ProgressionDataViewModel> progressItems = new();
 
-            // Get data values
-            int collectedLums = 0;
-            int availableLums = 0;
-            int collectedTeeth = 0;
-            int availableTeeth = saveData.LevelInfos.Length;
+            // Default number of worlds to 5 as it is no longer possible to download the additional 2 ones on PC
+            int numWorlds = 5;
+
+            int lums = 0;
+            int teeth = 0;
 
             // Enumerate each level
             for (int lvl = 0; lvl < saveData.LevelInfos.Length; lvl++)
@@ -67,22 +67,19 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 // Check if the level is a normal level
                 if ((lvl + 1) % 10 != 0)
                 {
-                    // Logger.Trace("Level index {0} is a normal level", lvl);
+                    // Set number of worlds to 7 if lums are collected in one of the last two worlds
+                    if (lvl >= 10 * 5 && levelData.LumsRecord > 0)
+                        numWorlds = 7;
 
                     // Get the collected lums
-                    collectedLums += levelData.LumsRecord;
-                    availableLums += 100;
-
-                    // Logger.Trace("{0} Lums have been collected", levelData.LumsRecord);
+                    lums += levelData.LumsRecord; 
 
                     // Check if the level is 100% complete
                     if (levelData.LumsRecord >= 100)
-                        collectedTeeth++;
+                        teeth++;
 
                     continue;
                 }
-
-                // Logger.Trace("Level index {0} is a time trial level", lvl);
 
                 // Make sure the level has been completed
                 if (levelData.RecordTime == 0)
@@ -92,9 +89,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                     continue;
                 }
 
-                // Logger.Trace("Level has been completed with the record time {0}", levelData.RecordTime);
-
-                collectedTeeth++;
+                teeth++;
 
                 // Get the level number, starting at 10
                 string fullLevelNumber = (lvl + 11).ToString();
@@ -119,22 +114,25 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                     text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\.fff}")));
             }
 
+            int maxLums = numWorlds * 9 * 100;
+            int maxTeeth = numWorlds * 10;
+
             // Add general progress info first
             // TODO-UPDATE: Localize
             progressItems.Insert(0, new ProgressionDataViewModel(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_Lum, 
                 header: new ConstLocString("Lums"), 
-                value: collectedLums, 
-                max: availableLums));
+                value: lums, 
+                max: maxLums));
             progressItems.Insert(1, new ProgressionDataViewModel(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_RedTooth, 
                 header: new ConstLocString("Teeth"), 
-                value: collectedTeeth, 
-                max: availableTeeth));
+                value: teeth, 
+                max: maxTeeth));
 
-            yield return new SerializableProgressionSlotViewModel<JungleRun_SaveData>(this, null, saveIndex, collectedLums + collectedTeeth, availableLums + availableTeeth, progressItems, context, saveData, fileName);
+            yield return new SerializableProgressionSlotViewModel<JungleRun_SaveData>(this, null, saveIndex, lums + teeth, maxLums + maxTeeth, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }
