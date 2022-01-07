@@ -287,6 +287,13 @@ public class Page_Settings_ViewModel : BasePageViewModel
                         UserLevel.Technical)
                 });
 
+                // Load icons
+                await Task.Run(() =>
+                {
+                    foreach (Page_Settings_LinkItemViewModel link in LocalLinkItems.SelectMany(x => x))
+                        link.LoadIcon();
+                });
+
                 time.Stop();
 
                 Logger.Info("The links have refreshed");

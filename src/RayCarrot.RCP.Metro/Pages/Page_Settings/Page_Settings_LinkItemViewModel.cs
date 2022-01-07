@@ -1,15 +1,14 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
-using RayCarrot.IO;
 using NLog;
+using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;
@@ -44,18 +43,6 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
         DisplayText = displayText;
         IconKind = localLinkPath.FileExists ? PackIconMaterialKind.FileOutline : PackIconMaterialKind.FolderOutline;
 
-        if (!IsValid)
-            return;
-
-        try
-        {
-            IconSource = GetImageSource(LocalLinkPath);
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "Getting link item thumbnail");
-        }
-
         OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
     }
 
@@ -73,16 +60,7 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
         IsRegistryPath = true;
         DisplayText = displayText;
         IconKind = PackIconMaterialKind.FileOutline;
-
-        try
-        {
-            IconSource = GetImageSource(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "regedit.exe"));
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "Getting Registry link item thumbnail");
-        }
-
+        
         OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
     }
 
@@ -101,23 +79,6 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
         IconKind = PackIconMaterialKind.AccessPointNetwork;
 
         OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
-
-        try
-        {
-            // ReSharper disable once PossibleNullReferenceException
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri("https://www.google.com/s2/favicons?domain=" + ExternalLinkPath);
-                bitmapImage.EndInit();
-                IconSource = bitmapImage;
-            });
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "Getting external link icon");
-        }
     }
 
     #endregion
@@ -137,6 +98,12 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Commands
+
+    public ICommand OpenLinkCommand { get; }
+
+    #endregion
+
     #region Public Properties
 
     /// <summary>
@@ -147,7 +114,7 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The icon image source
     /// </summary>
-    public ImageSource IconSource { get; set; }
+    public ImageSource? IconSource { get; set; }
 
     /// <summary>
     /// The local link path
@@ -157,11 +124,12 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The external link path
     /// </summary>
-    public Uri ExternalLinkPath { get; }
+    public Uri? ExternalLinkPath { get; }
 
     /// <summary>
     /// Indicates if the path is local or external
     /// </summary>
+    [MemberNotNullWhen(false, nameof(ExternalLinkPath))]
     public bool IsLocal { get; }
 
     /// <summary>
@@ -172,7 +140,7 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The Registry link path
     /// </summary>
-    public string RegistryLinkPath { get; }
+    public string? RegistryLinkPath { get; }
 
     /// <summary>
     /// The text to display for the link
@@ -187,7 +155,7 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The path to display
     /// </summary>
-    public string DisplayPath => !IsLocal ? ExternalLinkPath?.ToString() : IsRegistryPath ? RegistryLinkPath : LocalLinkPath.FullPath;
+    public string? DisplayPath => !IsLocal ? ExternalLinkPath?.ToString() : IsRegistryPath ? RegistryLinkPath : LocalLinkPath.FullPath;
 
     /// <summary>
     /// Indicates if the link is valid
@@ -196,9 +164,33 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
 
     #endregion
 
-    #region Commands
+    #region Public Method
 
-    public ICommand OpenLinkCommand { get; }
+    public void LoadIcon()
+    {
+        try
+        {
+            if (IsLocal)
+            {
+                if (IsRegistryPath)
+                    IconSource = GetImageSource(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "regedit.exe"));
+                else
+                    IconSource = GetImageSource(LocalLinkPath);
+            }
+            else
+            {
+                BitmapImage bitmapImage = new();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri("https://www.google.com/s2/favicons?domain=" + ExternalLinkPath);
+                bitmapImage.EndInit();
+                IconSource = bitmapImage;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Getting link item icon");
+        }
+    }
 
     #endregion
 
@@ -211,22 +203,18 @@ public class Page_Settings_LinkItemViewModel : BaseRCPViewModel
     /// <returns>The image source</returns>
     private static ImageSource GetImageSource(FileSystemPath path)
     {
-        if (IconCache.ContainsKey(path.FullPath))
-            return IconCache[path.FullPath];
-
-        // ReSharper disable once PossibleNullReferenceException
-        return Application.Current.Dispatcher.Invoke(() =>
+        lock (IconCache)
         {
-            var image = WindowsHelpers.GetIconOrThumbnail(path, ShellThumbnailSize.Small).ToImageSource();
+            if (IconCache.ContainsKey(path.FullPath))
+                return IconCache[path.FullPath];
 
+            ImageSource image = WindowsHelpers.GetIconOrThumbnail(path, ShellThumbnailSize.Small).ToImageSource();
             image.Freeze();
-
-            Logger.Debug("The link item image source has been created for the path '{0}'", path);
 
             IconCache.Add(path.FullPath, image);
 
             return image;
-        });
+        }
     }
 
     #endregion
