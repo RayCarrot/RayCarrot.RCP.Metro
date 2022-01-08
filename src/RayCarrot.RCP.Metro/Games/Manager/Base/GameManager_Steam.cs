@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Win32;
-using RayCarrot.IO;
 using NLog;
 using RayCarrot.Windows.Registry;
 

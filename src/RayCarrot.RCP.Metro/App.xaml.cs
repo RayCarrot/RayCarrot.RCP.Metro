@@ -17,7 +17,6 @@ using Nito.AsyncEx;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;

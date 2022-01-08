@@ -3,7 +3,6 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

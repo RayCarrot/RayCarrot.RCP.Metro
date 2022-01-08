@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
@@ -40,7 +41,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string</param>
     /// <returns>True if the string is null or empty, false if not</returns>
-    public static bool IsNullOrEmpty(this string value)
+    public static bool IsNullOrEmpty([NotNullWhen(false)] this string value)
     {
         return String.IsNullOrEmpty(value);
     }
@@ -50,7 +51,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string</param>
     /// <returns>True if the string is null, empty or just white space, false if not</returns>
-    public static bool IsNullOrWhiteSpace(this string value)
+    public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string value)
     {
         return String.IsNullOrWhiteSpace(value);
     }

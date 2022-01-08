@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

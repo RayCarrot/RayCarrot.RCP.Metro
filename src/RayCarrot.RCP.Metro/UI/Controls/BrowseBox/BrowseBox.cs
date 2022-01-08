@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using Microsoft.Win32;
 using Nito.AsyncEx;
-using RayCarrot.IO;
 using NLog;
 using System;
 using System.Collections.Generic;

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using BinarySerializer.UbiArt;
 using NLog;
-using RayCarrot.IO;
 
 // ReSharper disable StringLiteralTypo
 

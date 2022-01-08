@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using IniParser;
 using Microsoft.Win32;
 using NLog;
-using RayCarrot.IO;
 using RayCarrot.RCP.Metro.Ini;
 using RayCarrot.Windows.Registry;
 

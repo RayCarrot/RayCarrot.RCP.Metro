@@ -5,7 +5,6 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

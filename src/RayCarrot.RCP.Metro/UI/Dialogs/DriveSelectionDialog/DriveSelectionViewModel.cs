@@ -2,7 +2,6 @@
 using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
-using RayCarrot.IO;
 using NLog;
 using System;
 using System.Collections;

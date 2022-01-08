@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using BinarySerializer;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

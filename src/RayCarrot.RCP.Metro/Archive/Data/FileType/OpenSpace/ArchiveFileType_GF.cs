@@ -7,7 +7,6 @@ using System.Windows.Media.Imaging;
 using BinarySerializer.OpenSpace;
 using MahApps.Metro.IconPacks;
 using NLog;
-using RayCarrot.IO;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro;

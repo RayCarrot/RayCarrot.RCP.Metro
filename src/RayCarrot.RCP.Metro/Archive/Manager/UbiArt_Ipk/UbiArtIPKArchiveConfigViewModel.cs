@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using BinarySerializer.UbiArt;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

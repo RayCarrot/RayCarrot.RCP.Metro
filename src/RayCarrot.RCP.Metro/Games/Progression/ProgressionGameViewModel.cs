@@ -6,10 +6,8 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using BinarySerializer;
 using Nito.AsyncEx;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

@@ -1,5 +1,4 @@
 ﻿using ImageMagick;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

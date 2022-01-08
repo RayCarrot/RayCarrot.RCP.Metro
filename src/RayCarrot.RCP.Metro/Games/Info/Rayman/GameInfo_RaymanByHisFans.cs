@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using BinarySerializer.Ray1;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

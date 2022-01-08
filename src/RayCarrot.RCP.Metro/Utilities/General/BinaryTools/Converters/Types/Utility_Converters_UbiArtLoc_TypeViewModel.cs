@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

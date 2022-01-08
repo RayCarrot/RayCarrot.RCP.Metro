@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using BinarySerializer.OpenSpace;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

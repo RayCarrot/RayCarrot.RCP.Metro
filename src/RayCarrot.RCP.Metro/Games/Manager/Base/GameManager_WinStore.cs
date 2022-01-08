@@ -8,7 +8,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

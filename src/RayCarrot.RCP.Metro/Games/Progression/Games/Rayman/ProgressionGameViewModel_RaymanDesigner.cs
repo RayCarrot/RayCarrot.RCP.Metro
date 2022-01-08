@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using BinarySerializer.Ray1;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

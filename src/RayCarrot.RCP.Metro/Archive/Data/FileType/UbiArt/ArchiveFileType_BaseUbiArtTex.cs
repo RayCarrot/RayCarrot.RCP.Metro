@@ -4,7 +4,6 @@ using System.Linq;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using ImageMagick;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

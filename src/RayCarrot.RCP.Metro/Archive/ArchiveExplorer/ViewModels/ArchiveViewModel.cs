@@ -1,5 +1,4 @@
 ﻿using Nito.AsyncEx;
-using RayCarrot.IO;
 using NLog;
 using System;
 using System.Diagnostics.CodeAnalysis;

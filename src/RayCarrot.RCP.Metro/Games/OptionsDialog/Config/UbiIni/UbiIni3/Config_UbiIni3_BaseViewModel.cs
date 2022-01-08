@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading.Tasks;
 using ByteSizeLib;
 using NLog;
-using RayCarrot.IO;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;

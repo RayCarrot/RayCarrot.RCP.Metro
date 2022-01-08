@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System.Diagnostics;
 using System.Threading.Tasks;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 // TODO: Clean up and split up - move some of these to FileSystemPathExtensions

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

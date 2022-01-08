@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Media;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

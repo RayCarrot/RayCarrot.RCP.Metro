@@ -1,6 +1,4 @@
-﻿using RayCarrot.IO;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Options for a DOSBox game

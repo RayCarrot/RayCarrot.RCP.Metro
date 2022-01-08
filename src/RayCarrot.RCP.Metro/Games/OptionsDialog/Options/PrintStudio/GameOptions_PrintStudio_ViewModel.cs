@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

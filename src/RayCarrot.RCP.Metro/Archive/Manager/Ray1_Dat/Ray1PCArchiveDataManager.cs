@@ -5,7 +5,6 @@ using System.Linq;
 using BinarySerializer;
 using BinarySerializer.Ray1;
 using ByteSizeLib;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

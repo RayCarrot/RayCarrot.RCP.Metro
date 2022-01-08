@@ -15,7 +15,6 @@ using System.Windows.Media;
 using ControlzEx.Theming;
 using Newtonsoft.Json;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

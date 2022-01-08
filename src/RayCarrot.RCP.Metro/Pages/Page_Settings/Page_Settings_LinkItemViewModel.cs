@@ -8,7 +8,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
 using NLog;
-using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;

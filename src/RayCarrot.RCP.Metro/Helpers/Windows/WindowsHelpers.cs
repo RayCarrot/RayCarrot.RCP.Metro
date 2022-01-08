@@ -9,7 +9,6 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Shell;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

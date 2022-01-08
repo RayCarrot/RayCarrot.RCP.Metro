@@ -1,6 +1,4 @@
 ﻿#nullable disable
-using RayCarrot.IO;
-
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>

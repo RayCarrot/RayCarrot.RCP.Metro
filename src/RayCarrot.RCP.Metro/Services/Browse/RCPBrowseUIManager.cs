@@ -2,7 +2,6 @@
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using NLog;
-using RayCarrot.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;

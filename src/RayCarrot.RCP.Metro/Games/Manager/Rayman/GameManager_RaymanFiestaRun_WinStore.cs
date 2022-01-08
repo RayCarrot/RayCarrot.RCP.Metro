@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

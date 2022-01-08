@@ -2,7 +2,6 @@
 using System.IO;
 using BinarySerializer.UbiArt;
 using ImageMagick;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

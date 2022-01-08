@@ -1,7 +1,6 @@
 ﻿using System;
 using ImageMagick;
 using MahApps.Metro.IconPacks;
-using RayCarrot.IO;
 using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;

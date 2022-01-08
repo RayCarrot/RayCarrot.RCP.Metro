@@ -5,7 +5,6 @@ using System.Drawing.Imaging;
 using System.Threading.Tasks;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

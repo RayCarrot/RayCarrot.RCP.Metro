@@ -1,6 +1,4 @@
-﻿using RayCarrot.IO;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A GNF UbiArt texture file type (PS4)

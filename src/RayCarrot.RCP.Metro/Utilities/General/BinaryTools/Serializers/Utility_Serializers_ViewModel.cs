@@ -8,7 +8,6 @@ using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
 using BinarySerializer.UbiArt;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

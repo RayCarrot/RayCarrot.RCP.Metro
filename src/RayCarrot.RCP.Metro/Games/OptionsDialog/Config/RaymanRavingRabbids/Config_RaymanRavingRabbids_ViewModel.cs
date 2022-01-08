@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using BinarySerializer;
 using Microsoft.Win32;
 using NLog;
-using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;

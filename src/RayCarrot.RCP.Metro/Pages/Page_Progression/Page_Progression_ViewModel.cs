@@ -7,7 +7,6 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
 using NLog;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro;
 

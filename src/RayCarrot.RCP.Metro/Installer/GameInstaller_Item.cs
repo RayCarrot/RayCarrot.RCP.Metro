@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
 using System.IO;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;

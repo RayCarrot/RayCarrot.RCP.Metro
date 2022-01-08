@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using RayCarrot.IO;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
