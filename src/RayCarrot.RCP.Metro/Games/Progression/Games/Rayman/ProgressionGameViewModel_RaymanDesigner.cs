@@ -81,7 +81,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             settings.World = (World)save!.World;
             settings.Level = save.Level;
 
-            PC_LevelTime? saveData = await context.ReadFileDataAsync<PC_LevelTime>(save.FilePath.Name);
+            PC_LevelTime? saveData = await context.ReadFileDataAsync<PC_LevelTime>(save.FilePath.Name, removeFileWhenComplete: false);
 
             if (saveData == null)
             {

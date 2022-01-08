@@ -764,7 +764,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         using RCPContext context = new(saveFile.Parent);
 
-        RRR_SaveFile? saveData = await context.ReadFileDataAsync<RRR_SaveFile>(saveFile.Name, new RRR_SaveEncoder());
+        RRR_SaveFile? saveData = await context.ReadFileDataAsync<RRR_SaveFile>(saveFile.Name, new RRR_SaveEncoder(), removeFileWhenComplete: false);
 
         if (saveData == null)
         {

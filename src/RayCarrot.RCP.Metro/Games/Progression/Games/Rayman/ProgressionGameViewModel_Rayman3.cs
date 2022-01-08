@@ -33,7 +33,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
             Logger.Info("{0} slot {1} is being loaded...", Game, fileName);
 
-            R3SaveFile? saveData = await context.ReadFileDataAsync<R3SaveFile>(fileName, new R3SaveEncoder());
+            R3SaveFile? saveData = await context.ReadFileDataAsync<R3SaveFile>(fileName, new R3SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {

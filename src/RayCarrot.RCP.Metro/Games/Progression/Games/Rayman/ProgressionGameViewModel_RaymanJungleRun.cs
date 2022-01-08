@@ -38,7 +38,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             string fileName = $"slot{saveIndex + 1}.dat";
 
             // Deserialize the data
-            JungleRun_SaveData? saveData = await context.ReadFileDataAsync<JungleRun_SaveData>(fileName, endian: Endian.Little);
+            JungleRun_SaveData? saveData = await context.ReadFileDataAsync<JungleRun_SaveData>(fileName, endian: Endian.Little, removeFileWhenComplete: false);
 
             if (saveData == null)
             {

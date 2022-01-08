@@ -33,7 +33,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
         using RCPContext context = new(saveDir.DirPath);
 
         // Deserialize the save data
-        RMSaveFile? saveData = await context.ReadFileDataAsync<RMSaveFile>(saveFileName);
+        RMSaveFile? saveData = await context.ReadFileDataAsync<RMSaveFile>(saveFileName, removeFileWhenComplete: false);
 
         if (saveData == null)
         {

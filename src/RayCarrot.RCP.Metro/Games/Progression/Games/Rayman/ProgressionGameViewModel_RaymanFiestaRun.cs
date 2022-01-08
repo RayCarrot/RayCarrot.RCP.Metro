@@ -67,7 +67,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         string fileName = Edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat";
 
         // Deserialize the data
-        FiestaRun_SaveData? saveData = await context.ReadFileDataAsync<FiestaRun_SaveData>(fileName, endian: Endian.Little);
+        FiestaRun_SaveData? saveData = await context.ReadFileDataAsync<FiestaRun_SaveData>(fileName, endian: Endian.Little, removeFileWhenComplete: false);
 
         if (saveData == null)
         {

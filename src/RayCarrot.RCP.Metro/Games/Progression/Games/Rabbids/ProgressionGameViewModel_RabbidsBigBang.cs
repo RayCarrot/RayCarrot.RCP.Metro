@@ -24,7 +24,7 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         Logger.Info("{0} save is being loaded...", Game);
 
-        Unity_PlayerPrefs? saveData = await context.ReadFileDataAsync<Unity_PlayerPrefs>(saveFile.Name);
+        Unity_PlayerPrefs? saveData = await context.ReadFileDataAsync<Unity_PlayerPrefs>(saveFile.Name, removeFileWhenComplete: false);
 
         if (saveData == null)
         {

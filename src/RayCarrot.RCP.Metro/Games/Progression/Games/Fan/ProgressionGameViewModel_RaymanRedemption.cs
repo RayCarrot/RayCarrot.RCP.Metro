@@ -70,7 +70,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
 
-            GameMaker_DSMap? saveData = await context.ReadFileDataAsync<GameMaker_DSMap>(fileName, new GameMaker_HexStringEncoder());
+            GameMaker_DSMap? saveData = await context.ReadFileDataAsync<GameMaker_DSMap>(fileName, new GameMaker_HexStringEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {

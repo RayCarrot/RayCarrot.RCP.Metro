@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 
 public static class ContextExtensions
 {
-    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null)
+    public static T? ReadFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true)
         where T : BinarySerializable, new()
     {
         PhysicalFile file = encoder == null
@@ -25,7 +25,8 @@ public static class ContextExtensions
         }
         finally
         {
-            context.RemoveFile(file);
+            if (removeFileWhenComplete)
+                context.RemoveFile(file);
         }
     }
 
@@ -48,10 +49,10 @@ public static class ContextExtensions
         }
     }
 
-    public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null)
+    public static Task<T?> ReadFileDataAsync<T>(this Context context, string fileName, IStreamEncoder? encoder = null, Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true)
         where T : BinarySerializable, new()
     {
-        return Task.Run(() => context.ReadFileData<T>(fileName, encoder, endian, onPreSerialize));
+        return Task.Run(() => context.ReadFileData<T>(fileName, encoder, endian, onPreSerialize, removeFileWhenComplete));
     }
 
     public static void WriteFileData<T>(this Context context, string fileName, T obj, IStreamEncoder? encoder = null, Endian? endian = null)
