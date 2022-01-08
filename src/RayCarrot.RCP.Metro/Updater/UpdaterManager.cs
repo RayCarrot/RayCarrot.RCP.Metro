@@ -215,7 +215,7 @@ public abstract class UpdaterManager : IUpdaterManager
         }
 
         // Shut down the app
-        await App.Current.ShutdownRCFAppAsync(true);
+        await App.Current.ShutdownAppAsync(true);
 
         return true;
     }

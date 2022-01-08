@@ -25,8 +25,6 @@ using NLog.Targets;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: Remove protected, clean up
-
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
@@ -34,12 +32,6 @@ public partial class App : Application
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    /// <param name="useMutex">Indicates if a <see cref="Mutex"/> should be used to only allow a single instance of the application.
-    /// This requires a valid GUID in the entry assembly.</param>
-    /// <param name="splashScreenResourceName">The resource name for a splash screen if one is to be used</param>
     public App()
     {
         // Create properties
@@ -55,50 +47,36 @@ public partial class App : Application
         StartupTimeLogs = new List<string>();
 #endif
 
-        LogStartupTime("BaseApp: Showing splash screen");
+        LogStartupTime("App: Showing splash screen");
 
-        var splashScreenResourceName = "Files/Splash Screen.png";
-
-        // Create and show the splash screen if one is to be used
-        if (splashScreenResourceName != null)
-        {
-            SplashScreenFadeout = TimeSpan.MinValue;
-            SplashScreen = new SplashScreen(splashScreenResourceName);
-            SplashScreen.Show(false);
-        }
+        // Create and show the splash screen
+        SplashScreenFadeoutTime = TimeSpan.FromMilliseconds(200);
+        SplashScreen = new SplashScreen(SplashScreenResourceName);
+        SplashScreen.Show(false);
 
         // Subscribe to events
-        Startup += BaseRCFApp_Startup;
-        DispatcherUnhandledException += BaseRCFApp_DispatcherUnhandledException;
-        Exit += BaseRCFApp_Exit;
+        Startup += App_Startup;
+        DispatcherUnhandledException += App_DispatcherUnhandledException;
+        Exit += App_Exit;
 
-        LogStartupTime("BaseApp: Checking Mutex");
+        LogStartupTime("App: Checking Mutex");
 
-        if (true)
+        try
         {
-            try
-            {
-                var entry = Assembly.GetEntryAssembly();
+            Assembly? entry = Assembly.GetEntryAssembly();
 
-                if (entry == null)
-                    throw new InvalidOperationException("The application can not use a Mutex for forcing a single instance if no valid entry assembly is found");
+            if (entry is null)
+                throw new InvalidOperationException("The application can not use a Mutex for forcing a single instance if no valid entry assembly is found");
 
-                // Use mutex to only allow one instance of the application at a time
-                Mutex = new Mutex(false, "Global\\" + ((GuidAttribute)entry.GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value);
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                throw new InvalidOperationException("The application can not use a Mutex for forcing a single instance if the entry assembly does not have a valid GUID identifier", ex);
-            }
+            // Use mutex to only allow one instance of the application at a time
+            Mutex = new Mutex(false, "Global\\" + ((GuidAttribute)entry.GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value);
+        }
+        catch (IndexOutOfRangeException ex)
+        {
+            throw new InvalidOperationException("The application can not use a Mutex for forcing a single instance if the entry assembly does not have a valid GUID identifier", ex);
         }
 
         LogStartupTime("BaseApp: Construction finished");
-
-        // Set properties
-        SplashScreenFadeout = TimeSpan.FromMilliseconds(200);
-
-        // Subscribe to events
-        StartupEventsCompleted += App_StartupEventsCompleted;
     }
 
     #endregion
@@ -106,6 +84,12 @@ public partial class App : Application
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Constant Fields
+
+    private const string SplashScreenResourceName = "Files/Splash Screen.png";
 
     #endregion
 
@@ -117,14 +101,9 @@ public partial class App : Application
     private AsyncLock DataChangedHandlerAsyncLock { get; }
 
     /// <summary>
-    /// The saved previous backup location
+    /// Async lock for calling the startup events
     /// </summary>
-    private FileSystemPath PreviousBackupLocation { get; set; }
-
-    /// <summary>
-    /// The saved previous link item style
-    /// </summary>
-    private UserData_LinkItemStyle PreviousLinkItemStyle { get; set; }
+    private AsyncLock StartupEventsCalledAsyncLock { get; }
 
     /// <summary>
     /// The splash screen, if one is used
@@ -137,9 +116,24 @@ public partial class App : Application
     private Mutex? Mutex { get; }
 
     /// <summary>
+    /// The timer for the application startup
+    /// </summary>
+    private Stopwatch? AppStartupTimer { get; }
+
+    /// <summary>
+    /// The startup time logs to log once the app has started to improve performance
+    /// </summary>
+    private List<string>? StartupTimeLogs { get; }
+
+    /// <summary>
+    /// The fadeout for the splash screen
+    /// </summary>
+    private TimeSpan SplashScreenFadeoutTime { get; }
+
+    /// <summary>
     /// Indicates if the startup events have run
     /// </summary>
-    protected bool HasRunStartupEvents { get; set; }
+    private bool HasRunStartupEvents { get; set; }
 
     /// <summary>
     /// Indicates if the main window is currently closing
@@ -152,50 +146,32 @@ public partial class App : Application
     private bool DoneClosing { get; set; }
 
     /// <summary>
-    /// The timer for the application startup
+    /// The saved previous backup location
     /// </summary>
-    private Stopwatch? AppStartupTimer { get; }
+    private FileSystemPath PreviousBackupLocation { get; set; }
 
     /// <summary>
-    /// The startup time logs to log once the app has started to improve performance
+    /// The saved previous link item style
     /// </summary>
-    private List<string>? StartupTimeLogs { get; }
-
-    #endregion
-
-    #region Protected Properties
-
-    /// <summary>
-    /// The fadeout for the splash screen
-    /// </summary>
-    protected TimeSpan SplashScreenFadeout { get; set; }
-
-    /// <summary>
-    /// Async lock for calling the startup events
-    /// </summary>
-    protected AsyncLock StartupEventsCalledAsyncLock { get; }
+    private UserData_LinkItemStyle PreviousLinkItemStyle { get; set; }
 
     /// <summary>
     /// The service provider for this application
     /// </summary>
-    protected IServiceProvider? ServiceProvider { get; private set; }
+    private IServiceProvider? ServiceProvider { get; set; }
 
 #nullable disable
     /// <summary>
     /// The app user data
     /// </summary>
-    protected AppUserData Data { get; set; }
+    private AppUserData Data { get; set; }
 #nullable restore
 
     #endregion
 
     #region Public Properties
 
-    /// <summary>
-    /// Gets the <see cref="Application"/> object for the current <see cref="AppDomain"/> as a <see cref="BaseApp"/>.
-    /// </summary>
     public new static App Current => Application.Current as App ?? throw new InvalidOperationException($"Current app is not a valid {nameof(App)}");
-
 
     /// <summary>
     /// The common application data, or null if not available
@@ -209,7 +185,378 @@ public partial class App : Application
 
     #endregion
 
+    #region Event Handlers
+
+    private void App_Startup(object sender, StartupEventArgs e) => AppStartupAsync(e.Args);
+
+    private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+    {
+        try
+        {
+            // Log the exception
+            Logger.Fatal(e.Exception, "Unhandled exception");
+
+            // Get the path to log to
+            string logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
+
+            // Write log
+            File.WriteAllLines(logPath, LogManager.Configuration.FindTargetByName<MemoryTarget>("memory")?.Logs ?? new string[]
+            {
+                "Service not available",
+                Environment.NewLine,
+                e.Exception?.ToString() ?? "<No Exception>"
+            });
+
+            // Notify user
+            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception?.Message}" +
+                            $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}A crash log has been created under {logPath}.",
+                "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        catch (Exception)
+        {
+            // Notify user
+            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception?.Message}",
+                "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        finally
+        {
+            // Close splash screen
+            CloseSplashScreen();
+
+            // Dispose
+            Dispose();
+
+            // Close the logger
+            LogManager.Shutdown();
+        }
+    }
+
+    private void App_Exit(object sender, ExitEventArgs e)
+    {
+        // Close splash screen
+        CloseSplashScreen();
+
+        // Dispose
+        Dispose();
+    }
+
+    private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
+    {
+        // Add startup time log
+        LogStartupTime("MainWindow: Main window loaded");
+
+#if DEBUG
+        // Stop the stopwatch
+        AppStartupTimer?.Stop();
+
+        // Log all startup time logs
+        foreach (string log in StartupTimeLogs!)
+            Logger.Debug(log);
+
+        // Clear the startup time logs
+        StartupTimeLogs.Clear();
+#endif
+
+        using (await StartupEventsCalledAsyncLock.LockAsync())
+        {
+            // Call all startup events
+            await (LocalStartupComplete?.RaiseAllAsync(this, EventArgs.Empty) ?? Task.CompletedTask);
+
+            // Remove events as they'll not get called again
+            LocalStartupComplete = null;
+
+            Services.App.IsStartupRunning = false;
+
+            HasRunStartupEvents = true;
+        }
+    }
+
+    private void MainWindow_Closed(object sender, EventArgs e)
+    {
+        // Shutdown the application
+        Shutdown();
+    }
+
+    private async void MainWindow_ClosingAsync(object sender, CancelEventArgs e)
+    {
+        // Ignore if already closed
+        if (DoneClosing)
+            return;
+
+        // Cancel the native closing
+        e.Cancel = true;
+
+        // Don't close if the close button is disabled
+        if (sender is MetroWindow { IsCloseButtonEnabled: false })
+            return;
+
+        // If already is closing, ignore
+        if (IsClosing)
+            return;
+
+        Logger.Info("The main window is closing...");
+
+        // Shut down the app
+        await ShutdownAppAsync(false);
+    }
+
+    private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
+    {
+        if (AppFilePaths.UpdaterFilePath.FileExists)
+        {
+            int retryTime = 0;
+
+            // Wait until we can write to the file (i.e. it closing after an update)
+            while (!Services.File.CheckFileWriteAccess(AppFilePaths.UpdaterFilePath))
+            {
+                retryTime++;
+
+                // Try for 2 seconds first
+                if (retryTime < 20)
+                {
+                    Logger.Debug("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
+
+                    await Task.Delay(100);
+                }
+                // Now it's taking a long time... Try for 10 more seconds
+                else if (retryTime < 70)
+                {
+                    Logger.Warn("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
+
+                    await Task.Delay(200);
+                }
+                // Give up and let the deleting of the file give an error message
+                else
+                {
+                    Logger.Fatal("The updater can not be removed due to not having write access");
+                    break;
+                }
+            }
+
+            try
+            {
+                // Remove the updater
+                Services.File.DeleteFile(AppFilePaths.UpdaterFilePath);
+
+                Logger.Info("The updater has been removed");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Removing updater");
+            }
+        }
+
+        // Check for updates
+        if (Services.Data.Update_AutoUpdate)
+            await Services.App.CheckForUpdatesAsync(false);
+    }
+
+    private async Task App_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
+    {
+        if (Dispatcher == null)
+            throw new Exception("Dispatcher is null");
+
+        // Run on UI thread
+        Dispatcher.Invoke(() =>
+        {
+            // Show log viewer if available
+            if (IsLogViewerAvailable)
+            {
+                LogViewer.Open();
+                MainWindow?.Focus();
+            }
+        });
+
+        // Run on UI thread
+        Dispatcher.Invoke(SecretCodeManager.Setup);
+
+        // Enable primary ubi.ini file write access
+        await Services.App.EnableUbiIniWriteAccessAsync();
+    }
+
+    private static async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
+    {
+        // Check for installed games
+        if (Services.Data.Game_AutoLocateGames)
+            await Services.App.RunGameFinderAsync();
+    }
+
+    private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
+    {
+        // TODO: Check this to make sure it won't accidentally deadlock the app. What if something in here updates the data?
+        using (await DataChangedHandlerAsyncLock.LockAsync())
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(AppUserData.Theme_DarkMode):
+                case nameof(AppUserData.Theme_SyncTheme):
+                    this.SetTheme(Data.Theme_DarkMode, Data.Theme_SyncTheme);
+                    break;
+
+                case nameof(AppUserData.Backup_BackupLocation):
+
+                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
+
+                    if (!PreviousBackupLocation.DirectoryExists)
+                    {
+                        Logger.Info("The backup location has been changed, but the previous directory does not exist");
+                        return;
+                    }
+
+                    Logger.Info("The backup location has been changed and old backups are being moved...");
+
+                    await Services.App.MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
+
+                    PreviousBackupLocation = Data.Backup_BackupLocation;
+
+                    break;
+
+                case nameof(AppUserData.UI_LinkItemStyle):
+                    static string GetStyleSource(UserData_LinkItemStyle linkItemStye) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Styles.LinkItem.{linkItemStye}.xaml";
+
+                    // Get previous source
+                    string oldSource = GetStyleSource(PreviousLinkItemStyle);
+
+                    // Remove old source
+                    foreach (ResourceDictionary resourceDictionary in Resources.MergedDictionaries)
+                    {
+                        if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource,
+                                StringComparison.OrdinalIgnoreCase))
+                            continue;
+
+                        Resources.MergedDictionaries.Remove(resourceDictionary);
+                        break;
+                    }
+
+                    // Add new source
+                    Resources.MergedDictionaries.Add(new ResourceDictionary
+                    {
+                        Source = new Uri(GetStyleSource(Data.UI_LinkItemStyle))
+                    });
+
+                    PreviousLinkItemStyle = Data.UI_LinkItemStyle;
+
+                    break;
+
+                case nameof(AppUserData.Game_RRR2LaunchMode):
+                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
+                    break;
+
+                case nameof(AppUserData.Emu_DOSBox_Path):
+                case nameof(AppUserData.Emu_DOSBox_ConfigPath):
+                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
+                    break;
+            }
+        }
+    }
+
+    #endregion
+
     #region Private Methods
+
+    /// <summary>
+    /// Handles the application startup
+    /// </summary>
+    /// <param name="args">The launch arguments</param>
+    private async void AppStartupAsync(string[] args)
+    {
+        LogStartupTime("Startup: App startup begins");
+
+        try
+        {
+            if (Mutex is not null && !Mutex.WaitOne(0, false))
+            {
+                MessageBox.Show($"An instance of the Rayman Control Panel is already running", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
+                return;
+            }
+        }
+#pragma warning disable 168
+        catch (AbandonedMutexException _)
+#pragma warning restore 168
+        {
+            // Break if debugging
+            Debugger.Break();
+        }
+
+        // Set the shutdown mode to avoid any license windows closing the application
+        ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+        LogStartupTime("Startup: Checking Windows version");
+
+        // Make sure we are on Windows Vista or higher for APIs such as the Windows API Code Pack and Deployment Image Servicing and Management
+        if (AppViewModel.WindowsVersion < WindowsVersion.WinVista && AppViewModel.WindowsVersion != WindowsVersion.Unknown)
+        {
+            MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
+            Shutdown();
+            return;
+        }
+
+        LogStartupTime("Startup: Checking license");
+
+        // Make sure the license has been accepted
+        if (!ShowLicense())
+        {
+            Shutdown();
+            return;
+        }
+
+        LogStartupTime("Startup: Setting default directory");
+
+        // Hard code the current directory to avoid any issues with the application launching from other locations than its own
+        string? assemblyPath = Assembly.GetEntryAssembly()?.Location;
+        string? assemblyDir = Path.GetDirectoryName(assemblyPath);
+            
+        if (assemblyDir != null)
+            Directory.SetCurrentDirectory(assemblyDir);
+
+        LogStartupTime("Startup: Initial setup has been verified");
+
+        // Set up the services
+        SetupServices(args);
+
+        // Log the current environment
+        try
+        {
+            Logger.Info("Current platform: {0}", Environment.OSVersion.VersionString);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Logging environment details");
+        }
+
+        // Log some debug information
+        Logger.Debug("Entry assembly path: {0}", assemblyPath);
+
+        LogStartupTime("Startup: Debug info has been logged");
+
+        // Run RCP startup
+        await SetupRCPAsync(args, assemblyPath);
+
+        LogStartupTime("Startup: Creating main window");
+
+        // Create the main window
+        MainWindow mainWindow = new();
+
+        // Load previous state
+        Data.UI_WindowState?.ApplyToWindow(mainWindow);
+
+        LogStartupTime("Startup: Main window has been created");
+
+        // Subscribe to window events
+        mainWindow.Loaded += MainWindow_LoadedAsync;
+        mainWindow.Closing += MainWindow_ClosingAsync;
+        mainWindow.Closed += MainWindow_Closed;
+
+        // Close splash screen
+        CloseSplashScreen();
+
+        // Show the main window
+        mainWindow.Show();
+
+        // Set the shutdown mode
+        ShutdownMode = ShutdownMode.OnExplicitShutdown;
+    }
 
     /// <summary>
     /// Shows the application license message and returns a value indicating if it was accepted
@@ -250,14 +597,199 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// Runs the basic startup, such as handling launch arguments
+    /// Sets up the application data and services
     /// </summary>
-    /// <returns>The task</returns>
-    private async Task BasicStartupAsync()
+    private void SetupServices(string[] args)
     {
-        LogStartupTime("BasicStartup: Start basic startup");
+        LogStartupTime("Services: Setting up logging");
+
+        // Initialize the logging
+        InitializeLogging(args);
+
+        LogStartupTime("Services: Setting up services");
+
+        // TODO: Do major DI refactoring in the application to implement this in a more proper way
+        // Set up the services
+        IServiceCollection services = new ServiceCollection().
+            // Add user data
+            AddSingleton(new AppUserData()).
+            // Add message UI manager
+            AddMessageUIManager<RCPMessageUIManager>().
+            // Add browse UI manager
+            AddBrowseUIManager<RCPBrowseUIManager>().
+            // Add file manager
+            AddFileManager<RCPFileManager>().
+            // Add dialog base manager
+            AddDialogBaseManager<RCPWindowDialogBaseManager>().
+            // Add update manager
+            AddUpdateManager<RCPUpdaterManager>().
+            // Add the app view model
+            AddSingleton(new AppViewModel(x => LogStartupTime(x))).
+            // Add App UI manager
+            AddTransient<AppUIManager>().
+            // Add backup manager
+            AddTransient<GameBackups_Manager>().
+            // Add app instance data
+            AddSingleton<IAppInstanceData>(new AppInstanceData()
+            {
+                Arguments = args
+            });
+
+        LogStartupTime("Services: Building app service provider");
+
+        // Built the service provider
+        ServiceProvider = services.BuildServiceProvider();
+
+        // Log that the build is complete
+        Logger.Info("The service provider has been built with {0} services", services.Count);
+
+        LogStartupTime("AppData: Application data and services have been setup");
+    }
+
+    private void InitializeLogging(IList<string> args)
+    {
+        // Create a new logging configuration
+        LoggingConfiguration logConfig = new();
+
+#if DEBUG
+        // On debug we default it to log trace
+        LogLevel logLevel = LogLevel.Trace;
+#else
+        // If not on debug we default to log info
+        LogLevel logLevel = LogLevel.Info;
+#endif
+
+        // Allow the log level to be specified from a launch argument
+        if (args.Contains("-loglevel"))
+        {
+            string argLogLevel = args[args.FindItemIndex(x => x == "-loglevel") + 1];
+            logLevel = LogLevel.FromString(argLogLevel);
+        }
+
+        const string logLayout = "${time:invariant=true}|${level:uppercase=true}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}";
+        bool logToFile = !args.Contains("-nofilelog");
+        bool logToMemory = !args.Contains("-nomemlog");
+        bool logToViewer = args.Contains("-logviewer");
+
+        // Log to file
+        if (logToFile)
+        {
+            logConfig.AddRule(logLevel, LogLevel.Fatal, new FileTarget("file")
+            {
+                // Archive a maximum of 5 logs. This makes it easier going back to check errors which happened on older instances of the app.
+                ArchiveOldFileOnStartup = true,
+                ArchiveFileName = AppFilePaths.ArchiveLogFile.FullPath,
+                MaxArchiveFiles = 5,
+                ArchiveNumbering = ArchiveNumberingMode.Sequence,
+
+                // Keep the file open and disable concurrent writes to improve performance
+                KeepFileOpen = true,
+                ConcurrentWrites = false,
+
+                // Set the file path and layout
+                FileName = AppFilePaths.LogFile.FullPath,
+                Layout = logLayout,
+            });
+        }
+
+        if (logToMemory)
+        {
+            logConfig.AddRule(logLevel, LogLevel.Fatal, new MemoryTarget("memory")
+            {
+                Layout = logLayout,
+            });
+        }
+
+        // Log to log viewer
+        if (logToViewer)
+        {
+            LogViewerViewModel = new LogViewerViewModel();
+
+            // Always log from trace to fatal to include all logs
+            logConfig.AddRuleForAllLevels(new MethodCallTarget("logviewer", async (logEvent, _) =>
+            {
+                // Await to avoid blocking
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    LogItemViewModel log = new(logEvent.Level, logEvent.Exception, logEvent.TimeStamp, logEvent.LoggerName, logEvent.FormattedMessage);
+                    log.IsVisible = log.LogLevel >= LogViewerViewModel.ShowLogLevel;
+                    LogViewerViewModel.LogItems.Add(log);
+                });
+            }));
+        }
+
+        // Apply config
+        LogManager.Configuration = logConfig;
+    }
+
+    private async Task SetupRCPAsync(IList<string> args, string? assemblyPath)
+    {
+        LogStartupTime("Setup: RCP setup is starting");
+
+        // Load the user data
+        try
+        {
+            // Read the data from the file if it exists
+            if (!Services.InstanceData.Arguments.Contains("-reset") && AppFilePaths.AppUserDataPath.FileExists)
+            {
+                // Always reset the data first so any missing properties use the correct defaults
+                Services.Data.Reset();
+
+                Services.Data.App_LastVersion = null; // Need to set to null before calling JsonConvert.PopulateObject or else it's ignored
+
+                // Populate the data from the file
+                JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), Services.Data);
+
+                Logger.Info("The app user data has been loaded");
+
+                // Verify the data
+                Services.Data.Verify();
+            }
+            else
+            {
+                // Reset the user data
+                Services.Data.Reset();
+
+                Logger.Info("The app user data has been reset");
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading app user data");
+
+            // NOTE: This is not localized due to the current culture not having been set at this point
+            MessageBox.Show("An error occurred reading saved app data. The settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            // Reset the user data
+            Services.Data.Reset();
+        }
+
+        Data = Services.Data;
+
+        LogStartupTime("Setup: Setting theme");
+
+        // Set the theme
+        this.SetTheme(Data.Theme_DarkMode, Data.Theme_SyncTheme);
+
+        LogStartupTime("Setup: Setting culture");
+
+        // Apply the current culture if defaulted
+        if (Data.App_CurrentCulture == LocalizationManager.DefaultCulture.Name)
+            LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
+
+        LogStartupTime("Setup: Setup WPF trace listener");
+
+        // Listen to data binding logs
+        WPFTraceListener.Setup();
+
+        LogStartupTime("Setup: Subscribing to events");
+
+        StartupComplete += App_StartupComplete_Miscellaneous_Async;
+        StartupComplete += App_StartupComplete_Updater_Async;
+        StartupComplete += App_StartupComplete_GameFinder_Async;
 
         // Track changes to the user data
+        Data.PropertyChanged += Data_PropertyChangedAsync;
         PreviousLinkItemStyle = Data.UI_LinkItemStyle;
         PreviousBackupLocation = Data.Backup_BackupLocation;
 
@@ -271,56 +803,18 @@ public partial class App : Application
         };
         Services.InstanceData.CultureChanged += (_, _) => RefreshJumpList();
 
-        // Subscribe to when the app has finished setting up
-        StartupComplete += App_StartupComplete_GameFinder_Async;
-        StartupComplete += App_StartupComplete_Miscellaneous_Async;
+        LogStartupTime("Setup: Checking launch arguments");
 
-        LogStartupTime("BasicStartup: Check launch arguments");
-
-        // Check for user level argument
-        if (Services.InstanceData.Arguments.Contains("-ul"))
-        {
-            try
-            {
-                string ul = Services.InstanceData.Arguments[Services.InstanceData.Arguments.FindItemIndex(x => x == "-ul") + 1];
-                Data.App_UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Setting user level from args");
-            }
-        }
-
-        // NOTE: Starting with the updater 3.0.0 (available from 4.5.0) this is no longer used. It must however be maintained for legacy support (i.e. updating to version 4.5.0+ using an updater below 3.0.0)
-        // Check for updater install argument
-        if (Services.InstanceData.Arguments.Contains("-install"))
-        {
-            try
-            {
-                FileSystemPath updateFile = Services.InstanceData.Arguments[Services.InstanceData.Arguments.FindItemIndex(x => x == "-install") + 1];
-                if (updateFile.FileExists)
-                {
-                    updateFile.GetFileInfo().Delete();
-                    Logger.Info("The updater was deleted");
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Deleting updater");
-            }
-        }
+        CheckLaunchArguments(args);
 
         // Update the application path
-        FileSystemPath appPath = Assembly.GetEntryAssembly()?.Location;
-
-        if (appPath != Data.App_ApplicationPath)
+        if (assemblyPath != Data.App_ApplicationPath)
         {
-            Data.App_ApplicationPath = appPath;
-
+            Data.App_ApplicationPath = assemblyPath;
             Logger.Info("The application path has been updated");
         }
 
-        LogStartupTime("BasicStartup: Initialize web protocol");
+        LogStartupTime("Setup: Initializing web protocol");
 
         try
         {
@@ -335,12 +829,7 @@ public partial class App : Application
             Logger.Error(ex, "Initializing web protocol");
         }
 
-        LogStartupTime("BasicStartup: Deploy files");
-
-        // Deploy additional files
-        await Services.App.DeployFilesAsync(false);
-
-        LogStartupTime("BasicStartup: Check for first launch");
+        LogStartupTime("Setup: Checking for first launch");
 
         // Show first launch info
         if (Data.App_IsFirstLaunch ||
@@ -350,21 +839,117 @@ public partial class App : Application
             // Close the splash screen
             CloseSplashScreen();
 
+            // Show the first launch dialog
             new FirstLaunchInfoDialog().ShowDialog();
+
             Data.App_IsFirstLaunch = false;
         }
 
-        LogStartupTime("BasicStartup: Validating games");
+        LogStartupTime("Setup: Validating games");
 
         // Validate the added games
         await ValidateGamesAsync();
 
-        LogStartupTime("BasicStartup: Finished validating games");
+        LogStartupTime("Setup: Checking if updated to new version");
+
+        Logger.Info("Current version is {0}", Services.App.CurrentAppVersion);
+
+        // Check if it's a new version
+        if (Data.App_LastVersion < Services.App.CurrentAppVersion)
+        {
+            // Run post-update code
+            await PostUpdateAsync();
+
+            LogStartupTime("Setup: Post update has run");
+
+            // Update the last version
+            Data.App_LastVersion = Services.App.CurrentAppVersion;
+        }
+        // Check if it's a lower version than previously recorded
+        else if (Data.App_LastVersion > Services.App.CurrentAppVersion)
+        {
+            Logger.Warn("A newer version ({0}) has been recorded in the application data", Data.App_LastVersion);
+
+            if (!Data.Update_DisableDowngradeWarning)
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, Services.App.CurrentAppVersion,
+                    Data.App_LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
+
+            LogStartupTime("Setup: Deploying files");
+
+            // Deploy additional files
+            await Services.App.DeployFilesAsync(false);
+        }
     }
 
-    /// <summary>
-    /// Runs the post-update code
-    /// </summary>
+    private void CheckLaunchArguments(IList<string> args)
+    {
+        // Check for user level argument
+        if (args.Contains("-ul"))
+        {
+            try
+            {
+                string ul = args[args.FindItemIndex(x => x == "-ul") + 1];
+                Data.App_UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting user level from args");
+            }
+        }
+
+        // NOTE: Starting with the updater 3.0.0 (available from 4.5.0) this is no longer used. It must however be maintained for legacy support (i.e. updating to version 4.5.0+ using an updater below 3.0.0)
+        // Check for updater install argument
+        if (args.Contains("-install"))
+        {
+            try
+            {
+                FileSystemPath updateFile = args[args.FindItemIndex(x => x == "-install") + 1];
+                if (updateFile.FileExists)
+                {
+                    updateFile.GetFileInfo().Delete();
+                    Logger.Info("The updater was deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Deleting updater");
+            }
+        }
+    }
+
+    private static async Task ValidateGamesAsync()
+    {
+        // Keep track of removed games
+        HashSet<Games> removed = new();
+
+        // Make sure every game is valid
+        foreach (Games game in Services.App.GetGames)
+        {
+            // Check if it has been added
+            if (!game.IsAdded())
+                continue;
+
+            // Check if it's valid
+            if (await game.GetManager().IsValidAsync(game.GetInstallDir()))
+                continue;
+
+            // Show message
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
+
+            // Remove the game from app data
+            await Services.App.RemoveGameAsync(game, true);
+
+            // Add to removed games
+            removed.Add(game);
+
+            Logger.Info("The game {0} has been removed due to not being valid", game);
+        }
+
+        // Refresh if any games were removed
+        if (removed.Any())
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, RefreshFlags.GameCollection));
+    }
+
     private async Task PostUpdateAsync()
     {
         if (Data.App_LastVersion < new Version(4, 0, 0, 6))
@@ -487,10 +1072,10 @@ public partial class App : Application
                     try
                     {
                         // Open the parent key
-                        using RegistryKey parentKey = RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
+                        using RegistryKey? parentKey = RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
 
                         // Delete the sub-key
-                        parentKey.DeleteSubKey(regUninstallKeyName);
+                        parentKey?.DeleteSubKey(regUninstallKeyName);
 
                         Logger.Info("The program Registry key has been deleted");
                     }
@@ -572,769 +1157,21 @@ public partial class App : Application
         await Services.DialogBaseManager.ShowWindowAsync(new AppNewsDialog());
     }
 
-    /// <summary>
-    /// Validates the added games
-    /// </summary>
-    /// <returns></returns>
-    private static async Task ValidateGamesAsync()
-    {
-        // Keep track of removed games
-        List<Games> removed = new();
-
-        // Make sure every game is valid
-        foreach (Games game in Services.App.GetGames)
-        {
-            // Check if it has been added
-            if (!game.IsAdded())
-                continue;
-
-            // Check if it's valid
-            if (await game.GetManager().IsValidAsync(game.GetInstallDir()))
-                continue;
-
-            // Show message
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
-
-            // Remove the game from app data
-            await Services.App.RemoveGameAsync(game, true);
-
-            // Add to removed games
-            removed.Add(game);
-
-            Logger.Info("The game {0} has been removed due to not being valid", game);
-        }
-
-        // Refresh if any games were removed
-        if (removed.Any())
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, RefreshFlags.GameCollection));
-    }
-
-    private void InitializeLogging(string[] args)
-    {
-        // Create a new logging configuration
-        var logConfig = new LoggingConfiguration();
-
-#if DEBUG
-        // On debug we default it to log trace
-        LogLevel logLevel = LogLevel.Trace;
-#else
-        // If not on debug we default to log info
-        LogLevel logLevel = LogLevel.Info;
-#endif
-
-        // Allow the log level to be specified from a launch argument
-        if (args.Contains("-loglevel"))
-        {
-            string argLogLevel = args[args.FindItemIndex(x => x == "-loglevel") + 1];
-            logLevel = LogLevel.FromString(argLogLevel);
-        }
-
-        const string logLayout = "${time:invariant=true}|${level:uppercase=true}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}";
-        bool logToFile = !args.Contains("-nofilelog");
-        bool logToMemory = !args.Contains("-nomemlog");
-        bool logToViewer = args.Contains("-logviewer");
-
-        // Log to file
-        if (logToFile)
-        {
-            logConfig.AddRule(logLevel, LogLevel.Fatal, new FileTarget("file")
-            {
-                // Archive a maximum of 5 logs. This makes it easier going back to check errors which happened on older instances of the app.
-                ArchiveOldFileOnStartup = true,
-                ArchiveFileName = AppFilePaths.ArchiveLogFile.FullPath,
-                MaxArchiveFiles = 5,
-                ArchiveNumbering = ArchiveNumberingMode.Sequence,
-
-                // Keep the file open and disable concurrent writes to improve performance
-                KeepFileOpen = true,
-                ConcurrentWrites = false,
-
-                // Set the file path and layout
-                FileName = AppFilePaths.LogFile.FullPath,
-                Layout = logLayout,
-            });
-        }
-
-        if (logToMemory)
-        {
-            logConfig.AddRule(logLevel, LogLevel.Fatal, new MemoryTarget("memory")
-            {
-                Layout = logLayout,
-            });
-        }
-
-        // Log to log viewer
-        if (logToViewer)
-        {
-            LogViewerViewModel = new LogViewerViewModel();
-
-            // Always log from trace to fatal to include all logs
-            logConfig.AddRuleForAllLevels(new MethodCallTarget("logviewer", async (logEvent, _) =>
-            {
-                // Await to avoid blocking
-                await Dispatcher.InvokeAsync(() =>
-                {
-                    LogItemViewModel log = new(logEvent.Level, logEvent.Exception, logEvent.TimeStamp, logEvent.LoggerName, logEvent.FormattedMessage);
-                    log.IsVisible = log.LogLevel >= LogViewerViewModel.ShowLogLevel;
-                    LogViewerViewModel.LogItems.Add(log);
-                });
-            }));
-        }
-
-        // Apply config
-        LogManager.Configuration = logConfig;
-    }
-
-    /// <summary>
-    /// Handles the application startup
-    /// </summary>
-    /// <param name="args">The launch arguments</param>
-    private async void AppStartupAsync(string[] args)
-    {
-        LogStartupTime("Startup: App startup begins");
-
-        // Set the shutdown mode to avoid any license windows to close the application
-        ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
-        // Make sure the application can launch
-        if (!await InitialSetupAsync(args))
-        {
-            Shutdown();
-            return;
-        }
-
-        LogStartupTime("Startup: Initial setup has been verified");
-
-        // Set up the app data and services
-        SetupAppData(args);
-
-        // Log the current environment
-        try
-        {
-            Logger.Info("Current platform: {0}", Environment.OSVersion.VersionString);
-
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Logging environment details");
-        }
-
-        // Log some debug information
-        Logger.Debug("Entry assembly path: {0}", Assembly.GetEntryAssembly()?.Location);
-
-        LogStartupTime("Startup: Debug info has been logged");
-
-        // Run startup
-        await OnSetupAsync(args);
-
-        LogStartupTime("Startup: Startup has run");
-
-        // Get the main window
-        var mainWindow = GetMainWindow();
-
-        LogStartupTime("Startup: Main window has been created");
-
-        // Subscribe to events
-        mainWindow.Loaded += MainWindow_LoadedAsync;
-        mainWindow.Closing += MainWindow_ClosingAsync;
-        mainWindow.Closed += MainWindow_Closed;
-
-        // Close splash screen
-        CloseSplashScreen();
-
-        // Show the main window
-        mainWindow.Show();
-
-        // Set the shutdown mode
-        ShutdownMode = ShutdownMode.OnExplicitShutdown;
-    }
-
-    /// <summary>
-    /// Sets up the application data and services
-    /// </summary>
-    private void SetupAppData(string[] args)
-    {
-        LogStartupTime("AppData: Setting up application data");
-
-        // Set up the services
-        IServiceCollection services = GetServices(args);
-
-        // If there is no instance data we add a default one
-        if (services.All(x => x.ServiceType != typeof(IAppInstanceData)))
-            services.AddSingleton<IAppInstanceData>(new AppInstanceData());
-
-        LogStartupTime("AppData: Building app service provider");
-
-        // Built the service provider
-        ServiceProvider = services.BuildServiceProvider();
-
-        // Retrieve arguments
-        if (InstanceData != null)
-            InstanceData.Arguments = args;
-
-        // Log that the build is complete
-        Logger.Info("The service provider has been built with {0} services", services.Count);
-
-        LogStartupTime("AppData: Application data and services have been setup");
-    }
-
-    #endregion
-
-    #region Protected Methods
-
-    /// <summary>
-    /// Logs the startup time
-    /// </summary>
-    /// <param name="logDescription">The log description</param>
     [Conditional("DEBUG")]
-    protected void LogStartupTime(string logDescription)
-    {
-        StartupTimeLogs?.Add($"Startup: {AppStartupTimer?.ElapsedMilliseconds} ms - {logDescription}");
-    }
-
-    /// <summary>
-    /// Closes the splash screen if showing
-    /// </summary>
-    protected void CloseSplashScreen()
-    {
-        // Close splash screen
-        SplashScreen?.Close(SplashScreenFadeout);
-    }
-
-    #endregion
-
-    #region Event Handlers
-
-    private void BaseRCFApp_Startup(object sender, StartupEventArgs e)
-    {
-        LogStartupTime("WPF Startup: Startup event called");
-
-        try
-        {
-            if (Mutex != null && !Mutex.WaitOne(0, false))
-            {
-                OnOtherInstanceFound(e.Args);
-                Shutdown();
-                return;
-            }
-        }
-#pragma warning disable 168
-        catch (AbandonedMutexException _)
-#pragma warning restore 168
-        {
-            // Break if debugging
-            Debugger.Break();
-        }
-
-        AppStartupAsync(e.Args);
-    }
-
-    private void BaseRCFApp_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
-    {
-        try
-        {
-            // Log the exception
-            Logger.Fatal(e.Exception, "Unhandled exception");
-
-            // Get the path to log to
-            string logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
-
-            // Write log
-            File.WriteAllLines(logPath, LogManager.Configuration.FindTargetByName<MemoryTarget>("memory")?.Logs ?? new string[]
-            {
-                "Service not available",
-                Environment.NewLine,
-                e.Exception?.ToString() ?? "<No Exception>"
-            });
-
-            // Notify user
-            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception?.Message}" +
-                            $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}A crash log has been created under {logPath}.",
-                "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-        catch (Exception)
-        {
-            // Notify user
-            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception?.Message}",
-                "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-        finally
-        {
-            // Close splash screen
-            CloseSplashScreen();
-
-            // Dispose
-            Dispose();
-
-            // Close the logger
-            LogManager.Shutdown();
-        }
-    }
-
-    private void BaseRCFApp_Exit(object sender, ExitEventArgs e)
-    {
-        // Close splash screen
-        CloseSplashScreen();
-
-        // Dispose
-        Dispose();
-    }
-
-    private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
-    {
-        // Add startup time log
-        LogStartupTime("MainWindow: Main window loaded");
-
-#if DEBUG
-        // Stop the stopwatch
-        AppStartupTimer?.Stop();
-
-        // Log all startup time logs
-        foreach (string log in StartupTimeLogs!)
-            Logger.Debug(log);
-
-        // Clear the startup time logs
-        StartupTimeLogs.Clear();
-#endif
-
-        using (await StartupEventsCalledAsyncLock.LockAsync())
-        {
-            // Call all startup events
-            await (LocalStartupComplete?.RaiseAllAsync(this, EventArgs.Empty) ?? Task.CompletedTask);
-
-            // Remove events as they'll not get called again
-            LocalStartupComplete = null;
-
-            // Inform that startup events have run
-            StartupEventsCompleted?.Invoke(this, EventArgs.Empty);
-
-            HasRunStartupEvents = true;
-        }
-    }
-
-    private void MainWindow_Closed(object sender, EventArgs e)
-    {
-        // Shutdown the application
-        Shutdown();
-    }
-
-    private async void MainWindow_ClosingAsync(object sender, CancelEventArgs e)
-    {
-        // If ran RCF closing, ignore
-        if (DoneClosing)
-            return;
-
-        // Cancel the native closing
-        e.Cancel = true;
-
-        // Don't close if the close button is disabled
-        if (sender is MetroWindow { IsCloseButtonEnabled: false })
-            return;
-
-        // If already is closing, ignore
-        if (IsClosing)
-            return;
-
-        Logger.Info("The main window is closing...");
-
-        // Shut down the app
-        await ShutdownRCFAppAsync(false);
-    }
-
-    private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
-    {
-        if (AppFilePaths.UpdaterFilePath.FileExists)
-        {
-            int retryTime = 0;
-
-            // Wait until we can write to the file (i.e. it closing after an update)
-            while (!Services.File.CheckFileWriteAccess(AppFilePaths.UpdaterFilePath))
-            {
-                retryTime++;
-
-                // Try for 2 seconds first
-                if (retryTime < 20)
-                {
-                    Logger.Debug("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
-
-                    await Task.Delay(100);
-                }
-                // Now it's taking a long time... Try for 10 more seconds
-                else if (retryTime < 70)
-                {
-                    Logger.Warn("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
-
-                    await Task.Delay(200);
-                }
-                // Give up and let the deleting of the file give an error message
-                else
-                {
-                    Logger.Fatal("The updater can not be removed due to not having write access");
-                    break;
-                }
-            }
-
-            try
-            {
-                // Remove the updater
-                Services.File.DeleteFile(AppFilePaths.UpdaterFilePath);
-
-                Logger.Info("The updater has been removed");
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Removing updater");
-            }
-        }
-
-        // Check for updates
-        if (Services.Data.Update_AutoUpdate)
-            await Services.App.CheckForUpdatesAsync(false);
-    }
-
-    private Task BaseApp_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
-    {
-        if (Dispatcher == null)
-            throw new Exception("Dispatcher is null");
-
-        // Run on UI thread
-        Dispatcher.Invoke(() =>
-        {
-            // Show log viewer if available
-            if (IsLogViewerAvailable)
-            {
-                LogViewer.Open();
-                MainWindow?.Focus();
-            }
-        });
-
-        return Task.CompletedTask;
-    }
-
-    private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
-    {
-        using (await DataChangedHandlerAsyncLock.LockAsync())
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(AppUserData.Theme_DarkMode):
-                case nameof(AppUserData.Theme_SyncTheme):
-                    this.SetTheme(Data.Theme_DarkMode, Data.Theme_SyncTheme);
-                    break;
-
-                case nameof(AppUserData.Backup_BackupLocation):
-
-                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
-
-                    if (!PreviousBackupLocation.DirectoryExists)
-                    {
-                        Logger.Info("The backup location has been changed, but the previous directory does not exist");
-                        return;
-                    }
-
-                    Logger.Info("The backup location has been changed and old backups are being moved...");
-
-                    await Services.App.MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
-
-                    PreviousBackupLocation = Data.Backup_BackupLocation;
-
-                    break;
-
-                case nameof(AppUserData.UI_LinkItemStyle):
-                    static string GetStyleSource(UserData_LinkItemStyle linkItemStye) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Styles.LinkItem.{linkItemStye}.xaml";
-
-                    // Get previous source
-                    string oldSource = GetStyleSource(PreviousLinkItemStyle);
-
-                    // Remove old source
-                    foreach (ResourceDictionary resourceDictionary in Resources.MergedDictionaries)
-                    {
-                        if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource,
-                                StringComparison.OrdinalIgnoreCase))
-                            continue;
-
-                        Resources.MergedDictionaries.Remove(resourceDictionary);
-                        break;
-                    }
-
-                    // Add new source
-                    Resources.MergedDictionaries.Add(new ResourceDictionary
-                    {
-                        Source = new Uri(GetStyleSource(Data.UI_LinkItemStyle))
-                    });
-
-                    PreviousLinkItemStyle = Data.UI_LinkItemStyle;
-
-                    break;
-
-                case nameof(AppUserData.Game_RRR2LaunchMode):
-                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
-                    break;
-
-                case nameof(AppUserData.Emu_DOSBox_Path):
-                case nameof(AppUserData.Emu_DOSBox_ConfigPath):
-                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
-                    break;
-            }
-        }
-    }
-
-    private async Task App_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
-    {
-        if (Dispatcher == null)
-            throw new Exception("Dispatcher is null");
-
-        // Run on UI thread
-        Dispatcher.Invoke(SecretCodeManager.Setup);
-
-        // Enable primary ubi.ini file write access
-        await Services.App.EnableUbiIniWriteAccessAsync();
-    }
-
-    private static async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
-    {
-        // Check for installed games
-        if (Services.Data.Game_AutoLocateGames)
-            await Services.App.RunGameFinderAsync();
-    }
-
-    private static void App_StartupEventsCompleted(object sender, EventArgs e)
-    {
-        Services.App.IsStartupRunning = false;
-    }
-
-    #endregion
-
-    #region Protected Abstract Methods
-
-    /// <summary>
-    /// Gets the main <see cref="Window"/> to show
-    /// </summary>
-    /// <returns>The Window instance</returns>
-    protected Window GetMainWindow()
-    {
-        // Create the window
-        MainWindow window = new();
-
-        // Load previous state
-        Services.Data?.UI_WindowState?.ApplyToWindow(window);
-
-        return window;
-    }
-
-    /// <summary>
-    /// Gets the services to use for the application
-    /// </summary>
-    /// <param name="args">The launch arguments</param>
-    /// <returns>The services to use</returns>
-    protected IServiceCollection GetServices(string[] args)
-    {
-        InitializeLogging(args);
-
-        // Add services
-        return new ServiceCollection().
-            // Add user data
-            AddSingleton(new AppUserData()).
-            // Add message UI manager
-            AddMessageUIManager<RCPMessageUIManager>().
-            // Add browse UI manager
-            AddBrowseUIManager<RCPBrowseUIManager>().
-            // Add file manager
-            AddFileManager<RCPFileManager>().
-            // Add dialog base manager
-            AddDialogBaseManager<RCPWindowDialogBaseManager>().
-            // Add update manager
-            AddUpdateManager<RCPUpdaterManager>().
-            // Add the app view model
-            AddSingleton(new AppViewModel(x => LogStartupTime(x))).
-            // Add App UI manager
-            AddTransient<AppUIManager>().
-            // Add backup manager
-            AddTransient<GameBackups_Manager>();
-    }
-
-    #endregion
-
-    #region Protected Virtual Methods
-
-    /// <summary>
-    /// An optional custom setup to override
-    /// </summary>
-    /// <param name="args">The launch arguments</param>
-    /// <returns>The task</returns>
-    protected async Task OnSetupAsync(string[] args)
-    {
-        LogStartupTime("Setup: RCP setup is starting");
-
-        // Load the user data
-        try
-        {
-            // Read the data from the file if it exists
-            if (!Services.InstanceData.Arguments.Contains("-reset") && AppFilePaths.AppUserDataPath.FileExists)
-            {
-                // Always reset the data first so any missing properties use the correct defaults
-                Services.Data.Reset();
-
-                Services.Data.App_LastVersion = null; // Need to set to null before calling JsonConvert.PopulateObject or else it's ignored
-
-                // Populate the data from the file
-                JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), Services.Data);
-
-                Logger.Info("The app user data has been loaded");
-
-                // Verify the data
-                Services.Data.Verify();
-            }
-            else
-            {
-                // Reset the user data
-                Services.Data.Reset();
-
-                Logger.Info("The app user data has been reset");
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Loading app user data");
-
-            // NOTE: This is not localized due to the current culture not having been set at this point
-            MessageBox.Show("An error occurred reading saved app data. Some settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            // Reset the user data
-            Services.Data.Reset();
-        }
-
-        Data = Services.Data;
-
-        LogStartupTime("Setup: Setting theme");
-
-        // Set the theme
-        this.SetTheme(Data.Theme_DarkMode, Data.Theme_SyncTheme);
-
-        LogStartupTime("Setup: Setting culture");
-
-        // Apply the current culture if defaulted
-        if (Data.App_CurrentCulture == LocalizationManager.DefaultCulture.Name)
-            LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
-
-        LogStartupTime("Setup: Setup WPF trace listener");
-
-        // Listen to data binding logs
-        WPFTraceListener.Setup();
-
-        StartupComplete += BaseApp_StartupComplete_Miscellaneous_Async;
-        StartupComplete += App_StartupComplete_Updater_Async;
-        Data.PropertyChanged += Data_PropertyChangedAsync;
-
-        // Run basic startup
-        await BasicStartupAsync();
-
-        Logger.Info("Current version is {0}", Services.App.CurrentAppVersion);
-
-        // Check if it's a new version
-        if (Data.App_LastVersion < Services.App.CurrentAppVersion)
-        {
-            // Run post-update code
-            await PostUpdateAsync();
-
-            LogStartupTime("Setup: Post update has run");
-
-            // Update the last version
-            Data.App_LastVersion = Services.App.CurrentAppVersion;
-        }
-        // Check if it's a lower version than previously recorded
-        else if (Data.App_LastVersion > Services.App.CurrentAppVersion)
-        {
-            Logger.Warn("A newer version ({0}) has been recorded in the application data", Data.App_LastVersion);
-
-            if (!Data.Update_DisableDowngradeWarning)
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, Services.App.CurrentAppVersion,
-                    Data.App_LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
-        }
-    }
-
-    /// <summary>
-    /// An optional method to override which runs when closing
-    /// </summary>
-    /// <param name="mainWindow">The main Window of the application</param>
-    /// <returns>The task</returns>
-    protected async Task OnCloseAsync(Window? mainWindow)
-    {
-        // Make sure the user data has been loaded
-        if (Services.Data != null)
-        {
-            // Save window state
-            if (mainWindow != null)
-                Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(mainWindow);
-
-            Logger.Info("The application is exiting...");
-
-            // Save all user data
-            await Services.App.SaveUserDataAsync();
-        }
-
-        // Close the logger
-        LogManager.Shutdown();
-    }
-
-    /// <summary>
-    /// Override to run when another instance of the program is found running
-    /// </summary>
-    /// <param name="args">The launch arguments</param>
-    protected virtual void OnOtherInstanceFound(string[] args)
-    {
-        MessageBox.Show($"An instance of the Rayman Control Panel is already running", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-
-    /// <summary>
-    /// Optional initial setup to run. Can be used to check if the environment is valid
-    /// for the application to run or for the user to accept the license.
-    /// </summary>
-    /// <param name="args">The launch arguments</param>
-    /// <returns>True if the setup finished successfully or false if the application has to shut down</returns>
-    protected virtual Task<bool> InitialSetupAsync(string[] args)
-    {
-        LogStartupTime("InitialSetup: Checking Windows version");
-
-        // Make sure we are on Windows Vista or higher for the Windows API Code Pack and Deployment Image Servicing and Management
-        if (AppViewModel.WindowsVersion < WindowsVersion.WinVista && AppViewModel.WindowsVersion != WindowsVersion.Unknown)
-        {
-            MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
-            return Task.FromResult(false);
-        }
-
-        LogStartupTime("InitialSetup: Checking license");
-
-        // Make sure the license has been accepted
-        if (!ShowLicense())
-            return Task.FromResult(false);
-
-        LogStartupTime("InitialSetup: Setting default directory");
-
-        // Hard code the current directory
-        Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) ?? Directory.GetCurrentDirectory());
-
-        return Task.FromResult(true);
-    }
-
-    /// <summary>
-    /// Disposes any disposable application objects
-    /// </summary>
-    protected virtual void Dispose()
-    {
-        Mutex?.Dispose();
-    }
+    private void LogStartupTime(string logDescription) => StartupTimeLogs?.Add($"Startup: {AppStartupTimer?.ElapsedMilliseconds} ms - {logDescription}");
+    private void CloseSplashScreen() => SplashScreen?.Close(SplashScreenFadeoutTime);
+    private void Dispose() => Mutex?.Dispose();
 
     #endregion
 
     #region Public Methods
 
     /// <summary>
-    /// Shuts down the RCF app
+    /// Shuts down the application
     /// </summary>
     /// <param name="forceShutDown">Indicates if the app should be forced to shut down</param>
     /// <returns>The task</returns>
-    public async Task ShutdownRCFAppAsync(bool forceShutDown)
+    public async Task ShutdownAppAsync(bool forceShutDown)
     {
         // If already is closing, ignore
         if (IsClosing)
@@ -1386,8 +1223,21 @@ public partial class App : Application
                     return;
                 }
 
-                // Run shut down code
-                await OnCloseAsync(MainWindow);
+                // Make sure the user data has been loaded
+                if (Services.Data != null)
+                {
+                    // Save window state
+                    if (MainWindow != null)
+                        Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(MainWindow);
+
+                    Logger.Info("The application is exiting...");
+
+                    // Save all user data
+                    await Services.App.SaveUserDataAsync();
+                }
+
+                // Close the logger
+                LogManager.Shutdown();
 
                 // Flag that we are done closing the main window
                 DoneClosing = true;
@@ -1474,17 +1324,12 @@ public partial class App : Application
 
     #endregion
 
-    #region Protected Events
+    #region Private Events
 
     /// <summary>
     /// Contains events to be called once after startup completes
     /// </summary>
-    protected event AsyncEventHandler<EventArgs>? LocalStartupComplete;
-
-    /// <summary>
-    /// Occurs when all event handlers subscribed to <see cref="StartupComplete"/> have finished
-    /// </summary>
-    protected event EventHandler? StartupEventsCompleted;
+    private event AsyncEventHandler<EventArgs>? LocalStartupComplete;
 
     #endregion
 

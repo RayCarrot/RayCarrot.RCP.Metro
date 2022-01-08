@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="path">The path of the file or directory</param>
         /// <param name="relative">True if the path is relative, false if it's not</param>
-        public FileSystemPath(string path, bool relative)
+        public FileSystemPath(string? path, bool relative)
         {
             if (path.IsNullOrWhiteSpace())
                 path = String.Empty;
@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
         /// Creates a new <see cref="FileSystemPath"/> from a string
         /// </summary>
         /// <param name="path">The path of the file or directory</param>
-        public FileSystemPath(string path)
+        public FileSystemPath(string? path)
         {
             if (path.IsNullOrWhiteSpace())
                 path = String.Empty;
@@ -329,7 +329,7 @@ namespace RayCarrot.RCP.Metro
         /// Creates a new <see cref="FileSystemPath"/> from a <see cref="String"/>
         /// </summary>
         /// <param name="path">The path as a <see cref="String"/></param>
-        public static implicit operator FileSystemPath(string path) =>
+        public static implicit operator FileSystemPath(string? path) =>
             new FileSystemPath(path);
 
         /// <summary>

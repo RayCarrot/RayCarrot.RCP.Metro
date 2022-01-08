@@ -41,7 +41,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
         ThrowUnhandledExceptionAsyncCommand = new AsyncRelayCommand(ThrowUnhandledAsyncException);
         RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
-        ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
+        ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownAppAsync(false)));
         UpdateThemeCommand = new RelayCommand(UpdateTheme);
     }
 

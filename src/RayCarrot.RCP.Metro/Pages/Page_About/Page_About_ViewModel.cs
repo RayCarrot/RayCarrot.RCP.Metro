@@ -93,7 +93,7 @@ public class Page_About_ViewModel : BaseRCPViewModel
         }
 
         // Shut down the app
-        await Metro.App.Current.ShutdownRCFAppAsync(true);
+        await Metro.App.Current.ShutdownAppAsync(true);
     }
 
     #endregion

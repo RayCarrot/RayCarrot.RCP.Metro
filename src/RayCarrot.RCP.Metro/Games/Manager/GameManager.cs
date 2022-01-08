@@ -114,7 +114,7 @@ public abstract class GameManager : BaseGameData
 
         // Check if the application should close
         if (Services.Data.App_CloseAppOnGameLaunch)
-            await App.Current.ShutdownRCFAppAsync(false);
+            await App.Current.ShutdownAppAsync(false);
     }
 
     /// <summary>

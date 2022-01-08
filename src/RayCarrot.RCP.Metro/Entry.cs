@@ -20,8 +20,9 @@ public static class Entry
             return;
         }
 
-        // If the argument for the no-ui mode was not found we continue as a normal WPF app, creating the Application, initializing it and starting the message pump
-        var app = new App();
+        // If the argument for the no-ui mode was not found we continue as a normal WPF app, creating the Application,
+        // initializing it and starting the message pump
+        App app = new();
         app.InitializeComponent();
         app.Run();
     }
