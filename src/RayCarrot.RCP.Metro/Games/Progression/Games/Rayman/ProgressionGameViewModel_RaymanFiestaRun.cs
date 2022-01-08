@@ -80,17 +80,19 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         int crowns = saveData.LevelInfos_Land1.Count(x => x.HasCrown);
         int maxCrowns = 72;
 
-        List<ProgressionDataViewModel> progressItems = new()
-        {
-            // TODO-UPDATE: Localize
-            new ProgressionDataViewModel(true, ProgressionIcon.RFR_Crown, new ConstLocString("Crowns"), crowns, maxCrowns),
-        };
+        List<ProgressionDataViewModel> progressItems = new();
 
         if (saveData.Version >= 2)
         {
             crowns += saveData.LevelInfos_Land2.Count(x => x.HasCrown);
             maxCrowns += 16;
+        }
 
+        // TODO-UPDATE: Localize
+        progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RFR_Crown, new ConstLocString("Crowns"), crowns, maxCrowns));
+
+        if (saveData.Version >= 2)
+        {
             // TODO-UPDATE: Localize
             progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RFR_Nightmare, new ConstLocString("Nightmare mode"), GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100), 36));
         }
