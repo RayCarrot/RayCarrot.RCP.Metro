@@ -47,13 +47,6 @@ Most games have a page for viewing the progress in each save slot. The save data
 # Dependencies
 The Rayman Control Panel™ uses these main dependencies:
 
-### RayCarrot
-- [RayCarrot.UI](https://github.com/RayCarrot/RayCarrot.UI)
-- [RayCarrot.IO](https://github.com/RayCarrot/RayCarrot.IO)
-- [RayCarrot.Windows.Registry](https://github.com/RayCarrot/RayCarrot.Windows.Registry)
-- [RayCarrot.Binary](https://github.com/RayCarrot/RayCarrot.Binary)
-- [RayCarrot.Rayman](https://github.com/RayCarrot/RayCarrot.Rayman)
-
 ### WPF
 - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
 - [MahApps.Metro.SimpleChildWindow](https://github.com/punker76/MahApps.Metro.SimpleChildWindow)
@@ -66,6 +59,7 @@ The Rayman Control Panel™ uses these main dependencies:
 - [WPFTextBoxAutoComplete](https://github.com/Nimgoble/WPFTextBoxAutoComplete)
 
 ### Other
+- [ByteSize](https://github.com/omar/ByteSize)
 - [Costura.Fody](https://github.com/Fody/Costura)
 - [DotNetZip](https://github.com/haf/DotNetZip.Semverd)
 - [NLog](https://github.com/NLog/NLog)
@@ -77,6 +71,7 @@ The Rayman Control Panel™ uses these main dependencies:
 - [Nito.AsyncEx](https://github.com/StephenCleary/AsyncEx)
 - [PropertyChanged.Fody](https://github.com/Fody/PropertyChanged)
 - [Resource.Embedder](https://github.com/MarcStan/Resource.Embedder)
+- [ini-parser](https://github.com/rickyah/ini-parser)
 
 # Localization
 From version 4.1.0 the Rayman Control Panel™ supports localized strings. For more information and information on how to contribute with translations, check out the Steam discussion page:
