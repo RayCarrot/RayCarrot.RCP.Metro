@@ -1,7 +1,6 @@
-﻿<local:BaseApp x:Class="RayCarrot.RCP.Metro.App"
-               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
+﻿<Application x:Class="RayCarrot.RCP.Metro.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -48,4 +47,4 @@
         </ResourceDictionary>
     </Application.Resources>
 
-</local:BaseApp>
+</Application>
