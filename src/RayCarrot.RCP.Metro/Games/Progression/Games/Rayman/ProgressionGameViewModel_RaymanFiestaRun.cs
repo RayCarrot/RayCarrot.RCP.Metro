@@ -44,8 +44,8 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
     }
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        // For now only the Windows 10 Edition is supported. The other versions use older save versions.
-        if (Edition != UserData_FiestaRunEdition.Win10)
+        // For now only the Windows 10 Edition and Preload versions supported
+        if (Edition != UserData_FiestaRunEdition.Win10 && Edition != UserData_FiestaRunEdition.Preload)
             yield break;
 
         FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
@@ -64,7 +64,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         Logger.Info("{0} slot is being loaded...", Game);
 
         // Get the file path
-        const string fileName = $"slot0.dat";
+        string fileName = Edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat";
 
         // Deserialize the data
         FiestaRun_SaveData? saveData = await context.ReadFileDataAsync<FiestaRun_SaveData>(fileName, endian: Endian.Little);
@@ -77,16 +77,26 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 
         Logger.Info("{0} slot has been deserialized", Game);
 
-        int crowns = saveData.LevelInfos_Land1.Concat(saveData.LevelInfos_Land2).Count(x => x.HasCrown);
-        const int maxCrowns = 72 + 16;
+        int crowns = saveData.LevelInfos_Land1.Count(x => x.HasCrown);
+        int maxCrowns = 72;
+
+        List<ProgressionDataViewModel> progressItems = new()
+        {
+            // TODO-UPDATE: Localize
+            new ProgressionDataViewModel(true, ProgressionIcon.RFR_Crown, new ConstLocString("Crowns"), crowns, maxCrowns),
+        };
+
+        if (saveData.Version >= 2)
+        {
+            crowns += saveData.LevelInfos_Land2.Count(x => x.HasCrown);
+            maxCrowns += 16;
+
+            // TODO-UPDATE: Localize
+            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RFR_Nightmare, new ConstLocString("Nightmare mode"), GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100), 36));
+        }
 
         // TODO-UPDATE: Localize
-        ProgressionDataViewModel[] progressItems = 
-        {
-            new ProgressionDataViewModel(true, ProgressionIcon.RFR_Crown, new ConstLocString("Crowns"), crowns, maxCrowns),
-            new ProgressionDataViewModel(true, ProgressionIcon.RFR_Nightmare, new ConstLocString("Nightmare mode"), GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100), 36),
-            new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, new ConstLocString("Lums"), (int)saveData.LumsGlobalCounter),
-        };
+        progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, new ConstLocString("Lums"), (int)saveData.LumsGlobalCounter));
 
         yield return new SerializableProgressionSlotViewModel<FiestaRun_SaveData>(this, null, 0, crowns, maxCrowns, progressItems, context, saveData, fileName);
 
