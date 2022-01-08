@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using Nito.AsyncEx;
 using NLog;
-using RayCarrot.Windows.Registry;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;

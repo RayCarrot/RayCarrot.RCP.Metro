@@ -8,7 +8,6 @@ using IniParser;
 using Microsoft.Win32;
 using NLog;
 using RayCarrot.RCP.Metro.Ini;
-using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro;
 

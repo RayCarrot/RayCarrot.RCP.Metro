@@ -123,7 +123,6 @@
 
   <!-- Project references -->
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.OpenSpace\src\BinarySerializer.OpenSpace.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.PS1\src\BinarySerializer.PS1.csproj" />
     <ProjectReference Include="..\..\submodules\BinarySerializer.Ray1\src\BinarySerializer.Ray1\BinarySerializer.Ray1.csproj" />

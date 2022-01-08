@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using Microsoft.Win32;
 using NLog;
-using RayCarrot.Windows.Registry;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
