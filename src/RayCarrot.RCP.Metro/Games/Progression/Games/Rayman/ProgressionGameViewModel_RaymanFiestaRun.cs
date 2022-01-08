@@ -98,6 +98,20 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         // TODO-UPDATE: Localize
         progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, new ConstLocString("Lums"), (int)saveData.LumsGlobalCounter));
 
+        // Add Livid Dead times
+        for (int lvlIndex = 0; lvlIndex < saveData.LevelTimes.Length; lvlIndex++)
+        {
+            if (saveData.LevelTimes[lvlIndex] == 0)
+                continue;
+
+            // Add the item
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: false,
+                icon: ProgressionIcon.RO_Clock,
+                header: new ConstLocString($"{lvlIndex + 1}"), // TODO-UPDATE: Level name
+                text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, (int)saveData.LevelTimes[lvlIndex]):mm\\:ss\\.fff}")));
+        }
+
         yield return new SerializableProgressionSlotViewModel<FiestaRun_SaveData>(this, null, 0, crowns, maxCrowns, progressItems, context, saveData, fileName);
 
         Logger.Info("{0} slot has been loaded", Game);
