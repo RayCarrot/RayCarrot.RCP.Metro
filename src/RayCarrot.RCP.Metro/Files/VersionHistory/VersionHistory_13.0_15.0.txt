@@ -32,6 +32,7 @@ Other changes:
 • Demo games are no longer automatically added to the jump list
 • Added icons to more buttons
 • Updated the updater
+• Minor UI changes such as increased scrollbar padding
 • Added a debug option to show grid lines in the app user interface
 • Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
 • Fixed some strings not being localized in the string input dialog
