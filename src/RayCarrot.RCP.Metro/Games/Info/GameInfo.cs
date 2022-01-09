@@ -272,8 +272,17 @@ public abstract class GameInfo : BaseGameData
                     {
                         using IArchiveDataManager archiveDataManager = GetArchiveDataManager;
 
-                        // Show the archive explorer
-                        await Services.UI.ShowArchiveExplorerAsync(archiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
+                        try
+                        {
+                            // Show the archive explorer
+                            await Services.UI.ShowArchiveExplorerAsync(archiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex, "Archive explorer");
+
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
+                        }
                     }), UserLevel.Advanced));
                 }
 

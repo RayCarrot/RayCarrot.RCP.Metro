@@ -31,13 +31,12 @@ public class GameBackups_Manager
 
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public GameBackups_Manager()
+    public GameBackups_Manager(IFileManager fileManager, IMessageUIManager messageUiManager, AppViewModel app, AppUserData data)
     {
-        // Get a new file manager
-        FileManager = Services.File;
+        File = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
+        Message = messageUiManager ?? throw new ArgumentNullException(nameof(messageUiManager));
+        App = app ?? throw new ArgumentNullException(nameof(app));
+        Data = data ?? throw new ArgumentNullException(nameof(data));
     }
 
     #endregion
@@ -53,16 +52,16 @@ public class GameBackups_Manager
 
     #region Private Properties
 
-    /// <summary>
-    /// The file manager to use
-    /// </summary>
-    private IFileManager FileManager { get; }
+    private IFileManager File { get; }
+    private IMessageUIManager Message { get; }
+    private AppViewModel App { get; }
+    private AppUserData Data { get; }
 
     #endregion
 
     #region Public Properties
 
-    public FileSystemPath BackupDirectory => Services.Data.Backup_BackupLocation + AppViewModel.BackupFamily;
+    public FileSystemPath BackupDirectory => Data.Backup_BackupLocation + AppViewModel.BackupFamily;
 
     #endregion
 
@@ -88,7 +87,7 @@ public class GameBackups_Manager
             if (destinationDir.DirectoryExists)
             {
                 // Create a new temp backup
-                FileManager.MoveDirectory(destinationDir, tempDir.TempPath, true, true);
+                File.MoveDirectory(destinationDir, tempDir.TempPath, true, true);
             }
 
             hasCreatedTempBackup = true;
@@ -101,20 +100,20 @@ public class GameBackups_Manager
                 // Check if the entire directory should be copied
                 if (item.SearchPattern.IsEntireDir())
                     // Copy the directory   
-                    FileManager.CopyDirectory(item.SearchPattern.DirPath, itemDestination, true, true);
+                    File.CopyDirectory(item.SearchPattern.DirPath, itemDestination, true, true);
                 else
                     // Backup the files
-                    FileManager.CopyFiles(item.SearchPattern, itemDestination, true);
+                    File.CopyFiles(item.SearchPattern, itemDestination, true);
             }
 
             // Check if any files were backed up
             if (!destinationDir.DirectoryExists)
             {
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                await Message.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
 
                 if (tempDir.TempPath.DirectoryExists)
                     // Restore temp backup
-                    FileManager.MoveDirectory(tempDir.TempPath, destinationDir, true, true);
+                    File.MoveDirectory(tempDir.TempPath, destinationDir, true, true);
 
                 return false;
             }
@@ -130,10 +129,10 @@ public class GameBackups_Manager
             // Restore temp backup
             if (tempDir.TempPath.DirectoryExists)
                 // Only replace files if the crash happened after creating the temp backup and during the backup operation
-                FileManager.MoveDirectory(tempDir.TempPath, destinationDir, hasCreatedTempBackup, false);
+                File.MoveDirectory(tempDir.TempPath, destinationDir, hasCreatedTempBackup, false);
             else if (hasCreatedTempBackup)
                 // Delete incomplete backup
-                FileManager.DeleteDirectory(destinationDir);
+                File.DeleteDirectory(destinationDir);
 
             Logger.Info("Backup failed - clean up succeeded");
 
@@ -159,7 +158,7 @@ public class GameBackups_Manager
             // Check if a backup already exists
             if (destinationFile.FileExists)
                 // Create a new temp backup
-                FileManager.MoveFile(destinationFile, tempFile.TempPath, true);
+                File.MoveFile(destinationFile, tempFile.TempPath, true);
 
             hasCreatedTempBackup = true;
 
@@ -170,7 +169,7 @@ public class GameBackups_Manager
             bool backedUp = false;
 
             // Create the compressed file
-            using (var fileStream = File.OpenWrite(destinationFile))
+            using (var fileStream = System.IO.File.OpenWrite(destinationFile))
             {
                 // Open the zip archive
                 using var zip = new ZipArchive(fileStream, ZipArchiveMode.Create);
@@ -195,15 +194,15 @@ public class GameBackups_Manager
             // Check if any files were backed up
             if (!backedUp)
             {
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                await Message.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
                     
                 // Check if a temp backup exists
                 if (tempFile.TempPath.FileExists)
                     // Restore temp backup
-                    FileManager.MoveFile(tempFile.TempPath, destinationFile, true);
+                    File.MoveFile(tempFile.TempPath, destinationFile, true);
                 else
                     // Delete incomplete backup
-                    FileManager.DeleteFile(destinationFile);
+                    File.DeleteFile(destinationFile);
 
                 return false;
             }
@@ -219,10 +218,10 @@ public class GameBackups_Manager
             // Check if a temp backup exists
             if (tempFile.TempPath.FileExists)
                 // Restore temp backup
-                FileManager.MoveFile(tempFile.TempPath, destinationFile, true);
+                File.MoveFile(tempFile.TempPath, destinationFile, true);
             else if (hasCreatedTempBackup)
                 // Delete incomplete backup
-                FileManager.DeleteFile(destinationFile);
+                File.DeleteFile(destinationFile);
 
             Logger.Info("Compressed backup failed - clean up succeeded");
 
@@ -243,14 +242,14 @@ public class GameBackups_Manager
                 if (existingBackup.IsCompressed)
                 {
                     // Delete the file
-                    FileManager.DeleteFile(existingBackup.Path);
+                    File.DeleteFile(existingBackup.Path);
 
                     Logger.Info("Compressed leftover backup was deleted");
                 }
                 else
                 {
                     // Delete the directory
-                    FileManager.DeleteDirectory(existingBackup.Path);
+                    File.DeleteDirectory(existingBackup.Path);
 
                     Logger.Info("Non-compressed leftover backup was deleted");
                 }
@@ -280,12 +279,12 @@ public class GameBackups_Manager
             try
             {
                 // Make sure we have write access to the backup location
-                if (!FileManager.CheckDirectoryWriteAccess(BackupDirectory))
+                if (!File.CheckDirectoryWriteAccess(BackupDirectory))
                 {
                     Logger.Info("Backup failed - backup location lacks write access");
 
                     // Request to restart as admin
-                    await Services.App.RequestRestartAsAdminAsync();
+                    await App.RequestRestartAsAdminAsync();
 
                     return false;
                 }
@@ -298,13 +297,13 @@ public class GameBackups_Manager
                 {
                     Logger.Info("Backup failed - the input directories could not be found");
 
-                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                    await Message.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
 
                     return false;
                 }
 
                 // Check if the backup should be compressed
-                bool compress = Services.Data.Backup_CompressBackups;
+                bool compress = Data.Backup_CompressBackups;
 
                 Logger.Debug(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
 
@@ -331,7 +330,7 @@ public class GameBackups_Manager
                 Logger.Error(ex, "Backing up game");
 
                 // Display message to user
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
+                await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
 
                 // Return that backup did not succeed
                 return false;
@@ -360,7 +359,7 @@ public class GameBackups_Manager
                 {
                     Logger.Info("Restore failed - the input location could not be found");
 
-                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
+                    await Message.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
 
                     return false;
                 }
@@ -369,12 +368,12 @@ public class GameBackups_Manager
                     throw new InvalidOperationException("A restore can only be performed on an info object with valid directories");
 
                 // Make sure we have write access to the restore destinations
-                if (backupInformation.RestoreDirectories.Any(x => !FileManager.CheckDirectoryWriteAccess(x.SearchPattern.DirPath)))
+                if (backupInformation.RestoreDirectories.Any(x => !File.CheckDirectoryWriteAccess(x.SearchPattern.DirPath)))
                 {
                     Logger.Info("Restore failed - one or more restore destinations lack write access");
 
                     // Request to restart as admin
-                    await Services.App.RequestRestartAsAdminAsync();
+                    await App.RequestRestartAsAdminAsync();
 
                     return false;
                 }
@@ -389,7 +388,7 @@ public class GameBackups_Manager
                         // If the backup is an archive, extract it to temp
                         if (existingBackup.IsCompressed)
                         {
-                            using var file = File.OpenRead(existingBackup.Path);
+                            using var file = System.IO.File.OpenRead(existingBackup.Path);
                             using var zip = new ZipArchive(file, ZipArchiveMode.Read);
                             zip.ExtractToDirectory(archiveTempDir.TempPath);
                         }
@@ -407,9 +406,9 @@ public class GameBackups_Manager
                             // Check if the entire directory should be moved
                             if (item.SearchPattern.IsEntireDir())
                                 // Move the directory
-                                FileManager.MoveDirectory(item.SearchPattern.DirPath, destDir, true, true);
+                                File.MoveDirectory(item.SearchPattern.DirPath, destDir, true, true);
                             else
-                                FileManager.MoveFiles(item.SearchPattern, destDir, true);
+                                File.MoveFiles(item.SearchPattern, destDir, true);
                         }
 
                         hasCreatedTempBackup = true;
@@ -422,7 +421,7 @@ public class GameBackups_Manager
 
                             // Restore the backup
                             if (dirPath.DirectoryExists)
-                                FileManager.CopyDirectory(dirPath, item.SearchPattern.DirPath, false, true);
+                                File.CopyDirectory(dirPath, item.SearchPattern.DirPath, false, true);
                         }
                     }
                     catch
@@ -440,14 +439,14 @@ public class GameBackups_Manager
                                 if (item.SearchPattern.IsEntireDir())
                                 {
                                     // Delete the directory
-                                    FileManager.DeleteDirectory(item.SearchPattern.DirPath);
+                                    File.DeleteDirectory(item.SearchPattern.DirPath);
                                 }
                                 else
                                 {
                                     // Delete each file
                                     foreach (FileSystemPath file in item.SearchPattern.GetFiles())
                                         // Delete the file
-                                        FileManager.DeleteFile(file);
+                                        File.DeleteFile(file);
                                 }
                             }
                         }
@@ -463,7 +462,7 @@ public class GameBackups_Manager
                                 continue;
 
                             // Restore
-                            FileManager.MoveDirectory(dirPath, item.SearchPattern.DirPath, false, false);
+                            File.MoveDirectory(dirPath, item.SearchPattern.DirPath, false, false);
                         }
 
                         Logger.Info("Restore failed - clean up succeeded");
@@ -479,7 +478,7 @@ public class GameBackups_Manager
             catch (Exception ex)
             {
                 Logger.Error(ex, "Restoring game");
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
+                await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
 
                 return false;
             }

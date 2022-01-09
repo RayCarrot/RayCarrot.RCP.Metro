@@ -608,32 +608,11 @@ public partial class App : Application
 
         LogStartupTime("Services: Setting up services");
 
-        // TODO: Do major DI refactoring in the application to implement this in a more proper way
         // Set up the services
-        IServiceCollection services = new ServiceCollection().
-            // Add user data
-            AddSingleton(new AppUserData()).
-            // Add message UI manager
-            AddMessageUIManager<RCPMessageUIManager>().
-            // Add browse UI manager
-            AddBrowseUIManager<RCPBrowseUIManager>().
-            // Add file manager
-            AddFileManager<RCPFileManager>().
-            // Add dialog base manager
-            AddDialogBaseManager<RCPWindowDialogBaseManager>().
-            // Add update manager
-            AddUpdateManager<RCPUpdaterManager>().
-            // Add the app view model
-            AddSingleton(new AppViewModel(x => LogStartupTime(x))).
-            // Add App UI manager
-            AddTransient<AppUIManager>().
-            // Add backup manager
-            AddTransient<GameBackups_Manager>().
-            // Add app instance data
-            AddSingleton<IAppInstanceData>(new AppInstanceData()
-            {
-                Arguments = args
-            });
+        IServiceCollection services = new ServiceCollection();
+
+        // Configure the services
+        ConfigureServices(services, args);
 
         LogStartupTime("Services: Building app service provider");
 
@@ -644,6 +623,42 @@ public partial class App : Application
         Logger.Info("The service provider has been built with {0} services", services.Count);
 
         LogStartupTime("AppData: Application data and services have been setup");
+    }
+
+    private void ConfigureServices(IServiceCollection serviceCollection, string[] args)
+    {
+        // Add the app view model
+        serviceCollection.AddSingleton<AppViewModel>();
+
+        // Add user data
+        serviceCollection.AddSingleton<AppUserData>();
+
+        // Add app instance data
+        serviceCollection.AddSingleton<IAppInstanceData>(_ => new AppInstanceData()
+        {
+            Arguments = args
+        });
+
+        // Add dialog base manager
+        serviceCollection.AddSingleton<IDialogBaseManager, RCPWindowDialogBaseManager>();
+
+        // Add message UI manager
+        serviceCollection.AddTransient<IMessageUIManager, RCPMessageUIManager>();
+
+        // Add browse UI manager
+        serviceCollection.AddTransient<IBrowseUIManager, RCPBrowseUIManager>();
+
+        // Add file manager
+        serviceCollection.AddTransient<IFileManager, RCPFileManager>();
+
+        // Add update manager
+        serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
+
+        // Add App UI manager
+        serviceCollection.AddTransient<AppUIManager>();
+
+        // Add backup manager
+        serviceCollection.AddTransient<GameBackups_Manager>();
     }
 
     private void InitializeLogging(IList<string> args)

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -81,6 +82,12 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Commands
 
     public ICommand OpenArchiveCommand { get; }
@@ -113,9 +120,18 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
         // Get the manager
         using IArchiveDataManager manager = SelectedType.GetManager(Utility_Archives_TypeViewModel.ArchiveMode.Explorer);
-        
-        // Show the Archive Explorer
-        await Services.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
+
+        try
+        {
+            // Show the Archive Explorer
+            await Services.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Archive explorer");
+
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
+        }
     }
 
     public async Task CreateArchiveAsync()

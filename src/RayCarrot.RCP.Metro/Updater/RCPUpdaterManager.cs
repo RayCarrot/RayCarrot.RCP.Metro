@@ -9,6 +9,8 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class RCPUpdaterManager : UpdaterManager
 {
+    public RCPUpdaterManager(IMessageUIManager message, IFileManager file, AppUserData data, IAppInstanceData instanceData) : base(message, file, data, instanceData) { }
+
     /// <summary>
     /// Gets the latest version from the manifest
     /// </summary>
@@ -18,7 +20,7 @@ public class RCPUpdaterManager : UpdaterManager
     protected override Version GetLatestVersion(JObject manifest, bool isBeta)
     {
         // Get the latest version
-        var version = manifest[isBeta ? "LatestBetaVersion" : "LatestAssemblyVersion"];
+        JToken version = manifest[isBeta ? "LatestBetaVersion" : "LatestAssemblyVersion"];
 
         return new Version(version["Major"].Value<int>(), version["Minor"].Value<int>(), version["Build"].Value<int>(), version["Revision"].Value<int>());
     }
@@ -48,7 +50,7 @@ public class RCPUpdaterManager : UpdaterManager
     /// <summary>
     /// The current version of the application
     /// </summary>
-    protected override Version CurrentVersion => Services.App.CurrentAppVersion;
+    protected override Version CurrentVersion => AppViewModel.AppVersion;
 
     /// <summary>
     /// The fallback URL to display to the user in case of an error

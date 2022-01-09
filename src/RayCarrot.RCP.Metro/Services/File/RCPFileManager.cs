@@ -13,7 +13,14 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class RCPFileManager : IFileManager
 {
+    public RCPFileManager(IMessageUIManager message)
+    {
+        Message = message ?? throw new ArgumentNullException(nameof(message));
+    }
+
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    private IMessageUIManager Message { get; }
 
     /// <summary>
     /// Launches a file
@@ -56,13 +63,13 @@ public class RCPFileManager : IFileManager
         {
             Logger.Debug(ex, "Launching file {0}", file);
                 
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.File_FileNotFound, file.FullPath), Resources.File_FileNotFoundHeader, MessageType.Error);
+            await Message.DisplayMessageAsync(String.Format(Resources.File_FileNotFound, file.FullPath), Resources.File_FileNotFoundHeader, MessageType.Error);
         }
         catch (Exception ex)
         {
             Logger.Warn(ex, "Launching file {0}", file);
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, file.FullPath));
+            await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, file.FullPath));
         }
 
         // Return null if the process could not launch
@@ -130,7 +137,7 @@ public class RCPFileManager : IFileManager
     {
         if (!location.Exists)
         {
-            await Services.MessageUI.DisplayMessageAsync(Resources.File_LocationNotFound, Resources.File_OpenLocationErrorHeader, MessageType.Error);
+            await Message.DisplayMessageAsync(Resources.File_LocationNotFound, Resources.File_OpenLocationErrorHeader, MessageType.Error);
             return;
         }
 
@@ -143,7 +150,7 @@ public class RCPFileManager : IFileManager
         {
             Logger.Error(ex, "Opening explorer location {0}", location);
                 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader);
+            await Message.DisplayExceptionMessageAsync(ex, Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader);
         }
     }
 
@@ -156,7 +163,7 @@ public class RCPFileManager : IFileManager
     {
         if (!RegistryHelpers.KeyExists(registryKeyPath))
         {
-            await Services.MessageUI.DisplayMessageAsync(Resources.File_RegKeyNotFound, Resources.File_RegKeyNotFoundHeader, MessageType.Error);
+            await Message.DisplayMessageAsync(Resources.File_RegKeyNotFound, Resources.File_RegKeyNotFoundHeader, MessageType.Error);
 
             return;
         }
@@ -170,7 +177,7 @@ public class RCPFileManager : IFileManager
         {
             Logger.Error(ex, "Opening Registry key path {0}", registryKeyPath);
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader);
+            await Message.DisplayExceptionMessageAsync(ex, Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader);
         }
     }
 

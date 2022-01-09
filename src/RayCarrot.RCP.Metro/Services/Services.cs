@@ -1,6 +1,11 @@
 ﻿#nullable disable
 namespace RayCarrot.RCP.Metro;
 
+// TODO: Clean up DI implementation in app:
+//       - Get rid of all references to this static class. In most cases we want to get the services from the ctor.
+//       - Refactor interfaces, maybe get rid of them until they're needed? Their abstraction isn't always helpful.
+//       - Get rid of BaseRCPViewModel and its service caching. Better to have view models be transients in the DI container.
+
 /// <summary>
 /// Shortcuts for the common application services
 /// </summary>
@@ -45,11 +50,6 @@ public static class Services
     /// The backup manager
     /// </summary>
     public static GameBackups_Manager Backup => Metro.App.Current.GetService<GameBackups_Manager>();
-
-    /// <summary>
-    /// The update manager
-    /// </summary>
-    public static IUpdaterManager UpdaterManager => Metro.App.Current.GetService<IUpdaterManager>();
 
     /// <summary>
     /// The file manager

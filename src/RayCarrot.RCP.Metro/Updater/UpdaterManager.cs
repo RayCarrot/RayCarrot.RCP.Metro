@@ -15,7 +15,20 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class UpdaterManager : IUpdaterManager
 {
+    protected UpdaterManager(IMessageUIManager message, IFileManager file, AppUserData data, IAppInstanceData instanceData)
+    {
+        Message = message ?? throw new ArgumentNullException(nameof(message));
+        File = file ?? throw new ArgumentNullException(nameof(file));
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        InstanceData = instanceData ?? throw new ArgumentNullException(nameof(instanceData));
+    }
+
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    protected IMessageUIManager Message { get; }
+    protected IFileManager File { get; }
+    protected AppUserData Data { get; }
+    protected IAppInstanceData InstanceData { get; }
 
     /// <summary>
     /// Checks for updates
@@ -167,7 +180,7 @@ public abstract class UpdaterManager : IUpdaterManager
             Directory.CreateDirectory(AppFilePaths.UpdaterFilePath.Parent);
 
             // Deploy the updater
-            File.WriteAllBytes(AppFilePaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
+            System.IO.File.WriteAllBytes(AppFilePaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
 
             Logger.Info("The updater was created");
         }
@@ -175,7 +188,7 @@ public abstract class UpdaterManager : IUpdaterManager
         {
             Logger.Error(ex, "Writing updater to temp path {0}", AppFilePaths.UpdaterFilePath);
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
+            await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
 
             return false;
         }
@@ -192,30 +205,30 @@ public abstract class UpdaterManager : IUpdaterManager
         }
 
         // Launch the updater and capture the process
-        using var updateProcess = await Services.File.LaunchFileAsync(AppFilePaths.UpdaterFilePath, asAdmin, 
+        using var updateProcess = await File.LaunchFileAsync(AppFilePaths.UpdaterFilePath, asAdmin, 
             // Arg 1: Program path
             $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
             // Arg 2: Dark mode
-            $"{Services.Data.Theme_DarkMode} " +
+            $"{Data.Theme_DarkMode} " +
             // Arg 3: User level
-            $"{Services.Data.App_UserLevel} " +
+            $"{Data.App_UserLevel} " +
             // Arg 4: Update URL
             $"\"{result.DownloadURL}\" " +
             // Arg 5: Current culture
-            $"\"{Services.InstanceData.CurrentCulture}\" " +
+            $"\"{InstanceData.CurrentCulture}\" " +
             // Arg 6: Web security protocol type
             $"{webSecurityProtocolType}");
 
         // Make sure we have a valid process
         if (updateProcess == null)
         {
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+            await Message.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 
             return false;
         }
 
         // Shut down the app
-        await App.Current.ShutdownAppAsync(true);
+        await Metro.App.Current.ShutdownAppAsync(true);
 
         return true;
     }

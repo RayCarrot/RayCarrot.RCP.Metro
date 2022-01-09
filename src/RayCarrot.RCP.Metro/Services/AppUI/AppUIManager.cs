@@ -14,9 +14,24 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class AppUIManager
 {
+    #region Constructor
+
+    public AppUIManager(IDialogBaseManager dialog)
+    {
+        Dialog = dialog ?? throw new ArgumentNullException(nameof(dialog));
+    }
+
+    #endregion
+
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Private Properties
+
+    private IDialogBaseManager Dialog { get; }
 
     #endregion
 
@@ -36,7 +51,7 @@ public class AppUIManager
         Logger.Trace("A dialog of type {0} was opened", dialogTypeName);
 
         // Show the dialog and get the result
-        Result result = await Services.DialogBaseManager.ShowDialogWindowAsync(dialog);
+        Result result = await Dialog.ShowDialogWindowAsync(dialog);
 
         if (result == null)
             Logger.Warn("The dialog of type {0} returned null", dialogTypeName);
@@ -178,7 +193,7 @@ public class AppUIManager
             var dialog = new DialogMessageBox(vm);
 
             // Show the dialog and get the result
-            UserInputResult result = await Services.DialogBaseManager.ShowDialogWindowAsync(dialog);
+            UserInputResult result = await Dialog.ShowDialogWindowAsync(dialog);
 
             // Return the result
             return !result.CanceledByUser;
@@ -197,23 +212,14 @@ public class AppUIManager
     /// <returns>The task</returns>
     public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, FileSystemPath[] filePaths)
     {
-        try
-        {
-            if (Application.Current.Dispatcher == null)
-                throw new Exception("The application does not have a valid dispatcher");
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
 
-            Logger.Trace("An Archive Explorer window was opened");
+        Logger.Trace("An Archive Explorer window was opened");
 
-            // Run on UI thread
-            ArchiveExplorerUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths)));
-            await Services.DialogBaseManager.ShowWindowAsync(ui);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Archive explorer");
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
-        }
+        // Run on UI thread
+        ArchiveExplorerUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths)));
+        await Dialog.ShowWindowAsync(ui);
     }
 
     /// <summary>
@@ -230,7 +236,7 @@ public class AppUIManager
 
         // Run on UI thread
         ArchiveCreatorUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorUI(new ArchiveCreatorDialogViewModel(manager)));
-        await Services.DialogBaseManager.ShowWindowAsync(ui);
+        await Dialog.ShowWindowAsync(ui);
     }
 
     #endregion

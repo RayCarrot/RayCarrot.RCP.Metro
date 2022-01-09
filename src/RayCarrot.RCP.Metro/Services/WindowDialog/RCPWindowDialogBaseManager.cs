@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿using System;
 using MahApps.Metro.Controls;
 using MahApps.Metro.SimpleChildWindow;
 using System.Threading.Tasks;
@@ -8,7 +8,12 @@ namespace RayCarrot.RCP.Metro;
 
 public class RCPWindowDialogBaseManager : WindowDialogBaseManager
 {
-    #region Protected Methods
+    public RCPWindowDialogBaseManager(AppUserData data)
+    {
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+    }
+
+    private AppUserData Data { get; }
 
     protected void ConfigureChildWindow(RCPChildWindow window, IWindowControl windowContent, bool isModal)
     {
@@ -17,7 +22,7 @@ public class RCPWindowDialogBaseManager : WindowDialogBaseManager
         {
             FocusVisualStyle = null,
             IsTabStop = false,
-            Transition = Services.Data.UI_EnableAnimations ? TransitionType.Left : TransitionType.Normal,
+            Transition = Data.UI_EnableAnimations ? TransitionType.Left : TransitionType.Normal,
             UseLayoutRounding = true,
             Content = windowContent.UIContent,
             RestartTransitionOnContentChange = true
@@ -43,7 +48,7 @@ public class RCPWindowDialogBaseManager : WindowDialogBaseManager
     protected override Task ShowAsync(IWindowControl windowContent, bool isModal, string title)
     {
         // Show as a child window
-        if (Services.Data.UI_UseChildWindows && App.Current?.ChildWindowsParent is MetroWindow metroWindow)
+        if (Data.UI_UseChildWindows && App.Current?.ChildWindowsParent is MetroWindow metroWindow)
         {
             // Create the child window
             var childWin = new RCPChildWindow();
@@ -67,6 +72,4 @@ public class RCPWindowDialogBaseManager : WindowDialogBaseManager
             return base.ShowAsync(windowContent, isModal, title);
         }
     }
-
-    #endregion
 }
