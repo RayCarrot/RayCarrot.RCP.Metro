@@ -22,7 +22,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
     protected override string BackupName => $"Rayman Fiesta Run ({Edition})";
     protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition));
 
-    private int GetLevelIdFromIndex(int idx)
+    private static int GetLevelIdFromIndex(int idx)
     {
         int v2 = idx + 1;
         if (v2 % 10 == 0)
@@ -44,10 +44,6 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
     }
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        // For now only the Windows 10 Edition and Preload versions supported
-        if (Edition != UserData_FiestaRunEdition.Win10 && Edition != UserData_FiestaRunEdition.Preload)
-            yield break;
-
         FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                  "Packages" +
                                  Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition) +
