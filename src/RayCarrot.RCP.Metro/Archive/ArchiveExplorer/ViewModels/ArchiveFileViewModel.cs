@@ -42,6 +42,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
 
         // Create commands
         ImportCommand = new AsyncRelayCommand(ImportFileAsync);
+        ReplaceCommand = new AsyncRelayCommand(ReplaceFileAsync);
         DeleteCommand = new AsyncRelayCommand(DeleteFileAsync);
         RenameCommand = new AsyncRelayCommand(RenameFileAsync);
 
@@ -62,14 +63,13 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     #region Commands
 
     public ICommand ImportCommand { get; }
+    public ICommand ReplaceCommand { get; }
     public ICommand DeleteCommand { get; }
     public ICommand RenameCommand { get; }
 
     #endregion
 
     #region Private Fields
-
-    private bool _isInitialized;
 
     #endregion
 
@@ -143,15 +143,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <summary>
     /// Indicates if the file is initialized
     /// </summary>
-    public bool IsInitialized
-    {
-        get => _isInitialized;
-        set
-        {
-            _isInitialized = value;
-            CanImport = FileType?.ImportFormats.Any() == true;
-        }
-    }
+    public bool IsInitialized { get; set; }
 
     /// <summary>
     /// Indicates if the file supports importing
@@ -350,6 +342,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         IconKind = FileType!.Icon;
         ThumbnailSource = null;
         IsInitialized = true;
+        CanImport = false;
     }
 
     /// <summary>
@@ -404,6 +397,8 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
 
             return new ArchiveFileMenuActionViewModel(name, new AsyncRelayCommand(async () => await EditFileAsync(x, true, false, readOnly)));
         }));
+
+        CanImport = importFormats.Any();
     }
 
     /// <summary>
@@ -553,6 +548,52 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                     {
                         Logger.Error(ex, "Importing file");
 
+                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportFile_Error);
+                    }
+                });
+            }
+        }
+    }
+
+    /// <summary>
+    /// Replaces the file with another file
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ReplaceFileAsync()
+    {
+        Logger.Trace("The archive file {0} is being replaced...", FileName);
+
+        // Run as a load operation
+        using (await Archive.LoadOperation.RunAsync())
+        {
+            // Lock the access to the archive
+            using (await Archive.ArchiveLock.LockAsync())
+            {
+                // Get the file
+                FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                {
+                    // TODO-UPDATE: Localize
+                    Title = "Select file to replace"
+                });
+
+                if (result.CanceledByUser)
+                    return;
+
+                // Run as a task
+                await Task.Run(async () =>
+                {
+                    try
+                    {
+                        // Import the file
+                        ImportFile(result.SelectedFile, false);
+
+                        Logger.Trace("The archive file is pending to be imported");
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error(ex, "Replacing file");
+
+                        // TODO-UPDATE: New localized string
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportFile_Error);
                     }
                 });

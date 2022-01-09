@@ -54,7 +54,15 @@
 
         <local:MenuItemIcon Header="{Resx Archive_ImportFile}"
                             Command="{Binding Path=ImportCommand, Mode=OneTime}"
-                            IconKind="FileImportOutline" />
+                            IconKind="FileImportOutline"
+                            IsEnabled="{Binding Path=CanImport}" />
+
+        <!-- Replace -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <local:MenuItemIcon Header="Replace"
+                            Command="{Binding Path=ReplaceCommand, Mode=OneTime}"
+                            IconKind="FileReplaceOutline" />
 
         <Separator />
 
