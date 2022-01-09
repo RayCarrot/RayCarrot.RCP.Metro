@@ -42,6 +42,7 @@ public enum ProgressionIcon
     // Rayman 3
     R3_Cage,
     R3_Score,
+    R3_Stamp,
 
     // Rayman Origins
     RO_Clock,

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using BinarySerializer.OpenSpace;
 using NLog;
 
@@ -43,11 +44,16 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
             Logger.Info("Slot has been deserialized");
 
+            int[] stampScores = { 20820, 44500, 25900, 58000, 55500, 26888, 26700, 43700, 48000 };
+
+            int stamps = stampScores.Where((stampScore, i) => stampScore < saveData.Levels[i].Score).Count();
+
             // Create the collection with items for each level + general information
             ProgressionDataViewModel[] progressItems = 
             {
                 // TODO-UPDATE: Localize
                 new ProgressionDataViewModel(isPrimaryItem: true, icon: ProgressionIcon.R3_Cage, header: new ConstLocString("Cages"), value: saveData.TotalCages, max: 60),
+                new ProgressionDataViewModel(true, ProgressionIcon.R3_Stamp, new ConstLocString("Stamps"), stamps, stampScores.Length),
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ConstLocString("Total score"), saveData.TotalScore),
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
@@ -60,7 +66,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
             };
 
-            yield return new SerializableProgressionSlotViewModel<R3SaveFile>(this, new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages, 60, progressItems, context, saveData, fileName);
+            yield return new SerializableProgressionSlotViewModel<R3SaveFile>(this, new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
 
