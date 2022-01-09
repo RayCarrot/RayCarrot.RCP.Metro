@@ -1,6 +1,6 @@
-# Rayman Control Panel™
-![Rayman Control Panel™](img/example_games.png)
-Rayman Control Panel™ is an open source community project created by [RayCarrot](https://github.com/RayCarrot). The purpose of this program is to unify existing game patches and fixes, as well as allowing extended configuration, for all PC Rayman games. This program does not come with any games and requires the user to have them installed. For certain games it is possible installing them through the program using a game disc.
+# Rayman Control Panel
+![Rayman Control Panel](img/example_games.png)
+Rayman Control Panel is an open source community project created by [RayCarrot](https://github.com/RayCarrot). The purpose of this program is to unify existing game patches and fixes, as well as allowing extended configuration, for all PC Rayman games. This program does not come with any games and requires the user to have them installed. For certain games it is possible installing them through the program using a game disc.
 
 Note: This repository is only for the WPF version (4.0.0 and above). The WinForms version (1.0.0 - 3.2.2) repository has since been made private as it's no longer being maintained and is heavily outdated.
 
@@ -14,10 +14,10 @@ Main features:
 - General utilities, such as the Archive Explorer to modify archive files
 - Mods, such as enabling prototype features in Rayman Raving Rabbids
 
-## Archive Explorer™
-![Archive Explorer™](img/example_archive_explorer.png)
+## Archive Explorer
+![Archive Explorer](img/example_archive_explorer.png)
 
-The Archive Explorer™ is a tool within the Rayman Control Panel™ which allows supported game archive files to be viewed and edited. This allows textures to be replaced in games. 
+The Archive Explorer is a tool within the Rayman Control Panel which allows supported game archive files to be viewed and edited. This allows textures to be replaced in games. 
 
 Supported archive file types:
 - Rayman 1 .dat files
@@ -45,7 +45,7 @@ Utilities allows for more advanced modifications to the games, usually aimed at 
 Most games have a page for viewing the progress in each save slot. The save data can also be exported to a JSON file.
 
 # Dependencies
-The Rayman Control Panel™ uses these main dependencies:
+The Rayman Control Panel uses these main dependencies:
 
 ### WPF
 - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
@@ -74,7 +74,7 @@ The Rayman Control Panel™ uses these main dependencies:
 - [ini-parser](https://github.com/rickyah/ini-parser)
 
 # Localization
-From version 4.1.0 the Rayman Control Panel™ supports localized strings. For more information and information on how to contribute with translations, check out the Steam discussion page:
+From version 4.1.0 the Rayman Control Panel supports localized strings. For more information and information on how to contribute with translations, check out the Steam discussion page:
 [Rayman Control Panel - Localization](https://steamcommunity.com/groups/RaymanControlPanel/discussions/0/1812044473314212117/)
 
 # Contact

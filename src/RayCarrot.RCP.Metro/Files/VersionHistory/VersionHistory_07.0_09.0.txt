@@ -118,7 +118,7 @@ Other changes:
 • When exporting mipmaps of an image in the Archive Explorer it now only shows the supported file extensions for that operation
 • If repacking an archive file fails it will now restore the original file
 • Rayman Control Panel is now displayed as Rayman Control Panel™
-• Localization guidelines have been updated to not localize product names, such as Rayman Control Panel™
+• Localization guidelines have been updated to not localize product names, such as Rayman Control Panel
 • Fixed a bug where repacking an archive file to a smaller size would keep some old data, maintaining the original file size
 • Fixed a bug where certain tool tips would crash if the application ran through Wine on Mac
 • Fixed a bug where browsing for a DOSBox config path would not allow files of the correct extension

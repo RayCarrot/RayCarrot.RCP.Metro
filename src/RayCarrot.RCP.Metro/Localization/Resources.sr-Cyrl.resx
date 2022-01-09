@@ -388,7 +388,7 @@
     <value>Опције режима екрана ће се понашати различито у зависности од изабране резолуције. Углавном ће задржавањем размере  4:3 омогућити игри да не буде растегнута у примени других пропорција.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel™ је заједнички пројекат отвореног кода који је креирао корисник са псеудонимом RayCarrot. Овај софтвер је јединствена извршна датотека  слободна за употребу са намером да омогући лако приступање подешавањима Рејмен наслова издатих за Виндоус. Развој овог пројекта је још увек у току и у будућим ажурирањима је планирано  више могућности. Помоћни програми и различите алатке за конфигурацију су креирани уз помоћ разних чланова Рејмен заједнице, и сви су наведени у наставку.</value>
+    <value>Rayman Control Panel је заједнички пројекат отвореног кода који је креирао корисник са псеудонимом RayCarrot. Овај софтвер је јединствена извршна датотека  слободна за употребу са намером да омогући лако приступање подешавањима Рејмен наслова издатих за Виндоус. Развој овог пројекта је још увек у току и у будућим ажурирањима је планирано  више могућности. Помоћни програми и различите алатке за конфигурацију су креирани уз помоћ разних чланова Рејмен заједнице, и сви су наведени у наставку.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Заслуге</value>
@@ -442,10 +442,10 @@
     <value>1.21</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
@@ -565,10 +565,10 @@
     <value>Rayman</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>

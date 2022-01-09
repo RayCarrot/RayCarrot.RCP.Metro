@@ -820,7 +820,7 @@ Notícias:
     <value>Iniciar {0}</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Actualizaciones</value>
@@ -943,7 +943,7 @@ Notícias:
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilidad de banda sonora Rayman PlayStation, Eliminación de verificación de disco Rayman M/Arena</value>
@@ -1159,7 +1159,7 @@ Notícias:
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Rayman Control Panel™ (Administrador)</value>
+    <value>Rayman Control Panel (Administrador)</value>
   </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
@@ -1303,10 +1303,10 @@ Notícias:
     <value>Rayman</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>

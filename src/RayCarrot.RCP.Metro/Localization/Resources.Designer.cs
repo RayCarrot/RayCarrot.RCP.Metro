@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to uninstall the Rayman Control Panel™? This will remove the executable file and all of the program&apos;s app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available..
+        ///   Looks up a localized string similar to Are you sure you want to uninstall the Rayman Control Panel? This will remove the executable file and all of the program&apos;s app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available..
         /// </summary>
         public static string About_ConfirmUninstall {
             get {
@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer™, Rayman 2 translations.
+        ///   Looks up a localized string similar to Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
@@ -241,7 +241,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™ is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
+        ///   Looks up a localized string similar to Rayman Control Panel is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
         ///This is a growing project with more features planned on being added with future updates. The utilities and various configuration tools have been created with help from various members of the Rayman community, all credited below..
         /// </summary>
         public static string About_ProgramInfo {
@@ -426,7 +426,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™.
+        ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
             get {
@@ -435,7 +435,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™ (Administrator).
+        ///   Looks up a localized string similar to Rayman Control Panel (Administrator).
         /// </summary>
         public static string AppNameAdmin {
             get {
@@ -615,7 +615,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred in the Archive Explorer™ and it had to close.
+        ///   Looks up a localized string similar to An error occurred in the Archive Explorer and it had to close.
         /// </summary>
         public static string Archive_CriticalError {
             get {
@@ -1191,7 +1191,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer™.
+        ///   Looks up a localized string similar to Archive Explorer.
         /// </summary>
         public static string Archive_Title {
             get {
@@ -4535,7 +4535,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel™.
+        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel.
         /// </summary>
         public static string FirstLaunchInfo_Header {
             get {
@@ -4555,7 +4555,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel™.
+        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel.
         /// </summary>
         public static string FirstLaunchInfo_Title {
             get {
@@ -5050,7 +5050,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always runs the game with the same permissions as the Rayman Control Panel™ was launched with.
+        ///   Looks up a localized string similar to Always runs the game with the same permissions as the Rayman Control Panel was launched with.
         /// </summary>
         public static string GameOptions_LaunchMode_AsInvokerInfo {
             get {
@@ -5338,7 +5338,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled, the below settings will be used when launching the game from the Rayman Control Panel™.
+        ///   Looks up a localized string similar to If enabled, the below settings will be used when launching the game from the Rayman Control Panel.
         /// </summary>
         public static string GoHomeConfig_CustomLaunchInfo {
             get {
@@ -5524,7 +5524,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel™..
+        ///   Looks up a localized string similar to Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel..
         /// </summary>
         public static string Help_Games_R1_Emulator {
             get {
@@ -5749,7 +5749,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™.
+        ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string Help_RCP {
             get {
@@ -9604,7 +9604,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to remove {0} from the Rayman Control Panel™? This will not remove the game from your computer or any of its files, including the backups created using this program..
+        ///   Looks up a localized string similar to Are you sure you want to remove {0} from the Rayman Control Panel? This will not remove the game from your computer or any of its files, including the backups created using this program..
         /// </summary>
         public static string RemoveGameQuestion {
             get {
@@ -9622,7 +9622,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} was originally installed using the Rayman Control Panel™. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game..
+        ///   Looks up a localized string similar to {0} was originally installed using the Rayman Control Panel. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game..
         /// </summary>
         public static string RemoveInstalledGameQuestion {
             get {
@@ -11402,7 +11402,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer™.
+        ///   Looks up a localized string similar to Archive Explorer.
         /// </summary>
         public static string Utilities_ArchiveExplorer_Header {
             get {

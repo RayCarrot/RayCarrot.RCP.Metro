@@ -388,7 +388,7 @@
     <value>De schermmodus-opties zullen, afhankelijk van de geselecteerde resolutie, een bepaald effect hebben. Normaal gesproken zal het beeld in geval van een andere resolutie/aspect ratio niet opgerekt worden als de 4:3 modus ingeschakeld is.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel™ is een Open Source community project, geïnitieerd door RayCarrot. De software is gratis te gebruiken en heeft als doel, gemakkelijk instellingen en fixes te benaderen voor de verschillende Rayman games, uitgebracht voor Windows. Het project kent vooruitgang en zal meer features bieden in de toekomst. De hulpprogramma's en verscheidene configuratietools zijn ontwikkeld met hulp van diverse leden van de Rayman community; credits hieronder.</value>
+    <value>Rayman Control Panel is een opensourceproject, geïnitieerd door RayCarrot. De software is gratis te gebruiken en heeft als doel, gemakkelijk instellingen en fixes te benaderen voor de verschillende Rayman games, uitgebracht voor Windows. Het project kent vooruitgang en zal meer features bieden in de toekomst. De hulpprogramma's en verscheidene configuratietools zijn ontwikkeld met hulp van diverse leden van de Rayman community; credits hieronder.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Credits</value>
@@ -1152,7 +1152,7 @@ Opnieuw proberen?</value>
     <value>Geïnstalleerd</value>
   </data>
   <data name="RemoveGameQuestion" xml:space="preserve">
-    <value>Weet je zeker dat je {0} wilt verwijderen uit Rayman Control Panel™? Dit zal níét het spel van je computer verwijderen noch de back-ups die gemaakt zijn via dit programma.</value>
+    <value>Weet je zeker dat je {0} wilt verwijderen uit Rayman Control Panel? Dit zal níét het spel van je computer verwijderen noch de back-ups die gemaakt zijn via dit programma.</value>
   </data>
   <data name="RemoveGameQuestionHeader" xml:space="preserve">
     <value>Bevestig verwijdering</value>
@@ -1182,7 +1182,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer™, Rayman 2 vertalingen</value>
+    <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1371,10 +1371,10 @@ Opnieuw proberen?</value>
     <value>Voortgang Huidig Bestand</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
-    <value>Welkom bij het Rayman Control Panel™</value>
+    <value>Welkom bij het Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
-    <value>Welkom bij het Rayman Control Panel™</value>
+    <value>Welkom bij het Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
     <value>Dit programma is een officieus open-source project, ontworpen door RayCarrot. Het stelt gebruikers in staat snel en gemakkelijk toegang te verkrijgen tot hun geïnstalleerde Rayman (PC) games, met de volgende, bijkomende features: uitgebreide ondersteuning voor configuratie, hulpprogramma's, back-ups voor save files, het beheren van opslagdata, textuurmodificaties en meer. Ondersteunde spellen kunnen direct vanaf de schijf, via het programma geïnstalleerd worden. Om te beginnen, wijzig je eventueel de instellingen hieronder en klik je op 'Doorgaan'. De instellingen kunnen op elk gewenst moment aangepast worden via de Instellingen pagina.</value>
@@ -1407,7 +1407,7 @@ Opnieuw proberen?</value>
     <value>Start {0}</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Updates</value>
@@ -1474,7 +1474,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>MS-Dos Emulator</value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1 en de meeste PC spin-offs (inclusief Rayman Designer, Rayman By His Fans en Rayman 60 Levels) zijn MS-DOS programma's en zijn daarom niet compatible met moderne versies van Windows. Als je ze wilt spelen, heb je een DOS-emulator nodig, zoals DOSBox. Momenteel is DOSBox de enige, ondersteunde emulator door het Rayman Control Panel™.</value>
+    <value>Rayman 1 en de meeste PC spin-offs (inclusief Rayman Designer, Rayman By His Fans en Rayman 60 Levels) zijn MS-DOS programma's en zijn daarom niet compatible met moderne versies van Windows. Als je ze wilt spelen, heb je een DOS-emulator nodig, zoals DOSBox. Momenteel is DOSBox de enige, ondersteunde emulator door het Rayman Control Panel.</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>Installatie Mislukt</value>
@@ -1600,7 +1600,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Per-Level soundtrack hulpprogramma, Rayman M/Arena schijfcontrole eliminatie</value>
@@ -1657,7 +1657,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Animaties betreffen paginaovergangen en geresizede animaties voor de Games pagina</value>
   </data>
   <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Start de game altijd met dezelfde machtigingen als waarmee het Rayman Control Panel™ opgestart is</value>
+    <value>Start de game altijd met dezelfde machtigingen als waarmee het Rayman Control Panel opgestart is</value>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
     <value>Hetzelfde als Standaard, maar met de optie het spel als administrator te starten</value>
@@ -1792,7 +1792,7 @@ Nieuws:
     <value>Deïnstalleren</value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Weet je zeker dat je het Rayman Control Panel™ wilt deïnstalleren? Dit zal het .exe-bestand en alle app data van het programma verwijderen. Echter zal dit geen games deïnstalleren noch de back-ups en save files verwijderen. Sommige, toegepaste hulpprogramma's zouden nog beschikbaar kunnen zijn.</value>
+    <value>Weet je zeker dat je het Rayman Control Panel wilt deïnstalleren? Dit zal het .exe-bestand en alle app data van het programma verwijderen. Echter zal dit geen games deïnstalleren noch de back-ups en save files verwijderen. Sommige, toegepaste hulpprogramma's zouden nog beschikbaar kunnen zijn.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Bevestig deïnstallatie</value>
@@ -1818,7 +1818,7 @@ Nieuws:
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Rayman Control Panel™ (Administrator)</value>
+    <value>Rayman Control Panel (Administrator)</value>
   </data>
   <data name="Cheats_Location_Level" xml:space="preserve">
     <value>Level</value>
@@ -2313,7 +2313,7 @@ Foutmelding: {1}</value>
     <value>Aangepaste opstartinstellingen</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
-    <value>Indien ingeschakeld, zullen onderstaande instellingen worden gebruikt wanneer het spel wordt gestart via het Rayman Control Panel™</value>
+    <value>Indien ingeschakeld, zullen onderstaande instellingen worden gebruikt wanneer het spel wordt gestart via het Rayman Control Panel</value>
   </data>
   <data name="Config_VSync" xml:space="preserve">
     <value>V-sync</value>
@@ -2463,7 +2463,7 @@ Foutmelding: {1}</value>
     <value>Deïnstalleren</value>
   </data>
   <data name="RemoveInstalledGameQuestion" xml:space="preserve">
-    <value>{0} is geïnstalleerd via het Rayman Control Panel™. Het verwijderen van het spel uit dit programma, zal niet resulteren in definitieve verwijdering van het spel, inclusief de back-ups die zijn gemaakt via het programma. Daarom is het aanbevolen het spel te deïnstalleren.</value>
+    <value>{0} is geïnstalleerd via het Rayman Control Panel. Het verwijderen van het spel uit dit programma, zal niet resulteren in definitieve verwijdering van het spel, inclusief de back-ups die zijn gemaakt via het programma. Daarom is het aanbevolen het spel te deïnstalleren.</value>
   </data>
   <data name="UninstallGameQuestion" xml:space="preserve">
     <value>Weet je zeker dat je {0} wilt deïnstalleren? Dit zal het spel van je computer verwijderen, inclusief de save file. Back-ups zullen níét worden verwijderd.</value>
@@ -2646,10 +2646,10 @@ Foutmelding: {1}</value>
     <value>Selecteer bestandsextensie om te exporteren als voor {0} bestanden</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden in de Archive Explorer™ en deze moest afgesloten worden</value>
+    <value>Er heeft een fout plaatsgevonden in de Archive Explorer en deze moest afgesloten worden</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Rayman reverse engineering, Rayman Raving Rabbids mod</value>
@@ -2676,7 +2676,7 @@ Foutmelding: {1}</value>
     <value>UbiArt lokalisatiebestanden (.loc/.loc8)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Converters</value>

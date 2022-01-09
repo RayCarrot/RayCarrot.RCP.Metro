@@ -61,7 +61,7 @@ Other changes:
 	• Fixed certain browse boxes not allowing backslashes to be typed
 	• Fixed the file filter not working when specifying the output file when creating an archive
 	• Fixed the games page headers not updating when changing language
-	• Fixed the folder export failing in the Archive Explorer™ if one of the files could not be converted before being initialized
+	• Fixed the folder export failing in the Archive Explorer if one of the files could not be converted before being initialized
 
 
 -----   Version 11.3.0 - August 25, 2021   -----
@@ -75,7 +75,7 @@ Other changes:
 
 
 -----   Version 11.2.0 - July 5, 2021   -----
-• Updated the Archive Explorer™
+• Updated the Archive Explorer
 	• Thumbnails are now cached when switching between directories
 	• Add support for .wav files 
 	• Fixed a bug where dropping in a folder would cause an error to show 
@@ -86,7 +86,7 @@ Other changes:
 
 
 -----   Version 11.1.0 - May 20, 2021   -----
-• Updated the Archive Explorer™
+• Updated the Archive Explorer
 	• Files can now be viewed/edited directly
 	• Files can now be renamed
 	• Multiple files can now be selected at once, allowing extracting, exporting and deleting
@@ -96,7 +96,7 @@ Other changes:
 • Removed the localization converter utilities (the converters can still be found under the main utilities page) and the Rayman 1 config repair utility (the config will automatically repair now when saving)
 
 Other changes:
-• Other changes to the Archive Explorer™
+• Other changes to the Archive Explorer
 	• Files can now be deselected by clicking in an empty area
 	• The compressed file size for files in an IPK archive now only shows if the file is compressed
 	• The file pointers now show as 64-bit addresses for files in an IPK archive
@@ -111,14 +111,14 @@ Other changes:
 
 
 -----   Version 11.0.0 - April 29, 2021   -----
-• Updated the Archive Explorer™
+• Updated the Archive Explorer
 	• Files and directories can now be added/removed
 	• Multiple changes can be made to the archive before repacking
 	• An address bar and a search bar has been added
 	• Sorting options have been added
 	• Performance improvements
 	• Added support for archive files for Rayman Designer, Rayman by his Fans, Rayman 60 Levels and the educational games
-	• Added support for Xbox 360 IPK files in the Archive Explorer™ for Rayman Origins & Legends
+	• Added support for Xbox 360 IPK files in the Archive Explorer for Rayman Origins & Legends
 • Added support for Rayman ReDesigner
 • Added a utility for generating Rayman 1 PS1 passwords
 • Added the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
@@ -127,7 +127,7 @@ Other changes:
 
 Other changes:
 • Updated the user interface
-	• The game specific Archive Explorer™ utilities have been replaced by a button in the game drop-down menus
+	• The game specific Archive Explorer utilities have been replaced by a button in the game drop-down menus
 	• The settings page has been categorized into tabs
 	• The game options can now be quickly accessed by hovering on the launch button and selecting the new option
 	• Increased the default size of the main and news windows and increased the font size for the news text

@@ -388,7 +388,7 @@
     <value>Opcja trybu ekranu będzie zachowywała się inaczej w zależności od wybranej rozdzielczości. Zazwyczaj przy włączonym trybie 4:3 gra nie będzie rozciągnięta na różnych proporcjach.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel™ to projekt społecznościowy open source stworzony przez użytkownika o pseudonimie RayCarrot. Oprogramowanie jest darmowym plikiem wykonywalnym, którego celem jest łatwy dostęp do ustawień i poprawek dla różnych gier z serii Rayman wydanych na systemie Windows. Jest to rozwijający się projekt, którego kolejne funkcje są planowane w przyszłych aktualizacjach. Narzędzia i różne narzędzia konfiguracyjne zostały stworzone z pomocą członków społeczności Raymana, wymienionych poniżej.</value>
+    <value>Rayman Control Panel to projekt społecznościowy open source stworzony przez użytkownika o pseudonimie RayCarrot. Oprogramowanie jest darmowym plikiem wykonywalnym, którego celem jest łatwy dostęp do ustawień i poprawek dla różnych gier z serii Rayman wydanych na systemie Windows. Jest to rozwijający się projekt, którego kolejne funkcje są planowane w przyszłych aktualizacjach. Narzędzia i różne narzędzia konfiguracyjne zostały stworzone z pomocą członków społeczności Raymana, wymienionych poniżej.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Twórcy</value>
@@ -1163,7 +1163,7 @@ Spróbować ponownie?</value>
     <value>Zainstalowano</value>
   </data>
   <data name="RemoveGameQuestion" xml:space="preserve">
-    <value>Czy na pewno chcesz usunąć {0} z Rayman Control Panel™? Nie spowoduje to usunięcia gry z twojego komputera ani żadnego z jej plików, łącznie z kopiami zapasowymi utworzonymi za pomocą tego programu.</value>
+    <value>Czy na pewno chcesz usunąć {0} z Rayman Control Panel? Nie spowoduje to usunięcia gry z twojego komputera ani żadnego z jej plików, łącznie z kopiami zapasowymi utworzonymi za pomocą tego programu.</value>
   </data>
   <data name="RemoveGameQuestionHeader" xml:space="preserve">
     <value>Potwierdź usunięcie</value>
@@ -1193,7 +1193,7 @@ Spróbować ponownie?</value>
     <value>Specjalne podziękowania dla AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski i wszystkich innych fanów Raymana!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer™, Tłumaczenie gry Rayman 2</value>
+    <value>Rayman Control Panel, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer, Tłumaczenie gry Rayman 2</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Łatki dla kontrolera</value>
@@ -1384,10 +1384,10 @@ Spróbować ponownie?</value>
     <value>Aktualny postęp pliku</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
-    <value>Witamy w Rayman Control Panel™</value>
+    <value>Witamy w Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
-    <value>Witamy w Rayman Control Panel™</value>
+    <value>Witamy w Rayman Control Panel</value>
   </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>Twoje zmiany konfiguracyjne nie zostały zapisane. Czy chcesz wyjść i je porzucić?</value>
@@ -1417,7 +1417,7 @@ Spróbować ponownie?</value>
     <value>Uruchom {0}</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Aktualizacje</value>
@@ -1484,7 +1484,7 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
     <value>Emulator MS-Dos</value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1 i większość jego spin-offów na PC (w tym Rayman Designer, Rayman by his Fans i Rayman 60 Levels) są programami MS-DOS i nie są kompatybilne z nowoczesnymi wersjami Windows. Uruchomienie ich wymaga emulatora DOS, takiego jak DOSBox. Obecnie DOSBox jest jedynym obsługiwanym emulatorem przez Rayman Control Panel ™.</value>
+    <value>Rayman 1 i większość jego spin-offów na PC (w tym Rayman Designer, Rayman by his Fans i Rayman 60 Levels) są programami MS-DOS i nie są kompatybilne z nowoczesnymi wersjami Windows. Uruchomienie ich wymaga emulatora DOS, takiego jak DOSBox. Obecnie DOSBox jest jedynym obsługiwanym emulatorem przez Rayman Control Panel .</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>Instalacja nie powiodła się</value>
@@ -1612,7 +1612,7 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Narzędzie do ścieżki dźwiękowej na poziom, Usunięcie sprawdzania dysku Rayman M/Arena</value>
@@ -1669,7 +1669,7 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
     <value>Animacje obejmują przejścia między stronami i zmianę rozmiaru animacji dla strony gier</value>
   </data>
   <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Gra zawsze uruchamia się z tymi samymi uprawnieniami, z którymi uruchomiono Rayman Control Panel ™</value>
+    <value>Gra zawsze uruchamia się z tymi samymi uprawnieniami, z którymi uruchomiono Rayman Control Panel </value>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
     <value>Tak samo jak domyślnie, ale z możliwością uruchomienia gry jako administrator</value>
@@ -1808,7 +1808,7 @@ Aktualności:
 </value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Czy na pewno chcesz odinstalować Rayman Control Panel™? Spowoduje to usunięcie pliku wykonywalnego i wszystkich danych aplikacji programu. NIE spowoduje to usunięcia zainstalowanych gier, plików zapisów ani kopii zapasowych. Niektóre zastosowane narzędzia mogą być nadal dostępne.</value>
+    <value>Czy na pewno chcesz odinstalować Rayman Control Panel? Spowoduje to usunięcie pliku wykonywalnego i wszystkich danych aplikacji programu. NIE spowoduje to usunięcia zainstalowanych gier, plików zapisów ani kopii zapasowych. Niektóre zastosowane narzędzia mogą być nadal dostępne.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Potwierdź odinstalowanie</value>
@@ -1834,7 +1834,7 @@ Aktualności:
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Rayman Control Panel™ (Administrator)</value>
+    <value>Rayman Control Panel (Administrator)</value>
   </data>
   <data name="Cheats_Location_Level" xml:space="preserve">
     <value>Poziom</value>
@@ -2331,7 +2331,7 @@ Komunikat o błędzie: {1}</value>
     <value>Niestandardowe ustawienia uruchamiania</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
-    <value>Jeśli opcja jest włączona, poniższe ustawienia zostaną użyte podczas uruchamiania gry z Rayman Control Panel™</value>
+    <value>Jeśli opcja jest włączona, poniższe ustawienia zostaną użyte podczas uruchamiania gry z Rayman Control Panel</value>
   </data>
   <data name="Config_VSync" xml:space="preserve">
     <value>Synchronizacja pionowa</value>
@@ -2481,7 +2481,7 @@ Komunikat o błędzie: {1}</value>
     <value>Odinstaluj</value>
   </data>
   <data name="RemoveInstalledGameQuestion" xml:space="preserve">
-    <value>{0} został oryginalnie zainstalowany przy użyciu Rayman Control Panel™. Usunięcie gry z programu nie spowoduje usunięcia jej z komputera ani żadnych jej plików, łącznie z kopiami zapasowymi utworzonymi za pomocą tego programu. Zamiast tego zaleca się odinstalowanie gry. </value>
+    <value>{0} został oryginalnie zainstalowany przy użyciu Rayman Control Panel. Usunięcie gry z programu nie spowoduje usunięcia jej z komputera ani żadnych jej plików, łącznie z kopiami zapasowymi utworzonymi za pomocą tego programu. Zamiast tego zaleca się odinstalowanie gry. </value>
   </data>
   <data name="UninstallGameQuestion" xml:space="preserve">
     <value>Czy na pewno chcesz odinstalować {0}? Spowoduje to usunięcie gry z komputera, w tym zapisanych danych. Kopie zapasowe nie zostaną usunięte.
@@ -2668,10 +2668,10 @@ Komunikat o błędzie: {1}</value>
     <value>Wybierz rozszerzenie pliku do eksportu jak dla plików {0}</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
-    <value>Wystąpił błąd w Archive Explorer ™ i program musi zostać zamknięty</value>
+    <value>Wystąpił błąd w Archive Explorer  i program musi zostać zamknięty</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Inżynieria odwrotna Raymana, Rayman Szalone Kórliki mod</value>
@@ -2698,7 +2698,7 @@ Komunikat o błędzie: {1}</value>
     <value>Pliki lokalizacyjne UbiArt (.loc/.loc8)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Konwerterowanie</value>

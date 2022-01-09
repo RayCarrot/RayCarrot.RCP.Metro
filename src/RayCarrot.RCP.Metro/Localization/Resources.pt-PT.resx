@@ -388,7 +388,7 @@
     <value>As opções do modo de ecrã irão comportar-se de forma diferente dependendo da resolução seleccionada. Normalmente mantendo o modo 4:3 activo irá permitir que o jogo não seja esticado para outras proporções de aspecto diferentes.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>O Rayman Control Panel™ (Painel de Controlo Rayman) é um projecto comunitário open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
+    <value>O Rayman Control Panel (Painel de Controlo Rayman) é um projecto comunitário open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -1152,7 +1152,7 @@ Tentar novamente?</value>
     <value>Instalado</value>
   </data>
   <data name="RemoveGameQuestion" xml:space="preserve">
-    <value>Tens a certeza que queres remover o {0} do Rayman Control Panel™? Isto não irá remover o jogo do teu computador ou quaisquer dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa.</value>
+    <value>Tens a certeza que queres remover o {0} do Rayman Control Panel? Isto não irá remover o jogo do teu computador ou quaisquer dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa.</value>
   </data>
   <data name="RemoveGameQuestionHeader" xml:space="preserve">
     <value>Confirmar remoção</value>
@@ -1182,7 +1182,7 @@ Tentar novamente?</value>
     <value>Agradecimentos especiais ao AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski e a todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, Utilitários, Banda sonora-por nível, Archive Explorer™, Traduções do Rayman 2</value>
+    <value>Rayman Control Panel, Utilitários, Banda sonora-por nível, Archive Explorer, Traduções do Rayman 2</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patches de comandos</value>
@@ -1371,10 +1371,10 @@ Tentar novamente?</value>
     <value>Progresso de ficheiro actual</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
-    <value>Bem-vindo(a) ao Rayman Control Panel™</value>
+    <value>Bem-vindo(a) ao Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
-    <value>Bem-vindo(a) ao Rayman Control Panel™</value>
+    <value>Bem-vindo(a) ao Rayman Control Panel</value>
   </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>As tuas alterações da configuração não foram salvas. Queres sair e descartá-las?</value>
@@ -1404,7 +1404,7 @@ Tentar novamente?</value>
     <value>Arrancar {0}</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Actualizações</value>
@@ -1471,7 +1471,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Emulador MS-DOS</value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1, e a maior parte dos spin-offs para PC (incluíndo o Rayman Designer, Rayman by his Fans e Rayman 60 Levels) são programas MS-DOS e não são compactíveis com as versões modernas do Windows. Requer um emulador DOS para executá-los, tais como o DOSBox. Actualmente, o DOSBox é o único emulador suportado pelo Rayman Control Panel™.</value>
+    <value>Rayman 1, e a maior parte dos spin-offs para PC (incluíndo o Rayman Designer, Rayman by his Fans e Rayman 60 Levels) são programas MS-DOS e não são compactíveis com as versões modernas do Windows. Requer um emulador DOS para executá-los, tais como o DOSBox. Actualmente, o DOSBox é o único emulador suportado pelo Rayman Control Panel.</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>A instalação falhou</value>
@@ -1597,7 +1597,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilitário da banda sonora-por nível, Remoção de verificação do disco Rayman M/Arena</value>
@@ -1654,7 +1654,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>As animações incluem transições de página e animações redimensionadas para a página de Jogos</value>
   </data>
   <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Executa sempre o jogo com as mesmas permissões com que o Rayman Control Panel™ foi executado</value>
+    <value>Executa sempre o jogo com as mesmas permissões com que o Rayman Control Panel foi executado</value>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
     <value>O mesmo que o Padrão, mas com a opção de executar o jogo como administrador</value>
@@ -1789,7 +1789,7 @@ Notícias:
     <value>Desinstalar</value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Tens a certeza que queres desinstalar o Rayman Control Panel™? Isto irá remover o ficheiro executável e todos os dados de aplicação do programa. Isto NÃO irá remover quaisquer jogos instalados, ficheiros de progresso ou cópias de segurança. Alguns utilitários aplicados poderão ainda estar disponíveis.</value>
+    <value>Tens a certeza que queres desinstalar o Rayman Control Panel? Isto irá remover o ficheiro executável e todos os dados de aplicação do programa. Isto NÃO irá remover quaisquer jogos instalados, ficheiros de progresso ou cópias de segurança. Alguns utilitários aplicados poderão ainda estar disponíveis.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Confirmar desinstalação</value>
@@ -1813,7 +1813,7 @@ Notícias:
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Rayman Control Panel™ (Administrador)</value>
+    <value>Rayman Control Panel (Administrador)</value>
   </data>
   <data name="Cheats_Location_Level" xml:space="preserve">
     <value>Nível</value>
@@ -2309,7 +2309,7 @@ Error message: {1}</value>
     <value>Definições de arranque personalizadas</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
-    <value>Se activo, as definições abaixo serão utilizadas ao executar o jogo pelo Rayman Control Panel™.</value>
+    <value>Se activo, as definições abaixo serão utilizadas ao executar o jogo pelo Rayman Control Panel.</value>
   </data>
   <data name="Config_VSync" xml:space="preserve">
     <value>V-Sync</value>
@@ -2460,7 +2460,7 @@ Error message: {1}</value>
     <value>Desinstalar</value>
   </data>
   <data name="RemoveInstalledGameQuestion" xml:space="preserve">
-    <value>O {0} foi instalado originalmente utilizando o Rayman Control Panel™. Remover o jogo do programa não irá remover o jogo do teu computador ou nenhum dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa. É recomendado no entanto desinstalar-se o jogo.</value>
+    <value>O {0} foi instalado originalmente utilizando o Rayman Control Panel. Remover o jogo do programa não irá remover o jogo do teu computador ou nenhum dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa. É recomendado no entanto desinstalar-se o jogo.</value>
   </data>
   <data name="UninstallGameQuestion" xml:space="preserve">
     <value>Tens a certeza que queres desinstalar o {0}? Isto irá remover o jogo do teu computador, incluíndo os dados de progressão. As cópias de segurança não serão removidas.</value>
@@ -2649,10 +2649,10 @@ Error message: {1}</value>
     <value>Selecciona a extensão de ficheiro para exportar como para os ficheiros {0}</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
-    <value>Ocorreu um erro no Archive Explorer™ (Explorador de Arquivos) e teve de fechar</value>
+    <value>Ocorreu um erro no Archive Explorer (Explorador de Arquivos) e teve de fechar</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Engenharia Reversa do Rayman
@@ -2680,7 +2680,7 @@ Error message: {1}</value>
     <value>Ficheiros de Localização UbiArt (.loc/loc8)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Conversores</value>

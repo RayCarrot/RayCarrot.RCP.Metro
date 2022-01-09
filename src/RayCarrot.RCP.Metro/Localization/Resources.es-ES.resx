@@ -393,7 +393,7 @@ Configuración de las teclas del teclado</value>
 Dependiendo de la resolución seleccionada, puede que la imagen termine distorisionada o puede crashear en ciertas resoluciones no soportadas. Seleccionando la opción 4:3 hara que el juego mantenga su relación de aspecto correcta.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel™ es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando y ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
+    <value>Rayman Control Panel es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando y ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -696,7 +696,7 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>Se ha encontrado una nueva versión</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
     <value>Compatibilidad</value>
@@ -749,7 +749,7 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
     <value>Ejecutar como administrador (Opcional)</value>
@@ -889,10 +889,10 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
 </value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>

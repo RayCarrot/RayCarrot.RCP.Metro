@@ -388,7 +388,7 @@
     <value>Параметры экранного режима будут вести себя по-разному в зависимости от выбранного разрешения. Обычно сохранение режима 4:3 позволит игре не растягиваться на разные соотношения сторон.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel™ - это совместный проект с открытым исходным кодом, созданный RayCarrot. Это программное обеспечение представляет собой один бесплатный исполняемый файл с возможностями легко получить доступ к настройкам и исправлениям для различных игр серии Rayman, выпущенных для Windows.
+    <value>Rayman Control Panel - это совместный проект с открытым исходным кодом, созданный RayCarrot. Это программное обеспечение представляет собой один бесплатный исполняемый файл с возможностями легко получить доступ к настройкам и исправлениям для различных игр серии Rayman, выпущенных для Windows.
 Это растущий проект с большим количеством функций, которые планируется добавить в будущих обновлениях. Утилиты и различные инструменты были созданы с помощью членов фан-базы Рэймана, перечисленных ниже.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
@@ -1153,7 +1153,7 @@
     <value>Установлено</value>
   </data>
   <data name="RemoveGameQuestion" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить {0} из Rayman Control Panel™? Это не приведет к удалению игры с Вашего компьютера или каких-либо ее файлов, включая резервные копии, созданные с помощью этой программы.</value>
+    <value>Вы уверены, что хотите удалить {0} из Rayman Control Panel? Это не приведет к удалению игры с Вашего компьютера или каких-либо ее файлов, включая резервные копии, созданные с помощью этой программы.</value>
   </data>
   <data name="RemoveGameQuestionHeader" xml:space="preserve">
     <value>Подтверждение удаления</value>
@@ -1183,7 +1183,7 @@
     <value>Отдельная благодарность AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski и всем другим фанатам Рэймана!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, утилиты, PlayStation-версия саундтрека, Archive Explorer™, переводы Rayman 2</value>
+    <value>Rayman Control Panel, утилиты, PlayStation-версия саундтрека, Archive Explorer, переводы Rayman 2</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Патчи для контроллера</value>
@@ -1372,10 +1372,10 @@
     <value>Текущий прогресс файла</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
-    <value>Добро пожаловать в Rayman Control Panel™</value>
+    <value>Добро пожаловать в Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
-    <value>Добро пожаловать в Rayman Control Panel™</value>
+    <value>Добро пожаловать в Rayman Control Panel</value>
   </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>Ваши изменения настроек не были сохранены. Вы действительно хотите выйти и сбросить их?</value>
@@ -1405,7 +1405,7 @@
     <value>Запуск {0}</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Обновления</value>
@@ -1472,7 +1472,7 @@
     <value>Эмулятор MS-Dos </value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1 и большинство его спин-оффов для PC (включая Rayman Designer, Rayman by his Fans и Rayman 60 Levels) являются приложениями для MS-DOS и не совместимы с современными версиями Windows. Для их запуска требуется эмулятор DOS, например DOSBox. В настоящее время DOSBox является единственным поддерживаемым эмулятором Rayman Control Panel™.</value>
+    <value>Rayman 1 и большинство его спин-оффов для PC (включая Rayman Designer, Rayman by his Fans и Rayman 60 Levels) являются приложениями для MS-DOS и не совместимы с современными версиями Windows. Для их запуска требуется эмулятор DOS, например DOSBox. В настоящее время DOSBox является единственным поддерживаемым эмулятором Rayman Control Panel.</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>Установка не удалась</value>
@@ -1598,7 +1598,7 @@
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Утилита PlayStation-версии саундтрека, удаление проверки диска Rayman M/Arena</value>
@@ -1655,7 +1655,7 @@
     <value>Анимации включают в себя переходы страниц и анимацию изменения размера для страницы 'Игры'</value>
   </data>
   <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Игра всегда будет запускаться с теми же разрешениями, с которыми была запущена Rayman Control Panel™ </value>
+    <value>Игра всегда будет запускаться с теми же разрешениями, с которыми была запущена Rayman Control Panel </value>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
     <value>То же самое, что и по умолчанию, но с возможностью запуска игры от имени администратора</value>
@@ -1790,7 +1790,7 @@
     <value>Удалить</value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить Rayman Control Panel™? Это приведет к удалению исполняемого файла и всех данных приложения программы. Это не приведет к удалению каких-либо установленных игр, файлов сохранения или резервных копий. Некоторые активированные утилиты все еще могут быть доступны.</value>
+    <value>Вы уверены, что хотите удалить Rayman Control Panel? Это приведет к удалению исполняемого файла и всех данных приложения программы. Это не приведет к удалению каких-либо установленных игр, файлов сохранения или резервных копий. Некоторые активированные утилиты все еще могут быть доступны.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Подтверждение удаления</value>
@@ -1816,7 +1816,7 @@
     <value>(БЕТА)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Rayman Control Panel™ (Администратор)</value>
+    <value>Rayman Control Panel (Администратор)</value>
   </data>
   <data name="Cheats_Location_Level" xml:space="preserve">
     <value>Уровень</value>
@@ -2311,7 +2311,7 @@
     <value>Пользовательские настройки запуска</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
-    <value>Если эта функция активирована, то при запуске игры с помощью Rayman Control Panel™ будут использоваться следующие настройки</value>
+    <value>Если эта функция активирована, то при запуске игры с помощью Rayman Control Panel будут использоваться следующие настройки</value>
   </data>
   <data name="Config_VSync" xml:space="preserve">
     <value>Вертикальная синхронизация</value>
@@ -2461,7 +2461,7 @@
     <value>Удалить</value>
   </data>
   <data name="RemoveInstalledGameQuestion" xml:space="preserve">
-    <value>{0} изначально была установлена с помощью Rayman Control Panel™. Удаление игры из программы не приведет к удалению игры с Вашего компьютера или любых ее файлов, включая резервные копии, созданные с помощью этой программы. Вместо этого рекомендуется удалить игру.</value>
+    <value>{0} изначально была установлена с помощью Rayman Control Panel. Удаление игры из программы не приведет к удалению игры с Вашего компьютера или любых ее файлов, включая резервные копии, созданные с помощью этой программы. Вместо этого рекомендуется удалить игру.</value>
   </data>
   <data name="UninstallGameQuestion" xml:space="preserve">
     <value>Вы уверены, что хотите удалить {0}? Это приведет к удалению игры с Вашего компьютера, включая данные сохранений. Резервные копии не будут удалены.</value>
@@ -2644,10 +2644,10 @@
     <value>Выберите расширение файла для экспорта как для файлов {0}</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
-    <value>Программу пришлось закрыть, так как в Archive Explorer™ произошла ошибка</value>
+    <value>Программу пришлось закрыть, так как в Archive Explorer произошла ошибка</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Обратная инженерия Rayman, модификация Rayman Raving Rabbids</value>
@@ -2674,7 +2674,7 @@
     <value>Файлы локализации UbiArt (.loc/.loc8)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Преобразователи</value>

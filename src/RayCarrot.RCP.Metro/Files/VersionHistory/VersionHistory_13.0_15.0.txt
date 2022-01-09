@@ -23,7 +23,7 @@
 Other changes:
 • Major code and libraries refactoring
 • Added option to replace files in the Archive Explorer
-• Added a new dialog for selecting a program to use for certain file types in the Archive Explorer™ and progression page (previously the file selection dialog was used)
+• Added a new dialog for selecting a program to use for certain file types in the Archive Explorer and progression page (previously the file selection dialog was used)
 • The backup location setting has been moved to the settings page
 • Add toggle for enabling or disabling the serialization log rather than it being dependant on the specified file path existing
 • Save selections in the Rayman Raving Rabbids mod
@@ -33,9 +33,10 @@ Other changes:
 • Demo games are no longer automatically added to the jump list
 • Added icons to more buttons
 • Updated the updater
+• Rayman Control Panel and Archive Explorer are no longer displayed with the ™ symbol
 • Minor UI changes such as increased scrollbar padding
 • Added a debug option to show grid lines in the app user interface
 • Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
 • Fixed some strings not being localized in the string input dialog
-• Fixed a bug where the Archive Explorer™ would crash if a file was selected in another archive than the one being repacked
+• Fixed a bug where the Archive Explorer would crash if a file was selected in another archive than the one being repacked
 • Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used

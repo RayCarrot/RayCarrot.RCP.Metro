@@ -388,7 +388,7 @@
     <value>The screen mode options will behave differently depending on the selected resolution. Usually keeping the 4:3 mode enabled will allow the game not to be stretched on different aspect ratios.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel™ is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
+    <value>Rayman Control Panel is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
 This is a growing project with more features planned on being added with future updates. The utilities and various configuration tools have been created with help from various members of the Rayman community, all credited below.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
@@ -1211,7 +1211,7 @@ gameDisplayName</comment>
     <value>Installed</value>
   </data>
   <data name="RemoveGameQuestion" xml:space="preserve">
-    <value>Are you sure you want to remove {0} from the Rayman Control Panel™? This will not remove the game from your computer or any of its files, including the backups created using this program.</value>
+    <value>Are you sure you want to remove {0} from the Rayman Control Panel? This will not remove the game from your computer or any of its files, including the backups created using this program.</value>
     <comment>Arguments:
 gameDisplayName</comment>
   </data>
@@ -1247,7 +1247,7 @@ gameDisplayName</comment>
     <value>Special thanks to AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer™, Rayman 2 translations</value>
+    <value>Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1444,10 +1444,10 @@ tempDir2</comment>
     <value>Current File Progress</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
-    <value>Welcome to the Rayman Control Panel™</value>
+    <value>Welcome to the Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
-    <value>Welcome to the Rayman Control Panel™</value>
+    <value>Welcome to the Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
     <value>This program is an unofficial open source community project created by RayCarrot. It allows quick and easy access to all installed PC Rayman games on your computer, with additional features such as extended configuration support, utilities, save file backups, save data management, texture modifications and more.
@@ -1487,7 +1487,7 @@ lastVersion</comment>
 gameDisplayName</comment>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Updates</value>
@@ -1561,7 +1561,7 @@ Running an application in compatibility mode is done by selecting the option und
     <value>MS-Dos Emulator</value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel™.</value>
+    <value>Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel.</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>Installation Failed</value>
@@ -1687,7 +1687,7 @@ Running an application in compatibility mode is done by selecting the option und
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+    <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Per-level soundtrack utility, Rayman M/Arena disc check removal</value>
@@ -1747,7 +1747,7 @@ totalGames</comment>
     <value>Animations include page transitions and resizing animations for the Games page</value>
   </data>
   <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Always runs the game with the same permissions as the Rayman Control Panel™ was launched with</value>
+    <value>Always runs the game with the same permissions as the Rayman Control Panel was launched with</value>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
     <value>Same as Default, but with the option to run the game as administrator</value>
@@ -1884,7 +1884,7 @@ News:
     <value>Uninstall</value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Are you sure you want to uninstall the Rayman Control Panel™? This will remove the executable file and all of the program's app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available.</value>
+    <value>Are you sure you want to uninstall the Rayman Control Panel? This will remove the executable file and all of the program's app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Confirm uninstall</value>
@@ -1912,7 +1912,7 @@ appDataLocations</comment>
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Rayman Control Panel™ (Administrator)</value>
+    <value>Rayman Control Panel (Administrator)</value>
   </data>
   <data name="Cheats_Location_Level" xml:space="preserve">
     <value>Level</value>
@@ -2410,7 +2410,7 @@ exceptionMessage</comment>
     <value>Custom launch settings</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
-    <value>If enabled, the below settings will be used when launching the game from the Rayman Control Panel™</value>
+    <value>If enabled, the below settings will be used when launching the game from the Rayman Control Panel</value>
   </data>
   <data name="Config_VSync" xml:space="preserve">
     <value>V-Sync</value>
@@ -2566,7 +2566,7 @@ gameDisplayName</comment>
     <value>Uninstall</value>
   </data>
   <data name="RemoveInstalledGameQuestion" xml:space="preserve">
-    <value>{0} was originally installed using the Rayman Control Panel™. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game.</value>
+    <value>{0} was originally installed using the Rayman Control Panel. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game.</value>
     <comment>Arguments:
 gameDisplayName</comment>
   </data>
@@ -2777,10 +2777,10 @@ archiveName</comment>
 fileFormat</comment>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
-    <value>An error occurred in the Archive Explorer™ and it had to close</value>
+    <value>An error occurred in the Archive Explorer and it had to close</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Rayman reverse engineering, Rayman Raving Rabbids mod</value>
@@ -2807,7 +2807,7 @@ fileFormat</comment>
     <value>UbiArt Localization Files (.loc/.loc8)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™</value>
+    <value>Archive Explorer</value>
   </data>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Converters</value>
