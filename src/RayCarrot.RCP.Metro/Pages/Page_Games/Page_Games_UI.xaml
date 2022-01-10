@@ -41,6 +41,10 @@
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 
+    <Control.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}" />
+    </Control.InputBindings>
+
     <Grid Visibility="{Binding Path=RefreshingGames, Converter={local:InvertedBooleanToVisibilityConverter}}">
         <Grid>
             <mah:MetroAnimatedTabControl x:Name="GamesTabControl"

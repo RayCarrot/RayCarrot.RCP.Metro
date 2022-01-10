@@ -66,6 +66,10 @@
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 
+    <Control.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
+    </Control.InputBindings>
+
     <metro:MetroAnimatedTabControl x:Name="SettingsTabControl"
                                    Margin="15"
                                    FocusVisualStyle="{x:Null}">

@@ -44,6 +44,10 @@
         <ResourceDictionary Source="Progression.DataTemplates.xaml" />
     </Control.Resources>
 
+    <Control.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
+    </Control.InputBindings>
+
     <Grid Margin="15">
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto">

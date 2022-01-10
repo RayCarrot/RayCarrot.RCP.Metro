@@ -23,6 +23,7 @@
 
 Other changes:
 • Major code and libraries refactoring
+• Certain pages can now be refreshed by pressing F5
 • Added option to replace files in the Archive Explorer
 • Added a new dialog for selecting a program to use for certain file types in the Archive Explorer and progression page (previously the file selection dialog was used)
 • The backup location setting has been moved to the settings page
