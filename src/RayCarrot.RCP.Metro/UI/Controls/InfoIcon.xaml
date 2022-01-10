@@ -12,7 +12,7 @@
     <iconPacks:PackIconMaterial x:Name="HelpIconRoot"
                                 ToolTip="{Binding Path=Text}"
                                 d:DataContext="{d:DesignInstance local:InfoIcon}"
-                                Kind="{Binding Path=IconKind}"
+                                Kind="{Binding Path=IconKind, FallbackValue=HelpCircleOutline}"
                                 VerticalAlignment="Center"
                                 Background="Transparent" 
                                 ToolTipService.ShowDuration="1000000" />

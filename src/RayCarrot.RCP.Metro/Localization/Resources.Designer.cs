@@ -3298,6 +3298,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The cheats will go into effect when loading a save slot in the game. Sometimes it is also required to return to the menu after loading the slot..
+        /// </summary>
+        public static string Config_RRRCheatsInfo {
+            get {
+                return ResourceManager.GetString("Config_RRRCheatsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mirror camera.
         /// </summary>
         public static string Config_RRRInvertHor {

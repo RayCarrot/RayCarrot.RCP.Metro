@@ -4494,4 +4494,7 @@ By changing the data source here you can choose which location is used for backu
   <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
     <value>The files could not be serialized</value>
   </data>
+  <data name="Config_RRRCheatsInfo" xml:space="preserve">
+    <value>The cheats will go into effect when loading a save slot in the game. Sometimes it is also required to return to the menu after loading the slot.</value>
+  </data>
 </root>
