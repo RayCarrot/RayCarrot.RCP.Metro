@@ -17,7 +17,6 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
 
     public Utility_Serializers_ViewModel()
     {
-        // TODO-UPDATE: Localize & include file ext in all the names
         Types = new ObservableCollection<Utility_Serializers_TypeViewModel>()
         {
             new Serializers_TypeViewModel<PC_SaveFile>(
@@ -80,7 +79,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<RRR_SaveFile>(
-                name: new ConstLocString("Rayman Raving Rabbids Save Files (.sav)"),
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_RRRSaveHeader)),
                 fileExtension: new FileExtension(".sav"),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -128,7 +127,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<FiestaRun_SaveData>(
-                name: new ConstLocString("Rayman Fiesta Run Save File"),
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_RFRSaveHeader)),
                 fileExtension: new FileExtension(".dat"),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -143,7 +142,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<Unity_PlayerPrefs>(
-                name: new ConstLocString("Unity Player Preferences / Rabbids Big Bang Save File (.dat)"),
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_UnityPlayerPrefsHeader)),
                 fileExtension: new FileExtension(".dat"),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -158,7 +157,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<GameMaker_DSMap>(
-                name: new ConstLocString("Game Maker DS Map / Rayman Redemption Save File (.txt)"),
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_GameMakerDSMapHeader)),
                 fileExtension: new FileExtension(".txt"),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -225,8 +224,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
-                // TODO-UPDATE: Update localization
-                Title = Resources.Utilities_Converter_FileSelectionHeader,
+                Title = Resources.Utilities_Serializers_FileSelectionHeader,
                 DefaultDirectory = defaultDir?.FullPath,
                 ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
                 MultiSelection = true
@@ -260,8 +258,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             {
                 Logger.Error(ex, "Logging serialized files");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The files could not be logged");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Serializers_LogError);
             }
         }
         finally
@@ -289,8 +286,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
-                // TODO-UPDATE: Update localization
-                Title = Resources.Utilities_Converter_FileSelectionHeader,
+                Title = Resources.Utilities_Serializers_FileSelectionHeader,
                 DefaultDirectory = defaultDir?.FullPath,
                 ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
                 MultiSelection = true
@@ -337,15 +333,13 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     }
                 });
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The files were successfully deserialized");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Serializers_DeserializeSuccess);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Deserializing files");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The files could not be deserialized");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Serializers_DeserializeError);
             }
         }
         finally
@@ -366,8 +360,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
-                // TODO-UPDATE: Update localization
-                Title = Resources.Utilities_Converter_FileSelectionHeader,
+                Title = Resources.Utilities_Serializers_FileSelectionHeader,
                 ExtensionFilter = new FileFilterItem("*.json", "JSON").ToString(),
                 MultiSelection = true,
             });
@@ -408,15 +401,13 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     }
                 });
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The files were successfully serialized");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Serializers_SerializeSuccess);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Serializing files");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The files could not be serialized");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Serializers_SerializeError);
             }
         }
         finally

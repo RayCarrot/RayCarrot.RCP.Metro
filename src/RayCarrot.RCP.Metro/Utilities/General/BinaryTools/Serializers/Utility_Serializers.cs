@@ -26,7 +26,7 @@ public class Utility_Serializers : IUtility
     /// <summary>
     /// The header for the utility. This property is retrieved again when the current culture is changed.
     /// </summary>
-    public string DisplayHeader => "Serializers"; // TODO-UPDATE: Localize
+    public string DisplayHeader => Resources.Utilities_Serializers_Header;
 
     public GenericIconKind Icon => GenericIconKind.Utilities_Serializers;
 

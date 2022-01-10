@@ -52,21 +52,18 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- TODO-UPDATE: Localize -->
                     <Button Grid.Column="0"
                             Margin="0 0 10 0"
-                            Content="Log"
+                            Content="{Resx Utilities_Serializers_Log}"
                             Command="{Binding Path=LogCommand, Mode=OneTime}" />
 
-                    <!-- TODO-UPDATE: Localize -->
                     <Button Grid.Column="1"
                             Margin="0 0 10 0"
-                            Content="Deserialize to JSON"
+                            Content="{Resx Utilities_Serializers_Deserialize}"
                             Command="{Binding Path=DeserializeCommand, Mode=OneTime}" />
 
-                    <!-- TODO-UPDATE: Localize -->
                     <Button Grid.Column="2"
-                            Content="Serialize from JSON"
+                            Content="{Resx Utilities_Serializers_Serialize}"
                             Command="{Binding Path=SerializeCommand, Mode=OneTime}" />
 
                 </Grid>

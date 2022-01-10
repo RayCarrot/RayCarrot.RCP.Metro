@@ -55,9 +55,8 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
                 game: Games.Rayman3),
 
-            // TODO-UPDATE: Localize
             new Utility_Decoders_TypeViewModel(
-                name: new ConstLocString("Rayman Raving Rabbids Save Files (.sav)"), 
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_RRRSaveHeader)), 
                 encoder: new RRR_SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
                 game: Games.RaymanRavingRabbids),

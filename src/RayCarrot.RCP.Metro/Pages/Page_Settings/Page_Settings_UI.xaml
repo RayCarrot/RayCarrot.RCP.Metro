@@ -244,25 +244,20 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             Margin="0 0 0 8">
-                                    <!-- TODO-UPDATE: Localize -->
                                     <TextBlock Style="{StaticResource TextBlock.Header}"
-                                               Text="Serialization Log" />
+                                               Text="{Resx Settings_SerializationLog}" />
 
-                                    <!-- TODO-UPDATE: Localize -->
-                                    <local:InfoIcon Text="Enabling the log will have any binary serialization action, such as using the Archive Explorer or viewing game progression, log to the specified log file. This is primarily for debugging, but can also be useful for viewing the data structure of certain formats." />
+                                    <local:InfoIcon Text="{Resx Settings_SerializationLogInfo}" />
 
                                 </StackPanel>
 
-                                <!-- TODO-UPDATE: Localize -->
-                                <CheckBox Content="Is enabled" 
+                                <CheckBox Content="{Resx IsEnabled}" 
                                           IsChecked="{Binding Path=Binary_IsSerializationLogEnabled}"
                                           Margin="0 0 0 8" />
 
-                                <!-- TODO-UPDATE: Localize -->
                                 <local:BrowseBox Visibility="{Binding Path=Binary_IsSerializationLogEnabled, Converter={local:BooleanToVisibilityConverter}}"
                                                  FileFilter="Txt (*.txt)|*.txt"
                                                  SelectedPath="{Binding Path=Binary_BinarySerializationFileLogPath}"
-                                                 ToolTip="{Resx Settings_BinarySerializationFileLogPathInfo}"
                                                  BrowseType="SaveFile" />
 
                             </StackPanel>

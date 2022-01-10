@@ -3136,16 +3136,16 @@ fileCount</comment>
     <value>Optional file path to output the serialization log when serializing a binary file</value>
   </data>
   <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
-    <value>Rayman 1 Config Files</value>
+    <value>Rayman 1 Config Files (.cfg)</value>
   </data>
   <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
-    <value>Rayman 1 Save Files</value>
+    <value>Rayman 1 Save Files (.sav)</value>
   </data>
   <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
-    <value>Rayman 2 Config Files</value>
+    <value>Rayman 2 Config Files (.cfg)</value>
   </data>
   <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
-    <value>Rayman 2 Save Files</value>
+    <value>Rayman 2 Save Files (.sav)</value>
   </data>
   <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
     <value>Rayman 1/2 Save Files (.sav/.cfg)</value>
@@ -4436,5 +4436,62 @@ By changing the data source here you can choose which location is used for backu
   </data>
   <data name="Progression_BackupSlots" xml:space="preserve">
     <value>Backup</value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Serialization Log</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Enabling the log will have any binary serialization action, such as using the Archive Explorer or viewing game progression, log to the specified log file. This is primarily for debugging, but can also be useful for viewing the data structure of certain formats.</value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Is enabled</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>Binary Tools</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Select format to convert back to</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids Save Files (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serializers</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Output as log</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>Deserialize to JSON</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>Serialize from JSON</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>Rayman Fiesta Run Save File (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Unity Player Preferences / Rabbids Big Bang Save File (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>Game Maker DS Map / Rayman Redemption Save File (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
+    <value>Select files to serialize</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>The files could not be logged</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
+    <value>The files were successfully deserialized</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
+    <value>The files could not be deserialized</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
+    <value>The files were successfully serialized</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
+    <value>The files could not be serialized</value>
   </data>
 </root>

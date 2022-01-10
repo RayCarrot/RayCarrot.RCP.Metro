@@ -6265,6 +6265,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is enabled.
+        /// </summary>
+        public static string IsEnabled {
+            get {
+                return ResourceManager.GetString("IsEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit jump list items.
         /// </summary>
         public static string JumpListEditor_Header {
@@ -11513,6 +11522,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Serialization Log.
+        /// </summary>
+        public static string Settings_SerializationLog {
+            get {
+                return ResourceManager.GetString("Settings_SerializationLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabling the log will have any binary serialization action, such as using the Archive Explorer or viewing game progression, log to the specified log file. This is primarily for debugging, but can also be useful for viewing the data structure of certain formats..
+        /// </summary>
+        public static string Settings_SerializationLogInfo {
+            get {
+                return ResourceManager.GetString("Settings_SerializationLogInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search for installed games.
         /// </summary>
         public static string Settings_StartupGameFinder {
@@ -11988,6 +12015,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Binary Tools.
+        /// </summary>
+        public static string Utilities_BinaryTools_Header {
+            get {
+                return ResourceManager.GetString("Utilities_BinaryTools_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Convert.
         /// </summary>
         public static string Utilities_Converter_Convert {
@@ -12069,7 +12105,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 1 Config Files.
+        ///   Looks up a localized string similar to Rayman 1 Config Files (.cfg).
         /// </summary>
         public static string Utilities_Converter_R1ConfigHeader {
             get {
@@ -12078,7 +12114,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 1 Save Files.
+        ///   Looks up a localized string similar to Rayman 1 Save Files (.sav).
         /// </summary>
         public static string Utilities_Converter_R1SaveHeader {
             get {
@@ -12087,7 +12123,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 Config Files.
+        ///   Looks up a localized string similar to Rayman 2 Config Files (.cfg).
         /// </summary>
         public static string Utilities_Converter_R2ConfigHeader {
             get {
@@ -12096,7 +12132,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 Save Files.
+        ///   Looks up a localized string similar to Rayman 2 Save Files (.sav).
         /// </summary>
         public static string Utilities_Converter_R2SaveHeader {
             get {
@@ -12146,6 +12182,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_ROSaveHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_ROSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select format to convert back to.
+        /// </summary>
+        public static string Utilities_Converter_SelectConvertBackFormat {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_SelectConvertBackFormat", resourceCulture);
             }
         }
         
@@ -12294,6 +12339,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game Maker DS Map / Rayman Redemption Save File (.txt).
+        /// </summary>
+        public static string Utilities_Format_GameMakerDSMapHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Format_GameMakerDSMapHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Fiesta Run Save File (.dat).
+        /// </summary>
+        public static string Utilities_Format_RFRSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Format_RFRSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids Save Files (.sav).
+        /// </summary>
+        public static string Utilities_Format_RRRSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Format_RRRSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unity Player Preferences / Rabbids Big Bang Save File (.dat).
+        /// </summary>
+        public static string Utilities_Format_UnityPlayerPrefsHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Format_UnityPlayerPrefsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         public static string Utilities_Other_Header {
@@ -12335,6 +12416,96 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_RequiresAdmin {
             get {
                 return ResourceManager.GetString("Utilities_RequiresAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deserialize to JSON.
+        /// </summary>
+        public static string Utilities_Serializers_Deserialize {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_Deserialize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files could not be deserialized.
+        /// </summary>
+        public static string Utilities_Serializers_DeserializeError {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_DeserializeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files were successfully deserialized.
+        /// </summary>
+        public static string Utilities_Serializers_DeserializeSuccess {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_DeserializeSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to serialize.
+        /// </summary>
+        public static string Utilities_Serializers_FileSelectionHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_FileSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serializers.
+        /// </summary>
+        public static string Utilities_Serializers_Header {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output as log.
+        /// </summary>
+        public static string Utilities_Serializers_Log {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files could not be logged.
+        /// </summary>
+        public static string Utilities_Serializers_LogError {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_LogError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serialize from JSON.
+        /// </summary>
+        public static string Utilities_Serializers_Serialize {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_Serialize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files could not be serialized.
+        /// </summary>
+        public static string Utilities_Serializers_SerializeError {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_SerializeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files were successfully serialized.
+        /// </summary>
+        public static string Utilities_Serializers_SerializeSuccess {
+            get {
+                return ResourceManager.GetString("Utilities_Serializers_SerializeSuccess", resourceCulture);
             }
         }
         

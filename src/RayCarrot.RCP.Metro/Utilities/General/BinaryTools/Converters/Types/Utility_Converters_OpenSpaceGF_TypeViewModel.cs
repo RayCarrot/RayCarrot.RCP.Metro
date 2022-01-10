@@ -45,9 +45,8 @@ public class Utility_Converters_OpenSpaceGF_TypeViewModel : Utility_Converters_T
 
     public override async Task<object?> GetConvertBackStateAsync()
     {
-        // TODO-UPDATE: Localize
         // Allow the user to select the format
-        FileExtensionSelectionDialogResult extResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(Enum.GetNames(typeof(GF_Format)), "Select format to convert back to"));
+        FileExtensionSelectionDialogResult extResult = await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(Enum.GetNames(typeof(GF_Format)), Resources.Utilities_Converter_SelectConvertBackFormat));
 
         if (extResult.CanceledByUser)
             return null;

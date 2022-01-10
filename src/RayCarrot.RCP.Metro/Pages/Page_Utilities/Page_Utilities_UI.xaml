@@ -24,10 +24,9 @@
 
         <!-- Binary Tools -->
 
-        <!-- TODO-UPDATE: Localize -->
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_BinaryTools}"
                  local:TabItemAssist.IconForeground="{StaticResource Colors.ArchiveExplorer}"
-                 Header="Binary Tools">
+                 Header="{Resx Utilities_BinaryTools_Header}">
 
             <ScrollViewer>
                 <local:UtilitiesContainer Utilities="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
