@@ -1101,6 +1101,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace.
+        /// </summary>
+        public static string Archive_ReplaceFile {
+            get {
+                return ResourceManager.GetString("Archive_ReplaceFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when replacing the file.
+        /// </summary>
+        public static string Archive_ReplaceFile_Error {
+            get {
+                return ResourceManager.GetString("Archive_ReplaceFile_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select file to replace.
+        /// </summary>
+        public static string Archive_ReplaceFileHeader {
+            get {
+                return ResourceManager.GetString("Archive_ReplaceFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Archive.
         /// </summary>
         public static string Archive_Save {
@@ -1353,7 +1380,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Backup.
+        ///   Looks up a localized string similar to Last backup.
         /// </summary>
         public static string Backup_LastBackupDate {
             get {
@@ -1362,7 +1389,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Backup Size.
+        ///   Looks up a localized string similar to Backup size.
         /// </summary>
         public static string Backup_LastBackupSize {
             get {
@@ -2875,6 +2902,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cheats.
+        /// </summary>
+        public static string Config_Cheats {
+            get {
+                return ResourceManager.GetString("Config_Cheats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compressed.
         /// </summary>
         public static string Config_Compressed {
@@ -3181,6 +3217,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The applied patch is outdated. Keep the patch enabled and save to update it to the newest version..
+        /// </summary>
+        public static string Config_OutdatedPatchNotice {
+            get {
+                return ResourceManager.GetString("Config_OutdatedPatchNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resolution.
         /// </summary>
         public static string Config_Resolution {
@@ -3249,6 +3294,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_RJRHeroes_Rayman {
             get {
                 return ResourceManager.GetString("Config_RJRHeroes_Rayman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror camera.
+        /// </summary>
+        public static string Config_RRRInvertHor {
+            get {
+                return ResourceManager.GetString("Config_RRRInvertHor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old movie.
+        /// </summary>
+        public static string Config_RRROldMovie {
+            get {
+                return ResourceManager.GetString("Config_RRROldMovie", resourceCulture);
             }
         }
         
@@ -8281,6 +8344,151 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string Progression_BackupSlots {
+            get {
+                return ResourceManager.GetString("Progression_BackupSlots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New changes are not backed up.
+        /// </summary>
+        public static string Progression_BackupStatus_Outdated {
+            get {
+                return ResourceManager.GetString("Progression_BackupStatus_Outdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backed up.
+        /// </summary>
+        public static string Progression_BackupStatus_UpToDate {
+            get {
+                return ResourceManager.GetString("Progression_BackupStatus_UpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cages.
+        /// </summary>
+        public static string Progression_Cages {
+            get {
+                return ResourceManager.GetString("Progression_Cages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change save editor program.
+        /// </summary>
+        public static string Progression_ChangeEditProgram {
+            get {
+                return ResourceManager.GetString("Progression_ChangeEditProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continues.
+        /// </summary>
+        public static string Progression_Continues {
+            get {
+                return ResourceManager.GetString("Progression_Continues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data source.
+        /// </summary>
+        public static string Progression_DataSource {
+            get {
+                return ResourceManager.GetString("Progression_DataSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        public static string Progression_DataSource_Auto {
+            get {
+                return ResourceManager.GetString("Progression_DataSource_Auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When creating a new backup or using the save files for the progression view then the location with the most recent files is chosen. When restoring a backup it will restore to both locations..
+        /// </summary>
+        public static string Progression_DataSource_AutoInfo {
+            get {
+                return ResourceManager.GetString("Progression_DataSource_AutoInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string Progression_DataSource_Default {
+            get {
+                return ResourceManager.GetString("Progression_DataSource_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The default location is always used. This corresponds to the location the game uses when it is running as admin..
+        /// </summary>
+        public static string Progression_DataSource_DefaultInfo {
+            get {
+                return ResourceManager.GetString("Progression_DataSource_DefaultInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VirtualStore.
+        /// </summary>
+        public static string Progression_DataSource_VirtualStore {
+            get {
+                return ResourceManager.GetString("Progression_DataSource_VirtualStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The VirtualStore location is always used. This corresponds to the location the game uses when it is not running as admin..
+        /// </summary>
+        public static string Progression_DataSource_VirtualStoreInfo {
+            get {
+                return ResourceManager.GetString("Progression_DataSource_VirtualStoreInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For older applications Windows will in some cases redirect save/config files to the VirtualStore if the application is not running as admin. The side effect of this is that you will have different save/config files being used for the game depending on if you&apos;re running it as admin or not.
+        ///By changing the data source here you can choose which location is used for backups and the progression view..
+        /// </summary>
+        public static string Progression_DataSourceInfo {
+            get {
+                return ResourceManager.GetString("Progression_DataSourceInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Progression_EditSlot {
+            get {
+                return ResourceManager.GetString("Progression_EditSlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Electoons.
+        /// </summary>
+        public static string Progression_Electoons {
+            get {
+                return ResourceManager.GetString("Progression_Electoons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string Progression_Export {
@@ -8358,6 +8566,33 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_ImportSuccess {
             get {
                 return ResourceManager.GetString("Progression_ImportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed levels.
+        /// </summary>
+        public static string Progression_LevelsCompleted {
+            get {
+                return ResourceManager.GetString("Progression_LevelsCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lives.
+        /// </summary>
+        public static string Progression_Lives {
+            get {
+                return ResourceManager.GetString("Progression_Lives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lums.
+        /// </summary>
+        public static string Progression_Lums {
+            get {
+                return ResourceManager.GetString("Progression_Lums", resourceCulture);
             }
         }
         
@@ -8452,7 +8687,133 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Lap (Lums).
+        ///   Looks up a localized string similar to Stamps.
+        /// </summary>
+        public static string Progression_R3Stamps {
+            get {
+                return ResourceManager.GetString("Progression_R3Stamps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stars.
+        /// </summary>
+        public static string Progression_RabbidsBigBangStars {
+            get {
+                return ResourceManager.GetString("Progression_RabbidsBigBangStars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank.
+        /// </summary>
+        public static string Progression_Rank {
+            get {
+                return ResourceManager.GetString("Progression_Rank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bzzit skins.
+        /// </summary>
+        public static string Progression_RedemptionBzzitSkins {
+            get {
+                return ResourceManager.GetString("Progression_RedemptionBzzitSkins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkpoint skins.
+        /// </summary>
+        public static string Progression_RedemptionCheckpointSkins {
+            get {
+                return ResourceManager.GetString("Progression_RedemptionCheckpointSkins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Presents.
+        /// </summary>
+        public static string Progression_RedemptionPresents {
+            get {
+                return ResourceManager.GetString("Progression_RedemptionPresents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman skins.
+        /// </summary>
+        public static string Progression_RedemptionRaySkins {
+            get {
+                return ResourceManager.GetString("Progression_RedemptionRaySkins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tokens.
+        /// </summary>
+        public static string Progression_RedemptionTokens {
+            get {
+                return ResourceManager.GetString("Progression_RedemptionTokens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crowns.
+        /// </summary>
+        public static string Progression_RFRCrowns {
+            get {
+                return ResourceManager.GetString("Progression_RFRCrowns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nightmare mode.
+        /// </summary>
+        public static string Progression_RFRNightmareMode {
+            get {
+                return ResourceManager.GetString("Progression_RFRNightmareMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bronze cups.
+        /// </summary>
+        public static string Progression_RLBronzeCups {
+            get {
+                return ResourceManager.GetString("Progression_RLBronzeCups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diamond cups.
+        /// </summary>
+        public static string Progression_RLDiamondCups {
+            get {
+                return ResourceManager.GetString("Progression_RLDiamondCups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gold cups.
+        /// </summary>
+        public static string Progression_RLGoldCups {
+            get {
+                return ResourceManager.GetString("Progression_RLGoldCups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silver cups.
+        /// </summary>
+        public static string Progression_RLSilverCups {
+            get {
+                return ResourceManager.GetString("Progression_RLSilverCups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Lap - Lums.
         /// </summary>
         public static string Progression_RM_LapLums {
             get {
@@ -8461,7 +8822,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Lap (Race).
+        ///   Looks up a localized string similar to Best Lap - Race.
         /// </summary>
         public static string Progression_RM_LapRace {
             get {
@@ -8470,7 +8831,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Lap (Target).
+        ///   Looks up a localized string similar to Best Lap - Target.
         /// </summary>
         public static string Progression_RM_LapTarget {
             get {
@@ -8479,7 +8840,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Lap (Training).
+        ///   Looks up a localized string similar to Best Lap - Training.
         /// </summary>
         public static string Progression_RM_LapTraining {
             get {
@@ -8506,7 +8867,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Time (Lums).
+        ///   Looks up a localized string similar to Best Time - Lums.
         /// </summary>
         public static string Progression_RM_TimeLums {
             get {
@@ -8515,7 +8876,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Time (Race).
+        ///   Looks up a localized string similar to Best Time - Race.
         /// </summary>
         public static string Progression_RM_TimeRace {
             get {
@@ -8524,11 +8885,200 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Time (Target).
+        ///   Looks up a localized string similar to Best Time - Target.
         /// </summary>
         public static string Progression_RM_TimeTarget {
             get {
                 return ResourceManager.GetString("Progression_RM_TimeTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished battles.
+        /// </summary>
+        public static string Progression_RMBattlesCompleted {
+            get {
+                return ResourceManager.GetString("Progression_RMBattlesCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished races.
+        /// </summary>
+        public static string Progression_RMRacesCompleted {
+            get {
+                return ResourceManager.GetString("Progression_RMRacesCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lum medals.
+        /// </summary>
+        public static string Progression_ROLumMedals {
+            get {
+                return ResourceManager.GetString("Progression_ROLumMedals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed trophies.
+        /// </summary>
+        public static string Progression_ROSpeedTrophies {
+            get {
+                return ResourceManager.GetString("Progression_ROSpeedTrophies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        public static string Progression_RRRDays {
+            get {
+                return ResourceManager.GetString("Progression_RRRDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed minigames.
+        /// </summary>
+        public static string Progression_RRRMinigamesCompleted {
+            get {
+                return ResourceManager.GetString("Progression_RRRMinigamesCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (Points).
+        /// </summary>
+        public static string Progression_RRRPoints {
+            get {
+                return ResourceManager.GetString("Progression_RRRPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (Score).
+        /// </summary>
+        public static string Progression_RRRScore {
+            get {
+                return ResourceManager.GetString("Progression_RRRScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score.
+        /// </summary>
+        public static string Progression_RRRScoreSlot {
+            get {
+                return ResourceManager.GetString("Progression_RRRScoreSlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total points.
+        /// </summary>
+        public static string Progression_RRRTotalPoints {
+            get {
+                return ResourceManager.GetString("Progression_RRRTotalPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The save file has been successfully modified.
+        /// </summary>
+        public static string Progression_SaveEditSuccess {
+            get {
+                return ResourceManager.GetString("Progression_SaveEditSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editing save files may corrupt them if done incorrectly. It is highly recommended to keep a backup before proceeding. Continue?.
+        /// </summary>
+        public static string Progression_SaveEditWarning {
+            get {
+                return ResourceManager.GetString("Progression_SaveEditWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm save file editing.
+        /// </summary>
+        public static string Progression_SaveEditWarningHeader {
+            get {
+                return ResourceManager.GetString("Progression_SaveEditWarningHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an executable for editing JSON save files.
+        /// </summary>
+        public static string Progression_SelectEditProgram {
+            get {
+                return ResourceManager.GetString("Progression_SelectEditProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string Progression_SlotInfo_File {
+            get {
+                return ResourceManager.GetString("Progression_SlotInfo_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified.
+        /// </summary>
+        public static string Progression_SlotInfo_LastModified {
+            get {
+                return ResourceManager.GetString("Progression_SlotInfo_LastModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string Progression_SlotInfo_Size {
+            get {
+                return ResourceManager.GetString("Progression_SlotInfo_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teensies.
+        /// </summary>
+        public static string Progression_Teensies {
+            get {
+                return ResourceManager.GetString("Progression_Teensies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teeth.
+        /// </summary>
+        public static string Progression_Teeth {
+            get {
+                return ResourceManager.GetString("Progression_Teeth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tings.
+        /// </summary>
+        public static string Progression_Tings {
+            get {
+                return ResourceManager.GetString("Progression_Tings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total score.
+        /// </summary>
+        public static string Progression_TotalScore {
+            get {
+                return ResourceManager.GetString("Progression_TotalScore", resourceCulture);
             }
         }
         

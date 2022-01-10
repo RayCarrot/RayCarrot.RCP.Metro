@@ -71,17 +71,16 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 
             List<ProgressionDataViewModel> progressItems = new()
             {
-                // TODO-UPDATE: Localize
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R2_Lum, 
-                    header: new ConstLocString("Lums"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_Lums)),
                     value: lums, 
                     max: 1000),
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R2_Cage, 
-                    header: new ConstLocString("Cages"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: 80),
             };
@@ -94,7 +93,6 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
                     text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\.ff}")));
 
             if (walkOfPowerTime > 120)
-                // TODO-UPDATE: Localize
                 progressItems.Add(new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R2_Clock,

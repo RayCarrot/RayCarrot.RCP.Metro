@@ -91,21 +91,48 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
             int teensies = saveData.Levels.Select(x => x.Value.Object.FreedPrisoners.Length).Sum() + saveData.LuckyTicketRewardList.Count(x => x.Type == 5);
 
             // Add general progress info
-            // TODO-UPDATE: Localize
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RL_Teensy, new ConstLocString("Teensies"), teensies, 700));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, new ConstLocString("Lums"), saveData.Score.LocalLumsCount));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RL_Teensy, 
+                header: new ResourceLocString(nameof(Resources.Progression_Teensies)), 
+                value: teensies, 
+                max: 700));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: false, 
+                icon: ProgressionIcon.RL_Lum,
+                header: new ResourceLocString(nameof(Resources.Progression_Lums)),
+                value: saveData.Score.LocalLumsCount));
 
             // Add rank
             var rankIcon = (ProgressionIcon)Enum.Parse(typeof(ProgressionIcon), $"RL_Rank{saveData.Profile.StatusIcon}");
-            // TODO-UPDATE: Localize
-            progressItems.Add(new ProgressionDataViewModel(true, rankIcon, new ConstLocString("Rank"), (int)saveData.Profile.StatusIcon, 11));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: rankIcon,
+                header: new ResourceLocString(nameof(Resources.Progression_Rank)),
+                value: (int)saveData.Profile.StatusIcon, 
+                max: 11));
 
             // Add cups
-            // TODO-UPDATE: Localize
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Bronze, new ConstLocString("Bronze cups"), (int)saveData.Profile.BronzeMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Silver, new ConstLocString("Silver cups"), (int)saveData.Profile.SilverMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Gold, new ConstLocString("Gold cups"), (int)saveData.Profile.GoldMedals));
-            progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Diamond, new ConstLocString("Diamond cups"), (int)saveData.Profile.DiamondMedals));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: false, 
+                icon: ProgressionIcon.RL_Bronze,
+                header: new ResourceLocString(nameof(Resources.Progression_RLBronzeCups)),
+                value: (int)saveData.Profile.BronzeMedals));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: false, 
+                icon: ProgressionIcon.RL_Silver,
+                header: new ResourceLocString(nameof(Resources.Progression_RLSilverCups)),
+                value: (int)saveData.Profile.SilverMedals));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: false, 
+                icon: ProgressionIcon.RL_Gold,
+                header: new ResourceLocString(nameof(Resources.Progression_RLGoldCups)),
+                value: (int)saveData.Profile.GoldMedals));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: false, 
+                icon: ProgressionIcon.RL_Diamond,
+                header: new ResourceLocString(nameof(Resources.Progression_RLDiamondCups)),
+                value: (int)saveData.Profile.DiamondMedals));
 
             // Get the level IDs
             Dictionary<uint, string> lvlIds = GetLevelIDs;

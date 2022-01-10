@@ -33,8 +33,7 @@
 
             <Separator />
 
-            <!-- TODO-UPDATE: Localize -->
-            <local:MenuItemIcon Header="Change save editor program"
+            <local:MenuItemIcon Header="{Resx Progression_ChangeEditProgram}"
                                 IconKind="ApplicationOutline"
                                 Command="{Binding Path=ChangeSaveEditProgramCommand, Mode=OneTime}" />
 

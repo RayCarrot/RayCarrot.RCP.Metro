@@ -51,10 +51,24 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
             // Create the collection with items for each level + general information
             ProgressionDataViewModel[] progressItems = 
             {
-                // TODO-UPDATE: Localize
-                new ProgressionDataViewModel(isPrimaryItem: true, icon: ProgressionIcon.R3_Cage, header: new ConstLocString("Cages"), value: saveData.TotalCages, max: 60),
-                new ProgressionDataViewModel(true, ProgressionIcon.R3_Stamp, new ConstLocString("Stamps"), stamps, stampScores.Length),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ConstLocString("Total score"), saveData.TotalScore),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.R3_Cage,
+                    header: new ResourceLocString(nameof(Resources.Progression_Cages)),
+                    value: saveData.TotalCages, 
+                    max: 60),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: true, 
+                    icon: ProgressionIcon.R3_Stamp, 
+                    header: new ResourceLocString(nameof(Resources.Progression_R3Stamps)),
+                    value: stamps, 
+                    max: stampScores.Length),
+                new ProgressionDataViewModel(
+                    isPrimaryItem: false, 
+                    icon: ProgressionIcon.R3_Score, 
+                    header: new ResourceLocString(nameof(Resources.Progression_TotalScore)),
+                    value: saveData.TotalScore),
+                
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level3Header)), saveData.Levels[2].Score),

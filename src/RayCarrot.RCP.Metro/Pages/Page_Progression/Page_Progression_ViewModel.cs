@@ -146,8 +146,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
     {
         ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
         {
-            // TODO-UPDATE: Localize
-            Title = "Select an executable for editing JSON save files",
+            Title = Resources.Progression_SelectEditProgram,
             ProgramFilePath = Data.Progression_SaveEditorExe,
             FileExtensions = new FileExtension[]
             {

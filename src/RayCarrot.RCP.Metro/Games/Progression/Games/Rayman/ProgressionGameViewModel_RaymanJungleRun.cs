@@ -105,7 +105,6 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 }
 
                 // Add the item
-                // TODO-UPDATE: Localize
                 progressItems.Add(new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.RO_Clock, 
@@ -117,17 +116,16 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             int maxTeeth = numWorlds * 10;
 
             // Add general progress info first
-            // TODO-UPDATE: Localize
             progressItems.Insert(0, new ProgressionDataViewModel(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_Lum, 
-                header: new ConstLocString("Lums"), 
+                icon: ProgressionIcon.RO_Lum,
+                header: new ResourceLocString(nameof(Resources.Progression_Lums)),
                 value: lums, 
                 max: maxLums));
             progressItems.Insert(1, new ProgressionDataViewModel(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_RedTooth, 
-                header: new ConstLocString("Teeth"), 
+                icon: ProgressionIcon.RO_RedTooth,
+                header: new ResourceLocString(nameof(Resources.Progression_Teeth)),
                 value: teeth, 
                 max: maxTeeth));
 

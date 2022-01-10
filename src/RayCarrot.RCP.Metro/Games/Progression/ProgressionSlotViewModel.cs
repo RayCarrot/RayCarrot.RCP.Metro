@@ -137,8 +137,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         if (Data.Progression_ShownEditSaveWarning) 
             return true;
         
-        // TODO-UPDATE: Localize
-        bool confirmResult = await Services.MessageUI.DisplayMessageAsync("Editing save files may corrupt them if done incorrectly. It is highly recommended to keep a backup before proceeding. Continue?", "Confirm save file editing", MessageType.Question, true);
+        bool confirmResult = await Services.MessageUI.DisplayMessageAsync(Resources.Progression_SaveEditWarning, Resources.Progression_SaveEditWarningHeader, MessageType.Question, true);
 
         if (!confirmResult)
             return false;
@@ -169,10 +168,10 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
             if (FilePath.FileExists)
             {
-                // TODO-UPDATE: Localize
-                InfoItems.Add(new DuoGridItemViewModel("File", FilePath));
-                InfoItems.Add(new DuoGridItemViewModel("Size", await Task.Run(() => FilePath.GetSize().ToString())));
-                InfoItems.Add(new DuoGridItemViewModel("Last Modified", FilePath.GetFileInfo().LastWriteTime.ToShortDateString()));
+                // TODO-UPDATE: Use LocalizedString in duo grid
+                InfoItems.Add(new DuoGridItemViewModel(Resources.Progression_SlotInfo_File, FilePath));
+                InfoItems.Add(new DuoGridItemViewModel(Resources.Progression_SlotInfo_Size, await Task.Run(() => FilePath.GetSize().ToString())));
+                InfoItems.Add(new DuoGridItemViewModel(Resources.Progression_SlotInfo_LastModified, FilePath.GetFileInfo().LastWriteTime.ToShortDateString()));
                 HasInfoItems = true;
             }
             else
@@ -293,8 +292,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                 {
                     ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
                     {
-                        // TODO-UPDATE: Localize
-                        Title = "Select an executable for editing JSON save files",
+                        Title = Resources.Progression_SelectEditProgram,
                         FileExtensions = new FileExtension[]
                         {
                             new FileExtension(".json"),
@@ -356,8 +354,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                     await Game.LoadSlotInfoItemsAsync();
                     await Game.LoadBackupAsync();
 
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The save file has been successfully modified");
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_SaveEditSuccess);
                 }
                 else
                 {

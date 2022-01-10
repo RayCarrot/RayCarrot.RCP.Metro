@@ -51,11 +51,10 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         ProgressionDataViewModel[] progressItems =
         {
-            // TODO-UPDATE: Localize
             new ProgressionDataViewModel(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RabbidsBigBang_Score, 
-                header: new ConstLocString("Stars"), 
+                header: new ResourceLocString(nameof(Resources.Progression_RabbidsBigBangStars)), 
                 value: score, 
                 max: maxScore),
         };

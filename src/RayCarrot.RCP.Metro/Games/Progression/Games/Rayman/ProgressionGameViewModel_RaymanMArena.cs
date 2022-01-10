@@ -87,9 +87,18 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
             AddBattleCompleted(GetValues("sg_battlelevels_mode3"));
 
             // Add completed challenges
-            // TODO-UPDATE: Localize
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Race, new ConstLocString("Races finished"), raceCompleted, maxRace));
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RM_Battle, new ConstLocString("Battles finished"), battleCompleted, maxBattle));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RM_Race,
+                header: new ResourceLocString(nameof(Resources.Progression_RMRacesCompleted)),
+                value: raceCompleted, 
+                max: maxRace));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RM_Battle,
+                header: new ResourceLocString(nameof(Resources.Progression_RMBattlesCompleted)),
+                value: battleCompleted, 
+                max: maxBattle));
 
             // Add records for every race
             for (int raceIndex = 0; raceIndex < 16; raceIndex++)
@@ -105,7 +114,6 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
                     // Only add if it has valid data
                     if ((isTime && value > 0) || (!isTime && value > -22))
-                        // TODO-UPDATE: Update localization for the get description
                         progressItems.Add(new ProgressionDataViewModel(
                             isPrimaryItem: false,
                             // Get the level icon

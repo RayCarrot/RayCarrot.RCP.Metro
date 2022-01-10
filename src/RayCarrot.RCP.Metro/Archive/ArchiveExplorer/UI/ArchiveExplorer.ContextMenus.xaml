@@ -59,8 +59,7 @@
 
         <!-- Replace -->
 
-        <!-- TODO-UPDATE: Localize -->
-        <local:MenuItemIcon Header="Replace"
+        <local:MenuItemIcon Header="{Resx Archive_ReplaceFile}"
                             Command="{Binding Path=ReplaceCommand, Mode=OneTime}"
                             IconKind="FileReplaceOutline" />
 

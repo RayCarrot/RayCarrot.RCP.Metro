@@ -126,11 +126,30 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             int teeth = saveData.Levels.Select(x => x.Value.Object.ISDs.Select(y => y.Value.Object.TakenTooth.Length)).SelectMany(x => x).Sum();
 
             // Add general progress info
-            // TODO-UPDATE: Localize
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Electoon, new ConstLocString("Electoons"), electoons, 246));
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_RedTooth, new ConstLocString("Teeth"), teeth, 10));
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Medal, new ConstLocString("Lum medals"), lumAttack3, 51));
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RO_Trophy, new ConstLocString("Speed trophies"), timeAttack2, 31));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RO_Electoon,
+                header: new ResourceLocString(nameof(Resources.Progression_Electoons)),
+                value: electoons, 
+                max: 246));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RO_RedTooth, 
+                header: new ResourceLocString(nameof(Resources.Progression_Teeth)),
+                value: teeth, 
+                max: 10));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RO_Medal, 
+                header: new ResourceLocString(nameof(Resources.Progression_ROLumMedals)),
+                value: lumAttack3, 
+                max: 51));
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RO_Trophy,
+                header: new ResourceLocString(nameof(Resources.Progression_ROSpeedTrophies)),
+                value: timeAttack2, 
+                max: 31));
 
             yield return new SerializableProgressionSlotViewModel<Origins_SaveData>(this, null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems, context, saveFileData, fileName)
             {

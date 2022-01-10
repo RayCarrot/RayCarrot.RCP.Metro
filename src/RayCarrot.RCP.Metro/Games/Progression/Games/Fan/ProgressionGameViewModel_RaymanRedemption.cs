@@ -157,57 +157,56 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             var dataItems = new ProgressionDataViewModel[]
             {
-                // TODO-UPDATE: Localize
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R1_LevelExit, 
-                    header: new ConstLocString("Levels completed"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)), 
                     value: levelsCompleted, max: maxLevelsCompleted),
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R1_Cage, 
-                    header: new ConstLocString("Cages"), 
+                    icon: ProgressionIcon.R1_Cage,
+                    header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: maxCages),
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.Redemption_Token, 
-                    header: new ConstLocString("Tokens"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_RedemptionTokens)),
                     value: tokens, 
                     max: maxTokens),
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.Redemption_Present, 
-                    header: new ConstLocString("Presents"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_RedemptionPresents)),
                     value: presents, 
                     max: maxPresents),
                 new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.Redemption_RaymanSkin, 
-                    header: new ConstLocString("Rayman skins"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_RedemptionRaySkins)),
                     value: raymanSkins, 
                     max: maxRaymanSkins),
                 new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.Redemption_BzzitSkin, 
-                    header: new ConstLocString("Bzzit skins"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_RedemptionBzzitSkins)),
                     value: bzzitSkins, 
                     max: maxBzzitSkins),
                 new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.Redemption_CheckpointSkin, 
-                    header: new ConstLocString("Checkpoint skins"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_RedemptionCheckpointSkins)),
                     value: checkpointSkins, 
                     max: maxCheckpointSkins),
                 new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Ting, 
-                    header: new ConstLocString("Tings"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_Tings)),
                     value: tings),
                 new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Life, 
-                    header: new ConstLocString("Lives"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_Lives)),
                     text: new ConstLocString(lives)),
             }.Concat(magicianBonusDataItems);
 

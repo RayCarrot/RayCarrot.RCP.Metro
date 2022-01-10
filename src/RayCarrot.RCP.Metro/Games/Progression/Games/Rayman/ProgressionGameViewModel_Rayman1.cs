@@ -48,22 +48,21 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
 
             ProgressionDataViewModel[] dataItems =
             {
-                // TODO-UPDATE: Localize
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R1_Cage, 
-                    header: new ConstLocString("Cages"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: 102),
                 new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Continue, 
-                    header: new ConstLocString("Continues"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_Continues)),
                     value: saveData.ContinuesCount),
                 new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Life, 
-                    header: new ConstLocString("Lives"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_Lives)),
                     value: saveData.StatusBar.LivesCount),
             };
 

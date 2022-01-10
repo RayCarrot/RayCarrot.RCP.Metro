@@ -84,17 +84,26 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
             maxCrowns += 16;
         }
 
-        // TODO-UPDATE: Localize
-        progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RFR_Crown, new ConstLocString("Crowns"), crowns, maxCrowns));
+        progressItems.Add(new ProgressionDataViewModel(
+            isPrimaryItem: true, 
+            icon: ProgressionIcon.RFR_Crown, 
+            header: new ResourceLocString(nameof(Resources.Progression_RFRCrowns)), 
+            value: crowns, 
+            max: maxCrowns));
 
         if (saveData.Version >= 2)
-        {
-            // TODO-UPDATE: Localize
-            progressItems.Add(new ProgressionDataViewModel(true, ProgressionIcon.RFR_Nightmare, new ConstLocString("Nightmare mode"), GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100), 36));
-        }
+            progressItems.Add(new ProgressionDataViewModel(
+                isPrimaryItem: true, 
+                icon: ProgressionIcon.RFR_Nightmare, 
+                header: new ResourceLocString(nameof(Resources.Progression_RFRNightmareMode)), 
+                value: GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100), 
+                max: 36));
 
-        // TODO-UPDATE: Localize
-        progressItems.Add(new ProgressionDataViewModel(false, ProgressionIcon.RL_Lum, new ConstLocString("Lums"), (int)saveData.LumsGlobalCounter));
+        progressItems.Add(new ProgressionDataViewModel(
+            isPrimaryItem: false, 
+            icon: ProgressionIcon.RL_Lum,
+            header: new ResourceLocString(nameof(Resources.Progression_Lums)),
+            value: (int)saveData.LumsGlobalCounter));
 
         // Add Livid Dead times
         for (int lvlIndex = 0; lvlIndex < saveData.LevelTimes.Length; lvlIndex++)

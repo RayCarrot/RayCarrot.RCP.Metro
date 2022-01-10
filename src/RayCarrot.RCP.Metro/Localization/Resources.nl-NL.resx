@@ -3067,25 +3067,25 @@ Foutmelding: {1}</value>
     <value>Geeft aan of het .gf-bestand geconverteerd zou moeten worden naar 24/32-bit tijdens de import voor de hoogst mogelijke kwaliteit</value>
   </data>
   <data name="Progression_RM_LapTraining" xml:space="preserve">
-    <value>Beste Ronde (Training)</value>
+    <value>Beste Ronde - Training</value>
   </data>
   <data name="Progression_RM_LapRace" xml:space="preserve">
-    <value>Beste Ronde (Race)</value>
+    <value>Beste Ronde - Race</value>
   </data>
   <data name="Progression_RM_LapTarget" xml:space="preserve">
-    <value>Beste Ronde (Doelwit)</value>
+    <value>Beste Ronde - Doelwit</value>
   </data>
   <data name="Progression_RM_LapLums" xml:space="preserve">
-    <value>Beste Ronde (Lums)</value>
+    <value>Beste Ronde - Lums</value>
   </data>
   <data name="Progression_RM_TimeRace" xml:space="preserve">
-    <value>Beste Tijd (Race)</value>
+    <value>Beste Tijd - Race</value>
   </data>
   <data name="Progression_RM_TimeTarget" xml:space="preserve">
-    <value>Beste Tijd (Doelwit)</value>
+    <value>Beste Tijd - Doelwit</value>
   </data>
   <data name="Progression_RM_TimeLums" xml:space="preserve">
-    <value>Beste Tijd (Lums)</value>
+    <value>Beste Tijd - Lums</value>
   </data>
   <data name="Progression_RM_Targets" xml:space="preserve">
     <value>Doelwitten</value>

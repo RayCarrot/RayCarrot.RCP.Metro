@@ -122,11 +122,10 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         if (levelsFinished > 0)
         {
             // Add levels completed
-            // TODO-UPDATE: Localize
             progressItems.Insert(0, new ProgressionDataViewModel(
                 isPrimaryItem: true,
                 icon: ProgressionIcon.R1_Flag,
-                header: new ConstLocString("Levels completed"),
+                header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
                 value: levelsFinished,
                 max: levelsCount));
 

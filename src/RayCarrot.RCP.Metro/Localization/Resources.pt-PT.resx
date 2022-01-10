@@ -3080,25 +3080,25 @@ Error message: {1}</value>
     <value>Indica se o ficheiro .gf deverá ser convertido para 24/32-bits na importação para a qualidade mais alta possível</value>
   </data>
   <data name="Progression_RM_LapTraining" xml:space="preserve">
-    <value>Melhor Volta (Treino)</value>
+    <value>Melhor Volta - Treino</value>
   </data>
   <data name="Progression_RM_LapRace" xml:space="preserve">
-    <value>Melhor Volta (Corrida)</value>
+    <value>Melhor Volta - Corrida</value>
   </data>
   <data name="Progression_RM_LapTarget" xml:space="preserve">
-    <value>Melhor Volta (Alvos)</value>
+    <value>Melhor Volta - Alvos</value>
   </data>
   <data name="Progression_RM_LapLums" xml:space="preserve">
-    <value>Melhor Volta (Lums)</value>
+    <value>Melhor Volta - Lums</value>
   </data>
   <data name="Progression_RM_TimeRace" xml:space="preserve">
-    <value>Melhor Tempo (Corrida)</value>
+    <value>Melhor Tempo - Corrida</value>
   </data>
   <data name="Progression_RM_TimeTarget" xml:space="preserve">
-    <value>Melhor Tempo (Alvos)</value>
+    <value>Melhor Tempo - Alvos</value>
   </data>
   <data name="Progression_RM_TimeLums" xml:space="preserve">
-    <value>Melhor Tempo (Lums)</value>
+    <value>Melhor Tempo - Lums</value>
   </data>
   <data name="Progression_RM_Targets" xml:space="preserve">
     <value>Alvos</value>

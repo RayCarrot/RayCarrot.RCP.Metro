@@ -572,8 +572,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                 // Get the file
                 FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
-                    // TODO-UPDATE: Localize
-                    Title = "Select file to replace"
+                    Title = Resources.Archive_ReplaceFileHeader
                 });
 
                 if (result.CanceledByUser)
@@ -593,8 +592,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                     {
                         Logger.Error(ex, "Replacing file");
 
-                        // TODO-UPDATE: New localized string
-                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportFile_Error);
+                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ReplaceFile_Error);
                     }
                 });
             }

@@ -413,10 +413,10 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
     <value>Email</value>
   </data>
   <data name="Backup_LastBackupDate" xml:space="preserve">
-    <value>Ultimo Backup</value>
+    <value>Ultimo backup</value>
   </data>
   <data name="Backup_LastBackupSize" xml:space="preserve">
-    <value>Dimensione Backup</value>
+    <value>Dimensione backup</value>
   </data>
   <data name="Backup_Backup" xml:space="preserve">
     <value>Backup</value>
@@ -3065,25 +3065,25 @@ Messaggio di errore: {1} </value>
     <value>Indica se il file .gf deve essere convertito a 24/32 bit durante l'importazione per ottenere la massima qualità possibile</value>
   </data>
   <data name="Progression_RM_LapTraining" xml:space="preserve">
-    <value>Miglior giro (Allenamento)</value>
+    <value>Miglior giro - Allenamento</value>
   </data>
   <data name="Progression_RM_LapRace" xml:space="preserve">
-    <value>Miglior Giro (Corsa)</value>
+    <value>Miglior Giro - Corsa</value>
   </data>
   <data name="Progression_RM_LapTarget" xml:space="preserve">
-    <value>Miglior Giro (Bersaglio)</value>
+    <value>Miglior Giro - Bersaglio</value>
   </data>
   <data name="Progression_RM_LapLums" xml:space="preserve">
-    <value>Miglior Giro (Lum)</value>
+    <value>Miglior Giro - Lum</value>
   </data>
   <data name="Progression_RM_TimeRace" xml:space="preserve">
-    <value>Miglior Tempo (Corsa)</value>
+    <value>Miglior Tempo - Corsa</value>
   </data>
   <data name="Progression_RM_TimeTarget" xml:space="preserve">
-    <value>Miglior Tempo (Bersaglio)</value>
+    <value>Miglior Tempo - Bersaglio</value>
   </data>
   <data name="Progression_RM_TimeLums" xml:space="preserve">
-    <value>Miglior Tempo (Lum)</value>
+    <value>Miglior Tempo - Lum</value>
   </data>
   <data name="Progression_RM_Targets" xml:space="preserve">
     <value>Bersagli</value>

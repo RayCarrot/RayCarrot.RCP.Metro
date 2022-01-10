@@ -800,18 +800,16 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
             ProgressionDataViewModel[] dataItems =
             {
-                // TODO-UPDATE: Localize
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.RRR_Plunger, 
-                    header: new ConstLocString("Days"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_RRRDays)), 
                     value: slot.SlotDesc.Progress_Days, 
                     max: 15),
-                // TODO-UPDATE: Localize
                 new ProgressionDataViewModel(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.RRR_Trophy, 
-                    header: new ConstLocString("Completed minigames"), 
+                    header: new ResourceLocString(nameof(Resources.Progression_RRRMinigamesCompleted)), 
                     value: completedMinigames, 
                     max: 5 * 15),
             };
@@ -836,8 +834,10 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         const int maxScore = 183000;
 
         // Enumerate every minigame
-        for (int mgID = 0; mgID < 128; mgID++)
+        for (int i = 0; i < 128; i++)
         {
+            int mgID = i;
+
             // Find player top score
             int[] playerScores = Enumerable.Range(0, 3).Where(i => saveData.ScoreSlot.Univers.MG_record_pn[mgID * 3 * 3 + i * 3] > 0).ToArray();
 
@@ -880,33 +880,30 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             string name = char0 + char1 + char2;
 
             if (score != 0 && (types[mgID] & 0x100) == 0 && mgID != 64)
-                // TODO-UPDATE: Localize
                 scoreDataItems.Add(new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.RRR_Star, 
-                    header: new ConstLocString($"{names[mgID]} (Points)"), 
+                    header: new GeneratedLocString(() => String.Format(Resources.Progression_RRRPoints, names[mgID])), 
                     value: score, 
                     max: 1000));
 
             scoreDataItems.Add(new ProgressionDataViewModel(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RRR_Trophy, 
-                header: new ConstLocString($"{names[mgID]} (Score)"), 
+                header: new GeneratedLocString(() => String.Format(Resources.Progression_RRRScore, names[mgID])), 
                 text: new ConstLocString($"{name}: {playerHighScore}")));
         }
 
         // Add total score
-        // TODO-UPDATE: Localize
         scoreDataItems.Insert(0, new ProgressionDataViewModel(
             isPrimaryItem: true, 
             icon: ProgressionIcon.RRR_Star, 
-            header: new ConstLocString("Total points"), 
+            header: new ResourceLocString(nameof(Resources.Progression_RRRTotalPoints)), 
             value: totalScore, 
             max: maxScore));
 
         // Add score slot
-        // TODO-UPDATE: Localize
-        yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString("Score"), 3, totalScore, maxScore, scoreDataItems, context, saveData, saveFile.Name)
+        yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ResourceLocString(nameof(Resources.Progression_RRRScoreSlot)), 3, totalScore, maxScore, scoreDataItems, context, saveData, saveFile.Name)
         {
             GetExportObject = x => x.ScoreSlot,
             SetImportObject = (x, o) => x.ScoreSlot = (RRR_SaveSlot)o,

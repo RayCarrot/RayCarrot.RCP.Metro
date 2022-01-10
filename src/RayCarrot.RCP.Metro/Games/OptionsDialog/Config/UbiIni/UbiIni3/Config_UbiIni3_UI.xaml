@@ -213,9 +213,8 @@
                       IsChecked="{Binding Path=IsDiscCheckRemoved}"
                       IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
 
-            <!-- TODO-UPDATE: Localize -->
             <local:InfoIcon Style="{StaticResource InfoIcon.Notice}"
-                            Text="The applied patch is outdated. Keep the patch enabled and save to update it to the newest version."
+                            Text="{Resx Config_OutdatedPatchNotice}"
                             Visibility="{Binding Path=IsDiscPatchOutdated, Converter={local:BooleanToVisibilityConverter}}"/>
 
         </StackPanel>

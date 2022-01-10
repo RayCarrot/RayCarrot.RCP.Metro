@@ -143,11 +143,9 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
                 BackupInfoItems.Add(new DuoGridItemViewModel("Is backup compressed", backup.IsCompressed.ToString(), UserLevel.Debug));
 
                 // Get the backup date
-                // TODO-UPDATE: Update localized character casing
                 BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupDate, backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString()));
 
                 // Get the backup size
-                // TODO-UPDATE: Update localized character casing
                 BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupSize, backup.Path.GetSize().ToString()));
 
                 HasBackupInfoItems = true;
@@ -205,7 +203,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         HasBackupSlots = BackupSlots.Any();
     }
 
-    private BackupStatus GetBackupStatus(GameBackups_ExistingBackup backup)
+    private async Task<BackupStatus> GetBackupStatusAsync(GameBackups_ExistingBackup backup)
     {
         // If the backup is not using the latest version we always mark it as being outdated
         if (backup.BackupVersion < BackupInfo!.LatestAvailableBackupVersion)
@@ -295,7 +293,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         {
             Logger.Error(ex, "Getting backup status for {0}", DisplayName);
 
-            // TODO-UPDATE: Show error message
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, DisplayName));
 
             return BackupStatus.None;
         }
@@ -428,7 +426,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             HasBackup = backup != null;
 
             // Get the current backup status
-            CurrentBackupStatus = backup != null ? await Task.Run(() => GetBackupStatus(backup)) : BackupStatus.None;
+            CurrentBackupStatus = backup != null ? await Task.Run(async () => await GetBackupStatusAsync(backup)) : BackupStatus.None;
 
             // Update the backup view if it was previously loaded
             if (_hasLoadedBackupView)

@@ -3065,25 +3065,25 @@
     <value>Указывает, должен ли .gf-файл быть преобразован в 24/32-битную версию при импорте для обеспечения максимального возможного качества</value>
   </data>
   <data name="Progression_RM_LapTraining" xml:space="preserve">
-    <value>Лучший круг (Тренировка)</value>
+    <value>Лучший круг - Тренировка</value>
   </data>
   <data name="Progression_RM_LapRace" xml:space="preserve">
-    <value>Лучший круг (Гонка)</value>
+    <value>Лучший круг - Гонка</value>
   </data>
   <data name="Progression_RM_LapTarget" xml:space="preserve">
-    <value>Лучший круг (Цель)</value>
+    <value>Лучший круг - Цель</value>
   </data>
   <data name="Progression_RM_LapLums" xml:space="preserve">
-    <value>Лучший круг (Люмы)</value>
+    <value>Лучший круг - Люмы</value>
   </data>
   <data name="Progression_RM_TimeRace" xml:space="preserve">
-    <value>Лучшее время (Гонка)</value>
+    <value>Лучшее время - Гонка</value>
   </data>
   <data name="Progression_RM_TimeTarget" xml:space="preserve">
-    <value>Лучшее время (Цель)</value>
+    <value>Лучшее время - Цель</value>
   </data>
   <data name="Progression_RM_TimeLums" xml:space="preserve">
-    <value>Лучшее время (Люмы)</value>
+    <value>Лучшее время - Люмы</value>
   </data>
   <data name="Progression_RM_Targets" xml:space="preserve">
     <value>Цели</value>
