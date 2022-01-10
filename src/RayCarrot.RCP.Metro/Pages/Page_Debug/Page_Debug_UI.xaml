@@ -42,6 +42,10 @@
                                 Command="{Binding Path=RefreshAllAsyncCommand, Mode=OneTime}"
                                 IconKind="Refresh"/>
 
+            <local:MenuItemIcon Header="Refresh all parallel async"
+                                Command="{Binding Path=RefreshAllParallelAsyncCommand, Mode=OneTime}"
+                                IconKind="Refresh"/>
+
             <local:MenuItemIcon Header="Throw unhandled exception"
                                 Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
                                 IconKind="Exclamation"/>

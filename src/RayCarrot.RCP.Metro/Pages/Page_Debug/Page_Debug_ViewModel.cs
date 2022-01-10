@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using ControlzEx.Theming;
+using Microsoft.PowerShell.Commands;
 using Newtonsoft.Json;
 using NLog;
 
@@ -38,6 +39,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
         RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
         RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
+        RefreshAllParallelAsyncCommand = new AsyncRelayCommand(RefreshAllParallelTaskAsync);
         ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
         ThrowUnhandledExceptionAsyncCommand = new AsyncRelayCommand(ThrowUnhandledAsyncException);
         RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
@@ -62,6 +64,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public ICommand RefreshDataOutputCommand { get; }
     public ICommand RefreshAllCommand { get; }
     public ICommand RefreshAllAsyncCommand { get; }
+    public ICommand RefreshAllParallelAsyncCommand { get; }
     public ICommand ThrowUnhandledExceptionCommand { get; }
     public ICommand ThrowUnhandledExceptionAsyncCommand { get; }
     public ICommand RunInstallerCommand { get; }
@@ -495,6 +498,13 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public async Task RefreshAllTaskAsync()
     {
         await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All)));
+    }
+
+    public async Task RefreshAllParallelTaskAsync()
+    {
+        await Task.WhenAll(Enumerable.Range(0, 50).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
+        await Task.WhenAll(Enumerable.Range(0, 20).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
+        await Task.WhenAll(Enumerable.Range(0, 5).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
     }
 
     public void ThrowUnhandledException()
