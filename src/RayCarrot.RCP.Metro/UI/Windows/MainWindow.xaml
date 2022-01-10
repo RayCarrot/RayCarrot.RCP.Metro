@@ -221,16 +221,6 @@
                 <local:Page_Settings_UI />
             </TabItem>
 
-            <!-- Help -->
-
-            <TabItem Header="{Resx HelpPageHeader}"
-                     local:TabItemAssist.IconKind="{StaticResource Icons.Help}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Help}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Help}">
-                <local:Page_Help_UI />
-
-            </TabItem>
-
             <!-- About -->
 
             <TabItem Header="{Resx AboutPageHeader}"

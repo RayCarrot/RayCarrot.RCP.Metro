@@ -33,11 +33,6 @@ public enum AppPage
     /// <summary>
     /// The help page
     /// </summary>
-    Help,
-
-    /// <summary>
-    /// The help page
-    /// </summary>
     About,
 
     /// <summary>

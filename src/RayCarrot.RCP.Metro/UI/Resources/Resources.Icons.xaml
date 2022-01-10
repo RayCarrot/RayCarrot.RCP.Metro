@@ -10,7 +10,6 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities">BriefcaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Mods">CircleEditOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Settings">CogOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="Icons.Help">HelpCircleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Info">InformationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
 
@@ -70,7 +69,6 @@
     <SolidColorBrush x:Key="Colors.Utilities" Color="#4CAF50" />
     <SolidColorBrush x:Key="Colors.Mods" Color="#673AB7" />
     <SolidColorBrush x:Key="Colors.Settings" Color="#FFC107" />
-    <SolidColorBrush x:Key="Colors.Help" Color="#F44336" />
     <SolidColorBrush x:Key="Colors.Info" Color="#2196F3" />
     <SolidColorBrush x:Key="Colors.Debug" Color="#9E9E9E" />
     <SolidColorBrush x:Key="Colors.ArchiveExplorer" Color="#FF9800" />

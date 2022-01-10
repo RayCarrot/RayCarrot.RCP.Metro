@@ -17,6 +17,7 @@
 	• Added icons to the utility headers and normalized some layouts
 	• Removed the Rayman 2 disc patch utility
 • Added cheat toggles to the Rayman Raving Rabbids config
+• Removed the help page
 • Updated the Rayman Arena disc removal to make it work even when there is no available disc drive (save the changes in the config to apply the updated patch)
 • Migrated the code from using RayCarrot.Binary/Rayman to BinarySerializer for binary data parsing, utilizing much of the same code as in Ray1Map
 
