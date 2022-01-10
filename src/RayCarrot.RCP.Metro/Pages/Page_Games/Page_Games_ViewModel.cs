@@ -1,11 +1,11 @@
 ﻿#nullable disable
-using Nito.AsyncEx;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
+using Nito.AsyncEx;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -29,7 +29,7 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
         RefreshingGames = false;
         AsyncLock = new AsyncLock();
 
-        GameCategories = new Page_Games_CategoryViewModel[]
+        GameCategories = new ObservableCollection<Page_Games_CategoryViewModel>()
         {
             // Create the master category
             new Page_Games_CategoryViewModel(App.GetGames), 
@@ -51,10 +51,10 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
         {
             if (e.LaunchInfoModified && e.ModifiedGames?.Any() == true)
                 foreach (Games game in e.ModifiedGames)
-                    await Task.Run(async () => await RefreshGameAsync(game));
+                    await RefreshGameAsync(game);
 
             else if (e.LaunchInfoModified || e.GameCollectionModified)
-                await Task.Run(async () => await RefreshAsync());
+                await RefreshAsync();
         };
 
         // Refresh category visibility
@@ -105,12 +105,14 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
     /// <summary>
     /// The games category view models
     /// </summary>
-    public Page_Games_CategoryViewModel[] GameCategories { get; }
+    public ObservableCollection<Page_Games_CategoryViewModel> GameCategories { get; }
 
     /// <summary>
     /// Indicates if the games are being refreshed
     /// </summary>
     public bool RefreshingGames { get; set; }
+
+    public bool CanRunGameFinder { get; set; }
 
     #endregion
     
@@ -131,9 +133,6 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
                 // Make sure the game has been added
                 if (!game.IsAdded())
                     throw new Exception("Only added games can be refreshed individually");
-
-                if (Application.Current.Dispatcher == null)
-                    throw new Exception("Dispatcher can not be NULL");
 
                 // Get the display view model
                 var displayVM = game.GetGameInfo().GetDisplayViewModel();
@@ -158,7 +157,7 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
                     }
 
                     // Refresh the game
-                    Application.Current.Dispatcher.Invoke(() => collection[index] = displayVM);
+                    collection[index] = displayVM;
 
                     Logger.Trace("The displayed game {0} in {1} has been refreshed", game, category.DisplayName);
                 }
@@ -185,9 +184,6 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
             {
                 RefreshingGames = true;
 
-                if (Application.Current.Dispatcher == null)
-                    throw new Exception("Dispatcher can not be NULL");
-
                 // Cache the game view models
                 var displayVMCache = new Dictionary<Games, Page_Games_GameViewModel>();
 
@@ -201,8 +197,8 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
                     try
                     {
                         // Clear collections
-                        Application.Current.Dispatcher.Invoke(() => category.InstalledGames.Clear());
-                        Application.Current.Dispatcher.Invoke(() => category.NotInstalledGames.Clear());
+                        category.InstalledGames.Clear();
+                        category.NotInstalledGames.Clear();
                             
                         category.AnyInstalledGames = false;
                         category.AnyNotInstalledGames = false;
@@ -222,12 +218,12 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
                             if (info.IsAdded)
                             {
                                 // Add the game to the collection
-                                Application.Current.Dispatcher.Invoke(() => category.InstalledGames.Add(displayVM));
+                               category.InstalledGames.Add(displayVM);
                                 category.AnyInstalledGames = true;
                             }
                             else
                             {
-                                Application.Current.Dispatcher.Invoke(() => category.NotInstalledGames.Add(displayVM));
+                                category.NotInstalledGames.Add(displayVM);
                                 category.AnyNotInstalledGames = true;
                             }
                         }
@@ -242,18 +238,7 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
                 }
 
                 // Allow game finder to run only if there are games which have not been found
-                // ReSharper disable once PossibleNullReferenceException
-                await Application.Current.Dispatcher.InvokeAsync(() =>
-                {
-                    RunGameFinderCommand.CanExecuteCommand = GameCategories.Any(x => x.AnyNotInstalledGames);
-
-                    //// NOTE: This is a hacky solution to a weird WPF issue where an item can get duplicated in the view
-                    //foreach (var c in GameCategories)
-                    //{
-                    //    CollectionViewSource.GetDefaultView(c.InstalledGames).Refresh();
-                    //    CollectionViewSource.GetDefaultView(c.NotInstalledGames).Refresh();
-                    //}
-                });
+                CanRunGameFinder = GameCategories.Any(x => x.AnyNotInstalledGames);
             }
             catch (Exception ex)
             {
@@ -317,7 +302,7 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
 
     public void Dispose()
     {
-        GameCategories?.ForEach(x => x.Dispose());
+        GameCategories?.DisposeAll();
     }
 
     #endregion

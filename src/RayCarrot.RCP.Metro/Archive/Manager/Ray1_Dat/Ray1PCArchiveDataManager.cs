@@ -104,7 +104,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         // Remove the encryption
         file.XORKey = 0;
 
-        // TODO-UPDATE: Do this when writing
+        // TODO: Calculate the checksum when writing instead as we're accessing the bytes then
         // Calculate the checksum
         Checksum8Calculator c = new();
         var buffer = new byte[inputStream.Length - inputStream.Position];

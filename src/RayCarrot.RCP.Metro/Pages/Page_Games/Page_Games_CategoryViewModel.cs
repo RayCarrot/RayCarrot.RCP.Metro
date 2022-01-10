@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using System.Windows.Data;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -30,6 +32,10 @@ public class Page_Games_CategoryViewModel : BaseRCPViewModel, IDisposable
         // Create properties
         InstalledGames = new ObservableCollection<Page_Games_GameViewModel>();
         NotInstalledGames = new ObservableCollection<Page_Games_GameViewModel>();
+
+        // Enable collection synchronization
+        BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
+        BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
     }
 
     /// <summary>
@@ -46,6 +52,10 @@ public class Page_Games_CategoryViewModel : BaseRCPViewModel, IDisposable
         // Create properties
         InstalledGames = new ObservableCollection<Page_Games_GameViewModel>();
         NotInstalledGames = new ObservableCollection<Page_Games_GameViewModel>();
+
+        // Enable collection synchronization
+        BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
+        BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
     }
 
     #endregion
@@ -104,6 +114,10 @@ public class Page_Games_CategoryViewModel : BaseRCPViewModel, IDisposable
     public void Dispose()
     {
         DisplayName?.Dispose();
+
+        // Disable collection synchronization
+        BindingOperations.DisableCollectionSynchronization(InstalledGames);
+        BindingOperations.DisableCollectionSynchronization(NotInstalledGames);
     }
 
     #endregion
