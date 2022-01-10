@@ -25,8 +25,21 @@ public class GameMaker_HexStringEncoder : IStreamEncoder
 
     public void EncodeStream(Stream input, Stream output)
     {
-        // TODO-UPDATE: Implement
-        throw new NotImplementedException();
+        using StreamWriter writer = new(output, Encoding.ASCII, 1024, true);
+
+        const string HexAlphabet = "0123456789ABCDEF";
+        
+        while (true)
+        {
+            int readByte = input.ReadByte();
+
+            if (readByte < 0)
+                break;
+
+            byte b = (byte)readByte;
+            writer.Write(HexAlphabet[b >> 4]);
+            writer.Write(HexAlphabet[b & 0xF]);
+        }
     }
 
     private static byte[] StringToByteArray(string hex)
