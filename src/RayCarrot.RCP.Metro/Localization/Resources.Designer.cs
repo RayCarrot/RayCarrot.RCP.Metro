@@ -3298,7 +3298,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The cheats will go into effect when loading a save slot in the game. Sometimes it is also required to return to the menu after loading the slot..
+        ///   Looks up a localized string similar to The cheats will go into effect when first loading a map. Sometimes it is also required to return to the menu afterwards for everything to update..
         /// </summary>
         public static string Config_RRRCheatsInfo {
             get {

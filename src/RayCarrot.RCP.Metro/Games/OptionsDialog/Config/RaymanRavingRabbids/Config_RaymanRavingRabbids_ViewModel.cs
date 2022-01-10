@@ -230,8 +230,8 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
 
             if (saveData != null)
             {
-                Cheat_InvertHor = saveData.StorySlots.Any(x => x.Univers.VID_gi_InvertHoriz != 0);
-                Cheat_OldMovie = saveData.StorySlots.Any(x => x.Univers.VID_gi_ModeOldMovie != 0);
+                Cheat_InvertHor = saveData.ConfigSlot.Univers.VID_gi_InvertHoriz != 0;
+                Cheat_OldMovie = saveData.ConfigSlot.Univers.VID_gi_ModeOldMovie != 0;
             }
             else
             {
@@ -290,22 +290,25 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
 
                     const string saveFileName = "Rayman4.sav";
 
-                    RRR_SaveFile? saveData = context.ReadFileData<RRR_SaveFile>(saveFileName, new RRR_SaveEncoder());
+                    PhysicalFile file = new EncodedLinearFile(context, saveFileName, new RRR_SaveEncoder());
 
-                    if (saveData != null)
-                    {
-                        foreach (RRR_SaveSlot slot in saveData.StorySlots)
-                        {
-                            slot.Univers.VID_gi_InvertHoriz = Cheat_InvertHor ? 1 : 0;
-                            slot.Univers.VID_gi_ModeOldMovie = Cheat_OldMovie ? 1 : 0;
-                        }
-
-                        FileFactory.Write<RRR_SaveFile>(saveFileName, context);
-                    }
-                    else
+                    if (!file.SourceFileExists)
                     {
                         Logger.Warn("Cheats could not be saved to save not being found");
+                        continue;
                     }
+
+                    context.AddFile(file);
+
+                    RRR_SaveFile saveData = FileFactory.Read<RRR_SaveFile>(saveFileName, context);
+
+                    foreach (RRR_SaveSlot slot in saveData.StorySlots.Append(saveData.ConfigSlot).Append(saveData.ScoreSlot))
+                    {
+                        slot.Univers.VID_gi_InvertHoriz = Cheat_InvertHor ? 1 : 0;
+                        slot.Univers.VID_gi_ModeOldMovie = Cheat_OldMovie ? 1 : 0;
+                    }
+
+                    FileFactory.Write<RRR_SaveFile>(saveFileName, saveData, context);
                 }
             }
 
