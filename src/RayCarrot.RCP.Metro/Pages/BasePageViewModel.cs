@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Nito.AsyncEx;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -8,28 +9,36 @@ public abstract class BasePageViewModel : BaseRCPViewModel
     protected BasePageViewModel()
     {
         App.SelectedPageChanged += App_SelectedPageChangedAsync;
+        _pageChangedLock = new AsyncLock();
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private bool _hasInitialized;
+    private AsyncLock _pageChangedLock;
 
     public abstract AppPage Page { get; }
 
     private async void App_SelectedPageChangedAsync(object sender, PropertyChangedEventArgs<AppPage> e)
     {
-        if (e.NewValue != Page)
-            return;
+        using (await _pageChangedLock.LockAsync())
+        {
+            if (e.NewValue != Page)
+                return;
 
-        if (_hasInitialized)
-            return;
+            await NavigatedToAsync();
 
-        _hasInitialized = true;
+            if (_hasInitialized)
+                return;
 
-        await InitializeAsync();
+            _hasInitialized = true;
 
-        Logger.Info("Initialized {0} page", Page);
+            await InitializeAsync();
+
+            Logger.Info("Initialized {0} page", Page);
+        }
     }
 
+    protected virtual Task NavigatedToAsync() => Task.CompletedTask;
     protected abstract Task InitializeAsync();
 }
