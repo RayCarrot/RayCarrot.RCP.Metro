@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -35,7 +34,6 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
         // Refresh the game data on certain events
         App.RefreshRequired += App_RefreshRequiredAsync;
-        Services.InstanceData.CultureChanged += Data_CultureChanged;
     }
 
     #endregion
@@ -97,11 +95,6 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
         return Task.CompletedTask;
     }
 
-    private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
-    {
-        RefreshGameInfo();
-    }
-
     #endregion
 
     #region Protected Methods
@@ -136,7 +129,6 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
         // Unsubscribe events
         App.RefreshRequired -= App_RefreshRequiredAsync;
-        Services.InstanceData.CultureChanged -= Data_CultureChanged;
 
         // Disable collection synchronization
         BindingOperations.DisableCollectionSynchronization(GameInfoItems);

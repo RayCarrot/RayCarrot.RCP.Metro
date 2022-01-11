@@ -77,8 +77,12 @@ public class ArchiveFileType_Image : IArchiveFileType
 
         return new ArchiveFileThumbnailData(thumb, new DuoGridItemViewModel[]
         {
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{img.Width}x{img.Height}"),
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{GetFormat(fileExtension)}"),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)), 
+                text: new ConstLocString($"{img.Width}x{img.Height}")),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Format)), 
+                text: new GeneratedLocString(() => $"{GetFormat(fileExtension)}")),
         });
     }
 

@@ -400,15 +400,24 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         var entry = (BundleFile_FileEntry)fileEntry;
         var ipk = (BundleFile)archive;
 
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
+        yield return new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
+            text: new ConstLocString($"{ByteSize.FromBytes(entry.FileSize)}"));
 
         if (entry.IsCompressed)
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_SizeComp, $"{ByteSize.FromBytes(entry.CompressedSize)}");
+            yield return new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_SizeComp)), 
+                text: new ConstLocString($"{ByteSize.FromBytes(entry.CompressedSize)}"));
 
         if (ipk.FilePack.Files.Contains(entry))
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Offsets.First() + ipk.BootHeader.BaseOffset:X16}", UserLevel.Technical);
+            yield return new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Pointer)), 
+                text: new ConstLocString($"0x{entry.Offsets.First() + ipk.BootHeader.BaseOffset:X16}"), 
+                minUserLevel: UserLevel.Technical);
             
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsComp, $"{entry.IsCompressed}");
+        yield return new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.Archive_FileInfo_IsComp)), 
+            text: new GeneratedLocString(() => $"{entry.IsCompressed}"));
     }
 
     /// <summary>

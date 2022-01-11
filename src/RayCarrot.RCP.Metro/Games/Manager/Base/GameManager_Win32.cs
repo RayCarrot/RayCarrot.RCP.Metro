@@ -47,8 +47,14 @@ public abstract class GameManager_Win32 : GameManager
             // Return the items
             return new List<DuoGridItemViewModel>(base.GetGameInfoItems)
             {
-                new DuoGridItemViewModel(Resources.GameInfo_LaunchPath, launchInfo.Path, UserLevel.Technical),
-                new DuoGridItemViewModel(Resources.GameInfo_LaunchArgs, launchInfo.Args, UserLevel.Technical)
+                new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.GameInfo_LaunchPath)), 
+                    text: new ConstLocString(launchInfo.Path), 
+                    minUserLevel: UserLevel.Technical),
+                new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.GameInfo_LaunchArgs)), 
+                    text: new ConstLocString(launchInfo.Args), 
+                    minUserLevel: UserLevel.Technical)
             };
         }
     }

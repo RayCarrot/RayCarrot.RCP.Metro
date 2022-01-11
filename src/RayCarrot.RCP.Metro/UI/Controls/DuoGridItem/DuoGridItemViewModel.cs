@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A duo grid item view model
@@ -12,7 +11,7 @@ public class DuoGridItemViewModel : BaseViewModel
     /// <param name="header">The header</param>
     /// <param name="text">The text to display</param>
     /// <param name="minUserLevel">The minimum user level for this item</param>
-    public DuoGridItemViewModel(string header, string text, UserLevel minUserLevel = UserLevel.Normal)
+    public DuoGridItemViewModel(LocalizedString header, LocalizedString text, UserLevel minUserLevel = UserLevel.Normal)
     {
         Header = header;
         Text = text;
@@ -22,12 +21,12 @@ public class DuoGridItemViewModel : BaseViewModel
     /// <summary>
     /// The header
     /// </summary>
-    public string Header { get; set; }
+    public LocalizedString Header { get; set; }
 
     /// <summary>
     /// The text to display
     /// </summary>
-    public string Text { get; set; }
+    public LocalizedString Text { get; set; }
 
     /// <summary>
     /// The minimum user level for this item

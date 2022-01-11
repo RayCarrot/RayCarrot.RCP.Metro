@@ -53,8 +53,13 @@ public abstract class GameManager : BaseGameData
     /// </summary>
     public virtual IList<DuoGridItemViewModel> GetGameInfoItems => new DuoGridItemViewModel[]
     {
-        new DuoGridItemViewModel(Resources.GameInfo_GameType, GameTypeDisplayName, UserLevel.Advanced),
-        new DuoGridItemViewModel(Resources.GameInfo_InstallDir, Game.GetInstallDir()),
+        new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.GameInfo_GameType)), 
+            text: new GeneratedLocString(() => GameTypeDisplayName), 
+            minUserLevel: UserLevel.Advanced),
+        new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)), 
+            text: new ConstLocString(Game.GetInstallDir())),
         //new DuoGridItemViewModel("Install size", GameData.InstallDirectory.GetSize().ToString())
     };
 

@@ -129,7 +129,10 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         BackupInfoItems.Clear();
 
         // NOTE: Not localized due to being debug only
-        BackupInfoItems.Add(new DuoGridItemViewModel("Latest backup version", BackupInfo!.LatestAvailableBackupVersion.ToString(), UserLevel.Debug));
+        BackupInfoItems.Add(new DuoGridItemViewModel(
+            header: new ConstLocString("Latest backup version"), 
+            text: new ConstLocString(BackupInfo!.LatestAvailableBackupVersion.ToString()), 
+            minUserLevel: UserLevel.Debug));
 
         HasBackupInfoItems = Services.Data.App_UserLevel == UserLevel.Debug;
 
@@ -139,14 +142,24 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             try
             {
                 // NOTE: Not localized due to being debug only
-                BackupInfoItems.Add(new DuoGridItemViewModel("Backup version", backup.BackupVersion.ToString(), UserLevel.Debug));
-                BackupInfoItems.Add(new DuoGridItemViewModel("Is backup compressed", backup.IsCompressed.ToString(), UserLevel.Debug));
+                BackupInfoItems.Add(new DuoGridItemViewModel(
+                    header: new ConstLocString("Backup version"), 
+                    text: new ConstLocString(backup.BackupVersion.ToString()), 
+                    minUserLevel: UserLevel.Debug));
+                BackupInfoItems.Add(new DuoGridItemViewModel(
+                    header: new ConstLocString("Is backup compressed"), 
+                    text: new ConstLocString(backup.IsCompressed.ToString()), 
+                    minUserLevel: UserLevel.Debug));
 
                 // Get the backup date
-                BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupDate, backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString()));
+                BackupInfoItems.Add(new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.Backup_LastBackupDate)), 
+                    text: new GeneratedLocString(() => backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString())));
 
                 // Get the backup size
-                BackupInfoItems.Add(new DuoGridItemViewModel(Resources.Backup_LastBackupSize, backup.Path.GetSize().ToString()));
+                BackupInfoItems.Add(new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.Backup_LastBackupSize)), 
+                    text: new ConstLocString(backup.Path.GetSize().ToString())));
 
                 HasBackupInfoItems = true;
             }
@@ -163,12 +176,18 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         {
             foreach (BackupSearchPattern dir in BackupInfo.BackupDirectories!)
             {
-                BackupInfoItems.Add(new DuoGridItemViewModel($"BackupDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
+                BackupInfoItems.Add(new DuoGridItemViewModel(
+                    header: new ConstLocString($"BackupDir[{dir.ID}]"), 
+                    text: new ConstLocString($"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})"), 
+                    minUserLevel: UserLevel.Debug));
             }
 
             foreach (BackupSearchPattern dir in BackupInfo.RestoreDirectories!)
             {
-                BackupInfoItems.Add(new DuoGridItemViewModel($"RestoreDir[{dir.ID}]", $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", UserLevel.Debug));
+                BackupInfoItems.Add(new DuoGridItemViewModel(
+                    header: new ConstLocString($"RestoreDir[{dir.ID}]"), 
+                    text: new ConstLocString($"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})"), 
+                    minUserLevel: UserLevel.Debug));
             }
         }
     }

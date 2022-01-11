@@ -253,7 +253,9 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             // Populate info
             FileDisplayInfo.Clear();
 
-            FileDisplayInfo.Add(new DuoGridItemViewModel(Resources.Archive_FileInfo_Dir, FileData.Directory));
+            FileDisplayInfo.Add(new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Dir)), 
+                text: new ConstLocString(FileData.Directory)));
 
             FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), FileData.ArchiveEntry));
 
@@ -296,7 +298,10 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             IconKind = FileType!.Icon;
 
             // Set file type
-            FileDisplayInfo.Add(new DuoGridItemViewModel(Resources.Archive_FileInfo_Type, FileType.TypeDisplayName, UserLevel.Advanced));
+            FileDisplayInfo.Add(new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Type)), 
+                text: new ConstLocString(FileType.TypeDisplayName), 
+                minUserLevel: UserLevel.Advanced));
 
             IsInitialized = true;
         }

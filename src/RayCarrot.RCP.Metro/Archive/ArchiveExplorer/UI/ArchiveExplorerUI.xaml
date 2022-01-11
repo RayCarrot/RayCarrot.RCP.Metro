@@ -261,9 +261,9 @@
                                                   Grid.IsSharedSizeScope="True">
 
                                         <ItemsControl.ItemTemplate>
-                                            <DataTemplate DataType="local:DuoGridItem">
-                                                <local:DuoGridItem Text="{Binding Path=Text}"
-                                                                   Header="{Binding Path=Header}"
+                                            <DataTemplate>
+                                                <local:DuoGridItem Text="{Binding Path=Text.Value}"
+                                                                   Header="{Binding Path=Header.Value}"
                                                                    MinUserLevel="{Binding Path=MinUserLevel}" />
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>

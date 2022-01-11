@@ -102,10 +102,19 @@ public class ArchiveFileType_GF : IArchiveFileType
         // Get the thumbnail with the specified size
         return new ArchiveFileThumbnailData(thumbnailSource, new DuoGridItemViewModel[]
         {
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{file.Width}x{file.Height}"),
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_HasAlpha, $"{file.PixelFormat.SupportsTransparency()}"),
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Mipmaps, $"{file.ExclusiveMipmapCount}"),
-            new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{file.PixelFormat.ToString().Replace("Format_", "")}", UserLevel.Technical),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)), 
+                text: new ConstLocString($"{file.Width}x{file.Height}")),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_HasAlpha)), 
+                text: new GeneratedLocString(() => $"{file.PixelFormat.SupportsTransparency()}")),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Mipmaps)), 
+                text: new ConstLocString($"{file.ExclusiveMipmapCount}")),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Format)), 
+                text: new ConstLocString($"{file.PixelFormat.ToString().Replace("Format_", "")}"), 
+                minUserLevel: UserLevel.Technical),
         });
     }
 

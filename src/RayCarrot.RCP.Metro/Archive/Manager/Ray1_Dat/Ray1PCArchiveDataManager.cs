@@ -303,12 +303,20 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         var entry = (PC_FileArchiveEntry)fileEntry;
         var archiveData = (PC_FileArchive)archive;
 
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
+        yield return new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
+            text: new ConstLocString($"{ByteSize.FromBytes(entry.FileSize)}"));
 
         if (archiveData.Entries.Contains(entry))
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.FileOffset:X8}", UserLevel.Technical);
+            yield return new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Pointer)), 
+                text: new ConstLocString($"0x{entry.FileOffset:X8}"), 
+                minUserLevel: UserLevel.Technical);
             
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.XORKey != 0}", UserLevel.Advanced);
+        yield return new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.Archive_FileInfo_IsEncrypted)), 
+            text: new GeneratedLocString(() => $"{entry.XORKey != 0}"), 
+            minUserLevel: UserLevel.Advanced);
     }
 
     /// <summary>

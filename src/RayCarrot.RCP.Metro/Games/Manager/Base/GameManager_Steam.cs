@@ -57,7 +57,10 @@ public abstract class GameManager_Steam : GameManager
     /// </summary>
     public override IList<DuoGridItemViewModel> GetGameInfoItems => new List<DuoGridItemViewModel>(base.GetGameInfoItems)
     {
-        new DuoGridItemViewModel(Resources.GameInfo_SteamID, SteamID, UserLevel.Advanced)
+        new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.GameInfo_SteamID)), 
+            text: new ConstLocString(SteamID), 
+            minUserLevel: UserLevel.Advanced)
     };
 
     /// <summary>

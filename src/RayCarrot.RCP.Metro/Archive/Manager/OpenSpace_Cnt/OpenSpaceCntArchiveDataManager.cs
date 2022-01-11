@@ -316,12 +316,20 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         var entry = (CNT_File)fileEntry;
         var cnt = (CNT)archive;
 
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
+        yield return new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
+            text: new ConstLocString($"{ByteSize.FromBytes(entry.FileSize)}"));
 
         if (cnt.Files.Contains(entry))
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.FileOffset:X8}", UserLevel.Technical);
+            yield return new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Pointer)), 
+                text: new ConstLocString($"0x{entry.FileOffset:X8}"), 
+                minUserLevel: UserLevel.Technical);
             
-        yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
+        yield return new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.Archive_FileInfo_IsEncrypted)), 
+            text: new GeneratedLocString(() => $"{entry.FileXORKey.Any(x => x != 0)}"), 
+            minUserLevel: UserLevel.Advanced);
     }
 
     /// <summary>

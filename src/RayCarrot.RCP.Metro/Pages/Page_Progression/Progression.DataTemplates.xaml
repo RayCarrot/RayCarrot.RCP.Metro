@@ -362,8 +362,8 @@
                               ItemsSource="{Binding Path=InfoItems, Mode=OneTime}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:DuoGridItem Text="{Binding Path=Text}"
-                                               Header="{Binding Path=Header}"
+                            <local:DuoGridItem Text="{Binding Path=Text.Value}"
+                                               Header="{Binding Path=Header.Value}"
                                                MinUserLevel="{Binding Path=MinUserLevel}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -506,8 +506,8 @@
                                           Margin="0 0 0 8">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <local:DuoGridItem Text="{Binding Path=Text}"
-                                                           Header="{Binding Path=Header}"
+                                        <local:DuoGridItem Text="{Binding Path=Text.Value}"
+                                                           Header="{Binding Path=Header.Value}"
                                                            MinUserLevel="{Binding Path=MinUserLevel}" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

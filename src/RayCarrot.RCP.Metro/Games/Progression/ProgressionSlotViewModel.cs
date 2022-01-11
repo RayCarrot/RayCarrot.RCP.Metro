@@ -168,10 +168,15 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
             if (FilePath.FileExists)
             {
-                // TODO-UPDATE: Use LocalizedString in duo grid
-                InfoItems.Add(new DuoGridItemViewModel(Resources.Progression_SlotInfo_File, FilePath));
-                InfoItems.Add(new DuoGridItemViewModel(Resources.Progression_SlotInfo_Size, await Task.Run(() => FilePath.GetSize().ToString())));
-                InfoItems.Add(new DuoGridItemViewModel(Resources.Progression_SlotInfo_LastModified, FilePath.GetFileInfo().LastWriteTime.ToShortDateString()));
+                InfoItems.Add(new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_File)), 
+                    text: new ConstLocString(FilePath)));
+                InfoItems.Add(new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_Size)), 
+                    text: new ConstLocString(await Task.Run(() => FilePath.GetSize().ToString()))));
+                InfoItems.Add(new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_LastModified)), 
+                    text: new GeneratedLocString(() => FilePath.GetFileInfo().LastWriteTime.ToShortDateString())));
                 HasInfoItems = true;
             }
             else

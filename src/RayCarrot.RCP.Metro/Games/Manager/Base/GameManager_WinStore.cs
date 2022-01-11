@@ -70,11 +70,26 @@ public abstract class GameManager_WinStore : GameManager
             // Return new items
             return new List<DuoGridItemViewModel>(base.GetGameInfoItems)
             {
-                new DuoGridItemViewModel(Resources.GameInfo_WinStoreDependencies, package.Dependencies.Select(x => x.Id.Name).JoinItems(", "), UserLevel.Technical),
-                new DuoGridItemViewModel(Resources.GameInfo_WinStoreFullName, package.Id.FullName, UserLevel.Advanced),
-                new DuoGridItemViewModel(Resources.GameInfo_WinStoreArchitecture, package.Id.Architecture.ToString(), UserLevel.Technical),
-                new DuoGridItemViewModel(Resources.GameInfo_WinStoreVersion, $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}", UserLevel.Technical),
-                new DuoGridItemViewModel(Resources.GameInfo_WinStoreInstallDate, package.InstalledDate.DateTime.ToString(CultureInfo.CurrentCulture), UserLevel.Advanced),
+                new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreDependencies)), 
+                    text: new ConstLocString(package.Dependencies.Select(x => x.Id.Name).JoinItems(", ")), 
+                    minUserLevel: UserLevel.Technical),
+                new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreFullName)), 
+                    text: new ConstLocString(package.Id.FullName), 
+                    minUserLevel: UserLevel.Advanced),
+                new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreArchitecture)), 
+                    text: new ConstLocString(package.Id.Architecture.ToString()), 
+                    minUserLevel: UserLevel.Technical),
+                new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreVersion)), 
+                    text: new ConstLocString($"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}"), 
+                    minUserLevel: UserLevel.Technical),
+                new DuoGridItemViewModel(
+                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreInstallDate)), 
+                    text: new GeneratedLocString(() => package.InstalledDate.DateTime.ToString(CultureInfo.CurrentCulture)), 
+                    minUserLevel: UserLevel.Advanced),
             };
         }
     }
