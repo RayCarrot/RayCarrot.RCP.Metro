@@ -300,7 +300,7 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
 
                     context.AddFile(file);
 
-                    RRR_SaveFile saveData = FileFactory.Read<RRR_SaveFile>(saveFileName, context);
+                    RRR_SaveFile saveData = FileFactory.Read<RRR_SaveFile>(context, saveFileName);
 
                     foreach (RRR_SaveSlot slot in saveData.StorySlots.Append(saveData.ConfigSlot).Append(saveData.ScoreSlot))
                     {
@@ -308,7 +308,7 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
                         slot.Univers.VID_gi_ModeOldMovie = Cheat_OldMovie ? 1 : 0;
                     }
 
-                    FileFactory.Write<RRR_SaveFile>(saveFileName, saveData, context);
+                    FileFactory.Write<RRR_SaveFile>(context, saveFileName, saveData);
                 }
             }
 

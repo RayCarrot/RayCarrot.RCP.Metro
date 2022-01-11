@@ -225,7 +225,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
             outputFileStream.Position = 0;
 
             // Serialize the data
-            FileFactory.Write(binaryFile.FilePath, data, Context);
+            FileFactory.Write(Context, binaryFile.FilePath, data);
 
             Logger.Info("The CNT archive has been repacked");
         }

@@ -229,7 +229,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             outputFileStream.Position = 0;
 
             // Serialize the data
-            FileFactory.Write(binaryFile.FilePath, data, Context);
+            FileFactory.Write(Context, binaryFile.FilePath, data);
 
             Logger.Info("The IPK archive has been repacked");
         }

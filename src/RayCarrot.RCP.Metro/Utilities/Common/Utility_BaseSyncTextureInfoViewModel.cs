@@ -118,7 +118,7 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
             context.AddFile(new LinearFile(context, cntFile.Name, gameSettings.GetEndian));
 
             // Read the CNT data
-            CNT cntData = FileFactory.Read<CNT>(cntFile.Name, context);
+            CNT cntData = FileFactory.Read<CNT>(context, cntFile.Name);
 
             // Read the size from every .gf file
             gfFiles.AddRange(cntData.Files.Select(x =>

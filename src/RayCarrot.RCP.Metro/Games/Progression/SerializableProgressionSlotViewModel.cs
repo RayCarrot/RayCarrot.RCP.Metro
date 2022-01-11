@@ -65,6 +65,6 @@ public class SerializableProgressionSlotViewModel<FileObj> : ProgressionSlotView
 
         // TODO-UPDATE: Keep copy of original file in case of error
         using (Context)
-            FileFactory.Write<FileObj>(FileName, data, Context);
+            FileFactory.Write<FileObj>(Context, FileName, data);
     }
 }

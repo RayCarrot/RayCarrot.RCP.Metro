@@ -744,7 +744,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             LinearFile file = context.AddFile(new LinearFile(context, PatchedBFFilePath.Name));
 
             // Read the file
-            Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(PatchedBFFilePath.Name, context);
+            Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(context, PatchedBFFilePath.Name);
 
             BinaryDeserializer s = context.Deserializer;
 
@@ -782,7 +782,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             LinearFile file = context.AddFile(new LinearFile(context, PatchedBFFilePath.Name));
 
             // Read the file
-            Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(PatchedBFFilePath.Name, context);
+            Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(context, PatchedBFFilePath.Name);
 
             BinaryDeserializer s = context.Deserializer;
 

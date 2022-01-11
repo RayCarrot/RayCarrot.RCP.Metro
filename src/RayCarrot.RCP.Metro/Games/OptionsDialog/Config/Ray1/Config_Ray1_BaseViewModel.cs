@@ -462,7 +462,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         if (File.Exists(Context.GetAbsoluteFilePath(ConfigFileName)))
         {
             using (Context)
-                Config = FileFactory.Read<PC_ConfigFile>(ConfigFileName, Context);
+                Config = FileFactory.Read<PC_ConfigFile>(Context, ConfigFileName);
 
             // Default all languages to be available. Sadly there is no way to determine which languages a specific release can use as most releases have all languages in the files, but have it hard-coded in the exe to only pick a specific one.
             IsEnglishAvailable = true;
@@ -630,7 +630,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
             Config.NumCard = (byte)NumCard;
 
             using (Context)
-                FileFactory.Write(ConfigFileName, Config, Context);
+                FileFactory.Write(Context, ConfigFileName, Config);
 
             return true;
         }

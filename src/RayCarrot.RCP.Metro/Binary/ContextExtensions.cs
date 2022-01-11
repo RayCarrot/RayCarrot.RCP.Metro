@@ -21,7 +21,7 @@ public static class ContextExtensions
 
         try
         {
-            return FileFactory.Read<T>(fileName, context, (_, o) => onPreSerialize?.Invoke(o));
+            return FileFactory.Read<T>(context, fileName, (_, o) => onPreSerialize?.Invoke(o));
         }
         finally
         {
@@ -41,7 +41,7 @@ public static class ContextExtensions
 
         try
         {
-            return FileFactory.Read<T>(name, context, (_, o) => onPreSerialize?.Invoke(o));
+            return FileFactory.Read<T>(context, name, (_, o) => onPreSerialize?.Invoke(o));
         }
         finally
         {
@@ -66,7 +66,7 @@ public static class ContextExtensions
 
         try
         {
-            FileFactory.Write(fileName, obj, context);
+            FileFactory.Write(context, fileName, obj);
         }
         finally
         {
@@ -85,7 +85,7 @@ public static class ContextExtensions
 
         try
         {
-            FileFactory.Write(name, obj, context);
+            FileFactory.Write(context, name, obj);
         }
         finally
         {
