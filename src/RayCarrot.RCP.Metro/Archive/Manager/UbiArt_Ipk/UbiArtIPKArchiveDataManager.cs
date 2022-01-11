@@ -402,17 +402,17 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
-            text: new ConstLocString($"{ByteSize.FromBytes(entry.FileSize)}"));
+            text: $"{ByteSize.FromBytes(entry.FileSize)}");
 
         if (entry.IsCompressed)
             yield return new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_SizeComp)), 
-                text: new ConstLocString($"{ByteSize.FromBytes(entry.CompressedSize)}"));
+                text: $"{ByteSize.FromBytes(entry.CompressedSize)}");
 
         if (ipk.FilePack.Files.Contains(entry))
             yield return new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Pointer)), 
-                text: new ConstLocString($"0x{entry.Offsets.First() + ipk.BootHeader.BaseOffset:X16}"), 
+                text: $"0x{entry.Offsets.First() + ipk.BootHeader.BaseOffset:X16}", 
                 minUserLevel: UserLevel.Technical);
             
         yield return new DuoGridItemViewModel(

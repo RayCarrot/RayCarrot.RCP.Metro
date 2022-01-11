@@ -20,11 +20,11 @@ public class ProgressionDataViewModel : BaseViewModel
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
-        Text = new ConstLocString(value.ToString("n", new NumberFormatInfo()
+        Text = value.ToString("n", new NumberFormatInfo()
         {
             NumberGroupSeparator = " ",
             NumberDecimalDigits = 0
-        }));
+        });
         Header = header;
     }
 
@@ -32,7 +32,7 @@ public class ProgressionDataViewModel : BaseViewModel
     {
         IsPrimaryItem = isPrimaryItem;
         Icon = icon;
-        Text = new ConstLocString($"{value} / {max}");
+        Text = $"{value} / {max}";
         Header = header;
     }
 

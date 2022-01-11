@@ -68,7 +68,7 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
 
             yield return new SerializableProgressionSlotViewModel<PC_SaveFile>(
                 game: this, 
-                name: new ConstLocString(saveData.SaveName.ToUpper()), 
+                name: saveData.SaveName.ToUpper(), 
                 index: saveIndex, 
                 collectiblesCount: cages, 
                 totalCollectiblesCount: 102, 

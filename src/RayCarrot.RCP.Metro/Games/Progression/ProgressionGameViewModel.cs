@@ -130,8 +130,8 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
         // NOTE: Not localized due to being debug only
         BackupInfoItems.Add(new DuoGridItemViewModel(
-            header: new ConstLocString("Latest backup version"), 
-            text: new ConstLocString(BackupInfo!.LatestAvailableBackupVersion.ToString()), 
+            header: "Latest backup version", 
+            text: BackupInfo!.LatestAvailableBackupVersion.ToString(), 
             minUserLevel: UserLevel.Debug));
 
         HasBackupInfoItems = Services.Data.App_UserLevel == UserLevel.Debug;
@@ -143,12 +143,12 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             {
                 // NOTE: Not localized due to being debug only
                 BackupInfoItems.Add(new DuoGridItemViewModel(
-                    header: new ConstLocString("Backup version"), 
-                    text: new ConstLocString(backup.BackupVersion.ToString()), 
+                    header: "Backup version", 
+                    text: backup.BackupVersion.ToString(), 
                     minUserLevel: UserLevel.Debug));
                 BackupInfoItems.Add(new DuoGridItemViewModel(
-                    header: new ConstLocString("Is backup compressed"), 
-                    text: new ConstLocString(backup.IsCompressed.ToString()), 
+                    header: "Is backup compressed", 
+                    text: backup.IsCompressed.ToString(), 
                     minUserLevel: UserLevel.Debug));
 
                 // Get the backup date
@@ -159,7 +159,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
                 // Get the backup size
                 BackupInfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Backup_LastBackupSize)), 
-                    text: new ConstLocString(backup.Path.GetSize().ToString())));
+                    text: backup.Path.GetSize().ToString()));
 
                 HasBackupInfoItems = true;
             }
@@ -177,16 +177,16 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             foreach (BackupSearchPattern dir in BackupInfo.BackupDirectories!)
             {
                 BackupInfoItems.Add(new DuoGridItemViewModel(
-                    header: new ConstLocString($"BackupDir[{dir.ID}]"), 
-                    text: new ConstLocString($"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})"), 
+                    header: $"BackupDir[{dir.ID}]", 
+                    text: $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", 
                     minUserLevel: UserLevel.Debug));
             }
 
             foreach (BackupSearchPattern dir in BackupInfo.RestoreDirectories!)
             {
                 BackupInfoItems.Add(new DuoGridItemViewModel(
-                    header: new ConstLocString($"RestoreDir[{dir.ID}]"), 
-                    text: new ConstLocString($"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})"), 
+                    header: $"RestoreDir[{dir.ID}]", 
+                    text: $"{dir.SearchPattern.DirPath} ({dir.SearchPattern.SearchPattern}, {dir.SearchPattern.SearchOption})", 
                     minUserLevel: UserLevel.Debug));
             }
         }

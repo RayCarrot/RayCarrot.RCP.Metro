@@ -59,7 +59,7 @@ public abstract class GameManager_Steam : GameManager
     {
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_SteamID)), 
-            text: new ConstLocString(SteamID), 
+            text: SteamID, 
             minUserLevel: UserLevel.Advanced)
     };
 

@@ -62,11 +62,11 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                         isToggled: false,
                         selectionOptions: new ObservableCollection<LocalizedString>()
                         {
-                            new ConstLocString("1"),
-                            new ConstLocString("2"),
-                            new ConstLocString("3"),
-                            new ConstLocString("4"),
-                            new ConstLocString("5"),
+                            "1",
+                            "2",
+                            "3",
+                            "4",
+                            "5",
                         },
                         selectionAction: x => MemoryPatcher.cheatPage = x + 1),
                 }),

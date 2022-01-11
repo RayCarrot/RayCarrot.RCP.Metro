@@ -318,12 +318,12 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
 
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Size)), 
-            text: new ConstLocString($"{ByteSize.FromBytes(entry.FileSize)}"));
+            text: $"{ByteSize.FromBytes(entry.FileSize)}");
 
         if (cnt.Files.Contains(entry))
             yield return new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Pointer)), 
-                text: new ConstLocString($"0x{entry.FileOffset:X8}"), 
+                text: $"0x{entry.FileOffset:X8}", 
                 minUserLevel: UserLevel.Technical);
             
         yield return new DuoGridItemViewModel(

@@ -29,6 +29,13 @@ public abstract class LocalizedString : BaseViewModel, IDisposable
 
     #endregion
 
+    #region Static Implicit Operators
+
+    public static implicit operator LocalizedString(string str) => new ConstLocString(str);
+    public static implicit operator string(LocalizedString str) => str.Value;
+
+    #endregion
+
     #region Private Methods
 
     private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
@@ -51,14 +58,7 @@ public abstract class LocalizedString : BaseViewModel, IDisposable
 
     #region Public Methods
 
-    /// <summary>
-    /// Returns a string that represents the current object.
-    /// </summary>
-    /// <returns>A string that represents the current object.</returns>
-    public override string ToString()
-    {
-        return Value;
-    }
+    public override string ToString() => Value;
 
     public void Dispose()
     {

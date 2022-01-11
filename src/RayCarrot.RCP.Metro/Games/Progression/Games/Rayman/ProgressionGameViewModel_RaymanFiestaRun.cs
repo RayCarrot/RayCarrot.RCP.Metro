@@ -115,8 +115,8 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
             progressItems.Add(new ProgressionDataViewModel(
                 isPrimaryItem: false,
                 icon: ProgressionIcon.RO_Clock,
-                header: new ConstLocString($"{lvlIndex + 1}"), // TODO-UPDATE: Level name
-                text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, (int)saveData.LevelTimes[lvlIndex]):mm\\:ss\\.fff}")));
+                header: $"{lvlIndex + 1}", // TODO-UPDATE: Level name
+                text: $"{new TimeSpan(0, 0, 0, 0, (int)saveData.LevelTimes[lvlIndex]):mm\\:ss\\.fff}"));
         }
 
         yield return new SerializableProgressionSlotViewModel<FiestaRun_SaveData>(this, null, 0, crowns, maxCrowns, progressItems, context, saveData, fileName);

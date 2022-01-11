@@ -170,10 +170,10 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
             {
                 InfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_File)), 
-                    text: new ConstLocString(FilePath)));
+                    text: FilePath.FullPath));
                 InfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_Size)), 
-                    text: new ConstLocString(await Task.Run(() => FilePath.GetSize().ToString()))));
+                    text: await Task.Run(() => FilePath.GetSize().ToString())));
                 InfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_LastModified)), 
                     text: new GeneratedLocString(() => FilePath.GetFileInfo().LastWriteTime.ToShortDateString())));

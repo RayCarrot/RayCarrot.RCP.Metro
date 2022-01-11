@@ -147,9 +147,9 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                     isPrimaryItem: false,
                     icon: Enum.Parse(typeof(ProgressionIcon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIcon>(),
                     header: new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"),
-                    text: new ConstLocString($"{TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}"))));
+                    text: $"{TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}")));
 
-            yield return new SerializableProgressionSlotViewModel<Legends_SaveData>(this, new ConstLocString(saveData.Profile.Name), 0, teensies, 700, progressItems, context, saveFileData, saveFileName)
+            yield return new SerializableProgressionSlotViewModel<Legends_SaveData>(this, saveData.Profile.Name, 0, teensies, 700, progressItems, context, saveFileData, saveFileName)
             {
                 //GetExportObject = x => x.SaveData,
                 //SetImportObject = (x, o) => x.SaveData = (Legends_SaveData.RO2_PersistentGameData_Universe)o,

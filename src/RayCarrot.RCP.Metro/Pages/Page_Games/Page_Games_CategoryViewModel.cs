@@ -46,7 +46,7 @@ public class Page_Games_CategoryViewModel : BaseRCPViewModel, IDisposable
     {
         // Set properties
         Games = games.ToArray();
-        DisplayName = new ConstLocString("(master)");
+        DisplayName = "(master)";
         IsMaster = true;
 
         // Create properties

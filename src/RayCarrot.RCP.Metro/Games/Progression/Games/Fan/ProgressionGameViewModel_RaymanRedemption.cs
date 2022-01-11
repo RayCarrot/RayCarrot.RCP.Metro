@@ -134,8 +134,8 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
                 return new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: icon, 
-                    header: new ConstLocString(magicianLevelNames[x.Index]), 
-                    text: new ConstLocString($"{time:mm\\:ss\\.fff}"));
+                    header: magicianLevelNames[x.Index], 
+                    text: $"{time:mm\\:ss\\.fff}");
             });
 
             int totalProgress = levelsCompleted +
@@ -207,10 +207,10 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Life, 
                     header: new ResourceLocString(nameof(Resources.Progression_Lives)),
-                    text: new ConstLocString(lives)),
+                    text: lives),
             }.Concat(magicianBonusDataItems);
 
-            yield return new SerializableProgressionSlotViewModel<GameMaker_DSMap>(this, new ConstLocString($"{saveName} ({gameModeStr})"), saveIndex, percentage, dataItems, context, saveData, fileName);
+            yield return new SerializableProgressionSlotViewModel<GameMaker_DSMap>(this, $"{saveName} ({gameModeStr})", saveIndex, percentage, dataItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
         }

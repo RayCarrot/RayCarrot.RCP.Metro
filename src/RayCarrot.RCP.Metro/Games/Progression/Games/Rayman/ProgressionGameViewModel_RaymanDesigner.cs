@@ -105,8 +105,8 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             progressItems.Add(new ProgressionDataViewModel(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.R1_Flag, 
-                header: new ConstLocString($"{longWorldNames[save.World]} {save.Level}"), 
-                text: new ConstLocString($"{time:mm\\:ss\\.fff}")));
+                header: $"{longWorldNames[save.World]} {save.Level}", 
+                text: $"{time:mm\\:ss\\.fff}"));
         }
 
         int levelsCount = Game switch

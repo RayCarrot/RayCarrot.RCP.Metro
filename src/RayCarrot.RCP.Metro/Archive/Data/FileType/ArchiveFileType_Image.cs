@@ -79,7 +79,7 @@ public class ArchiveFileType_Image : IArchiveFileType
         {
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)), 
-                text: new ConstLocString($"{img.Width}x{img.Height}")),
+                text: $"{img.Width}x{img.Height}"),
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Format)), 
                 text: new GeneratedLocString(() => $"{GetFormat(fileExtension)}")),

@@ -49,11 +49,11 @@ public abstract class GameManager_Win32 : GameManager
             {
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_LaunchPath)), 
-                    text: new ConstLocString(launchInfo.Path), 
+                    text: launchInfo.Path.FullPath, 
                     minUserLevel: UserLevel.Technical),
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_LaunchArgs)), 
-                    text: new ConstLocString(launchInfo.Args), 
+                    text: launchInfo.Args, 
                     minUserLevel: UserLevel.Technical)
             };
         }

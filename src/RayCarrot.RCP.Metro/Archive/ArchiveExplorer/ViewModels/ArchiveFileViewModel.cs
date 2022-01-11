@@ -255,7 +255,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
 
             FileDisplayInfo.Add(new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Dir)), 
-                text: new ConstLocString(FileData.Directory)));
+                text: FileData.Directory));
 
             FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), FileData.ArchiveEntry));
 
@@ -300,7 +300,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             // Set file type
             FileDisplayInfo.Add(new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Type)), 
-                text: new ConstLocString(FileType.TypeDisplayName), 
+                text: FileType.TypeDisplayName, 
                 minUserLevel: UserLevel.Advanced));
 
             IsInitialized = true;

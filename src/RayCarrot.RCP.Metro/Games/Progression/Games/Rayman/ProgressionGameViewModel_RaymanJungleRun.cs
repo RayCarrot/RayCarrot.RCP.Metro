@@ -108,8 +108,8 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 progressItems.Add(new ProgressionDataViewModel(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.RO_Clock, 
-                    header: new ConstLocString($"{worldNum}-{lvlNum}"), 
-                    text: new ConstLocString($"{new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\.fff}")));
+                    header: $"{worldNum}-{lvlNum}", 
+                    text: $"{new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\.fff}"));
             }
 
             int maxLums = numWorlds * 9 * 100;

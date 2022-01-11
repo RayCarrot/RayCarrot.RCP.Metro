@@ -72,19 +72,19 @@ public abstract class GameManager_WinStore : GameManager
             {
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreDependencies)), 
-                    text: new ConstLocString(package.Dependencies.Select(x => x.Id.Name).JoinItems(", ")), 
+                    text: package.Dependencies.Select(x => x.Id.Name).JoinItems(", "), 
                     minUserLevel: UserLevel.Technical),
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreFullName)), 
-                    text: new ConstLocString(package.Id.FullName), 
+                    text: package.Id.FullName, 
                     minUserLevel: UserLevel.Advanced),
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreArchitecture)), 
-                    text: new ConstLocString(package.Id.Architecture.ToString()), 
+                    text: package.Id.Architecture.ToString(), 
                     minUserLevel: UserLevel.Technical),
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreVersion)), 
-                    text: new ConstLocString($"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}"), 
+                    text: $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}", 
                     minUserLevel: UserLevel.Technical),
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreInstallDate)), 

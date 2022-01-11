@@ -816,7 +816,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
             int storySlotIndex = saveIndex;
 
-            yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ConstLocString(slot.SlotDesc.Name), saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, context, saveData, saveFile.Name)
+            yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, slot.SlotDesc.Name, saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, context, saveData, saveFile.Name)
             {
                 GetExportObject = x => x.StorySlots[storySlotIndex],
                 SetImportObject = (x, o) => x.StorySlots[storySlotIndex] = (RRR_SaveSlot)o,
@@ -891,7 +891,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RRR_Trophy, 
                 header: new GeneratedLocString(() => String.Format(Resources.Progression_RRRScore, names[mgID])), 
-                text: new ConstLocString($"{name}: {playerHighScore}")));
+                text: $"{name}: {playerHighScore}"));
         }
 
         // Add total score

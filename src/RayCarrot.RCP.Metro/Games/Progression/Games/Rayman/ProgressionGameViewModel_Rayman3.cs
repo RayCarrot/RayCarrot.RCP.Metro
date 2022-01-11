@@ -80,7 +80,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
                 new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
             };
 
-            yield return new SerializableProgressionSlotViewModel<R3SaveFile>(this, new ConstLocString($"{filePath.RemoveFileExtension().Name}"), index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
+            yield return new SerializableProgressionSlotViewModel<R3SaveFile>(this, $"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", Game);
 

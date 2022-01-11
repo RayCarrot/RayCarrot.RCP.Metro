@@ -428,7 +428,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
 
         // Show the total file size for all selected files if any are selected
         if (selectedFilesCount > 0 && !invalidSize)
-            StatusBarItems.Add(new ConstLocString($"{selectedFilesSize}"));
+            StatusBarItems.Add($"{selectedFilesSize}");
 
         Logger.Trace("Refreshed the status bar");
     }

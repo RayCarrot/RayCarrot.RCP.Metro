@@ -59,7 +59,7 @@ public abstract class GameManager : BaseGameData
             minUserLevel: UserLevel.Advanced),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)), 
-            text: new ConstLocString(Game.GetInstallDir())),
+            text: Game.GetInstallDir().FullPath),
         //new DuoGridItemViewModel("Install size", GameData.InstallDirectory.GetSize().ToString())
     };
 
