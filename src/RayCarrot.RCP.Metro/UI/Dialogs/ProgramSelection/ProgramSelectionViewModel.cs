@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -13,6 +14,8 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class ProgramSelectionViewModel : UserInputViewModel
 {
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     private FileSystemPath _programFilePath;
     private ProgramSelectionItemViewModel? _selectedProgram;
 
@@ -139,18 +142,24 @@ public class ProgramSelectionViewModel : UserInputViewModel
         // Get associated programs and add those first
         if (FileExtensions != null)
         {
-            foreach (FileExtension ext in FileExtensions)
+            try
             {
-                // TODO-UPDATE: Try/catch
-                foreach (FileSystemPath program in GetAssociatedPrograms(ext.PrimaryFileExtension))
+                foreach (FileExtension ext in FileExtensions)
                 {
-                    // Add the program if it doesn't exist
-                    if (programs.All(x => x?.FilePath != program))
-                        programs.Add(new ProgramSelectionItemViewModel(program.RemoveFileExtension().Name, program)
-                        {
-                            IsRecommended = true,
-                        });
+                    foreach (FileSystemPath program in GetAssociatedPrograms(ext.PrimaryFileExtension))
+                    {
+                        // Add the program if it doesn't exist
+                        if (programs.All(x => x?.FilePath != program))
+                            programs.Add(new ProgramSelectionItemViewModel(program.RemoveFileExtension().Name, program)
+                            {
+                                IsRecommended = true,
+                            });
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex, "Getting associated programs");
             }
 
             if (programs.Any())
@@ -166,37 +175,43 @@ public class ProgramSelectionViewModel : UserInputViewModel
         // Get programs
         foreach (FileSystemPath path in paths)
         {
-            // TODO-UPDATE: Try/catch
-            foreach (FileSystemPath shortcutFile in Directory.GetFiles(path, "*.lnk", SearchOption.AllDirectories))
+            try
             {
-                // Get the target
-                FileSystemPath targetFile = WindowsHelpers.GetShortCutTarget(shortcutFile);
-
-                // Make sure the file exists
-                if (!targetFile.FileExists)
+                foreach (FileSystemPath shortcutFile in Directory.GetFiles(path, "*.lnk", SearchOption.AllDirectories))
                 {
-                    // Due to RCP being run as a 32-bit program (13.0.0) it will have issues getting certain paths when run on a
-                    // 64-bit system. We could set RCP to run as AnyCPU, but then we need to include two binaries for ImageMagick
-                    // which will use 20 MB more space. For now we attempt to solve the path issue with a fallback way of getting the
-                    // shortcut target based on the working directory. This will solve most issues, but isn't ideal.
+                    // Get the target
+                    FileSystemPath targetFile = WindowsHelpers.GetShortCutTarget(shortcutFile);
 
-                    FileSystemPath workingDir = WindowsHelpers.GetShortCutTargetInfo(shortcutFile).WorkingDirectory;
-                    targetFile = workingDir + targetFile.Name;
-
+                    // Make sure the file exists
                     if (!targetFile.FileExists)
+                    {
+                        // Due to RCP being run as a 32-bit program (13.0.0) it will have issues getting certain paths when run on a
+                        // 64-bit system. We could set RCP to run as AnyCPU, but then we need to include two binaries for ImageMagick
+                        // which will use 20 MB more space. For now we attempt to solve the path issue with a fallback way of getting the
+                        // shortcut target based on the working directory. This will solve most issues, but isn't ideal.
+
+                        FileSystemPath workingDir = WindowsHelpers.GetShortCutTargetInfo(shortcutFile).WorkingDirectory;
+                        targetFile = workingDir + targetFile.Name;
+
+                        if (!targetFile.FileExists)
+                            continue;
+                    }
+
+                    // Ignore if not an exe file
+                    if (!targetFile.Name.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase))
                         continue;
+
+                    // Ignore uninstall files
+                    if (targetFile.Name.IndexOf("uninstall", StringComparison.InvariantCultureIgnoreCase) != -1)
+                        continue;
+
+                    // Add the program
+                    programs.Add(new ProgramSelectionItemViewModel(shortcutFile.RemoveFileExtension().Name, targetFile));
                 }
-
-                // Ignore if not an exe file
-                if (!targetFile.Name.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase))
-                    continue;
-
-                // Ignore uninstall files
-                if (targetFile.Name.IndexOf("uninstall", StringComparison.InvariantCultureIgnoreCase) != -1)
-                    continue;
-
-                // Add the program
-                programs.Add(new ProgramSelectionItemViewModel(shortcutFile.RemoveFileExtension().Name, targetFile));
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex, "Getting start menu programs");
             }
         }
 

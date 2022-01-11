@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: Remove
+// TODO: Remove
 
 /// <summary>
 /// A hierarchical collection of view models identified by ID
