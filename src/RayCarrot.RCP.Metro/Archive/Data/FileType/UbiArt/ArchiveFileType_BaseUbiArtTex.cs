@@ -38,7 +38,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <param name="inputStream">The file data to check</param>
     /// <param name="manager">The manager</param>
     /// <returns>True if it is of this type, otherwise false</returns>
-    public override bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager)
+    public override bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
     {
         if (fileExtension != new FileExtension(".tga.ckd") && fileExtension != new FileExtension(".png.ckd"))
             return false;
@@ -54,7 +54,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         if (FormatMagic != null)
         {
             // Use a reader
-            using Reader reader = new(inputStream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
+            using Reader reader = new(inputStream.Stream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
 
             // Get the magic header
             uint magic = reader.ReadUInt32();
@@ -66,7 +66,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
         return false;
     }
 
-    public virtual bool IsOfType(Stream inputStream, IArchiveDataManager manager, TextureCooked? tex) => false;
+    public virtual bool IsOfType(ArchiveFileStream inputStream, IArchiveDataManager manager, TextureCooked? tex) => false;
 
     /// <summary>
     /// The supported formats to import from
@@ -112,7 +112,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <param name="inputStream">The input file data stream</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public override void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream,
+    public override void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream,
         IArchiveDataManager manager)
     {
         // Check if it's the native format
@@ -122,7 +122,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
             ReadTEXHeader(inputStream, manager);
 
             // Copy the image data
-            inputStream.CopyTo(outputStream);
+            inputStream.Stream.CopyTo(outputStream);
         }
         else
         {
@@ -141,23 +141,23 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
     public override void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream,
-        Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+        ArchiveFileStream inputStream, ArchiveFileStream outputStream, IArchiveDataManager manager)
     {
         // Get the current TEX data
-        TextureCooked? tex = ReadTEXHeader(currentFileStream.Stream, manager);
+        TextureCooked? tex = ReadTEXHeader(currentFileStream, manager);
 
         // If there's no TEX header we handle the image data directly
         if (tex == null)
         {
             if (outputFormat == Format)
-                inputStream.CopyTo(outputStream);
+                inputStream.Stream.CopyTo(outputStream.Stream);
             else
                 ConvertFrom(inputFormat, MagickFormat, inputStream, outputStream);
         }
         else
         {
             // Get the image in specified format
-            using MagickImage img = new(inputStream, GetMagickFormat(inputFormat.FileExtensions));
+            using MagickImage img = new(inputStream.Stream, GetMagickFormat(inputFormat.FileExtensions));
 
             // Change the type to the output format
             img.Format = MagickFormat;
@@ -176,7 +176,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
             tex.Pre_SerializeImageData = true;
 
             // Write the TEX file
-            manager.Context!.WriteStreamData(outputStream, tex, leaveOpen: true);
+            manager.Context!.WriteStreamData(outputStream.Stream, tex, name: outputStream.Name, leaveOpen: true);
         }
     }
 
@@ -187,13 +187,13 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <param name="format">The file format</param>
     /// <param name="manager">The manager to check</param>
     /// <returns>The image</returns>
-    protected override MagickImage GetImage(Stream inputStream, FileExtension format, IArchiveDataManager manager)
+    protected override MagickImage GetImage(ArchiveFileStream inputStream, FileExtension format, IArchiveDataManager manager)
     {
         // Set the Stream position
         ReadTEXHeader(inputStream, manager);
 
         // Return the image
-        return new MagickImage(inputStream);
+        return new MagickImage(inputStream.Stream);
     }
 
     /// <summary>
@@ -209,23 +209,23 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <param name="inputStream">The input stream</param>
     /// <param name="manager">The manager</param>
     /// <returns>The TEX header, if available</returns>
-    protected TextureCooked? ReadTEXHeader(Stream inputStream, IArchiveDataManager manager)
+    protected TextureCooked? ReadTEXHeader(ArchiveFileStream inputStream, IArchiveDataManager manager)
     {
         // Use a reader
-        using Reader reader = new(inputStream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
+        using Reader reader = new(inputStream.Stream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
 
         // Check if it's in a TEX wrapper
-        inputStream.Position = 4;
+        inputStream.Stream.Position = 4;
         bool usesTexWrapper = reader.ReadUInt32() == TEXHeader;
 
         // Reset the position
-        inputStream.Position = 0;
+        inputStream.Stream.Position = 0;
 
         // If it uses a TEX wrapper we need to serialize the header
         if (usesTexWrapper)
         {
             // Serialize the header
-            return manager.Context.ReadStreamData<TextureCooked>(inputStream, leaveOpen: true, onPreSerialize: x => x.Pre_SerializeImageData = false);
+            return manager.Context.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, leaveOpen: true, onPreSerialize: x => x.Pre_SerializeImageData = false);
         }
 
         return null;

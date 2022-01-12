@@ -352,18 +352,13 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         return new ArchiveData(GetDirectories(), new IPKFileGenerator(data, archiveFileStream));
     }
 
-    /// <summary>
-    /// Loads the archive from a stream
-    /// </summary>
-    /// <param name="archiveFileStream">The file stream for the archive</param>
-    /// <returns>The archive data</returns>
-    public object LoadArchive(Stream archiveFileStream)
+    public object LoadArchive(Stream archiveFileStream, string name)
     {
         // Set the stream position to 0
         archiveFileStream.Position = 0;
 
         // Load the current file
-        BundleFile data = Context.ReadStreamData<BundleFile>(archiveFileStream, leaveOpen: true);
+        BundleFile data = Context.ReadStreamData<BundleFile>(archiveFileStream, name: name, leaveOpen: true);
 
         Logger.Info("Read IPK file ({0}) with {1} files", data.BootHeader.Version, data.FilePack.Files.Length);
 

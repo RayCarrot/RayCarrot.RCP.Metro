@@ -55,7 +55,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// <param name="inputStream">The file data to check</param>
     /// <param name="manager">The manager</param>
     /// <returns>True if it is of this type, otherwise false</returns>
-    public virtual bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager) => false;
+    public virtual bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => false;
 
     /// <summary>
     /// The supported formats to import from
@@ -89,7 +89,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Load the file
-        GF file = GetFileContent(inputStream.Stream, manager);
+        GF file = GetFileContent(inputStream, manager);
 
         // Load the raw bitmap data
         RawBitmapData rawBmp = file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width)));
@@ -126,7 +126,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// <param name="inputStream">The input file data stream</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+    public void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream, IArchiveDataManager manager)
     {
         // Get the image format
         ImageFormat imgFormat = outputFormat.PrimaryFileExtension switch
@@ -154,13 +154,13 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// <param name="inputStream">The input file data stream to convert from</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+    public void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, ArchiveFileStream inputStream, ArchiveFileStream outputStream, IArchiveDataManager manager)
     {
         // Load the bitmap
-        using Bitmap bmp = new Bitmap(inputStream);
+        using Bitmap bmp = new(inputStream.Stream);
 
         // Load the current file
-        GF gf = GetFileContent(currentFileStream.Stream, manager);
+        GF gf = GetFileContent(currentFileStream, manager);
 
         // IDEA: If bmp is not in supported format, then convert it?
 
@@ -207,7 +207,7 @@ public class ArchiveFileType_GF : IArchiveFileType
         Logger.Debug("The repeat byte has been updated for a .gf file from {0} to {1}", oldRepeatByte, gf.RepeatByte);
 
         // Serialize the data to get the bytes
-        manager.Context.WriteStreamData(outputStream, gf, leaveOpen: true);
+        manager.Context.WriteStreamData(outputStream.Stream, gf, name: outputStream.Name, leaveOpen: true);
     }
 
     #endregion
@@ -220,9 +220,9 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// <param name="fileStream">The file stream</param>
     /// <param name="manager">The data manager</param>
     /// <returns>The deserialized file</returns>
-    public GF GetFileContent(Stream fileStream, IArchiveDataManager manager)
+    public GF GetFileContent(ArchiveFileStream fileStream, IArchiveDataManager manager)
     {
-        return manager.Context!.ReadStreamData<GF>(fileStream, leaveOpen: true);
+        return manager.Context!.ReadStreamData<GF>(fileStream.Stream, name: fileStream.Name, leaveOpen: true);
     }
 
     #endregion

@@ -260,18 +260,13 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         }, new Rayman1PCArchiveGenerator(archiveFileStream));
     }
 
-    /// <summary>
-    /// Loads the archive from a stream
-    /// </summary>
-    /// <param name="archiveFileStream">The file stream for the archive</param>
-    /// <returns>The archive data</returns>
-    public object LoadArchive(Stream archiveFileStream)
+    public object LoadArchive(Stream archiveFileStream, string name)
     {
         // Set the stream position to 0
         archiveFileStream.Position = 0;
 
         // Load the current file
-        PC_FileArchive data = Context.ReadStreamData<PC_FileArchive>(archiveFileStream, leaveOpen: true);
+        PC_FileArchive data = Context.ReadStreamData<PC_FileArchive>(archiveFileStream, name: name, leaveOpen: true);
 
         Logger.Info("Read R1 PC archive file with {0} files", data.Entries.Length);
 

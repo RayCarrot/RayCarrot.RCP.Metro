@@ -86,8 +86,9 @@ public interface IArchiveDataManager : IDisposable
     /// Loads the archive from a stream
     /// </summary>
     /// <param name="archiveFileStream">The file stream for the archive</param>
+    /// <param name="name">The stream name</param>
     /// <returns>The archive data</returns>
-    object LoadArchive(Stream archiveFileStream);
+    object LoadArchive(Stream archiveFileStream, string name);
 
     /// <summary>
     /// Creates a new archive object

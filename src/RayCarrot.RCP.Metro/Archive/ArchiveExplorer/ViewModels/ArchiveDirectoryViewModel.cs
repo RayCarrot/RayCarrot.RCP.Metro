@@ -284,7 +284,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                 try
                                 {
                                     // Export the file
-                                    file.ExportFile(path + exportFileName, fileStream.Stream, format);
+                                    file.ExportFile(path + exportFileName, fileStream, format);
                                 }
                                 catch (Exception ex)
                                 {
@@ -302,7 +302,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                     fileStream.SeekToBeginning();
 
                                     // Export the file as the native format
-                                    file.ExportFile(path + file.FileName, fileStream.Stream, null);
+                                    file.ExportFile(path + file.FileName, fileStream, null);
                                 }
                             }
                         }

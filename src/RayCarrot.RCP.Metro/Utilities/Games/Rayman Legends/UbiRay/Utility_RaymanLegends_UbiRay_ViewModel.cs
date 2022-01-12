@@ -36,7 +36,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
             using var fileStream = File.OpenRead(IPKFilePath);
 
             // Get the first patch info
-            var patchInfo = GetPatchInfos(fileStream).First();
+            var patchInfo = GetPatchInfos(fileStream, IPKFilePath.Name).First();
 
             // Set the position
             fileStream.Position = patchInfo.Offset;
@@ -115,14 +115,15 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     /// Gets the patch infos for each <see cref="Patch"/>
     /// </summary>
     /// <param name="ipkStream">The IPK file stream</param>
+    /// <param name="name">The IPK name</param>
     /// <returns>The patch infos</returns>
-    protected IEnumerable<PatchInfo> GetPatchInfos(Stream ipkStream)
+    protected IEnumerable<PatchInfo> GetPatchInfos(Stream ipkStream, string name)
     {
         // Deserialize the IPK file
         using RCPContext context = new(String.Empty);
         UbiArtSettings settings = new(Game.RaymanLegends, Platform.PC);
         context.AddSettings(settings);
-        BundleFile ipk = context.ReadStreamData<BundleFile>(ipkStream, settings.GetEndian, leaveOpen: true);
+        BundleFile ipk = context.ReadStreamData<BundleFile>(ipkStream, name: name, endian: settings.GetEndian, leaveOpen: true);
 
         // Enumerate every patch
         foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))
@@ -161,7 +162,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
         using var fileStream = File.Open(IPKFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
 
         // Enumerate each patch info
-        foreach (PatchInfo patchInfo in GetPatchInfos(fileStream))
+        foreach (PatchInfo patchInfo in GetPatchInfos(fileStream, IPKFilePath.Name))
         {
             // Set the position
             fileStream.Position = patchInfo.Offset;

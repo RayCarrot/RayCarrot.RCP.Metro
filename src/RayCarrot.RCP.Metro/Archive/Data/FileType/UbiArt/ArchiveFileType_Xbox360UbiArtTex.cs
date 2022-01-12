@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using BinarySerializer.UbiArt;
 using ImageMagick;
 
@@ -25,7 +24,7 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
     /// </summary>
     protected override FileExtension Format => new FileExtension(".dds_xbox");
 
-    public override bool IsOfType(Stream inputStream, IArchiveDataManager manager, TextureCooked? tex)
+    public override bool IsOfType(ArchiveFileStream inputStream, IArchiveDataManager manager, TextureCooked? tex)
     {
         UbiArtSettings settings = manager.Context!.GetSettings<UbiArtSettings>();
 
@@ -40,16 +39,16 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
     /// <param name="format">The file format</param>
     /// <param name="manager">The manager to check</param>
     /// <returns>The image</returns>
-    protected override MagickImage GetImage(Stream inputStream, FileExtension format, IArchiveDataManager manager)
+    protected override MagickImage GetImage(ArchiveFileStream inputStream, FileExtension format, IArchiveDataManager manager)
     {
         // Set the Stream position
         ReadTEXHeader(inputStream, manager);
 
         // Serialize data
-        TextureCooked_Xbox360 imgData = manager.Context!.ReadStreamData<TextureCooked_Xbox360>(inputStream, leaveOpen: true, onPreSerialize: x =>
+        TextureCooked_Xbox360 imgData = manager.Context!.ReadStreamData<TextureCooked_Xbox360>(inputStream.Stream, name: inputStream.Name, leaveOpen: true, onPreSerialize: x =>
         {
             x.Pre_SerializeImageData = true;
-            x.Pre_FileSize = inputStream.Length;
+            x.Pre_FileSize = inputStream.Stream.Length;
         });
 
         // Get the untiled image data

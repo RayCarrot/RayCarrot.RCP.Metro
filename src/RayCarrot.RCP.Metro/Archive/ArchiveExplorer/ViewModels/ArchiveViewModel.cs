@@ -209,7 +209,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         HasModifiedFiles = false;
 
         // Load the archive data
-        ArchiveData = Manager.LoadArchive(ArchiveFileStream);
+        ArchiveData = Manager.LoadArchive(ArchiveFileStream, Name);
 
         // Load the archive
         ArchiveData data = Manager.LoadArchiveData(ArchiveData, ArchiveFileStream, FilePath.Name);

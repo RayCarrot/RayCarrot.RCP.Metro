@@ -39,7 +39,7 @@ public interface IArchiveFileType
     /// <param name="inputStream">The file data to check</param>
     /// <param name="manager">The manager</param>
     /// <returns>True if it is of this type, otherwise false</returns>
-    bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager);
+    bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager);
 
     /// <summary>
     /// The supported formats to import from
@@ -69,7 +69,7 @@ public interface IArchiveFileType
     /// <param name="inputStream">The input file data stream</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager);
+    void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream, IArchiveDataManager manager);
 
     /// <summary>
     /// Converts the file data from the specified format
@@ -80,5 +80,5 @@ public interface IArchiveFileType
     /// <param name="inputStream">The input file data stream to convert from</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager);
+    void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, ArchiveFileStream inputStream, ArchiveFileStream outputStream, IArchiveDataManager manager);
 }

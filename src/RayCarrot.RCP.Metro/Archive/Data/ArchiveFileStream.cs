@@ -12,10 +12,12 @@ public class ArchiveFileStream : IDisposable
     /// Constructor for a file where the stream has not yet been obtained
     /// </summary>
     /// <param name="getStream">The function for getting the stream</param>
+    /// <param name="name">The stream name, used for logging and debugging</param>
     /// <param name="shouldDispose">Indicates if the stream should be disposed</param>
-    public ArchiveFileStream(Func<Stream> getStream, bool shouldDispose)
+    public ArchiveFileStream(Func<Stream> getStream, string name, bool shouldDispose)
     {
         GetStream = getStream;
+        Name = name;
         ShouldDispose = shouldDispose;
     }
 
@@ -23,11 +25,13 @@ public class ArchiveFileStream : IDisposable
     /// Constructor for a file where the stream is available
     /// </summary>
     /// <param name="stream">The stream</param>
+    /// <param name="name">The stream name, used for logging and debugging</param>
     /// <param name="shouldDispose">Indicates if the stream should be disposed</param>
-    public ArchiveFileStream(Stream stream, bool shouldDispose)
+    public ArchiveFileStream(Stream stream, string name, bool shouldDispose)
     {
         _stream = stream;
         GetStream = () => _stream;
+        Name = name;
         ShouldDispose = shouldDispose;
     }
 
@@ -42,6 +46,11 @@ public class ArchiveFileStream : IDisposable
     /// Indicates if the stream should be disposed
     /// </summary>
     protected bool ShouldDispose { get; }
+
+    /// <summary>
+    /// The stream name, used for logging and debugging
+    /// </summary>
+    public string Name { get; }
         
     /// <summary>
     /// The stream

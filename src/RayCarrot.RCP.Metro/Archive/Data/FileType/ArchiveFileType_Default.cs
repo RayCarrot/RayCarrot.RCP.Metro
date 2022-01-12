@@ -42,7 +42,7 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="inputStream">The file data to check</param>
     /// <param name="manager">The manager</param>
     /// <returns>True if it is of this type, otherwise false</returns>
-    public virtual bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager) => true;
+    public virtual bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => true;
 
     /// <summary>
     /// The supported formats to import from
@@ -72,7 +72,7 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="inputStream">The input file data stream</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
+    public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
 
     /// <summary>
     /// Converts the file data from the specified format
@@ -83,7 +83,7 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="inputStream">The input file data stream to convert from</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
+    public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, ArchiveFileStream inputStream, ArchiveFileStream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
 
     #endregion
 }

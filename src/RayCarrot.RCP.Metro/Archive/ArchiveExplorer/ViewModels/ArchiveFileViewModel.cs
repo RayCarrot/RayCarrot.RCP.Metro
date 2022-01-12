@@ -201,7 +201,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             encodedStream = FileData.GetFileData(Archive.ArchiveFileGenerator);
 
             // Create a stream for the decoded bytes
-            decodedStream = new ArchiveFileStream(new MemoryStream(), true);
+            decodedStream = new ArchiveFileStream(new MemoryStream(), FileName, true);
 
             // Decode the bytes
             Manager.DecodeFile(encodedStream.Stream, decodedStream.Stream, FileData.ArchiveEntry);
@@ -448,7 +448,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                         using ArchiveFileStream fileStream = GetDecodedFileStream();
 
                         // Export the file
-                        ExportFile(result.SelectedFileLocation, fileStream.Stream, format);
+                        ExportFile(result.SelectedFileLocation, fileStream, format);
                     }
                     catch (Exception ex)
                     {
@@ -478,7 +478,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <param name="stream">The file stream to export</param>
     /// <param name="format">The format to export as, or null to not convert it</param>
     /// <returns>The task</returns>
-    public void ExportFile(FileSystemPath filePath, Stream stream, FileExtension? format)
+    public void ExportFile(FileSystemPath filePath, ArchiveFileStream stream, FileExtension? format)
     {
         Logger.Trace("An archive file is being exported as {0}", format);
 
@@ -490,7 +490,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             // Write the bytes directly to the stream if no format is specified
             if (format == null)
             {
-                stream.CopyTo(fileStream);
+                stream.Stream.CopyTo(fileStream);
             }
             // Convert the file if the format is not the native one
             else
@@ -607,13 +607,13 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     public void ImportFile(FileSystemPath file, bool convert)
     {
         // Open the file to be imported
-        using FileStream importFile = File.OpenRead(file);
+        using ArchiveFileStream importFile = new(File.OpenRead(file), file.Name, true);
 
         // Import the file
         ImportFile(importFile, file.FileExtension, convert);
     }
 
-    public void ImportFile(Stream importFile, FileExtension fileExtension, bool convert)
+    public void ImportFile(ArchiveFileStream importFile, FileExtension fileExtension, bool convert)
     {
         // Memory stream for converted data
         using MemoryStream memStream = new MemoryStream();
@@ -624,11 +624,11 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             if (FileType == null)
                 throw new Exception("The file type must be set before importing and converting the file");
 
-            FileType.ConvertFrom(fileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+            FileType.ConvertFrom(fileExtension, FileExtension, GetDecodedFileStream(), importFile, new ArchiveFileStream(memStream, FileName, false), Manager);
         }
 
         // Replace the file with the import data
-        if (ReplaceFile(convert ? memStream : importFile))
+        if (ReplaceFile(convert ? memStream : importFile.Stream))
             Archive.AddModifiedFiles();
     }
 
@@ -659,7 +659,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         inputStream.Position = 0;
             
         // Initialize the file
-        InitializeFile(new ArchiveFileStream(inputStream, false), ThumbnailLoadMode.ReloadThumbnail);
+        InitializeFile(new ArchiveFileStream(inputStream, FileName, false), ThumbnailLoadMode.ReloadThumbnail);
 
         return !wasModified;
     }
@@ -751,7 +751,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                             if (FileType == null)
                                 throw new Exception("The file type must be set before editing and converting the file");
 
-                            FileType.ConvertTo(FileExtension, ext, decodedData.Stream, temp, Manager);
+                            FileType.ConvertTo(FileExtension, ext, decodedData, temp, Manager);
                         }
 
                         temp.Position = 0;
@@ -860,12 +860,12 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                         return;
 
                     // Open the temp file
-                    using FileStream tempFileStream = new FileStream(tempFile.TempPath, FileMode.Open, FileAccess.Read);
+                    using ArchiveFileStream tempFileStream = new(new FileStream(tempFile.TempPath, FileMode.Open, FileAccess.Read), "Temp", true);
 
                     // Get the new hash
-                    var newHash = sha1.ComputeHash(tempFileStream);
+                    var newHash = sha1.ComputeHash(tempFileStream.Stream);
 
-                    tempFileStream.Position = 0;
+                    tempFileStream.SeekToBeginning();
 
                     // Check if the file has been modified
                     if (!originalHash.SequenceEqual(newHash))

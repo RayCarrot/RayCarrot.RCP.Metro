@@ -273,18 +273,13 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         return new ArchiveData(GetDirectories(), new CNTFileGenerator(archiveFileStream));
     }
 
-    /// <summary>
-    /// Loads the archive from a stream
-    /// </summary>
-    /// <param name="archiveFileStream">The file stream for the archive</param>
-    /// <returns>The archive data</returns>
-    public object LoadArchive(Stream archiveFileStream)
+    public object LoadArchive(Stream archiveFileStream, string name)
     {
         // Set the stream position to 0
         archiveFileStream.Position = 0;
 
         // Load the current file
-        CNT data = Context.ReadStreamData<CNT>(archiveFileStream, leaveOpen: true);
+        CNT data = Context.ReadStreamData<CNT>(archiveFileStream, name: name, leaveOpen: true);
 
         Logger.Info("Read CNT file with {0} files and {1} directories", data.Files.Length, data.Directories.Length);
 

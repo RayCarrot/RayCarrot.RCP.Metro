@@ -59,8 +59,8 @@ public class ArchiveFileItem : IDisposable
 
         // Get the stream
         ArchiveFileStream stream = IsPendingImport 
-            ? new ArchiveFileStream(PendingImport, false) 
-            : new ArchiveFileStream(() => Manager.GetFileData(generator!, ArchiveEntry), true);
+            ? new ArchiveFileStream(PendingImport, FileName, false) 
+            : new ArchiveFileStream(() => Manager.GetFileData(generator!, ArchiveEntry), FileName, true);
             
         // Seek to the beginning
         stream.SeekToBeginning();
@@ -87,11 +87,8 @@ public class ArchiveFileItem : IDisposable
         // If no match, check the data
         if (match == null)
         {
-            // Get the file data stream
-            Stream fileStream = stream.Stream;
-
             // Find a match from the stream data
-            match = types.FirstOrDefault(x => x.IsOfType(FileExtension, fileStream, Manager));
+            match = types.FirstOrDefault(x => x.IsOfType(FileExtension, stream, Manager));
         }
 
         // Return the type and set to default if still null

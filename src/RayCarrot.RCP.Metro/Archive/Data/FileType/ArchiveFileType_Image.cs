@@ -45,7 +45,7 @@ public class ArchiveFileType_Image : IArchiveFileType
     /// <param name="inputStream">The file data to check</param>
     /// <param name="manager">The manager</param>
     /// <returns>True if it is of this type, otherwise false</returns>
-    public virtual bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager) => false;
+    public virtual bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => false;
 
     /// <summary>
     /// The supported formats to import from
@@ -68,7 +68,7 @@ public class ArchiveFileType_Image : IArchiveFileType
     public virtual ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Get the image
-        using MagickImage img = GetImage(inputStream.Stream, fileExtension, manager);
+        using MagickImage img = GetImage(inputStream, fileExtension, manager);
 
         // Resize to a thumbnail
         img.Thumbnail(width, (int)(img.Height / ((double)img.Width / width)));
@@ -94,7 +94,7 @@ public class ArchiveFileType_Image : IArchiveFileType
     /// <param name="inputStream">The input file data stream</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+    public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream, IArchiveDataManager manager)
     {
         // Get the image
         using MagickImage img = GetImage(inputStream, inputFormat, manager);
@@ -112,7 +112,7 @@ public class ArchiveFileType_Image : IArchiveFileType
     /// <param name="inputStream">The input file data stream to convert from</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+    public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, ArchiveFileStream inputStream, ArchiveFileStream outputStream, IArchiveDataManager manager)
     {
         ConvertFrom(inputFormat, GetMagickFormat(outputFormat), inputStream, outputStream);
     }
@@ -128,7 +128,7 @@ public class ArchiveFileType_Image : IArchiveFileType
     /// <param name="format">The file format</param>
     /// <param name="manager">The manager to check</param>
     /// <returns>The image</returns>
-    protected virtual MagickImage GetImage(Stream inputStream, FileExtension format, IArchiveDataManager manager) => new MagickImage(inputStream, GetMagickFormat(format));
+    protected virtual MagickImage GetImage(ArchiveFileStream inputStream, FileExtension format, IArchiveDataManager manager) => new MagickImage(inputStream.Stream, GetMagickFormat(format));
 
     /// <summary>
     /// Converts the file data from the specified format
@@ -137,13 +137,13 @@ public class ArchiveFileType_Image : IArchiveFileType
     /// <param name="outputFormat">The format to convert to</param>
     /// <param name="inputStream">The input file data stream to convert from</param>
     /// <param name="outputStream">The output stream for the converted data</param>
-    public void ConvertFrom(FileExtension inputFormat, MagickFormat outputFormat, Stream inputStream, Stream outputStream)
+    public void ConvertFrom(FileExtension inputFormat, MagickFormat outputFormat, ArchiveFileStream inputStream, ArchiveFileStream outputStream)
     {
         // Get the image in specified format
-        using MagickImage img = new(inputStream, GetMagickFormat(inputFormat.FileExtensions));
+        using MagickImage img = new(inputStream.Stream, GetMagickFormat(inputFormat.FileExtensions));
 
         // Write to stream as native format
-        img.Write(outputStream, outputFormat);
+        img.Write(outputStream.Stream, outputFormat);
     }
 
     /// <summary>
