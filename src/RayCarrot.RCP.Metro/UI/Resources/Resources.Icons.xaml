@@ -54,6 +54,7 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanOrigins_DebugCommands">CodeBraces</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanOrigins_HQVideos">VideoOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanOrigins_Update">Update</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_RaymanFiestaRun_SaveFix">AutoFix</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_R1PasswordGenerator">KeyOutline</iconPacks:PackIconMaterialKind>
@@ -234,6 +235,9 @@
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanOrigins_Update" 
                        IconKind="{StaticResource Icons.Utilities_RaymanOrigins_Update}"
                        IconColor="{StaticResource Colors.Utilities}" />
+    <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanFiestaRun_SaveFix" 
+                       IconKind="{StaticResource Icons.Utilities_RaymanFiestaRun_SaveFix}"
+                       IconColor="{StaticResource Colors.Progression}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_ArchiveExplorer" 
                        IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
                        IconColor="{StaticResource Colors.ArchiveExplorer}" />

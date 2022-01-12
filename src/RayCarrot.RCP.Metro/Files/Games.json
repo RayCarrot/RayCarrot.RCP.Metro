@@ -31,6 +31,9 @@
     "RaymanLegends": [
       "Utility_RaymanLegends_UbiRay",
       "Utility_RaymanLegends_DebugCommands"
+    ],
+    "RaymanFiestaRun": [
+      "Utility_RaymanFiestaRun_SaveFix"
     ]
   },
   "GameManagers": {

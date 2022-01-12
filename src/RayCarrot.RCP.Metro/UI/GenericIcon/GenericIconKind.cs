@@ -59,6 +59,7 @@ public enum GenericIconKind
     Utilities_RaymanOrigins_DebugCommands,
     Utilities_RaymanOrigins_HQVideos,
     Utilities_RaymanOrigins_Update,
+    Utilities_RaymanFiestaRun_SaveFix,
     Utilities_ArchiveExplorer,
     Utilities_Ray1Editor,
     Utilities_R1PasswordGenerator,
