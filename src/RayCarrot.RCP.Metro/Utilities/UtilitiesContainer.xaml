@@ -94,13 +94,14 @@
                                 HorizontalAlignment="Center"
                                 Visibility="{Binding Path=IsAvailable, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}">
 
-                        <iconPacks:PackIconMaterial Kind="InformationOutline"
-                                                    Margin="0 0 10 0" />
-
                         <!-- TODO-UPDATE: Localize -->
                         <TextBlock Foreground="Red"
                                    Text="The utility is not available"
                                    TextWrapping="Wrap" />
+
+                        <local:InfoIcon DataContext="{Binding Path=Utility.NotAvailableInfo, Mode=OneTime}" 
+                                        Text="{Binding Path=Value}"
+                                        Visibility="{Binding Path=Value, Converter={local:InvertedObjectNullToVisibilityConverter}, FallbackValue=Collapsed}"/>
 
                     </StackPanel>
 

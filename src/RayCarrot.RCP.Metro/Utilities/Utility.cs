@@ -57,6 +57,11 @@ public abstract class Utility
     public virtual bool IsAvailable => true;
 
     /// <summary>
+    /// Optional text information to show if the utility is not available
+    /// </summary>
+    public virtual LocalizedString? NotAvailableInfo => null;
+
+    /// <summary>
     /// Retrieves a list of applied utilities from this utility
     /// </summary>
     /// <returns>The applied utilities</returns>
