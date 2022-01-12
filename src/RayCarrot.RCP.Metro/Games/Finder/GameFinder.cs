@@ -481,14 +481,14 @@ public class GameFinder
         var keys = Environment.Is64BitOperatingSystem
             ? new RegistryKey[]
             {
-                RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
+                RegistryHelpers.GetKeyFromFullPath(AppFilePaths.UninstallRegistryKey,
                     RegistryView.Registry32),
-                RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
+                RegistryHelpers.GetKeyFromFullPath(AppFilePaths.UninstallRegistryKey,
                     RegistryView.Registry64)
             }
             : new RegistryKey[]
             {
-                RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
+                RegistryHelpers.GetKeyFromFullPath(AppFilePaths.UninstallRegistryKey,
                     RegistryView.Registry32),
             };
 
@@ -520,18 +520,18 @@ public class GameFinder
                     continue;
 
                 // Make sure it has an uninstall string
-                if (!subKey.HasValue("UninstallString"))
+                if (subKey.GetValue("UninstallString") == null)
                     continue;
 
-                if (subKey.HasValue("ParentKeyName"))
+                if (subKey.GetValue("ParentKeyName") != null)
                     continue;
 
                 // Make sure it has a display name
-                if (!(subKey.GetValue("DisplayName") is string dn))
+                if (subKey.GetValue("DisplayName") is not string dn)
                     continue;
 
                 // Make sure it has an install location
-                if (!(subKey.GetValue("InstallLocation") is string dir))
+                if (subKey.GetValue("InstallLocation") is not string dir)
                     continue;
 
                 yield return new InstalledProgram(dn, subKey.Name, dir);

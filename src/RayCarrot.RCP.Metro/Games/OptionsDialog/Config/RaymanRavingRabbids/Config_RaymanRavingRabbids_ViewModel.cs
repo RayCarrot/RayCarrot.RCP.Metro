@@ -141,7 +141,7 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
     protected void LoadRegistryKey(string keyName, Action<RegistryKey?> loadAction)
     {
         // Open the key. This will return null if it doesn't exist.
-        using RegistryKey key = RegistryHelpers.GetKeyFromFullPath(RegistryHelpers.CombinePaths(Key_BasePath, GetGUID(), keyName), RegistryView.Default);
+        using RegistryKey? key = RegistryHelpers.GetKeyFromFullPath(RegistryHelpers.CombinePaths(Key_BasePath, GetGUID(), keyName), RegistryView.Default);
 
         // Log
         if (key != null)
@@ -158,7 +158,7 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
         // Get the key path
         var keyPath = RegistryHelpers.CombinePaths(Key_BasePath, GetGUID(), keyName);
 
-        RegistryKey key;
+        RegistryKey? key;
 
         // Create the key if it doesn't exist
         if (!RegistryHelpers.KeyExists(keyPath))

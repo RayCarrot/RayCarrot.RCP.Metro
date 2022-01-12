@@ -145,7 +145,7 @@ public abstract class GameManager_Steam : GameManager
         try
         {
             // Get the key path
-            var keyPath = RegistryHelpers.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {SteamID}");
+            var keyPath = RegistryHelpers.CombinePaths(AppFilePaths.UninstallRegistryKey, $"Steam App {SteamID}");
 
             using var key = RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Registry64);
 

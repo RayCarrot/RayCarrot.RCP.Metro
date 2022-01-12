@@ -108,6 +108,16 @@ public static class AppFilePaths
     public const string RaymanLegendsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
 
     /// <summary>
+    /// The RegEdit settings registry key path
+    /// </summary>
+    public const string RegeditRegistryKey = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Applets\Regedit";
+
+    /// <summary>
+    /// The Uninstall/Change programs registry key path
+    /// </summary>
+    public const string UninstallRegistryKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+
+    /// <summary>
     /// The file extension for compressed backups
     /// </summary>
     public const string BackupCompressionExtension = ".rcpb";

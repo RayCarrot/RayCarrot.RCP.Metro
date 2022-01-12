@@ -212,19 +212,22 @@ public class Page_Settings_ViewModel : BasePageViewModel
                 // Steam paths
                 try
                 {
-                    using RegistryKey key = RegistryHelpers.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default);
+                    using RegistryKey? key = RegistryHelpers.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default);
+
                     if (key != null)
                     {
                         FileSystemPath steamDir = key.GetValue("SteamPath", null)?.ToString();
-                        var steamExe = key.GetValue("SteamExe", null)?.ToString();
+                        string? steamExe = key.GetValue("SteamExe", null)?.ToString();
 
                         if (steamDir.DirectoryExists)
-                            LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
-                            {
-                                new Page_Settings_LinkItemViewModel(steamDir + steamExe, Resources.Links_Local_Steam),
-                                new Page_Settings_LinkItemViewModel(steamDir + @"steamapps\common",
-                                    Resources.Links_Local_SteamGames, UserLevel.Advanced)
-                            });
+                        {
+                            if (steamExe != null)
+                                LocalLinkItems.Add(new Page_Settings_LinkItemViewModel(
+                                    steamDir + steamExe, Resources.Links_Local_Steam).YieldToArray());
+
+                            LocalLinkItems.Add(new Page_Settings_LinkItemViewModel(
+                                steamDir + @"steamapps\common", Resources.Links_Local_SteamGames, UserLevel.Advanced).YieldToArray());
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -235,7 +238,8 @@ public class Page_Settings_ViewModel : BasePageViewModel
                 // GOG paths
                 try
                 {
-                    using RegistryKey key = RegistryHelpers.GetKeyFromFullPath(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths", RegistryView.Default);
+                    using RegistryKey? key = RegistryHelpers.GetKeyFromFullPath(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths", RegistryView.Default);
+                    
                     if (key != null)
                     {
                         FileSystemPath gogDir = key.GetValue("client", null)?.ToString();

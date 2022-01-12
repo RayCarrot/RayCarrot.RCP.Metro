@@ -5,9 +5,6 @@ using System.Security;
 
 namespace RayCarrot.RCP.Metro
 {
-    /// <summary>
-    /// The default registry manager for registry requests
-    /// </summary>
     public static class RegistryHelpers
     {
         /// <summary>
@@ -91,7 +88,7 @@ namespace RayCarrot.RCP.Metro
         {
             path = path.TrimEnd(KeySeparatorCharacter);
 
-            if (path.StartsWith("Computer" + KeySeparatorCharacter, StringComparison.CurrentCultureIgnoreCase))
+            if (path.StartsWith($"Computer{KeySeparatorCharacter}", StringComparison.CurrentCultureIgnoreCase))
                 path = path.Substring(9);
 
             return path;
@@ -113,15 +110,8 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                try
-                {
-                    // Open the base key
-                    key = RegistryKey.OpenBaseKey(GetHiveFromName(keys[0]), registryView);
-                }
-                catch (Exception ex)
-                {
-                    throw new ArgumentException("Unable to open provided base key", ex);
-                }
+                // Open the base key
+                key = RegistryKey.OpenBaseKey(GetHiveFromName(keys[0]), registryView);
 
                 // If the path is only the base key, return it
                 if (keys.Length == 1)
@@ -147,33 +137,17 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The name of the hive</returns>
         public static string? GetFullName(RegistryHive hive)
         {
-            switch (hive)
+            return hive switch
             {
-                case RegistryHive.ClassesRoot:
-                    return "HKEY_CLASSES_ROOT";
-
-                case RegistryHive.CurrentUser:
-                    return "HKEY_CURRENT_USER";
-
-                case RegistryHive.LocalMachine:
-                    return "HKEY_LOCAL_MACHINE";
-
-                case RegistryHive.Users:
-                    return "HKEY_USERS";
-
-                case RegistryHive.PerformanceData:
-                    return "HKEY_PERFORMANCE_DATA";
-
-                case RegistryHive.CurrentConfig:
-                    return "HKEY_CURRENT_CONFIG";
-
-                // Not supported in .NET Standard
-                //case RegistryHive.DynData:
-                //    return "HKEY_DYN_DATA";
-
-                default:
-                    return null;
-            }
+                RegistryHive.ClassesRoot => "HKEY_CLASSES_ROOT",
+                RegistryHive.CurrentUser => "HKEY_CURRENT_USER",
+                RegistryHive.LocalMachine => "HKEY_LOCAL_MACHINE",
+                RegistryHive.Users => "HKEY_USERS",
+                RegistryHive.PerformanceData => "HKEY_PERFORMANCE_DATA",
+                RegistryHive.CurrentConfig => "HKEY_CURRENT_CONFIG",
+                RegistryHive.DynData => "HKEY_DYN_DATA",
+                _ => null
+            };
         }
 
         /// <summary>
@@ -184,67 +158,17 @@ namespace RayCarrot.RCP.Metro
         /// <exception cref="ArgumentException"/>
         public static RegistryHive GetHiveFromName(string? name)
         {
-            switch (name)
+            return name switch
             {
-                case "HKEY_LOCAL_MACHINE":
-                case "HKLM":
-                    return RegistryHive.LocalMachine;
-
-                case "HKEY_CURRENT_CONFIG":
-                case "HKCC":
-                    return RegistryHive.CurrentConfig;
-
-                case "HKEY_CLASSES_ROOT":
-                case "HKCR":
-                    return RegistryHive.ClassesRoot;
-
-                case "HKEY_CURRENT_USER":
-                case "HKCU":
-                    return RegistryHive.CurrentUser;
-
-                case "HKEY_USERS":
-                case "HKU":
-                    return RegistryHive.Users;
-
-                case "HKEY_PERFORMANCE_DATA":
-                    return RegistryHive.PerformanceData;
-
-                // Not supported in .NET Standard
-                //case "HKEY_DYN_DATA":
-                //    return RegistryHive.DynData;
-
-                default:
-                    throw new ArgumentException("The provided name is not valid");
-            }
-        }
-
-        /// <summary>
-        /// Gets the name of the lowest sub key from an absolute key path
-        /// </summary>
-        /// <param name="keyPath">The absolute path of the key</param>
-        /// <returns>THe name of the lowest sub key</returns>
-        public static string GetSubKeyName(string keyPath)
-        {
-            var index = keyPath.LastIndexOf(KeySeparatorCharacter);
-
-            return index == -1 ? keyPath : keyPath.Substring(index + 1);
-        }
-
-        /// <summary>
-        /// Gets the absolute path of the parent, or null if there is none
-        /// </summary>
-        /// <param name="keyPath">The absolute path of the child key</param>
-        /// <returns>The absolute path of the parent, or null if there is none</returns>
-        public static string? GetParentKeyPath(string keyPath)
-        {
-            var keys = keyPath.Split(KeySeparatorCharacter).ToList();
-
-            if (keys.Count == 1)
-                return null;
-
-            keys.RemoveAt(keys.Count - 1);
-
-            return String.Join(KeySeparatorCharacter.ToString(), keys);
+                "HKEY_LOCAL_MACHINE" or "HKLM" => RegistryHive.LocalMachine,
+                "HKEY_CURRENT_CONFIG" or "HKCC" => RegistryHive.CurrentConfig,
+                "HKEY_CLASSES_ROOT" or "HKCR" => RegistryHive.ClassesRoot,
+                "HKEY_CURRENT_USER" or "HKCU" => RegistryHive.CurrentUser,
+                "HKEY_USERS" or "HKU" => RegistryHive.Users,
+                "HKEY_PERFORMANCE_DATA" => RegistryHive.PerformanceData,
+                "HKEY_DYN_DATA" => RegistryHive.DynData,
+                _ => throw new ArgumentException("The provided name is not valid")
+            };
         }
 
         /// <summary>
@@ -267,7 +191,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The registry key</returns>
         /// <exception cref="ArgumentNullException">keyPath is null</exception>
         /// <exception cref="ArgumentException">keyPath is not a valid key path</exception>
-        public static RegistryKey CreateRegistryKey(string keyPath, RegistryView registryView, bool writable = false)
+        public static RegistryKey? CreateRegistryKey(string keyPath, RegistryView registryView, bool writable = false)
         {
             if (keyPath == null)
                 throw new ArgumentNullException(nameof(keyPath));
@@ -275,7 +199,7 @@ namespace RayCarrot.RCP.Metro
             RegistryHive hive = GetHiveFromName(keyPath.Split(KeySeparatorCharacter).FirstOrDefault());
 
             using RegistryKey key = RegistryKey.OpenBaseKey(hive, registryView);
-            return key.CreateSubKey(keyPath.Remove(0, GetFullName(hive).Length + KeySeparatorCharacter.ToString().Length), writable);
+            return key.CreateSubKey(keyPath.Remove(0, GetFullName(hive)!.Length + KeySeparatorCharacter.ToString().Length), writable);
         }
 
         /// <summary>

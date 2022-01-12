@@ -41,7 +41,7 @@ public static class WindowsHelpers
     public static void OpenRegistryPath(string path)
     {
         // Set the last opened path to the specified path so that will be opened on launch
-        RunCommandPromptScript(@"REG ADD " + @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Applets\Regedit" + " /v LastKey /t REG_SZ /d \"" + path + "\" /f");
+        RunCommandPromptScript($@"REG ADD {AppFilePaths.RegeditRegistryKey} /v LastKey /t REG_SZ /d ""{path}"" /f");
 
         // Launch the program
         Process.Start("regedit")?.Dispose();

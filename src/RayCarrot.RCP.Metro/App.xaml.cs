@@ -1076,7 +1076,7 @@ public partial class App : Application
             const string regUninstallKeyName = "RCP_Metro";
 
             // Since support has been removed for showing the program under installed programs we now have to remove the key
-            string keyPath = RegistryHelpers.CombinePaths(CommonRegistryPaths.InstalledPrograms, regUninstallKeyName);
+            string keyPath = RegistryHelpers.CombinePaths(AppFilePaths.UninstallRegistryKey, regUninstallKeyName);
 
             // Check if the key exists
             if (RegistryHelpers.KeyExists(keyPath))
@@ -1087,7 +1087,7 @@ public partial class App : Application
                     try
                     {
                         // Open the parent key
-                        using RegistryKey? parentKey = RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
+                        using RegistryKey? parentKey = RegistryHelpers.GetKeyFromFullPath(AppFilePaths.UninstallRegistryKey, RegistryView.Default, true);
 
                         // Delete the sub-key
                         parentKey?.DeleteSubKey(regUninstallKeyName);

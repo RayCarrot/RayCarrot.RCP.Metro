@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using NLog;
 using System;
 using System.Threading.Tasks;
@@ -81,7 +80,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     /// </summary>
     /// <param name="writable">True if the key should be writable</param>
     /// <returns>The key</returns>
-    private RegistryKey GetKey(bool writable)
+    private RegistryKey? GetKey(bool writable)
     {
         // Get the key path
         var keyPath = RegistryHelpers.CombinePaths(Game == Games.RaymanOrigins ? AppFilePaths.RaymanOriginsRegistryKey : AppFilePaths.RaymanLegendsRegistryKey, "Settings");
@@ -89,7 +88,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
         // Create the key if it doesn't exist and should be written to
         if (!RegistryHelpers.KeyExists(keyPath) && writable)
         {
-            var key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
+            RegistryKey? key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
             Logger.Info("The Registry key {0} has been created", key?.Name);
 
@@ -116,7 +115,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     {
         Logger.Info("{0} config is being set up", Game);
 
-        using (var key = GetKey(false))
+        using (RegistryKey? key = GetKey(false))
         {
             Logger.Info(key != null
                 ? $"The key {key.Name} has been opened"
@@ -149,7 +148,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
 
         try
         {
-            using (var key = GetKey(true))
+            using (RegistryKey? key = GetKey(true))
             {
                 if (key == null)
                     throw new Exception("The Registry key could not be created");
