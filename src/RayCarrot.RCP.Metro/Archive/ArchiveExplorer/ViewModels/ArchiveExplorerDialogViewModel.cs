@@ -546,6 +546,9 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
                     }
                 });
 
+                // Dispose the context to flush the log
+                Manager.Context?.Dispose();
+
                 Logger.Debug("Initialized files for archive dir {0}", newDir.DisplayName);
             }
             finally
