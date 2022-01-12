@@ -16,6 +16,7 @@
 	• The UbiArt localization file converter now produces more readable JSON files
 	• Added icons to the utility headers and normalized some layouts
 	• Removed the Rayman 2 disc patch utility
+	• The UbiRay utility can no longer be used if the required costume files have been modified in size to avoid overwriting incorrect data
 • Added cheat toggles to the Rayman Raving Rabbids config
 • Removed the help page
 • Updated the Rayman Arena disc removal to make it work even when there is no available disc drive (save the changes in the config to apply the updated patch)

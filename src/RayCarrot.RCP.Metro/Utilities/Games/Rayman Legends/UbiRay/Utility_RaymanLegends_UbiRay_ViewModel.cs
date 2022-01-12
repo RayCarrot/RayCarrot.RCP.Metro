@@ -77,13 +77,13 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     protected Patch[] GetPatches => new Patch[]
     {
         // This makes UbiRay be treated as a normal costume (type 0)
-        new Patch("sgscontainer.ckd", 17841, new byte[] { 0 }, new byte[] { 1 }), 
+        new Patch("sgscontainer.ckd", 17841, new byte[] { 0 }, new byte[] { 1 }, 30613), 
 
         // This fixes the character description
-        new Patch("costumerayman_ubi.act.ckd", 414, GetBytes(6426), GetBytes(5095)), 
+        new Patch("costumerayman_ubi.act.ckd", 414, GetBytes(6426), GetBytes(5095), 578), 
 
         // This fixes the character name
-        new Patch("costumerayman_ubi.act.ckd", 418, GetBytes(6425), GetBytes(4876)), 
+        new Patch("costumerayman_ubi.act.ckd", 418, GetBytes(6425), GetBytes(4876), 578), 
     };
 
     #endregion
@@ -137,6 +137,10 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
             // Make sure it's not compressed
             if (file.IsCompressed)
                 throw new Exception("The configuration file is compressed and can not be edited");
+
+            // Make sure the file size matches
+            if (file.FileSize != patchGroup.First().FileSize)
+                throw new Exception($"File size for {file.Path} doesn't match the expected size");
 
             // Get the offsets
             foreach (Patch patch in patchGroup)
@@ -228,7 +232,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     #region Records
 
     protected record PatchInfo(Patch Patch, long Offset);
-    protected record Patch(string FileName, int FileOffset, byte[] PatchedBytes, byte[] OriginalBytes);
+    protected record Patch(string FileName, int FileOffset, byte[] PatchedBytes, byte[] OriginalBytes, long FileSize);
 
     #endregion
 }
