@@ -131,8 +131,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
 
                 FileFactory.Write(context, SaveFilePath.Name, save);
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The save was successfully fixes");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RFRU_SaveFixSuccess);
 
                 RequiresFixing = false;
             }
@@ -140,8 +139,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
             {
                 Logger.Error(ex, "Fixing Fiesta Run save");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when fixing the save");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RFRU_SaveFixError);
             }
         }
     }

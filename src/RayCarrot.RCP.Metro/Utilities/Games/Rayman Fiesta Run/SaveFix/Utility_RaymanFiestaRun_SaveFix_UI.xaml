@@ -21,18 +21,16 @@
         <StackPanel Orientation="Horizontal"
                     DataContext="{Binding Path=SelectedEdition}">
 
-            <!-- TODO-UPDATE: Localize -->
-            <Button Content="Fix save"
+            <Button Content="{Resx RFRU_SaveFixAction}"
                     Command="{Binding Path=FixCommand, Mode=OneTime}"
                     IsEnabled="{Binding Path=RequiresFixing}"
                     Margin="0 0 8 0"/>
 
             <!-- TODO: Normalize colors under resources -->
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Foreground="Green" 
                        Visibility="{Binding Path=RequiresFixing, Converter={local:InvertedBooleanToVisibilityConverter}}"
                        VerticalAlignment="Center"
-                       Text="No issues found" />
+                       Text="{Resx RFRU_SaveFixNotRequired}" />
 
         </StackPanel>
 

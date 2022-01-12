@@ -4497,4 +4497,31 @@ By changing the data source here you can choose which location is used for backu
   <data name="Config_RRRCheatsInfo" xml:space="preserve">
     <value>The cheats will go into effect when first loading a map. Sometimes it is also required to return to the menu afterwards for everything to update.</value>
   </data>
+  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
+    <value>DirectPlay can only be toggled on Windows 8 or above</value>
+  </data>
+  <data name="RFRU_SaveFixHeader" xml:space="preserve">
+    <value>Fix save progress</value>
+  </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible. This utility will attempt to correct this.</value>
+  </data>
+  <data name="RFRU_SaveFixAction" xml:space="preserve">
+    <value>Fix save</value>
+  </data>
+  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
+    <value>No issues found</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>The save was successfully fixes</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>An error occurred when fixing the save</value>
+  </data>
+  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
+    <value>Debug commands are not available for the Steam version</value>
+  </data>
+  <data name="Utilities_NotAvailable" xml:space="preserve">
+    <value>The utility is not available</value>
+  </data>
 </root>

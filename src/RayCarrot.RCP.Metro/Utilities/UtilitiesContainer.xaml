@@ -94,9 +94,8 @@
                                 HorizontalAlignment="Center"
                                 Visibility="{Binding Path=IsAvailable, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}">
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Foreground="Red"
-                                   Text="The utility is not available"
+                                   Text="{Resx Utilities_NotAvailable}"
                                    TextWrapping="Wrap" />
 
                         <local:InfoIcon DataContext="{Binding Path=Utility.NotAvailableInfo, Mode=OneTime}" 

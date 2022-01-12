@@ -11,6 +11,5 @@ public class Utility_RaymanLegends_DebugCommands : Utility<Utility_RaymanLegends
     public override string WarningText => Resources.ROU_DebugCommandsWarning;
 
     public override bool IsAvailable => !(ViewModel.GameFilePath.Parent + "steam_api.dll").FileExists;
-    // TODO-UPDATE: Localize
-    public override LocalizedString NotAvailableInfo => new ConstLocString("Debug commands are not available for the Steam version");
+    public override LocalizedString NotAvailableInfo => new ResourceLocString(nameof(Resources.ROU_DebugCommandsNotAvailable));
 }

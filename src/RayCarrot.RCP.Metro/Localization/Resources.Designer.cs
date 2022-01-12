@@ -9992,6 +9992,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DirectPlay can only be toggled on Windows 8 or above.
+        /// </summary>
+        public static string R3U_DirectPlayNotAvailable {
+            get {
+                return ResourceManager.GetString("R3U_DirectPlayNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The game may take a few seconds to launch. If a black screen appears, then press the ESC key on your keyboard to play the game. This message will not show again..
         /// </summary>
         public static string RabbidsActivityCenter_LaunchMessage {
@@ -10258,6 +10267,60 @@ namespace RayCarrot.RCP.Metro {
         public static string Restore_SuccessHeader {
             get {
                 return ResourceManager.GetString("Restore_SuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix save.
+        /// </summary>
+        public static string RFRU_SaveFixAction {
+            get {
+                return ResourceManager.GetString("RFRU_SaveFixAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when fixing the save.
+        /// </summary>
+        public static string RFRU_SaveFixError {
+            get {
+                return ResourceManager.GetString("RFRU_SaveFixError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix save progress.
+        /// </summary>
+        public static string RFRU_SaveFixHeader {
+            get {
+                return ResourceManager.GetString("RFRU_SaveFixHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible. This utility will attempt to correct this..
+        /// </summary>
+        public static string RFRU_SaveFixInfo {
+            get {
+                return ResourceManager.GetString("RFRU_SaveFixInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No issues found.
+        /// </summary>
+        public static string RFRU_SaveFixNotRequired {
+            get {
+                return ResourceManager.GetString("RFRU_SaveFixNotRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The save was successfully fixes.
+        /// </summary>
+        public static string RFRU_SaveFixSuccess {
+            get {
+                return ResourceManager.GetString("RFRU_SaveFixSuccess", resourceCulture);
             }
         }
         
@@ -10852,6 +10915,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ROU_DebugCommandsNoSaveInfo {
             get {
                 return ResourceManager.GetString("ROU_DebugCommandsNoSaveInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug commands are not available for the Steam version.
+        /// </summary>
+        public static string ROU_DebugCommandsNotAvailable {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsNotAvailable", resourceCulture);
             }
         }
         
@@ -12380,6 +12452,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Format_UnityPlayerPrefsHeader {
             get {
                 return ResourceManager.GetString("Utilities_Format_UnityPlayerPrefsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The utility is not available.
+        /// </summary>
+        public static string Utilities_NotAvailable {
+            get {
+                return ResourceManager.GetString("Utilities_NotAvailable", resourceCulture);
             }
         }
         

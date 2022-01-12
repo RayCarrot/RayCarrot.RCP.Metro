@@ -95,8 +95,6 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     /// </summary>
     public FileSystemPath IPKFilePath { get; set; }
 
-    public LocalizedString? ErrorMessage { get; set; }
-
     /// <summary>
     /// Indicates if the utility has been applied
     /// </summary>
@@ -134,27 +132,15 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
 
             // Make sure we found the file
             if (file == null)
-            {
-                // TODO-UPDATE: Localize
-                ErrorMessage = new ConstLocString("Patch file not found");
                 throw new Exception("Patch file not found");
-            }
 
             // Make sure it's not compressed
             if (file.IsCompressed)
-            {
-                // TODO-UPDATE: Localize
-                ErrorMessage = new ConstLocString("The configuration file is compressed and can not be edited");
                 throw new Exception("The configuration file is compressed and can not be edited");
-            }
 
             // Make sure the file size matches
             if (file.FileSize != patchGroup.First().FileSize)
-            {
-                // TODO-UPDATE: Localize
-                ErrorMessage = new ConstLocString($"File size for {file.Path} doesn't match the expected size");
                 throw new Exception($"File size for {file.Path} doesn't match the expected size");
-            }
 
             // Get the offsets
             foreach (Patch patch in patchGroup)
