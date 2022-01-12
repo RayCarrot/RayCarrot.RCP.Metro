@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -13,7 +12,7 @@ public partial class Utility_Rayman1_TPLS_UI : UserControl
         InitializeComponent();
     }
 
-    public Utility_Rayman1_TPLS_ViewModel ViewModel { get; init; }
+    public Utility_Rayman1_TPLS_ViewModel ViewModel => (Utility_Rayman1_TPLS_ViewModel)DataContext;
 
     private async void VersionSelection_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {

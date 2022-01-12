@@ -250,16 +250,16 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     /// <param name="game">The game to get the utilities for</param>
     /// <returns>The utilities instances</returns>
-    public IEnumerable<IUtility> GetUtilities(Games game)
+    public IEnumerable<Utility> GetUtilities(Games game)
     {
         var utilities = GamesManager.LocalUtilities.TryGetValue(game);
 
         if (utilities == null)
-            return Array.Empty<IUtility>(); 
+            return Array.Empty<Utility>(); 
 
         return utilities.
             // Create a new instance of each utility
-            Select(x => x.CreateInstance<IUtility>());
+            Select(x => x.CreateInstance<Utility>());
     }
 
     /// <summary>

@@ -1,61 +1,82 @@
-﻿#nullable disable
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// Defines a utility
+/// The base class for a utility
 /// </summary>
-public interface IUtility
+public abstract class Utility
 {
     /// <summary>
     /// The header for the utility. This property is retrieved again when the current culture is changed.
     /// </summary>
-    string DisplayHeader { get; }
+    public abstract string DisplayHeader { get; }
 
     /// <summary>
     /// The utility icon
     /// </summary>
-    GenericIconKind Icon { get; }
+    public abstract GenericIconKind Icon { get; }
 
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
-    string InfoText { get; }
+    public virtual string? InfoText => null;
 
     /// <summary>
     /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
-    string WarningText { get; }
+    public virtual string? WarningText => null;
 
     /// <summary>
     /// Indicates if the utility requires additional files to be downloaded remotely
     /// </summary>
-    bool RequiresAdditionalFiles { get; }
+    public virtual bool RequiresAdditionalFiles => false;
 
     /// <summary>
     /// Indicates if the utility is work in process
     /// </summary>
-    bool IsWorkInProcess { get; }
+    public virtual bool IsWorkInProcess => false;
 
     /// <summary>
     /// The utility UI content
     /// </summary>
-    object UIContent { get; }
+    public abstract object UIContent { get; }
 
     /// <summary>
     /// Indicates if the utility requires administration privileges
     /// </summary>
-    bool RequiresAdmin { get; }
+    public virtual bool RequiresAdmin => false;
 
     /// <summary>
     /// Indicates if the utility is available to the user
     /// </summary>
-    bool IsAvailable { get; }
+    public virtual bool IsAvailable => true;
 
     /// <summary>
     /// Retrieves a list of applied utilities from this utility
     /// </summary>
     /// <returns>The applied utilities</returns>
-    IEnumerable<string> GetAppliedUtilities();
+    public virtual IEnumerable<string> GetAppliedUtilities() => Enumerable.Empty<string>();
+}
+
+public abstract class Utility<UI, VM> : Utility
+    where UI : FrameworkElement, new()
+    where VM : INotifyPropertyChanged
+{
+    protected Utility() : this(Activator.CreateInstance<VM>()) { }
+    protected Utility(VM viewModel) => ViewModel = viewModel;
+
+    public sealed override object UIContent => new UI()
+    {
+        DataContext = ViewModel
+    };
+
+    /// <summary>
+    /// The utility view model
+    /// </summary>
+    public VM ViewModel { get; }
 }

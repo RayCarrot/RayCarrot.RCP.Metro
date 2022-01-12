@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -8,15 +7,8 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public partial class Utility_Ray1Editor_UI : UserControl
 {
-    public Utility_Ray1Editor_UI(Utility_Ray1Editor_ViewModel viewModel)
+    public Utility_Ray1Editor_UI()
     {
         InitializeComponent();
-        ViewModel = viewModel;
-    }
-
-    public Utility_Ray1Editor_ViewModel ViewModel
-    {
-        get => (Utility_Ray1Editor_ViewModel)DataContext;
-        set => DataContext = value;
     }
 }

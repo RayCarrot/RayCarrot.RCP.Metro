@@ -14,7 +14,7 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     /// Default constructor
     /// </summary>
     /// <param name="utility">The utility</param>
-    public UtilityViewModel(IUtility utility)
+    public UtilityViewModel(Utility utility)
     {
         Utility = utility;
         DisplayHeader = new GeneratedLocString(() => Utility.DisplayHeader);
@@ -55,7 +55,7 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     /// <summary>
     /// The utility
     /// </summary>
-    public IUtility Utility { get; }
+    public Utility Utility { get; }
 
     #endregion
 
