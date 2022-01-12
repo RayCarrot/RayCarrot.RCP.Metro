@@ -259,9 +259,7 @@ public class AppViewModel : BaseViewModel
 
         return utilities.
             // Create a new instance of each utility
-            Select(x => x.CreateInstance<IUtility>()).
-            // Make sure it's available
-            Where(x => x.IsAvailable);
+            Select(x => x.CreateInstance<IUtility>());
     }
 
     /// <summary>

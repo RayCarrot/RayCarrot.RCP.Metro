@@ -50,7 +50,8 @@
 
                     </StackPanel>
 
-                    <ContentControl IsTabStop="False">
+                    <ContentControl IsTabStop="False" 
+                                    Visibility="{Binding Path=IsAvailable, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}">
                         <ContentControl.Style>
                             <Style TargetType="{x:Type ContentControl}">
                                 <Setter Property="Content" Value="{Binding Path=Utility.UIContent, Mode=OneTime}" />
@@ -88,6 +89,20 @@
                             </Style>
                         </ContentControl.Style>
                     </ContentControl>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Visibility="{Binding Path=IsAvailable, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}">
+
+                        <iconPacks:PackIconMaterial Kind="InformationOutline"
+                                                    Margin="0 0 10 0" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Foreground="Red"
+                                   Text="The utility is not available"
+                                   TextWrapping="Wrap" />
+
+                    </StackPanel>
 
                 </StackPanel>
 

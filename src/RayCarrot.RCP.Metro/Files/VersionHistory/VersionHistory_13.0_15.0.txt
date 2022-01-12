@@ -15,6 +15,7 @@
 	• Removed the decoder for Rayman 1 language files
 	• The UbiArt localization file converter now produces more readable JSON files
 	• Added icons to the utility headers and normalized some layouts
+	• Utilities which are not available are no longer hidden
 	• Removed the Rayman 2 disc patch utility
 	• The UbiRay utility can no longer be used if the required costume files have been modified in size to avoid overwriting incorrect data
 • Added cheat toggles to the Rayman Raving Rabbids config

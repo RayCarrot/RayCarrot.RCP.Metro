@@ -21,6 +21,7 @@ public class UtilityViewModel : BaseViewModel, IDisposable
         IconKind = utility.Icon;
         InfoText = new GeneratedLocString(() => Utility.InfoText);
         WarningText = new GeneratedLocString(() => Utility.WarningText);
+        IsAvailable = utility.IsAvailable;
     }
 
     #endregion
@@ -31,6 +32,8 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     /// Indicates if the utility can not be run due to requiring the app to run as administrator
     /// </summary>
     public bool RequiresAdmin => !Services.App.IsRunningAsAdmin && Utility.RequiresAdmin;
+
+    public bool IsAvailable { get; }
 
     /// <summary>
     /// The utility header
