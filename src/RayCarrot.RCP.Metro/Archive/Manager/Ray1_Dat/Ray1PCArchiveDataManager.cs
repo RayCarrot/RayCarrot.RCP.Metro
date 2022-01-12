@@ -146,7 +146,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable? generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<ArchiveFileItem> files)
     {
         Logger.Info("An R1 PC archive is being repacked...");
 
@@ -166,7 +166,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         // Set files and directories
         data.Entries = archiveFiles.Select(x => x.Entry).ToArray();
 
-        BinaryFile binaryFile = new StreamFile(Context, "Stream", outputFileStream, leaveOpen: true);
+        BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, leaveOpen: true);
 
         try
         {
@@ -218,13 +218,13 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
                 using Stream fileStream = fileGenerator.GetFileStream(file);
 
                 // Set the position to the pointer
-                outputFileStream.Position = file.FileOffset;
+                outputFileStream.Stream.Position = file.FileOffset;
 
                 // Write the contents from the generator
-                fileStream.CopyTo(outputFileStream);
+                fileStream.CopyTo(outputFileStream.Stream);
             }
 
-            outputFileStream.Position = 0;
+            outputFileStream.Stream.Position = 0;
 
             // Serialize the data
             FileFactory.Write(Context, binaryFile.FilePath, data);

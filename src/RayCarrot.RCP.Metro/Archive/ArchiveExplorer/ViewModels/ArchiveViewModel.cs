@@ -281,7 +281,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
                         using TempFile tempOutputFile = new(false);
 
                         // Create the file and get the stream
-                        using (FileStream outputStream = File.Create(tempOutputFile.TempPath))
+                        using (ArchiveFileStream outputStream = new(File.Create(tempOutputFile.TempPath), tempOutputFile.TempPath.Name, true))
                         {
                             // Write to the stream
                             Manager.WriteArchive(

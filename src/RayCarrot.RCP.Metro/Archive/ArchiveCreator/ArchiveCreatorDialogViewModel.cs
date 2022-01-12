@@ -170,7 +170,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                     }).ToArray();
 
                     // Open the output file
-                    using FileStream outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
+                    using ArchiveFileStream outputStream = new(File.Open(OutputFile, FileMode.Create, FileAccess.Write), OutputFile.Name, true);
 
                     // Write the archive
                     Manager.WriteArchive(null, archive, outputStream, archiveFiles);
