@@ -299,6 +299,11 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Methods
 
+        public bool ContainsPath(FileSystemPath basePath)
+        {
+            return FullPath.StartsWith(basePath);
+        }
+
         /// <summary>
         /// Corrects the character casing
         /// </summary>
@@ -431,7 +436,7 @@ namespace RayCarrot.RCP.Metro
             if (!Path.IsPathRooted(basePath.FullPath.Trim('\\')))
                 throw new IOException("The basePath is not an absolute, rooted path");
 
-            if (!path.FullPath.StartsWith(basePath))
+            if (!path.ContainsPath(basePath))
                 throw new ArgumentException("The specified path does not contain the base path", nameof(basePath));
 
             return path.FullPath.Remove(0, basePath.FullPath.Length).Trim('\\');

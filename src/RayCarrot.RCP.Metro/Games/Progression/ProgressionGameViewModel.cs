@@ -704,6 +704,9 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
             foreach (BackupSearchPattern dir in RestoreDirectories)
             {
+                if (!searchPattern.DirPath.ContainsPath(dir.SearchPattern.DirPath))
+                    continue;
+
                 FileSystemPath backupPath = BackupDir + dir.ID + (searchPattern.DirPath - dir.SearchPattern.DirPath);
 
                 if (backupPath.DirectoryExists)
