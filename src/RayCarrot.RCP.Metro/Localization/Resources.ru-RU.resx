@@ -123,14 +123,8 @@
   <data name="AboutPageHeader" xml:space="preserve">
     <value>О программе</value>
   </data>
-  <data name="BackupPageHeader" xml:space="preserve">
-    <value>Создать/Восстановить резервную копию</value>
-  </data>
   <data name="DebugPageHeader" xml:space="preserve">
     <value>Debug</value>
-  </data>
-  <data name="HelpPageHeader" xml:space="preserve">
-    <value>Помощь</value>
   </data>
   <data name="SettingsPageHeader" xml:space="preserve">
     <value>Настройки</value>
@@ -429,9 +423,6 @@
   </data>
   <data name="Games_NotInstalled" xml:space="preserve">
     <value>Не установлено</value>
-  </data>
-  <data name="Help_CategoryHelp" xml:space="preserve">
-    <value>Выберите раздел справки из доступных категорий слева</value>
   </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Уровень пользователя</value>
@@ -1377,6 +1368,11 @@
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
     <value>Добро пожаловать в Rayman Control Panel</value>
   </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Данная программа является неофициальным проектом сообщества с открытым исходным кодом, созданным RayCarrot. Он обеспечивает быстрый и удобный доступ ко всем установленным PC играм серии Rayman на вашем компьютере, расширяя их дополнительными функциями, такими как поддержка расширенной конфигурации, утилиты, сохранение резервных копий файлов, управление данными сохранений, модификации текстур и многое другое.
+Поддерживаемые игры могут быть установлены непосредственно с их диска через программу.
+Чтобы приступить к работе, измените нужные Вам настройки ниже и нажмите 'Продолжить'. Настройки можно изменить в любое время в разделе настроек.</value>
+  </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>Ваши изменения настроек не были сохранены. Вы действительно хотите выйти и сбросить их?</value>
   </data>
@@ -1403,163 +1399,6 @@
   </data>
   <data name="JumpListItemDescription" xml:space="preserve">
     <value>Запуск {0}</value>
-  </data>
-  <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel</value>
-  </data>
-  <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
-    <value>Обновления</value>
-  </data>
-  <data name="Help_RCP_Updates" xml:space="preserve">
-    <value>Программа будет по умолчанию проверять наличие обновлений при запуске, только если эта опция не была отключена. Это делается в фоновом режиме и может занять несколько секунд. Обновления можно проверить вручную в настройках.
-
-Если в средстве обновления возникает ошибка, новую версию можно загрузить вручную, перейдя по следующей ссылке:
-{0}</value>
-  </data>
-  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
-    <value>Совместимость</value>
-  </data>
-  <data name="Help_RCP_Compatibility" xml:space="preserve">
-    <value>Минимальная версия, требуемая для запуска программы - Windows Vista, рекомендуемая версия - Windows 7 или выше.</value>
-  </data>
-  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
-    <value>Установщик Игр</value>
-  </data>
-  <data name="Help_RCP_GameInstaller" xml:space="preserve">
-    <value>Для игр, которые поддерживают установку с диска, Вы можете сделать это из появляющегося меню игры. На данный момент Rayman 2, Rayman M и Rayman Arena являются единственными поддерживаемыми играми.
-
-Во время установки вам нужно будет указать папку, в которую вы хотите установить игру. Игра будет установлена в подпапку в указанной папке. Например, если Вы решили установить Rayman 2 в разделе C:\Ubisoft, он будет установлен в C:\Ubisoft\Rayman 2</value>
-  </data>
-  <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
-    <value>Создать/Восстановить резервную копию</value>
-  </data>
-  <data name="Help_RCP_BackupRestore" xml:space="preserve">
-    <value>Программа имеет функцию резервного копирования и восстановления для всех поддерживаемых игр. Резервные копии по умолчанию хранятся в папке 'Документы', но их расположение можно изменить в настройках.
-
-Сами резервные копии всегда хранятся в подпапке '{0}'. Не рекомендуется вручную изменять эти файлы.</value>
-  </data>
-  <data name="Help_RCP_AppDataHeader" xml:space="preserve">
-    <value>Расположение данных приложения</value>
-  </data>
-  <data name="Help_RCP_AppData" xml:space="preserve">
-    <value>Программа сохраняет свои данные чаще всего в локальном каталоге данных приложений текущего пользователя с некоторыми настройками, хранящимися в реестре. Ниже приведен полный список папок, где хранятся данные.
-
-• Основные данные приложения - {0}
-• Настройки реестра - {1}</value>
-  </data>
-  <data name="Help_Games" xml:space="preserve">
-    <value>Игры</value>
-  </data>
-  <data name="Help_Games_General" xml:space="preserve">
-    <value>Общее</value>
-  </data>
-  <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
-    <value>Игра не запускается</value>
-  </data>
-  <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
-    <value>Есть два наиболее распространенных способа, которые нужно попробовать, если игра не запускается:
-
-*Запустите игру от имени администратора:
-Функцию запуска программы от имени администратора можно найти в контекстном меню, щелкнув правой кнопкой мыши по программе.
-
-*Запустите игру в режиме совместимости:
-Запуск приложения в режиме совместимости выполняется путем выбора параметра в разделе 'Параметры совместимости' в свойствах файла. Для большинства старых игр рекомендуется выбрать Windows XP Service Pack 2 или 3.</value>
-  </data>
-  <data name="Help_Games_R1" xml:space="preserve">
-    <value>Rayman 1</value>
-  </data>
-  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
-    <value>Эмулятор MS-Dos </value>
-  </data>
-  <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1 и большинство его спин-оффов для PC (включая Rayman Designer, Rayman by his Fans и Rayman 60 Levels) являются приложениями для MS-DOS и не совместимы с современными версиями Windows. Для их запуска требуется эмулятор DOS, например DOSBox. В настоящее время DOSBox является единственным поддерживаемым эмулятором Rayman Control Panel.</value>
-  </data>
-  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
-    <value>Установка не удалась</value>
-  </data>
-  <data name="Help_Games_R1_InstallationFailed" xml:space="preserve">
-    <value>Если один из установщиков Rayman 1 потерпит неудачу после завершения установки, он удалит установленную игру, если Вы отмените процесс в установщике. Чтобы предотвратить это, принудительно закройте установщик с помощью Диспетчера задач. Игра, скорее всего, все еще будет установлена. Если какие-либо файлы отсутствуют, скопируйте их с диска вручную.</value>
-  </data>
-  <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
-    <value>Редактор Rayman Designer</value>
-  </data>
-  <data name="Help_Games_R1_Mapper" xml:space="preserve">
-    <value>Rayman Designer, также известная как Rayman Gold или Rayman's World, - это игра про Рэймана, которая включает в себя программу Mapper, которая используется для создания Ваших собственных уровней. Mapper является обычным исполняемым файлом Windows и будет работать без использования эмулятора. Все статические части уровня создаются в программе Mapper, а все так называемые 'события' помещаются в редактор событий (находящийся внутри самой игры).</value>
-  </data>
-  <data name="Help_Games_R1_ImportMapsHeader" xml:space="preserve">
-    <value>Импорт карт</value>
-  </data>
-  <data name="Help_Games_R1_ImportMaps" xml:space="preserve">
-    <value>Импорт карт осуществляется в программе Mapper. Если при этом возникает ошибка, Вы можете попробовать переместить файл карты в папку RayKit и импортировать его оттуда.</value>
-  </data>
-  <data name="Help_Games_R2" xml:space="preserve">
-    <value>Rayman 2</value>
-  </data>
-  <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
-    <value>Игра работает слишком быстро</value>
-  </data>
-  <data name="Help_Games_R2_GameSpeed" xml:space="preserve">
-    <value>Если Rayman 2 работает слишком быстро при использовании nGlide, измените частоту обновления на 120 Гц. Это должно быть сделано даже на мониторах, которые не поддерживают 120 Гц.</value>
-  </data>
-  <data name="Help_Games_R2_FpsHeader" xml:space="preserve">
-    <value>60 vs 30 fps</value>
-  </data>
-  <data name="Help_Games_R2_Fps" xml:space="preserve">
-    <value>Некоторые части игры могут не работать, если игра работает со скоростью 60 кадров в секунду. Наиболее заметная проблема возникает во время бонусных уровней, где разница во времени делает победу практически невозможной. Еще одним побочным эффектом может быть невозможность спрыгнуть с головы Умбры в Святилище Камня и Огня.</value>
-  </data>
-  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
-    <value>Ошибка отсутствия диска</value>
-  </data>
-  <data name="Help_Games_R2_NoDisc" xml:space="preserve">
-    <value>В версиях игры для дисков существует известная проблема, когда игра отображает ошибку CD во время игрового процесса. Эта проблема отсутствует в GOG-версии. С помощью утилиты патча диска эта проблема пропадет.</value>
-  </data>
-  <data name="Help_Games_RMA" xml:space="preserve">
-    <value>Rayman M/Arena</value>
-  </data>
-  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
-    <value>Отсутствующие текстуры</value>
-  </data>
-  <data name="Help_Games_RMA_MissingTextures" xml:space="preserve">
-    <value>Если текстуры отсутствуют в игре при использовании видеокарты Intel, попробуйте отключить трансформацию и освещение.</value>
-  </data>
-  <data name="Help_Games_R3" xml:space="preserve">
-    <value>Rayman 3</value>
-  </data>
-  <data name="Help_Games_RRR" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
-  </data>
-  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
-    <value>jade_enr.exe ошибка</value>
-  </data>
-  <data name="Help_Games_RRR_EngineError" xml:space="preserve">
-    <value>На данный момент не существует какого-либо решения этой проблемы. Она появляется на некоторых компьютерах во всех версиях, включая GOG-версию.</value>
-  </data>
-  <data name="Help_Games_RL" xml:space="preserve">
-    <value>Rayman Legends</value>
-  </data>
-  <data name="Help_Games_RL_LoadErrorHeader" xml:space="preserve">
-    <value>Ошибка при загрузке</value>
-  </data>
-  <data name="Help_Games_RL_LoadError" xml:space="preserve">
-    <value>Ошибка возникает в основном на устройствах Windows 10 из-за того, что игра не может читать/записывать файл сохранения игры и/или её параметры. Наиболее распространенное решение заключается в добавлении Rayman Legends в качестве исключения в раздел контролируемого доступа к папкам встроенной системы безопасности Windows.</value>
-  </data>
-  <data name="Help_Cheats" xml:space="preserve">
-    <value>Чит-коды</value>
-  </data>
-  <data name="Help_Cheats_R1Header" xml:space="preserve">
-    <value>Rayman 1</value>
-  </data>
-  <data name="Help_Cheats_RDHeader" xml:space="preserve">
-    <value>Rayman Designer + Spin-Offs</value>
-  </data>
-  <data name="Help_Cheats_R2Header" xml:space="preserve">
-    <value>Rayman 2</value>
-  </data>
-  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
-    <value>Rayman M/Arena</value>
-  </data>
-  <data name="Help_Cheats_R3Header" xml:space="preserve">
-    <value>Rayman 3</value>
   </data>
   <data name="Lang_English" xml:space="preserve">
     <value>Английский</value>
@@ -1818,370 +1657,6 @@
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (Администратор)</value>
   </data>
-  <data name="Cheats_Location_Level" xml:space="preserve">
-    <value>Уровень</value>
-  </data>
-  <data name="Cheats_Location_Map" xml:space="preserve">
-    <value>Карта</value>
-  </data>
-  <data name="Cheats_Location_Pause" xml:space="preserve">
-    <value>Экран паузы</value>
-  </data>
-  <data name="Cheats_Location_AccessDenied" xml:space="preserve">
-    <value>Экран отказа в доступе</value>
-  </data>
-  <data name="Cheats_Location_TotA3" xml:space="preserve">
-    <value>Гробница Древних часть 3, стоя на третьей панели вдали от входа в техосмотр, где Рэйман сражается с Кларком</value>
-  </data>
-  <data name="Cheats_Location_Credits" xml:space="preserve">
-    <value>Титры</value>
-  </data>
-  <data name="Cheats_Location_Cutscene" xml:space="preserve">
-    <value>Катсцена</value>
-  </data>
-  <data name="Cheats_Location_ProfileName" xml:space="preserve">
-    <value>Имя профиля</value>
-  </data>
-  <data name="Cheats_R1" xml:space="preserve">
-    <value>Различные чит-коды будут работать в разных версиях. Некоторые версии поддерживают несколько типов чит-кодов.</value>
-  </data>
-  <data name="Cheats_R1_99LivesTitle" xml:space="preserve">
-    <value>99 жизней</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
-    <value>trj8p</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
-    <value>raylives</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
-    <value>[TAB]bertrand</value>
-  </data>
-  <data name="Cheats_R1_FistPowerTitle" xml:space="preserve">
-    <value>Полностью улучшенный кулак</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
-    <value>2x2rmfmf</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
-    <value>goldfist</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput3" xml:space="preserve">
-    <value>[TAB]antoine</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsTitle" xml:space="preserve">
-    <value>Все обычные способности</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
-    <value>en5gol2g</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
-    <value>power</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput3" xml:space="preserve">
-    <value>[TAB]benoit</value>
-  </data>
-  <data name="Cheats_R1_FullHealthTitle" xml:space="preserve">
-    <value>Полное здоровье</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
-    <value>kom0ogdk</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
-    <value>raypoint</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput3" xml:space="preserve">
-    <value>[TAB]christ</value>
-  </data>
-  <data name="Cheats_R1_10TingsTitle" xml:space="preserve">
-    <value>10 дополнительных тингов</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
-    <value>86e40g91</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
-    <value>raywiz</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput3" xml:space="preserve">
-    <value>[TAB]jojo</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelTitle" xml:space="preserve">
-    <value>Пропуск части уровня</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
-    <value>o8feh</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
-    <value>winmap</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput3" xml:space="preserve">
-    <value>[TAB]cyril</value>
-  </data>
-  <data name="Cheats_R1_HiddenMessageTitle" xml:space="preserve">
-    <value>Отображение скрытого сообщения</value>
-  </data>
-  <data name="Cheats_R1_HiddenMessageInput3" xml:space="preserve">
-    <value>[TAB]program</value>
-  </data>
-  <data name="Cheats_R1_FreeMovementTitle" xml:space="preserve">
-    <value>Свободное перемещение</value>
-  </data>
-  <data name="Cheats_R1_FreeMovementInput3" xml:space="preserve">
-    <value>[TAB];overay[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_R1_100RefreshRateTitle" xml:space="preserve">
-    <value>Частота обновления 100 МГц</value>
-  </data>
-  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
-    <value>freq10</value>
-  </data>
-  <data name="Cheats_R1_80RefreshRateTitle" xml:space="preserve">
-    <value>Частота обновления 80 МГц</value>
-  </data>
-  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
-    <value>freq80</value>
-  </data>
-  <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
-    <value>Эффект линзы</value>
-  </data>
-  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
-    <value>lens</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsTitle" xml:space="preserve">
-    <value>Разблокировка всех уровней</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
-    <value>4ctrepfj</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
-    <value>alworld</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
-    <value>[TAB]francois</value>
-  </data>
-  <data name="Cheats_R1_BreakoutTitle" xml:space="preserve">
-    <value>Запуск мини-игры Breakout (необходимо, чтобы уровень 'Mr Dark's Dare' был завершен)</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
-    <value>b76b7081</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
-    <value>cbray</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput3" xml:space="preserve">
-    <value>[TAB]olivier</value>
-  </data>
-  <data name="Cheats_R1_BreakoutStageTitle" xml:space="preserve">
-    <value>Запуск случайного уровня мини-игры Breakout</value>
-  </data>
-  <data name="Cheats_R1_BreakoutStageInput3" xml:space="preserve">
-    <value>[TAB]cbrayal[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_R1_SelectStageTitle" xml:space="preserve">
-    <value>Выбор уровня</value>
-  </data>
-  <data name="Cheats_R1_SelectStageInput3" xml:space="preserve">
-    <value>[TAB]alevel[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_5LivesTitle" xml:space="preserve">
-    <value>5 жизней</value>
-  </data>
-  <data name="Cheats_RD_5LivesInput" xml:space="preserve">
-    <value>[TAB]lives05[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_20LivesTitle" xml:space="preserve">
-    <value>20 жизней</value>
-  </data>
-  <data name="Cheats_RD_20LivesInput" xml:space="preserve">
-    <value>[TAB]lives20[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_50LivesTitle" xml:space="preserve">
-    <value>50 жизней</value>
-  </data>
-  <data name="Cheats_RD_50LivesInput" xml:space="preserve">
-    <value>[TAB]lives50[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_FistPowerTitle" xml:space="preserve">
-    <value>Полностью улучшенный кулак</value>
-  </data>
-  <data name="Cheats_RD_FistPowerInput" xml:space="preserve">
-    <value>[TAB]goldens</value>
-  </data>
-  <data name="Cheats_RD_FinishLevelTitle" xml:space="preserve">
-    <value>Завершение уровня</value>
-  </data>
-  <data name="Cheats_RD_FinishLevelInput" xml:space="preserve">
-    <value>[TAB]finishing</value>
-  </data>
-  <data name="Cheats_RD_FullHealthTitle" xml:space="preserve">
-    <value>Полное здоровье</value>
-  </data>
-  <data name="Cheats_RD_FullHealthInput" xml:space="preserve">
-    <value>[TAB]points</value>
-  </data>
-  <data name="Cheats_RD_MapIndexTitle" xml:space="preserve">
-    <value>Отображение индекса карты</value>
-  </data>
-  <data name="Cheats_RD_MapIndexInput" xml:space="preserve">
-    <value>[TAB]map[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_FreeMovementTitle" xml:space="preserve">
-    <value>Свободное перемещение</value>
-  </data>
-  <data name="Cheats_RD_FreeMovementInput" xml:space="preserve">
-    <value>[TAB]moveray[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_AllLevelsTitle" xml:space="preserve">
-    <value>Разблокировка всех уровней</value>
-  </data>
-  <data name="Cheats_RD_AllLevelsInput" xml:space="preserve">
-    <value>[TAB]openall[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_R2_FistUpgradeTitle" xml:space="preserve">
-    <value>Улучшение магического кулака</value>
-  </data>
-  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
-    <value>glowfist</value>
-  </data>
-  <data name="Cheats_R2_RestoreHealthTitle" xml:space="preserve">
-    <value>Восстанавление здоровья</value>
-  </data>
-  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
-    <value>gimmelife</value>
-  </data>
-  <data name="Cheats_R2_5LumsTitle" xml:space="preserve">
-    <value>Дополнительные 5 Жёлтых Люмов</value>
-  </data>
-  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
-    <value>gimmelumz</value>
-  </data>
-  <data name="Cheats_R2_LevelSelectionTitle" xml:space="preserve">
-    <value>Переход на любой уровень</value>
-  </data>
-  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
-    <value>gothere</value>
-  </data>
-  <data name="Cheats_R2_GrappleTitle" xml:space="preserve">
-    <value>Разблокировка способности захвата</value>
-  </data>
-  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
-    <value>hangon</value>
-  </data>
-  <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
-    <value>Увеличение максимального запаса здоровья</value>
-  </data>
-  <data name="Cheats_R2_MaxHealthInput" xml:space="preserve">
-    <value>Нажимайте и отпускайте клавишу 'J' под ритм главной темы Rayman 2</value>
-  </data>
-  <data name="Cheats_R2_BonusLevelTitle" xml:space="preserve">
-    <value>Вход на бонусный уровень без всех Люмов и Клеток</value>
-  </data>
-  <data name="Cheats_R2_BonusLevelInput" xml:space="preserve">
-    <value>A[NUMPAD 0]QWQW[ENTER]</value>
-  </data>
-  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
-    <value>Пропуск катсцен</value>
-  </data>
-  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
-    <value>NOMOVIES</value>
-  </data>
-  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
-    <value>Новые загрузочные экраны</value>
-  </data>
-  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
-    <value>allvign</value>
-  </data>
-  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
-    <value>Отключение Мерфи</value>
-  </data>
-  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
-    <value>nomoremurfy</value>
-  </data>
-  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
-    <value>Доступ к скрытой области в Гробнице Древних</value>
-  </data>
-  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
-    <value>playjeff</value>
-  </data>
-  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
-    <value>Доступ к мини-игре 'Menezis'</value>
-  </data>
-  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
-    <value>shootemup</value>
-  </data>
-  <data name="Cheats_RM" xml:space="preserve">
-    <value>Музыкальная команда:
-Чтобы активировать его, войдите в режим гонки и приостановите игру. На экране паузы удерживайте L1 + R1 (или альтернативные кнопки на используемом в данный момент контроллере), затем нажмите кнопку оптимизации. В нижней части экрана появятся пять синих шаров. Отпустите все кнопки и нажмите кнопку прыжка. Игрок должен услышать резкий динь, и через 0,5 секунды первый шар должен стать желтым. Как только шар станет желтым, удерживайте кнопку прыжка. Затем второй шар должен стать желтым. Как только второй шар станет желтым, отпустите прыжок. Затем третий шар должен стать желтым. Как только третий шар станет желтым, удерживайте прыжок снова. Четвертый шар должен затем стать желтым. Как только четвертый шар станет желтым, отпустите прыжок. Игрок должен будет переместиться на экран "Музыкального Режима", где игрок сможет выбрать "Музыкальную Команду".
-
-Чит-меню:
-Удерживайте L1 + R1 в меню (или альтернативные кнопки на используемом в данный момент контроллере), затем удерживайте 'кружок', затем удерживайте остальные функциональные кнопки + L2 + R2. 10 шаров появятся внизу и будут поочередно отсчитываться. Когда это достигнет последнего, меню будет разблокировано.</value>
-  </data>
-  <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
-    <value>Пропуск катсцен</value>
-  </data>
-  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
-    <value>esc</value>
-  </data>
-  <data name="Cheats_RM3_ReverseMapTitle" xml:space="preserve">
-    <value>Обратная карта</value>
-  </data>
-  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
-    <value>reverse</value>
-  </data>
-  <data name="Cheats_RM_UnlockBattlesTitle" xml:space="preserve">
-    <value>Разблокировка всех уровней режима битвы</value>
-  </data>
-  <data name="Cheats_RM_UnlockBattlesInput" xml:space="preserve">
-    <value>Введите ALLFISH в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
-    <value>Разблокировка всех уровней режима гонки</value>
-  </data>
-  <data name="Cheats_RM_UnlockRacesInput" xml:space="preserve">
-    <value>Введите ALLTRIBES в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_UnlockAllTitle" xml:space="preserve">
-    <value>Разблокировка всех уровней</value>
-  </data>
-  <data name="Cheats_RM_UnlockAllInput" xml:space="preserve">
-    <value>Введите ALLRAYMANM в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
-    <value>Разблокировка всех персонажей</value>
-  </data>
-  <data name="Cheats_RM_AllCharactersInput" xml:space="preserve">
-    <value>Введите PUPPETS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_AllSkinsTitle" xml:space="preserve">
-    <value>Разблокировка всех костюмов</value>
-  </data>
-  <data name="Cheats_RM_AllSkinsInput" xml:space="preserve">
-    <value>Введите CARNIVAL в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_Battle1Title" xml:space="preserve">
-    <value>Разблокировка всех уровней режима битвы в режиме 1</value>
-  </data>
-  <data name="Cheats_RM_Battle1Input" xml:space="preserve">
-    <value>Введите ARENAS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_Race1Title" xml:space="preserve">
-    <value>Разблокировка всех уровней режима гонки в режиме 1</value>
-  </data>
-  <data name="Cheats_RM_Race1Input" xml:space="preserve">
-    <value>Введите TRACKS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_Levels1Title" xml:space="preserve">
-    <value>Разблокировка всех уровней в режиме 1</value>
-  </data>
-  <data name="Cheats_RM_Levels1Input" xml:space="preserve">
-    <value>Введите FIELDS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
-  <data name="Cheats_RM_RagtimeMusicTitle" xml:space="preserve">
-    <value>Регтайм музыка в режиме гонки</value>
-  </data>
-  <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
-    <value>Введите OLDTV в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
-  </data>
   <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
     <value>Выравнивание кнопок</value>
   </data>
@@ -2423,21 +1898,6 @@
   </data>
   <data name="GamesPage_FindGamesInfo" xml:space="preserve">
     <value>Поиск установленных игр и добавление их в программу</value>
-  </data>
-  <data name="R2U_DiscPatchHeader" xml:space="preserve">
-    <value>Патч версии диска</value>
-  </data>
-  <data name="R2U_DiscPatchHeaderInfo" xml:space="preserve">
-    <value>Эта утилита заменяет файлы версии диска на файлы GOG-версии, позволяя игре работать без диска и устраняя ошибку 'CD отсутствует'.</value>
-  </data>
-  <data name="R2U_DiscPatchNotRequired" xml:space="preserve">
-    <value>Игра не нуждается в патче</value>
-  </data>
-  <data name="R2U_DiscPatchApplied" xml:space="preserve">
-    <value>Игра успешно пропатчена</value>
-  </data>
-  <data name="R2U_DiscPatchError" xml:space="preserve">
-    <value>Произошла ошибка при применении патча диска</value>
   </data>
   <data name="GameFinder_NoResults" xml:space="preserve">
     <value>Новые игры не были найдены</value>
@@ -2709,9 +2169,6 @@
   <data name="Archive_RepackError" xml:space="preserve">
     <value>Произошла ошибка при переупаковке архива</value>
   </data>
-  <data name="Progression_R3_TotalHeader" xml:space="preserve">
-    <value>Всего</value>
-  </data>
   <data name="Progression_R3_Level1Header" xml:space="preserve">
     <value>The Fairy Council</value>
   </data>
@@ -2828,9 +2285,6 @@
   </data>
   <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
     <value>Произошла ошибка при кодировании файлов</value>
-  </data>
-  <data name="Utilities_Decoder_R1LngHeader" xml:space="preserve">
-    <value>Языковые файлы Rayman 1 (.lng)</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Файлы сохранения Rayman 3 (.sav)</value>
@@ -2982,20 +2436,11 @@
   <data name="Archive_CreateOutputFile" xml:space="preserve">
     <value>Конечный файл</value>
   </data>
-  <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
-    <value>Выберите нужный формат</value>
-  </data>
   <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
     <value>Сжать весь блок</value>
   </data>
   <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
     <value>Расширения файлов для сжатия</value>
-  </data>
-  <data name="Settings_BinarySerializationFileLogPath" xml:space="preserve">
-    <value>Путь к журналу сериализации</value>
-  </data>
-  <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
-    <value>Необязательный путь к файлу для вывода журнала сериализации при сериализации двоичного файла</value>
   </data>
   <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
     <value>Файлы конфигурации Rayman 1</value>
@@ -3138,24 +2583,6 @@
   </data>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
-  </data>
-  <data name="Help_Cheats_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Help_Cheats_Location" xml:space="preserve">
-    <value>Местоположение</value>
-  </data>
-  <data name="Help_Cheats_Cheats" xml:space="preserve">
-    <value>Читы</value>
-  </data>
-  <data name="Help_Cheats_Cheats1" xml:space="preserve">
-    <value>Читы 1</value>
-  </data>
-  <data name="Help_Cheats_Cheats2" xml:space="preserve">
-    <value>Читы 2</value>
-  </data>
-  <data name="Help_Cheats_Cheats3" xml:space="preserve">
-    <value>Читы 3</value>
   </data>
   <data name="Browse_SelectFile" xml:space="preserve">
     <value>Выбрать файл</value>
@@ -3309,9 +2736,6 @@
   </data>
   <data name="GameDisplay_Archives" xml:space="preserve">
     <value>Открыть архивы</value>
-  </data>
-  <data name="Progression_GenericSave" xml:space="preserve">
-    <value>Сохранение</value>
   </data>
   <data name="R1Passwords_Invalid" xml:space="preserve">
     <value>Неверный пароль</value>
@@ -4078,11 +3502,6 @@ Start: Пауза</value>
   </data>
   <data name="ContextMenu_OpenLocation" xml:space="preserve">
     <value>Открыть расположение</value>
-  </data>
-  <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>Данная программа является неофициальным проектом сообщества с открытым исходным кодом, созданным RayCarrot. Он обеспечивает быстрый и удобный доступ ко всем установленным PC играм серии Rayman на вашем компьютере, расширяя их дополнительными функциями, такими как поддержка расширенной конфигурации, утилиты, сохранение резервных копий файлов, управление данными сохранений, модификации текстур и многое другое.
-Поддерживаемые игры могут быть установлены непосредственно с их диска через программу.
-Чтобы приступить к работе, измените нужные Вам настройки ниже и нажмите 'Продолжить'. Настройки можно изменить в любое время в разделе настроек.</value>
   </data>
   <data name="Installer_Title" xml:space="preserve">
     <value>Установка {0}</value>

@@ -123,14 +123,8 @@
   <data name="AboutPageHeader" xml:space="preserve">
     <value>Over</value>
   </data>
-  <data name="BackupPageHeader" xml:space="preserve">
-    <value>Back-up/Herstel</value>
-  </data>
   <data name="DebugPageHeader" xml:space="preserve">
     <value>Foutopsporing</value>
-  </data>
-  <data name="HelpPageHeader" xml:space="preserve">
-    <value>Help</value>
   </data>
   <data name="SettingsPageHeader" xml:space="preserve">
     <value>Instellingen</value>
@@ -428,9 +422,6 @@
   </data>
   <data name="Games_NotInstalled" xml:space="preserve">
     <value>Niet geïnstalleerd</value>
-  </data>
-  <data name="Help_CategoryHelp" xml:space="preserve">
-    <value>Selecteer een hulppagina uit de beschikbare categorieën links</value>
   </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Gebruikersniveau</value>
@@ -1406,163 +1397,6 @@ Opnieuw proberen?</value>
   <data name="JumpListItemDescription" xml:space="preserve">
     <value>Start {0}</value>
   </data>
-  <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel</value>
-  </data>
-  <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
-    <value>Updates</value>
-  </data>
-  <data name="Help_RCP_Updates" xml:space="preserve">
-    <value>Dit programma controleert bij opstart standaard op updates, tenzij de optie uitgeschakeld is. Dit gebeurt op de achtergrond and kan een paar seconden in beslag nemen. Er kan ook handmatig op updates worden gecontroleerd via de Instellingen pagina.
- 
-Als er een fout plaatsvindt vanwege de update-service, kan de update handmatig worden gedownload via:
-{0}</value>
-  </data>
-  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
-    <value>Compatibiliteit</value>
-  </data>
-  <data name="Help_RCP_Compatibility" xml:space="preserve">
-    <value>De minimumvereiste versie van Windows is Vista, waarbij Windows 7 of hoger aanbevolen is voor het programma.</value>
-  </data>
-  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
-    <value>Game Installer</value>
-  </data>
-  <data name="Help_RCP_GameInstaller" xml:space="preserve">
-    <value>Voor de spellen die geïnstalleerd kunnen worden vanaf een schijf, selecteer je de optie via het dropdown-menu van het spel. Rayman 2, Rayman M en Rayman Arena zijn momenteel de enige, ondersteunde games.
-
-Tijdens de installatie dien je een map te kiezen voor de installatiebestanden. Het spel zal geïnstalleerd worden in een submap binnen de geselecteerde map. Kies je bijvoorbeeld om de game te installeren in C:\Ubisoft, dan zal het spel geïnstalleerd worden onder C:\Ubisoft\Rayman 2</value>
-  </data>
-  <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
-    <value>Back-up/Herstel</value>
-  </data>
-  <data name="Help_RCP_BackupRestore" xml:space="preserve">
-    <value>Het programma heeft een back-up en herstel feature voor alle ondersteunde spellen. De back-ups worden standaard in de map Documenten opgeslagen, maar de locatie kan aangepast worden via de instellingen.
-
-De back-ups an sich worden altijd opgeslagen in de '{0}' submap. Het is niet aanbevolen deze bestanden handmatig te wijzigen.</value>
-  </data>
-  <data name="Help_RCP_AppDataHeader" xml:space="preserve">
-    <value>App Data locatie</value>
-  </data>
-  <data name="Help_RCP_AppData" xml:space="preserve">
-    <value>Het programma slaat zijn app data hoofdzakelijk op in de huidige gebruiker zijn lokale app data map, waarbij sommige instellingen opgeslagen worden in het register. Hieronder een lijst met alle locaties voor data-opslag:
-
-• Belangrijkste applicatiedata - {0}
-• Registerinstellingen - {1}</value>
-  </data>
-  <data name="Help_Games" xml:space="preserve">
-    <value>Spellen</value>
-  </data>
-  <data name="Help_Games_General" xml:space="preserve">
-    <value>Algemeen</value>
-  </data>
-  <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
-    <value>Spel niet Gestart</value>
-  </data>
-  <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
-    <value>Hier de twee standaard stappen om te proberen als een spel niet wil starten:
- 
-*Start het spel als administrator:
-De optie voor het starten van een programma als administrator kan gevonden worden in het contextmenu door rechts te klikken op het programma.
- 
-*Start het spel in compatibiliteitsmodus:
-Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigenschappen van het uitvoerbare bestand naar de compatibiliteitsopties. Voor veel ouderer spellen is het aanbevolen te kiezen voor Windows XP Service Pack 2 of 3.</value>
-  </data>
-  <data name="Help_Games_R1" xml:space="preserve">
-    <value>Rayman 1</value>
-  </data>
-  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
-    <value>MS-Dos Emulator</value>
-  </data>
-  <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1 en de meeste PC spin-offs (inclusief Rayman Designer, Rayman By His Fans en Rayman 60 Levels) zijn MS-DOS programma's en zijn daarom niet compatible met moderne versies van Windows. Als je ze wilt spelen, heb je een DOS-emulator nodig, zoals DOSBox. Momenteel is DOSBox de enige, ondersteunde emulator door het Rayman Control Panel.</value>
-  </data>
-  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
-    <value>Installatie Mislukt</value>
-  </data>
-  <data name="Help_Games_R1_InstallationFailed" xml:space="preserve">
-    <value>Als een van de Rayman 1 gerelateerde installers een fout vertoont wanneer de installatie voltooid is, zal het de geïnstalleerde game verwijderen als je kiest voor Annuleren via de Installer. Om dit te voorkomen, forceer je het beëindigen van het installatieproces via Taakbeheer. Het spel zal dan hoogstwaarschijnlijk nog steeds geïnstalleerd zijn. Als er bepaalde bestanden missen, kopieer ze dan handmatig vanaf de schijf.</value>
-  </data>
-  <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
-    <value>Rayman Designer Editor</value>
-  </data>
-  <data name="Help_Games_R1_Mapper" xml:space="preserve">
-    <value>Rayman Designer, ook bekend als Rayman Gold of Rayman's World, is de Rayman game die komt met de Mapper voor het ontwerpen van eigen levels. De Mapper is een normaal Windows .exe-bestand en kan gestart worden zonder emulator. Alle statische delen van een level worden ontworpen in het programma, terwijl alle zogenoemde 'events' aangemaakt worden via de Event Editor (gevonden in het spel zelf).</value>
-  </data>
-  <data name="Help_Games_R1_ImportMapsHeader" xml:space="preserve">
-    <value>Mappen Importeren</value>
-  </data>
-  <data name="Help_Games_R1_ImportMaps" xml:space="preserve">
-    <value>Het importeren van mappen wordt gedaan via de Mapper. Als er hierbij een fout plaatsvindt, kun je proberen het mapbestand te verplaatsen naar de RayKit maplocatie, om vervolgens het bestand vanaf hier te importeren.</value>
-  </data>
-  <data name="Help_Games_R2" xml:space="preserve">
-    <value>Rayman 2</value>
-  </data>
-  <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
-    <value>Spel wordt te snel afgespeeld</value>
-  </data>
-  <data name="Help_Games_R2_GameSpeed" xml:space="preserve">
-    <value>Als Rayman 2 te snel wordt afgespeeld, gebruikmakende van nGlide, verander de verversingsfrequentie dan naar 120Hz. Dit dient zelfs gedaan te worden bij monitors die géén 120Hz ondersteunen.</value>
-  </data>
-  <data name="Help_Games_R2_FpsHeader" xml:space="preserve">
-    <value>60 vs. 30 fps</value>
-  </data>
-  <data name="Help_Games_R2_Fps" xml:space="preserve">
-    <value>Sommige delen van het spel werken wellicht niet als het spel op een snelheid van 60 fps wordt uitgevoerd. Belangrijkst te noemen issues zijn de bonus games, waar de tijdsverschillen het bijna onmogelijk maken te winnen, en het neveneffect dat ervoor kan zorgen dat je wellicht niet van Umber's hoofd kunt springen in the Sanctuary of Stone and Fire.</value>
-  </data>
-  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
-    <value>No Disc Fout</value>
-  </data>
-  <data name="Help_Games_R2_NoDisc" xml:space="preserve">
-    <value>Op fysieke kopieën van het spel bestaat er een issue, dat een CD-fout betreft, weergegeven tijdens het spel. Dit issue komt niet voor in de GOG-versie. Als je gebruikmaakt van het hulpprogramma voor het patchen van de schijf, wordt het probleem opgelost.</value>
-  </data>
-  <data name="Help_Games_RMA" xml:space="preserve">
-    <value>Rayman M/Arena</value>
-  </data>
-  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
-    <value>Ontbrekende Texturen</value>
-  </data>
-  <data name="Help_Games_RMA_MissingTextures" xml:space="preserve">
-    <value>Wordt er gebruikgemaakt van een Intel grafische kaart en ontbreken er texturen in het spel? Probeer dan 'Transform and Lightning' uit te schakelen.</value>
-  </data>
-  <data name="Help_Games_R3" xml:space="preserve">
-    <value>Rayman 3</value>
-  </data>
-  <data name="Help_Games_RRR" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
-  </data>
-  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
-    <value>jade_enr.exe Fout</value>
-  </data>
-  <data name="Help_Games_RRR_EngineError" xml:space="preserve">
-    <value>Er is momenteel geen oplossing voor deze fout. Dit komt voor in alle versies - inclusief de GOG-versie - op sommige computers.</value>
-  </data>
-  <data name="Help_Games_RL" xml:space="preserve">
-    <value>Rayman Legends</value>
-  </data>
-  <data name="Help_Games_RL_LoadErrorHeader" xml:space="preserve">
-    <value>Fout tijdens het laden</value>
-  </data>
-  <data name="Help_Games_RL_LoadError" xml:space="preserve">
-    <value>Deze fout komt hoofdzakelijk voor op Windows 10 systemen, waarbij het spel niet in staat is een lees- of schrijfbewerking uit te voeren op de save file en/of het configuratiebestand van het spel. De belangrijkst te noemen oplossing voor dit probleem is, het toevoegen van Rayman Legends als een uitzondering via de Gecontroleerde Mappentoegang sectie van het ingebouwde Windows Beveiligingssysteem.</value>
-  </data>
-  <data name="Help_Cheats" xml:space="preserve">
-    <value>Cheat Codes</value>
-  </data>
-  <data name="Help_Cheats_R1Header" xml:space="preserve">
-    <value>Rayman 1</value>
-  </data>
-  <data name="Help_Cheats_RDHeader" xml:space="preserve">
-    <value>Rayman Designer + Spin-Offs</value>
-  </data>
-  <data name="Help_Cheats_R2Header" xml:space="preserve">
-    <value>Rayman 2</value>
-  </data>
-  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
-    <value>Rayman M/Arena</value>
-  </data>
-  <data name="Help_Cheats_R3Header" xml:space="preserve">
-    <value>Rayman 3</value>
-  </data>
   <data name="Lang_English" xml:space="preserve">
     <value>Engels</value>
   </data>
@@ -1820,370 +1654,6 @@ Nieuws:
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (Administrator)</value>
   </data>
-  <data name="Cheats_Location_Level" xml:space="preserve">
-    <value>Level</value>
-  </data>
-  <data name="Cheats_Location_Map" xml:space="preserve">
-    <value>Map hulpprogramma's</value>
-  </data>
-  <data name="Cheats_Location_Pause" xml:space="preserve">
-    <value>Pauzescherm</value>
-  </data>
-  <data name="Cheats_Location_AccessDenied" xml:space="preserve">
-    <value>Toegang Geweigerd scherm</value>
-  </data>
-  <data name="Cheats_Location_TotA3" xml:space="preserve">
-    <value>Tomb of the Ancient deel 3, terwijl je op het derde paneel staat vanaf de ingang van de controlekamer, waar Rayman het gevecht aangaat met Clark</value>
-  </data>
-  <data name="Cheats_Location_Credits" xml:space="preserve">
-    <value>Credits</value>
-  </data>
-  <data name="Cheats_Location_Cutscene" xml:space="preserve">
-    <value>Cutscene</value>
-  </data>
-  <data name="Cheats_Location_ProfileName" xml:space="preserve">
-    <value>Profielnaam</value>
-  </data>
-  <data name="Cheats_R1" xml:space="preserve">
-    <value>Voor de verschillende Rayman versies zijn er verschillende cheat codes. Sommige versies ondersteunen meerdere typen cheat codes.</value>
-  </data>
-  <data name="Cheats_R1_99LivesTitle" xml:space="preserve">
-    <value>99 levens</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
-    <value>trj8p</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
-    <value>raylives</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
-    <value>[TAB]bertrand</value>
-  </data>
-  <data name="Cheats_R1_FistPowerTitle" xml:space="preserve">
-    <value>Alle vuist power-ups</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
-    <value>2x2rmfmf</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
-    <value>goldfist</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput3" xml:space="preserve">
-    <value>[TAB]antoine</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsTitle" xml:space="preserve">
-    <value>Alle normale power-ups</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
-    <value>en5gol2g</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
-    <value>power</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput3" xml:space="preserve">
-    <value>[TAB]benoit</value>
-  </data>
-  <data name="Cheats_R1_FullHealthTitle" xml:space="preserve">
-    <value>Volledig gezond</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
-    <value>kom0ogdk</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
-    <value>raypoint</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput3" xml:space="preserve">
-    <value>[TAB]christ</value>
-  </data>
-  <data name="Cheats_R1_10TingsTitle" xml:space="preserve">
-    <value>10 extra Tings</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
-    <value>86e40g91</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
-    <value>raywiz</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput3" xml:space="preserve">
-    <value>[TAB]jojo</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelTitle" xml:space="preserve">
-    <value>Skip sectie van level</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
-    <value>o8feh</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
-    <value>winmap</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput3" xml:space="preserve">
-    <value>[TAB]cyril</value>
-  </data>
-  <data name="Cheats_R1_HiddenMessageTitle" xml:space="preserve">
-    <value>Toon verborgen bericht</value>
-  </data>
-  <data name="Cheats_R1_HiddenMessageInput3" xml:space="preserve">
-    <value>[TAB]program</value>
-  </data>
-  <data name="Cheats_R1_FreeMovementTitle" xml:space="preserve">
-    <value>Vrij bewegen</value>
-  </data>
-  <data name="Cheats_R1_FreeMovementInput3" xml:space="preserve">
-    <value>[TAB];overay[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_R1_100RefreshRateTitle" xml:space="preserve">
-    <value>100MHz Refresh rate</value>
-  </data>
-  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
-    <value>freq10</value>
-  </data>
-  <data name="Cheats_R1_80RefreshRateTitle" xml:space="preserve">
-    <value>80MHz Refresh rate</value>
-  </data>
-  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
-    <value>freq80</value>
-  </data>
-  <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
-    <value>Lenseffect</value>
-  </data>
-  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
-    <value>lens</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsTitle" xml:space="preserve">
-    <value>Ontgrendel alle levels</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
-    <value>4ctrepfj</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
-    <value>alworld</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
-    <value>[TAB]francois</value>
-  </data>
-  <data name="Cheats_R1_BreakoutTitle" xml:space="preserve">
-    <value>Start de Breakout mini-game (vereist dat Mr Dark's Dare voltooid is)</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
-    <value>b76b7081</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
-    <value>cbray</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput3" xml:space="preserve">
-    <value>[TAB]olivier</value>
-  </data>
-  <data name="Cheats_R1_BreakoutStageTitle" xml:space="preserve">
-    <value>Start in een willekeurige fase van de Breakout mini-game</value>
-  </data>
-  <data name="Cheats_R1_BreakoutStageInput3" xml:space="preserve">
-    <value>[TAB]cbrayal[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_R1_SelectStageTitle" xml:space="preserve">
-    <value>Fase selectie</value>
-  </data>
-  <data name="Cheats_R1_SelectStageInput3" xml:space="preserve">
-    <value>[TAB]alevel[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_5LivesTitle" xml:space="preserve">
-    <value>5 levens</value>
-  </data>
-  <data name="Cheats_RD_5LivesInput" xml:space="preserve">
-    <value>[TAB]lives05[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_20LivesTitle" xml:space="preserve">
-    <value>20 levens</value>
-  </data>
-  <data name="Cheats_RD_20LivesInput" xml:space="preserve">
-    <value>[TAB]lives20[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_50LivesTitle" xml:space="preserve">
-    <value>50 levens</value>
-  </data>
-  <data name="Cheats_RD_50LivesInput" xml:space="preserve">
-    <value>[TAB]lives50[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_FistPowerTitle" xml:space="preserve">
-    <value>Alle vuist power-ups</value>
-  </data>
-  <data name="Cheats_RD_FistPowerInput" xml:space="preserve">
-    <value>[TAB]goldens</value>
-  </data>
-  <data name="Cheats_RD_FinishLevelTitle" xml:space="preserve">
-    <value>Finish level</value>
-  </data>
-  <data name="Cheats_RD_FinishLevelInput" xml:space="preserve">
-    <value>[TAB]finishing</value>
-  </data>
-  <data name="Cheats_RD_FullHealthTitle" xml:space="preserve">
-    <value>Volledig gezond</value>
-  </data>
-  <data name="Cheats_RD_FullHealthInput" xml:space="preserve">
-    <value>[TAB]points</value>
-  </data>
-  <data name="Cheats_RD_MapIndexTitle" xml:space="preserve">
-    <value>Toon mappenindex</value>
-  </data>
-  <data name="Cheats_RD_MapIndexInput" xml:space="preserve">
-    <value>[TAB]map[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_FreeMovementTitle" xml:space="preserve">
-    <value>Vrij bewegen</value>
-  </data>
-  <data name="Cheats_RD_FreeMovementInput" xml:space="preserve">
-    <value>[TAB]moveray[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_RD_AllLevelsTitle" xml:space="preserve">
-    <value>Ontgrendel alle levels</value>
-  </data>
-  <data name="Cheats_RD_AllLevelsInput" xml:space="preserve">
-    <value>[TAB]openall[BACKSPACE]</value>
-  </data>
-  <data name="Cheats_R2_FistUpgradeTitle" xml:space="preserve">
-    <value>Upgrade magische vuist</value>
-  </data>
-  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
-    <value>glowfist</value>
-  </data>
-  <data name="Cheats_R2_RestoreHealthTitle" xml:space="preserve">
-    <value>Herstel gezondheid</value>
-  </data>
-  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
-    <value>gimmelife</value>
-  </data>
-  <data name="Cheats_R2_5LumsTitle" xml:space="preserve">
-    <value>Verkrijg 5 Gele Lums</value>
-  </data>
-  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
-    <value>gimmelumz</value>
-  </data>
-  <data name="Cheats_R2_LevelSelectionTitle" xml:space="preserve">
-    <value>Ga naar een level naar keuze</value>
-  </data>
-  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
-    <value>gothere</value>
-  </data>
-  <data name="Cheats_R2_GrappleTitle" xml:space="preserve">
-    <value>Ontgrendel grijpkracht</value>
-  </data>
-  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
-    <value>hangon</value>
-  </data>
-  <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
-    <value>Verkrijg maximum gezondheid</value>
-  </data>
-  <data name="Cheats_R2_MaxHealthInput" xml:space="preserve">
-    <value>Houd de J-toets ingedrukt en laat deze weer los naargelang het ritme van het Rayman 2 thema</value>
-  </data>
-  <data name="Cheats_R2_BonusLevelTitle" xml:space="preserve">
-    <value>Verkrijg toegang tot het bonuslevel zonder alle Lums en opengebroken Kooien</value>
-  </data>
-  <data name="Cheats_R2_BonusLevelInput" xml:space="preserve">
-    <value>A[NUMPAD 0]QWQW[ENTER]</value>
-  </data>
-  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
-    <value>Skip cutscenes</value>
-  </data>
-  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
-    <value>NOMOVIES</value>
-  </data>
-  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
-    <value>Nieuwe laadschermen</value>
-  </data>
-  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
-    <value>allvign</value>
-  </data>
-  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
-    <value>Uitschakelen Murfy</value>
-  </data>
-  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
-    <value>nomoremurfy</value>
-  </data>
-  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
-    <value>Verkrijg toegang tot de verborgen plek in Tomb of the Ancients</value>
-  </data>
-  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
-    <value>playjeff</value>
-  </data>
-  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
-    <value>Verkrijg toegang tot Menezis</value>
-  </data>
-  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
-    <value>shootemup</value>
-  </data>
-  <data name="Cheats_RM" xml:space="preserve">
-    <value>Music Team:
-Voor het activeren, ga je naar Race Mode en pauzeer je het spel. Op het pauzescherm houd je L1 + R1 ingedrukt (of soortgelijke knoppen op de gebruikte controller) en druk je op de Optimialiseer knop. 5 blauwe ballen zullen verschijnen onderaan het scherm. Laat alle knoppen los en spring. De speler zou een hoog "ding" geluid moeten horen, en na 0,5 seconde zou de eerste bal geel moeten kleuren. Wanneer de bal geel kleurt, houd de Spring knop ingedrukt. De tweede bal zou nu geel moeten kleuren. Wanneer de tweede bal geel kleurt, laat je de Spring knop weer los. De derde bal zou nu geel moeten kleuren. Wanneer dit gebeurt, houd je de Spring knop weer ingedrukt. De vierde bal zou nu geel moeten kleuren. Gebeurt dit, laat wederom de Spring knop los! De speler zou nu naar het "Music Mode" scherm gebracht moeten worden, waar de speler kan kiezen voor "Music Team".
-
-Cheat menu:
-Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu vast, vervolgens de cirkel, daarna de rest van de 'face' knoppen + L2 + R2. 10 ballen zullen onderaan verschijnen en opgeteld worden. Wanneer de laatste bereikt wordt, zal het menu ontgrendeld worden.</value>
-  </data>
-  <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
-    <value>Skip cutscenes</value>
-  </data>
-  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
-    <value>esc</value>
-  </data>
-  <data name="Cheats_RM3_ReverseMapTitle" xml:space="preserve">
-    <value>Omgekeerde map</value>
-  </data>
-  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
-    <value>reverse</value>
-  </data>
-  <data name="Cheats_RM_UnlockBattlesTitle" xml:space="preserve">
-    <value>Ontgrendel alle battle levels</value>
-  </data>
-  <data name="Cheats_RM_UnlockBattlesInput" xml:space="preserve">
-    <value>Voer ALLFISH als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
-    <value>Ontgrendel alle race levels</value>
-  </data>
-  <data name="Cheats_RM_UnlockRacesInput" xml:space="preserve">
-    <value>Voer ALLTRIBES als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_UnlockAllTitle" xml:space="preserve">
-    <value>Ontgrendel alle levels</value>
-  </data>
-  <data name="Cheats_RM_UnlockAllInput" xml:space="preserve">
-    <value>Voer ALLRAYMANM als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
-    <value>Ontgrendel alle personages</value>
-  </data>
-  <data name="Cheats_RM_AllCharactersInput" xml:space="preserve">
-    <value>Voer PUPPETS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_AllSkinsTitle" xml:space="preserve">
-    <value>Ontgrendel alle tenues</value>
-  </data>
-  <data name="Cheats_RM_AllSkinsInput" xml:space="preserve">
-    <value>Voer CARNIVAL als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_Battle1Title" xml:space="preserve">
-    <value>Ontgrendel alle battle levels in modus 1</value>
-  </data>
-  <data name="Cheats_RM_Battle1Input" xml:space="preserve">
-    <value>Voer ARENAS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_Race1Title" xml:space="preserve">
-    <value>Ontgrendel alle race levels in modus 1</value>
-  </data>
-  <data name="Cheats_RM_Race1Input" xml:space="preserve">
-    <value>Voer TRACKS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_Levels1Title" xml:space="preserve">
-    <value>Ontgrendel alle levels in modus 1</value>
-  </data>
-  <data name="Cheats_RM_Levels1Input" xml:space="preserve">
-    <value>Voer FIELDS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
-  <data name="Cheats_RM_RagtimeMusicTitle" xml:space="preserve">
-    <value>Ragtime muziek tijdens races</value>
-  </data>
-  <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
-    <value>Voer OLDTV als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
-  </data>
   <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
     <value>Knoppen uitlijning</value>
   </data>
@@ -2425,21 +1895,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="GamesPage_FindGamesInfo" xml:space="preserve">
     <value>Zoekt naar geïnstalleerde spellen en voegt deze aan het programma toe</value>
-  </data>
-  <data name="R2U_DiscPatchHeader" xml:space="preserve">
-    <value>Patch Schijfversie</value>
-  </data>
-  <data name="R2U_DiscPatchHeaderInfo" xml:space="preserve">
-    <value>Dit hulpprogramma patcht de CD-release met bestanden van de GOG-versie, waarna het spel zonder schijf kan worden uitgevoerd; de 'CD ontbreekt'-fout is nu opgelost.</value>
-  </data>
-  <data name="R2U_DiscPatchNotRequired" xml:space="preserve">
-    <value>Het spel hoeft niet gepatcht te worden</value>
-  </data>
-  <data name="R2U_DiscPatchApplied" xml:space="preserve">
-    <value>Het spel is succesvol gepatcht</value>
-  </data>
-  <data name="R2U_DiscPatchError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van de schijfpatch</value>
   </data>
   <data name="GameFinder_NoResults" xml:space="preserve">
     <value>Geen nieuwe spellen gevonden</value>
@@ -2711,9 +2166,6 @@ Foutmelding: {1}</value>
   <data name="Archive_RepackError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het ompakken van het archief </value>
   </data>
-  <data name="Progression_R3_TotalHeader" xml:space="preserve">
-    <value>Totaal</value>
-  </data>
   <data name="Progression_R3_Level1Header" xml:space="preserve">
     <value>The Fairy Council</value>
   </data>
@@ -2830,9 +2282,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het encoderen van de bestanden</value>
-  </data>
-  <data name="Utilities_Decoder_R1LngHeader" xml:space="preserve">
-    <value>Rayman 1 Taalbestanden (.Ing)</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Rayman 3 save files (.sav)</value>
@@ -2984,20 +2433,11 @@ Foutmelding: {1}</value>
   <data name="Archive_CreateOutputFile" xml:space="preserve">
     <value>Uitvoerbestand</value>
   </data>
-  <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
-    <value>Selecteer de bestandsindeling</value>
-  </data>
   <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
     <value>Comprimeer volledig blok</value>
   </data>
   <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
     <value>Bestandsextensie voor compressie</value>
-  </data>
-  <data name="Settings_BinarySerializationFileLogPath" xml:space="preserve">
-    <value>Serialisatie Log Bestandspad</value>
-  </data>
-  <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
-    <value>Optioneel bestandspad voor het opslaan van de serialisatielog wanneer er een binair bestand wordt geserialiseerd</value>
   </data>
   <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
     <value>Rayman 1 Configuratiebestanden</value>
@@ -3140,24 +2580,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
-  </data>
-  <data name="Help_Cheats_Description" xml:space="preserve">
-    <value>Beschrijving</value>
-  </data>
-  <data name="Help_Cheats_Location" xml:space="preserve">
-    <value>Locatie</value>
-  </data>
-  <data name="Help_Cheats_Cheats" xml:space="preserve">
-    <value>Cheats</value>
-  </data>
-  <data name="Help_Cheats_Cheats1" xml:space="preserve">
-    <value>Cheats 1</value>
-  </data>
-  <data name="Help_Cheats_Cheats2" xml:space="preserve">
-    <value>Cheats 2</value>
-  </data>
-  <data name="Help_Cheats_Cheats3" xml:space="preserve">
-    <value>Cheats 3</value>
   </data>
   <data name="Browse_SelectFile" xml:space="preserve">
     <value>Selecteer een bestand</value>
@@ -3311,9 +2733,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="GameDisplay_Archives" xml:space="preserve">
     <value>Openen archieven</value>
-  </data>
-  <data name="Progression_GenericSave" xml:space="preserve">
-    <value>Opslagbestand</value>
   </data>
   <data name="R1Passwords_Invalid" xml:space="preserve">
     <value>Ongeldig wachtwoord</value>

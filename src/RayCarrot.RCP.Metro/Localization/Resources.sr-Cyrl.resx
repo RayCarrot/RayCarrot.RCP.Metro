@@ -123,14 +123,8 @@
   <data name="AboutPageHeader" xml:space="preserve">
     <value>О програму</value>
   </data>
-  <data name="BackupPageHeader" xml:space="preserve">
-    <value>Направи резервну копију/Врати</value>
-  </data>
   <data name="DebugPageHeader" xml:space="preserve">
     <value>Отклањање грешака</value>
-  </data>
-  <data name="HelpPageHeader" xml:space="preserve">
-    <value>Помоћ</value>
   </data>
   <data name="SettingsPageHeader" xml:space="preserve">
     <value>Подешавања</value>
@@ -429,9 +423,6 @@
   <data name="Games_NotInstalled" xml:space="preserve">
     <value>Није инсталирано</value>
   </data>
-  <data name="Help_CategoryHelp" xml:space="preserve">
-    <value>Изабери помоћну страницу из доступних категорија са леве стране</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Кориснички ниво</value>
   </data>
@@ -441,107 +432,11 @@
   <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
     <value>1.21</value>
   </data>
-  <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel</value>
-  </data>
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
-    <value>trj8p</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
-    <value>raylives</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
-    <value>2x2rmfmf</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
-    <value>goldfist</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
-    <value>en5gol2g</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
-    <value>power</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
-    <value>kom0ogdk</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
-    <value>raypoint</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
-    <value>86e40g91</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
-    <value>raywiz</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
-    <value>o8feh</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
-    <value>winmap</value>
-  </data>
-  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
-    <value>freq10</value>
-  </data>
-  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
-    <value>freq80</value>
-  </data>
-  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
-    <value>lens</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
-    <value>4ctrepfj</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
-    <value>alworld</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
-    <value>b76b7081</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
-    <value>cbray</value>
-  </data>
-  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
-    <value>glowfist</value>
-  </data>
-  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
-    <value>gimmelife</value>
-  </data>
-  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
-    <value>gimmelumz</value>
-  </data>
-  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
-    <value>gothere</value>
-  </data>
-  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
-    <value>hangon</value>
-  </data>
-  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
-    <value>NOMOVIES</value>
-  </data>
-  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
-    <value>allvign</value>
-  </data>
-  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
-    <value>nomoremurfy</value>
-  </data>
-  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
-    <value>playjeff</value>
-  </data>
-  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
-    <value>shootemup</value>
-  </data>
-  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
-    <value>esc</value>
-  </data>
-  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
-    <value>reverse</value>
   </data>
   <data name="FiestaRunVersion_Preload" xml:space="preserve">
     <value>Preload Edition</value>

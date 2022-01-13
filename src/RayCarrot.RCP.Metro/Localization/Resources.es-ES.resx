@@ -123,14 +123,8 @@
   <data name="AboutPageHeader" xml:space="preserve">
     <value>Información</value>
   </data>
-  <data name="BackupPageHeader" xml:space="preserve">
-    <value>Copia de Seguridad/Restaurar</value>
-  </data>
   <data name="DebugPageHeader" xml:space="preserve">
     <value>Depurar</value>
-  </data>
-  <data name="HelpPageHeader" xml:space="preserve">
-    <value>Ayuda</value>
   </data>
   <data name="SettingsPageHeader" xml:space="preserve">
     <value>Ajustes</value>
@@ -434,9 +428,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Games_NotInstalled" xml:space="preserve">
     <value>No instalado</value>
   </data>
-  <data name="Help_CategoryHelp" xml:space="preserve">
-    <value>Seleccionar la ayuda disponible de las categorias de la izquierda</value>
-  </data>
   <data name="Settings_UserLevel" xml:space="preserve">
     <value>Nível de usuario</value>
   </data>
@@ -695,50 +686,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Se ha encontrado una nueva versión</value>
   </data>
-  <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel</value>
-  </data>
-  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
-    <value>Compatibilidad</value>
-  </data>
-  <data name="Help_RCP_Compatibility" xml:space="preserve">
-    <value>Se necesita Windows Vista como minimo para ejecutar el programa, se recomienda Windows 7 o superior.
-</value>
-  </data>
-  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
-    <value>Instalador del juego</value>
-  </data>
-  <data name="Help_Games_R1" xml:space="preserve">
-    <value>Rayman 3</value>
-  </data>
-  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
-    <value>Emulador de MS-DOS</value>
-  </data>
-  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
-    <value>La Instalación ha fallado</value>
-  </data>
-  <data name="Help_Games_R2_Fps" xml:space="preserve">
-    <value>Algunas partes del juego no funcionan correctamente a 60fps. Las mas notables ocurren en los bonus, donde es mucho mas dificil subir el medidor de velocidad, haciendo muy difícil de ganar el minijuego. Otro error puede hacer que sea imposible de saltar de la cabeza de Umber en el santuario de piedra y fuego.</value>
-  </data>
-  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
-    <value>"No Disc" Error</value>
-  </data>
-  <data name="Help_Games_RMA" xml:space="preserve">
-    <value>Rayman M/Arena</value>
-  </data>
-  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
-    <value>Faltan Texturas
-</value>
-  </data>
-  <data name="Help_Games_R3" xml:space="preserve">
-    <value>Rayman 3</value>
-  </data>
-  <data name="Help_Games_RRR" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
-  </data>
-  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
-    <value>Error jade_enr.exe</value>
-  </data>
   <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
@@ -759,93 +706,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="GameOptions_Config" xml:space="preserve">
     <value>Configuración</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
-    <value>trj8p</value>
-  </data>
-  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
-    <value>raylives</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
-    <value>2x2rmfmf</value>
-  </data>
-  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
-    <value>goldfist</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
-    <value>en5gol2g</value>
-  </data>
-  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
-    <value>power</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
-    <value>kom0ogdk</value>
-  </data>
-  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
-    <value>raypoint</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
-    <value>86e40g91</value>
-  </data>
-  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
-    <value>raywiz</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
-    <value>o8feh</value>
-  </data>
-  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
-    <value>winmap</value>
-  </data>
-  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
-    <value>freq10</value>
-  </data>
-  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
-    <value>freq80</value>
-  </data>
-  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
-    <value>lens</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
-    <value>4ctrepfj</value>
-  </data>
-  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
-    <value>alworld</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
-    <value>b76b7081</value>
-  </data>
-  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
-    <value>cbray</value>
-  </data>
-  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
-    <value>glowfist</value>
-  </data>
-  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
-    <value>gimmelife</value>
-  </data>
-  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
-    <value>gimmelumz</value>
-  </data>
-  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
-    <value>gothere</value>
-  </data>
-  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
-    <value>hangon</value>
-  </data>
-  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
-    <value>NOMOVIES</value>
-  </data>
-  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
-    <value>allvign</value>
-  </data>
-  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
-    <value>nomoremurfy</value>
-  </data>
-  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
-    <value>playjeff</value>
-  </data>
-  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
-    <value>shootemup</value>
   </data>
   <data name="FiestaRunVersion_Preload" xml:space="preserve">
     <value>Preload Edition</value>
