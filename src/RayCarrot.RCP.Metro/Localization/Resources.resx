@@ -3663,278 +3663,6 @@ gameName</comment>
   <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
     <value>Enabling this will show windows, such as the game options window or message dialogs, as popups within in the main window. Disabling this will show them as separate windows.</value>
   </data>
-  <data name="Archive_ReplaceFile" xml:space="preserve">
-    <value>Replace</value>
-  </data>
-  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
-    <value>Select file to replace</value>
-  </data>
-  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
-    <value>An error occurred when replacing the file</value>
-  </data>
-  <data name="Config_Cheats" xml:space="preserve">
-    <value>Cheats</value>
-  </data>
-  <data name="Config_RRRInvertHor" xml:space="preserve">
-    <value>Mirror camera</value>
-  </data>
-  <data name="Config_RRROldMovie" xml:space="preserve">
-    <value>Old movie</value>
-    <comment>This is the name of the cheat which places a filter on the game</comment>
-  </data>
-  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
-    <value>The applied patch is outdated. Keep the patch enabled and save to update it to the newest version.</value>
-  </data>
-  <data name="Progression_LevelsCompleted" xml:space="preserve">
-    <value>Completed levels</value>
-  </data>
-  <data name="Progression_Cages" xml:space="preserve">
-    <value>Cages</value>
-  </data>
-  <data name="Progression_RedemptionTokens" xml:space="preserve">
-    <value>Tokens</value>
-  </data>
-  <data name="Progression_RedemptionPresents" xml:space="preserve">
-    <value>Presents</value>
-  </data>
-  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
-    <value>Rayman skins</value>
-  </data>
-  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
-    <value>Bzzit skins</value>
-  </data>
-  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
-    <value>Checkpoint skins</value>
-  </data>
-  <data name="Progression_Tings" xml:space="preserve">
-    <value>Tings</value>
-  </data>
-  <data name="Progression_Lives" xml:space="preserve">
-    <value>Lives</value>
-  </data>
-  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
-    <value>Stars</value>
-  </data>
-  <data name="Progression_RRRDays" xml:space="preserve">
-    <value>Days</value>
-  </data>
-  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
-    <value>Completed minigames</value>
-  </data>
-  <data name="Progression_RRRPoints" xml:space="preserve">
-    <value>{0} (Points)</value>
-  </data>
-  <data name="Progression_RRRScore" xml:space="preserve">
-    <value>{0} (Score)</value>
-  </data>
-  <data name="Progression_RRRTotalPoints" xml:space="preserve">
-    <value>Total points</value>
-  </data>
-  <data name="Progression_RRRScoreSlot" xml:space="preserve">
-    <value>Score</value>
-  </data>
-  <data name="Progression_Continues" xml:space="preserve">
-    <value>Continues</value>
-  </data>
-  <data name="Progression_Lums" xml:space="preserve">
-    <value>Lums</value>
-  </data>
-  <data name="Progression_R3Stamps" xml:space="preserve">
-    <value>Stamps</value>
-  </data>
-  <data name="Progression_TotalScore" xml:space="preserve">
-    <value>Total score</value>
-  </data>
-  <data name="Progression_RFRCrowns" xml:space="preserve">
-    <value>Crowns</value>
-  </data>
-  <data name="Progression_RFRNightmareMode" xml:space="preserve">
-    <value>Nightmare mode</value>
-  </data>
-  <data name="Progression_Teeth" xml:space="preserve">
-    <value>Teeth</value>
-  </data>
-  <data name="Progression_Teensies" xml:space="preserve">
-    <value>Teensies</value>
-  </data>
-  <data name="Progression_Rank" xml:space="preserve">
-    <value>Rank</value>
-  </data>
-  <data name="Progression_RLBronzeCups" xml:space="preserve">
-    <value>Bronze cups</value>
-  </data>
-  <data name="Progression_RLSilverCups" xml:space="preserve">
-    <value>Silver cups</value>
-  </data>
-  <data name="Progression_RLGoldCups" xml:space="preserve">
-    <value>Gold cups</value>
-  </data>
-  <data name="Progression_RLDiamondCups" xml:space="preserve">
-    <value>Diamond cups</value>
-  </data>
-  <data name="Progression_RMRacesCompleted" xml:space="preserve">
-    <value>Finished races</value>
-  </data>
-  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
-    <value>Finished battles</value>
-  </data>
-  <data name="Progression_Electoons" xml:space="preserve">
-    <value>Electoons</value>
-  </data>
-  <data name="Progression_ROLumMedals" xml:space="preserve">
-    <value>Lum medals</value>
-  </data>
-  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
-    <value>Speed trophies</value>
-  </data>
-  <data name="Progression_SaveEditWarning" xml:space="preserve">
-    <value>Editing save files may corrupt them if done incorrectly. It is highly recommended to keep a backup before proceeding. Continue?</value>
-  </data>
-  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
-    <value>Confirm save file editing</value>
-  </data>
-  <data name="Progression_SlotInfo_File" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="Progression_SlotInfo_Size" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
-    <value>Last modified</value>
-  </data>
-  <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Select an executable for editing JSON save files</value>
-  </data>
-  <data name="Progression_SaveEditSuccess" xml:space="preserve">
-    <value>The save file has been successfully modified</value>
-  </data>
-  <data name="Progression_ChangeEditProgram" xml:space="preserve">
-    <value>Change save editor program</value>
-  </data>
-  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
-    <value>Backed up</value>
-  </data>
-  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
-    <value>New changes are not backed up</value>
-  </data>
-  <data name="Progression_EditSlot" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="Progression_DataSource" xml:space="preserve">
-    <value>Data source</value>
-  </data>
-  <data name="Progression_DataSourceInfo" xml:space="preserve">
-    <value>For older applications Windows will in some cases redirect save/config files to the VirtualStore if the application is not running as admin. The side effect of this is that you will have different save/config files being used for the game depending on if you're running it as admin or not.
-By changing the data source here you can choose which location is used for backups and the progression view.</value>
-  </data>
-  <data name="Progression_DataSource_Auto" xml:space="preserve">
-    <value>Auto</value>
-  </data>
-  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
-    <value>When creating a new backup or using the save files for the progression view then the location with the most recent files is chosen. When restoring a backup it will restore to both locations.</value>
-  </data>
-  <data name="Progression_DataSource_Default" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
-    <value>The default location is always used. This corresponds to the location the game uses when it is running as admin.</value>
-  </data>
-  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
-    <value>VirtualStore</value>
-  </data>
-  <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
-    <value>The VirtualStore location is always used. This corresponds to the location the game uses when it is not running as admin.</value>
-  </data>
-  <data name="Progression_BackupSlots" xml:space="preserve">
-    <value>Backup</value>
-  </data>
-  <data name="Settings_SerializationLog" xml:space="preserve">
-    <value>Serialization Log</value>
-  </data>
-  <data name="Settings_SerializationLogInfo" xml:space="preserve">
-    <value>Enabling the log will have any binary serialization action, such as using the Archive Explorer or viewing game progression, log to the specified log file. This is primarily for debugging, but can also be useful for viewing the data structure of certain formats.</value>
-  </data>
-  <data name="IsEnabled" xml:space="preserve">
-    <value>Is enabled</value>
-  </data>
-  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
-    <value>Binary Tools</value>
-  </data>
-  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
-    <value>Select format to convert back to</value>
-  </data>
-  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
-    <value>Rayman Raving Rabbids Save Files (.sav)</value>
-  </data>
-  <data name="Utilities_Serializers_Header" xml:space="preserve">
-    <value>Serializers</value>
-  </data>
-  <data name="Utilities_Serializers_Log" xml:space="preserve">
-    <value>Output as log</value>
-  </data>
-  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
-    <value>Deserialize to JSON</value>
-  </data>
-  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
-    <value>Serialize from JSON</value>
-  </data>
-  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
-    <value>Rayman Fiesta Run Save File (.dat)</value>
-  </data>
-  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
-    <value>Unity Player Preferences / Rabbids Big Bang Save File (.dat)</value>
-  </data>
-  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
-    <value>Game Maker DS Map / Rayman Redemption Save File (.txt)</value>
-  </data>
-  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
-    <value>Select files to serialize</value>
-  </data>
-  <data name="Utilities_Serializers_LogError" xml:space="preserve">
-    <value>The files could not be logged</value>
-  </data>
-  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
-    <value>The files were successfully deserialized</value>
-  </data>
-  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
-    <value>The files could not be deserialized</value>
-  </data>
-  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
-    <value>The files were successfully serialized</value>
-  </data>
-  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
-    <value>The files could not be serialized</value>
-  </data>
-  <data name="Config_RRRCheatsInfo" xml:space="preserve">
-    <value>The cheats will go into effect when first loading a map. Sometimes it is also required to return to the menu afterwards for everything to update.</value>
-  </data>
-  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
-    <value>DirectPlay can only be toggled on Windows 8 or above</value>
-  </data>
-  <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>Fix save progress</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible. This utility will attempt to correct this.</value>
-  </data>
-  <data name="RFRU_SaveFixAction" xml:space="preserve">
-    <value>Fix save</value>
-  </data>
-  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
-    <value>No issues found</value>
-  </data>
-  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
-    <value>The save was successfully fixes</value>
-  </data>
-  <data name="RFRU_SaveFixError" xml:space="preserve">
-    <value>An error occurred when fixing the save</value>
-  </data>
-  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
-    <value>Debug commands are not available for the Steam version</value>
-  </data>
-  <data name="Utilities_NotAvailable" xml:space="preserve">
-    <value>The utility is not available</value>
-  </data>
   <data name="RRR_LevelName_0" xml:space="preserve">
     <value>Bunnies don't like being disturbed on holiday</value>
   </data>
@@ -4363,5 +4091,277 @@ By changing the data source here you can choose which location is used for backu
   </data>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Breath of Death</value>
+  </data>
+  <data name="Archive_ReplaceFile" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
+    <value>Select file to replace</value>
+  </data>
+  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
+    <value>An error occurred when replacing the file</value>
+  </data>
+  <data name="Config_Cheats" xml:space="preserve">
+    <value>Cheats</value>
+  </data>
+  <data name="Config_RRRInvertHor" xml:space="preserve">
+    <value>Mirror camera</value>
+  </data>
+  <data name="Config_RRROldMovie" xml:space="preserve">
+    <value>Old movie</value>
+    <comment>This is the name of the cheat which places a filter on the game</comment>
+  </data>
+  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
+    <value>The applied patch is outdated. Keep the patch enabled and save to update it to the newest version.</value>
+  </data>
+  <data name="Progression_LevelsCompleted" xml:space="preserve">
+    <value>Completed levels</value>
+  </data>
+  <data name="Progression_Cages" xml:space="preserve">
+    <value>Cages</value>
+  </data>
+  <data name="Progression_RedemptionTokens" xml:space="preserve">
+    <value>Tokens</value>
+  </data>
+  <data name="Progression_RedemptionPresents" xml:space="preserve">
+    <value>Presents</value>
+  </data>
+  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
+    <value>Rayman skins</value>
+  </data>
+  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
+    <value>Bzzit skins</value>
+  </data>
+  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
+    <value>Checkpoint skins</value>
+  </data>
+  <data name="Progression_Tings" xml:space="preserve">
+    <value>Tings</value>
+  </data>
+  <data name="Progression_Lives" xml:space="preserve">
+    <value>Lives</value>
+  </data>
+  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
+    <value>Stars</value>
+  </data>
+  <data name="Progression_RRRDays" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
+    <value>Completed minigames</value>
+  </data>
+  <data name="Progression_RRRPoints" xml:space="preserve">
+    <value>{0} (Points)</value>
+  </data>
+  <data name="Progression_RRRScore" xml:space="preserve">
+    <value>{0} (Score)</value>
+  </data>
+  <data name="Progression_RRRTotalPoints" xml:space="preserve">
+    <value>Total points</value>
+  </data>
+  <data name="Progression_RRRScoreSlot" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Progression_Continues" xml:space="preserve">
+    <value>Continues</value>
+  </data>
+  <data name="Progression_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Progression_R3Stamps" xml:space="preserve">
+    <value>Stamps</value>
+  </data>
+  <data name="Progression_TotalScore" xml:space="preserve">
+    <value>Total score</value>
+  </data>
+  <data name="Progression_RFRCrowns" xml:space="preserve">
+    <value>Crowns</value>
+  </data>
+  <data name="Progression_RFRNightmareMode" xml:space="preserve">
+    <value>Nightmare mode</value>
+  </data>
+  <data name="Progression_Teeth" xml:space="preserve">
+    <value>Teeth</value>
+  </data>
+  <data name="Progression_Teensies" xml:space="preserve">
+    <value>Teensies</value>
+  </data>
+  <data name="Progression_Rank" xml:space="preserve">
+    <value>Rank</value>
+  </data>
+  <data name="Progression_RLBronzeCups" xml:space="preserve">
+    <value>Bronze cups</value>
+  </data>
+  <data name="Progression_RLSilverCups" xml:space="preserve">
+    <value>Silver cups</value>
+  </data>
+  <data name="Progression_RLGoldCups" xml:space="preserve">
+    <value>Gold cups</value>
+  </data>
+  <data name="Progression_RLDiamondCups" xml:space="preserve">
+    <value>Diamond cups</value>
+  </data>
+  <data name="Progression_RMRacesCompleted" xml:space="preserve">
+    <value>Finished races</value>
+  </data>
+  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
+    <value>Finished battles</value>
+  </data>
+  <data name="Progression_Electoons" xml:space="preserve">
+    <value>Electoons</value>
+  </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Lum medals</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Speed trophies</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>Editing save files may corrupt them if done incorrectly. It is highly recommended to keep a backup before proceeding. Continue?</value>
+  </data>
+  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
+    <value>Confirm save file editing</value>
+  </data>
+  <data name="Progression_SlotInfo_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Progression_SlotInfo_Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
+    <value>Last modified</value>
+  </data>
+  <data name="Progression_SelectEditProgram" xml:space="preserve">
+    <value>Select an executable for editing JSON save files</value>
+  </data>
+  <data name="Progression_SaveEditSuccess" xml:space="preserve">
+    <value>The save file has been successfully modified</value>
+  </data>
+  <data name="Progression_ChangeEditProgram" xml:space="preserve">
+    <value>Change save editor program</value>
+  </data>
+  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
+    <value>Backed up</value>
+  </data>
+  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
+    <value>New changes are not backed up</value>
+  </data>
+  <data name="Progression_EditSlot" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Progression_DataSource" xml:space="preserve">
+    <value>Data source</value>
+  </data>
+  <data name="Progression_DataSourceInfo" xml:space="preserve">
+    <value>For older applications Windows will in some cases redirect save/config files to the VirtualStore if the application is not running as admin. The side effect of this is that you will have different save/config files being used for the game depending on if you're running it as admin or not.
+By changing the data source here you can choose which location is used for backups and the progression view.</value>
+  </data>
+  <data name="Progression_DataSource_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>When creating a new backup or using the save files for the progression view then the location with the most recent files is chosen. When restoring a backup it will restore to both locations.</value>
+  </data>
+  <data name="Progression_DataSource_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
+    <value>The default location is always used. This corresponds to the location the game uses when it is running as admin.</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
+    <value>VirtualStore</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
+    <value>The VirtualStore location is always used. This corresponds to the location the game uses when it is not running as admin.</value>
+  </data>
+  <data name="Progression_BackupSlots" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Serialization Log</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Enabling the log will have any binary serialization action, such as using the Archive Explorer or viewing game progression, log to the specified log file. This is primarily for debugging, but can also be useful for viewing the data structure of certain formats.</value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Is enabled</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>Binary Tools</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Select format to convert back to</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids Save Files (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serializers</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Output as log</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>Deserialize to JSON</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>Serialize from JSON</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>Rayman Fiesta Run Save File (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Unity Player Preferences / Rabbids Big Bang Save File (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>Game Maker DS Map / Rayman Redemption Save File (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
+    <value>Select files to serialize</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>The files could not be logged</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
+    <value>The files were successfully deserialized</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
+    <value>The files could not be deserialized</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
+    <value>The files were successfully serialized</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
+    <value>The files could not be serialized</value>
+  </data>
+  <data name="Config_RRRCheatsInfo" xml:space="preserve">
+    <value>The cheats will go into effect when first loading a map. Sometimes it is also required to return to the menu afterwards for everything to update.</value>
+  </data>
+  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
+    <value>DirectPlay can only be toggled on Windows 8 or above</value>
+  </data>
+  <data name="RFRU_SaveFixHeader" xml:space="preserve">
+    <value>Fix save progress</value>
+  </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>Due to a bug in earlier versions of the game the save file progress might get out of sync causing you to have fewer teensies than actually earned. This can cause certain levels to become inaccessible. This utility will attempt to correct this.</value>
+  </data>
+  <data name="RFRU_SaveFixAction" xml:space="preserve">
+    <value>Fix save</value>
+  </data>
+  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
+    <value>No issues found</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>The save was successfully fixes</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>An error occurred when fixing the save</value>
+  </data>
+  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
+    <value>Debug commands are not available for the Steam version</value>
+  </data>
+  <data name="Utilities_NotAvailable" xml:space="preserve">
+    <value>The utility is not available</value>
   </data>
 </root>
