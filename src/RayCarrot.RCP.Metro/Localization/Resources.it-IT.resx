@@ -3933,4 +3933,16 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   <data name="RRR_LevelName_140" xml:space="preserve">
     <value>I conigli sparano in ogni angolo.</value>
   </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>Ritorno alle origini</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Salto della fede</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Occhio ai serpenti</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Alito mortale</value>
+  </data>
 </root>

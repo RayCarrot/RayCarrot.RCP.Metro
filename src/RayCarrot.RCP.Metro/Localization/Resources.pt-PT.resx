@@ -3944,4 +3944,16 @@ Start: Pausa</value>
   <data name="RRR_LevelName_140" xml:space="preserve">
     <value>Bunnies are shooting all over the place</value>
   </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>De volta às raízes</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Salto de fé</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Olha a cobra!</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Sopro da morte</value>
+  </data>
 </root>

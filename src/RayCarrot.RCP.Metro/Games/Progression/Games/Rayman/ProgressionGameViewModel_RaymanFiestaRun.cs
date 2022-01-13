@@ -115,7 +115,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
             progressItems.Add(new ProgressionDataViewModel(
                 isPrimaryItem: false,
                 icon: ProgressionIcon.RO_Clock,
-                header: $"{lvlIndex + 1}", // TODO-UPDATE: Level name
+                header: new ResourceLocString($"RFR_LevelName_{lvlIndex + 1}_10"),
                 text: $"{new TimeSpan(0, 0, 0, 0, (int)saveData.LevelTimes[lvlIndex]):mm\\:ss\\.fff}"));
         }
 

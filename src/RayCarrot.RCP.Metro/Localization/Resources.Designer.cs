@@ -8607,6 +8607,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to the Roots.
+        /// </summary>
+        public static string RFR_LevelName_1_10 {
+            get {
+                return ResourceManager.GetString("RFR_LevelName_1_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leap of Faith.
+        /// </summary>
+        public static string RFR_LevelName_2_10 {
+            get {
+                return ResourceManager.GetString("RFR_LevelName_2_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watch the snakes.
+        /// </summary>
+        public static string RFR_LevelName_3_10 {
+            get {
+                return ResourceManager.GetString("RFR_LevelName_3_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breath of Death.
+        /// </summary>
+        public static string RFR_LevelName_4_10 {
+            get {
+                return ResourceManager.GetString("RFR_LevelName_4_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fix save.
         /// </summary>
         public static string RFRU_SaveFixAction {

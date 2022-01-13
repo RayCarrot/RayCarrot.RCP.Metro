@@ -3932,4 +3932,16 @@ Start: Пауза</value>
   <data name="RRR_LevelName_140" xml:space="preserve">
     <value>Bunnies are shooting all over the place</value>
   </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>Back to the Roots</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Leap of Faith</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Watch the snakes</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Breath of Death</value>
+  </data>
 </root>

@@ -3929,4 +3929,16 @@ Start: Pauzeren</value>
   <data name="RRR_LevelName_140" xml:space="preserve">
     <value>Konijntjes schieten uit alle hoeken</value>
   </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>Wortel schieten</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Dodensprong</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Kijk uit voor de slangen</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Dodelijke adem</value>
+  </data>
 </root>
