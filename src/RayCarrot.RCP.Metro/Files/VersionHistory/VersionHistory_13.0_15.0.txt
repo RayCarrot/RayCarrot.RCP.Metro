@@ -1,49 +1,53 @@
 ﻿-----   Version 13.0.0 - January ??, 2022   -----
-• Replaced the backup/restore and game specific progression pages with the new progression page
+• Added the progression page, replacing the backup/restore and game specific progression pages
 	• Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
-	• If a backup was performed for a game it will now show the status, indicating if the backup is outdated
+	• The backup status is now shown indicating if a backup is outdated
 	• The progression data for backups can now be viewed and compared to the current data
-	• If the save data has been redirected to VirtualStore there will now be an option to choose the data source to use
 	• Save slots which can be imported can now also be directly edited as JSON data
-	• Games where the save data can't be imported can now still have it be exported (such as for Rayman Designer and Rayman Origins)
 • Utilities changes
-	• Added utility for fixing Fiesta Run saves
+	• Added a utility for fixing Rayman Fiesta Run saves
 	• Moved most general utilities to the new binary tools page
 	• Added a new serializers utility with an option for showing the file serialization log
-	• The converter and decoder utilities have all been re-implemented, with some converters moved to the new serializers utility
 	• Added serializers for Rayman Raving Rabbids save files, Rayman Fiesta Run save files, Unity Player Preferences and Game Maker DS Map txt files
 	• Add a decoder for Rayman Raving Rabbids save files
-	• Removed the decoder for Rayman 1 language files
-	• The UbiArt localization file converter now produces more readable JSON files
-	• Added icons to the utility headers and normalized some layouts
-	• Unavailable utilities are no longer hidden and can optionally show why they are not available
-	• Removed the Rayman 2 disc patch utility
-	• The UbiRay utility can no longer be used if the required costume files have been modified in size to avoid overwriting incorrect data
-• Added cheat toggles to the Rayman Raving Rabbids config
+• Added options to enable unused cheats in the Rayman Raving Rabbids config
 • Removed the help page
-• Updated the Rayman Arena disc removal to make it work even when there is no available disc drive (save the changes in the config to apply the updated patch)
+• Updated the Rayman Arena disc removal to make it work even when there are no available disc drives (save the changes in the config to apply the updated patch)
 • Migrated the code from using RayCarrot.Binary/Rayman to BinarySerializer for binary data parsing, utilizing much of the same code as in Ray1Map
 
 Other changes:
+• Progression page
+	• If the save data has been redirected to VirtualStore there will now be an option to choose the data source to use
+	• Games where the save data can't be imported can now still have it be exported (such as for Rayman Designer and Rayman Origins)
+• Utilities changes
+	• The converter and decoder utilities have all been re-implemented, with some converters moved to the new serializers utility
+	• The UbiArt localization file converter now produces more readable JSON files
+	• Added icons to the utility headers and normalized some layouts
+	• Unavailable utilities are no longer hidden and can optionally show why they are not available
+	• The UbiRay utility can no longer be used if the required costume files have been modified in size to avoid overwriting incorrect data
+	• Removed the decoder for Rayman 1 language files
+	• Removed the Rayman 2 disc patch utility
+• Visual changes
+	• Updated the game icons
+	• Added icons to more buttons
+	• Minor UI changes such as increased scrollbar padding
+• Rayman Control Panel and Archive Explorer are no longer displayed with the ™ symbol
 • Major code and libraries refactoring
 • Certain pages can now be refreshed by pressing F5
-• Added option to replace files in the Archive Explorer
-• Added a new dialog for selecting a program to use for certain file types in the Archive Explorer and progression page (previously the file selection dialog was used)
+• Added an option to replace files in the Archive Explorer
+• Added a new dialog for selecting a program to use for certain file types in the Archive Explorer and progression page
 • The backup location setting has been moved to the settings page
-• Add toggle for enabling or disabling the serialization log rather than it being dependant on the specified file path existing
-• Save selections in the Rayman Raving Rabbids mod
+• Added a toggle for enabling or disabling the serialization log rather than it being dependant on the specified file path existing
+• Have the selections in the Rayman Raving Rabbids mod be saved (they will still need to be applied to the game each time)
 • The main pages now load when first navigated to thus slightly reducing the startup time
-• Updated game icons
 • Updated demo game names to include their dates
 • Demo games are no longer automatically added to the jump list
-• Added icons to more buttons
 • Updated the updater
-• Rayman Control Panel and Archive Explorer are no longer displayed with the ™ symbol
-• Minor UI changes such as increased scrollbar padding
 • Added a debug option to show grid lines in the app user interface
 • Added a debug option to refresh all multiple times in parallel
-• Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
-• Fixed some strings not being localized in the string input dialog
-• Fixed a bug where the Archive Explorer would crash if a file was selected in another archive than the one being repacked
-• Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used
-• Fixed a bug where the app might crash when loading the games page
+• Bug fixes
+	• Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
+	• Fixed some strings not being localized in the string input dialog
+	• Fixed a bug where the Archive Explorer would crash if a file was selected in another archive than the one being repacked
+	• Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used
+	• Fixed a bug where the app might crash when loading the games page
