@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System.Text;
 using BinarySerializer;
+using Newtonsoft.Json;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -9,7 +10,10 @@ public class GameMaker_DSMapDataObject : BinarySerializable
     public ObjectType Type { get; set; }
 
     public double NumberValue { get; set; }
+
+    [JsonIgnore]
     public int NumberValueAsInt => (int)NumberValue;
+    [JsonIgnore]
     public bool NumberValueAsBool => NumberValue > 0;
 
     public int StringLength { get; set; }
