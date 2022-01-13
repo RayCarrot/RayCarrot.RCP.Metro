@@ -347,6 +347,9 @@ public class RCPFileManager : IFileManager
     /// <param name="replace">Indicates if the destination should be replaced if it already exists</param>
     public void MoveFile(FileSystemPath source, FileSystemPath destination, bool replace)
     {
+        if (!source.FileExists)
+            throw new FileNotFoundException("Source file does not exist");
+
         // Delete existing file if set to replace
         if (replace)
             DeleteFile(destination);

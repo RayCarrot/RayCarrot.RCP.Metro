@@ -6,7 +6,7 @@ using BinarySerializer.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: Don't use RawBitmapData - use BitmapSource and BitmapImage instead
+// TODO: Don't use RawBitmapData - use BitmapSource and BitmapImage instead
 public static class GFFileExtensions
 {
     /// <summary>
