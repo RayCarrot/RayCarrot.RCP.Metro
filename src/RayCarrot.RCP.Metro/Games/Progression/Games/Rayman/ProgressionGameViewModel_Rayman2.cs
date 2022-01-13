@@ -22,8 +22,23 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
+        R2ConfigFile? config;
+
+        // Get the config data directory
+        IOSearchPattern? configDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "Data" + "Options", SearchOption.AllDirectories, "*.cfg"));
+
+        if (configDir == null)
+            yield break;
+
+        // Read the config file
+        using (RCPContext configContext = new(configDir.DirPath))
+            config = await configContext.ReadFileDataAsync<R2ConfigFile>("Current.cfg", new R2SaveEncoder(), removeFileWhenComplete: false);
+
+        if (config == null)
+            yield break;
+
         // Get the save data directory
-        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "Data", SearchOption.AllDirectories, "*.cfg"));
+        IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "Data" + "SaveGame", SearchOption.AllDirectories, "*.cfg"));
 
         if (saveDir == null)
             yield break;
@@ -31,15 +46,9 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         // Create the context
         using RCPContext context = new(saveDir.DirPath);
 
-        // Read the config file
-        R2ConfigFile? config = await context.ReadFileDataAsync<R2ConfigFile>(@"Options\Current.cfg", new R2SaveEncoder(), removeFileWhenComplete: false);
-
-        if (config == null)
-            yield break; 
-
         foreach (R2ConfigSlot saveSlot in config.Slots)
         {
-            string slotFilePath = $@"SaveGame\Slot{saveSlot.SlotIndex}\General.sav";
+            string slotFilePath = $@"Slot{saveSlot.SlotIndex}\General.sav";
 
             Logger.Info("{0} slot {1} is being loaded...", Game, saveSlot.SlotIndex);
 
