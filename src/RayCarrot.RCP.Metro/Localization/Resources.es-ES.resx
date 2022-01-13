@@ -913,4 +913,421 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Config_Device_Cards" xml:space="preserve">
     <value>Cards</value>
   </data>
+  <data name="RRR_LevelName_0" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_1" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_2" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_3" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_4" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_5" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_6" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_7" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_8" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_9" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_10" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_11" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_12" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_13" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_14" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_15" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_16" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_17" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_18" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_19" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_20" xml:space="preserve">
+    <value>Bunnies can't jump</value>
+  </data>
+  <data name="RRR_LevelName_21" xml:space="preserve">
+    <value>Bunnies don't give gifts</value>
+  </data>
+  <data name="RRR_LevelName_22" xml:space="preserve">
+    <value>Bunnies don't know what to do with cows</value>
+  </data>
+  <data name="RRR_LevelName_23" xml:space="preserve">
+    <value>Bunnies never close doors</value>
+  </data>
+  <data name="RRR_LevelName_24" xml:space="preserve">
+    <value>Bunnies don't milk cows</value>
+  </data>
+  <data name="RRR_LevelName_25" xml:space="preserve">
+    <value>Bunnies are addicted to carrot juice</value>
+  </data>
+  <data name="RRR_LevelName_26" xml:space="preserve">
+    <value>Bunnies can't slide Part 2</value>
+  </data>
+  <data name="RRR_LevelName_27" xml:space="preserve">
+    <value>Bunnies are heartless with pigs</value>
+  </data>
+  <data name="RRR_LevelName_28" xml:space="preserve">
+    <value>Bunnies don't like bats</value>
+  </data>
+  <data name="RRR_LevelName_29" xml:space="preserve">
+    <value>Bunnies don't use toothpaste</value>
+  </data>
+  <data name="RRR_LevelName_30" xml:space="preserve">
+    <value>Bunnies can't fly</value>
+  </data>
+  <data name="RRR_LevelName_31" xml:space="preserve">
+    <value>Bunnies can only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_32" xml:space="preserve">
+    <value>Bunnies can't play soccer</value>
+  </data>
+  <data name="RRR_LevelName_33" xml:space="preserve">
+    <value>Bunnies don't understand bowling</value>
+  </data>
+  <data name="RRR_LevelName_34" xml:space="preserve">
+    <value>Animal Farm</value>
+  </data>
+  <data name="RRR_LevelName_35" xml:space="preserve">
+    <value>Bunnies have a great ear for music</value>
+  </data>
+  <data name="RRR_LevelName_36" xml:space="preserve">
+    <value>Bunnies are slow to react</value>
+  </data>
+  <data name="RRR_LevelName_37" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 3</value>
+  </data>
+  <data name="RRR_LevelName_38" xml:space="preserve">
+    <value>Bunnies like to stuff themselves</value>
+  </data>
+  <data name="RRR_LevelName_39" xml:space="preserve">
+    <value>Bunnies are raving mad Part 2</value>
+  </data>
+  <data name="RRR_LevelName_40" xml:space="preserve">
+    <value>Bunnies like a good race</value>
+  </data>
+  <data name="RRR_LevelName_41" xml:space="preserve">
+    <value>Race good a like Bunnies</value>
+  </data>
+  <data name="RRR_LevelName_42" xml:space="preserve">
+    <value>Bunnies like a good race on the beach</value>
+  </data>
+  <data name="RRR_LevelName_43" xml:space="preserve">
+    <value>Bunnies only fly downwards</value>
+  </data>
+  <data name="RRR_LevelName_44" xml:space="preserve">
+    <value>Bunnies are fantastic dancers</value>
+  </data>
+  <data name="RRR_LevelName_45" xml:space="preserve">
+    <value>Bunnies don't sleep well</value>
+  </data>
+  <data name="RRR_LevelName_46" xml:space="preserve">
+    <value>Bunnies have no memory</value>
+  </data>
+  <data name="RRR_LevelName_47" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows</value>
+  </data>
+  <data name="RRR_LevelName_48" xml:space="preserve">
+    <value>Bunnies can't jump Part 2</value>
+  </data>
+  <data name="RRR_LevelName_49" xml:space="preserve">
+    <value>Bunnies never close doors Part 2</value>
+  </data>
+  <data name="RRR_LevelName_50" xml:space="preserve">
+    <value>Bunnies don't milk cows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_51" xml:space="preserve">
+    <value>Bunnies like a good cowboy race</value>
+  </data>
+  <data name="RRR_LevelName_52" xml:space="preserve">
+    <value>Bunnies are heartless with pigs Part 2</value>
+  </data>
+  <data name="RRR_LevelName_53" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 1</value>
+  </data>
+  <data name="RRR_LevelName_54" xml:space="preserve">
+    <value>Bunnies don't like bats Part 2</value>
+  </data>
+  <data name="RRR_LevelName_55" xml:space="preserve">
+    <value>Bunnies don't use toothpaste Part 2</value>
+  </data>
+  <data name="RRR_LevelName_56" xml:space="preserve">
+    <value>Bunnies can't fly Part 2</value>
+  </data>
+  <data name="RRR_LevelName_57" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 2</value>
+  </data>
+  <data name="RRR_LevelName_58" xml:space="preserve">
+    <value>Bunnies can't shear sheep</value>
+  </data>
+  <data name="RRR_LevelName_59" xml:space="preserve">
+    <value>Bunnies are slow to react Part 2</value>
+  </data>
+  <data name="RRR_LevelName_60" xml:space="preserve">
+    <value>Bunnies are slow to react Part 3</value>
+  </data>
+  <data name="RRR_LevelName_61" xml:space="preserve">
+    <value>Bunnies like to stuff themselves Part 2</value>
+  </data>
+  <data name="RRR_LevelName_62" xml:space="preserve">
+    <value>Bunnies have no memory Part 2</value>
+  </data>
+  <data name="RRR_LevelName_63" xml:space="preserve">
+    <value>Bunnies rarely leave their burrows Part 2</value>
+  </data>
+  <data name="RRR_LevelName_64" xml:space="preserve">
+    <value>Bunnies like surprises</value>
+  </data>
+  <data name="RRR_LevelName_65" xml:space="preserve">
+    <value>Bunnies don't like being shot at</value>
+  </data>
+  <data name="RRR_LevelName_66" xml:space="preserve">
+    <value>Bunnies have natural rhythm</value>
+  </data>
+  <data name="RRR_LevelName_67" xml:space="preserve">
+    <value>Bunnies are a-mazing</value>
+  </data>
+  <data name="RRR_LevelName_68" xml:space="preserve">
+    <value>The Dark Side</value>
+  </data>
+  <data name="RRR_LevelName_69" xml:space="preserve">
+    <value>Bunnies have natural rhythm Part 2</value>
+  </data>
+  <data name="RRR_LevelName_70" xml:space="preserve">
+    <value>Bunnies are ticklish</value>
+  </data>
+  <data name="RRR_LevelName_71" xml:space="preserve">
+    <value>Bunnies Psychology. Volume 3</value>
+  </data>
+  <data name="RRR_LevelName_72" xml:space="preserve">
+    <value>Bunnies are bad at peek-a-boo</value>
+  </data>
+  <data name="RRR_LevelName_73" xml:space="preserve">
+    <value>Bunnies are oversensitive</value>
+  </data>
+  <data name="RRR_LevelName_74" xml:space="preserve">
+    <value>Bunnies have a poor grasp of anatomy</value>
+  </data>
+  <data name="RRR_LevelName_75" xml:space="preserve">
+    <value>Bunnies can't slide</value>
+  </data>
+  <data name="RRR_LevelName_76" xml:space="preserve">
+    <value>Bunnies can't herd</value>
+  </data>
+  <data name="RRR_LevelName_77" xml:space="preserve">
+    <value>Bunnies are not ostriches</value>
+  </data>
+  <data name="RRR_LevelName_78" xml:space="preserve">
+    <value>Bunnies just wanna have fun</value>
+  </data>
+  <data name="RRR_LevelName_79" xml:space="preserve">
+    <value>Bunnies love disco dancing</value>
+  </data>
+  <data name="RRR_LevelName_80" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop</value>
+  </data>
+  <data name="RRR_LevelName_81" xml:space="preserve">
+    <value>Bunninos dansa la Bamba</value>
+  </data>
+  <data name="RRR_LevelName_82" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers</value>
+  </data>
+  <data name="RRR_LevelName_83" xml:space="preserve">
+    <value>Bunnies are raving mad</value>
+  </data>
+  <data name="RRR_LevelName_84" xml:space="preserve">
+    <value>Bunnies are fantastic dancers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_85" xml:space="preserve">
+    <value>Bunnies love disco dancing Part 2</value>
+  </data>
+  <data name="RRR_LevelName_86" xml:space="preserve">
+    <value>Bunnies just wanna have fun Part 2</value>
+  </data>
+  <data name="RRR_LevelName_87" xml:space="preserve">
+    <value>Bunnies get a kick out of Hip-Hop Part 2</value>
+  </data>
+  <data name="RRR_LevelName_88" xml:space="preserve">
+    <value>Bunninos dansa la Bamba Part 2</value>
+  </data>
+  <data name="RRR_LevelName_89" xml:space="preserve">
+    <value>Deep down, Bunnies are rockers Part 2</value>
+  </data>
+  <data name="RRR_LevelName_90" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_91" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_92" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_93" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_94" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_95" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_96" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_97" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_98" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_99" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_100" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_101" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_102" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_103" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_104" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_105" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_106" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_107" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_108" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_109" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_110" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_111" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_112" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_113" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_114" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_115" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_116" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_117" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_118" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_119" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_120" xml:space="preserve">
+    <value>Extreme experiences</value>
+  </data>
+  <data name="RRR_LevelName_121" xml:space="preserve">
+    <value>The jogging Pants-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_122" xml:space="preserve">
+    <value>The Pants-tathlon in socks</value>
+  </data>
+  <data name="RRR_LevelName_123" xml:space="preserve">
+    <value>The Pants-tathlon tracksuit</value>
+  </data>
+  <data name="RRR_LevelName_124" xml:space="preserve">
+    <value>Pain-tathlon</value>
+  </data>
+  <data name="RRR_LevelName_125" xml:space="preserve">
+    <value>Bunny Fair</value>
+  </data>
+  <data name="RRR_LevelName_126" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="RRR_LevelName_127" xml:space="preserve">
+    <value>World Eclecticism Championship</value>
+  </data>
+  <data name="RRR_LevelName_130" xml:space="preserve">
+    <value>Bunnies don't like being disturbed on holiday</value>
+  </data>
+  <data name="RRR_LevelName_131" xml:space="preserve">
+    <value>Bunnies don't like being disturbed at night</value>
+  </data>
+  <data name="RRR_LevelName_132" xml:space="preserve">
+    <value>Bunnies helped tame the Wild West</value>
+  </data>
+  <data name="RRR_LevelName_133" xml:space="preserve">
+    <value>Bunnies have a soft spot for plungers</value>
+  </data>
+  <data name="RRR_LevelName_134" xml:space="preserve">
+    <value>Bunnies never struck gold</value>
+  </data>
+  <data name="RRR_LevelName_135" xml:space="preserve">
+    <value>Bunnies think they're in a movie</value>
+  </data>
+  <data name="RRR_LevelName_136" xml:space="preserve">
+    <value>Bunnies love digging tunnels</value>
+  </data>
+  <data name="RRR_LevelName_137" xml:space="preserve">
+    <value>Bunnies aren't scared of the dark</value>
+  </data>
+  <data name="RRR_LevelName_138" xml:space="preserve">
+    <value>Bunnies don't rest in peace</value>
+  </data>
+  <data name="RRR_LevelName_139" xml:space="preserve">
+    <value>Bunnies sometimes recycle the scenery from other games</value>
+  </data>
+  <data name="RRR_LevelName_140" xml:space="preserve">
+    <value>Bunnies are shooting all over the place</value>
+  </data>
 </root>

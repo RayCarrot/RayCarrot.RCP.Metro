@@ -3512,4 +3512,421 @@ Start: Pauzeren</value>
   <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
     <value>Indien dit wordt ingeschakeld, zullen vensters — bijvoorbeeld het venster voor spelopties of dialoogvensters — als pop-ups verschijnen binnenin het hoofdvenster. Indien uitgschakeld, worden hiervoor aparte vensters gebruikt.</value>
   </data>
+  <data name="RRR_LevelName_0" xml:space="preserve">
+    <value>Konijntjes worden niet graag gestoord tijdens hun vakantie</value>
+  </data>
+  <data name="RRR_LevelName_1" xml:space="preserve">
+    <value>Konijntjes worden 's nachts niet graag gestoord</value>
+  </data>
+  <data name="RRR_LevelName_2" xml:space="preserve">
+    <value>Konijntjes hebben het Wilde Westen helpen temmen</value>
+  </data>
+  <data name="RRR_LevelName_3" xml:space="preserve">
+    <value>Konijntjes hebben een zwak voor zuignappen</value>
+  </data>
+  <data name="RRR_LevelName_4" xml:space="preserve">
+    <value>Konijntjes hebben nooit goud gevonden</value>
+  </data>
+  <data name="RRR_LevelName_5" xml:space="preserve">
+    <value>Konijntjes denken dat ze in een film spelen</value>
+  </data>
+  <data name="RRR_LevelName_6" xml:space="preserve">
+    <value>Konijntjes zijn gek op tunnels graven</value>
+  </data>
+  <data name="RRR_LevelName_7" xml:space="preserve">
+    <value>Konijntjes zijn niet bang in het donker</value>
+  </data>
+  <data name="RRR_LevelName_8" xml:space="preserve">
+    <value>Konijntjes rusten niet in vrede</value>
+  </data>
+  <data name="RRR_LevelName_9" xml:space="preserve">
+    <value>Konijntjes recyclen soms omgevingen uit andere spelletjes</value>
+  </data>
+  <data name="RRR_LevelName_10" xml:space="preserve">
+    <value>Konijntjes worden niet graag gestoord tijdens hun vakantie</value>
+  </data>
+  <data name="RRR_LevelName_11" xml:space="preserve">
+    <value>Konijntjes worden 's nachts niet graag gestoord</value>
+  </data>
+  <data name="RRR_LevelName_12" xml:space="preserve">
+    <value>Konijntjes hebben het Wilde Westen helpen temmen</value>
+  </data>
+  <data name="RRR_LevelName_13" xml:space="preserve">
+    <value>Konijntjes hebben een zwak voor zuignappen</value>
+  </data>
+  <data name="RRR_LevelName_14" xml:space="preserve">
+    <value>Konijntjes hebben nooit goud gevonden</value>
+  </data>
+  <data name="RRR_LevelName_15" xml:space="preserve">
+    <value>Konijntjes denken dat ze in een film spelen</value>
+  </data>
+  <data name="RRR_LevelName_16" xml:space="preserve">
+    <value>Konijntjes zijn gek op tunnels graven</value>
+  </data>
+  <data name="RRR_LevelName_17" xml:space="preserve">
+    <value>Konijntjes zijn niet bang in het donker</value>
+  </data>
+  <data name="RRR_LevelName_18" xml:space="preserve">
+    <value>Konijntjes rusten niet in vrede</value>
+  </data>
+  <data name="RRR_LevelName_19" xml:space="preserve">
+    <value>Konijntjes recyclen soms omgevingen uit andere spelletjes</value>
+  </data>
+  <data name="RRR_LevelName_20" xml:space="preserve">
+    <value>Konijntjes kunnen niet springen</value>
+  </data>
+  <data name="RRR_LevelName_21" xml:space="preserve">
+    <value>Konijntjes geven geen cadeautjes</value>
+  </data>
+  <data name="RRR_LevelName_22" xml:space="preserve">
+    <value>Konijntjes weten niet wat ze met koeien moeten doen</value>
+  </data>
+  <data name="RRR_LevelName_23" xml:space="preserve">
+    <value>Konijntjes doen nooit de deur op slot</value>
+  </data>
+  <data name="RRR_LevelName_24" xml:space="preserve">
+    <value>Konijntjes melken geen koeien</value>
+  </data>
+  <data name="RRR_LevelName_25" xml:space="preserve">
+    <value>Konijntjes zijn verslingerd aan wortelsap</value>
+  </data>
+  <data name="RRR_LevelName_26" xml:space="preserve">
+    <value>Konijntjes kunnen niet glijden 2</value>
+  </data>
+  <data name="RRR_LevelName_27" xml:space="preserve">
+    <value>Konijntjes zijn keihard voor biggetjes</value>
+  </data>
+  <data name="RRR_LevelName_28" xml:space="preserve">
+    <value>Konijntjes houden niet van vleermuizen</value>
+  </data>
+  <data name="RRR_LevelName_29" xml:space="preserve">
+    <value>Konijntjes gebruiken geen tandpasta</value>
+  </data>
+  <data name="RRR_LevelName_30" xml:space="preserve">
+    <value>Konijntjes kunnen niet vliegen</value>
+  </data>
+  <data name="RRR_LevelName_31" xml:space="preserve">
+    <value>Konijntjes kunnen alleen omlaag vliegen</value>
+  </data>
+  <data name="RRR_LevelName_32" xml:space="preserve">
+    <value>Konijntjes kunnen niet voetballen</value>
+  </data>
+  <data name="RRR_LevelName_33" xml:space="preserve">
+    <value>Konijntjes snappen niks van bowlen</value>
+  </data>
+  <data name="RRR_LevelName_34" xml:space="preserve">
+    <value>Kinderboerderij</value>
+  </data>
+  <data name="RRR_LevelName_35" xml:space="preserve">
+    <value>Konijntjes hebben een goed oor voor muziek</value>
+  </data>
+  <data name="RRR_LevelName_36" xml:space="preserve">
+    <value>Konijntjes zijn een beetje traag van begrip</value>
+  </data>
+  <data name="RRR_LevelName_37" xml:space="preserve">
+    <value>Konijntjes zijn geweldige dansers 3</value>
+  </data>
+  <data name="RRR_LevelName_38" xml:space="preserve">
+    <value>Konijntjes stoppen zichzelf graag vol</value>
+  </data>
+  <data name="RRR_LevelName_39" xml:space="preserve">
+    <value>Konijntjes zijn knettergek 2</value>
+  </data>
+  <data name="RRR_LevelName_40" xml:space="preserve">
+    <value>Konijntjes houden van rennen</value>
+  </data>
+  <data name="RRR_LevelName_41" xml:space="preserve">
+    <value>Rennen van houden konijntjes</value>
+  </data>
+  <data name="RRR_LevelName_42" xml:space="preserve">
+    <value>Konijntjes houden van rennen op het strand</value>
+  </data>
+  <data name="RRR_LevelName_43" xml:space="preserve">
+    <value>Konijntjes vliegen alleen omlaag</value>
+  </data>
+  <data name="RRR_LevelName_44" xml:space="preserve">
+    <value>Konijntjes zijn geweldige dansers</value>
+  </data>
+  <data name="RRR_LevelName_45" xml:space="preserve">
+    <value>Konijntjes slapen niet zo goed</value>
+  </data>
+  <data name="RRR_LevelName_46" xml:space="preserve">
+    <value>Konijntjes hebben geen geheugen</value>
+  </data>
+  <data name="RRR_LevelName_47" xml:space="preserve">
+    <value>Konijntjes verlaten zelden hun hol</value>
+  </data>
+  <data name="RRR_LevelName_48" xml:space="preserve">
+    <value>Konijntjes kunnen niet springen 2</value>
+  </data>
+  <data name="RRR_LevelName_49" xml:space="preserve">
+    <value>Konijntjes doen nooit de deur op slot 2</value>
+  </data>
+  <data name="RRR_LevelName_50" xml:space="preserve">
+    <value>Konijntjes melken geen koeien 2</value>
+  </data>
+  <data name="RRR_LevelName_51" xml:space="preserve">
+    <value>Konijntjes houden van cowboy-races</value>
+  </data>
+  <data name="RRR_LevelName_52" xml:space="preserve">
+    <value>Konijntjes zijn keihard voor biggetjes 2</value>
+  </data>
+  <data name="RRR_LevelName_53" xml:space="preserve">
+    <value>Konijntjespsychologie. Deel 1</value>
+  </data>
+  <data name="RRR_LevelName_54" xml:space="preserve">
+    <value>Konijntjes houden niet van vleermuizen 2</value>
+  </data>
+  <data name="RRR_LevelName_55" xml:space="preserve">
+    <value>Konijntjes gebruiken geen tandpasta 2</value>
+  </data>
+  <data name="RRR_LevelName_56" xml:space="preserve">
+    <value>Konijntjes kunnen niet vliegen 2</value>
+  </data>
+  <data name="RRR_LevelName_57" xml:space="preserve">
+    <value>Konijntjespsychologie. Deel 2</value>
+  </data>
+  <data name="RRR_LevelName_58" xml:space="preserve">
+    <value>Konijntjes kunnen geen schapen scheren</value>
+  </data>
+  <data name="RRR_LevelName_59" xml:space="preserve">
+    <value>Konijntjes zijn een beetje traag van begrip 2</value>
+  </data>
+  <data name="RRR_LevelName_60" xml:space="preserve">
+    <value>Konijntjes zijn een beetje traag van begrip 3</value>
+  </data>
+  <data name="RRR_LevelName_61" xml:space="preserve">
+    <value>Konijntjes stoppen zichzelf graag vol 2</value>
+  </data>
+  <data name="RRR_LevelName_62" xml:space="preserve">
+    <value>Konijntjes hebben geen geheugen 2</value>
+  </data>
+  <data name="RRR_LevelName_63" xml:space="preserve">
+    <value>Konijntjes verlaten hun hol niet vaak 2</value>
+  </data>
+  <data name="RRR_LevelName_64" xml:space="preserve">
+    <value>Konijntjes houden van verrassingen</value>
+  </data>
+  <data name="RRR_LevelName_65" xml:space="preserve">
+    <value>Konijntjes worden niet graag beschoten</value>
+  </data>
+  <data name="RRR_LevelName_66" xml:space="preserve">
+    <value>Konijntjes hebben van nature ritmegevoel</value>
+  </data>
+  <data name="RRR_LevelName_67" xml:space="preserve">
+    <value>Konijntjes zijn helemaal de weg kwijt</value>
+  </data>
+  <data name="RRR_LevelName_68" xml:space="preserve">
+    <value>De Duistere Kant</value>
+  </data>
+  <data name="RRR_LevelName_69" xml:space="preserve">
+    <value>Konijntjes hebben van nature ritmegevoel 2</value>
+  </data>
+  <data name="RRR_LevelName_70" xml:space="preserve">
+    <value>Konijntjes kunnen niet tegen kietelen</value>
+  </data>
+  <data name="RRR_LevelName_71" xml:space="preserve">
+    <value>Konijntjespsychologie. Deel 3</value>
+  </data>
+  <data name="RRR_LevelName_72" xml:space="preserve">
+    <value>Konijntjes bakken niks van kiekeboe</value>
+  </data>
+  <data name="RRR_LevelName_73" xml:space="preserve">
+    <value>Konijntjes zijn overgevoelig</value>
+  </data>
+  <data name="RRR_LevelName_74" xml:space="preserve">
+    <value>Konijntjes hebben weinig verstand van anatomie</value>
+  </data>
+  <data name="RRR_LevelName_75" xml:space="preserve">
+    <value>Konijntjes kunnen niet glijden</value>
+  </data>
+  <data name="RRR_LevelName_76" xml:space="preserve">
+    <value>Konijntjes kunnen niet veedrijven</value>
+  </data>
+  <data name="RRR_LevelName_77" xml:space="preserve">
+    <value>Konijntjes zijn geen struisvogels</value>
+  </data>
+  <data name="RRR_LevelName_78" xml:space="preserve">
+    <value>Konijntjes willen gewoon lol maken</value>
+  </data>
+  <data name="RRR_LevelName_79" xml:space="preserve">
+    <value>Konijntjes vinden discodansen te wauw</value>
+  </data>
+  <data name="RRR_LevelName_80" xml:space="preserve">
+    <value>Konijntjes vinden hiphop vet</value>
+  </data>
+  <data name="RRR_LevelName_81" xml:space="preserve">
+    <value>Konijntjes dansen de bamba</value>
+  </data>
+  <data name="RRR_LevelName_82" xml:space="preserve">
+    <value>Diep van binnen zijn konijntjes rockers</value>
+  </data>
+  <data name="RRR_LevelName_83" xml:space="preserve">
+    <value>Konijntjes zijn knettergek</value>
+  </data>
+  <data name="RRR_LevelName_84" xml:space="preserve">
+    <value>Konijntjes zijn geweldige dansers 2</value>
+  </data>
+  <data name="RRR_LevelName_85" xml:space="preserve">
+    <value>Konijntjes vinden discodansen te wauw 2</value>
+  </data>
+  <data name="RRR_LevelName_86" xml:space="preserve">
+    <value>Konijntjes willen gewoon lol maken 2</value>
+  </data>
+  <data name="RRR_LevelName_87" xml:space="preserve">
+    <value>Konijntjes vinden hiphop vet 2</value>
+  </data>
+  <data name="RRR_LevelName_88" xml:space="preserve">
+    <value>Konijntjes dansen de bamba 2</value>
+  </data>
+  <data name="RRR_LevelName_89" xml:space="preserve">
+    <value>Diep van binnen zijn konijntjes rockers 2</value>
+  </data>
+  <data name="RRR_LevelName_90" xml:space="preserve">
+    <value>Konijntjes worden niet graag gestoord tijdens hun vakantie</value>
+  </data>
+  <data name="RRR_LevelName_91" xml:space="preserve">
+    <value>Konijntjes worden 's nachts niet graag gestoord</value>
+  </data>
+  <data name="RRR_LevelName_92" xml:space="preserve">
+    <value>Konijntjes hebben het Wilde Westen helpen temmen</value>
+  </data>
+  <data name="RRR_LevelName_93" xml:space="preserve">
+    <value>Konijntjes hebben een zwak voor zuignappen</value>
+  </data>
+  <data name="RRR_LevelName_94" xml:space="preserve">
+    <value>Konijntjes hebben nooit goud gevonden</value>
+  </data>
+  <data name="RRR_LevelName_95" xml:space="preserve">
+    <value>Konijntjes denken dat ze in een film spelen</value>
+  </data>
+  <data name="RRR_LevelName_96" xml:space="preserve">
+    <value>Konijntjes zijn gek op tunnels graven</value>
+  </data>
+  <data name="RRR_LevelName_97" xml:space="preserve">
+    <value>Konijntjes zijn niet bang in het donker</value>
+  </data>
+  <data name="RRR_LevelName_98" xml:space="preserve">
+    <value>Konijntjes rusten niet in vrede</value>
+  </data>
+  <data name="RRR_LevelName_99" xml:space="preserve">
+    <value>Konijntjes recyclen soms omgevingen uit andere spelletjes</value>
+  </data>
+  <data name="RRR_LevelName_100" xml:space="preserve">
+    <value>Konijntjes worden niet graag gestoord tijdens hun vakantie</value>
+  </data>
+  <data name="RRR_LevelName_101" xml:space="preserve">
+    <value>Konijntjes worden 's nachts niet graag gestoord</value>
+  </data>
+  <data name="RRR_LevelName_102" xml:space="preserve">
+    <value>Konijntjes hebben het Wilde Westen helpen temmen</value>
+  </data>
+  <data name="RRR_LevelName_103" xml:space="preserve">
+    <value>Konijntjes hebben een zwak voor zuignappen</value>
+  </data>
+  <data name="RRR_LevelName_104" xml:space="preserve">
+    <value>Konijntjes hebben nooit goud gevonden</value>
+  </data>
+  <data name="RRR_LevelName_105" xml:space="preserve">
+    <value>Konijntjes denken dat ze in een film spelen</value>
+  </data>
+  <data name="RRR_LevelName_106" xml:space="preserve">
+    <value>Konijntjes zijn gek op tunnels graven</value>
+  </data>
+  <data name="RRR_LevelName_107" xml:space="preserve">
+    <value>Konijntjes zijn niet bang in het donker</value>
+  </data>
+  <data name="RRR_LevelName_108" xml:space="preserve">
+    <value>Konijntjes rusten niet in vrede</value>
+  </data>
+  <data name="RRR_LevelName_109" xml:space="preserve">
+    <value>Konijntjes recyclen soms omgevingen uit andere spelletjes</value>
+  </data>
+  <data name="RRR_LevelName_110" xml:space="preserve">
+    <value>Konijntjes worden niet graag gestoord tijdens hun vakantie</value>
+  </data>
+  <data name="RRR_LevelName_111" xml:space="preserve">
+    <value>Konijntjes worden 's nachts niet graag gestoord</value>
+  </data>
+  <data name="RRR_LevelName_112" xml:space="preserve">
+    <value>Konijntjes hebben het Wilde Westen helpen temmen</value>
+  </data>
+  <data name="RRR_LevelName_113" xml:space="preserve">
+    <value>Konijntjes hebben een zwak voor zuignappen</value>
+  </data>
+  <data name="RRR_LevelName_114" xml:space="preserve">
+    <value>Konijntjes hebben nooit goud gevonden</value>
+  </data>
+  <data name="RRR_LevelName_115" xml:space="preserve">
+    <value>Konijntjes denken dat ze in een film spelen</value>
+  </data>
+  <data name="RRR_LevelName_116" xml:space="preserve">
+    <value>Konijntjes zijn gek op tunnels graven</value>
+  </data>
+  <data name="RRR_LevelName_117" xml:space="preserve">
+    <value>Konijntjes zijn niet bang in het donker</value>
+  </data>
+  <data name="RRR_LevelName_118" xml:space="preserve">
+    <value>Konijntjes rusten niet in vrede</value>
+  </data>
+  <data name="RRR_LevelName_119" xml:space="preserve">
+    <value>Konijntjes recyclen soms omgevingen uit andere spelletjes</value>
+  </data>
+  <data name="RRR_LevelName_120" xml:space="preserve">
+    <value>Extreme ervaringen</value>
+  </data>
+  <data name="RRR_LevelName_121" xml:space="preserve">
+    <value>De sport pentatlon</value>
+  </data>
+  <data name="RRR_LevelName_122" xml:space="preserve">
+    <value>Pentatlon op sokken</value>
+  </data>
+  <data name="RRR_LevelName_123" xml:space="preserve">
+    <value>Pentatlon in trainingspak</value>
+  </data>
+  <data name="RRR_LevelName_124" xml:space="preserve">
+    <value>Pijn-tatlon</value>
+  </data>
+  <data name="RRR_LevelName_125" xml:space="preserve">
+    <value>Konijntjesmarkt</value>
+  </data>
+  <data name="RRR_LevelName_126" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="RRR_LevelName_127" xml:space="preserve">
+    <value>WK eclecticisme</value>
+  </data>
+  <data name="RRR_LevelName_130" xml:space="preserve">
+    <value>Konijntjes worden niet graag gestoord tijdens hun vakantie</value>
+  </data>
+  <data name="RRR_LevelName_131" xml:space="preserve">
+    <value>Konijntjes worden 's nachts niet graag gestoord</value>
+  </data>
+  <data name="RRR_LevelName_132" xml:space="preserve">
+    <value>Konijntjes hebben het Wilde Westen helpen temmen</value>
+  </data>
+  <data name="RRR_LevelName_133" xml:space="preserve">
+    <value>Konijntjes hebben een zwak voor zuignappen</value>
+  </data>
+  <data name="RRR_LevelName_134" xml:space="preserve">
+    <value>Konijntjes hebben nooit goud gevonden</value>
+  </data>
+  <data name="RRR_LevelName_135" xml:space="preserve">
+    <value>Konijntjes denken dat ze in een film spelen</value>
+  </data>
+  <data name="RRR_LevelName_136" xml:space="preserve">
+    <value>Konijntjes zijn gek op tunnels graven</value>
+  </data>
+  <data name="RRR_LevelName_137" xml:space="preserve">
+    <value>Konijntjes zijn niet bang in het donker</value>
+  </data>
+  <data name="RRR_LevelName_138" xml:space="preserve">
+    <value>Konijntjes rusten niet in vrede</value>
+  </data>
+  <data name="RRR_LevelName_139" xml:space="preserve">
+    <value>Konijntjes recyclen soms omgevingen uit andere spelletjes</value>
+  </data>
+  <data name="RRR_LevelName_140" xml:space="preserve">
+    <value>Konijntjes schieten uit alle hoeken</value>
+  </data>
 </root>

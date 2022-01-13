@@ -9417,6 +9417,1257 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed on holiday.
+        /// </summary>
+        public static string RRR_LevelName_0 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed at night.
+        /// </summary>
+        public static string RRR_LevelName_1 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed on holiday.
+        /// </summary>
+        public static string RRR_LevelName_10 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed on holiday.
+        /// </summary>
+        public static string RRR_LevelName_100 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed at night.
+        /// </summary>
+        public static string RRR_LevelName_101 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies helped tame the Wild West.
+        /// </summary>
+        public static string RRR_LevelName_102 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a soft spot for plungers.
+        /// </summary>
+        public static string RRR_LevelName_103 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never struck gold.
+        /// </summary>
+        public static string RRR_LevelName_104 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies think they&apos;re in a movie.
+        /// </summary>
+        public static string RRR_LevelName_105 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love digging tunnels.
+        /// </summary>
+        public static string RRR_LevelName_106 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies aren&apos;t scared of the dark.
+        /// </summary>
+        public static string RRR_LevelName_107 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t rest in peace.
+        /// </summary>
+        public static string RRR_LevelName_108 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies sometimes recycle the scenery from other games.
+        /// </summary>
+        public static string RRR_LevelName_109 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_109", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed at night.
+        /// </summary>
+        public static string RRR_LevelName_11 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed on holiday.
+        /// </summary>
+        public static string RRR_LevelName_110 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed at night.
+        /// </summary>
+        public static string RRR_LevelName_111 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies helped tame the Wild West.
+        /// </summary>
+        public static string RRR_LevelName_112 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a soft spot for plungers.
+        /// </summary>
+        public static string RRR_LevelName_113 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never struck gold.
+        /// </summary>
+        public static string RRR_LevelName_114 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_114", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies think they&apos;re in a movie.
+        /// </summary>
+        public static string RRR_LevelName_115 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_115", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love digging tunnels.
+        /// </summary>
+        public static string RRR_LevelName_116 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_116", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies aren&apos;t scared of the dark.
+        /// </summary>
+        public static string RRR_LevelName_117 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_117", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t rest in peace.
+        /// </summary>
+        public static string RRR_LevelName_118 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_118", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies sometimes recycle the scenery from other games.
+        /// </summary>
+        public static string RRR_LevelName_119 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_119", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies helped tame the Wild West.
+        /// </summary>
+        public static string RRR_LevelName_12 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extreme experiences.
+        /// </summary>
+        public static string RRR_LevelName_120 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_120", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The jogging Pants-tathlon.
+        /// </summary>
+        public static string RRR_LevelName_121 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_121", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Pants-tathlon in socks.
+        /// </summary>
+        public static string RRR_LevelName_122 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_122", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Pants-tathlon tracksuit.
+        /// </summary>
+        public static string RRR_LevelName_123 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_123", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pain-tathlon.
+        /// </summary>
+        public static string RRR_LevelName_124 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_124", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunny Fair.
+        /// </summary>
+        public static string RRR_LevelName_125 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_125", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
+        public static string RRR_LevelName_126 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_126", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Eclecticism Championship.
+        /// </summary>
+        public static string RRR_LevelName_127 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_127", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a soft spot for plungers.
+        /// </summary>
+        public static string RRR_LevelName_13 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed on holiday.
+        /// </summary>
+        public static string RRR_LevelName_130 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_130", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed at night.
+        /// </summary>
+        public static string RRR_LevelName_131 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_131", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies helped tame the Wild West.
+        /// </summary>
+        public static string RRR_LevelName_132 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_132", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a soft spot for plungers.
+        /// </summary>
+        public static string RRR_LevelName_133 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_133", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never struck gold.
+        /// </summary>
+        public static string RRR_LevelName_134 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_134", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies think they&apos;re in a movie.
+        /// </summary>
+        public static string RRR_LevelName_135 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_135", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love digging tunnels.
+        /// </summary>
+        public static string RRR_LevelName_136 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_136", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies aren&apos;t scared of the dark.
+        /// </summary>
+        public static string RRR_LevelName_137 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_137", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t rest in peace.
+        /// </summary>
+        public static string RRR_LevelName_138 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_138", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies sometimes recycle the scenery from other games.
+        /// </summary>
+        public static string RRR_LevelName_139 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_139", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never struck gold.
+        /// </summary>
+        public static string RRR_LevelName_14 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are shooting all over the place.
+        /// </summary>
+        public static string RRR_LevelName_140 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_140", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies think they&apos;re in a movie.
+        /// </summary>
+        public static string RRR_LevelName_15 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love digging tunnels.
+        /// </summary>
+        public static string RRR_LevelName_16 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies aren&apos;t scared of the dark.
+        /// </summary>
+        public static string RRR_LevelName_17 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t rest in peace.
+        /// </summary>
+        public static string RRR_LevelName_18 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies sometimes recycle the scenery from other games.
+        /// </summary>
+        public static string RRR_LevelName_19 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies helped tame the Wild West.
+        /// </summary>
+        public static string RRR_LevelName_2 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t jump.
+        /// </summary>
+        public static string RRR_LevelName_20 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t give gifts.
+        /// </summary>
+        public static string RRR_LevelName_21 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t know what to do with cows.
+        /// </summary>
+        public static string RRR_LevelName_22 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never close doors.
+        /// </summary>
+        public static string RRR_LevelName_23 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t milk cows.
+        /// </summary>
+        public static string RRR_LevelName_24 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are addicted to carrot juice.
+        /// </summary>
+        public static string RRR_LevelName_25 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t slide Part 2.
+        /// </summary>
+        public static string RRR_LevelName_26 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are heartless with pigs.
+        /// </summary>
+        public static string RRR_LevelName_27 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like bats.
+        /// </summary>
+        public static string RRR_LevelName_28 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t use toothpaste.
+        /// </summary>
+        public static string RRR_LevelName_29 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a soft spot for plungers.
+        /// </summary>
+        public static string RRR_LevelName_3 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t fly.
+        /// </summary>
+        public static string RRR_LevelName_30 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can only fly downwards.
+        /// </summary>
+        public static string RRR_LevelName_31 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t play soccer.
+        /// </summary>
+        public static string RRR_LevelName_32 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t understand bowling.
+        /// </summary>
+        public static string RRR_LevelName_33 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Animal Farm.
+        /// </summary>
+        public static string RRR_LevelName_34 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_34", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a great ear for music.
+        /// </summary>
+        public static string RRR_LevelName_35 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_35", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are slow to react.
+        /// </summary>
+        public static string RRR_LevelName_36 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_36", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are fantastic dancers Part 3.
+        /// </summary>
+        public static string RRR_LevelName_37 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_37", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies like to stuff themselves.
+        /// </summary>
+        public static string RRR_LevelName_38 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_38", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are raving mad Part 2.
+        /// </summary>
+        public static string RRR_LevelName_39 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_39", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never struck gold.
+        /// </summary>
+        public static string RRR_LevelName_4 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies like a good race.
+        /// </summary>
+        public static string RRR_LevelName_40 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Race good a like Bunnies.
+        /// </summary>
+        public static string RRR_LevelName_41 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_41", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies like a good race on the beach.
+        /// </summary>
+        public static string RRR_LevelName_42 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies only fly downwards.
+        /// </summary>
+        public static string RRR_LevelName_43 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are fantastic dancers.
+        /// </summary>
+        public static string RRR_LevelName_44 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_44", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t sleep well.
+        /// </summary>
+        public static string RRR_LevelName_45 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_45", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have no memory.
+        /// </summary>
+        public static string RRR_LevelName_46 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_46", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies rarely leave their burrows.
+        /// </summary>
+        public static string RRR_LevelName_47 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_47", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t jump Part 2.
+        /// </summary>
+        public static string RRR_LevelName_48 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_48", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never close doors Part 2.
+        /// </summary>
+        public static string RRR_LevelName_49 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_49", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies think they&apos;re in a movie.
+        /// </summary>
+        public static string RRR_LevelName_5 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t milk cows Part 2.
+        /// </summary>
+        public static string RRR_LevelName_50 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies like a good cowboy race.
+        /// </summary>
+        public static string RRR_LevelName_51 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_51", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are heartless with pigs Part 2.
+        /// </summary>
+        public static string RRR_LevelName_52 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_52", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies Psychology. Volume 1.
+        /// </summary>
+        public static string RRR_LevelName_53 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_53", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like bats Part 2.
+        /// </summary>
+        public static string RRR_LevelName_54 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_54", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t use toothpaste Part 2.
+        /// </summary>
+        public static string RRR_LevelName_55 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_55", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t fly Part 2.
+        /// </summary>
+        public static string RRR_LevelName_56 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_56", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies Psychology. Volume 2.
+        /// </summary>
+        public static string RRR_LevelName_57 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_57", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t shear sheep.
+        /// </summary>
+        public static string RRR_LevelName_58 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_58", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are slow to react Part 2.
+        /// </summary>
+        public static string RRR_LevelName_59 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_59", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love digging tunnels.
+        /// </summary>
+        public static string RRR_LevelName_6 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are slow to react Part 3.
+        /// </summary>
+        public static string RRR_LevelName_60 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_60", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies like to stuff themselves Part 2.
+        /// </summary>
+        public static string RRR_LevelName_61 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_61", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have no memory Part 2.
+        /// </summary>
+        public static string RRR_LevelName_62 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_62", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies rarely leave their burrows Part 2.
+        /// </summary>
+        public static string RRR_LevelName_63 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_63", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies like surprises.
+        /// </summary>
+        public static string RRR_LevelName_64 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_64", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being shot at.
+        /// </summary>
+        public static string RRR_LevelName_65 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_65", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have natural rhythm.
+        /// </summary>
+        public static string RRR_LevelName_66 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_66", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are a-mazing.
+        /// </summary>
+        public static string RRR_LevelName_67 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_67", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Dark Side.
+        /// </summary>
+        public static string RRR_LevelName_68 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_68", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have natural rhythm Part 2.
+        /// </summary>
+        public static string RRR_LevelName_69 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_69", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies aren&apos;t scared of the dark.
+        /// </summary>
+        public static string RRR_LevelName_7 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are ticklish.
+        /// </summary>
+        public static string RRR_LevelName_70 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_70", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies Psychology. Volume 3.
+        /// </summary>
+        public static string RRR_LevelName_71 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_71", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are bad at peek-a-boo.
+        /// </summary>
+        public static string RRR_LevelName_72 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_72", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are oversensitive.
+        /// </summary>
+        public static string RRR_LevelName_73 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_73", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a poor grasp of anatomy.
+        /// </summary>
+        public static string RRR_LevelName_74 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_74", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t slide.
+        /// </summary>
+        public static string RRR_LevelName_75 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_75", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies can&apos;t herd.
+        /// </summary>
+        public static string RRR_LevelName_76 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_76", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are not ostriches.
+        /// </summary>
+        public static string RRR_LevelName_77 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_77", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies just wanna have fun.
+        /// </summary>
+        public static string RRR_LevelName_78 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_78", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love disco dancing.
+        /// </summary>
+        public static string RRR_LevelName_79 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_79", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t rest in peace.
+        /// </summary>
+        public static string RRR_LevelName_8 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies get a kick out of Hip-Hop.
+        /// </summary>
+        public static string RRR_LevelName_80 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_80", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunninos dansa la Bamba.
+        /// </summary>
+        public static string RRR_LevelName_81 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_81", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep down, Bunnies are rockers.
+        /// </summary>
+        public static string RRR_LevelName_82 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_82", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are raving mad.
+        /// </summary>
+        public static string RRR_LevelName_83 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_83", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies are fantastic dancers Part 2.
+        /// </summary>
+        public static string RRR_LevelName_84 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_84", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love disco dancing Part 2.
+        /// </summary>
+        public static string RRR_LevelName_85 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_85", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies just wanna have fun Part 2.
+        /// </summary>
+        public static string RRR_LevelName_86 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_86", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies get a kick out of Hip-Hop Part 2.
+        /// </summary>
+        public static string RRR_LevelName_87 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_87", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunninos dansa la Bamba Part 2.
+        /// </summary>
+        public static string RRR_LevelName_88 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_88", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep down, Bunnies are rockers Part 2.
+        /// </summary>
+        public static string RRR_LevelName_89 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_89", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies sometimes recycle the scenery from other games.
+        /// </summary>
+        public static string RRR_LevelName_9 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed on holiday.
+        /// </summary>
+        public static string RRR_LevelName_90 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_90", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t like being disturbed at night.
+        /// </summary>
+        public static string RRR_LevelName_91 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_91", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies helped tame the Wild West.
+        /// </summary>
+        public static string RRR_LevelName_92 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_92", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies have a soft spot for plungers.
+        /// </summary>
+        public static string RRR_LevelName_93 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_93", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies never struck gold.
+        /// </summary>
+        public static string RRR_LevelName_94 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_94", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies think they&apos;re in a movie.
+        /// </summary>
+        public static string RRR_LevelName_95 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_95", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies love digging tunnels.
+        /// </summary>
+        public static string RRR_LevelName_96 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_96", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies aren&apos;t scared of the dark.
+        /// </summary>
+        public static string RRR_LevelName_97 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_97", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies don&apos;t rest in peace.
+        /// </summary>
+        public static string RRR_LevelName_98 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_98", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunnies sometimes recycle the scenery from other games.
+        /// </summary>
+        public static string RRR_LevelName_99 {
+            get {
+                return ResourceManager.GetString("RRR_LevelName_99", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
