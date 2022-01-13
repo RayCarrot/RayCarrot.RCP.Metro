@@ -1174,7 +1174,7 @@
     <value>Отдельная благодарность AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski и всем другим фанатам Рэймана!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, утилиты, PlayStation-версия саундтрека, Archive Explorer, переводы Rayman 2</value>
+    <value>Rayman Control Panel, утилиты, PlayStation-версия саундтрека, Archive Explorer, переводы Rayman 2, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Патчи для контроллера</value>
@@ -2110,7 +2110,7 @@
     <value>Программу пришлось закрыть, так как в Archive Explorer произошла ошибка</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Обратная инженерия Rayman, модификация Rayman Raving Rabbids</value>
+    <value>Обратная инженерия Rayman, модификация Rayman Raving Rabbids, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Утилиты</value>

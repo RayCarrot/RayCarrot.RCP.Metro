@@ -1174,7 +1174,7 @@ Riprovare?</value>
     <value>Un ringraziamento speciale a AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski e a tutti gli altri fan di Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, utilità, colonna sonora Per-Livello, Archive Explorer, traduzioni Rayman 2</value>
+    <value>Rayman Control Panel, utilità, colonna sonora Per-Livello, Archive Explorer, traduzioni Rayman 2, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patch controller</value>
@@ -2110,7 +2110,7 @@ Messaggio di errore: {1} </value>
     <value>Si è verificato un errore, Archive Explorer deve essere chiuso</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Reverse engineering di Rayman, mod Rayman Raving Rabbids</value>
+    <value>Reverse engineering di Rayman, mod Rayman Raving Rabbids, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Utilità</value>

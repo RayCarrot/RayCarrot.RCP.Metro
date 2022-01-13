@@ -1184,7 +1184,7 @@ Spróbować ponownie?</value>
     <value>Specjalne podziękowania dla AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski i wszystkich innych fanów Raymana!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer, Tłumaczenie gry Rayman 2</value>
+    <value>Rayman Control Panel, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer, Tłumaczenie gry Rayman 2, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Łatki dla kontrolera</value>
@@ -2128,7 +2128,7 @@ Komunikat o błędzie: {1}</value>
     <value>Wystąpił błąd w Archive Explorer  i program musi zostać zamknięty</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Inżynieria odwrotna Raymana, Rayman Szalone Kórliki mod</value>
+    <value>Inżynieria odwrotna Raymana, Rayman Szalone Kórliki mod, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Narzędzia</value>

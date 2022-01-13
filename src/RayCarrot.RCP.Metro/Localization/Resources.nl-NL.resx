@@ -1173,7 +1173,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen</value>
+    <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -2107,7 +2107,7 @@ Foutmelding: {1}</value>
     <value>Er heeft een fout plaatsgevonden in de Archive Explorer en deze moest afgesloten worden</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Rayman reverse engineering, Rayman Raving Rabbids mod</value>
+    <value>Rayman reverse engineering, Rayman Raving Rabbids mod, BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Hulpprogramma's</value>
