@@ -52,3 +52,4 @@ Other changes:
 	• Fixed a bug where the Archive Explorer would crash if a file was selected in another archive than the one being repacked
 	• Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used
 	• Fixed a bug where the app might crash when loading the games page
+	• Fixed some bugs with the game options dialog in-page selection (used for the educational games config)

@@ -169,23 +169,6 @@ public partial class GameOptionsDialog : WindowContentControl
 
     private async void PagesTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => await ViewModel.LoadCurrentPageAsync();
 
-    private async void SelectedPageSelection_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        GameOptionsDialog_BasePageViewModel page = ViewModel?.SelectedPage;
-
-        if (page == null)
-            return;
-
-        if (sender is not ComboBox c)
-            return;
-
-        if (c.SelectedIndex == page.SelectedPageSelectionIndex)
-            return;
-
-        page.SelectedPageSelectionIndex = c.SelectedIndex;
-        await page.OnSelectedPageSelectionIndexUpdatedAsync();
-    }
-
     private void CancelButton_OnClick(object sender, RoutedEventArgs e)
     {
         WindowInstance.Close();

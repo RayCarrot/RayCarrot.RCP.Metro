@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -26,6 +27,7 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
         // Create commands
         SaveCommand = new AsyncRelayCommand(SavePageAsync);
         UseRecommendedCommand = new RelayCommand(UseRecommended);
+        PageSelectionIndexChangedCommand = new AsyncRelayCommand(PageSelectionIndexChangedAsync);
 
         // Subscribe to events
         App.RefreshRequired += App_RefreshRequiredAsync;
@@ -33,14 +35,23 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Commands
 
     public ICommand SaveCommand { get; }
     public ICommand UseRecommendedCommand { get; }
+    public ICommand PageSelectionIndexChangedCommand { get; }
 
     #endregion
 
     #region Private Fields
+
+    private int _selectedPageSelectionIndex;
 
     #endregion
 
@@ -98,7 +109,16 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
     /// <summary>
     /// The selected index of <see cref="PageSelection"/>
     /// </summary>
-    public int SelectedPageSelectionIndex { get; set; }
+    public int SelectedPageSelectionIndex
+    {
+        get => _selectedPageSelectionIndex;
+        set
+        {
+            Logger.Debug("Changing page selection from {0} to {1}", _selectedPageSelectionIndex, value);
+            _selectedPageSelectionIndex = value;
+            PageSelectionIndexChangedCommand.Execute(null);
+        }
+    }
 
     #endregion
 
@@ -123,7 +143,8 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
 
     protected void ResetSelectedPageSelectionIndex()
     {
-        SelectedPageSelectionIndex = 0;
+        Logger.Debug("Resetting page selection index to 0");
+        _selectedPageSelectionIndex = 0;
         OnPropertyChanged(nameof(SelectedPageSelectionIndex));
     }
 
@@ -131,7 +152,7 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
 
     #region Public Methods
 
-    public virtual Task OnSelectedPageSelectionIndexUpdatedAsync() => Task.CompletedTask;
+    public virtual Task PageSelectionIndexChangedAsync() => Task.CompletedTask;
 
     public async Task LoadPageAsync()
     {

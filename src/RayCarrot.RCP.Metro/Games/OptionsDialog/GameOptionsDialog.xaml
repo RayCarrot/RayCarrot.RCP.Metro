@@ -120,13 +120,12 @@
                                     Command="{Binding Path=UseRecommendedCommand}"
                                     Margin="0 0 10 0"/>
 
-                            <ComboBox Grid.Column="1" 
+                            <ComboBox Grid.Column="1"
                                       HorizontalAlignment="Left"
                                       Visibility="{Binding Path=PageSelection, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                                       ItemsSource="{Binding Path=PageSelection, Mode=OneTime}"
-                                      SelectedIndex="0"
-                                      SelectionChanged="SelectedPageSelection_OnSelectionChanged"
-                                      Margin="0 0 10 0"/>
+                                      SelectedIndex="{Binding Path=SelectedPageSelectionIndex}"
+                                      Margin="0 0 10 0" />
 
                             <Button Grid.Column="2"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
