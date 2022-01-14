@@ -30,13 +30,6 @@ public class Page_Progression_ViewModel : BasePageViewModel
 
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(GameItems, Application.Current);
-
-        // Refresh on app refresh
-        App.RefreshRequired += async (_, e) =>
-        {
-            if (e.BackupsModified || e.GameCollectionModified)
-                await Task.Run(async () => await RefreshAsync());
-        };
     }
 
     #endregion
@@ -70,7 +63,17 @@ public class Page_Progression_ViewModel : BasePageViewModel
 
     #region Public Methods
 
-    protected override Task InitializeAsync() => RefreshAsync();
+    protected override Task InitializeAsync()
+    {
+        // Refresh on app refresh
+        App.RefreshRequired += async (_, e) =>
+        {
+            if (e.BackupsModified || e.GameCollectionModified)
+                await Task.Run(async () => await RefreshAsync());
+        };
+
+        return RefreshAsync();
+    }
 
     public async Task RefreshAsync()
     {
