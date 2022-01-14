@@ -1,25 +1,25 @@
 ﻿-----   Version 13.0.0 - January ??, 2022   -----
 • Added the progression page, replacing the backup/restore and game specific progression pages
 	• Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
-	• The backup status is now shown indicating if a backup is outdated
 	• The progression data for backups can now be viewed and compared to the current data
-	• Save slots which can be imported can now also be directly edited as JSON data
+	• Save slots can now be directly edited as JSON data
 • Utilities changes
 	• Added a utility for fixing Rayman Fiesta Run saves
-	• Moved most general utilities to the new binary tools page
 	• Added a new serializers utility with an option for showing the file serialization log
 	• Added serializers for Rayman Raving Rabbids save files, Rayman Fiesta Run save files, Unity Player Preferences and Game Maker DS Map txt files
-	• Add a decoder for Rayman Raving Rabbids save files
+	• Added a decoder for Rayman Raving Rabbids save files
 • Added options to enable unused cheats in the Rayman Raving Rabbids config
-• Removed the help page
 • Updated the Rayman Arena disc removal to make it work even when there are no available disc drives (save the changes in the config to apply the updated patch)
 • Migrated the code from using RayCarrot.Binary/Rayman to BinarySerializer for binary data parsing, utilizing much of the same code as in Ray1Map
+• Removed the help page
 
 Other changes:
 • Progression page
+	• The backup status is now shown indicating if a backup is outdated
 	• If the save data has been redirected to VirtualStore there will now be an option to choose the data source to use
 	• Games where the save data can't be imported can now still have it be exported (such as for Rayman Designer and Rayman Origins)
 • Utilities changes
+	• Moved most general utilities to the new binary tools page
 	• The converter and decoder utilities have all been re-implemented, with some converters moved to the new serializers utility
 	• The UbiArt localization file converter now produces more readable JSON files
 	• Added icons to the utility headers and normalized some layouts
@@ -31,8 +31,8 @@ Other changes:
 	• Updated the game icons
 	• Added icons to more buttons
 	• Minor UI changes such as increased scrollbar padding
-• Rayman Control Panel and Archive Explorer are no longer displayed with the ™ symbol
 • Major code and libraries refactoring
+• Rayman Control Panel and Archive Explorer are no longer displayed with the ™ symbol
 • Certain pages can now be refreshed by pressing F5
 • Added an option to replace files in the Archive Explorer
 • Added a new dialog for selecting a program to use for certain file types in the Archive Explorer and progression page
