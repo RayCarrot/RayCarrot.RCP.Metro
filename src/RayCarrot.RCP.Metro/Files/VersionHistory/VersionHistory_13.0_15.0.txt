@@ -46,6 +46,7 @@ Other changes:
 • Added a debug option to show grid lines in the app user interface
 • Added a debug option to refresh all multiple times in parallel
 • Bug fixes
+	• Fixed the app window title not being shown in the taskbar
 	• Fixed an issue where web requests would not work on Windows 7 if the default TLS version was set to 1.0 rather than 1.2 or higher
 	• Fixed some strings not being localized in the string input dialog
 	• Fixed a bug where the Archive Explorer would crash if a file was selected in another archive than the one being repacked

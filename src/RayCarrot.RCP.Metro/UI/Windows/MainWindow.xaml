@@ -14,7 +14,10 @@
                   CloseWithEscape="False"
                   IsCloseButtonEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}"
                   Width="960" Height="720"
-                  DataContext="{x:Static local:Services.App}">
+                  Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                  Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                  DataContext="{x:Static local:Services.App}" 
+                  d:DataContext="{d:DesignInstance local:AppViewModel}">
     <local:BaseWindow.RightWindowCommands>
         <mah:WindowCommands ItemsSource="{Binding Source={x:Static local:RCPChildWindow.MinimizedWindows}, Mode=OneTime}"> 
             <mah:WindowCommands.ItemTemplate>
@@ -31,27 +34,18 @@
             </mah:WindowCommands.ItemTemplate>
         </mah:WindowCommands>
     </local:BaseWindow.RightWindowCommands>
-    <local:BaseWindow.TitleTemplate>
-        <DataTemplate>
-            <Grid DataContext="{x:Static local:Services.App}">
-                <Grid.Resources>
-                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                        <Setter Property="Margin" Value="8 -1 1 0" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="FontFamily" Value="{DynamicResource HeaderFontFamily}" />
-                        <Setter Property="FontSize" Value="{DynamicResource WindowTitleFontSize}" />
-                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-                    </Style>
-                </Grid.Resources>
-
-                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                           Text="{Resx AppName}" />
-
-                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={local:BooleanToVisibilityConverter}}"
-                           Text="{Resx AppNameAdmin}" />
-            </Grid>
-        </DataTemplate>
-    </local:BaseWindow.TitleTemplate>
+    <local:BaseWindow.Style>
+        <Style TargetType="{x:Type mah:MetroWindow}">
+            <Setter Property="Title" Value="{Resx AppName, ResxName={x:Static local:LocalizationManager.ResourcePath}}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsRunningAsAdmin, Mode=OneTime}" Value="True">
+                    <DataTrigger.Setters>
+                        <Setter Property="Title" Value="{Resx AppNameAdmin, ResxName={x:Static local:LocalizationManager.ResourcePath}}" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </local:BaseWindow.Style>
     <Grid>
         <mah:MetroAnimatedTabControl x:Name="PageTabControl"
                                      ItemContainerStyle="{StaticResource TabItem.Large}"
