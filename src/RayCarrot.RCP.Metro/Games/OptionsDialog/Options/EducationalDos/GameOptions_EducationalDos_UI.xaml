@@ -83,7 +83,7 @@
                                     VerticalAlignment="Center"
                                     Margin="15 0 10 0">
                                 <iconPacks:PackIconMaterial Background="Transparent"
-                                                            Kind="Pencil"
+                                                            Kind="PencilOutline"
                                                             Width="16"
                                                             Height="16" />
                             </Button>
