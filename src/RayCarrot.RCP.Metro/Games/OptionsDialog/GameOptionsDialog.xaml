@@ -104,46 +104,48 @@
 
                         </ScrollViewer>
 
-                        <StackPanel Grid.Row="1"
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Left">
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                            <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
-                            </i:Interaction.Behaviors>
-
-                            <Button Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                            <Button Grid.Column="0" 
+                                    Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx DosBoxOptions_Recommended}"
                                     ContentTemplate="{StaticResource Button.IconContentTemplate}"
                                     local:ButtonAssist.IconKind="AutoFix"
-                                    Command="{Binding Path=UseRecommendedCommand}" />
+                                    Command="{Binding Path=UseRecommendedCommand}"
+                                    Margin="0 0 10 0"/>
 
-                            <ComboBox Visibility="{Binding Path=PageSelection, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                            <ComboBox Grid.Column="1" 
+                                      HorizontalAlignment="Left"
+                                      Visibility="{Binding Path=PageSelection, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                                       ItemsSource="{Binding Path=PageSelection, Mode=OneTime}"
                                       SelectedIndex="0"
-                                      SelectionChanged="SelectedPageSelection_OnSelectionChanged"/>
+                                      SelectionChanged="SelectedPageSelection_OnSelectionChanged"
+                                      Margin="0 0 10 0"/>
 
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="1"
+                            <Button Grid.Column="2"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Right">
-
-                            <Button Content="{Resx Cancel}"
+                                    Content="{Resx Cancel}"
                                     ContentTemplate="{StaticResource Button.IconContentTemplate}"
                                     local:ButtonAssist.IconKind="CloseOutline"
                                     Margin="0 0 10 0"
                                     IsCancel="True"
                                     Click="CancelButton_OnClick" />
 
-                            <Button Content="{Resx Save}"
+                            <Button Grid.Column="3"
+                                    Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                                    Content="{Resx Save}"
                                     ContentTemplate="{StaticResource Button.IconContentTemplate}"
                                     local:ButtonAssist.IconKind="ContentSaveOutline"
                                     IsEnabled="{Binding Path=UnsavedChanges}"
                                     Command="{Binding Path=SaveCommand, Mode=OneTime}" />
 
-                        </StackPanel>
+                        </Grid>
 
                     </Grid>
 
