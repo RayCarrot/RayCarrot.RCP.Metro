@@ -41,18 +41,15 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
     /// <returns>The image</returns>
     protected override MagickImage GetImage(ArchiveFileStream inputStream, FileExtension format, IArchiveDataManager manager)
     {
-        // Set the Stream position
-        ReadTEXHeader(inputStream, manager);
-
         // Serialize data
-        TextureCooked_Xbox360 imgData = manager.Context!.ReadStreamData<TextureCooked_Xbox360>(inputStream.Stream, name: inputStream.Name, leaveOpen: true, onPreSerialize: x =>
+        TextureCooked tex = manager.Context!.ReadStreamData<TextureCooked>(inputStream.Stream, name: inputStream.Name, leaveOpen: true, onPreSerialize: x =>
         {
             x.Pre_SerializeImageData = true;
             x.Pre_FileSize = inputStream.Stream.Length;
         });
 
         // Get the untiled image data
-        byte[] untiledImgData = imgData.Untile(true);
+        byte[] untiledImgData = tex.Header_Xbox360.Untile(tex.ImageData, true);
 
         DDSParser.DDSStruct header = new()
         {
@@ -60,25 +57,25 @@ public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
             {
                 rgbbitcount = 32
             },
-            width = (uint)imgData.Width,
-            height = (uint)imgData.Height,
+            width = (uint)tex.Header_Xbox360.Width,
+            height = (uint)tex.Header_Xbox360.Height,
             depth = 1
         };
 
-        byte[] rawImgData = imgData.CompressionType switch
+        byte[] rawImgData = tex.Header_Xbox360.CompressionType switch
         {
-            TextureCooked_Xbox360.TextureCompressionType.DXT1 => DDSParser.DecompressDXT1(header, untiledImgData),
-            TextureCooked_Xbox360.TextureCompressionType.DXT3 => DDSParser.DecompressDXT3(header, untiledImgData),
-            TextureCooked_Xbox360.TextureCompressionType.DXT5 => DDSParser.DecompressDXT5(header, untiledImgData),
-            _ => throw new ArgumentOutOfRangeException(nameof(imgData.CompressionType), imgData.CompressionType, null)
+            TextureCooked_Xbox360Header.TextureCompressionType.DXT1 => DDSParser.DecompressDXT1(header, untiledImgData),
+            TextureCooked_Xbox360Header.TextureCompressionType.DXT3 => DDSParser.DecompressDXT3(header, untiledImgData),
+            TextureCooked_Xbox360Header.TextureCompressionType.DXT5 => DDSParser.DecompressDXT5(header, untiledImgData),
+            _ => throw new ArgumentOutOfRangeException(nameof(tex.Header_Xbox360.CompressionType), tex.Header_Xbox360.CompressionType, null)
         };
 
         // Return the image
         return new MagickImage(rawImgData, new MagickReadSettings()
         {
             Format = MagickFormat.Rgba,
-            Width = imgData.Width,
-            Height = imgData.Height
+            Width = tex.Header_Xbox360.Width,
+            Height = tex.Header_Xbox360.Height
         });
     }
 }
