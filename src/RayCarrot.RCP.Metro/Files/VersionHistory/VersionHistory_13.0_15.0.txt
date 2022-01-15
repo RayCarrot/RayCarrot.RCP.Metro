@@ -53,3 +53,4 @@ Other changes:
 	• Fixed a bug where modifying certain UbiArt files would cause strings to be missing some characters if special ones were used
 	• Fixed a bug where the app might crash when loading the games page
 	• Fixed some bugs with the game options dialog in-page selection (used for the educational games config)
+	• Fixed a bug where opening a read-only file directly in the Archive Explorer would not delete it afterwards

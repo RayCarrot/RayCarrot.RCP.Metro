@@ -293,8 +293,14 @@ namespace RayCarrot.RCP.Metro
             if (!filePath.FileExists)
                 return;
 
+            // Get the file info
+            FileInfo info = filePath.GetFileInfo();
+
+            // Make sure it's not read-only
+            info.IsReadOnly = false;
+
             // Delete the file
-            File.Delete(filePath);
+            info.Delete();
         }
 
         /// <summary>
