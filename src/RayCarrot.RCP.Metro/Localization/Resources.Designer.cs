@@ -8688,7 +8688,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The save was successfully fixes.
+        ///   Looks up a localized string similar to The save was successfully fixed.
         /// </summary>
         public static string RFRU_SaveFixSuccess {
             get {

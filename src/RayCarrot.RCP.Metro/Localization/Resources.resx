@@ -4353,7 +4353,7 @@ By changing the data source here you can choose which location is used for backu
     <value>No issues found</value>
   </data>
   <data name="RFRU_SaveFixSuccess" xml:space="preserve">
-    <value>The save was successfully fixes</value>
+    <value>The save was successfully fixed</value>
   </data>
   <data name="RFRU_SaveFixError" xml:space="preserve">
     <value>An error occurred when fixing the save</value>

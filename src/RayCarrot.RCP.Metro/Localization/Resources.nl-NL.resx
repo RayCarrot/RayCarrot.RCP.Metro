@@ -3941,4 +3941,274 @@ Start: Pauzeren</value>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Dodelijke adem</value>
   </data>
+  <data name="Archive_ReplaceFile" xml:space="preserve">
+    <value>Vervangen</value>
+  </data>
+  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
+    <value>Selecteer bestand voor vervanging</value>
+  </data>
+  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het vervangen van het bestand</value>
+  </data>
+  <data name="Config_Cheats" xml:space="preserve">
+    <value>Cheats</value>
+  </data>
+  <data name="Config_RRRInvertHor" xml:space="preserve">
+    <value>Camera spiegelen</value>
+  </data>
+  <data name="Config_RRROldMovie" xml:space="preserve">
+    <value>Oude film-effect</value>
+  </data>
+  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
+    <value>De toegepaste patch is verouderd. Houd de patch ingeschakeld en sla op om deze te updaten naar de nieuwste versie.</value>
+  </data>
+  <data name="Progression_LevelsCompleted" xml:space="preserve">
+    <value>Voltooide levels</value>
+  </data>
+  <data name="Progression_Cages" xml:space="preserve">
+    <value>Kooien</value>
+  </data>
+  <data name="Progression_RedemptionTokens" xml:space="preserve">
+    <value>Munten</value>
+  </data>
+  <data name="Progression_RedemptionPresents" xml:space="preserve">
+    <value>Cadeaus</value>
+  </data>
+  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
+    <value>Rayman outfits</value>
+  </data>
+  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
+    <value>Bzzit outfits</value>
+  </data>
+  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
+    <value>Checkpoint outfits</value>
+  </data>
+  <data name="Progression_Tings" xml:space="preserve">
+    <value>Tings</value>
+  </data>
+  <data name="Progression_Lives" xml:space="preserve">
+    <value>Levens</value>
+  </data>
+  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
+    <value>Sterren</value>
+  </data>
+  <data name="Progression_RRRDays" xml:space="preserve">
+    <value>Dagen</value>
+  </data>
+  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
+    <value>Voltooide minigames</value>
+  </data>
+  <data name="Progression_RRRPoints" xml:space="preserve">
+    <value>{0} (Punten)</value>
+  </data>
+  <data name="Progression_RRRScore" xml:space="preserve">
+    <value>{0} (Score)</value>
+  </data>
+  <data name="Progression_RRRTotalPoints" xml:space="preserve">
+    <value>Puntentotaal</value>
+  </data>
+  <data name="Progression_RRRScoreSlot" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Progression_Continues" xml:space="preserve">
+    <value>Continueringen</value>
+  </data>
+  <data name="Progression_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Progression_R3Stamps" xml:space="preserve">
+    <value>Stempels</value>
+  </data>
+  <data name="Progression_TotalScore" xml:space="preserve">
+    <value>Totale score</value>
+  </data>
+  <data name="Progression_RFRCrowns" xml:space="preserve">
+    <value>Kronen</value>
+  </data>
+  <data name="Progression_RFRNightmareMode" xml:space="preserve">
+    <value>Nachtmerrie-modus</value>
+  </data>
+  <data name="Progression_Teeth" xml:space="preserve">
+    <value>Tanden</value>
+  </data>
+  <data name="Progression_Teensies" xml:space="preserve">
+    <value>Teensies</value>
+  </data>
+  <data name="Progression_Rank" xml:space="preserve">
+    <value>Ranking</value>
+  </data>
+  <data name="Progression_RLBronzeCups" xml:space="preserve">
+    <value>Bronzen bekers</value>
+  </data>
+  <data name="Progression_RLSilverCups" xml:space="preserve">
+    <value>Zilveren bekers</value>
+  </data>
+  <data name="Progression_RLGoldCups" xml:space="preserve">
+    <value>Gouden bekers</value>
+  </data>
+  <data name="Progression_RLDiamondCups" xml:space="preserve">
+    <value>Diamanten bekers</value>
+  </data>
+  <data name="Progression_RMRacesCompleted" xml:space="preserve">
+    <value>Gefinishte races</value>
+  </data>
+  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
+    <value>Gefinishte gevechten</value>
+  </data>
+  <data name="Progression_Electoons" xml:space="preserve">
+    <value>Electoons</value>
+  </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Lum medailles</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Snelheidstrofeeën</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>Indien het wijzigen van spelbestanden verkeerd gaat, kan dit resulteren in corruptie. Het is ten zeerste aanbevolen een back-up te maken voordat er verder wordt gegaan. Doorgaan?</value>
+  </data>
+  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
+    <value>Bevestig wijzigingen spelbestanden</value>
+  </data>
+  <data name="Progression_SlotInfo_File" xml:space="preserve">
+    <value>Bestand</value>
+  </data>
+  <data name="Progression_SlotInfo_Size" xml:space="preserve">
+    <value>Grootte</value>
+  </data>
+  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
+    <value>Laatst gewijzigd</value>
+  </data>
+  <data name="Progression_SelectEditProgram" xml:space="preserve">
+    <value>Selecteer een uitvoerbaar bestand voor het wijzigen van JSON save files</value>
+  </data>
+  <data name="Progression_SaveEditSuccess" xml:space="preserve">
+    <value>De save file is succesvol gewijzigd</value>
+  </data>
+  <data name="Progression_ChangeEditProgram" xml:space="preserve">
+    <value>Wijzig save editor programma</value>
+  </data>
+  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
+    <value>Geback-upt</value>
+  </data>
+  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
+    <value>Nieuwe wijzigingen zijn niet geback-upt</value>
+  </data>
+  <data name="Progression_EditSlot" xml:space="preserve">
+    <value>Wijzigen</value>
+  </data>
+  <data name="Progression_DataSource" xml:space="preserve">
+    <value>Databron</value>
+  </data>
+  <data name="Progression_DataSourceInfo" xml:space="preserve">
+    <value>In het geval van oudere applicaties, zal Windows in sommige gevallen save/config bestanden omleiden naar de VirtualStore als de applicatie niet gestart is als administrator. Het neveneffect hiervan is, dat je verschillende save/config bestanden voor het spel zult hebben; een voor 'admins', de ander voor normale gebruikers. Door hier de databron te wijzigen, kun je kiezen welke locatie er wordt gebruikt voor back-ups en voortgangsoverzichten. </value>
+  </data>
+  <data name="Progression_DataSource_Auto" xml:space="preserve">
+    <value>Automatisch</value>
+  </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>Wanneer er een nieuwe back-up word aangemaakt of de save file voor het voortgangsoverzicht wordt gebruikt, zal de locatie waarin de meest recent gebruikte bestanden staan, worden geselecteerd. Tijdens het herstellen van een back-up zal deze in beide locaties worden geplaatst.</value>
+  </data>
+  <data name="Progression_DataSource_Default" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
+    <value>De standaardlocatie wordt altijd gebruikt. Dit correspondeert met de locatie die het spel gebruikt wanneer het uitgevoerd is als administrator.</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
+    <value>VirtualStore</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
+    <value>De VirtualStore locatie wordt altijd gebruikt. Dit correspondeert met de locatie de het spel gebruikt wanneer het níét uitgevoerd wordt als administrator.</value>
+  </data>
+  <data name="Progression_BackupSlots" xml:space="preserve">
+    <value>Back-up</value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Serialisatie logboek</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Wanneer het logboek ingeschakeld is, zal elke binaire serialisatie actie, zoals het gebruik van de Archive Explorer of het inzien van de spelvoortgang, gelogd worden in het gespecificeerde logboek. Dit is hoofdzakelijk voor het debuggen, maar kan ook nuttig zijn voor het inzien van datastructuren van bepaalde indelingen.</value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Is ingeschakeld</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>Binary Tools</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Selecteer indeling om naar te converteren</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids Save Files (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serializers</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Verwerken in logboek</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>Deserialiseren naar JSON</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>Serialiseren vanaf JSON</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>Rayman Fiesta Run Save File (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Unity Spelervoorkeuren/Rabbids Big Bang Save File (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>Game Maker DS Map/Rayman Redemption Save File (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
+    <value>Selecteer bestanden om te serialiseren</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>De bestanden konden niet gelogd worden</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
+    <value>De bestanden zijn succesvol gedeserialiseerd</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
+    <value>De bestanden konden niet worden gedeserialiseerd</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
+    <value>De bestanden zijn succesvol geserialiseerd</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
+    <value>De bestanden konden niet worden geserialiseerd</value>
+  </data>
+  <data name="Config_RRRCheatsInfo" xml:space="preserve">
+    <value>De cheats zullen van kracht zijn wanneer voor het eerst een map geladen wordt. Soms is het nodig om terug te keren naar het menu, zodat een en ander geüpdatet wordt.</value>
+  </data>
+  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
+    <value>Er kan alleen geswitcht worden naar DirectPlay in Windows 8 of hoger</value>
+  </data>
+  <data name="RFRU_SaveFixHeader" xml:space="preserve">
+    <value>Fix voortgang save file</value>
+  </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>Vanwege een bug in eerdere versies van het spel, is het mogelijk dat de save file voortgang niet meer synchroon loopt, waardoor je zichtbaar minder Teensies hebt dan eigenlijk verdiend. Als gevolg hiervan kunnen sommige levels ontoegankelijk worden gemaakt. Dit hulpprogramma zal dit proberen op te lossen.</value>
+  </data>
+  <data name="RFRU_SaveFixAction" xml:space="preserve">
+    <value>Fix save file</value>
+  </data>
+  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
+    <value>Geen issues gevonden</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>De save file is succesvol gefixt</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het fixen van de save file</value>
+  </data>
+  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
+    <value>Debug-commando's zijn niet beschikbaar voor de Steam-versie</value>
+  </data>
+  <data name="Utilities_NotAvailable" xml:space="preserve">
+    <value>Het hulpprogramma is niet beschikbaar</value>
+  </data>
 </root>
