@@ -20,6 +20,7 @@ public class RCPContext : Context
 
     public class RCPSerializerLog : ISerializerLog
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private static bool _hasBeenCreated;
 
         private bool _isInvalid;
@@ -34,15 +35,20 @@ public class RCPContext : Context
 
         public StreamWriter? GetFile()
         {
-            if (!File.Exists(LogFile))
+            var mode = _hasBeenCreated ? FileMode.Append : FileMode.Create;
+
+            try
             {
+                StreamWriter w = new(File.Open(LogFile, mode, FileAccess.Write, FileShare.ReadWrite), Encoding.UTF8);
+                _hasBeenCreated = true;
+                return w;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Opening serializer log file with mode {0}", mode);
                 _isInvalid = true;
                 return null;
             }
-
-            StreamWriter w = new(File.Open(LogFile, _hasBeenCreated ? FileMode.Append : FileMode.Create, FileAccess.Write, FileShare.ReadWrite), Encoding.UTF8);
-            _hasBeenCreated = true;
-            return w;
         }
 
         public void Log(object? obj)

@@ -125,9 +125,6 @@ public class AppUserData : BaseViewModel
 
         // Archive
         Archive_AssociatedPrograms ??= new Dictionary<string, FileSystemPath>();
-
-        if (!Binary_BinarySerializationFileLogPath.FileExists)
-            Binary_IsSerializationLogEnabled = false;
     }
 
     #endregion
