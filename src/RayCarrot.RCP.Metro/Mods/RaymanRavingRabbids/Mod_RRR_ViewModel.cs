@@ -779,12 +779,15 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             });
 
             // Add the file to the context
-            LinearFile file = context.AddFile(new LinearFile(context, PatchedBFFilePath.Name));
+            LinearFile file = context.AddFile(new LinearFile(context, PatchedBFFilePath.Name)
+            {
+                RecreateOnWrite = false
+            });
 
             // Read the file
             Jade_BIG_BigFile bf = FileFactory.Read<Jade_BIG_BigFile>(context, PatchedBFFilePath.Name);
 
-            BinaryDeserializer s = context.Deserializer;
+            var s = context.Serializer;
 
             foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
             {

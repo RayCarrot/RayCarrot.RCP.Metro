@@ -29,7 +29,7 @@ public class Mod_RRR_BigFilePatch
 
     #region Public Methods
 
-    public void Apply(BinaryDeserializer s, Jade_BIG_BigFile bf, int patchToApply, BinaryFile file)
+    public void Apply(BinarySerializer.BinarySerializer s, Jade_BIG_BigFile bf, int patchToApply, BinaryFile file)
     {
         uint keyToPos = bf.KeyToPos[FileKey];
 
