@@ -55,6 +55,8 @@ public class AppViewModel : BaseViewModel
             IsRunningAsAdmin = false;
         }
 
+        AppTitle = IsRunningAsAdmin ? Resources.AppNameAdmin : Resources.AppName;
+
         LoadOperation = new Operation(() => IsLoading = true, () => IsLoading = false);
 
         // Create locks
@@ -142,6 +144,11 @@ public class AppViewModel : BaseViewModel
     #endregion
 
     #region Public Properties
+
+    /// <summary>
+    /// The title of the application
+    /// </summary>
+    public string AppTitle { get; }
 
     /// <summary>
     /// The current app version

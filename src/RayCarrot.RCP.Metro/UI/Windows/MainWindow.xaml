@@ -7,10 +7,10 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
-                  xmlns:system="clr-namespace:System;assembly=mscorlib"
                   mc:Ignorable="d"
                   Language="{UICulture}" 
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                  Title="{Binding Path=AppTitle, Mode=OneTime}"
                   CloseWithEscape="False"
                   IsCloseButtonEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}"
                   Width="960" Height="720"
@@ -34,18 +34,6 @@
             </mah:WindowCommands.ItemTemplate>
         </mah:WindowCommands>
     </local:BaseWindow.RightWindowCommands>
-    <local:BaseWindow.Style>
-        <Style TargetType="{x:Type mah:MetroWindow}">
-            <Setter Property="Title" Value="{Resx AppName, ResxName={x:Static local:LocalizationManager.ResourcePath}}" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=IsRunningAsAdmin, Mode=OneTime}" Value="True">
-                    <DataTrigger.Setters>
-                        <Setter Property="Title" Value="{Resx AppNameAdmin, ResxName={x:Static local:LocalizationManager.ResourcePath}}" />
-                    </DataTrigger.Setters>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </local:BaseWindow.Style>
     <Grid>
         <mah:MetroAnimatedTabControl x:Name="PageTabControl"
                                      ItemContainerStyle="{StaticResource TabItem.Large}"
