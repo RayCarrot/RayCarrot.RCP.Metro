@@ -72,6 +72,14 @@
                         </ContentControl>
 
                     </StackPanel>
+
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="TabItemHeaderContent" 
+                                    Property="Foreground" 
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
