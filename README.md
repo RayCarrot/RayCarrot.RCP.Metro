@@ -9,10 +9,10 @@ Main features:
 - Launcher for the PC Rayman games
 - Extended game configuration support
 - Game utilities, such as allowing per-level soundtrack in Rayman 1
-- Save data backup/restore tool
+- Save data viewing and editing along with backup/restore options
 - Disc installers to install select games from discs
-- General utilities, such as the Archive Explorer to modify archive files
-- Mods, such as enabling prototype features in Rayman Raving Rabbids
+- General utilities, such as the Archive Explorer to modify archive files for texture mods
+- Mods, such as restoring prototype features in Rayman Raving Rabbids
 
 ## Archive Explorer
 ![Archive Explorer](img/example_archive_explorer.png)
@@ -32,7 +32,7 @@ Each supported game has a configuration page where its settings can be changed. 
 ## Mods
 ![Mods](img/example_mods_rrr.png)
 
-Different mods are available throughout the app, such as restoring unused prototype features in Rayman Raving Rabbids.
+Different mods are available throughout the app, such as restoring prototype features in Rayman Raving Rabbids.
 
 ## Utilities
 ![Mods](img/example_utilities_origins.png)
@@ -40,12 +40,19 @@ Different mods are available throughout the app, such as restoring unused protot
 Utilities allows for more advanced modifications to the games, usually aimed at fixing a certain issue or allowing additional features. In Rayman Origins and Legends it can be used to enable the debug commands.
 
 ## Progression
-![Mods](img/example_progression_origins.png)
+![Mods](img/example_progression.png)
 
-Most games have a page for viewing the progress in each save slot. The save data can also be exported to a JSON file.
+Detailed game progression can be viewed for most supported games along with options to edit the data as serialized JSON and create/restore backups. 
 
 # Dependencies
 The Rayman Control Panel uses these main dependencies:
+
+### BinarySerializer (sub-modules)
+- [BinarySerializer](https://github.com/BinarySerializer/BinarySerializer)
+- [BinarySerializer.PS1](https://github.com/BinarySerializer/BinarySerializer.PS1)
+- [BinarySerializer.Ray1](https://github.com/BinarySerializer/BinarySerializer.Ray1)
+- [BinarySerializer.OpenSpace](https://github.com/BinarySerializer/BinarySerializer.OpenSpace)
+- [BinarySerializer.UbiArt](https://github.com/BinarySerializer/BinarySerializer.UbiArt)
 
 ### WPF
 - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
