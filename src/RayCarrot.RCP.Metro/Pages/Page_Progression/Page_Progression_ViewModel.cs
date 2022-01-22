@@ -90,6 +90,8 @@ public class Page_Progression_ViewModel : BasePageViewModel
                 foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                     GameItems.AddRange(game.GetGameInfo().GetProgressionGameViewModels);
 
+                // TODO: Use Task.WhenAll and run in parallel?
+
                 // Load the game items
                 foreach (ProgressionGameViewModel game in GameItems)
                     await game.LoadProgressAsync();

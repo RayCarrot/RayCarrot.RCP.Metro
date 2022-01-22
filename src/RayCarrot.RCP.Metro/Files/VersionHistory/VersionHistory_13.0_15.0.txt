@@ -42,6 +42,7 @@ Other changes:
 • The main pages now load when first navigated to thus slightly reducing the startup time
 • Updated demo game names to include their dates
 • Demo games are no longer automatically added to the jump list
+• Improved tabs keyboard navigation
 • Updated the updater
 • Added a debug option to show grid lines in the app user interface
 • Added a debug option to refresh all multiple times in parallel
