@@ -1183,7 +1183,7 @@
     <value>Переназначение кнопок для Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Список чит-кодов, основная помощь с утилитами</value>
+    <value>Основная помощь с утилитами</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Утилита PlayStation-версии саундтрека, переводы Rayman 2</value>
@@ -2461,7 +2461,7 @@
     <value>Синхронизация темы</value>
   </data>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
-    <value>Если эта функция включена, тема приложения (цветовой акцент и темный/светлый режим) будет синхронизироваться с системными настройками Windows 10</value>
+    <value>Если эта функция включена, тема приложения (цветовой акцент и темный/светлый режим) будет синхронизироваться с системными настройками Windows 10/11</value>
   </data>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>Произошла ошибка при обновлении языка</value>
@@ -3943,5 +3943,275 @@ Start: Пауза</value>
   </data>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Breath of Death</value>
+  </data>
+  <data name="Archive_ReplaceFile" xml:space="preserve">
+    <value>Заменить</value>
+  </data>
+  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
+    <value>Выберите файл для замены</value>
+  </data>
+  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
+    <value>Произошла ошибка при замене файла</value>
+  </data>
+  <data name="Config_Cheats" xml:space="preserve">
+    <value>Читы</value>
+  </data>
+  <data name="Config_RRRInvertHor" xml:space="preserve">
+    <value>Зеркальная камера</value>
+  </data>
+  <data name="Config_RRROldMovie" xml:space="preserve">
+    <value>Эффект старого фильма</value>
+  </data>
+  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
+    <value>Примененный патч устарел. Оставьте патч применённым и сохраните, чтобы обновить его до последней версии.</value>
+  </data>
+  <data name="Progression_LevelsCompleted" xml:space="preserve">
+    <value>Пройденные уровни</value>
+  </data>
+  <data name="Progression_Cages" xml:space="preserve">
+    <value>Клетки</value>
+  </data>
+  <data name="Progression_RedemptionTokens" xml:space="preserve">
+    <value>Жетоны</value>
+  </data>
+  <data name="Progression_RedemptionPresents" xml:space="preserve">
+    <value>Подарки</value>
+  </data>
+  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
+    <value>Скины Рэймана</value>
+  </data>
+  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
+    <value>Скины Бззита</value>
+  </data>
+  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
+    <value>Скины чекпоинта</value>
+  </data>
+  <data name="Progression_Tings" xml:space="preserve">
+    <value>Тинги</value>
+  </data>
+  <data name="Progression_Lives" xml:space="preserve">
+    <value>Жизни</value>
+  </data>
+  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
+    <value>Звёзды</value>
+  </data>
+  <data name="Progression_RRRDays" xml:space="preserve">
+    <value>Дни</value>
+  </data>
+  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
+    <value>Пройденные мини-игры</value>
+  </data>
+  <data name="Progression_RRRPoints" xml:space="preserve">
+    <value>{0} (Очки)</value>
+  </data>
+  <data name="Progression_RRRScore" xml:space="preserve">
+    <value>{0} (Счёт)</value>
+  </data>
+  <data name="Progression_RRRTotalPoints" xml:space="preserve">
+    <value>Всего очков</value>
+  </data>
+  <data name="Progression_RRRScoreSlot" xml:space="preserve">
+    <value>Счёт</value>
+  </data>
+  <data name="Progression_Continues" xml:space="preserve">
+    <value>Континью</value>
+  </data>
+  <data name="Progression_Lums" xml:space="preserve">
+    <value>Люмы</value>
+  </data>
+  <data name="Progression_R3Stamps" xml:space="preserve">
+    <value>Печати</value>
+  </data>
+  <data name="Progression_TotalScore" xml:space="preserve">
+    <value>Общий счёт</value>
+  </data>
+  <data name="Progression_RFRCrowns" xml:space="preserve">
+    <value>Короны</value>
+  </data>
+  <data name="Progression_RFRNightmareMode" xml:space="preserve">
+    <value>Кошмарный режим</value>
+  </data>
+  <data name="Progression_Teeth" xml:space="preserve">
+    <value>Зубы</value>
+  </data>
+  <data name="Progression_Teensies" xml:space="preserve">
+    <value>Малютки</value>
+  </data>
+  <data name="Progression_Rank" xml:space="preserve">
+    <value>Ранг</value>
+  </data>
+  <data name="Progression_RLBronzeCups" xml:space="preserve">
+    <value>Бронзовые кубки</value>
+  </data>
+  <data name="Progression_RLSilverCups" xml:space="preserve">
+    <value>Серебряные кубки</value>
+  </data>
+  <data name="Progression_RLGoldCups" xml:space="preserve">
+    <value>Золотые кубки</value>
+  </data>
+  <data name="Progression_RLDiamondCups" xml:space="preserve">
+    <value>Бриллиантовые кубки</value>
+  </data>
+  <data name="Progression_RMRacesCompleted" xml:space="preserve">
+    <value>Пройденные забеги</value>
+  </data>
+  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
+    <value>Пройденные бои</value>
+  </data>
+  <data name="Progression_Electoons" xml:space="preserve">
+    <value>Электуны</value>
+  </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Медали Люмов</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Скоростные трофеи</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>Редактирование файлов сохранения может привести к их повреждению, если оно выполнено некорректно. Настоятельно рекомендуется сохранить резервную копию, прежде чем начать. Продолжить?</value>
+  </data>
+  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
+    <value>Подтверждение редактирования файла сохранения</value>
+  </data>
+  <data name="Progression_SlotInfo_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="Progression_SlotInfo_Size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
+    <value>Последнее изменение</value>
+  </data>
+  <data name="Progression_SelectEditProgram" xml:space="preserve">
+    <value>Выберите исполняемый файл для редактирования JSON файлов сохранения</value>
+  </data>
+  <data name="Progression_SaveEditSuccess" xml:space="preserve">
+    <value>Файл сохранения был успешно изменен</value>
+  </data>
+  <data name="Progression_ChangeEditProgram" xml:space="preserve">
+    <value>Изменить программу редактора сохранений</value>
+  </data>
+  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
+    <value>Резервные копии сохранены</value>
+  </data>
+  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
+    <value>Резервные копии новых изменений не сохранены</value>
+  </data>
+  <data name="Progression_EditSlot" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Progression_DataSource" xml:space="preserve">
+    <value>Источник данных</value>
+  </data>
+  <data name="Progression_DataSourceInfo" xml:space="preserve">
+    <value>Для более старых приложений Windows в определённых случаях перенаправляет файлы сохранений/конфигурации в VirtualStore, если приложение запущено не от имени администратора. Побочным эффектом этого является то, что для игры будут использоваться разные файлы сохранений/конфигурации в зависимости от того, запускаете ли вы её от имени администратора или нет. Изменив источник данных здесь, вы можете выбрать, какая папка используется для резервного копирования и просмотра прогресса.</value>
+  </data>
+  <data name="Progression_DataSource_Auto" xml:space="preserve">
+    <value>Изменив источник данных здесь, вы можете выбрать, какое местоположение используется для резервного копирования и просмотра прогресса.</value>
+  </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>При создании новой резервной копии или использовании файлов сохранений для просмотра прогресса выбирается папка с самыми недавно созданными файлами. При восстановлении резервной копии она будет установлена в обоих папках.</value>
+  </data>
+  <data name="Progression_DataSource_Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
+    <value>Всегда используется папка по умолчанию. Она соответствует папке, которую использует игра, запущенная от имени администратора.</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
+    <value>VirtualStore</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
+    <value>Всегда используется папка VirtualStore. Она соответствует папке, которую использует игра, незапущенная от имени администратора.</value>
+  </data>
+  <data name="Progression_BackupSlots" xml:space="preserve">
+    <value>Резервное копирование</value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Журнал сериализации</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Включение журнала приведет к тому, что любое действие двоичной сериализации, такое как использование Archive Explorer или просмотр прогресса в игре, войдет в указанный файл журнала. В первую очередь это понадобится для отладки, но также может пригодиться для просмотра структуры данных определенных форматов.</value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>Бинарные инструменты</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Выберите формат для обратной конвертации</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>Файлы сохранений Rayman Raving Rabbids (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Сериализаторы</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Вывод в виде журнала</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>Десериализовать в JSON</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>Сериализовать из JSON</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>Файл сохранения Rayman Fiesta Run (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Настройки Unity Player / Файл сохранения Rabbids Big Bang (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>Game Maker DS Map / Файл сохранения Rayman Redemption (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
+    <value>Выбор файла для сериализации</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>Не удалось зарегистрировать файлы</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
+    <value>Файлы были успешно десериализованы</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
+    <value>Не удалось десериализовать файлы</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
+    <value>Файлы были успешно сериализованы</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
+    <value>Не удалось сериализовать файлы</value>
+  </data>
+  <data name="Config_RRRCheatsInfo" xml:space="preserve">
+    <value>Читы вступят в силу при первой загрузке карты. Также иногда требуется вернуться в меню после этого, чтобы всё обновилось.</value>
+  </data>
+  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
+    <value>DirectPlay можно активировать лишь в Windows 8 или выше</value>
+  </data>
+  <data name="RFRU_SaveFixHeader" xml:space="preserve">
+    <value>Исправление прогресса файла сохранения</value>
+  </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>Из-за бага в более ранних версиях игры прогресс файла сохранения может не синхронизироваться, в результате чего у Вас будет меньше малюток, чем Вы собрали на самом деле. Это может привести к тому, что определенные уровни станут недоступными. Эта утилита попытается исправить это.</value>
+  </data>
+  <data name="RFRU_SaveFixAction" xml:space="preserve">
+    <value>Исправить файл сохранения</value>
+  </data>
+  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
+    <value>Проблемы не были обнаружены</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>Файл сохранения был успешно исправлен</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>Во время исправления файла сохранения произошла ошибка</value>
+  </data>
+  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
+    <value>Команды debug недоступны для Steam-версии</value>
+  </data>
+  <data name="Utilities_NotAvailable" xml:space="preserve">
+    <value>Утилита недоступна</value>
   </data>
 </root>

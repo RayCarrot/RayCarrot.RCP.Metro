@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cheat code list, general help with the utilities.
+        ///   Looks up a localized string similar to General help with the utilities.
         /// </summary>
         public static string About_Credits_RibShark {
             get {
@@ -11262,7 +11262,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10.
+        ///   Looks up a localized string similar to If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10/11.
         /// </summary>
         public static string Settings_SyncThemeInfo {
             get {

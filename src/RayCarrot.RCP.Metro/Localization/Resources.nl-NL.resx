@@ -829,13 +829,13 @@
     <value>Herstel succesvol</value>
   </data>
   <data name="Restore_Success" xml:space="preserve">
-    <value>Je spelbestanden voor {0} zijn succesvol hersteld</value>
+    <value>Je save files voor {0} zijn succesvol hersteld</value>
   </data>
   <data name="Restore_ConfirmHeader" xml:space="preserve">
     <value>Bevestig herstel</value>
   </data>
   <data name="Restore_Confirm" xml:space="preserve">
-    <value>Dit zal de huidige spelbestanden van {0} vervangen met de back-up bestanden.</value>
+    <value>Dit zal de huidige save files van {0} vervangen met de back-up bestanden.</value>
   </data>
   <data name="Restore_FailedHeader" xml:space="preserve">
     <value>Herstel mislukt</value>
@@ -850,7 +850,7 @@
     <value>Back-up succesvol</value>
   </data>
   <data name="Backup_Success" xml:space="preserve">
-    <value>Je spelbestanden voor {0} zijn succesvol geback-upt</value>
+    <value>Je save files voor {0} zijn succesvol geback-upt</value>
   </data>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Geen spelbestanden van {0} gevonden om te back-uppen</value>
@@ -1182,7 +1182,7 @@ Opnieuw proberen?</value>
     <value>Rayman 2 button remapping</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Lijst met cheat codes, algemene ondersteuning bij de hulpprogramma's</value>
+    <value>Algemene ondersteuning bij de hulpprogramma's</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Per-level soundtrack hulpprogramma, Rayman 2 vertalingen</value>
@@ -1368,7 +1368,7 @@ Opnieuw proberen?</value>
     <value>Welkom bij het Rayman Control Panel</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>Dit programma is een officieus open-source project, ontworpen door RayCarrot. Het stelt gebruikers in staat snel en gemakkelijk toegang te verkrijgen tot hun geïnstalleerde Rayman (PC) games, met de volgende, bijkomende features: uitgebreide ondersteuning voor configuratie, hulpprogramma's, back-ups voor save files, het beheren van opslagdata, textuurmodificaties en meer. Ondersteunde spellen kunnen direct vanaf de schijf, via het programma geïnstalleerd worden. Om te beginnen, wijzig je eventueel de instellingen hieronder en klik je op 'Doorgaan'. De instellingen kunnen op elk gewenst moment aangepast worden via de Instellingen pagina.</value>
+    <value>Dit programma is een officieus open-source project, ontworpen door RayCarrot. Het stelt gebruikers in staat snel en gemakkelijk toegang te verkrijgen tot hun geïnstalleerde Rayman (PC) games, met de volgende, bijkomende features: uitgebreide ondersteuning voor configuratie, hulpprogramma's, back-ups voor save files, het beheren van save data, textuurmodificaties en meer. Ondersteunde spellen kunnen direct vanaf de schijf, via het programma geïnstalleerd worden. Om te beginnen, wijzig je eventueel de instellingen hieronder en klik je op 'Doorgaan'. De instellingen kunnen op elk gewenst moment aangepast worden via de Instellingen pagina.</value>
   </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>De wijzigingen in je configuratie zijn niet opgeslagen. Wil je toch afsluiten en ze negeren?</value>
@@ -2377,10 +2377,10 @@ Foutmelding: {1}</value>
     <value>Hell Breaks Loose</value>
   </data>
   <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
-    <value>Rayman Legends Spelbestanden</value>
+    <value>Rayman Legends Save Files</value>
   </data>
   <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
-    <value>Rayman Origins Spelbestanden</value>
+    <value>Rayman Origins Save Files</value>
   </data>
   <data name="Archive_Extract" xml:space="preserve">
     <value>Uitpakken</value>
@@ -2443,22 +2443,22 @@ Foutmelding: {1}</value>
     <value>Rayman 1 Configuratiebestanden</value>
   </data>
   <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
-    <value>Rayman 1 Spelbestanden</value>
+    <value>Rayman 1 Save Files (.sav)</value>
   </data>
   <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
     <value>Rayman 2 Configuratiebestanden</value>
   </data>
   <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
-    <value>Rayman 2 Spelbestanden</value>
+    <value>Rayman 2 Save Files (.sav)</value>
   </data>
   <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
-    <value>Rayman 1/2 Spelbestanden (.sav/.cfg)</value>
+    <value>Rayman 1/2 Save Files (.sav/.cfg)</value>
   </data>
   <data name="Settings_SyncTheme" xml:space="preserve">
     <value>Sync thema</value>
   </data>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
-    <value>Indien ingeschakeld, zal het applicatiethema (kleuraccent en donkere/lichte modus) synchroniseren met de systeeminstellingen van Windows 10</value>
+    <value>Indien ingeschakeld, zal het applicatiethema (kleuraccent en donkere/lichte modus) synchroniseren met de systeeminstellingen van Windows 10/11</value>
   </data>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het updaten van de taal</value>
@@ -4065,10 +4065,10 @@ Start: Pauzeren</value>
     <value>Snelheidstrofeeën</value>
   </data>
   <data name="Progression_SaveEditWarning" xml:space="preserve">
-    <value>Indien het wijzigen van spelbestanden verkeerd gaat, kan dit resulteren in corruptie. Het is ten zeerste aanbevolen een back-up te maken voordat er verder wordt gegaan. Doorgaan?</value>
+    <value>Indien het wijzigen van save files verkeerd gaat, kan dit resulteren in corruptie. Het is ten zeerste aanbevolen een back-up te maken voordat er verder wordt gegaan. Doorgaan?</value>
   </data>
   <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
-    <value>Bevestig wijzigingen spelbestanden</value>
+    <value>Bevestig wijzigingen save file</value>
   </data>
   <data name="Progression_SlotInfo_File" xml:space="preserve">
     <value>Bestand</value>
@@ -4107,7 +4107,7 @@ Start: Pauzeren</value>
     <value>Automatisch</value>
   </data>
   <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
-    <value>Wanneer er een nieuwe back-up word aangemaakt of de save file voor het voortgangsoverzicht wordt gebruikt, zal de locatie waarin de meest recent gebruikte bestanden staan, worden geselecteerd. Tijdens het herstellen van een back-up zal deze in beide locaties worden geplaatst.</value>
+    <value>Wanneer er een nieuwe back-up word aangemaakt of de save files voor het voortgangsoverzicht worden gebruikt, zal de locatie waarin de meest recent gebruikte bestanden staan, worden geselecteerd. Tijdens het herstellen van een back-up zal deze in beide locaties worden geplaatst.</value>
   </data>
   <data name="Progression_DataSource_Default" xml:space="preserve">
     <value>Standaard</value>
@@ -4134,7 +4134,7 @@ Start: Pauzeren</value>
     <value>Is ingeschakeld</value>
   </data>
   <data name="Utilities_BinaryTools_Header" xml:space="preserve">
-    <value>Binary Tools</value>
+    <value>Binaire Tools</value>
   </data>
   <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
     <value>Selecteer indeling om naar te converteren</value>

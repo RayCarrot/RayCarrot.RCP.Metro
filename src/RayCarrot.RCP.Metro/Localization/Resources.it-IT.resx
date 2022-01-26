@@ -187,7 +187,7 @@
     <value>Schermo intero con doppio buffering</value>
   </data>
   <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
-    <value>Usa il doppio buffering con schermo intero</value>
+    <value>Usa il doppio buffering con lo schermo intero</value>
   </data>
   <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
     <value>Correzione formato</value>
@@ -1183,7 +1183,7 @@ Riprovare?</value>
     <value>Rimappatura pulsanti Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Elenco dei codici cheat, aiuto generale con le utilità</value>
+    <value>Aiuto generale con le utilità</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Colonna sonora Per-Livello, traduzioni di Rayman 2</value>
@@ -2461,7 +2461,7 @@ Messaggio di errore: {1} </value>
     <value>Sincronizza tema</value>
   </data>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
-    <value>Se abilitato, il tema dell'applicazione (colore e modalità scuro/chiaro) si sincronizzerà con le impostazioni di sistema su Windows 10</value>
+    <value>Se abilitato, il tema dell'applicazione (colore e modalità scuro/chiaro) si sincronizzerà con le impostazioni di sistema su Windows 10/11</value>
   </data>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>Si è verificato un errore durante l'aggiornamento della lingua</value>
@@ -3289,10 +3289,10 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>I pipistrelli possono sparare proiettili con il pulsante di attacco</value>
   </data>
   <data name="Mod_RRR_MemMod_SaucersStartFlying" xml:space="preserve">
-    <value>I piatti iniziano a volare</value>
+    <value>I dischi volanti iniziano a volare</value>
   </data>
   <data name="Mod_RRR_MemMod_SaucersStartFlyingInfo" xml:space="preserve">
-    <value>Si possono trovare piatti volanti in giro, ma questo li rende più difficili da montare</value>
+    <value>Si possono trovare dischi volanti in giro, ma questo li rende più difficili da montare</value>
   </data>
   <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
     <value>Cacce al coniglio</value>
@@ -3944,5 +3944,276 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
   </data>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Alito mortale</value>
+  </data>
+  <data name="Archive_ReplaceFile" xml:space="preserve">
+    <value>Sostituisci</value>
+  </data>
+  <data name="Archive_ReplaceFileHeader" xml:space="preserve">
+    <value>Seleziona il file da sostituire</value>
+  </data>
+  <data name="Archive_ReplaceFile_Error" xml:space="preserve">
+    <value>Si è verificato un errore durante la sostituzione del file</value>
+  </data>
+  <data name="Config_Cheats" xml:space="preserve">
+    <value>Trucchi</value>
+  </data>
+  <data name="Config_RRRInvertHor" xml:space="preserve">
+    <value>Fotocamera speculare</value>
+  </data>
+  <data name="Config_RRROldMovie" xml:space="preserve">
+    <value>Effetto film d'epoca</value>
+  </data>
+  <data name="Config_OutdatedPatchNotice" xml:space="preserve">
+    <value>La patch applicata è obsoleta. Mantieni la patch abilitata e salva per aggiornarla alla versione più recente.</value>
+  </data>
+  <data name="Progression_LevelsCompleted" xml:space="preserve">
+    <value>Livelli completati</value>
+  </data>
+  <data name="Progression_Cages" xml:space="preserve">
+    <value>Gabbie</value>
+  </data>
+  <data name="Progression_RedemptionTokens" xml:space="preserve">
+    <value>Monete</value>
+  </data>
+  <data name="Progression_RedemptionPresents" xml:space="preserve">
+    <value>Regali</value>
+  </data>
+  <data name="Progression_RedemptionRaySkins" xml:space="preserve">
+    <value>Skin Rayman</value>
+  </data>
+  <data name="Progression_RedemptionBzzitSkins" xml:space="preserve">
+    <value>Skin Moskito</value>
+  </data>
+  <data name="Progression_RedemptionCheckpointSkins" xml:space="preserve">
+    <value>Skin checkpoint</value>
+  </data>
+  <data name="Progression_Tings" xml:space="preserve">
+    <value>Tings</value>
+  </data>
+  <data name="Progression_Lives" xml:space="preserve">
+    <value>Vite</value>
+  </data>
+  <data name="Progression_RabbidsBigBangStars" xml:space="preserve">
+    <value>Stelle</value>
+  </data>
+  <data name="Progression_RRRDays" xml:space="preserve">
+    <value>Giorni</value>
+  </data>
+  <data name="Progression_RRRMinigamesCompleted" xml:space="preserve">
+    <value>Minigiochi completati</value>
+  </data>
+  <data name="Progression_RRRPoints" xml:space="preserve">
+    <value>{0} (Punti)</value>
+  </data>
+  <data name="Progression_RRRScore" xml:space="preserve">
+    <value>{0} (Punteggio)</value>
+  </data>
+  <data name="Progression_RRRTotalPoints" xml:space="preserve">
+    <value>Punti totali</value>
+  </data>
+  <data name="Progression_RRRScoreSlot" xml:space="preserve">
+    <value>Punteggio</value>
+  </data>
+  <data name="Progression_Continues" xml:space="preserve">
+    <value>Continues</value>
+  </data>
+  <data name="Progression_Lums" xml:space="preserve">
+    <value>Lum</value>
+  </data>
+  <data name="Progression_R3Stamps" xml:space="preserve">
+    <value>Marchi</value>
+  </data>
+  <data name="Progression_TotalScore" xml:space="preserve">
+    <value>Punteggio totale</value>
+  </data>
+  <data name="Progression_RFRCrowns" xml:space="preserve">
+    <value>Corone</value>
+  </data>
+  <data name="Progression_RFRNightmareMode" xml:space="preserve">
+    <value>Modalità incubo</value>
+  </data>
+  <data name="Progression_Teeth" xml:space="preserve">
+    <value>Denti</value>
+  </data>
+  <data name="Progression_Teensies" xml:space="preserve">
+    <value>Teen</value>
+  </data>
+  <data name="Progression_Rank" xml:space="preserve">
+    <value>Classifica</value>
+  </data>
+  <data name="Progression_RLBronzeCups" xml:space="preserve">
+    <value>Coppe di bronzo</value>
+  </data>
+  <data name="Progression_RLSilverCups" xml:space="preserve">
+    <value>Coppe d'argento</value>
+  </data>
+  <data name="Progression_RLGoldCups" xml:space="preserve">
+    <value>Coppe d'oro</value>
+  </data>
+  <data name="Progression_RLDiamondCups" xml:space="preserve">
+    <value>Coppe di diamante</value>
+  </data>
+  <data name="Progression_RMRacesCompleted" xml:space="preserve">
+    <value>Gare finite</value>
+  </data>
+  <data name="Progression_RMBattlesCompleted" xml:space="preserve">
+    <value>Battaglie finite</value>
+  </data>
+  <data name="Progression_Electoons" xml:space="preserve">
+    <value>Electoon</value>
+  </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Medaglie Lum</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Trofei velocità</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>La modifica dei file di salvataggio potrebbe danneggiarli se eseguita in modo errato. Si consiglia vivamente di conservare un backup prima di procedere. Continuare?</value>
+  </data>
+  <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
+    <value>Conferma la modifica del file di salvataggio</value>
+  </data>
+  <data name="Progression_SlotInfo_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Progression_SlotInfo_Size" xml:space="preserve">
+    <value>Dimensione</value>
+  </data>
+  <data name="Progression_SlotInfo_LastModified" xml:space="preserve">
+    <value>Ultima modifica</value>
+  </data>
+  <data name="Progression_SelectEditProgram" xml:space="preserve">
+    <value>Seleziona un eseguibile per la modifica dei file di salvataggio JSON</value>
+  </data>
+  <data name="Progression_SaveEditSuccess" xml:space="preserve">
+    <value>Il file di salvataggio è stato modificato con successo</value>
+  </data>
+  <data name="Progression_ChangeEditProgram" xml:space="preserve">
+    <value>Cambia programma di salvataggio dell'editor</value>
+  </data>
+  <data name="Progression_BackupStatus_UpToDate" xml:space="preserve">
+    <value>Backup effettuato</value>
+  </data>
+  <data name="Progression_BackupStatus_Outdated" xml:space="preserve">
+    <value>Le nuove modifiche non sono state effetuate</value>
+  </data>
+  <data name="Progression_EditSlot" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="Progression_DataSource" xml:space="preserve">
+    <value>Fonte dati</value>
+  </data>
+  <data name="Progression_DataSourceInfo" xml:space="preserve">
+    <value>Per le applicazioni meno recenti Windows in alcuni casi reindirizzerà i file di salvataggio/configurazione al VirtualStore se l'applicazione non è in esecuzione come amministratore. L'effetto collaterale di questo è che avrai diversi file di salvataggio/configurazione utilizzati per il gioco a seconda che tu lo stia utilizzando come amministratore o meno.
+Modificando l'origine dati qui puoi scegliere quale posizione viene utilizzata per i backup e la vista di avanzamento.</value>
+  </data>
+  <data name="Progression_DataSource_Auto" xml:space="preserve">
+    <value>Automatico</value>
+  </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>Quando si crea un nuovo backup o si utilizzano i file di salvataggio per la vista di avanzamento, viene scelta la posizione con i file più recenti. Quando si ripristina un backup, verrà ripristinato in entrambe le posizioni.</value>
+  </data>
+  <data name="Progression_DataSource_Default" xml:space="preserve">
+    <value>Predefinito</value>
+  </data>
+  <data name="Progression_DataSource_DefaultInfo" xml:space="preserve">
+    <value>Viene sempre utilizzata la posizione predefinita. Ciò corrisponde alla posizione utilizzata dal gioco quando è in esecuzione come amministratore.</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStore" xml:space="preserve">
+    <value>VirtualStore</value>
+  </data>
+  <data name="Progression_DataSource_VirtualStoreInfo" xml:space="preserve">
+    <value>Viene sempre utilizzata la posizione del VirtualStore. Ciò corrisponde alla posizione utilizzata dal gioco quando non è in esecuzione come amministratore.</value>
+  </data>
+  <data name="Progression_BackupSlots" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Registro di Serializzazione</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>L'abilitazione del registro avrà qualsiasi azione di serializzazione binaria, come l'utilizzo di Archive Explorer o la visualizzazione della progressione del gioco, nel file di registro specificato. Questo è principalmente per il debug, ma può anche essere utile per visualizzare la struttura dei dati di determinati formati.</value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>È abilitato</value>
+  </data>
+  <data name="Utilities_BinaryTools_Header" xml:space="preserve">
+    <value>Strumenti binari</value>
+  </data>
+  <data name="Utilities_Converter_SelectConvertBackFormat" xml:space="preserve">
+    <value>Seleziona il formato in cui riconvertire</value>
+  </data>
+  <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
+    <value>File di salvataggio Rayman Raving Rabbids (.sav)</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serializzatori</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Output come registro</value>
+  </data>
+  <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
+    <value>Deserializza in JSON</value>
+  </data>
+  <data name="Utilities_Serializers_Serialize" xml:space="preserve">
+    <value>Serializza da JSON</value>
+  </data>
+  <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
+    <value>File di salvataggio Rayman Fiesta Run (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Preferenze di Unity Player / File di salvataggio di Rabbids Big Bang (.dat)</value>
+  </data>
+  <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
+    <value>File di salvataggio Game Maker DS Map / Rayman Redemption (.txt)</value>
+  </data>
+  <data name="Utilities_Serializers_FileSelectionHeader" xml:space="preserve">
+    <value>Seleziona i file da serializzare</value>
+  </data>
+  <data name="Utilities_Serializers_LogError" xml:space="preserve">
+    <value>Impossibile registrare i file</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeSuccess" xml:space="preserve">
+    <value>I file sono stati deserializzati con successo</value>
+  </data>
+  <data name="Utilities_Serializers_DeserializeError" xml:space="preserve">
+    <value>Impossibile deserializzare i file</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeSuccess" xml:space="preserve">
+    <value>I file sono stati serializzati con successo</value>
+  </data>
+  <data name="Utilities_Serializers_SerializeError" xml:space="preserve">
+    <value>Impossibile serializzare i file</value>
+  </data>
+  <data name="Config_RRRCheatsInfo" xml:space="preserve">
+    <value>I trucchi entreranno in vigore al primo caricamento di una mappa. A volte è anche necessario tornare al menu in seguito per aggiornare tutto.</value>
+  </data>
+  <data name="R3U_DirectPlayNotAvailable" xml:space="preserve">
+    <value>DirectPlay può essere attivato solo su Windows 8 o versioni successive</value>
+  </data>
+  <data name="RFRU_SaveFixHeader" xml:space="preserve">
+    <value>Correggi i progressi di salvataggio</value>
+  </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>A causa di un bug nelle versioni precedenti del gioco, l'avanzamento del file di salvataggio potrebbe non essere sincronizzato causandoti meno Teen di quelli effettivamente ottenuti. Ciò può rendere inaccessibili determinati livelli. Questa utilità tenterà di correggerlo.</value>
+  </data>
+  <data name="RFRU_SaveFixAction" xml:space="preserve">
+    <value>Correggi il salvataggio</value>
+  </data>
+  <data name="RFRU_SaveFixNotRequired" xml:space="preserve">
+    <value>Nessun problema trovato</value>
+  </data>
+  <data name="RFRU_SaveFixSuccess" xml:space="preserve">
+    <value>Il salvataggio è stato corretto con successo</value>
+  </data>
+  <data name="RFRU_SaveFixError" xml:space="preserve">
+    <value>Si è verificato un errore durante la correzione del salvataggio</value>
+  </data>
+  <data name="ROU_DebugCommandsNotAvailable" xml:space="preserve">
+    <value>I comandi di debug non sono disponibili per la versione Steam</value>
+  </data>
+  <data name="Utilities_NotAvailable" xml:space="preserve">
+    <value>L'utilità non è disponibile</value>
   </data>
 </root>

@@ -1247,7 +1247,7 @@ gameDisplayName</comment>
     <value>Rayman 2 button remapping</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Cheat code list, general help with the utilities</value>
+    <value>General help with the utilities</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Per-level soundtrack utility, Rayman 2 translations</value>
@@ -2587,7 +2587,7 @@ fileCount</comment>
     <value>Sync theme</value>
   </data>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
-    <value>If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10</value>
+    <value>If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10/11</value>
   </data>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>An error occurred when updating the language</value>
