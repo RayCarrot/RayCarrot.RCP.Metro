@@ -70,18 +70,32 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
             // Create the collection with items
             List<ProgressionDataViewModel> progressItems = new();
 
+            // NOTE:
+            // The race level modes get a bit confusing in the bonus league. There are 12 normal races and the bonus league
+            // has 5 additional ones. However they seem to handle the values in the save in an odd way, with some levels
+            // getting set to 2 (completed) even when they only have a training mode. Since I'm unsure what the true max
+            // would be I've opted out for not counting them and then manually adding mode 1 for the two bonus levels
+            // with an actual completable mode. Hopefully this will be accurate.
+
             // Get completed challenges
             int raceCompleted = 0;
             int battleCompleted = 0;
-            int maxRace = Game == Games.Demo_RaymanM ? 15 : 40;
+            int maxRace = Game == Games.Demo_RaymanM ? 15 : 38;
             int maxBattle = Game == Games.Demo_RaymanM ? 15 : 13 * 3;
 
-            void AddRaceCompleted(IEnumerable<int> values) => raceCompleted += values.Skip(17 * slotIndex).Take(17).Count(x => x == 2);
-            void AddBattleCompleted(IEnumerable<int> values) => battleCompleted += values.Skip(13 * slotIndex).Take(13).Count(x => x == 2);
+            void AddRaceCompleted(IEnumerable<int> values, int count) => 
+                raceCompleted += values.Skip(count * slotIndex).Take(12).Count(x => x == 2);
+            void AddBattleCompleted(IEnumerable<int> values) => 
+                battleCompleted += values.Skip(13 * slotIndex).Take(13).Count(x => x == 2);
 
-            AddRaceCompleted(GetValues("sg_racelevels_mode1"));
-            AddRaceCompleted(GetValues("sg_racelevels_mode2"));
-            AddRaceCompleted(GetValues("sg_racelevels_mode3"));
+            AddRaceCompleted(GetValues("sg_racelevels_mode1"), 17);
+            AddRaceCompleted(GetValues("sg_racelevels_mode2"), 16);
+            AddRaceCompleted(GetValues("sg_racelevels_mode3"), 16);
+
+            // Unoptimized code for adding Speed Stress & On and On
+            raceCompleted += GetValues("sg_racelevels_mode1").Skip(17 * slotIndex + 14).Take(1).Count(x => x == 2);
+            raceCompleted += GetValues("sg_racelevels_mode1").Skip(17 * slotIndex + 16).Take(1).Count(x => x == 2);
+
             AddBattleCompleted(GetValues("sg_battlelevels_mode1"));
             AddBattleCompleted(GetValues("sg_battlelevels_mode2"));
             AddBattleCompleted(GetValues("sg_battlelevels_mode3"));
@@ -113,7 +127,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                     var value = GetValues(key).ElementAt(index);
 
                     // Only add if it has valid data
-                    if ((isTime && value > 0) || (!isTime && value > -22))
+                    if ((isTime && value > 0) || (!isTime && value != -22))
                         progressItems.Add(new ProgressionDataViewModel(
                             isPrimaryItem: false,
                             // Get the level icon
