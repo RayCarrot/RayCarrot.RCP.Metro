@@ -4220,4 +4220,31 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>Narzędzie jest niedostępne</value>
   </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Lum medale</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Trofea prędkości</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>Edycja plików zapisu może je uszkodzić, jeśli zostanie wykonana niepoprawnie. Zaleca się zachowanie kopii zapasowej przed kontynuowaniem. Kontynuować? </value>
+  </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Dziennik serializacji</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Włączenie dziennika spowoduje, że każde działanie związane z serializacją binarną, takie jak użycie Eksploratora Archiwów lub przeglądanie postępu gry, zostanie zapisane w określonym pliku logu. Służy to głównie do debugowania, ale może być również przydatne do przeglądania struktury danych niektórych formatów. </value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Jest włączony</value>
+  </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serializatory</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Dane wyjściowe jako log</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Preferencje Unity Player / Pliki zapisu gry Rabbids Big Bang (.dat)</value>
+  </data>
 </root>
