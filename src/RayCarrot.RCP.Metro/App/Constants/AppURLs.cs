@@ -234,17 +234,17 @@ public static class AppURLs
     /// <summary>
     /// The Rayman Origins original videos URL
     /// </summary>
-    public const string RO_OriginalVideos_URL = UtilityBaseUrl + "rO/OriginalVideos.zip";
+    public const string RO_OriginalVideos_URL = UtilityBaseUrl + "ro/OriginalVideos.zip";
 
     /// <summary>
     /// The Rayman Origins high quality videos URL
     /// </summary>
-    public const string RO_HQVideos_URL = UtilityBaseUrl + "rO/HQVideos.zip";
+    public const string RO_HQVideos_URL = UtilityBaseUrl + "ro/HQVideos.zip";
 
     /// <summary>
     /// The Rayman Origins updater URL
     /// </summary>
-    public const string RO_Updater_URL = UtilityBaseUrl + "rO/Updater.zip";
+    public const string RO_Updater_URL = UtilityBaseUrl + "ro/Updater.zip";
 
     #endregion
 
