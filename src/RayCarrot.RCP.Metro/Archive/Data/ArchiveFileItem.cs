@@ -50,7 +50,7 @@ public class ArchiveFileItem : IDisposable
     [MemberNotNullWhen(true, nameof(PendingImport))]
     public bool IsPendingImport => PendingImport != null;
 
-    public FileExtension FileExtension => new FileExtension(FileName);
+    public FileExtension FileExtension => new FileExtension(FileName, multiple: true);
 
     public ArchiveFileStream GetFileData(IDisposable? generator)
     {

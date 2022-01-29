@@ -66,6 +66,7 @@
                          SelectedPath="{Binding Path=ProgramFilePath}" 
                          BrowseType="File"
                          PathValidation="FileExists"
+                         FileFilter="Exe (*.exe)|*.exe"
                          Margin="0 0 0 10"/>
         
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">

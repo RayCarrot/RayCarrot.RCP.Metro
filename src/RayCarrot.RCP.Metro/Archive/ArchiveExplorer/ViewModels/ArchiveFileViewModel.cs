@@ -165,7 +165,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <summary>
     /// The file extension
     /// </summary>
-    public FileExtension FileExtension => new(FileName);
+    public FileExtension FileExtension => new(FileName, multiple: true);
 
     /// <summary>
     /// Indicates if the file has pending imports
@@ -610,7 +610,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
         using ArchiveFileStream importFile = new(File.OpenRead(file), file.Name, true);
 
         // Import the file
-        ImportFile(importFile, file.FileExtension, convert);
+        ImportFile(importFile, file.FileExtensions, convert);
     }
 
     public void ImportFile(ArchiveFileStream importFile, FileExtension fileExtension, bool convert)

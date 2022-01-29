@@ -134,6 +134,12 @@ namespace RayCarrot.RCP.Metro
         public bool DirectoryExists => !IsRelative && FileSystemType == FileSystemType.Directory;
 
         /// <summary>
+        /// Gets the file extensions for the path
+        /// </summary>
+        [Obsolete("Use FileSystemPath.FileExtension instead as support for multiple file extensions will be removed")]
+        public FileExtension FileExtensions => new FileExtension(Name, multiple: true);
+
+        /// <summary>
         /// Gets the file extension for the path
         /// </summary>
         public FileExtension FileExtension => new FileExtension(Name);

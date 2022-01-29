@@ -72,7 +72,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
     /// <summary>
     /// The file extensions to compress
     /// </summary>
-    public IEnumerable<FileExtension> CompressedFileExtensions => CompressedExtensions.Split(',').Select(x => new FileExtension(x));
+    public IEnumerable<FileExtension> CompressedFileExtensions => CompressedExtensions.Split(',').Select(x => new FileExtension(x, multiple: true));
 
     #endregion
 
@@ -392,7 +392,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
             FileCompressionMode.Never => false,
             FileCompressionMode.Always => true,
 
-            FileCompressionMode.MatchesSetting => !CompressEntireBlock && CompressedFileExtensions.Any(x => x == new FileExtension(entry.Path.FileName)),
+            FileCompressionMode.MatchesSetting => !CompressEntireBlock && CompressedFileExtensions.Any(x => x == new FileExtension(entry.Path.FileName, multiple: true)),
             FileCompressionMode.WasCompressed => entry.IsCompressed,
 
             _ => throw new ArgumentOutOfRangeException(nameof(CompressionMode), CompressionMode, null)

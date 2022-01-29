@@ -135,7 +135,7 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
                         FileSystemPath destinationFile = destinationResult.SelectedDirectory + file.Name;
 
                         // Set the file extension
-                        destinationFile = destinationFile.ChangeFileExtension(new FileExtension(extResult.SelectedFileFormat)).GetNonExistingFileName();
+                        destinationFile = destinationFile.ChangeFileExtension(new FileExtension(extResult.SelectedFileFormat, multiple: true)).GetNonExistingFileName();
 
                         // Convert the file
                         SelectedType.Convert(context, file.Name, destinationFile);

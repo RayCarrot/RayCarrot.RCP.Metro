@@ -33,13 +33,13 @@ public class Utility_Converters_OpenSpaceGF_TypeViewModel : Utility_Converters_T
         using Bitmap bmp = gf.GetRawBitmapData().GetBitmap();
 
         // Save the image
-        bmp.Save(outputFilePath, outputFilePath.FileExtension.PrimaryFileExtension switch
+        bmp.Save(outputFilePath, outputFilePath.FileExtensions.PrimaryFileExtension switch
         {
             ".png" => ImageFormat.Png,
             ".jpeg" => ImageFormat.Jpeg,
             ".jpg" => ImageFormat.Jpeg,
             ".bmp" => ImageFormat.Bmp,
-            _ => throw new Exception($"The specified file format {outputFilePath.FileExtension} is not supported")
+            _ => throw new Exception($"The specified file format {outputFilePath.FileExtensions} is not supported")
         });
     }
 

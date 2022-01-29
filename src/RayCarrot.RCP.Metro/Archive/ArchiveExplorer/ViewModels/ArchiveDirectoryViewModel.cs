@@ -263,7 +263,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                     // Add the selected format
                                     FileExtension? e = extResult.SelectedFileFormat == ext.First() 
                                         ? null
-                                        : new FileExtension(extResult.SelectedFileFormat);
+                                        : new FileExtension(extResult.SelectedFileFormat, multiple: true);
 
                                     selectedFormats.Add(file.FileType, e);
                                 }

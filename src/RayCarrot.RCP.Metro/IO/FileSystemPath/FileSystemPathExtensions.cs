@@ -159,12 +159,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file path without the extension, or the file path if no extension was found</returns>
         public static FileSystemPath RemoveFileExtension(this FileSystemPath fileSystemPath, bool includeMultipleExtensions = false)
         {
-            if (!fileSystemPath.FileExtension.AllFileExtensions.Any())
+            if (!fileSystemPath.FileExtensions.AllFileExtensions.Any())
                 return fileSystemPath;
 
             var fileExtSize = includeMultipleExtensions
-                ? fileSystemPath.FileExtension.FileExtensions.Length
-                : fileSystemPath.FileExtension.PrimaryFileExtension.Length;
+                ? fileSystemPath.FileExtensions.FileExtensions.Length
+                : fileSystemPath.FileExtensions.PrimaryFileExtension.Length;
 
             return fileSystemPath.FullPath.Substring(0, fileSystemPath.FullPath.Length - fileExtSize);
         }
@@ -214,7 +214,7 @@ namespace RayCarrot.RCP.Metro
             do
             {
                 newFilePath = $"{filePath.RemoveFileExtension().FullPath} ({index++})";
-                newFilePath = newFilePath.AppendFileExtension(filePath.FileExtension);
+                newFilePath = newFilePath.AppendFileExtension(filePath.FileExtensions);
             } while (newFilePath.Exists);
 
             return newFilePath;

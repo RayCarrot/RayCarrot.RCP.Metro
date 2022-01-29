@@ -40,7 +40,7 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <returns>True if it is of this type, otherwise false</returns>
     public override bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager)
     {
-        if (fileExtension != new FileExtension(".tga.ckd") && fileExtension != new FileExtension(".png.ckd"))
+        if (fileExtension != new FileExtension(".tga.ckd", multiple: true) && fileExtension != new FileExtension(".png.ckd", multiple: true))
             return false;
 
         // Set the Stream position

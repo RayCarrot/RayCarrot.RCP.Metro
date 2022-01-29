@@ -4,6 +4,13 @@ using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
+    // TODO-UPDATE: Remove support for multiple extensions. This can cause issues when a file name has multiple periods
+    //              in it. The reason for this class being made in the first place was for UbiArt IPK files containing files with
+    //              extensions such as .tga.ckd, where the .ckd (cooked) extension was appended to the normal one, but not the
+    //              extension we want to use (since it's not unique to that file type). A better fix for that might be to have the
+    //              IPK archive manager return the non-ckd file extension when using it to identify the file type, while still
+    //              keeping it in the name.
+
     /// <summary>
     /// A file extension
     /// </summary>
@@ -15,12 +22,29 @@ namespace RayCarrot.RCP.Metro
         /// Constructor for a complete file extension or file name
         /// </summary>
         /// <param name="fileExtensions">The complete file extension or file name</param>
-        public FileExtension(string fileExtensions)
+        public FileExtension(string fileExtensions) : this(fileExtensions, false) { }
+
+        /// <summary>
+        /// Constructor for a complete file extension or file name
+        /// </summary>
+        /// <param name="fileExtensions">The complete file extension or file name</param>
+        /// <param name="multiple">Indicates if multiple file extensions are supported</param>
+        [Obsolete("Use FileExtension(string fileExtensions) instead as support for multiple file extensions will be removed")]
+        public FileExtension(string fileExtensions, bool multiple)
         {
             if (fileExtensions.IsNullOrWhiteSpace())
+            {
                 AllFileExtensions = Array.Empty<string>();
-            else
+            }
+            else if (multiple)
+            {
                 AllFileExtensions = fileExtensions.ToLowerInvariant().Split('.').Skip(1).Select(x => $".{x}").ToArray();
+            }
+            else
+            {
+                string? ext = System.IO.Path.GetExtension(fileExtensions.ToLowerInvariant());
+                AllFileExtensions = ext.IsNullOrEmpty() ? Array.Empty<string>() : ext.YieldToArray();
+            }
         }
 
         /// <summary>
