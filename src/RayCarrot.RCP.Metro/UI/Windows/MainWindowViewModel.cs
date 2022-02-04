@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System;
+
+namespace RayCarrot.RCP.Metro;
 
 public class MainWindowViewModel : BaseViewModel
 {
@@ -12,14 +14,14 @@ public class MainWindowViewModel : BaseViewModel
         Page_About_ViewModel aboutPage, 
         Page_Debug_ViewModel debugPage)
     {
-        App = app;
-        GamesPage = gamesPage;
-        ProgressionPage = progressionPage;
-        UtilitiesPage = utilitiesPage;
-        ModsPage = modsPage;
-        SettingsPage = settingsPage;
-        AboutPage = aboutPage;
-        DebugPage = debugPage;
+        App = app ?? throw new ArgumentNullException(nameof(app));
+        GamesPage = gamesPage ?? throw new ArgumentNullException(nameof(gamesPage));
+        ProgressionPage = progressionPage ?? throw new ArgumentNullException(nameof(progressionPage));
+        UtilitiesPage = utilitiesPage ?? throw new ArgumentNullException(nameof(utilitiesPage));
+        ModsPage = modsPage ?? throw new ArgumentNullException(nameof(modsPage));
+        SettingsPage = settingsPage ?? throw new ArgumentNullException(nameof(settingsPage));
+        AboutPage = aboutPage ?? throw new ArgumentNullException(nameof(aboutPage));
+        DebugPage = debugPage ?? throw new ArgumentNullException(nameof(debugPage));
 
         AppTitle = App.IsRunningAsAdmin ? Resources.AppNameAdmin : Resources.AppName;
     }

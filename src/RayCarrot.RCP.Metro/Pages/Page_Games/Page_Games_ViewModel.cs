@@ -1,10 +1,10 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Nito.AsyncEx;
 using NLog;
 
@@ -13,15 +13,20 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// View model for the games page
 /// </summary>
-public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
+public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Page_Games_ViewModel()
+    public Page_Games_ViewModel(
+        AppViewModel app, 
+        AppUserData data, 
+        IMessageUIManager messageUi,
+        IAppInstanceData instanceData) : base(app)
     {
+        // Set services
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+
         // Get categorized games
         var games = App.GetCategorizedGames;
             
@@ -47,9 +52,9 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
 
         // Refresh on app refresh
-        App.RefreshRequired += async (s, e) =>
+        App.RefreshRequired += async (_, e) =>
         {
-            if (e.LaunchInfoModified && e.ModifiedGames?.Any() == true)
+            if (e.LaunchInfoModified && e.ModifiedGames.Any())
                 foreach (Games game in e.ModifiedGames)
                     await RefreshGameAsync(game);
 
@@ -61,10 +66,10 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
         RefreshCategorizedVisibility();
 
         // Refresh on culture changed
-        Services.InstanceData.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+        instanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync());
 
         // Refresh on startup
-        Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
+        Metro.App.Current.StartupComplete += async (_, _) => await RefreshAsync();
 
         // Refresh visibility on setting change
         Data.PropertyChanged += Data_PropertyChanged;
@@ -80,9 +85,8 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
 
     #region Commands
 
-    public AsyncRelayCommand RunGameFinderCommand { get; }
-
-    public AsyncRelayCommand RefreshGamesCommand { get; }
+    public ICommand RunGameFinderCommand { get; }
+    public ICommand RefreshGamesCommand { get; }
 
     #endregion
 
@@ -95,7 +99,16 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
 
     #endregion
 
+    #region Services
+
+    public AppUserData Data { get; }
+    public IMessageUIManager MessageUI { get; }
+
+    #endregion
+
     #region Public Properties
+
+    public override AppPage Page => AppPage.Games;
 
     /// <summary>
     /// The selected game category index
@@ -297,12 +310,12 @@ public class Page_Games_ViewModel : BaseRCPViewModel, IDisposable
 
         // Check the result
         if (!result)
-            await Services.MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader, MessageType.Information);
+            await MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader, MessageType.Information);
     }
 
     public void Dispose()
     {
-        GameCategories?.DisposeAll();
+        GameCategories.DisposeAll();
     }
 
     #endregion

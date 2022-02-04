@@ -14,11 +14,17 @@ public class Page_Progression_ViewModel : BasePageViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Page_Progression_ViewModel()
+    public Page_Progression_ViewModel(
+        AppViewModel app, 
+        AppUserData data, 
+        IMessageUIManager messageUi, 
+        AppUIManager ui) : base(app)
     {
+        // Set services
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+        UI = ui ?? throw new ArgumentNullException(nameof(ui));
+
         // Create properties
         GameItems = new ObservableCollection<ProgressionGameViewModel>();
         AsyncLock = new AsyncLock();
@@ -51,6 +57,14 @@ public class Page_Progression_ViewModel : BasePageViewModel
     public ICommand RefreshCommand { get; }
     public ICommand BackupAllCommand { get; }
     public ICommand ChangeSaveEditProgramCommand { get; }
+
+    #endregion
+
+    #region Services
+
+    public AppUserData Data { get; }
+    public IMessageUIManager MessageUI { get; }
+    public AppUIManager UI { get; }
 
     #endregion
 
@@ -124,7 +138,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
         using (await AsyncLock.LockAsync())
         {
             // Confirm backup
-            if (!await Services.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
+            if (!await MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
             {
                 Logger.Info("Backup canceled");
 
@@ -141,15 +155,15 @@ public class Page_Progression_ViewModel : BasePageViewModel
             }
 
             if (completed == GameItems.Count)
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
+                await MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
             else
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
+                await MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
         }
     }
 
     public async Task ChangeSaveEditProgramAsync()
     {
-        ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
+        ProgramSelectionResult programResult = await UI.GetProgramAsync(new ProgramSelectionViewModel()
         {
             Title = Resources.Progression_SelectEditProgram,
             ProgramFilePath = Data.Progression_SaveEditorExe,

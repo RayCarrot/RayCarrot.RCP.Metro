@@ -25,6 +25,8 @@ using NLog.Targets;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-UPDATE: Move code out of here to StartupManager. This should only set up WPF/XAML related stuff.
+
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>

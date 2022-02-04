@@ -21,11 +21,19 @@ public class Page_Settings_ViewModel : BasePageViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Page_Settings_ViewModel()
+    public Page_Settings_ViewModel(
+        AppViewModel app, 
+        AppUserData data, 
+        IAppInstanceData instanceData, 
+        IMessageUIManager messageUi, 
+        AppUIManager ui) : base(app)
     {
+        // Set services
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        InstanceData = instanceData ?? throw new ArgumentNullException(nameof(instanceData));
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+        UI = ui ?? throw new ArgumentNullException(nameof(ui));
+
         // Create commands
         ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
         EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
@@ -34,15 +42,15 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
         // Create properties
         AsyncLock = new AsyncLock();
-        LocalLinkItems = new LinkItemCollection();
+        LocalLinkItems = new LinkItemCollection(Data);
         AssociatedPrograms = new ObservableCollection<AssociatedProgramEntryViewModel>();
 
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(LocalLinkItems, this);
 
         // Refresh when needed
-        Services.InstanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
-        Services.InstanceData.UserLevelChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
+        InstanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
+        InstanceData.UserLevelChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
         Data.PropertyChanged += (_, e) =>
         {
             if (e.PropertyName == nameof(Data.Archive_AssociatedPrograms))
@@ -85,6 +93,15 @@ public class Page_Settings_ViewModel : BasePageViewModel
     /// The async lock for refreshing the links
     /// </summary>
     private AsyncLock AsyncLock { get; }
+
+    #endregion
+
+    #region Services
+
+    public AppUserData Data { get; }
+    public IAppInstanceData InstanceData { get; }
+    public IMessageUIManager MessageUI { get; }
+    public AppUIManager UI { get; }
 
     #endregion
 
@@ -148,7 +165,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
     public async Task EditJumpListAsync()
     {
         // Get the result
-        var result = await Services.UI.EditJumpListAsync(new JumpListEditViewModel());
+        var result = await UI.EditJumpListAsync(new JumpListEditViewModel());
 
         if (result.CanceledByUser)
             return;
@@ -328,7 +345,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
     public async Task ResetAsync()
     {
-        if (!await Services.MessageUI.DisplayMessageAsync(Resources.ConfirmResetData, Resources.ConfirmResetDataHeader, MessageType.Question, true))
+        if (!await MessageUI.DisplayMessageAsync(Resources.ConfirmResetData, Resources.ConfirmResetDataHeader, MessageType.Question, true))
         {
             return;
         }
@@ -346,6 +363,13 @@ public class Page_Settings_ViewModel : BasePageViewModel
     /// </summary>
     public class LinkItemCollection : ObservableCollection<Page_Settings_LinkItemViewModel[]>
     {
+        public LinkItemCollection(AppUserData data)
+        {
+            Data = data ?? throw new ArgumentNullException(nameof(data));
+        }
+
+        public AppUserData Data { get; }
+
         /// <summary>
         /// Adds a new group to the collection
         /// </summary>
@@ -353,7 +377,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
         public new void Add(Page_Settings_LinkItemViewModel[] group)
         {
             // Get the valid items
-            var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= Services.Data.App_UserLevel).ToArray();
+            var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= Data.App_UserLevel).ToArray();
 
             // If there are valid items, add them
             if (validItems.Any())

@@ -11,10 +11,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Page_Utilities_ViewModel()
+    public Page_Utilities_ViewModel(AppViewModel app) : base(app)
     {
         BinaryToolViewModels = new ObservableCollection<UtilityViewModel>();
         OtherViewModels = new ObservableCollection<UtilityViewModel>();

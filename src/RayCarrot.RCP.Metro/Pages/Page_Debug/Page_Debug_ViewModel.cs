@@ -13,7 +13,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using ControlzEx.Theming;
-using Microsoft.PowerShell.Commands;
 using Newtonsoft.Json;
 using NLog;
 
@@ -29,8 +28,23 @@ public class Page_Debug_ViewModel : BasePageViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Page_Debug_ViewModel()
+    public Page_Debug_ViewModel(
+        AppViewModel app, 
+        AppUserData data, 
+        AppUIManager ui, 
+        IFileManager fileManager, 
+        IBrowseUIManager browseUi, 
+        IMessageUIManager messageUi, 
+        IDialogBaseManager dialogBaseManager) : base(app)
     {
+        // Set services
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        FileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
+        BrowseUI = browseUi ?? throw new ArgumentNullException(nameof(browseUi));
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+        DialogBaseManager = dialogBaseManager ?? throw new ArgumentNullException(nameof(dialogBaseManager));
+
         // Create commands
         ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
         ShowLogCommand = new AsyncRelayCommand(ShowLogAsync);
@@ -76,6 +90,17 @@ public class Page_Debug_ViewModel : BasePageViewModel
     #region Private Fields
 
     private bool _showGridLines;
+
+    #endregion
+
+    #region Services
+
+    public AppUserData Data { get; }
+    public AppUIManager UI { get; }
+    public IFileManager FileManager { get; }
+    public IBrowseUIManager BrowseUI { get; }
+    public IMessageUIManager MessageUI { get; }
+    public IDialogBaseManager DialogBaseManager { get; }
 
     #endregion
 
@@ -164,14 +189,14 @@ public class Page_Debug_ViewModel : BasePageViewModel
             switch (SelectedDialog)
             {
                 case DebugDialogType.GameSelection:
-                    await Services.UI.SelectGamesAsync(new GamesSelectionViewModel()
+                    await UI.SelectGamesAsync(new GamesSelectionViewModel()
                     {
                         Title = "Debug",
                     });
                     break;
 
                 case DebugDialogType.GameTypeSelection:
-                    await Services.UI.SelectGameTypeAsync(new GameTypeSelectionViewModel()
+                    await UI.SelectGameTypeAsync(new GameTypeSelectionViewModel()
                     {
                         Title = "Debug",
                         AllowSteam = true,
@@ -183,39 +208,39 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     break;
 
                 case DebugDialogType.Message:
-                    await Services.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
+                    await MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
                     break;
 
                 case DebugDialogType.Directory:
-                    await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                    await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogType.Drive:
-                    await Services.UI.BrowseDriveAsync(new DriveBrowserViewModel()
+                    await UI.BrowseDriveAsync(new DriveBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogType.File:
-                    await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                    await BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogType.SaveFile:
-                    await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                    await BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogType.EditEducationalDosGame:
-                    await Services.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(new UserData_EducationalDosBoxGameData(FileSystemPath.EmptyPath, "DEBUG", "DEBUG"), new string[]
+                    await UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(new UserData_EducationalDosBoxGameData(FileSystemPath.EmptyPath, "DEBUG", "DEBUG"), new string[]
                     {
                         "DEBUG"
                     })
@@ -225,14 +250,14 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     break;
 
                 case DebugDialogType.EditJumpList:
-                    await Services.UI.EditJumpListAsync(new JumpListEditViewModel()
+                    await UI.EditJumpListAsync(new JumpListEditViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogType.FileExtensionSelection:
-                    await Services.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(new string[]
+                    await UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(new string[]
                     {
                         "EXT 1",
                         "EXT 2",
@@ -243,7 +268,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     break;
 
                 case DebugDialogType.StringInput:
-                    await Services.UI.GetStringInputAsync(new StringInputViewModel()
+                    await UI.GetStringInputAsync(new StringInputViewModel()
                     {
                         Title = "Debug",
                         HeaderText = "Specify a string"
@@ -251,14 +276,14 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     break;
 
                 case DebugDialogType.ProgramSelection:
-                    await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
+                    await UI.GetProgramAsync(new ProgramSelectionViewModel()
                     {
                         Title = "Debug",
                     });
                     break;
 
                 default:
-                    await Services.MessageUI.DisplayMessageAsync("Invalid selection");
+                    await MessageUI.DisplayMessageAsync("Invalid selection");
                     break;
             }
         }
@@ -272,9 +297,9 @@ public class Page_Debug_ViewModel : BasePageViewModel
     {
         if (!Metro.App.Current.IsLogViewerAvailable)
         {
-            await Services.MessageUI.DisplayMessageAsync("The log viewer is not enabled. Use the launch argument -logviewer to enabled it. The log file will open instead.", MessageType.Warning);
+            await MessageUI.DisplayMessageAsync("The log viewer is not enabled. Use the launch argument -logviewer to enabled it. The log file will open instead.", MessageType.Warning);
 
-            await Services.File.LaunchFileAsync(AppFilePaths.LogFile);
+            await FileManager.LaunchFileAsync(AppFilePaths.LogFile);
 
             return;
         }
@@ -307,7 +332,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                 lines.AddRange(from utility in await info.GetAppliedUtilitiesAsync() select $"{utility} ({info.DisplayName})");
         }
 
-        await Services.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
+        await MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
     }
 
     /// <summary>
@@ -397,7 +422,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                 case DebugDataOutputType.GameFinder:
                     // Select the games to find
-                    var selectionResult = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel());
+                    var selectionResult = await UI.SelectGamesAsync(new GamesSelectionViewModel());
 
                     if (selectionResult.CanceledByUser)
                         return;
@@ -522,7 +547,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     /// </summary>
     public async Task RunInstallerAsync()
     {
-        await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstaller_Window(SelectedInstaller));
+        await DialogBaseManager.ShowDialogWindowAsync(new GameInstaller_Window(SelectedInstaller));
     }
 
     public void UpdateTheme()

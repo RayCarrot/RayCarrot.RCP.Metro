@@ -7,11 +7,8 @@ namespace RayCarrot.RCP.Metro;
 /// View model for the mods page
 /// </summary>
 public class Page_Mods_ViewModel : BasePageViewModel
-{ 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Page_Mods_ViewModel()
+{
+    public Page_Mods_ViewModel(AppViewModel app) : base(app)
     {
         Mods = new Mod_BaseViewModel[]
         {
