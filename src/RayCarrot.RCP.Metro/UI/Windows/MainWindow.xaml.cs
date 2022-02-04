@@ -14,15 +14,17 @@ public partial class MainWindow : BaseWindow
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public MainWindow()
+    public MainWindow(AppViewModel app, AppUserData data, MainWindowViewModel viewModel)
     {
         InitializeComponent();
 
+        // Set properties
+        App = app;
+        Data = data;
+        DataContext = viewModel;
+
         // Subscribe to events
-        Services.App.RefreshRequired += AppGameRefreshRequiredAsync;
+        App.RefreshRequired += AppGameRefreshRequiredAsync;
         Loaded += MainWindow_Loaded;
     }
 
@@ -31,6 +33,13 @@ public partial class MainWindow : BaseWindow
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Private Properties
+
+    private AppViewModel App { get; }
+    private AppUserData Data { get; }
 
     #endregion
 
@@ -46,7 +55,7 @@ public partial class MainWindow : BaseWindow
 
         try
         {
-            ProgressionPageTab.IsEnabled = Services.Data.Game_Games?.Any() ?? false;
+            ProgressionPageTab.IsEnabled = Data.Game_Games?.Any() ?? false;
         }
         catch (Exception ex)
         {
@@ -101,18 +110,18 @@ public partial class MainWindow : BaseWindow
         RefreshProgressionPageEnabled();
 
         // Set the data context for each overflow item
-        foreach (var page in PageTabControl.Items.
+        foreach (BasePage page in PageTabControl.Items.
                      // Get all tab items
                      OfType<System.Windows.Controls.TabItem>().
                      // Get the content of the tab items
                      Select(x => x.Content).
                      // Only get base pages
-                     OfType<IBasePage>().
+                     OfType<BasePage>().
                      // Make sure there is an overflow menu
                      Where(x => x.OverflowMenu != null))
         {
             // Set the data context
-            page.OverflowMenu.DataContext = (page as FrameworkElement)?.DataContext;
+            page.OverflowMenu!.DataContext = page.DataContext;
         }
     }
 

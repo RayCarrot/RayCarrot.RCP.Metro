@@ -12,12 +12,11 @@
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   Title="{Binding Path=AppTitle, Mode=OneTime}"
                   CloseWithEscape="False"
-                  IsCloseButtonEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}"
+                  IsCloseButtonEnabled="{Binding Path=App.IsLoading, Converter={local:InvertedBooleanConverter}}"
                   Width="960" Height="720"
                   Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                  DataContext="{x:Static local:Services.App}" 
-                  d:DataContext="{d:DesignInstance local:AppViewModel}">
+                  d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
     <local:BaseWindow.RightWindowCommands>
         <mah:WindowCommands ItemsSource="{Binding Source={x:Static local:RCPChildWindow.MinimizedWindows}, Mode=OneTime}"> 
             <mah:WindowCommands.ItemTemplate>
@@ -81,7 +80,7 @@
 
                                         <local:OverflowMenu Grid.Column="2"
                                                             InheritDataContext="False"
-                                                            DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:IBasePage.OverflowMenu)}"
+                                                            DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:BasePage.OverflowMenu)}"
                                                             Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
                                                             ContextMenu="{Binding}"
                                                             Margin="10"/>
@@ -162,8 +161,8 @@
             <TabItem Header="{Resx GamesPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Games}"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Games}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
-                <local:Page_Games_UI />
+                     IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
+                <local:Page_Games_UI DataContext="{Binding Path=GamesPage, Mode=OneTime}" />
             </TabItem>
 
             <!-- Progression -->
@@ -172,8 +171,8 @@
                      Header="{Resx Progression_Header}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Progression}"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Progression}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Progression}">
-                <local:Page_Progression_UI />
+                     IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Progression}">
+                <local:Page_Progression_UI DataContext="{Binding Path=ProgressionPage, Mode=OneTime}" />
             </TabItem>
 
             <!-- Utilities -->
@@ -181,8 +180,8 @@
             <TabItem Header="{Resx UtilitiesPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Utilities}"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Utilities}">
-                <local:Page_Utilities_UI />
+                     IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Utilities}">
+                <local:Page_Utilities_UI DataContext="{Binding Path=UtilitiesPage, Mode=OneTime}" />
             </TabItem>
 
             <!-- Mods -->
@@ -190,8 +189,8 @@
             <TabItem Header="{Resx ModsPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Mods}"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Mods}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Mods}">
-                <local:Page_Mods_UI />
+                     IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Mods}">
+                <local:Page_Mods_UI DataContext="{Binding Path=ModsPage, Mode=OneTime}" />
             </TabItem>
 
             <!-- Settings -->
@@ -199,8 +198,8 @@
             <TabItem Header="{Resx SettingsPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Settings}"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Settings}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Settings}">
-                <local:Page_Settings_UI />
+                     IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Settings}">
+                <local:Page_Settings_UI DataContext="{Binding Path=SettingsPage, Mode=OneTime}" />
             </TabItem>
 
             <!-- About -->
@@ -208,8 +207,8 @@
             <TabItem Header="{Resx AboutPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Info}"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=About}">
-                <local:Page_About_UI />
+                     IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=About}">
+                <local:Page_About_UI DataContext="{Binding Path=AboutPage, Mode=OneTime}" />
             </TabItem>
 
             <!-- Debug -->
@@ -217,9 +216,9 @@
             <TabItem Header="{Resx DebugPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Debug}"
                      local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
-                     IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
+                     IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
                      local:UserLevelAssist.MinUserLevel="Debug">
-                <local:Page_Debug_UI />
+                <local:Page_Debug_UI DataContext="{Binding Path=DebugPage, Mode=OneTime}" />
             </TabItem>
 
         </mah:MetroAnimatedTabControl>
@@ -229,7 +228,7 @@
         <mah:ProgressRing HorizontalAlignment="Right"
                           VerticalAlignment="Bottom"
                           Margin="5"
-                          Visibility="{Binding Path=IsStartupRunning, Converter={local:BooleanToVisibilityConverter}}" />
+                          Visibility="{Binding Path=App.IsStartupRunning, Converter={local:BooleanToVisibilityConverter}}" />
 
         <!-- Load operation indicator (blocks the UI) -->
 
@@ -237,7 +236,7 @@
               ClipToBounds="True"
               FocusVisualStyle="{x:Null}"
               KeyboardNavigation.TabNavigation="None"
-              Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}">
+              Visibility="{Binding Path=App.IsLoading, Converter={local:BooleanToVisibilityConverter}}">
 
             <mah:ProgressRing HorizontalAlignment="Center"
                               VerticalAlignment="Center" />

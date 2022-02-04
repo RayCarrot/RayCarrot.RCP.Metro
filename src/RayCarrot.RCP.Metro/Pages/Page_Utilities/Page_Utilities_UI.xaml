@@ -1,5 +1,4 @@
 ﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.Page_Utilities_UI"
-                x:TypeArguments="local:Page_Utilities_ViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

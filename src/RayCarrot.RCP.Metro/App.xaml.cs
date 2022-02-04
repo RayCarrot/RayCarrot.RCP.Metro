@@ -32,8 +32,13 @@ public partial class App : Application
 {
     #region Constructor
 
-    public App()
+    public App(string[] args)
     {
+        // Set up the services
+        IServiceCollection services = new ServiceCollection();
+        ConfigureServices(services, args);
+        ServiceProvider = services.BuildServiceProvider();
+
         // Create properties
         DataChangedHandlerAsyncLock = new AsyncLock();
         StartupEventsCalledAsyncLock = new AsyncLock();
@@ -155,11 +160,6 @@ public partial class App : Application
     /// </summary>
     private UserData_LinkItemStyle PreviousLinkItemStyle { get; set; }
 
-    /// <summary>
-    /// The service provider for this application
-    /// </summary>
-    private IServiceProvider? ServiceProvider { get; set; }
-
 #nullable disable
     /// <summary>
     /// The app user data
@@ -174,9 +174,9 @@ public partial class App : Application
     public new static App Current => Application.Current as App ?? throw new InvalidOperationException($"Current app is not a valid {nameof(App)}");
 
     /// <summary>
-    /// The common application data, or null if not available
+    /// The service provider for this application
     /// </summary>
-    public IAppInstanceData? InstanceData => GetService<IAppInstanceData>();
+    public IServiceProvider ServiceProvider { get; }
 
     public bool IsLogViewerAvailable => LogViewerViewModel != null;
     public LogViewerViewModel? LogViewerViewModel { get; set; }
@@ -454,6 +454,55 @@ public partial class App : Application
 
     #region Private Methods
 
+    private void ConfigureServices(IServiceCollection serviceCollection, string[] args)
+    {
+        // Add the app view model
+        serviceCollection.AddSingleton<AppViewModel>();
+
+        // Add user data
+        serviceCollection.AddSingleton<AppUserData>();
+
+        // Add app instance data
+        serviceCollection.AddSingleton<IAppInstanceData>(_ => new AppInstanceData()
+        {
+            Arguments = args
+        });
+
+        // Add the main window
+        serviceCollection.AddSingleton<MainWindow>();
+        serviceCollection.AddSingleton<MainWindowViewModel>();
+
+        // Add the pages
+        serviceCollection.AddSingleton<Page_Games_ViewModel>();
+        serviceCollection.AddSingleton<Page_Progression_ViewModel>();
+        serviceCollection.AddSingleton<Page_Utilities_ViewModel>();
+        serviceCollection.AddSingleton<Page_Mods_ViewModel>();
+        serviceCollection.AddSingleton<Page_Settings_ViewModel>();
+        serviceCollection.AddSingleton<Page_About_ViewModel>();
+        serviceCollection.AddSingleton<Page_Debug_ViewModel>();
+
+        // Add dialog base manager
+        serviceCollection.AddSingleton<IDialogBaseManager, RCPWindowDialogBaseManager>();
+
+        // Add message UI manager
+        serviceCollection.AddTransient<IMessageUIManager, RCPMessageUIManager>();
+
+        // Add browse UI manager
+        serviceCollection.AddTransient<IBrowseUIManager, RCPBrowseUIManager>();
+
+        // Add file manager
+        serviceCollection.AddTransient<IFileManager, RCPFileManager>();
+
+        // Add update manager
+        serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
+
+        // Add App UI manager
+        serviceCollection.AddTransient<AppUIManager>();
+
+        // Add backup manager
+        serviceCollection.AddTransient<GameBackups_Manager>();
+    }
+
     /// <summary>
     /// Handles the application startup
     /// </summary>
@@ -512,8 +561,8 @@ public partial class App : Application
 
         LogStartupTime("Startup: Initial setup has been verified");
 
-        // Set up the services
-        SetupServices(args);
+        // Initialize the logging
+        InitializeLogging(args);
 
         // Log the current environment
         try
@@ -536,7 +585,7 @@ public partial class App : Application
         LogStartupTime("Startup: Creating main window");
 
         // Create the main window
-        MainWindow mainWindow = new();
+        MainWindow mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
 
         // Load previous state
         Data.UI_WindowState?.ApplyToWindow(mainWindow);
@@ -594,71 +643,6 @@ public partial class App : Application
             MessageBox.Show($"The license verification failed with the message of: {ex.Message}", "License error", MessageBoxButton.OK, MessageBoxImage.Error);
             return false;
         }
-    }
-
-    /// <summary>
-    /// Sets up the application data and services
-    /// </summary>
-    private void SetupServices(string[] args)
-    {
-        LogStartupTime("Services: Setting up logging");
-
-        // Initialize the logging
-        InitializeLogging(args);
-
-        LogStartupTime("Services: Setting up services");
-
-        // Set up the services
-        IServiceCollection services = new ServiceCollection();
-
-        // Configure the services
-        ConfigureServices(services, args);
-
-        LogStartupTime("Services: Building app service provider");
-
-        // Built the service provider
-        ServiceProvider = services.BuildServiceProvider();
-
-        // Log that the build is complete
-        Logger.Info("The service provider has been built with {0} services", services.Count);
-
-        LogStartupTime("AppData: Application data and services have been setup");
-    }
-
-    private void ConfigureServices(IServiceCollection serviceCollection, string[] args)
-    {
-        // Add the app view model
-        serviceCollection.AddSingleton<AppViewModel>();
-
-        // Add user data
-        serviceCollection.AddSingleton<AppUserData>();
-
-        // Add app instance data
-        serviceCollection.AddSingleton<IAppInstanceData>(_ => new AppInstanceData()
-        {
-            Arguments = args
-        });
-
-        // Add dialog base manager
-        serviceCollection.AddSingleton<IDialogBaseManager, RCPWindowDialogBaseManager>();
-
-        // Add message UI manager
-        serviceCollection.AddTransient<IMessageUIManager, RCPMessageUIManager>();
-
-        // Add browse UI manager
-        serviceCollection.AddTransient<IBrowseUIManager, RCPBrowseUIManager>();
-
-        // Add file manager
-        serviceCollection.AddTransient<IFileManager, RCPFileManager>();
-
-        // Add update manager
-        serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
-
-        // Add App UI manager
-        serviceCollection.AddTransient<AppUIManager>();
-
-        // Add backup manager
-        serviceCollection.AddTransient<GameBackups_Manager>();
     }
 
     private void InitializeLogging(IList<string> args)
@@ -1279,13 +1263,6 @@ public partial class App : Application
             });
         }
     }
-
-    /// <summary>
-    /// Gets a service from the application service provider
-    /// </summary>
-    /// <typeparam name="T">The type of service</typeparam>
-    /// <returns>The requested object of the specified type or null if not available</returns>
-    public T? GetService<T>() where T : class => ServiceProvider?.GetService<T>();
 
     /// <summary>
     /// Refreshes the application jump list

@@ -15,6 +15,8 @@ using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-UPDATE: Break this apart into multiple services
+
 /// <summary>
 /// Handles common actions and events for this application
 /// </summary>
@@ -54,8 +56,6 @@ public class AppViewModel : BaseViewModel
             MessageBox.Show(ex.Message, "Error");
             IsRunningAsAdmin = false;
         }
-
-        AppTitle = IsRunningAsAdmin ? Resources.AppNameAdmin : Resources.AppName;
 
         LoadOperation = new Operation(() => IsLoading = true, () => IsLoading = false);
 
@@ -144,11 +144,6 @@ public class AppViewModel : BaseViewModel
     #endregion
 
     #region Public Properties
-
-    /// <summary>
-    /// The title of the application
-    /// </summary>
-    public string AppTitle { get; }
 
     /// <summary>
     /// The current app version

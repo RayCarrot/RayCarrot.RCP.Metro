@@ -22,7 +22,7 @@ public static class Entry
 
         // If the argument for the no-ui mode was not found we continue as a normal WPF app, creating the Application,
         // initializing it and starting the message pump
-        App app = new();
+        App app = new(args);
         app.InitializeComponent();
         app.Run();
     }
