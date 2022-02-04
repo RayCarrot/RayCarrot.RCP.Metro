@@ -145,7 +145,9 @@ namespace RayCarrot.RCP.Metro
                 RegistryHive.Users => "HKEY_USERS",
                 RegistryHive.PerformanceData => "HKEY_PERFORMANCE_DATA",
                 RegistryHive.CurrentConfig => "HKEY_CURRENT_CONFIG",
+#if NETFRAMEWORK
                 RegistryHive.DynData => "HKEY_DYN_DATA",
+#endif
                 _ => null
             };
         }
@@ -166,7 +168,9 @@ namespace RayCarrot.RCP.Metro
                 "HKEY_CURRENT_USER" or "HKCU" => RegistryHive.CurrentUser,
                 "HKEY_USERS" or "HKU" => RegistryHive.Users,
                 "HKEY_PERFORMANCE_DATA" => RegistryHive.PerformanceData,
+#if NETFRAMEWORK
                 "HKEY_DYN_DATA" => RegistryHive.DynData,
+#endif
                 _ => throw new ArgumentException("The provided name is not valid")
             };
         }
