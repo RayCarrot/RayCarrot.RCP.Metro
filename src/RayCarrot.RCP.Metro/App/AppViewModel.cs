@@ -34,7 +34,12 @@ public class AppViewModel : BaseViewModel
 
     #region Constructor
 
-    public AppViewModel(IUpdaterManager updater, IMessageUIManager message, IFileManager file, AppUIManager ui, AppUserData data)
+    public AppViewModel(
+        IUpdaterManager updater, 
+        IMessageUIManager message, 
+        IFileManager file, 
+        AppUIManager ui, 
+        AppUserData data)
     {
         // Set properties
         Updater = updater ?? throw new ArgumentNullException(nameof(updater));
@@ -277,87 +282,6 @@ public class AppViewModel : BaseViewModel
 
             // Await the refresh event
             await RefreshRequired.RaiseAsync(this, eventArgs);
-        }
-    }
-
-    /// <summary>
-    /// Adds a new game to the app data
-    /// </summary>
-    /// <param name="game">The game to add</param>
-    /// <param name="type">The game type</param>
-    /// <param name="installDirectory">The game install directory</param>
-    /// <returns>The task</returns>
-    public async Task AddNewGameAsync(Games game, GameType type, FileSystemPath installDirectory)
-    {
-        Logger.Info("The game {0} is being added of type {1}...", game, type);
-
-        // Make sure the game hasn't already been added
-        if (game.IsAdded())
-        {
-            Logger.Warn("The game {0} has already been added", game);
-
-            await Message.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), Resources.AddGame_DuplicateHeader, MessageType.Error);
-
-            return;
-        }
-
-        // Get the manager
-        GameManager manager = game.GetManager(type);
-
-        // Add the game
-        Data.Game_Games.Add(game, new UserData_GameData(type, installDirectory));
-
-        Logger.Info("The game {0} has been added", game);
-
-        // Run post-add operations
-        await manager.PostGameAddAsync();
-
-        // Add the game to the jump list
-        if (game.GetGameInfo().AutoAddToJumpList)
-            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems().Select(x => x.ID));
-    }
-
-    /// <summary>
-    /// Removes the specified game
-    /// </summary>
-    /// <param name="game">The game to remove</param>
-    /// <param name="forceRemove">Indicates if the game should be force removed</param>
-    /// <returns>The task</returns>
-    public async Task RemoveGameAsync(Games game, bool forceRemove)
-    {
-        try
-        {
-            // Get the manager
-            GameManager manager = game.GetManager();
-
-            if (!forceRemove)
-            {
-                // Get applied utilities
-                IList<string> appliedUtilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
-
-                // Warn about applied utilities, if any
-                if (appliedUtilities.Any() && !await Message.DisplayMessageAsync($"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{appliedUtilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
-                    return;
-            }
-
-            // Remove the game from the jump list
-            foreach (var item in manager.GetJumpListItems())
-                Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
-
-            // Remove game from installed games
-            if (Data.Game_InstalledGames.Contains(game))
-                Data.Game_InstalledGames.Remove(game);
-
-            // Remove the game
-            Data.Game_Games.Remove(game);
-
-            // Run post game removal
-            await manager.PostGameRemovedAsync();
-        }
-        catch (Exception ex)
-        {
-            Logger.Fatal(ex, "Removing game");
-            throw;
         }
     }
 

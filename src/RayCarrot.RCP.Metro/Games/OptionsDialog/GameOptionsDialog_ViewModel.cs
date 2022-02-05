@@ -151,7 +151,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             return;
 
         // Remove the game
-        await Services.App.RemoveGameAsync(Game, false);
+        await Services.Games.RemoveGameAsync(Game, false);
 
         // Refresh
         await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
@@ -213,7 +213,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         }
 
         // Remove the game
-        await Services.App.RemoveGameAsync(Game, true);
+        await Services.Games.RemoveGameAsync(Game, true);
 
         // Refresh
         await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));

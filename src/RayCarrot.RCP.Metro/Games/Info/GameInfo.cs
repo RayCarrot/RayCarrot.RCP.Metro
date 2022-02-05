@@ -485,7 +485,7 @@ public abstract class GameInfo : BaseGameData
                 return;
 
             // Add the game
-            await Services.App.AddNewGameAsync(Game, DownloadType, gameDir);
+            await Services.Games.AddGameAsync(Game, DownloadType, gameDir);
 
             // Add game to installed games
             Services.Data.Game_InstalledGames.Add(Game);

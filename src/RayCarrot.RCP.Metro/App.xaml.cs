@@ -46,6 +46,10 @@ public partial class App : Application
         StartupEventsCalledAsyncLock = new AsyncLock();
         HasRunStartupEvents = false;
 
+        // Set services
+        AppVM = ServiceProvider.GetRequiredService<AppViewModel>();
+        Data = ServiceProvider.GetRequiredService<AppUserData>();
+
 #if DEBUG
         // Create the startup timer and start it
         AppStartupTimer = new Stopwatch();
@@ -97,6 +101,13 @@ public partial class App : Application
     #region Constant Fields
 
     private const string SplashScreenResourceName = "Files/Splash Screen.png";
+
+    #endregion
+
+    #region Services
+
+    private AppViewModel AppVM { get; }
+    private AppUserData Data { get; }
 
     #endregion
 
@@ -162,13 +173,6 @@ public partial class App : Application
     /// </summary>
     private UserData_LinkItemStyle PreviousLinkItemStyle { get; set; }
 
-#nullable disable
-    /// <summary>
-    /// The app user data
-    /// </summary>
-    private AppUserData Data { get; set; }
-#nullable restore
-
     #endregion
 
     #region Public Properties
@@ -189,7 +193,13 @@ public partial class App : Application
 
     #region Event Handlers
 
-    private void App_Startup(object sender, StartupEventArgs e) => AppStartupAsync(e.Args);
+    private async void App_Startup(object sender, StartupEventArgs e)
+    {
+        bool result = await AppStartupAsync(e.Args);
+
+        if (!result)
+            Shutdown();
+    }
 
     private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
@@ -267,7 +277,7 @@ public partial class App : Application
             // Remove events as they'll not get called again
             LocalStartupComplete = null;
 
-            Services.App.IsStartupRunning = false;
+            AppVM.IsStartupRunning = false;
 
             HasRunStartupEvents = true;
         }
@@ -302,7 +312,7 @@ public partial class App : Application
         await ShutdownAppAsync(false);
     }
 
-    private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
+    private async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
     {
         if (AppFilePaths.UpdaterFilePath.FileExists)
         {
@@ -349,8 +359,8 @@ public partial class App : Application
         }
 
         // Check for updates
-        if (Services.Data.Update_AutoUpdate)
-            await Services.App.CheckForUpdatesAsync(false);
+        if (Data.Update_AutoUpdate)
+            await AppVM.CheckForUpdatesAsync(false);
     }
 
     private async Task App_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
@@ -373,14 +383,14 @@ public partial class App : Application
         Dispatcher.Invoke(SecretCodeManager.Setup);
 
         // Enable primary ubi.ini file write access
-        await Services.App.EnableUbiIniWriteAccessAsync();
+        await AppVM.EnableUbiIniWriteAccessAsync();
     }
 
-    private static async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
+    private async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
     {
         // Check for installed games
-        if (Services.Data.Game_AutoLocateGames)
-            await Services.App.RunGameFinderAsync();
+        if (Data.Game_AutoLocateGames)
+            await AppVM.RunGameFinderAsync();
     }
 
     private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
@@ -397,7 +407,7 @@ public partial class App : Application
 
                 case nameof(AppUserData.Backup_BackupLocation):
 
-                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
+                    await AppVM.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
 
                     if (!PreviousBackupLocation.DirectoryExists)
                     {
@@ -407,7 +417,7 @@ public partial class App : Application
 
                     Logger.Info("The backup location has been changed and old backups are being moved...");
 
-                    await Services.App.MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
+                    await AppVM.MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
 
                     PreviousBackupLocation = Data.Backup_BackupLocation;
 
@@ -441,12 +451,12 @@ public partial class App : Application
                     break;
 
                 case nameof(AppUserData.Game_RRR2LaunchMode):
-                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
+                    await AppVM.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
                     break;
 
                 case nameof(AppUserData.Emu_DOSBox_Path):
                 case nameof(AppUserData.Emu_DOSBox_ConfigPath):
-                    await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
+                    await AppVM.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
                     break;
             }
         }
@@ -458,17 +468,18 @@ public partial class App : Application
 
     private void ConfigureServices(IServiceCollection serviceCollection, string[] args)
     {
-        // Add the app view model
+        // Add app related services
+        serviceCollection.AddTransient<LicenseManager>();
+        serviceCollection.AddTransient<GamesManager>();
         serviceCollection.AddSingleton<AppViewModel>();
-
-        // Add user data
         serviceCollection.AddSingleton<AppUserData>();
-
-        // Add app instance data
         serviceCollection.AddSingleton<IAppInstanceData>(_ => new AppInstanceData()
         {
             Arguments = args
         });
+        serviceCollection.AddTransient<IFileManager, RCPFileManager>();
+        serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
+        serviceCollection.AddTransient<GameBackups_Manager>();
 
         // Add the main window
         serviceCollection.AddSingleton<MainWindow>();
@@ -483,33 +494,18 @@ public partial class App : Application
         serviceCollection.AddSingleton<Page_About_ViewModel>();
         serviceCollection.AddSingleton<Page_Debug_ViewModel>();
 
-        // Add dialog base manager
+        // Add UI managers
         serviceCollection.AddSingleton<IDialogBaseManager, RCPWindowDialogBaseManager>();
-
-        // Add message UI manager
         serviceCollection.AddTransient<IMessageUIManager, RCPMessageUIManager>();
-
-        // Add browse UI manager
         serviceCollection.AddTransient<IBrowseUIManager, RCPBrowseUIManager>();
-
-        // Add file manager
-        serviceCollection.AddTransient<IFileManager, RCPFileManager>();
-
-        // Add update manager
-        serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
-
-        // Add App UI manager
         serviceCollection.AddTransient<AppUIManager>();
-
-        // Add backup manager
-        serviceCollection.AddTransient<GameBackups_Manager>();
     }
 
     /// <summary>
     /// Handles the application startup
     /// </summary>
     /// <param name="args">The launch arguments</param>
-    private async void AppStartupAsync(string[] args)
+    private async Task<bool> AppStartupAsync(string[] args)
     {
         LogStartupTime("Startup: App startup begins");
 
@@ -518,8 +514,7 @@ public partial class App : Application
             if (Mutex is not null && !Mutex.WaitOne(0, false))
             {
                 MessageBox.Show($"An instance of the Rayman Control Panel is already running", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
-                Shutdown();
-                return;
+                return false;
             }
         }
 #pragma warning disable 168
@@ -539,18 +534,14 @@ public partial class App : Application
         if (AppViewModel.WindowsVersion < WindowsVersion.WinVista && AppViewModel.WindowsVersion != WindowsVersion.Unknown)
         {
             MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
-            Shutdown();
-            return;
+            return false;
         }
 
         LogStartupTime("Startup: Checking license");
 
         // Make sure the license has been accepted
-        if (!ShowLicense())
-        {
-            Shutdown();
-            return;
-        }
+        if (!VerifyLicense(ServiceProvider.GetRequiredService<LicenseManager>()))
+            return false;
 
         LogStartupTime("Startup: Setting default directory");
 
@@ -607,42 +598,31 @@ public partial class App : Application
 
         // Set the shutdown mode
         ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+        return true;
     }
 
     /// <summary>
     /// Shows the application license message and returns a value indicating if it was accepted
     /// </summary>
     /// <returns>True if it was accepted, false if not</returns>
-    private bool ShowLicense()
+    private bool VerifyLicense(LicenseManager license)
     {
         try
         {
-            // Get the license value, if one exists
-            int regValue = Registry.GetValue(AppFilePaths.RegistryBaseKey, AppFilePaths.RegistryLicenseValue, 0)?.CastTo<int>() ?? 0;
-
-            // Check if it has been accepted
-            if (regValue == 1)
+            if (license.HasAcceptedLicense())
                 return true;
-
-            // Create license popup dialog
-            LicenseDialog licenseDialog = new();
 
             // Close the splash screen
             CloseSplashScreen();
 
-            // Show the dialog
-            licenseDialog.ShowDialog();
-
-            // Set Registry value if accepted
-            if (licenseDialog.Accepted)
-                Registry.SetValue(AppFilePaths.RegistryBaseKey, AppFilePaths.RegistryLicenseValue, 1);
-
-            // Return if it was accepted
-            return licenseDialog.Accepted;
+            // Show the license prompt
+            return license.PrompLicense();
         }
         catch (Exception ex)
         {
             MessageBox.Show($"The license verification failed with the message of: {ex.Message}", "License error", MessageBoxButton.OK, MessageBoxImage.Error);
+
             return false;
         }
     }
@@ -734,22 +714,22 @@ public partial class App : Application
             if (!Services.InstanceData.Arguments.Contains("-reset") && AppFilePaths.AppUserDataPath.FileExists)
             {
                 // Always reset the data first so any missing properties use the correct defaults
-                Services.Data.Reset();
+                Data.Reset();
 
-                Services.Data.App_LastVersion = null; // Need to set to null before calling JsonConvert.PopulateObject or else it's ignored
+                Data.App_LastVersion = null; // Need to set to null before calling JsonConvert.PopulateObject or else it's ignored
 
                 // Populate the data from the file
-                JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), Services.Data);
+                JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), Data);
 
                 Logger.Info("The app user data has been loaded");
 
                 // Verify the data
-                Services.Data.Verify();
+                Data.Verify();
             }
             else
             {
                 // Reset the user data
-                Services.Data.Reset();
+                Data.Reset();
 
                 Logger.Info("The app user data has been reset");
             }
@@ -762,10 +742,8 @@ public partial class App : Application
             MessageBox.Show("An error occurred reading saved app data. The settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             // Reset the user data
-            Services.Data.Reset();
+            Data.Reset();
         }
-
-        Data = Services.Data;
 
         LogStartupTime("Setup: Setting theme");
 
@@ -795,7 +773,7 @@ public partial class App : Application
         PreviousBackupLocation = Data.Backup_BackupLocation;
 
         // Subscribe to when to refresh the jump list
-        Services.App.RefreshRequired += (_, e) =>
+        AppVM.RefreshRequired += (_, e) =>
         {
             if (e.GameCollectionModified || e.GameInfoModified || e.JumpListModified)
                 RefreshJumpList();
@@ -853,10 +831,10 @@ public partial class App : Application
 
         LogStartupTime("Setup: Checking if updated to new version");
 
-        Logger.Info("Current version is {0}", Services.App.CurrentAppVersion);
+        Logger.Info("Current version is {0}", AppVM.CurrentAppVersion);
 
         // Check if it's a new version
-        if (Data.App_LastVersion < Services.App.CurrentAppVersion)
+        if (Data.App_LastVersion < AppVM.CurrentAppVersion)
         {
             // Run post-update code
             await PostUpdateAsync();
@@ -864,21 +842,21 @@ public partial class App : Application
             LogStartupTime("Setup: Post update has run");
 
             // Update the last version
-            Data.App_LastVersion = Services.App.CurrentAppVersion;
+            Data.App_LastVersion = AppVM.CurrentAppVersion;
         }
         // Check if it's a lower version than previously recorded
-        else if (Data.App_LastVersion > Services.App.CurrentAppVersion)
+        else if (Data.App_LastVersion > AppVM.CurrentAppVersion)
         {
             Logger.Warn("A newer version ({0}) has been recorded in the application data", Data.App_LastVersion);
 
             if (!Data.Update_DisableDowngradeWarning)
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, Services.App.CurrentAppVersion,
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, AppVM.CurrentAppVersion,
                     Data.App_LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
 
             LogStartupTime("Setup: Deploying files");
 
             // Deploy additional files
-            await Services.App.DeployFilesAsync(false);
+            await AppVM.DeployFilesAsync(false);
         }
     }
 
@@ -918,13 +896,13 @@ public partial class App : Application
         }
     }
 
-    private static async Task ValidateGamesAsync()
+    private async Task ValidateGamesAsync()
     {
         // Keep track of removed games
         HashSet<Games> removed = new();
 
         // Make sure every game is valid
-        foreach (Games game in Services.App.GetGames)
+        foreach (Games game in AppVM.GetGames)
         {
             // Check if it has been added
             if (!game.IsAdded())
@@ -938,7 +916,7 @@ public partial class App : Application
             await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
 
             // Remove the game from app data
-            await Services.App.RemoveGameAsync(game, true);
+            await Services.Games.RemoveGameAsync(game, true);
 
             // Add to removed games
             removed.Add(game);
@@ -948,7 +926,7 @@ public partial class App : Application
 
         // Refresh if any games were removed
         if (removed.Any())
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, RefreshFlags.GameCollection));
+            await AppVM.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, RefreshFlags.GameCollection));
     }
 
     private async Task PostUpdateAsync()
@@ -1033,7 +1011,7 @@ public partial class App : Application
         if (Data.App_LastVersion < new Version(6, 0, 0, 2))
         {
             // By default, add all games to the jump list collection
-            Data.App_JumpListItemIDCollection = Services.App.GetGames.
+            Data.App_JumpListItemIDCollection = AppVM.GetGames.
                 Where(x => x.IsAdded()).
                 Select(x => x.GetManager().GetJumpListItems().Select(y => y.ID)).
                 SelectMany(x => x).
@@ -1068,7 +1046,7 @@ public partial class App : Application
             if (RegistryHelpers.KeyExists(keyPath))
             {
                 // Make sure the user is running as admin
-                if (Services.App.IsRunningAsAdmin)
+                if (AppVM.IsRunningAsAdmin)
                 {
                     try
                     {
@@ -1146,7 +1124,7 @@ public partial class App : Application
         }
 
         // Re-deploy files
-        await Services.App.DeployFilesAsync(true);
+        await AppVM.DeployFilesAsync(true);
 
         // Refresh the jump list
         RefreshJumpList();
@@ -1186,7 +1164,7 @@ public partial class App : Application
             await Dispatcher.InvokeAsync(async () =>
             {
                 // Don't close if loading
-                if (Services.App.IsLoading)
+                if (AppVM.IsLoading)
                     return;
 
                 // Attempt to close all windows except the main one
@@ -1224,18 +1202,14 @@ public partial class App : Application
                     return;
                 }
 
-                // Make sure the user data has been loaded
-                if (Services.Data != null)
-                {
-                    // Save window state
-                    if (MainWindow != null)
-                        Services.Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(MainWindow);
+                // Save window state
+                if (MainWindow != null)
+                    Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(MainWindow);
 
-                    Logger.Info("The application is exiting...");
+                Logger.Info("The application is exiting...");
 
-                    // Save all user data
-                    await Services.App.SaveUserDataAsync();
-                }
+                // Save all user data
+                await AppVM.SaveUserDataAsync();
 
                 // Close the logger
                 LogManager.Shutdown();
@@ -1275,7 +1249,7 @@ public partial class App : Application
         {
             try
             {
-                if (Services.Data.App_JumpListItemIDCollection == null)
+                if (Data.App_JumpListItemIDCollection == null)
                 {
                     Logger.Warn("The jump could not refresh due to collection not existing");
 
@@ -1283,7 +1257,7 @@ public partial class App : Application
                 }
 
                 // Create a jump list
-                new JumpList(Services.App.GetGames.
+                new JumpList(AppVM.GetGames.
                         // Add only games which have been added
                         Where(x => x.IsAdded()).
                         // Get the items for each game
@@ -1293,7 +1267,7 @@ public partial class App : Application
                         // Keep only the included items
                         Where(x => x.IsIncluded).
                         // Keep custom order
-                        OrderBy(x => Services.Data.App_JumpListItemIDCollection.IndexOf(x.ID)).
+                        OrderBy(x => Data.App_JumpListItemIDCollection.IndexOf(x.ID)).
                         // Create the jump tasks
                         Select(x => new JumpTask
                         {

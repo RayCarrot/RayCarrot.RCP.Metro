@@ -206,7 +206,7 @@ public abstract class GameManager : BaseGameData
             return;
 
         // Add the game
-        await Services.App.AddNewGameAsync(Game, Type, path.Value);
+        await Services.Games.AddGameAsync(Game, Type, path.Value);
 
         // Refresh
         await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));

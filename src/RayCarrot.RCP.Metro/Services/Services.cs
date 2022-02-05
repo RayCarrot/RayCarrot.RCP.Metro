@@ -14,49 +14,55 @@ namespace RayCarrot.RCP.Metro;
 public static class Services
 {
     private static IServiceProvider ServiceProvider => Metro.App.Current.ServiceProvider;
+    private static T GetService<T>() where T : notnull => ServiceProvider.GetRequiredService<T>();
 
     /// <summary>
     /// Gets the common app data
     /// </summary>
-    public static IAppInstanceData InstanceData => ServiceProvider.GetRequiredService<IAppInstanceData>();
+    public static IAppInstanceData InstanceData => GetService<IAppInstanceData>();
 
     /// <summary>
     /// Gets the message UIManager
     /// </summary>
-    public static IMessageUIManager MessageUI => ServiceProvider.GetRequiredService<IMessageUIManager>();
+    public static IMessageUIManager MessageUI => GetService<IMessageUIManager>();
 
     /// <summary>
     /// Gets the browse UIManager
     /// </summary>
-    public static IBrowseUIManager BrowseUI => ServiceProvider.GetRequiredService<IBrowseUIManager>();
+    public static IBrowseUIManager BrowseUI => GetService<IBrowseUIManager>();
 
     /// <summary>
-    /// Gets the dialog base manager, or the default one
+    /// Gets the dialog base manager
     /// </summary>
-    public static IDialogBaseManager DialogBaseManager => ServiceProvider.GetRequiredService<IDialogBaseManager>();
+    public static IDialogBaseManager DialogBaseManager => GetService<IDialogBaseManager>();
 
     /// <summary>
     /// The application user data
     /// </summary>
-    public static AppUserData Data => ServiceProvider.GetRequiredService<AppUserData>();
+    public static AppUserData Data => GetService<AppUserData>();
 
     /// <summary>
     /// The app view model
     /// </summary>
-    public static AppViewModel App => ServiceProvider.GetRequiredService<AppViewModel>();
+    public static AppViewModel App => GetService<AppViewModel>();
 
     /// <summary>
     /// The App UI manager
     /// </summary>
-    public static AppUIManager UI => ServiceProvider.GetRequiredService<AppUIManager>();
+    public static AppUIManager UI => GetService<AppUIManager>();
 
     /// <summary>
     /// The backup manager
     /// </summary>
-    public static GameBackups_Manager Backup => ServiceProvider.GetRequiredService<GameBackups_Manager>();
+    public static GameBackups_Manager Backup => GetService<GameBackups_Manager>();
 
     /// <summary>
     /// The file manager
     /// </summary>
-    public static IFileManager File => ServiceProvider.GetRequiredService<IFileManager>();
+    public static IFileManager File => GetService<IFileManager>();
+
+    /// <summary>
+    /// The games manager
+    /// </summary>
+    public static GamesManager Games => GetService<GamesManager>();
 }
