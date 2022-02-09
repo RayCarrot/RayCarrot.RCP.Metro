@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// View model for an archive from a file

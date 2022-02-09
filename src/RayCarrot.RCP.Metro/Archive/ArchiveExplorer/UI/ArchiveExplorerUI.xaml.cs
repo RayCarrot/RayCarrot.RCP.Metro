@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// Interaction logic for ArchiveExplorer.xaml

@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// A GXT UbiArt texture file type (PS Vita)

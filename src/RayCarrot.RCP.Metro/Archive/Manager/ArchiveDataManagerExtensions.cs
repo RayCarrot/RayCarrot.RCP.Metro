@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// Extension methods for <see cref="IArchiveDataManager"/>

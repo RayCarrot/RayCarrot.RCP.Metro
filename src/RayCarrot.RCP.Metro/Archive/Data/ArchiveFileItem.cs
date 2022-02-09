@@ -2,8 +2,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using RayCarrot.RCP.Metro.Archive.OpenSpace;
+using RayCarrot.RCP.Metro.Archive.UbiArt;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// File item data for the Archive Explorer

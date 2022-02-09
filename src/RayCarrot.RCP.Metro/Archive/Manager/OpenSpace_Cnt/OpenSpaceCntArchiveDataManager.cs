@@ -7,7 +7,7 @@ using BinarySerializer.OpenSpace;
 using ByteSizeLib;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.OpenSpace;
 
 /// <summary>
 /// Archive data manager for an OpenSpace .cnt file

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using BinarySerializer;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// Defines an archive data manager

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// View model for an archive creator dialog

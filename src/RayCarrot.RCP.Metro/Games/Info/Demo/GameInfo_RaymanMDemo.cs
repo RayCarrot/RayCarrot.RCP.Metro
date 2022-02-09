@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using BinarySerializer.OpenSpace;
+using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Archive.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 

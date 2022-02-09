@@ -5,6 +5,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:archive="clr-namespace:RayCarrot.RCP.Metro.Archive"
                     mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
@@ -13,7 +14,7 @@
 
     <!-- File -->
 
-    <DataTemplate x:Key="FileDataTemplate" DataType="{x:Type local:ArchiveFileViewModel}">
+    <DataTemplate x:Key="FileDataTemplate" DataType="{x:Type archive:ArchiveFileViewModel}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

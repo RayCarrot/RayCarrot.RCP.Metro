@@ -2,7 +2,7 @@
 using System.Globalization;
 using MahApps.Metro.IconPacks;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 public class ArchiveExplorerIsFolderExpandedToIconConverter : BaseValueConverter<ArchiveExplorerIsFolderExpandedToIconConverter, bool, PackIconMaterialKind>
 {

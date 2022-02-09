@@ -11,7 +11,7 @@ using System.Windows.Input;
 using MahApps.Metro.IconPacks;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// View model for a directory in an archive

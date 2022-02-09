@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// An archive directory, containing an array of <see cref="ArchiveFileItem"/>

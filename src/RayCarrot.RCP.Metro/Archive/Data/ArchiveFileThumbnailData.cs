@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// Archive file thumbnail data

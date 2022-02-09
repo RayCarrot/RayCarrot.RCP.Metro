@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// A file stream for the Archive Explorer

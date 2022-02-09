@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// A GTX UbiArt texture file type (Wii U)

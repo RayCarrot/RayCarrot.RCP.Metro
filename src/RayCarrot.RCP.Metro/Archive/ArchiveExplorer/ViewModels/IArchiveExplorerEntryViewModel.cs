@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using MahApps.Metro.IconPacks;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// Common archive explorer file/directory entry view model

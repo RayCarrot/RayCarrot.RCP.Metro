@@ -2,7 +2,7 @@
 using BinarySerializer.UbiArt;
 using ImageMagick;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// A Xbox 360 UbiArt texture file type (Xbox 360)

@@ -1,7 +1,7 @@
 ﻿using System;
 using BinarySerializer.Ray1;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.Ray1;
 
 /// <summary>
 /// Configuration view model for Rayman 1 PC spin-off .dat archives

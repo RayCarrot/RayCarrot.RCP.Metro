@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using NLog;
+using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Archive.OpenSpace;
+using RayCarrot.RCP.Metro.Archive.Ray1;
+using RayCarrot.RCP.Metro.Archive.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 

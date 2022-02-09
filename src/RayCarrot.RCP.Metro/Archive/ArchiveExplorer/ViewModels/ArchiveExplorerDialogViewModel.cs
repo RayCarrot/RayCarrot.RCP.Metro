@@ -12,7 +12,7 @@ using ByteSizeLib;
 using Nito.AsyncEx;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// View model for an archive explorer dialog

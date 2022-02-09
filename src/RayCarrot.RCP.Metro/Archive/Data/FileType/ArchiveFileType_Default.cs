@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// The default file type

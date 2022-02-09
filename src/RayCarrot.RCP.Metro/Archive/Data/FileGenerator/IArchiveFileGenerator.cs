@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro.Archive
 {
     /// <summary>
     /// Defines an archive file generator used to get the file bytes from a file entry

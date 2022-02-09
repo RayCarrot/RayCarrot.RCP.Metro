@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// An image file type

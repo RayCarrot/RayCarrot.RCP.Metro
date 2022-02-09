@@ -1,6 +1,8 @@
 ﻿#nullable disable
 using System.Collections.Generic;
 using BinarySerializer.UbiArt;
+using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Archive.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 

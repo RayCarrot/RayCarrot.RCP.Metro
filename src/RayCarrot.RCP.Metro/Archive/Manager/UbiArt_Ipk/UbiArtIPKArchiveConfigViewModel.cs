@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BinarySerializer.UbiArt;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// Configuration view model for .ipk archives

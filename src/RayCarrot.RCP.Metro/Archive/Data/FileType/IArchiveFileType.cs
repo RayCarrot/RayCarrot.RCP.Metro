@@ -1,7 +1,7 @@
 ﻿using MahApps.Metro.IconPacks;
 using System.IO;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// Handles data for a specific file type

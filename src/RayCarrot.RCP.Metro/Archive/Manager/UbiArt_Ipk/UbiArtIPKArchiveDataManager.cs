@@ -7,7 +7,7 @@ using BinarySerializer;
 using BinarySerializer.UbiArt;
 using ByteSizeLib;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// Archive data manager for a UbiArt .ipk file

@@ -1,6 +1,6 @@
 ﻿using MahApps.Metro.IconPacks;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// The error file type. This is used for files which had a file type which could not be used.

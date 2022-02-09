@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// A PVR UbiArt texture file type (iOS)

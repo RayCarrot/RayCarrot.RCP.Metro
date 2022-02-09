@@ -1,6 +1,6 @@
 ﻿using ImageMagick;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// A DDS UbiArt texture file type

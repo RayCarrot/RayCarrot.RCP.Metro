@@ -5,7 +5,7 @@ using BinarySerializer;
 using BinarySerializer.UbiArt;
 using ImageMagick;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// A base UbiArt texture file type

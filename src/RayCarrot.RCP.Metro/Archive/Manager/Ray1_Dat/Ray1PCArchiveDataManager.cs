@@ -7,7 +7,7 @@ using BinarySerializer.Ray1;
 using ByteSizeLib;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.Ray1;
 
 /// <summary>
 /// Archive data manager for Rayman 1 PC spin-off .dat files

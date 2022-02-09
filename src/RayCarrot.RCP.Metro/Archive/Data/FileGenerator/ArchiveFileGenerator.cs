@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro.Archive
 {
     /// <summary>
     /// A generator to use for getting archive file contents when serializing an archive

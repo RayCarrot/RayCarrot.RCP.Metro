@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
 /// Interaction logic for UbiArtIPKArchiveConfigUI.xaml
