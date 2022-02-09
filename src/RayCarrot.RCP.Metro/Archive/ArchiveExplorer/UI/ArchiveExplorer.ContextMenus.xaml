@@ -14,7 +14,7 @@
 
     <ContextMenu x:Key="FileContextMenu_Single"
                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                 d:DataContext="{d:DesignInstance archive:ArchiveFileViewModel}">
+                 d:DataContext="{d:DesignInstance archive:FileViewModel}">
 
         <!-- View/Edit -->
 
@@ -80,18 +80,18 @@
 
     <ContextMenu x:Key="FileContextMenu_Multi"
                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                 d:DataContext="{d:DesignInstance archive:ArchiveFileViewModel}">
+                 d:DataContext="{d:DesignInstance archive:FileViewModel}">
 
         <!-- Extract -->
 
         <local:MenuItemIcon Header="{Resx Archive_Extract}"
-                            Command="{Binding Path=ArchiveDirectory.ExtractSelectedFilesCommand}"
+                            Command="{Binding Path=Directory.ExtractSelectedFilesCommand}"
                             IconKind="ApplicationExport" />
 
         <!-- Export -->
 
         <local:MenuItemIcon Header="{Resx Archive_ExportConvert}"
-                            Command="{Binding Path=ArchiveDirectory.ExportSelectedFilesCommand}"
+                            Command="{Binding Path=Directory.ExportSelectedFilesCommand}"
                             IconKind="Export" />
 
         <Separator />
@@ -99,7 +99,7 @@
         <!-- Delete -->
 
         <local:MenuItemIcon Header="{Resx Archive_Delete}"
-                            Command="{Binding Path=ArchiveDirectory.DeleteSelectedFilesCommand, Mode=OneTime}"
+                            Command="{Binding Path=Directory.DeleteSelectedFilesCommand, Mode=OneTime}"
                             IconForeground="{StaticResource Archive_DeleteItemBrush}"
                             InputGestureText="Del"
                             IconKind="DeleteOutline" />
@@ -110,7 +110,7 @@
 
     <ContextMenu x:Key="DirContextMenu_Single"
                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                 d:DataContext="{d:DesignInstance archive:ArchiveDirectoryViewModel}">
+                 d:DataContext="{d:DesignInstance archive:DirectoryViewModel}">
 
         <!-- Extract -->
 

@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// View model for an archive from a file
 /// </summary>
-public class ArchiveViewModel : ArchiveDirectoryViewModel
+public class ArchiveViewModel : DirectoryViewModel
 {
     #region Constructor
 
@@ -34,7 +34,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         LoadOperation = loadOperation;
         ExplorerDialogViewModel = explorerDialogViewModel;
         IsDuplicateName = isDuplicateName;
-        ThumbnailCache = new ArchiveThumbnailCache();
+        ThumbnailCache = new ThumbnailCache();
 
         // Create commands
         SaveCommand = new AsyncRelayCommand(SaveAsync);
@@ -139,7 +139,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
     /// <summary>
     /// Gets the currently selected item
     /// </summary>
-    public ArchiveDirectoryViewModel? SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FirstOrDefault(x => x.IsSelected);
+    public DirectoryViewModel? SelectedItem => this.GetAllChildren<DirectoryViewModel>(true).FirstOrDefault(x => x.IsSelected);
        
     /// <summary>
     /// The text to display for the save prompt if there are modified files
@@ -151,7 +151,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
     /// </summary>
     public bool HasModifiedFiles { get; protected set; }
 
-    public ArchiveThumbnailCache ThumbnailCache { get; }
+    public ThumbnailCache ThumbnailCache { get; }
 
     #endregion
 
@@ -171,7 +171,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
         Logger.Info("The archive items have been cleared and disposed");
 
         // Dispose every directory
-        this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
+        this.GetAllChildren<DirectoryViewModel>().DisposeAll();
 
         // Dispose files
         Files.DisposeAll();
@@ -227,13 +227,13 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
             if (dir.DirectoryName == String.Empty)
             {
                 // Add the files
-                Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, this)));
+                Files.AddRange(dir.Files.Select(x => new FileViewModel(x, this)));
 
                 continue;
             }
 
             // Keep track of the previous item
-            ArchiveDirectoryViewModel prevItem = this;
+            DirectoryViewModel prevItem = this;
 
             // Enumerate each sub directory
             foreach (string subDir in dir.DirectoryName.Trim(Manager.PathSeparatorCharacter).Split(Manager.PathSeparatorCharacter))
@@ -243,7 +243,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
             }
 
             // Add the files
-            prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, prevItem)));
+            prevItem.Files.AddRange(dir.Files.Select(x => new FileViewModel(x, prevItem)));
         }
     }
 
@@ -288,7 +288,7 @@ public class ArchiveViewModel : ArchiveDirectoryViewModel
                                 generator: ArchiveFileGenerator, 
                                 archive: ArchiveData ?? throw new Exception("Archive data has not been loaded"), 
                                 outputFileStream: outputStream, 
-                                files: this.GetAllChildren<ArchiveDirectoryViewModel>(true).
+                                files: this.GetAllChildren<DirectoryViewModel>(true).
                                     SelectMany(x => x.Files).
                                     Select(x => x.FileData).
                                     ToArray());

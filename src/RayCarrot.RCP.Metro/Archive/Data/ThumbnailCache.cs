@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// Thumbnail cache for an archive
 /// </summary>
-public class ArchiveThumbnailCache : IDisposable
+public class ThumbnailCache : IDisposable
 {
     #region Constants
 
@@ -76,15 +76,15 @@ public class ArchiveThumbnailCache : IDisposable
 
     #region Public Methods
 
-    public void AddToCache(ArchiveFileViewModel file, ArchiveFileThumbnailData thumb)
+    public void AddToCache(FileViewModel file, FileThumbnailData thumb)
     {
         if (Cache.Count >= CacheMaxCount)
             ClearOldEntries(CacheClearCycleCount);
 
-        AddEntry(file.FullFilePath, new CacheEntry(new WeakReference<ArchiveFileViewModel>(file), thumb));
+        AddEntry(file.FullFilePath, new CacheEntry(new WeakReference<FileViewModel>(file), thumb));
     }
 
-    public bool TryGetCachedItem(ArchiveFileViewModel file, [MaybeNullWhen(false)] out ArchiveFileThumbnailData thumb)
+    public bool TryGetCachedItem(FileViewModel file, [MaybeNullWhen(false)] out FileThumbnailData thumb)
     {
         // Default to null
         thumb = null;
@@ -100,7 +100,7 @@ public class ArchiveThumbnailCache : IDisposable
         CacheEntry entry = Cache[path];
 
         // Check if the file instance matches
-        if (entry.File.TryGetTarget(out ArchiveFileViewModel f) && f == file)
+        if (entry.File.TryGetTarget(out FileViewModel f) && f == file)
         {
             // Set the cached data
             thumb = entry.Thumb;
@@ -124,7 +124,7 @@ public class ArchiveThumbnailCache : IDisposable
 
     #region Protected Records
 
-    protected record CacheEntry(WeakReference<ArchiveFileViewModel> File, ArchiveFileThumbnailData Thumb);
+    protected record CacheEntry(WeakReference<FileViewModel> File, FileThumbnailData Thumb);
 
     #endregion
 }

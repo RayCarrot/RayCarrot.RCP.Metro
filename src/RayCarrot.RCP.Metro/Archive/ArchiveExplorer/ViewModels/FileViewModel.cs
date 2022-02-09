@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// View model for a file in an archive
 /// </summary>
 [DebuggerDisplay("{" + nameof(FileName) + "}")]
-public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorerEntryViewModel
+public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntryViewModel
 {
     #region Constructor
 
@@ -28,12 +28,12 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// Default constructor
     /// </summary>
     /// <param name="fileData">The file data</param>
-    /// <param name="archiveDirectory">The archive directory the file belongs to</param>
-    public ArchiveFileViewModel(ArchiveFileItem fileData, ArchiveDirectoryViewModel archiveDirectory)
+    /// <param name="directory">The archive directory the file belongs to</param>
+    public FileViewModel(FileItem fileData, DirectoryViewModel directory)
     {
         // Set properties
         FileData = fileData;
-        ArchiveDirectory = archiveDirectory;
+        Directory = directory;
         IconKind = PackIconMaterialKind.FileSyncOutline;
         FileDisplayInfo = new ObservableCollection<DuoGridItemViewModel>();
         FileExports = new ObservableCollection<ArchiveFileMenuActionViewModel>();
@@ -78,17 +78,17 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <summary>
     /// The archive the file belongs to
     /// </summary>
-    public ArchiveViewModel Archive => ArchiveDirectory.Archive;
+    public ArchiveViewModel Archive => Directory.Archive;
 
     /// <summary>
     /// The archive directory the file belongs to
     /// </summary>
-    public ArchiveDirectoryViewModel ArchiveDirectory { get; }
+    public DirectoryViewModel Directory { get; }
 
     /// <summary>
     /// The file data
     /// </summary>
-    public ArchiveFileItem FileData { get; }
+    public FileItem FileData { get; }
 
     /// <summary>
     /// The image source for the thumbnail
@@ -118,7 +118,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <summary>
     /// The full path for the file
     /// </summary>
-    public string FullPath => ArchiveDirectory.FullPath;
+    public string FullPath => Directory.FullPath;
 
     /// <summary>
     /// The full path for the file including the file name
@@ -160,7 +160,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     /// <summary>
     /// The file type (available after having been initialized once)
     /// </summary>
-    public IArchiveFileType? FileType { get; set; }
+    public IFileType? FileType { get; set; }
 
     /// <summary>
     /// The file extension
@@ -233,7 +233,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     }
 
     [MemberNotNull(nameof(FileType))]
-    public void SetFileType(IArchiveFileType type) => FileType = type;
+    public void SetFileType(IFileType type) => FileType = type;
 
     /// <summary>
     /// Initializes the file. This sets the <see cref="FileType"/> and optionally loads the <see cref="ThumbnailSource"/> and <see cref="FileDisplayInfo"/>.
@@ -270,7 +270,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
             if (thumbnailLoadMode != ThumbnailLoadMode.None)
             {
                 // Get the thumbnail data
-                if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !Archive.ThumbnailCache.TryGetCachedItem(this, out ArchiveFileThumbnailData? thumb))
+                if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !Archive.ThumbnailCache.TryGetCachedItem(this, out FileThumbnailData? thumb))
                 {
                     fileStream.SeekToBeginning();
 
@@ -342,7 +342,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     [MemberNotNull(nameof(FileType))]
     public void InitializeAsError()
     {
-        SetFileType(new ArchiveFileType_Error());
+        SetFileType(new FileType_Error());
         ResetMenuActions();
         IconKind = FileType!.Icon;
         ThumbnailSource = null;
@@ -686,7 +686,7 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
     public void DeleteFile()
     {
         // Remove the file from the directory
-        ArchiveDirectory.Files.Remove(this);
+        Directory.Files.Remove(this);
 
         // Dispose the file
         Dispose();
@@ -912,17 +912,17 @@ public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorer
                     return;
 
                 string newName = result.StringInput;
-                ArchiveDirectoryViewModel dir = ArchiveDirectory;
+                DirectoryViewModel dir = Directory;
 
                 // Check if the name conflicts with an existing file
-                if (ArchiveDirectory.Files.Any(x => x.FileName.Equals(newName, StringComparison.OrdinalIgnoreCase)))
+                if (Directory.Files.Any(x => x.FileName.Equals(newName, StringComparison.OrdinalIgnoreCase)))
                 {
                     await Services.MessageUI.DisplayMessageAsync(Resources.Archive_FileNameConflict, Resources.Archive_AddFiles_ConflictHeader, MessageType.Error);
                     return;
                 }
 
                 // Create a new file
-                ArchiveFileViewModel newFile = new(new ArchiveFileItem(Manager, newName, dir.FullPath, Manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir.FullPath, newName)), dir);
+                FileViewModel newFile = new(new FileItem(Manager, newName, dir.FullPath, Manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir.FullPath, newName)), dir);
 
                 // Set the file type
                 newFile.SetFileType(FileType);

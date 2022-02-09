@@ -121,7 +121,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<CNT_File>>().GetFileStream((CNT_File)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<CNT_File>>().GetFileStream((CNT_File)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -130,7 +130,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<ArchiveFileItem> files)
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files)
     {
         Logger.Info("A CNT archive is being repacked...");
 
@@ -138,7 +138,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
         var data = (CNT)archive;
 
         // Create the file generator
-        using ArchiveFileGenerator<CNT_File> fileGenerator = new();
+        using FileGenerator<CNT_File> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -199,7 +199,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
                     pointer += entry.FileSize;
 
                     // Invoke event
-                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
+                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<FileItem>(file.FileItem));
 
                     return fileStream;
                 });
@@ -264,7 +264,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
                 // Return each directory with the available files, including the root directory
                 yield return new ArchiveDirectory(dir, data.Files.
                     Where(x => x.DirectoryIndex == dirIndex).
-                    Select(f => new ArchiveFileItem(this, f.FileName, dir, f)).
+                    Select(f => new FileItem(this, f.FileName, dir, f)).
                     ToArray());
             }
         }
@@ -367,13 +367,13 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
+    public event EventHandler<ValueEventArgs<FileItem>>? OnWritingFileToArchive;
 
     #endregion
 
     #region Classes
 
-    private class CNTFileGenerator : IArchiveFileGenerator<CNT_File>
+    private class CNTFileGenerator : IFileGenerator<CNT_File>
     {
         /// <summary>
         /// Default constructor

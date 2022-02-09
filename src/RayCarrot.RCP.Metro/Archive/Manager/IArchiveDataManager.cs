@@ -71,7 +71,7 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<ArchiveFileItem> files);
+    void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files);
 
     /// <summary>
     /// Loads the archive data
@@ -124,5 +124,5 @@ public interface IArchiveDataManager : IDisposable
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
+    event EventHandler<ValueEventArgs<FileItem>>? OnWritingFileToArchive;
 }

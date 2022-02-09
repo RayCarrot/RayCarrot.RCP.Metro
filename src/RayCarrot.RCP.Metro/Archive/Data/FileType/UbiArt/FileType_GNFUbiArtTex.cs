@@ -1,19 +1,19 @@
 ﻿namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
 /// <summary>
-/// A PVR UbiArt texture file type (iOS)
+/// A GNF UbiArt texture file type (PS4)
 /// </summary>
-public class ArchiveFileType_PVRUbiArtTex : ArchiveFileType_BaseUbiArtTex
+public class FileType_GNFUbiArtTex : FileType_BaseUbiArtTex
 {
     /// <summary>
     /// The format
     /// </summary>
-    protected override FileExtension Format => new(".pvr");
+    protected override FileExtension Format => new(".gnf");
 
     /// <summary>
     /// The magic header for the format
     /// </summary>
-    protected override uint? FormatMagic => 0x50565203;
+    protected override uint? FormatMagic => 0x474E4620;
 
     /// <summary>
     /// Indicates if the format is fully supported and can be read as an image

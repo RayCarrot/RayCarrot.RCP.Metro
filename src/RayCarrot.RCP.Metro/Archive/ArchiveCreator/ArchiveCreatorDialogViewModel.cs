@@ -80,7 +80,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
 
     #region Event Handlers
 
-    private void Manager_OnWritingFileToArchive(object sender, ValueEventArgs<ArchiveFileItem> e)
+    private void Manager_OnWritingFileToArchive(object sender, ValueEventArgs<FileItem> e)
     {
         SetDisplayStatus(String.Format(Resources.Archive_CreationFileStatus, e.Value.FileName));
     }
@@ -117,7 +117,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
 
             return await Task.Run(async () =>
             {
-                ArchiveFileItem[]? archiveFiles = null;
+                FileItem[]? archiveFiles = null;
 
                 try
                 {
@@ -149,7 +149,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
 
                         object archiveEntry = Manager.GetNewFileEntry(archive, dir, file);
 
-                        ArchiveFileItem archiveFileItem = new(Manager, file, dir, archiveEntry);
+                        FileItem fileItem = new(Manager, file, dir, archiveEntry);
 
                         // IDEA: If not encoded there's no need to copy the stream, instead just use origin file
 
@@ -157,16 +157,16 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                         using FileStream inputStream = File.OpenRead(x);
 
                         // Get the temp stream to store the pending import data
-                        archiveFileItem.SetPendingImport(File.Create(Path.GetTempFileName()));
+                        fileItem.SetPendingImport(File.Create(Path.GetTempFileName()));
 
                         // Encode the data to the pending import stream
-                        Manager.EncodeFile(inputStream, archiveFileItem.PendingImport, archiveEntry);
+                        Manager.EncodeFile(inputStream, fileItem.PendingImport, archiveEntry);
 
                         // If no data was encoded we copy over the decoded data
-                        if (archiveFileItem.PendingImport.Length == 0)
-                            inputStream.CopyTo(archiveFileItem.PendingImport);
+                        if (fileItem.PendingImport.Length == 0)
+                            inputStream.CopyTo(fileItem.PendingImport);
 
-                        return archiveFileItem;
+                        return fileItem;
                     }).ToArray();
 
                     // Open the output file

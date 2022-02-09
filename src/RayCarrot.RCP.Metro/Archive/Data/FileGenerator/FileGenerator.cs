@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro.Archive
     /// A generator to use for getting archive file contents when serializing an archive
     /// </summary>
     /// <typeparam name="FileEntry">The type of file entry</typeparam>
-    public class ArchiveFileGenerator<FileEntry> : Dictionary<FileEntry, Func<Stream>>, IArchiveFileGenerator<FileEntry>
+    public class FileGenerator<FileEntry> : Dictionary<FileEntry, Func<Stream>>, IFileGenerator<FileEntry>
     {
         /// <summary>
         /// Gets the file stream for the specified key

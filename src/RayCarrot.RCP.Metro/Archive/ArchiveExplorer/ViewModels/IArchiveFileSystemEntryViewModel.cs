@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// Common archive explorer file/directory entry view model
 /// </summary>
-public interface IArchiveExplorerEntryViewModel : INotifyPropertyChanged, IDisposable
+public interface IArchiveFileSystemEntryViewModel : INotifyPropertyChanged, IDisposable
 {
     /// <summary>
     /// Indicates if the item is selected

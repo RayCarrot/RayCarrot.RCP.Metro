@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// View model for a directory in an archive
 /// </summary>
 [DebuggerDisplay("{" + nameof(FullPath) + "}")]
-public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>, IArchiveExplorerEntryViewModel
+public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IArchiveFileSystemEntryViewModel
 {
     #region Constructors
 
@@ -27,7 +27,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     /// <param name="parent">The parent directory or null if it's the root</param>
     /// <param name="dirName">The directory name</param>
     /// <param name="archive">The archive the directory belongs to, or null if this is the archive</param>
-    protected ArchiveDirectoryViewModel(ArchiveDirectoryViewModel? parent, string dirName, ArchiveViewModel? archive) : base(parent, dirName)
+    protected DirectoryViewModel(DirectoryViewModel? parent, string dirName, ArchiveViewModel? archive) : base(parent, dirName)
     {
         // Set the archive this directory belongs to
         Archive = archive 
@@ -35,7 +35,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                   ?? throw new ArgumentNullException(nameof(archive), $"Archive can't be null if not of type {nameof(ArchiveViewModel)}");
 
         // Create the file collection
-        Files = new ObservableCollection<ArchiveFileViewModel>();
+        Files = new ObservableCollection<FileViewModel>();
 
         // Create commands
         ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
@@ -72,7 +72,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     /// <summary>
     /// The files
     /// </summary>
-    public ObservableCollection<ArchiveFileViewModel> Files { get; }
+    public ObservableCollection<FileViewModel> Files { get; }
 
     /// <summary>
     /// Indicates if the item is selected
@@ -157,10 +157,10 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
     /// </summary>
     /// <param name="dirName">The name of the directory. This is not the full relative path.</param>
     /// <returns>The item</returns>
-    public ArchiveDirectoryViewModel Add(string dirName)
+    public DirectoryViewModel Add(string dirName)
     {
         // Create the item
-        ArchiveDirectoryViewModel item = new(this, dirName, Archive);
+        DirectoryViewModel item = new(this, dirName, Archive);
 
         // Add the item
         Add(item);
@@ -207,14 +207,14 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                     IArchiveDataManager manager = Archive.Manager;
 
                     // Save the selected format for each collection
-                    Dictionary<IArchiveFileType, FileExtension?> selectedFormats = new();
+                    Dictionary<IFileType, FileExtension?> selectedFormats = new();
 
                     try
                     {
-                        ArchiveDirectoryViewModel[] allDirs;
+                        DirectoryViewModel[] allDirs;
                             
                         if (selectedFilesOnly)
-                            allDirs = new ArchiveDirectoryViewModel[]
+                            allDirs = new DirectoryViewModel[]
                             {
                                 this
                             };
@@ -225,7 +225,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                         int filesCount = allDirs.SelectMany(x => x.Files).Count(x => !selectedFilesOnly || x.IsSelected);
 
                         // Handle each directory
-                        foreach (ArchiveDirectoryViewModel item in allDirs)
+                        foreach (DirectoryViewModel item in allDirs)
                         {
                             // Get the directory path
                             FileSystemPath path = result.SelectedDirectory + ExportDirName + item.FullPath.Remove(0, FullPath.Length).Trim(manager.PathSeparatorCharacter);
@@ -234,18 +234,18 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                             Directory.CreateDirectory(path);
 
                             // Save each file
-                            foreach (ArchiveFileViewModel file in item.Files.Where(x => !selectedFilesOnly || x.IsSelected))
+                            foreach (FileViewModel file in item.Files.Where(x => !selectedFilesOnly || x.IsSelected))
                             {
                                 // Get the file stream
                                 using ArchiveFileStream fileStream = file.GetDecodedFileStream();
 
                                 // Initialize the file without loading the thumbnail
-                                file.InitializeFile(fileStream, ArchiveFileViewModel.ThumbnailLoadMode.None);
+                                file.InitializeFile(fileStream, FileViewModel.ThumbnailLoadMode.None);
 
                                 fileStream.SeekToBeginning();
 
                                 // Check if the format has not been selected
-                                if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && file.FileType is not ArchiveFileType_Default)
+                                if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && file.FileType is not FileType_Default)
                                 {
                                     // Get the available extensions
                                     string[] ext = new string[]
@@ -269,7 +269,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                 }
 
                                 // Get the selected format
-                                FileExtension? format = forceNativeFormat || file.FileType is ArchiveFileType_Default 
+                                FileExtension? format = forceNativeFormat || file.FileType is FileType_Default 
                                     ? null 
                                     : selectedFormats[file.FileType];
 
@@ -356,10 +356,10 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                     try
                     {
                         // Enumerate each directory view model
-                        foreach (ArchiveDirectoryViewModel dir in this.GetAllChildren(true))
+                        foreach (DirectoryViewModel dir in this.GetAllChildren(true))
                         {
                             // Enumerate each file
-                            foreach (ArchiveFileViewModel file in dir.Files)
+                            foreach (FileViewModel file in dir.Files)
                             {
                                 // Get the file directory, relative to the selected directory
                                 FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
@@ -381,7 +381,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                                 using ArchiveFileStream fileStream = file.GetDecodedFileStream();
 
                                 // Initialize the file without loading the thumbnail
-                                file.InitializeFile(fileStream, ArchiveFileViewModel.ThumbnailLoadMode.None);
+                                file.InitializeFile(fileStream, FileViewModel.ThumbnailLoadMode.None);
 
                                 // Check if the base file exists without changing the extensions
                                 if (baseFilePath.FileExists)
@@ -507,17 +507,17 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
         }
     }
 
-    public IEnumerable<ArchiveFileViewModel> GetSelectedFiles() => Files.Where(x => x.IsSelected);
+    public IEnumerable<FileViewModel> GetSelectedFiles() => Files.Where(x => x.IsSelected);
 
     public async Task DeleteSelectedFilesAsync()
     {
-        foreach (ArchiveFileViewModel file in GetSelectedFiles().ToArray())
+        foreach (FileViewModel file in GetSelectedFiles().ToArray())
             await file.DeleteFileAsync();
     }
 
     public async Task RenameSelectedFileAsync()
     {
-        ArchiveFileViewModel? selectedFile = GetSelectedFiles().FirstOrDefault();
+        FileViewModel? selectedFile = GetSelectedFiles().FirstOrDefault();
 
         if (selectedFile != null)
             await selectedFile.RenameFileAsync();
@@ -562,7 +562,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
             string fileName = file.Name;
             string dir = FullPath;
 
-            ArchiveFileViewModel? existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
+            FileViewModel? existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
 
             // Check if the file name conflicts with an existing file
             if (existingFile != null)
@@ -576,7 +576,7 @@ public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryV
                 // Open the file as a stream
                 using FileStream fileStream = File.OpenRead(file);
 
-                ArchiveFileViewModel fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir, fileName)), this);
+                FileViewModel fileViewModel = existingFile ?? new FileViewModel(new FileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir, fileName)), this);
 
                 // Replace the file with the import data
                 if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))

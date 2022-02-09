@@ -81,13 +81,13 @@ public partial class ArchiveExplorerUI : WindowContentControl
         switch (Services.Data.Archive_ExplorerSortOption)
         {
             case UserData_Archive_Sort.AlphabeticalAscending:
-                FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveFileViewModel.FileName), ListSortDirection.Ascending));
-                DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Ascending));
+                FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(FileViewModel.FileName), ListSortDirection.Ascending));
+                DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(DirectoryViewModel.DisplayName), ListSortDirection.Ascending));
                 break;
 
             case UserData_Archive_Sort.AlphabeticalDescending:
-                FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveFileViewModel.FileName), ListSortDirection.Descending));
-                DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Descending));
+                FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(FileViewModel.FileName), ListSortDirection.Descending));
+                DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(DirectoryViewModel.DisplayName), ListSortDirection.Descending));
                 break;
         }
     }
@@ -106,8 +106,8 @@ public partial class ArchiveExplorerUI : WindowContentControl
 
     private async void DirTreeView_OnSelectedItemChangedAsync(object sender, RoutedPropertyChangedEventArgs<object> e)
     {
-        if (e.NewValue is ArchiveDirectoryViewModel newValue)
-            await ViewModel.ChangeLoadedDirAsync(e.OldValue as ArchiveDirectoryViewModel, newValue);
+        if (e.NewValue is DirectoryViewModel newValue)
+            await ViewModel.ChangeLoadedDirAsync(e.OldValue as DirectoryViewModel, newValue);
     }
 
     private void DirTreeView_OnPreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
@@ -148,7 +148,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
             return;
 
         // Double-clicking calls the first view/edit action (opening the file in its native format)
-        if (sender is FrameworkElement f && f.DataContext is ArchiveFileViewModel file)
+        if (sender is FrameworkElement f && f.DataContext is FileViewModel file)
             file.EditActions.FirstOrDefault()?.MenuCommand.Execute(null);
     }
 
@@ -165,7 +165,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
             return;
 
         // Get the currently selected directory
-        ArchiveDirectoryViewModel? dir = ViewModel.SelectedDir;
+        DirectoryViewModel? dir = ViewModel.SelectedDir;
 
         if (dir == null)
             return;
@@ -184,7 +184,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
 
     private void DirTreeItem_OnExpanded(object sender, RoutedEventArgs e)
     {
-        if (sender is TreeViewItem t && t.DataContext is ArchiveDirectoryViewModel d && d.Parent != null && !d.Any())
+        if (sender is TreeViewItem t && t.DataContext is DirectoryViewModel d && d.Parent != null && !d.Any())
             t.IsExpanded = false;
     }
 
@@ -198,7 +198,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
     {
         var count = 0;
 
-        foreach (ArchiveFileViewModel file in sender.CastTo<ListBox>().SelectedItems)
+        foreach (FileViewModel file in sender.CastTo<ListBox>().SelectedItems)
         {
             // If a file is selected which has not been initialized we deselect it and return (since this event will be triggered again then)
             if (!file.IsInitialized)
@@ -219,7 +219,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
     private void FileContextMenu_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
     {
         // Don't allow the context menu to open if not initialized
-        if (((sender as FrameworkElement)?.DataContext as ArchiveFileViewModel)?.IsInitialized != true)
+        if (((sender as FrameworkElement)?.DataContext as FileViewModel)?.IsInitialized != true)
             e.Handled = true;
     }
 

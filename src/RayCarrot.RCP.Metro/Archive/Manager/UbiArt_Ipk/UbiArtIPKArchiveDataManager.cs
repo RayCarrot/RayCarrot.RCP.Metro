@@ -134,7 +134,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<BundleFile_FileEntry>>().GetFileStream((BundleFile_FileEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<BundleFile_FileEntry>>().GetFileStream((BundleFile_FileEntry)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -143,7 +143,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<ArchiveFileItem> files)
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files)
     {
         Logger.Info("An IPK archive is being repacked...");
 
@@ -151,7 +151,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         var data = (BundleFile)archive;
 
         // Create the file generator
-        using ArchiveFileGenerator<BundleFile_FileEntry> fileGenerator = new();
+        using FileGenerator<BundleFile_FileEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -204,7 +204,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                 currentOffset += entry.ArchiveSize;
 
                 // Invoke event
-                OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
+                OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<FileItem>(file.FileItem));
 
                 return fileStream;
             });
@@ -239,7 +239,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         }
     }
 
-    private void WriteArchiveContent(BundleFile bundle, Stream stream, IArchiveFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock)
+    private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock)
     {
         // Make sure we have a generator for each file
         if (fileGenerator.Count != bundle.FilePack.Files.Length)
@@ -344,7 +344,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             foreach (var file in data.FilePack.Files.GroupBy(x => x.Path.DirectoryPath))
             {
                 // Return each directory with the available files, including the root directory
-                yield return new ArchiveDirectory(file.Key, file.Select(x => new ArchiveFileItem(this, x.Path.FileName, x.Path.DirectoryPath, x)).ToArray());
+                yield return new ArchiveDirectory(file.Key, file.Select(x => new FileItem(this, x.Path.FileName, x.Path.DirectoryPath, x)).ToArray());
             }
         }
 
@@ -456,7 +456,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
+    public event EventHandler<ValueEventArgs<FileItem>>? OnWritingFileToArchive;
 
     #endregion
 
@@ -465,7 +465,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The archive file generator for .ipk files
     /// </summary>
-    private class IPKFileGenerator : IArchiveFileGenerator<BundleFile_FileEntry>
+    private class IPKFileGenerator : IFileGenerator<BundleFile_FileEntry>
     {
         /// <summary>
         /// Default constructor

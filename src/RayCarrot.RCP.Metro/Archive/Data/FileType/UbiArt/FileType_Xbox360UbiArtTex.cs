@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 /// <summary>
 /// A Xbox 360 UbiArt texture file type (Xbox 360)
 /// </summary>
-public class ArchiveFileType_Xbox360UbiArtTex : ArchiveFileType_BaseUbiArtTex
+public class FileType_Xbox360UbiArtTex : FileType_BaseUbiArtTex
 {
     /// <summary>
     /// Indicates if the format is fully supported and can be read as an image

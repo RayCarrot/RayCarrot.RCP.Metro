@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Archive
     /// Defines an archive file generator used to get the file bytes from a file entry
     /// </summary>
     /// <typeparam name="FileEntry">The type of file entry</typeparam>
-    public interface IArchiveFileGenerator<in FileEntry> : IDisposable
+    public interface IFileGenerator<in FileEntry> : IDisposable
     {
         /// <summary>
         /// Gets the number of files which can be retrieved from the generator

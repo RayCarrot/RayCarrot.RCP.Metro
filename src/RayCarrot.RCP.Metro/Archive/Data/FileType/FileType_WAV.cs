@@ -5,35 +5,35 @@ using System.IO;
 namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
-/// The default file type
+/// A sound .wav file type
 /// </summary>
-public class ArchiveFileType_Default : IArchiveFileType
+public class FileType_WAV : IFileType
 {
     #region Interface Implementations
 
     /// <summary>
     /// The display name for the file type
     /// </summary>
-    public string TypeDisplayName => Resources.Archive_Format_Default;
+    public virtual string TypeDisplayName => Resources.Archive_Format_Snd;
 
     /// <summary>
     /// The default icon kind for the type
     /// </summary>
-    public virtual PackIconMaterialKind Icon => PackIconMaterialKind.FileOutline;
+    public PackIconMaterialKind Icon => PackIconMaterialKind.FileMusicOutline;
 
     /// <summary>
     /// Indicates if the specified manager supports files of this type
     /// </summary>
     /// <param name="manager">The manager to check</param>
     /// <returns>True if supported, otherwise false</returns>
-    public bool IsSupported(IArchiveDataManager manager) => true;
+    public virtual bool IsSupported(IArchiveDataManager manager) => true;
 
     /// <summary>
     /// Indicates if a file with the specifies file extension is of this type
     /// </summary>
     /// <param name="fileExtension">The file extension to check</param>
     /// <returns>True if it is of this type, otherwise false</returns>
-    public virtual bool IsOfType(FileExtension fileExtension) => true;
+    public virtual bool IsOfType(FileExtension fileExtension) => fileExtension == new FileExtension(".wav");
 
     /// <summary>
     /// Indicates if a file with the specifies file extension and data is of this type
@@ -42,17 +42,17 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="inputStream">The file data to check</param>
     /// <param name="manager">The manager</param>
     /// <returns>True if it is of this type, otherwise false</returns>
-    public virtual bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => true;
+    public virtual bool IsOfType(FileExtension fileExtension, ArchiveFileStream inputStream, IArchiveDataManager manager) => false;
 
     /// <summary>
     /// The supported formats to import from
     /// </summary>
-    public FileExtension[] ImportFormats => Array.Empty<FileExtension>();
+    public virtual FileExtension[] ImportFormats => Array.Empty<FileExtension>();
 
     /// <summary>
     /// The supported formats to export to
     /// </summary>
-    public FileExtension[] ExportFormats => Array.Empty<FileExtension>();
+    public virtual FileExtension[] ExportFormats => Array.Empty<FileExtension>();
 
     /// <summary>
     /// Loads the thumbnail and display info for the file
@@ -62,7 +62,13 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="width">The thumbnail width</param>
     /// <param name="manager">The manager</param>
     /// <returns>The thumbnail data</returns>
-    public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager) => new(null, Array.Empty<DuoGridItemViewModel>());
+    public virtual FileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
+    {
+        return new FileThumbnailData(null, new DuoGridItemViewModel[]
+        {
+            // TODO: Read and include .wav metadata, such as track length etc.
+        });
+    }
 
     /// <summary>
     /// Converts the file data to the specified format
@@ -72,7 +78,10 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="inputStream">The input file data stream</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
+    public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream, IArchiveDataManager manager)
+    {
+        throw new NotSupportedException("Converting .wav files is not supported");
+    }
 
     /// <summary>
     /// Converts the file data from the specified format
@@ -83,7 +92,10 @@ public class ArchiveFileType_Default : IArchiveFileType
     /// <param name="inputStream">The input file data stream to convert from</param>
     /// <param name="outputStream">The output stream for the converted data</param>
     /// <param name="manager">The manager</param>
-    public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, ArchiveFileStream inputStream, ArchiveFileStream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
+    public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, ArchiveFileStream inputStream, ArchiveFileStream outputStream, IArchiveDataManager manager)
+    {
+        throw new NotSupportedException("Converting .wav files is not supported");
+    }
 
     #endregion
 }

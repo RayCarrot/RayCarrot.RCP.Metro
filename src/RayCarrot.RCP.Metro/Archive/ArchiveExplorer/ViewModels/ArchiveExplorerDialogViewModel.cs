@@ -96,7 +96,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     #region Private Fields
 
     private string? _currentDirectoryAddress;
-    private IArchiveExplorerEntryViewModel? _selectedSearchEntry;
+    private IArchiveFileSystemEntryViewModel? _selectedSearchEntry;
 
     #endregion
 
@@ -119,24 +119,24 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// <summary>
     /// Enumerates the directories in all available archives
     /// </summary>
-    public IEnumerable<ArchiveDirectoryViewModel> EnumerateDirectories => Archives.Select(y => ((ArchiveDirectoryViewModel)y).GetAllChildren(true)).SelectMany(y => y);
+    public IEnumerable<DirectoryViewModel> EnumerateDirectories => Archives.Select(y => ((DirectoryViewModel)y).GetAllChildren(true)).SelectMany(y => y);
 
     /// <summary>
     /// Enumerates the files in all available archives
     /// </summary>
-    public IEnumerable<ArchiveFileViewModel> EnumerateFiles => EnumerateDirectories.SelectMany(y => y.Files);
+    public IEnumerable<FileViewModel> EnumerateFiles => EnumerateDirectories.SelectMany(y => y.Files);
 
     /// <summary>
     /// Enumerates the entries in all available archives
     /// </summary>
-    public IEnumerable<IArchiveExplorerEntryViewModel> EnumerateEntries
+    public IEnumerable<IArchiveFileSystemEntryViewModel> EnumerateEntries
     {
         get
         {
             // Get the directories
             var dirs = EnumerateDirectories.ToArray();
 
-            return dirs.Cast<IArchiveExplorerEntryViewModel>().Concat(dirs.SelectMany(y => y.Files));
+            return dirs.Cast<IArchiveFileSystemEntryViewModel>().Concat(dirs.SelectMany(y => y.Files));
         }
     }
 
@@ -197,7 +197,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// <summary>
     /// The currently selected search file
     /// </summary>
-    public IArchiveExplorerEntryViewModel? SelectedSearchEntry
+    public IArchiveFileSystemEntryViewModel? SelectedSearchEntry
     {
         get => _selectedSearchEntry;
         set
@@ -221,7 +221,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// <summary>
     /// The currently selected directory
     /// </summary>
-    public ArchiveDirectoryViewModel? SelectedDir { get; set; }
+    public DirectoryViewModel? SelectedDir { get; set; }
 
     /// <summary>
     /// Indicates if multiple files are selected
@@ -242,7 +242,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// </summary>
     /// <param name="search">The search string</param>
     /// <returns>The matching entries</returns>
-    public IEnumerable<IArchiveExplorerEntryViewModel> SearchForEntries(string search)
+    public IEnumerable<IArchiveFileSystemEntryViewModel> SearchForEntries(string search)
     {
         return EnumerateEntries.Where(y => y.DisplayName.IndexOf(search, StringValueComparison) > -1);
     }
@@ -251,15 +251,15 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// Navigates to the specified archive entry
     /// </summary>
     /// <param name="entry">The entry to navigate to</param>
-    public void NavigateToEntry(IArchiveExplorerEntryViewModel entry)
+    public void NavigateToEntry(IArchiveFileSystemEntryViewModel entry)
     {
         // Check the entry type
-        if (entry is ArchiveFileViewModel file)
+        if (entry is FileViewModel file)
         {
-            LoadDirectory(file.ArchiveDirectory);
+            LoadDirectory(file.Directory);
             SelectFile(file);
         }
-        else if (entry is ArchiveDirectoryViewModel dir)
+        else if (entry is DirectoryViewModel dir)
         {
             LoadDirectory(dir);
             entry.IsSelected = true;
@@ -286,7 +286,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// </summary>
     /// <param name="dir">The directory to get the address for</param>
     /// <returns>The directory address</returns>
-    public string GetDirectoryAddress(ArchiveDirectoryViewModel dir)
+    public string GetDirectoryAddress(DirectoryViewModel dir)
     {
         string source = dir.Archive.DisplayName;
         string path = dir.FullPath;
@@ -299,7 +299,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// </summary>
     /// <param name="address">The address</param>
     /// <returns>The directory, or null if no match was found</returns>
-    public ArchiveDirectoryViewModel? GetDirectory(string address)
+    public DirectoryViewModel? GetDirectory(string address)
     {
         // Find the source separator
         int sourceIndex = address.IndexOf(SourceSeparator);
@@ -312,7 +312,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
         string source = address.Substring(0, sourceIndex);
 
         // Find the matching archive based on the source
-        ArchiveDirectoryViewModel? dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(source, StringValueComparison));
+        DirectoryViewModel? dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(source, StringValueComparison));
 
         // If none was found it's invalid
         if (dir == null)
@@ -370,7 +370,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
         {
             int separatorIndex = CurrentDirectoryAddress.LastIndexOf(Manager.PathSeparatorCharacter);
             string parentDir = CurrentDirectoryAddress.Substring(0, separatorIndex);
-            ArchiveDirectoryViewModel? dir = GetDirectory(parentDir);
+            DirectoryViewModel? dir = GetDirectory(parentDir);
 
             if (dir != null)
                 CurrentDirectorySuggestions.AddRange(dir.Select(GetDirectoryAddress));
@@ -387,7 +387,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
         StatusBarItems.Clear();
 
         // Get the selected directory
-        ArchiveDirectoryViewModel? selectedDir = SelectedDir;
+        DirectoryViewModel? selectedDir = SelectedDir;
 
         if (selectedDir == null)
         {
@@ -403,7 +403,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
         bool invalidSize = false;
 
         // Enumerate every selected file
-        foreach (ArchiveFileViewModel file in selectedDir.GetSelectedFiles())
+        foreach (FileViewModel file in selectedDir.GetSelectedFiles())
         {
             // Keep track of the count
             selectedFilesCount++;
@@ -437,10 +437,10 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// Loads the specified directory
     /// </summary>
     /// <param name="dir">The directory to load</param>
-    public void LoadDirectory(ArchiveDirectoryViewModel dir)
+    public void LoadDirectory(DirectoryViewModel dir)
     {
         // Expand the parent items
-        ArchiveDirectoryViewModel? parent = dir;
+        DirectoryViewModel? parent = dir;
 
         while (parent != null)
         {
@@ -471,7 +471,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
         Logger.Debug("Loading directory from address: {0}", address);
 
         // Get the directory
-        ArchiveDirectoryViewModel? dir = GetDirectory(address);
+        DirectoryViewModel? dir = GetDirectory(address);
 
         // Load the directory if not null
         if (dir != null)
@@ -482,7 +482,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// Updates the loaded directory thumbnails
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ChangeLoadedDirAsync(ArchiveDirectoryViewModel? previousDir, ArchiveDirectoryViewModel newDir)
+    public async Task ChangeLoadedDirAsync(DirectoryViewModel? previousDir, DirectoryViewModel newDir)
     {
         if (newDir == null)
             throw new ArgumentNullException(nameof(newDir));
@@ -542,7 +542,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
                         }
 
                         // Initialize the file
-                        x.InitializeFile(thumbnailLoadMode: ArchiveFileViewModel.ThumbnailLoadMode.LoadThumbnail);
+                        x.InitializeFile(thumbnailLoadMode: FileViewModel.ThumbnailLoadMode.LoadThumbnail);
                     }
                 });
 
@@ -576,7 +576,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// </summary>
     /// <param name="file">The file to select</param>
     /// <param name="resetSelection">Indicates if the file selection should be reset</param>
-    public void SelectFile(ArchiveFileViewModel file, bool resetSelection = true)
+    public void SelectFile(FileViewModel file, bool resetSelection = true)
     {
         if (resetSelection)
             ResetFileSelection();
@@ -592,7 +592,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
         if (SelectedDir == null)
             return;
 
-        foreach (ArchiveFileViewModel file in SelectedDir.Files)
+        foreach (FileViewModel file in SelectedDir.Files)
             file.IsSelected = false;
     }
 

@@ -10,30 +10,30 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// File item data for the Archive Explorer
 /// </summary>
-public class ArchiveFileItem : IDisposable
+public class FileItem : IDisposable
 {
-    static ArchiveFileItem()
+    static FileItem()
     {
         // IDEA: Move this somewhere else?
         // Set the supported file types
-        FileTypes = new IArchiveFileType[]
+        FileTypes = new IFileType[]
         {
-            new ArchiveFileType_GF(),
-            new ArchiveFileType_WAV(),
-            new ArchiveFileType_Image(),
-            new ArchiveFileType_DDSUbiArtTex(),
-            new ArchiveFileType_GXTUbiArtTex(),
-            new ArchiveFileType_GTXUbiArtTex(),
-            new ArchiveFileType_PVRUbiArtTex(),
-            new ArchiveFileType_GNFUbiArtTex(),
-            new ArchiveFileType_Xbox360UbiArtTex(),
+            new FileType_GF(),
+            new FileType_WAV(),
+            new FileType_Image(),
+            new FileType_DDSUbiArtTex(),
+            new FileType_GXTUbiArtTex(),
+            new FileType_GTXUbiArtTex(),
+            new FileType_PVRUbiArtTex(),
+            new FileType_GNFUbiArtTex(),
+            new FileType_Xbox360UbiArtTex(),
         };
 
         // Set default file type
-        DefaultFileType = new ArchiveFileType_Default();
+        DefaultFileType = new FileType_Default();
     }
 
-    public ArchiveFileItem(IArchiveDataManager manager, string fileName, string directory, object archiveEntry)
+    public FileItem(IArchiveDataManager manager, string fileName, string directory, object archiveEntry)
     {
         Manager = manager;
         FileName = fileName;
@@ -78,13 +78,13 @@ public class ArchiveFileItem : IDisposable
         PendingImport = import;
     }
 
-    public IArchiveFileType GetFileType(ArchiveFileStream stream)
+    public IFileType GetFileType(ArchiveFileStream stream)
     {
         // Get types supported by the current manager
-        IArchiveFileType[] types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
+        IFileType[] types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
 
         // First attempt to find matching file type based off of the file extension to avoid having to read the file
-        IArchiveFileType? match = types.FirstOrDefault(x => x.IsOfType(FileExtension));
+        IFileType? match = types.FirstOrDefault(x => x.IsOfType(FileExtension));
 
         // If no match, check the data
         if (match == null)
@@ -97,8 +97,8 @@ public class ArchiveFileItem : IDisposable
         return match ?? DefaultFileType;
     }
 
-    private static IArchiveFileType[] FileTypes { get; }
-    private static IArchiveFileType DefaultFileType { get; }
+    private static IFileType[] FileTypes { get; }
+    private static IFileType DefaultFileType { get; }
 
     public void Dispose()
     {

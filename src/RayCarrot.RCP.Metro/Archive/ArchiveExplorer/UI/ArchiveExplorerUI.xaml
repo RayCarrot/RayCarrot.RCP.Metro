@@ -83,7 +83,7 @@
                                              mah:TextBoxHelper.SelectAllOnFocus="True">
 
                     <editors:AutoCompleteTextBox.ItemTemplate>
-                        <DataTemplate DataType="archive:IArchiveExplorerEntryViewModel">
+                        <DataTemplate DataType="archive:IArchiveFileSystemEntryViewModel">
                             <Grid ToolTip="{Binding Path=FullPath, Mode=OneTime}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -231,7 +231,7 @@
                          Grid.Row="0"
                          Grid.IsSharedSizeScope="True"
                          DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
-                         d:DataContext="{d:DesignInstance archive:ArchiveDirectoryViewModel}"
+                         d:DataContext="{d:DesignInstance archive:DirectoryViewModel}"
                          ItemsSource="{Binding Path=Files, Mode=OneTime}"
                          ItemTemplate="{StaticResource FileDataTemplate}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -307,7 +307,7 @@
                                   IconKind="Plus"
                                   ToolTip="{Resx Archive_AddFiles}"
                                   DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
-                                  d:DataContext="{d:DesignInstance archive:ArchiveDirectoryViewModel}"
+                                  d:DataContext="{d:DesignInstance archive:DirectoryViewModel}"
                                   Background="{DynamicResource MahApps.Brushes.Control.Background}"
                                   Command="{Binding Path=AddFilesCommand, Mode=OneTime}"/>
 

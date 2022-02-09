@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// An image file type
 /// </summary>
-public class ArchiveFileType_Image : IArchiveFileType
+public class FileType_Image : IFileType
 {
     #region Interface Implementations
 
@@ -65,7 +65,7 @@ public class ArchiveFileType_Image : IArchiveFileType
     /// <param name="width">The thumbnail width</param>
     /// <param name="manager">The manager</param>
     /// <returns>The thumbnail data</returns>
-    public virtual ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
+    public virtual FileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Get the image
         using MagickImage img = GetImage(inputStream, fileExtension, manager);
@@ -75,7 +75,7 @@ public class ArchiveFileType_Image : IArchiveFileType
 
         BitmapSource thumb = img.ToBitmapSource();
 
-        return new ArchiveFileThumbnailData(thumb, new DuoGridItemViewModel[]
+        return new FileThumbnailData(thumb, new DuoGridItemViewModel[]
         {
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)), 

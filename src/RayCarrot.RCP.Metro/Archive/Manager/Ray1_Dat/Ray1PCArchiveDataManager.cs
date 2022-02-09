@@ -137,7 +137,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="generator">The generator</param>
     /// <param name="fileEntry">The file entry</param>
     /// <returns>The encoded file data</returns>
-    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<PC_FileArchiveEntry>>().GetFileStream((PC_FileArchiveEntry)fileEntry);
+    public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IFileGenerator<PC_FileArchiveEntry>>().GetFileStream((PC_FileArchiveEntry)fileEntry);
 
     /// <summary>
     /// Writes the files to the archive
@@ -146,7 +146,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<ArchiveFileItem> files)
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files)
     {
         Logger.Info("An R1 PC archive is being repacked...");
 
@@ -154,7 +154,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         var data = (PC_FileArchive)archive;
 
         // Create the file generator
-        using ArchiveFileGenerator<PC_FileArchiveEntry> fileGenerator = new();
+        using FileGenerator<PC_FileArchiveEntry> fileGenerator = new();
 
         // Get files and entries
         var archiveFiles = files.Select(x => new
@@ -201,7 +201,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
                     pointer += entry.FileSize;
 
                     // Invoke event
-                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
+                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<FileItem>(file.FileItem));
 
                     return fileStream;
                 });
@@ -256,8 +256,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
         // Return the data
         return new ArchiveData(new ArchiveDirectory[]
         {
-            new ArchiveDirectory(String.Empty, data.Entries.Select(f => new ArchiveFileItem(this, $"{f.FileName}{fileExt}", String.Empty, f)).ToArray())
-        }, new Rayman1PCArchiveGenerator(archiveFileStream));
+            new ArchiveDirectory(String.Empty, data.Entries.Select(f => new FileItem(this, $"{f.FileName}{fileExt}", String.Empty, f)).ToArray())
+        }, new Rayman1PCGenerator(archiveFileStream));
     }
 
     public object LoadArchive(Stream archiveFileStream, string name)
@@ -361,7 +361,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Occurs when a file is being written to an archive
     /// </summary>
-    public event EventHandler<ValueEventArgs<ArchiveFileItem>>? OnWritingFileToArchive;
+    public event EventHandler<ValueEventArgs<FileItem>>? OnWritingFileToArchive;
 
     #endregion
 
@@ -390,13 +390,13 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// The archive file generator for .cnt files
     /// </summary>
-    private class Rayman1PCArchiveGenerator : IArchiveFileGenerator<PC_FileArchiveEntry>
+    private class Rayman1PCGenerator : IFileGenerator<PC_FileArchiveEntry>
     {
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="archiveStream">The archive file stream</param>
-        public Rayman1PCArchiveGenerator(Stream archiveStream)
+        public Rayman1PCGenerator(Stream archiveStream)
         {
             // Get the stream
             Stream = archiveStream;

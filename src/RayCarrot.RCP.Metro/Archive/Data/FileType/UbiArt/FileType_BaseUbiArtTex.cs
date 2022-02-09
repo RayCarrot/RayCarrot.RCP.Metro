@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 /// <summary>
 /// A base UbiArt texture file type
 /// </summary>
-public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
+public abstract class FileType_BaseUbiArtTex : FileType_Image
 {
     /// <summary>
     /// The display name for the file type
@@ -95,11 +95,11 @@ public abstract class ArchiveFileType_BaseUbiArtTex : ArchiveFileType_Image
     /// <param name="width">The thumbnail width</param>
     /// <param name="manager">The manager</param>
     /// <returns>The thumbnail data</returns>
-    public override ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
+    public override FileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Only load thumbnails for supported formats
         if (!IsFormatSupported)
-            return new ArchiveFileThumbnailData(null, Array.Empty<DuoGridItemViewModel>());
+            return new FileThumbnailData(null, Array.Empty<DuoGridItemViewModel>());
         else
             return base.LoadThumbnail(inputStream, fileExtension, width, manager);
     }

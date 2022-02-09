@@ -14,7 +14,7 @@
 
     <!-- File -->
 
-    <DataTemplate x:Key="FileDataTemplate" DataType="{x:Type archive:ArchiveFileViewModel}">
+    <DataTemplate x:Key="FileDataTemplate" DataType="{x:Type archive:FileViewModel}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

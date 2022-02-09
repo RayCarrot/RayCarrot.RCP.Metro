@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 /// <summary>
 /// A DDS UbiArt texture file type
 /// </summary>
-public class ArchiveFileType_DDSUbiArtTex : ArchiveFileType_BaseUbiArtTex
+public class FileType_DDSUbiArtTex : FileType_BaseUbiArtTex
 {
     /// <summary>
     /// The format

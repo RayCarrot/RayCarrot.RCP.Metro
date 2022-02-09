@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro.Archive.OpenSpace;
 /// <summary>
 /// An image file type
 /// </summary>
-public class ArchiveFileType_GF : IArchiveFileType
+public class FileType_GF : IFileType
 {
     #region Logger
 
@@ -86,7 +86,7 @@ public class ArchiveFileType_GF : IArchiveFileType
     /// <param name="width">The thumbnail width</param>
     /// <param name="manager">The manager</param>
     /// <returns>The thumbnail data</returns>
-    public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
+    public FileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
     {
         // Load the file
         GF file = GetFileContent(inputStream, manager);
@@ -100,7 +100,7 @@ public class ArchiveFileType_GF : IArchiveFileType
         BitmapSource thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, format, null, rawBmp.PixelData, (rawBmp.Width * format.BitsPerPixel + 7) / 8);
 
         // Get the thumbnail with the specified size
-        return new ArchiveFileThumbnailData(thumbnailSource, new DuoGridItemViewModel[]
+        return new FileThumbnailData(thumbnailSource, new DuoGridItemViewModel[]
         {
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Size)), 
