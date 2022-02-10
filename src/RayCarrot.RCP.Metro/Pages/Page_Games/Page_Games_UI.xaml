@@ -36,6 +36,7 @@
 
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 Command="{Binding Path=RefreshGamesCommand}"
+                                InputGestureText="F5"
                                 local:UserLevelAssist.MinUserLevel="Debug"
                                 IconKind="Refresh"/>
         </ContextMenu>

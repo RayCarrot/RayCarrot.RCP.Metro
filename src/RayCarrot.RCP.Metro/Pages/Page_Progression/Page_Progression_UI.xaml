@@ -28,6 +28,7 @@
 
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
+                                InputGestureText="F5"
                                 Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
 
             <Separator />
