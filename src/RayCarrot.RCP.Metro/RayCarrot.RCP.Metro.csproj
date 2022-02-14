@@ -93,10 +93,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="DotNetZip" Version="1.16.0" />
-    <PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="3.1.1" />
     <PackageReference Include="ini-parser" Version="2.5.2" />
-    <PackageReference Include="Magick.NET-Q8-x86" Version="8.5.0" />
-    <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="4.0.10" />
+    <PackageReference Include="Magick.NET-Q8-x86" Version="9.1.2" />
+    <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="4.0.16" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageReference Include="MahApps.Metro.SimpleChildWindow" Version="2.0.0" />
@@ -116,7 +116,7 @@
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
     <PackageReference Include="Resource.Embedder" Version="2.1.1" />
-    <PackageReference Include="System.Linq.Async" Version="5.1.0" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     <PackageReference Include="WPFTextBoxAutoComplete" Version="1.0.5" />
     <PackageReference Include="XamlAnimatedGif" Version="2.0.2" />
   </ItemGroup>
