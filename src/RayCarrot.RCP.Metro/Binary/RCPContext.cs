@@ -74,19 +74,19 @@ public class RCPContext : Context
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public void Log(object log)
+        public void Log(object log, params object[] args)
         {
-            Logger.Info("BinarySerializer: {0}", log);
+            Logger.Info($"BinarySerializer: {log}", args);
         }
 
-        public void LogWarning(object log)
+        public void LogWarning(object log, params object[] args)
         {
-            Logger.Warn("BinarySerializer: {0}", log);
+            Logger.Info($"BinarySerializer: {log}", args);
         }
 
-        public void LogError(object log)
+        public void LogError(object log, params object[] args)
         {
-            Logger.Error("BinarySerializer: {0}", log);
+            Logger.Info($"BinarySerializer: {log}", args);
         }
     }
 }
