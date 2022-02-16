@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The behavior to use for <see cref="UserLevelAssist"/>

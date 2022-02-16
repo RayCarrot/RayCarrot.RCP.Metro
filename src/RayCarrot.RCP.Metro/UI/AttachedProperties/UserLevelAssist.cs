@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 
@@ -65,15 +64,15 @@ public static class UserLevelAssist
             return;
 
         // Make sure we've got a UI Element
-        if (!(d is FrameworkElement uIElement))
+        if (d is not FrameworkElement uiElement)
             return;
 
         // Revert values to default
-        uIElement.IsEnabled = true;
-        uIElement.Visibility = Visibility.Visible;
+        uiElement.IsEnabled = true;
+        uiElement.Visibility = Visibility.Visible;
 
         // Refresh the element
-        RefreshElement(uIElement);
+        RefreshElement(uiElement);
     }
 
     private static void MinUserLevelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -83,7 +82,7 @@ public static class UserLevelAssist
             return;
 
         // Make sure we've got a UI Element
-        if (!(d is FrameworkElement uIElement))
+        if (d is not FrameworkElement uIElement)
             return;
 
         // Create a weak reference
