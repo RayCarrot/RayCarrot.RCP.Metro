@@ -233,11 +233,11 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
         ZipArchive? compressedBackup = null;
 
-        if (backup.IsCompressed)
-            compressedBackup = new ZipArchive(File.OpenRead(backup.Path));
-
         try
         {
+            if (backup.IsCompressed)
+                compressedBackup = new ZipArchive(File.OpenRead(backup.Path));
+
             DateTime backupDate = backup.Path.GetFileSystemInfo().LastWriteTime;
             BackupSearchPattern[] backupDirs = BackupInfo.BackupDirectories!;
 
