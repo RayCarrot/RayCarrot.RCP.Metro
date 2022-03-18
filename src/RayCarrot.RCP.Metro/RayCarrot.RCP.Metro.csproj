@@ -54,18 +54,6 @@
     </WeaverConfiguration>
   </PropertyGroup>
 
-  <!-- Common references -->
-  <ItemGroup>
-    <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.Build.Utilities.v4.0" />
-    <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Runtime.InteropServices.WindowsRuntime" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
-
   <!-- DLL references -->
   <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
