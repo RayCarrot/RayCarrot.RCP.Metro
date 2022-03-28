@@ -1,5 +1,5 @@
 ﻿-----   Version 13.0.2 - March 28, 2022   -----
-• Added F5 input gesture text to page refresh menu button
+• Added F5 input gesture text to page refresh menu buttons
 • Removed leftover library references
 • Fixed an issue where saving a CNT archive would cause the game to not read it (saving it again with this version will fix it)
 • Fixed an issue where any errors caused by reading compressed backups would crash the app
