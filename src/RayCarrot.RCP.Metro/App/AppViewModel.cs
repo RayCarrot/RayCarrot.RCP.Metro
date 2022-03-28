@@ -236,7 +236,7 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     public static WindowsVersion WindowsVersion { get; }
 
-    public static Version AppVersion => new Version(13, 0, 1, 0);
+    public static Version AppVersion => new Version(13, 0, 2, 0);
 
     #endregion
 
