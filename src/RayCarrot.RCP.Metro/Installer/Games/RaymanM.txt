@@ -3055,5 +3055,5 @@ TribeBin\World\Sound\Musiques\ZJgl_Rb.wav
 TribeBin\World\Sound\Musiques\ZJgl_Rm.wav
 TribeBin\World\Sound\Musiques\ZJgl_Ty.wav
 Videos\Intro.bik
-Videos\Outro.bik
+ Videos\Outro.bik
 Videos\Ubi.bik
