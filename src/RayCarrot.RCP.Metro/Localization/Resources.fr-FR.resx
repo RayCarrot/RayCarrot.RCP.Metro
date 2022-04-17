@@ -1,0 +1,2995 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GamesPageHeader" xml:space="preserve">
+    <value>Jeux</value>
+  </data>
+  <data name="AboutPageHeader" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="DebugPageHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="SettingsPageHeader" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Sauver</value>
+  </data>
+  <data name="GameType_Desktop" xml:space="preserve">
+    <value>Application Bureau</value>
+  </data>
+  <data name="GameType_DosBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameType_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameType_WinStore" xml:space="preserve">
+    <value>Microsoft Store</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Chemin d'accès</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>Le chemin d'accès peut être un dossier ou un disque. La version GOG utilise le fichier 'game.inst'. Une image disque sera normalement au format .cue. Sinonn utilisez la lettre du disque où le CD est inséré.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Fichier</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Disque</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Indique que le chemin d'accès est un fichier</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Indique que le chemin d'accès est un fichier ou un disque </value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>Paramètres de DOSBox</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Régler une des options ci-dessous vide ou sur désacté utilisera la valeur par défaut spécifiée dans le fichier de configuration de DOSBox. Si un fichier de configuration a été spécifié dans les paramètres, il est possible qu'il remplace certains paramètres ci-dessous.</value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Plein écran</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Ouvrir DOSBox directement en mode plein écran</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Double mise en mémoire tampon Plein écran</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Utilise une double mémoire tampon en plein écran</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Correction du ratio d'aspect</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Utilise la correction du ration d'aspect, si votre méthode de sortie n'est pas compatible avec le redimentionnement, cela peut provoquer des ralentissements !</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Mémoire allouée</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Le montant de mémoire en mégabits que DOSBox peut utiliser</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Saut d'images</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>Le nombre d'images que DOSBox passe avant d'en afficher une nouvelle</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Sortie</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>Ce qui sera utilisé comme sortie</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Résolution plein écran</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Quelle résolution utiliser pour le plein écran : original, desktop ou taille fixe (ex : 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Résolution fenêtré</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Ajuste la fenêtre à cette taille SEULEMENT SI l'appareil accepte la mise à l'échelle matérielle</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Redimentionner</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Redimentionner permet d'agrandir/améliorer les modes en basse résolution</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Cœur</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>Le cœur utilisé pour l'émulation. Auto choisit l'option la plus appropriée entre normal et dynamique</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Cycles</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Le montant d'instructions que DOSBox essaie d'émuler chaque milliseconde. Régler cette valeur trop haut peut créer des pertes de son et des ralentissements. Il est aussi possible de laisser DOSBox déterminer automatiquement la valeur appropriée en réglant cette option sur max. L'option de base (auto) se règle sur max si cela convient.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>Commandes DOSBox</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Optionnel)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Utiliser les paramètres recommandés</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Résolution</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Plein écran</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Fait fonctionner le jeu en mode plein, sinon, il fonctionnera en mode fenêtré</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Graphismes</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>Trilinéaire</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Transform et Lighting</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Décocher si le jeu a des pépins graphiques</value>
+  </data>
+  <data name="Config_DynamicShadows" xml:space="preserve">
+    <value>Ombres dynamiques</value>
+  </data>
+  <data name="Config_StaticShadows" xml:space="preserve">
+    <value>Ombres statiques</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16 bits</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32 bits</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Compression</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Vidéo</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Bonne qualité</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Mauvaise qualité</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Ajuster automatiquement la qualité</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 bits par pixel</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 bits par pixel</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Manette</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Utiliser la manette connectée</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Si votre manette n'est pas reconnue, vous pouvez activer le support manette natif</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Activer le support manette natif</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Axe Vertical</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Axe Horizontal</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Réseau</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Si la prise en charge de l'écran large n'est pas activée, le jeu va s'étirer pour correspondre à un ratio d'écran autre que 4:3</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Prise en charge écran large</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Le support écran large assure que le jeu ne sera pas étiré s'il tourne dans un ratio d'écran autre que 4:3</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Écran large horizontal</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Fait étendre l'écran horizontalement</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Écran large vertical</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Réduit l'écran large verticalement</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Configure la langue par défaut sélectionné en démarrant le jeu. La langue peut toujours être changée depuis le menu du jeu</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Si la manette n'est pas reconnue, il est possible d'activer le support manette ici. Cela retirera tout mappage personnalisé de la manette</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Mappage de la manette</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Comme le jeu ne propose pas de mappage de boutons de façon nattive, il est possible de le changer ici. Cela ne marchera pas pour les manettes</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Clé</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Mode écran</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>Les options du mode écran vont se comporter différemment en fonction de la résolution choisie. En général, garder le mode 4:3 activé permettra au jeu de ne pas être étiré contrairement aux autres ratios d'aspect. </value>
+  </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Control Panel est un projet communautaire open source créé par RayCarrot. Ce logiciel est un unique éxécutable gratuit d'accès avec l'intention de rendre facile d'accès différentes options et améliorations pour les différents jeux Rayman sortis sur Windows. C'est un projet en expansion avec plusieures fonctionnalités prévus pour de futures mise à jour. Les utilitaires et les outils de configuration ont été créés avec l'aide de divers membres de la communauté Rayman, tous crédités ci-dessous.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Crédits</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Historique des mises à jour</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Chercher de nouvelles mises à jour</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>Youtube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Dernier backup</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Taille du backup</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Restaurer</value>
+  </data>
+  <data name="Games_Installed" xml:space="preserve">
+    <value>Installé</value>
+  </data>
+  <data name="Games_NotInstalled" xml:space="preserve">
+    <value>Non installé</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Niveau utilisateur</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>Le niveau utilisateur détermine quelles options et informations sont disponibles dans l'application. Plus le niveau utilisateur est élevé, plus le nombre d'options et d'informations montrés sera grand</value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Niveau d'utilisateur normal - pour les utilisateurs voulant toutes les fonctionnalités par défaut sans aucune option avancée ou détail technique</value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Avancé</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Niveau d'utilisateur avancé - Pour les utilisateurs voulant des fonctionnalités plus avancés que celles par défaut, mais sans les détails techniques</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Technique</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Niveau d'utilisateur technique - Pour les utilisateurs voulant des fonctionnalités plus avancées que celles par défaut ainsi que les détails techniques</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Débug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Niveau d'utilisateur débug - Pour les développeurs d'application ainsi que les testeurs voulant des options et des informations de débug avancées</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Contribuer aux traductions</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Clair</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Sombre</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Activer les animations</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Montrer les messages de succès</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Montre un message si l'opération a réussi</value>
+  </data>
+  <data name="Settings_DesignShowAllGames" xml:space="preserve">
+    <value>Montrer les jeux non installés</value>
+  </data>
+  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
+    <value>Montre tous les jeux de la page des jeux, même s'ils ne sont pas installés</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Montrer la progression sur l'icône de la barre des tâches</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Montre la progression des téléchargements sur l'icône de la barre des tâches</value>
+  </data>
+  <data name="Settings_DosBoxHeader" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>Chemin d'accès DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>le chemin d'accès vers l'éxécutable de DOSBox</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
+    <value>Chemin d'accès de la configuration de DOSBox</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
+    <value>Le chemin d'accès vers la configuration de DOSBox</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Emplacement du backup</value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Démarrage</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Cherche les jeux installés</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Cherche des mises à jour du programme</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>Général</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Ferme l'application quand un jeu est ouvert</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Ferme la boîte de dialogue de configuration avec une sauvegarde</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>Bande son par niveau</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>Par défaut, la version PC n'a qu'une seule piste de musique par monde. Ce patch fait en sorte que chaque niveau aie sa propre musique, de la même façon que la version PlayStation.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Désinstaller</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Version de Rayman</value>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Bande son complète</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever, dont la version GOG, ne contient pas la bande son complète à cause d'une taille de disque insuffisante. Cet utilitaire remplace la bande son incomplète par la bande son complète, ou alternativement la remettre en place.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Remplacer par la bande son complète</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Remplacer par la bande son incomplète</value>
+  </data>
+  <data name="R2U_TranslationsHeader" xml:space="preserve">
+    <value>Traductions non officielles</value>
+  </data>
+  <data name="R2U_TranslationsInfo" xml:space="preserve">
+    <value>Applique une traduction non officielle qui remplacera une langue en jeu par celle sélectionnée (Anglais dans la plupart des cas). Ces changements peuvent être annulés à tout moment en appliquant la version originale.</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay doit être activé afin de pouvoir utiliser Rayman 3. Il est désactivé par défaut sur Windows 10 dans la plupart des cas.</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Remplacer les fichiers infectés</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Certaines versions de Rayman Designer, Rayman Forever compris, ont certains de leurs fichiers RayKit infectés par un malware. Même si ce dernier n'a pas l'air dangereux ou actif, GOG ayant confirmé qu'il n'y a aucun danger, il est toujours possible de remplacer ces fichiers par leur version non infectée sans danger via cet utilitaire.</value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Remplacer</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Créer le fichier de configuration manquant</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Durant certaines installations de Rayman Designer, le fichier de configuration n'est pas créé, ce qui provoque une erreur chez le Mapper quand il est démarré. Cet utilitaire règle ce soucis en créant le fichier de configuration s'il n'est pas présent.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Créer le fichier de configuration manquant</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>Activer UbiRay</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>Cet utilitaire modifie la configuration du jeu pour faire apparaître UbiRay en tant que costume normal dans la gallerie des héros.</value>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Vidéos haute qualité</value>
+  </data>
+  <data name="ROU_HQVideosInfo" xml:space="preserve">
+    <value>Les cinématiques de la version PC sont compressées et de moins bonne qualité que celles des versions console. Cet utilitaire remplace ces vidéos avec celles de plus haute qualité des versions console.</value>
+  </data>
+  <data name="ROU_HQVideosReplace" xml:space="preserve">
+    <value>Remplacer par les vidéos de haute qualité</value>
+  </data>
+  <data name="ROU_HQVideosRevert" xml:space="preserve">
+    <value>Revenir sur les vidéos originales</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Commandes de débug</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Utiliser une des commandes ci-dessous permet au jeu d'être lancé dans un environnement de débug, avec les commanges changeant la façon dont le jeu fonctionne.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>ATTENTION : Utiliser ces commandes de debug peut corrompre les données. Pensez à toujours faire un backup avant de les utiliser.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Invincibilité</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Permet au joueur de ne pas mourir en se prenant des dégâts</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Cacher le pointeur de la souris</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Cache le pointeur de la souris dans les menus du jeu</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Zoom caméra maximum</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Augmente le zoom de la caméra au maximum</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Fréquence d'images</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Permet de choisir la fréquence d'image du jeu</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Change la langue du jeu</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Mettre à jour vers la 1.02</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>Dans le cas où Rayman Origins ne serait pas automatiquement sur sa dernière mise à jour, cet utilitaire permet de le mettre à jour.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Ouvrir la page de magasin</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Ouvrir la page communautaire</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Ouvrir à l'emplacement du fichier</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Executer</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Installer depuis le disque</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Localiser</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Acheter depuis GOG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Acheter depuis Ubisoft Connect</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Acheter depuis Steam</value>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Acheter depuis le Microsoft Store</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>Configurer nGlide</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Action réussie</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Message générique</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Message d'information</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Message d'erreur</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Message d'avertissement</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Message de réussite</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Message de question</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Le fichier spécifié n'a pas pu être trouvé : {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Fichier non trouvé</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Une erreur s'est produite en essayant d'ouvrir {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Emplacement non trouvé</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Erreur de dossier</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Le dossier n'a pas pu être ouvert</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Sélectionner le dossier d'installation</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>Le dossier sélectionné n'es pas valide pour ce jeu</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Emplacement invalide</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
+    <value>Le jeu n'a pas pu être trouvé. Essayez de choisir "application bureau" comme type</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
+    <value>Jeu non trouvé</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
+    <value>Le jeu n'a pas pu être trouvé dans les applications Microsoft Store installées</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>Jeu non trouvé</value>
+  </data>
+  <data name="LocateGame_Error" xml:space="preserve">
+    <value>Une erreur est survenue en essayant de trouver le jeu</value>
+  </data>
+  <data name="LocateGame_ErrorHeader" xml:space="preserve">
+    <value>Erreur de localisation de fichier</value>
+  </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>Une erreur est survenue en essayant d'éxécuter {0]</value>
+  </data>
+  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
+    <value>DOSBox n'a pas pu être trouvé. Spécifiez un chemin valide dans les paramètres pour pouvoir éxécuter le jeu</value>
+  </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>Les backups de {0} seront tous remplacés</value>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Confirmer backup</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Backup échoué</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>Le backup de {0} n'a pas pu être fini car il y a des dossiers spécifiés manquants</value>
+  </data>
+  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
+    <value>Avertissement utilitaire</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Installer les jeux trouvés</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>Les nouveaux jeux suivants ont été trouvés :</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>Une erreur est survenue en essayant d'activer l'accès en écriture du fichier de configuration de Rayman</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>Pour pouvoir configurer les jeux Rayman sans avoir le programme en mode administrateur, vous allez devoir accepter l'invite d'administration qui va suivre</value>
+  </data>
+  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
+    <value>Les utilitaires suivants ont été appliqués à ce jeu et ne seront pas retirés si le jeu est désinstallé. Pour retirer les utilitaires, il faut aller dans le dialogue des utilitaires et les désactiver/désinstaller ou revenir sur l'option originale si elle est disponible.</value>
+  </data>
+  <data name="AddGame_DuplicateHeader" xml:space="preserve">
+    <value>Erreur en ajoutant le nouveau jeu</value>
+  </data>
+  <data name="AddGame_Duplicate" xml:space="preserve">
+    <value>Le jeu {0} a déjà été ajouté</value>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Restauration échouée pour {0}</value>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Restauration réussie</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>Vos sauvegardes pour {0} ont été restaurées avec succès</value>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Confirmer restauration</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>Cela remplacera les sauvegardes de {0} par celles en backup</value>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Restauration échouée</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>Aucun backup trouvé pour {0}</value>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Backup échoué pour {0}</value>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Backup réussi</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Vos sauvegardes pour {0} ont été backup avec succès</value>
+  </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>Aucun fichier de backup trouvé pour {0}</value>
+  </data>
+  <data name="GameFinder_Error" xml:space="preserve">
+    <value>Une erreur est survenue pendant la recherche de jeu</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>Aucun fichier à téléchargé a été trouvé</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>Ce patch a besoin de téléchager des fichiers. La taille totale des fichier est de {0}. Continuer ?</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Confirmer le téléchargement</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>Ce patch a besoin de téléchager des fichiers. Continuer ?</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>Les fichiers n'ont pas pu être téléchargés</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Erreur inconnue</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>La connection n'a pas pue être établie avec le serveur</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>Les informations du serveur ne sont pas valides</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>Une erreur inconnue est survenue lors de la connection avec le serveur</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Véfification de mise à jour échouée</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>La dernière version ({0}) est déjà installée</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Pas de nouvelle version trouvée</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Le contenu du serveur n'a pas pu être lu</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Une nouvelle mise à jour est disponible. Voulez vous la télécharger ?
+
+Nouveautés :
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nouvelle version trouvée</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>Le gestionnaire de mises à jour n'a pas pu être créé. Pour télécharger manuellement la mise à jouer, allez sur {0} et téléchargez la dernière mise à jour ici.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Erreur à la création du gestionnaire de mise à jour</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Voulez vous déplacer les backups existants dans ce nouveau dossier ?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Déplacer les anciens backups</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>Pas de backups trouvés dans {0}</value>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>Echec du déplacement des backups</value>
+  </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>Les backups n'ont pas été déplacés. Des backups existent déjà dans {0}</value>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>Les backups ont été déplacés avec succès</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Erreur en essayant de déplacer le backup</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Créer un raccourci sur le bureau</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Créer un raccourci dans le menu démarrer</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Installer pour tous les utilisateurs</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Progrès total</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Progrès du fichier actuel</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Choisir le disque où faire l'installation</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Conflit de disque</value>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Chemins manquants</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Insérer disque</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>Le fichier {0} n'a pas pu être copié avec le message d'erreur {1}
+
+Voulez vous réessayer ?</value>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>Echec de la copie dans la destination</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>Une partie de l'installation n'a pas pu être nettoyée à {0}</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Voulez-vous annuler l'installation</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Annuler l'installation en cours</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>Le dossier spécifié n'existe pas</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Dossier non trouvé</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Démarrer {0}</value>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>Installation terminée. Lancez l'outil de configuration pour {0} pour configurer le jeu.</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Installation terminée</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Action échouée</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Installation échouée</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Installation annulée</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>Cet outil a besoin de fichiers supplémentaires pour être téléchargé</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Format invalide</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Une seule touche doit utilisée</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>La touche n'est pas valide</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>La valeur des cycles n'est pas dans un format valide</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>La valeur des cycles ne peut pas être vide</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>La valeur de la résolution ne peut pas être vide</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Format invalide</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>Le caractère '{0}' n'est pas valide</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>Le séparateur de résolution 'x' ne peut être utilisé qu'une seule fois</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Le séparateur de résolution 'x' doit être utilisé</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>Une hauteur valide doit être spécifiée</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>Aucun fichier ubi.ini valide n'a été trouvé et la création du fichier a échoué. Essayez de faire tourner le programme en tant qu'administrateur ou de changer les permissions du fichier pour le chemin spécifié : {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>Une erreur est survenue en sauvegardant la configuration de {0}</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Erreur de sauvegarde</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>Une erreur est survenue en sauvegardant votre configuration DOSBox</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Les changements ont été sauvegardés</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>Le ratio d'écran n'a pas pu être changé car l'éxécutable du jeu n'a pas été trouvé</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>Le ratio d'écran n'a pas pu être changé car l'éxécutable du jeu n'est pas valide</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>Une erreur est survenue en changeant le ration d'écran de Rayman 2</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>Un erreur est survenue en sauvegardant la configuration de Rayman contre les Lapins Crétins</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Vous venez d'entrer le Konami Code ! Profitez de ce nouveau thème rouge.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami Code</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>Vous venez d'entrer le code de RayCarrot ! Profitez de ce nouveau trème carotte.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>Code RayCarrot</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Vous venez d'entrer le code citron ! Profitez de ce nouveau thème citron.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Code citron</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Vous venez d'entrer le code secret ! Malheureusement il ne fait absolument rien.</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Code secret</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>ID Steam :</value>
+  </data>
+  <data name="GameInfo_GameType" xml:space="preserve">
+    <value>Type de jeu</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Dépendances</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Nom complet</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Architecture</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Installé</value>
+  </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir retirer {0} du Rayman Control Panel ? Cette action ne désinstallera pas le jeu de votre ordinateur et n'effacera aucun fichier dont les backups faits par ce programme.</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Sélectionner la destination du raccourci</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Démarrer {0}</value>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>Création du raccourci réussie</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>Le raccourci n'a pas pu être créé</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Création du raccourci échouée</value>
+  </data>
+  <data name="GameNotFound" xml:space="preserve">
+    <value>Le jeu {0} n'a pas été trouvé</value>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>Impossible de trouver le jeu</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>Remerciements spéciaux à AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski et tous les autres fans de Rayman !</value>
+  </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>Rayman Control Panel, utilitaires, pistes de musique par niveau, Archive Explorer, traductions de Rayman 2, BinarySerializer</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Patch manettes</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Remappage des boutons pour Rayman 2</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Aidé générale des utilitaires</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>Utilitaire des pistes sonores par niveau, traductions de Rayman 2</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Traductions de Rayman 2, programme de traduction portugaise (Portugal)</value>
+  </data>
+  <data name="ROU_HQVideosFailed" xml:space="preserve">
+    <value>Remplacement de la vidéo échoué</value>
+  </data>
+  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
+    <value>L'installation de Rayman Origins n'a pas pu être trouvée</value>
+  </data>
+  <data name="ROU_DebugCommandsError" xml:space="preserve">
+    <value>Une erreur est survenue en appliquant les commandes de debug</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12 (Edition 1)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.2</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Installation échouée</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Installation échouée</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir désinstaller l'utilitaire de pistes de musique par niveau ?</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirmer désinstallation</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>L'utilitaire a été désinstallé avec succès</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Désinstallation complétée</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>Une erreur est survenue lors de la désinstallation</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Désinstallation échouée</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Changement de musique échoué</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} fichiers ont été trouvés pour être remplacés. Cela pourrait demander plusieurs téléchargements en fonction de leur emplacement.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Remplacement complété</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Remplacement de fichier échoué</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Le fichier de configuration existe déjà. Vous pouvez toujours le recréer s'il est corrompu. Continuer ?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Remplacer fichier</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>Le fichier a été créé avec succès</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>Le fichier n'a pas pu être créé</value>
+  </data>
+  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
+    <value>Irlandais (Gaeilge) - par PluMGMK</value>
+  </data>
+  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
+    <value>Suédois (Svenska) - par RayCarrot</value>
+  </data>
+  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
+    <value>Portugais (Português) - par Haruka Tavares</value>
+  </data>
+  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
+    <value>Slovaque (Slovenský) - par MixerX</value>
+  </data>
+  <data name="R2U_Translations_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="R2U_Translations_Irish" xml:space="preserve">
+    <value>Irlandais</value>
+  </data>
+  <data name="R2U_Translations_Swedish" xml:space="preserve">
+    <value>Suédois</value>
+  </data>
+  <data name="R2U_Translations_Portuguese" xml:space="preserve">
+    <value>Portugais</value>
+  </data>
+  <data name="R2U_Translations_Slovak" xml:space="preserve">
+    <value>Slovaque</value>
+  </data>
+  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
+    <value>Les fichiers requis n'ont pas pu être trouvés</value>
+  </data>
+  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
+    <value>Dû au fait que les textures ont été modifiées par l'anciennne traduction, il est recommandé de le remplacer par la version originale.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
+    <value>Il est aussi recommandé de remplacer les texture du jeu avec une version modifiée pour avoir toute la police et les caractère requis par cette traduction.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
+    <value>Confirmer le remplacement de textures</value>
+  </data>
+  <data name="R2U_Translations_Success" xml:space="preserve">
+    <value>Tous les fichiers ont été remplacés avec succès</value>
+  </data>
+  <data name="R2U_Translations_Error" xml:space="preserve">
+    <value>Une erreur est survenue en appliquant l'utilitaire de traduction de Rayman 2</value>
+  </data>
+  <data name="ReadingBackupError" xml:space="preserve">
+    <value>Une erreur est survenue en lisant le backup pour {0}</value>
+  </data>
+  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
+    <value>Certains fichiers n'ont pas pu être restaurés. Regardez {0} &amp; {1} pour récupérer les fichiers perdus.</value>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>L'opération est en train de s'annuler</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>La demande d'annulation a déjà été reçue</value>
+  </data>
+  <data name="Download_Cancel" xml:space="preserve">
+    <value>Voulez-vous annuler le téléchargement ?</value>
+  </data>
+  <data name="Download_CancelHeader" xml:space="preserve">
+    <value>Annuler le téléchargement</value>
+  </data>
+  <data name="Download_Canceled" xml:space="preserve">
+    <value>Le téléchargement a été annulé</value>
+  </data>
+  <data name="Download_CanceledHeader" xml:space="preserve">
+    <value>Opération annulée</value>
+  </data>
+  <data name="Download_Failed" xml:space="preserve">
+    <value>Le téléchargement a échoué</value>
+  </data>
+  <data name="Download_FailedHeader" xml:space="preserve">
+    <value>Opération échouée</value>
+  </data>
+  <data name="Download_Success" xml:space="preserve">
+    <value>Les fichiers ont été téléchargés avec succès</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Téléchargement terminé</value>
+  </data>
+  <data name="AppNews_Title" xml:space="preserve">
+    <value>Nouvelles de l'application</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Historique des versions</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continuer</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Progrès Total</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Progrès Fichier Courant</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Bienvenue dans le Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Bienvenue dans le Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Ce programme est un projet communautaire open source créé par RayCarrot. Il permet un accès rapide et facile à tous les jeux Rayman sur votre PC, avec des fonctionnalités supplémentaires comme un meilleur support des configurations, des utilitaires, de la gestion de backups de fichiers de sauvegarde, de la modification de texture et plus. Les jeux supportés peuvent être installés directement depuis leur disque via ce programme. Pour commencer, choisissez les paramètres que vous voulez ci-dessous et cliquez sur "Continuer". Les paramètres peuvent être changés à tout moment depuis la page des paramètres.</value>
+  </data>
+  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
+    <value>Vos changements n'ont pas été sauvegardés. Voulez-vous quitter sans sauvegarder ?</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Utilitaires</value>
+  </data>
+  <data name="GameOptions_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Créer un raccourci</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Retirer du programme</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Vous êtes en train d'utiliser une version plus ancienne du programme ({0}) comparé à la version actuelle du programme ({1}). Ce n'est pas recommandé et pourrait causer des soucis de compatibilité. Ces problèmes peuvent être réglés en réinitialisant les données de l'application pour ce programme.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Rétrogradation détectée</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Démarrer {0}</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Allemand</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Espagnol</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italien</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Danois</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finlandais</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norvégien</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Suédois</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 avec bordures</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
+  <data name="About_Credits_Snagglebee" xml:space="preserve">
+    <value>Utilitaire de choix de musique par niveau, retrait de la vérification de disque de Rayman M/Arena</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Programme de traduction en Allemand (Néerlandais), test de programme</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Chercher</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Montrer les langages avec des traductions incomplètes</value>
+  </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Tout sauvegarder</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Démarrer en tant qu'administrateur</value>
+  </data>
+  <data name="Backup_ConfirmBackupAll" xml:space="preserve">
+    <value>Voulez-vous faire un backup de tous vos jeux ? Cela remplacera les précédents backups. Voulez-vous continuer ?</value>
+  </data>
+  <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
+    <value>Confirmer les backups</value>
+  </data>
+  <data name="Backup_BackupAllSuccess" xml:space="preserve">
+    <value>Tous les jeux ont été backup avec succès</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>{0}/{1} jeux ont été backups</value>
+  </data>
+  <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
+    <value>Certains jeux n'ont pas été backup</value>
+  </data>
+  <data name="GameOptions_LaunchMode" xml:space="preserve">
+    <value>Mode de démarrage</value>
+  </data>
+  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
+    <value>Cela détermine comment le jeu sera démarré. Si le jeu fonctionne dans un émulateur tel que DOSBox, alors le mode de démarrage s'appliquera à l'émulateur.</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvoker" xml:space="preserve">
+    <value>Défaut</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
+    <value>Démarrer en tant qu'administrateur (optionnel)</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
+    <value>Démarrer en tant qu'administrateur</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Les animations comprennent les transitions de page et les animations de changement de taille de la page de Jeux</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
+    <value>Toujours démarrer le jeu avec les mêmes permissions que celles avec lesquelles le Rayman Control Panel a été démarré</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
+    <value>Similaire aux options par défaut, mais avec les options pour démarrer le jeu en tant qu'administrateur</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
+    <value>Toujours tenter de démarrer le jeu en tant qu'administrateur</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Groupe Steam</value>
+  </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>Une erreur est survenue lors de la sauvegarde. Tous les changements ont été sauvegardés.</value>
+  </data>
+  <data name="GameLink_R2dgVoodoo" xml:space="preserve">
+    <value>dgVoodoo</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (Édition 2)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (Édition 3)</value>
+  </data>
+  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
+    <value>Style de lien</value>
+  </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
+  <data name="Page_Refresh" xml:space="preserve">
+    <value>Rafraîchir</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Cette fonctionnalité requiert que le programme soit démarré en administrateur</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Forcer les mises à jour manuelles</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>L'updater n'a pas pu être démarré. Pour télécharger manuellemment la nouvelle version, allez à {0} et téléchargez la dernière version d'ici.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Erreur d'execution de l'updater</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>La clé de registre n'a pas été trouvée</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Clé de registre non trouvée</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>La clé n'a pas pu être ouverte</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Erreur d'ouverture de clé</value>
+  </data>
+  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
+    <value>Fichier ubi.ini primaire</value>
+  </data>
+  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
+    <value>Fichier ubi.ini secondaire</value>
+  </data>
+  <data name="Links_Local_R2UbiIni" xml:space="preserve">
+    <value>Fichier ubi.ini de Rayman 2</value>
+  </data>
+  <data name="Links_Local_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
+    <value>Fichier de configuration DOSBox</value>
+  </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Jeux Steam</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value>Jeux GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
+    <value>Options pour Rayman Contre Les Lapins Crétins</value>
+  </data>
+  <data name="Links_Local_RORegSettings" xml:space="preserve">
+    <value>Options pour Rayman Origins</value>
+  </data>
+  <data name="Links_Local_RLRegSettings" xml:space="preserve">
+    <value>Options pour Rayman Legends</value>
+  </data>
+  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
+    <value>Options de nGlide</value>
+  </data>
+  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
+    <value>Options de nGlide 2.0</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>Données de l'application utilisateur</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Fichiers des logs</value>
+  </data>
+  <data name="Links_Local_Utilities" xml:space="preserve">
+    <value>Dossier des utilitaires</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>Données de l'application de registre</value>
+  </data>
+  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
+    <value>Adresse du lien invalide</value>
+  </data>
+  <data name="LinksPageHeader" xml:space="preserve">
+    <value>Liens</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Une nouvelle mise à jour bêta est disponible. Télécharger maintenant ?
+
+Nouvelles :
+{0}</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Désinstaller</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Êtes-vous sûrs de vouloir désinstaller le Rayman Control Panel ? Cela retirera l'éxécutable et toutes les données du programme. Cette action ne retirera PAS les jeux installés, les fichiers de sauvegarde ou les backups. Certains des utilitaires appliqués peuvent toujours être appliqués.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirmer la désinstallation</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>Une erreur est survenue pendant l'execution du programme de désinstallations. Vous pouvez retirer manuellement les données de l'application qui se trouvent à ces endroits :
+
+{0}</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Obtenir les mise à jour de la beta</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Test du programme</value>
+  </data>
+  <data name="Backup_GOGSyncWarning" xml:space="preserve">
+    <value>Le jeu pourrait avoir ses fichiers de sauvegarde synchronisés via GOG Galaxy. Si c'est le cas, l'utilitaire de backup et de restauration pourrait ne pas avoir d'effet même si l'opération réussit.</value>
+  </data>
+  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
+    <value>Alerte sur le Backup/Restauration</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Rayman Control Panel (Administrateur)</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
+    <value>Alignement des boutons</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
+    <value>Gauche</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
+    <value>Étirer</value>
+  </data>
+  <data name="Installer_DirMissingWritePermission" xml:space="preserve">
+    <value>L'accès au dossier d'installation a été refusé. Veuillez choisir un autre endroit ou redémarrer le logiciel en tant qu'administrateur. </value>
+  </data>
+  <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
+    <value>Accès refusé</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Compresser les backups</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>Les backups compressés prendront moins d'espace et seront plus simples à gérer grâce au fait qu'ils soient réduits à un seul fichier par jeu Ce changement prendra effet la prochaine fois qu'un backup sera créé.</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
+    <value>Cette langue ne peut pas être mise à jour</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
+    <value>Erreur de mise à jour de langue</value>
+  </data>
+  <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
+    <value>Les langues disponibles peuvent changer entre les versions</value>
+  </data>
+  <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
+    <value>Avertissement de désactivation de downgrade</value>
+  </data>
+  <data name="FiestaRunVersion_Default" xml:space="preserve">
+    <value>Défaut</value>
+  </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 edition</value>
+  </data>
+  <data name="Config_FiestaRunVersion" xml:space="preserve">
+    <value>Version de Rayman Fiesta Run</value>
+  </data>
+  <data name="Config_FiestaRunVersionInfo" xml:space="preserve">
+    <value>Si vous avez plusieurs versions de Rayman Fiesta Run, vous pouvez changer la version qui sera lancée par défaut ici</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>Un erreur est survenue pendant la migration du backup existant de Rayman Fiesta Run vers le standard de la 5.0.0. A cause de cela, votre backup est devenu inutilisable mais est toujours présent dans le dossier de backup pour être restauré manuellement.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Erreur de migration de backup</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>Vous devez démarrer le programme en tant qu'administrateur afin de pouvoir installer pour tous les utilisateurs</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Permissions manquantes</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>Une erreur est survenue pendant la mise en place des fichier additionnels requis. Certaines fonctionnalités du programme pourraient ne pas fonctionner comme prévu. Il est recommendé de tenter de redémarrer le programme.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
+  <data name="Utilities_RequiresAdmin" xml:space="preserve">
+    <value>Cet utilitaire requiert que l'application soit en mode administrateur.</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Redémarrer en tant qu'administrateur</value>
+  </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>L'application n'a pas les droits nécessaires pour cette opération. Redémarrer en tant qu'administrateur ?</value>
+  </data>
+  <data name="GameType_EducationalDosBox" xml:space="preserve">
+    <value>DOSBox éducatif</value>
+  </data>
+  <data name="EducationalConfig_Name" xml:space="preserve">
+    <value>Nom du jeu</value>
+  </data>
+  <data name="EducationalConfig_LaunchMode" xml:space="preserve">
+    <value>Mode de lancement</value>
+  </data>
+  <data name="EducationalOptions_Header" xml:space="preserve">
+    <value>Jeux éducatifs</value>
+  </data>
+  <data name="EducationalOptions_Info" xml:space="preserve">
+    <value>Plusieurs jeux éducatifs peuvent être ajoutés au lancement, ou le même jeu avec différents modes de lancement. Le premier jeu de la liste sera toujours celui par défaut. La liste peut être réarrangée en faisant du glisser/déposer sur les éléments</value>
+  </data>
+  <data name="EducationalOptions_Edit" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="EducationalOptions_Remove" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
+  <data name="EducationalOptions_AddNew" xml:space="preserve">
+    <value>Ajouter un nouveau jeu</value>
+  </data>
+  <data name="EducationalOptions_EditHeader" xml:space="preserve">
+    <value>Éditer un jeu</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
+    <value>Il faut au minimum un jeu disponible au lancement</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
+    <value>Impossible de retirer le jeu</value>
+  </data>
+  <data name="EducationalOptions_EditSuccess" xml:space="preserve">
+    <value>Le jeu a été édité avec succès</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Message d'erreur : {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>Une erreur est survenue.</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Néerlandais</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Options de lancement customisées</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>Si cette option est activée, les paramètres ci-dessous seront utilisés en démarrant le jeu par le Rayman Control Panel</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>V-Sync</value>
+  </data>
+  <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
+    <value>Index des versions</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Grand dossier</value>
+  </data>
+  <data name="GoHomeConfig_Commands" xml:space="preserve">
+    <value>Commandes personnalisées</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Personnalisation</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Mode de jeu</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>Le mode de jeu détermine quels groupes de mini jeux sont disponibles dans le jeu. Certaines éditions du jeu sont limitées à un mode de jeu spécifique là où d'autres sont compatibles avec tous. Si une erreur survient en démarrant le jeu, essayez de changer de mode de jeu. </value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Tous les jeux</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Rouge</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Vert</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Bleu</value>
+  </data>
+  <data name="LaunchModeConflict" xml:space="preserve">
+    <value>Deux ou plus des jeux éducatifs partagent le même mode de démarrage et utiliseront donc le même backup. Changez les noms des modes de démarrage pour éviter ceci.</value>
+  </data>
+  <data name="LaunchModeConflictHeader" xml:space="preserve">
+    <value>Conflit sur les modes de démarrage</value>
+  </data>
+  <data name="Links_Local_RGHConfig" xml:space="preserve">
+    <value>Configuration de The Lapins Crétins : La Grosse Aventure</value>
+  </data>
+  <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
+    <value>Paramètres de Rayman contre les lapins encore plus crétins</value>
+  </data>
+  <data name="Settings_EditJumpList" xml:space="preserve">
+    <value>Modifier la jump list</value>
+  </data>
+  <data name="Settings_EditJumpListInfo" xml:space="preserve">
+    <value>La jump list est la liste des raccourcis apparaissant après un clic droit sur l'application dans la barre des tâches ou le menu démarrer</value>
+  </data>
+  <data name="JumpListEditor_Header" xml:space="preserve">
+    <value>Éditer les éléments de la jump list</value>
+  </data>
+  <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
+    <value>Inclus</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Non inclus</value>
+  </data>
+  <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
+    <value>Les applications du Microsoft Store ne sont pas compatibles avec la version actuelle de Windows</value>
+  </data>
+  <data name="GetExistingBackupsError" xml:space="preserve">
+    <value>Les backups existants pour {0} n'ont pas pu être obtenus</value>
+  </data>
+  <data name="Installer_OverwriteOutput" xml:space="preserve">
+    <value>Le dossier {0} existe déjà. Voulez-vous le remplacer ?</value>
+  </data>
+  <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
+    <value>Remplacer le dossier</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
+    <value>Désactiver le chargement et la sauvegarde du fichier de sauvegarde</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
+    <value>Cela empêchera le jeu de charger ou sauvegarder sur les fichiers de sauvegarde</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
+    <value>1.21 (Chinois)</value>
+  </data>
+  <data name="Config_DiscCheck" xml:space="preserve">
+    <value>Vérification de disque</value>
+  </data>
+  <data name="Config_DisableDiscCheck" xml:space="preserve">
+    <value>Désactiver la vérification de disque</value>
+  </data>
+  <data name="Config_DiscCheckInfo" xml:space="preserve">
+    <value>Désactiver la vérification de disque permet au jeu d'être joué sans avoir le disque d'inséré</value>
+  </data>
+  <data name="App_SelectGameTypeHeader" xml:space="preserve">
+    <value>Sélectionner le type de jeu</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Ouvrir dans le Microsoft Store</value>
+  </data>
+  <data name="GamesPage_FindGames" xml:space="preserve">
+    <value>Trouver des jeux</value>
+  </data>
+  <data name="GamesPage_FindGamesInfo" xml:space="preserve">
+    <value>Rechercher des jeux installés et les ajouter au programme</value>
+  </data>
+  <data name="GameFinder_NoResults" xml:space="preserve">
+    <value>Aucun nouveau jeu n'a été trouvé</value>
+  </data>
+  <data name="GameFinder_ResultHeader" xml:space="preserve">
+    <value>Résultat de la recherche de jeux</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="GameDisplay_CloudInstall" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="GameInstall_Error" xml:space="preserve">
+    <value>Une erreur est survenue pendant l'installation de {0}</value>
+  </data>
+  <data name="GameInstall_ErrorHeader" xml:space="preserve">
+    <value>Installation du jeu échouée</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Désinstaller</value>
+  </data>
+  <data name="RemoveInstalledGameQuestion" xml:space="preserve">
+    <value>{0} a été originellement installé via le Rayman Control Panel. Retirer le jeu du programme n'effacera pas le jeu ou ses fichiers (dont les backups créés via le programme) de votre ordinateur. Il est recommandé de désinstaller le jeu à la place.</value>
+  </data>
+  <data name="UninstallGameQuestion" xml:space="preserve">
+    <value>Êtes-vous sur de vouloir désinstaller {0} ? Cette action retirera le jeu de votre oridinateur, sauvegardes comprises. Les backups ne seront pas effacés.</value>
+  </data>
+  <data name="UninstallGameQuestionHeader" xml:space="preserve">
+    <value>Confirmer la désinstallation</value>
+  </data>
+  <data name="UninstallGameError" xml:space="preserve">
+    <value>Une erreur est survenue en désinstallant {0}</value>
+  </data>
+  <data name="UninstallGameErrorHeader" xml:space="preserve">
+    <value>Échec de la désinstallation</value>
+  </data>
+  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
+    <value>Version de Print Studio</value>
+  </data>
+  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
+    <value>Changer la version changera les options disponibles en jeu. La version de 2003 a des calendriers pour les années 2003 et 2004. La version 2005 a des calendriers pour les années 2006 et 2007 ainsi qu'une section 'bonus'</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>Version 2003</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>Version 2005</value>
+  </data>
+  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
+    <value>Ce jeu requiert que ses fichiers soient téléchargés. La taille totale du téléchargement est de {0}. Voulez-vous continuer ?</value>
+  </data>
+  <data name="DownloadGame_Confirm" xml:space="preserve">
+    <value>Le jeu requiert que ses fichiers soient téléchargés. Voulez-vous continuer ?</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Télécharger depuis GameJolt</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>Ouvrir la page GameJolt</value>
+  </data>
+  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
+    <value>Une erreur est survenue en changeant la version de Print Studio</value>
+  </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="GamesPage_Category_Rabbids" xml:space="preserve">
+    <value>Lapins Crétins</value>
+  </data>
+  <data name="GamesPage_Category_Demos" xml:space="preserve">
+    <value>Démos</value>
+  </data>
+  <data name="GamesPage_Category_Other" xml:space="preserve">
+    <value>Autres</value>
+  </data>
+  <data name="GamesPage_Category_Fan" xml:space="preserve">
+    <value>Fan-games</value>
+  </data>
+  <data name="ExportDestinationSelectionHeader" xml:space="preserve">
+    <value>Choisir un fichier de destination où exporter</value>
+  </data>
+  <data name="FileFilterDescription_JSON" xml:space="preserve">
+    <value>Fichiers JSON</value>
+  </data>
+  <data name="ImportSelectionHeader" xml:space="preserve">
+    <value>Sélectionnez un fichier JSON converti à importer</value>
+  </data>
+  <data name="Progression_Header" xml:space="preserve">
+    <value>Progression</value>
+  </data>
+  <data name="Progression_GenericSlot" xml:space="preserve">
+    <value>Slot {0}</value>
+  </data>
+  <data name="Progression_Export" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="Progression_Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="Progression_ExportError" xml:space="preserve">
+    <value>Une erreur est survenue en exportant le fichier de sauvegarde. Vérifiez que le fichier est compatible.</value>
+  </data>
+  <data name="Progression_ImportError" xml:space="preserve">
+    <value>Une erreur est survenue en exportant le fichier de sauvegarde. Vérifiez que le format du .JSON est correct et que le fichier est compatible.</value>
+  </data>
+  <data name="UninstallGameSuccess" xml:space="preserve">
+    <value>{0} a été désinstallé</value>
+  </data>
+  <data name="UninstallGameSuccessHeader" xml:space="preserve">
+    <value>Désinstallation complétée</value>
+  </data>
+  <data name="GameInstall_Success" xml:space="preserve">
+    <value>{0} a été installé avec succès</value>
+  </data>
+  <data name="GameInstall_SuccessHeader" xml:space="preserve">
+    <value>Installation complétée</value>
+  </data>
+  <data name="Progression_ExportSuccess" xml:space="preserve">
+    <value>Le fichier de sauvegarde a été exporté avec succès</value>
+  </data>
+  <data name="Progression_ImportSuccess" xml:space="preserve">
+    <value>Le fichier de sauvegarde a été importé avec succès</value>
+  </data>
+  <data name="Config_CharacterHeader" xml:space="preserve">
+    <value>Personnage</value>
+  </data>
+  <data name="Config_CharacterHeaderRJRInfo" xml:space="preserve">
+    <value>Choisir un personnage ici changera le personnage sélectionné actuellement dans le jeu. Les deux derniers Ptizêtres ne peuvent être choisis qu'ici comme il n'y a aucune option pour les choisir depuis le jeu.</value>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
+  </data>
+  <data name="Config_RJRHeroes_DarkRayman" xml:space="preserve">
+    <value>Dark Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_GloboxOutfit" xml:space="preserve">
+    <value>Raybox</value>
+  </data>
+  <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
+    <value>Ptizêtre vert</value>
+  </data>
+  <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
+    <value>Ptizêtre gothique</value>
+  </data>
+  <data name="Config_SelectedSlotHeader" xml:space="preserve">
+    <value>Sauvegarde sélectionnée</value>
+  </data>
+  <data name="Config_MusicVolumeHeader" xml:space="preserve">
+    <value>Volume de la musique</value>
+  </data>
+  <data name="Config_SoundVolumeHeader" xml:space="preserve">
+    <value>Volume des sons</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Une erreur est survenue en mettant à jour l'application</value>
+  </data>
+  <data name="CategorizeGames" xml:space="preserve">
+    <value>Catégoriser les jeux</value>
+  </data>
+  <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
+    <value>Ce jeu pourrait prendre quelques secondes à démarrer. Si un écran noir apparaît, appuyez sur la touche Echap sur votre clavier pour jouer au jeu. Ce message n'apparaîtra pas une seconde fois.</value>
+  </data>
+  <data name="GameDisplay_DownloadUplay" xml:space="preserve">
+    <value>Télécharger depuis Ubisoft Connect</value>
+  </data>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Sélectionner le fichier à importer</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Fichiers compatibles</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Sélectionner la destination pour l'export</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>Exporter {0}</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Sélectionner le dossier à importer</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Aucun fichier à importer n'a été trouvé</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Les fichiers ont été exportés</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>Le fichier a été exporté</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} n'a pas pu être exporté</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Sélection de l'extention de fichier</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Sélectionner l'extension de fichier pour l'exportation de {0} fichiers</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>Une erreur est surevenue dans Archive Explorer causant sa fermeture</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Rétro-ingénierie Rayman, mods pour Rayman contre les lapins crétins, BinarySerializer</value>
+  </data>
+  <data name="UtilitiesPageHeader" xml:space="preserve">
+    <value>Utilitaires</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>Achives OpenSpace (.cnt)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>Archives UbiArt (.ipk)</value>
+  </data>
+  <data name="Utilities_Converter_GFHeader" xml:space="preserve">
+    <value>Fichiers de texture OpenSpace (.gf)</value>
+  </data>
+  <data name="Utilities_Converter_Convert" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
+    <value>Reconvertir</value>
+  </data>
+  <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
+    <value>Fichiers de localisation UbiArt (.loc/.loc8)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer</value>
+  </data>
+  <data name="Utilities_Converter_Header" xml:space="preserve">
+    <value>Convertisseurs</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde Rayman 3 (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde Rayman Jungle Run (.dat)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
+    <value>Sélectionner les fichiers d'archive</value>
+  </data>
+  <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
+    <value>Sélectionner les fichiers à convertir</value>
+  </data>
+  <data name="Browse_DestinationHeader" xml:space="preserve">
+    <value>Sélectionner la destination</value>
+  </data>
+  <data name="Utilities_Converter_Error" xml:space="preserve">
+    <value>Les fichiers n'ont pas pu être convertis</value>
+  </data>
+  <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
+    <value>Sélectionner l'extension de fichier pour l'exportation</value>
+  </data>
+  <data name="Utilities_Converter_Success" xml:space="preserve">
+    <value>Les fichiers ont été convertis avec succès</value>
+  </data>
+  <data name="Progression_R3_Level1Header" xml:space="preserve">
+    <value>Le Concile des Fées</value>
+  </data>
+  <data name="Progression_R3_Level2Header" xml:space="preserve">
+    <value>La forêt de Claire-Feuille</value>
+  </data>
+  <data name="Progression_R3_Level3Header" xml:space="preserve">
+    <value>Les Marais Crapoteux</value>
+  </data>
+  <data name="Progression_R3_Level4Header" xml:space="preserve">
+    <value>La LAnde aux Esprits Frappés</value>
+  </data>
+  <data name="Progression_R3_Level5Header" xml:space="preserve">
+    <value>Le Désert des Knaarens</value>
+  </data>
+  <data name="Progression_R3_Level6Header" xml:space="preserve">
+    <value>Le Grand Raccourci</value>
+  </data>
+  <data name="Progression_R3_Level7Header" xml:space="preserve">
+    <value>Le Sommet d'Outre-Nuées</value>
+  </data>
+  <data name="Progression_R3_Level8Header" xml:space="preserve">
+    <value>Le Quartier Général Hoodlums</value>
+  </data>
+  <data name="Progression_R3_Level9Header" xml:space="preserve">
+    <value>La Tour du Leptys</value>
+  </data>
+  <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
+    <value>L'outil de musique par niveau a été mis à jour. Allez dans les outils de Rayman 1 et réinstallez le pour pouvoir continuer à l'utiliser.</value>
+  </data>
+  <data name="TPLS_UpdateVersionError" xml:space="preserve">
+    <value>La version de Rayman n'a pas pu être mise à jour</value>
+  </data>
+  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
+    <value>Le DRM a été retiré</value>
+  </data>
+  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
+    <value>Une erreur est survenue en enlevant le DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
+    <value>Retirer le DRM de la tête de pirate</value>
+  </data>
+  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
+    <value>Cet outil modifie les fichiers.sna pour retirer le DRM causant l'apparition de la tête de pirate dans les niveaux</value>
+  </data>
+  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
+    <value>Cet outil pourrait ne pas fonctionner sur toutes les versions du jeu. Il fonctionne sur la version GOG.</value>
+  </data>
+  <data name="Utility_WIP" xml:space="preserve">
+    <value>Cet outil est toujours en cours de développement et pourrait être instable ou avoir des fonctionnalités manquantes</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SelectDirHeader" xml:space="preserve">
+    <value>Sélectionnez le dossier de données de jeu</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
+    <value>{0}/{1} informations de textures ont été synchronisées</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
+    <value>Une erreur est survenue en synchronisant les informations de texture</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
+    <value>Synchroniser</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Header" xml:space="preserve">
+    <value>Synchroniser les Informations de Texture</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Synchroniser les information de texture modifiera les fichiers du jeu pour que les textures soient affichées à la même résolution que spécifié dans les fichiers .cnt</value>
+  </data>
+  <data name="Utilities_Other_Header" xml:space="preserve">
+    <value>Autre</value>
+  </data>
+  <data name="NotImplemented" xml:space="preserve">
+    <value>Cette fonctionnalité n'a pas encore été implémentée</value>
+  </data>
+  <data name="About_Credits_Robin" xml:space="preserve">
+    <value>Retirer le DRM de Rayman 2</value>
+  </data>
+  <data name="Utilities_Decoder_Header" xml:space="preserve">
+    <value>Décodeurs</value>
+  </data>
+  <data name="Utilities_Decoder_Decode" xml:space="preserve">
+    <value>Décoder</value>
+  </data>
+  <data name="Utilities_Decoder_Encode" xml:space="preserve">
+    <value>Encoder</value>
+  </data>
+  <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
+    <value>Fichiers encodés Rayman 2 (.sna/.dsb)</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
+    <value>Sélectionner les fichiers à décoder</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeFileSelectionHeader" xml:space="preserve">
+    <value>Sélectionner les fichiers à encoder</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeSuccess" xml:space="preserve">
+    <value>Les fichiers ont été décodés avec succès</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeSuccess" xml:space="preserve">
+    <value>Les fichiers ont été encodés avec succès</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeError" xml:space="preserve">
+    <value>Une erreur est survenue en décodant les fichiers</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
+    <value>Une erreur est survenue en ecodant les fichiersn</value>
+  </data>
+  <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde Rayman 3 (.sav)</value>
+  </data>
+  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
+    <value>Le patch UbiRay a été appliqué avec succès</value>
+  </data>
+  <data name="RL_LevelName_1_1" xml:space="preserve">
+    <value>Il était une fois</value>
+  </data>
+  <data name="RL_LevelName_1_2" xml:space="preserve">
+    <value>Château hanté</value>
+  </data>
+  <data name="RL_LevelName_1_3" xml:space="preserve">
+    <value>La forêt enchantée</value>
+  </data>
+  <data name="RL_LevelName_1_4" xml:space="preserve">
+    <value>Encordé</value>
+  </data>
+  <data name="RL_LevelName_1_5" xml:space="preserve">
+    <value>Sable mouvant</value>
+  </data>
+  <data name="RL_LevelName_1_6" xml:space="preserve">
+    <value>Nid de Dragons</value>
+  </data>
+  <data name="RL_LevelName_2_1" xml:space="preserve">
+    <value>Ray et le haricot magique</value>
+  </data>
+  <data name="RL_LevelName_2_2" xml:space="preserve">
+    <value>Vent du lointain</value>
+  </data>
+  <data name="RL_LevelName_2_3" xml:space="preserve">
+    <value>Le château dans les nuages</value>
+  </data>
+  <data name="RL_LevelName_2_4" xml:space="preserve">
+    <value>Vertigineux</value>
+  </data>
+  <data name="RL_LevelName_2_5" xml:space="preserve">
+    <value>Les Crapauds Volants</value>
+  </data>
+  <data name="RL_LevelName_3_1" xml:space="preserve">
+    <value>Gros canard !</value>
+  </data>
+  <data name="RL_LevelName_3_2" xml:space="preserve">
+    <value>Pourri gâté</value>
+  </data>
+  <data name="RL_LevelName_3_3" xml:space="preserve">
+    <value>Guacamole à l'étalage</value>
+  </data>
+  <data name="RL_LevelName_3_4" xml:space="preserve">
+    <value>Le Serpent sur le gâteau</value>
+  </data>
+  <data name="RL_LevelName_3_5" xml:space="preserve">
+    <value>Il est libre Lucha</value>
+  </data>
+  <data name="RL_LevelName_4_1" xml:space="preserve">
+    <value>L'Île Flottante</value>
+  </data>
+  <data name="RL_LevelName_4_2" xml:space="preserve">
+    <value>Dangereuses lumières</value>
+  </data>
+  <data name="RL_LevelName_4_3" xml:space="preserve">
+    <value>Les appartements sous-marins</value>
+  </data>
+  <data name="RL_LevelName_4_4" xml:space="preserve">
+    <value>Labo sous l'eau</value>
+  </data>
+  <data name="RL_LevelName_4_5" xml:space="preserve">
+    <value>Ascenseurs sans fin</value>
+  </data>
+  <data name="RL_LevelName_4_6" xml:space="preserve">
+    <value>Un sacré poisson !</value>
+  </data>
+  <data name="RL_LevelName_5_1" xml:space="preserve">
+    <value>Levée de boucliers</value>
+  </data>
+  <data name="RL_LevelName_5_2" xml:space="preserve">
+    <value>Les créatures de la nuit</value>
+  </data>
+  <data name="RL_LevelName_5_3" xml:space="preserve">
+    <value>Labyrinthique</value>
+  </data>
+  <data name="RL_LevelName_5_4" xml:space="preserve">
+    <value>Poursuite dans la lave</value>
+  </data>
+  <data name="RL_LevelName_5_5" xml:space="preserve">
+    <value>Soulèvement de masse</value>
+  </data>
+  <data name="RL_LevelName_5_6" xml:space="preserve">
+    <value>C'est l'enfer ici !</value>
+  </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde de Rayman Legends</value>
+  </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde de Rayman Origins</value>
+  </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Extraire</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>Générer automatiquement les mipmaps (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Générer automatiquement les mipmaps pour les jeux compatibles en important des fichiers .gf</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Mettre automatiquement à jour le format (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Jamais (conserver le format original)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>Le format original sera toujours préservé. Importer une image ARGB vers un fichier .gf qui n'est pas compatible avec la transparence résultera en la perte du channel alpha.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Correspondance du format importé</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>Le format sera mis à jour pour correspondre à celui du fichier importé. Cela risque de créer des fichiers .gf plus volumineux que ce qui est normalement requis.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Correspondance du format importé si requis</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>Le format sera mis à jour pour correspondre à celui du fichier importé si le format actuel n'est pas compatible avec les données. Par exemple, si une image ARGB est importée en tant que fichier .gf (qui n'est pas compatible avec la transparence), cela ne mettra à jour le format que si l'image utilise le channel alpha. Cette option est recommandée pour éviter de changer les formats si ce n'est pas nécessaire, cependant, cela ralentira l'importation des fichiers.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>L'archive a été créée avec succès avec {0} fichiers</value>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>Le fichier d'entrée spécifié n'existe pas</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>Une erreur est survenue en créant l'archive</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Créer Archive</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Dossier d'entrée</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>Fichier de sortie</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Compresser le bloc entier</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>Extensions de fichier à compresser</value>
+  </data>
+  <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
+    <value>Fichier de configuration de Rayman 1 (.cfg)</value>
+  </data>
+  <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
+    <value>Fichier de sauvegarde de Rayman 1 (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
+    <value>Fichier de configuration de Rayman 2 (.cfg)</value>
+  </data>
+  <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
+    <value>Fichier de sauvegarde de Rayman 2 (.sav)</value>
+  </data>
+  <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde de Rayman 1/2 (.sac/.cfg)</value>
+  </data>
+  <data name="Settings_SyncTheme" xml:space="preserve">
+    <value>Synchroniser le thème</value>
+  </data>
+  <data name="Settings_SyncThemeInfo" xml:space="preserve">
+    <value>Si activé, le thème de l'application (couleur d'accentuation et mode clair/sombre) se synchronisera avec les options système de Windows 10/11</value>
+  </data>
+  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
+    <value>Une erreur est survenue en modifiant la langue</value>
+  </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>La Promenade de Santé</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>Le Tour de Force</value>
+  </data>
+  <data name="Download_ManualInstructions" xml:space="preserve">
+    <value>Télécharger des fichiers :
+
+1. Presser le bouton téléchargement pour télécharger manuellement les fichiers.
+2. Déplacer les fichiers vers le dossier de destination. S'ils sont compressés, les extraire.
+3. Cliquer sur 'Ok' pour continuer.</value>
+  </data>
+  <data name="Download_ManualHeader" xml:space="preserve">
+    <value>Téléchargement manuel</value>
+  </data>
+  <data name="Download_ManualDownload" xml:space="preserve">
+    <value>Télécharger les fichiers</value>
+  </data>
+  <data name="Download_ManualOpenDestination" xml:space="preserve">
+    <value>Ouvrir le dossier de destination</value>
+  </data>
+  <data name="Settings_ManualDownloads" xml:space="preserve">
+    <value>Gérer les téléchargements manuellement</value>
+  </data>
+  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
+    <value>Utiliser cette option uniquement si les téléchargements ne fonctionnent pas</value>
+  </data>
+  <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
+    <value>Fichiers encodés Tonic Trouble (.sna/.dsb)</value>
+  </data>
+  <data name="About_Credits_Fabiosek" xml:space="preserve">
+    <value>Traduction polonaise (pologne) du programme</value>
+  </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Fichiers de sauvegarde de Rayman M/Arena (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Convertir en 32-bit pendant l'importation (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Indique si le fichier .gf devrait être converti en 24/32-bit pendant l'importation pour une qualité maximale</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Meilleur Tour - Entraînement</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Meilleur Tour - Course</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Meilleur Tour - Popolopoï</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Meilleur Tour - Lums</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Meilleur Temps - Course</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Meilleur Temps - Popolopoï</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Meilleur Temps - Lums</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Popolopoï</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="RM_RaceName_0" xml:space="preserve">
+    <value>Ruines</value>
+  </data>
+  <data name="RM_RaceName_1" xml:space="preserve">
+    <value>Tour Nébuleuse</value>
+  </data>
+  <data name="RM_RaceName_2" xml:space="preserve">
+    <value>Sombres Égouts</value>
+  </data>
+  <data name="RM_RaceName_3" xml:space="preserve">
+    <value>Aube Sablonneuse</value>
+  </data>
+  <data name="RM_RaceName_4" xml:space="preserve">
+    <value>Canyon Aquatique</value>
+  </data>
+  <data name="RM_RaceName_5" xml:space="preserve">
+    <value>Mille Cascades</value>
+  </data>
+  <data name="RM_RaceName_6" xml:space="preserve">
+    <value>Forêt Pirate</value>
+  </data>
+  <data name="RM_RaceName_7" xml:space="preserve">
+    <value>Port du Zénith</value>
+  </data>
+  <data name="RM_RaceName_8" xml:space="preserve">
+    <value>Bateau Pirate</value>
+  </data>
+  <data name="RM_RaceName_9" xml:space="preserve">
+    <value>Dédale de Tuyaux</value>
+  </data>
+  <data name="RM_RaceName_10" xml:space="preserve">
+    <value>Usine de Lave</value>
+  </data>
+  <data name="RM_RaceName_11" xml:space="preserve">
+    <value>Finale Électrique</value>
+  </data>
+  <data name="RM_RaceName_12" xml:space="preserve">
+    <value>Futur</value>
+  </data>
+  <data name="RM_RaceName_13" xml:space="preserve">
+    <value>Big Bang</value>
+  </data>
+  <data name="RM_RaceName_14" xml:space="preserve">
+    <value>Vive Adrénaline</value>
+  </data>
+  <data name="RM_RaceName_15" xml:space="preserve">
+    <value>Glisse Extrême</value>
+  </data>
+  <data name="Browse_SelectFile" xml:space="preserve">
+    <value>Choisir un fichier</value>
+  </data>
+  <data name="Browse_SaveFile" xml:space="preserve">
+    <value>Sauvegarder un fichier</value>
+  </data>
+  <data name="Browse_SelectDir" xml:space="preserve">
+    <value>Choisir un dossier</value>
+  </data>
+  <data name="Browse_SelectDrive" xml:space="preserve">
+    <value>Choisir un disque</value>
+  </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Traduction du programme en russe (Russie)</value>
+  </data>
+  <data name="About_Credits_ItzalDrake" xml:space="preserve">
+    <value>Traduction du programme en italien (Italie)</value>
+  </data>
+  <data name="Archive_Sort" xml:space="preserve">
+    <value>Organiser</value>
+  </data>
+  <data name="Archive_Sort_Default" xml:space="preserve">
+    <value>Défaut</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
+    <value>alphabétiquement (ascendant)</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
+    <value>alphabétiquement (descendant)</value>
+  </data>
+  <data name="Archive_Search" xml:space="preserve">
+    <value>Rechercher</value>
+  </data>
+  <data name="Archive_Extract_Info" xml:space="preserve">
+    <value>Extraire tous les fichiers de ce dossiers, sous dossiers inclus</value>
+  </data>
+  <data name="Archive_AddFiles" xml:space="preserve">
+    <value>Ajouter des fichiers</value>
+  </data>
+  <data name="Archive_AddFiles_Info" xml:space="preserve">
+    <value>Ajouter les fichiers sélectionnés au dossier</value>
+  </data>
+  <data name="Archive_ExportConvert" xml:space="preserve">
+    <value>Exporter &amp; convertir</value>
+  </data>
+  <data name="Archive_ExportConvert_Info" xml:space="preserve">
+    <value>Extrait tous les fichiers de ce dossier, sous dossiers inclus, et permet aux fichiers d'être convertis</value>
+  </data>
+  <data name="Archive_ImportConvert" xml:space="preserve">
+    <value>Importer &amp; convertir</value>
+  </data>
+  <data name="RRR_LevelName_0" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés en vacances</value>
+  </data>
+  <data name="RRR_LevelName_1" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés la nuit</value>
+  </data>
+  <data name="RRR_LevelName_2" xml:space="preserve">
+    <value>Les lapins ont participé à la conquête de l'Ouest</value>
+  </data>
+  <data name="RRR_LevelName_3" xml:space="preserve">
+    <value>Les lapins ont un faible pour les ventouses</value>
+  </data>
+  <data name="RRR_LevelName_4" xml:space="preserve">
+    <value>Les lapins n'ont jamais trouvé la moindre pépite</value>
+  </data>
+  <data name="RRR_LevelName_5" xml:space="preserve">
+    <value>Les lapins se croient au cinéma</value>
+  </data>
+  <data name="RRR_LevelName_6" xml:space="preserve">
+    <value>Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="RRR_LevelName_7" xml:space="preserve">
+    <value>Les lapins n'ont pas peur du noir</value>
+  </data>
+  <data name="RRR_LevelName_8" xml:space="preserve">
+    <value>Les lapins ne reposent pas en paix</value>
+  </data>
+  <data name="RRR_LevelName_9" xml:space="preserve">
+    <value>Les lapins réutilisent parfois les décors des autres jeux</value>
+  </data>
+  <data name="RRR_LevelName_10" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés en vacances</value>
+  </data>
+  <data name="RRR_LevelName_11" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés la nuit</value>
+  </data>
+  <data name="RRR_LevelName_12" xml:space="preserve">
+    <value>Les lapins ont participé à la conquête de l'Ouest</value>
+  </data>
+  <data name="RRR_LevelName_13" xml:space="preserve">
+    <value>Les lapins ont un faible pour les ventouses</value>
+  </data>
+  <data name="RRR_LevelName_14" xml:space="preserve">
+    <value>Les lapins n'ont jamais trouvé la moindre pépite</value>
+  </data>
+  <data name="RRR_LevelName_15" xml:space="preserve">
+    <value>Les lapins se croient au cinéma</value>
+  </data>
+  <data name="RRR_LevelName_16" xml:space="preserve">
+    <value>Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="RRR_LevelName_17" xml:space="preserve">
+    <value>Les lapins n'ont pas peur du noir</value>
+  </data>
+  <data name="RRR_LevelName_18" xml:space="preserve">
+    <value>Les lapins ne reposent pas en paix</value>
+  </data>
+  <data name="RRR_LevelName_19" xml:space="preserve">
+    <value>Les lapins réutilisent parfois les décors des autres jeux</value>
+  </data>
+  <data name="RRR_LevelName_20" xml:space="preserve">
+    <value>Les lapins ne savent pas sauter</value>
+  </data>
+  <data name="RRR_LevelName_21" xml:space="preserve">
+    <value>Les lapins ne se font pas de cadeau</value>
+  </data>
+  <data name="RRR_LevelName_22" xml:space="preserve">
+    <value>Les lapins ne savent pas se servir d'une vache</value>
+  </data>
+  <data name="RRR_LevelName_23" xml:space="preserve">
+    <value>Les lapins ne ferment jamais la porte</value>
+  </data>
+  <data name="RRR_LevelName_24" xml:space="preserve">
+    <value>Les lapins ne savent pas traire une vache</value>
+  </data>
+  <data name="RRR_LevelName_25" xml:space="preserve">
+    <value>Les lapins sont accros au jus de carotte</value>
+  </data>
+  <data name="RRR_LevelName_26" xml:space="preserve">
+    <value>Les lapins ne sont pas les rois de la glisse 2</value>
+  </data>
+  <data name="RRR_LevelName_27" xml:space="preserve">
+    <value>Les lapins n'ont pas de pitié pour les cochons</value>
+  </data>
+  <data name="RRR_LevelName_28" xml:space="preserve">
+    <value>Les lapins ont du mal avec les chauves-souris</value>
+  </data>
+  <data name="RRR_LevelName_29" xml:space="preserve">
+    <value>Les lapins ne connaissent pas le dentifrice</value>
+  </data>
+  <data name="RRR_LevelName_30" xml:space="preserve">
+    <value>Les lapins ne savent pas voler</value>
+  </data>
+  <data name="RRR_LevelName_31" xml:space="preserve">
+    <value>Les lapins ne savent voler que vers le bas</value>
+  </data>
+  <data name="RRR_LevelName_32" xml:space="preserve">
+    <value>Les lapins ne savent pas jouer au foot</value>
+  </data>
+  <data name="RRR_LevelName_33" xml:space="preserve">
+    <value>Les lapins ne pigent pas le principe du bowling</value>
+  </data>
+  <data name="RRR_LevelName_34" xml:space="preserve">
+    <value>La ferme !!</value>
+  </data>
+  <data name="RRR_LevelName_35" xml:space="preserve">
+    <value>Les lapins ont une assez bonne oreille musicale</value>
+  </data>
+  <data name="RRR_LevelName_36" xml:space="preserve">
+    <value>Les lapins sont plutôt lents à la détente</value>
+  </data>
+  <data name="RRR_LevelName_37" xml:space="preserve">
+    <value>Les lapins dansent comme des dieux 3</value>
+  </data>
+  <data name="RRR_LevelName_38" xml:space="preserve">
+    <value>Un lapin mange comme quatre</value>
+  </data>
+  <data name="RRR_LevelName_39" xml:space="preserve">
+    <value>Les lapins "ravent" éveillés 2</value>
+  </data>
+  <data name="RRR_LevelName_40" xml:space="preserve">
+    <value>Les lapins aiment faire les courses</value>
+  </data>
+  <data name="RRR_LevelName_41" xml:space="preserve">
+    <value>Courses les faire aiment lapins les</value>
+  </data>
+  <data name="RRR_LevelName_42" xml:space="preserve">
+    <value>Les lapins aiment faire les courses à la plage</value>
+  </data>
+  <data name="RRR_LevelName_43" xml:space="preserve">
+    <value>Les lapins ne volent toujours que vers le bas</value>
+  </data>
+  <data name="RRR_LevelName_44" xml:space="preserve">
+    <value>Les lapins dansent comme des dieux</value>
+  </data>
+  <data name="RRR_LevelName_45" xml:space="preserve">
+    <value>Les lapins ont le sommeil agité</value>
+  </data>
+  <data name="RRR_LevelName_46" xml:space="preserve">
+    <value>Les lapins n'ont pas de mémoire</value>
+  </data>
+  <data name="RRR_LevelName_47" xml:space="preserve">
+    <value>Les lapins sortent rarement de leur trou</value>
+  </data>
+  <data name="RRR_LevelName_48" xml:space="preserve">
+    <value>Les lapins ne savent pas sauter 2</value>
+  </data>
+  <data name="RRR_LevelName_49" xml:space="preserve">
+    <value>Les lapins ne ferment jamais la porte 2</value>
+  </data>
+  <data name="RRR_LevelName_50" xml:space="preserve">
+    <value>Les lapins ne savent pas traire une vache 2</value>
+  </data>
+  <data name="RRR_LevelName_51" xml:space="preserve">
+    <value>Les lapins aiment faire les courses de cowboy</value>
+  </data>
+  <data name="RRR_LevelName_52" xml:space="preserve">
+    <value>Les lapins n'ont pas de pitié pour les cochons 2</value>
+  </data>
+  <data name="RRR_LevelName_53" xml:space="preserve">
+    <value>La psychologie  du lapin. Tome 1</value>
+  </data>
+  <data name="RRR_LevelName_54" xml:space="preserve">
+    <value>Les lapins ont du mal avec les chauves-souris 2</value>
+  </data>
+  <data name="RRR_LevelName_55" xml:space="preserve">
+    <value>Les lapins ne connaissent pas le dentifrice 2</value>
+  </data>
+  <data name="RRR_LevelName_56" xml:space="preserve">
+    <value>Les lapins ne savent pas voler 2</value>
+  </data>
+  <data name="RRR_LevelName_57" xml:space="preserve">
+    <value>La psychologie  du lapin. Tome 2</value>
+  </data>
+  <data name="RRR_LevelName_58" xml:space="preserve">
+    <value>Les lapins ne savent pas tondre un mouton</value>
+  </data>
+  <data name="RRR_LevelName_59" xml:space="preserve">
+    <value>Les lapins sont plutôt lents à la détente 2</value>
+  </data>
+  <data name="RRR_LevelName_60" xml:space="preserve">
+    <value>Les lapins sont plutôt lents à la détente 3</value>
+  </data>
+  <data name="RRR_LevelName_61" xml:space="preserve">
+    <value>Un lapin mange comme cinq</value>
+  </data>
+  <data name="RRR_LevelName_62" xml:space="preserve">
+    <value>Les lapins n'ont pas de mémoire 2</value>
+  </data>
+  <data name="RRR_LevelName_63" xml:space="preserve">
+    <value>Les lapins sortent rarement de leur trou 2</value>
+  </data>
+  <data name="RRR_LevelName_64" xml:space="preserve">
+    <value>Les lapins aiment les surprises</value>
+  </data>
+  <data name="RRR_LevelName_65" xml:space="preserve">
+    <value>Les lapins n'aiment pas se faire tirer dessus</value>
+  </data>
+  <data name="RRR_LevelName_66" xml:space="preserve">
+    <value>Les lapins ont le rythme dans la peau</value>
+  </data>
+  <data name="RRR_LevelName_67" xml:space="preserve">
+    <value>Les lapins nichent bas</value>
+  </data>
+  <data name="RRR_LevelName_68" xml:space="preserve">
+    <value>Le côté obscur</value>
+  </data>
+  <data name="RRR_LevelName_69" xml:space="preserve">
+    <value>Les lapins ont le rythme dans la peau 2</value>
+  </data>
+  <data name="RRR_LevelName_70" xml:space="preserve">
+    <value>Les lapins sont chatouilleux</value>
+  </data>
+  <data name="RRR_LevelName_71" xml:space="preserve">
+    <value>La psychologie  du lapin. Tome 3</value>
+  </data>
+  <data name="RRR_LevelName_72" xml:space="preserve">
+    <value>Les lapins sont nuls en 1 2 3 soleil</value>
+  </data>
+  <data name="RRR_LevelName_73" xml:space="preserve">
+    <value>Les lapins sont douillets</value>
+  </data>
+  <data name="RRR_LevelName_74" xml:space="preserve">
+    <value>Les lapins sont moyens en anatomie</value>
+  </data>
+  <data name="RRR_LevelName_75" xml:space="preserve">
+    <value>Les lapins ne sont pas les rois de la glisse</value>
+  </data>
+  <data name="RRR_LevelName_76" xml:space="preserve">
+    <value>Les lapins n'ont pas gardé les cochons ensemble</value>
+  </data>
+  <data name="RRR_LevelName_77" xml:space="preserve">
+    <value>Les lapins ne savent pas faire l'autruche</value>
+  </data>
+  <data name="RRR_LevelName_78" xml:space="preserve">
+    <value>Les lapins sont des filles comme les autres</value>
+  </data>
+  <data name="RRR_LevelName_79" xml:space="preserve">
+    <value>Les lapins sont dingues de disco</value>
+  </data>
+  <data name="RRR_LevelName_80" xml:space="preserve">
+    <value>Les lapins kiffent grave le hip-hop</value>
+  </data>
+  <data name="RRR_LevelName_81" xml:space="preserve">
+    <value>Los lapinos bailan la bamba</value>
+  </data>
+  <data name="RRR_LevelName_82" xml:space="preserve">
+    <value>Les lapins sont des rockers dans l'âme</value>
+  </data>
+  <data name="RRR_LevelName_83" xml:space="preserve">
+    <value>Les lapins "ravent" éveillés</value>
+  </data>
+  <data name="RRR_LevelName_84" xml:space="preserve">
+    <value>Les lapins dansent comme des dieux 2</value>
+  </data>
+  <data name="RRR_LevelName_85" xml:space="preserve">
+    <value>Les lapins sont dingues de disco 2</value>
+  </data>
+  <data name="RRR_LevelName_86" xml:space="preserve">
+    <value>Les lapins sont des filles comme les autres 2</value>
+  </data>
+  <data name="RRR_LevelName_87" xml:space="preserve">
+    <value>Les lapins kiffent grave le hip-hop 2</value>
+  </data>
+  <data name="RRR_LevelName_88" xml:space="preserve">
+    <value>Los lapinos bailan la bamba 2</value>
+  </data>
+  <data name="RRR_LevelName_89" xml:space="preserve">
+    <value>Les lapins sont des rockers dans l'âme 2</value>
+  </data>
+  <data name="RRR_LevelName_90" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés en vacances</value>
+  </data>
+  <data name="RRR_LevelName_91" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés la nuit</value>
+  </data>
+  <data name="RRR_LevelName_92" xml:space="preserve">
+    <value>Les lapins ont participé à la conquête de l'Ouest</value>
+  </data>
+  <data name="RRR_LevelName_93" xml:space="preserve">
+    <value>Les lapins ont un faible pour les ventouses</value>
+  </data>
+  <data name="RRR_LevelName_94" xml:space="preserve">
+    <value>Les lapins n'ont jamais trouvé la moindre pépite</value>
+  </data>
+  <data name="RRR_LevelName_95" xml:space="preserve">
+    <value>Les lapins se croient au cinéma</value>
+  </data>
+  <data name="RRR_LevelName_96" xml:space="preserve">
+    <value>Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="RRR_LevelName_97" xml:space="preserve">
+    <value>Les lapins n'ont pas peur du noir</value>
+  </data>
+  <data name="RRR_LevelName_98" xml:space="preserve">
+    <value>Les lapins ne reposent pas en paix</value>
+  </data>
+  <data name="RRR_LevelName_99" xml:space="preserve">
+    <value>Les lapins réutilisent parfois les décors des autres jeux</value>
+  </data>
+  <data name="RRR_LevelName_100" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés en vacances</value>
+  </data>
+  <data name="RRR_LevelName_101" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés la nuit</value>
+  </data>
+  <data name="RRR_LevelName_102" xml:space="preserve">
+    <value>Les lapins ont participé à la conquête de l'Ouest</value>
+  </data>
+  <data name="RRR_LevelName_103" xml:space="preserve">
+    <value>Les lapins ont un faible pour les ventouses</value>
+  </data>
+  <data name="RRR_LevelName_104" xml:space="preserve">
+    <value>Les lapins n'ont jamais trouvé la moindre pépite</value>
+  </data>
+  <data name="RRR_LevelName_105" xml:space="preserve">
+    <value>Les lapins se croient au cinéma</value>
+  </data>
+  <data name="RRR_LevelName_106" xml:space="preserve">
+    <value>Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="RRR_LevelName_107" xml:space="preserve">
+    <value>Les lapins n'ont pas peur du noir</value>
+  </data>
+  <data name="RRR_LevelName_108" xml:space="preserve">
+    <value>Les lapins ne reposent pas en paix</value>
+  </data>
+  <data name="RRR_LevelName_109" xml:space="preserve">
+    <value>Les lapins réutilisent parfois les décors des autres jeux</value>
+  </data>
+  <data name="RRR_LevelName_110" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés en vacances</value>
+  </data>
+  <data name="RRR_LevelName_111" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés la nuit</value>
+  </data>
+  <data name="RRR_LevelName_112" xml:space="preserve">
+    <value>Les lapins ont participé à la conquête de l'Ouest</value>
+  </data>
+  <data name="RRR_LevelName_113" xml:space="preserve">
+    <value>Les lapins ont un faible pour les ventouses</value>
+  </data>
+  <data name="RRR_LevelName_114" xml:space="preserve">
+    <value>Les lapins n'ont jamais trouvé la moindre pépite</value>
+  </data>
+  <data name="RRR_LevelName_115" xml:space="preserve">
+    <value>Les lapins se croient au cinéma</value>
+  </data>
+  <data name="RRR_LevelName_116" xml:space="preserve">
+    <value>Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="RRR_LevelName_117" xml:space="preserve">
+    <value>Les lapins n'ont pas peur du noir</value>
+  </data>
+  <data name="RRR_LevelName_118" xml:space="preserve">
+    <value>Les lapins ne reposent pas en paix</value>
+  </data>
+  <data name="RRR_LevelName_119" xml:space="preserve">
+    <value>Les lapins réutilisent parfois les décors des autres jeux</value>
+  </data>
+  <data name="RRR_LevelName_120" xml:space="preserve">
+    <value>Expériences extrêmes</value>
+  </data>
+  <data name="RRR_LevelName_121" xml:space="preserve">
+    <value>Le pentathlon de sport</value>
+  </data>
+  <data name="RRR_LevelName_122" xml:space="preserve">
+    <value>Le pentathlon dans les chaussettes</value>
+  </data>
+  <data name="RRR_LevelName_123" xml:space="preserve">
+    <value>Le pentathlon de survêtement</value>
+  </data>
+  <data name="RRR_LevelName_124" xml:space="preserve">
+    <value>Mon pentathlon est décousu</value>
+  </data>
+  <data name="RRR_LevelName_125" xml:space="preserve">
+    <value>Foire aux lapins</value>
+  </data>
+  <data name="RRR_LevelName_126" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="RRR_LevelName_127" xml:space="preserve">
+    <value>Championnat du monde d’éclectisme</value>
+  </data>
+  <data name="RRR_LevelName_130" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés en vacances</value>
+  </data>
+  <data name="RRR_LevelName_131" xml:space="preserve">
+    <value>Les lapins n'aiment pas être dérangés la nuit</value>
+  </data>
+  <data name="RRR_LevelName_132" xml:space="preserve">
+    <value>Les lapins ont participé à la conquête de l'Ouest</value>
+  </data>
+  <data name="RRR_LevelName_133" xml:space="preserve">
+    <value>Les lapins ont un faible pour les ventouses</value>
+  </data>
+  <data name="RRR_LevelName_134" xml:space="preserve">
+    <value>Les lapins n'ont jamais trouvé la moindre pépite</value>
+  </data>
+  <data name="RRR_LevelName_135" xml:space="preserve">
+    <value>Les lapins se croient au cinéma</value>
+  </data>
+  <data name="RRR_LevelName_136" xml:space="preserve">
+    <value>Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="RRR_LevelName_137" xml:space="preserve">
+    <value>Les lapins n'ont pas peur du noir</value>
+  </data>
+  <data name="RRR_LevelName_138" xml:space="preserve">
+    <value>Les lapins ne reposent pas en paix</value>
+  </data>
+  <data name="RRR_LevelName_139" xml:space="preserve">
+    <value>Les lapins réutilisent parfois les décors des autres jeux</value>
+  </data>
+  <data name="RRR_LevelName_140" xml:space="preserve">
+    <value>Les lapins tirent dans tous les coins</value>
+  </data>
+  <data name="RFR_LevelName_1_10" xml:space="preserve">
+    <value>Privé de dessert</value>
+  </data>
+  <data name="RFR_LevelName_2_10" xml:space="preserve">
+    <value>Saut de l'ange</value>
+  </data>
+  <data name="RFR_LevelName_3_10" xml:space="preserve">
+    <value>Gaffe aux serpents</value>
+  </data>
+  <data name="RFR_LevelName_4_10" xml:space="preserve">
+    <value>Un petit remontant</value>
+  </data>
+</root>

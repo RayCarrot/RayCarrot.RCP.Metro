@@ -57,6 +57,9 @@ public static class LocalizationManager
             // Dutch (Netherlands)
             new CultureInfo("nl-NL"),
 
+            // Hebrew
+            new CultureInfo("he"),
+
             // Italian (Italy)
             new CultureInfo("it-IT"),
 
@@ -75,6 +78,9 @@ public static class LocalizationManager
             // Add incomplete languages
             Languages.AddRange(new CultureInfo[]
             {
+                // French (France)
+                new CultureInfo("fr-FR"),
+
                 // Serbian (Cyrillic)
                 new CultureInfo("sr-Cyrl"), 
 
