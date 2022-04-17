@@ -56,6 +56,9 @@ public class BaseWindow : MetroWindow
         // Set transition
         WindowTransitionsEnabled = Services.Data?.UI_EnableAnimations ?? true;
 
+        // Set the flow direction
+        FlowDirection = LocalizationManager.CurrentFlowDirection;
+
         Logger.Info("The window {0} has been created", this);
 
         PreviewKeyDown += (_, e) =>

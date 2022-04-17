@@ -55,8 +55,12 @@ public partial class OverflowMenu : Button
 
     private void ContextMenu_Loaded(object sender, RoutedEventArgs e)
     {
+        double pointX = FlowDirection == FlowDirection.LeftToRight
+            ? ActualWidth - ContextMenu.ActualWidth
+            : 0;
+
         // Get the point on screen
-        var point = PointToScreen(new Point(0 - ContextMenu.ActualWidth + ActualWidth, ActualHeight));
+        Point point = PointToScreen(new Point(pointX, ActualHeight));
 
         // Set the offsets
         ContextMenu.HorizontalOffset = point.X - Margin.Left;

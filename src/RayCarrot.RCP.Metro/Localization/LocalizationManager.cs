@@ -131,6 +131,14 @@ public static class LocalizationManager
             // Set the framework culture
             Services.InstanceData.CurrentCulture = ci;
 
+            // Set the flow direction
+            CurrentFlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft 
+                ? FlowDirection.RightToLeft 
+                : FlowDirection.LeftToRight;
+
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.FlowDirection = CurrentFlowDirection;
+
             Logger.Info("The current culture was set to {0}", ci.EnglishName);
         }
     }
@@ -148,6 +156,11 @@ public static class LocalizationManager
     /// The available languages
     /// </summary>
     public static ObservableCollection<CultureInfo> Languages { get; }
+
+    /// <summary>
+    /// The current flow direction for the selected culture
+    /// </summary>
+    public static FlowDirection CurrentFlowDirection { get; private set; }
 
     #endregion
 
