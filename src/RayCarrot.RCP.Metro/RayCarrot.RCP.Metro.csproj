@@ -130,27 +130,8 @@
     <EmbeddedResource Include="costura32\Magick.Native-Q8-x86.dll" />
 
     <!-- Resources -->
-    <Resource Include="Files\VersionHistory\VersionHistory_04.0_06.0.txt" />
-    <Resource Include="Files\VersionHistory\VersionHistory_07.0_09.0.txt" />
-    <Resource Include="Files\VersionHistory\VersionHistory_10.0_12.0.txt" />
-    <Resource Include="Files\VersionHistory\VersionHistory_13.0_15.0.txt" />
-    <Resource Include="Files\License.txt" />
     <Resource Include="Fonts\RaymanOrigins.ttf" />
     <Resource Include="Img\RCP_Metro.ico" />
-    <Resource Include="Files\RaymanLegends\RL_Levels.txt" />
-    <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
-    <Resource Include="Installer\Games\Rayman2.txt" />
-    <Resource Include="Installer\Games\RaymanArena.txt" />
-    <Resource Include="Installer\Games\RaymanM.txt" />
-    <Resource Include="Files\VersionHistory\VersionHistory_01.0_03.0.txt" />
-
-    <!-- Content -->
-    <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
-    <Content Include="Files\Programs\AdminWorker.exe" />
-    <Content Include="Files\Rayman3\dinput8_controller.dll" />
-    <Content Include="Files\Programs\Uninstaller.exe" />
-    <Content Include="Files\Rayman2\dinput_controller.dll" />
-    <Content Include="Files\Rayman2\dinput_mapping.dll" />
   </ItemGroup>
 
   <!-- Resource files (resx) -->
