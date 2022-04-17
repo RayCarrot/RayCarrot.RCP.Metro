@@ -22,7 +22,7 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     /// <param name="game">The game</param>
     /// <param name="gameMode">The game mode</param>
     /// <param name="gameDataDirNames">The game data directory names</param>
-    public Utility_BaseGameSyncTextureInfo_ViewModel(Games game, OpenSpaceGameMode gameMode, string[] gameDataDirNames)
+    public Utility_BaseGameSyncTextureInfo_ViewModel(Games game, CPAGameMode gameMode, string[] gameDataDirNames)
     {
         // Set properties
         Game = game;
@@ -57,7 +57,7 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     /// <summary>
     /// The game mode
     /// </summary>
-    protected OpenSpaceGameMode GameMode { get; }
+    protected CPAGameMode GameMode { get; }
 
     /// <summary>
     /// The game data directory names
@@ -93,7 +93,7 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
                 FileSystemPath installDir = Game.GetInstallDir();
 
                 // Get the settings
-                OpenSpaceGameModeInfoAttribute attr = GameMode.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                CPAGameModeInfoAttribute attr = GameMode.GetAttribute<CPAGameModeInfoAttribute>();
                 OpenSpaceSettings gameSettings = attr.GetSettings();
 
                 // Get the file extension for the level data files

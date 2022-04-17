@@ -84,9 +84,9 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
     }
 
     /// <summary>
-    /// Edits all found texture info objects in an OpenSpace data files (.sna, .lvl etc.) to have their resolution match the .gf textures
+    /// Edits all found texture info objects in CPA data files (.sna, .lvl etc.) to have their resolution match the .gf textures
     /// </summary>
-    /// <param name="gameSettings">The OpenSpace game settings to use</param>
+    /// <param name="gameSettings">The CPA game settings to use</param>
     /// <param name="files">The files to edit</param>
     /// <param name="cntFiles">The .cnt file paths</param>
     /// <returns>The result</returns>

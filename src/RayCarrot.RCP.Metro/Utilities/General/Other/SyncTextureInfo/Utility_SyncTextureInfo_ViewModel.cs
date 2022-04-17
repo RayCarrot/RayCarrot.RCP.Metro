@@ -24,14 +24,14 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
         SyncTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
 
         // Set up selection
-        GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2_PC, new OpenSpaceGameMode[]
+        GameModeSelection = new EnumSelectionViewModel<CPAGameMode>(CPAGameMode.Rayman2_PC, new CPAGameMode[]
         {
-            OpenSpaceGameMode.Rayman2_PC,
-            OpenSpaceGameMode.RaymanM_PC,
-            OpenSpaceGameMode.RaymanArena_PC,
-            OpenSpaceGameMode.Rayman3_PC,
-            OpenSpaceGameMode.TonicTrouble_PC,
-            OpenSpaceGameMode.TonicTrouble_SE_PC,
+            CPAGameMode.Rayman2_PC,
+            CPAGameMode.RaymanM_PC,
+            CPAGameMode.RaymanArena_PC,
+            CPAGameMode.Rayman3_PC,
+            CPAGameMode.TonicTrouble_PC,
+            CPAGameMode.TonicTrouble_SE_PC,
         });
     }
 
@@ -54,7 +54,7 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
     /// <summary>
     /// The game mode selection
     /// </summary>
-    public EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
+    public EnumSelectionViewModel<CPAGameMode> GameModeSelection { get; }
 
     /// <summary>
     /// Indicates if the utility is loading
@@ -71,7 +71,7 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
     /// <returns>The task</returns>
     public async Task SyncTextureInfoAsync()
     {
-        OpenSpaceGameModeInfoAttribute attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+        CPAGameModeInfoAttribute attr = GameModeSelection.SelectedValue.GetAttribute<CPAGameModeInfoAttribute>();
 
         DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
         {

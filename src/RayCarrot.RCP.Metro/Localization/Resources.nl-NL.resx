@@ -2113,13 +2113,13 @@ Foutmelding: {1}</value>
     <value>Hulpprogramma's</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>OpenSpace archieven (.cnt)</value>
+    <value>CPA archieven (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
     <value>UbiArt archieven (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>OpenSpace texturen (.gf)</value>
+    <value>CPA texturen (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Converteren</value>

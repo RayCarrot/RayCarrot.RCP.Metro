@@ -9,7 +9,7 @@ using MahApps.Metro.IconPacks;
 using NLog;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
-namespace RayCarrot.RCP.Metro.Archive.OpenSpace;
+namespace RayCarrot.RCP.Metro.Archive.CPA;
 
 /// <summary>
 /// An image file type

@@ -8,7 +8,7 @@ public class Utility_Rayman3_GameSyncTextureInfo : Utility_BaseGameSyncTextureIn
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_Rayman3_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.Rayman3, OpenSpaceGameMode.Rayman3_PC, new string[]
+    public Utility_Rayman3_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.Rayman3, CPAGameMode.Rayman3_PC, new string[]
     {
         "Gamedatabin"
     }))

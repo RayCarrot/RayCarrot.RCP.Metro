@@ -2116,13 +2116,13 @@ Messaggio di errore: {1} </value>
     <value>Utilità</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>Archivi OpenSpace (.cnt)</value>
+    <value>Archivi CPA (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
     <value>Archivi UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>File Texture OpenSpace (.gf)</value>
+    <value>File Texture CPA (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Converti</value>

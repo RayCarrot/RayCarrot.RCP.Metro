@@ -8,7 +8,7 @@ public class Utility_RaymanArena_GameSyncTextureInfo : Utility_BaseGameSyncTextu
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanArena_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.RaymanArena, OpenSpaceGameMode.RaymanArena_PC, new string[]
+    public Utility_RaymanArena_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.RaymanArena, CPAGameMode.RaymanArena_PC, new string[]
     {
         "MenuBin",
         "TribeBin",

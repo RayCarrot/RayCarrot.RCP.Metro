@@ -2119,13 +2119,13 @@ Error message: {1}</value>
     <value>Utilitários</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>Arquivos OpenSpace (.cnt)</value>
+    <value>Arquivos CPA (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
     <value>Arquivos UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>Ficheiros de Textura OpenSpace (.gf)</value>
+    <value>Ficheiros de Textura CPA (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Converter</value>

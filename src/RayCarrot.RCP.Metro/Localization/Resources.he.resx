@@ -2116,13 +2116,13 @@ BinarySerializer</value>
     <value>כלי עזר</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>ארכיבי OpenSpace (.cnt)</value>
+    <value>ארכיבי CPA (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
     <value>ארכיבי UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>קבצי טסטורות OpenSpace (.gf)</value>
+    <value>קבצי טסטורות CPA (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>המר</value>

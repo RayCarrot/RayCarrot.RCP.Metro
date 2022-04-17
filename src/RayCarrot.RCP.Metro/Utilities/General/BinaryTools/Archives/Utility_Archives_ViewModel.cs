@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.OpenSpace;
+using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Archive.UbiArt;
 
@@ -34,19 +34,19 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
             new Utility_Archives_TypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_CNTHeader)),
                 fileExtension: new FileExtension(".cnt"),
-                getManagerFunc: (data, mode) => new OpenSpaceCntArchiveDataManager(data.GetAttribute<OpenSpaceGameModeInfoAttribute>().GetSettings()),
-                modes: new EnumSelectionViewModel<Enum>(OpenSpaceGameMode.Rayman2_PC, new Enum[]
+                getManagerFunc: (data, mode) => new CPACntArchiveDataManager(data.GetAttribute<CPAGameModeInfoAttribute>().GetSettings()),
+                modes: new EnumSelectionViewModel<Enum>(CPAGameMode.Rayman2_PC, new Enum[]
                 {
-                    OpenSpaceGameMode.Rayman2_PC,
-                    OpenSpaceGameMode.Rayman2_Demo1_PC,
-                    OpenSpaceGameMode.Rayman2_Demo2_PC,
-                    OpenSpaceGameMode.RaymanM_PC,
-                    OpenSpaceGameMode.RaymanArena_PC,
-                    OpenSpaceGameMode.Rayman3_PC,
-                    OpenSpaceGameMode.TonicTrouble_PC,
-                    OpenSpaceGameMode.TonicTrouble_SE_PC,
-                    OpenSpaceGameMode.DonaldDuck_PC,
-                    OpenSpaceGameMode.PlaymobilHype_PC,
+                    CPAGameMode.Rayman2_PC,
+                    CPAGameMode.Rayman2_Demo1_PC,
+                    CPAGameMode.Rayman2_Demo2_PC,
+                    CPAGameMode.RaymanM_PC,
+                    CPAGameMode.RaymanArena_PC,
+                    CPAGameMode.Rayman3_PC,
+                    CPAGameMode.TonicTrouble_PC,
+                    CPAGameMode.TonicTrouble_SE_PC,
+                    CPAGameMode.DonaldDuck_PC,
+                    CPAGameMode.PlaymobilHype_PC,
                 })),
 
             new Utility_Archives_TypeViewModel(

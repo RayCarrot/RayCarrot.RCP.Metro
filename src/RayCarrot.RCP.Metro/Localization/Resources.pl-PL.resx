@@ -2134,13 +2134,13 @@ Komunikat o błędzie: {1}</value>
     <value>Narzędzia</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>Archiwa OpenSpace (.cnt)</value>
+    <value>Archiwa CPA (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
     <value>Archiwa UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>Tekstury OpenSpace (.gf)</value>
+    <value>Tekstury CPA (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Konwertuj</value>

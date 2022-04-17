@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.OpenSpace;
+using RayCarrot.RCP.Metro.Archive.CPA;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -94,7 +94,7 @@ public sealed class GameInfo_RaymanMDemo : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new OpenSpaceCntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanM, Platform.PC));
+    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanM, Platform.PC));
 
     /// <summary>
     /// Gets the archive file paths for the game

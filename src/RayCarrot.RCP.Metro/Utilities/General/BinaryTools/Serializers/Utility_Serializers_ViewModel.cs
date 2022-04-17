@@ -47,7 +47,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<R2ConfigFile>(
@@ -56,7 +56,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<RMSaveFile>(
@@ -65,8 +65,8 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.RaymanM_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.RaymanArena_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanM_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanArena_PC),
                 }),
 
             new Serializers_TypeViewModel<R3SaveFile>(
@@ -75,7 +75,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman3_PC) { Encoder = new R3SaveEncoder() },
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman3_PC) { Encoder = new R3SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<RRR_SaveFile>(

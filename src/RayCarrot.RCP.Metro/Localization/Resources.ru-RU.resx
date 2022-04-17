@@ -2116,13 +2116,13 @@
     <value>Утилиты</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>Архивы OpenSpace (.cnt)</value>
+    <value>Архивы CPA (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
     <value>Архивы UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>Файлы текстур OpenSpace (.gf)</value>
+    <value>Файлы текстур CPA (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Преобразовать</value>

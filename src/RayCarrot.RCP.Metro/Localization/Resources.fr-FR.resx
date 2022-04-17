@@ -2059,13 +2059,13 @@ Message d'erreur : {1}</value>
     <value>Utilitaires</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>Achives OpenSpace (.cnt)</value>
+    <value>Achives CPA (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
     <value>Archives UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>Fichiers de texture OpenSpace (.gf)</value>
+    <value>Fichiers de texture CPA (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Convertir</value>

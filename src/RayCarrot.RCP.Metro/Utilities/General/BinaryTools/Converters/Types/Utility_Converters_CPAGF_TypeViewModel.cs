@@ -8,9 +8,9 @@ using BinarySerializer.OpenSpace;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Utility_Converters_OpenSpaceGF_TypeViewModel : Utility_Converters_TypeViewModel
+public class Utility_Converters_CPAGF_TypeViewModel : Utility_Converters_TypeViewModel
 {
-    public Utility_Converters_OpenSpaceGF_TypeViewModel(LocalizedString name, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(name, modes) { }
+    public Utility_Converters_CPAGF_TypeViewModel(LocalizedString name, ObservableCollection<Utility_SerializableTypeModeViewModel> modes) : base(name, modes) { }
 
     public override FileExtension SourceFileExtension => new FileExtension(".gf");
 

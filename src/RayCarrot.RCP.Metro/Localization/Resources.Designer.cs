@@ -11638,7 +11638,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OpenSpace Archives (.cnt).
+        ///   Looks up a localized string similar to CPA Archives (.cnt).
         /// </summary>
         public static string Utilities_ArchiveExplorer_CNTHeader {
             get {
@@ -11755,7 +11755,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OpenSpace Texture Files (.gf).
+        ///   Looks up a localized string similar to CPA Texture Files (.gf).
         /// </summary>
         public static string Utilities_Converter_GFHeader {
             get {

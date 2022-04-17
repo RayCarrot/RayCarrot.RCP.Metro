@@ -15,25 +15,25 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
     {
         Types = new ObservableCollection<Utility_Converters_TypeViewModel>()
         {
-            new Utility_Converters_OpenSpaceGF_TypeViewModel(
+            new Utility_Converters_CPAGF_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_GFHeader)),
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_Demo1_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_Demo2_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman2_iOS),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.RaymanM_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.RaymanArena_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Rayman3_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.TonicTrouble_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.TonicTrouble_SE_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.DonaldDuck_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.PlaymobilHype_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.PlaymobilLaura_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.PlaymobilAlex_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.Dinosaur_PC),
-                    new Utility_SerializableTypeModeViewModel(OpenSpaceGameMode.LargoWinch_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_Demo1_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_Demo2_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_iOS),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanM_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanArena_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman3_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.TonicTrouble_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.TonicTrouble_SE_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.DonaldDuck_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.PlaymobilHype_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.PlaymobilLaura_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.PlaymobilAlex_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Dinosaur_PC),
+                    new Utility_SerializableTypeModeViewModel(CPAGameMode.LargoWinch_PC),
                 }),
 
             new Utility_Converters_UbiArtLoc_TypeViewModel(

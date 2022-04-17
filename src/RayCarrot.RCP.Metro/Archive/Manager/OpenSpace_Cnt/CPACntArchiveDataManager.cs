@@ -7,12 +7,12 @@ using BinarySerializer.OpenSpace;
 using ByteSizeLib;
 using NLog;
 
-namespace RayCarrot.RCP.Metro.Archive.OpenSpace;
+namespace RayCarrot.RCP.Metro.Archive.CPA;
 
 /// <summary>
-/// Archive data manager for an OpenSpace .cnt file
+/// Archive data manager for a CPA .cnt file
 /// </summary>
-public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
+public class CPACntArchiveDataManager : IArchiveDataManager
 {
     #region Constructor
 
@@ -20,7 +20,7 @@ public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
-    public OpenSpaceCntArchiveDataManager(OpenSpaceSettings settings)
+    public CPACntArchiveDataManager(OpenSpaceSettings settings)
     {
         Settings = settings;
 
