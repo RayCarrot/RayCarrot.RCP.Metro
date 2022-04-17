@@ -133,6 +133,11 @@ public static class AppURLs
     public const string Games_R1Demo2_Url = DemosBaseUrl + "Rayman_1_Demo_2.zip";
 
     /// <summary>
+    /// The Rayman 1 Demo 3 download URL
+    /// </summary>
+    public const string Games_R1Demo3_Url = DemosBaseUrl + "Rayman_1_Demo_3.zip";
+
+    /// <summary>
     /// The Rayman Raving Rabbids Demo download URL
     /// </summary>
     public const string Games_RRRDemo_Url = DemosBaseUrl + "RRR_Demo.zip";

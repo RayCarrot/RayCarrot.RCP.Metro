@@ -105,6 +105,7 @@ public enum Games
 
     #region Demos
 
+    Demo_Rayman1_3,
     Demo_Rayman1_1,
     Demo_Rayman1_2,
 

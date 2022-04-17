@@ -100,6 +100,9 @@
     "Demo_Rayman1_2": {
       "DOSBox": "GameManager_Rayman1Demo2_DOSBox"
     },
+    "Demo_Rayman1_3": {
+      "DOSBox": "GameManager_Rayman1Demo3_DOSBox"
+    },
     "Demo_RaymanGold": {
       "DOSBox": "GameManager_RaymanGoldDemo_DOSBox"
     },
@@ -194,6 +197,7 @@
 
     "Demo_Rayman1_1": "GameInfo_Rayman1Demo1",
     "Demo_Rayman1_2": "GameInfo_Rayman1Demo2",
+    "Demo_Rayman1_3": "GameInfo_Rayman1Demo3",
     "Demo_RaymanGold": "GameInfo_RaymanGoldDemo",
     "Demo_Rayman2_1": "GameInfo_Rayman2Demo1",
     "Demo_Rayman2_2": "GameInfo_Rayman2Demo2",
