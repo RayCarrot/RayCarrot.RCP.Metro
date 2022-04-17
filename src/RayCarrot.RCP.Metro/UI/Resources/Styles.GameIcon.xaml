@@ -16,6 +16,7 @@
                                 <!-- Default size (128) -->
                                 <Setter Property="Width" Value="128" />
                                 <Setter Property="Height" Value="128" />
+                                <Setter Property="FlowDirection" Value="LeftToRight" />
                                 <Setter Property="Clip">
                                     <Setter.Value>
                                         <RectangleGeometry RadiusX="16"
