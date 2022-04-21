@@ -30,7 +30,7 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
         GameDataDirNames = gameDataDirNames;
 
         // Create commands
-        SyncTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
+        SyncTextureInfoCommand = new AsyncRelayCommand(() => SyncTextureInfoAsync());
     }
 
     #endregion
@@ -80,8 +80,9 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     /// <summary>
     /// Synchronizes the texture info for the selected game data directory
     /// </summary>
+    /// <param name="cntFiles">The .cnt file paths, or null if they should be automatically found</param>
     /// <returns>The task</returns>
-    public async Task SyncTextureInfoAsync()
+    public async Task SyncTextureInfoAsync(IEnumerable<FileSystemPath>? cntFiles = null)
     {
         try
         {
@@ -105,15 +106,18 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
                         Select(y => new FileSystemPath(y))).
                     SelectMany(x => x);
 
-                // Get the .cnt file names
-                string[] fileNames = GetCntFileNames(gameSettings);
+                if (cntFiles == null)
+                {
+                    // Get the .cnt file names
+                    string[] fileNames = GetCntFileNames(gameSettings);
 
-                // Get the full paths and only keep the ones which exist
-                IEnumerable<FileSystemPath> cntFiles = GameDataDirNames.
-                    Select(dataDir => fileNames.
-                        Select(cnt => installDir + dataDir + cnt).
-                        Where(cntPath => cntPath.FileExists)).
-                    SelectMany(x => x);
+                    // Get the full paths and only keep the ones which exist
+                    cntFiles = GameDataDirNames.
+                        Select(dataDir => fileNames.
+                            Select(cnt => installDir + dataDir + cnt).
+                            Where(cntPath => cntPath.FileExists)).
+                        SelectMany(x => x);
+                }
 
                 // Sync the texture info
                 return EditTextureInfo(gameSettings, dataFiles, cntFiles);

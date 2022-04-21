@@ -205,13 +205,16 @@ public class AppUIManager
 
     #region Windows
 
+#nullable enable
+
     /// <summary>
     /// Shows a new instance of the Archive Explorer, while handling any potential exceptions
     /// </summary>
     /// <param name="manager">The archive data manager</param>
     /// <param name="filePaths">The archive file paths</param>
+    /// <param name="onRepackAction">An optional action to call after repacking an archive</param>
     /// <returns>The task</returns>
-    public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, FileSystemPath[] filePaths)
+    public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, FileSystemPath[] filePaths, Func<FileSystemPath, Task>? onRepackAction = null)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
@@ -219,9 +222,11 @@ public class AppUIManager
         Logger.Trace("An Archive Explorer window was opened");
 
         // Run on UI thread
-        ArchiveExplorerUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths)));
+        ArchiveExplorerUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths, onRepackAction)));
         await Dialog.ShowWindowAsync(ui);
     }
+
+#nullable restore
 
     /// <summary>
     /// Shows a new instance of the Archive Creator

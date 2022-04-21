@@ -1123,6 +1123,9 @@ public partial class App : Application
             Data.Mod_RRR_ToggleStates = new Dictionary<string, UserData_Mod_RRR_ToggleState>();
         }
 
+        if (Data.App_LastVersion < new Version(13, 1, 0, 0))
+            Data.Archive_CNT_SyncOnRepack = false;
+
         // Re-deploy files
         await AppVM.DeployFilesAsync(true);
 

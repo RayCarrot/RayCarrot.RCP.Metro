@@ -95,6 +95,7 @@ public class AppUserData : BaseViewModel
         Archive_ExplorerSortOption = UserData_Archive_Sort.Default;
         Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
         Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
+        Archive_CNT_SyncOnRepack = false;
 
         // Binary
         Binary_IsSerializationLogEnabled = false;
@@ -438,6 +439,11 @@ public class AppUserData : BaseViewModel
     /// The executables to use, associated with their file extensions
     /// </summary>
     public Dictionary<string, FileSystemPath> Archive_AssociatedPrograms { get; set; }
+
+    /// <summary>
+    /// Indicates if the textures for a CNT file should be synchronized with the game on repacking the archive
+    /// </summary>
+    public bool Archive_CNT_SyncOnRepack { get; set; }
 
     public void Archive_AddAssociatedProgram(FileExtension ext, FileSystemPath exePath)
     {
