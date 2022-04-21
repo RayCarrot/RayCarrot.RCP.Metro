@@ -32,6 +32,7 @@ public class Utility_Converters_CPAGF_TypeViewModel : Utility_Converters_TypeVie
         // Get a bitmap from the image data
         using Bitmap bmp = gf.GetRawBitmapData().GetBitmap();
 
+        // TODO: Allow TGA converting here like in the Archive Explorer - normalize the code somewhere
         // Save the image
         bmp.Save(outputFilePath, outputFilePath.FileExtensions.PrimaryFileExtension switch
         {

@@ -16,8 +16,9 @@ public static class GFFileExtensions
     /// <param name="width">The image width</param>
     /// <param name="height">The image height</param>
     /// <param name="offset">The offset in the pixel array</param>
+    /// <param name="flipY">Indicates if the y-axis should be flipped</param>
     /// <returns>The raw image data</returns>
-    public static RawBitmapData GetRawBitmapData(this GF gf, int width, int height, int offset = 0)
+    public static RawBitmapData GetRawBitmapData(this GF gf, int width, int height, int offset = 0, bool flipY = true)
     {
         // Check if the size is scaled
         bool isScaled = gf.Width != width || gf.Height != height;
@@ -38,6 +39,7 @@ public static class GFFileExtensions
         // Create the pixel array
         byte[] rawPixelData = new byte[width * height * bmpChannels];
 
+        // TODO: Rewrite all of this to be more optimized. Do not perform so many math operations inside the loop. Do not call GetBGRAPixel each time.
         // Enumerate each pixel
         for (uint y = 0; y < height; y++)
         for (uint x = 0; x < width; x++)
@@ -47,8 +49,7 @@ public static class GFFileExtensions
                 ? (long)((gf.Width * Math.Floor((y * heightScale)) + Math.Floor((x * widthScale))) * gf.Channels + offset)
                 : (width * y + x) * gf.Channels + offset;
 
-            // NOTE: We reverse the Y-axis here since the .gf images are always flipped vertically
-            long rawOffset = (width * (height - y - 1) + x) * bmpChannels;
+            long rawOffset = (width * (flipY ? height - y - 1 : y) + x) * bmpChannels;
 
             // Get the pixels
             foreach (var b in gf.GetBGRAPixel(format, gf.PixelData, pixelOffset))
@@ -67,8 +68,9 @@ public static class GFFileExtensions
     /// </summary>
     /// <param name="gf">The GF file data</param>
     /// <param name="offset">The offset in the pixel array</param>
+    /// <param name="flipY">Indicates if the y-axis should be flipped</param>
     /// <returns>The raw image data</returns>
-    public static RawBitmapData GetRawBitmapData(this GF gf, int offset = 0) => gf.GetRawBitmapData(gf.Width, gf.Height, offset);
+    public static RawBitmapData GetRawBitmapData(this GF gf, int offset = 0, bool flipY = true) => gf.GetRawBitmapData(gf.Width, gf.Height, offset, flipY);
 
     /// <summary>
     /// Converts the .gf pixel data to raw bitmap data, including for the mipmaps

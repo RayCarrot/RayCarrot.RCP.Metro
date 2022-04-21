@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BinarySerializer.OpenSpace;
+using ImageMagick;
 using MahApps.Metro.IconPacks;
 using NLog;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
@@ -76,6 +77,7 @@ public class FileType_GF : IFileType
         new FileExtension(".png"),
         new FileExtension(".jpg"),
         new FileExtension(".bmp"),
+        new FileExtension(".tga"), // TODO: Allow importing TGA as well, but the GF conversion code should be rewritten then first
     };
 
     /// <summary>
@@ -128,6 +130,27 @@ public class FileType_GF : IFileType
     /// <param name="manager">The manager</param>
     public void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream inputStream, Stream outputStream, IArchiveDataManager manager)
     {
+        // Hacky workaround for TGA exporting
+        if (outputFormat.PrimaryFileExtension == ".tga")
+        {
+            RawBitmapData rawBmp = GetFileContent(inputStream, manager).GetRawBitmapData(flipY: false);
+            MagickFormat format = rawBmp.PixelFormat switch
+            {
+                PixelFormat.Format24bppRgb => MagickFormat.Bgr,
+                PixelFormat.Format32bppArgb => MagickFormat.Bgra,
+                _ => throw new Exception($"Invalid pixel format {rawBmp.PixelFormat}"),
+            };
+            MagickImage img = new(rawBmp.PixelData, new MagickReadSettings()
+            {
+                Format = format,
+                Width = rawBmp.Width,
+                Height = rawBmp.Height,
+            });
+            img.Orientation = OrientationType.BottomLeft;
+            img.Write(outputStream, MagickFormat.Tga);
+            return;
+        }
+
         // Get the image format
         ImageFormat imgFormat = outputFormat.PrimaryFileExtension switch
         {
