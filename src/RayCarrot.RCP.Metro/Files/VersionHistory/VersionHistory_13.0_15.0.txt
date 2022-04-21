@@ -1,4 +1,17 @@
-﻿-----   Version 13.0.2 - March 28, 2022   -----
+﻿-----   Version 13.1.0 - April ?, 2022   -----
+• Added support for a Rayman 1 demo from 1995/12/04
+• The program has now been translated to Hebrew (thanks XanderNT!)
+• Added an option to export .gf files as .tga in the Archive Explorer
+• Added an option to automatically synchronize textures when repacking a .cnt archive
+
+Other changes:
+• Added the language French (France) as an incomplete translation
+• Added XanderNT to the credits
+• Renamed "OpenSpace" to "CPA"
+• Updated the Rayman M disc installer to work with the Polish version
+• Fixed an issue where some resources were embedded in the exe multiple times making it use more space than needed
+
+-----   Version 13.0.2 - March 28, 2022   -----
 • Added F5 input gesture text to page refresh menu buttons
 • Removed leftover library references
 • Fixed an issue where saving a CNT archive would cause the game to not read it (saving it again with this version will fix it)
