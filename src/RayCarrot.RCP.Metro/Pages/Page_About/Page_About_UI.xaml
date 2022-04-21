@@ -105,6 +105,10 @@
                     <local:DuoGridItem Header="Snagglebee"
                                        Text="{Resx About_Credits_Snagglebee}" />
 
+                    <!-- TODO-UPDATE: Localize -->
+                    <local:DuoGridItem Header="XanderNT"
+                                       Text="Hebrew program translation" />
+
                 </ItemsControl>
 
                 <TextBlock Text="{Resx About_SpecialThanks}"
