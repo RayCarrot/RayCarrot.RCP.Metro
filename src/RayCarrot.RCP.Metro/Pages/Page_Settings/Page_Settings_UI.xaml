@@ -423,9 +423,8 @@
 
                             </StackPanel>
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Automatically synchronize textures on repack (.cnt)"
-                                      ToolTip="If enabled the textures for the game will be automatically synchronized when a .cnt archive is repacked. This is useful for games where synchronizing is required to import higher resolution textures."
+                            <CheckBox Content="{Resx Settings_ArchiveCNTSyncOnRepack}"
+                                      ToolTip="{Resx Settings_ArchiveCNTSyncOnRepackInfo}"
                                       IsChecked="{Binding Path=Data.Archive_CNT_SyncOnRepack}" />
 
                             <CheckBox Content="{Resx Settings_ArchiveGFGenerateMipmaps}"

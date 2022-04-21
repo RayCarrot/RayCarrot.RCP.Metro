@@ -223,6 +223,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hebrew program translation.
+        /// </summary>
+        public static string About_Credits_XanderNT {
+            get {
+                return ResourceManager.GetString("About_Credits_XanderNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string About_Email {
@@ -10808,6 +10817,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_AdminInfo {
             get {
                 return ResourceManager.GetString("Settings_AdminInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically synchronize textures on repack (.cnt).
+        /// </summary>
+        public static string Settings_ArchiveCNTSyncOnRepack {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveCNTSyncOnRepack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled the textures for the game will be automatically synchronized when a .cnt archive is repacked. This is useful for games where synchronizing is required to import higher resolution textures..
+        /// </summary>
+        public static string Settings_ArchiveCNTSyncOnRepackInfo {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveCNTSyncOnRepackInfo", resourceCulture);
             }
         }
         

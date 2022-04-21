@@ -2992,4 +2992,515 @@ Message d'erreur : {1}</value>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Un petit remontant</value>
   </data>
+  <data name="Archive_ImportConvert_Info" xml:space="preserve">
+    <value>Importer tous les fichiers avec un nom correspondant à partir du dossier sélectionné et les convertis si possible pour les faire correspondre au format original</value>
+  </data>
+  <data name="Archive_CreateDir" xml:space="preserve">
+    <value>Créer dossier</value>
+  </data>
+  <data name="Archive_CreateDir_Info" xml:space="preserve">
+    <value>Crée un nouveau dossier vide</value>
+  </data>
+  <data name="Archive_Delete" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="Archive_DeleteDir_Info" xml:space="preserve">
+    <value>Efface le dossier et tout son contenu, fichier et sous dossiers inclus</value>
+  </data>
+  <data name="Archive_ExportFile" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="Archive_ImportFile" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="Archive_Save" xml:space="preserve">
+    <value>Sauvegarder l'archive</value>
+  </data>
+  <data name="Archive_ExportDirFileConflict" xml:space="preserve">
+    <value>Le dossier sélectionné contient un fichier avec le même nom que {0}</value>
+  </data>
+  <data name="Archive_Export_Format_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="Archive_ImportDir_Error" xml:space="preserve">
+    <value>Une erreur est survenue en essayant d'importer les fichiers</value>
+  </data>
+  <data name="Archive_CreateDir_Header" xml:space="preserve">
+    <value>Spécifiez un nom de dossier</value>
+  </data>
+  <data name="Archive_AddFiles_Header" xml:space="preserve">
+    <value>Sélectionnez les fichiers à ajouter</value>
+  </data>
+  <data name="Archive_AddFiles_Conflict" xml:space="preserve">
+    <value>Le fichier '{0}' a le même nom qu'un fichier existant. Voulez-vous le remplacer ?</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
+    <value>Conflit de nom de fichier</value>
+  </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Dossier :</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Taille de fichier :</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Taille du fichier compressé :</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Pointeur :</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Compressé :</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Encrypté :</value>
+  </data>
+  <data name="Archive_FileInfo_Type" xml:space="preserve">
+    <value>Type :</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Taille :</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Transparent :</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmap :</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Format :</value>
+  </data>
+  <data name="Archive_CreationFileStatus" xml:space="preserve">
+    <value>Ajouter fichier {0}</value>
+  </data>
+  <data name="Archive_AddFiles_Error" xml:space="preserve">
+    <value>Une erreur est survenue en ajoutant {0}</value>
+  </data>
+  <data name="Archive_Format_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="Archive_Format_Default" xml:space="preserve">
+    <value>Fichier</value>
+  </data>
+  <data name="Archive_Format_GF" xml:space="preserve">
+    <value>GF (Graphic File)</value>
+  </data>
+  <data name="Archive_Format_Img" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="GameDisplay_Raymap" xml:space="preserve">
+    <value>Visualiser cartes</value>
+  </data>
+  <data name="GameDisplay_Archives" xml:space="preserve">
+    <value>Ouvrir archives</value>
+  </data>
+  <data name="R1Passwords_Invalid" xml:space="preserve">
+    <value>Mot de passe incorrect</value>
+  </data>
+  <data name="R1_LevelName_0" xml:space="preserve">
+    <value>La forêt primordiale</value>
+  </data>
+  <data name="R1_LevelName_1" xml:space="preserve">
+    <value>Le Lagon de l'Angoisse</value>
+  </data>
+  <data name="R1_LevelName_2" xml:space="preserve">
+    <value>Les Marais de L'Oubli</value>
+  </data>
+  <data name="R1_LevelName_3" xml:space="preserve">
+    <value>L'Antre de Moskito</value>
+  </data>
+  <data name="R1_LevelName_4" xml:space="preserve">
+    <value>La Butte aux Bongos</value>
+  </data>
+  <data name="R1_LevelName_5" xml:space="preserve">
+    <value>Allegro Presto</value>
+  </data>
+  <data name="R1_LevelName_6" xml:space="preserve">
+    <value>Gongs Célestes</value>
+  </data>
+  <data name="R1_LevelName_7" xml:space="preserve">
+    <value>Le Charivari de Mr Sax</value>
+  </data>
+  <data name="R1_LevelName_8" xml:space="preserve">
+    <value>Le Ravin du Crépuscule</value>
+  </data>
+  <data name="R1_LevelName_9" xml:space="preserve">
+    <value>Le Chaos du Cauchemar</value>
+  </data>
+  <data name="R1_LevelName_10" xml:space="preserve">
+    <value>Les Cimes de Mr Stone</value>
+  </data>
+  <data name="R1_LevelName_11" xml:space="preserve">
+    <value>La Crique aux Crayons</value>
+  </data>
+  <data name="R1_LevelName_12" xml:space="preserve">
+    <value>Panique aux Punaises</value>
+  </data>
+  <data name="R1_LevelName_13" xml:space="preserve">
+    <value>Le Cratère de Space Mama</value>
+  </data>
+  <data name="R1_LevelName_14" xml:space="preserve">
+    <value>Le Palais de Cristal</value>
+  </data>
+  <data name="R1_LevelName_15" xml:space="preserve">
+    <value>Mangez chez Joe</value>
+  </data>
+  <data name="R1_LevelName_16" xml:space="preserve">
+    <value>Les Stalactite de Skops</value>
+  </data>
+  <data name="R1_LevelName_17" xml:space="preserve">
+    <value>Le dDéfi de Mr Dark</value>
+  </data>
+  <data name="R1Passwords_Generate" xml:space="preserve">
+    <value>Générer</value>
+  </data>
+  <data name="R1Passwords_Load" xml:space="preserve">
+    <value>Charger</value>
+  </data>
+  <data name="R1Passwords_LevUnlocked" xml:space="preserve">
+    <value>Débloquer</value>
+  </data>
+  <data name="R1Passwords_LevAllCages" xml:space="preserve">
+    <value>Toutes les cages</value>
+  </data>
+  <data name="R1Passwords_FinBoss" xml:space="preserve">
+    <value>Boss vaincus</value>
+  </data>
+  <data name="R1Passwords_HelpedMus" xml:space="preserve">
+    <value>A aidé le musicien</value>
+  </data>
+  <data name="R1Passwords_Lives" xml:space="preserve">
+    <value>Vies</value>
+  </data>
+  <data name="R1Passwords_Continues" xml:space="preserve">
+    <value>Continues</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
+    <value>Archives Rayman 1 PC (.dat)</value>
+  </data>
+  <data name="Utilities_R1Passwords_Header" xml:space="preserve">
+    <value>Générateur de mot de passe Rayman 1 PS1</value>
+  </data>
+  <data name="Archive_ImportFile_Error" xml:space="preserve">
+    <value>Une erreur est survenue en important le fichier</value>
+  </data>
+  <data name="R1Passwords_InvalidLength" xml:space="preserve">
+    <value>Le mot de passe doit contenir 10 caracètres</value>
+  </data>
+  <data name="R1Passwords_InvalidChar" xml:space="preserve">
+    <value>Caractère de mot de passe invalide {0}</value>
+  </data>
+  <data name="R1Passwords_InvalidData" xml:space="preserve">
+    <value>Les données du mot de passe sont invalides</value>
+  </data>
+  <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
+    <value>Version primaire</value>
+  </data>
+  <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
+    <value>Version secondaire</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
+  <data name="Archive_ViewEditFile" xml:space="preserve">
+    <value>Voir/Editer</value>
+  </data>
+  <data name="Archive_EditBinary" xml:space="preserve">
+    <value>Binaire</value>
+  </data>
+  <data name="Archive_SelectEditExe" xml:space="preserve">
+    <value>Sélectionnez un exécutable à utiliser pour les fichiers {0}</value>
+  </data>
+  <data name="Archive_ViewEditFileError" xml:space="preserve">
+    <value>Une erreur est survenue pendant l'ouverture du fichier à éditer</value>
+  </data>
+  <data name="Archive_BinaryEditor" xml:space="preserve">
+    <value>Éditeur de fichiers binaire</value>
+  </data>
+  <data name="Archive_FileEditors" xml:space="preserve">
+    <value>Éditeur de fichiers</value>
+  </data>
+  <data name="Archive_FileEditorsExt" xml:space="preserve">
+    <value>Extension de fichier</value>
+  </data>
+  <data name="Archive_FileEditorsExe" xml:space="preserve">
+    <value>Programme associé</value>
+  </data>
+  <data name="Config_Sound" xml:space="preserve">
+    <value>Son</value>
+  </data>
+  <data name="Config_Music" xml:space="preserve">
+    <value>Musique</value>
+  </data>
+  <data name="Config_Stereo" xml:space="preserve">
+    <value>Stéréo</value>
+  </data>
+  <data name="Config_Mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="Config_VolumeVoices" xml:space="preserve">
+    <value>Volume voix</value>
+  </data>
+  <data name="Config_Background" xml:space="preserve">
+    <value>Montrer l'arrière plan</value>
+  </data>
+  <data name="Config_ScrollBackground" xml:space="preserve">
+    <value>Montrer le parallax de l'arrière plan</value>
+  </data>
+  <data name="Config_ShowHUD" xml:space="preserve">
+    <value>Montrer le HUD</value>
+  </data>
+  <data name="Config_FPS" xml:space="preserve">
+    <value>Fréquence d'images</value>
+  </data>
+  <data name="Config_Border" xml:space="preserve">
+    <value>Bordure du jeu</value>
+  </data>
+  <data name="Config_Controls" xml:space="preserve">
+    <value>Contrôles</value>
+  </data>
+  <data name="Config_GamePad" xml:space="preserve">
+    <value>Manette</value>
+  </data>
+  <data name="Config_Action_Jump" xml:space="preserve">
+    <value>Sauter</value>
+  </data>
+  <data name="Config_Action_Fist" xml:space="preserve">
+    <value>Poing</value>
+  </data>
+  <data name="Config_Action_Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Config_Device" xml:space="preserve">
+    <value>Appareil</value>
+  </data>
+  <data name="Config_Device_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Config_Device_Irq" xml:space="preserve">
+    <value>Irq</value>
+  </data>
+  <data name="Config_Device_Dma" xml:space="preserve">
+    <value>Dma</value>
+  </data>
+  <data name="Config_Device_Param" xml:space="preserve">
+    <value>Param</value>
+  </data>
+  <data name="Config_Device_ID" xml:space="preserve">
+    <value>Device ID</value>
+  </data>
+  <data name="Config_Device_Cards" xml:space="preserve">
+    <value>Cards</value>
+  </data>
+  <data name="Config_Action_Left" xml:space="preserve">
+    <value>Gauche</value>
+  </data>
+  <data name="Config_Action_Up" xml:space="preserve">
+    <value>Haut</value>
+  </data>
+  <data name="Config_Action_Right" xml:space="preserve">
+    <value>Droite</value>
+  </data>
+  <data name="Config_Action_Down" xml:space="preserve">
+    <value>Bas</value>
+  </data>
+  <data name="Config_Action_JumpSwimUp" xml:space="preserve">
+    <value>Sauter/Nager vers le haut</value>
+  </data>
+  <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
+    <value>Nager vers le bas</value>
+  </data>
+  <data name="Config_Action_Shoot" xml:space="preserve">
+    <value>Tirer</value>
+  </data>
+  <data name="Config_Action_WalkSlow" xml:space="preserve">
+    <value>Marcher à pas de loup</value>
+  </data>
+  <data name="Config_Action_Strafe" xml:space="preserve">
+    <value>Strafe</value>
+  </data>
+  <data name="Config_Action_CamRight" xml:space="preserve">
+    <value>Tourner la caméra à droite</value>
+  </data>
+  <data name="Config_Action_CamLeft" xml:space="preserve">
+    <value>Tourner la caméra à gauche</value>
+  </data>
+  <data name="Config_Action_CamCenter" xml:space="preserve">
+    <value>Recentrer la caméra</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Capture d'écran</value>
+  </data>
+  <data name="Config_Action_HUD" xml:space="preserve">
+    <value>Montrer le HUD</value>
+  </data>
+  <data name="Config_Action_R2Guide" xml:space="preserve">
+    <value>La Connaissance du Monde</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Lecture uniquement</value>
+  </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Spécifiez un nom de fichier</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>Un fichier avec ce nom existe déjà</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Renommer</value>
+  </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} fichiers</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} fichiers sélectionnés</value>
+  </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>La vérification de mises à jour a échoué. {0}
+Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la dernière version.</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Son</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Outils Externes</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Éditeur de niveaux de Rayman 1</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Plus d'informations</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman contre les Lapins Crétins</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
+    <value>Mods Mémoire</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
+    <value>Active les fonctionnalités du prototype retirées présentes dans le jeu en sélectionnant les mods que vous voulez et en les activant. Il est requis que le jeu soit démarré et ne fonctionne qu'avec les versions Steam et GOG. Les mods appliqués prendront uniquement effet pendant que le jeu est actif et seront remis à zéro quand le jeu sera fermé.</value>
+  </data>
+  <data name="Mod_RRR_ApplyMemoryMod" xml:space="preserve">
+    <value>Appliquer au jeu en cours</value>
+  </data>
+  <data name="Mod_RRR_BFModsHeader" xml:space="preserve">
+    <value>Mods BF</value>
+  </data>
+  <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
+    <value>Modifie les fichiers .bf. Ces mods ne seront actifs qu'en démarrant le jeu via l'option ci-dessous.</value>
+  </data>
+  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
+    <value>Dossier du jeu</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
+    <value>Appliquer le patch sur l'exécutable</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatchInfo" xml:space="preserve">
+    <value>Le patch de l'exécutable est requis pour les fichiers BF patchés à cause de la limite de mémoire</value>
+  </data>
+  <data name="Mod_RRR_DownloadBFPatch" xml:space="preserve">
+    <value>Télécharger le BF patché</value>
+  </data>
+  <data name="Mod_RRR_RemoveBFPatch" xml:space="preserve">
+    <value>Retirer le BF patché</value>
+  </data>
+  <data name="Mod_RRR_BFPatchesHeader" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="Mod_RRR_UpdateBFPatch" xml:space="preserve">
+    <value>Mettre à jour le BF patché</value>
+  </data>
+  <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
+    <value>Démarrer avec le BF patché</value>
+  </data>
+  <data name="ModsPageHeader" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeatures" xml:space="preserve">
+    <value>Activer les fonctionnalités prototype</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeaturesInfo" xml:space="preserve">
+    <value>Le comportement du prototype de Rayman est activé dans tous les niveaux</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControls" xml:space="preserve">
+    <value>Ajouter les contrôles caméra</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControlsInfo" xml:space="preserve">
+    <value>Les contrôles de la caméra seront liés au stick droit</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuel" xml:space="preserve">
+    <value>Ajouer Duel, le mini jeu perdu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuelInfo" xml:space="preserve">
+    <value>"Les lapins ne savent pas traire une vache 2" est remplacé par "Bunnies are shooting all over the place". Jouez-y en multijoueur !</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenu" xml:space="preserve">
+    <value>Activer le menu de playtest</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenuInfo" xml:space="preserve">
+    <value>Non recommandé. Le menu de playtest remplace la sélection de type de jeu, mais il est impossible de mettre en pause ou de quitter les niveaux chargés.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishers" xml:space="preserve">
+    <value>Ajouter les finishers</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishersInfo" xml:space="preserve">
+    <value>Appuyez ou maintenez RB pour ajouter un finisher à vos combos</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
+    <value>Grimper les murs</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
+    <value>Permet à Rayman de s'accrocher à n'importe quel mur en utilisant son grappin</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpots" xml:space="preserve">
+    <value>S'accrocher aux points d'accroche</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpotsInfo" xml:space="preserve">
+    <value>Casse le comprotement du grappin mais active un système incomplet qui utilise le grappin comme une corde à laquelle s'accrocher et sauter</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX" xml:space="preserve">
+    <value>Changer les graphismes du grappin</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFXInfo" xml:space="preserve">
+    <value>Permet de changer le look du grappin de Rayman en des versions plus anciennes</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_0" xml:space="preserve">
+    <value>Ligne</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
+    <value>Éclairs</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_2" xml:space="preserve">
+    <value>Étincelles</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_3" xml:space="preserve">
+    <value>Corde</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowers" xml:space="preserve">
+    <value>Pouvoirs améliorés</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowersInfo" xml:space="preserve">
+    <value>Permet à Rayman d'utiliser l'hélicoptère pendant un plus long moment et, si Grimper les murs est activé, permet d'^^etre accroché aux murs indéfiniment</value>
+  </data>
+  <data name="Mod_RRR_MemMod_Immortal" xml:space="preserve">
+    <value>Immortel</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ImmortalInfo" xml:space="preserve">
+    <value>Un code de triche de développeur - Rayman ne peut pas mourir</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempo" xml:space="preserve">
+    <value>Danse : contrôler le tempo</value>
+  </data>
 </root>

@@ -4364,4 +4364,13 @@ By changing the data source here you can choose which location is used for backu
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>The utility is not available</value>
   </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Hebrew program translation</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Automatically synchronize textures on repack (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>If enabled the textures for the game will be automatically synchronized when a .cnt archive is repacked. This is useful for games where synchronizing is required to import higher resolution textures.</value>
+  </data>
 </root>
