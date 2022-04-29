@@ -140,7 +140,7 @@ public class FileType_GF : IFileType
                 PixelFormat.Format32bppArgb => MagickFormat.Bgra,
                 _ => throw new Exception($"Invalid pixel format {rawBmp.PixelFormat}"),
             };
-            MagickImage img = new(rawBmp.PixelData, new MagickReadSettings()
+            using MagickImage img = new(rawBmp.PixelData, new MagickReadSettings()
             {
                 Format = format,
                 Width = rawBmp.Width,
