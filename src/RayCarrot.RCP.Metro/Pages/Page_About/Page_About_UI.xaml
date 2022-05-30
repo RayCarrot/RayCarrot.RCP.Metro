@@ -66,9 +66,6 @@
                     <local:DuoGridItem Header="RayCarrot"
                                        Text="{Resx About_Credits_RayCarrot}" />
 
-                    <local:DuoGridItem Header="432 Hz"
-                                       Text="{Resx About_Credits_432Hz}" />
-
                     <local:DuoGridItem Header="Droolie"
                                        Text="{Resx About_Credits_Droolie}" />
 
@@ -83,6 +80,9 @@
 
                     <local:DuoGridItem Header="Juanmv94"
                                        Text="{Resx About_Credits_Janmv94}" />
+
+                    <local:DuoGridItem Header="Mark"
+                                       Text="{Resx About_Credits_432Hz}" />
 
                     <local:DuoGridItem Header="Noserdog"
                                        Text="{Resx About_Credits_Noserdog}" />

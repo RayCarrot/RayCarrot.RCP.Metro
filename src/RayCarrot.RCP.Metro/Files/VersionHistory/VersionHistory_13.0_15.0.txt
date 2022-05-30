@@ -8,6 +8,7 @@ Other changes:
 • Added the language French (France) as an incomplete translation
 • Added XanderNT to the credits
 • Renamed "OpenSpace" to "CPA"
+• Renamed "432 Hz" to "Mark" in the credits
 • Updated the Rayman M disc installer to work with the Polish version
 • Fixed an issue where some resources were embedded in the exe multiple times making it use more space than needed
 
