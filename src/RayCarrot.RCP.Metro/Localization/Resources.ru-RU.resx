@@ -4214,4 +4214,13 @@ Start: Пауза</value>
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>Утилита недоступна</value>
   </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Перевод программы на иврит</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Автоматическая синхронизация текстур при перекомпиляции (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>После активации при переупаковке .cnt-архива текстуры для игры будут автоматически синхронизироваться. Это полезно для игр, где требуется синхронизация для импорта текстур с более высоким разрешением.</value>
+  </data>
 </root>

@@ -4226,4 +4226,13 @@ Start: Pausa</value>
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>O utilitário não está disponível</value>
   </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Programa de tradução hebraico</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Sincronizar texturas automáticamente no reempacotamento (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>Se activado as texturas para o jogo serão automaticamente sincronizadas quando um arquivo .cnt for reempacotado. Isto é útil para jogos onde a sincronização é requerida para importar texturas com maior resolução.</value>
+  </data>
 </root>

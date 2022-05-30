@@ -2167,7 +2167,7 @@ Messaggio di errore: {1} </value>
     <value>I file sono stati convertiti con successo</value>
   </data>
   <data name="Archive_RepackError" xml:space="preserve">
-    <value>Si è verificato un errore durante il reimpaccamento dell'archivio</value>
+    <value>Si è verificato un errore durante il ricostruzione dell'archivio</value>
   </data>
   <data name="Progression_R3_Level1Header" xml:space="preserve">
     <value>Il Concilio delle Fate</value>
@@ -4215,5 +4215,14 @@ Modificando l'origine dati qui puoi scegliere quale posizione viene utilizzata p
   </data>
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>L'utilità non è disponibile</value>
+  </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Traduzione del programma in Ebraico</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Sincronizza automaticamente le texture alla ricostruzione (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>Se abilitato, le texture per il gioco verranno sincronizzate automaticamente quando un archivio .cnt viene ricostruito. Ciò è utile per i giochi in cui è richiesta la sincronizzazione per importare texture a risoluzione più elevata.</value>
   </data>
 </root>

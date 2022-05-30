@@ -124,7 +124,7 @@
     <value>אודות</value>
   </data>
   <data name="DebugPageHeader" xml:space="preserve">
-    <value>איתור באגים</value>
+    <value>דיבאג</value>
   </data>
   <data name="SettingsPageHeader" xml:space="preserve">
     <value>הגדרות</value>
@@ -382,8 +382,8 @@
     <value>אפשרויות מצב המסך יתנהגו אחרת בהתאם לרזולוציה שנבחרה. בדרך כלל שמירה על מצב 4: 3 מופעל, תאפשר למשחק לא להתמתח לפי יחסי גובה שונים.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>"Rayman Control Panel הוא פרויקט קהילתי בקוד פתוח שנוצר על ידי RayCarrot. תוכנה זו היא קובץ הפעלה בודד שמטרתו לגשת בקלות להגדרות ותיקונים עבור כותרי Rayman השונים שיצאו עבור Windows.
-זהו פרויקט שהולך וגדל ובתוכו יתווספו תכונות נוספות עם עדכונים עתידיים. השירותים וכלי התצורה השונים נוצרו בעזרת חברים שונים בקהילת Rayman, כולם מוזכרים להלן ".</value>
+    <value>"Rayman Control Panel הינו פרויקט קהילתי בקוד פתוח שנוצר על ידי RayCarrot. תוכנה זו היא קובץ הפעלה בודד שמטרתו לגשת בקלות להגדרות ותיקונים עבור כותרי Rayman השונים שיצאו עבור Windows.
+זהו פרויקט שהולך וגדל ובהמשך יתווספו תכונות נוספות עם עדכונים עתידיים. השירותים וכלי התצורה השונים נוצרו בעזרת חברים שונים בקהילת Rayman, כולם מוזכרים להלן ".</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>קרדיט</value>
@@ -431,7 +431,7 @@
     <value>רמת המשתמש קובעת אילו אפשרויות ומידע זמינים ביישום. ככל שרמת המשתמש גבוהה יותר, יוצגו אפשרויות ומידע מתקדמים יותר.</value>
   </data>
   <data name="Settings_UserLevelNormal" xml:space="preserve">
-    <value>נורמלי</value>
+    <value>פשוט</value>
   </data>
   <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
     <value>רמת משתמשים רגילה - למשתמשים שרוצים את כל תכונות ברירת המחדל ללא כל האפשרויות המתקדמות יותר או הפרטים הטכניים</value>
@@ -509,7 +509,7 @@
     <value>איתור באגים</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
-    <value>מיקום גיבוי</value>
+    <value>ספריית גיבוי</value>
   </data>
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>אתחול</value>
@@ -2109,7 +2109,7 @@
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>הנדסה לאחור של Rayman,
- מוד Rayman Raving Rabbids,
+מוד Rayman Raving Rabbids,
 BinarySerializer</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
@@ -2140,7 +2140,7 @@ BinarySerializer</value>
     <value>ממירים</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
-    <value>פתח את דף GameJolt</value>
+    <value>פתח</value>
   </data>
   <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
     <value>קבצי שמירה של Rayman 3  (.sav)</value>
@@ -4214,5 +4214,14 @@ Start: הפסק</value>
   </data>
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>כלי השירות אינו זמין</value>
+  </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>תרגום תוכנה בעברית (ישראל)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>מסנכרן אוטומטית טקסטורות (.cnt( באריזה מחדש</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>אם מופעל, הטקסטורות של המשחק יסונכרנו אוטומטית כאשר ארכיון .cnt ייארזו מחדש. זה שימושי למשחקים שבהם נדרש סנכרון כדי לייבא טקסטורות ברזולוציה גבוהה יותר.</value>
   </data>
 </root>

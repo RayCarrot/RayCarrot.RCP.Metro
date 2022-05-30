@@ -4211,4 +4211,13 @@ Start: Pauzeren</value>
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>Het hulpprogramma is niet beschikbaar</value>
   </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Hebreeuwse programmavertaling</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Automatisch synchroniseren van texturen tijdens herverpakken (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>Indien ingeschakeld, zullen de texturen van het spel automatisch gesynchroniseerd worden wanneer een .cnt archief wordt herverpakt. Dit is handig in het geval van spellen waarbij synchroniseren een vereiste is t.b.v. het importeren van texturen met een hogere resolutie.</value>
+  </data>
 </root>

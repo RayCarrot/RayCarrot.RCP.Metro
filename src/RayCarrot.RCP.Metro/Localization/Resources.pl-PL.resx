@@ -4247,4 +4247,13 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
     <value>Preferencje Unity Player / Pliki zapisu gry Rabbids Big Bang (.dat)</value>
   </data>
+  <data name="About_Credits_XanderNT" xml:space="preserve">
+    <value>Tłumaczenie hebrajskie programu</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepack" xml:space="preserve">
+    <value>Synchronizuj tekstury automatycznie po przepakowaniu (.cnt)</value>
+  </data>
+  <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
+    <value>Po włączeniu tej opcji tekstury gry będą automatycznie synchronizowane po przepakowaniu archiwum .cnt. Jest to przydatne w przypadku gier, w których do importowania tekstur wyższej rozdzielczości wymagana jest synchronizacja.</value>
+  </data>
 </root>
