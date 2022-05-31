@@ -62,20 +62,6 @@
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
 
-    <!-- Colors -->
-
-    <SolidColorBrush x:Key="Colors.Games" Color="#9C27B0" />
-    <SolidColorBrush x:Key="Colors.OtherGames" Color="#00BCD4" />
-    <SolidColorBrush x:Key="Colors.Progression" Color="#E91E63" />
-    <SolidColorBrush x:Key="Colors.Utilities" Color="#4CAF50" />
-    <SolidColorBrush x:Key="Colors.Mods" Color="#673AB7" />
-    <SolidColorBrush x:Key="Colors.Settings" Color="#FFC107" />
-    <SolidColorBrush x:Key="Colors.Info" Color="#2196F3" />
-    <SolidColorBrush x:Key="Colors.Debug" Color="#9E9E9E" />
-    <SolidColorBrush x:Key="Colors.ArchiveExplorer" Color="#FF9800" />
-    <SolidColorBrush x:Key="Colors.Technical" Color="#FFEB3B" />
-    <SolidColorBrush x:Key="Colors.GameConfig" Color="#3F51B5" />
-
     <!-- Generic Icons (used from C# code) -->
 
     <local:GenericIcon x:Key="GenericIcons.None" 
@@ -83,47 +69,47 @@
 
     <local:GenericIcon x:Key="GenericIcons.Games" 
                        IconKind="{StaticResource Icons.Games}" 
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.Games_Rayman" 
                        IconKind="{StaticResource Icons.Games}" 
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.Games_Rabbids" 
                        IconKind="{StaticResource Icons.Games}" 
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.Games_Demos" 
                        IconKind="{StaticResource Icons.Games}" 
-                       IconColor="{StaticResource Colors.OtherGames}" />
+                       IconColor="{StaticResource Brush.OtherGames}" />
     <local:GenericIcon x:Key="GenericIcons.Games_Other" 
                        IconKind="{StaticResource Icons.Games}" 
-                       IconColor="{StaticResource Colors.OtherGames}" />
+                       IconColor="{StaticResource Brush.OtherGames}" />
     <local:GenericIcon x:Key="GenericIcons.Games_FanGames" 
                        IconKind="{StaticResource Icons.Games}" 
-                       IconColor="{StaticResource Colors.OtherGames}" />
+                       IconColor="{StaticResource Brush.OtherGames}" />
 
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Play" 
                        IconKind="{StaticResource Icons.Play}" 
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Admin" 
                        IconKind="{StaticResource Icons.Admin}" 
-                       IconColor="{StaticResource Colors.Technical}" />
+                       IconColor="{StaticResource Brush.Technical}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Map" 
                        IconKind="{StaticResource Icons.Map}" 
-                       IconColor="{StaticResource Colors.Mods}" />
+                       IconColor="{StaticResource Brush.Mods}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Archive" 
                        IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}" 
-                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+                       IconColor="{StaticResource Brush.ArchiveExplorer}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Location" 
                        IconKind="{StaticResource Icons.Folder}" 
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Config" 
                        IconKind="{StaticResource Icons.Settings}" 
-                       IconColor="{StaticResource Colors.Settings}" />
+                       IconColor="{StaticResource Brush.Settings}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Download" 
                        IconKind="{StaticResource Icons.CloudDownload}" 
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_DiscInstall" 
                        IconKind="{StaticResource Icons.Disc}" 
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.GameDisplay_Web" 
                        IconKind="{StaticResource Icons.Web}" 
                        IconColor="{x:Null}" />
@@ -139,122 +125,122 @@
 
     <local:GenericIcon x:Key="GenericIcons.GameOptions_General" 
                        IconKind="{StaticResource Icons.Settings}" 
-                       IconColor="{StaticResource Colors.Settings}" />
+                       IconColor="{StaticResource Brush.Settings}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Config" 
                        IconKind="{StaticResource Icons.GameOptions_Config}"
-                       IconColor="{StaticResource Colors.GameConfig}" />
+                       IconColor="{StaticResource Brush.GameConfig}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Emulator" 
                        IconKind="{StaticResource Icons.Settings_Emulator}"
-                       IconColor="{StaticResource Colors.Technical}" />
+                       IconColor="{StaticResource Brush.Technical}" />
     <local:GenericIcon x:Key="GenericIcons.GameOptions_Utilities" 
                        IconKind="{StaticResource Icons.Utilities}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
 
     <local:GenericIcon x:Key="GenericIcons.Window_ArchiveExplorer" 
                        IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
-                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+                       IconColor="{StaticResource Brush.ArchiveExplorer}" />
     <local:GenericIcon x:Key="GenericIcons.Window_ArchiveCreator" 
                        IconKind="{StaticResource Icons.Utilities_ArchiveCreator}"
-                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+                       IconColor="{StaticResource Brush.ArchiveExplorer}" />
     <local:GenericIcon x:Key="GenericIcons.Window_GameOptions" 
                        IconKind="{StaticResource Icons.Settings}"
-                       IconColor="{StaticResource Colors.Settings}" />
+                       IconColor="{StaticResource Brush.Settings}" />
     <local:GenericIcon x:Key="GenericIcons.Window_Installer" 
                        IconKind="{StaticResource Icons.Disc}"
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.Window_Downloader" 
                        IconKind="{StaticResource Icons.CloudDownload}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_DriveSelection" 
                        IconKind="{StaticResource Icons.Disc}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_EducationalDosGameEdit" 
                        IconKind="{StaticResource Icons.Edit}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_FileExtensionSelection" 
                        IconKind="{StaticResource Icons.File}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_GamesSelection" 
                        IconKind="{StaticResource Icons.Games}"
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.Window_GameTypeSelection" 
                        IconKind="{StaticResource Icons.Games}"
-                       IconColor="{StaticResource Colors.Games}" />
+                       IconColor="{StaticResource Brush.Games}" />
     <local:GenericIcon x:Key="GenericIcons.Window_JumpListEdit" 
                        IconKind="{StaticResource Icons.EditJumpList}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_DialogMessage" 
                        IconKind="{StaticResource Icons.Info}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_StringInput" 
                        IconKind="{StaticResource Icons.Edit}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_ProgramSelection" 
                        IconKind="{StaticResource Icons.Program}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
     <local:GenericIcon x:Key="GenericIcons.Window_AppNews" 
                        IconKind="{StaticResource Icons.News}"
-                       IconColor="{StaticResource Colors.Info}" />
+                       IconColor="{StaticResource Brush.Info}" />
 
     <local:GenericIcon x:Key="GenericIcons.Utilities_SyncTextureInfo" 
                        IconKind="{StaticResource Icons.Utilities_SyncTextureInfo}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman1_CompleteSoundtrack" 
                        IconKind="{StaticResource Icons.Utilities_Rayman1_CompleteSoundtrack}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman1_TPLS" 
                        IconKind="{StaticResource Icons.Utilities_Rayman1_TPLS}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman2_RemoveDRM" 
                        IconKind="{StaticResource Icons.Utilities_Rayman2_RemoveDRM}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman2_Translation" 
                        IconKind="{StaticResource Icons.Utilities_Rayman2_Translation}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Rayman3_DirectPlay" 
                        IconKind="{StaticResource Icons.Utilities_Rayman3_DirectPlay}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanDesigner_CreateConfig" 
                        IconKind="{StaticResource Icons.Utilities_RaymanDesigner_CreateConfig}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanDesigner_ReplaceFiles" 
                        IconKind="{StaticResource Icons.Utilities_RaymanDesigner_ReplaceFiles}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanLegends_DebugCommands" 
                        IconKind="{StaticResource Icons.Utilities_RaymanLegends_DebugCommands}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanLegends_UbiRay" 
                        IconKind="{StaticResource Icons.Utilities_RaymanLegends_UbiRay}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanOrigins_DebugCommands" 
                        IconKind="{StaticResource Icons.Utilities_RaymanOrigins_DebugCommands}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanOrigins_HQVideos" 
                        IconKind="{StaticResource Icons.Utilities_RaymanOrigins_HQVideos}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanOrigins_Update" 
                        IconKind="{StaticResource Icons.Utilities_RaymanOrigins_Update}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_RaymanFiestaRun_SaveFix" 
                        IconKind="{StaticResource Icons.Utilities_RaymanFiestaRun_SaveFix}"
-                       IconColor="{StaticResource Colors.Progression}" />
+                       IconColor="{StaticResource Brush.Progression}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_ArchiveExplorer" 
                        IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
-                       IconColor="{StaticResource Colors.ArchiveExplorer}" />
+                       IconColor="{StaticResource Brush.ArchiveExplorer}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Ray1Editor" 
                        IconKind="{StaticResource Icons.Utilities_Ray1Editor}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_R1PasswordGenerator" 
                        IconKind="{StaticResource Icons.Utilities_R1PasswordGenerator}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Converters" 
                        IconKind="{StaticResource Icons.Utilities_Converters}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Decoders" 
                        IconKind="{StaticResource Icons.Utilities_Decoders}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     <local:GenericIcon x:Key="GenericIcons.Utilities_Serializers" 
                        IconKind="{StaticResource Icons.Utilities_Serializers}"
-                       IconColor="{StaticResource Colors.Utilities}" />
+                       IconColor="{StaticResource Brush.Utilities}" />
     
 </ResourceDictionary>

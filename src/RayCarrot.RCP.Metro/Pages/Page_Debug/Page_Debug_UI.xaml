@@ -71,7 +71,7 @@
         <!-- Information -->
 
         <TabItem local:TabItemAssist.IconKind="InformationOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
                  Header="Information">
 
             <ScrollViewer>
@@ -183,7 +183,7 @@
         <!-- Services -->
 
         <TabItem local:TabItemAssist.IconKind="DatabaseOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
                  Header="Services">
 
             <ScrollViewer>
@@ -265,7 +265,7 @@
         <!-- Services -->
 
         <TabItem local:TabItemAssist.IconKind="TextBoxMultipleOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
                  Header="Output">
 
             <ScrollViewer>
@@ -314,7 +314,7 @@
         <!-- Theme -->
 
         <TabItem local:TabItemAssist.IconKind="PaletteOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
                  Header="User Interface">
 
             <ScrollViewer>

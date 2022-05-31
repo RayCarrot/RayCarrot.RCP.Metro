@@ -178,19 +178,19 @@
 
                 <local:IconButton IconKind="Youtube"
                                   ToolTip="{Resx About_YouTube}"
-                                  Foreground="#FF0000"
+                                  Foreground="{StaticResource Brush.YouTube}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:AppURLs.YouTubeUrl}" />
 
                 <local:IconButton IconKind="Twitter"
                                   ToolTip="{Resx About_Twitter}"
-                                  Foreground="#38A1F3"
+                                  Foreground="{StaticResource Brush.Twitter}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:AppURLs.TwitterUrl}" />
 
                 <local:IconButton IconKind="EmailOutline"
                                   ToolTip="{Resx About_Email}"
-                                  Foreground="#8E24AA"
+                                  Foreground="{StaticResource Brush.Email}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:AppURLs.EmailUrl}" />
 

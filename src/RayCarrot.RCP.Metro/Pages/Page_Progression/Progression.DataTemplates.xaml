@@ -238,18 +238,18 @@
                 <iconpacks:PackIconMaterial Kind="CheckboxMarkedCircle"
                                             Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=UpToDate}"
                                             ToolTip="{Resx Progression_BackupStatus_UpToDate}"
-                                            Foreground="#4CAF50"
+                                            Foreground="{StaticResource Brush.StatusComplete}"
                                             Width="20"
                                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
                 <iconpacks:PackIconMaterial Kind="CloseCircle"
                                             Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Outdated}"
                                             ToolTip="{Resx Progression_BackupStatus_Outdated}"
-                                            Foreground="#F44336"
+                                            Foreground="{StaticResource Brush.StatusIncomplete}"
                                             Width="20"
                                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
                 <iconpacks:PackIconMaterial Kind="SyncCircle"
                                             Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Syncing}"
-                                            Foreground="#3F51B5"
+                                            Foreground="{StaticResource Brush.StatusPending}"
                                             Width="20"
                                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
             </Grid>

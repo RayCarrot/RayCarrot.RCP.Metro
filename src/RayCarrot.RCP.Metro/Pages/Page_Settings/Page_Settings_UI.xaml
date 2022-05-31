@@ -81,7 +81,7 @@
         <!-- General -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Settings}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Settings}"
                  Header="{Resx Settings_GeneralHeader}">
 
             <ScrollViewer>
@@ -348,7 +348,7 @@
         <!-- Archive Explorer -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.ArchiveExplorer}"
                  Header="{Resx Archive_Title}">
 
             <ScrollViewer>
@@ -477,7 +477,7 @@
         <!-- DOSBox -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Technical}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Technical}"
                  Header="{Resx Settings_DosBoxHeader}">
 
             <ScrollViewer>
@@ -543,7 +543,7 @@
         <!-- Links -->
 
         <TabItem local:TabItemAssist.IconKind="Link"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                  Header="{Resx LinksPageHeader}">
 
             <ScrollViewer>
@@ -557,7 +557,7 @@
         <!-- Debug -->
 
         <TabItem local:TabItemAssist.IconKind="CodeBraces"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
                  Header="{Resx DebugPageHeader}"
                  local:UserLevelAssist.MinUserLevel="Debug">
 

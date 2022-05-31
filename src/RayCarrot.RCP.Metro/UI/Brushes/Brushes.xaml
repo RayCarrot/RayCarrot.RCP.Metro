@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Colors/Colors.MaterialDesign.xaml" />
+        <ResourceDictionary Source="../Colors/Colors.Brands.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Main -->
+    <SolidColorBrush x:Key="Brush.Games" Color="{StaticResource Color.PurplePrimary500}" />
+    <SolidColorBrush x:Key="Brush.OtherGames" Color="{StaticResource Color.CyanPrimary500}" />
+    <SolidColorBrush x:Key="Brush.Progression" Color="{StaticResource Color.PinkPrimary500}" />
+    <SolidColorBrush x:Key="Brush.Utilities" Color="{StaticResource Color.GreenPrimary500}" />
+    <SolidColorBrush x:Key="Brush.Mods" Color="{StaticResource Color.DeepPurplePrimary500}" />
+    <SolidColorBrush x:Key="Brush.Settings" Color="{StaticResource Color.AmberPrimary500}" />
+    <SolidColorBrush x:Key="Brush.Info" Color="{StaticResource Color.BluePrimary500}" />
+    <SolidColorBrush x:Key="Brush.Debug" Color="{StaticResource Color.GreyPrimary500}" />
+    <SolidColorBrush x:Key="Brush.ArchiveExplorer" Color="{StaticResource Color.OrangePrimary500}" />
+    <SolidColorBrush x:Key="Brush.Technical" Color="{StaticResource Color.YellowPrimary500}" />
+    <SolidColorBrush x:Key="Brush.GameConfig" Color="{StaticResource Color.IndigoPrimary500}" />
+
+    <!-- Brands -->
+    <SolidColorBrush x:Key="Brush.Email" Color="{StaticResource Color.PurplePrimary600}" />
+    <SolidColorBrush x:Key="Brush.Twitter" Color="{StaticResource Color.Twitter}" />
+    <SolidColorBrush x:Key="Brush.YouTube" Color="{StaticResource Color.YouTube}" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="Brush.StatusComplete" Color="{StaticResource Color.GreenPrimary500}" />
+    <SolidColorBrush x:Key="Brush.StatusIncomplete" Color="{StaticResource Color.RedPrimary500}" />
+    <SolidColorBrush x:Key="Brush.StatusPending" Color="{StaticResource Color.IndigoPrimary500}" />
+
+    <!-- Logging -->
+    <SolidColorBrush x:Key="Brush.LogLevel.Trace" Color="{StaticResource Color.LightGreenPrimary700}" />
+    <SolidColorBrush x:Key="Brush.LogLevel.Debug" Color="{StaticResource Color.LimePrimary700}" />
+    <SolidColorBrush x:Key="Brush.LogLevel.Info" Color="{StaticResource Color.BluePrimary700}" />
+    <SolidColorBrush x:Key="Brush.LogLevel.Warn" Color="{StaticResource Color.AmberPrimary700}" />
+    <SolidColorBrush x:Key="Brush.LogLevel.Error" Color="{StaticResource Color.DeepOrangePrimary700}" />
+    <SolidColorBrush x:Key="Brush.LogLevel.Fatal" Color="{StaticResource Color.RedPrimary700}" />
+
+</ResourceDictionary>

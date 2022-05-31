@@ -160,7 +160,7 @@
 
             <TabItem Header="{Resx GamesPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Games}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Games}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Games}"
                      IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
                 <local:Page_Games_UI DataContext="{Binding Path=GamesPage, Mode=OneTime}" />
             </TabItem>
@@ -170,7 +170,7 @@
             <TabItem x:Name="ProgressionPageTab" 
                      Header="{Resx Progression_Header}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Progression}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Progression}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Progression}"
                      IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Progression}">
                 <local:Page_Progression_UI DataContext="{Binding Path=ProgressionPage, Mode=OneTime}" />
             </TabItem>
@@ -179,7 +179,7 @@
 
             <TabItem Header="{Resx UtilitiesPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Utilities}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Utilities}"
                      IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Utilities}">
                 <local:Page_Utilities_UI DataContext="{Binding Path=UtilitiesPage, Mode=OneTime}" />
             </TabItem>
@@ -188,7 +188,7 @@
 
             <TabItem Header="{Resx ModsPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Mods}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Mods}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Mods}"
                      IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Mods}">
                 <local:Page_Mods_UI DataContext="{Binding Path=ModsPage, Mode=OneTime}" />
             </TabItem>
@@ -197,7 +197,7 @@
 
             <TabItem Header="{Resx SettingsPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Settings}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Settings}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Settings}"
                      IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Settings}">
                 <local:Page_Settings_UI DataContext="{Binding Path=SettingsPage, Mode=OneTime}" />
             </TabItem>
@@ -206,7 +206,7 @@
 
             <TabItem Header="{Resx AboutPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Info}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                      IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=About}">
                 <local:Page_About_UI DataContext="{Binding Path=AboutPage, Mode=OneTime}" />
             </TabItem>
@@ -215,7 +215,7 @@
 
             <TabItem Header="{Resx DebugPageHeader}"
                      local:TabItemAssist.IconKind="{StaticResource Icons.Debug}"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Debug}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
                      IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
                      local:UserLevelAssist.MinUserLevel="Debug">
                 <local:Page_Debug_UI DataContext="{Binding Path=DebugPage, Mode=OneTime}" />

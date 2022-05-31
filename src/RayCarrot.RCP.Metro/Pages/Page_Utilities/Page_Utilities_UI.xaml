@@ -24,7 +24,7 @@
         <!-- Binary Tools -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_BinaryTools}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.ArchiveExplorer}"
                  Header="{Resx Utilities_BinaryTools_Header}">
 
             <ScrollViewer>
@@ -36,7 +36,7 @@
         <!-- Other -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Other}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Utilities}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Utilities}"
                  Header="{Resx Utilities_Other_Header}">
 
             <ScrollViewer>
@@ -48,7 +48,7 @@
         <!-- External Tools -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
-                 local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                 local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                  Header="{Resx Utilities_ExternalTools_Header}">
 
             <ScrollViewer>

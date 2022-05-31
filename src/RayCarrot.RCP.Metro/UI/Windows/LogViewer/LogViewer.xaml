@@ -83,22 +83,56 @@
                     <DataTemplate>
                         <Grid Visibility="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}"
                               Margin="5">
-                            <Grid.ColumnDefinitions>
 
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Trace">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Trace}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Debug">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Debug}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Info">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Info}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Warn">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Warn}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Error">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Error}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Fatal">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Fatal}" />
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
-
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0"
-                                       Text="{Binding Path=LogTime, Mode=OneTime, StringFormat=HH:mm:ss.fff}"
-                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}" />
+                                       Text="{Binding Path=LogTime, Mode=OneTime, StringFormat=HH:mm:ss.fff}" />
 
                             <TextBlock Grid.Column="1"
                                        Text="{Binding Path=LoggerName, Mode=OneTime}"
-                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
                                        Margin="20 0 0 0" />
 
                             <local:InfoIcon Grid.Column="2"
@@ -110,7 +144,6 @@
                             <TextBlock Grid.Column="3"
                                        Text="{Binding Path=LogMessage, Mode=OneTime}"
                                        Visibility="{Binding Path=IsVisible, Converter={local:BooleanToVisibilityConverter}}"
-                                       Foreground="{Binding Path=LogLevel, Converter={local:LogLevelToBrushConverter}, Mode=OneTime}"
                                        TextWrapping="Wrap" 
                                        Margin="10 0 0 0"/>
 

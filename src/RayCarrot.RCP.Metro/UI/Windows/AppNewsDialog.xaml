@@ -36,7 +36,7 @@
             </TabControl.Resources>
 
             <TabItem local:TabItemAssist.IconKind="History"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                      Header="1.0 - 3.0">
 
                 <TextBox Text="{Binding Source={x:Static local:Files.VersionHistory_01_0_03_0}, Mode=OneTime}" />
@@ -44,7 +44,7 @@
             </TabItem>
 
             <TabItem local:TabItemAssist.IconKind="History"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                      Header="4.0 - 6.0">
 
                 <TextBox Text="{Binding Source={x:Static local:Files.VersionHistory_04_0_06_0}, Mode=OneTime}" />
@@ -52,7 +52,7 @@
             </TabItem>
 
             <TabItem local:TabItemAssist.IconKind="History"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                      Header="7.0 - 9.0">
 
                 <TextBox Text="{Binding Source={x:Static local:Files.VersionHistory_07_0_09_0}, Mode=OneTime}" />
@@ -60,7 +60,7 @@
             </TabItem>
 
             <TabItem local:TabItemAssist.IconKind="History"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                      Header="10.0 - 12.0">
 
                 <TextBox Text="{Binding Source={x:Static local:Files.VersionHistory_10_0_12_0}, Mode=OneTime}" />
@@ -68,7 +68,7 @@
             </TabItem>
 
             <TabItem local:TabItemAssist.IconKind="History"
-                     local:TabItemAssist.IconForeground="{StaticResource Colors.Info}"
+                     local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                      IsSelected="True"
                      Header="13.0 - 15.0">
 
