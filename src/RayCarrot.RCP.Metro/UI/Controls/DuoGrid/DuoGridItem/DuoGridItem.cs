@@ -5,7 +5,7 @@ using System.Windows.Controls;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// A duo grid item
+/// A duo grid item to be used in a <see cref="DuoGrid"/>
 /// </summary>
 public class DuoGridItem : Control
 {

@@ -53,62 +53,14 @@
 
             <StackPanel>
 
-                <ItemsControl HorizontalAlignment="Center"
-                              Grid.IsSharedSizeScope="True">
-
-                    <ItemsControl.Resources>
-                        <Style TargetType="{x:Type local:DuoGridItem}"
-                               BasedOn="{StaticResource {x:Type local:DuoGridItem}}">
+                <local:DuoGrid ItemsSource="{Binding Path=Credits, Mode=OneTime}"
+                               HorizontalContentAlignment="Center">
+                    <local:DuoGrid.Resources>
+                        <Style TargetType="{x:Type local:DuoGridItem}" BasedOn="{StaticResource {x:Type local:DuoGridItem}}">
                             <Setter Property="Margin" Value="0 0 0 4" />
                         </Style>
-                    </ItemsControl.Resources>
-
-                    <local:DuoGridItem Header="RayCarrot"
-                                       Text="{Resx About_Credits_RayCarrot}" />
-
-                    <local:DuoGridItem Header="Droolie"
-                                       Text="{Resx About_Credits_Droolie}" />
-
-                    <local:DuoGridItem Header="Fabiosek"
-                                       Text="{Resx About_Credits_Fabiosek}" />
-
-                    <local:DuoGridItem Header="Haruka Tavares"
-                                       Text="{Resx About_Credits_HarukaTavares}" />
-
-                    <local:DuoGridItem Header="ItzalDrake"
-                                       Text="{Resx About_Credits_ItzalDrake}" />
-
-                    <local:DuoGridItem Header="Juanmv94"
-                                       Text="{Resx About_Credits_Janmv94}" />
-
-                    <local:DuoGridItem Header="Mark"
-                                       Text="{Resx About_Credits_432Hz}" />
-
-                    <local:DuoGridItem Header="Noserdog"
-                                       Text="{Resx About_Credits_Noserdog}" />
-
-                    <local:DuoGridItem Header="PluMGMK"
-                                       Text="{Resx About_Credits_PluMGMK}" />
-
-                    <local:DuoGridItem Header="RayActivity"
-                                       Text="{Resx About_Credits_RayActivity}" />
-
-                    <local:DuoGridItem Header="Rayman Universe - Рэйман и его Вселенная"
-                                       Text="{Resx About_Credits_RaymanUniverse}" />
-
-                    <local:DuoGridItem Header="RibShark"
-                                       Text="{Resx About_Credits_RibShark}" />
-
-                    <local:DuoGridItem Header="Robin"
-                                       Text="{Resx About_Credits_Robin}" />
-
-                    <local:DuoGridItem Header="Snagglebee"
-                                       Text="{Resx About_Credits_Snagglebee}" />
-
-                    <local:DuoGridItem Header="XanderNT"
-                                       Text="{Resx About_Credits_XanderNT}" />
-
-                </ItemsControl>
+                    </local:DuoGrid.Resources>
+                </local:DuoGrid>
 
                 <TextBlock Text="{Resx About_SpecialThanks}"
                            Margin="0 8 0 0"

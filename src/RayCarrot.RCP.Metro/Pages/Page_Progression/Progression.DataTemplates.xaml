@@ -356,18 +356,9 @@
                   HeaderTemplate="{StaticResource DataTemplate.ProgressionSlotHeader}">
             <StackPanel Margin="0 8 0 0">
 
-                <ItemsControl Grid.IsSharedSizeScope="True"
-                              Visibility="{Binding Path=HasInfoItems, Converter={local:BooleanToVisibilityConverter}}"
-                              Margin="0 0 0 8"
-                              ItemsSource="{Binding Path=InfoItems, Mode=OneTime}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:DuoGridItem Text="{Binding Path=Text.Value}"
-                                               Header="{Binding Path=Header.Value}"
-                                               MinUserLevel="{Binding Path=MinUserLevel}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <local:DuoGrid Visibility="{Binding Path=HasInfoItems, Converter={local:BooleanToVisibilityConverter}}"
+                               Margin="0 0 0 8"
+                               ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
 
                 <Separator Style="{StaticResource Separator.Bold}"
                            Margin="0 0 0 8"
@@ -500,18 +491,9 @@
 
                             <!-- Backup info -->
 
-                            <ItemsControl Grid.IsSharedSizeScope="True"
-                                          ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}"
-                                          Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"
-                                          Margin="0 0 0 8">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <local:DuoGridItem Text="{Binding Path=Text.Value}"
-                                                           Header="{Binding Path=Header.Value}"
-                                                           MinUserLevel="{Binding Path=MinUserLevel}" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                            <local:DuoGrid ItemsSource="{Binding Path=BackupInfoItems, Mode=OneTime}"
+                                           Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"
+                                           Margin="0 0 0 8" />
 
                             <Separator Style="{StaticResource Separator.Bold}"
                                        Visibility="{Binding Path=HasBackupSlots, Converter={local:BooleanToVisibilityConverter}}"

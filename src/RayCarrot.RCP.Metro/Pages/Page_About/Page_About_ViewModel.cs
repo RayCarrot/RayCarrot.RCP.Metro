@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -27,6 +28,26 @@ public class Page_About_ViewModel : BasePageViewModel
         DialogBaseManager = dialogBaseManager ?? throw new ArgumentNullException(nameof(dialogBaseManager));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         File = file ?? throw new ArgumentNullException(nameof(file));
+
+        // Set the credits
+        Credits = new ObservableCollection<DuoGridItemViewModel>()
+        {
+            new("RayCarrot", new ResourceLocString(nameof(Resources.About_Credits_RayCarrot))),
+            new("Droolie", new ResourceLocString(nameof(Resources.About_Credits_Droolie))),
+            new("Fabiosek", new ResourceLocString(nameof(Resources.About_Credits_Fabiosek))),
+            new("Haruka Tavares", new ResourceLocString(nameof(Resources.About_Credits_HarukaTavares))),
+            new("ItzalDrake", new ResourceLocString(nameof(Resources.About_Credits_ItzalDrake))),
+            new("Juanmv94", new ResourceLocString(nameof(Resources.About_Credits_Janmv94))),
+            new("Mark", new ResourceLocString(nameof(Resources.About_Credits_432Hz))),
+            new("Noserdog", new ResourceLocString(nameof(Resources.About_Credits_Noserdog))),
+            new("PluMGMK", new ResourceLocString(nameof(Resources.About_Credits_PluMGMK))),
+            new("RayActivity", new ResourceLocString(nameof(Resources.About_Credits_RayActivity))),
+            new("Rayman Universe - Рэйман и его Вселенная", new ResourceLocString(nameof(Resources.About_Credits_RaymanUniverse))),
+            new("RibShark", new ResourceLocString(nameof(Resources.About_Credits_RibShark))),
+            new("Robin", new ResourceLocString(nameof(Resources.About_Credits_Robin))),
+            new("Snagglebee", new ResourceLocString(nameof(Resources.About_Credits_Snagglebee))),
+            new("XanderNT", new ResourceLocString(nameof(Resources.About_Credits_XanderNT))),
+        };
 
         // Create commands
         OpenUrlCommand = new RelayCommand(x =>
@@ -69,6 +90,8 @@ public class Page_About_ViewModel : BasePageViewModel
     #region Public Properties
 
     public override AppPage Page => AppPage.About;
+
+    public ObservableCollection<DuoGridItemViewModel> Credits { get; }
 
     /// <summary>
     /// The update badge, indicating if new updates are available

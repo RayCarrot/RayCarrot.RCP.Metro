@@ -17,9 +17,9 @@
                 <ResourceDictionary Source="UI/Brushes/Brushes.xaml" />
                 <ResourceDictionary Source="UI/Brushes/Brushes.Dark.xaml" />
                 <ResourceDictionary Source="UI/Icons/Icons.xaml" />
+                <ResourceDictionary Source="UI/Resources/Resources.Margins.xaml" />
                 <ResourceDictionary Source="UI/Resources/Theme.RoundedCorners.xaml" />
 
-                <ResourceDictionary Source="UI/Resources/Resources.Margins.xaml" />
                 <ResourceDictionary Source="UI/Styles/ToolTip.xaml" />
                 <ResourceDictionary Source="UI/Styles/TextBox.xaml" />
                 <ResourceDictionary Source="UI/Styles/ScrollViewer.xaml" />
@@ -34,13 +34,15 @@
                 <ResourceDictionary Source="UI/Styles/NumericUpDown.xaml" />
                 <ResourceDictionary Source="UI/Styles/AutoCompleteTextBox.xaml" />
                 <ResourceDictionary Source="UI/Styles/LinkItem.List.xaml" />
-                <ResourceDictionary Source="UI/Styles/DuoGridItem.xaml" />
                 <ResourceDictionary Source="UI/Styles/ChildWindow.xaml" />
                 <ResourceDictionary Source="UI/Styles/LoaderContentControl.xaml" />
                 <ResourceDictionary Source="UI/Styles/BrowseBox.xaml" />
                 <ResourceDictionary Source="UI/Styles/GameIcon.xaml" />
                 <ResourceDictionary Source="UI/Styles/Window.xaml" />
                 <ResourceDictionary Source="UI/Styles/Expander.xaml" />
+
+                <ResourceDictionary Source="UI/Controls/DuoGrid/DuoGridItem/DuoGridItem.xaml" />
+                <ResourceDictionary Source="UI/Controls/DuoGrid/DuoGrid.xaml" />
                 <ResourceDictionary Source="UI/Controls/Card/Card.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
