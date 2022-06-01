@@ -130,7 +130,7 @@
     <EmbeddedResource Include="costura32\Magick.Native-Q8-x86.dll" />
 
     <!-- Resources -->
-    <Resource Include="Fonts\RaymanOrigins.ttf" />
+    <Resource Include="UI\Fonts\RaymanOrigins.ttf" />
     <Resource Include="Img\RCP_Metro.ico" />
   </ItemGroup>
 

@@ -13,7 +13,7 @@
 
                 <!-- Local -->
 
-                <ResourceDictionary Source="UI/Resources/Fonts.xaml" />
+                <ResourceDictionary Source="UI/Fonts/Fonts.xaml" />
                 <ResourceDictionary Source="UI/Brushes/Brushes.xaml" />
                 <ResourceDictionary Source="UI/Brushes/Brushes.Dark.xaml" />
                 <ResourceDictionary Source="UI/Icons/Icons.xaml" />
