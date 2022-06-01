@@ -12,7 +12,7 @@
 
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <Border BorderThickness="{StaticResource Thickness.Border.Default}" 

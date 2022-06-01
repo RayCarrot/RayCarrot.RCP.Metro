@@ -77,13 +77,13 @@
             <TextBlock Grid.Column="0"
                        Grid.Row="0"
                        Text="{Resx JumpListEditor_IncludedHeader}"
-                       Style="{StaticResource TextBlock.Header}"
+                       Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        HorizontalAlignment="Center"/>
 
             <TextBlock Grid.Column="2"
                        Grid.Row="0"
                        Text="{Resx JumpListEditor_NotIncludedHeader}"
-                       Style="{StaticResource TextBlock.Header}"
+                       Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        HorizontalAlignment="Center"/>
 
             <ScrollViewer Grid.Column="0"

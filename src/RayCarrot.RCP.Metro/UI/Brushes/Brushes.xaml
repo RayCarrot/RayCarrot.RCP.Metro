@@ -7,38 +7,38 @@
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Main -->
-    <SolidColorBrush x:Key="Brush.Games" Color="{StaticResource Color.PurplePrimary500}" />
-    <SolidColorBrush x:Key="Brush.OtherGames" Color="{StaticResource Color.CyanPrimary500}" />
-    <SolidColorBrush x:Key="Brush.Progression" Color="{StaticResource Color.PinkPrimary500}" />
-    <SolidColorBrush x:Key="Brush.Utilities" Color="{StaticResource Color.GreenPrimary500}" />
-    <SolidColorBrush x:Key="Brush.Mods" Color="{StaticResource Color.DeepPurplePrimary500}" />
-    <SolidColorBrush x:Key="Brush.Settings" Color="{StaticResource Color.AmberPrimary500}" />
-    <SolidColorBrush x:Key="Brush.Info" Color="{StaticResource Color.BluePrimary500}" />
-    <SolidColorBrush x:Key="Brush.Debug" Color="{StaticResource Color.GreyPrimary500}" />
-    <SolidColorBrush x:Key="Brush.ArchiveExplorer" Color="{StaticResource Color.OrangePrimary500}" />
-    <SolidColorBrush x:Key="Brush.Technical" Color="{StaticResource Color.YellowPrimary500}" />
-    <SolidColorBrush x:Key="Brush.GameConfig" Color="{StaticResource Color.IndigoPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Games" Color="{StaticResource RCP.Colors.PurplePrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.OtherGames" Color="{StaticResource RCP.Colors.CyanPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Progression" Color="{StaticResource RCP.Colors.PinkPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Utilities" Color="{StaticResource RCP.Colors.GreenPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Mods" Color="{StaticResource RCP.Colors.DeepPurplePrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Settings" Color="{StaticResource RCP.Colors.AmberPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Info" Color="{StaticResource RCP.Colors.BluePrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Debug" Color="{StaticResource RCP.Colors.GreyPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Technical" Color="{StaticResource RCP.Colors.YellowPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.GameConfig" Color="{StaticResource RCP.Colors.IndigoPrimary500}" />
 
     <!-- Brands -->
-    <SolidColorBrush x:Key="Brush.Email" Color="{StaticResource Color.PurplePrimary600}" />
-    <SolidColorBrush x:Key="Brush.Twitter" Color="{StaticResource Color.Twitter}" />
-    <SolidColorBrush x:Key="Brush.YouTube" Color="{StaticResource Color.YouTube}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Email" Color="{StaticResource RCP.Colors.PurplePrimary600}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Twitter" Color="{StaticResource RCP.Colors.Twitter}" />
+    <SolidColorBrush x:Key="RCP.Brushes.YouTube" Color="{StaticResource RCP.Colors.YouTube}" />
 
     <!-- Status -->
-    <SolidColorBrush x:Key="Brush.StatusComplete" Color="{StaticResource Color.GreenPrimary500}" />
-    <SolidColorBrush x:Key="Brush.StatusIncomplete" Color="{StaticResource Color.RedPrimary500}" />
-    <SolidColorBrush x:Key="Brush.StatusPending" Color="{StaticResource Color.IndigoPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.StatusComplete" Color="{StaticResource RCP.Colors.GreenPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.StatusIncomplete" Color="{StaticResource RCP.Colors.RedPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.StatusPending" Color="{StaticResource RCP.Colors.IndigoPrimary500}" />
 
     <!-- Alert -->
-    <SolidColorBrush x:Key="Brush.Warning" Color="{StaticResource Color.RedPrimary700}" />
-    <SolidColorBrush x:Key="Brush.Notice" Color="{StaticResource Color.AmberPrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Warning" Color="{StaticResource RCP.Colors.RedPrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Notice" Color="{StaticResource RCP.Colors.AmberPrimary700}" />
 
     <!-- Logging -->
-    <SolidColorBrush x:Key="Brush.LogLevel.Trace" Color="{StaticResource Color.LightGreenPrimary700}" />
-    <SolidColorBrush x:Key="Brush.LogLevel.Debug" Color="{StaticResource Color.LimePrimary700}" />
-    <SolidColorBrush x:Key="Brush.LogLevel.Info" Color="{StaticResource Color.BluePrimary700}" />
-    <SolidColorBrush x:Key="Brush.LogLevel.Warn" Color="{StaticResource Color.AmberPrimary700}" />
-    <SolidColorBrush x:Key="Brush.LogLevel.Error" Color="{StaticResource Color.DeepOrangePrimary700}" />
-    <SolidColorBrush x:Key="Brush.LogLevel.Fatal" Color="{StaticResource Color.RedPrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Trace" Color="{StaticResource RCP.Colors.LightGreenPrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Debug" Color="{StaticResource RCP.Colors.LimePrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Info" Color="{StaticResource RCP.Colors.BluePrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Warn" Color="{StaticResource RCP.Colors.AmberPrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Error" Color="{StaticResource RCP.Colors.DeepOrangePrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Fatal" Color="{StaticResource RCP.Colors.RedPrimary700}" />
 
 </ResourceDictionary>

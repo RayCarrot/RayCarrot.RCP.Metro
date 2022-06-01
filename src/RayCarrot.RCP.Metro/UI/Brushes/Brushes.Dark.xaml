@@ -5,6 +5,6 @@
         <ResourceDictionary Source="../Colors/Colors.MaterialDesign.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <SolidColorBrush x:Key="Colors.Card.Background" Color="{StaticResource Color.GreyPrimary800}" />
+    <SolidColorBrush x:Key="RCP.Colors.Card.Background" Color="{StaticResource RCP.Colors.GreyPrimary800}" />
 
 </ResourceDictionary>

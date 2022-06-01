@@ -11,7 +11,7 @@
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_RaymanOrigins_DebugCommands_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <mah:ToggleSwitch IsOn="{Binding Path=IsDebugModeEnabled}"

@@ -12,14 +12,14 @@
              d:DataContext="{d:DesignInstance ubiArt:UbiArtIPKArchiveConfigViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <CheckBox Content="{Resx Archive_IPK_CompressEntireBlock}"
                   IsEnabled="{Binding Path=CanCompressEntireBlock, Mode=OneTime}"
                   IsChecked="{Binding Path=CompressEntireBlock}"/>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Archive_IPK_CompressExtensions}" />
 
         <TextBox Text="{Binding Path=CompressedExtensions}"

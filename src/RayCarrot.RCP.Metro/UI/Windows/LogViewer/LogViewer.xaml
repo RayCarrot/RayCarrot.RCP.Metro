@@ -89,32 +89,32 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Trace">
                                             <DataTrigger.Setters>
-                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Trace}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource RCP.Brushes.LogLevel.Trace}" />
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Debug">
                                             <DataTrigger.Setters>
-                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Debug}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource RCP.Brushes.LogLevel.Debug}" />
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Info">
                                             <DataTrigger.Setters>
-                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Info}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource RCP.Brushes.LogLevel.Info}" />
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Warn">
                                             <DataTrigger.Setters>
-                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Warn}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource RCP.Brushes.LogLevel.Warn}" />
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Error">
                                             <DataTrigger.Setters>
-                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Error}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource RCP.Brushes.LogLevel.Error}" />
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Path=LogLevel, Mode=OneTime}" Value="Fatal">
                                             <DataTrigger.Setters>
-                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.LogLevel.Fatal}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{StaticResource RCP.Brushes.LogLevel.Fatal}" />
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -136,7 +136,7 @@
                                        Margin="20 0 0 0" />
 
                             <local:InfoIcon Grid.Column="2"
-                                            Style="{StaticResource InfoIcon.Warning}"
+                                            Style="{StaticResource RCP.Styles.InfoIcon.Warning}"
                                             Visibility="{Binding Path=Exception, Mode=OneTime, Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
                                             Text="{Binding Path=Exception, Mode=OneTime}"
                                             Margin="10 0 0 0" />

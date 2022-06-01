@@ -12,7 +12,7 @@
 
     <!-- Flat Button -->
 
-    <Style x:Key="Button.Flat" TargetType="{x:Type Button}">
+    <Style x:Key="RCP.Styles.Button.Flat" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -40,7 +40,7 @@
 
     <!-- Icon Content -->
 
-    <DataTemplate x:Key="Button.IconContentTemplate">
+    <DataTemplate x:Key="RCP.Templates.Button.IconContent">
         <StackPanel Orientation="Horizontal">
             <iconpacks:PackIconMaterial Kind="{Binding Path=(local:ButtonAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
                                         VerticalAlignment="Center"/>

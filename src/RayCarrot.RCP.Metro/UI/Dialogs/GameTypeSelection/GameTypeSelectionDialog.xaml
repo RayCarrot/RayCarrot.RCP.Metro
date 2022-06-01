@@ -21,7 +21,7 @@
                    VerticalAlignment="Center">
 
             <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <!-- Win32 -->

@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Header -->
@@ -42,7 +42,7 @@
             <!-- Title -->
 
             <TextBlock Grid.Column="1"
-                       Style="{StaticResource TextBlock.HeaderLarge}"
+                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                        Text="{Binding Path=DisplayName, Mode=OneTime}"
                        VerticalAlignment="Center"
                        TextTrimming="WordEllipsis"
@@ -115,7 +115,7 @@
                             <Button Grid.Column="0" 
                                     Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx DosBoxOptions_Recommended}"
-                                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                                    ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                                     local:ButtonAssist.IconKind="AutoFix"
                                     Command="{Binding Path=UseRecommendedCommand}"
                                     Margin="0 0 10 0"/>
@@ -130,7 +130,7 @@
                             <Button Grid.Column="2"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx Cancel}"
-                                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                                    ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                                     local:ButtonAssist.IconKind="CloseOutline"
                                     Margin="0 0 10 0"
                                     IsCancel="True"
@@ -139,7 +139,7 @@
                             <Button Grid.Column="3"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx Save}"
-                                    ContentTemplate="{StaticResource Button.IconContentTemplate}"
+                                    ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                                     local:ButtonAssist.IconKind="ContentSaveOutline"
                                     IsEnabled="{Binding Path=UnsavedChanges}"
                                     Command="{Binding Path=SaveCommand, Mode=OneTime}" />

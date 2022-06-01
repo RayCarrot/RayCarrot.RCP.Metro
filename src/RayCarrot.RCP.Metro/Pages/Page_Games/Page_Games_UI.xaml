@@ -109,7 +109,7 @@
                                 <Grid Visibility="{Binding Path=AnyInstalledGames, Converter={local:BooleanToVisibilityConverter}}">
                                     <TextBlock Text="{Resx Games_Installed}"
                                                Padding="10 0 0 0"
-                                               Style="{StaticResource TextBlock.HeaderLarge}"
+                                               Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                                                Visibility="{Binding Path=Data.Game_ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
                                 </Grid>
 
@@ -119,7 +119,7 @@
                                 <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}">
                                     <TextBlock Text="{Resx Games_NotInstalled}"
                                                Padding="10 0 0 0"
-                                               Style="{StaticResource TextBlock.HeaderLarge}"
+                                               Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                                                Visibility="{Binding Path=Data.Game_ShowNotInstalledGames, Converter={local:BooleanToVisibilityConverter}}" />
                                 </Grid>
 

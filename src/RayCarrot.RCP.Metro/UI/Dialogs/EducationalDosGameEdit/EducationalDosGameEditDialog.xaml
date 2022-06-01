@@ -14,12 +14,12 @@
                             MaxWidth="600">
     <StackPanel Margin="10">
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Name -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx EducationalConfig_Name}" />
 
         <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=LostFocus}"
@@ -30,7 +30,7 @@
         <!-- Mount path -->
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                Text="{Resx MountPathHeader}" />
 
             <local:InfoIcon Text="{Resx MountPathInfo}" />
@@ -65,7 +65,7 @@
 
         <!-- Launch mode -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx EducationalConfig_LaunchMode}" />
 
         <ComboBox ItemsSource="{Binding Path=AvailableLaunchModes, Mode=OneTime}"

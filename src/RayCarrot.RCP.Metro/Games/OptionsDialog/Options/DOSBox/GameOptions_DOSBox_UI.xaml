@@ -12,13 +12,13 @@
              d:DataContext="{d:DesignInstance local:GameOptions_DOSBox_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Mount path -->
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx MountPathHeader}" />
 
             <local:InfoIcon Text="{Resx MountPathInfo}" />

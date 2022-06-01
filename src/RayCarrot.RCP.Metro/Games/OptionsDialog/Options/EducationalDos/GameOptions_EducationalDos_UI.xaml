@@ -15,12 +15,12 @@
                      d:DataContext="{d:DesignInstance local:GameOptions_EducationalDos_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
 
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx EducationalOptions_Header}" />
 
             <local:InfoIcon Text="{Resx EducationalOptions_Info}" />
@@ -78,7 +78,7 @@
 
                             <Button Grid.Column="2"
                                     ToolTip="{Resx EducationalOptions_Edit}"
-                                    Style="{StaticResource Button.Flat}"
+                                    Style="{StaticResource RCP.Styles.Button.Flat}"
                                     Command="{Binding Path=EditGameCommand}"
                                     VerticalAlignment="Center"
                                     Margin="15 0 10 0">
@@ -90,7 +90,7 @@
 
                             <Button Grid.Column="3"
                                     ToolTip="{Resx GameDisplay_OpenLocation}"
-                                    Style="{StaticResource Button.Flat}"
+                                    Style="{StaticResource RCP.Styles.Button.Flat}"
                                     Command="{Binding Path=OpenLocationCommand}"
                                     VerticalAlignment="Center"
                                     Margin="15 0 10 0">
@@ -102,7 +102,7 @@
 
                             <Button Grid.Column="4"
                                     ToolTip="{Resx EducationalOptions_Remove}"
-                                    Style="{StaticResource Button.Flat}"
+                                    Style="{StaticResource RCP.Styles.Button.Flat}"
                                     Command="{Binding Path=RemoveGameCommand}"
                                     VerticalAlignment="Center"
                                     Margin="15 0 10 0">
@@ -120,7 +120,7 @@
         </ItemsControl>
 
         <Button ToolTip="{Resx EducationalOptions_AddNew}"
-                Style="{StaticResource Button.Flat}"
+                Style="{StaticResource RCP.Styles.Button.Flat}"
                 HorizontalAlignment="Left"
                 Command="{Binding Path=AddGameCommand}">
             <iconPacks:PackIconMaterial Background="Transparent"

@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
-    <Style x:Key="ItemsControl.LinkItemsDisplay" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+    <Style x:Key="RCP.Styles.ItemsControl.LinkItemsDisplay" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
         <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         <Setter Property="ItemTemplate">
             <Setter.Value>

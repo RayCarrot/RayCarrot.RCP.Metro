@@ -77,7 +77,7 @@
                      Text="{Binding Path=Log}"
                      VerticalScrollBarVisibility="Auto"
                      HorizontalScrollBarVisibility="Auto"
-                     FontFamily="{StaticResource Font.Consolas}"
+                     FontFamily="{StaticResource RCP.Fonts.Consolas}"
                      FontSize="14"
                      MaxHeight="500" />
 

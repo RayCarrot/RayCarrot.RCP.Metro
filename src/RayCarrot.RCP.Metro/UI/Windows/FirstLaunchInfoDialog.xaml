@@ -35,7 +35,7 @@
             <ScrollViewer Grid.Column="0">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center"
-                               Style="{StaticResource TextBlock.HeaderLarge}"
+                               Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                                TextWrapping="Wrap"
                                Text="{Resx FirstLaunchInfo_Header}"
                                Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}"/>
@@ -65,7 +65,7 @@
             <StackPanel>
 
                 <TextBlock Text="{Resx Settings_Language}"
-                           Style="{StaticResource TextBlock.HeaderLarge}"
+                           Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                            Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}" />
 
                 <ComboBox SelectedItem="{Binding Path=App_CurrentCulture, Converter={local:CultureNameToCultureInfoConverter}}"
@@ -96,7 +96,7 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}">
                     <TextBlock Text="{Resx Settings_UserLevel}"
-                               Style="{StaticResource TextBlock.HeaderLarge}" />
+                               Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                     <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
 
@@ -104,7 +104,7 @@
 
                 <WrapPanel Margin="{StaticResource FirstLaunchDialog.Thickness.VerticalLarge}">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
                     </i:Interaction.Behaviors>
 
                     <!-- Normal -->
@@ -141,7 +141,7 @@
             <StackPanel>
 
                 <TextBlock Text="{Resx Settings_StartupHeader}"
-                           Style="{StaticResource TextBlock.HeaderLarge}"
+                           Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                            Margin="{StaticResource FirstLaunchDialog.Thickness.Vertical}" />
 
                 <CheckBox Content="{Resx Settings_StartupGameFinder}"

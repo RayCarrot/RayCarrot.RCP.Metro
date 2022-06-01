@@ -87,7 +87,7 @@
 
     <!-- Large Tab Item -->
 
-    <Style x:Key="TabItem.Large" TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+    <Style x:Key="RCP.Styles.TabItem.Large" TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
         <Setter Property="local:TabItemAssist.HeaderFontSize" Value="24" />
     </Style>
 

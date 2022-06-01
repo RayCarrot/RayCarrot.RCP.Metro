@@ -11,12 +11,12 @@
              mc:Ignorable="d">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
 
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx RR2Options_GameModeHeader}" />
 
             <local:InfoIcon Text="{Resx RR2Options_GameModeInfo}" />

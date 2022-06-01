@@ -12,12 +12,12 @@
              d:DesignHeight="300" d:DesignWidth="650" d:DataContext="{d:DesignInstance local:GameOptionsDialog_OptionsPageViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Information -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx GameOptions_Info}" />
 
         <local:DuoGrid ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}" />
@@ -29,7 +29,7 @@
         <StackPanel Orientation="Horizontal"
                     Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
 
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx GameOptions_LaunchMode}" />
 
             <local:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
@@ -40,7 +40,7 @@
                     Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
 
             <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"

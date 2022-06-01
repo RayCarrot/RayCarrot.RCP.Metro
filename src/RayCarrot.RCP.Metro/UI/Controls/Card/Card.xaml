@@ -50,7 +50,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Background" Value="{DynamicResource Colors.Card.Background}" />
+        <Setter Property="Background" Value="{DynamicResource RCP.Colors.Card.Background}" />
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Padding" Value="8"/>

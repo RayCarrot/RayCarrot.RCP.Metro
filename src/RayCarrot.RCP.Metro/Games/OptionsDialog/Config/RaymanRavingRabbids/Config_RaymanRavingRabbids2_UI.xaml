@@ -11,10 +11,10 @@
              d:DataContext="{d:DesignInstance local:Config_RaymanRavingRabbids2_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Resolution}" />
 
         <local:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}" />

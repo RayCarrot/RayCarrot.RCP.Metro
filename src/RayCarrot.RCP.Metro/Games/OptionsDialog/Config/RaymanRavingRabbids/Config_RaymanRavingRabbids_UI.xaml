@@ -13,10 +13,10 @@
              d:DataContext="{d:DesignInstance local:Config_RaymanRavingRabbids_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Resolution}" />
 
         <local:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}" />
@@ -27,7 +27,7 @@
 
         <StackPanel Orientation="Horizontal"
                     local:UserLevelAssist.MinUserLevel="Advanced">
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_RRRScreenMode}" />
 
             <local:InfoIcon Text="{Resx Config_RRRScreenModeInfo}" />
@@ -42,14 +42,14 @@
             <TextBlock Text="{Resx Config_RRRScreenMode_16_9}" />
         </ComboBox>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Controller}" />
 
         <CheckBox Content="{Resx Config_UseController}"
                   IsChecked="{Binding Path=UseController}" />
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Cheats}" />
 
             <local:InfoIcon Text="{Resx Config_RRRCheatsInfo}" />

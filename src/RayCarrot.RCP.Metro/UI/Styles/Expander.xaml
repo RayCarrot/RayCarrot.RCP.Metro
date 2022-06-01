@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
 
-    <Storyboard x:Key="Storyboard.Expander.Expand" x:Shared="False">
+    <Storyboard x:Key="RCP.Storyboards.Expander.Expand" x:Shared="False">
         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandSite" 
                                        Storyboard.TargetProperty="(UIElement.Visibility)">
             <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
@@ -21,7 +21,7 @@
         </DoubleAnimation>
     </Storyboard>
 
-    <Storyboard x:Key="Storyboard.Expander.Collapse" x:Shared="False">
+    <Storyboard x:Key="RCP.Storyboards.Expander.Collapse" x:Shared="False">
         <DoubleAnimation Storyboard.TargetName="ExpandSite"
                          Storyboard.TargetProperty="(UIElement.Opacity)"
                          From="1"
@@ -189,8 +189,8 @@
             </Setter.Value>
         </Setter>
 
-        <Setter Property="metro:ExpanderHelper.ExpandStoryboard" Value="{StaticResource Storyboard.Expander.Expand}" />
-        <Setter Property="metro:ExpanderHelper.CollapseStoryboard" Value="{StaticResource Storyboard.Expander.Collapse}" />
+        <Setter Property="metro:ExpanderHelper.ExpandStoryboard" Value="{StaticResource RCP.Storyboards.Expander.Expand}" />
+        <Setter Property="metro:ExpanderHelper.CollapseStoryboard" Value="{StaticResource RCP.Storyboards.Expander.Collapse}" />
 
     </Style>
 

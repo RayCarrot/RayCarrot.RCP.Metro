@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
-    <Button Style="{StaticResource Button.Flat}"
+    <Button Style="{StaticResource RCP.Styles.Button.Flat}"
             ToolTip="{Resx Settings_AdminInfo}"
             Command="{Binding Path=RequestRestartAsAdminCommand, Source={x:Static local:Services.App}}">
 

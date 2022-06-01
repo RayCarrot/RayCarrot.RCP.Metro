@@ -12,7 +12,7 @@
 
         <StackPanel Orientation="Horizontal">
             <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <Button Content="{Resx Utility_Apply}"

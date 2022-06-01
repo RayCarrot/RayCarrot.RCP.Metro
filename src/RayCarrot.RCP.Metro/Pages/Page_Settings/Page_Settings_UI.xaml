@@ -80,14 +80,14 @@
 
         <!-- General -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Settings}"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Settings}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Settings}"
                  Header="{Resx Settings_GeneralHeader}">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <!-- Language -->
@@ -98,11 +98,11 @@
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="{Resx Settings_Language}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
@@ -146,7 +146,7 @@
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Resx Settings_UserLevel}"
-                                       Style="{StaticResource TextBlock.HeaderLarge}" />
+                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                             <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
 
@@ -154,7 +154,7 @@
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <!-- User Levels -->
@@ -162,7 +162,7 @@
                             <WrapPanel>
 
                                 <i:Interaction.Behaviors>
-                                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+                                    <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
                                 </i:Interaction.Behaviors>
 
                                 <!-- Normal -->
@@ -204,11 +204,11 @@
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="{Resx Settings_GeneralHeader}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
@@ -232,7 +232,7 @@
 
                             <StackPanel DataContext="{Binding Path=Data}">
 
-                                <TextBlock Style="{StaticResource TextBlock.Header}"
+                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                            Text="{Resx Settings_BackupLocation}"
                                            Margin="0 0 0 8"  />
 
@@ -248,7 +248,7 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             Margin="0 0 0 8">
-                                    <TextBlock Style="{StaticResource TextBlock.Header}"
+                                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                                Text="{Resx Settings_SerializationLog}" />
 
                                     <local:InfoIcon Text="{Resx Settings_SerializationLogInfo}" />
@@ -278,11 +278,11 @@
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="{Resx Settings_DesignHeader}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <CheckBox Content="{Resx Settings_SyncTheme}"
@@ -323,11 +323,11 @@
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="{Resx Settings_StartupHeader}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <CheckBox Content="{Resx Settings_StartupGameFinder}"
@@ -347,14 +347,14 @@
 
         <!-- Archive Explorer -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Settings_ArchiveExplorer}"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.ArchiveExplorer}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_ArchiveExplorer}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.ArchiveExplorer}"
                  Header="{Resx Archive_Title}">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <!-- Archive Explorer -->
@@ -365,16 +365,16 @@
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="{Resx Archive_Title}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <StackPanel DataContext="{Binding Path=Data}">
 
-                                <TextBlock Style="{StaticResource TextBlock.Header}"
+                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                            Text="{Resx Archive_BinaryEditor}"
                                            Margin="0 0 0 8" />
 
@@ -387,7 +387,7 @@
 
                             <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={local:EnumerableEmptyVisibilityConverter}}">
 
-                                <TextBlock Style="{StaticResource TextBlock.Header}"
+                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                            Text="{Resx Archive_FileEditors}"
                                            Margin="0 0 0 8" />
 
@@ -437,7 +437,7 @@
 
                             <StackPanel>
 
-                                <TextBlock Style="{StaticResource TextBlock.Header}"
+                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                            Text="{Resx Settings_ArchiveGFTransparency}"
                                            Margin="0 0 0 8" />
 
@@ -476,14 +476,14 @@
 
         <!-- DOSBox -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Settings_ArchiveExplorer}"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Technical}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_ArchiveExplorer}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Technical}"
                  Header="{Resx Settings_DosBoxHeader}">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <!-- DOSBox -->
@@ -494,16 +494,16 @@
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="{Resx Settings_DosBoxHeader}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <StackPanel>
 
-                                <TextBlock Style="{StaticResource TextBlock.Header}"
+                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                            Text="{Resx Settings_DosBoxPath}"
                                            Margin="0 0 0 8" />
 
@@ -517,7 +517,7 @@
 
                             <StackPanel local:UserLevelAssist.MinUserLevel="Advanced">
 
-                                <TextBlock Style="{StaticResource TextBlock.Header}"
+                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                            Text="{Resx Settings_OptionalDosBoxConfigPath}"
                                            Margin="0 0 0 8" />
 
@@ -543,12 +543,12 @@
         <!-- Links -->
 
         <TabItem local:TabItemAssist.IconKind="Link"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Info}"
                  Header="{Resx LinksPageHeader}">
 
             <ScrollViewer>
                 <ItemsControl Margin="2 0"
-                              Style="{DynamicResource ItemsControl.LinkItemsDisplay}"
+                              Style="{DynamicResource RCP.Styles.ItemsControl.LinkItemsDisplay}"
                               ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime, IsAsync=True}" />
             </ScrollViewer>
 
@@ -557,14 +557,14 @@
         <!-- Debug -->
 
         <TabItem local:TabItemAssist.IconKind="CodeBraces"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
                  Header="{Resx DebugPageHeader}"
                  local:UserLevelAssist.MinUserLevel="Debug">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <!-- Debug -->
@@ -576,11 +576,11 @@
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="{Resx Settings_DebugHeader}"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
                             <i:Interaction.Behaviors>
-                                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
                             <CheckBox Content="{Resx Settings_DisableGameValidation}"

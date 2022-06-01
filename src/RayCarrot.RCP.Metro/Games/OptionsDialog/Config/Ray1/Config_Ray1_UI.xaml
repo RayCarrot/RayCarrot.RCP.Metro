@@ -14,14 +14,14 @@
 
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Language -->
 
         <StackPanel Orientation="Horizontal"
                     Visibility="{Binding Path=IsGameLanguageAvailable, Converter={local:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Language}" />
 
             <local:InfoIcon Text="{Resx DosBoxConfig_LanguageInfo}" />
@@ -49,7 +49,7 @@
 
         <!-- Sound -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Sound}" />
 
         <CheckBox Content="{Resx Config_Music}"
@@ -60,7 +60,7 @@
                             OnContent="{Resx Config_Stereo}"
                             OffContent="{Resx Config_Mono}" />
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_SoundVolumeHeader}" />
 
         <Slider Value="{Binding Path=SoundVolume}"
@@ -73,7 +73,7 @@
                 AutoToolTipPlacement="TopLeft"
                 HorizontalAlignment="Left" />
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                     Visibility="{Binding Path=IsVoicesVolumeAvailable, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                    Text="{Resx Config_VolumeVoices}" />
 
@@ -90,7 +90,7 @@
 
         <!-- Graphics -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Graphics}" />
 
         <CheckBox Content="{Resx Config_Background}"
@@ -104,14 +104,14 @@
         <CheckBox Content="{Resx Config_ShowHUD}"
                   IsChecked="{Binding Path=ShowHUD}" />
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_FPS}" />
 
         <ComboBox HorizontalAlignment="Left"
                   ItemsSource="{Binding Path=FrameRateOptions_Names, Mode=OneTime}"
                   SelectedIndex="{Binding Path=SelectedFrameRateOption}" />
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
                    Text="{Resx Config_Border}" />
 
@@ -128,12 +128,12 @@
 
         <!-- Controls -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Controls}" />
 
         <local:ButtonMapper ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_GamePad}" />
 
         <Grid>
@@ -144,7 +144,7 @@
 
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
                 <i:Interaction.Behaviors>
-                    <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                    <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                 </i:Interaction.Behaviors>
 
                 <Grid>
@@ -167,7 +167,7 @@
                     </Grid.Resources>
 
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <TextBlock Grid.Column="0"
@@ -250,7 +250,7 @@
 
         <!-- Device -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Device}"
                    local:UserLevelAssist.MinUserLevel="Technical" />
 
@@ -277,7 +277,7 @@
             </Grid.Resources>
 
             <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
             </i:Interaction.Behaviors>
 
             <TextBlock Grid.Column="0"

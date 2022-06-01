@@ -12,10 +12,10 @@
              d:DataContext="{d:DesignInstance local:Config_Rayman3_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Resolution}" />
 
         <local:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
@@ -24,7 +24,7 @@
                   ToolTip="{Resx Config_FullscreenInfo}"
                   IsChecked="{Binding Path=FullscreenMode}" />
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Graphics}" />
 
         <CheckBox Content="{Resx Config_TriLinear}"
@@ -50,7 +50,7 @@
                       Margin="0 8" />
         </Grid>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Textures}" />
 
         <StackPanel Orientation="Horizontal">
@@ -64,7 +64,7 @@
         <CheckBox Content="{Resx Config_Compressed}"
                   IsChecked="{Binding Path=CompressedTextures}" />
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Video}" />
 
         <StackPanel>
@@ -110,7 +110,7 @@
 
         </StackPanel>
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Language}" />
 
         <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={local:EnumToIntConverter}}"
@@ -141,7 +141,7 @@
 
         <StackPanel Orientation="Horizontal">
 
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_Controller}" />
 
             <local:InfoIcon Text="{Resx Config_ControllerInfo}" />
@@ -184,7 +184,7 @@
                 HorizontalAlignment="Left"
                 Visibility="{Binding Path=HasControllerConfig, Converter={local:BooleanToVisibilityConverter}}" />
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx Config_Network}"
                    Visibility="{Binding Path=HasNetworkConfig, Converter={local:BooleanToVisibilityConverter}}" />
 
@@ -196,7 +196,7 @@
         <StackPanel Orientation="Horizontal"
                     Visibility="{Binding Path=CanRemoveDiscCheck, Converter={local:BooleanToVisibilityConverter}}">
 
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx Config_DiscCheck}" />
 
             <local:InfoIcon Text="{Resx Config_DiscCheckInfo}" />
@@ -213,7 +213,7 @@
                       IsChecked="{Binding Path=IsDiscCheckRemoved}"
                       IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
 
-            <local:InfoIcon Style="{StaticResource InfoIcon.Notice}"
+            <local:InfoIcon Style="{StaticResource RCP.Styles.InfoIcon.Notice}"
                             Text="{Resx Config_OutdatedPatchNotice}"
                             Visibility="{Binding Path=IsDiscPatchOutdated, Converter={local:BooleanToVisibilityConverter}}"/>
 

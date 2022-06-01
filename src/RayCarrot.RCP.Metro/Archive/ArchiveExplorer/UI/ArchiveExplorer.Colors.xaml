@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- TODO: Move to Brushes.xaml? -->
-    <SolidColorBrush x:Key="Archive_FileBrush" Color="{StaticResource Color.PurplePrimary600}" />
-    <SolidColorBrush x:Key="Archive_FolderBrush" Color="{StaticResource Color.OrangePrimary600}" />
-    <SolidColorBrush x:Key="Archive_AddItemBrush" Color="{StaticResource Color.GreenPrimary600}" />
-    <SolidColorBrush x:Key="Archive_DeleteItemBrush" Color="{StaticResource Color.RedPrimary600}" />
+    <SolidColorBrush x:Key="Archive_FileBrush" Color="{StaticResource RCP.Colors.PurplePrimary600}" />
+    <SolidColorBrush x:Key="Archive_FolderBrush" Color="{StaticResource RCP.Colors.OrangePrimary600}" />
+    <SolidColorBrush x:Key="Archive_AddItemBrush" Color="{StaticResource RCP.Colors.GreenPrimary600}" />
+    <SolidColorBrush x:Key="Archive_DeleteItemBrush" Color="{StaticResource RCP.Colors.RedPrimary600}" />
 
 </ResourceDictionary>

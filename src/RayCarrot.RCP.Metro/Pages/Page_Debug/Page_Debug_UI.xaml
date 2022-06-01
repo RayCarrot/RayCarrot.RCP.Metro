@@ -71,22 +71,22 @@
         <!-- Information -->
 
         <TabItem local:TabItemAssist.IconKind="InformationOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
                  Header="Information">
 
             <ScrollViewer>
                 <StackPanel Grid.IsSharedSizeScope="True">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
                     </i:Interaction.Behaviors>
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmallest}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmallest}" />
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="Information"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <TextBlock TextWrapping="Wrap">
 
@@ -100,11 +100,11 @@
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmallest}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmallest}" />
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="Launch Arguments"
-                                   Style="{StaticResource TextBlock.Header}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.Header}" />
 
                         <StackPanel>
 
@@ -138,11 +138,11 @@
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmallest}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmallest}" />
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="Console Mode"
-                                   Style="{StaticResource TextBlock.Header}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.Header}" />
 
                         <TextBlock TextWrapping="Wrap">
 
@@ -183,23 +183,23 @@
         <!-- Services -->
 
         <TabItem local:TabItemAssist.IconKind="DatabaseOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
                  Header="Services">
 
             <ScrollViewer>
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
                         </i:Interaction.Behaviors>
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Dialogs"
-                                       Style="{StaticResource TextBlock.HeaderLarge}" />
+                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                             <local:InfoIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
 
@@ -228,12 +228,12 @@
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
                         </i:Interaction.Behaviors>
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Installer"
-                                       Style="{StaticResource TextBlock.HeaderLarge}" />
+                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                             <local:InfoIcon Text="Running the installer on a game which has already been added might crash the application when complete." />
 
@@ -265,22 +265,22 @@
         <!-- Services -->
 
         <TabItem local:TabItemAssist.IconKind="TextBoxMultipleOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
                  Header="Output">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="Data Output"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -314,22 +314,22 @@
         <!-- Theme -->
 
         <TabItem local:TabItemAssist.IconKind="PaletteOutline"
-                 local:TabItemAssist.IconForeground="{StaticResource Brush.Debug}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
                  Header="User Interface">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="Accent Color"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <metro:ColorCanvas SelectedColor="{Binding Path=SelectedAccentColor}" />
 
@@ -341,11 +341,11 @@
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.VerticalSmall}" />
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
                         </i:Interaction.Behaviors>
 
                         <TextBlock Text="Options"
-                                   Style="{StaticResource TextBlock.HeaderLarge}" />
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <CheckBox Content="Show grid lines"
                                   IsChecked="{Binding Path=ShowGridLines}" />

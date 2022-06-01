@@ -15,14 +15,14 @@
              d:DataContext="{d:DesignInstance local:Config_Ray1_BaseViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- General settings -->
 
         <StackPanel Orientation="Horizontal">
 
-            <TextBlock Style="{StaticResource TextBlock.Header}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        Text="{Resx DosBoxSettingsHeader}" />
 
             <local:InfoIcon Text="{Resx DosBoxSettingsInfo}" />
@@ -76,7 +76,7 @@
             </Grid.Resources>
 
             <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
             </i:Interaction.Behaviors>
 
             <TextBlock Grid.Column="0"
@@ -188,7 +188,7 @@
 
         <!-- Custom commands -->
 
-        <TextBlock Style="{StaticResource TextBlock.Header}"
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                    Text="{Resx DosBoxOptions_Commands}"
                    local:UserLevelAssist.MinUserLevel="Technical" />
 

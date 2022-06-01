@@ -21,7 +21,7 @@
 
         <!-- App Info -->
 
-        <Grid Grid.Row="0" Margin="{StaticResource Thickness.Vertical}">
+        <Grid Grid.Row="0" Margin="{StaticResource RCP.Thicknesses.Vertical}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -42,14 +42,14 @@
         <!-- Credits Header -->
 
         <TextBlock Grid.Row="1"
-                   Margin="{StaticResource Thickness.Vertical}"
+                   Margin="{StaticResource RCP.Thicknesses.Vertical}"
                    Text="{Resx About_Credits}"
-                   Style="{StaticResource TextBlock.HeaderLarge}"
+                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                    HorizontalAlignment="Center" />
 
         <!-- Credits -->
 
-        <ScrollViewer Grid.Row="2" Margin="{StaticResource Thickness.Vertical}">
+        <ScrollViewer Grid.Row="2" Margin="{StaticResource RCP.Thicknesses.Vertical}">
 
             <StackPanel>
 
@@ -130,19 +130,19 @@
 
                 <local:IconButton IconKind="Youtube"
                                   ToolTip="{Resx About_YouTube}"
-                                  Foreground="{StaticResource Brush.YouTube}"
+                                  Foreground="{StaticResource RCP.Brushes.YouTube}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:AppURLs.YouTubeUrl}" />
 
                 <local:IconButton IconKind="Twitter"
                                   ToolTip="{Resx About_Twitter}"
-                                  Foreground="{StaticResource Brush.Twitter}"
+                                  Foreground="{StaticResource RCP.Brushes.Twitter}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:AppURLs.TwitterUrl}" />
 
                 <local:IconButton IconKind="EmailOutline"
                                   ToolTip="{Resx About_Email}"
-                                  Foreground="{StaticResource Brush.Email}"
+                                  Foreground="{StaticResource RCP.Brushes.Email}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:AppURLs.EmailUrl}" />
 
