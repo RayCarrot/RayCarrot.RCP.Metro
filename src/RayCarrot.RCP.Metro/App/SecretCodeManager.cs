@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -39,7 +40,7 @@ public static class SecretCodeManager
                 },
                 async () =>
                 {
-                    Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, "Red");
+                    Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, Color.FromRgb(0xf4, 0x43, 0x36)); // RedPrimary500
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Konami, Resources.SecretCodes_KonamiHeader, MessageType.Success);
                 }
@@ -60,7 +61,7 @@ public static class SecretCodeManager
                 },
                 async () =>
                 {
-                    Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, "Orange");
+                    Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, Color.FromRgb(0xff, 0x98, 0x00)); // OrangePrimary500
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_RayCarrot, Resources.SecretCodes_RayCarrotHeader, MessageType.Success);
                 }
@@ -76,7 +77,7 @@ public static class SecretCodeManager
                 },
                 async () =>
                 {
-                    Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, "Lime");
+                    Application.Current.SetTheme(Services.Data.Theme_DarkMode, false, Color.FromRgb(0xcd, 0xdc, 0x39)); // LimePrimary500
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
                 }

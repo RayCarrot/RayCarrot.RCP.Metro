@@ -552,17 +552,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
     public void UpdateTheme()
     {
-        Theme newTheme = new Theme(
-            name: "DebugTheme", 
-            displayName: "DebugTheme", 
-            baseColorScheme: Data.Theme_DarkMode ? "Dark" : "Light", 
-            colorScheme: SelectedAccentColor.ToString(), 
-            primaryAccentColor: SelectedAccentColor, 
-            showcaseBrush: new SolidColorBrush(SelectedAccentColor), 
-            isRuntimeGenerated: true, 
-            isHighContrast: false);
-            
-        ThemeManager.Current.ChangeTheme(Metro.App.Current, newTheme);
+        Metro.App.Current.SetTheme(Data.Theme_DarkMode, false, SelectedAccentColor);
     }
 
     #endregion

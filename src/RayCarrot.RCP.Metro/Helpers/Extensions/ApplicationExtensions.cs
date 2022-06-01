@@ -2,6 +2,7 @@
 using System.Linq;
 using ControlzEx.Theming;
 using System.Windows;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -42,7 +43,7 @@ public static class ApplicationExtensions
     /// <param name="darkMode">True to use dark mode or false to use light mode</param>
     /// <param name="sync">Indicates if the theme should sync with the system theme. This will override the <see cref="darkMode"/> setting.</param>
     /// <param name="color">Optional accent color</param>
-    public static void SetTheme(this Application app, bool darkMode, bool sync, string color = "Purple")
+    public static void SetTheme(this Application app, bool darkMode, bool sync, Color? color = null)
     {
         if (sync)
         {
@@ -52,7 +53,19 @@ public static class ApplicationExtensions
         else
         {
             ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.DoNotSync;
-            ThemeManager.Current.ChangeTheme(app, $"{(darkMode ? "Dark" : "Light")}.{color}");
+            color ??= Color.FromRgb(0x67, 0x3a, 0xb7); // DeepPurplePrimary500
+
+            Theme newTheme = new(
+                name: "RCP",
+                displayName: "RCP",
+                baseColorScheme: darkMode ? "Dark" : "Light",
+                colorScheme: color.Value.ToString(),
+                primaryAccentColor: color.Value,
+                showcaseBrush: new SolidColorBrush(color.Value),
+                isRuntimeGenerated: true,
+                isHighContrast: false);
+
+            ThemeManager.Current.ChangeTheme(app, newTheme);
         }
 
         Theme? theme = ThemeManager.Current.DetectTheme(app);
