@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -24,8 +23,8 @@ public class AlignableWrapPanel : Panel
 
     protected override Size MeasureOverride(Size constraint)
     {
-        Size curLineSize = new Size();
-        Size panelSize = new Size();
+        Size curLineSize = new();
+        Size panelSize = new();
 
         UIElementCollection children = InternalChildren;
 
@@ -60,7 +59,7 @@ public class AlignableWrapPanel : Panel
             }
         }
 
-        // the last line size, if any need to be added
+        // The last line size, if any need to be added
         panelSize.Width = Math.Max(curLineSize.Width, panelSize.Width);
         panelSize.Height += curLineSize.Height;
 
@@ -70,7 +69,7 @@ public class AlignableWrapPanel : Panel
     protected override Size ArrangeOverride(Size arrangeBounds)
     {
         int firstInLine = 0;
-        Size curLineSize = new Size();
+        Size curLineSize = new();
         double accumulatedHeight = 0;
         UIElementCollection children = InternalChildren;
 
@@ -78,14 +77,14 @@ public class AlignableWrapPanel : Panel
         {
             Size sz = children[i].DesiredSize;
 
-            if (curLineSize.Width + sz.Width > arrangeBounds.Width) //need to switch to another line
+            if (curLineSize.Width + sz.Width > arrangeBounds.Width) // Need to switch to another line
             {
                 ArrangeLine(accumulatedHeight, curLineSize, arrangeBounds.Width, firstInLine, i);
 
                 accumulatedHeight += curLineSize.Height;
                 curLineSize = sz;
 
-                if (sz.Width > arrangeBounds.Width) //the element is wider then the constraint - give it a separate line                    
+                if (sz.Width > arrangeBounds.Width) // The element is wider then the constraint - give it a separate line                    
                 {
                     ArrangeLine(accumulatedHeight, sz, arrangeBounds.Width, i, ++i);
                     accumulatedHeight += sz.Height;
@@ -93,7 +92,7 @@ public class AlignableWrapPanel : Panel
                 }
                 firstInLine = i;
             }
-            else //continue to accumulate a line
+            else // Continue to accumulate a line
             {
                 curLineSize.Width += sz.Width;
                 curLineSize.Height = Math.Max(sz.Height, curLineSize.Height);
@@ -109,16 +108,14 @@ public class AlignableWrapPanel : Panel
     private void ArrangeLine(double y, Size lineSize, double boundsWidth, int start, int end)
     {
         double x = 0;
+
         if (HorizontalContentAlignment == HorizontalAlignment.Center)
-        {
             x = (boundsWidth - lineSize.Width) / 2;
-        }
         else if (HorizontalContentAlignment == HorizontalAlignment.Right)
-        {
             x = (boundsWidth - lineSize.Width);
-        }
 
         UIElementCollection children = InternalChildren;
+
         for (int i = start; i < end; i++)
         {
             UIElement child = children[i];
