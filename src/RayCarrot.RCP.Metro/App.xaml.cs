@@ -647,7 +647,7 @@ public partial class App : Application
             logLevel = LogLevel.FromString(argLogLevel);
         }
 
-        const string logLayout = "${time:invariant=true}|${level:uppercase=true}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}";
+        const string logLayout = "${time:invariant=true}|${level:uppercase=true}|${logger}|${message:withexception=true}";
         bool logToFile = !args.Contains("-nofilelog");
         bool logToMemory = !args.Contains("-nomemlog");
         bool logToViewer = args.Contains("-logviewer");
@@ -664,6 +664,7 @@ public partial class App : Application
                 ArchiveNumbering = ArchiveNumberingMode.Sequence,
 
                 // Keep the file open and disable concurrent writes to improve performance
+                // (starting with NLog 5.0 these are the default values, but let's be explicit anyway)
                 KeepFileOpen = true,
                 ConcurrentWrites = false,
 
