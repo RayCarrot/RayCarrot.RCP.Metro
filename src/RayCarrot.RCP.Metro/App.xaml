@@ -15,10 +15,10 @@
 
                 <ResourceDictionary Source="UI/Resources/Fonts.xaml" />
                 <ResourceDictionary Source="UI/Brushes/Brushes.xaml" />
+                <ResourceDictionary Source="UI/Brushes/Brushes.Dark.xaml" />
+                <ResourceDictionary Source="UI/Icons/Icons.xaml" />
                 <ResourceDictionary Source="UI/Resources/Theme.RoundedCorners.xaml" />
-                <ResourceDictionary Source="UI/Resources/Theme.Colors.Dark.xaml" />
 
-                <ResourceDictionary Source="UI/Resources/Resources.Icons.xaml" />
                 <ResourceDictionary Source="UI/Resources/Resources.Margins.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.ToolTip.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.TextBox.xaml" />

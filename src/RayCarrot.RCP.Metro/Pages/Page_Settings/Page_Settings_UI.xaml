@@ -80,7 +80,7 @@
 
         <!-- General -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Settings}"
                  local:TabItemAssist.IconForeground="{StaticResource Brush.Settings}"
                  Header="{Resx Settings_GeneralHeader}">
 
@@ -347,7 +347,7 @@
 
         <!-- Archive Explorer -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Settings_ArchiveExplorer}"
                  local:TabItemAssist.IconForeground="{StaticResource Brush.ArchiveExplorer}"
                  Header="{Resx Archive_Title}">
 
@@ -476,7 +476,7 @@
 
         <!-- DOSBox -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Settings_ArchiveExplorer}"
                  local:TabItemAssist.IconForeground="{StaticResource Brush.Technical}"
                  Header="{Resx Settings_DosBoxHeader}">
 

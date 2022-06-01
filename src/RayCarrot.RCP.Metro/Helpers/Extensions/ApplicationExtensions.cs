@@ -15,7 +15,7 @@ public static class ApplicationExtensions
     {
         // TODO: Find better way of doing this. Perhaps add our custom colors to the theme manager?
 
-        static string GetThemeStyleSource(string colorScheme) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Theme.Colors.{colorScheme}.xaml";
+        static string GetThemeStyleSource(string colorScheme) => $"{AppViewModel.WPFApplicationBasePath}/UI/Brushes/Brushes.{colorScheme}.xaml";
 
         // Get previous source
         string lightSource = GetThemeStyleSource(ThemeManager.BaseColorLight);

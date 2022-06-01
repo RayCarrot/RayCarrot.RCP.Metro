@@ -23,7 +23,7 @@
 
         <!-- Binary Tools -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_BinaryTools}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Utilities_BinaryTools}"
                  local:TabItemAssist.IconForeground="{StaticResource Brush.ArchiveExplorer}"
                  Header="{Resx Utilities_BinaryTools_Header}">
 
@@ -35,7 +35,7 @@
 
         <!-- Other -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_Other}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Utilities_Other}"
                  local:TabItemAssist.IconForeground="{StaticResource Brush.Utilities}"
                  Header="{Resx Utilities_Other_Header}">
 
@@ -47,7 +47,7 @@
 
         <!-- External Tools -->
 
-        <TabItem local:TabItemAssist.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
+        <TabItem local:TabItemAssist.IconKind="{StaticResource Icon.Utilities_ExternalTools}"
                  local:TabItemAssist.IconForeground="{StaticResource Brush.Info}"
                  Header="{Resx Utilities_ExternalTools_Header}">
 

@@ -8,6 +8,6 @@ public class GenericIconToBrushConverter : BaseValueConverter<GenericIconToBrush
 {
     public override Brush ConvertValue(GenericIconKind value, Type targetType, object parameter, CultureInfo culture)
     {
-        return ((GenericIcon)App.Current.FindResource($"GenericIcons.{value}")).IconColor;
+        return ((GenericIcon)App.Current.FindResource($"GenericIcon.{value}")).IconColor;
     }
 }
