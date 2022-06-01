@@ -36,11 +36,11 @@
                 <ResourceDictionary Source="UI/Styles/LinkItem.List.xaml" />
                 <ResourceDictionary Source="UI/Styles/ChildWindow.xaml" />
                 <ResourceDictionary Source="UI/Styles/LoaderContentControl.xaml" />
-                <ResourceDictionary Source="UI/Styles/BrowseBox.xaml" />
                 <ResourceDictionary Source="UI/Styles/GameIcon.xaml" />
                 <ResourceDictionary Source="UI/Styles/Window.xaml" />
                 <ResourceDictionary Source="UI/Styles/Expander.xaml" />
 
+                <ResourceDictionary Source="UI/Controls/BrowseBox/BrowseBox.xaml" />
                 <ResourceDictionary Source="UI/Controls/DuoGrid/DuoGridItem/DuoGridItem.xaml" />
                 <ResourceDictionary Source="UI/Controls/DuoGrid/DuoGrid.xaml" />
                 <ResourceDictionary Source="UI/Controls/Card/Card.xaml" />

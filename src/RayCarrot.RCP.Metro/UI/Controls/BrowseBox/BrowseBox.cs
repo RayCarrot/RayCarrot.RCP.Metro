@@ -1,6 +1,4 @@
 ﻿#nullable disable
-using Microsoft.Win32;
-using Nito.AsyncEx;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -14,10 +12,10 @@ using System.Windows.Input;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// A control for browsing file, directory and Registry paths
+/// A control for browsing for file system paths
 /// </summary>
-[TemplatePart(Name = BrowseButtonName, Type = typeof(Button))]
-[TemplatePart(Name = OpenLocationMenuItemName, Type = typeof(MenuItem))]
+[TemplatePart(Name = nameof(PART_BrowseButton), Type = typeof(Button))]
+[TemplatePart(Name = nameof(PART_OpenLocationMenuItem), Type = typeof(MenuItem))]
 public class BrowseBox : Control
 {
     #region Static Constructor
@@ -29,96 +27,18 @@ public class BrowseBox : Control
 
     #endregion
 
-    #region Constructor
-
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public BrowseBox()
-    {
-        BrowseAsyncLock = new AsyncLock();
-    }
-
-    #endregion
-
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
-    #region Protected Constants
-
-    protected const string BrowseButtonName = "PART_BrowseButton";
-
-    protected const string OpenLocationMenuItemName = "PART_OpenLocationMenuItem";
-
-    #endregion
-
     #region Private Fields
 
-    private Button _browseButton;
+    private Button PART_BrowseButton;
+    private MenuItem PART_OpenLocationMenuItem;
 
-    private MenuItem _openLocationMenuItem;
-
-    #endregion
-
-    #region Private Properties
-
-    /// <summary>
-    /// The async lock for browsing
-    /// </summary>
-    private AsyncLock BrowseAsyncLock { get; }
-
-    /// <summary>
-    /// The browse button
-    /// </summary>
-    private Button BrowseButton
-    {
-        get => _browseButton;
-        set
-        {
-            if (BrowseButton != null)
-            {
-                BrowseButton.Click -= BrowseFileAsync;
-                BrowseButton.DragEnter -= BrowseButton_DragEnter;
-                BrowseButton.Drop -= BrowseButton_Drop;
-            }
-
-            _browseButton = value;
-
-            if (BrowseButton != null)
-            {
-                BrowseButton.Click += BrowseFileAsync;
-                BrowseButton.DragEnter += BrowseButton_DragEnter;
-                BrowseButton.Drop += BrowseButton_Drop;
-            }
-        }
-    }
-
-    /// <summary>
-    /// The menu item for opening the location
-    /// </summary>
-    private MenuItem OpenLocationMenuItem
-    {
-        get => _openLocationMenuItem;
-        set
-        {
-            if (OpenLocationMenuItem != null)
-            {
-                OpenLocationMenuItem.Click -= OpenLocationMenuItem_ClickAsync;
-                OpenLocationMenuItem.Loaded -= OpenLocationMenuItem_Loaded;
-            }
-
-            _openLocationMenuItem = value;
-
-            if (OpenLocationMenuItem != null)
-            {
-                OpenLocationMenuItem.Click += OpenLocationMenuItem_ClickAsync;
-                OpenLocationMenuItem.Loaded += OpenLocationMenuItem_Loaded;
-            }
-        }
-    }
+    private bool _isBrowsing;
 
     #endregion
 
@@ -128,8 +48,32 @@ public class BrowseBox : Control
     {
         base.OnApplyTemplate();
 
-        BrowseButton = Template.FindName(BrowseButtonName, this) as Button;
-        OpenLocationMenuItem = Template.FindName(OpenLocationMenuItemName, this) as MenuItem;
+        if (PART_BrowseButton != null)
+        {
+            PART_BrowseButton.Click -= BrowseFileAsync;
+            PART_BrowseButton.DragEnter -= BrowseButton_DragEnter;
+            PART_BrowseButton.Drop -= BrowseButton_Drop;
+        }
+        if (PART_OpenLocationMenuItem != null)
+        {
+            PART_OpenLocationMenuItem.Click -= OpenLocationMenuItem_ClickAsync;
+            PART_OpenLocationMenuItem.Loaded -= OpenLocationMenuItem_Loaded;
+        }
+
+        PART_BrowseButton = Template.FindName(nameof(PART_BrowseButton), this) as Button;
+        PART_OpenLocationMenuItem = Template.FindName(nameof(PART_OpenLocationMenuItem), this) as MenuItem;
+
+        if (PART_BrowseButton != null)
+        {
+            PART_BrowseButton.Click += BrowseFileAsync;
+            PART_BrowseButton.DragEnter += BrowseButton_DragEnter;
+            PART_BrowseButton.Drop += BrowseButton_Drop;
+        }
+        if (PART_OpenLocationMenuItem != null)
+        {
+            PART_OpenLocationMenuItem.Click += OpenLocationMenuItem_ClickAsync;
+            PART_OpenLocationMenuItem.Loaded += OpenLocationMenuItem_Loaded;
+        }
     }
 
     #endregion
@@ -178,16 +122,19 @@ public class BrowseBox : Control
     /// Checks if the file drag/drop is allowed based on the current properties
     /// </summary>
     /// <returns>True if it's allowed, otherwise false</returns>
-    protected virtual bool AllowFileDragDrop() => BrowseType == BrowseType.Directory || BrowseType == BrowseType.SaveFile || BrowseType == BrowseType.File || BrowseType == BrowseType.Drive;
+    protected virtual bool AllowFileDragDrop() => 
+        BrowseType is BrowseType.Directory or BrowseType.SaveFile or BrowseType.File or BrowseType.Drive;
 
     protected virtual async Task BrowseAsync()
     {
-        using (await BrowseAsyncLock.LockAsync())
+        if (_isBrowsing)
+            return;
+
+        try
         {
             switch (BrowseType)
             {
                 case BrowseType.SaveFile:
-
                     var saveFileResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
                         Title = SaveFileHeader,
@@ -256,12 +203,17 @@ public class BrowseBox : Control
 
             MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
         }
+        finally
+        {
+            _isBrowsing = false;
+        }
     }
 
     protected virtual async Task OpenLocationAsync()
     {
         if (!IsPathValid())
         {
+            // TODO: Localize? Or maybe remove since this can probably never actually happen.
             await Services.MessageUI.DisplayMessageAsync($"The path {SelectedPath} does not exist", "Path not found", MessageType.Error);
             return;
         }
@@ -470,21 +422,6 @@ public class BrowseBox : Control
     }
 
     public static readonly DependencyProperty AllowNonReadyDrivesProperty = DependencyProperty.Register(nameof(AllowNonReadyDrives), typeof(bool), typeof(BrowseBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-    #endregion
-
-    #region AllowNonReadyDrives
-
-    /// <summary>
-    /// True if the user can change the <see cref="RegistryView"/>, false if not
-    /// </summary>
-    public bool AllowCustomRegistryView
-    {
-        get => (bool)GetValue(AllowCustomRegistryViewProperty);
-        set => SetValue(AllowCustomRegistryViewProperty, value);
-    }
-
-    public static readonly DependencyProperty AllowCustomRegistryViewProperty = DependencyProperty.Register(nameof(AllowCustomRegistryView), typeof(bool), typeof(BrowseBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
     #endregion
 

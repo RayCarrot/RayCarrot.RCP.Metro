@@ -5,10 +5,9 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
-    <!-- Default Browse Box -->
-
     <Style TargetType="{x:Type local:BrowseBox}">
         <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:BrowseBox}">

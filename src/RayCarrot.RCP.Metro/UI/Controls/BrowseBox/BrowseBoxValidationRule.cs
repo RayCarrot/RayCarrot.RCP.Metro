@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
 using System.Windows.Controls;
@@ -22,7 +21,7 @@ public class BrowseBoxValidationRule : ValidationRule
     /// <param name="value">The value from the binding target to check</param>
     /// <param name="cultureInfo">The culture to use in this rule</param>
     /// <returns>The validation result</returns>
-    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+    public override ValidationResult Validate(object? value, CultureInfo cultureInfo)
     {
         string input = (value ?? String.Empty).ToString();
 
