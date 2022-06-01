@@ -29,6 +29,10 @@
     <SolidColorBrush x:Key="Brush.StatusIncomplete" Color="{StaticResource Color.RedPrimary500}" />
     <SolidColorBrush x:Key="Brush.StatusPending" Color="{StaticResource Color.IndigoPrimary500}" />
 
+    <!-- Alert -->
+    <SolidColorBrush x:Key="Brush.Warning" Color="{StaticResource Color.RedPrimary700}" />
+    <SolidColorBrush x:Key="Brush.Notice" Color="{StaticResource Color.AmberPrimary700}" />
+
     <!-- Logging -->
     <SolidColorBrush x:Key="Brush.LogLevel.Trace" Color="{StaticResource Color.LightGreenPrimary700}" />
     <SolidColorBrush x:Key="Brush.LogLevel.Debug" Color="{StaticResource Color.LimePrimary700}" />
