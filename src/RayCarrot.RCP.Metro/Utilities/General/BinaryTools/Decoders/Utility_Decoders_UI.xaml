@@ -11,7 +11,9 @@
              d:DesignWidth="550" 
              d:DataContext="{d:DesignInstance local:Utility_Decoders_ViewModel}">
 
-    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}">
+    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
+                                VerticalLoadingIconAlignment="Bottom"
+                                HorizontalLoadingIconAlignment="Right">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*" />

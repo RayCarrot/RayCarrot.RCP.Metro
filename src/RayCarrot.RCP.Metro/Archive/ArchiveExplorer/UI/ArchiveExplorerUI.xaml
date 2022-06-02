@@ -29,8 +29,6 @@
 
     <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
-                                VerticalContentAlignment="Stretch"
-                                HorizontalContentAlignment="Stretch"
                                 IsLoading="{Binding Path=IsLoading}">
         <Grid Margin="10"
               IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">

@@ -14,7 +14,9 @@
             <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
-        <local:LoaderContentControl IsLoading="{Binding Path=IsLoadingDirectPlay}">
+        <local:LoaderContentControl IsLoading="{Binding Path=IsLoadingDirectPlay}"
+                                    VerticalLoadingIconAlignment="Bottom"
+                                    HorizontalLoadingIconAlignment="Right">
 
             <metro:ToggleSwitch IsOn="{Binding Path=IsDirectPlayEnabled}"
                                 HorizontalAlignment="Left"

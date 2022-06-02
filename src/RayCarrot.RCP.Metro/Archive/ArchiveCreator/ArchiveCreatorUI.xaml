@@ -15,8 +15,6 @@
                             MaxWidth="500">
     <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
-                                HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Stretch"
                                 IsLoading="{Binding Path=IsLoading}">
         <Grid Margin="10"
               IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">

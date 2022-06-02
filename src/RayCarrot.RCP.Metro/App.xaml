@@ -35,7 +35,6 @@
                 <ResourceDictionary Source="UI/Styles/AutoCompleteTextBox.xaml" />
                 <ResourceDictionary Source="UI/Styles/LinkItem.List.xaml" />
                 <ResourceDictionary Source="UI/Styles/ChildWindow.xaml" />
-                <ResourceDictionary Source="UI/Styles/LoaderContentControl.xaml" />
                 <ResourceDictionary Source="UI/Styles/Window.xaml" />
                 <ResourceDictionary Source="UI/Styles/Expander.xaml" />
 
@@ -44,6 +43,7 @@
                 <ResourceDictionary Source="UI/Controls/DuoGrid/DuoGridItem/DuoGridItem.xaml" />
                 <ResourceDictionary Source="UI/Controls/DuoGrid/DuoGrid.xaml" />
                 <ResourceDictionary Source="UI/Controls/GameIcon/GameIcon.xaml" />
+                <ResourceDictionary Source="UI/Controls/LoaderContentControl/LoaderContentControl.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
