@@ -85,19 +85,25 @@
             <StackPanel Grid.Column="0"
                         Orientation="Horizontal">
 
-                <local:IconButton IconKind="TooltipTextOutline"
-                                  ToolTip="{Resx About_UpdateHistory}"
-                                  Command="{Binding Path=ShowVersionHistoryCommand}" />
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                        Margin="3"
+                        local:ButtonAssist.IconKind="TooltipTextOutline"
+                        ToolTip="{Resx About_UpdateHistory}"
+                        Command="{Binding Path=ShowVersionHistoryCommand}" />
 
                 <mah:Badged Badge="{Binding Path=UpdateBadge}" Padding="-5" Margin="5">
-                    <local:IconButton IconKind="Update"
-                                      ToolTip="{Resx About_UpdateCheck}"
-                                      Command="{Binding Path=CheckForUpdatesCommand}" />
+                    <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                            Margin="3"
+                            local:ButtonAssist.IconKind="Update"
+                            ToolTip="{Resx About_UpdateCheck}"
+                            Command="{Binding Path=CheckForUpdatesCommand}" />
                 </mah:Badged>
 
-                <local:IconButton IconKind="DeleteForeverOutline"
-                                  ToolTip="{Resx About_Uninstall}"
-                                  Command="{Binding Path=UninstallCommand}" />
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                        Margin="3"
+                        local:ButtonAssist.IconKind="DeleteForeverOutline"
+                        ToolTip="{Resx About_Uninstall}"
+                        Command="{Binding Path=UninstallCommand}" />
 
             </StackPanel>
 
@@ -118,33 +124,43 @@
                         Orientation="Horizontal"
                         VerticalAlignment="Bottom">
 
-                <local:IconButton IconKind="Github"
-                                  ToolTip="{Resx About_GitHub}"
-                                  Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:AppURLs.GitHubUrl}" />
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                        Margin="3"
+                        local:ButtonAssist.IconKind="Github"
+                        ToolTip="{Resx About_GitHub}"
+                        Command="{Binding Path=OpenUrlCommand}"
+                        CommandParameter="{x:Static local:AppURLs.GitHubUrl}" />
 
-                <local:IconButton IconKind="Steam"
-                                  ToolTip="{Resx About_Steam}"
-                                  Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:AppURLs.SteamUrl}" />
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                        Margin="3"
+                        local:ButtonAssist.IconKind="Steam"
+                        ToolTip="{Resx About_Steam}"
+                        Command="{Binding Path=OpenUrlCommand}"
+                        CommandParameter="{x:Static local:AppURLs.SteamUrl}" />
 
-                <local:IconButton IconKind="Youtube"
-                                  ToolTip="{Resx About_YouTube}"
-                                  Foreground="{StaticResource RCP.Brushes.YouTube}"
-                                  Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:AppURLs.YouTubeUrl}" />
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                        Margin="3"
+                        local:ButtonAssist.IconKind="Youtube"
+                        ToolTip="{Resx About_YouTube}"
+                        Foreground="{StaticResource RCP.Brushes.YouTube}"
+                        Command="{Binding Path=OpenUrlCommand}"
+                        CommandParameter="{x:Static local:AppURLs.YouTubeUrl}" />
 
-                <local:IconButton IconKind="Twitter"
-                                  ToolTip="{Resx About_Twitter}"
-                                  Foreground="{StaticResource RCP.Brushes.Twitter}"
-                                  Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:AppURLs.TwitterUrl}" />
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                        Margin="3"
+                        local:ButtonAssist.IconKind="Twitter"
+                        ToolTip="{Resx About_Twitter}"
+                        Foreground="{StaticResource RCP.Brushes.Twitter}"
+                        Command="{Binding Path=OpenUrlCommand}"
+                        CommandParameter="{x:Static local:AppURLs.TwitterUrl}" />
 
-                <local:IconButton IconKind="EmailOutline"
-                                  ToolTip="{Resx About_Email}"
-                                  Foreground="{StaticResource RCP.Brushes.Email}"
-                                  Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:AppURLs.EmailUrl}" />
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}" 
+                        Margin="3"
+                        local:ButtonAssist.IconKind="EmailOutline"
+                        ToolTip="{Resx About_Email}"
+                        Foreground="{StaticResource RCP.Brushes.Email}"
+                        Command="{Binding Path=OpenUrlCommand}"
+                        CommandParameter="{x:Static local:AppURLs.EmailUrl}" />
 
             </StackPanel>
 

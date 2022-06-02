@@ -113,9 +113,9 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0" 
+                                    Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx DosBoxOptions_Recommended}"
-                                    ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                                     local:ButtonAssist.IconKind="AutoFix"
                                     Command="{Binding Path=UseRecommendedCommand}"
                                     Margin="0 0 10 0"/>
@@ -128,18 +128,18 @@
                                       Margin="0 0 10 0" />
 
                             <Button Grid.Column="2"
+                                    Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx Cancel}"
-                                    ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                                     local:ButtonAssist.IconKind="CloseOutline"
                                     Margin="0 0 10 0"
                                     IsCancel="True"
                                     Click="CancelButton_OnClick" />
 
                             <Button Grid.Column="3"
+                                    Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx Save}"
-                                    ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                                     local:ButtonAssist.IconKind="ContentSaveOutline"
                                     IsEnabled="{Binding Path=UnsavedChanges}"
                                     Command="{Binding Path=SaveCommand, Mode=OneTime}" />

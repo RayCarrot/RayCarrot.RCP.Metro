@@ -154,10 +154,10 @@
             </ScrollViewer>
 
             <Button Grid.Row="2"
+                    Style="{StaticResource RCP.Styles.Button.IconContent}"
                     Command="{Binding Path=ApplyMemoryPatchCommand, Mode=OneTime}"
                     HorizontalAlignment="Left"
                     Margin="{StaticResource RCP.Thicknesses.Vertical}"
-                    ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                     local:ButtonAssist.IconKind="AutoFix"
                     Content="{Resx Mod_RRR_ApplyMemoryMod}" />
 
@@ -213,39 +213,39 @@
                 <!-- Apply Exe Patch -->
 
                 <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
                         ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=ApplyExePatchCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsExePatched, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                        ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                         local:ButtonAssist.IconKind="AutoFix"
                         Content="{Resx Mod_RRR_ApplyExePatch}"/>
 
                     <!-- Revert Exe Patch -->
 
                 <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
                         ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=RevertExePatchCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsExePatched, Converter={local:BooleanToVisibilityConverter}}"
-                        ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                         local:ButtonAssist.IconKind="UndoVariant"
                         Content="{Resx Mod_RRR_RevertExePatch}" />
 
                 <!-- Download Patched BF -->
 
                 <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
                         IsEnabled="{Binding Path=CanDownloadPatchedBF}"
                         Command="{Binding Path=DownloadPatchedBFCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                        ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                         local:ButtonAssist.IconKind="DownloadOutline"
                         Content="{Resx Mod_RRR_DownloadBFPatch}" />
 
                 <!-- Remove Patched BF -->
 
                 <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
                         Command="{Binding Path=RemovePatchedBFCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:BooleanToVisibilityConverter}}"
-                        ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                         local:ButtonAssist.IconKind="DeleteOutline"
                         Content="{Resx Mod_RRR_RemoveBFPatch}" />
 
@@ -308,16 +308,16 @@
                 </i:Interaction.Behaviors>
 
                 <Button Command="{Binding Path=UpdatePatchedBFCommand, Mode=OneTime}"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
                         HorizontalAlignment="Left"
                         IsEnabled="{Binding Path=CanUpdatePatchedBF}"
-                        ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                         local:ButtonAssist.IconKind="FileEditOutline"
                         Content="{Resx Mod_RRR_UpdateBFPatch}" />
 
                 <Button Command="{Binding Path=LaunchWithPatchedBFCommand, Mode=OneTime}"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
                         HorizontalAlignment="Left"
                         IsEnabled="{Binding Path=IsPatchedBFDownloaded}"
-                        ContentTemplate="{StaticResource RCP.Templates.Button.IconContent}"
                         local:ButtonAssist.IconKind="PlayOutline"
                         Content="{Resx Mod_RRR_LaunchBFPatch}" />
 

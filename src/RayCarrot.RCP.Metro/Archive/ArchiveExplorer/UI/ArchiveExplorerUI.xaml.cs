@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 public partial class ArchiveExplorerUI : WindowContentControl
 {
     #region Constructor
-        
+    
     /// <summary>
     /// Default constructor
     /// </summary>

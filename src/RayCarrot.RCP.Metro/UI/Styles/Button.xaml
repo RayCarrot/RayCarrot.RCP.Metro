@@ -4,6 +4,20 @@
                     xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
+    <!-- Icon Content -->
+
+    <DataTemplate x:Key="RCP.Templates.Button.IconContent" x:Shared="False">
+        <StackPanel Orientation="Horizontal">
+            <iconpacks:PackIconMaterial Kind="{Binding Path=(local:ButtonAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
+                                        VerticalAlignment="Center"/>
+
+            <ContentPresenter Margin="10 0"
+                              Content="{Binding}"
+                              VerticalAlignment="Center" />
+
+        </StackPanel>
+    </DataTemplate>
+
     <!-- Default Button -->
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
@@ -38,18 +52,27 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Icon Content -->
+    <!-- Icon Circle Button -->
 
-    <DataTemplate x:Key="RCP.Templates.Button.IconContent">
-        <StackPanel Orientation="Horizontal">
-            <iconpacks:PackIconMaterial Kind="{Binding Path=(local:ButtonAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
-                                        VerticalAlignment="Center"/>
+    <Style x:Key="RCP.Styles.Button.IconCircle" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Circle}">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <iconpacks:PackIconMaterial Kind="{Binding Path=(local:ButtonAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
+                                                Width="20" Height="20"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-            <ContentPresenter Margin="10 0"
-                              Content="{Binding}"
-                              VerticalAlignment="Center" />
+    <!-- Icon Content Button -->
 
-        </StackPanel>
-    </DataTemplate>
+    <Style x:Key="RCP.Styles.Button.IconContent" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="ContentTemplate" Value="{StaticResource RCP.Templates.Button.IconContent}" />
+    </Style>
 
 </ResourceDictionary>

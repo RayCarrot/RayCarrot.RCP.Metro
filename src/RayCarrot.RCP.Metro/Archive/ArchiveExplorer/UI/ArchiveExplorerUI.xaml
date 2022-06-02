@@ -288,17 +288,18 @@
 
                 <!-- Add File Button -->
 
-                <local:IconButton Grid.Row="0"
-                                  Foreground="{StaticResource Archive_AddItemBrush}"
-                                  HorizontalAlignment="Right"
-                                  VerticalAlignment="Bottom"
-                                  Margin="15"
-                                  IconKind="Plus"
-                                  ToolTip="{Resx Archive_AddFiles}"
-                                  DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
-                                  d:DataContext="{d:DesignInstance archive:DirectoryViewModel}"
-                                  Background="{DynamicResource MahApps.Brushes.Control.Background}"
-                                  Command="{Binding Path=AddFilesCommand, Mode=OneTime}"/>
+                <Button Grid.Row="0"
+                        Style="{StaticResource RCP.Styles.Button.IconCircle}"
+                        Foreground="{StaticResource Archive_AddItemBrush}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="15"
+                        local:ButtonAssist.IconKind="Plus"
+                        ToolTip="{Resx Archive_AddFiles}"
+                        DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
+                        d:DataContext="{d:DesignInstance archive:DirectoryViewModel}"
+                        Background="{DynamicResource MahApps.Brushes.Control.Background}"
+                        Command="{Binding Path=AddFilesCommand, Mode=OneTime}"/>
 
                 <!-- Status -->
 
