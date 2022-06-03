@@ -310,7 +310,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_IsEncrypted)), 
-            text: new GeneratedLocString(() => $"{entry.XORKey != 0}"), 
+            text: $"{entry.XORKey != 0}", // TODO-UPDATE: Localize true/false
             minUserLevel: UserLevel.Advanced);
     }
 

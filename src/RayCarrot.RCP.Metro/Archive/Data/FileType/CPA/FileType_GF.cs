@@ -109,7 +109,7 @@ public class FileType_GF : IFileType
                 text: $"{file.Width}x{file.Height}"),
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_HasAlpha)), 
-                text: new GeneratedLocString(() => $"{file.PixelFormat.SupportsTransparency()}")),
+                text: $"{file.PixelFormat.SupportsTransparency()}"), // TODO-UPDATE: Localize true/false
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.Archive_FileInfo_Img_Mipmaps)), 
                 text: $"{file.ExclusiveMipmapCount}"),

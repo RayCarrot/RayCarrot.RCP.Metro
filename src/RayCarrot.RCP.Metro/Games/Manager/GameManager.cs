@@ -27,7 +27,7 @@ public abstract class GameManager : BaseGameData
     /// <summary>
     /// The display name for the game type
     /// </summary>
-    public abstract string GameTypeDisplayName { get; }
+    public abstract string GameTypeDisplayName { get; } // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
 
     /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported

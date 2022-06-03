@@ -14,7 +14,7 @@ public abstract class Utility
     /// <summary>
     /// The header for the utility. This property is retrieved again when the current culture is changed.
     /// </summary>
-    public abstract string DisplayHeader { get; }
+    public abstract string DisplayHeader { get; } // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
 
     /// <summary>
     /// The utility icon
@@ -24,12 +24,12 @@ public abstract class Utility
     /// <summary>
     /// The utility information text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
-    public virtual string? InfoText => null;
+    public virtual string? InfoText => null; // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
 
     /// <summary>
     /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
     /// </summary>
-    public virtual string? WarningText => null;
+    public virtual string? WarningText => null; // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
 
     /// <summary>
     /// Indicates if the utility requires additional files to be downloaded remotely
