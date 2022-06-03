@@ -45,6 +45,8 @@
                 <ResourceDictionary Source="UI/Controls/GameIcon/GameIcon.xaml" />
                 <ResourceDictionary Source="UI/Controls/LoaderContentControl/LoaderContentControl.xaml" />
 
+                <ResourceDictionary Source="UI/EditorFields/EditorFields.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

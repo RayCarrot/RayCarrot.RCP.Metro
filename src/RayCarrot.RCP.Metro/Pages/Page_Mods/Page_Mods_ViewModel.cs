@@ -12,6 +12,7 @@ public class Page_Mods_ViewModel : BasePageViewModel
     {
         Mods = new Mod_BaseViewModel[]
         {
+            new Mod_R1_ViewModel(),
             new Mod_RRR_ViewModel(),
         };
     }
