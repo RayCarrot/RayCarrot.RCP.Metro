@@ -67,6 +67,8 @@ public abstract class GameManager_WinStore : GameManager
             // Get the package
             var package = GetGamePackage();
 
+            DateTime installDate = package.InstalledDate.DateTime;
+
             // Return new items
             return new List<DuoGridItemViewModel>(base.GetGameInfoItems)
             {
@@ -88,7 +90,7 @@ public abstract class GameManager_WinStore : GameManager
                     minUserLevel: UserLevel.Technical),
                 new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreInstallDate)), 
-                    text: new GeneratedLocString(() => package.InstalledDate.DateTime.ToString(CultureInfo.CurrentCulture)), 
+                    text: new GeneratedLocString(() => installDate.ToString(CultureInfo.CurrentCulture)), 
                     minUserLevel: UserLevel.Advanced),
             };
         }

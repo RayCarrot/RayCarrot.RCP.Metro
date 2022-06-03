@@ -1128,7 +1128,7 @@ Voulez vous réessayer ?</value>
     <value>Impossible de trouver le jeu</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Remerciements spéciaux à AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski et tous les fans de Rayman !</value>
+    <value>Remerciements spéciaux à AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski et tous les fans de Rayman !</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, utilitaires, pistes de musique par niveau, Archive Explorer, traductions de Rayman 2, BinarySerializer</value>
@@ -1575,18 +1575,18 @@ Nouveautés :
     <value>Désinstaller</value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Êtes-vous sûrs de vouloir désinstaller le Rayman Control Panel ? Cela retirera l'éxécutable et toutes les données du programme. Cette action ne retirera PAS les jeux installés, les fichiers de sauvegarde ou les backups. Certains des utilitaires appliqués peuvent toujours être appliqués.</value>
+    <value>Êtes-vous sûrs de vouloir désinstaller le Rayman Control Panel ? Cela retirera l'exécutable et toutes les données du programme. Cette action ne retirera PAS les jeux installés, les fichiers de sauvegarde ou les backups. Certains des utilitaires appliqués peuvent toujours être disponibles.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Confirmer la désinstallation</value>
   </data>
   <data name="About_UninstallFailed" xml:space="preserve">
-    <value>Une erreur est survenue pendant l'execution du programme de désinstallations. Vous pouvez retirer manuellement les données de l'application qui se trouvent à ces endroits :
+    <value>Une erreur est survenue pendant l'exécution du programme de désinstallation. Vous pouvez retirer manuellement les données de l'application qui se trouvent à ces endroits :
 
 {0}</value>
   </data>
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
-    <value>Obtenir les mise à jour de la beta</value>
+    <value>Obtenir les mises à jour de beta</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Test du programme</value>
@@ -1595,10 +1595,10 @@ Nouveautés :
     <value>Le jeu pourrait avoir ses fichiers de sauvegarde synchronisés via GOG Galaxy. Si c'est le cas, l'utilitaire de backup et de restauration pourrait ne pas avoir d'effet même si l'opération réussit.</value>
   </data>
   <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
-    <value>Alerte sur le Backup/Restauration</value>
+    <value>Alerte Backup/Restauration</value>
   </data>
   <data name="About_BetaTag" xml:space="preserve">
-    <value>(BETA</value>
+    <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (Administrateur)</value>
@@ -1622,19 +1622,19 @@ Nouveautés :
     <value>Compresser les backups</value>
   </data>
   <data name="Backup_CompressInfo" xml:space="preserve">
-    <value>Les backups compressés prendront moins d'espace et seront plus simples à gérer grâce au fait qu'ils soient réduits à un seul fichier par jeu Ce changement prendra effet la prochaine fois qu'un backup sera créé.</value>
+    <value>Les backups compressés prendront moins d'espace et seront plus simples à gérer du fait qu'ils soient réduits à un seul fichier par jeu. Ce changement prendra effet la prochaine fois qu'un backup sera créé.</value>
   </data>
   <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
     <value>Cette langue ne peut pas être mise à jour</value>
   </data>
   <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
-    <value>Erreur de mise à jour de langue</value>
+    <value>Erreur de changement de langue</value>
   </data>
   <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
     <value>Les langues disponibles peuvent changer entre les versions</value>
   </data>
   <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
-    <value>Avertissement de désactivation de downgrade</value>
+    <value>Désactivation de l'avertissement de downgrade</value>
   </data>
   <data name="FiestaRunVersion_Default" xml:space="preserve">
     <value>Défaut</value>
@@ -1643,7 +1643,7 @@ Nouveautés :
     <value>Preload Edition</value>
   </data>
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 edition</value>
+    <value>Windows 10 Edition</value>
   </data>
   <data name="Config_FiestaRunVersion" xml:space="preserve">
     <value>Version de Rayman Fiesta Run</value>
@@ -1652,19 +1652,19 @@ Nouveautés :
     <value>Si vous avez plusieurs versions de Rayman Fiesta Run, vous pouvez changer la version qui sera lancée par défaut ici</value>
   </data>
   <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
-    <value>Un erreur est survenue pendant la migration du backup existant de Rayman Fiesta Run vers le standard de la 5.0.0. A cause de cela, votre backup est devenu inutilisable mais est toujours présent dans le dossier de backup pour être restauré manuellement.</value>
+    <value>Un erreur est survenue pendant la migration du backup existant de Rayman Fiesta Run vers le standard de la 5.0.0. À cause de cela, votre backup est devenu indisponible mais est toujours présent dans le dossier de backup et peut être restauré manuellement.</value>
   </data>
   <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
     <value>Erreur de migration de backup</value>
   </data>
   <data name="Installer_InstallAllUsersError" xml:space="preserve">
-    <value>Vous devez démarrer le programme en tant qu'administrateur afin de pouvoir installer pour tous les utilisateurs</value>
+    <value>Vous devez exécuter le programme en tant qu'administrateur afin de pouvoir installer pour tous les utilisateurs</value>
   </data>
   <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
     <value>Permissions manquantes</value>
   </data>
   <data name="DeployFilesError" xml:space="preserve">
-    <value>Une erreur est survenue pendant la mise en place des fichier additionnels requis. Certaines fonctionnalités du programme pourraient ne pas fonctionner comme prévu. Il est recommendé de tenter de redémarrer le programme.</value>
+    <value>Une erreur est survenue pendant la mise en place des fichiers additionnels requis. Certaines fonctionnalités du programme pourraient ne pas fonctionner comme prévu. Il est recommandé de tenter de redémarrer le programme.</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
@@ -1691,7 +1691,7 @@ Nouveautés :
     <value>Jeux éducatifs</value>
   </data>
   <data name="EducationalOptions_Info" xml:space="preserve">
-    <value>Plusieurs jeux éducatifs peuvent être ajoutés au lancement, ou le même jeu avec différents modes de lancement. Le premier jeu de la liste sera toujours celui par défaut. La liste peut être réarrangée en faisant du glisser/déposer sur les éléments</value>
+    <value>Plusieurs jeux éducatifs peuvent être ajoutés pour être exécutés, ou le même jeu avec différents modes d'exécution. Le premier jeu de la liste sera toujours celui par défaut. La liste peut être réarrangée en faisant du glisser/déposer avec les éléments</value>
   </data>
   <data name="EducationalOptions_Edit" xml:space="preserve">
     <value>Éditer</value>
@@ -1706,7 +1706,7 @@ Nouveautés :
     <value>Éditer un jeu</value>
   </data>
   <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
-    <value>Il faut au minimum un jeu disponible au lancement</value>
+    <value>Il faut au minimum un jeu disponible à exécuter</value>
   </data>
   <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
     <value>Impossible de retirer le jeu</value>
@@ -1729,7 +1729,7 @@ Message d'erreur : {1}</value>
     <value>Néerlandais</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
-    <value>Options de lancement customisées</value>
+    <value>Options d'exécution customisées</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
     <value>Si cette option est activée, les paramètres ci-dessous seront utilisés en démarrant le jeu par le Rayman Control Panel</value>
@@ -1741,7 +1741,7 @@ Message d'erreur : {1}</value>
     <value>Index des versions</value>
   </data>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
-    <value>Grand dossier</value>
+    <value>Gros fichier</value>
   </data>
   <data name="GoHomeConfig_Commands" xml:space="preserve">
     <value>Commandes personnalisées</value>
@@ -1777,10 +1777,10 @@ Message d'erreur : {1}</value>
     <value>Bleu</value>
   </data>
   <data name="LaunchModeConflict" xml:space="preserve">
-    <value>Deux ou plus des jeux éducatifs partagent le même mode de démarrage et utiliseront donc le même backup. Changez les noms des modes de démarrage pour éviter ceci.</value>
+    <value>Deux ou plus des jeux éducatifs partagent le même mode d'exécution et utiliseront donc le même backup. Changez les noms des modes d'exécution pour éviter ceci.</value>
   </data>
   <data name="LaunchModeConflictHeader" xml:space="preserve">
-    <value>Conflit sur les modes de démarrage</value>
+    <value>Conflit sur les modes d'exécution</value>
   </data>
   <data name="Links_Local_RGHConfig" xml:space="preserve">
     <value>Configuration de The Lapins Crétins : La Grosse Aventure</value>
@@ -1816,10 +1816,10 @@ Message d'erreur : {1}</value>
     <value>Remplacer le dossier</value>
   </data>
   <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Désactiver le chargement et la sauvegarde du fichier de sauvegarde</value>
+    <value>Désactiver la lecture et l'écriture du fichier de sauvegarde</value>
   </data>
   <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>Cela empêchera le jeu de charger ou sauvegarder sur les fichiers de sauvegarde</value>
+    <value>Cela empêchera le jeu de lire ou écrire sur les fichiers de sauvegarde</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
     <value>1.21 (Chinois)</value>
@@ -1870,13 +1870,13 @@ Message d'erreur : {1}</value>
     <value>{0} a été originellement installé via le Rayman Control Panel. Retirer le jeu du programme n'effacera pas le jeu ou ses fichiers (dont les backups créés via le programme) de votre ordinateur. Il est recommandé de désinstaller le jeu à la place.</value>
   </data>
   <data name="UninstallGameQuestion" xml:space="preserve">
-    <value>Êtes-vous sur de vouloir désinstaller {0} ? Cette action retirera le jeu de votre oridinateur, sauvegardes comprises. Les backups ne seront pas effacés.</value>
+    <value>Êtes-vous sur de vouloir désinstaller {0} ? Cette action retirera le jeu de votre ordinateur, sauvegardes comprises. Les backups ne seront pas effacés.</value>
   </data>
   <data name="UninstallGameQuestionHeader" xml:space="preserve">
     <value>Confirmer la désinstallation</value>
   </data>
   <data name="UninstallGameError" xml:space="preserve">
-    <value>Une erreur est survenue en désinstallant {0}</value>
+    <value>Une erreur est survenue au cours de la désinstallation de {0}</value>
   </data>
   <data name="UninstallGameErrorHeader" xml:space="preserve">
     <value>Échec de la désinstallation</value>
@@ -1885,7 +1885,7 @@ Message d'erreur : {1}</value>
     <value>Version de Print Studio</value>
   </data>
   <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>Changer la version changera les options disponibles en jeu. La version de 2003 a des calendriers pour les années 2003 et 2004. La version 2005 a des calendriers pour les années 2006 et 2007 ainsi qu'une section 'bonus'</value>
+    <value>Changer la version changera les options disponibles en jeu. La version de 2003 a des calendriers pour les années 2003 et 2004. La version 2005 a des calendriers pour les années 2006 et 2007 ainsi qu'une section 'bonus'.</value>
   </data>
   <data name="PrintStudioOptions_Version03" xml:space="preserve">
     <value>Version 2003</value>
@@ -1954,13 +1954,13 @@ Message d'erreur : {1}</value>
     <value>{0} a été désinstallé</value>
   </data>
   <data name="UninstallGameSuccessHeader" xml:space="preserve">
-    <value>Désinstallation complétée</value>
+    <value>Désinstallation terminée</value>
   </data>
   <data name="GameInstall_Success" xml:space="preserve">
     <value>{0} a été installé avec succès</value>
   </data>
   <data name="GameInstall_SuccessHeader" xml:space="preserve">
-    <value>Installation complétée</value>
+    <value>Installation terminée</value>
   </data>
   <data name="Progression_ExportSuccess" xml:space="preserve">
     <value>Le fichier de sauvegarde a été exporté avec succès</value>
@@ -2044,13 +2044,13 @@ Message d'erreur : {1}</value>
     <value>Sélection de l'extention de fichier</value>
   </data>
   <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
-    <value>Sélectionner l'extension de fichier pour l'exportation de {0} fichiers</value>
+    <value>Sélectionner l'extension de fichier pour l'exportation des fichiers {0}</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
-    <value>Une erreur est surevenue dans Archive Explorer causant sa fermeture</value>
+    <value>Une erreur est survenue dans Archive Explorer causant sa fermeture</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Rétro-ingénierie Rayman, mods pour Rayman contre les lapins crétins, BinarySerializer</value>
@@ -2086,10 +2086,10 @@ Message d'erreur : {1}</value>
     <value>Ouvrir</value>
   </data>
   <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
-    <value>Fichiers de sauvegarde Rayman 3 (.sav)</value>
+    <value>Fichiers de Sauvegarde Rayman 3 (.sav)</value>
   </data>
   <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
-    <value>Fichiers de sauvegarde Rayman Jungle Run (.dat)</value>
+    <value>Fichiers de Sauvegarde Rayman Jungle Run (.dat)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
     <value>Sélectionner les fichiers d'archive</value>
@@ -2104,7 +2104,7 @@ Message d'erreur : {1}</value>
     <value>Les fichiers n'ont pas pu être convertis</value>
   </data>
   <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
-    <value>Sélectionner l'extension de fichier pour l'exportation</value>
+    <value>Sélectionner l'extension de fichier pour l'export</value>
   </data>
   <data name="Utilities_Converter_Success" xml:space="preserve">
     <value>Les fichiers ont été convertis avec succès</value>
@@ -2119,7 +2119,7 @@ Message d'erreur : {1}</value>
     <value>Les Marais Crapoteux</value>
   </data>
   <data name="Progression_R3_Level4Header" xml:space="preserve">
-    <value>La LAnde aux Esprits Frappés</value>
+    <value>La Lande aux Esprits Frappés</value>
   </data>
   <data name="Progression_R3_Level5Header" xml:space="preserve">
     <value>Le Désert des Knaarens</value>
@@ -2137,7 +2137,7 @@ Message d'erreur : {1}</value>
     <value>La Tour du Leptys</value>
   </data>
   <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
-    <value>L'outil de musique par niveau a été mis à jour. Allez dans les outils de Rayman 1 et réinstallez le pour pouvoir continuer à l'utiliser.</value>
+    <value>L'utilitaire de musique par niveau a été mis à jour. Allez dans les outils de Rayman 1 et réinstallez le pour pouvoir continuer à l'utiliser.</value>
   </data>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>La version de Rayman n'a pas pu être mise à jour</value>
@@ -2146,13 +2146,13 @@ Message d'erreur : {1}</value>
     <value>Le DRM a été retiré</value>
   </data>
   <data name="R2U_RemoveDRM_Error" xml:space="preserve">
-    <value>Une erreur est survenue en enlevant le DRM</value>
+    <value>Une erreur est survenue en retirant le DRM</value>
   </data>
   <data name="R2U_RemoveDRM_Header" xml:space="preserve">
     <value>Retirer le DRM de la tête de pirate</value>
   </data>
   <data name="R2U_RemoveDRM_Info" xml:space="preserve">
-    <value>Cet outil modifie les fichiers.sna pour retirer le DRM causant l'apparition de la tête de pirate dans les niveaux</value>
+    <value>Cet outil modifie les fichiers .sna pour retirer le DRM causant l'apparition de la tête de pirate dans les niveaux</value>
   </data>
   <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
     <value>Cet outil pourrait ne pas fonctionner sur toutes les versions du jeu. Il fonctionne sur la version GOG.</value>
@@ -2215,10 +2215,10 @@ Message d'erreur : {1}</value>
     <value>Une erreur est survenue en décodant les fichiers</value>
   </data>
   <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
-    <value>Une erreur est survenue en ecodant les fichiersn</value>
+    <value>Une erreur est survenue en encodant les fichiers</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
-    <value>Fichiers de sauvegarde Rayman 3 (.sav)</value>
+    <value>Fichiers de Sauvegarde Rayman 3 (.sav)</value>
   </data>
   <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
     <value>Le patch UbiRay a été appliqué avec succès</value>
@@ -2332,7 +2332,7 @@ Message d'erreur : {1}</value>
     <value>Jamais (conserver le format original)</value>
   </data>
   <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
-    <value>Le format original sera toujours préservé. Importer une image ARGB vers un fichier .gf qui n'est pas compatible avec la transparence résultera en la perte du channel alpha.</value>
+    <value>Le format original sera toujours préservé. Importer une image ARGB vers un fichier .gf qui n'est pas compatible avec la transparence résultera en la perte du canal alpha.</value>
   </data>
   <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
     <value>Correspondance du format importé</value>
@@ -2344,22 +2344,22 @@ Message d'erreur : {1}</value>
     <value>Correspondance du format importé si requis</value>
   </data>
   <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
-    <value>Le format sera mis à jour pour correspondre à celui du fichier importé si le format actuel n'est pas compatible avec les données. Par exemple, si une image ARGB est importée en tant que fichier .gf (qui n'est pas compatible avec la transparence), cela ne mettra à jour le format que si l'image utilise le channel alpha. Cette option est recommandée pour éviter de changer les formats si ce n'est pas nécessaire, cependant, cela ralentira l'importation des fichiers.</value>
+    <value>Le format sera mis à jour pour correspondre à celui du fichier importé si le format actuel n'est pas compatible avec les données. Par exemple, si une image ARGB est importée en tant que fichier .gf (qui n'est pas compatible avec la transparence), cela ne mettra à jour le format que si l'image utilise le canal alpha. Cette option est recommandée pour éviter de changer les formats si ce n'est pas nécessaire, cependant, cela ralentira l'import des fichiers.</value>
   </data>
   <data name="Archive_CreateSuccess" xml:space="preserve">
-    <value>L'archive a été créée avec succès avec {0} fichiers</value>
+    <value>L'archive a été créée avec succès avec {0} fichier(s)</value>
   </data>
   <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
-    <value>Le fichier d'entrée spécifié n'existe pas</value>
+    <value>Le répertoire d'entrée spécifié n'existe pas</value>
   </data>
   <data name="Archive_CreateError" xml:space="preserve">
-    <value>Une erreur est survenue en créant l'archive</value>
+    <value>Une erreur est survenue lors de la création de l'archive</value>
   </data>
   <data name="Archive_CreateHeader" xml:space="preserve">
     <value>Créer Archive</value>
   </data>
   <data name="Archive_CreateInputDir" xml:space="preserve">
-    <value>Dossier d'entrée</value>
+    <value>Répertoire d'entrée</value>
   </data>
   <data name="Archive_CreateOutputFile" xml:space="preserve">
     <value>Fichier de sortie</value>
@@ -2371,19 +2371,19 @@ Message d'erreur : {1}</value>
     <value>Extensions de fichier à compresser</value>
   </data>
   <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
-    <value>Fichier de configuration de Rayman 1 (.cfg)</value>
+    <value>Fichier de Configuration de Rayman 1 (.cfg)</value>
   </data>
   <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
-    <value>Fichier de sauvegarde de Rayman 1 (.sav)</value>
+    <value>Fichier de Sauvegarde de Rayman 1 (.sav)</value>
   </data>
   <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
-    <value>Fichier de configuration de Rayman 2 (.cfg)</value>
+    <value>Fichier de Configuration de Rayman 2 (.cfg)</value>
   </data>
   <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
-    <value>Fichier de sauvegarde de Rayman 2 (.sav)</value>
+    <value>Fichier de Sauvegarde de Rayman 2 (.sav)</value>
   </data>
   <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
-    <value>Fichiers de sauvegarde de Rayman 1/2 (.sac/.cfg)</value>
+    <value>Fichiers de Sauvegarde de Rayman 1/2 (.sav/.cfg)</value>
   </data>
   <data name="Settings_SyncTheme" xml:space="preserve">
     <value>Synchroniser le thème</value>
@@ -2403,18 +2403,18 @@ Message d'erreur : {1}</value>
   <data name="Download_ManualInstructions" xml:space="preserve">
     <value>Télécharger des fichiers :
 
-1. Presser le bouton téléchargement pour télécharger manuellement les fichiers.
-2. Déplacer les fichiers vers le dossier de destination. S'ils sont compressés, les extraire.
-3. Cliquer sur 'Ok' pour continuer.</value>
+1. Pressez le bouton téléchargement pour télécharger manuellement les fichiers.
+2. Déplacez les fichiers vers le répertoire de destination. S'ils sont compressés, extrayez-les.
+3. Cliquez sur 'Ok' pour continuer.</value>
   </data>
   <data name="Download_ManualHeader" xml:space="preserve">
-    <value>Téléchargement manuel</value>
+    <value>Téléchargement Manuel</value>
   </data>
   <data name="Download_ManualDownload" xml:space="preserve">
-    <value>Télécharger les fichiers</value>
+    <value>Télécharger les Fichiers</value>
   </data>
   <data name="Download_ManualOpenDestination" xml:space="preserve">
-    <value>Ouvrir le dossier de destination</value>
+    <value>Ouvrir le Dossier de Destination</value>
   </data>
   <data name="Settings_ManualDownloads" xml:space="preserve">
     <value>Gérer les téléchargements manuellement</value>
@@ -2423,19 +2423,19 @@ Message d'erreur : {1}</value>
     <value>Utiliser cette option uniquement si les téléchargements ne fonctionnent pas</value>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
-    <value>Fichiers encodés Tonic Trouble (.sna/.dsb)</value>
+    <value>Fichiers Encodés Tonic Trouble (.sna/.dsb)</value>
   </data>
   <data name="About_Credits_Fabiosek" xml:space="preserve">
     <value>Traduction polonaise (pologne) du programme</value>
   </data>
   <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
-    <value>Fichiers de sauvegarde de Rayman M/Arena (.sav)</value>
+    <value>Fichiers de Sauvegarde de Rayman M/Arena (.sav)</value>
   </data>
   <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
-    <value>Convertir en 32-bit pendant l'importation (.gf)</value>
+    <value>Convertir en 32-bit pendant l'import (.gf)</value>
   </data>
   <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
-    <value>Indique si le fichier .gf devrait être converti en 24/32-bit pendant l'importation pour une qualité maximale</value>
+    <value>Indique si le fichier .gf devrait être converti en 24/32-bit pendant l'import pour une qualité maximale</value>
   </data>
   <data name="Progression_RM_LapTraining" xml:space="preserve">
     <value>Meilleur Tour - Entraînement</value>
@@ -3555,22 +3555,22 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>L'objet lié n'a pas pu être ouvert car il n'a pas été trouvé</value>
   </data>
   <data name="Archive_RepackingStatus" xml:space="preserve">
-    <value>Remballage de l'archive {0}</value>
+    <value>Recompression de l'archive {0}</value>
   </data>
   <data name="Archive_RepackError" xml:space="preserve">
-    <value>Une erreur s'est produite durant le remballage de l'archive</value>
+    <value>Une erreur s'est produite durant la recompression de l'archive</value>
   </data>
   <data name="Utility_Revert" xml:space="preserve">
     <value>Revenir en arrière</value>
   </data>
   <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
-    <value>Le patch de retrait de DRM a été inversé</value>
+    <value>Le patch de retrait de DRM a été annulé</value>
   </data>
   <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
     <value>Une erreur s'est produite durant l'inversion du patch de retrait de DRM</value>
   </data>
   <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
-    <value>Le patch UbiRay a été inversé</value>
+    <value>Le patch UbiRay a été annulé</value>
   </data>
   <data name="Config_Action_Look" xml:space="preserve">
     <value>Vue à la 1ère personne</value>

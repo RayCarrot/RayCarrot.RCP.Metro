@@ -3,6 +3,10 @@ using System;
 
 namespace RayCarrot.RCP.Metro;
 
+/// <summary>
+/// A localized string which gets generated from a func when the culture changes
+/// </summary>
+/// <remarks>Be careful of capturing variables here as they may stay in memory for a while!</remarks>
 public class GeneratedLocString : LocalizedString
 {
     /// <summary>

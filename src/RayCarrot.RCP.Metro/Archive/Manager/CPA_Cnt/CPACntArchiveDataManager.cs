@@ -323,7 +323,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_IsEncrypted)), 
-            text: new GeneratedLocString(() => $"{entry.FileXORKey.Any(x => x != 0)}"), 
+            text: $"{entry.FileXORKey.Any(x => x != 0)}", // TODO-UPDATE: Localize true/false
             minUserLevel: UserLevel.Advanced);
     }
 

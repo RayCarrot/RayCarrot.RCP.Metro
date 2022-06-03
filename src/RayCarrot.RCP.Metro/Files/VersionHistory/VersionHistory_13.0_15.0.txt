@@ -1,4 +1,10 @@
-﻿-----   Version 13.1.0 - May 30, 2022   -----
+﻿-----   Version 13.1.1 - June 3, 2022   -----
+• Fixed several memory usage issues, primarily in the Archive Explorer
+• Renamed "Eeeebray" to "Miss-Cerasus" in the credits
+• Added a debug option to force a garbage collection
+
+
+-----   Version 13.1.0 - May 30, 2022   -----
 • Added support for a Rayman 1 demo from 1995/12/04
 • The program has now been translated to Hebrew (thanks XanderNT!)
 • Added an option to export .gf files as .tga in the Archive Explorer

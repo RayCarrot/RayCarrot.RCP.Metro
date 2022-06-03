@@ -12,6 +12,9 @@
     <Prefer32Bit>true</Prefer32Bit>
     <!-- Appears to be required when using framework earlier than net5 -->
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+
+    <!-- TODO: Set this? It will make exception messages in logs less useful though. -->
+    <!-- <DebugType>none</DebugType> -->
   </PropertyGroup>
 
   <!-- Assembly -->
@@ -24,7 +27,7 @@
     <RootNamespace>RayCarrot.RCP.Metro</RootNamespace>
     <AssemblyName>RayCarrot.RCP.Metro</AssemblyName>
     <ApplicationIcon>Img\RCP_Metro.ico</ApplicationIcon>
-    <Version>13.1.0.1</Version>
+    <Version>13.1.1.0</Version>
     <Authors>RayCarrot</Authors>
     <Product>Rayman Control Panel</Product>
     <Description>Open source, unofficial Rayman management program with configuration tools and utilities</Description>
