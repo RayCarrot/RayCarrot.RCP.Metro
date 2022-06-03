@@ -54,6 +54,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
         RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
         RefreshAllParallelAsyncCommand = new AsyncRelayCommand(RefreshAllParallelTaskAsync);
+        GCCollectCommand = new RelayCommand(GCCollect);
         ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
         ThrowUnhandledExceptionAsyncCommand = new AsyncRelayCommand(ThrowUnhandledAsyncException);
         RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
@@ -79,6 +80,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public ICommand RefreshAllCommand { get; }
     public ICommand RefreshAllAsyncCommand { get; }
     public ICommand RefreshAllParallelAsyncCommand { get; }
+    public ICommand GCCollectCommand { get; }
     public ICommand ThrowUnhandledExceptionCommand { get; }
     public ICommand ThrowUnhandledExceptionAsyncCommand { get; }
     public ICommand RunInstallerCommand { get; }
@@ -531,6 +533,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
         await Task.WhenAll(Enumerable.Range(0, 20).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
         await Task.WhenAll(Enumerable.Range(0, 5).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
     }
+
+    public void GCCollect() => GC.Collect();
 
     public void ThrowUnhandledException()
     {

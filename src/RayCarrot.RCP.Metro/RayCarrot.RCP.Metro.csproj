@@ -12,6 +12,9 @@
     <Prefer32Bit>true</Prefer32Bit>
     <!-- Appears to be required when using framework earlier than net5 -->
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+
+    <!-- TODO: Set this? It will make exception messages in logs less useful though. -->
+    <!-- <DebugType>none</DebugType> -->
   </PropertyGroup>
 
   <!-- Assembly -->

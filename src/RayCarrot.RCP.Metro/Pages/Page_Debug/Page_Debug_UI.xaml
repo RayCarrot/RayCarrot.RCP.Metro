@@ -45,6 +45,10 @@
                                 Command="{Binding Path=RefreshAllParallelAsyncCommand, Mode=OneTime}"
                                 IconKind="Refresh"/>
 
+            <local:MenuItemIcon Header="Collect garbage"
+                                Command="{Binding Path=GCCollectCommand, Mode=OneTime}"
+                                IconKind="Memory"/>
+
             <local:MenuItemIcon Header="Throw unhandled exception"
                                 Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
                                 IconKind="Exclamation"/>
