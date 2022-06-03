@@ -174,9 +174,12 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                 InfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_Size)), 
                     text: await Task.Run(() => FilePath.GetSize().ToString())));
+
+                DateTime lastWriteTime = FilePath.GetFileInfo().LastWriteTime;
+
                 InfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Progression_SlotInfo_LastModified)), 
-                    text: new GeneratedLocString(() => FilePath.GetFileInfo().LastWriteTime.ToShortDateString())));
+                    text: new GeneratedLocString(() => lastWriteTime.ToShortDateString())));
                 HasInfoItems = true;
             }
             else

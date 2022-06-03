@@ -151,10 +151,12 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
                     text: backup.IsCompressed.ToString(), 
                     minUserLevel: UserLevel.Debug));
 
+                DateTime lastWriteTime = backup.Path.GetFileSystemInfo().LastWriteTime;
+
                 // Get the backup date
                 BackupInfoItems.Add(new DuoGridItemViewModel(
                     header: new ResourceLocString(nameof(Resources.Backup_LastBackupDate)), 
-                    text: new GeneratedLocString(() => backup.Path.GetFileSystemInfo().LastWriteTime.ToShortDateString())));
+                    text: new GeneratedLocString(() => lastWriteTime.ToShortDateString())));
 
                 // Get the backup size
                 BackupInfoItems.Add(new DuoGridItemViewModel(

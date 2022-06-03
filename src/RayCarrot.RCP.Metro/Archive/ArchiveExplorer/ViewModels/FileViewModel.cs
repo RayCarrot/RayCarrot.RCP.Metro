@@ -184,6 +184,48 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
     #endregion
 
+    #region Private Methods
+
+    private void LoadThumbnail(ArchiveFileStream fileStream, ThumbnailLoadMode thumbnailLoadMode = ThumbnailLoadMode.LoadThumbnail)
+    {
+        if (thumbnailLoadMode == ThumbnailLoadMode.None)
+            return;
+
+        bool hasLoaded = Archive.ThumbnailCache.TryGetCachedItem(this, out FileThumbnailData? thumb);
+
+        if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnailIfLoaded && !hasLoaded)
+            return;
+
+        // Get the thumbnail data
+        if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !hasLoaded)
+        {
+            fileStream.SeekToBeginning();
+
+            if (FileType == null)
+                throw new Exception("Can not load a thumbnail when the file type has not been set");
+
+            // Load the thumbnail
+            thumb = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
+
+            // Cache the thumbnail
+            Archive.ThumbnailCache.AddToCache(this, thumb);
+        }
+
+        // Get the thumbnail image
+        ImageSource? img = thumb!.Thumbnail;
+
+        // Freeze the image to avoid thread errors
+        img?.Freeze();
+
+        // Set the image source
+        ThumbnailSource = img;
+
+        // Add display info from the type data
+        FileDisplayInfo.AddRange(thumb.FileInfo);
+    }
+
+    #endregion
+
     #region Public Methods
 
     /// <summary>
@@ -267,32 +309,8 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
             ResetMenuActions();
 
-            if (thumbnailLoadMode != ThumbnailLoadMode.None)
-            {
-                // Get the thumbnail data
-                if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !Archive.ThumbnailCache.TryGetCachedItem(this, out FileThumbnailData? thumb))
-                {
-                    fileStream.SeekToBeginning();
-
-                    // Load the thumbnail
-                    thumb = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
-
-                    // Cache the thumbnail
-                    Archive.ThumbnailCache.AddToCache(this, thumb);
-                }
-
-                // Get the thumbnail image
-                ImageSource? img = thumb.Thumbnail;
-
-                // Freeze the image to avoid thread errors
-                img?.Freeze();
-
-                // Set the image source
-                ThumbnailSource = img;
-
-                // Add display info from the type data
-                FileDisplayInfo.AddRange(thumb.FileInfo);
-            }
+            // Load the thumbnail
+            LoadThumbnail(fileStream, thumbnailLoadMode);
 
             // Set icon
             IconKind = FileType!.Icon;
@@ -659,7 +677,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         inputStream.Position = 0;
             
         // Initialize the file
-        InitializeFile(new ArchiveFileStream(inputStream, FileName, false), ThumbnailLoadMode.ReloadThumbnail);
+        InitializeFile(new ArchiveFileStream(inputStream, FileName, false), ThumbnailLoadMode.ReloadThumbnailIfLoaded);
 
         return !wasModified;
     }
@@ -977,7 +995,12 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         /// <summary>
         /// Force reload the thumbnail even if already loaded
         /// </summary>
-        ReloadThumbnail
+        ReloadThumbnail,
+
+        /// <summary>
+        /// Reloads the thumbnail if it has already been loaded
+        /// </summary>
+        ReloadThumbnailIfLoaded,
     }
 
     /// <summary>
