@@ -1,4 +1,8 @@
-﻿-----   Version 13.1.2 - June 4, 2022   -----
+﻿-----   Version 13.1.3 - June 4, 2022   -----
+• Fixed a bug where the texture sync utility wouldn't work correctly for Tonic Trouble
+
+
+-----   Version 13.1.2 - June 4, 2022   -----
 • Updated the texture sync utility to find more textures in Tonic Trouble
 • Fixed a bug where temp files created when importing files in the Archive Explorer wouldn't get deleted
 
