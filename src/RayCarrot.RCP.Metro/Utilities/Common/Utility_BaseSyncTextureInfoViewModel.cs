@@ -234,6 +234,13 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
                 uint snaHeight = is32Bit ? BitConverter.ToUInt32(data, i - pathLength - sizeOffset) : BitConverter.ToUInt16(data, i - pathLength - sizeOffset);
                 uint snaWidth = is32Bit ? BitConverter.ToUInt32(data, i - pathLength - sizeOffset + 4) : BitConverter.ToUInt16(data, i - pathLength - sizeOffset + 2);
 
+                // A hacky solution to an issue in Tonic Trouble where the texture names appear in some different structs which we
+                // don't want to accidentally modify. This will filter those out (at least in the version I tested this on).
+                if (!validateSize(snaWidth) || !validateSize(snaHeight))
+                    continue;
+
+                bool validateSize(uint size) => size is not (0 or >= 32767);
+
                 // Get the size from the .gf file
                 ushort gfHeight = gf.Height;
                 ushort gfWidth = gf.Width;
