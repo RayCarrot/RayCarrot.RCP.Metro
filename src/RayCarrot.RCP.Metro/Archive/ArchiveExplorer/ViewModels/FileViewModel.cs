@@ -662,8 +662,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         // Reset position
         inputStream.Position = 0;
 
-        // Get the temp stream to store the pending import data
-        FileData.SetPendingImport(File.Create(Path.GetTempFileName()));
+        FileData.SetPendingImport();
 
         // Encode the data to the pending import stream
         Manager.EncodeFile(inputStream, FileData.PendingImport, FileData.ArchiveEntry);

@@ -156,8 +156,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                         // Open the file to be imported
                         using FileStream inputStream = File.OpenRead(x);
 
-                        // Get the temp stream to store the pending import data
-                        fileItem.SetPendingImport(File.Create(Path.GetTempFileName()));
+                        fileItem.SetPendingImport();
 
                         // Encode the data to the pending import stream
                         Manager.EncodeFile(inputStream, fileItem.PendingImport, archiveEntry);

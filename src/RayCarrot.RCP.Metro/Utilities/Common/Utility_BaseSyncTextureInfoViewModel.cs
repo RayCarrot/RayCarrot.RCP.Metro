@@ -152,7 +152,7 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
                 return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width, mipmaps);
             }));
         }
-            
+
         // Make sure we have any GF files
         if (!gfFiles.Any())
             return new TextureInfoEditResult(0, 0);
@@ -172,6 +172,15 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
             _ => null
         };
 
+        // Most games just use .tga, but Tonic Trouble uses the other ones too
+        byte[][] fileExtensions = 
+        {
+            new byte[] { 0x2E, 0x74, 0x67, 0x61 }, // .tga
+            new byte[] { 0x2E, 0x54, 0x47, 0x41 }, // .TGA
+            new byte[] { 0x2E, 0x62, 0x6D, 0x70 }, // .bmp
+            new byte[] { 0x2E, 0x42, 0x4D, 0x50 }, // .BMP
+        };
+
         // Enumerate each file
         foreach (FileSystemPath file in files)
         {
@@ -188,9 +197,12 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
             // Enumerate each byte
             for (int i = sizeOffset + largestNameSize; i < data.Length - 4; i++)
             {
-                // TODO: Tonic Trouble seems to also have some file extensions as .bmp - do these need to be synced as well?
-                // Make sure the position contains the .tga file extension used at the end of a file path
-                if (data[i] != 0x2E || data[i + 1] != 0x74 || data[i + 2] != 0x67 || data[i + 3] != 0x61)
+                // Make sure the position contains a file extension used at the end of a file path
+                if (data[i] != 0x2E)
+                    continue;
+
+                // Make sure the position contains a supported file extension
+                if (fileExtensions.All(x => data[i + 1] != x[1] || data[i + 2] != x[2] || data[i + 3] != x[3]))
                     continue;
 
                 total++;
