@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Archive.UbiArt;
@@ -47,7 +46,7 @@ public class FileItem : IDisposable
     public string Directory { get; }
     public object ArchiveEntry { get; }
 
-    public Stream? PendingImport { get; protected set; }
+    public TempFileStream? PendingImport { get; protected set; }
 
     [MemberNotNullWhen(true, nameof(PendingImport))]
     public bool IsPendingImport => PendingImport != null;
@@ -72,10 +71,10 @@ public class FileItem : IDisposable
     }
 
     [MemberNotNull(nameof(PendingImport))]
-    public void SetPendingImport(Stream import)
+    public void SetPendingImport()
     {
         PendingImport?.Dispose();
-        PendingImport = import;
+        PendingImport = TempFileStream.Create();
     }
 
     public IFileType GetFileType(ArchiveFileStream stream)
