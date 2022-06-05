@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro;
 
-public class MainWindowViewModel : BaseViewModel
+public class MainWindowViewModel : BaseViewModel, IDisposable
 {
     public MainWindowViewModel(
         AppViewModel app,
@@ -39,4 +39,11 @@ public class MainWindowViewModel : BaseViewModel
     /// The title of the application
     /// </summary>
     public string AppTitle { get; }
+
+    public void Dispose()
+    {
+        GamesPage.Dispose();
+        UtilitiesPage.Dispose();
+        ModsPage.Dispose();
+    }
 }

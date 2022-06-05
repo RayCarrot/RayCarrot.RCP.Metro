@@ -240,6 +240,9 @@ public partial class App : Application
 
             // Close the logger
             LogManager.Shutdown();
+
+            if (MainWindow is MainWindow m)
+                m.ViewModel.Dispose();
         }
     }
 
@@ -1211,6 +1214,10 @@ public partial class App : Application
                     Data.UI_WindowState = UserData_WindowSessionState.GetWindowState(MainWindow);
 
                 Logger.Info("The application is exiting...");
+
+                // Dispose
+                if (MainWindow is MainWindow m)
+                    m.ViewModel.Dispose();
 
                 // Save all user data
                 await AppVM.SaveUserDataAsync();

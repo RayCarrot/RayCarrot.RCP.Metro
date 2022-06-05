@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -6,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// View model for the mods page
 /// </summary>
-public class Page_Mods_ViewModel : BasePageViewModel
+public class Page_Mods_ViewModel : BasePageViewModel, IDisposable
 {
     public Page_Mods_ViewModel(AppViewModel app) : base(app)
     {
@@ -29,5 +30,12 @@ public class Page_Mods_ViewModel : BasePageViewModel
             Logger.Info("Initializing mod {0}", mod.Header.Value);
             await mod.InitializeAsync();
         }
+    }
+
+    public void Dispose()
+    {
+        foreach (Mod_BaseViewModel mod in Mods)
+            if (mod is IDisposable d)
+                d.Dispose();
     }
 }

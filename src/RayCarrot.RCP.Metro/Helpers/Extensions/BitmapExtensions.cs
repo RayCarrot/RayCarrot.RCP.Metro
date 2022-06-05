@@ -30,7 +30,16 @@ public static class BitmapExtensions
             {
                 var size = (rect.Width * rect.Height) * 4;
 
-                return BitmapSource.Create(bmp.Width, bmp.Height, bmp.HorizontalResolution, bmp.VerticalResolution, PixelFormats.Bgra32, null, bitmapData.Scan0, size, bitmapData.Stride);
+                return BitmapSource.Create(
+                    pixelWidth: bmp.Width, 
+                    pixelHeight: bmp.Height, 
+                    dpiX: bmp.HorizontalResolution, 
+                    dpiY: bmp.VerticalResolution, 
+                    pixelFormat: PixelFormats.Bgra32, 
+                    palette: null, 
+                    buffer: bitmapData.Scan0, 
+                    bufferSize: size, 
+                    stride: bitmapData.Stride);
             }
             finally
             {

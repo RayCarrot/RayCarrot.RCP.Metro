@@ -21,7 +21,7 @@ public partial class MainWindow : BaseWindow
         // Set properties
         App = app;
         Data = data;
-        DataContext = viewModel;
+        DataContext = ViewModel = viewModel;
 
         // Subscribe to events
         App.RefreshRequired += AppGameRefreshRequiredAsync;
@@ -40,6 +40,12 @@ public partial class MainWindow : BaseWindow
 
     private AppViewModel App { get; }
     private AppUserData Data { get; }
+
+    #endregion
+
+    #region Public Methods
+
+    public MainWindowViewModel ViewModel { get; }
 
     #endregion
 
