@@ -1,4 +1,13 @@
-﻿-----   Version 13.1.1 - June 3, 2022   -----
+﻿-----   Version 13.1.3 - June 4, 2022   -----
+• Fixed a bug where the texture sync utility wouldn't work correctly for Tonic Trouble
+
+
+-----   Version 13.1.2 - June 4, 2022   -----
+• Updated the texture sync utility to find more textures in Tonic Trouble
+• Fixed a bug where temp files created when importing files in the Archive Explorer wouldn't get deleted
+
+
+-----   Version 13.1.1 - June 3, 2022   -----
 • Fixed several memory usage issues, primarily in the Archive Explorer
 • Renamed "Eeeebray" to "Miss-Cerasus" in the credits
 • Added a debug option to force a garbage collection
