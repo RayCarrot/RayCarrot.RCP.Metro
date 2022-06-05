@@ -57,6 +57,7 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
+    public string[]? ProcessNameKeywords { get; set; }
     public ObservableCollection<AttachableProcessViewModel> Processes { get; }
     public AttachableProcessViewModel? SelectedProcess { get; set; }
     public AttachableProcessViewModel? AttachedProcess { get; set; }
@@ -101,6 +102,8 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
             {
                 Process current = Process.GetCurrentProcess();
 
+                bool foundMatch = false;
+
                 foreach (Process p in Process.GetProcesses())
                 {
                     try
@@ -129,7 +132,19 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
                             continue;
                         }
 
-                        Processes.Add(new AttachableProcessViewModel(p, path));
+                        AttachableProcessViewModel vm = new(p, path);
+
+                        SelectedProcess ??= vm;
+
+                        if (!foundMatch && 
+                            ProcessNameKeywords != null && 
+                            ProcessNameKeywords.Any(x => vm.ProcessName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) != -1))
+                        {
+                            SelectedProcess = vm;
+                            foundMatch = true;
+                        }
+
+                        Processes.Add(vm);
                     }
                     catch (Exception ex)
                     {
@@ -137,9 +152,6 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
                         p.Dispose();
                     }
                 }
-
-                // TODO-UPDATE: Auto select most likely process in list based on name
-                SelectedProcess = Processes.FirstOrDefault();
             });
         }
         finally

@@ -36,6 +36,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 
     #region Protected Properties
 
+    protected virtual string[]? ProcessNameKeywords => null;
     protected virtual string? ModuleName => null;
     protected abstract long GameBaseOffset { get; }
     protected abstract bool IsGameBaseAPointer { get; }
@@ -59,7 +60,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
         // Create a new context
         Context?.Dispose();
         Context = new RCPContext(String.Empty, noLog: true);
-        StreamFile file = Context.AddFile(new StreamFile(Context, p.DisplayName, new BufferedStream(stream), leaveOpen: true));
+        StreamFile file = Context.AddFile(new StreamFile(Context, p.ProcessName, new BufferedStream(stream), leaveOpen: true));
         BinaryDeserializer s = Context.Deserializer;
 
         // Initialize the memory stream
@@ -153,6 +154,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 
     public override async Task InitializeAsync()
     {
+        ProcessAttacherViewModel.ProcessNameKeywords = ProcessNameKeywords;
         await ProcessAttacherViewModel.RefreshProcessesAsync();
     }
 

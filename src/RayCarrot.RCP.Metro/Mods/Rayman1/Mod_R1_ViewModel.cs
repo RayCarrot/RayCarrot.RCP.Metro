@@ -39,6 +39,10 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
 
     #region Protected Properties
 
+    protected override string[]? ProcessNameKeywords => new[]
+    {
+        "DOSBox"
+    };
     protected override long GameBaseOffset => 0x01D3A1A0; // TODO-UPDATE: Have DOSBox version selection. Support BizHawk.
     protected override bool IsGameBaseAPointer => true;
 
