@@ -9,11 +9,11 @@ namespace RayCarrot.RCP.Metro;
 
 public class RCPContext : Context
 {
-    public RCPContext(string basePath, RCPSerializerSettings? settings = null, ISerializerLog? log = null) 
+    public RCPContext(string basePath, RCPSerializerSettings? settings = null, ISerializerLog? log = null, bool noLog = false) 
         : base(
             basePath: basePath, 
             settings: settings ?? new RCPSerializerSettings(), 
-            serializerLog: log ?? new RCPSerializerLog(), 
+            serializerLog: noLog ? null : log ?? new RCPSerializerLog(), 
             fileManager: new RCPFileManager(), 
             logger: new RCPLogger())
     { }

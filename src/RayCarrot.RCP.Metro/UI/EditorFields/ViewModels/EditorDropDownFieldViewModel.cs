@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 public class EditorDropDownFieldViewModel : EditorFieldViewModel
 {
     public EditorDropDownFieldViewModel(
-        LocalizedString header, LocalizedString info, 
+        LocalizedString header, LocalizedString? info, 
         Func<int> getValueAction, Action<int> setValueAction, 
         Func<IReadOnlyList<DropDownItem>> getItemsAction) : base(header, info)
     {

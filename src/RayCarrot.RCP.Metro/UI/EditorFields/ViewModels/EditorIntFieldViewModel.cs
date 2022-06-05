@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 public class EditorIntFieldViewModel : EditorFieldViewModel<long>
 {
     public EditorIntFieldViewModel(
-        LocalizedString header, LocalizedString info, 
+        LocalizedString header, LocalizedString? info, 
         Func<long> getValueAction, Action<long> setValueAction,
         long min = 0, long max = Int32.MaxValue) : base(header, info, getValueAction, setValueAction)
     {

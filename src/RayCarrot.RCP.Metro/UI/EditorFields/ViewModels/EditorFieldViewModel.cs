@@ -18,7 +18,7 @@ public abstract class EditorFieldViewModel : BaseViewModel
 
 public class EditorFieldViewModel<T> : EditorFieldViewModel
 {
-    public EditorFieldViewModel(LocalizedString header, LocalizedString info, Func<T?> getValueAction, Action<T?> setValueAction) : base(header, info)
+    public EditorFieldViewModel(LocalizedString header, LocalizedString? info, Func<T?> getValueAction, Action<T?> setValueAction) : base(header, info)
     {
         GetValueAction = getValueAction;
         SetValueAction = setValueAction;

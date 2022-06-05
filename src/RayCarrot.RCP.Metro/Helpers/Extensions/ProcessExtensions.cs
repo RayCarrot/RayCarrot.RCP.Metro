@@ -1,5 +1,7 @@
-﻿#nullable disable
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,6 +12,20 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class ProcessExtensions
 {
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool IsWow64Process(IntPtr hProcess, out bool wow64Process);
+
+    public static bool Is64Bit(this Process process)
+    {
+        if (!Environment.Is64BitOperatingSystem)
+            return false;
+
+        if (!IsWow64Process(process.Handle, out bool isWow64))
+            throw new Win32Exception();
+
+        return !isWow64;
+    }
+
     /// <summary>
     /// Waits asynchronously for the process to exit
     /// </summary>
@@ -23,7 +39,7 @@ public static class ProcessExtensions
             return Task.CompletedTask;
 
         // Create a task completion source
-        var tcs = new TaskCompletionSource<object>();
+        var tcs = new TaskCompletionSource<object?>();
 
         // Subscribe for when the process exits
         process.EnableRaisingEvents = true;

@@ -53,6 +53,7 @@
                                        Text="{Binding Path=Value}" />
 
                             <local:InfoIcon DataContext="{Binding Path=Info, Mode=OneTime}"
+                                            Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}"
                                             Text="{Binding Path=Value}" />
 
                         </StackPanel>

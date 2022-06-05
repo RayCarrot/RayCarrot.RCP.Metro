@@ -1,42 +1,21 @@
-﻿using NLog;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Data;
+using BinarySerializer;
+using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Mod_R1_ViewModel : Mod_BaseViewModel
+public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
 {
     #region Constructor
 
     public Mod_R1_ViewModel()
     {
-        // Test
-        EditorFields = new ObservableCollection<EditorFieldViewModel>()
-        {
-            new EditorBoolFieldViewModel("A bool", "Some text", () => true, _ => { }),
-            new EditorIntFieldViewModel("An int", null, () => 0, _ => { }),
-            new EditorBoolFieldViewModel("A bool", "Some text", () => true, _ => { }),
-            new EditorBoolFieldViewModel("A bool", "Some text", () => true, _ => { }),
-            new EditorBoolFieldViewModel("A bool", "Some text", () => true, _ => { }),
-            new EditorBoolFieldViewModel("A bool", "Some text", () => true, _ => { }),
-            new EditorDropDownFieldViewModel("A drop-down", "Some stuff", () => 0, x => { }, () => new EditorDropDownFieldViewModel.DropDownItem[]
-            {
-                new("First option", null),
-                new("Second option", null)
-            })
-        };
+        EditorFields = new ObservableCollection<EditorFieldViewModel>();
+
+        BindingOperations.EnableCollectionSynchronization(EditorFields, Application.Current);
     }
-
-    #endregion
-
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
-    #region Commands
-
 
     #endregion
 
@@ -54,28 +33,96 @@ public class Mod_R1_ViewModel : Mod_BaseViewModel
     #region Private Fields
 
     private Mod_R1_UI? _uiContent;
+    private Mod_R1_MemoryData? _memData;
+
+    #endregion
+
+    #region Protected Properties
+
+    protected override long GameBaseOffset => 0x01D3A1A0; // TODO-UPDATE: Have DOSBox version selection. Support BizHawk.
+    protected override bool IsGameBaseAPointer => true;
 
     #endregion
 
     #region Public Properties
 
-    public bool IsAttached { get; set; } // TODO: Create view model for attaching to game process
     public ObservableCollection<EditorFieldViewModel> EditorFields { get; }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override void InitializeFields(Pointer offset)
+    {
+        EditorFields.Clear();
+
+        _memData = new Mod_R1_MemoryData(offset);
+
+        EditorFields.Add(new EditorIntFieldViewModel(
+            header: "Lives",
+            info: null,
+            getValueAction: () => _memData.StatusBar.LivesCount,
+            setValueAction: x =>
+            {
+                _memData.StatusBar.LivesCount = (byte)x;
+                _memData.PendingChange = true;
+            },
+            max: 99));
+        EditorFields.Add(new EditorBoolFieldViewModel(
+            header: "Place Ray",
+            info: "Allows Rayman to be placed freely in the level",
+            getValueAction: () => (short)_memData.RayMode < 0,
+            setValueAction: x =>
+            {
+                bool isEnabled = (short)_memData.RayMode < 0;
+
+                if (isEnabled != x)
+                    _memData.RayMode = (RayMode)((short)_memData.RayMode * -1);
+
+                _memData.PendingChange = true;
+            }));
+        EditorFields.Add(new EditorBoolFieldViewModel(
+            header: "Power: Super-helico",
+            info: null,
+            getValueAction: () => (_memData.RayEvts & RayEvts.SuperHelico) != 0,
+            setValueAction: x =>
+            {
+                if (x)
+                    _memData.RayEvts |= RayEvts.SuperHelico;
+                else
+                    _memData.RayEvts &= ~RayEvts.SuperHelico;
+
+                _memData.PendingChange = true;
+            }));
+    }
+
+    protected override void ClearFields()
+    {
+        EditorFields.Clear();
+        _memData = null;
+    }
+
+    protected override void RefreshFields()
+    {
+        // Serialize the data. Depending on if a value has changed
+        // or not this will either read or write the data.
+        _memData?.Serialize(Context);
+
+        foreach (EditorFieldViewModel field in EditorFields)
+            field.Refresh();
+    }
 
     #endregion
 
     #region Public Methods
 
-    public void RefreshFields()
+    public override void Dispose()
     {
-        foreach (EditorFieldViewModel field in EditorFields)
-            field.Refresh();
-    }
+        base.Dispose();
 
-    public override Task InitializeAsync()
-    {
-        RefreshFields();
-        return Task.CompletedTask;
+        _memData = null;
+
+        BindingOperations.DisableCollectionSynchronization(EditorFields);
     }
 
     #endregion

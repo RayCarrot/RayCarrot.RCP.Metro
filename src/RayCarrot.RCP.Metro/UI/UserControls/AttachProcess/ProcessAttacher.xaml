@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ProcessAttacher"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" 
+             d:DataContext="{d:DesignInstance metro:ProcessAttacherViewModel}">
+    <Grid Margin="0 0 0 10">
+
+        <!-- Attach -->
+
+        <Grid Visibility="{Binding Path=IsAttached, Converter={metro:InvertedBooleanToVisibilityConverter}}" 
+              VerticalAlignment="Top">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0"
+                      ItemsSource="{Binding Path=Processes}"
+                      SelectedItem="{Binding Path=SelectedProcess}"
+                      Margin="0 0 10 0"
+                      Grid.IsSharedSizeScope="True">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   Width="16"
+                                   Source="{Binding Path=Icon16.Value}"
+                                   Margin="0 0 8 0" />
+
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                       Margin="0 0 8 0"/>
+
+                            <TextBlock Grid.Column="2"
+                                       VerticalAlignment="Center"
+                                       FontStyle="Italic"
+                                       Text="{Binding Path=WindowTitle, Mode=OneTime}" />
+
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button Grid.Column="1"
+                    Margin="0 0 10 0"
+                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                    Content="Refresh"
+                    metro:ButtonAssist.IconKind="Refresh"
+                    Command="{Binding Path=RefreshProcessesCommand, Mode=OneTime}" />
+
+            <Button Grid.Column="2"
+                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                    IsEnabled="{Binding Path=SelectedProcess, Converter={metro:IsNotNullConverter}}"
+                    Content="Attach"
+                    metro:ButtonAssist.IconKind="Connection"
+                    Command="{Binding Path=AttachProcessCommand, Mode=OneTime}" />
+
+        </Grid>
+
+        <!-- Attached -->
+
+        <StackPanel Visibility="{Binding Path=IsAttached, Converter={metro:BooleanToVisibilityConverter}}">
+
+            <Grid DataContext="{Binding Path=AttachedProcess}"
+                  Margin="0 0 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"
+                       Width="32"
+                       Source="{Binding Path=Icon32.Value}"
+                       Margin="0 0 8 0" />
+
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Text="{Binding Path=DisplayName, Mode=OneTime}" />
+
+            </Grid>
+
+            <Button Style="{StaticResource RCP.Styles.Button.IconContent}"
+                    HorizontalAlignment="Left"
+                    Content="Detach"
+                    metro:ButtonAssist.IconKind="Cancel"
+                    Command="{Binding Path=DetachProcessCommand, Mode=OneTime}" />
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

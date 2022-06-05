@@ -27,6 +27,8 @@ public class ProcessMemoryStream : Stream
         // Open the process and get the handle
         _processHandle = OpenProcess(accessLevel, false, process.Id);
 
+        Is64Bit = process.Is64Bit();
+
         if (_processHandle == IntPtr.Zero)
             throw new Win32Exception("Failed to open process");
     }
@@ -44,6 +46,8 @@ public class ProcessMemoryStream : Stream
     #region Public Properties
 
     public Process Process => _process ?? throw new ObjectDisposedException(nameof(ProcessMemoryStream));
+    public IntPtr ProcessHandle => _processHandle;
+    public bool Is64Bit { get; }
 
     public Mode AccessMode { get; set; }
 
@@ -94,11 +98,17 @@ public class ProcessMemoryStream : Stream
     [DllImport("kernel32.dll", SetLastError = true)]
     private static extern bool CloseHandle(IntPtr hObject);
 
-    [DllImport("kernel32.dll", SetLastError = true)]
-    private static extern bool ReadProcessMemory(IntPtr hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize, out int lpNumberOfBytesRead);
+    [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "ReadProcessMemory")]
+    private static extern bool ReadProcessMemory32(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int dwSize, out int lpNumberOfBytesRead);
 
-    [DllImport("kernel32.dll", SetLastError = true)]
-    private static extern bool WriteProcessMemory(IntPtr hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize, out int lpNumberOfBytesWritten);
+    [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "ReadProcessMemory")]
+    private static extern bool ReadProcessMemory64(IntPtr hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize, out int lpNumberOfBytesRead);
+
+    [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "WriteProcessMemory")]
+    private static extern bool WriteProcessMemory32(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int dwSize, out int lpNumberOfBytesWritten);
+
+    [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "WriteProcessMemory")]
+    private static extern bool WriteProcessMemory64(IntPtr hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize, out int lpNumberOfBytesWritten);
 
     private const int PROCESS_ALL_ACCESS = 0x1F0FFF;
     private const int PROCESS_WM_READ = 0x0010;
@@ -117,7 +127,11 @@ public class ProcessMemoryStream : Stream
 
         byte[] readBuffer = new byte[count];
 
-        bool success = ReadProcessMemory(_processHandle, _currentAddress, readBuffer, count, out int numBytesRead);
+        int numBytesRead;
+
+        bool success = Is64Bit
+            ? ReadProcessMemory64(_processHandle, _currentAddress, readBuffer, count, out numBytesRead)
+            : ReadProcessMemory32(_processHandle, (uint)_currentAddress, readBuffer, count, out numBytesRead);
 
         if (!success)
             throw new Win32Exception();
@@ -164,7 +178,11 @@ public class ProcessMemoryStream : Stream
 
         Array.Copy(buffer, offset, writeBuffer, 0, count);
 
-        bool success = WriteProcessMemory(_processHandle, _currentAddress, writeBuffer, count, out int numBytesWritten);
+        int numBytesWritten;
+
+        bool success = Is64Bit
+            ? WriteProcessMemory64(_processHandle, _currentAddress, writeBuffer, count, out numBytesWritten)
+            : WriteProcessMemory32(_processHandle, (uint)_currentAddress, writeBuffer, count, out numBytesWritten);
 
         if (!success)
             throw new Win32Exception();
