@@ -135,6 +135,15 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                         m.PendingChange = true;
                     })),
                 new EditorBoolFieldViewModel(
+                    header: "Map selection",
+                    info: "Toggles the in-game map selection on the world map",
+                    getValueAction: () => AccessMemory(m => m.AllWorld),
+                    setValueAction: x => AccessMemory(m =>
+                    {
+                        m.AllWorld = x;
+                        m.PendingChange = true;
+                    })),
+                new EditorBoolFieldViewModel(
                     header: "Place Ray",
                     info: "Allows Rayman to be placed freely in the level",
                     getValueAction: () => AccessMemory(m => (short)m.RayMode < 0),
@@ -188,10 +197,22 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.YPosition}"))));
         InfoItems.Add(new DuoGridItemViewModel("Rayman state", 
             new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.Etat}-{m.Ray?.SubEtat}"))));
-        InfoItems.Add(new DuoGridItemViewModel("Map time", 
-            new GeneratedLocString(() => AccessMemory(m => $"{m.MapTime}"))));
+        InfoItems.Add(new DuoGridItemViewModel("Helico time", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.HelicoTime}"))));
         InfoItems.Add(new DuoGridItemViewModel("Fist charge",
             new GeneratedLocString(() => AccessMemory(m => $"{m.Poing?.FistChargedLevel}"))));
+        InfoItems.Add(new DuoGridItemViewModel("Active objects", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.ActiveObjCount}"))));
+        InfoItems.Add(new DuoGridItemViewModel("Map time", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.MapTime}"))));
+        InfoItems.Add(new DuoGridItemViewModel("Random index", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.RandomIndex}"))));
+        InfoItems.Add(new DuoGridItemViewModel("Menu", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.MenuEtape}"))));
+        //InfoItems.Add(new DuoGridItemViewModel("Current map", 
+        //    new GeneratedLocString(() => AccessMemory(m => $"{m.NumWorld}-{m.NumLevel}"))));
+        //InfoItems.Add(new DuoGridItemViewModel("Selected map", 
+        //    new GeneratedLocString(() => AccessMemory(m => $"{m.NumWorldChoice}-{m.NumLevelChoice}"))));
 
         Actions.Add(new Mod_ActionViewModel(
             header: "Finish level", 
@@ -235,6 +256,15 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                         w.Runtime_State |= 4;
                 }
 
+                m.PendingChange = true;
+            })),
+            isEnabledFunc: () => true));
+        Actions.Add(new Mod_ActionViewModel(
+            header: "Return to world map", 
+            iconKind: PackIconMaterialKind.MapOutline,
+            command: new RelayCommand(() => AccessMemory(m =>
+            {
+                m.NewWorld = 1;
                 m.PendingChange = true;
             })),
             isEnabledFunc: () => true));
