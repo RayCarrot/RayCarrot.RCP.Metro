@@ -60,7 +60,9 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
         // Create a new context
         Context?.Dispose();
         Context = new RCPContext(String.Empty, noLog: true);
-        StreamFile file = Context.AddFile(new StreamFile(Context, p.ProcessName, new BufferedStream(stream), leaveOpen: true));
+        InitializeContext(Context);
+
+        StreamFile file = Context.AddFile(new ProcessMemoryStreamFile(Context, p.ProcessName, new BufferedStream(stream), leaveOpen: true));
         BinaryDeserializer s = Context.Deserializer;
 
         // Initialize the memory stream
@@ -144,6 +146,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 
     #region Protected Method
 
+    protected virtual void InitializeContext(Context context) { }
     protected abstract void InitializeFields(Pointer offset);
     protected abstract void ClearFields();
     protected abstract void RefreshFields();

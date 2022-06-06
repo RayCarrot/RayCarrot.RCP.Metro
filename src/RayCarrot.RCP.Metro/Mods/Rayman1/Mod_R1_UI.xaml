@@ -24,7 +24,7 @@
 
         <local:ProcessAttacher DataContext="{Binding Path=ProcessAttacherViewModel, Mode=OneTime}" />
 
-        <Grid>
+        <Grid Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -32,7 +32,6 @@
 
             <StackPanel Grid.Column="0">
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}"
                            Text="Properties"
                            Margin="0 0 0 10" />
 
@@ -48,7 +47,29 @@
                            Text="Info"
                            Margin="0 0 0 10" />
 
-                <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"/>
+                <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
+                               Margin="0 0 0 10"/>
+
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}"
+                           Text="Actions"
+                           Margin="0 0 0 10" />
+
+                <ItemsControl HorizontalAlignment="Left"
+                              ItemsSource="{Binding Path=Actions, Mode=OneTime}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Header.Value}" 
+                                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                                    Command="{Binding Path=Command, Mode=OneTime}"
+                                    IsEnabled="{Binding Path=IsEnabled}"
+                                    HorizontalContentAlignment="Left"
+                                    local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime}"
+                                    Margin="0 0 0 7" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
             </StackPanel>
 
         </Grid>
