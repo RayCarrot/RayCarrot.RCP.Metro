@@ -14,6 +14,8 @@
              FocusVisualStyle="{x:Null}"
              MouseDown="UserControl_OnMouseDown">
 
+    <!-- TODO-UPDATE: Localize -->
+
     <StackPanel>
 
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
@@ -22,15 +24,34 @@
 
         <local:ProcessAttacher DataContext="{Binding Path=ProcessAttacherViewModel, Mode=OneTime}" />
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                   Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}"
-                   Text="Properties"
-                   Margin="0 0 0 10"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFields}"
-                      ItemsSource="{Binding Path=EditorFields, Mode=OneTime}"
-                      HorizontalAlignment="Left"
-                      MinWidth="250"/>
+            <StackPanel Grid.Column="0">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}"
+                           Text="Properties"
+                           Margin="0 0 0 10" />
+
+                <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFieldGroups}"
+                              ItemsSource="{Binding Path=EditorFieldGroups, Mode=OneTime}"
+                              HorizontalAlignment="Left"
+                              MinWidth="250"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}"
+                           Text="Info"
+                           Margin="0 0 0 10" />
+
+                <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"/>
+            </StackPanel>
+
+        </Grid>
 
     </StackPanel>
 

@@ -9,6 +9,8 @@
              d:DataContext="{d:DesignInstance metro:ProcessAttacherViewModel}">
     <Grid Margin="0 0 0 10">
 
+        <!-- TODO-UPDATE: Localize -->
+
         <!-- Attach -->
 
         <Grid Visibility="{Binding Path=IsAttached, Converter={metro:InvertedBooleanToVisibilityConverter}}" 

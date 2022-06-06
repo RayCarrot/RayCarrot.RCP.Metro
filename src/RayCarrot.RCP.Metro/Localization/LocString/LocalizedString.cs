@@ -49,14 +49,14 @@ public abstract class LocalizedString : BaseViewModel, IDisposable
 
     protected abstract string GetValue();
 
-    protected void RefreshValue()
-    {
-        Value = GetValue();
-    }
-
     #endregion
 
     #region Public Methods
+
+    public void RefreshValue()
+    {
+        Value = GetValue();
+    }
 
     public override string ToString() => Value;
 

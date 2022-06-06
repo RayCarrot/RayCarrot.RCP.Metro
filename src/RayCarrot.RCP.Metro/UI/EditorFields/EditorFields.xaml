@@ -66,4 +66,32 @@
         </Setter>
     </Style>
 
+    <!-- Field groups item control -->
+
+    <Style x:Key="RCP.Styles.ItemsControl.EditorFieldGroups" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+        <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="{x:Type local:EditorFieldGroupViewModel}">
+                    <StackPanel>
+
+                        <!-- Header -->
+
+                        <TextBlock Text="{Binding Path=Header.Value}"
+                                   Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                   Margin="0 0 0 7" />
+
+                        <!-- Fields -->
+
+                        <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFields}"
+                                      ItemsSource="{Binding Path=EditorFields, Mode=OneTime}"
+                                      Margin="0 0 0 7" />
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
