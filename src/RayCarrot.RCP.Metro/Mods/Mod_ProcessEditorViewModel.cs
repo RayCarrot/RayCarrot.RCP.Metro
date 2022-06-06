@@ -147,9 +147,9 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
     #region Protected Method
 
     protected virtual void InitializeContext(Context context) { }
-    protected abstract void InitializeFields(Pointer offset);
-    protected abstract void ClearFields();
-    protected abstract void RefreshFields();
+    protected virtual void InitializeFields(Pointer offset) { }
+    protected virtual void ClearFields() { }
+    protected virtual void RefreshFields() { }
 
     #endregion
 
@@ -167,6 +167,81 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
         _updateCancellation?.Dispose();
         ProcessAttacherViewModel.Dispose();
         Context?.Dispose();
+    }
+
+    #endregion
+}
+
+public abstract class Mod_ProcessEditorViewModel<TMemObj> : Mod_ProcessEditorViewModel
+    where TMemObj : Mod_MemoryData, new()
+{
+    #region Private Fields
+
+    private TMemObj? _memData;
+    private readonly object _lock = new();
+
+    #endregion
+
+    #region Protected Methods
+
+    protected T? AccessMemory<T>(Func<TMemObj, T> func)
+    {
+        if (_memData == null)
+            return default;
+
+        lock (_lock)
+            return func(_memData);
+    }
+
+    protected void AccessMemory(Action<TMemObj> action)
+    {
+        if (_memData == null)
+            return;
+
+        lock (_lock)
+            action(_memData);
+    }
+
+    protected override void InitializeFields(Pointer offset)
+    {
+        base.InitializeFields(offset);
+
+        lock (_lock)
+            _memData = new TMemObj()
+            {
+                Offset = offset
+            };
+    }
+
+    protected override void ClearFields()
+    {
+        base.ClearFields();
+
+        lock (_lock)
+            _memData = null;
+    }
+
+    protected override void RefreshFields()
+    {
+        base.RefreshFields();
+
+        if (Context == null || _memData == null)
+            return;
+
+        // Serialize the data. Depending on if a value has changed
+        // or not this will either read or write the data.
+        lock (_lock)
+            _memData.Serialize(Context);
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        _memData = null;
     }
 
     #endregion

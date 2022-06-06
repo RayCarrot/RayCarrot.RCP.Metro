@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
@@ -9,7 +8,7 @@ using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
+public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
 {
     #region Constructor
 
@@ -40,8 +39,6 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
     #region Private Fields
 
     private Mod_R1_UI? _uiContent;
-    private Mod_R1_MemoryData? _memData;
-    private readonly object _lock = new();
 
     #endregion
 
@@ -64,43 +61,22 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
 
     #endregion
 
-    #region Private Methods
-
-    private T? AccessMemory<T>(Func<Mod_R1_MemoryData, T> func)
-    {
-        if (_memData == null)
-            return default;
-
-        lock (_lock)
-            return func(_memData);
-    }
-
-    private void AccessMemory(Action<Mod_R1_MemoryData> action)
-    {
-        if (_memData == null)
-            return;
-
-        lock (_lock)
-            action(_memData);
-    }
-
-    #endregion
-
     #region Protected Methods
 
     protected override void InitializeContext(Context context)
     {
+        base.InitializeContext(context);
+
         context.AddSettings(new Ray1Settings(Ray1EngineVersion.PC));
     }
 
     protected override void InitializeFields(Pointer offset)
     {
+        base.InitializeFields(offset);
+
         EditorFieldGroups.Clear();
         InfoItems.Clear();
         Actions.Clear();
-
-        lock (_lock)
-            _memData = new Mod_R1_MemoryData(offset);
 
         // TODO-UPDATE: Localize
         EditorFieldGroups.Add(new EditorFieldGroupViewModel(
@@ -133,6 +109,19 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
                         m.PendingChange = true;
                     }),
                     max: 99),
+                new EditorIntFieldViewModel(
+                    header: "Hit-points",
+                    info: null,
+                    getValueAction: () => AccessMemory(m => m.Ray?.HitPoints ?? 0),
+                    setValueAction: x => AccessMemory(m =>
+                    {
+                        if (m.Ray == null)
+                            return;
+
+                        m.Ray.HitPoints = (byte)x;
+                        m.PendingChange = true;
+                    }),
+                    max: 4),
                 new EditorBoolFieldViewModel(
                     header: "5 hit points",
                     info: null,
@@ -189,10 +178,16 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
                     m.PendingChange = true;
                 }))).ToArray()));
 
-        InfoItems.Add(new DuoGridItemViewModel("XMap", 
+        InfoItems.Add(new DuoGridItemViewModel("Camera X", 
             new GeneratedLocString(() => AccessMemory(m => $"{m.XMap}"))));
-        InfoItems.Add(new DuoGridItemViewModel("YMap", 
+        InfoItems.Add(new DuoGridItemViewModel("Camera Y", 
             new GeneratedLocString(() => AccessMemory(m => $"{m.YMap}"))));
+        InfoItems.Add(new DuoGridItemViewModel("X position", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.XPosition}"))));
+        InfoItems.Add(new DuoGridItemViewModel("Y position", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.YPosition}"))));
+        InfoItems.Add(new DuoGridItemViewModel("Rayman state", 
+            new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.Etat}-{m.Ray?.SubEtat}"))));
         InfoItems.Add(new DuoGridItemViewModel("Map time", 
             new GeneratedLocString(() => AccessMemory(m => $"{m.MapTime}"))));
         InfoItems.Add(new DuoGridItemViewModel("Fist charge",
@@ -245,32 +240,26 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
             isEnabledFunc: () => true));
 
         // Hack to fix a weird binding issue where the first int box gets set to 0
-        _memData.PendingChange = false;
-        RefreshFields();
-        _memData.PendingChange = false;
+        AccessMemory(m =>
+        {
+            m.PendingChange = false;
+            RefreshFields();
+            m.PendingChange = false;
+        });
     }
 
     protected override void ClearFields()
     {
+        base.ClearFields();
+
         EditorFieldGroups.Clear();
         InfoItems.Clear();
         Actions.Clear();
-        
-        lock (_lock)
-            _memData = null;
     }
 
     protected override void RefreshFields()
     {
-        if (Context == null || _memData == null)
-            return;
-
-        lock (_lock)
-        {
-            // Serialize the data. Depending on if a value has changed
-            // or not this will either read or write the data.
-            _memData.Serialize(Context);
-        }
+        base.RefreshFields();
 
         foreach (EditorFieldGroupViewModel group in EditorFieldGroups)
             group.Refresh();
@@ -290,8 +279,6 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel
     public override void Dispose()
     {
         base.Dispose();
-
-        _memData = null;
 
         BindingOperations.DisableCollectionSynchronization(EditorFieldGroups);
         BindingOperations.DisableCollectionSynchronization(InfoItems);
