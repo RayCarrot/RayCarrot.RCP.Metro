@@ -8,8 +8,8 @@
     <LangVersion>10.0</LangVersion>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>x64</PlatformTarget>
+    <!-- <Prefer32Bit>false</Prefer32Bit> -->
     <!-- Appears to be required when using framework earlier than net5 -->
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 
@@ -51,7 +51,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <WeaverConfiguration>
       <Weavers>
-        <Costura IncludeDebugSymbols="false" ExcludeAssemblies="Magick.Native-Q8-x86" />
+        <Costura IncludeDebugSymbols="false" ExcludeAssemblies="Magick.Native-Q8-x64" />
         <PropertyChanged />
       </Weavers>
     </WeaverConfiguration>
@@ -88,7 +88,7 @@
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="gong-wpf-dragdrop" Version="3.1.1" />
     <PackageReference Include="ini-parser" Version="2.5.2" />
-    <PackageReference Include="Magick.NET-Q8-x86" Version="11.1.2" />
+    <PackageReference Include="Magick.NET-Q8-x64" Version="11.1.2" />
     <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="5.0.2" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
@@ -130,7 +130,7 @@
     <Resource Include="**\*.gif" />
 
     <!-- Specify native library as embedded resurce in special costura32 folder so it gets included in the exe -->
-    <EmbeddedResource Include="costura32\Magick.Native-Q8-x86.dll" />
+    <EmbeddedResource Include="costura64\Magick.Native-Q8-x64.dll" />
 
     <!-- Resources -->
     <Resource Include="UI\Fonts\RaymanOrigins.ttf" />
