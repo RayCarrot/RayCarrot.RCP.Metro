@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
@@ -6,7 +7,37 @@ namespace RayCarrot.RCP.Metro;
 public abstract class Mod_MemoryData
 {
     public Pointer? Offset { get; set; }
-    public bool PendingChange { get; set; }
+    public Dictionary<string, long>? Offsets { get; set; }
+    public bool PendingChange { get; set; } // TODO-UPDATE: Change to HashSet<string> for the modified properties to avoid writing everything?
+
+    protected T Serialize<T>(SerializerObject s, T obj, string name)
+    {
+        if (Offsets == null)
+            throw new Exception("Offsets table is null");
+
+        s.Goto(Offset + Offsets[name]);
+        return s.Serialize<T>(obj, name: name);
+    }
+
+    protected T? SerializeObject<T>(SerializerObject s, T? obj, string name, Action<T>? onPreSerialize = null) 
+        where T : BinarySerializable, new()
+    {
+        if (Offsets == null)
+            throw new Exception("Offsets table is null");
+
+        s.Goto(Offset + Offsets[name]);
+        return s.SerializeObject<T>(obj, onPreSerialize, name: name);
+    }
+
+    protected T[]? SerializeObjectArray<T>(SerializerObject s, T[]? obj, long count, string name, Action<T>? onPreSerialize = null) 
+        where T : BinarySerializable, new()
+    {
+        if (Offsets == null)
+            throw new Exception("Offsets table is null");
+
+        s.Goto(Offset + Offsets[name]);
+        return s.SerializeObjectArray<T>(obj, count, onPreSerialize, name: name);
+    }
 
     protected abstract void SerializeImpl(SerializerObject s);
 

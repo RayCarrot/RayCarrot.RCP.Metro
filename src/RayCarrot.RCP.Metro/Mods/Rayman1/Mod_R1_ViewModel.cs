@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
@@ -17,6 +18,21 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         EditorFieldGroups = new ObservableCollection<EditorFieldGroupViewModel>();
         InfoItems = new ObservableCollection<DuoGridItemViewModel>();
         Actions = new ObservableCollection<Mod_ActionViewModel>();
+
+        Emulators = new ObservableCollection<Mod_EmulatorViewModel>()
+        {
+            // TODO-UPDATE: Add 0.73-3 & BizHawk
+            Mod_EmulatorViewModel.DOSBox_0_74,
+        };
+        SelectedEmulator = Emulators.First();
+        ProcessNameKeywords = Emulators.SelectMany(x => x.ProcessNameKeywords).ToArray();
+
+        GameVersions = new ObservableCollection<Mod_GameVersionViewModel>()
+        {
+            // TODO-UPDATE: Localize
+            new("Rayman 1 (PC - 1.21)", () => Mod_R1_MemoryData.Offsets_PC_1_21),
+        };
+        SelectedGameVersion = GameVersions.First();
 
         BindingOperations.EnableCollectionSynchronization(EditorFieldGroups, Application.Current);
         BindingOperations.EnableCollectionSynchronization(InfoItems, Application.Current);
@@ -44,16 +60,20 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
 
     #region Protected Properties
 
-    protected override string[] ProcessNameKeywords => new[]
-    {
-        "DOSBox"
-    };
-    protected override long GameBaseOffset => 0x01D3A1A0; // TODO-UPDATE: Have DOSBox version selection. Support BizHawk.
-    protected override bool IsGameBaseAPointer => true;
+    protected override string[] ProcessNameKeywords { get; }
+    protected override long GameBaseOffset => (SelectedEmulator ?? Emulators.First()).GameBaseOffset;
+    protected override bool IsGameBaseAPointer => (SelectedEmulator ?? Emulators.First()).IsGameBaseAPointer;
+    protected override Dictionary<string, long> Offsets => (SelectedGameVersion ?? GameVersions.First()).GetOffsetsFunc();
 
     #endregion
 
     #region Public Properties
+
+    public ObservableCollection<Mod_EmulatorViewModel> Emulators { get; }
+    public Mod_EmulatorViewModel? SelectedEmulator { get; set; }
+
+    public ObservableCollection<Mod_GameVersionViewModel> GameVersions { get; }
+    public Mod_GameVersionViewModel? SelectedGameVersion { get; set; }
 
     public ObservableCollection<EditorFieldGroupViewModel> EditorFieldGroups { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
@@ -118,7 +138,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                         if (m.Ray == null)
                             return;
 
-                        m.Ray.HitPoints = (byte)x;
+                        m.Ray.HitPoints = (byte)x; // TODO-UPDATE: Limit if don't have 5 max hp
                         m.PendingChange = true;
                     }),
                     max: 4),

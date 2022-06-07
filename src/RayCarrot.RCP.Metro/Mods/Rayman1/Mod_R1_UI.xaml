@@ -24,6 +24,19 @@
 
         <local:ProcessAttacher DataContext="{Binding Path=ProcessAttacherViewModel, Mode=OneTime}" />
 
+        <StackPanel HorizontalAlignment="Left">
+            <ComboBox Margin="0 0 0 10" 
+                      Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                      ItemsSource="{Binding Path=Emulators, Mode=OneTime}"
+                      DisplayMemberPath="DisplayName.Value"
+                      SelectedItem="{Binding Path=SelectedEmulator}"/>
+            <ComboBox Margin="0 0 0 10" 
+                      Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                      ItemsSource="{Binding Path=GameVersions, Mode=OneTime}"
+                      DisplayMemberPath="DisplayName.Value"
+                      SelectedItem="{Binding Path=SelectedGameVersion}"/>
+        </StackPanel>
+
         <Grid Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

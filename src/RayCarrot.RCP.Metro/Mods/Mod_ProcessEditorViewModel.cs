@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -182,6 +183,12 @@ public abstract class Mod_ProcessEditorViewModel<TMemObj> : Mod_ProcessEditorVie
 
     #endregion
 
+    #region Protected Properties
+
+    protected virtual Dictionary<string, long>? Offsets => null;
+
+    #endregion
+
     #region Protected Methods
 
     protected T? AccessMemory<T>(Func<TMemObj, T> func)
@@ -209,7 +216,8 @@ public abstract class Mod_ProcessEditorViewModel<TMemObj> : Mod_ProcessEditorVie
         lock (_lock)
             _memData = new TMemObj()
             {
-                Offset = offset
+                Offset = offset,
+                Offsets = Offsets,
             };
     }
 
