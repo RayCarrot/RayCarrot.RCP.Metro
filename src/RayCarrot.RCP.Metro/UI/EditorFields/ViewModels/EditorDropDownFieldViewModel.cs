@@ -51,8 +51,12 @@ public class EditorDropDownFieldViewModel : EditorFieldViewModel
             _selectedItem = -1;
             OnPropertyChanged(nameof(SelectedItem));
 
-            Items.Clear();
-            Items.AddRange(GetItemsAction());
+            // IDEA: Find better solution to this. We could do EnableCollectionSynchronization, but then we'd have to disable it afterwards
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                Items.Clear();
+                Items.AddRange(newItems);
+            });
 
             Logger.Debug("Recreated drop-down items for drop-down with header {0}", Header);
         }

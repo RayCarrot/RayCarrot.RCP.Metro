@@ -23,14 +23,16 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         {
             // TODO-UPDATE: Add 0.73-3 & BizHawk
             Mod_EmulatorViewModel.DOSBox_0_74,
+            Mod_EmulatorViewModel.BizHawk_PS1_2_4_0,
         };
         SelectedEmulator = Emulators.First();
         ProcessNameKeywords = Emulators.SelectMany(x => x.ProcessNameKeywords).ToArray();
 
-        GameVersions = new ObservableCollection<Mod_GameVersionViewModel>()
+        GameVersions = new ObservableCollection<Mod_GameVersionViewModel<Ray1EngineVersion>>()
         {
             // TODO-UPDATE: Localize
-            new("Rayman 1 (PC - 1.21)", () => Mod_R1_MemoryData.Offsets_PC_1_21),
+            new("Rayman 1 (PC - 1.21)", () => Mod_R1_MemoryData.Offsets_PC_1_21, Ray1EngineVersion.PC),
+            new("Rayman 1 (PS1 - US)", () => Mod_R1_MemoryData.Offsets_PS1_US, Ray1EngineVersion.PS1),
         };
         SelectedGameVersion = GameVersions.First();
 
@@ -61,23 +63,167 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
     #region Protected Properties
 
     protected override string[] ProcessNameKeywords { get; }
-    protected override long GameBaseOffset => (SelectedEmulator ?? Emulators.First()).GameBaseOffset;
-    protected override bool IsGameBaseAPointer => (SelectedEmulator ?? Emulators.First()).IsGameBaseAPointer;
-    protected override Dictionary<string, long> Offsets => (SelectedGameVersion ?? GameVersions.First()).GetOffsetsFunc();
+    protected override string? ModuleName => SelectedEmulator.ModuleName;
+    protected override long GameBaseOffset => SelectedEmulator.GameBaseOffset;
+    protected override bool IsGameBaseAPointer => SelectedEmulator.IsGameBaseAPointer;
+    protected override Dictionary<string, long> Offsets => SelectedGameVersion.GetOffsetsFunc();
 
     #endregion
 
     #region Public Properties
 
     public ObservableCollection<Mod_EmulatorViewModel> Emulators { get; }
-    public Mod_EmulatorViewModel? SelectedEmulator { get; set; }
+    public Mod_EmulatorViewModel SelectedEmulator { get; set; }
 
-    public ObservableCollection<Mod_GameVersionViewModel> GameVersions { get; }
-    public Mod_GameVersionViewModel? SelectedGameVersion { get; set; }
+    public ObservableCollection<Mod_GameVersionViewModel<Ray1EngineVersion>> GameVersions { get; }
+    public Mod_GameVersionViewModel<Ray1EngineVersion> SelectedGameVersion { get; set; }
 
     public ObservableCollection<EditorFieldGroupViewModel> EditorFieldGroups { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
     public ObservableCollection<Mod_ActionViewModel> Actions { get; }
+
+    #endregion
+
+    #region Private Methods
+
+    private IEnumerable<EditorFieldViewModel> CreateEditorFields_General()
+    {
+        // TODO-UPDATE: Localize
+        yield return new EditorIntFieldViewModel(
+            header: "Lives",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.StatusBar?.LivesCount ?? 0),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.StatusBar == null)
+                    return;
+
+                m.StatusBar.LivesCount = (byte)x;
+                m.PendingChange = true;
+            }),
+            max: 99);
+        
+        yield return new EditorIntFieldViewModel(
+            header: "Tings",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.StatusBar?.TingsCount ?? 0),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.StatusBar == null)
+                    return;
+
+                m.StatusBar.TingsCount = (byte)x;
+                m.PendingChange = true;
+            }),
+            max: 99);
+
+        yield return new EditorIntFieldViewModel(
+            header: "Hit-points",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.Ray?.HitPoints ?? 0),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.Ray == null)
+                    return;
+
+                m.Ray.HitPoints = (byte)x; // TODO-UPDATE: Limit if don't have 5 max hp
+                m.PendingChange = true;
+            }),
+            max: 4);
+
+        yield return new EditorBoolFieldViewModel(
+            header: "5 hit points",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth == 4),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (m.StatusBar == null)
+                    return;
+
+                m.StatusBar.MaxHealth = (byte)(x ? 4 : 2);
+                m.PendingChange = true;
+            }));
+
+        yield return new EditorBoolFieldViewModel(
+            header: "Place Ray",
+            info: "Allows Rayman to be placed freely in the level",
+            getValueAction: () => AccessMemory(m => (short)m.RayMode < 0),
+            setValueAction: x => AccessMemory(m =>
+            {
+                bool isEnabled = (short)m.RayMode < 0;
+
+                if (isEnabled != x)
+                    m.RayMode = (RayMode)((short)m.RayMode * -1);
+
+                m.PendingChange = true;
+            }));
+
+        int[] lvls = SelectedGameVersion.Data switch
+        {
+            Ray1EngineVersion.PC => new[] { 0, 22, 18, 13, 13, 12, 4 }, // Breakout is map 22 in Jungle
+            _ => new[] { 0, 21, 18, 13, 13, 12, 4 },
+        };
+
+        EditorDropDownFieldViewModel.DropDownItem[][] levelDropDowns =
+            lvls.Select(x => Enumerable.Range(0, x).
+                    Select(l => new EditorDropDownFieldViewModel.DropDownItem($"Map {l + 1}", null)).
+                    ToArray())
+                .ToArray();
+
+        yield return new EditorDropDownFieldViewModel(
+            header: "Current level",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.NumLevel - 1),
+            setValueAction: x => AccessMemory(m =>
+            {
+                m.NumLevelChoice = (short)(x + 1);
+                m.NewLevel = 1;
+                m.PendingChange = true;
+            }),
+            getItemsAction: () => levelDropDowns[AccessMemory(m => m.NumWorld)]);
+
+        if (AccessMemory(m => m.SupportsProperty(nameof(m.AllWorld))))
+            yield return new EditorBoolFieldViewModel(
+                header: "Map selection",
+                info: "Toggles the in-game map selection on the world map",
+                getValueAction: () => AccessMemory(m => m.AllWorld),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    m.AllWorld = x;
+                    m.PendingChange = true;
+                }));
+    }
+
+    private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers()
+    {
+        // TODO-UPDATE: Localize
+        return new (RayEvts Evts, LocalizedString Header)[]
+        {
+            (RayEvts.Fist, "Fist"),
+            (RayEvts.Hang, "Hang"),
+            (RayEvts.Helico, "Helico"),
+            (RayEvts.Grab, "Grab"),
+            (RayEvts.Run, "Run"),
+            (RayEvts.Seed, "Seed"),
+            (RayEvts.SuperHelico, "Super-helico"),
+            (RayEvts.SquishedRayman, "Squished"),
+            (RayEvts.Firefly, "Firefly"),
+            (RayEvts.ForceRun, "Force run"),
+            (RayEvts.ReverseControls, "Reverse controls"),
+        }.Select(ev => new EditorBoolFieldViewModel(
+            header: ev.Header,
+            info: null,
+            getValueAction: () => AccessMemory(m => (m.RayEvts & ev.Evts) != 0),
+            setValueAction: x => AccessMemory(m =>
+            {
+                if (x)
+                    m.RayEvts |= ev.Evts;
+                else
+                    m.RayEvts &= ~ev.Evts;
+
+                m.PendingChange = true;
+            })));
+    }
 
     #endregion
 
@@ -87,7 +233,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
     {
         base.InitializeContext(context);
 
-        context.AddSettings(new Ray1Settings(Ray1EngineVersion.PC));
+        context.AddSettings(new Ray1Settings(SelectedGameVersion.Data));
     }
 
     protected override void InitializeFields(Pointer offset)
@@ -101,111 +247,11 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         // TODO-UPDATE: Localize
         EditorFieldGroups.Add(new EditorFieldGroupViewModel(
             header: "General",
-            editorFields: new EditorFieldViewModel[]
-            {
-                new EditorIntFieldViewModel(
-                    header: "Lives",
-                    info: null,
-                    getValueAction: () => AccessMemory(m => m.StatusBar?.LivesCount ?? 0),
-                    setValueAction: x => AccessMemory(m =>
-                    {
-                        if (m.StatusBar == null)
-                            return;
-
-                        m.StatusBar.LivesCount = (byte)x;
-                        m.PendingChange = true;
-                    }),
-                    max: 99),
-                new EditorIntFieldViewModel(
-                    header: "Tings",
-                    info: null,
-                    getValueAction: () => AccessMemory(m => m.StatusBar?.TingsCount ?? 0),
-                    setValueAction: x => AccessMemory(m =>
-                    {
-                        if (m.StatusBar == null)
-                            return;
-
-                        m.StatusBar.TingsCount = (byte)x;
-                        m.PendingChange = true;
-                    }),
-                    max: 99),
-                new EditorIntFieldViewModel(
-                    header: "Hit-points",
-                    info: null,
-                    getValueAction: () => AccessMemory(m => m.Ray?.HitPoints ?? 0),
-                    setValueAction: x => AccessMemory(m =>
-                    {
-                        if (m.Ray == null)
-                            return;
-
-                        m.Ray.HitPoints = (byte)x; // TODO-UPDATE: Limit if don't have 5 max hp
-                        m.PendingChange = true;
-                    }),
-                    max: 4),
-                new EditorBoolFieldViewModel(
-                    header: "5 hit points",
-                    info: null,
-                    getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth == 4),
-                    setValueAction: x => AccessMemory(m =>
-                    {
-                        if (m.StatusBar == null)
-                            return;
-
-                        m.StatusBar.MaxHealth = (byte)(x ? 4 : 2);
-                        m.PendingChange = true;
-                    })),
-                new EditorBoolFieldViewModel(
-                    header: "Map selection",
-                    info: "Toggles the in-game map selection on the world map",
-                    getValueAction: () => AccessMemory(m => m.AllWorld),
-                    setValueAction: x => AccessMemory(m =>
-                    {
-                        m.AllWorld = x;
-                        m.PendingChange = true;
-                    })),
-                new EditorBoolFieldViewModel(
-                    header: "Place Ray",
-                    info: "Allows Rayman to be placed freely in the level",
-                    getValueAction: () => AccessMemory(m => (short)m.RayMode < 0),
-                    setValueAction: x => AccessMemory(m =>
-                    {
-                        bool isEnabled = (short)m.RayMode < 0;
-
-                        if (isEnabled != x)
-                            m.RayMode = (RayMode)((short)m.RayMode * -1);
-
-                        m.PendingChange = true;
-                    })),
-            }));
+            editorFields: CreateEditorFields_General()));
 
         EditorFieldGroups.Add(new EditorFieldGroupViewModel(
             header: "Powers",
-            editorFields: new (RayEvts Evts, LocalizedString Header)[]
-            {
-                (RayEvts.Fist, "Fist"),
-                (RayEvts.Hang, "Hang"),
-                (RayEvts.Helico, "Helico"),
-                (RayEvts.Grab, "Grab"),
-                (RayEvts.Run, "Run"),
-                (RayEvts.Seed, "Seed"),
-                (RayEvts.SuperHelico, "Super-helico"),
-                (RayEvts.SquishedRayman, "Squished"),
-                (RayEvts.Firefly, "Firefly"),
-                (RayEvts.ForceRun, "Force run"),
-                (RayEvts.ReverseControls, "Reverse controls"),
-            }.Select(ev => new EditorBoolFieldViewModel(
-                header: ev.Header,
-                info: null,
-                getValueAction: () => AccessMemory(m => (m.RayEvts & ev.Evts) != 0),
-                setValueAction: x => AccessMemory(m =>
-                {
-                    if (x)
-                        m.RayEvts |= ev.Evts;
-                    else
-                        m.RayEvts &= ~ev.Evts;
-
-                    m.PendingChange = true;
-                }))).ToArray()));
+            editorFields: CreateEditorFields_Powers()));
 
         InfoItems.Add(new DuoGridItemViewModel("Camera X", 
             new GeneratedLocString(() => AccessMemory(m => $"{m.XMap}"))));
@@ -222,7 +268,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         InfoItems.Add(new DuoGridItemViewModel("Fist charge",
             new GeneratedLocString(() => AccessMemory(m => $"{m.Poing?.FistChargedLevel}"))));
         InfoItems.Add(new DuoGridItemViewModel("Active objects", 
-            new GeneratedLocString(() => AccessMemory(m => $"{m.ActiveObjCount}"))));
+            new GeneratedLocString(() => AccessMemory(m => $"{m.ActiveObjects?[100]}"))));
         InfoItems.Add(new DuoGridItemViewModel("Map time", 
             new GeneratedLocString(() => AccessMemory(m => $"{m.MapTime}"))));
         InfoItems.Add(new DuoGridItemViewModel("Random index", 

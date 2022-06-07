@@ -19,7 +19,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public RayEvts RayEvts { get; set; }
 
     public int MapTime { get; set; }
-    public short ActiveObjCount { get; set; }
+    public short[]? ActiveObjects { get; set; }
     public short XMap { get; set; }
     public short YMap { get; set; }
 
@@ -28,6 +28,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public short NumWorldChoice { get; set; }
     public short NumLevel { get; set; }
     public short NumWorld { get; set; }
+    public short NewLevel { get; set; }
     public short NewWorld { get; set; }
     public byte MenuEtape { get; set; }
 
@@ -49,7 +50,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         [nameof(RayEvts)] = 0x17081A,
 
         [nameof(MapTime)] = 0x16E8C0,
-        [nameof(ActiveObjCount)] = 0x170024,
+        [nameof(ActiveObjects)] = 0x16FF5C,
         [nameof(XMap)] = 0x17089E,
         [nameof(YMap)] = 0x1708A6,
 
@@ -58,11 +59,44 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         [nameof(NumWorldChoice)] = 0x17083A,
         [nameof(NumLevel)] = 0x17087C,
         [nameof(NumWorld)] = 0x17088C,
+        [nameof(NewLevel)] = 0x170880,
         [nameof(NewWorld)] = 0x170892,
         [nameof(MenuEtape)] = 0x170A37,
 
         [nameof(FinBoss)] = 0x170A76,
         [nameof(FinBossLevel)] = 0x17081E,
+    };
+
+    public static Dictionary<string, long> Offsets_PS1_US => new()
+    {
+        [nameof(StatusBar)] = 0x801e4d50,
+        [nameof(Poing)] = 0x801d8b28,
+        [nameof(Ray)] = 0x801f61a0,
+        [nameof(HelicoTime)] = 0x801e5750,
+
+        [nameof(WorldInfo)] = 0x801c335c,
+        [nameof(RandomIndex)] = 0x801f5170,
+
+        [nameof(RayMode)] = 0x801E5420,
+        [nameof(RayModeSpeed)] = 0x801e4dd8,
+        [nameof(RayEvts)] = 0x801f43d0,
+
+        [nameof(MapTime)] = 0x801f6220,
+        [nameof(ActiveObjects)] = 0x801e5428,
+        [nameof(XMap)] = 0x801f84b8,
+        [nameof(YMap)] = 0x801f84c0,
+
+        //[nameof(AllWorld)] = ,
+        [nameof(NumLevelChoice)] = 0x801e5a20,
+        [nameof(NumWorldChoice)] = 0x801e63e8,
+        [nameof(NumLevel)] = 0x801f9a68,
+        [nameof(NumWorld)] = 0x801fa688,
+        [nameof(NewLevel)] = 0x801f99f0,
+        [nameof(NewWorld)] = 0x801fa5a8,
+        [nameof(MenuEtape)] = 0x801f81a0,
+
+        [nameof(FinBoss)] = 0x801f7a48,
+        [nameof(FinBossLevel)] = 0x801f4ee8,
     };
 
     protected override void SerializeImpl(SerializerObject s)
@@ -80,7 +114,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         RayEvts = Serialize<RayEvts>(s, RayEvts, name: nameof(RayEvts));
 
         MapTime = Serialize<int>(s, MapTime, name: nameof(MapTime));
-        ActiveObjCount = Serialize<short>(s, ActiveObjCount, name: nameof(ActiveObjCount));
+        ActiveObjects = SerializeArray<short>(s, ActiveObjects, 112, name: nameof(ActiveObjects));
         XMap = Serialize<short>(s, XMap, name: nameof(XMap));
         YMap = Serialize<short>(s, YMap, name: nameof(YMap));
 
@@ -89,6 +123,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         NumWorldChoice = Serialize<short>(s, NumWorldChoice, name: nameof(NumWorldChoice));
         NumLevel = Serialize<short>(s, NumLevel, name: nameof(NumLevel));
         NumWorld = Serialize<short>(s, NumWorld, name: nameof(NumWorld));
+        NewLevel = Serialize<short>(s, NewLevel, name: nameof(NewLevel));
         NewWorld = Serialize<short>(s, NewWorld, name: nameof(NewWorld));
         MenuEtape = Serialize<byte>(s, MenuEtape, name: nameof(MenuEtape));
 
