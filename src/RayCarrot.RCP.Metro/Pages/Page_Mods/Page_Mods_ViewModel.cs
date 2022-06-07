@@ -9,11 +9,11 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class Page_Mods_ViewModel : BasePageViewModel, IDisposable
 {
-    public Page_Mods_ViewModel(AppViewModel app) : base(app)
+    public Page_Mods_ViewModel(AppViewModel app, IMessageUIManager messageUi) : base(app)
     {
         Mods = new Mod_BaseViewModel[]
         {
-            new Mod_R1_ViewModel(),
+            new Mod_R1_ViewModel(messageUi),
             new Mod_RRR_ViewModel(),
         };
     }

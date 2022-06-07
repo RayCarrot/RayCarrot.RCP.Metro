@@ -13,7 +13,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
 {
     #region Constructor
 
-    public Mod_R1_ViewModel()
+    public Mod_R1_ViewModel(IMessageUIManager messageUi) : base(messageUi)
     {
         EditorFieldGroups = new ObservableCollection<EditorFieldGroupViewModel>();
         InfoItems = new ObservableCollection<DuoGridItemViewModel>();

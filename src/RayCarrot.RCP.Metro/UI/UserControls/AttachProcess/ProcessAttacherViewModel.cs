@@ -166,8 +166,8 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
             return;
 
         AttachedProcess = SelectedProcess;
-        OnProcessAttached(new AttachableProcessEventArgs(AttachedProcess));
         ClearProcesses(false);
+        OnProcessAttached(new AttachableProcessEventArgs(AttachedProcess));
     }
 
     public Task DetachProcessAsync()

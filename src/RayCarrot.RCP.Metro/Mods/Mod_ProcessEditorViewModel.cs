@@ -14,8 +14,10 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 {
     #region Constructor
 
-    protected Mod_ProcessEditorViewModel()
+    protected Mod_ProcessEditorViewModel(IMessageUIManager messageUi)
     {
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+
         ProcessAttacherViewModel = new ProcessAttacherViewModel();
         ProcessAttacherViewModel.ProcessAttached += (_, e) => AttachProcess(e.AttachedProcess);
         ProcessAttacherViewModel.ProcessDetached += (_, _) => DetachProcess();
@@ -44,6 +46,12 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 
     #endregion
 
+    #region Services
+
+    public IMessageUIManager MessageUI { get; }
+
+    #endregion
+
     #region Public Properties
 
     public ProcessAttacherViewModel ProcessAttacherViewModel { get; }
@@ -53,32 +61,45 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 
     #region Private Methods
 
-    private void AttachProcess(AttachableProcessViewModel p)
+    private async void AttachProcess(AttachableProcessViewModel p)
     {
-        // Open the process as a stream
-        ProcessMemoryStream stream = new(p.Process, ProcessMemoryStream.Mode.AllAccess); // TODO-UPDATE: This might fail
+        try
+        {
+            // Open the process as a stream
+            ProcessMemoryStream stream = new(p.Process, ProcessMemoryStream.Mode.AllAccess);
 
-        // Create a new context
-        Context?.Dispose();
-        Context = new RCPContext(String.Empty, noLog: true);
-        InitializeContext(Context);
+            // Create a new context
+            Context?.Dispose();
+            Context = new RCPContext(String.Empty, noLog: true);
+            InitializeContext(Context);
 
-        StreamFile file = Context.AddFile(new ProcessMemoryStreamFile(Context, p.ProcessName, new BufferedStream(stream), leaveOpen: true));
-        BinaryDeserializer s = Context.Deserializer;
+            StreamFile file = Context.AddFile(new ProcessMemoryStreamFile(Context, p.ProcessName, new BufferedStream(stream), leaveOpen: true));
+            BinaryDeserializer s = Context.Deserializer;
 
-        // Initialize the memory stream
-        s.Goto(file.StartPointer);
-        InitializeProcessStream(stream, s); // TODO-UPDATE: This might fail
+            // Initialize the memory stream
+            s.Goto(file.StartPointer);
+            InitializeProcessStream(stream, s);
 
-        // Initialize the fields
-        InitializeFields(file.StartPointer);
+            // Initialize the fields
+            InitializeFields(file.StartPointer);
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Attaching to process for memory loading");
+
+            // TODO-UPDATE: Localize
+            await MessageUI.DisplayMessageAsync("An error occurred when attaching to the process", "Error", MessageType.Error);
+
+            await ProcessAttacherViewModel.DetachProcessAsync();
+            return;
+        }
 
         // Create a cancellation source
         _updateCancellation = new CancellationTokenSource();
         CancellationToken token = _updateCancellation.Token;
 
         // Start refreshing
-        Task.Run(async () =>
+        _ = Task.Run(async () =>
         {
             try
             {
@@ -96,6 +117,9 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
             }
             catch (Exception ex)
             {
+                // Wait a bit in case the process is currently exiting so we don't have to show an error message
+                await Task.Delay(TimeSpan.FromMilliseconds(400));
+
                 if (ProcessAttacherViewModel.AttachedProcess?.Process.HasExited == true)
                 {
                     Logger.Debug(ex, "Updating memory mod fields");
@@ -103,7 +127,9 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
                 else
                 {
                     Logger.Warn(ex, "Updating memory mod fields");
-                    // TODO: Error message
+
+                    // TODO-UPDATE: Localize
+                    await MessageUI.DisplayMessageAsync("An error occurred when updating the game values", "Error", MessageType.Error);
                 }
 
                 await ProcessAttacherViewModel.DetachProcessAsync();
@@ -176,6 +202,12 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 public abstract class Mod_ProcessEditorViewModel<TMemObj> : Mod_ProcessEditorViewModel
     where TMemObj : Mod_MemoryData, new()
 {
+    #region Constructor
+
+    protected Mod_ProcessEditorViewModel(IMessageUIManager messageUi) : base(messageUi) { }
+
+    #endregion
+
     #region Private Fields
 
     private TMemObj? _memData;
