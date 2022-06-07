@@ -19,13 +19,13 @@ public class Mod_EmulatorViewModel : BaseViewModel
 
     // TODO-UPDATE: Localize
     public static Mod_EmulatorViewModel DOSBox_0_74 => new(
-        displayName: "DOSBox 0.74",
+        displayName: "DOSBox (0.74)",
         processNameKeywords: new[] { "DOSBox" },
         moduleName: null,
         gameBaseOffset: 0x01D3A1A0,
         isGameBaseAPointer: true);
     public static Mod_EmulatorViewModel BizHawk_PS1_2_4_0 => new(
-        displayName: "BizHawk PS1 2.4.0",
+        displayName: "BizHawk (PS1 - 2.4.0)",
         processNameKeywords: new[] { "EmuHawk" },
         moduleName: "octoshock.dll",
         gameBaseOffset: 0x0011D880 - (long)0x80000000,
