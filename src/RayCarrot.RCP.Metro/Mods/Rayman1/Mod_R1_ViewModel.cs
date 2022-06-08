@@ -102,7 +102,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     return;
 
                 m.StatusBar.LivesCount = (byte)x;
-                m.PendingChange = true;
+                m.ModifiedValue(nameof(m.StatusBar));;
             }),
             max: 99);
         
@@ -116,7 +116,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     return;
 
                 m.StatusBar.TingsCount = (byte)x;
-                m.PendingChange = true;
+                m.ModifiedValue(nameof(m.StatusBar));;
             }),
             max: 99);
 
@@ -135,6 +135,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                         return;
 
                     m.R2_Ray.HitPoints = (byte)x;
+                    m.ModifiedValue(nameof(m.R2_Ray));;
                 }
                 else
                 {
@@ -142,9 +143,8 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                         return;
 
                     m.Ray.HitPoints = (byte)x;
+                    m.ModifiedValue(nameof(m.Ray));;
                 }
-
-                m.PendingChange = true;
             }));
 
         if (SelectedGameVersion.Data == Ray1EngineVersion.R2_PS1)
@@ -158,7 +158,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                         return;
 
                     m.StatusBar.MaxHealth = (byte)x;
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.StatusBar));;
                 }),
                 max: Byte.MaxValue);
         else
@@ -172,7 +172,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                         return;
 
                     m.StatusBar.MaxHealth = (byte)(x ? 4 : 2);
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.StatusBar));;
                 }));
 
         yield return new EditorBoolFieldViewModel(
@@ -186,7 +186,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 if (isEnabled != x)
                     m.RayMode = (RayMode)((short)m.RayMode * -1);
 
-                m.PendingChange = true;
+                m.ModifiedValue(nameof(m.RayMode));;
             }));
 
         if (SelectedGameVersion.Data != Ray1EngineVersion.R2_PS1)
@@ -211,7 +211,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 {
                     m.NumLevelChoice = (short)(x + 1);
                     m.NewLevel = 1;
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.NumLevelChoice), nameof(m.NewLevel));;
                 }),
                 getItemsAction: () => levelDropDowns[AccessMemory(m => m.NumWorld)]);
         }
@@ -224,7 +224,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 setValueAction: x => AccessMemory(m =>
                 {
                     m.AllWorld = x;
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.AllWorld));;
                 }));
     }
 
@@ -257,7 +257,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     else
                         m.R2_RayEvts &= ~ev.Evts;
 
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.R2_RayEvts));;
                 })));
         }
         else
@@ -286,7 +286,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     else
                         m.RayEvts &= ~ev.Evts;
 
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.RayEvts));;
                 })));
         }
     }
@@ -341,7 +341,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 command: new RelayCommand(() => AccessMemory(m =>
                 {
                     m.FinBoss = true;
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.FinBoss));
                 })),
                 isEnabledFunc: () => AccessMemory(m => m.Ray is { Etat: 0, SpeedX: 0, SpeedY: 0, Short_4A: -1 }));
 
@@ -361,7 +361,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                             w.Runtime_State |= 4;
                     }
 
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.WorldInfo));
                 })),
                 isEnabledFunc: () => true);
 
@@ -381,7 +381,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                             w.Runtime_State |= 4;
                     }
 
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.WorldInfo));
                 })),
                 isEnabledFunc: () => true);
         }
@@ -393,7 +393,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 command: new RelayCommand(() => AccessMemory(m =>
                 {
                     m.NewWorld = 1;
-                    m.PendingChange = true;
+                    m.ModifiedValue(nameof(m.NewWorld));
                 })),
                 isEnabledFunc: () => true);
     }
@@ -433,9 +433,9 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         // Hack to fix a weird binding issue where the first int box gets set to 0
         AccessMemory(m =>
         {
-            m.PendingChange = false;
+            m.ClearModifiedValues();
             RefreshFields();
-            m.PendingChange = false;
+            m.ClearModifiedValues();
         });
     }
 
