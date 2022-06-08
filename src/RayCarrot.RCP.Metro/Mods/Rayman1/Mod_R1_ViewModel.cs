@@ -84,6 +84,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
     public ObservableCollection<EditorFieldGroupViewModel> EditorFieldGroups { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
     public ObservableCollection<Mod_ActionViewModel> Actions { get; }
+    public bool HasActions { get; set; }
 
     #endregion
 
@@ -226,6 +227,23 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     m.AllWorld = x;
                     m.ModifiedValue(nameof(m.AllWorld));;
                 }));
+
+        if (SelectedGameVersion.Data == Ray1EngineVersion.R2_PS1)
+        {
+            string[] langs = { "French", "English", "German", "Italian", "Spanish" };
+            var langItems = langs.Select(x => new EditorDropDownFieldViewModel.DropDownItem(x, null)).ToArray();
+
+            yield return new EditorDropDownFieldViewModel(
+                header: "Language",
+                info: null,
+                getValueAction: () => AccessMemory(m => m.R2_Language),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    m.R2_Language = x;
+                    m.ModifiedValue(nameof(m.R2_Language));;
+                }), 
+                getItemsAction: () => langItems);
+        }
     }
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers()
@@ -289,6 +307,52 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     m.ModifiedValue(nameof(m.RayEvts));;
                 })));
         }
+    }
+
+    private IEnumerable<EditorFieldViewModel> CreateEditorFields_R2_Debug()
+    {
+        // TODO-UPDATE: Localize
+        yield return new EditorBoolFieldViewModel(
+            header: "Show engine info",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.R2_ShowEngineInfo),
+            setValueAction: x => AccessMemory(m =>
+            {
+                m.R2_ShowEngineInfo = x;
+                m.ModifiedValue(nameof(m.R2_ShowEngineInfo)); ;
+            }));
+
+        yield return new EditorBoolFieldViewModel(
+            header: "Show objects info",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.R2_UnusedMapLoopFunctionCall == 0x0c0337c4),
+            setValueAction: x => AccessMemory(m =>
+            {
+                // Replace unused function call in map loop
+                m.R2_UnusedMapLoopFunctionCall = x ? 0x0c0337c4U : 0x0c045763U;
+                m.ModifiedValue(nameof(m.R2_UnusedMapLoopFunctionCall));
+            }));
+
+        yield return new EditorBoolFieldViewModel(
+            header: "Debug mode",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.R2_DebugMode),
+            setValueAction: x => AccessMemory(m =>
+            {
+                m.R2_DebugMode = x;
+                m.ModifiedValue(nameof(m.R2_DebugMode)); ;
+            }));
+
+        yield return new EditorBoolFieldViewModel(
+            header: "Start in demo mode",
+            info: "If enabled then the game will start playing the two recorded demos when the level loads. This can be triggered by loosing all lives and choosing to try again.",
+            getValueAction: () => AccessMemory(m => m.R2_MapInitFunctionCall == 0x0c03fc4b),
+            setValueAction: x => AccessMemory(m =>
+            {
+                // Replace function call in map init
+                m.R2_MapInitFunctionCall = x ? 0x0c03fc4bU : 0x0c03db0dU;
+                m.ModifiedValue(nameof(m.R2_MapInitFunctionCall));
+            }));
     }
 
     private IEnumerable<DuoGridItemViewModel> CreateInfoItems()
@@ -422,6 +486,11 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             header: "General",
             editorFields: CreateEditorFields_General()));
 
+        if (SelectedGameVersion.Data == Ray1EngineVersion.R2_PS1)
+            EditorFieldGroups.Add(new EditorFieldGroupViewModel(
+                header: "Debug",
+                editorFields: CreateEditorFields_R2_Debug()));
+
         EditorFieldGroups.Add(new EditorFieldGroupViewModel(
             header: "Powers",
             editorFields: CreateEditorFields_Powers()));
@@ -429,6 +498,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         InfoItems.AddRange(CreateInfoItems());
 
         Actions.AddRange(CreateActions());
+        HasActions = Actions.Any();
 
         // Hack to fix a weird binding issue where the first int box gets set to 0
         AccessMemory(m =>

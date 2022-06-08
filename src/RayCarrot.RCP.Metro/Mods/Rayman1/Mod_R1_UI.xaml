@@ -16,47 +16,56 @@
 
     <!-- TODO-UPDATE: Localize -->
 
-    <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                   Text="Game Process"
-                   Margin="0 0 0 10"/>
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                       Text="Game Process"
+                       Margin="0 0 0 10"/>
 
-        <local:ProcessAttacher DataContext="{Binding Path=ProcessAttacherViewModel, Mode=OneTime}" />
+            <local:ProcessAttacher DataContext="{Binding Path=ProcessAttacherViewModel, Mode=OneTime}" />
 
-        <StackPanel HorizontalAlignment="Left">
-            <ComboBox Margin="0 0 0 10" 
-                      Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                      ItemsSource="{Binding Path=Emulators, Mode=OneTime}"
-                      DisplayMemberPath="DisplayName.Value"
-                      SelectedItem="{Binding Path=SelectedEmulator}"/>
-            <ComboBox Margin="0 0 0 10" 
-                      Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                      ItemsSource="{Binding Path=GameVersions, Mode=OneTime}"
-                      DisplayMemberPath="DisplayName.Value"
-                      SelectedItem="{Binding Path=SelectedGameVersion}"/>
+            <StackPanel HorizontalAlignment="Left">
+                <ComboBox Margin="0 0 0 10" 
+                          Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                          ItemsSource="{Binding Path=Emulators, Mode=OneTime}"
+                          DisplayMemberPath="DisplayName.Value"
+                          SelectedItem="{Binding Path=SelectedEmulator}"/>
+                <ComboBox Margin="0 0 0 10" 
+                          Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                          ItemsSource="{Binding Path=GameVersions, Mode=OneTime}"
+                          DisplayMemberPath="DisplayName.Value"
+                          SelectedItem="{Binding Path=SelectedGameVersion}"/>
+            </StackPanel>
         </StackPanel>
 
-        <Grid Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}">
+        <Grid Grid.Row="1"
+              Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
+                <ColumnDefinition Width="5" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0">
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Text="Properties"
-                           Margin="0 0 0 10" />
+            <ScrollViewer Grid.Column="0">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                               Text="Properties"
+                               Margin="0 0 0 10" />
 
-                <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFieldGroups}"
-                              ItemsSource="{Binding Path=EditorFieldGroups, Mode=OneTime}"
-                              HorizontalAlignment="Left"
-                              MinWidth="250"/>
-            </StackPanel>
+                    <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFieldGroups}"
+                                  ItemsSource="{Binding Path=EditorFieldGroups, Mode=OneTime}"
+                                  HorizontalAlignment="Left"
+                                  MinWidth="250"/>
+                </StackPanel>
+            </ScrollViewer>
 
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="2">
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}"
                            Text="Info"
                            Margin="0 0 0 10" />
 
@@ -64,7 +73,7 @@
                                Margin="0 0 0 10"/>
 
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Visibility="{Binding Path=ProcessAttacherViewModel.IsAttached, Converter={local:BooleanToVisibilityConverter}}"
+                           Visibility="{Binding Path=HasActions, Converter={local:BooleanToVisibilityConverter}}"
                            Text="Actions"
                            Margin="0 0 0 10" />
 
@@ -87,6 +96,6 @@
 
         </Grid>
 
-    </StackPanel>
+    </Grid>
 
 </UserControl>

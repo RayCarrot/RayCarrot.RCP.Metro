@@ -16,7 +16,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public byte RandomIndex { get; set; } // Index to the random array
 
     public RayMode RayMode { get; set; }
-    public byte RayModeSpeed { get; set; }
+    public byte RayModeSpeed { get; set; } // TODO-UPDATE: Add? This is for place ray.
     public RayEvts RayEvts { get; set; }
     public R2_RayEvts R2_RayEvts { get; set; }
 
@@ -36,6 +36,12 @@ public class Mod_R1_MemoryData : Mod_MemoryData
 
     public bool FinBoss { get; set; }
     public FinBossLevel FinBossLevel { get; set; }
+
+    public int R2_Language { get; set; }
+    public bool R2_ShowEngineInfo { get; set; }
+    public bool R2_DebugMode { get; set; }
+    public uint R2_UnusedMapLoopFunctionCall { get; set; }
+    public uint R2_MapInitFunctionCall { get; set; } // Not unused, but it only resets the random index so not very important
 
     public static Dictionary<string, long> Offsets_PC_1_21 => new()
     {
@@ -132,11 +138,12 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         //[nameof(FinBoss)] = ,
         //[nameof(FinBossLevel)] = ,
 
-        // TODO: Language
-        // TODO: Hitboxes
-        // TODO: Text
-        // TODO: Play demo?
-        // TODO: Cheat menu?
+        [nameof(R2_Language)] = 0x80145974,
+        [nameof(R2_ShowEngineInfo)] = 0x801459b3,
+        [nameof(R2_DebugMode)] = 0x80145a58,
+
+        [nameof(R2_UnusedMapLoopFunctionCall)] = 0x801164c8,
+        [nameof(R2_MapInitFunctionCall)] = 0x800e7c18,
     };
 
     protected override void SerializeImpl(Context context)
@@ -171,5 +178,12 @@ public class Mod_R1_MemoryData : Mod_MemoryData
 
         FinBoss = Serialize<bool>(context, FinBoss, name: nameof(FinBoss));
         FinBossLevel = Serialize<FinBossLevel>(context, FinBossLevel, name: nameof(FinBossLevel));
+
+        R2_Language = Serialize<int>(context, R2_Language, name: nameof(R2_Language));
+        R2_ShowEngineInfo = Serialize<bool>(context, R2_ShowEngineInfo, name: nameof(R2_ShowEngineInfo));
+        R2_DebugMode = Serialize<bool>(context, R2_DebugMode, name: nameof(R2_DebugMode));
+
+        R2_UnusedMapLoopFunctionCall = Serialize<uint>(context, R2_UnusedMapLoopFunctionCall, name: nameof(R2_UnusedMapLoopFunctionCall));
+        R2_MapInitFunctionCall = Serialize<uint>(context, R2_MapInitFunctionCall, name: nameof(R2_MapInitFunctionCall));
     }
 }
