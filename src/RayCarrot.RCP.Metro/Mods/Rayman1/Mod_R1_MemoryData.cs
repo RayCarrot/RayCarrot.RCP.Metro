@@ -9,6 +9,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public StatusBar? StatusBar { get; set; }
     public Poing? Poing { get; set; }
     public ObjData? Ray { get; set; }
+    public R2_ObjData? R2_Ray { get; set; }
     public short HelicoTime { get; set; }
 
     public WorldInfo[]? WorldInfo { get; set; } // World map entries
@@ -17,6 +18,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public RayMode RayMode { get; set; }
     public byte RayModeSpeed { get; set; }
     public RayEvts RayEvts { get; set; }
+    public R2_RayEvts R2_RayEvts { get; set; }
 
     public int MapTime { get; set; }
     public short[]? ActiveObjects { get; set; }
@@ -99,11 +101,50 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         [nameof(FinBossLevel)] = 0x801f4ee8,
     };
 
+    public static Dictionary<string, long> Offsets_PS1_R2 => new()
+    {
+        [nameof(StatusBar)] = 0x80145a90,
+        [nameof(Poing)] = 0x8014a828,
+        [nameof(R2_Ray)] = 0x80178df0,
+        [nameof(HelicoTime)] = 0x80145a0a,
+
+        //[nameof(WorldInfo)] = ,
+        [nameof(RandomIndex)] = 0x80145860,
+
+        [nameof(RayMode)] = 0x80145b20,
+        [nameof(RayModeSpeed)] = 0x801459b2,
+        [nameof(R2_RayEvts)] = 0x80145bd0,
+
+        [nameof(MapTime)] = 0x80145b1c,
+        [nameof(ActiveObjects)] = 0x80175740,
+        [nameof(XMap)] = 0x80145b9c,
+        [nameof(YMap)] = 0x80145b9e,
+
+        //[nameof(AllWorld)] = ,
+        [nameof(NumLevelChoice)] = 0x80145a26,
+        [nameof(NumWorldChoice)] = 0x80145a3a,
+        [nameof(NumLevel)] = 0x80145bb8,
+        [nameof(NumWorld)] = 0x80145bda,
+        //[nameof(NewLevel)] = ,
+        //[nameof(NewWorld)] = ,
+        [nameof(MenuEtape)] = 0x80145a2a,
+
+        //[nameof(FinBoss)] = ,
+        //[nameof(FinBossLevel)] = ,
+
+        // TODO: Language
+        // TODO: Hitboxes
+        // TODO: Text
+        // TODO: Play demo?
+        // TODO: Cheat menu?
+    };
+
     protected override void SerializeImpl(SerializerObject s)
     {
         StatusBar = SerializeObject<StatusBar>(s, StatusBar, name: nameof(StatusBar));
         Poing = SerializeObject<Poing>(s, Poing, name: nameof(Poing));
         Ray = SerializeObject<ObjData>(s, Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(Ray));
+        R2_Ray = SerializeObject<R2_ObjData>(s, R2_Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(R2_Ray));
         HelicoTime = Serialize<short>(s, HelicoTime, name: nameof(HelicoTime));
 
         WorldInfo = SerializeObjectArray<WorldInfo>(s, WorldInfo, 24, name: nameof(WorldInfo));
@@ -112,6 +153,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         RayMode = Serialize<RayMode>(s, RayMode, name: nameof(RayMode));
         RayModeSpeed = Serialize<byte>(s, RayModeSpeed, name: nameof(RayModeSpeed));
         RayEvts = Serialize<RayEvts>(s, RayEvts, name: nameof(RayEvts));
+        R2_RayEvts = Serialize<R2_RayEvts>(s, R2_RayEvts, name: nameof(R2_RayEvts));
 
         MapTime = Serialize<int>(s, MapTime, name: nameof(MapTime));
         ActiveObjects = SerializeArray<short>(s, ActiveObjects, 112, name: nameof(ActiveObjects));
