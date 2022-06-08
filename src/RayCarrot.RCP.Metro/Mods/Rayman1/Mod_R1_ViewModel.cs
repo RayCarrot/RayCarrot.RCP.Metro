@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -127,7 +128,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 : m.Ray?.HitPoints ?? 0),
             setValueAction: x => AccessMemory(m =>
             {
-                // TODO-UPDATE: Limit if don't have 5 max hp
+                // TODO-UPDATE: Limit based on max hp value
                 if (SelectedGameVersion.Data == Ray1EngineVersion.R2_PS1)
                 {
                     if (m.R2_Ray == null)
@@ -144,10 +145,23 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 }
 
                 m.PendingChange = true;
-            }),
-            max: 4);
+            }));
 
-        if (SelectedGameVersion.Data != Ray1EngineVersion.R2_PS1)
+        if (SelectedGameVersion.Data == Ray1EngineVersion.R2_PS1)
+            yield return new EditorIntFieldViewModel(
+                header: "Max hit points",
+                info: null,
+                getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth ?? 0),
+                setValueAction: x => AccessMemory(m =>
+                {
+                    if (m.StatusBar == null)
+                        return;
+
+                    m.StatusBar.MaxHealth = (byte)x;
+                    m.PendingChange = true;
+                }),
+                max: Byte.MaxValue);
+        else
             yield return new EditorBoolFieldViewModel(
                 header: "5 hit points",
                 info: null,
