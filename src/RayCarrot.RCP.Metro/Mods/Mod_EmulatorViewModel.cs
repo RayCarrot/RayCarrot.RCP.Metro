@@ -30,4 +30,10 @@ public class Mod_EmulatorViewModel : BaseViewModel
         moduleName: "octoshock.dll",
         gameBaseOffset: 0x0011D880 - (long)0x80000000,
         isGameBaseAPointer: false);
+    public static Mod_EmulatorViewModel BizHawk_PS1_2_8_0 => new(
+        displayName: "BizHawk (PS1 - 2.8.0)",
+        processNameKeywords: new[] { "EmuHawk" },
+        moduleName: "octoshock.dll",
+        gameBaseOffset: 0x00317F80 - (long)0x80000000,
+        isGameBaseAPointer: false);
 }

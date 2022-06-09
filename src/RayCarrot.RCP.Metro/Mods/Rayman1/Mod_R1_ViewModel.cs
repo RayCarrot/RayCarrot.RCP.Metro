@@ -22,9 +22,10 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
 
         Emulators = new ObservableCollection<Mod_EmulatorViewModel>()
         {
-            // TODO-UPDATE: Add newer versions of the emulators
+            // TODO-UPDATE: Add newer version of DOSBox
             Mod_EmulatorViewModel.DOSBox_0_74,
             Mod_EmulatorViewModel.BizHawk_PS1_2_4_0,
+            Mod_EmulatorViewModel.BizHawk_PS1_2_8_0,
         };
         SelectedEmulator = Emulators.First();
         ProcessNameKeywords = Emulators.SelectMany(x => x.ProcessNameKeywords).ToArray();
