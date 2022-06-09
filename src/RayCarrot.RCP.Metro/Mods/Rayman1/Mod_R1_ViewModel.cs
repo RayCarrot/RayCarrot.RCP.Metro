@@ -129,7 +129,6 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                 : m.Ray?.HitPoints ?? 0),
             setValueAction: x => AccessMemory(m =>
             {
-                // TODO-UPDATE: Limit based on max hp value
                 if (SelectedGameVersion.Data == Ray1EngineVersion.R2_PS1)
                 {
                     if (m.R2_Ray == null)
@@ -143,7 +142,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     if (m.Ray == null)
                         return;
 
-                    m.Ray.HitPoints = (byte)x;
+                    m.Ray.HitPoints = (byte)Math.Min(x, m.StatusBar?.MaxHealth ?? 0);
                     m.ModifiedValue(nameof(m.Ray));;
                 }
             }));

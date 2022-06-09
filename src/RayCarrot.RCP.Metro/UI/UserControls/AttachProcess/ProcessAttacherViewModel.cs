@@ -9,8 +9,6 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: Log
-
 public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
@@ -69,6 +67,8 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 
     private void ClearProcesses(bool includeSelected)
     {
+        Logger.Info("Clearing processes list");
+
         foreach (AttachableProcessViewModel p in Processes)
             if (includeSelected || p != SelectedProcess)
                 p.Dispose();
@@ -97,6 +97,8 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
         try
         {
             ClearProcesses(true);
+
+            Logger.Info("Refreshing processes list");
 
             return Task.Run(() =>
             {
@@ -165,6 +167,8 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
         if (SelectedProcess == null)
             return;
 
+        Logger.Info("Attaching to process {0}", SelectedProcess.ProcessName);
+
         AttachedProcess = SelectedProcess;
         ClearProcesses(false);
         OnProcessAttached(new AttachableProcessEventArgs(AttachedProcess));
@@ -172,6 +176,8 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 
     public Task DetachProcessAsync()
     {
+        Logger.Info("Detaching from process");
+
         AttachableProcessViewModel? attachedProcess = AttachedProcess;
         AttachedProcess = null;
 

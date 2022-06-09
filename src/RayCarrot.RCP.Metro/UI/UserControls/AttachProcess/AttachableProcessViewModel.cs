@@ -14,6 +14,19 @@ public class AttachableProcessViewModel : BaseViewModel, IDisposable
         FilePath = filePath;
         Icon16 = new BindableAsyncLazy<ImageSource>(() => LoadIconAsync(ShellThumbnailSize.Small));
         Icon32 = new BindableAsyncLazy<ImageSource>(() => LoadIconAsync(ShellThumbnailSize.Medium));
+
+        try
+        {
+            ProcessName = Process.ProcessName;
+            WindowTitle = Process.MainWindowTitle;
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Getting process name and window title");
+
+            ProcessName = String.Empty;
+            WindowTitle = String.Empty;
+        }
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -21,9 +34,8 @@ public class AttachableProcessViewModel : BaseViewModel, IDisposable
     public Process Process { get; }
     public string FilePath { get; }
 
-    // TODO-UPDATE: Try/catch these? They might fail. Set from ctor.
-    public string ProcessName => Process.ProcessName;
-    public string WindowTitle => Process.MainWindowTitle;
+    public string ProcessName { get; }
+    public string WindowTitle { get; }
     
     public BindableAsyncLazy<ImageSource> Icon16 { get; }
     public BindableAsyncLazy<ImageSource> Icon32 { get; }

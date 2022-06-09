@@ -98,6 +98,10 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
         _updateCancellation = new CancellationTokenSource();
         CancellationToken token = _updateCancellation.Token;
 
+        // IDEA: Use DispatcherTimer instead? That will cause the tick to occur on the UI thread which solves some threading issues
+        //       and removes the need to use locks. However we get slightly less control over how and when the ticks occur and if
+        //       the code is too slow it will impact the UI.
+
         // Start refreshing
         _ = Task.Run(async () =>
         {

@@ -16,7 +16,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public byte RandomIndex { get; set; } // Index to the random array
 
     public RayMode RayMode { get; set; }
-    public byte RayModeSpeed { get; set; } // TODO-UPDATE: Add? This is for place ray.
+    public byte RayModeSpeed { get; set; } // IDEA: Add? This is for place ray.
     public RayEvts RayEvts { get; set; }
     public R2_RayEvts R2_RayEvts { get; set; }
 
