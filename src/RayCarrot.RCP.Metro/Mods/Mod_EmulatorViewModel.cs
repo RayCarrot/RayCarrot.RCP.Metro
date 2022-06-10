@@ -2,20 +2,19 @@
 
 public class Mod_EmulatorViewModel : BaseViewModel
 {
-    public Mod_EmulatorViewModel(LocalizedString displayName, string[] processNameKeywords, string? moduleName, long gameBaseOffset, bool isGameBaseAPointer)
+    public Mod_EmulatorViewModel(LocalizedString displayName, string[] processNameKeywords, params Mod_MemoryRegion[] memoryRegions)
     {
         DisplayName = displayName;
         ProcessNameKeywords = processNameKeywords;
-        ModuleName = moduleName;
-        GameBaseOffset = gameBaseOffset;
-        IsGameBaseAPointer = isGameBaseAPointer;
+        MemoryRegions = memoryRegions;
     }
+
+    private const string MainMemoryRegionName = "Main";
 
     public LocalizedString DisplayName { get; }
     public string[] ProcessNameKeywords { get; }
-    public string? ModuleName { get; }
-    public long GameBaseOffset { get; }
-    public bool IsGameBaseAPointer { get; }
+    public Mod_MemoryRegion MainMemoryRegion => MemoryRegions[0];
+    public Mod_MemoryRegion[] MemoryRegions { get; }
 
     // A mostly consistent way of finding the DOSBox game pointer (there probably is a better way):
     // - Search for "RAY1.WLD" in cheat engine while in a Jungle level. The first result should be correct, but you can go to a Music
@@ -27,31 +26,53 @@ public class Mod_EmulatorViewModel : BaseViewModel
     public static Mod_EmulatorViewModel DOSBox_0_74_x86 => new(
         displayName: "DOSBox (0.74 - x86)",
         processNameKeywords: new[] { "DOSBox" },
-        moduleName: null,
-        gameBaseOffset: 0x01D3A1A0,
-        isGameBaseAPointer: true);
+        memoryRegions: new Mod_MemoryRegion(
+            Name: MainMemoryRegionName, 
+            GameOffset: 0x00, 
+            Length: null,
+            ModuleName: null, 
+            ProcessOffset: 0x01D3A1A0,
+            IsProcessOffsetAPointer: true));
     public static Mod_EmulatorViewModel DOSBox_0_74_2_1_x86 => new(
         displayName: "DOSBox (0.74-2.1 - x86)",
         processNameKeywords: new[] { "DOSBox" },
-        moduleName: null,
-        gameBaseOffset: 0x1D4A380,
-        isGameBaseAPointer: true);
+        memoryRegions: new Mod_MemoryRegion(
+            Name: MainMemoryRegionName,
+            GameOffset: 0x00,
+            Length: null,
+            ModuleName: null,
+            ProcessOffset: 0x1D4A380,
+            IsProcessOffsetAPointer: true));
     public static Mod_EmulatorViewModel DOSBox_0_74_3_x86 => new(
         displayName: "DOSBox (0.74-3 - x86)",
         processNameKeywords: new[] { "DOSBox" },
-        moduleName: null,
-        gameBaseOffset: 0x1D3C370,
-        isGameBaseAPointer: true);
+        memoryRegions: new Mod_MemoryRegion(
+            Name: MainMemoryRegionName,
+            GameOffset: 0x00,
+            Length: null,
+            ModuleName: null,
+            ProcessOffset: 0x1D3C370,
+            IsProcessOffsetAPointer: true));
     public static Mod_EmulatorViewModel BizHawk_PS1_2_4_0 => new(
         displayName: "BizHawk Octoshock (2.4.0)",
         processNameKeywords: new[] { "EmuHawk" },
-        moduleName: "octoshock.dll",
-        gameBaseOffset: 0x0011D880 - (long)0x80000000,
-        isGameBaseAPointer: false);
+        memoryRegions: new Mod_MemoryRegion(
+            Name: MainMemoryRegionName,
+            GameOffset: 0x80000000,
+            Length: null,
+            ModuleName: "octoshock.dll",
+            ProcessOffset: 0x0011D880,
+            IsProcessOffsetAPointer: false));
     public static Mod_EmulatorViewModel BizHawk_PS1_2_8_0 => new(
         displayName: "BizHawk Octoshock (2.8.0)",
         processNameKeywords: new[] { "EmuHawk" },
-        moduleName: "octoshock.dll",
-        gameBaseOffset: 0x00317F80 - (long)0x80000000,
-        isGameBaseAPointer: false);
+        memoryRegions: new Mod_MemoryRegion(
+            Name: MainMemoryRegionName,
+            GameOffset: 0x80000000,
+            Length: null,
+            ModuleName: "octoshock.dll",
+            ProcessOffset: 0x00317F80,
+            IsProcessOffsetAPointer: false));
 }
+
+public record Mod_MemoryRegion(string Name, long GameOffset, long? Length, string? ModuleName, long ProcessOffset, bool IsProcessOffsetAPointer);

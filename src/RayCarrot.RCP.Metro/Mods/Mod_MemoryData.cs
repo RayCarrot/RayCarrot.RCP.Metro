@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
@@ -7,67 +8,54 @@ namespace RayCarrot.RCP.Metro;
 public abstract class Mod_MemoryData
 {
     private readonly HashSet<string> _modifiedValues = new();
+    private readonly Dictionary<string, Pointer> _pointers = new();
+    private Context? _context;
 
-    public Pointer? Offset { get; set; }
-    public Dictionary<string, long>? Offsets { get; set; }
-
-    protected T Serialize<T>(Context context, T obj, string name)
+    protected T Serialize<T>(T obj, string name)
     {
-        if (Offsets == null)
-            throw new Exception("Offsets table is null");
-
-        if (!Offsets.ContainsKey(name))
+        if (!_pointers.ContainsKey(name))
             return obj;
 
-        SerializerObject s = _modifiedValues.Remove(name) ? context.Serializer : context.Deserializer;
-        s.Goto(Offset + Offsets[name]);
+        SerializerObject s = _modifiedValues.Remove(name) ? _context!.Serializer : _context!.Deserializer;
+        s.Goto(_pointers[name]);
         return s.Serialize<T>(obj, name: name);
     }
 
-    protected T[]? SerializeArray<T>(Context context, T[]? obj, long count, string name)
+    protected T[]? SerializeArray<T>(T[]? obj, long count, string name)
     {
-        if (Offsets == null)
-            throw new Exception("Offsets table is null");
-
-        if (!Offsets.ContainsKey(name))
+        if (!_pointers.ContainsKey(name))
             return obj;
 
-        SerializerObject s = _modifiedValues.Remove(name) ? context.Serializer : context.Deserializer;
-        s.Goto(Offset + Offsets[name]);
+        SerializerObject s = _modifiedValues.Remove(name) ? _context!.Serializer : _context!.Deserializer;
+        s.Goto(_pointers[name]);
         return s.SerializeArray<T>(obj, count, name: name);
     }
 
-    protected T? SerializeObject<T>(Context context, T? obj, string name, Action<T>? onPreSerialize = null) 
+    protected T? SerializeObject<T>(T? obj, string name, Action<T>? onPreSerialize = null) 
         where T : BinarySerializable, new()
     {
-        if (Offsets == null)
-            throw new Exception("Offsets table is null");
-
-        if (!Offsets.ContainsKey(name))
+        if (!_pointers.ContainsKey(name))
             return obj;
 
-        SerializerObject s = _modifiedValues.Remove(name) ? context.Serializer : context.Deserializer;
-        s.Goto(Offset + Offsets[name]);
+        SerializerObject s = _modifiedValues.Remove(name) ? _context!.Serializer : _context!.Deserializer;
+        s.Goto(_pointers[name]);
         return s.SerializeObject<T>(obj, onPreSerialize, name: name);
     }
 
-    protected T[]? SerializeObjectArray<T>(Context context, T[]? obj, long count, string name, Action<T>? onPreSerialize = null) 
+    protected T[]? SerializeObjectArray<T>(T[]? obj, long count, string name, Action<T>? onPreSerialize = null) 
         where T : BinarySerializable, new()
     {
-        if (Offsets == null)
-            throw new Exception("Offsets table is null");
-
-        if (!Offsets.ContainsKey(name))
+        if (!_pointers.ContainsKey(name))
             return obj;
 
-        SerializerObject s = _modifiedValues.Remove(name) ? context.Serializer : context.Deserializer;
-        s.Goto(Offset + Offsets[name]);
+        SerializerObject s = _modifiedValues.Remove(name) ? _context!.Serializer : _context!.Deserializer;
+        s.Goto(_pointers[name]);
         return s.SerializeObjectArray<T>(obj, count, onPreSerialize, name: name);
     }
 
-    protected abstract void SerializeImpl(Context context);
+    protected abstract void SerializeImpl();
 
-    public bool SupportsProperty(string name) => Offsets?.ContainsKey(name) == true;
+    public bool SupportsProperty(string name) => _pointers.ContainsKey(name);
 
     public void ModifiedValue(string propertyName) => _modifiedValues.Add(propertyName);
     public void ModifiedValue(params string[] propertyNames)
@@ -78,11 +66,25 @@ public abstract class Mod_MemoryData
 
     public void ClearModifiedValues() => _modifiedValues.Clear();
 
-    public void Serialize(Context context)
+    public void Initialize(Context context, Dictionary<string, long>? offsets)
     {
-        if (Offset == null)
-            throw new Exception("Offset is null");
+        _context = context;
+        _pointers.Clear();
 
-        SerializeImpl(context);
+        if (offsets == null)
+            return;
+
+        BinaryFile firstMemFile = _context.MemoryMap.Files.First(x => x is ProcessMemoryStreamFile);
+
+        foreach (var off in offsets)
+            _pointers.Add(off.Key, new Pointer(off.Value, firstMemFile.GetPointerFile(off.Value)));
+    }
+
+    public void Serialize()
+    {
+        if (_context == null)
+            throw new Exception("Attempted to serialize memory data before initializing it");
+
+        SerializeImpl();
     }
 }

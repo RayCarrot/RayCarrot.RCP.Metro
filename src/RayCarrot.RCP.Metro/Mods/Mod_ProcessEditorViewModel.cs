@@ -40,9 +40,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
     #region Protected Properties
 
     protected virtual string[]? ProcessNameKeywords => null;
-    protected virtual string? ModuleName => null;
-    protected abstract long GameBaseOffset { get; }
-    protected abstract bool IsGameBaseAPointer { get; }
+    protected abstract Mod_MemoryRegion[] MemoryRegions { get; }
 
     #endregion
 
@@ -61,27 +59,49 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 
     #region Private Methods
 
+    private void DisposeContext()
+    {
+        if (Context == null)
+            return;
+
+        // Dispose the streams
+        foreach (ProcessMemoryStreamFile file in Context.MemoryMap.Files.OfType<ProcessMemoryStreamFile>())
+            file.DisposeStream();
+
+        Context.Dispose();
+    }
+
     private async void AttachProcess(AttachableProcessViewModel p)
     {
         try
         {
-            // Open the process as a stream
-            ProcessMemoryStream stream = new(p.Process, ProcessMemoryStream.Mode.AllAccess);
-
             // Create a new context
-            Context?.Dispose();
+            DisposeContext();
             Context = new RCPContext(String.Empty, noLog: true);
             InitializeContext(Context);
-
-            StreamFile file = Context.AddFile(new ProcessMemoryStreamFile(Context, p.ProcessName, new BufferedStream(stream), leaveOpen: true));
+            
             BinaryDeserializer s = Context.Deserializer;
 
-            // Initialize the memory stream
-            s.Goto(file.StartPointer);
-            InitializeProcessStream(stream, s);
+            foreach (Mod_MemoryRegion memRegion in MemoryRegions)
+            {
+                // Open the process as a stream
+                ProcessMemoryStream stream = new(p.Process, ProcessMemoryStream.Mode.AllAccess);
+
+                var file = Context.AddFile(new ProcessMemoryStreamFile(
+                    context: Context, 
+                    name: memRegion.Name, 
+                    baseAddress: memRegion.GameOffset,
+                    memoryRegionLength: memRegion.Length,
+                    stream: new BufferedStream(stream), 
+                    leaveOpen: true));
+
+                // Initialize the memory stream
+                s.Goto(file.StartPointer);
+                InitializeProcessStream(stream, memRegion, s);
+            }
 
             // Initialize the fields
-            InitializeFields(file.StartPointer);
+            InitializeFields();
         }
         catch (Exception ex)
         {
@@ -147,18 +167,17 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
         ClearFields();
     }
 
-    private void InitializeProcessStream(ProcessMemoryStream stream, BinaryDeserializer s)
+    private static void InitializeProcessStream(ProcessMemoryStream stream, Mod_MemoryRegion memRegion, BinaryDeserializer s)
     {
-        string? moduleName = ModuleName;
-        long processBase = (moduleName == null
+        long processBase = (memRegion.ModuleName == null
             ? stream.Process.MainModule
-            : stream.Process.Modules.Cast<ProcessModule>().First(x => x.ModuleName == moduleName)).BaseAddress.ToInt64();
+            : stream.Process.Modules.Cast<ProcessModule>().First(x => x.ModuleName == memRegion.ModuleName)).BaseAddress.ToInt64();
 
         long baseStreamOffset;
 
-        if (IsGameBaseAPointer)
+        if (memRegion.IsProcessOffsetAPointer)
         {
-            Pointer basePtrPtr = s.CurrentPointer + GameBaseOffset;
+            Pointer basePtrPtr = s.CurrentPointer + memRegion.ProcessOffset;
 
             // Get the base pointer
             baseStreamOffset = stream.Is64Bit 
@@ -167,7 +186,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
         }
         else
         {
-            baseStreamOffset = GameBaseOffset + processBase;
+            baseStreamOffset = memRegion.ProcessOffset + processBase;
         }
 
         stream.BaseStreamOffset = baseStreamOffset;
@@ -178,7 +197,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
     #region Protected Method
 
     protected virtual void InitializeContext(Context context) { }
-    protected virtual void InitializeFields(Pointer offset) { }
+    protected virtual void InitializeFields() { }
     protected virtual void ClearFields() { }
     protected virtual void RefreshFields() { }
 
@@ -197,7 +216,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
         _updateCancellation?.Cancel();
         _updateCancellation?.Dispose();
         ProcessAttacherViewModel.Dispose();
-        Context?.Dispose();
+        DisposeContext();
     }
 
     #endregion
@@ -245,16 +264,15 @@ public abstract class Mod_ProcessEditorViewModel<TMemObj> : Mod_ProcessEditorVie
             action(_memData);
     }
 
-    protected override void InitializeFields(Pointer offset)
+    protected override void InitializeFields()
     {
-        base.InitializeFields(offset);
+        base.InitializeFields();
 
         lock (_lock)
-            _memData = new TMemObj()
-            {
-                Offset = offset,
-                Offsets = Offsets,
-            };
+        {
+            _memData = new TMemObj();
+            _memData.Initialize(Context!, Offsets);
+        }
     }
 
     protected override void ClearFields()
@@ -269,13 +287,13 @@ public abstract class Mod_ProcessEditorViewModel<TMemObj> : Mod_ProcessEditorVie
     {
         base.RefreshFields();
 
-        if (Context == null || _memData == null)
+        if (_memData == null)
             return;
 
         // Serialize the data. Depending on if a value has changed
         // or not this will either read or write the data.
         lock (_lock)
-            _memData.Serialize(Context);
+            _memData.Serialize();
     }
 
     #endregion

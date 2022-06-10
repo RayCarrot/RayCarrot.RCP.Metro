@@ -146,44 +146,44 @@ public class Mod_R1_MemoryData : Mod_MemoryData
         [nameof(R2_MapInitFunctionCall)] = 0x800e7c18,
     };
 
-    protected override void SerializeImpl(Context context)
+    protected override void SerializeImpl()
     {
-        StatusBar = SerializeObject<StatusBar>(context, StatusBar, name: nameof(StatusBar));
-        Poing = SerializeObject<Poing>(context, Poing, name: nameof(Poing));
-        Ray = SerializeObject<ObjData>(context, Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(Ray));
-        R2_Ray = SerializeObject<R2_ObjData>(context, R2_Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(R2_Ray));
-        HelicoTime = Serialize<short>(context, HelicoTime, name: nameof(HelicoTime));
+        StatusBar = SerializeObject<StatusBar>(StatusBar, name: nameof(StatusBar));
+        Poing = SerializeObject<Poing>(Poing, name: nameof(Poing));
+        Ray = SerializeObject<ObjData>(Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(Ray));
+        R2_Ray = SerializeObject<R2_ObjData>(R2_Ray, onPreSerialize: x => x.Pre_IsSerializingFromMemory = true, name: nameof(R2_Ray));
+        HelicoTime = Serialize<short>(HelicoTime, name: nameof(HelicoTime));
 
-        WorldInfo = SerializeObjectArray<WorldInfo>(context, WorldInfo, 24, name: nameof(WorldInfo));
-        RandomIndex = Serialize<byte>(context, RandomIndex, name: nameof(RandomIndex));
+        WorldInfo = SerializeObjectArray<WorldInfo>(WorldInfo, 24, name: nameof(WorldInfo));
+        RandomIndex = Serialize<byte>(RandomIndex, name: nameof(RandomIndex));
 
-        RayMode = Serialize<RayMode>(context, RayMode, name: nameof(RayMode));
-        RayModeSpeed = Serialize<byte>(context, RayModeSpeed, name: nameof(RayModeSpeed));
-        RayEvts = Serialize<RayEvts>(context, RayEvts, name: nameof(RayEvts));
-        R2_RayEvts = Serialize<R2_RayEvts>(context, R2_RayEvts, name: nameof(R2_RayEvts));
+        RayMode = Serialize<RayMode>(RayMode, name: nameof(RayMode));
+        RayModeSpeed = Serialize<byte>(RayModeSpeed, name: nameof(RayModeSpeed));
+        RayEvts = Serialize<RayEvts>(RayEvts, name: nameof(RayEvts));
+        R2_RayEvts = Serialize<R2_RayEvts>(R2_RayEvts, name: nameof(R2_RayEvts));
 
-        MapTime = Serialize<int>(context, MapTime, name: nameof(MapTime));
-        ActiveObjects = SerializeArray<short>(context, ActiveObjects, 112, name: nameof(ActiveObjects));
-        XMap = Serialize<short>(context, XMap, name: nameof(XMap));
-        YMap = Serialize<short>(context, YMap, name: nameof(YMap));
+        MapTime = Serialize<int>(MapTime, name: nameof(MapTime));
+        ActiveObjects = SerializeArray<short>(ActiveObjects, 112, name: nameof(ActiveObjects));
+        XMap = Serialize<short>(XMap, name: nameof(XMap));
+        YMap = Serialize<short>(YMap, name: nameof(YMap));
 
-        AllWorld = Serialize<bool>(context, AllWorld, name: nameof(AllWorld));
-        NumLevelChoice = Serialize<short>(context, NumLevelChoice, name: nameof(NumLevelChoice));
-        NumWorldChoice = Serialize<short>(context, NumWorldChoice, name: nameof(NumWorldChoice));
-        NumLevel = Serialize<short>(context, NumLevel, name: nameof(NumLevel));
-        NumWorld = Serialize<short>(context, NumWorld, name: nameof(NumWorld));
-        NewLevel = Serialize<short>(context, NewLevel, name: nameof(NewLevel));
-        NewWorld = Serialize<short>(context, NewWorld, name: nameof(NewWorld));
-        MenuEtape = Serialize<byte>(context, MenuEtape, name: nameof(MenuEtape));
+        AllWorld = Serialize<bool>(AllWorld, name: nameof(AllWorld));
+        NumLevelChoice = Serialize<short>(NumLevelChoice, name: nameof(NumLevelChoice));
+        NumWorldChoice = Serialize<short>(NumWorldChoice, name: nameof(NumWorldChoice));
+        NumLevel = Serialize<short>(NumLevel, name: nameof(NumLevel));
+        NumWorld = Serialize<short>(NumWorld, name: nameof(NumWorld));
+        NewLevel = Serialize<short>(NewLevel, name: nameof(NewLevel));
+        NewWorld = Serialize<short>(NewWorld, name: nameof(NewWorld));
+        MenuEtape = Serialize<byte>(MenuEtape, name: nameof(MenuEtape));
 
-        FinBoss = Serialize<bool>(context, FinBoss, name: nameof(FinBoss));
-        FinBossLevel = Serialize<FinBossLevel>(context, FinBossLevel, name: nameof(FinBossLevel));
+        FinBoss = Serialize<bool>(FinBoss, name: nameof(FinBoss));
+        FinBossLevel = Serialize<FinBossLevel>(FinBossLevel, name: nameof(FinBossLevel));
 
-        R2_Language = Serialize<int>(context, R2_Language, name: nameof(R2_Language));
-        R2_ShowEngineInfo = Serialize<bool>(context, R2_ShowEngineInfo, name: nameof(R2_ShowEngineInfo));
-        R2_DebugMode = Serialize<bool>(context, R2_DebugMode, name: nameof(R2_DebugMode));
+        R2_Language = Serialize<int>(R2_Language, name: nameof(R2_Language));
+        R2_ShowEngineInfo = Serialize<bool>(R2_ShowEngineInfo, name: nameof(R2_ShowEngineInfo));
+        R2_DebugMode = Serialize<bool>(R2_DebugMode, name: nameof(R2_DebugMode));
 
-        R2_UnusedMapLoopFunctionCall = Serialize<uint>(context, R2_UnusedMapLoopFunctionCall, name: nameof(R2_UnusedMapLoopFunctionCall));
-        R2_MapInitFunctionCall = Serialize<uint>(context, R2_MapInitFunctionCall, name: nameof(R2_MapInitFunctionCall));
+        R2_UnusedMapLoopFunctionCall = Serialize<uint>(R2_UnusedMapLoopFunctionCall, name: nameof(R2_UnusedMapLoopFunctionCall));
+        R2_MapInitFunctionCall = Serialize<uint>(R2_MapInitFunctionCall, name: nameof(R2_MapInitFunctionCall));
     }
 }

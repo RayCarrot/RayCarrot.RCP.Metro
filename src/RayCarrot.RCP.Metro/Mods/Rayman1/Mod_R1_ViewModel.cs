@@ -68,9 +68,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
     #region Protected Properties
 
     protected override string[] ProcessNameKeywords { get; }
-    protected override string? ModuleName => SelectedEmulator.ModuleName;
-    protected override long GameBaseOffset => SelectedEmulator.GameBaseOffset;
-    protected override bool IsGameBaseAPointer => SelectedEmulator.IsGameBaseAPointer;
+    protected override Mod_MemoryRegion[] MemoryRegions => SelectedEmulator.MemoryRegions;
     protected override Dictionary<string, long> Offsets => SelectedGameVersion.GetOffsetsFunc();
 
     #endregion
@@ -474,9 +472,9 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         context.AddSettings(new Ray1Settings(SelectedGameVersion.Data));
     }
 
-    protected override void InitializeFields(Pointer offset)
+    protected override void InitializeFields()
     {
-        base.InitializeFields(offset);
+        base.InitializeFields();
 
         EditorFieldGroups.Clear();
         InfoItems.Clear();
