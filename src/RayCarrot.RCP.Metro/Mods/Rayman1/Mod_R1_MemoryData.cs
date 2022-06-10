@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BinarySerializer;
 using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
@@ -144,6 +143,38 @@ public class Mod_R1_MemoryData : Mod_MemoryData
 
         [nameof(R2_UnusedMapLoopFunctionCall)] = 0x801164c8,
         [nameof(R2_MapInitFunctionCall)] = 0x800e7c18,
+    };
+
+    public static Dictionary<string, long> Offsets_GBA_EU => new()
+    {
+        [nameof(StatusBar)] = 0x0202eea0,
+        [nameof(Poing)] = 0x0202ee80,
+        [nameof(Ray)] = 0x0202fc90,
+        [nameof(HelicoTime)] = 0x0202fa98,
+
+        [nameof(WorldInfo)] = 0x0202a2d0,
+        [nameof(RandomIndex)] = 0x02030894,
+
+        [nameof(RayMode)] = 0x020307f0,
+        [nameof(RayModeSpeed)] = 0x0202fb60,
+        [nameof(RayEvts)] = 0x0202bee4,
+
+        [nameof(MapTime)] = 0x0202e51c,
+        [nameof(ActiveObjects)] = 0x0202fd90,
+        [nameof(XMap)] = 0x0202a508,
+        [nameof(YMap)] = 0x0202a58c,
+
+        //[nameof(AllWorld)] = ,
+        [nameof(NumLevelChoice)] = 0x0202fb7c,
+        [nameof(NumWorldChoice)] = 0x0202fa94,
+        [nameof(NumLevel)] = 0x0202e5f0,
+        [nameof(NumWorld)] = 0x02030394,
+        [nameof(NewLevel)] = 0x0202bf10,
+        [nameof(NewWorld)] = 0x0203038c,
+        //[nameof(MenuEtape)] = ,
+
+        [nameof(FinBoss)] = 0x02030810,
+        [nameof(FinBossLevel)] = 0x0202fbf0,
     };
 
     protected override void SerializeImpl()

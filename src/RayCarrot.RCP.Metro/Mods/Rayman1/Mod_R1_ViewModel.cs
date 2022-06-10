@@ -27,6 +27,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             Mod_EmulatorViewModel.DOSBox_0_74_3_x86,
             Mod_EmulatorViewModel.BizHawk_PS1_2_4_0,
             Mod_EmulatorViewModel.BizHawk_PS1_2_8_0,
+            Mod_EmulatorViewModel.VisualBoyAdvance_M_2_1_3,
         };
         SelectedEmulator = Emulators.First();
         ProcessNameKeywords = Emulators.SelectMany(x => x.ProcessNameKeywords).ToArray();
@@ -34,10 +35,10 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         GameVersions = new ObservableCollection<Mod_GameVersionViewModel<Ray1EngineVersion>>()
         {
             // TODO-UPDATE: Localize
-            // TODO-UPDATE: Add Rayman Advance
             new("Rayman 1 (PC - 1.21)", () => Mod_R1_MemoryData.Offsets_PC_1_21, Ray1EngineVersion.PC),
             new("Rayman 1 (PS1 - US)", () => Mod_R1_MemoryData.Offsets_PS1_US, Ray1EngineVersion.PS1),
             new("Rayman 2 (PS1 - Prototype)", () => Mod_R1_MemoryData.Offsets_PS1_R2, Ray1EngineVersion.R2_PS1),
+            new("Rayman Advance (GBA - EU)", () => Mod_R1_MemoryData.Offsets_GBA_EU, Ray1EngineVersion.GBA),
         };
         SelectedGameVersion = GameVersions.First();
 
@@ -148,6 +149,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             }));
 
         if (SelectedGameVersion.Data == Ray1EngineVersion.R2_PS1)
+        {
             yield return new EditorIntFieldViewModel(
                 header: "Max hit points",
                 info: null,
@@ -161,19 +163,33 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
                     m.ModifiedValue(nameof(m.StatusBar));;
                 }),
                 max: Byte.MaxValue);
+        }
         else
+        {
+            byte min = SelectedGameVersion.Data switch
+            {
+                Ray1EngineVersion.GBA => 3,
+                _ => 2
+            };
+            byte max = SelectedGameVersion.Data switch
+            {
+                Ray1EngineVersion.GBA => 5,
+                _ => 4
+            };
+
             yield return new EditorBoolFieldViewModel(
-                header: "5 hit points",
+                header: "Max hit points",
                 info: null,
-                getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth == 4),
+                getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth == max),
                 setValueAction: x => AccessMemory(m =>
                 {
                     if (m.StatusBar == null)
                         return;
 
-                    m.StatusBar.MaxHealth = (byte)(x ? 4 : 2);
+                    m.StatusBar.MaxHealth = (byte)(x ? max : min);
                     m.ModifiedValue(nameof(m.StatusBar));;
                 }));
+        }
 
         yield return new EditorBoolFieldViewModel(
             header: "Place Ray",
@@ -391,8 +407,10 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             new GeneratedLocString(() => AccessMemory(m => $"{m.MapTime}")));
         yield return new DuoGridItemViewModel("Random index",
             new GeneratedLocString(() => AccessMemory(m => $"{m.RandomIndex}")));
-        yield return new DuoGridItemViewModel("Menu",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.MenuEtape}")));
+
+        if (AccessMemory(m => m.SupportsProperty(nameof(m.MenuEtape))))
+            yield return new DuoGridItemViewModel("Menu",
+                new GeneratedLocString(() => AccessMemory(m => $"{m.MenuEtape}")));
     }
 
     private IEnumerable<Mod_ActionViewModel> CreateActions()

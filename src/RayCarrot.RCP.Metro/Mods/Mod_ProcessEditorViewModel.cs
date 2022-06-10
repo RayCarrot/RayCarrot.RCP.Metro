@@ -177,7 +177,7 @@ public abstract class Mod_ProcessEditorViewModel : Mod_BaseViewModel, IDisposabl
 
         if (memRegion.IsProcessOffsetAPointer)
         {
-            Pointer basePtrPtr = s.CurrentPointer + memRegion.ProcessOffset;
+            Pointer basePtrPtr = s.CurrentPointer + memRegion.ProcessOffset + processBase;
 
             // Get the base pointer
             baseStreamOffset = stream.Is64Bit 
