@@ -42,6 +42,13 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public uint R2_UnusedMapLoopFunctionCall { get; set; }
     public uint R2_MapInitFunctionCall { get; set; } // Not unused, but it only resets the random index so not very important
 
+    public bool GBA_EnableMultiplayerMenus { get; set; } // Loads multiplayer menus on start
+    public ushort GBA_MultiplayerTimeout { get; set; } // Set to 0 to disable the code
+    public ushort GBA_MultiplayerLevelLoad { get; set; } // Set to 0 to allow menu to load level
+    public bool GBA_MultiplayerPlayerSelection { get; set; }
+    public byte GBA_MultiplayerLevelSelection { get; set; } // 1-6
+
+    // TODO: Move offsets to static class?
     public static Dictionary<string, long> Offsets_PC_1_21 => new()
     {
         [nameof(StatusBar)] = 0x16FF52,
@@ -175,6 +182,12 @@ public class Mod_R1_MemoryData : Mod_MemoryData
 
         [nameof(FinBoss)] = 0x02030810,
         [nameof(FinBossLevel)] = 0x0202fbf0,
+
+        [nameof(GBA_EnableMultiplayerMenus)] = 0x02030f14,
+        [nameof(GBA_MultiplayerTimeout)] = 0x08000ff0,
+        [nameof(GBA_MultiplayerLevelLoad)] = 0x08045234,
+        [nameof(GBA_MultiplayerPlayerSelection)] = 0x02021e2c,
+        [nameof(GBA_MultiplayerLevelSelection)] = 0x02001178,
     };
 
     protected override void SerializeImpl()
@@ -216,5 +229,11 @@ public class Mod_R1_MemoryData : Mod_MemoryData
 
         R2_UnusedMapLoopFunctionCall = Serialize<uint>(R2_UnusedMapLoopFunctionCall, name: nameof(R2_UnusedMapLoopFunctionCall));
         R2_MapInitFunctionCall = Serialize<uint>(R2_MapInitFunctionCall, name: nameof(R2_MapInitFunctionCall));
+
+        GBA_EnableMultiplayerMenus = Serialize<bool>(GBA_EnableMultiplayerMenus, name: nameof(GBA_EnableMultiplayerMenus));
+        GBA_MultiplayerTimeout = Serialize<ushort>(GBA_MultiplayerTimeout, name: nameof(GBA_MultiplayerTimeout));
+        GBA_MultiplayerLevelLoad = Serialize<ushort>(GBA_MultiplayerLevelLoad, name: nameof(GBA_MultiplayerLevelLoad));
+        GBA_MultiplayerPlayerSelection = Serialize<bool>(GBA_MultiplayerPlayerSelection, name: nameof(GBA_MultiplayerPlayerSelection));
+        GBA_MultiplayerLevelSelection = Serialize<byte>(GBA_MultiplayerLevelSelection, name: nameof(GBA_MultiplayerLevelSelection));
     }
 }

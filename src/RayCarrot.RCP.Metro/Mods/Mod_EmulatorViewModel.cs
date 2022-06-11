@@ -2,6 +2,8 @@
 
 public class Mod_EmulatorViewModel : BaseViewModel
 {
+    #region Constructor
+
     public Mod_EmulatorViewModel(LocalizedString displayName, string[] processNameKeywords, params Mod_MemoryRegion[] memoryRegions)
     {
         DisplayName = displayName;
@@ -9,12 +11,24 @@ public class Mod_EmulatorViewModel : BaseViewModel
         MemoryRegions = memoryRegions;
     }
 
+    #endregion
+
+    #region Constants
+
     private const string MainMemoryRegionName = "Main";
+
+    #endregion
+
+    #region Public Properties
 
     public LocalizedString DisplayName { get; }
     public string[] ProcessNameKeywords { get; }
     public Mod_MemoryRegion MainMemoryRegion => MemoryRegions[0];
     public Mod_MemoryRegion[] MemoryRegions { get; }
+
+    #endregion
+
+    #region DOSBox
 
     // A mostly consistent way of finding the DOSBox game pointer (there probably is a better way):
     // - Search for "RAY1.WLD" in cheat engine while in a Jungle level. The first result should be correct, but you can go to a Music
@@ -27,10 +41,10 @@ public class Mod_EmulatorViewModel : BaseViewModel
         displayName: "DOSBox (0.74 - x86)",
         processNameKeywords: new[] { "DOSBox" },
         memoryRegions: new Mod_MemoryRegion(
-            Name: MainMemoryRegionName, 
-            GameOffset: 0x00, 
+            Name: MainMemoryRegionName,
+            GameOffset: 0x00,
             Length: null,
-            ModuleName: null, 
+            ModuleName: null,
             ProcessOffset: 0x193A1A0,
             IsProcessOffsetAPointer: true));
     public static Mod_EmulatorViewModel DOSBox_0_74_2_1_x86 => new(
@@ -53,6 +67,11 @@ public class Mod_EmulatorViewModel : BaseViewModel
             ModuleName: null,
             ProcessOffset: 0x193C370,
             IsProcessOffsetAPointer: true));
+
+    #endregion
+
+    #region BizHawk
+
     public static Mod_EmulatorViewModel BizHawk_PS1_2_4_0 => new(
         displayName: "BizHawk Octoshock (2.4.0)",
         processNameKeywords: new[] { "EmuHawk" },
@@ -73,6 +92,11 @@ public class Mod_EmulatorViewModel : BaseViewModel
             ModuleName: "octoshock.dll",
             ProcessOffset: 0x00317F80,
             IsProcessOffsetAPointer: false));
+
+    #endregion
+
+    #region VisualBoyAdvance-M
+
     public static Mod_EmulatorViewModel VisualBoyAdvance_M_2_1_3 => new(
         displayName: "VisualBoyAdvance-M (2.1.3)",
         processNameKeywords: new[] { "visualboyadvance-m" },
@@ -93,6 +117,6 @@ public class Mod_EmulatorViewModel : BaseViewModel
                 ProcessOffset: 0x014820EC,
                 IsProcessOffsetAPointer: true),
         });
-}
 
-public record Mod_MemoryRegion(string Name, long GameOffset, long? Length, string? ModuleName, long ProcessOffset, bool IsProcessOffsetAPointer);
+    #endregion
+}

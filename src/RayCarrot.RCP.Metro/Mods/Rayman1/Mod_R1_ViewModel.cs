@@ -210,6 +210,7 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             int[] lvls = SelectedGameVersion.Data switch
             {
                 Ray1EngineVersion.PC => new[] { 0, 22, 18, 13, 13, 12, 4 }, // Breakout is map 22 in Jungle
+                Ray1EngineVersion.GBA => new[] { 0, 21, 18, 13, 13, 12, 4, 0, 6 }, // Multiplayer is world 8
                 _ => new[] { 0, 21, 18, 13, 13, 12, 4 },
             };
 
@@ -370,6 +371,56 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             }));
     }
 
+    private IEnumerable<EditorFieldViewModel> CreateEditorFields_GBA_Multiplayer()
+    {
+        // TODO-UPDATE: Localize
+        yield return new EditorBoolFieldViewModel(
+            header: "Load multiplayer menus",
+            info: "When this is enabled the game will load the multiplayer menus on startup. This can be accessed by choosing to quit the game if it has already been loaded.",
+            getValueAction: () => AccessMemory(m => m.GBA_EnableMultiplayerMenus),
+            setValueAction: x => AccessMemory(m =>
+            {
+                m.GBA_EnableMultiplayerMenus = x;
+                m.GBA_MultiplayerLevelLoad = (ushort)(x ? 0 : 0x7004);
+                m.ModifiedValue(nameof(m.GBA_EnableMultiplayerMenus), nameof(m.GBA_MultiplayerLevelLoad)); ;
+            }));
+
+        yield return new EditorBoolFieldViewModel(
+            header: "Level timeout",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.GBA_MultiplayerTimeout == 0xE6DA),
+            setValueAction: x => AccessMemory(m =>
+            {
+                m.GBA_MultiplayerTimeout = (ushort)(x ? 0xE6DA : 0);
+                m.ModifiedValue(nameof(m.GBA_MultiplayerTimeout)); ;
+            }));
+
+        yield return new EditorBoolFieldViewModel(
+            header: "Is player 2",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.GBA_MultiplayerPlayerSelection),
+            setValueAction: x => AccessMemory(m =>
+            {
+                m.GBA_MultiplayerPlayerSelection = x;
+                m.ModifiedValue(nameof(m.GBA_MultiplayerPlayerSelection)); ;
+            }));
+
+        EditorDropDownFieldViewModel.DropDownItem[] maps = Enumerable.Range(0, 6).
+            Select(x => new EditorDropDownFieldViewModel.DropDownItem($"{x + 1}", null)).
+            ToArray();
+
+        yield return new EditorDropDownFieldViewModel(
+            header: "Selected map",
+            info: null,
+            getValueAction: () => AccessMemory(m => m.GBA_MultiplayerLevelSelection - 1),
+            setValueAction: x => AccessMemory(m =>
+            {
+                m.GBA_MultiplayerLevelSelection = (byte)(x + 1);
+                m.ModifiedValue(nameof(m.GBA_MultiplayerLevelSelection)); ;
+            }),
+            getItemsAction: () => maps);
+    }
+
     private IEnumerable<DuoGridItemViewModel> CreateInfoItems()
     {
         // TODO-UPDATE: Localize
@@ -507,6 +558,11 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
             EditorFieldGroups.Add(new EditorFieldGroupViewModel(
                 header: "Debug",
                 editorFields: CreateEditorFields_R2_Debug()));
+
+        if (SelectedGameVersion.Data == Ray1EngineVersion.GBA)
+            EditorFieldGroups.Add(new EditorFieldGroupViewModel(
+                header: "Multiplayer",
+                editorFields: CreateEditorFields_GBA_Multiplayer()));
 
         EditorFieldGroups.Add(new EditorFieldGroupViewModel(
             header: "Powers",
