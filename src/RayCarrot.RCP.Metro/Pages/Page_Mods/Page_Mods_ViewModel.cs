@@ -13,7 +13,7 @@ public class Page_Mods_ViewModel : BasePageViewModel, IDisposable
     {
         Mods = new Mod_BaseViewModel[]
         {
-            new Mod_R1_ViewModel(messageUi),
+            new Mod_Mem_ViewModel(messageUi),
             new Mod_RRR_ViewModel(),
         };
     }

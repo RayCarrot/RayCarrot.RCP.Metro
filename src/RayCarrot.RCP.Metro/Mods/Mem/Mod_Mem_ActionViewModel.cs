@@ -4,9 +4,9 @@ using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Mod_ActionViewModel : BaseViewModel
+public class Mod_Mem_ActionViewModel : BaseViewModel
 {
-    public Mod_ActionViewModel(LocalizedString header, PackIconMaterialKind iconKind, ICommand command, Func<bool>? isEnabledFunc)
+    public Mod_Mem_ActionViewModel(LocalizedString header, PackIconMaterialKind iconKind, ICommand command, Func<bool>? isEnabledFunc)
     {
         Header = header;
         IconKind = iconKind;

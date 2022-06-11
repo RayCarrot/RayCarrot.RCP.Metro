@@ -3,7 +3,7 @@ using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Mod_R1_MemoryData : Mod_MemoryData
+public class Mod_Mem_R1MemoryData : Mod_Mem_MemoryData
 {
     public StatusBar? StatusBar { get; set; }
     public Poing? Poing { get; set; }

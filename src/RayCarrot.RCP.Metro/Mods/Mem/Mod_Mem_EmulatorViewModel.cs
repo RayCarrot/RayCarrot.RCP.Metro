@@ -1,10 +1,12 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System;
 
-public class Mod_EmulatorViewModel : BaseViewModel
+namespace RayCarrot.RCP.Metro;
+
+public class Mod_Mem_EmulatorViewModel : BaseViewModel
 {
     #region Constructor
 
-    public Mod_EmulatorViewModel(LocalizedString displayName, string[] processNameKeywords, params Mod_MemoryRegion[] memoryRegions)
+    public Mod_Mem_EmulatorViewModel(LocalizedString displayName, string[] processNameKeywords, params Mod_Mem_MemoryRegion[] memoryRegions)
     {
         DisplayName = displayName;
         ProcessNameKeywords = processNameKeywords;
@@ -23,16 +25,29 @@ public class Mod_EmulatorViewModel : BaseViewModel
 
     public LocalizedString DisplayName { get; }
     public string[] ProcessNameKeywords { get; }
-    public Mod_MemoryRegion MainMemoryRegion => MemoryRegions[0];
-    public Mod_MemoryRegion[] MemoryRegions { get; }
+    public Mod_Mem_MemoryRegion MainMemoryRegion => MemoryRegions[0];
+    public Mod_Mem_MemoryRegion[] MemoryRegions { get; }
 
     #endregion
 
     #region Platforms
 
-    public static Mod_EmulatorViewModel[] MSDOS => new[] { DOSBox_0_74_x86, DOSBox_0_74_2_1_x86, DOSBox_0_74_3_x86 };
-    public static Mod_EmulatorViewModel[] PS1 => new[] { BizHawk_PS1_2_4_0, BizHawk_PS1_2_8_0 };
-    public static Mod_EmulatorViewModel[] GBA => new[] { VisualBoyAdvance_M_2_1_3 };
+    public static Mod_Mem_EmulatorViewModel[] None => new[]
+    {
+        new Mod_Mem_EmulatorViewModel(
+            displayName: "None",
+            processNameKeywords: Array.Empty<string>(),
+            memoryRegions: new Mod_Mem_MemoryRegion(
+                Name: MainMemoryRegionName,
+                GameOffset: 0x00,
+                Length: null,
+                ModuleName: null,
+                ProcessOffset: 0x00,
+                IsProcessOffsetAPointer: false)),
+    };
+    public static Mod_Mem_EmulatorViewModel[] MSDOS => new[] { DOSBox_0_74_x86, DOSBox_0_74_2_1_x86, DOSBox_0_74_3_x86 };
+    public static Mod_Mem_EmulatorViewModel[] PS1 => new[] { BizHawk_PS1_2_4_0, BizHawk_PS1_2_8_0 };
+    public static Mod_Mem_EmulatorViewModel[] GBA => new[] { VisualBoyAdvance_M_2_1_3 };
 
     #endregion
 
@@ -45,30 +60,30 @@ public class Mod_EmulatorViewModel : BaseViewModel
     // - The first one has the EAX set to the current game base address and the ECX to the string offset.
     // - Search for the EAX value. The last result should be the static pointer to it.
     // TODO-UPDATE: Localize
-    public static Mod_EmulatorViewModel DOSBox_0_74_x86 => new(
+    public static Mod_Mem_EmulatorViewModel DOSBox_0_74_x86 => new(
         displayName: "DOSBox (0.74 - x86)",
         processNameKeywords: new[] { "DOSBox" },
-        memoryRegions: new Mod_MemoryRegion(
+        memoryRegions: new Mod_Mem_MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x00,
             Length: null,
             ModuleName: null,
             ProcessOffset: 0x193A1A0,
             IsProcessOffsetAPointer: true));
-    public static Mod_EmulatorViewModel DOSBox_0_74_2_1_x86 => new(
+    public static Mod_Mem_EmulatorViewModel DOSBox_0_74_2_1_x86 => new(
         displayName: "DOSBox (0.74-2.1 - x86)",
         processNameKeywords: new[] { "DOSBox" },
-        memoryRegions: new Mod_MemoryRegion(
+        memoryRegions: new Mod_Mem_MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x00,
             Length: null,
             ModuleName: null,
             ProcessOffset: 0x194A380,
             IsProcessOffsetAPointer: true));
-    public static Mod_EmulatorViewModel DOSBox_0_74_3_x86 => new(
+    public static Mod_Mem_EmulatorViewModel DOSBox_0_74_3_x86 => new(
         displayName: "DOSBox (0.74-3 - x86)",
         processNameKeywords: new[] { "DOSBox" },
-        memoryRegions: new Mod_MemoryRegion(
+        memoryRegions: new Mod_Mem_MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x00,
             Length: null,
@@ -80,20 +95,20 @@ public class Mod_EmulatorViewModel : BaseViewModel
 
     #region BizHawk
 
-    public static Mod_EmulatorViewModel BizHawk_PS1_2_4_0 => new(
+    public static Mod_Mem_EmulatorViewModel BizHawk_PS1_2_4_0 => new(
         displayName: "BizHawk Octoshock (2.4.0)",
         processNameKeywords: new[] { "EmuHawk" },
-        memoryRegions: new Mod_MemoryRegion(
+        memoryRegions: new Mod_Mem_MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x80000000,
             Length: null,
             ModuleName: "octoshock.dll",
             ProcessOffset: 0x0011D880,
             IsProcessOffsetAPointer: false));
-    public static Mod_EmulatorViewModel BizHawk_PS1_2_8_0 => new(
+    public static Mod_Mem_EmulatorViewModel BizHawk_PS1_2_8_0 => new(
         displayName: "BizHawk Octoshock (2.8.0)",
         processNameKeywords: new[] { "EmuHawk" },
-        memoryRegions: new Mod_MemoryRegion(
+        memoryRegions: new Mod_Mem_MemoryRegion(
             Name: MainMemoryRegionName,
             GameOffset: 0x80000000,
             Length: null,
@@ -105,19 +120,19 @@ public class Mod_EmulatorViewModel : BaseViewModel
 
     #region VisualBoyAdvance-M
 
-    public static Mod_EmulatorViewModel VisualBoyAdvance_M_2_1_3 => new(
+    public static Mod_Mem_EmulatorViewModel VisualBoyAdvance_M_2_1_3 => new(
         displayName: "VisualBoyAdvance-M (2.1.3)",
         processNameKeywords: new[] { "visualboyadvance-m" },
         memoryRegions: new[]
         {
-            new Mod_MemoryRegion(
+            new Mod_Mem_MemoryRegion(
                 Name: "WRAM",
                 GameOffset: 0x2000000,
                 Length: 0x40000,
                 ModuleName: null,
                 ProcessOffset: 0x014820E4,
                 IsProcessOffsetAPointer: true),
-            new Mod_MemoryRegion(
+            new Mod_Mem_MemoryRegion(
                 Name: "ROM",
                 GameOffset: 0x08000000,
                 Length: 0x1000000,
