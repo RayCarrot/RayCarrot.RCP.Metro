@@ -20,27 +20,20 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
         InfoItems = new ObservableCollection<DuoGridItemViewModel>();
         Actions = new ObservableCollection<Mod_ActionViewModel>();
 
-        Emulators = new ObservableCollection<Mod_EmulatorViewModel>()
-        {
-            Mod_EmulatorViewModel.DOSBox_0_74_x86,
-            Mod_EmulatorViewModel.DOSBox_0_74_2_1_x86,
-            Mod_EmulatorViewModel.DOSBox_0_74_3_x86,
-            Mod_EmulatorViewModel.BizHawk_PS1_2_4_0,
-            Mod_EmulatorViewModel.BizHawk_PS1_2_8_0,
-            Mod_EmulatorViewModel.VisualBoyAdvance_M_2_1_3,
-        };
-        SelectedEmulator = Emulators.First();
-        ProcessNameKeywords = Emulators.SelectMany(x => x.ProcessNameKeywords).ToArray();
-
         GameVersions = new ObservableCollection<Mod_GameVersionViewModel<Ray1EngineVersion>>()
         {
             // TODO-UPDATE: Localize
-            new("Rayman 1 (PC - 1.21)", () => Mod_R1_MemoryData.Offsets_PC_1_21, Ray1EngineVersion.PC),
-            new("Rayman 1 (PS1 - US)", () => Mod_R1_MemoryData.Offsets_PS1_US, Ray1EngineVersion.PS1),
-            new("Rayman 2 (PS1 - Prototype)", () => Mod_R1_MemoryData.Offsets_PS1_R2, Ray1EngineVersion.R2_PS1),
-            new("Rayman Advance (GBA - EU)", () => Mod_R1_MemoryData.Offsets_GBA_EU, Ray1EngineVersion.GBA),
+            new("Rayman 1 (PC - 1.21)", () => Mod_R1_MemoryData.Offsets_PC_1_21, Ray1EngineVersion.PC, 
+                Mod_EmulatorViewModel.MSDOS),
+            new("Rayman 1 (PS1 - US)", () => Mod_R1_MemoryData.Offsets_PS1_US, Ray1EngineVersion.PS1, 
+                Mod_EmulatorViewModel.PS1),
+            new("Rayman 2 (PS1 - Prototype)", () => Mod_R1_MemoryData.Offsets_PS1_R2, Ray1EngineVersion.R2_PS1, Mod_EmulatorViewModel.PS1),
+            new("Rayman Advance (GBA - EU)", () => Mod_R1_MemoryData.Offsets_GBA_EU, Ray1EngineVersion.GBA, 
+                Mod_EmulatorViewModel.GBA),
         };
         SelectedGameVersion = GameVersions.First();
+
+        ProcessNameKeywords = GameVersions.SelectMany(x => x.Emulators).SelectMany(x => x.ProcessNameKeywords).Distinct().ToArray();
 
         BindingOperations.EnableCollectionSynchronization(EditorFieldGroups, Application.Current);
         BindingOperations.EnableCollectionSynchronization(InfoItems, Application.Current);
@@ -76,11 +69,9 @@ public class Mod_R1_ViewModel : Mod_ProcessEditorViewModel<Mod_R1_MemoryData>
 
     #region Public Properties
 
-    public ObservableCollection<Mod_EmulatorViewModel> Emulators { get; }
-    public Mod_EmulatorViewModel SelectedEmulator { get; set; }
-
     public ObservableCollection<Mod_GameVersionViewModel<Ray1EngineVersion>> GameVersions { get; }
     public Mod_GameVersionViewModel<Ray1EngineVersion> SelectedGameVersion { get; set; }
+    public Mod_EmulatorViewModel SelectedEmulator => SelectedGameVersion.SelectedEmulator;
 
     public ObservableCollection<EditorFieldGroupViewModel> EditorFieldGroups { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }

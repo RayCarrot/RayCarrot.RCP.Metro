@@ -28,6 +28,14 @@ public class Mod_EmulatorViewModel : BaseViewModel
 
     #endregion
 
+    #region Platforms
+
+    public static Mod_EmulatorViewModel[] MSDOS => new[] { DOSBox_0_74_x86, DOSBox_0_74_2_1_x86, DOSBox_0_74_3_x86 };
+    public static Mod_EmulatorViewModel[] PS1 => new[] { BizHawk_PS1_2_4_0, BizHawk_PS1_2_8_0 };
+    public static Mod_EmulatorViewModel[] GBA => new[] { VisualBoyAdvance_M_2_1_3 };
+
+    #endregion
+
     #region DOSBox
 
     // A mostly consistent way of finding the DOSBox game pointer (there probably is a better way):

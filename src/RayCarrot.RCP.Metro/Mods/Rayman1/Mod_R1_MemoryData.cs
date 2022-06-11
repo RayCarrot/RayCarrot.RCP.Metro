@@ -42,6 +42,7 @@ public class Mod_R1_MemoryData : Mod_MemoryData
     public uint R2_UnusedMapLoopFunctionCall { get; set; }
     public uint R2_MapInitFunctionCall { get; set; } // Not unused, but it only resets the random index so not very important
 
+    // The menus use the string at 0x080F2154 which is sadly empty. We could set it to something?
     public bool GBA_EnableMultiplayerMenus { get; set; } // Loads multiplayer menus on start
     public ushort GBA_MultiplayerTimeout { get; set; } // Set to 0 to disable the code
     public ushort GBA_MultiplayerLevelLoad { get; set; } // Set to 0 to allow menu to load level
