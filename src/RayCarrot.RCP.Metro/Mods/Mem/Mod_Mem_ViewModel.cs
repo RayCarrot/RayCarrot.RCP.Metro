@@ -111,7 +111,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
     #region Public Properties
 
     public override LocalizedString Header => "Memory Mods"; // TODO-UPDATE: Localize
-    public override GenericIconKind Icon => GenericIconKind.Games; // TODO-UPDATE: Different icon
+    public override GenericIconKind Icon => GenericIconKind.Mods_Mem;
     public override object UIContent => _uiContent ??= new Mod_Mem_UI()
     {
         DataContext = this

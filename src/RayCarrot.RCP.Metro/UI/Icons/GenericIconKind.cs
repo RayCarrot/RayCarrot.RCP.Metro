@@ -64,5 +64,8 @@ public enum GenericIconKind
     Utilities_R1PasswordGenerator,
     Utilities_Converters,
     Utilities_Decoders,
-    Utilities_Serializers
+    Utilities_Serializers,
+
+    Mods_Mem,
+    Mods_RRR,
 }

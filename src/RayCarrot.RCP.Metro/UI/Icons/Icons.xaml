@@ -62,6 +62,9 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_Mem">Memory</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_RRR">MapOutline</iconPacks:PackIconMaterialKind>
+
     <!-- Generic Icons (used from C# code) -->
 
     <local:GenericIcon x:Key="RCP.GenericIcons.None" 
@@ -242,5 +245,12 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_Serializers" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Serializers}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    
+    <local:GenericIcon x:Key="RCP.GenericIcons.Mods_Mem" 
+                       IconKind="{StaticResource RCP.Icons.Mods_Mem}"
+                       IconColor="{StaticResource RCP.Brushes.Mods}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Mods_RRR" 
+                       IconKind="{StaticResource RCP.Icons.Mods_RRR}"
+                       IconColor="{StaticResource RCP.Brushes.Mods}" />
     
 </ResourceDictionary>
