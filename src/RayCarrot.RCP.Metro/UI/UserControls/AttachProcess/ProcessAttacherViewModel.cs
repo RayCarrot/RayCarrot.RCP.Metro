@@ -48,6 +48,7 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 
     #region Events
 
+    public event EventHandler? Refreshed;
     public event EventHandler<AttachableProcessEventArgs>? ProcessAttached;
     public event EventHandler<AttachableProcessEventArgs>? ProcessDetached;
 
@@ -80,6 +81,7 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 
     #region Protected Methods
 
+    protected virtual void OnRefreshed() => Refreshed?.Invoke(this, EventArgs.Empty);
     protected virtual void OnProcessAttached(AttachableProcessEventArgs e) => ProcessAttached?.Invoke(this, e);
     protected virtual void OnProcessDetached(AttachableProcessEventArgs e) => ProcessDetached?.Invoke(this, e);
 
@@ -87,10 +89,10 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 
     #region Public Methods
 
-    public Task RefreshProcessesAsync()
+    public async Task RefreshProcessesAsync()
     {
         if (_refreshing)
-            return Task.CompletedTask;
+            return;
 
         _refreshing = true;
 
@@ -100,7 +102,7 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
 
             Logger.Info("Refreshing processes list");
 
-            return Task.Run(() =>
+            await Task.Run(() =>
             {
                 Process current = Process.GetCurrentProcess();
 
@@ -159,6 +161,7 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
         finally
         {
             _refreshing = false;
+            OnRefreshed();
         }
     }
 
@@ -198,5 +201,4 @@ public class ProcessAttacherViewModel : BaseViewModel, IDisposable
     }
 
     #endregion
-
 }

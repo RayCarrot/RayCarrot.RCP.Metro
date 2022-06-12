@@ -24,6 +24,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
 
         ProcessAttacherViewModel = new ProcessAttacherViewModel();
+        ProcessAttacherViewModel.Refreshed += (_, _) => AutoSelectGame();
         ProcessAttacherViewModel.ProcessAttached += (_, e) => AttachProcess(e.AttachedProcess);
         ProcessAttacherViewModel.ProcessDetached += (_, _) => DetachProcess();
 
@@ -59,17 +60,19 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
                 game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC)),
                 displayName: "Rayman 2 (PC)",
                 getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R2_PC,
-                emulators: emuNone),
+                emulators: emuNone,
+                processNameKeywords: new [] { "Rayman2" }),
             new Mod_Mem_GameViewModel(
                 game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC)),
                 displayName: "Rayman 3 (PC)",
                 getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R3_PC,
-                emulators: emuNone),
+                emulators: emuNone,
+                processNameKeywords: new [] { "Rayman3" }),
         };
         SelectedGame = Games.First();
 
         ProcessAttacherViewModel.ProcessNameKeywords = Games.
-            SelectMany(x => x.Emulators.SelectMany(e => e.ProcessNameKeywords).Concat(x.Game.ProcessNameKeywords)).
+            SelectMany(x => x.Emulators.SelectMany(e => e.ProcessNameKeywords).Concat(x.ProcessNameKeywords)).
             Distinct().
             ToArray();
 
@@ -153,6 +156,24 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
             file.DisposeStream();
 
         Context.Dispose();
+    }
+
+    private void AutoSelectGame()
+    {
+        if (ProcessAttacherViewModel.SelectedProcess == null)
+            return;
+
+        string processName = ProcessAttacherViewModel.SelectedProcess.ProcessName;
+
+        foreach (Mod_Mem_GameViewModel game in Games)
+        {
+            if (game.ProcessNameKeywords.Concat(game.Emulators.SelectMany(x => x.ProcessNameKeywords)).
+                Any(x => processName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) != -1))
+            {
+                SelectedGame = game;
+                return;
+            }
+        }
     }
 
     private async void AttachProcess(AttachableProcessViewModel p)

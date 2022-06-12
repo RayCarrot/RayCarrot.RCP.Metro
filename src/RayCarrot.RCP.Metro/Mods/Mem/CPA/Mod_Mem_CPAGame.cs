@@ -227,7 +227,6 @@ public class Mod_Mem_CPAGame : Mod_Mem_Game<Mod_Mem_CPAMemoryData>
     #region Public Properties
 
     public OpenSpaceSettings Settings { get; }
-    public override string[] ProcessNameKeywords => new[] { "Rayman2", "Rayman3" }; // TODO-UPDATE: Move to game VM
 
     #endregion
 
@@ -269,6 +268,7 @@ public class Mod_Mem_CPAGame : Mod_Mem_Game<Mod_Mem_CPAMemoryData>
 
     public override IEnumerable<DuoGridItemViewModel> CreateInfoItems()
     {
+        // TODO-UPDATE: Localize
         yield return DuoGridItem("Map", m => m.CurrentMap);
     }
 

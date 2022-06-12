@@ -8,8 +8,6 @@ public abstract class Mod_Mem_Game : BaseViewModel
 {
     protected Mod_Mem_MemoryDataContainer? Container { get; private set; }
 
-    public virtual string[] ProcessNameKeywords => Array.Empty<string>();
-
     public void AttachContainer(Mod_Mem_MemoryDataContainer container) => Container = container;
     public void DetachContainer() => Container = null;
 
