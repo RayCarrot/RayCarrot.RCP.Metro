@@ -3,7 +3,7 @@ using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Mod_Mem_R1MemoryData : Mod_Mem_MemoryData
+public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
 {
     public StatusBar? StatusBar { get; set; }
     public Poing? Poing { get; set; }
@@ -49,7 +49,6 @@ public class Mod_Mem_R1MemoryData : Mod_Mem_MemoryData
     public bool GBA_MultiplayerPlayerSelection { get; set; }
     public byte GBA_MultiplayerLevelSelection { get; set; } // 1-6
 
-    // TODO: Move offsets to static class?
     public static Dictionary<string, long> Offsets_PC_1_21 => new()
     {
         [nameof(StatusBar)] = 0x16FF52,

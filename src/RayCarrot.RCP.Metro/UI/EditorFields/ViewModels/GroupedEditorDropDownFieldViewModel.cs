@@ -5,9 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace RayCarrot.RCP.Metro;
 
-public class EditorDropDownFieldViewModel : EditorFieldViewModel
+public class GroupedEditorDropDownFieldViewModel : EditorFieldViewModel
 {
-    public EditorDropDownFieldViewModel(
+    public GroupedEditorDropDownFieldViewModel(
         LocalizedString header, LocalizedString? info, 
         Func<int> getValueAction, Action<int> setValueAction, 
         Func<IReadOnlyList<DropDownItem>> getItemsAction) : base(header, info)
@@ -51,6 +51,16 @@ public class EditorDropDownFieldViewModel : EditorFieldViewModel
 
             Items = new ObservableCollection<DropDownItem>(newItems);
 
+            LocalizedString? groupHeader = null;
+
+            foreach (DropDownItem item in Items)
+            {
+                if (item.IsGroupHeader)
+                    groupHeader = item.Header;
+
+                item.GroupHeader = groupHeader;
+            }
+
             Logger.Debug("Recreated drop-down items for drop-down with header {0}", Header);
         }
 
@@ -60,19 +70,22 @@ public class EditorDropDownFieldViewModel : EditorFieldViewModel
 
     public class DropDownItem
     {
-        public DropDownItem(LocalizedString header, object? data)
+        public DropDownItem(LocalizedString header, object? data, bool isGroupHeader = false)
         {
             Header = header;
             Data = data;
+            IsGroupHeader = isGroupHeader;
         }
 
         public LocalizedString Header { get; }
         public object? Data { get; }
+        public bool IsGroupHeader { get; }
+        public LocalizedString? GroupHeader { get; set; }
     }
 
     public class DropDownItem<T> : DropDownItem
     {
-        public DropDownItem(string header, T? data) : base(header, data) { }
+        public DropDownItem(string header, T? data, bool isGroupHeader = false) : base(header, data, isGroupHeader) { }
 
         public new T? Data => (T?)base.Data;
     }

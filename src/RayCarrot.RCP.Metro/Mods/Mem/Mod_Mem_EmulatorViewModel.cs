@@ -68,7 +68,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
             GameOffset: 0x00,
             Length: null,
             ModuleName: null,
-            ProcessOffset: 0x193A1A0,
+            ProcessOffset: 0x1D3A1A0,
             IsProcessOffsetAPointer: true));
     public static Mod_Mem_EmulatorViewModel DOSBox_0_74_2_1_x86 => new(
         displayName: "DOSBox (0.74-2.1 - x86)",
@@ -78,7 +78,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
             GameOffset: 0x00,
             Length: null,
             ModuleName: null,
-            ProcessOffset: 0x194A380,
+            ProcessOffset: 0x1D4A380,
             IsProcessOffsetAPointer: true));
     public static Mod_Mem_EmulatorViewModel DOSBox_0_74_3_x86 => new(
         displayName: "DOSBox (0.74-3 - x86)",
@@ -88,7 +88,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
             GameOffset: 0x00,
             Length: null,
             ModuleName: null,
-            ProcessOffset: 0x193C370,
+            ProcessOffset: 0x1D3C370,
             IsProcessOffsetAPointer: true));
 
     #endregion
@@ -130,14 +130,14 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
                 GameOffset: 0x2000000,
                 Length: 0x40000,
                 ModuleName: null,
-                ProcessOffset: 0x014820E4,
+                ProcessOffset: 0x018820E4,
                 IsProcessOffsetAPointer: true),
             new Mod_Mem_MemoryRegion(
                 Name: "ROM",
                 GameOffset: 0x08000000,
                 Length: 0x1000000,
                 ModuleName: null,
-                ProcessOffset: 0x014820EC,
+                ProcessOffset: 0x018820EC,
                 IsProcessOffsetAPointer: true),
         });
 

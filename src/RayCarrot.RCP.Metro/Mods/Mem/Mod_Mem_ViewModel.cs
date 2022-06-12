@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using BinarySerializer;
+using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
 using NLog;
 
@@ -26,6 +27,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         ProcessAttacherViewModel.ProcessAttached += (_, e) => AttachProcess(e.AttachedProcess);
         ProcessAttacherViewModel.ProcessDetached += (_, _) => DetachProcess();
 
+        Mod_Mem_EmulatorViewModel[] emuNone = Mod_Mem_EmulatorViewModel.None;
         Mod_Mem_EmulatorViewModel[] emuMSDOS = Mod_Mem_EmulatorViewModel.MSDOS;
         Mod_Mem_EmulatorViewModel[] emuPS1 = Mod_Mem_EmulatorViewModel.PS1;
         Mod_Mem_EmulatorViewModel[] emuGBA = Mod_Mem_EmulatorViewModel.GBA;
@@ -34,31 +36,35 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         Games = new ObservableCollection<Mod_Mem_GameViewModel>()
         {
             new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_R1Game(Ray1EngineVersion.PC),
+                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.PC),
                 displayName: "Rayman 1 (PC - 1.21)",
-                getOffsetsFunc: () => Mod_Mem_R1MemoryData.Offsets_PC_1_21,
+                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PC_1_21,
                 emulators: emuMSDOS),
             new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_R1Game(Ray1EngineVersion.PS1),
+                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.PS1),
                 displayName: "Rayman 1 (PS1 - US)",
-                getOffsetsFunc: () => Mod_Mem_R1MemoryData.Offsets_PS1_US,
+                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PS1_US,
                 emulators: emuPS1),
             new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_R1Game(Ray1EngineVersion.R2_PS1),
+                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.R2_PS1),
                 displayName: "Rayman 2 (PS1 - Prototype)",
-                getOffsetsFunc: () => Mod_Mem_R1MemoryData.Offsets_PS1_R2,
+                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PS1_R2,
                 emulators: emuPS1),
             new Mod_Mem_GameViewModel(
-                game: new Mod_Mem_R1Game(Ray1EngineVersion.GBA),
+                game: new Mod_Mem_Ray1Game(Ray1EngineVersion.GBA),
                 displayName: "Rayman Advance (GBA - EU)",
-                getOffsetsFunc: () => Mod_Mem_R1MemoryData.Offsets_GBA_EU,
+                getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_GBA_EU,
                 emulators: emuGBA),
+            new Mod_Mem_GameViewModel(
+                game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC)),
+                displayName: "Rayman 2 (PC)",
+                getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R2_PC,
+                emulators: emuNone),
         };
         SelectedGame = Games.First();
 
         ProcessAttacherViewModel.ProcessNameKeywords = Games.
-            SelectMany(x => x.Emulators).
-            SelectMany(x => x.ProcessNameKeywords).
+            SelectMany(x => x.Emulators.SelectMany(e => e.ProcessNameKeywords).Concat(x.Game.ProcessNameKeywords)).
             Distinct().
             ToArray();
 
@@ -273,15 +279,17 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     private static void InitializeProcessStream(ProcessMemoryStream stream, Mod_Mem_MemoryRegion memRegion, BinaryDeserializer s)
     {
-        long processBase = (memRegion.ModuleName == null
-            ? stream.Process.MainModule
-            : stream.Process.Modules.Cast<ProcessModule>().First(x => x.ModuleName == memRegion.ModuleName)).BaseAddress.ToInt64();
+        long moduleOffset = 0;
+
+        // We could also set the offset for the main module, but we assume it's always 0x400000
+        if (memRegion.ModuleName != null)
+            moduleOffset = stream.Process.Modules.Cast<ProcessModule>().First(x => x.ModuleName == memRegion.ModuleName).BaseAddress.ToInt64();
 
         long baseStreamOffset;
 
         if (memRegion.IsProcessOffsetAPointer)
         {
-            Pointer basePtrPtr = s.CurrentPointer + memRegion.ProcessOffset + processBase;
+            Pointer basePtrPtr = s.CurrentPointer + memRegion.ProcessOffset + moduleOffset;
 
             // Get the base pointer
             baseStreamOffset = stream.Is64Bit 
@@ -290,7 +298,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         }
         else
         {
-            baseStreamOffset = memRegion.ProcessOffset + processBase;
+            baseStreamOffset = memRegion.ProcessOffset + moduleOffset;
         }
 
         stream.BaseStreamOffset = baseStreamOffset;

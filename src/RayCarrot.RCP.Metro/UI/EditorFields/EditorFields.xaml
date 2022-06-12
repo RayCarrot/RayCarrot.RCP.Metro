@@ -27,9 +27,54 @@
     <!-- Drop-down -->
 
     <DataTemplate DataType="{x:Type local:EditorDropDownFieldViewModel}">
-        <ComboBox ItemsSource="{Binding Path=Items, Mode=OneTime}"
+        <ComboBox ItemsSource="{Binding Path=Items}"
+                  VirtualizingStackPanel.IsVirtualizing="False"
                   DisplayMemberPath="Header.Value"
                   SelectedIndex="{Binding Path=SelectedItem}" />
+    </DataTemplate>
+
+    <!-- Grouped Drop-down -->
+
+    <DataTemplate DataType="{x:Type local:GroupedEditorDropDownFieldViewModel}">
+        <ComboBox ItemsSource="{Binding Path=Items}"
+                  VirtualizingStackPanel.IsVirtualizing="False"
+                  SelectedIndex="{Binding Path=SelectedItem}">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                    <Setter Property="IsEnabled" Value="{Binding Path=IsGroupHeader, Mode=OneTime, Converter={local:InvertedBooleanConverter}}" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="GroupHeaderTextBlock" 
+                                   FontWeight="Bold"
+                                   Visibility="Collapsed"
+                                   Text="{Binding Path=GroupHeader.Value}" />
+                        <TextBlock x:Name="HeaderTextBlock" 
+                                   Text="{Binding Path=Header.Value}" 
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+                    </StackPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsGroupHeader, Mode=OneTime}" Value="True">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="HeaderTextBlock" Property="FontWeight" Value="Bold" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsGroupHeader, Mode=OneTime}" Value="False">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="HeaderTextBlock" Property="Margin" Value="10 0 0 0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}" Value="{x:Null}">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="GroupHeaderTextBlock" Property="Visibility" Value="Visible" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </DataTemplate>
 
     <!-- Fields item control -->

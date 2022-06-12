@@ -7,11 +7,11 @@ using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Mod_Mem_R1Game : Mod_Mem_Game<Mod_Mem_R1MemoryData>
+public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 {
     #region Constructor
 
-    public Mod_Mem_R1Game(Ray1EngineVersion version)
+    public Mod_Mem_Ray1Game(Ray1EngineVersion version)
     {
         Version = version;
     }
@@ -360,8 +360,6 @@ public class Mod_Mem_R1Game : Mod_Mem_Game<Mod_Mem_R1MemoryData>
 
     #region Public Methods
     
-    public override Mod_Mem_MemoryData CreateMemoryData(Context context) => new Mod_Mem_R1MemoryData();
-
     public override void InitializeContext(Context context)
     {
         context.AddSettings(new Ray1Settings(Version));
@@ -392,44 +390,30 @@ public class Mod_Mem_R1Game : Mod_Mem_Game<Mod_Mem_R1MemoryData>
     public override IEnumerable<DuoGridItemViewModel> CreateInfoItems()
     {
         // TODO-UPDATE: Localize
-        yield return new DuoGridItemViewModel("Camera X",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.XMap}")));
-        yield return new DuoGridItemViewModel("Camera Y",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.YMap}")));
+        yield return DuoGridItem("Camera X", m => m.XMap);
+        yield return DuoGridItem("Camera Y", m => $"{m.YMap}");
 
         if (Version == Ray1EngineVersion.R2_PS1)
         {
-            yield return new DuoGridItemViewModel("X position",
-                new GeneratedLocString(() => AccessMemory(m => $"{m.R2_Ray?.XPosition}")));
-            yield return new DuoGridItemViewModel("Y position",
-                new GeneratedLocString(() => AccessMemory(m => $"{m.R2_Ray?.YPosition}")));
-            yield return new DuoGridItemViewModel("Rayman state",
-                new GeneratedLocString(() => AccessMemory(m => $"{m.R2_Ray?.Etat}-{m.R2_Ray?.SubEtat}")));
+            yield return DuoGridItem("X position", m => $"{m.R2_Ray?.XPosition}");
+            yield return DuoGridItem("Y position", m => $"{m.R2_Ray?.YPosition}");
+            yield return DuoGridItem("Rayman state", m => $"{m.R2_Ray?.Etat}-{m.R2_Ray?.SubEtat}");
         }
         else
         {
-            yield return new DuoGridItemViewModel("X position",
-                new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.XPosition}")));
-            yield return new DuoGridItemViewModel("Y position",
-                new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.YPosition}")));
-            yield return new DuoGridItemViewModel("Rayman state",
-                new GeneratedLocString(() => AccessMemory(m => $"{m.Ray?.Etat}-{m.Ray?.SubEtat}")));
+            yield return DuoGridItem("X position", m => $"{m.Ray?.XPosition}");
+            yield return DuoGridItem("Y position", m => $"{m.Ray?.YPosition}");
+            yield return DuoGridItem("Rayman state", m => $"{m.Ray?.Etat}-{m.Ray?.SubEtat}");
         }
 
-        yield return new DuoGridItemViewModel("Helico time",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.HelicoTime}")));
-        yield return new DuoGridItemViewModel("Fist charge",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.Poing?.FistChargedLevel}")));
-        yield return new DuoGridItemViewModel("Active objects",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.ActiveObjects?[100]}")));
-        yield return new DuoGridItemViewModel("Map time",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.MapTime}")));
-        yield return new DuoGridItemViewModel("Random index",
-            new GeneratedLocString(() => AccessMemory(m => $"{m.RandomIndex}")));
+        yield return DuoGridItem("Helico time", m => $"{m.HelicoTime}");
+        yield return DuoGridItem("Fist charge", m => $"{m.Poing?.FistChargedLevel}");
+        yield return DuoGridItem("Active objects", m => $"{m.ActiveObjects?[100]}");
+        yield return DuoGridItem("Map time", m => $"{m.MapTime}");
+        yield return DuoGridItem("Random index", m => $"{m.RandomIndex}");
 
         if (AccessMemory(m => m.SupportsProperty(nameof(m.MenuEtape))))
-            yield return new DuoGridItemViewModel("Menu",
-                new GeneratedLocString(() => AccessMemory(m => $"{m.MenuEtape}")));
+            yield return DuoGridItem("Menu", m => $"{m.MenuEtape}");
     }
 
     public override IEnumerable<Mod_Mem_ActionViewModel> CreateActions()
