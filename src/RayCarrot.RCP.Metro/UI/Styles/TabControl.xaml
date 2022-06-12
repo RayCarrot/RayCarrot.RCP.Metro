@@ -40,6 +40,7 @@
                                         ContentStringFormat="{Binding Path=HeaderStringFormat}" 
                                         FontSize="{Binding Path=(local:TabItemAssist.HeaderFontSize)}"
                                         Content="{Binding Path=Header}"
+                                        TextBlock.TextAlignment="Center"
                                         VerticalAlignment="Center">
 
                             <ContentControl.Style>

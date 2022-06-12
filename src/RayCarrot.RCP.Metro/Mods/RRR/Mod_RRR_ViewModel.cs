@@ -364,8 +364,8 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
     #region Mods Page
 
-    public override GenericIconKind Icon => GenericIconKind.Games;
-    public override LocalizedString Header => new ResourceLocString(nameof(Resources.Mod_RRR_Header));
+    public override GenericIconKind Icon => GenericIconKind.Games; // TODO-UPDATE: Different icon
+    public override LocalizedString Header => $"Rayman Raving Rabbids{Environment.NewLine}Prototype Restoration"; // TODO-UPDATE: Update loc Mod_RRR_Header
     public override object UIContent => _uiContent ??= new Mod_RRR_UI()
     {
         DataContext = this
