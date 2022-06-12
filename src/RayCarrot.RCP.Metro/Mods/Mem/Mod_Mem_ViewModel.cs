@@ -60,6 +60,11 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
                 displayName: "Rayman 2 (PC)",
                 getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R2_PC,
                 emulators: emuNone),
+            new Mod_Mem_GameViewModel(
+                game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC)),
+                displayName: "Rayman 3 (PC)",
+                getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R3_PC,
+                emulators: emuNone),
         };
         SelectedGame = Games.First();
 
