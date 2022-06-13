@@ -746,7 +746,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 try
                 {
                     // Get a temporary file
-                    using TempFile tempFile = new(asBinary ? new FileExtension(".bin") : ext);
+                    using TempFile tempFile = new(false, asBinary ? new FileExtension(".bin") : ext);
 
                     using HashAlgorithm sha1 = HashAlgorithm.Create();
 

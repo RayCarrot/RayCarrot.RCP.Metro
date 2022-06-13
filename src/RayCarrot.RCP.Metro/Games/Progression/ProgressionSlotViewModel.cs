@@ -279,7 +279,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
             try
             {
                 // Create a temporary file
-                using TempFile tempFile = new(new FileExtension(".json"));
+                using TempFile tempFile = new(false, new FileExtension(".json"));
 
                 using HashAlgorithm sha1 = HashAlgorithm.Create();
 

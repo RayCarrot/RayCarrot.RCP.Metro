@@ -16,16 +16,7 @@ namespace RayCarrot.RCP.Metro
         public TempDirectory(bool createDir)
         {
             // Get the temp path
-            FileSystemPath tempDir;
-
-            // Get a random temp path until one does not exist
-            do
-            {
-                tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            } while (tempDir.DirectoryExists);
-
-            // Set the temp path
-            TempPath = tempDir;
+            TempPath = GetTempDirPath();
 
             if (createDir)
                 // Create the directory
@@ -40,6 +31,22 @@ namespace RayCarrot.RCP.Metro
         /// The path of the temporary directory
         /// </summary>
         public override FileSystemPath TempPath { get; }
+
+        private static FileSystemPath GetTempDirPath()
+        {
+            // Get the temp directory
+            FileSystemPath tempBaseDir = AppFilePaths.TempPath;
+
+            FileSystemPath tempDir;
+
+            // Generate a random temp path until one does not exist
+            do
+            {
+                tempDir = tempBaseDir + $"{Guid.NewGuid()}";
+            } while (tempDir.DirectoryExists);
+
+            return tempDir;
+        }
 
         /// <summary>
         /// Removes the temporary directory

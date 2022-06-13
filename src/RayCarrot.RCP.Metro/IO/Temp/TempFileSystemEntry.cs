@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -7,6 +8,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class TempFileSystemEntry : IDisposable
     {
+        protected TempFileSystemEntry()
+        {
+            // Always make sure the temporary base path exists
+            Directory.CreateDirectory(AppFilePaths.TempPath);
+        }
+
         /// <summary>
         /// The path of the temporary entry
         /// </summary>

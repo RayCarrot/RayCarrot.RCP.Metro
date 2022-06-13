@@ -13,59 +13,54 @@ public sealed class TempFile : TempFileSystemEntry
     /// Creates a new temporary file with a default name
     /// </summary>
     /// <param name="createFile">Indicates if the temporary file should be created</param>
-    public TempFile(bool createFile)
+    /// <param name="ext">The file extension, or null for the default extension</param>
+    public TempFile(bool createFile, FileExtension? ext = null)
     {
-        // TODO-UPDATE: Don't use Path.GetTempFileName since it can run out of names. Instead create all temp paths under RCP sub-folder
-        //              and name them based on a GUID perhaps?
-
         if (createFile)
         {
-            // Get the temp path and create the file
-            TempPath = Path.GetTempFileName();
+            // Get the temp path
+            TempPath = GetTempFilePath(ext);
+
+            // Create the file
+            File.Create(TempPath).Dispose();
 
             // Get the file info
-            var info = TempPath.GetFileInfo();
+            FileInfo info = TempPath.GetFileInfo();
 
-            // Set the attribute to temporary
+            // Set the temporary attribute flag
             info.Attributes |= FileAttributes.Temporary;
         }
         else
         {
-            // Set the temp path
-            TempPath = GetTempFilePath(new FileExtension(".tmp"));
+            // Get the temp path, but don't create a file there
+            TempPath = GetTempFilePath(ext);
         }
-
-        Logger.Debug("A new temp file has been created under {0}", TempPath);
-    }
-
-    /// <summary>
-    /// Creates a new temporary file with a custom file extension without creating the file
-    /// </summary>
-    /// <param name="ext">The file extension</param>
-    public TempFile(FileExtension ext)
-    {
-        // Set the temp path
-        TempPath = GetTempFilePath(ext ?? new FileExtension(".tmp"));
 
         Logger.Debug("A new temp file has been created under {0}", TempPath);
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    private const string DefaultExt = ".tmp";
+
     /// <summary>
     /// The path of the temporary file
     /// </summary>
     public override FileSystemPath TempPath { get; }
 
-    private static FileSystemPath GetTempFilePath(FileExtension ext)
+    private static FileSystemPath GetTempFilePath(FileExtension? ext = null)
     {
-        // Get the temp path
+        ext ??= new FileExtension(DefaultExt);
+
+        // Get the temp directory
+        FileSystemPath tempBaseDir = AppFilePaths.TempPath;
+
         FileSystemPath tempFile;
 
-        // Get a random temp path until one does not exist
+        // Generate a random temp path until one does not exist
         do
         {
-            tempFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ext.FileExtensions);
+            tempFile = tempBaseDir +  $"{Guid.NewGuid()}{ext.FileExtensions}";
         } while (tempFile.FileExists);
 
         return tempFile;

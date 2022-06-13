@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -66,6 +67,11 @@ public static class AppFilePaths
     /// The admin worker file path
     /// </summary>
     public static FileSystemPath AdminWorkerPath => UserDataBaseDir + "Temp\\AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
+
+    /// <summary>
+    /// The temporary files path
+    /// </summary>
+    public static FileSystemPath TempPath => Path.Combine(Path.GetTempPath(), "RCP_Metro");
 
     /// <summary>
     /// The common path to the ubi.ini file
