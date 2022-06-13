@@ -22,6 +22,9 @@ public class UtilityViewModel : BaseViewModel, IDisposable
         InfoText = new GeneratedLocString(() => Utility.InfoText);
         WarningText = new GeneratedLocString(() => Utility.WarningText);
         IsAvailable = utility.IsAvailable;
+        IsLoading = utility.IsLoading;
+
+        utility.IsLoadingChanged += (_, _) => IsLoading = utility.IsLoading;
     }
 
     #endregion
@@ -34,6 +37,8 @@ public class UtilityViewModel : BaseViewModel, IDisposable
     public bool RequiresAdmin => !Services.App.IsRunningAsAdmin && Utility.RequiresAdmin;
 
     public bool IsAvailable { get; }
+
+    public bool IsLoading { get; set; }
 
     /// <summary>
     /// The utility header

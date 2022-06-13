@@ -47,6 +47,11 @@ public abstract class Utility
     public abstract object UIContent { get; }
 
     /// <summary>
+    /// Indicates if the utility is currently loading and the UI can't be interacted with
+    /// </summary>
+    public virtual bool IsLoading => false;
+
+    /// <summary>
     /// Indicates if the utility requires administration privileges
     /// </summary>
     public virtual bool RequiresAdmin => false;
@@ -66,6 +71,10 @@ public abstract class Utility
     /// </summary>
     /// <returns>The applied utilities</returns>
     public virtual IEnumerable<string> GetAppliedUtilities() => Enumerable.Empty<string>();
+
+    public event EventHandler? IsLoadingChanged;
+
+    protected virtual void OnIsLoadingChanged() => IsLoadingChanged?.Invoke(this, EventArgs.Empty);
 }
 
 public abstract class Utility<UI, VM> : Utility

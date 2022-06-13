@@ -14,16 +14,10 @@
             <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
-        <local:LoaderContentControl IsLoading="{Binding Path=IsLoadingDirectPlay}"
-                                    VerticalLoadingIconAlignment="Bottom"
-                                    HorizontalLoadingIconAlignment="Right">
-
-            <metro:ToggleSwitch IsOn="{Binding Path=IsDirectPlayEnabled}"
-                                HorizontalAlignment="Left"
-                                OnContent="{Resx SettingEnabled}"
-                                OffContent="{Resx SettingDisabled}" />
-
-        </local:LoaderContentControl>
+        <metro:ToggleSwitch IsOn="{Binding Path=IsDirectPlayEnabled}"
+                            HorizontalAlignment="Left"
+                            OnContent="{Resx SettingEnabled}"
+                            OffContent="{Resx SettingDisabled}" />
 
     </StackPanel>
 </UserControl>

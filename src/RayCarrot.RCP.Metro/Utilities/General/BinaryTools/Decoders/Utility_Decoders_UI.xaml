@@ -11,40 +11,36 @@
              d:DesignWidth="550" 
              d:DataContext="{d:DesignInstance local:Utility_Decoders_ViewModel}">
 
-    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
-                                VerticalLoadingIconAlignment="Bottom"
-                                HorizontalLoadingIconAlignment="Right">
-        <Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Grid.Column="0"
+                  Margin="0 0 10 0"
+                  ItemsSource="{Binding Path=Types, Mode=OneTime}"
+                  SelectedItem="{Binding Path=SelectedType}"
+                  DisplayMemberPath="Name.Value" />
+
+        <Grid Grid.Column="1">
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Column="0"
-                      Margin="0 0 10 0"
-                      ItemsSource="{Binding Path=Types, Mode=OneTime}"
-                      SelectedItem="{Binding Path=SelectedType}"
-                      DisplayMemberPath="Name.Value" />
+            <Button Grid.Column="0"
+                    Margin="0 0 10 0"
+                    Content="{Resx Utilities_Decoder_Decode}"
+                    Command="{Binding Path=DecodeCommand, Mode=OneTime}" />
 
-            <Grid Grid.Column="1">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0"
-                        Margin="0 0 10 0"
-                        Content="{Resx Utilities_Decoder_Decode}"
-                        Command="{Binding Path=DecodeCommand, Mode=OneTime}" />
-
-                <Button Grid.Column="1"
-                        Content="{Resx Utilities_Decoder_Encode}"
-                        Command="{Binding Path=EncodeCommand, Mode=OneTime}" />
-
-            </Grid>
+            <Button Grid.Column="1"
+                    Content="{Resx Utilities_Decoder_Encode}"
+                    Command="{Binding Path=EncodeCommand, Mode=OneTime}" />
 
         </Grid>
-    </local:LoaderContentControl>
+
+    </Grid>
 
 </UserControl>

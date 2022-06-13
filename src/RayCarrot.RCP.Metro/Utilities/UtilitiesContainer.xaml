@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d" 
@@ -17,13 +18,12 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-                    </i:Interaction.Behaviors>
 
-                    <Separator x:Name="ItemSeparator"/>
+                    <Separator x:Name="ItemSeparator"
+                               Margin="{StaticResource RCP.Thicknesses.Vertical}"/>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="{StaticResource RCP.Thicknesses.Vertical}">
 
                         <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" 
                                                     Foreground="{Binding Path=IconKind, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}"
@@ -51,6 +51,8 @@
                     </StackPanel>
 
                     <ContentControl IsTabStop="False" 
+                                    Margin="{StaticResource RCP.Thicknesses.Vertical}"
+                                    IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}"
                                     Visibility="{Binding Path=IsAvailable, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}">
                         <ContentControl.Style>
                             <Style TargetType="{x:Type ContentControl}">
@@ -91,6 +93,7 @@
                     </ContentControl>
 
                     <StackPanel Orientation="Horizontal"
+                                Margin="{StaticResource RCP.Thicknesses.Vertical}"
                                 HorizontalAlignment="Center"
                                 Visibility="{Binding Path=IsAvailable, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}">
 
@@ -103,6 +106,9 @@
                                         Visibility="{Binding Path=Value, Converter={local:InvertedObjectNullToVisibilityConverter}, FallbackValue=Collapsed}"/>
 
                     </StackPanel>
+
+                    <metro:MetroProgressBar IsIndeterminate="True" 
+                                            Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityHiddenConverter}}"/>
 
                 </StackPanel>
 

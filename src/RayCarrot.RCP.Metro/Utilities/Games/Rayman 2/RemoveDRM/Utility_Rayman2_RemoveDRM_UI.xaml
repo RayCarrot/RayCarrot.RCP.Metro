@@ -8,26 +8,20 @@
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:Utility_Rayman2_RemoveDRM_ViewModel}">
-    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
-                                VerticalLoadingIconAlignment="Bottom"
-                                HorizontalLoadingIconAlignment="Right">
+    <StackPanel Orientation="Horizontal">
+        <i:Interaction.Behaviors>
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
+        </i:Interaction.Behaviors>
 
-        <StackPanel Orientation="Horizontal">
-            <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
-            </i:Interaction.Behaviors>
+        <Button Content="{Resx Utility_Apply}"
+                HorizontalAlignment="Left"
+                Command="{Binding Path=ApplyPatchCommand}"/>
 
-            <Button Content="{Resx Utility_Apply}"
-                    HorizontalAlignment="Left"
-                    Command="{Binding Path=ApplyPatchCommand}"/>
+        <Button Content="{Resx Utility_Revert}"
+                HorizontalAlignment="Left"
+                Command="{Binding Path=RevertPatchCommand}"
+                Visibility="{Binding Path=HasBeenApplied, Converter={local:BooleanToVisibilityConverter}}"/>
 
-            <Button Content="{Resx Utility_Revert}"
-                    HorizontalAlignment="Left"
-                    Command="{Binding Path=RevertPatchCommand}"
-                    Visibility="{Binding Path=HasBeenApplied, Converter={local:BooleanToVisibilityConverter}}"/>
-
-        </StackPanel>
-
-    </local:LoaderContentControl>
+    </StackPanel>
 
 </UserControl>
