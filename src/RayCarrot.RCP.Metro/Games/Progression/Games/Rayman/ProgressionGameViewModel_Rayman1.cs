@@ -26,6 +26,8 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
             yield break;
 
         using RCPContext context = new(installDir);
+        Ray1Settings settings = new(Ray1EngineVersion.PC);
+        context.AddSettings(settings);
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
