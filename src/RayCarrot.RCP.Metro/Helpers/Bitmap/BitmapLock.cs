@@ -9,7 +9,6 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A bitmap wrapper for locking the pixels for faster accessing
 /// </summary>
-[Obsolete("Use BitmapSource instead")]
 public class BitmapLock : IDisposable
 {
     #region Constructor
