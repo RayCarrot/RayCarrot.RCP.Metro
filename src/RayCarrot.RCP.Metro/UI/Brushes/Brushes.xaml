@@ -19,6 +19,9 @@
     <SolidColorBrush x:Key="RCP.Brushes.Technical" Color="{StaticResource RCP.Colors.YellowPrimary500}" />
     <SolidColorBrush x:Key="RCP.Brushes.GameConfig" Color="{StaticResource RCP.Colors.IndigoPrimary500}" />
 
+    <!-- General UI -->
+    <SolidColorBrush x:Key="RCP.Brushes.Overlay" Color="#60000000" />
+
     <!-- Brands -->
     <SolidColorBrush x:Key="RCP.Brushes.Email" Color="{StaticResource RCP.Colors.PurplePrimary600}" />
     <SolidColorBrush x:Key="RCP.Brushes.Twitter" Color="{StaticResource RCP.Colors.Twitter}" />

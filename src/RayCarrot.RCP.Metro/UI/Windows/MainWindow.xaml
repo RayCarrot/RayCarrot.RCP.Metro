@@ -232,7 +232,7 @@
 
         <!-- Load operation indicator (blocks the UI) -->
 
-        <Grid Background="#10FFFFFF"
+        <Grid Background="{StaticResource RCP.Brushes.Overlay}"
               ClipToBounds="True"
               FocusVisualStyle="{x:Null}"
               KeyboardNavigation.TabNavigation="None"
