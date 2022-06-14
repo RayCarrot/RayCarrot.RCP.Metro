@@ -197,7 +197,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
             try
             {
-                Stopwatch time = new Stopwatch();
+                Stopwatch time = new();
 
                 time.Start();
 
@@ -208,22 +208,19 @@ public class Page_Settings_ViewModel : BasePageViewModel
                 // Config files
                 LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
                 {
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni,
-                        UserLevel.Advanced),
-                    new Page_Settings_LinkItemViewModel(Games.Rayman2.IsAdded()
+                    new(AppFilePaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
+                    new(AppFilePaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni, UserLevel.Advanced),
+                    new(Games.Rayman2.IsAdded()
                         ? Games.Rayman2.GetInstallDir() + "ubi.ini"
                         : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
-                    new Page_Settings_LinkItemViewModel(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
+                    new(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
                 });
 
                 // DOSBox files
                 LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
                 {
-                    new Page_Settings_LinkItemViewModel(new FileSystemPath(Data.Emu_DOSBox_Path),
-                        Resources.Links_Local_DOSBox),
-                    new Page_Settings_LinkItemViewModel(new FileSystemPath(Data.Emu_DOSBox_ConfigPath),
-                        Resources.Links_Local_DOSBoxConfig, UserLevel.Technical)
+                    new(new FileSystemPath(Data.Emu_DOSBox_Path), Resources.Links_Local_DOSBox),
+                    new(new FileSystemPath(Data.Emu_DOSBox_ConfigPath), Resources.Links_Local_DOSBoxConfig, UserLevel.Technical)
                 });
 
                 // Steam paths
@@ -264,10 +261,8 @@ public class Page_Settings_ViewModel : BasePageViewModel
                         if (gogDir.DirectoryExists)
                             LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
                             {
-                                new Page_Settings_LinkItemViewModel(gogDir + "GalaxyClient.exe",
-                                    Resources.Links_Local_GOGClient),
-                                new Page_Settings_LinkItemViewModel(gogDir + @"Games", Resources.Links_Local_GOGGames,
-                                    UserLevel.Advanced)
+                                new(gogDir + "GalaxyClient.exe", Resources.Links_Local_GOGClient),
+                                new(gogDir + @"Games", Resources.Links_Local_GOGGames, UserLevel.Advanced)
                             });
                     }
                 }
@@ -279,31 +274,22 @@ public class Page_Settings_ViewModel : BasePageViewModel
                 // Registry paths
                 LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
                 {
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.RaymanRavingRabbidsRegistryKey,
-                        Resources.Links_Local_RRRRegSettings, UserLevel.Technical),
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.RaymanRavingRabbids2RegistryKey,
-                        Resources.Links_Local_RRR2RegSettings, UserLevel.Technical),
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.RaymanOriginsRegistryKey,
-                        Resources.Links_Local_RORegSettings, UserLevel.Technical),
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.RaymanLegendsRegistryKey,
-                        Resources.Links_Local_RLRegSettings, UserLevel.Technical),
-                    new Page_Settings_LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide",
-                        Resources.Links_Local_nGlideRegSettings, UserLevel.Technical),
-                    new Page_Settings_LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide2",
-                        Resources.Links_Local_nGlide2RegSettings, UserLevel.Technical)
+                    new(AppFilePaths.RaymanRavingRabbidsRegistryKey, Resources.Links_Local_RRRRegSettings, UserLevel.Technical),
+                    new(AppFilePaths.RaymanRavingRabbids2RegistryKey, Resources.Links_Local_RRR2RegSettings, UserLevel.Technical),
+                    new(AppFilePaths.RaymanOriginsRegistryKey, Resources.Links_Local_RORegSettings, UserLevel.Technical),
+                    new(AppFilePaths.RaymanLegendsRegistryKey, Resources.Links_Local_RLRegSettings, UserLevel.Technical),
+                    new(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide", Resources.Links_Local_nGlideRegSettings, UserLevel.Technical),
+                    new(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide2", Resources.Links_Local_nGlide2RegSettings, UserLevel.Technical)
                 });
 
                 // Debug paths
                 LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
                 {
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.UserDataBaseDir, Resources.Links_Local_AppData,
-                        UserLevel.Technical),
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.LogFile, Resources.Links_Local_LogFile,
-                        UserLevel.Debug),
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.UtilitiesBaseDir, Resources.Links_Local_Utilities,
-                        UserLevel.Debug),
-                    new Page_Settings_LinkItemViewModel(AppFilePaths.RegistryBaseKey, Resources.Links_Local_RegAppData,
-                        UserLevel.Technical)
+                    new(AppFilePaths.UserDataBaseDir, Resources.Links_Local_AppData, UserLevel.Technical),
+                    new(AppFilePaths.LogFile, Resources.Links_Local_LogFile, UserLevel.Debug),
+                    new(AppFilePaths.UtilitiesBaseDir, Resources.Links_Local_Utilities, UserLevel.Debug),
+                    new(AppFilePaths.TempPath, "Temporary files", UserLevel.Debug), // TODO-UPDATE: Localize
+                    new(AppFilePaths.RegistryBaseKey, Resources.Links_Local_RegAppData, UserLevel.Technical)
                 });
 
                 // Load icons
