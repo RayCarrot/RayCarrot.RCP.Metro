@@ -13,21 +13,14 @@ public class LoaderContentControl : ContentControl
         DefaultStyleKeyProperty.OverrideMetadata(typeof(LoaderContentControl), new FrameworkPropertyMetadata(typeof(LoaderContentControl)));
     }
 
-    public HorizontalAlignment HorizontalLoadingIconAlignment
+    public string Text
     {
-        get => (HorizontalAlignment)GetValue(HorizontalLoadingIconAlignmentProperty);
-        set => SetValue(HorizontalLoadingIconAlignmentProperty, value);
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
 
-    public static readonly DependencyProperty HorizontalLoadingIconAlignmentProperty = DependencyProperty.Register(nameof(HorizontalLoadingIconAlignment), typeof(HorizontalAlignment), typeof(LoaderContentControl), new PropertyMetadata(HorizontalAlignment.Center));
-
-    public VerticalAlignment VerticalLoadingIconAlignment
-    {
-        get => (VerticalAlignment)GetValue(VerticalLoadingIconAlignmentProperty);
-        set => SetValue(VerticalLoadingIconAlignmentProperty, value);
-    }
-
-    public static readonly DependencyProperty VerticalLoadingIconAlignmentProperty = DependencyProperty.Register(nameof(VerticalLoadingIconAlignment), typeof(VerticalAlignment), typeof(LoaderContentControl), new PropertyMetadata(VerticalAlignment.Center));
+    public static readonly DependencyProperty TextProperty = 
+        DependencyProperty.Register(nameof(Text), typeof(string), typeof(LoaderContentControl), new PropertyMetadata(null));
 
     public bool IsLoading
     {
@@ -35,5 +28,15 @@ public class LoaderContentControl : ContentControl
         set => SetValue(IsLoadingProperty, value);
     }
 
-    public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register(nameof(IsLoading), typeof(bool), typeof(LoaderContentControl), new PropertyMetadata(false));
+    public static readonly DependencyProperty IsLoadingProperty = 
+        DependencyProperty.Register(nameof(IsLoading), typeof(bool), typeof(LoaderContentControl), new PropertyMetadata(false));
+
+    public bool IsIndeterminate
+    {
+        get => (bool)GetValue(IsIndeterminateProperty);
+        set => SetValue(IsIndeterminateProperty, value);
+    }
+
+    public static readonly DependencyProperty IsIndeterminateProperty = 
+        DependencyProperty.Register(nameof(IsIndeterminate), typeof(bool), typeof(LoaderContentControl), new PropertyMetadata(true));
 }

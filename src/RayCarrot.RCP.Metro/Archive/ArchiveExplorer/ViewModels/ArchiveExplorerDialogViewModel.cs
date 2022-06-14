@@ -52,7 +52,15 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
             Manager = manager;
 
             // Create the load action
-            Operation load = new(() => IsLoading = true, () => IsLoading = false);
+            Operation load = new(x =>
+            {
+                LoadingMessage = x;
+                IsLoading = true;
+            }, () =>
+            {
+                LoadingMessage = null;
+                IsLoading = false;
+            });
 
             // Get the archives
             Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this, filePaths.Any(f => f != x && f.Name == x.Name))).ToArray();
@@ -158,7 +166,12 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     public bool CancelInitializeFiles { get; set; }
 
     /// <summary>
-    /// Indicates if a process is running, such as importing/exporting
+    /// The message associated with the current load operation. If null then no load operation is running.
+    /// </summary>
+    public string? LoadingMessage { get; set; }
+
+    /// <summary>
+    /// Indicates if a load operation is running, thus preventing the app from closing
     /// </summary>
     public bool IsLoading { get; set; }
 
@@ -171,11 +184,6 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// The archive data manager
     /// </summary>
     public IArchiveDataManager Manager { get; }
-
-    /// <summary>
-    /// The current status to display
-    /// </summary>
-    public string? DisplayStatus { get; set; }
 
     /// <summary>
     /// The lock to use when accessing any archive stream

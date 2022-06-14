@@ -6,22 +6,32 @@
     <Style TargetType="{x:Type local:LoaderContentControl}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:LoaderContentControl}">
                     <Grid>
-                        <ContentPresenter x:Name="MainContent" 
-                                          IsEnabled="{TemplateBinding Property=IsLoading, Converter={local:InvertedBooleanConverter}}"
-                                          VerticalAlignment="{TemplateBinding Property=VerticalContentAlignment}"
-                                          HorizontalAlignment="{TemplateBinding Property=HorizontalContentAlignment}"/>
+                        <ContentPresenter />
 
-                        <metro:ProgressRing Visibility="{TemplateBinding Property=IsLoading, Converter={local:BooleanToVisibilityConverter}}"
-                                            HorizontalAlignment="{TemplateBinding Property=HorizontalLoadingIconAlignment}"
-                                            VerticalAlignment="{TemplateBinding Property=VerticalLoadingIconAlignment}"
-                                            MaxWidth="{Binding Path=ActualHeight, ElementName=MainContent}"
-                                            MaxHeight="{Binding Path=ActualHeight, ElementName=MainContent}"/>
+                        <Grid Background="{StaticResource RCP.Brushes.Overlay}"
+                              ClipToBounds="True"
+                              FocusVisualStyle="{x:Null}"
+                              KeyboardNavigation.TabNavigation="None"
+                              Visibility="{TemplateBinding Property=IsLoading, Converter={local:BooleanToVisibilityConverter}}">
+
+                            <StackPanel Orientation="Vertical"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock FontSize="28"
+                                           Text="{TemplateBinding Text}"
+                                           Margin="0 0 0 10" />
+
+                                <metro:MetroProgressBar IsIndeterminate="{TemplateBinding IsIndeterminate}" />
+
+                            </StackPanel>
+
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

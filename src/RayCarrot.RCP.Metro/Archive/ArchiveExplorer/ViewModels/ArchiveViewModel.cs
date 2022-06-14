@@ -186,15 +186,6 @@ public class ArchiveViewModel : DirectoryViewModel
     #region Public Methods
 
     /// <summary>
-    /// Sets the display status
-    /// </summary>
-    /// <param name="status">The status to display</param>
-    public void SetDisplayStatus(string status)
-    {
-        ExplorerDialogViewModel.DisplayStatus = status;
-    }
-
-    /// <summary>
     /// Loads the archive
     /// </summary>
     public void LoadArchive()
@@ -256,7 +247,7 @@ public class ArchiveViewModel : DirectoryViewModel
         Logger.Info("The archive {0} is being repacked", DisplayName);
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -272,8 +263,6 @@ public class ArchiveViewModel : DirectoryViewModel
                     // Stop file initialization
                     if (ExplorerDialogViewModel.IsInitializingFiles)
                         ExplorerDialogViewModel.CancelInitializeFiles = true;
-
-                    Archive.SetDisplayStatus(String.Format(Resources.Archive_RepackingStatus, DisplayName));
 
                     try
                     {
@@ -327,8 +316,6 @@ public class ArchiveViewModel : DirectoryViewModel
                 // Load the previously selected directory if it still exists
                 if (selectedDirAddr != null)
                     ExplorerDialogViewModel.LoadDirectory(selectedDirAddr);
-
-                Archive.SetDisplayStatus(String.Empty);
             }
         }
     }

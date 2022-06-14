@@ -27,11 +27,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
-                                VerticalLoadingIconAlignment="Center"
-                                IsLoading="{Binding Path=IsLoading}">
-        <Grid Margin="10"
-              IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
+    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
+                                Text="{Binding Path=LoadingMessage}">
+        <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -217,16 +215,9 @@
             <Grid Grid.Column="1"
                   Grid.Row="1">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
                 <!-- Files List -->
 
                 <ListBox x:Name="FilesList" 
-                         Grid.Row="0"
                          Grid.IsSharedSizeScope="True"
                          DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
                          d:DataContext="{d:DesignInstance archive:DirectoryViewModel}"
@@ -286,8 +277,7 @@
 
                 <!-- Add File Button -->
 
-                <Button Grid.Row="0"
-                        Style="{StaticResource RCP.Styles.Button.IconCircle}"
+                <Button Style="{StaticResource RCP.Styles.Button.IconCircle}"
                         Foreground="{StaticResource Archive_AddItemBrush}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
@@ -298,15 +288,6 @@
                         d:DataContext="{d:DesignInstance archive:DirectoryViewModel}"
                         Background="{DynamicResource MahApps.Brushes.Control.Background}"
                         Command="{Binding Path=AddFilesCommand, Mode=OneTime}"/>
-
-                <!-- Status -->
-
-                <Separator Grid.Row="1"
-                           Visibility="{Binding Path=DisplayStatus, Converter={local:StringEmptyToVisibilityConverter}}" />
-
-                <TextBlock Grid.Row="2"
-                           Text="{Binding Path=DisplayStatus}" 
-                           Visibility="{Binding Path=DisplayStatus, Converter={local:StringEmptyToVisibilityConverter}}"/>
 
             </Grid>
 

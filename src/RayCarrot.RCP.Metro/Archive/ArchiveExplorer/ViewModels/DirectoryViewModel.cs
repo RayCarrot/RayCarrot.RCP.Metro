@@ -178,7 +178,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ExportAsync(bool forceNativeFormat, bool selectedFilesOnly = false)
     {
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -278,9 +278,6 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                     ? new FileSystemPath(file.FileName) 
                                     : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
-                                Archive.SetDisplayStatus($"{String.Format(Resources.Archive_ExportingFileStatus, file.FileName)}" +
-                                                         $"{Environment.NewLine}{++fileIndex}/{filesCount}");
-
                                 try
                                 {
                                     // Export the file
@@ -314,10 +311,6 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
 
                         return;
-                    }
-                    finally
-                    {
-                        Archive.SetDisplayStatus(String.Empty);
                     }
 
                     await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFilesSuccess);

@@ -108,11 +108,11 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     /// <returns>True if the archive was successfully created, otherwise false</returns>
     public async Task<bool> CreateArchiveAsync()
     {
+        if (IsLoading)
+            return false;
+
         try
         {
-            if (IsLoading)
-                return false;
-
             IsLoading = true;
 
             return await Task.Run(async () =>

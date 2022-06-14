@@ -274,107 +274,106 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
         Logger.Trace("Progression slot for {0} is being opened for editing...", Game.Game);
 
-        using (await App.LoadOperation.RunAsync())
+        try
         {
-            try
+            // Create a temporary file
+            using TempFile tempFile = new(false, new FileExtension(".json"));
+
+            using HashAlgorithm sha1 = HashAlgorithm.Create();
+
+            // Export the slot to the temp file
+            ExportSlot(tempFile.TempPath);
+
+            IEnumerable<byte> originalHash;
+
+            // Get the original file hash
+            using (var tmpFile = File.OpenRead(tempFile.TempPath))
+                originalHash = sha1.ComputeHash(tmpFile);
+
+            // Get the program to open the file with
+            FileSystemPath programPath = Data.Progression_SaveEditorExe;
+
+            // Have the user select a program if it doesn't exist
+            if (!programPath.FileExists)
             {
-                // Create a temporary file
-                using TempFile tempFile = new(false, new FileExtension(".json"));
-
-                using HashAlgorithm sha1 = HashAlgorithm.Create();
-
-                // Export the slot to the temp file
-                ExportSlot(tempFile.TempPath);
-
-                IEnumerable<byte> originalHash;
-
-                // Get the original file hash
-                using (var tmpFile = File.OpenRead(tempFile.TempPath))
-                    originalHash = sha1.ComputeHash(tmpFile);
-
-                // Get the program to open the file with
-                FileSystemPath programPath = Data.Progression_SaveEditorExe;
-
-                // Have the user select a program if it doesn't exist
-                if (!programPath.FileExists)
+                ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
                 {
-                    ProgramSelectionResult programResult = await Services.UI.GetProgramAsync(new ProgramSelectionViewModel()
+                    Title = Resources.Progression_SelectEditProgram,
+                    FileExtensions = new FileExtension[]
                     {
-                        Title = Resources.Progression_SelectEditProgram,
-                        FileExtensions = new FileExtension[]
-                        {
-                            new FileExtension(".json"),
-                            new FileExtension(".txt"),
-                        }
-                    });
-
-                    if (programResult.CanceledByUser)
-                        return;
-
-                    programPath = programResult.ProgramFilePath;
-                    Data.Progression_SaveEditorExe = programPath;
-                }
-
-                string args = String.Empty;
-
-                // Add specific arguments for common editor programs so that they open a new instance. If not then the new
-                // process will close immediately as it will re-use the already existing one which means the WaitForExitAsync
-                // won't wait for the program to close.
-                if (programPath.Name == "Code.exe") // VS Code
-                    args += $"--new-window ";
-                else if (programPath.Name == "notepad++.exe") // Notepad++
-                    args += $"-multiInst ";
-
-                args += $"\"{tempFile.TempPath}\"";
-
-                // Open the file
-                using (Process? p = await Services.File.LaunchFileAsync(programPath, arguments: args))
-                {
-                    // Ignore if the file wasn't opened
-                    if (p == null)
-                    {
-                        Logger.Trace("The file was not opened");
-                        return;
+                        new FileExtension(".json"),
+                        new FileExtension(".txt"),
                     }
+                });
 
-                    // Wait for the file to close...
-                    await p.WaitForExitAsync();
-                }
+                if (programResult.CanceledByUser)
+                    return;
 
-                // Open the temp file
-                using FileStream tempFileStream = new(tempFile.TempPath, FileMode.Open, FileAccess.Read);
-
-                // Get the new hash
-                byte[] newHash = sha1.ComputeHash(tempFileStream);
-
-                tempFileStream.Position = 0;
-
-                // Check if the file has been modified
-                if (!originalHash.SequenceEqual(newHash))
-                {
-                    Logger.Trace("The file was modified");
-
-                    // Import the modified data
-                    ImportSlot(tempFile.TempPath);
-
-                    // Reload data
-                    await Game.LoadProgressAsync();
-                    await Game.LoadSlotInfoItemsAsync();
-                    await Game.LoadBackupAsync();
-
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_SaveEditSuccess);
-                }
-                else
-                {
-                    Logger.Trace("The file was not modified");
-                }
+                programPath = programResult.ProgramFilePath;
+                Data.Progression_SaveEditorExe = programPath;
             }
-            catch (Exception ex)
+
+            string args = String.Empty;
+
+            // Add specific arguments for common editor programs so that they open a new instance. If not then the new
+            // process will close immediately as it will re-use the already existing one which means the WaitForExitAsync
+            // won't wait for the program to close.
+            if (programPath.Name == "Code.exe") // VS Code
+                args += $"--new-window ";
+            else if (programPath.Name == "notepad++.exe") // Notepad++
+                args += $"-multiInst ";
+
+            args += $"\"{tempFile.TempPath}\"";
+
+            // Open the file
+            using (Process? p = await Services.File.LaunchFileAsync(programPath, arguments: args))
             {
-                Logger.Error(ex, "Opening progression slot file for editing");
+                // Ignore if the file wasn't opened
+                if (p == null)
+                {
+                    Logger.Trace("The file was not opened");
+                    return;
+                }
 
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
+                // Wait for the file to close...
+                // TODO-UPDATE: Localize
+                using (await App.LoadOperation.RunAsync($"Waiting for {programPath.RemoveFileExtension().Name} to close"))
+                        await p.WaitForExitAsync();
             }
+
+            // Open the temp file
+            using FileStream tempFileStream = new(tempFile.TempPath, FileMode.Open, FileAccess.Read);
+
+            // Get the new hash
+            byte[] newHash = sha1.ComputeHash(tempFileStream);
+
+            tempFileStream.Position = 0;
+
+            // Check if the file has been modified
+            if (!originalHash.SequenceEqual(newHash))
+            {
+                Logger.Trace("The file was modified");
+
+                // Import the modified data
+                ImportSlot(tempFile.TempPath);
+
+                // Reload data
+                await Game.LoadProgressAsync();
+                await Game.LoadSlotInfoItemsAsync();
+                await Game.LoadBackupAsync();
+
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_SaveEditSuccess);
+            }
+            else
+            {
+                Logger.Trace("The file was not modified");
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Opening progression slot file for editing");
+
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
         }
     }
 

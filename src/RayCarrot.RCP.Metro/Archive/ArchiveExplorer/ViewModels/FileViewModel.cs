@@ -434,7 +434,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         Logger.Trace("The archive file {0} is being exported as {1}", FileName, format?.FileExtensions ?? "original");
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, FileName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -458,8 +458,6 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                 // Run as a task
                 await Task.Run(async () =>
                 {
-                    Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, FileName));
-
                     try
                     {
                         // Get the file data
@@ -475,10 +473,6 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, FileName));
 
                         return;
-                    }
-                    finally
-                    {
-                        Archive.SetDisplayStatus(String.Empty);
                     }
 
                     Logger.Trace("The archive file has been exported");

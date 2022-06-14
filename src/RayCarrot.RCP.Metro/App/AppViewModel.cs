@@ -62,7 +62,17 @@ public class AppViewModel : BaseViewModel
             IsRunningAsAdmin = false;
         }
 
-        LoadOperation = new Operation(() => IsLoading = true, () => IsLoading = false);
+        LoadOperation = new Operation(x =>
+        {
+            // NOTE: For some reason it's important to set the message BEFORE the loading bool. Otherwise the loading bar
+            //       width won't size correctly. This appears to be a bug in the MahApps.Metro library...
+            LoadingMessage = x;
+            IsLoading = true;
+        }, () =>
+        {
+            LoadingMessage = null;
+            IsLoading = false;
+        });
 
         // Create locks
         SaveUserDataAsyncLock = new AsyncLock();
@@ -221,6 +231,11 @@ public class AppViewModel : BaseViewModel
     /// The operation to use when running an async operation which needs to load
     /// </summary>
     public Operation LoadOperation { get; }
+
+    /// <summary>
+    /// The message associated with the current <see cref="LoadOperation"/>. If null then no load operation is running.
+    /// </summary>
+    public string? LoadingMessage { get; set; }
 
     /// <summary>
     /// Indicates if a <see cref="LoadOperation"/> is running, thus preventing the app from closing

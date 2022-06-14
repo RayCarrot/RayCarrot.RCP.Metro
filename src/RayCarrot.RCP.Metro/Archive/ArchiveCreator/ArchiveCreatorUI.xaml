@@ -13,11 +13,10 @@
                             MinHeight="250"
                             MinWidth="400"
                             MaxWidth="500">
-    <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
-                                VerticalLoadingIconAlignment="Center"
-                                IsLoading="{Binding Path=IsLoading}">
-        <Grid Margin="10"
-              IsEnabled="{Binding Path=IsLoading, Converter={local:InvertedBooleanConverter}}">
+    <!-- TODO-UPDATE: Localize text -->
+    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
+                                Text="Packing archive">
+        <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />

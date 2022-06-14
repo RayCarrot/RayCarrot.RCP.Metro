@@ -14,7 +14,7 @@ public sealed class Operation
     /// </summary>
     /// <param name="startAction">The action to run before running the operation</param>
     /// <param name="disposeAction">The action to run after running the operation</param>
-    public Operation(Action startAction, Action disposeAction)
+    public Operation(Action<string> startAction, Action disposeAction)
     {
         StartAction = startAction;
         DisposeAction = disposeAction;
@@ -25,7 +25,7 @@ public sealed class Operation
     /// Runs the operation
     /// </summary>
     /// <returns>The disposable wrapper</returns>
-    public async Task<IDisposable> RunAsync()
+    public async Task<IDisposable> RunAsync(string? displayStatus = null)
     {
         // Await the lock and get the disposable
         IDisposable d = await DisposableLock.LockAsync();
@@ -33,7 +33,7 @@ public sealed class Operation
         try
         {
             // Run start action
-            StartAction.Invoke();
+            StartAction.Invoke(displayStatus ?? String.Empty);
         }
         catch
         {
@@ -48,7 +48,7 @@ public sealed class Operation
     /// <summary>
     /// The action to run before running the operation
     /// </summary>
-    private Action StartAction { get; }
+    private Action<string> StartAction { get; }
 
     /// <summary>
     /// The action to run after running the operation
