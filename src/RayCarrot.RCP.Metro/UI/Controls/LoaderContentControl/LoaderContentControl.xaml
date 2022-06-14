@@ -27,7 +27,8 @@
                                            Text="{TemplateBinding Text}"
                                            Margin="0 0 0 10" />
 
-                                <metro:MetroProgressBar IsIndeterminate="{TemplateBinding IsIndeterminate}" />
+                                <metro:MetroProgressBar MinWidth="150"
+                                                        IsIndeterminate="{TemplateBinding IsIndeterminate}" />
 
                             </StackPanel>
 
