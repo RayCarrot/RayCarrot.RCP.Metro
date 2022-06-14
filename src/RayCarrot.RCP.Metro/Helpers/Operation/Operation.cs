@@ -14,10 +14,14 @@ public sealed class Operation
     /// </summary>
     /// <param name="startAction">The action to run before running the operation</param>
     /// <param name="disposeAction">The action to run after running the operation</param>
-    public Operation(Action<string> startAction, Action disposeAction)
+    /// <param name="textUpdatedAction">The action to run when the text has updated</param>
+    /// <param name="progressUpdatedAction">The optional action to run when the progress has updated</param>
+    public Operation(Action<string> startAction, Action disposeAction, Action<string> textUpdatedAction, Action<Progress>? progressUpdatedAction = null)
     {
         StartAction = startAction;
         DisposeAction = disposeAction;
+        TextUpdatedAction = textUpdatedAction;
+        ProgressUpdatedAction = progressUpdatedAction;
         DisposableLock = new AsyncLock();
     }
 
@@ -25,7 +29,7 @@ public sealed class Operation
     /// Runs the operation
     /// </summary>
     /// <returns>The disposable wrapper</returns>
-    public async Task<IDisposable> RunAsync(string? displayStatus = null)
+    public async Task<DisposableOperation> RunAsync(string? displayStatus = null)
     {
         // Await the lock and get the disposable
         IDisposable d = await DisposableLock.LockAsync();
@@ -42,7 +46,7 @@ public sealed class Operation
         }
 
         // Create the disposable action
-        return new DisposableAction(DisposeAction, d);
+        return new DisposableOperation(DisposeAction, ProgressUpdatedAction, TextUpdatedAction, d);
     }
 
     /// <summary>
@@ -56,40 +60,17 @@ public sealed class Operation
     private Action DisposeAction { get; }
 
     /// <summary>
+    /// The action to run when the text has updated
+    /// </summary>
+    private Action<string> TextUpdatedAction { get; }
+
+    /// <summary>
+    /// The action to run when the progress has updated
+    /// </summary>
+    private Action<Progress>? ProgressUpdatedAction { get; }
+
+    /// <summary>
     /// The disposable lock
     /// </summary>
     private AsyncLock DisposableLock { get; }
-
-    /// <summary>
-    /// The disposable wrapper
-    /// </summary>
-    public sealed class DisposableAction : IDisposable
-    {
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="disposeAction">The action to run after running the operation</param>
-        /// <param name="disposableLock">The disposable lock</param>
-        public DisposableAction(Action disposeAction, IDisposable disposableLock)
-        {
-            DisposeAction = disposeAction;
-            DisposableLock = disposableLock;
-        }
-
-        /// <summary>
-        /// The action to run after running the operation
-        /// </summary>
-        private Action DisposeAction { get; }
-
-        /// <summary>
-        /// The disposable lock
-        /// </summary>
-        private IDisposable DisposableLock { get; }
-
-        public void Dispose()
-        {
-            DisposeAction.Invoke();
-            DisposableLock.Dispose();
-        }
-    }
 }

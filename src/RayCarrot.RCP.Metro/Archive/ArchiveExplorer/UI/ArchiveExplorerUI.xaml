@@ -28,7 +28,11 @@
     </UserControl.Resources>
 
     <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
-                                Text="{Binding Path=LoadingMessage}">
+                                Text="{Binding Path=LoadingMessage}"
+                                IsIndeterminate="{Binding Path=HasProgress, Converter={local:InvertedBooleanConverter}}"
+                                Minimum="{Binding Path=MinProgress}"
+                                Maximum="{Binding Path=MaxProgress}"
+                                Value="{Binding Path=CurrentProgress}">
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

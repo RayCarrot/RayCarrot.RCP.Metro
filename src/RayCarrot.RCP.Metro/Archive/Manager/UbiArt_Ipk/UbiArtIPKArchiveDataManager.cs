@@ -143,7 +143,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files)
+    /// <param name="progressCallback">A progress callback action</param>
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files, Action<Progress> progressCallback)
     {
         Logger.Info("An IPK archive is being repacked...");
 
@@ -203,9 +204,6 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                 // Increase by the file size
                 currentOffset += entry.ArchiveSize;
 
-                // Invoke event
-                OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<FileItem>(file.FileItem));
-
                 return fileStream;
             });
         }
@@ -224,7 +222,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             data.BootHeader.BaseOffset = (uint)data.Size;
 
             // Write the files
-            WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader));
+            WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader), progressCallback);
 
             outputFileStream.Stream.Position = 0;
 
@@ -239,7 +237,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
         }
     }
 
-    private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock)
+    private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock, Action<Progress> progressCallback)
     {
         // Make sure we have a generator for each file
         if (fileGenerator.Count != bundle.FilePack.Files.Length)
@@ -259,6 +257,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
             // Get the stream to write the files to
             Stream currentStream = compressBlock ? tempDecompressedBlockFileStream! : stream;
+
+            int fileIndex = 0;
 
             // Write the file contents
             foreach (BundleFile_FileEntry file in bundle.FilePack.Files)
@@ -280,6 +280,11 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
                     fileStream.CopyTo(currentStream);
                     fileStream.Position = 0;
                 }
+
+                fileIndex++;
+
+                // Update progress
+                progressCallback(new Progress(fileIndex, bundle.FilePack.Files.Length));
             }
 
             // Handle the data if it should be compressed
@@ -448,15 +453,6 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     {
         Context.Dispose();
     }
-
-    #endregion
-
-    #region Events
-
-    /// <summary>
-    /// Occurs when a file is being written to an archive
-    /// </summary>
-    public event EventHandler<ValueEventArgs<FileItem>>? OnWritingFileToArchive;
 
     #endregion
 

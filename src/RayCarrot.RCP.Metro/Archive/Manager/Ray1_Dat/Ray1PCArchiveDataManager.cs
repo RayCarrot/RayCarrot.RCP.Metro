@@ -146,7 +146,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files)
+    /// <param name="progressCallback">A progress callback action</param>
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files, Action<Progress> progressCallback)
     {
         Logger.Info("An R1 PC archive is being repacked...");
 
@@ -200,9 +201,6 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
                     // Update the pointer by the file size
                     pointer += entry.FileSize;
 
-                    // Invoke event
-                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<FileItem>(file.FileItem));
-
                     return fileStream;
                 });
             }
@@ -210,6 +208,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             // Make sure we have a generator for each file
             if (fileGenerator.Count != data.Entries.Length)
                 throw new Exception("The .dat file can't be serialized without a file generator for each file");
+
+            int fileIndex = 0;
 
             // Write the file contents
             foreach (PC_FileArchiveEntry file in data.Entries)
@@ -222,6 +222,11 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
                 // Write the contents from the generator
                 fileStream.CopyTo(outputFileStream.Stream);
+
+                fileIndex++;
+
+                // Update progress
+                progressCallback(new Progress(fileIndex, data.Entries.Length));
             }
 
             outputFileStream.Stream.Position = 0;
@@ -353,15 +358,6 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
     {
         Context.Dispose();
     }
-
-    #endregion
-
-    #region Events
-
-    /// <summary>
-    /// Occurs when a file is being written to an archive
-    /// </summary>
-    public event EventHandler<ValueEventArgs<FileItem>>? OnWritingFileToArchive;
 
     #endregion
 

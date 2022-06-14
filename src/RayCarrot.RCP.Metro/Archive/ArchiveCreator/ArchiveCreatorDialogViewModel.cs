@@ -22,7 +22,6 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
         // Set properties
         Title = Resources.Archive_CreateHeader;
         Manager = manager;
-        DisplayStatus = String.Empty;
     }
 
     #endregion
@@ -40,11 +39,6 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     #endregion
 
     #region Public Properties
-
-    /// <summary>
-    /// The current status to display
-    /// </summary>
-    public string DisplayStatus { get; set; }
 
     /// <summary>
     /// The manager
@@ -76,27 +70,10 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     /// </summary>
     public FileSystemPath OutputFile { get; set; }
 
-    #endregion
-
-    #region Event Handlers
-
-    private void Manager_OnWritingFileToArchive(object sender, ValueEventArgs<FileItem> e)
-    {
-        SetDisplayStatus(String.Format(Resources.Archive_CreationFileStatus, e.Value.FileName));
-    }
-
-    #endregion
-
-    #region Protected Methods
-
-    /// <summary>
-    /// Sets the display status
-    /// </summary>
-    /// <param name="status">The status to display</param>
-    public void SetDisplayStatus(string status)
-    {
-        DisplayStatus = status;
-    }
+    public double CurrentProgress { get; set; }
+    public double MinProgress { get; set; }
+    public double MaxProgress { get; set; }
+    public bool HasProgress { get; set; }
 
     #endregion
 
@@ -121,8 +98,6 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
 
                 try
                 {
-                    Manager.OnWritingFileToArchive += Manager_OnWritingFileToArchive;
-
                     // Make sure the input directory exists
                     if (!InputDirectory.DirectoryExists)
                     {
@@ -172,13 +147,18 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                     using ArchiveFileStream outputStream = new(File.Open(OutputFile, FileMode.Create, FileAccess.Write), OutputFile.Name, true);
 
                     // Write the archive
-                    Manager.WriteArchive(null, archive, outputStream, archiveFiles);
+                    Manager.WriteArchive(null, archive, outputStream, archiveFiles, x =>
+                    {
+                        HasProgress = true;
+                        CurrentProgress = x.Current;
+                        MaxProgress = x.Max;
+                        MinProgress = x.Min;
+                    });
                 }
                 finally
                 {
                     archiveFiles?.DisposeAll();
-                    Manager.OnWritingFileToArchive -= Manager_OnWritingFileToArchive;
-                    DisplayStatus = String.Empty;
+                    HasProgress = false;
                 }
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, archiveFiles.Length));
@@ -197,7 +177,6 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
         finally
         {
             IsLoading = false;
-            DisplayStatus = String.Empty;
         }
     }
 

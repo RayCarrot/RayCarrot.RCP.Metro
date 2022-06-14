@@ -338,7 +338,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                 // Wait for the file to close...
                 // TODO-UPDATE: Localize
                 using (await App.LoadOperation.RunAsync($"Waiting for {programPath.RemoveFileExtension().Name} to close"))
-                        await p.WaitForExitAsync();
+                    await p.WaitForExitAsync();
             }
 
             // Open the temp file

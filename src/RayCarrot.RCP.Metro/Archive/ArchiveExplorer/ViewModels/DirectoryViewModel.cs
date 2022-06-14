@@ -178,7 +178,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ExportAsync(bool forceNativeFormat, bool selectedFilesOnly = false)
     {
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName)))
+        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -212,7 +212,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                     try
                     {
                         DirectoryViewModel[] allDirs;
-                            
+                        
                         if (selectedFilesOnly)
                             allDirs = new DirectoryViewModel[]
                             {
@@ -301,6 +301,9 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                     // Export the file as the native format
                                     file.ExportFile(path + file.FileName, fileStream, null);
                                 }
+
+                                fileIndex++;
+                                operation.SetProgress(new Progress(fileIndex, filesCount));
                             }
                         }
                     }
@@ -326,7 +329,8 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ImportAsync()
     {
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        // TODO-UPDATE: Localize
+        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync("Importing files"))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -348,12 +352,19 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
 
                     try
                     {
+                        DirectoryViewModel[] dirs = this.GetAllChildren(true).ToArray();
+                        int filesCount = dirs.Sum(x => x.Files.Count);
+                        int fileIndex = 0;
+
                         // Enumerate each directory view model
-                        foreach (DirectoryViewModel dir in this.GetAllChildren(true))
+                        foreach (DirectoryViewModel dir in dirs)
                         {
                             // Enumerate each file
                             foreach (FileViewModel file in dir.Files)
                             {
+                                operation.SetProgress(new Progress(fileIndex, filesCount));
+                                fileIndex++;
+
                                 // Get the file directory, relative to the selected directory
                                 FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
@@ -407,6 +418,8 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 }
                             }
                         }
+
+                        operation.SetProgress(new Progress(fileIndex, filesCount));
                     }
                     catch (Exception ex)
                     {

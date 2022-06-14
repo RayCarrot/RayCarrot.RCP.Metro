@@ -247,7 +247,7 @@ public class ArchiveViewModel : DirectoryViewModel
         Logger.Info("The archive {0} is being repacked", DisplayName);
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName)))
+        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -280,7 +280,8 @@ public class ArchiveViewModel : DirectoryViewModel
                                 files: this.GetAllChildren<DirectoryViewModel>(true).
                                     SelectMany(x => x.Files).
                                     Select(x => x.FileData).
-                                    ToArray());
+                                    ToArray(),
+                                progressCallback: x => operation.SetProgress(x));
                         }
 
                         // Dispose the archive file stream

@@ -52,15 +52,31 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
             Manager = manager;
 
             // Create the load action
-            Operation load = new(x =>
-            {
-                LoadingMessage = x;
-                IsLoading = true;
-            }, () =>
-            {
-                LoadingMessage = null;
-                IsLoading = false;
-            });
+            Operation load = new(
+                startAction: x =>
+                {
+                    LoadingMessage = x;
+                    IsLoading = true;
+                }, 
+                disposeAction: () =>
+                {
+                    HasProgress = false;
+                    LoadingMessage = null;
+                    IsLoading = false;
+                }, 
+                textUpdatedAction: x =>
+                {
+                    IsLoading = false;
+                    LoadingMessage = x;
+                    IsLoading = true;
+                },
+                progressUpdatedAction: x =>
+                {
+                    HasProgress = true;
+                    MinProgress = x.Min;
+                    MaxProgress = x.Max;
+                    CurrentProgress = x.Current;
+                });
 
             // Get the archives
             Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this, filePaths.Any(f => f != x && f.Name == x.Name))).ToArray();
@@ -174,6 +190,11 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// Indicates if a load operation is running, thus preventing the app from closing
     /// </summary>
     public bool IsLoading { get; set; }
+
+    public double CurrentProgress { get; set; }
+    public double MinProgress { get; set; }
+    public double MaxProgress { get; set; }
+    public bool HasProgress { get; set; }
 
     /// <summary>
     /// The directories

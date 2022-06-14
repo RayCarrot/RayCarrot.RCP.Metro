@@ -62,17 +62,25 @@ public class AppViewModel : BaseViewModel
             IsRunningAsAdmin = false;
         }
 
-        LoadOperation = new Operation(x =>
-        {
-            // NOTE: For some reason it's important to set the message BEFORE the loading bool. Otherwise the loading bar
-            //       width won't size correctly. This appears to be a bug in the MahApps.Metro library...
-            LoadingMessage = x;
-            IsLoading = true;
-        }, () =>
-        {
-            LoadingMessage = null;
-            IsLoading = false;
-        });
+        // NOTE: For some reason it's important to set the message BEFORE the loading bool. Otherwise the loading bar
+        //       width won't size correctly. This appears to be a bug in the MahApps.Metro library...
+        LoadOperation = new Operation(
+            startAction: x =>
+            {
+                LoadingMessage = x;
+                IsLoading = true;
+            },
+            disposeAction: () =>
+            {
+                LoadingMessage = null;
+                IsLoading = false;
+            },
+            textUpdatedAction: x =>
+            {
+                IsLoading = false;
+                LoadingMessage = x;
+                IsLoading = true;
+            });
 
         // Create locks
         SaveUserDataAsyncLock = new AsyncLock();

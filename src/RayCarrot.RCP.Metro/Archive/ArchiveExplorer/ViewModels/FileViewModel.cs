@@ -732,7 +732,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         ext ??= FileExtension;
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -862,8 +862,13 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                             return;
                         }
 
+                        // TODO-UPDATE: Localize
+                        operation.SetText($"Waiting for {programPath.Value.RemoveFileExtension().Name} to close");
+
                         // Wait for the file to close...
                         await p.WaitForExitAsync();
+                     
+                        operation.SetText(String.Empty);
                     }
 
                     // If read-only we don't need to check if it has been modified

@@ -15,7 +15,11 @@
                             MaxWidth="500">
     <!-- TODO-UPDATE: Localize text -->
     <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
-                                Text="Packing archive">
+                                Text="Packing archive"
+                                IsIndeterminate="{Binding Path=HasProgress, Converter={local:InvertedBooleanConverter}}"
+                                Minimum="{Binding Path=MinProgress}"
+                                Maximum="{Binding Path=MaxProgress}"
+                                Value="{Binding Path=CurrentProgress}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -57,13 +61,6 @@
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           MaxWidth="250"
-                           Text="{Binding Path=DisplayStatus}"
-                           TextTrimming="CharacterEllipsis"/>
 
                 <Button Grid.Column="1"
                         Content="{Resx Cancel}"

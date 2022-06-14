@@ -130,7 +130,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// <param name="archive">The loaded archive data</param>
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files)
+    /// <param name="progressCallback">A progress callback action</param>
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files, Action<Progress> progressCallback)
     {
         Logger.Info("A CNT archive is being repacked...");
 
@@ -198,9 +199,6 @@ public class CPACntArchiveDataManager : IArchiveDataManager
                     // Update the pointer by the file size
                     pointer += entry.FileSize;
 
-                    // Invoke event
-                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<FileItem>(file.FileItem));
-
                     return fileStream;
                 });
             }
@@ -208,6 +206,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             // Make sure we have a generator for each file
             if (fileGenerator.Count != data.Files.Length)
                 throw new Exception("The .cnt file can't be serialized without a file generator for each file");
+
+            int fileIndex = 0;
 
             // Write the file contents
             foreach (CNT_File file in data.Files)
@@ -220,6 +220,11 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
                 // Write the contents from the generator
                 fileStream.CopyTo(outputFileStream.Stream);
+
+                fileIndex++;
+
+                // Update progress
+                progressCallback(new Progress(fileIndex, data.Files.Length));
             }
 
             outputFileStream.Stream.Position = 0;
@@ -359,15 +364,6 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     {
         Context.Dispose();
     }
-
-    #endregion
-
-    #region Events
-
-    /// <summary>
-    /// Occurs when a file is being written to an archive
-    /// </summary>
-    public event EventHandler<ValueEventArgs<FileItem>>? OnWritingFileToArchive;
 
     #endregion
 
