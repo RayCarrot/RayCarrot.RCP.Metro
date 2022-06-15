@@ -78,6 +78,8 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <ScrollViewer Grid.Column="0">
@@ -93,35 +95,68 @@
                 </StackPanel>
             </ScrollViewer>
 
-            <StackPanel Grid.Column="2">
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Text="Info"
-                           Margin="0 0 0 10" />
+            <ScrollViewer Grid.Column="2">
+                <StackPanel>
 
-                <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
-                               Margin="0 0 0 10"/>
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                               Text="Info"
+                               Margin="0 0 0 10" />
 
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                    <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
+                                   Margin="0 0 0 10"/>
+
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                               Visibility="{Binding Path=HasActions, Converter={local:BooleanToVisibilityConverter}}"
+                               Text="Actions"
+                               Margin="0 0 0 10" />
+
+                    <ItemsControl HorizontalAlignment="Left"
+                                  ItemsSource="{Binding Path=Actions, Mode=OneTime}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Path=Header.Value}" 
+                                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                                        Command="{Binding Path=Command, Mode=OneTime}"
+                                        IsEnabled="{Binding Path=IsEnabled}"
+                                        HorizontalContentAlignment="Left"
+                                        local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime}"
+                                        Margin="0 0 0 7" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.Column="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                            Visibility="{Binding Path=HasActions, Converter={local:BooleanToVisibilityConverter}}"
-                           Text="Actions"
+                           Text="Log"
                            Margin="0 0 0 10" />
 
-                <ItemsControl HorizontalAlignment="Left"
-                              ItemsSource="{Binding Path=Actions, Mode=OneTime}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding Path=Header.Value}" 
-                                    Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                    Command="{Binding Path=Command, Mode=OneTime}"
-                                    IsEnabled="{Binding Path=IsEnabled}"
-                                    HorizontalContentAlignment="Left"
-                                    local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime}"
-                                    Margin="0 0 0 7" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <Button Grid.Row="1"
+                        Margin="0 0 0 10"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        Content="Refresh"
+                        local:ButtonAssist.IconKind="Refresh"
+                        Command="{Binding Path=RefreshLogCommand, Mode=OneTime}" />
 
-            </StackPanel>
+                <TextBox Grid.Row="2"
+                         IsReadOnly="True" 
+                         AcceptsReturn="True"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                         Text="{Binding Path=Log}" />
+
+            </Grid>
 
         </Grid>
 

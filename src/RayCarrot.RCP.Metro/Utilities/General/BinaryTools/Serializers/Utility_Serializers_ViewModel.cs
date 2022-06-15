@@ -250,7 +250,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     }
                     finally
                     {
-                        Log = log.GetString;
+                        Log = log.GetString();
                     }
                 });
             }

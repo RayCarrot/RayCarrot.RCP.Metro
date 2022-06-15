@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
@@ -83,6 +84,8 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         BindingOperations.EnableCollectionSynchronization(EditorFieldGroups, Application.Current);
         BindingOperations.EnableCollectionSynchronization(InfoItems, Application.Current);
         BindingOperations.EnableCollectionSynchronization(Actions, Application.Current);
+
+        RefreshLogCommand = new RelayCommand(RefreshLog);
     }
 
     #endregion
@@ -99,12 +102,19 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
     private CancellationTokenSource? _updateCancellation;
     private Mod_Mem_MemoryDataContainer? _memContainer;
     private Mod_Mem_GameViewModel _selectedGame;
+    private bool _logNextTick;
 
     #endregion
 
     #region Services
 
     public IMessageUIManager MessageUI { get; }
+
+    #endregion
+
+    #region Commands
+
+    public ICommand RefreshLogCommand { get; }
 
     #endregion
 
@@ -141,6 +151,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
     public ObservableCollection<Mod_Mem_ActionViewModel> Actions { get; }
     public bool HasActions { get; set; }
+    public string? Log { get; set; }
 
     #endregion
 
@@ -186,7 +197,10 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
             AttachedGame?.DetachContainer();
             AttachedGame = SelectedGame.Game;
             
-            Context = new RCPContext(String.Empty, noLog: true);
+            Context = new RCPContext(String.Empty, log: new MemorySerializerLog()
+            {
+                IsEnabled = false, // Start disabled as we only want to log individual ticks
+            });
 
             Mod_Mem_MemoryData memData = AttachedGame.CreateMemoryData(Context);
             _memContainer = new Mod_Mem_MemoryDataContainer(memData);
@@ -220,6 +234,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
             EditorFieldGroups.Clear();
             InfoItems.Clear();
             Actions.Clear();
+            Log = null;
 
             EditorFieldGroups.AddRange(AttachedGame.CreateEditorFieldGroups());
             InfoItems.AddRange(AttachedGame.CreateInfoItems());
@@ -301,6 +316,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         EditorFieldGroups.Clear();
         InfoItems.Clear();
         Actions.Clear();
+        Log = null;
     }
 
     private static void InitializeProcessStream(ProcessMemoryStream stream, Mod_Mem_MemoryRegion memRegion, BinaryDeserializer s)
@@ -332,7 +348,20 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     private void RefreshFields()
     {
+        MemorySerializerLog? logger = Context?.Log as MemorySerializerLog;
+
+        if (_logNextTick && logger != null)
+            logger.IsEnabled = true;
+
         _memContainer?.Update();
+
+        if (_logNextTick && logger != null)
+        {
+            logger.IsEnabled = false;
+            _logNextTick = false;
+            Log = logger.GetString();
+            logger.Clear();
+        }
 
         foreach (EditorFieldGroupViewModel group in EditorFieldGroups)
             group.Refresh();
@@ -352,6 +381,11 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
     public override async Task InitializeAsync()
     {
         await ProcessAttacherViewModel.RefreshProcessesAsync();
+    }
+
+    public void RefreshLog()
+    {
+        _logNextTick = true;
     }
 
     public virtual void Dispose()
