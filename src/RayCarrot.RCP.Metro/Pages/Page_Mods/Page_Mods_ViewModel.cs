@@ -23,7 +23,7 @@ public class Page_Mods_ViewModel : BasePageViewModel, IDisposable
     public override AppPage Page => AppPage.Mods;
     public Mod_BaseViewModel[] Mods { get; }
 
-    // TODO-UPDATE: Have lazy loading for each mod instead of initializing all at once
+    // IDEA: Have lazy loading for each mod instead of initializing all at once
     protected override async Task InitializeAsync()
     {
         foreach (var mod in Mods)

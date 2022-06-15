@@ -15,7 +15,7 @@ using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: Break this apart into multiple services
+// TODO: Break this apart into multiple services
 
 /// <summary>
 /// Handles common actions and events for this application

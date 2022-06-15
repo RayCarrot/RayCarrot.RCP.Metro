@@ -49,7 +49,7 @@ public class ActionItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The item header
     /// </summary>
-    public string? Header { get; } // TODO-UPDATE: Localized string
+    public string? Header { get; } // TODO: Localized string
 
     /// <summary>
     /// The item icon kind
