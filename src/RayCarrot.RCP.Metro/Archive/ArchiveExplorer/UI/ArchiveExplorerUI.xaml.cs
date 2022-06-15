@@ -171,13 +171,14 @@ public partial class ArchiveExplorerUI : WindowContentControl
             return;
 
         // Run as a load operation
-        using (await dir.Archive.LoadOperation.RunAsync())
+        // TODO-UPDATE: Localize
+        using (DisposableOperation operation = await dir.Archive.LoadOperation.RunAsync("Adding files"))
         {
             // Lock the access to the archive
             using (await dir.Archive.ArchiveLock.LockAsync())
             {
                 // Add the files
-                await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists));
+                await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists), x => operation.SetProgress(x));
             }
         }
     }

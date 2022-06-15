@@ -534,7 +534,8 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
         Logger.Trace("Files are being added to {0}", FullPath);
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        // TODO-UPDATE: Localize
+        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync("Adding files"))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -550,37 +551,70 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                     return;
 
                 // Add every file
-                await AddFilesAsync(result.SelectedFiles);
+                await AddFilesAsync(result.SelectedFiles, x => operation.SetProgress(x));
             }
         }
     }
 
-    public async Task AddFilesAsync(IEnumerable<FileSystemPath> files)
+    public async Task AddFilesAsync(IEnumerable<FileSystemPath> files, Action<Progress> progressCallback)
     {
         // Get the manager
         IArchiveDataManager manager = Archive.Manager;
 
         int modifiedCount = 0;
+        int fileConflicts = 0;
+        bool replaceConflicts = false;
+
+        var addFiles = files.Select(x =>
+        {
+            FileViewModel? file = Files.FirstOrDefault(f => f.FileName.Equals(x.Name, StringComparison.OrdinalIgnoreCase));
+
+            if (file != null)
+                fileConflicts++;
+
+            return new
+            {
+                FilePath = x,
+                ExistingFile = file,
+            };
+        }).ToArray();
+
+        if (fileConflicts > 0)
+        {
+            // TODO-UPDATE: Localize
+            string message = fileConflicts == 1
+                ? String.Format(Resources.Archive_AddFiles_Conflict, addFiles.First(x => x.ExistingFile != null).FilePath.Name)
+                : $"{fileConflicts} files have the same name as existing files. Do you want to replace them?\n\nConflicts:\n" +
+                  String.Join(Environment.NewLine, addFiles.Where(x => x.ExistingFile != null).Take(10).Select(x => x.FilePath.Name));
+
+            // IDEA: Find a way to make this more localization friendly
+            if (fileConflicts > 10)
+                message += $"{Environment.NewLine}...";
+
+            replaceConflicts = await Services.MessageUI.DisplayMessageAsync(message, Resources.Archive_AddFiles_ConflictHeader, MessageType.Warning, true);
+        }
+
+        int fileIndex = 0;
 
         // Add every file
-        foreach (FileSystemPath file in files)
+        foreach (var file in addFiles)
         {
-            string fileName = file.Name;
+            string fileName = file.FilePath.Name;
             string dir = FullPath;
-
-            FileViewModel? existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
+            FileViewModel? existingFile = file.ExistingFile;
 
             // Check if the file name conflicts with an existing file
-            if (existingFile != null)
+            if (existingFile != null && !replaceConflicts)
             {
-                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_AddFiles_Conflict, file), Resources.Archive_AddFiles_ConflictHeader, MessageType.Warning, true))
-                    continue;
+                fileIndex++;
+                progressCallback(new Progress(fileIndex, addFiles.Length));
+                continue;
             }
 
             try
             {
                 // Open the file as a stream
-                using FileStream fileStream = File.OpenRead(file);
+                using FileStream fileStream = File.OpenRead(file.FilePath);
 
                 FileViewModel fileViewModel = existingFile ?? new FileViewModel(new FileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir, fileName)), this);
 
@@ -591,12 +625,15 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                 // Add the file to the list if it was created
                 if (existingFile == null)
                     Files.Add(fileViewModel);
+
+                fileIndex++;
+                progressCallback(new Progress(fileIndex, addFiles.Length));
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Adding files to archive directory {0}", DisplayName);
 
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_AddFiles_Error, file.Name));
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_AddFiles_Error, fileName));
 
                 return;
             }
