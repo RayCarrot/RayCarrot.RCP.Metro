@@ -325,7 +325,7 @@ public partial class App : Application
             await AppVM.CheckForUpdatesAsync(false);
     }
 
-    private async Task App_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
+    private Task App_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
     {
         if (Dispatcher == null)
             throw new Exception("Dispatcher is null");
@@ -344,8 +344,7 @@ public partial class App : Application
         // Run on UI thread
         Dispatcher.Invoke(SecretCodeManager.Setup);
 
-        // Enable primary ubi.ini file write access
-        await AppVM.EnableUbiIniWriteAccessAsync();
+        return Task.CompletedTask;
     }
 
     private async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
@@ -1268,6 +1267,7 @@ public partial class App : Application
 
     #region Public Events
 
+    // TODO: Remove this async event system in favor of something better using tasks
     /// <summary>
     /// Occurs on startup, after the main window has been loaded
     /// </summary>

@@ -70,6 +70,13 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
         // Run setup code
         bool unsavedChanges = await OnSetupAsync();
 
+        // Due to the ubi.ini file being located in the C:\Windows directory you normally don't have
+        // access to it unless running a process as admin. To avoid having to always run RCP as admin
+        // we have the user accept a one-time admin prompt which gives everyone full access to the
+        // ubi.ini file. Previously this was done during the RCP app startup, but has now been moved
+        // here so that it only prompts the user when they are to make a change to the file.
+        await App.EnableUbiIniWriteAccessAsync();
+
         // Load the configuration data
         ConfigData = await LoadConfigAsync();
 
