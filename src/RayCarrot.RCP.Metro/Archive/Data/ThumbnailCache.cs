@@ -84,6 +84,8 @@ public class ThumbnailCache : IDisposable
         AddEntry(file.FullFilePath, new CacheEntry(new WeakReference<FileViewModel>(file), thumb));
     }
 
+    public void RemoveFromCache(FileViewModel file) => RemoveEntry(file.FullFilePath);
+
     public bool TryGetCachedItem(FileViewModel file, [MaybeNullWhen(false)] out FileThumbnailData thumb)
     {
         // Default to null

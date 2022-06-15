@@ -188,16 +188,22 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
 
     private void LoadThumbnail(ArchiveFileStream fileStream, ThumbnailLoadMode thumbnailLoadMode = ThumbnailLoadMode.LoadThumbnail)
     {
+        // If the mode is none we never want to load the thumbnail
         if (thumbnailLoadMode == ThumbnailLoadMode.None)
             return;
 
-        bool hasLoaded = Archive.ThumbnailCache.TryGetCachedItem(this, out FileThumbnailData? thumb);
-
-        if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnailIfLoaded && !hasLoaded)
+        // If the mod is set to only reload the thumbnail if already loaded then we return
+        // if the thumbnail is not currently loaded. It might still be cached however, so
+        // we remove it from the cache as well to ensure it gets reloaded next time.
+        if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnailIfLoaded && ThumbnailSource == null)
+        {
+            Archive.ThumbnailCache.RemoveFromCache(this);
             return;
+        }
 
-        // Get the thumbnail data
-        if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !hasLoaded)
+        // If the thumbnail is set to be reloaded or if there is no already loaded thumbnail then we load a new one
+        if (thumbnailLoadMode is ThumbnailLoadMode.ReloadThumbnailIfLoaded or ThumbnailLoadMode.ReloadThumbnail || 
+            !Archive.ThumbnailCache.TryGetCachedItem(this, out FileThumbnailData? thumb))
         {
             fileStream.SeekToBeginning();
 
@@ -212,7 +218,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         }
 
         // Get the thumbnail image
-        ImageSource? img = thumb!.Thumbnail;
+        ImageSource? img = thumb.Thumbnail;
 
         // Freeze the image to avoid thread errors
         img?.Freeze();
