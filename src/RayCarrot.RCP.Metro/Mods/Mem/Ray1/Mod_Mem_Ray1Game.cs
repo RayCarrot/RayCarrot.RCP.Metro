@@ -311,7 +311,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         // TODO-UPDATE: Localize
         yield return new EditorBoolFieldViewModel(
             header: "Load multiplayer menus",
-            info: "When this is enabled the game will load the multiplayer menus on startup. This can be accessed by choosing to quit the game if it has already been loaded.",
+            info: "When this is enabled the game will load the multiplayer menus on startup. If the game has already been loaded then this can be accessed by choosing to quit the game from the pause menu.\nThe multiplayer menus themselves are not complete due to this feature never being fully implemented. The first menu is the player selection and the second one the level selection. Due to these not being functional the only way to change these are by using the below fields.",
             getValueAction: () => AccessMemory(m => m.GBA_EnableMultiplayerMenus),
             setValueAction: x => AccessMemory(m =>
             {
