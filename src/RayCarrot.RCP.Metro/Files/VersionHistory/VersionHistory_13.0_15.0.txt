@@ -1,4 +1,21 @@
-﻿-----   Version 13.1.3 - June 4, 2022   -----
+﻿-----   Version 13.2.0 - June ??, 2022   -----
+• Added Memory Mods to the mods page, allowing game values to be modified and unused features to be toggled for select games
+• The target platform has been changed from x86 to x64. With this 32-bit support for the Rayman Control Panel has been dropped.
+
+Other changes:
+• The Archive Explorer and Creator now shows a progress bar for the current loading operation
+• The utility loading indicator now appears as a moving bar below the contents
+• Made the overlay color darker for when a dialog is blocking the window contents
+• When adding files in a folder in the Archive Explorer there is now a single prompt, rather than separate ones, for file conflict
+• Changed some colors for conistency, such as the primary app color
+• Renamed the Rayman Raving Rabbids mod to Rayman Raving Rabbids Prototype Restoration
+• Deployable files, such as the admin worker and uninstaller, now only get deployed when needed
+• Temporary files now get placed in a RCP_Metro sub-folder. A debug link to this has been added to the links page.
+• The admin prompt for granting access to the ubi.ini file has been moved to show when first accessing it rather than on startup
+• Fixed a bug where the thumbnail and file information wouldn't refresh in the Archive Explorer after importing or replacing
+
+
+-----   Version 13.1.3 - June 4, 2022   -----
 • Fixed a bug where the texture sync utility wouldn't work correctly for Tonic Trouble
 
 
