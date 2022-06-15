@@ -53,19 +53,28 @@ public static class ApplicationExtensions
         else
         {
             ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.DoNotSync;
-            color ??= Color.FromRgb(0x67, 0x3a, 0xb7); // DeepPurplePrimary500
 
-            Theme newTheme = new(
-                name: "RCP",
-                displayName: "RCP",
-                baseColorScheme: darkMode ? "Dark" : "Light",
-                colorScheme: color.Value.ToString(),
-                primaryAccentColor: color.Value,
-                showcaseBrush: new SolidColorBrush(color.Value),
-                isRuntimeGenerated: true,
-                isHighContrast: false);
+            if (color == null)
+            {
+                // IDEA: Change the default color? I tried changing it to some Material Design colors for consistency, but
+                //       none of them worked that well. It also looks a bit better having the app color be separate from
+                //       the other colors in the app.
+                ThemeManager.Current.ChangeTheme(app, $"{(darkMode ? "Dark" : "Light")}.Purple");
+            }
+            else
+            {
+                Theme customTheme = new(
+                    name: "RCP",
+                    displayName: "RCP",
+                    baseColorScheme: darkMode ? "Dark" : "Light",
+                    colorScheme: color.Value.ToString(),
+                    primaryAccentColor: color.Value,
+                    showcaseBrush: new SolidColorBrush(color.Value),
+                    isRuntimeGenerated: true,
+                    isHighContrast: false);
 
-            ThemeManager.Current.ChangeTheme(app, newTheme);
+                ThemeManager.Current.ChangeTheme(app, customTheme);
+            }
         }
 
         Theme? theme = ThemeManager.Current.DetectTheme(app);

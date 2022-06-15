@@ -7,7 +7,7 @@ Other changes:
 • The utility loading indicator now appears as a moving bar below the contents
 • Made the overlay color darker for when a dialog is blocking the window contents
 • When adding files in a folder in the Archive Explorer there is now a single prompt, rather than separate ones, for file conflict
-• Changed some colors for conistency, such as the primary app color
+• Changed some colors for conistency
 • Renamed the Rayman Raving Rabbids mod to Rayman Raving Rabbids Prototype Restoration
 • Deployable files, such as the admin worker and uninstaller, now only get deployed when needed
 • Temporary files now get placed in a RCP_Metro sub-folder. A debug link to this has been added to the links page.
