@@ -36,16 +36,18 @@ public class AppViewModel : BaseViewModel
 
     public AppViewModel(
         IUpdaterManager updater, 
-        IMessageUIManager message, 
-        IFileManager file, 
-        AppUIManager ui, 
+        IMessageUIManager message,
+        IFileManager file,
+        AppUIManager ui,
+        DeployableFilesManager deployableFiles,
         AppUserData data)
     {
         // Set properties
         Updater = updater ?? throw new ArgumentNullException(nameof(updater));
-        Message = message ?? throw new ArgumentNullException(nameof(message));
+        MessageUI = message ?? throw new ArgumentNullException(nameof(message));
         File = file ?? throw new ArgumentNullException(nameof(file));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
         Data = data ?? throw new ArgumentNullException(nameof(data));
 
         // Flag that the startup has begun
@@ -96,7 +98,7 @@ public class AppViewModel : BaseViewModel
         var gameConfig = Files.Games;
 
         // Set up the games manager
-        GamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter()) 
+        GamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter())
                        ?? throw new InvalidOperationException("Deserialized game manager is null");
     }
 
@@ -139,9 +141,10 @@ public class AppViewModel : BaseViewModel
     #region Private Properties
 
     private IUpdaterManager Updater { get; }
-    private IMessageUIManager Message { get; }
+    private IMessageUIManager MessageUI { get; }
     private IFileManager File { get; }
     private AppUIManager UI { get; }
+    private DeployableFilesManager DeployableFiles { get; }
     private AppUserData Data { get; }
 
     /// <summary>
@@ -329,7 +332,7 @@ public class AppViewModel : BaseViewModel
                 return;
             }
 
-            await Message.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
+            await MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
             // Attempt to change the permission
             await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, true, AppFilePaths.UbiIniPath1);
@@ -339,7 +342,7 @@ public class AppViewModel : BaseViewModel
         catch (Exception ex)
         {
             Logger.Error(ex, "Changing ubi.ini file permissions");
-            await Message.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
         }
     }
 
@@ -420,7 +423,7 @@ public class AppViewModel : BaseViewModel
                     OrderBy(x => x.DisplayName).
                     Select(x => x.DisplayName);
 
-                await Message.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+                await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
                 Logger.Info("The game finder found the following games {0}", foundItems.JoinItems(", ", x => x.ToString()));
 
@@ -431,7 +434,7 @@ public class AppViewModel : BaseViewModel
         {
             Logger.Error(ex, "Game finder");
 
-            await Message.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
         }
         finally
         {
@@ -464,7 +467,7 @@ public class AppViewModel : BaseViewModel
             {
                 Logger.Info("Download failed due to there not being any input sources");
 
-                await Message.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
+                await MessageUI.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
                 return false;
             }
 
@@ -523,13 +526,13 @@ public class AppViewModel : BaseViewModel
 
                     string msg = isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize;
 
-                    if (!await Message.DisplayMessageAsync(String.Format(msg, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!await MessageUI.DisplayMessageAsync(String.Format(msg, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
                 catch (Exception ex)
                 {
                     Logger.Warn(ex, "Getting download size");
-                    if (!await Message.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!await MessageUI.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
             }
@@ -545,7 +548,7 @@ public class AppViewModel : BaseViewModel
         catch (Exception ex)
         {
             Logger.Error(ex, "Downloading files");
-            await Message.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
             return false;
         }
     }
@@ -561,7 +564,7 @@ public class AppViewModel : BaseViewModel
         // Lock moving the backups
         using (await MoveBackupsAsyncLock.LockAsync())
         {
-            if (!await Message.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
+            if (!await MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
             {
                 Logger.Info("Moving old backups has been canceled by the user");
                 return;
@@ -578,7 +581,7 @@ public class AppViewModel : BaseViewModel
                 {
                     Logger.Info("Old backups could not be moved due to not being found");
 
-                    await Message.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
+                    await MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
 
                     return;
                 }
@@ -588,7 +591,7 @@ public class AppViewModel : BaseViewModel
                 {
                     Logger.Info("Old backups could not be moved due to the new location already existing");
 
-                    await Message.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
+                    await MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
                     return;
                 }
 
@@ -600,12 +603,12 @@ public class AppViewModel : BaseViewModel
                 // Refresh backups
                 await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
 
-                await Message.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
+                await MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Moving backups");
-                await Message.DisplayExceptionMessageAsync(ex, Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader);
+                await MessageUI.DisplayExceptionMessageAsync(ex, Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader);
             }
         }
     }
@@ -644,36 +647,22 @@ public class AppViewModel : BaseViewModel
     {
         // Lock
         using (await AdminWorkerAsyncLock.LockAsync())
+        {
+            FileSystemPath filePath;
+
+            try
+            {
+                filePath = DeployableFiles.DeployFile(DeployableFilesManager.DeployableFile.AdminWorker);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Deploying admin worker");
+                await MessageUI.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
+                return;
+            }
+
             // Launch the admin worker with the specified launch arguments
-            await File.LaunchFileAsync(AppFilePaths.AdminWorkerPath, asAdmin, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
-    }
-
-    /// <summary>
-    /// Deploys additional files, such as the uninstaller
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task DeployFilesAsync(bool overwrite)
-    {
-        try
-        {
-            // Deploy the uninstaller
-            if (overwrite || !AppFilePaths.UninstallFilePath.FileExists)
-            {
-                Directory.CreateDirectory(AppFilePaths.UninstallFilePath.Parent);
-                System.IO.File.WriteAllBytes(AppFilePaths.UninstallFilePath, Files.Uninstaller);
-            }
-
-            // Deploy the admin worker
-            if (overwrite || !AppFilePaths.AdminWorkerPath.FileExists)
-            {
-                Directory.CreateDirectory(AppFilePaths.AdminWorkerPath.Parent);
-                System.IO.File.WriteAllBytes(AppFilePaths.AdminWorkerPath, Files.AdminWorker);
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Fatal(ex, "Deploying additional files");
-            await Message.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
+            await File.LaunchFileAsync(filePath, asAdmin, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
     }
 
@@ -684,7 +673,7 @@ public class AppViewModel : BaseViewModel
     public async Task RequestRestartAsAdminAsync()
     {
         // Request restarting the application as admin
-        if (await Message.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
+        if (await MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
             // Restart as admin
             await RestartAsAdminAsync();
     }
@@ -726,7 +715,7 @@ public class AppViewModel : BaseViewModel
             // Check if there is an error
             if (result.ErrorMessage != null)
             {
-                await Message.DisplayExceptionMessageAsync(result.Exception,
+                await MessageUI.DisplayExceptionMessageAsync(result.Exception,
                     String.Format(Resources.Update_CheckFailed, result.ErrorMessage, AppURLs.RCPBaseUrl), Resources.Update_ErrorHeader);
 
                 Data.Update_IsUpdateAvailable = false;
@@ -738,7 +727,7 @@ public class AppViewModel : BaseViewModel
             if (!result.IsNewUpdateAvailable)
             {
                 if (isManualSearch)
-                    await Message.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
+                    await MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
                 Data.Update_IsUpdateAvailable = false;
 
@@ -758,7 +747,7 @@ public class AppViewModel : BaseViewModel
                         ? Resources.Update_UpdateAvailable 
                         : Resources.Update_BetaUpdateAvailable, result.DisplayNews);
 
-                    if (await Message.DisplayMessageAsync(message, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                    if (await MessageUI.DisplayMessageAsync(message, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                     {
                         // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
                         var succeeded = await Updater.UpdateAsync(result, false);
@@ -770,7 +759,7 @@ public class AppViewModel : BaseViewModel
                 catch (Exception ex)
                 {
                     Logger.Error(ex, "Updating RCP");
-                    await Message.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
+                    await MessageUI.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
                 }
             }).WithoutAwait("Updating");
         }

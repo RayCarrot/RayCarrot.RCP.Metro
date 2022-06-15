@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,13 +22,15 @@ public class Page_About_ViewModel : BasePageViewModel
         AppUserData data, 
         IDialogBaseManager dialogBaseManager, 
         IMessageUIManager messageUi, 
-        IFileManager file) : base(app)
+        IFileManager file, 
+        DeployableFilesManager deployableFiles) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         DialogBaseManager = dialogBaseManager ?? throw new ArgumentNullException(nameof(dialogBaseManager));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         File = file ?? throw new ArgumentNullException(nameof(file));
+        DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
 
         // Set the credits
         Credits = new ObservableCollection<DuoGridItemViewModel>()
@@ -69,6 +72,12 @@ public class Page_About_ViewModel : BasePageViewModel
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Commands
 
     public ICommand OpenUrlCommand { get; }
@@ -80,10 +89,11 @@ public class Page_About_ViewModel : BasePageViewModel
 
     #region Services
 
-    public AppUserData Data { get; }
-    public IDialogBaseManager DialogBaseManager { get; }
-    public IMessageUIManager MessageUI { get; }
-    public IFileManager File { get; }
+    private AppUserData Data { get; }
+    private IDialogBaseManager DialogBaseManager { get; }
+    private IMessageUIManager MessageUI { get; }
+    private IFileManager File { get; }
+    private DeployableFilesManager DeployableFiles { get; }
 
     #endregion
 
@@ -120,8 +130,21 @@ public class Page_About_ViewModel : BasePageViewModel
         if (!await MessageUI.DisplayMessageAsync(Resources.About_ConfirmUninstall, Resources.About_ConfirmUninstallHeader, MessageType.Question, true))
             return;
 
+        FileSystemPath filePath;
+
+        try
+        {
+            filePath = DeployableFiles.DeployFile(DeployableFilesManager.DeployableFile.Uninstaller);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Deploying uninstaller");
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
+            return;
+        }
+
         // Run the uninstaller
-        if (await File.LaunchFileAsync(AppFilePaths.UninstallFilePath, true, $"\"{Assembly.GetEntryAssembly()?.Location}\"") == null)
+        if (await File.LaunchFileAsync(filePath, true, $"\"{Assembly.GetEntryAssembly()?.Location}\"") == null)
         {
             string[] appDataLocations = 
             {

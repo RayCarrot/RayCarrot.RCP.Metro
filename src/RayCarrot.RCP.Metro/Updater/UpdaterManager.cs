@@ -1,6 +1,4 @@
-﻿#nullable disable
-using System;
-using System.IO;
+﻿using System;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -15,10 +13,11 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class UpdaterManager : IUpdaterManager
 {
-    protected UpdaterManager(IMessageUIManager message, IFileManager file, AppUserData data, IAppInstanceData instanceData)
+    protected UpdaterManager(IMessageUIManager message, IFileManager file, DeployableFilesManager deployableFiles, AppUserData data, IAppInstanceData instanceData)
     {
         Message = message ?? throw new ArgumentNullException(nameof(message));
         File = file ?? throw new ArgumentNullException(nameof(file));
+        DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
         Data = data ?? throw new ArgumentNullException(nameof(data));
         InstanceData = instanceData ?? throw new ArgumentNullException(nameof(instanceData));
     }
@@ -27,6 +26,7 @@ public abstract class UpdaterManager : IUpdaterManager
 
     protected IMessageUIManager Message { get; }
     protected IFileManager File { get; }
+    protected DeployableFilesManager DeployableFiles { get; }
     protected AppUserData Data { get; }
     protected IAppInstanceData InstanceData { get; }
 
@@ -41,8 +41,8 @@ public abstract class UpdaterManager : IUpdaterManager
         Logger.Info("Updates are being checked for");
 
         string errorMessage = Resources.Update_UnknownError;
-        Exception exception = null;
-        JObject manifest = null;
+        Exception? exception = null;
+        JObject? manifest = null;
         Version latestFoundVersion;
         
         try
@@ -150,7 +150,7 @@ public abstract class UpdaterManager : IUpdaterManager
         }
 
         // Get the display news
-        string displayNews = null;
+        string? displayNews = null;
 
         try
         {
@@ -174,19 +174,16 @@ public abstract class UpdaterManager : IUpdaterManager
     /// <returns>A value indicating if the operation succeeded</returns>
     public async Task<bool> UpdateAsync(UpdaterCheckResult result, bool asAdmin)
     {
+        FileSystemPath filePath;
+
         try
         {
-            // Create the parent directory for the update file
-            Directory.CreateDirectory(AppFilePaths.UpdaterFilePath.Parent);
-
-            // Deploy the updater
-            System.IO.File.WriteAllBytes(AppFilePaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
-
-            Logger.Info("The updater was created");
+            filePath = DeployableFiles.DeployFile(DeployableFilesManager.DeployableFile.Updater);
+            Logger.Info("The updater was deployed");
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Writing updater to temp path {0}", AppFilePaths.UpdaterFilePath);
+            Logger.Error(ex, "Deploying updater");
 
             await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
 
@@ -205,7 +202,7 @@ public abstract class UpdaterManager : IUpdaterManager
         }
 
         // Launch the updater and capture the process
-        using var updateProcess = await File.LaunchFileAsync(AppFilePaths.UpdaterFilePath, asAdmin, 
+        using var updateProcess = await File.LaunchFileAsync(filePath, asAdmin, 
             // Arg 1: Program path
             $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
             // Arg 2: Dark mode
@@ -228,7 +225,7 @@ public abstract class UpdaterManager : IUpdaterManager
         }
 
         // Shut down the app
-        await Metro.App.Current.ShutdownAppAsync(true);
+        await App.Current.ShutdownAppAsync(true);
 
         return true;
     }

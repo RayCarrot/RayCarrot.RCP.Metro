@@ -317,49 +317,8 @@ public partial class App : Application
 
     private async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
     {
-        if (AppFilePaths.UpdaterFilePath.FileExists)
-        {
-            int retryTime = 0;
-
-            // Wait until we can write to the file (i.e. it closing after an update)
-            while (!Services.File.CheckFileWriteAccess(AppFilePaths.UpdaterFilePath))
-            {
-                retryTime++;
-
-                // Try for 2 seconds first
-                if (retryTime < 20)
-                {
-                    Logger.Debug("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
-
-                    await Task.Delay(100);
-                }
-                // Now it's taking a long time... Try for 10 more seconds
-                else if (retryTime < 70)
-                {
-                    Logger.Warn("The updater can not be removed due to not having write access. Retrying {0}", retryTime);
-
-                    await Task.Delay(200);
-                }
-                // Give up and let the deleting of the file give an error message
-                else
-                {
-                    Logger.Fatal("The updater can not be removed due to not having write access");
-                    break;
-                }
-            }
-
-            try
-            {
-                // Remove the updater
-                Services.File.DeleteFile(AppFilePaths.UpdaterFilePath);
-
-                Logger.Info("The updater has been removed");
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Removing updater");
-            }
-        }
+        // Clean up deployed files
+        await ServiceProvider.GetRequiredService<DeployableFilesManager>().CleanupFilesAsync();
 
         // Check for updates
         if (Data.Update_AutoUpdate)
@@ -483,6 +442,7 @@ public partial class App : Application
         serviceCollection.AddTransient<IFileManager, RCPFileManager>();
         serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
         serviceCollection.AddTransient<GameBackups_Manager>();
+        serviceCollection.AddSingleton<DeployableFilesManager>();
 
         // Add the main window
         serviceCollection.AddSingleton<MainWindow>();
@@ -858,9 +818,6 @@ public partial class App : Application
                     Data.App_LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
 
             LogStartupTime("Setup: Deploying files");
-
-            // Deploy additional files
-            await AppVM.DeployFilesAsync(false);
         }
     }
 
@@ -1129,9 +1086,6 @@ public partial class App : Application
 
         if (Data.App_LastVersion < new Version(13, 1, 0, 0))
             Data.Archive_CNT_SyncOnRepack = false;
-
-        // Re-deploy files
-        await AppVM.DeployFilesAsync(true);
 
         // Refresh the jump list
         RefreshJumpList();

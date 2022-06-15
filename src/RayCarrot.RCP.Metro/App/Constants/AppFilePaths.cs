@@ -3,6 +3,8 @@ using System.IO;
 
 namespace RayCarrot.RCP.Metro;
 
+// IDEA: Move all deployable files to common folder Temp\Deployable or perhaps in the user's temp instead of the app's temp?
+
 /// <summary>
 /// Common paths used in the Rayman Control Panel
 /// </summary>

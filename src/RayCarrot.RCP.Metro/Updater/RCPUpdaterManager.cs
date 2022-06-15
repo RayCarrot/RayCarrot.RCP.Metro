@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class RCPUpdaterManager : UpdaterManager
 {
-    public RCPUpdaterManager(IMessageUIManager message, IFileManager file, AppUserData data, IAppInstanceData instanceData) : base(message, file, data, instanceData) { }
+    public RCPUpdaterManager(IMessageUIManager message, IFileManager file, DeployableFilesManager deployableFiles, AppUserData data, IAppInstanceData instanceData) : base(message, file, deployableFiles, data, instanceData) { }
 
     /// <summary>
     /// Gets the latest version from the manifest
