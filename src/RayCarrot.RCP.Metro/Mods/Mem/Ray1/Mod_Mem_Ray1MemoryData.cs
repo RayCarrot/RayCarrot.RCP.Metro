@@ -20,7 +20,7 @@ public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
     public R2_RayEvts R2_RayEvts { get; set; }
 
     public int MapTime { get; set; }
-    public short[]? ActiveObjects { get; set; }
+    public ActiveTable? ActiveObjects { get; set; }
     public short XMap { get; set; }
     public short YMap { get; set; }
 
@@ -207,7 +207,7 @@ public class Mod_Mem_Ray1MemoryData : Mod_Mem_MemoryData
         R2_RayEvts = Serialize<R2_RayEvts>(R2_RayEvts, name: nameof(R2_RayEvts));
 
         MapTime = Serialize<int>(MapTime, name: nameof(MapTime));
-        ActiveObjects = SerializeArray<short>(ActiveObjects, 112, name: nameof(ActiveObjects));
+        ActiveObjects = SerializeObject<ActiveTable>(ActiveObjects, name: nameof(ActiveObjects));
         XMap = Serialize<short>(XMap, name: nameof(XMap));
         YMap = Serialize<short>(YMap, name: nameof(YMap));
 

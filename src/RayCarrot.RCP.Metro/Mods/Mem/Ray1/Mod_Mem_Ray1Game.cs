@@ -408,7 +408,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
         yield return DuoGridItem("Helico time", m => $"{m.HelicoTime}");
         yield return DuoGridItem("Fist charge", m => $"{m.Poing?.FistChargedLevel}");
-        yield return DuoGridItem("Active objects", m => $"{m.ActiveObjects?[100]}");
+        yield return DuoGridItem("Active objects", m => $"{m.ActiveObjects?.ActiveObjectsCount}");
         yield return DuoGridItem("Map time", m => $"{m.MapTime}");
         yield return DuoGridItem("Random index", m => $"{m.RandomIndex}");
 
