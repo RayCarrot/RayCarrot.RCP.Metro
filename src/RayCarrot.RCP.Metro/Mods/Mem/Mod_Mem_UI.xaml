@@ -160,7 +160,8 @@
                          AcceptsReturn="True"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                         Text="{Binding Path=Log}" />
+                         Text="{Binding Path=Log}"
+                         FontFamily="{StaticResource RCP.Fonts.Consolas}" />
 
             </Grid>
 
