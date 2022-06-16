@@ -27,7 +27,7 @@ public abstract class GameManager : BaseGameData
     /// <summary>
     /// The display name for the game type
     /// </summary>
-    public abstract string GameTypeDisplayName { get; } // TODO-UPDATE: Change to a localized string to avoid capturing 'this' when used
+    public abstract LocalizedString GameTypeDisplayName { get; }
 
     /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
@@ -55,7 +55,7 @@ public abstract class GameManager : BaseGameData
     {
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_GameType)), 
-            text: new GeneratedLocString(() => GameTypeDisplayName), 
+            text: GameTypeDisplayName, 
             minUserLevel: UserLevel.Advanced),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)), 

@@ -35,7 +35,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
     public static Mod_Mem_EmulatorViewModel[] None => new[]
     {
         new Mod_Mem_EmulatorViewModel(
-            displayName: "None",
+            displayName: new ResourceLocString(nameof(Resources.Option_None)),
             processNameKeywords: Array.Empty<string>(),
             memoryRegions: new Mod_Mem_MemoryRegion(
                 Name: MainMemoryRegionName,
@@ -59,7 +59,6 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
     // - Check what writes to the value by right-clicking it. Change world and the list should get populated.
     // - The first one has the EAX set to the current game base address and the ECX to the string offset.
     // - Search for the EAX value. The last result should be the static pointer to it.
-    // TODO-UPDATE: Localize
     public static Mod_Mem_EmulatorViewModel DOSBox_0_74_x86 => new(
         displayName: "DOSBox (0.74 - x86)",
         processNameKeywords: new[] { "DOSBox" },

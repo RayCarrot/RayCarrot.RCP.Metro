@@ -288,7 +288,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
                     new(AppFilePaths.UserDataBaseDir, Resources.Links_Local_AppData, UserLevel.Technical),
                     new(AppFilePaths.LogFile, Resources.Links_Local_LogFile, UserLevel.Debug),
                     new(AppFilePaths.UtilitiesBaseDir, Resources.Links_Local_Utilities, UserLevel.Debug),
-                    new(AppFilePaths.TempPath, "Temporary files", UserLevel.Debug), // TODO-UPDATE: Localize
+                    new(AppFilePaths.TempPath, Resources.Links_Local_Temp, UserLevel.Debug),
                     new(AppFilePaths.RegistryBaseKey, Resources.Links_Local_RegAppData, UserLevel.Technical)
                 });
 

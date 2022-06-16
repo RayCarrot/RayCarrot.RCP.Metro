@@ -27,7 +27,7 @@ public abstract class GameManager_Win32 : GameManager
     /// <summary>
     /// The display name for the game type
     /// </summary>
-    public override string GameTypeDisplayName => Resources.GameType_Desktop;
+    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_Desktop));
 
     /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported

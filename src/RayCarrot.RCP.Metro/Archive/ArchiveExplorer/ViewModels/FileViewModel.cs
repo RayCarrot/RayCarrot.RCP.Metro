@@ -868,8 +868,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                             return;
                         }
 
-                        // TODO-UPDATE: Localize
-                        operation.SetText($"Waiting for {programPath.Value.RemoveFileExtension().Name} to close");
+                        operation.SetText(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name));
 
                         // Wait for the file to close...
                         await p.WaitForExitAsync();

@@ -3170,7 +3170,8 @@ rcpURL</comment>
     <value>More info</value>
   </data>
   <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
+    <value>Rayman Raving Rabbids
+Prototype Restoration</value>
   </data>
   <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
     <value>Memory Mods</value>
@@ -4372,5 +4373,405 @@ By changing the data source here you can choose which location is used for backu
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
     <value>If enabled the textures for the game will be automatically synchronized when a .cnt archive is repacked. This is useful for games where synchronizing is required to import higher resolution textures.</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Packing archive</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>Adding files</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>Importing files</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
+    <value>{0} files have the same name as existing files. Do you want to replace them?
+
+Conflicts:
+{1}</value>
+    <comment>Arguments:
+conflictsCount
+conflictNames</comment>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>Waiting for {0} to close</value>
+    <comment>Arguments:
+programName</comment>
+  </data>
+  <data name="Bool_True" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
+    <value>Game Process</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>By attaching to a running game process you will be able to modify and view game values in real-time. For certain games this will allow you to enable unused features.</value>
+  </data>
+  <data name="Mod_Mem_GameSelection" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>Emulator</value>
+  </data>
+  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Mod_Mem_LogHeader" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="Mod_Mem_Header" xml:space="preserve">
+    <value>Memory Mods</value>
+  </data>
+  <data name="Mod_Mem_AttachError" xml:space="preserve">
+    <value>An error occurred when attaching to the process</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>An error occurred when updating the game values</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>Temporary files</value>
+  </data>
+  <data name="ProcessAttacher_Attach" xml:space="preserve">
+    <value>Attach</value>
+  </data>
+  <data name="ProcessAttacher_Detach" xml:space="preserve">
+    <value>Detach</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>Hit-points</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>Max hit points</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>Place Ray</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>Allows Rayman to be placed freely in the level</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>Map selection</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>Toggles the in-game map selection on the world map</value>
+  </data>
+  <data name="Mod_Mem_Lang" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>Fist</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>Hang</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>Helico</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>Grab</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>Seed</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>Super-helico</value>
+  </data>
+  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
+    <value>Squished</value>
+  </data>
+  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
+    <value>Firefly</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>Force run</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>Reverse controls</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>Fist platform</value>
+  </data>
+  <data name="Mod_Mem_Unk" xml:space="preserve">
+    <value>Unknown {0}</value>
+    <comment>Arguments:
+index</comment>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>Show engine info</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>Show objects info</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>Debug mode</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>Start in demo mode</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>If enabled then the game will start playing the unused two recorded demos when the level loads. This can be triggered by loosing all lives and choosing to try again.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>Load multiplayer menus</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>When this is enabled the game will load the unused multiplayer menus on startup. If the game has already been started then this can be accessed by choosing to quit the game from the pause menu.
+The multiplayer menus themselves are not complete due to this feature never being fully implemented. The first menu is the player selection and the second one the level selection. Due to these not being functional the only way to change these are by using the below fields.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Level timeout</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
+    <value>Is player 2</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMap" xml:space="preserve">
+    <value>Selected map</value>
+  </data>
+  <data name="Mod_Mem_GeneralCategory" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Mod_Mem_DebugCategory" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Mod_Mem_MultiplayerCategory" xml:space="preserve">
+    <value>Multiplayer</value>
+  </data>
+  <data name="Mod_Mem_PowersCategory" xml:space="preserve">
+    <value>Powers</value>
+  </data>
+  <data name="Mod_Mem_CamX" xml:space="preserve">
+    <value>Camera X</value>
+  </data>
+  <data name="Mod_Mem_CamY" xml:space="preserve">
+    <value>Camera Y</value>
+  </data>
+  <data name="Mod_Mem_XPos" xml:space="preserve">
+    <value>X position</value>
+  </data>
+  <data name="Mod_Mem_YPos" xml:space="preserve">
+    <value>Y position</value>
+  </data>
+  <data name="Mod_Mem_RayState" xml:space="preserve">
+    <value>Rayman's state</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoTime" xml:space="preserve">
+    <value>Helico time</value>
+  </data>
+  <data name="Mod_Mem_R1_FistCharge" xml:space="preserve">
+    <value>Fist charge</value>
+  </data>
+  <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
+    <value>Active objects</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Map time</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Random index</value>
+  </data>
+  <data name="Mod_Mem_R1_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_FinishLvlAction" xml:space="preserve">
+    <value>Finish level</value>
+  </data>
+  <data name="Mod_Mem_UnlockAllLvlsAction" xml:space="preserve">
+    <value>Unlock all levels</value>
+  </data>
+  <data name="Mod_Mem_AllCagesAction" xml:space="preserve">
+    <value>All cages</value>
+  </data>
+  <data name="Mod_Mem_R1_ExitLvlAction" xml:space="preserve">
+    <value>Return to world map</value>
+  </data>
+  <data name="Mod_Mem_MenuLevelsCategory" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_MenuLevel" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="R2_LevelName_mapmonde" xml:space="preserve">
+    <value>The Hall of Doors</value>
+  </data>
+  <data name="R2_LevelName_raycap" xml:space="preserve">
+    <value>Score Screen</value>
+  </data>
+  <data name="Mod_Mem_BonusLevelsCategory" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R2_LevelName_bonux" xml:space="preserve">
+    <value>Bonus Stage</value>
+  </data>
+  <data name="Mod_Mem_CutsceneLevelsCategory" xml:space="preserve">
+    <value>Cutscenes</value>
+  </data>
+  <data name="R2_LevelName_jail_10" xml:space="preserve">
+    <value>Intro Part 1</value>
+  </data>
+  <data name="R2_LevelName_jail_20" xml:space="preserve">
+    <value>Intro Part 2</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Council Chamber of the Teensies</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Part 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Part 2</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Echoing Caves Intro</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Iron Mountains Balloon Cutscene</value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>Ending</value>
+  </data>
+  <data name="Mod_Mem_CreditsLevel" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="R2_LevelName_poloc_10" xml:space="preserve">
+    <value>Polokus Mask Part 1</value>
+  </data>
+  <data name="R2_LevelName_poloc_20" xml:space="preserve">
+    <value>Polokus Mask Part 2</value>
+  </data>
+  <data name="R2_LevelName_poloc_30" xml:space="preserve">
+    <value>Polokus Mask Part 3</value>
+  </data>
+  <data name="R2_LevelName_poloc_40" xml:space="preserve">
+    <value>Polokus Mask Part 4</value>
+  </data>
+  <data name="PartX" xml:space="preserve">
+    <value>Part {0}</value>
+    <comment>Arguments:
+partNumber</comment>
+  </data>
+  <data name="R2_LevelName_learn_10" xml:space="preserve">
+    <value>The Woods of Light</value>
+  </data>
+  <data name="R2_LevelName_bast" xml:space="preserve">
+    <value>The Fairy Glade</value>
+  </data>
+  <data name="R2_LevelName_ski" xml:space="preserve">
+    <value>The Marshes of Awakening</value>
+  </data>
+  <data name="R2_LevelName_chase" xml:space="preserve">
+    <value>The Bayou</value>
+  </data>
+  <data name="R2_LevelName_water" xml:space="preserve">
+    <value>The Sanctuary of Water and Ice</value>
+  </data>
+  <data name="R2_LevelName_rodeo" xml:space="preserve">
+    <value>The Menhir Hills</value>
+  </data>
+  <data name="R2_LevelName_vulca" xml:space="preserve">
+    <value>The Cave of Bad Dreams</value>
+  </data>
+  <data name="R2_LevelName_glob" xml:space="preserve">
+    <value>The Canopy</value>
+  </data>
+  <data name="R2_LevelName_whale" xml:space="preserve">
+    <value>Whale Bay</value>
+  </data>
+  <data name="R2_LevelName_plum" xml:space="preserve">
+    <value>The Sanctuary of Stone and Fire</value>
+  </data>
+  <data name="R2_LevelName_cask" xml:space="preserve">
+    <value>The Echoing Caves</value>
+  </data>
+  <data name="R2_LevelName_nave" xml:space="preserve">
+    <value>The Precipice</value>
+  </data>
+  <data name="R2_LevelName_seat" xml:space="preserve">
+    <value>The Top of the World</value>
+  </data>
+  <data name="R2_LevelName_earth" xml:space="preserve">
+    <value>The Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_helic" xml:space="preserve">
+    <value>Beneath the Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_morb" xml:space="preserve">
+    <value>Tomb of the Ancients</value>
+  </data>
+  <data name="R2_LevelName_ile" xml:space="preserve">
+    <value>The Iron Mountains</value>
+  </data>
+  <data name="R2_LevelName_astro" xml:space="preserve">
+    <value>The Prison Ship</value>
+  </data>
+  <data name="R2_LevelName_rhop" xml:space="preserve">
+    <value>The Crow's Nest</value>
+  </data>
+  <data name="R3_LevelName_BonusTXT" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R3_LevelName_endgame" xml:space="preserve">
+    <value>Endgame</value>
+  </data>
+  <data name="R3_LevelName_toudi_00" xml:space="preserve">
+    <value>2D Madness</value>
+  </data>
+  <data name="R3_LevelName_ten_map" xml:space="preserve">
+    <value>Racket Jump</value>
+  </data>
+  <data name="R3_LevelName_crush" xml:space="preserve">
+    <value>Crush</value>
+  </data>
+  <data name="R3_LevelName_raz_map" xml:space="preserve">
+    <value>Razoff Circus</value>
+  </data>
+  <data name="R3_LevelName_sentinel" xml:space="preserve">
+    <value>Sentinel</value>
+  </data>
+  <data name="R3_LevelName_snipe_00" xml:space="preserve">
+    <value>Missile Command</value>
+  </data>
+  <data name="R3_LevelName_ballmap" xml:space="preserve">
+    <value>Balloons</value>
+  </data>
+  <data name="R3_LevelName_ship_map" xml:space="preserve">
+    <value>Special Invaders</value>
+  </data>
+  <data name="R3_LevelName_commando" xml:space="preserve">
+    <value>Commando</value>
+  </data>
+  <data name="Option_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
+    <value>Rayman 1 (PC - 1.21)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
+    <value>Rayman 1 (PS1 - US)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
+    <value>Rayman 2 (PS1 - Prototype)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
+    <value>Rayman Advance (GBA - EU)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
+    <value>Rayman 2 (PC)</value>
+  </data>
+  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
+    <value>Rayman 3 (PC)</value>
   </data>
 </root>

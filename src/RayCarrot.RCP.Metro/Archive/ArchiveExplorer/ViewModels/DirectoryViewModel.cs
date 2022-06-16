@@ -329,8 +329,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ImportAsync()
     {
         // Run as a load operation
-        // TODO-UPDATE: Localize
-        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync("Importing files"))
+        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(Resources.Archive_ImportDir_Status))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -534,8 +533,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
         Logger.Trace("Files are being added to {0}", FullPath);
 
         // Run as a load operation
-        // TODO-UPDATE: Localize
-        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync("Adding files"))
+        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(Resources.Archive_AddFiles_Status))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -581,13 +579,11 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
 
         if (fileConflicts > 0)
         {
-            // TODO-UPDATE: Localize
             string message = fileConflicts == 1
                 ? String.Format(Resources.Archive_AddFiles_Conflict, addFiles.First(x => x.ExistingFile != null).FilePath.Name)
-                : $"{fileConflicts} files have the same name as existing files. Do you want to replace them?\n\nConflicts:\n" +
-                  String.Join(Environment.NewLine, addFiles.Where(x => x.ExistingFile != null).Take(10).Select(x => x.FilePath.Name));
+                : String.Format(Resources.Archive_AddFiles_ConflictMultiple, fileConflicts, 
+                    String.Join(Environment.NewLine, addFiles.Where(x => x.ExistingFile != null).Take(10).Select(x => x.FilePath.Name)));
 
-            // IDEA: Find a way to make this more localization friendly
             if (fileConflicts > 10)
                 message += $"{Environment.NewLine}...";
 

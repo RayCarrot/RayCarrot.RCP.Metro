@@ -171,8 +171,7 @@ public partial class ArchiveExplorerUI : WindowContentControl
             return;
 
         // Run as a load operation
-        // TODO-UPDATE: Localize
-        using (DisposableOperation operation = await dir.Archive.LoadOperation.RunAsync("Adding files"))
+        using (DisposableOperation operation = await dir.Archive.LoadOperation.RunAsync(Metro.Resources.Archive_AddFiles_Status))
         {
             // Lock the access to the archive
             using (await dir.Archive.ArchiveLock.LockAsync())

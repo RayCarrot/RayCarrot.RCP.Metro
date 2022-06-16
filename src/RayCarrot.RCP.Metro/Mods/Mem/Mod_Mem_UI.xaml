@@ -13,9 +13,6 @@
              Focusable="True"
              FocusVisualStyle="{x:Null}"
              MouseDown="UserControl_OnMouseDown">
-
-    <!-- TODO-UPDATE: Localize -->
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -28,9 +25,9 @@
                         Margin="0 0 0 10">
 
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Text="Game Process"/>
+                           Text="{Resx Mod_Mem_ProcessHeader}"/>
 
-                <local:InfoIcon Text="By attaching to a running game process you will be able to modify and view game values in real-time. For certain games this will allow you to enable unused features." />
+                <local:InfoIcon Text="{Resx Mod_Mem_ProcessInfo}" />
 
             </StackPanel>
 
@@ -56,7 +53,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0"
-                           Text="Game"
+                           Text="{Resx Mod_Mem_GameSelection}"
                            VerticalAlignment="Center"
                            Margin="0 0 10 0"/>
 
@@ -67,7 +64,7 @@
                           SelectedItem="{Binding Path=SelectedGame}"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="2"
-                           Text="Emulator"
+                           Text="{Resx Mod_Mem_EmuSelection}"
                            VerticalAlignment="Center"
                            Margin="0 0 10 0"/>
 
@@ -92,7 +89,7 @@
             <ScrollViewer Grid.Column="0">
                 <StackPanel>
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                               Text="Properties"
+                               Text="{Resx Mod_Mem_EditorFieldsHeader}"
                                Margin="0 0 0 10" />
 
                     <ItemsControl Style="{StaticResource RCP.Styles.ItemsControl.EditorFieldGroups}"
@@ -106,7 +103,7 @@
                 <StackPanel>
 
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                               Text="Info"
+                               Text="{Resx Mod_Mem_InfoHeader}"
                                Margin="0 0 0 10" />
 
                     <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
@@ -114,7 +111,7 @@
 
                     <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                                Visibility="{Binding Path=HasActions, Converter={local:BooleanToVisibilityConverter}}"
-                               Text="Actions"
+                               Text="{Resx Mod_Mem_ActionsHeader}"
                                Margin="0 0 0 10" />
 
                     <ItemsControl HorizontalAlignment="Left"
@@ -144,14 +141,14 @@
 
                 <TextBlock Grid.Row="0"
                            Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                           Text="Log"
+                           Text="{Resx Mod_Mem_LogHeader}"
                            Margin="0 0 0 10" />
 
                 <Button Grid.Row="1"
                         Margin="0 0 0 10"
                         HorizontalAlignment="Left"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        Content="Refresh"
+                        Content="{Resx Page_Refresh}"
                         local:ButtonAssist.IconKind="Refresh"
                         Command="{Binding Path=RefreshLogCommand, Mode=OneTime}" />
 

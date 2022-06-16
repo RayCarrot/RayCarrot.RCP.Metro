@@ -417,7 +417,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             
         yield return new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.Archive_FileInfo_IsComp)), 
-            text: $"{entry.IsCompressed}"); // TODO-UPDATE: Localize true/false
+            text: entry.IsCompressed.ToLocalizedString());
     }
 
     /// <summary>

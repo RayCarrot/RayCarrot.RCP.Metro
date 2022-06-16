@@ -498,6 +498,18 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} files have the same name as existing files. Do you want to replace them?
+        ///
+        ///Conflicts:
+        ///{1}.
+        /// </summary>
+        public static string Archive_AddFiles_ConflictMultiple {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles_ConflictMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when adding {0}.
         /// </summary>
         public static string Archive_AddFiles_Error {
@@ -521,6 +533,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_AddFiles_Info {
             get {
                 return ResourceManager.GetString("Archive_AddFiles_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding files.
+        /// </summary>
+        public static string Archive_AddFiles_Status {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles_Status", resourceCulture);
             }
         }
         
@@ -602,6 +623,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_CreateOutputFile {
             get {
                 return ResourceManager.GetString("Archive_CreateOutputFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Packing archive.
+        /// </summary>
+        public static string Archive_CreateStatusPacking {
+            get {
+                return ResourceManager.GetString("Archive_CreateStatusPacking", resourceCulture);
             }
         }
         
@@ -998,6 +1028,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_ImportDir_Error {
             get {
                 return ResourceManager.GetString("Archive_ImportDir_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importing files.
+        /// </summary>
+        public static string Archive_ImportDir_Status {
+            get {
+                return ResourceManager.GetString("Archive_ImportDir_Status", resourceCulture);
             }
         }
         
@@ -1448,6 +1487,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Backup_SuccessHeader {
             get {
                 return ResourceManager.GetString("Backup_SuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string Bool_False {
+            get {
+                return ResourceManager.GetString("Bool_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Bool_True {
+            get {
+                return ResourceManager.GetString("Bool_True", resourceCulture);
             }
         }
         
@@ -5033,6 +5090,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Temporary files.
+        /// </summary>
+        public static string Links_Local_Temp {
+            get {
+                return ResourceManager.GetString("Links_Local_Temp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Utilities directory.
         /// </summary>
         public static string Links_Local_Utilities {
@@ -5263,6 +5329,655 @@ namespace RayCarrot.RCP.Metro {
         public static string MessageHeader_Warning {
             get {
                 return ResourceManager.GetString("MessageHeader_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string Mod_Mem_ActionsHeader {
+            get {
+                return ResourceManager.GetString("Mod_Mem_ActionsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All cages.
+        /// </summary>
+        public static string Mod_Mem_AllCagesAction {
+            get {
+                return ResourceManager.GetString("Mod_Mem_AllCagesAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when attaching to the process.
+        /// </summary>
+        public static string Mod_Mem_AttachError {
+            get {
+                return ResourceManager.GetString("Mod_Mem_AttachError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus.
+        /// </summary>
+        public static string Mod_Mem_BonusLevelsCategory {
+            get {
+                return ResourceManager.GetString("Mod_Mem_BonusLevelsCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera X.
+        /// </summary>
+        public static string Mod_Mem_CamX {
+            get {
+                return ResourceManager.GetString("Mod_Mem_CamX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera Y.
+        /// </summary>
+        public static string Mod_Mem_CamY {
+            get {
+                return ResourceManager.GetString("Mod_Mem_CamY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string Mod_Mem_CreditsLevel {
+            get {
+                return ResourceManager.GetString("Mod_Mem_CreditsLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cutscenes.
+        /// </summary>
+        public static string Mod_Mem_CutsceneLevelsCategory {
+            get {
+                return ResourceManager.GetString("Mod_Mem_CutsceneLevelsCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string Mod_Mem_DebugCategory {
+            get {
+                return ResourceManager.GetString("Mod_Mem_DebugCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Properties.
+        /// </summary>
+        public static string Mod_Mem_EditorFieldsHeader {
+            get {
+                return ResourceManager.GetString("Mod_Mem_EditorFieldsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emulator.
+        /// </summary>
+        public static string Mod_Mem_EmuSelection {
+            get {
+                return ResourceManager.GetString("Mod_Mem_EmuSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish level.
+        /// </summary>
+        public static string Mod_Mem_FinishLvlAction {
+            get {
+                return ResourceManager.GetString("Mod_Mem_FinishLvlAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Advance (GBA - EU).
+        /// </summary>
+        public static string Mod_Mem_Game_R1_GBA_EU {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Game_R1_GBA_EU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 (PC - 1.21).
+        /// </summary>
+        public static string Mod_Mem_Game_R1_PC_1_21 {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Game_R1_PC_1_21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 (PS1 - US).
+        /// </summary>
+        public static string Mod_Mem_Game_R1_PS1_US {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Game_R1_PS1_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 (PC).
+        /// </summary>
+        public static string Mod_Mem_Game_R2_PC {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Game_R2_PC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 (PS1 - Prototype).
+        /// </summary>
+        public static string Mod_Mem_Game_R2_PS1_Proto {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Game_R2_PS1_Proto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 (PC).
+        /// </summary>
+        public static string Mod_Mem_Game_R3_PC {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Game_R3_PC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game.
+        /// </summary>
+        public static string Mod_Mem_GameSelection {
+            get {
+                return ResourceManager.GetString("Mod_Mem_GameSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string Mod_Mem_GeneralCategory {
+            get {
+                return ResourceManager.GetString("Mod_Mem_GeneralCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memory Mods.
+        /// </summary>
+        public static string Mod_Mem_Header {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hit-points.
+        /// </summary>
+        public static string Mod_Mem_HP {
+            get {
+                return ResourceManager.GetString("Mod_Mem_HP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        public static string Mod_Mem_InfoHeader {
+            get {
+                return ResourceManager.GetString("Mod_Mem_InfoHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Mod_Mem_Lang {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Lang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log.
+        /// </summary>
+        public static string Mod_Mem_LogHeader {
+            get {
+                return ResourceManager.GetString("Mod_Mem_LogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string Mod_Mem_Map {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max hit points.
+        /// </summary>
+        public static string Mod_Mem_MaxHP {
+            get {
+                return ResourceManager.GetString("Mod_Mem_MaxHP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Menu.
+        /// </summary>
+        public static string Mod_Mem_MenuLevel {
+            get {
+                return ResourceManager.GetString("Mod_Mem_MenuLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string Mod_Mem_MenuLevelsCategory {
+            get {
+                return ResourceManager.GetString("Mod_Mem_MenuLevelsCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiplayer.
+        /// </summary>
+        public static string Mod_Mem_MultiplayerCategory {
+            get {
+                return ResourceManager.GetString("Mod_Mem_MultiplayerCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Powers.
+        /// </summary>
+        public static string Mod_Mem_PowersCategory {
+            get {
+                return ResourceManager.GetString("Mod_Mem_PowersCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Process.
+        /// </summary>
+        public static string Mod_Mem_ProcessHeader {
+            get {
+                return ResourceManager.GetString("Mod_Mem_ProcessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By attaching to a running game process you will be able to modify and view game values in real-time. For certain games this will allow you to enable unused features..
+        /// </summary>
+        public static string Mod_Mem_ProcessInfo {
+            get {
+                return ResourceManager.GetString("Mod_Mem_ProcessInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active objects.
+        /// </summary>
+        public static string Mod_Mem_R1_ActiveObjs {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_ActiveObjs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug mode.
+        /// </summary>
+        public static string Mod_Mem_R1_DebugMode {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_DebugMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start in demo mode.
+        /// </summary>
+        public static string Mod_Mem_R1_DemoMode {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_DemoMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled then the game will start playing the unused two recorded demos when the level loads. This can be triggered by loosing all lives and choosing to try again..
+        /// </summary>
+        public static string Mod_Mem_R1_DemoModeInfo {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_DemoModeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show engine info.
+        /// </summary>
+        public static string Mod_Mem_R1_EngineText {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_EngineText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return to world map.
+        /// </summary>
+        public static string Mod_Mem_R1_ExitLvlAction {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_ExitLvlAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firefly.
+        /// </summary>
+        public static string Mod_Mem_R1_FireflyPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_FireflyPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fist charge.
+        /// </summary>
+        public static string Mod_Mem_R1_FistCharge {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_FistCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fist platform.
+        /// </summary>
+        public static string Mod_Mem_R1_FistPlatform {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_FistPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fist.
+        /// </summary>
+        public static string Mod_Mem_R1_FistPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_FistPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force run.
+        /// </summary>
+        public static string Mod_Mem_R1_ForcedRunPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_ForcedRunPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grab.
+        /// </summary>
+        public static string Mod_Mem_R1_GrabPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_GrabPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hang.
+        /// </summary>
+        public static string Mod_Mem_R1_HangPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_HangPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helico.
+        /// </summary>
+        public static string Mod_Mem_R1_HelicoPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_HelicoPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helico time.
+        /// </summary>
+        public static string Mod_Mem_R1_HelicoTime {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_HelicoTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map selection.
+        /// </summary>
+        public static string Mod_Mem_R1_MapSelect {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MapSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggles the in-game map selection on the world map.
+        /// </summary>
+        public static string Mod_Mem_R1_MapSelectInfo {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MapSelectInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map time.
+        /// </summary>
+        public static string Mod_Mem_R1_MapTime {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MapTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string Mod_Mem_R1_Menu {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected map.
+        /// </summary>
+        public static string Mod_Mem_R1_MultiplayerMap {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MultiplayerMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load multiplayer menus.
+        /// </summary>
+        public static string Mod_Mem_R1_MultiplayerMenus {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MultiplayerMenus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When this is enabled the game will load the unused multiplayer menus on startup. If the game has already been started then this can be accessed by choosing to quit the game from the pause menu.
+        ///The multiplayer menus themselves are not complete due to this feature never being fully implemented. The first menu is the player selection and the second one the level selection. Due to these not being functional the only way to change these are by using the below fields..
+        /// </summary>
+        public static string Mod_Mem_R1_MultiplayerMenusInfo {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MultiplayerMenusInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is player 2.
+        /// </summary>
+        public static string Mod_Mem_R1_MultiplayerP2 {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MultiplayerP2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level timeout.
+        /// </summary>
+        public static string Mod_Mem_R1_MultiplayerTimeout {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_MultiplayerTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show objects info.
+        /// </summary>
+        public static string Mod_Mem_R1_ObjText {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_ObjText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place Ray.
+        /// </summary>
+        public static string Mod_Mem_R1_PlaceRay {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_PlaceRay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows Rayman to be placed freely in the level.
+        /// </summary>
+        public static string Mod_Mem_R1_PlaceRayInfo {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_PlaceRayInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Random index.
+        /// </summary>
+        public static string Mod_Mem_R1_RandIndex {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_RandIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse controls.
+        /// </summary>
+        public static string Mod_Mem_R1_ReversePower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_ReversePower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run.
+        /// </summary>
+        public static string Mod_Mem_R1_RunPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_RunPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seed.
+        /// </summary>
+        public static string Mod_Mem_R1_SeedPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_SeedPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Squished.
+        /// </summary>
+        public static string Mod_Mem_R1_SquishedPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_SquishedPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super-helico.
+        /// </summary>
+        public static string Mod_Mem_R1_SuperHelicoPower {
+            get {
+                return ResourceManager.GetString("Mod_Mem_R1_SuperHelicoPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman&apos;s state.
+        /// </summary>
+        public static string Mod_Mem_RayState {
+            get {
+                return ResourceManager.GetString("Mod_Mem_RayState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the game values.
+        /// </summary>
+        public static string Mod_Mem_TickError {
+            get {
+                return ResourceManager.GetString("Mod_Mem_TickError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown {0}.
+        /// </summary>
+        public static string Mod_Mem_Unk {
+            get {
+                return ResourceManager.GetString("Mod_Mem_Unk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all levels.
+        /// </summary>
+        public static string Mod_Mem_UnlockAllLvlsAction {
+            get {
+                return ResourceManager.GetString("Mod_Mem_UnlockAllLvlsAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X position.
+        /// </summary>
+        public static string Mod_Mem_XPos {
+            get {
+                return ResourceManager.GetString("Mod_Mem_XPos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y position.
+        /// </summary>
+        public static string Mod_Mem_YPos {
+            get {
+                return ResourceManager.GetString("Mod_Mem_YPos", resourceCulture);
             }
         }
         
@@ -5600,7 +6315,8 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        ///   Looks up a localized string similar to Rayman Raving Rabbids
+        ///Prototype Restoration.
         /// </summary>
         public static string Mod_RRR_Header {
             get {
@@ -6689,11 +7405,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string Option_None {
+            get {
+                return ResourceManager.GetString("Option_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Page_Refresh {
             get {
                 return ResourceManager.GetString("Page_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Part {0}.
+        /// </summary>
+        public static string PartX {
+            get {
+                return ResourceManager.GetString("PartX", resourceCulture);
             }
         }
         
@@ -6766,6 +7500,24 @@ namespace RayCarrot.RCP.Metro {
         public static string PrintStudioOptions_VersionUpdateError {
             get {
                 return ResourceManager.GetString("PrintStudioOptions_VersionUpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attach.
+        /// </summary>
+        public static string ProcessAttacher_Attach {
+            get {
+                return ResourceManager.GetString("ProcessAttacher_Attach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detach.
+        /// </summary>
+        public static string ProcessAttacher_Detach {
+            get {
+                return ResourceManager.GetString("ProcessAttacher_Detach", resourceCulture);
             }
         }
         
@@ -8022,6 +8774,312 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Prison Ship.
+        /// </summary>
+        public static string R2_LevelName_astro {
+            get {
+                return ResourceManager.GetString("R2_LevelName_astro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iron Mountains Balloon Cutscene.
+        /// </summary>
+        public static string R2_LevelName_ball {
+            get {
+                return ResourceManager.GetString("R2_LevelName_ball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Fairy Glade.
+        /// </summary>
+        public static string R2_LevelName_bast {
+            get {
+                return ResourceManager.GetString("R2_LevelName_bast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Echoing Caves Intro.
+        /// </summary>
+        public static string R2_LevelName_bast_09 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_bast_09", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meanwhile in the Prison Ship Part 1.
+        /// </summary>
+        public static string R2_LevelName_batam_10 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_batam_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meanwhile in the Prison Ship Part 2.
+        /// </summary>
+        public static string R2_LevelName_batam_20 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_batam_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus Stage.
+        /// </summary>
+        public static string R2_LevelName_bonux {
+            get {
+                return ResourceManager.GetString("R2_LevelName_bonux", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Echoing Caves.
+        /// </summary>
+        public static string R2_LevelName_cask {
+            get {
+                return ResourceManager.GetString("R2_LevelName_cask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Bayou.
+        /// </summary>
+        public static string R2_LevelName_chase {
+            get {
+                return ResourceManager.GetString("R2_LevelName_chase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Sanctuary of Rock and Lava.
+        /// </summary>
+        public static string R2_LevelName_earth {
+            get {
+                return ResourceManager.GetString("R2_LevelName_earth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ending.
+        /// </summary>
+        public static string R2_LevelName_end_10 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_end_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Canopy.
+        /// </summary>
+        public static string R2_LevelName_glob {
+            get {
+                return ResourceManager.GetString("R2_LevelName_glob", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beneath the Sanctuary of Rock and Lava.
+        /// </summary>
+        public static string R2_LevelName_helic {
+            get {
+                return ResourceManager.GetString("R2_LevelName_helic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Iron Mountains.
+        /// </summary>
+        public static string R2_LevelName_ile {
+            get {
+                return ResourceManager.GetString("R2_LevelName_ile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intro Part 1.
+        /// </summary>
+        public static string R2_LevelName_jail_10 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_jail_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intro Part 2.
+        /// </summary>
+        public static string R2_LevelName_jail_20 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_jail_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Woods of Light.
+        /// </summary>
+        public static string R2_LevelName_learn_10 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_learn_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Hall of Doors.
+        /// </summary>
+        public static string R2_LevelName_mapmonde {
+            get {
+                return ResourceManager.GetString("R2_LevelName_mapmonde", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomb of the Ancients.
+        /// </summary>
+        public static string R2_LevelName_morb {
+            get {
+                return ResourceManager.GetString("R2_LevelName_morb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Precipice.
+        /// </summary>
+        public static string R2_LevelName_nave {
+            get {
+                return ResourceManager.GetString("R2_LevelName_nave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Council Chamber of the Teensies.
+        /// </summary>
+        public static string R2_LevelName_nego_10 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_nego_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Sanctuary of Stone and Fire.
+        /// </summary>
+        public static string R2_LevelName_plum {
+            get {
+                return ResourceManager.GetString("R2_LevelName_plum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polokus Mask Part 1.
+        /// </summary>
+        public static string R2_LevelName_poloc_10 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_poloc_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polokus Mask Part 2.
+        /// </summary>
+        public static string R2_LevelName_poloc_20 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_poloc_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polokus Mask Part 3.
+        /// </summary>
+        public static string R2_LevelName_poloc_30 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_poloc_30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polokus Mask Part 4.
+        /// </summary>
+        public static string R2_LevelName_poloc_40 {
+            get {
+                return ResourceManager.GetString("R2_LevelName_poloc_40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score Screen.
+        /// </summary>
+        public static string R2_LevelName_raycap {
+            get {
+                return ResourceManager.GetString("R2_LevelName_raycap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Crow&apos;s Nest.
+        /// </summary>
+        public static string R2_LevelName_rhop {
+            get {
+                return ResourceManager.GetString("R2_LevelName_rhop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Menhir Hills.
+        /// </summary>
+        public static string R2_LevelName_rodeo {
+            get {
+                return ResourceManager.GetString("R2_LevelName_rodeo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Top of the World.
+        /// </summary>
+        public static string R2_LevelName_seat {
+            get {
+                return ResourceManager.GetString("R2_LevelName_seat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Marshes of Awakening.
+        /// </summary>
+        public static string R2_LevelName_ski {
+            get {
+                return ResourceManager.GetString("R2_LevelName_ski", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Cave of Bad Dreams.
+        /// </summary>
+        public static string R2_LevelName_vulca {
+            get {
+                return ResourceManager.GetString("R2_LevelName_vulca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Sanctuary of Water and Ice.
+        /// </summary>
+        public static string R2_LevelName_water {
+            get {
+                return ResourceManager.GetString("R2_LevelName_water", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whale Bay.
+        /// </summary>
+        public static string R2_LevelName_whale {
+            get {
+                return ResourceManager.GetString("R2_LevelName_whale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
         public static string R2Config_Graphics_Custom {
@@ -8315,6 +9373,105 @@ namespace RayCarrot.RCP.Metro {
         public static string R2Widescreen_ExeNotValid {
             get {
                 return ResourceManager.GetString("R2Widescreen_ExeNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Balloons.
+        /// </summary>
+        public static string R3_LevelName_ballmap {
+            get {
+                return ResourceManager.GetString("R3_LevelName_ballmap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus.
+        /// </summary>
+        public static string R3_LevelName_BonusTXT {
+            get {
+                return ResourceManager.GetString("R3_LevelName_BonusTXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commando.
+        /// </summary>
+        public static string R3_LevelName_commando {
+            get {
+                return ResourceManager.GetString("R3_LevelName_commando", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crush.
+        /// </summary>
+        public static string R3_LevelName_crush {
+            get {
+                return ResourceManager.GetString("R3_LevelName_crush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endgame.
+        /// </summary>
+        public static string R3_LevelName_endgame {
+            get {
+                return ResourceManager.GetString("R3_LevelName_endgame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Razoff Circus.
+        /// </summary>
+        public static string R3_LevelName_raz_map {
+            get {
+                return ResourceManager.GetString("R3_LevelName_raz_map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel.
+        /// </summary>
+        public static string R3_LevelName_sentinel {
+            get {
+                return ResourceManager.GetString("R3_LevelName_sentinel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special Invaders.
+        /// </summary>
+        public static string R3_LevelName_ship_map {
+            get {
+                return ResourceManager.GetString("R3_LevelName_ship_map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missile Command.
+        /// </summary>
+        public static string R3_LevelName_snipe_00 {
+            get {
+                return ResourceManager.GetString("R3_LevelName_snipe_00", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Racket Jump.
+        /// </summary>
+        public static string R3_LevelName_ten_map {
+            get {
+                return ResourceManager.GetString("R3_LevelName_ten_map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2D Madness.
+        /// </summary>
+        public static string R3_LevelName_toudi_00 {
+            get {
+                return ResourceManager.GetString("R3_LevelName_toudi_00", resourceCulture);
             }
         }
         
@@ -12309,6 +13466,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utility_WIP {
             get {
                 return ResourceManager.GetString("Utility_WIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for {0} to close.
+        /// </summary>
+        public static string WaitForEditorToClose {
+            get {
+                return ResourceManager.GetString("WaitForEditorToClose", resourceCulture);
             }
         }
     }

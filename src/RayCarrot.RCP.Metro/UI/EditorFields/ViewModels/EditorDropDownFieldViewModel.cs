@@ -72,7 +72,7 @@ public class EditorDropDownFieldViewModel : EditorFieldViewModel
 
     public class DropDownItem<T> : DropDownItem
     {
-        public DropDownItem(string header, T? data) : base(header, data) { }
+        public DropDownItem(LocalizedString header, T? data) : base(header, data) { }
 
         public new T? Data => (T?)base.Data;
     }

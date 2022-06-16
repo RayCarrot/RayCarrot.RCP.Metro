@@ -85,7 +85,7 @@ public class GroupedEditorDropDownFieldViewModel : EditorFieldViewModel
 
     public class DropDownItem<T> : DropDownItem
     {
-        public DropDownItem(string header, T? data, bool isGroupHeader = false) : base(header, data, isGroupHeader) { }
+        public DropDownItem(LocalizedString header, T? data, bool isGroupHeader = false) : base(header, data, isGroupHeader) { }
 
         public new T? Data => (T?)base.Data;
     }

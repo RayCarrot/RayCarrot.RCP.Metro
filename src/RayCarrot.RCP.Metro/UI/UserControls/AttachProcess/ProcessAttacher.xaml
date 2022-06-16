@@ -3,17 +3,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d" 
              d:DesignWidth="800" 
-             d:DataContext="{d:DesignInstance metro:ProcessAttacherViewModel}">
+             d:DataContext="{d:DesignInstance local:ProcessAttacherViewModel}">
     <Grid Margin="0 0 0 10">
-
-        <!-- TODO-UPDATE: Localize -->
 
         <!-- Attach -->
 
-        <Grid Visibility="{Binding Path=IsAttached, Converter={metro:InvertedBooleanToVisibilityConverter}}" 
+        <Grid Visibility="{Binding Path=IsAttached, Converter={local:InvertedBooleanToVisibilityConverter}}" 
               VerticalAlignment="Top">
 
             <Grid.ColumnDefinitions>
@@ -59,22 +58,22 @@
             <Button Grid.Column="1"
                     Margin="0 0 10 0"
                     Style="{StaticResource RCP.Styles.Button.IconContent}"
-                    Content="Refresh"
-                    metro:ButtonAssist.IconKind="Refresh"
+                    Content="{Resx Page_Refresh}"
+                    local:ButtonAssist.IconKind="Refresh"
                     Command="{Binding Path=RefreshProcessesCommand, Mode=OneTime}" />
 
             <Button Grid.Column="2"
                     Style="{StaticResource RCP.Styles.Button.IconContent}"
-                    IsEnabled="{Binding Path=SelectedProcess, Converter={metro:IsNotNullConverter}}"
-                    Content="Attach"
-                    metro:ButtonAssist.IconKind="Connection"
+                    IsEnabled="{Binding Path=SelectedProcess, Converter={local:IsNotNullConverter}}"
+                    Content="{Resx ProcessAttacher_Attach}"
+                    local:ButtonAssist.IconKind="Connection"
                     Command="{Binding Path=AttachProcessCommand, Mode=OneTime}" />
 
         </Grid>
 
         <!-- Attached -->
 
-        <StackPanel Visibility="{Binding Path=IsAttached, Converter={metro:BooleanToVisibilityConverter}}">
+        <StackPanel Visibility="{Binding Path=IsAttached, Converter={local:BooleanToVisibilityConverter}}">
 
             <Grid DataContext="{Binding Path=AttachedProcess}"
                   Margin="0 0 0 10">
@@ -96,8 +95,8 @@
 
             <Button Style="{StaticResource RCP.Styles.Button.IconContent}"
                     HorizontalAlignment="Left"
-                    Content="Detach"
-                    metro:ButtonAssist.IconKind="Cancel"
+                    Content="{Resx ProcessAttacher_Detach}"
+                    local:ButtonAssist.IconKind="Cancel"
                     Command="{Binding Path=DetachProcessCommand, Mode=OneTime}" />
 
         </StackPanel>

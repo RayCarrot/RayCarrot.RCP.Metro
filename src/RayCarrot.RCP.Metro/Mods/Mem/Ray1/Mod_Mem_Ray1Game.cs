@@ -28,9 +28,8 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_General()
     {
-        // TODO-UPDATE: Localize
         yield return new EditorIntFieldViewModel(
-            header: "Lives",
+            header: new ResourceLocString(nameof(Resources.Progression_Lives)),
             info: null,
             getValueAction: () => AccessMemory(m => m.StatusBar?.LivesCount ?? 0),
             setValueAction: x => AccessMemory(m =>
@@ -44,7 +43,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             max: 99);
 
         yield return new EditorIntFieldViewModel(
-            header: "Tings",
+            header: new ResourceLocString(nameof(Resources.Progression_Tings)),
             info: null,
             getValueAction: () => AccessMemory(m => m.StatusBar?.TingsCount ?? 0),
             setValueAction: x => AccessMemory(m =>
@@ -58,7 +57,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             max: 99);
 
         yield return new EditorIntFieldViewModel(
-            header: "Hit-points",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_HP)),
             info: null,
             getValueAction: () => AccessMemory(m => Version == Ray1EngineVersion.R2_PS1
                 ? m.R2_Ray?.HitPoints ?? 0
@@ -86,7 +85,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         if (Version == Ray1EngineVersion.R2_PS1)
         {
             yield return new EditorIntFieldViewModel(
-                header: "Max hit points",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_MaxHP)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth ?? 0),
                 setValueAction: x => AccessMemory(m =>
@@ -113,7 +112,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             };
 
             yield return new EditorBoolFieldViewModel(
-                header: "Max hit points",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_MaxHP)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.StatusBar?.MaxHealth == max),
                 setValueAction: x => AccessMemory(m =>
@@ -127,8 +126,8 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         }
 
         yield return new EditorBoolFieldViewModel(
-            header: "Place Ray",
-            info: "Allows Rayman to be placed freely in the level",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_PlaceRay)),
+            info: new ResourceLocString(nameof(Resources.Mod_Mem_R1_PlaceRayInfo)),
             getValueAction: () => AccessMemory(m => (short)m.RayMode < 0),
             setValueAction: x => AccessMemory(m =>
             {
@@ -156,7 +155,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
                     .ToArray();
 
             yield return new EditorDropDownFieldViewModel(
-                header: "Current level",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_Map)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.NumLevel - 1),
                 setValueAction: x => AccessMemory(m =>
@@ -170,8 +169,8 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
         if (AccessMemory(m => m.SupportsProperty(nameof(m.AllWorld))))
             yield return new EditorBoolFieldViewModel(
-                header: "Map selection",
-                info: "Toggles the in-game map selection on the world map",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MapSelect)),
+                info: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MapSelectInfo)),
                 getValueAction: () => AccessMemory(m => m.AllWorld),
                 setValueAction: x => AccessMemory(m =>
                 {
@@ -185,7 +184,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             var langItems = langs.Select(x => new EditorDropDownFieldViewModel.DropDownItem(x, null)).ToArray();
 
             yield return new EditorDropDownFieldViewModel(
-                header: "Language",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_Lang)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.R2_Language),
                 setValueAction: x => AccessMemory(m =>
@@ -199,22 +198,21 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_Powers()
     {
-        // TODO-UPDATE: Localize
         if (Version == Ray1EngineVersion.R2_PS1)
         {
             return new (R2_RayEvts Evts, LocalizedString Header)[]
             {
-                (R2_RayEvts.Fist, "Fist"),
-                (R2_RayEvts.Flag_1, "Unknown 1"),
-                (R2_RayEvts.Flag_2, "Unknown 2"),
-                (R2_RayEvts.FistPlatform, "Fist platform"),
-                (R2_RayEvts.Hang, "Hang"),
-                (R2_RayEvts.Helico, "Helico"),
-                (R2_RayEvts.SuperHelico, "Super-helico"),
-                (R2_RayEvts.Seed, "Seed"),
-                (R2_RayEvts.Flag_8, "Unknown 8"),
-                (R2_RayEvts.Grab, "Grab"),
-                (R2_RayEvts.Run, "Run"),
+                (R2_RayEvts.Fist, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPower))),
+                (R2_RayEvts.Flag_1, new ResourceLocString(nameof(Resources.Mod_Mem_Unk), 1)),
+                (R2_RayEvts.Flag_2, new ResourceLocString(nameof(Resources.Mod_Mem_Unk), 2)),
+                (R2_RayEvts.FistPlatform, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPlatform))),
+                (R2_RayEvts.Hang, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HangPower))),
+                (R2_RayEvts.Helico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoPower))),
+                (R2_RayEvts.SuperHelico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SuperHelicoPower))),
+                (R2_RayEvts.Seed, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SeedPower))),
+                (R2_RayEvts.Flag_8, new ResourceLocString(nameof(Resources.Mod_Mem_Unk), 8)),
+                (R2_RayEvts.Grab, new ResourceLocString(nameof(Resources.Mod_Mem_R1_GrabPower))),
+                (R2_RayEvts.Run, new ResourceLocString(nameof(Resources.Mod_Mem_R1_RunPower))),
             }.Select(ev => new EditorBoolFieldViewModel(
                 header: ev.Header,
                 info: null,
@@ -233,17 +231,17 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         {
             return new (RayEvts Evts, LocalizedString Header)[]
             {
-                (RayEvts.Fist, "Fist"),
-                (RayEvts.Hang, "Hang"),
-                (RayEvts.Helico, "Helico"),
-                (RayEvts.Grab, "Grab"),
-                (RayEvts.Run, "Run"),
-                (RayEvts.Seed, "Seed"),
-                (RayEvts.SuperHelico, "Super-helico"),
-                (RayEvts.SquishedRayman, "Squished"),
-                (RayEvts.Firefly, "Firefly"),
-                (RayEvts.ForceRun, "Force run"),
-                (RayEvts.ReverseControls, "Reverse controls"),
+                (RayEvts.Fist, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistPower))),
+                (RayEvts.Hang, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HangPower))),
+                (RayEvts.Helico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoPower))),
+                (RayEvts.Grab, new ResourceLocString(nameof(Resources.Mod_Mem_R1_GrabPower))),
+                (RayEvts.Run, new ResourceLocString(nameof(Resources.Mod_Mem_R1_RunPower))),
+                (RayEvts.Seed, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SeedPower))),
+                (RayEvts.SuperHelico, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SuperHelicoPower))),
+                (RayEvts.SquishedRayman, new ResourceLocString(nameof(Resources.Mod_Mem_R1_SquishedPower))),
+                (RayEvts.Firefly, new ResourceLocString(nameof(Resources.Mod_Mem_R1_FireflyPower))),
+                (RayEvts.ForceRun, new ResourceLocString(nameof(Resources.Mod_Mem_R1_ForcedRunPower))),
+                (RayEvts.ReverseControls, new ResourceLocString(nameof(Resources.Mod_Mem_R1_ReversePower))),
             }.Select(ev => new EditorBoolFieldViewModel(
                 header: ev.Header,
                 info: null,
@@ -262,9 +260,8 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_R2_Debug()
     {
-        // TODO-UPDATE: Localize
         yield return new EditorBoolFieldViewModel(
-            header: "Show engine info",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_EngineText)),
             info: null,
             getValueAction: () => AccessMemory(m => m.R2_ShowEngineInfo),
             setValueAction: x => AccessMemory(m =>
@@ -274,7 +271,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             }));
 
         yield return new EditorBoolFieldViewModel(
-            header: "Show objects info",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ObjText)),
             info: null,
             getValueAction: () => AccessMemory(m => m.R2_UnusedMapLoopFunctionCall == 0x0c0337c4),
             setValueAction: x => AccessMemory(m =>
@@ -285,7 +282,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             }));
 
         yield return new EditorBoolFieldViewModel(
-            header: "Debug mode",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_DebugMode)),
             info: null,
             getValueAction: () => AccessMemory(m => m.R2_DebugMode),
             setValueAction: x => AccessMemory(m =>
@@ -295,8 +292,8 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             }));
 
         yield return new EditorBoolFieldViewModel(
-            header: "Start in demo mode",
-            info: "If enabled then the game will start playing the two recorded demos when the level loads. This can be triggered by loosing all lives and choosing to try again.",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_DemoMode)),
+            info: new ResourceLocString(nameof(Resources.Mod_Mem_R1_DemoModeInfo)),
             getValueAction: () => AccessMemory(m => m.R2_MapInitFunctionCall == 0x0c03fc4b),
             setValueAction: x => AccessMemory(m =>
             {
@@ -308,10 +305,9 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
     private IEnumerable<EditorFieldViewModel> CreateEditorFields_GBA_Multiplayer()
     {
-        // TODO-UPDATE: Localize
         yield return new EditorBoolFieldViewModel(
-            header: "Load multiplayer menus",
-            info: "When this is enabled the game will load the multiplayer menus on startup. If the game has already been loaded then this can be accessed by choosing to quit the game from the pause menu.\nThe multiplayer menus themselves are not complete due to this feature never being fully implemented. The first menu is the player selection and the second one the level selection. Due to these not being functional the only way to change these are by using the below fields.",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MultiplayerMenus)),
+            info: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MultiplayerMenusInfo)),
             getValueAction: () => AccessMemory(m => m.GBA_EnableMultiplayerMenus),
             setValueAction: x => AccessMemory(m =>
             {
@@ -321,7 +317,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             }));
 
         yield return new EditorBoolFieldViewModel(
-            header: "Level timeout",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MultiplayerTimeout)),
             info: null,
             getValueAction: () => AccessMemory(m => m.GBA_MultiplayerTimeout == 0xE6DA),
             setValueAction: x => AccessMemory(m =>
@@ -331,7 +327,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             }));
 
         yield return new EditorBoolFieldViewModel(
-            header: "Is player 2",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MultiplayerP2)),
             info: null,
             getValueAction: () => AccessMemory(m => m.GBA_MultiplayerPlayerSelection),
             setValueAction: x => AccessMemory(m =>
@@ -345,7 +341,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
             ToArray();
 
         yield return new EditorDropDownFieldViewModel(
-            header: "Selected map",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_MultiplayerMap)),
             info: null,
             getValueAction: () => AccessMemory(m => m.GBA_MultiplayerLevelSelection - 1),
             setValueAction: x => AccessMemory(m =>
@@ -367,60 +363,58 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
     public override IEnumerable<EditorFieldGroupViewModel> CreateEditorFieldGroups()
     {
-        // TODO-UPDATE: Localize
         yield return new EditorFieldGroupViewModel(
-            header: "General",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_GeneralCategory)),
             editorFields: CreateEditorFields_General());
 
         if (Version == Ray1EngineVersion.R2_PS1)
             yield return new EditorFieldGroupViewModel(
-                header: "Debug",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_DebugCategory)),
                 editorFields: CreateEditorFields_R2_Debug());
 
         if (Version == Ray1EngineVersion.GBA)
             yield return new EditorFieldGroupViewModel(
-                header: "Multiplayer",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_MultiplayerCategory)),
                 editorFields: CreateEditorFields_GBA_Multiplayer());
 
         yield return new EditorFieldGroupViewModel(
-            header: "Powers",
+            header: new ResourceLocString(nameof(Resources.Mod_Mem_PowersCategory)),
             editorFields: CreateEditorFields_Powers());
     }
 
     public override IEnumerable<DuoGridItemViewModel> CreateInfoItems()
     {
-        // TODO-UPDATE: Localize
-        yield return DuoGridItem("Camera X", m => m.XMap);
-        yield return DuoGridItem("Camera Y", m => $"{m.YMap}");
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_CamX)), m => m.XMap);
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_CamY)), m => m.YMap);
 
         if (Version == Ray1EngineVersion.R2_PS1)
         {
-            yield return DuoGridItem("X position", m => $"{m.R2_Ray?.XPosition}");
-            yield return DuoGridItem("Y position", m => $"{m.R2_Ray?.YPosition}");
-            yield return DuoGridItem("Rayman state", m => $"{m.R2_Ray?.Etat}-{m.R2_Ray?.SubEtat}");
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_XPos)), m => m.R2_Ray?.XPosition);
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_YPos)), m => m.R2_Ray?.YPosition);
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.R2_Ray?.Etat}-{m.R2_Ray?.SubEtat}");
         }
         else
         {
-            yield return DuoGridItem("X position", m => $"{m.Ray?.XPosition}");
-            yield return DuoGridItem("Y position", m => $"{m.Ray?.YPosition}");
-            yield return DuoGridItem("Rayman state", m => $"{m.Ray?.Etat}-{m.Ray?.SubEtat}");
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_XPos)), m => m.Ray?.XPosition);
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_YPos)), m => m.Ray?.YPosition);
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_RayState)), m => $"{m.Ray?.Etat}-{m.Ray?.SubEtat}");
         }
 
-        yield return DuoGridItem("Helico time", m => $"{m.HelicoTime}");
-        yield return DuoGridItem("Fist charge", m => $"{m.Poing?.FistChargedLevel}");
-        yield return DuoGridItem("Active objects", m => $"{m.ActiveObjects?.ActiveObjectsCount}");
-        yield return DuoGridItem("Map time", m => $"{m.MapTime}");
-        yield return DuoGridItem("Random index", m => $"{m.RandomIndex}");
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_HelicoTime)), m => m.HelicoTime);
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_FistCharge)), m => m.Poing?.FistChargedLevel);
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_ActiveObjs)), m => m.ActiveObjects?.ActiveObjectsCount);
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_MapTime)), m => m.MapTime);
+        yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_RandIndex)), m => m.RandomIndex);
 
         if (AccessMemory(m => m.SupportsProperty(nameof(m.MenuEtape))))
-            yield return DuoGridItem("Menu", m => $"{m.MenuEtape}");
+            yield return DuoGridItem(new ResourceLocString(nameof(Resources.Mod_Mem_R1_Menu)), m => m.MenuEtape);
     }
 
     public override IEnumerable<Mod_Mem_ActionViewModel> CreateActions()
     {
         if (AccessMemory(m => m.SupportsProperty(nameof(m.FinBoss))))
             yield return new Mod_Mem_ActionViewModel(
-                header: "Finish level",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_FinishLvlAction)),
                 iconKind: PackIconMaterialKind.FlagOutline,
                 command: new RelayCommand(() => AccessMemory(m =>
                 {
@@ -432,7 +426,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
         if (AccessMemory(m => m.SupportsProperty(nameof(m.WorldInfo))))
         {
             yield return new Mod_Mem_ActionViewModel(
-                header: "Unlock all levels",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_UnlockAllLvlsAction)),
                 iconKind: PackIconMaterialKind.CircleMultipleOutline,
                 command: new RelayCommand(() => AccessMemory(m =>
                 {
@@ -450,7 +444,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
                 isEnabledFunc: () => true);
 
             yield return new Mod_Mem_ActionViewModel(
-                header: "All cages",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_AllCagesAction)),
                 iconKind: PackIconMaterialKind.CircleMultiple,
                 command: new RelayCommand(() => AccessMemory(m =>
                 {
@@ -472,7 +466,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
 
         if (AccessMemory(m => m.SupportsProperty(nameof(m.NewWorld))))
             yield return new Mod_Mem_ActionViewModel(
-                header: "Return to world map",
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_R1_ExitLvlAction)),
                 iconKind: PackIconMaterialKind.MapOutline,
                 command: new RelayCommand(() => AccessMemory(m =>
                 {

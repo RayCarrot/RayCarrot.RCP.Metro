@@ -40,7 +40,7 @@ public abstract class GameManager_DOSBox : GameManager_Win32
     /// <summary>
     /// The display name for the game type
     /// </summary>
-    public override string GameTypeDisplayName => Resources.GameType_DosBox;
+    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_DosBox));
 
     /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported

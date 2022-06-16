@@ -30,7 +30,7 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
     /// <summary>
     /// The display name for the game type
     /// </summary>
-    public override string GameTypeDisplayName => Resources.GameType_EducationalDosBox;
+    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_EducationalDosBox));
 
     /// <summary>
     /// Gets the additional overflow button items for the game

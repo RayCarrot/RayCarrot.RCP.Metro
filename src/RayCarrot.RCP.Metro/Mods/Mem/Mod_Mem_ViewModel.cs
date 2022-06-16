@@ -34,38 +34,37 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         Mod_Mem_EmulatorViewModel[] emuPS1 = Mod_Mem_EmulatorViewModel.PS1;
         Mod_Mem_EmulatorViewModel[] emuGBA = Mod_Mem_EmulatorViewModel.GBA;
 
-        // TODO-UPDATE: Localize
         Games = new ObservableCollection<Mod_Mem_GameViewModel>()
         {
             new Mod_Mem_GameViewModel(
                 game: new Mod_Mem_Ray1Game(Ray1EngineVersion.PC),
-                displayName: "Rayman 1 (PC - 1.21)",
+                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PC_1_21)),
                 getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PC_1_21,
                 emulators: emuMSDOS),
             new Mod_Mem_GameViewModel(
                 game: new Mod_Mem_Ray1Game(Ray1EngineVersion.PS1),
-                displayName: "Rayman 1 (PS1 - US)",
+                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_PS1_US)),
                 getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PS1_US,
                 emulators: emuPS1),
             new Mod_Mem_GameViewModel(
                 game: new Mod_Mem_Ray1Game(Ray1EngineVersion.R2_PS1),
-                displayName: "Rayman 2 (PS1 - Prototype)",
+                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PS1_Proto)),
                 getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_PS1_R2,
                 emulators: emuPS1),
             new Mod_Mem_GameViewModel(
                 game: new Mod_Mem_Ray1Game(Ray1EngineVersion.GBA),
-                displayName: "Rayman Advance (GBA - EU)",
+                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R1_GBA_EU)),
                 getOffsetsFunc: () => Mod_Mem_Ray1MemoryData.Offsets_GBA_EU,
                 emulators: emuGBA),
             new Mod_Mem_GameViewModel(
                 game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC)),
-                displayName: "Rayman 2 (PC)",
+                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R2_PC)),
                 getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R2_PC,
                 emulators: emuNone,
                 processNameKeywords: new [] { "Rayman2" }),
             new Mod_Mem_GameViewModel(
                 game: new Mod_Mem_CPAGame(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC)),
-                displayName: "Rayman 3 (PC)",
+                displayName: new ResourceLocString(nameof(Resources.Mod_Mem_Game_R3_PC)),
                 getOffsetsFunc: () => Mod_Mem_CPAMemoryData.Offsets_R3_PC,
                 emulators: emuNone,
                 processNameKeywords: new [] { "Rayman3" }),
@@ -120,7 +119,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     #region Public Properties
 
-    public override LocalizedString Header => "Memory Mods"; // TODO-UPDATE: Localize
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.Mod_Mem_Header));
     public override GenericIconKind Icon => GenericIconKind.Mods_Mem;
     public override object UIContent => _uiContent ??= new Mod_Mem_UI()
     {
@@ -253,8 +252,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
         {
             Logger.Warn(ex, "Attaching to process for memory loading");
 
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayMessageAsync("An error occurred when attaching to the process", "Error", MessageType.Error);
+            await MessageUI.DisplayMessageAsync(Resources.Mod_Mem_AttachError, MessageType.Error);
 
             await ProcessAttacherViewModel.DetachProcessAsync();
             return;
@@ -298,8 +296,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
                 {
                     Logger.Warn(ex, "Updating memory mod fields");
 
-                    // TODO-UPDATE: Localize
-                    await MessageUI.DisplayMessageAsync("An error occurred when updating the game values", "Error", MessageType.Error);
+                    await MessageUI.DisplayMessageAsync(Resources.Mod_Mem_TickError, MessageType.Error);
                 }
 
                 await ProcessAttacherViewModel.DetachProcessAsync();

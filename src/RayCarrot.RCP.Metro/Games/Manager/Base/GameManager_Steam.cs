@@ -28,7 +28,7 @@ public abstract class GameManager_Steam : GameManager
     /// <summary>
     /// The display name for the game type
     /// </summary>
-    public override string GameTypeDisplayName => Resources.GameType_Steam;
+    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_Steam));
 
     /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
