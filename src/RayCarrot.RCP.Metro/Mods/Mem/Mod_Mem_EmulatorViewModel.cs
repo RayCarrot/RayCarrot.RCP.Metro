@@ -45,9 +45,9 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
                 ProcessOffset: 0x00,
                 IsProcessOffsetAPointer: false)),
     };
-    public static Mod_Mem_EmulatorViewModel[] MSDOS => new[] { DOSBox_0_74_x86, DOSBox_0_74_2_1_x86, DOSBox_0_74_3_x86 };
-    public static Mod_Mem_EmulatorViewModel[] PS1 => new[] { BizHawk_PS1_2_4_0, BizHawk_PS1_2_8_0 };
-    public static Mod_Mem_EmulatorViewModel[] GBA => new[] { VisualBoyAdvance_M_2_1_3 };
+    public static Mod_Mem_EmulatorViewModel[] MSDOS => new[] { DOSBox_0_74_3_x86, DOSBox_0_74_2_1_x86, DOSBox_0_74_x86,  };
+    public static Mod_Mem_EmulatorViewModel[] PS1 => new[] { BizHawk_PS1_2_8_0_x64, BizHawk_PS1_2_4_0_x64, };
+    public static Mod_Mem_EmulatorViewModel[] GBA => new[] { VisualBoyAdvance_M_2_1_3_x86 };
 
     #endregion
 
@@ -94,7 +94,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
 
     #region BizHawk
 
-    public static Mod_Mem_EmulatorViewModel BizHawk_PS1_2_4_0 => new(
+    public static Mod_Mem_EmulatorViewModel BizHawk_PS1_2_4_0_x64 => new(
         displayName: "BizHawk Octoshock (2.4.0 - x64)",
         processNameKeywords: new[] { "EmuHawk" },
         memoryRegions: new Mod_Mem_MemoryRegion(
@@ -104,7 +104,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
             ModuleName: "octoshock.dll",
             ProcessOffset: 0x0011D880,
             IsProcessOffsetAPointer: false));
-    public static Mod_Mem_EmulatorViewModel BizHawk_PS1_2_8_0 => new(
+    public static Mod_Mem_EmulatorViewModel BizHawk_PS1_2_8_0_x64 => new(
         displayName: "BizHawk Octoshock (2.8.0 - x64)",
         processNameKeywords: new[] { "EmuHawk" },
         memoryRegions: new Mod_Mem_MemoryRegion(
@@ -119,7 +119,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
 
     #region VisualBoyAdvance-M
 
-    public static Mod_Mem_EmulatorViewModel VisualBoyAdvance_M_2_1_3 => new(
+    public static Mod_Mem_EmulatorViewModel VisualBoyAdvance_M_2_1_3_x86 => new(
         displayName: "VisualBoyAdvance-M (2.1.3 - x86)",
         processNameKeywords: new[] { "visualboyadvance-m" },
         memoryRegions: new[]
