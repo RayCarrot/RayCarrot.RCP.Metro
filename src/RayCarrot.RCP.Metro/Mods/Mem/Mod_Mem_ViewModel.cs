@@ -286,7 +286,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
             catch (Exception ex)
             {
                 // Wait a bit in case the process is currently exiting so we don't have to show an error message
-                await Task.Delay(TimeSpan.FromMilliseconds(400));
+                await Task.Delay(TimeSpan.FromSeconds(1));
 
                 if (ProcessAttacherViewModel.AttachedProcess?.Process.HasExited == true)
                 {
