@@ -443,11 +443,20 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Settings_UserLevelAdvanced" xml:space="preserve">
     <value>Avanzado</value>
   </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Usuario Avanzado - Opción para usuarios que quieren funciones mas avanzadas que las normales, Pero sin los detalles técnicos</value>
+  </data>
   <data name="Settings_UserLevelTechnical" xml:space="preserve">
     <value>Técnico</value>
   </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Usuario Técnico - Opción para usuarios que quieren funciones mas avanzadas que las normales con los detalles técnicos</value>
+  </data>
   <data name="Settings_UserLevelDebug" xml:space="preserve">
     <value>Depurador</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Usuario Depurador - Opción para desarrolladores de apps y testers que quieren opciónes para depurar avanzadas y información</value>
   </data>
   <data name="Settings_Language" xml:space="preserve">
     <value>Idioma</value>
@@ -482,6 +491,9 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Muestra la barra de progreso en la icona de la barraa de tareas</value>
   </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Mostrar el progreso de las descargas en el icono de la barra de tareas</value>
+  </data>
   <data name="Settings_DosBoxHeader" xml:space="preserve">
     <value>DOSBox</value>
   </data>
@@ -490,6 +502,15 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Settings_DosBoxPathInfo" xml:space="preserve">
     <value>La dirección del ejecutable de DOSBox</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
+    <value>Dirección de los archivos de configuración de DOSBox (opcional)</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
+    <value>La dirección de los archivos de configuración de DOSBox</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Depurar</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Localización de Copia de Seguridad</value>
@@ -505,6 +526,18 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Settings_GeneralHeader" xml:space="preserve">
     <value>General</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Cerrar aplicación cuando inicies un juego</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Cerrar el diálogo de configuración al guardar</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>Banda Sonora por nivel</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>Por defecto la version de PC solo tiene una pista de musica para cada nivel, Este parche hace que cada nivel tenga su propia pista, Similar a la version de PlayStation.</value>
   </data>
   <data name="R1U_TPLSInstall" xml:space="preserve">
     <value>Instalar</value>
@@ -524,6 +557,9 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="R1U_CompleteOSTHeader" xml:space="preserve">
     <value>Banda sonora completa</value>
   </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever, Incluyendo la version de GOG, No contiene con la banda sonora completa debido a el espacio del disco no estando disponible originalmente. Esta utilidad puede remplazar la banda sonora incompleta con la completa, O alternativamente revertirlo.</value>
+  </data>
   <data name="R1U_CompleteOSTReplace" xml:space="preserve">
     <value>Reemplazar con la banda sonora completa</value>
   </data>
@@ -533,20 +569,32 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="R2U_TranslationsHeader" xml:space="preserve">
     <value>Traducciones no oficiales</value>
   </data>
+  <data name="R2U_TranslationsInfo" xml:space="preserve">
+    <value>Aplicando una traduccion no oficial reemplaza uno de los  lenguajes en juego con el seleccionado, En la mayoria de casos sera el ingles. Los cambios pueden ser revertidos en cualquier momento aplicando la version original.</value>
+  </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>
   <data name="R3U_DirectPlayHeader" xml:space="preserve">
     <value>DirectPlay</value>
   </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay necesita estar activado para jugar Rayman 3. Por defecto esta usualmente desactivado en Windows 10.</value>
+  </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Reemplazar archivos infectados</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Algunas versiones de Rayman Designer, Incluyendo Rayman Forever, Tienen un par de los archivos de RayKit infectados con un malware, Aunque no es dañiño, O siquiera activo, Y GOG confirmo que no hay peligro, Puedes reemplazar los archivos con sus versiones no infectadas usando esta utilidad.</value>
   </data>
   <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
     <value>Idioma</value>
   </data>
   <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
     <value>Reemplazar</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Crear archivo de configuracion faltante</value>
   </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Videos de Alta Calidad</value>
@@ -1340,53 +1388,5 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="RFR_LevelName_4_10" xml:space="preserve">
     <value>Breath of Death</value>
-  </data>
-  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
-    <value>Usuario Avanzado - Opción para usuarios que quieren funciones mas avanzadas que las normales, Pero sin los detalles técnicos</value>
-  </data>
-  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
-    <value>Usuario Técnico - Opción para usuarios que quieren funciones mas avanzadas que las normales con los detalles técnicos</value>
-  </data>
-  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
-    <value>Usuario Depurador - Opción para desarrolladores de apps y testers que quieren opciónes para depurar avanzadas y información</value>
-  </data>
-  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
-    <value>Mostrar el progreso de las descargas en el icono de la barra de tareas</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
-    <value>Dirección de los archivos de configuración de DOSBox (opcional)</value>
-  </data>
-  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
-    <value>La dirección de los archivos de configuración de DOSBox</value>
-  </data>
-  <data name="Settings_DebugHeader" xml:space="preserve">
-    <value>Depurar</value>
-  </data>
-  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
-    <value>Cerrar aplicación cuando inicies un juego</value>
-  </data>
-  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
-    <value>Cerrar el diálogo de configuración al guardar</value>
-  </data>
-  <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Banda Sonora por nivel</value>
-  </data>
-  <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>Por defecto la version de PC solo tiene una pista de musica para cada nivel, Este parche hace que cada nivel tenga su propia pista, Similar a la version de PlayStation.</value>
-  </data>
-  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
-    <value>Rayman Forever, Incluyendo la version de GOG, No contiene con la banda sonora completa debido a el espacio del disco no estando disponible originalmente. Esta utilidad puede remplazar la banda sonora incompleta con la completa, O alternativamente revertirlo.</value>
-  </data>
-  <data name="R2U_TranslationsInfo" xml:space="preserve">
-    <value>Aplicando una traduccion no oficial reemplaza uno de los  lenguajes en juego con el seleccionado, En la mayoria de casos sera el ingles. Los cambios pueden ser revertidos en cualquier momento aplicando la version original.</value>
-  </data>
-  <data name="R3U_DirectPlayInfo" xml:space="preserve">
-    <value>DirectPlay necesita estar activado para jugar Rayman 3. Por defecto esta usualmente desactivado en Windows 10.</value>
-  </data>
-  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
-    <value>Algunas versiones de Rayman Designer, Incluyendo Rayman Forever, Tienen un par de los archivos de RayKit infectados con un malware, Aunque no es dañiño, O siquiera activo, Y GOG confirmo que no hay peligro, Puedes reemplazar los archivos con sus versiones no infectadas usando esta utilidad.</value>
-  </data>
-  <data name="RDU_CreateConfigHeader" xml:space="preserve">
-    <value>Crear archivo de configuracion faltante</value>
   </data>
 </root>

@@ -2713,9 +2713,6 @@
   <data name="Archive_FileInfo_Format" xml:space="preserve">
     <value>Формат:</value>
   </data>
-  <data name="Archive_CreationFileStatus" xml:space="preserve">
-    <value>Добавление файла {0}</value>
-  </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Произошла ошибка при добавлении {0}</value>
   </data>
@@ -3022,9 +3019,6 @@
   </data>
   <data name="Utilities_R1E_Homepage" xml:space="preserve">
     <value>Подробности</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
   </data>
   <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
     <value>Модификаторы памяти</value>
@@ -3576,64 +3570,64 @@ Start: Пауза</value>
     <value>Bunnies sometimes recycle the scenery from other games</value>
   </data>
   <data name="RRR_LevelName_20" xml:space="preserve">
-    <value>Bunnies can't jump</value>
+    <value>Кролики не умеют прыгать (Bunnies can't jump)</value>
   </data>
   <data name="RRR_LevelName_21" xml:space="preserve">
-    <value>Bunnies don't give gifts</value>
+    <value>Бойся кролей, дары приносящих (Bunnies don't give gifts)</value>
   </data>
   <data name="RRR_LevelName_22" xml:space="preserve">
-    <value>Bunnies don't know what to do with cows</value>
+    <value>Кролики не знают, что делать с коровами (Bunnies don't know what to do with cows)</value>
   </data>
   <data name="RRR_LevelName_23" xml:space="preserve">
-    <value>Bunnies never close doors</value>
+    <value>Кролики никогда не закрывают дверь (Bunnies never close doors)</value>
   </data>
   <data name="RRR_LevelName_24" xml:space="preserve">
-    <value>Bunnies don't milk cows</value>
+    <value>Кролики не доят коров (Bunnies don't milk cows)</value>
   </data>
   <data name="RRR_LevelName_25" xml:space="preserve">
-    <value>Bunnies are addicted to carrot juice</value>
+    <value>Кролики обожают морковный сок (Bunnies are addicted to carrot juice)</value>
   </data>
   <data name="RRR_LevelName_26" xml:space="preserve">
-    <value>Bunnies can't slide Part 2</value>
+    <value>Кролики не умеют скользить Часть 2 (Bunnies can't slide Part 2)</value>
   </data>
   <data name="RRR_LevelName_27" xml:space="preserve">
-    <value>Bunnies are heartless with pigs</value>
+    <value>Кролики безжалостны по отношению к свиньям (Bunnies are heartless with pigs)</value>
   </data>
   <data name="RRR_LevelName_28" xml:space="preserve">
-    <value>Bunnies don't like bats</value>
+    <value>Кролики не любят летучих мышей (Bunnies don't like bats)</value>
   </data>
   <data name="RRR_LevelName_29" xml:space="preserve">
-    <value>Bunnies don't use toothpaste</value>
+    <value>Кролики не чистят зубы (Bunnies don't use toothpaste)</value>
   </data>
   <data name="RRR_LevelName_30" xml:space="preserve">
-    <value>Bunnies can't fly</value>
+    <value>Кролики не летают (Bunnies can't fly)</value>
   </data>
   <data name="RRR_LevelName_31" xml:space="preserve">
-    <value>Bunnies can only fly downwards</value>
+    <value>Кролики умеют летать только вниз (Bunnies can only fly downwards)</value>
   </data>
   <data name="RRR_LevelName_32" xml:space="preserve">
-    <value>Bunnies can't play soccer</value>
+    <value>Кролики не умеют играть в футбол (Bunnies can't play soccer)</value>
   </data>
   <data name="RRR_LevelName_33" xml:space="preserve">
-    <value>Bunnies don't understand bowling</value>
+    <value>Кролики недолюбливают боулинг (Bunnies don't understand bowling)</value>
   </data>
   <data name="RRR_LevelName_34" xml:space="preserve">
     <value>Animal Farm</value>
   </data>
   <data name="RRR_LevelName_35" xml:space="preserve">
-    <value>Bunnies have a great ear for music</value>
+    <value>У кроликов отличный музыкальный слух (Bunnies have a great ear for music)</value>
   </data>
   <data name="RRR_LevelName_36" xml:space="preserve">
-    <value>Bunnies are slow to react</value>
+    <value>Кролики иногда тормозят (Bunnies are slow to react)</value>
   </data>
   <data name="RRR_LevelName_37" xml:space="preserve">
-    <value>Bunnies are fantastic dancers Part 3</value>
+    <value>Кролики прекрасно танцуют Часть 3 (Bunnies are fantastic dancers Part 3)</value>
   </data>
   <data name="RRR_LevelName_38" xml:space="preserve">
-    <value>Bunnies like to stuff themselves</value>
+    <value>Кролики любят объедаться (Bunnies like to stuff themselves)</value>
   </data>
   <data name="RRR_LevelName_39" xml:space="preserve">
-    <value>Bunnies are raving mad Part 2</value>
+    <value>Кролики помешаны. На рейве Часть 2 (Bunnies are raving mad Part 2)</value>
   </data>
   <data name="RRR_LevelName_40" xml:space="preserve">
     <value>Bunnies like a good race</value>
@@ -3648,142 +3642,142 @@ Start: Пауза</value>
     <value>Bunnies only fly downwards</value>
   </data>
   <data name="RRR_LevelName_44" xml:space="preserve">
-    <value>Bunnies are fantastic dancers</value>
+    <value>Кролики прекрасно танцуют (Bunnies are fantastic dancers)</value>
   </data>
   <data name="RRR_LevelName_45" xml:space="preserve">
-    <value>Bunnies don't sleep well</value>
+    <value>Кролики плохо спят (Bunnies don't sleep well)</value>
   </data>
   <data name="RRR_LevelName_46" xml:space="preserve">
-    <value>Bunnies have no memory</value>
+    <value>У кроликов дырявая память (Bunnies have no memory)</value>
   </data>
   <data name="RRR_LevelName_47" xml:space="preserve">
-    <value>Bunnies rarely leave their burrows</value>
+    <value>Кролики редко покидают свои норки (Bunnies rarely leave their burrows)</value>
   </data>
   <data name="RRR_LevelName_48" xml:space="preserve">
-    <value>Bunnies can't jump Part 2</value>
+    <value>Кролики не умеют прыгать Часть 2 (Bunnies can't jump Part 2)</value>
   </data>
   <data name="RRR_LevelName_49" xml:space="preserve">
-    <value>Bunnies never close doors Part 2</value>
+    <value>Кролики никогда не закрывают дверь Часть 2 (Bunnies never close doors Part 2)</value>
   </data>
   <data name="RRR_LevelName_50" xml:space="preserve">
-    <value>Bunnies don't milk cows Part 2</value>
+    <value>Кролики не доят коров Часть 2 (Bunnies don't milk cows Part 2)</value>
   </data>
   <data name="RRR_LevelName_51" xml:space="preserve">
     <value>Bunnies like a good cowboy race</value>
   </data>
   <data name="RRR_LevelName_52" xml:space="preserve">
-    <value>Bunnies are heartless with pigs Part 2</value>
+    <value>Кролики безжалостны по отношению к свиньям Часть 2 (Bunnies are heartless with pigs Part 2)</value>
   </data>
   <data name="RRR_LevelName_53" xml:space="preserve">
     <value>Bunnies Psychology. Volume 1</value>
   </data>
   <data name="RRR_LevelName_54" xml:space="preserve">
-    <value>Bunnies don't like bats Part 2</value>
+    <value>Кролики не любят летучих мышей Часть 2 (Bunnies don't like bats Part 2)</value>
   </data>
   <data name="RRR_LevelName_55" xml:space="preserve">
-    <value>Bunnies don't use toothpaste Part 2</value>
+    <value>Кролики не чистят зубы Часть 2 (Bunnies don't use toothpaste Part 2)</value>
   </data>
   <data name="RRR_LevelName_56" xml:space="preserve">
-    <value>Bunnies can't fly Part 2</value>
+    <value>Кролики не летают Часть 2 (Bunnies can't fly Part 2)</value>
   </data>
   <data name="RRR_LevelName_57" xml:space="preserve">
     <value>Bunnies Psychology. Volume 2</value>
   </data>
   <data name="RRR_LevelName_58" xml:space="preserve">
-    <value>Bunnies can't shear sheep</value>
+    <value>Кролики не умеют стричь овец (Bunnies can't shear sheep)</value>
   </data>
   <data name="RRR_LevelName_59" xml:space="preserve">
-    <value>Bunnies are slow to react Part 2</value>
+    <value>Кролики иногда тормозят Часть 2 (Bunnies are slow to react Part 2)</value>
   </data>
   <data name="RRR_LevelName_60" xml:space="preserve">
-    <value>Bunnies are slow to react Part 3</value>
+    <value>Кролики иногда тормозят Часть 3 (Bunnies are slow to react Part 3)</value>
   </data>
   <data name="RRR_LevelName_61" xml:space="preserve">
-    <value>Bunnies like to stuff themselves Part 2</value>
+    <value>Кролики любят объедаться Часть 2 (Bunnies like to stuff themselves Part 2)</value>
   </data>
   <data name="RRR_LevelName_62" xml:space="preserve">
-    <value>Bunnies have no memory Part 2</value>
+    <value>У кроликов дырявая память Часть 2 (Bunnies have no memory Part 2)</value>
   </data>
   <data name="RRR_LevelName_63" xml:space="preserve">
-    <value>Bunnies rarely leave their burrows Part 2</value>
+    <value>Кролики редко покидают свои норки Часть 2 (Bunnies rarely leave their burrows Part 2)</value>
   </data>
   <data name="RRR_LevelName_64" xml:space="preserve">
-    <value>Bunnies like surprises</value>
+    <value>Кролики любят сюрпризы (Bunnies like surprises)</value>
   </data>
   <data name="RRR_LevelName_65" xml:space="preserve">
-    <value>Bunnies don't like being shot at</value>
+    <value>Кролики не любят, когда в них стреляют (Bunnies don't like being shot at)</value>
   </data>
   <data name="RRR_LevelName_66" xml:space="preserve">
-    <value>Bunnies have natural rhythm</value>
+    <value>Кролики - прирожденные танцоры (Bunnies have natural rhythm)</value>
   </data>
   <data name="RRR_LevelName_67" xml:space="preserve">
-    <value>Bunnies are a-mazing</value>
+    <value>Кролики блуждают в лабиринтах (Bunnies are a-mazing)</value>
   </data>
   <data name="RRR_LevelName_68" xml:space="preserve">
     <value>The Dark Side</value>
   </data>
   <data name="RRR_LevelName_69" xml:space="preserve">
-    <value>Bunnies have natural rhythm Part 2</value>
+    <value>Кролики - прирожденные танцоры Часть 2 (Bunnies have natural rhythm Part 2)</value>
   </data>
   <data name="RRR_LevelName_70" xml:space="preserve">
-    <value>Bunnies are ticklish</value>
+    <value>Кролики боятся щекотки (Bunnies are ticklish)</value>
   </data>
   <data name="RRR_LevelName_71" xml:space="preserve">
     <value>Bunnies Psychology. Volume 3</value>
   </data>
   <data name="RRR_LevelName_72" xml:space="preserve">
-    <value>Bunnies are bad at peek-a-boo</value>
+    <value>Кролики не умеют играть в прятки (Bunnies are bad at peek-a-boo)</value>
   </data>
   <data name="RRR_LevelName_73" xml:space="preserve">
-    <value>Bunnies are oversensitive</value>
+    <value>Кролики очень чувствительны (Bunnies are oversensitive)</value>
   </data>
   <data name="RRR_LevelName_74" xml:space="preserve">
-    <value>Bunnies have a poor grasp of anatomy</value>
+    <value>Кролики не разбираются в анатомии (Bunnies have a poor grasp of anatomy)</value>
   </data>
   <data name="RRR_LevelName_75" xml:space="preserve">
-    <value>Bunnies can't slide</value>
+    <value>Кролики не умеют скользить (Bunnies can't slide)</value>
   </data>
   <data name="RRR_LevelName_76" xml:space="preserve">
-    <value>Bunnies can't herd</value>
+    <value>Кролики не умеют пасти скот (Bunnies can't herd)</value>
   </data>
   <data name="RRR_LevelName_77" xml:space="preserve">
-    <value>Bunnies are not ostriches</value>
+    <value>Кролики - не страусы (Bunnies are not ostriches)</value>
   </data>
   <data name="RRR_LevelName_78" xml:space="preserve">
-    <value>Bunnies just wanna have fun</value>
+    <value>Кролики просто хотят отрываться (Bunnies just wanna have fun)</value>
   </data>
   <data name="RRR_LevelName_79" xml:space="preserve">
-    <value>Bunnies love disco dancing</value>
+    <value>Кролики обожают диско (Bunnies love disco dancing)</value>
   </data>
   <data name="RRR_LevelName_80" xml:space="preserve">
-    <value>Bunnies get a kick out of Hip-Hop</value>
+    <value>Кролики тащатся от хип-хопа (Bunnies get a kick out of Hip-Hop)</value>
   </data>
   <data name="RRR_LevelName_81" xml:space="preserve">
-    <value>Bunninos dansa la Bamba</value>
+    <value>Кробалберо танцуют латину (Bunninos dansa la Bamba)</value>
   </data>
   <data name="RRR_LevelName_82" xml:space="preserve">
-    <value>Deep down, Bunnies are rockers</value>
+    <value>В глубине души кролики - рокеры (Deep down, Bunnies are rockers)</value>
   </data>
   <data name="RRR_LevelName_83" xml:space="preserve">
-    <value>Bunnies are raving mad</value>
+    <value>Кролики помешаны. На рейве (Bunnies are raving mad)</value>
   </data>
   <data name="RRR_LevelName_84" xml:space="preserve">
-    <value>Bunnies are fantastic dancers Part 2</value>
+    <value>Кролики прекрасно танцуют Часть 2 (Bunnies are fantastic dancers Part 2)</value>
   </data>
   <data name="RRR_LevelName_85" xml:space="preserve">
-    <value>Bunnies love disco dancing Part 2</value>
+    <value>Кролики обожают диско Часть 2 (Bunnies love disco dancing Part 2)</value>
   </data>
   <data name="RRR_LevelName_86" xml:space="preserve">
-    <value>Bunnies just wanna have fun Part 2</value>
+    <value>Кролики просто хотят отрываться Часть 2 (Bunnies just wanna have fun Part 2)</value>
   </data>
   <data name="RRR_LevelName_87" xml:space="preserve">
-    <value>Bunnies get a kick out of Hip-Hop Part 2</value>
+    <value>Кролики тащатся от хип-хопа Часть 2 (Bunnies get a kick out of Hip-Hop Part 2)</value>
   </data>
   <data name="RRR_LevelName_88" xml:space="preserve">
-    <value>Bunninos dansa la Bamba Part 2</value>
+    <value>Кробалберо танцуют латину Часть 2 (Bunninos dansa la Bamba Part 2)</value>
   </data>
   <data name="RRR_LevelName_89" xml:space="preserve">
-    <value>Deep down, Bunnies are rockers Part 2</value>
+    <value>В глубине души кролики - рокеры Часть 2 (Deep down, Bunnies are rockers Part 2)</value>
   </data>
   <data name="RRR_LevelName_90" xml:space="preserve">
     <value>Bunnies don't like being disturbed on holiday</value>
@@ -4222,5 +4216,26 @@ Start: Пауза</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
     <value>После активации при переупаковке .cnt-архива текстуры для игры будут автоматически синхронизироваться. Это полезно для игр, где требуется синхронизация для импорта текстур с более высоким разрешением.</value>
+  </data>
+  <data name="PartX" xml:space="preserve">
+    <value>Часть {0}</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
+    <value>Rayman 1 (PC - 1.21)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
+    <value>Rayman 1 (PS1 - US)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
+    <value>Rayman 2 (PS1 - Прототип)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
+    <value>Rayman Advance (GBA - EU)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
+    <value>Rayman 2 (PC)</value>
+  </data>
+  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
+    <value>Rayman 3 (PC)</value>
   </data>
 </root>

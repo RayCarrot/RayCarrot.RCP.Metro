@@ -2710,9 +2710,6 @@ Foutmelding: {1}</value>
   <data name="Archive_FileInfo_Format" xml:space="preserve">
     <value>Bestandsindeling:</value>
   </data>
-  <data name="Archive_CreationFileStatus" xml:space="preserve">
-    <value>Bestand {0} toevoegen</value>
-  </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het toevoegen van {0}</value>
   </data>
@@ -3019,9 +3016,6 @@ Voor het handmatig updaten van het programma, ga je naar {1) en download je verv
   </data>
   <data name="Utilities_R1E_Homepage" xml:space="preserve">
     <value>Meer informatie</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
   </data>
   <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
     <value>Geheugenmods</value>
@@ -4219,5 +4213,398 @@ Start: Pauzeren</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
     <value>Indien ingeschakeld, zullen de texturen van het spel automatisch gesynchroniseerd worden wanneer een .cnt archief wordt herverpakt. Dit is handig in het geval van spellen waarbij synchroniseren een vereiste is t.b.v. het importeren van texturen met een hogere resolutie.</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Inpakken archief</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>Toevoegen bestanden</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>Importeren bestanden</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
+    <value>{0} bestanden hebben dezelfde naam als de bestaande bestanden. Wil je deze vervangen?
+
+Conflicten:
+{1}</value>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>Wachten op het afsluiten van {0}</value>
+  </data>
+  <data name="Bool_True" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>Nee</value>
+  </data>
+  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
+    <value>Spelproces</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>Door het verbinden met een uitgevoerd game proces, kun je spelwaarden in real-time wijzigen. Voor sommige spellen betekent dit dat je ongebruikte features kunt inschakelen.</value>
+  </data>
+  <data name="Mod_Mem_GameSelection" xml:space="preserve">
+    <value>Spel</value>
+  </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>Emulator</value>
+  </data>
+  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
+    <value>Eigenschappen</value>
+  </data>
+  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
+    <value>Informatie</value>
+  </data>
+  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
+    <value>Acties</value>
+  </data>
+  <data name="Mod_Mem_LogHeader" xml:space="preserve">
+    <value>Logboek</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman Raving Rabbids Prototype Restauratie</value>
+  </data>
+  <data name="Mod_Mem_Header" xml:space="preserve">
+    <value>Geheugenmods</value>
+  </data>
+  <data name="Mod_Mem_AttachError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het verbinden met het proces</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de spelwaarden</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>Tijdelijke bestanden</value>
+  </data>
+  <data name="ProcessAttacher_Attach" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="ProcessAttacher_Detach" xml:space="preserve">
+    <value>Losmaken</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>Levenspunten</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>Levenspunten Max.</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>Plaats Ray</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>Staat toe dat Rayman vrij in een level wordt geplaatst</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>Mapselectie</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>Schakelt de in-game mapselectie aan/uit op de wereldmap</value>
+  </data>
+  <data name="Mod_Mem_Lang" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>Vuist</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>Hangen</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>Heliko</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>Grijpen</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>Rennen</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>Zaaien</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>Super-heliko</value>
+  </data>
+  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
+    <value>Geplet</value>
+  </data>
+  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
+    <value>Vuurvlieg</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>Geforceerd rennen</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>Omgekeerde besturing</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>Vuistplatform</value>
+  </data>
+  <data name="Mod_Mem_Unk" xml:space="preserve">
+    <value>Onbekend {0}</value>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>Engine info inzien</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>Objecten info inzien</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>Debug-modus</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>Start in demo-modus</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>Indien ingeschakeld, zal het spel de 2 ongebruikte, opgenomen demo's afspelen wanneer het level laadt. Dit kan getriggerd worden bij het verliezen van alle levens en door het vervolgens opnieuw te proberen.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>Multiplayer menu's laden</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>Indien dit is ingeschakeld, zal het spel de ongebruikte multiplayer menu's laden tijden het opstarten. Als het spel al gestart is, kan deze optie gekozen worden door het spel af te sluiten via het Pauze-menu. De multiplayer menu's an sich zijn níét volledig, omdat deze feature nooit volledig is geïmplementeerd. Het 1e menu omvat de spelerselectie en het 2e menu de levelselectie. Vanwege het feit dat deze niet functioneel zijn, kunnen deze alleen gewijzigd worden door gebruik te maken van onderstaande velden.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Level time-out</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
+    <value>Is speler 2</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMap" xml:space="preserve">
+    <value>Geselecteerde map</value>
+  </data>
+  <data name="Mod_Mem_GeneralCategory" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="Mod_Mem_DebugCategory" xml:space="preserve">
+    <value>Debuggen</value>
+  </data>
+  <data name="Mod_Mem_MultiplayerCategory" xml:space="preserve">
+    <value>Multiplayer</value>
+  </data>
+  <data name="Mod_Mem_PowersCategory" xml:space="preserve">
+    <value>Krachten</value>
+  </data>
+  <data name="Mod_Mem_CamX" xml:space="preserve">
+    <value>Camera X</value>
+  </data>
+  <data name="Mod_Mem_CamY" xml:space="preserve">
+    <value>Camera Y</value>
+  </data>
+  <data name="Mod_Mem_XPos" xml:space="preserve">
+    <value>X-positie</value>
+  </data>
+  <data name="Mod_Mem_YPos" xml:space="preserve">
+    <value>Y-positie</value>
+  </data>
+  <data name="Mod_Mem_RayState" xml:space="preserve">
+    <value>Rayman's staat</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoTime" xml:space="preserve">
+    <value>Heliko-tijd</value>
+  </data>
+  <data name="Mod_Mem_R1_FistCharge" xml:space="preserve">
+    <value>Vuistlading</value>
+  </data>
+  <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
+    <value>Actieve objecten</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Maptijd</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Willekeurige index</value>
+  </data>
+  <data name="Mod_Mem_R1_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_FinishLvlAction" xml:space="preserve">
+    <value>Finish level</value>
+  </data>
+  <data name="Mod_Mem_UnlockAllLvlsAction" xml:space="preserve">
+    <value>Ontgrendel alle levels</value>
+  </data>
+  <data name="Mod_Mem_AllCagesAction" xml:space="preserve">
+    <value>Alle kooien</value>
+  </data>
+  <data name="Mod_Mem_R1_ExitLvlAction" xml:space="preserve">
+    <value>Terugkeren naar wereldmap</value>
+  </data>
+  <data name="Mod_Mem_MenuLevelsCategory" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_MenuLevel" xml:space="preserve">
+    <value>Hoofdmenu</value>
+  </data>
+  <data name="R2_LevelName_mapmonde" xml:space="preserve">
+    <value>The Hall of Doors</value>
+  </data>
+  <data name="R2_LevelName_raycap" xml:space="preserve">
+    <value>Scorebord</value>
+  </data>
+  <data name="Mod_Mem_BonusLevelsCategory" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R2_LevelName_bonux" xml:space="preserve">
+    <value>Bonusfase</value>
+  </data>
+  <data name="Mod_Mem_CutsceneLevelsCategory" xml:space="preserve">
+    <value>Cutscenes</value>
+  </data>
+  <data name="R2_LevelName_jail_10" xml:space="preserve">
+    <value>Intro Deel 1</value>
+  </data>
+  <data name="R2_LevelName_jail_20" xml:space="preserve">
+    <value>Intro Deel 2</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Council Chamber of the Teensies</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Deel 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Deel 2</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Echoing Caves Intro</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Iron Mountains Ballonnen Cutscene</value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>Einde</value>
+  </data>
+  <data name="Mod_Mem_CreditsLevel" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="R2_LevelName_poloc_10" xml:space="preserve">
+    <value>Polokus Mask Deel 1</value>
+  </data>
+  <data name="R2_LevelName_poloc_20" xml:space="preserve">
+    <value>Polokus Mask Deel 2</value>
+  </data>
+  <data name="R2_LevelName_poloc_30" xml:space="preserve">
+    <value>Polokus Mask Deel 3</value>
+  </data>
+  <data name="R2_LevelName_poloc_40" xml:space="preserve">
+    <value>Polokus Mask Deel 4</value>
+  </data>
+  <data name="PartX" xml:space="preserve">
+    <value>Deel {0}</value>
+  </data>
+  <data name="R2_LevelName_learn_10" xml:space="preserve">
+    <value>The Woods of Light</value>
+  </data>
+  <data name="R2_LevelName_bast" xml:space="preserve">
+    <value>The Fairy Glade</value>
+  </data>
+  <data name="R2_LevelName_ski" xml:space="preserve">
+    <value>The Marshes of Awakening</value>
+  </data>
+  <data name="R2_LevelName_chase" xml:space="preserve">
+    <value>The Bayou</value>
+  </data>
+  <data name="R2_LevelName_water" xml:space="preserve">
+    <value>The Sanctuary of Water and Ice</value>
+  </data>
+  <data name="R2_LevelName_rodeo" xml:space="preserve">
+    <value>The Menhir Hills</value>
+  </data>
+  <data name="R2_LevelName_vulca" xml:space="preserve">
+    <value>The Cave of Bad Dreams</value>
+  </data>
+  <data name="R2_LevelName_glob" xml:space="preserve">
+    <value>The Canopy</value>
+  </data>
+  <data name="R2_LevelName_whale" xml:space="preserve">
+    <value>Whale Bay</value>
+  </data>
+  <data name="R2_LevelName_plum" xml:space="preserve">
+    <value>The Sanctuary of Stone and Fire</value>
+  </data>
+  <data name="R2_LevelName_cask" xml:space="preserve">
+    <value>The Echoing Caves</value>
+  </data>
+  <data name="R2_LevelName_nave" xml:space="preserve">
+    <value>The Precipice</value>
+  </data>
+  <data name="R2_LevelName_seat" xml:space="preserve">
+    <value>The Top of the World</value>
+  </data>
+  <data name="R2_LevelName_earth" xml:space="preserve">
+    <value>The Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_helic" xml:space="preserve">
+    <value>Beneath the Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_morb" xml:space="preserve">
+    <value>Tomb of the Ancients</value>
+  </data>
+  <data name="R2_LevelName_ile" xml:space="preserve">
+    <value>The Iron Mountains</value>
+  </data>
+  <data name="R2_LevelName_astro" xml:space="preserve">
+    <value>The Prison Ship</value>
+  </data>
+  <data name="R2_LevelName_rhop" xml:space="preserve">
+    <value>The Crow's Nest</value>
+  </data>
+  <data name="R3_LevelName_BonusTXT" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R3_LevelName_endgame" xml:space="preserve">
+    <value>Eindspel</value>
+  </data>
+  <data name="R3_LevelName_toudi_00" xml:space="preserve">
+    <value>2D Madness</value>
+  </data>
+  <data name="R3_LevelName_ten_map" xml:space="preserve">
+    <value>Racket Jump</value>
+  </data>
+  <data name="R3_LevelName_crush" xml:space="preserve">
+    <value>Crush</value>
+  </data>
+  <data name="R3_LevelName_raz_map" xml:space="preserve">
+    <value>Razoff Circus</value>
+  </data>
+  <data name="R3_LevelName_sentinel" xml:space="preserve">
+    <value>Sentinel</value>
+  </data>
+  <data name="R3_LevelName_snipe_00" xml:space="preserve">
+    <value>Missile Command</value>
+  </data>
+  <data name="R3_LevelName_ballmap" xml:space="preserve">
+    <value>Balloons</value>
+  </data>
+  <data name="R3_LevelName_ship_map" xml:space="preserve">
+    <value>Special Invaders</value>
+  </data>
+  <data name="R3_LevelName_commando" xml:space="preserve">
+    <value>Commando</value>
+  </data>
+  <data name="EmuSelection_None" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
+    <value>Rayman 1 (PC - 1.21)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
+    <value>Rayman 1 (PS1 - US)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
+    <value>Rayman 2 (PS1 - Prototype)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
+    <value>Rayman Advance (GBA - EU)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
+    <value>Rayman 2 (PC)</value>
+  </data>
+  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
+    <value>Rayman 3 (PC)</value>
   </data>
 </root>

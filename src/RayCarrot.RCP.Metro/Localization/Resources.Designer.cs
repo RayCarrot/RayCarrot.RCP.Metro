@@ -645,15 +645,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding file {0}.
-        /// </summary>
-        public static string Archive_CreationFileStatus {
-            get {
-                return ResourceManager.GetString("Archive_CreationFileStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred in the Archive Explorer and it had to close.
         /// </summary>
         public static string Archive_CriticalError {
@@ -3448,6 +3439,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string EmuSelection_None {
+            get {
+                return ResourceManager.GetString("EmuSelection_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a file destination to export to.
         /// </summary>
         public static string ExportDestinationSelectionHeader {
@@ -5657,7 +5657,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled then the game will start playing the unused two recorded demos when the level loads. This can be triggered by loosing all lives and choosing to try again..
+        ///   Looks up a localized string similar to If enabled then the game will start playing the unused two recorded demos when the level loads. This can be triggered by losing all lives and choosing to try again..
         /// </summary>
         public static string Mod_Mem_R1_DemoModeInfo {
             get {
@@ -7401,15 +7401,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to None.
-        /// </summary>
-        public static string Option_None {
-            get {
-                return ResourceManager.GetString("Option_None", resourceCulture);
             }
         }
         

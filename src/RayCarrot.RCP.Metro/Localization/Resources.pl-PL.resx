@@ -154,7 +154,7 @@
     <value>Microsoft Store</value>
   </data>
   <data name="MountPathHeader" xml:space="preserve">
-    <value>Ścieżka Montowania</value>
+    <value>Ścieżka montowania</value>
   </data>
   <data name="MountPathInfo" xml:space="preserve">
     <value>Ścieżką montowania może być plik albo napęd. Jeśli używasz wersji z GOG, plik będzie się nazywał 'game.inst'. Jeśli masz obraz płyty, to powinien być w pliku z rozszerzeniem .cue. W przeciwnym wypadku użyj litery napędu z płytą z grą.</value>
@@ -2735,9 +2735,6 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_FileInfo_Format" xml:space="preserve">
     <value>Format:</value>
   </data>
-  <data name="Archive_CreationFileStatus" xml:space="preserve">
-    <value>Dodawanie pliku {0}</value>
-  </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>Wystąpił błąd podczas dodawania {0}</value>
   </data>
@@ -3044,11 +3041,8 @@ Komunikat o błędzie: {1}</value>
   <data name="Utilities_R1E_Homepage" xml:space="preserve">
     <value>Więcej informacji</value>
   </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Szalone Kórliki</value>
-  </data>
   <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
-    <value>Modyfikacje pamięci</value>
+    <value>Mody pamięci</value>
   </data>
   <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
     <value>Włącz usunięte prototypowe funkcje w grze, wybierając żądane mody, a następnie je zastosuj. Wymaga to uruchomionej gry i działa tylko z wersjami GOG i Steam. Zastosowane mody będą działały tylko wtedy, gdy gra jest uruchomiona i zostaną zresetowane po jej zamknięciu.
@@ -4094,6 +4088,15 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Progression_Electoons" xml:space="preserve">
     <value>Elektruny</value>
   </data>
+  <data name="Progression_ROLumMedals" xml:space="preserve">
+    <value>Lum medale</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Trofea prędkości</value>
+  </data>
+  <data name="Progression_SaveEditWarning" xml:space="preserve">
+    <value>Edycja plików zapisu może je uszkodzić, jeśli zostanie wykonana niepoprawnie. Zaleca się zachowanie kopii zapasowej przed kontynuowaniem. Kontynuować? </value>
+  </data>
   <data name="Progression_SaveEditWarningHeader" xml:space="preserve">
     <value>Potwierdź edycję zapisu pliku</value>
   </data>
@@ -4151,6 +4154,15 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Progression_BackupSlots" xml:space="preserve">
     <value>Utwórz kopię zapasową</value>
   </data>
+  <data name="Settings_SerializationLog" xml:space="preserve">
+    <value>Dziennik serializacji</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Włączenie dziennika spowoduje, że każde działanie związane z serializacją binarną, takie jak użycie Eksploratora Archiwów lub przeglądanie postępu gry, zostanie zapisane w określonym pliku logu. Służy to głównie do debugowania, ale może być również przydatne do przeglądania struktury danych niektórych formatów. </value>
+  </data>
+  <data name="IsEnabled" xml:space="preserve">
+    <value>Jest włączony</value>
+  </data>
   <data name="Utilities_BinaryTools_Header" xml:space="preserve">
     <value>Narzędzia binarne</value>
   </data>
@@ -4160,6 +4172,12 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Utilities_Format_RRRSaveHeader" xml:space="preserve">
     <value>Pliki zapisu gry Rayman Szalone Kórliki (.sav)</value>
   </data>
+  <data name="Utilities_Serializers_Header" xml:space="preserve">
+    <value>Serializatory</value>
+  </data>
+  <data name="Utilities_Serializers_Log" xml:space="preserve">
+    <value>Dane wyjściowe jako log</value>
+  </data>
   <data name="Utilities_Serializers_Deserialize" xml:space="preserve">
     <value>Deserializuj do pliku JSON</value>
   </data>
@@ -4168,6 +4186,9 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   </data>
   <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
     <value>Pliki zapisu gry Rayman Fiesta Run (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Preferencje Unity Player / Pliki zapisu gry Rabbids Big Bang (.dat)</value>
   </data>
   <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
     <value>Game Maker DS Map / Plik zapisu gry Rayman Redemption (.txt)</value>
@@ -4220,33 +4241,6 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   <data name="Utilities_NotAvailable" xml:space="preserve">
     <value>Narzędzie jest niedostępne</value>
   </data>
-  <data name="Progression_ROLumMedals" xml:space="preserve">
-    <value>Lum medale</value>
-  </data>
-  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
-    <value>Trofea prędkości</value>
-  </data>
-  <data name="Progression_SaveEditWarning" xml:space="preserve">
-    <value>Edycja plików zapisu może je uszkodzić, jeśli zostanie wykonana niepoprawnie. Zaleca się zachowanie kopii zapasowej przed kontynuowaniem. Kontynuować? </value>
-  </data>
-  <data name="Settings_SerializationLog" xml:space="preserve">
-    <value>Dziennik serializacji</value>
-  </data>
-  <data name="Settings_SerializationLogInfo" xml:space="preserve">
-    <value>Włączenie dziennika spowoduje, że każde działanie związane z serializacją binarną, takie jak użycie Eksploratora Archiwów lub przeglądanie postępu gry, zostanie zapisane w określonym pliku logu. Służy to głównie do debugowania, ale może być również przydatne do przeglądania struktury danych niektórych formatów. </value>
-  </data>
-  <data name="IsEnabled" xml:space="preserve">
-    <value>Jest włączony</value>
-  </data>
-  <data name="Utilities_Serializers_Header" xml:space="preserve">
-    <value>Serializatory</value>
-  </data>
-  <data name="Utilities_Serializers_Log" xml:space="preserve">
-    <value>Dane wyjściowe jako log</value>
-  </data>
-  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
-    <value>Preferencje Unity Player / Pliki zapisu gry Rabbids Big Bang (.dat)</value>
-  </data>
   <data name="About_Credits_XanderNT" xml:space="preserve">
     <value>Tłumaczenie hebrajskie programu</value>
   </data>
@@ -4255,5 +4249,398 @@ Jeżdżąc na pająkopodobnych robotach, możesz skakać tak, jak pająki w prot
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
     <value>Po włączeniu tej opcji tekstury gry będą automatycznie synchronizowane po przepakowaniu archiwum .cnt. Jest to przydatne w przypadku gier, w których do importowania tekstur wyższej rozdzielczości wymagana jest synchronizacja.</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Pakowanie archiwum</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>Dodawanie plików</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>Importowanie plików</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
+    <value>{0} pliki mają taką samą nazwę jak istniejące pliki. Czy chcesz je zastąpić?
+
+Konflikty:
+{1}</value>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>Oczekiwanie na zamknięcie {0}</value>
+  </data>
+  <data name="Bool_True" xml:space="preserve">
+    <value>Tak</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>Nie</value>
+  </data>
+  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
+    <value>Proces gry</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>Dołączając do uruchomionego procesu gry, będziesz mógł modyfikować i wyświetlać wartości gry w czasie rzeczywistym. W przypadku niektórych gier umożliwi to włączenie nieużywanych funkcji.</value>
+  </data>
+  <data name="Mod_Mem_GameSelection" xml:space="preserve">
+    <value>Gra</value>
+  </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>Emulator</value>
+  </data>
+  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
+    <value>Właściwości</value>
+  </data>
+  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
+    <value>Informacje</value>
+  </data>
+  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
+    <value>Akcje</value>
+  </data>
+  <data name="Mod_Mem_LogHeader" xml:space="preserve">
+    <value>Logi</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Przywrócenie prototypu Rayman Szalone Kórliki </value>
+  </data>
+  <data name="Mod_Mem_Header" xml:space="preserve">
+    <value>Mody pamięci</value>
+  </data>
+  <data name="Mod_Mem_AttachError" xml:space="preserve">
+    <value>Wystąpił błąd podczas dołączania do procesu</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>Wystąpił błąd podczas aktualizacji wartości gry</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>Pliki tymczasowe</value>
+  </data>
+  <data name="ProcessAttacher_Attach" xml:space="preserve">
+    <value>Dołącz</value>
+  </data>
+  <data name="ProcessAttacher_Detach" xml:space="preserve">
+    <value>Odłącz</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>Punkty życia</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>Maks. liczba punktów życia</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>Umieść Raymana</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>Pozwala na dowolne rozmieszczenie Raymana na poziomie</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>Wybór mapy</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>Przełącza wybór mapy w grze na mapie świata</value>
+  </data>
+  <data name="Mod_Mem_Lang" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>Pięść</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>Zawieszenie się</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>Helikopter</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>Chwytanie</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>Bieg</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>Ziarno</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>Super helikopter</value>
+  </data>
+  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
+    <value>Zgniecenie</value>
+  </data>
+  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
+    <value>Świetlik</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>Wymuś bieg</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>Odwrócenie sterowania</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>Platforma pięści</value>
+  </data>
+  <data name="Mod_Mem_Unk" xml:space="preserve">
+    <value>Nieznany {0}</value>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>Pokaż informacje o silniku</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>Pokaż informacje o obiektach</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>Tryb debugowania</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>Uruchom w trybie demo</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>Jeśli opcja jest włączona, gra rozpocznie odtwarzanie nieużywanych dwóch nagranych wersji demo po załadowaniu poziomu. Można to uruchomić, tracąc wszystkie życia i próbując ponownie.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>Wczytaj menu trybu wieloosobowego</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>Gdy opcja jest włączona, gra załaduje nieużywane menu trybu multiplayer podczas uruchamiania. Jeśli gra została już uruchomiona, możesz uzyskać do niej dostęp, wybierając wyjście z gry z menu pauzy. Menu trybu multiplayer nie jest kompletne, ponieważ funkcja ta nigdy nie została w pełni zaimplementowana. Pierwsze menu to wybór gracza, a drugie to wybór poziomu. Ponieważ nie są one funkcjonalne, jedynym sposobem na ich zmianę jest użycie poniższych pól.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Limit czasu poziomu</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
+    <value>Jest graczem 2</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMap" xml:space="preserve">
+    <value>Wybrana mapa</value>
+  </data>
+  <data name="Mod_Mem_GeneralCategory" xml:space="preserve">
+    <value>Ogólne</value>
+  </data>
+  <data name="Mod_Mem_DebugCategory" xml:space="preserve">
+    <value>Debugowanie</value>
+  </data>
+  <data name="Mod_Mem_MultiplayerCategory" xml:space="preserve">
+    <value>Multiplayer</value>
+  </data>
+  <data name="Mod_Mem_PowersCategory" xml:space="preserve">
+    <value>Moce</value>
+  </data>
+  <data name="Mod_Mem_CamX" xml:space="preserve">
+    <value>Kamera X</value>
+  </data>
+  <data name="Mod_Mem_CamY" xml:space="preserve">
+    <value>Kamera Y</value>
+  </data>
+  <data name="Mod_Mem_XPos" xml:space="preserve">
+    <value>pozycja X</value>
+  </data>
+  <data name="Mod_Mem_YPos" xml:space="preserve">
+    <value>pozycja Y</value>
+  </data>
+  <data name="Mod_Mem_RayState" xml:space="preserve">
+    <value>stan Raymana</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoTime" xml:space="preserve">
+    <value>Czas działania helikoptera</value>
+  </data>
+  <data name="Mod_Mem_R1_FistCharge" xml:space="preserve">
+    <value>Szarża pięścią</value>
+  </data>
+  <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
+    <value>Aktywne obiekty</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Czas na mapie</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Indeks losowy</value>
+  </data>
+  <data name="Mod_Mem_R1_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_FinishLvlAction" xml:space="preserve">
+    <value>Ukończ poziom</value>
+  </data>
+  <data name="Mod_Mem_UnlockAllLvlsAction" xml:space="preserve">
+    <value>Odblokuj wszystkie poziomy</value>
+  </data>
+  <data name="Mod_Mem_AllCagesAction" xml:space="preserve">
+    <value>Wszystkie klatki</value>
+  </data>
+  <data name="Mod_Mem_R1_ExitLvlAction" xml:space="preserve">
+    <value>Powrót do mapy świata</value>
+  </data>
+  <data name="Mod_Mem_MenuLevelsCategory" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Mod_Mem_MenuLevel" xml:space="preserve">
+    <value>Menu główne</value>
+  </data>
+  <data name="R2_LevelName_mapmonde" xml:space="preserve">
+    <value>Portal</value>
+  </data>
+  <data name="R2_LevelName_raycap" xml:space="preserve">
+    <value>Ekran wyników</value>
+  </data>
+  <data name="Mod_Mem_BonusLevelsCategory" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R2_LevelName_bonux" xml:space="preserve">
+    <value>Etap bonusowy</value>
+  </data>
+  <data name="Mod_Mem_CutsceneLevelsCategory" xml:space="preserve">
+    <value>Przerywniki filmowe</value>
+  </data>
+  <data name="R2_LevelName_jail_10" xml:space="preserve">
+    <value>Wprowadzenie Część 1</value>
+  </data>
+  <data name="R2_LevelName_jail_20" xml:space="preserve">
+    <value>Wprowadzenie Część 2</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Siedziba rady Teensies</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Tymczasem na Statku Więziennym Część 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Tymczasem na Statku Więziennym Część 2</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Jaskinie Echa Wprowadzenie</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Przerywnik z balonem w Żelaznych górach</value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>Koniec</value>
+  </data>
+  <data name="Mod_Mem_CreditsLevel" xml:space="preserve">
+    <value>Twórcy</value>
+  </data>
+  <data name="R2_LevelName_poloc_10" xml:space="preserve">
+    <value>Maska Polokusa Część 1</value>
+  </data>
+  <data name="R2_LevelName_poloc_20" xml:space="preserve">
+    <value>Maska Polokusa Część 2</value>
+  </data>
+  <data name="R2_LevelName_poloc_30" xml:space="preserve">
+    <value>Maska Polokusa Część 3</value>
+  </data>
+  <data name="R2_LevelName_poloc_40" xml:space="preserve">
+    <value>Maska Polokusa Część 4</value>
+  </data>
+  <data name="PartX" xml:space="preserve">
+    <value>Część {0}</value>
+  </data>
+  <data name="R2_LevelName_learn_10" xml:space="preserve">
+    <value>Świetliste Lasy</value>
+  </data>
+  <data name="R2_LevelName_bast" xml:space="preserve">
+    <value>Czarodziejska Polana</value>
+  </data>
+  <data name="R2_LevelName_ski" xml:space="preserve">
+    <value>Moczary Przebudzenia</value>
+  </data>
+  <data name="R2_LevelName_chase" xml:space="preserve">
+    <value>Bagno</value>
+  </data>
+  <data name="R2_LevelName_water" xml:space="preserve">
+    <value>Świątynia Wody i Lodu</value>
+  </data>
+  <data name="R2_LevelName_rodeo" xml:space="preserve">
+    <value>Cierniowe Wzgórza</value>
+  </data>
+  <data name="R2_LevelName_vulca" xml:space="preserve">
+    <value>Jaskinia Złych Snów</value>
+  </data>
+  <data name="R2_LevelName_glob" xml:space="preserve">
+    <value>Sklepienie</value>
+  </data>
+  <data name="R2_LevelName_whale" xml:space="preserve">
+    <value>Zatoka Wielorybów</value>
+  </data>
+  <data name="R2_LevelName_plum" xml:space="preserve">
+    <value>Świątynia Kamieni i Ognia</value>
+  </data>
+  <data name="R2_LevelName_cask" xml:space="preserve">
+    <value>Jaskinie Echa</value>
+  </data>
+  <data name="R2_LevelName_nave" xml:space="preserve">
+    <value>Urwisko</value>
+  </data>
+  <data name="R2_LevelName_seat" xml:space="preserve">
+    <value>Szczyt Świata</value>
+  </data>
+  <data name="R2_LevelName_earth" xml:space="preserve">
+    <value>Świątynia Skał i Lawy</value>
+  </data>
+  <data name="R2_LevelName_helic" xml:space="preserve">
+    <value>Pod Świątynią Skał i Lawy</value>
+  </data>
+  <data name="R2_LevelName_morb" xml:space="preserve">
+    <value>Grobowiec Starożytnych </value>
+  </data>
+  <data name="R2_LevelName_ile" xml:space="preserve">
+    <value>Żelazowe Góry </value>
+  </data>
+  <data name="R2_LevelName_astro" xml:space="preserve">
+    <value>Statek Więzienny</value>
+  </data>
+  <data name="R2_LevelName_rhop" xml:space="preserve">
+    <value>Wronie Gniazdo </value>
+  </data>
+  <data name="R3_LevelName_BonusTXT" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="R3_LevelName_endgame" xml:space="preserve">
+    <value>Koniec gry</value>
+  </data>
+  <data name="R3_LevelName_toudi_00" xml:space="preserve">
+    <value>Szaleństwo w 2D</value>
+  </data>
+  <data name="R3_LevelName_ten_map" xml:space="preserve">
+    <value>Skaczące rakiety</value>
+  </data>
+  <data name="R3_LevelName_crush" xml:space="preserve">
+    <value>Zgniotka</value>
+  </data>
+  <data name="R3_LevelName_raz_map" xml:space="preserve">
+    <value>Cyrk Razoffa</value>
+  </data>
+  <data name="R3_LevelName_sentinel" xml:space="preserve">
+    <value>Strażnik</value>
+  </data>
+  <data name="R3_LevelName_snipe_00" xml:space="preserve">
+    <value>Pociski sterowane</value>
+  </data>
+  <data name="R3_LevelName_ballmap" xml:space="preserve">
+    <value>Balony</value>
+  </data>
+  <data name="R3_LevelName_ship_map" xml:space="preserve">
+    <value>Niezwykli najeźdźcy</value>
+  </data>
+  <data name="R3_LevelName_commando" xml:space="preserve">
+    <value>Komandos</value>
+  </data>
+  <data name="EmuSelection_None" xml:space="preserve">
+    <value>Brak</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
+    <value>Rayman 1 (PC - 1.21)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
+    <value>Rayman 1 (PS1 - US)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
+    <value>Rayman 2 (PS1 - Prototyp)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
+    <value>Rayman Advance (GBA - EU)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
+    <value>Rayman 2 (PC)</value>
+  </data>
+  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
+    <value>Rayman 3 (PC)</value>
   </data>
 </root>

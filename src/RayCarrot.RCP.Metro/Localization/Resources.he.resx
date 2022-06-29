@@ -2713,9 +2713,6 @@ BinarySerializer</value>
   <data name="Archive_FileInfo_Format" xml:space="preserve">
     <value>פורמט:</value>
   </data>
-  <data name="Archive_CreationFileStatus" xml:space="preserve">
-    <value>מוסיף קובץ {0}</value>
-  </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
     <value>אירעה שגיאה בעת הוספת {0}</value>
   </data>
@@ -3022,9 +3019,6 @@ BinarySerializer</value>
   </data>
   <data name="Utilities_R1E_Homepage" xml:space="preserve">
     <value>מידע נוסף</value>
-  </data>
-  <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Rayman Raving Rabbids</value>
   </data>
   <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
     <value>מודי זיכרון</value>
@@ -4223,5 +4217,400 @@ Start: הפסק</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
     <value>אם מופעל, הטקסטורות של המשחק יסונכרנו אוטומטית כאשר ארכיון .cnt ייארזו מחדש. זה שימושי למשחקים שבהם נדרש סנכרון כדי לייבא טקסטורות ברזולוציה גבוהה יותר.</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>אריזת ארכיב</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>להוסיף קבצים</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>ייבוא קבצים</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
+    <value>ל{0} קבצים יש שם זהה לקבצים קיימים. האם ברצונך להחליף אותם?
+
+קונפליקטים:
+{1}</value>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>ממתין לסגירת {0}</value>
+  </data>
+  <data name="Bool_True" xml:space="preserve">
+    <value>כן</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>לא</value>
+  </data>
+  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
+    <value>תהליך משחק</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>על ידי הצמדה של תהליך משחק פעיל, ניתן לשנות ולהציג את ערכי המשחק בזמן אמת. עבור משחקים מסוימים זה יאפשר להפעיל תכונות שאינן בשימוש.</value>
+  </data>
+  <data name="Mod_Mem_GameSelection" xml:space="preserve">
+    <value>משחק</value>
+  </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>אימולטור</value>
+  </data>
+  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
+    <value>הגדרות</value>
+  </data>
+  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
+    <value>מידע</value>
+  </data>
+  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
+    <value>פעולות</value>
+  </data>
+  <data name="Mod_Mem_LogHeader" xml:space="preserve">
+    <value>יומן</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman Raving Rabbids
+שחזור אב טיפוס</value>
+  </data>
+  <data name="Mod_Mem_Header" xml:space="preserve">
+    <value>מודי זיכרון</value>
+  </data>
+  <data name="Mod_Mem_AttachError" xml:space="preserve">
+    <value>אירעה שגיאה בעת החיבור לתהליך</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>אירעה שגיאה בעת עדכון ערכי המשחק</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>קבצים זמניים</value>
+  </data>
+  <data name="ProcessAttacher_Attach" xml:space="preserve">
+    <value>לצרף</value>
+  </data>
+  <data name="ProcessAttacher_Detach" xml:space="preserve">
+    <value>לנתק</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>נקודות פגיעה</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>נקודות פגיעה מקסימליות</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>למקם את Rayman</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>מאפשר למקם את ריימן בחופשיות בשלב</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>מפה</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>בחירת מפה</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>מחליף את בחירת המפות במשחק על מפת העולם</value>
+  </data>
+  <data name="Mod_Mem_Lang" xml:space="preserve">
+    <value>שפה</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>אגרוף</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>תליה</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>מצב מסוק</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>לתפוס</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>לרוץ</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>מהירות</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>סופר מסוק</value>
+  </data>
+  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
+    <value>מעוך</value>
+  </data>
+  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
+    <value>גחלילית</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>להכריח מצב ריצה</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>בקרה הפוכה</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>פלטפורמת אגרוף</value>
+  </data>
+  <data name="Mod_Mem_Unk" xml:space="preserve">
+    <value>לא ידוע {0}</value>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>הצג מידע על המנוע</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>הצג מידע על אובייקטים</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>מצב ניפוי באגים</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>התחל במצב הדגמה</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>אם זה מופעל, המשחק יתחיל לשחק את שני ההדגמות המוקלטות שאינן בשימוש כאשר השלב נטען. זה יכול להיות מופעל על ידי איבוד כל החיים ובחירה לנסות שוב.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>טען תפריטים מרובי משתתפים</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>כאשר זה מופעל, המשחק יטען את תפריטי מרובי המשתתפים שאינם בשימוש בעת ההפעלה. אם המשחק כבר הופעל אז ניתן לגשת אליו על ידי בחירה לצאת מהמשחק מתפריט ההשהיה.
+התפריטים מרובי המשתתפים עצמם אינם שלמים בגלל שתכונה זו מעולם לא יושמה במלואה. התפריט הראשון הוא בחירת השחקן והשני בחירת הרמה. מכיוון שהם אינם פונקציונליים, הדרך היחידה לשנות אותם היא באמצעות השדות שלהלן.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>פסק זמן ברמה</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
+    <value>האם שחקן 2</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMap" xml:space="preserve">
+    <value>מפה נבחרת</value>
+  </data>
+  <data name="Mod_Mem_GeneralCategory" xml:space="preserve">
+    <value>כללי</value>
+  </data>
+  <data name="Mod_Mem_DebugCategory" xml:space="preserve">
+    <value>ניפוי באגים</value>
+  </data>
+  <data name="Mod_Mem_MultiplayerCategory" xml:space="preserve">
+    <value>מצב מרובה משתמשים</value>
+  </data>
+  <data name="Mod_Mem_PowersCategory" xml:space="preserve">
+    <value>כוחות</value>
+  </data>
+  <data name="Mod_Mem_CamX" xml:space="preserve">
+    <value>מצלמה X</value>
+  </data>
+  <data name="Mod_Mem_CamY" xml:space="preserve">
+    <value>מצלמה Y</value>
+  </data>
+  <data name="Mod_Mem_XPos" xml:space="preserve">
+    <value>מיקום X</value>
+  </data>
+  <data name="Mod_Mem_YPos" xml:space="preserve">
+    <value>מיקום Y</value>
+  </data>
+  <data name="Mod_Mem_RayState" xml:space="preserve">
+    <value>מצבי Rayman</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoTime" xml:space="preserve">
+    <value>זמן מסוק</value>
+  </data>
+  <data name="Mod_Mem_R1_FistCharge" xml:space="preserve">
+    <value>טעינת אגרוף</value>
+  </data>
+  <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
+    <value>חפצים פעילים</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>זמן מפה</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>אינדקס אקראי</value>
+  </data>
+  <data name="Mod_Mem_R1_Menu" xml:space="preserve">
+    <value>תפריט</value>
+  </data>
+  <data name="Mod_Mem_FinishLvlAction" xml:space="preserve">
+    <value>שלב סיום</value>
+  </data>
+  <data name="Mod_Mem_UnlockAllLvlsAction" xml:space="preserve">
+    <value>פתח את כל הרמות</value>
+  </data>
+  <data name="Mod_Mem_AllCagesAction" xml:space="preserve">
+    <value>כל הכלובים</value>
+  </data>
+  <data name="Mod_Mem_R1_ExitLvlAction" xml:space="preserve">
+    <value>חזרה למפת העולם</value>
+  </data>
+  <data name="Mod_Mem_MenuLevelsCategory" xml:space="preserve">
+    <value>תפריט</value>
+  </data>
+  <data name="Mod_Mem_MenuLevel" xml:space="preserve">
+    <value>תפריט ראשי</value>
+  </data>
+  <data name="R2_LevelName_mapmonde" xml:space="preserve">
+    <value>The Hall of Doors</value>
+  </data>
+  <data name="R2_LevelName_raycap" xml:space="preserve">
+    <value>מסך ציון</value>
+  </data>
+  <data name="Mod_Mem_BonusLevelsCategory" xml:space="preserve">
+    <value>בונוס</value>
+  </data>
+  <data name="R2_LevelName_bonux" xml:space="preserve">
+    <value>שלב בונוס</value>
+  </data>
+  <data name="Mod_Mem_CutsceneLevelsCategory" xml:space="preserve">
+    <value>קטעים</value>
+  </data>
+  <data name="R2_LevelName_jail_10" xml:space="preserve">
+    <value>מבוא חלק 1</value>
+  </data>
+  <data name="R2_LevelName_jail_20" xml:space="preserve">
+    <value>מבוא חלק 2</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Council Chamber of the Teensies</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Part 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Part 2</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Echoing Caves Intro</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Iron Mountains Balloon Cutscene</value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>סוף</value>
+  </data>
+  <data name="Mod_Mem_CreditsLevel" xml:space="preserve">
+    <value>קרדיטים</value>
+  </data>
+  <data name="R2_LevelName_poloc_10" xml:space="preserve">
+    <value>Polokus Mask Part 1</value>
+  </data>
+  <data name="R2_LevelName_poloc_20" xml:space="preserve">
+    <value>Polokus Mask Part 2</value>
+  </data>
+  <data name="R2_LevelName_poloc_30" xml:space="preserve">
+    <value>Polokus Mask Part 3</value>
+  </data>
+  <data name="R2_LevelName_poloc_40" xml:space="preserve">
+    <value>Polokus Mask Part 4</value>
+  </data>
+  <data name="PartX" xml:space="preserve">
+    <value>חלק {0}</value>
+  </data>
+  <data name="R2_LevelName_learn_10" xml:space="preserve">
+    <value>The Woods of Light</value>
+  </data>
+  <data name="R2_LevelName_bast" xml:space="preserve">
+    <value>The Fairy Glade</value>
+  </data>
+  <data name="R2_LevelName_ski" xml:space="preserve">
+    <value>The Marshes of Awakening</value>
+  </data>
+  <data name="R2_LevelName_chase" xml:space="preserve">
+    <value>The Bayou</value>
+  </data>
+  <data name="R2_LevelName_water" xml:space="preserve">
+    <value>The Sanctuary of Water and Ice</value>
+  </data>
+  <data name="R2_LevelName_rodeo" xml:space="preserve">
+    <value>The Menhir Hills</value>
+  </data>
+  <data name="R2_LevelName_vulca" xml:space="preserve">
+    <value>The Cave of Bad Dreams</value>
+  </data>
+  <data name="R2_LevelName_glob" xml:space="preserve">
+    <value>The Canopy</value>
+  </data>
+  <data name="R2_LevelName_whale" xml:space="preserve">
+    <value>Whale Bay</value>
+  </data>
+  <data name="R2_LevelName_plum" xml:space="preserve">
+    <value>The Sanctuary of Stone and Fire</value>
+  </data>
+  <data name="R2_LevelName_cask" xml:space="preserve">
+    <value>The Echoing Caves</value>
+  </data>
+  <data name="R2_LevelName_nave" xml:space="preserve">
+    <value>The Precipice</value>
+  </data>
+  <data name="R2_LevelName_seat" xml:space="preserve">
+    <value>The Top of the World</value>
+  </data>
+  <data name="R2_LevelName_earth" xml:space="preserve">
+    <value>The Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_helic" xml:space="preserve">
+    <value>Beneath the Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_morb" xml:space="preserve">
+    <value>Tomb of the Ancients</value>
+  </data>
+  <data name="R2_LevelName_ile" xml:space="preserve">
+    <value>The Iron Mountains</value>
+  </data>
+  <data name="R2_LevelName_astro" xml:space="preserve">
+    <value>The Prison Ship</value>
+  </data>
+  <data name="R2_LevelName_rhop" xml:space="preserve">
+    <value>The Crow's Nest</value>
+  </data>
+  <data name="R3_LevelName_BonusTXT" xml:space="preserve">
+    <value>בונוס</value>
+  </data>
+  <data name="R3_LevelName_endgame" xml:space="preserve">
+    <value>סוף המשחק</value>
+  </data>
+  <data name="R3_LevelName_toudi_00" xml:space="preserve">
+    <value>טירוף דו ממדי</value>
+  </data>
+  <data name="R3_LevelName_ten_map" xml:space="preserve">
+    <value>קפיצת מחבטים</value>
+  </data>
+  <data name="R3_LevelName_crush" xml:space="preserve">
+    <value>ריסוק</value>
+  </data>
+  <data name="R3_LevelName_raz_map" xml:space="preserve">
+    <value>הקרקס של ראזוף</value>
+  </data>
+  <data name="R3_LevelName_sentinel" xml:space="preserve">
+    <value>שומר</value>
+  </data>
+  <data name="R3_LevelName_snipe_00" xml:space="preserve">
+    <value>התקפת טילים</value>
+  </data>
+  <data name="R3_LevelName_ballmap" xml:space="preserve">
+    <value>בלונים</value>
+  </data>
+  <data name="R3_LevelName_ship_map" xml:space="preserve">
+    <value>פולשים מיוחדים</value>
+  </data>
+  <data name="R3_LevelName_commando" xml:space="preserve">
+    <value>קומנדו</value>
+  </data>
+  <data name="EmuSelection_None" xml:space="preserve">
+    <value>כלום</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
+    <value>Rayman 1 (PC - 1.21)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
+    <value>Rayman 1 (PS1 - US)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
+    <value>Rayman 2 (PS1 - Prototype)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
+    <value>Rayman Advance (GBA - EU)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
+    <value>Rayman 2 (PC)</value>
+  </data>
+  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
+    <value>Rayman 3 (PC)</value>
   </data>
 </root>

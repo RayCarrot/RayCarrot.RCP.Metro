@@ -35,7 +35,7 @@ public class Mod_Mem_EmulatorViewModel : BaseViewModel
     public static Mod_Mem_EmulatorViewModel[] None => new[]
     {
         new Mod_Mem_EmulatorViewModel(
-            displayName: new ResourceLocString(nameof(Resources.Option_None)),
+            displayName: new ResourceLocString(nameof(Resources.EmuSelection_None)),
             processNameKeywords: Array.Empty<string>(),
             memoryRegions: new Mod_Mem_MemoryRegion(
                 Name: MainMemoryRegionName,
