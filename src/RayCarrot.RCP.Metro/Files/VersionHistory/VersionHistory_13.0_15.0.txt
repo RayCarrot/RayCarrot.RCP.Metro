@@ -1,4 +1,4 @@
-﻿-----   Version 13.2.0 - June ??, 2022   -----
+﻿-----   Version 13.2.0 - June 30, 2022   -----
 • Added Memory Mods to the mods page, allowing game values to be modified and unused features to be toggled for select games
 • The target platform has been changed from x86 to x64. With this 32-bit support for the Rayman Control Panel has been dropped.
 
