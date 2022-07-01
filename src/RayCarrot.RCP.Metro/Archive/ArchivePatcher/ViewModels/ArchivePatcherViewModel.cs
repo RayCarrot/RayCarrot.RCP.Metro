@@ -13,7 +13,7 @@ This is a work in process Archive Patcher system. It works by creating an .apc (
 file which keeps track of all patches and the modified file history to then allow it to be restored.
 The way a container works is this:
 - At the root we have a manifest file. It has the history (which files have been modified) and a list of patches.
-- Each patch has an ID (a GUID) which identifies it. It stores it resources in a folder matching the ID. The patch resources are 
+- Each patch has an ID (a GUID) which identifies it. It stores its resources in a folder matching the ID. The patch resources are 
   always lower-case and use forward slashes so that they can be normalized. The correct character casing is stored in the patch
   manifest.
 
@@ -64,6 +64,35 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
     public void DeselectAll()
     {
         Containers.ForEach(x => x.SelectedPatch = null);
+    }
+
+    public async Task LoadPatchesAsync()
+    {
+        List<PatchContainerViewModel> failedContainers = new();
+
+        foreach (PatchContainerViewModel container in Containers)
+        {
+            try
+            {
+                container.LoadExistingPatches();
+                container.RefreshPatchedFiles();
+            }
+            catch (Exception ex)
+            {
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, $"An error occurred when loading the patches from {container.DisplayName}");
+
+                failedContainers.Add(container);
+            }
+        }
+
+        // Remove the containers which could not be loaded
+        foreach (PatchContainerViewModel container in failedContainers)
+        {
+            Containers.Remove(container);
+            container.PropertyChanged -= Container_OnPropertyChanged;
+            container.Dispose();
+        }
     }
 
     public async Task ApplyAsync()

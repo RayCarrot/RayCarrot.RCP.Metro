@@ -14,9 +14,6 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         DisplayName = container.ArchiveFilePath.Name;
         Patches = new ObservableCollection<PatchViewModel>();
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
-
-        LoadExistingPatches();
-        RefreshPatchedFiles();
     }
 
     private readonly HashSet<PatchManifestItem> _removedPatches = new HashSet<PatchManifestItem>();

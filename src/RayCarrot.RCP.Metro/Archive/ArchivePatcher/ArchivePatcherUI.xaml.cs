@@ -15,11 +15,13 @@ public partial class ArchivePatcherUI : WindowContentControl
     
     public ArchivePatcherUI(ArchivePatcherViewModel viewModel)
     {
-        // Set up UI
-        InitializeComponent();
-
         DataContext = viewModel;
         ViewModel = viewModel;
+
+        Loaded += ArchivePatcherUI_OnLoaded;
+
+        // Set up UI
+        InitializeComponent();
     }
 
     #endregion
@@ -49,6 +51,13 @@ public partial class ArchivePatcherUI : WindowContentControl
     #endregion
 
     #region Event Handlers
+
+    private async void ArchivePatcherUI_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        Loaded -= ArchivePatcherUI_OnLoaded;
+
+        await ViewModel.LoadPatchesAsync();
+    }
 
     private void PatchesItemsControl_OnMouseDown(object sender, MouseButtonEventArgs e)
     {
