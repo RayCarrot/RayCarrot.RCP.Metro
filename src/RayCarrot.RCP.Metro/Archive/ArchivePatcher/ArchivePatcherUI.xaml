@@ -16,11 +16,20 @@
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
     <local:WindowContentControl.Resources>
-        <DataTemplate x:Key="PatchThumbnailTemplate">
-            <!-- TODO-UPDATE: Allow image thumbnails -->
-            <iconPacks:PackIconMaterial Kind="FileSettingsOutline" 
-                                        Width="Auto" Height="Auto"
-                                        VerticalAlignment="Center" />
+        <DataTemplate x:Key="PatchThumbnailTemplate" DataType="{x:Type archive:PatchViewModel}">
+            <Grid>
+
+                <Image Source="{Binding Path=Thumbnail}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+                <iconPacks:PackIconMaterial Visibility="{Binding Path=Thumbnail, Converter={local:ObjectNullToVisibilityConverter}}" 
+                                            Kind="FileSettingsOutline" 
+                                            Width="Auto" Height="Auto"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" />
+
+            </Grid>
         </DataTemplate>
     </local:WindowContentControl.Resources>
 
@@ -151,6 +160,7 @@
                                                     <!-- Thumbnail -->
 
                                                     <ContentPresenter Grid.Column="1"
+                                                                      Content="{Binding}"
                                                                       ContentTemplate="{StaticResource PatchThumbnailTemplate}"
                                                                       Width="32" Height="32"
                                                                       VerticalAlignment="Center"
@@ -257,10 +267,12 @@
 
                     <!-- Thumbnail -->
 
-                    <iconPacks:PackIconMaterial Grid.Column="1"
-                                                Width="64" Height="64"
-                                                Kind="FileSettingsOutline"
-                                                Margin="0 0 5 0" />
+                    <ContentPresenter Grid.Column="1"
+                                      Content="{Binding}"
+                                      ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                      Width="64" Height="64"
+                                      VerticalAlignment="Center"
+                                      Margin="0 0 5 0" />
 
                 </Grid>
 

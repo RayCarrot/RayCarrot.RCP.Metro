@@ -25,7 +25,6 @@ TODO:
 - When opening the Archive Patcher we want to check if the checksums for the modified files match, if not show a warning icon next to
   the patch and show which files don't match in the info panel. This means the files have been manually modified after applying 
   the patch.
-- Allow patches to have thumbnails
 - Rather than the patch keeping track of if it was enabled we should have a list of enabled patches in the history
  
  */

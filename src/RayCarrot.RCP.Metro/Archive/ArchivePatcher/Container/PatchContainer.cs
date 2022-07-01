@@ -40,7 +40,8 @@ public class PatchContainer : IDisposable
 
     public int ContainerVersion => LatestContainerVersion;
 
-    private static string GetFullResourcePath(string patchID, string resourceName) => $"{patchID}/{resourceName}";
+    private static string GetFullResourcePath(string patchID, string resourceName) => $"{patchID}/resources/{resourceName}";
+    private static string GetThumbnailPath(string patchID) => $"{patchID}/thumb";
 
     [MemberNotNull(nameof(_zip))]
     private void InitZipForWriting()
@@ -86,7 +87,17 @@ public class PatchContainer : IDisposable
         if (_zip is null)
             throw new Exception("Can't retrieve resource from a container which has not yet been created");
 
-        return _zip.GetEntry(path)?.Open() ?? throw new Exception($"Resource with ID {patchID} and name {resourceName} not found");
+        return _zip.GetEntry(path)?.Open() ?? throw new Exception($"Resource with ID {patchID} and name {resourceName} was not found");
+    }
+
+    public Stream? GetPatchThumbnail(string patchID)
+    {
+        string path = GetThumbnailPath(patchID);
+
+        if (_zip is null)
+            throw new Exception("Can't retrieve thumbnail from a container which has not yet been created");
+
+        return _zip.GetEntry(path)?.Open();
     }
 
     public void ClearResources(string patchID)

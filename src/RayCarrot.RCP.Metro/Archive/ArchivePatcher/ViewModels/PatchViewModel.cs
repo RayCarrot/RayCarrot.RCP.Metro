@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ByteSizeLib;
 
 namespace RayCarrot.RCP.Metro.Archive;
@@ -15,7 +17,6 @@ public class PatchViewModel : BaseViewModel
         _isEnabled = patch.IsEnabled;
 
         // TODO-UPDATE: Localize
-        // Dummy data for testing
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
             new("Author", patch.Author),
@@ -37,6 +38,7 @@ public class PatchViewModel : BaseViewModel
     public PatchContainerViewModel ContainerViewModel { get; }
     public PatchManifestItem Patch { get; }
     public ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
+    public ImageSource? Thumbnail { get; private set; }
 
     public bool IsEnabled
     {
@@ -46,5 +48,19 @@ public class PatchViewModel : BaseViewModel
             _isEnabled = value;
             ContainerViewModel.RefreshPatchedFiles();
         }
+    }
+
+    public void LoadThumbnail()
+    {
+        using Stream? thumbStream = ContainerViewModel.Container.GetPatchThumbnail(Patch.ID);
+        
+        if (thumbStream == null)
+        {
+            Thumbnail = null;
+            return;
+        }
+
+        Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        Thumbnail.Freeze();
     }
 }

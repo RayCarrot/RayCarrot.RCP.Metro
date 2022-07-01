@@ -125,7 +125,14 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             return;
 
         foreach (PatchManifestItem patch in manifest.Patches)
-            Patches.Add(new PatchViewModel(this, patch));
+        {
+            PatchViewModel patchVM = new(this, patch);
+
+            // TODO: Load this async? Or maybe it's fast enough that it doesn't matter.
+            patchVM.LoadThumbnail();
+
+            Patches.Add(patchVM);
+        }
     }
 
     public void RefreshPatchedFiles()
