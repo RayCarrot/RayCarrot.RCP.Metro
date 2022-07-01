@@ -75,13 +75,12 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
-                                        <!-- TODO-UPDATE: Normalize archive colors from resources -->
                                         <iconPacks:PackIconMaterial Grid.Column="0"
                                                                     Width="16" Height="16"
                                                                     Kind="FolderOutline"
                                                                     Background="Transparent"
                                                                     ToolTip="{Binding Path=Container.ArchiveFilePath, Mode=OneTime}"
-                                                                    Foreground="#EF6C00"
+                                                                    Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
                                                                     Margin="0 0 5 0" />
 
                                         <TextBlock Grid.Column="1"
@@ -214,13 +213,6 @@
                                         </ListBox.ItemTemplate>
                                     </ListBox>
 
-                                    <!-- TODO-UPDATE: Localize -->
-                                    <!--<Button HorizontalAlignment="Left"
-                                            ContentTemplate="{StaticResource Button.IconContentTemplate}"
-                                            local:ButtonAssist.IconKind="Plus"
-                                            Content="Add patch"
-                                            Margin="0 0 0 10" />-->
-
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -259,18 +251,7 @@
 
                         <!-- Info -->
 
-                        <ItemsControl ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}"
-                                      Grid.IsSharedSizeScope="True">
-
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <local:DuoGridItem Text="{Binding Path=Text.Value}"
-                                                       Header="{Binding Path=Header.Value}"
-                                                       MinUserLevel="{Binding Path=MinUserLevel}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-
-                        </ItemsControl>
+                        <local:DuoGrid ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" />
 
                     </StackPanel>
 
@@ -306,16 +287,34 @@
                        Text="Modified files"
                        Margin="0 0 0 10"/>
 
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Row="1"
+                       Text="Add and enable a patch to modify the archive files"
+                       Visibility="{Binding Path=HasPatchedFiles, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="16"/>
+
             <ScrollViewer Grid.Row="1"
                           Margin="0 0 0 5">
                 <ItemsControl ItemsSource="{Binding Path=Containers, Mode=OneTime}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Grid.IsSharedSizeScope="True">
+                            <StackPanel Grid.IsSharedSizeScope="True"
+                                        Visibility="{Binding Path=PatchedFiles.Count, Converter={local:IntToVisibilityConverter}}">
 
-                                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                           Text="{Binding Path=DisplayName, Mode=OneTime}"
-                                           Margin="0 0 0 5" />
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0 0 0 5">
+                                    <iconPacks:PackIconMaterial Width="16" Height="16"
+                                                                Kind="FolderOutline"
+                                                                Background="Transparent"
+                                                                ToolTip="{Binding Path=Container.ArchiveFilePath, Mode=OneTime}"
+                                                                Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+                                                                Margin="0 0 5 0" />
+
+                                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                               Text="{Binding Path=DisplayName, Mode=OneTime}" />
+                                </StackPanel>
 
                                 <Grid Margin="0 0 0 5">
                                     <Grid.ColumnDefinitions>
@@ -349,8 +348,8 @@
                                             <Grid Margin="0 0 0 5">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
-                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
-                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Patch" />
+                                                    <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Name" />
+                                                    <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Patch" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
 

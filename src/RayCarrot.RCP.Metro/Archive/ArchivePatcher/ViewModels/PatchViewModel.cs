@@ -18,13 +18,13 @@ public class PatchViewModel : BaseViewModel
         // Dummy data for testing
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new DuoGridItemViewModel("Author", patch.Author),
-            new DuoGridItemViewModel("Flags", patch.Flags.ToString()),
-            new DuoGridItemViewModel("Size", ByteSize.FromBytes(patch.TotalSize).ToString()),
-            new DuoGridItemViewModel("Date", patch.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-            new DuoGridItemViewModel("Revision", patch.Revision.ToString()),
-            new DuoGridItemViewModel("Added Files", (patch.AddedFiles?.Length ?? 0).ToString()),
-            new DuoGridItemViewModel("Removed Files", (patch.RemovedFiles?.Length ?? 0).ToString()),
+            new("Author", patch.Author),
+            new("Flags", patch.Flags.ToString()),
+            new("Size", ByteSize.FromBytes(patch.TotalSize).ToString()),
+            new("Date", patch.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+            new("Revision", patch.Revision.ToString()),
+            new("Added Files", (patch.AddedFiles?.Length ?? 0).ToString()),
+            new("Removed Files", (patch.RemovedFiles?.Length ?? 0).ToString()),
         };
 
         RemoveCommand = new RelayCommand(() => ContainerViewModel.RemovePatch(this));

@@ -46,19 +46,24 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
     public IArchiveDataManager Manager { get; }
     public ObservableCollection<PatchContainerViewModel> Containers { get; }
     public PatchViewModel? SelectedPatch { get; set; }
+    public bool HasPatchedFiles => Containers.Any(x => x.HasPatchedFiles);
 
     private void Container_OnPropertyChanged(object s, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName != nameof(PatchContainerViewModel.SelectedPatch))
-            return;
+        if (e.PropertyName == nameof(PatchContainerViewModel.HasPatchedFiles))
+        {
+            OnPropertyChanged(nameof(HasPatchedFiles));
+        }
+        else if (e.PropertyName == nameof(PatchContainerViewModel.SelectedPatch))
+        {
+            var cc = (PatchContainerViewModel)s;
 
-        var cc = (PatchContainerViewModel)s;
+            if (cc.SelectedPatch is not null)
+                foreach (PatchContainerViewModel container in Containers.Where(x => x != cc))
+                    container.SelectedPatch = null;
 
-        if (cc.SelectedPatch is not null)
-            foreach (PatchContainerViewModel container in Containers.Where(x => x != cc))
-                container.SelectedPatch = null;
-
-        SelectedPatch = cc.SelectedPatch;
+            SelectedPatch = cc.SelectedPatch;
+        }
     }
 
     public void DeselectAll()

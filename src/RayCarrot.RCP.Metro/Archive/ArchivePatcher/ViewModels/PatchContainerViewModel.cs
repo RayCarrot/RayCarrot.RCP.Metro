@@ -26,6 +26,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
     public PatchViewModel? SelectedPatch { get; set; }
 
     public ObservableCollection<PatchedFileViewModel> PatchedFiles { get; set; }
+    public bool HasPatchedFiles => PatchedFiles.Any();
 
     private Dictionary<string, FileModification> GetFileModifications()
     {
@@ -155,6 +156,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         }
 
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>(files.Values.OrderBy(x => x.FilePath));
+        OnPropertyChanged(nameof(HasPatchedFiles));
     }
 
     public void RemovePatch(PatchViewModel patch)
