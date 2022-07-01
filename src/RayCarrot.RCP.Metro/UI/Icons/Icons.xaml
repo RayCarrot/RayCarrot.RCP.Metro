@@ -13,8 +13,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Info">InformationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchivePatcher">FolderSettingsOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_BinaryTools">Hexadecimal</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
@@ -57,6 +55,9 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanOrigins_Update">Update</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanFiestaRun_SaveFix">AutoFix</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchivePatcher">FolderSettingsOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchivePatchCreator">FolderPlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_R1PasswordGenerator">KeyOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>

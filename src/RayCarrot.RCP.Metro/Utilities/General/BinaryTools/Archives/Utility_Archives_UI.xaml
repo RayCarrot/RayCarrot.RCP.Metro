@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
@@ -47,16 +49,37 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
                     Margin="0 0 10 0"
+                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                    local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
                     Content="{Resx Utilities_ArchiveExplorer_Open}"
                     Command="{Binding Path=OpenArchiveCommand, Mode=OneTime}" />
 
+            <!-- TODO-UPDATE: Localize -->
             <Button Grid.Column="1"
-                    Content="{Resx Utilities_ArchiveExplorer_Create}"
-                    Command="{Binding Path=CreateArchiveCommand, Mode=OneTime}" />
+                    Margin="0 0 10 0"
+                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                    local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatcher}"
+                    Content="Patch" 
+                    Command="{Binding Path=PatchArchiveCommand, Mode=OneTime}"/>
+
+            <!-- TODO-UPDATE: Localize (removed Utilities_ArchiveExplorer_Create) -->
+            <local:OverflowMenu Grid.Column="2">
+                <local:OverflowMenu.ContextMenu>
+                    <ContextMenu>
+                        <local:MenuItemIcon Header="Create archive" 
+                                            IconKind="{StaticResource RCP.Icons.Utilities_ArchiveCreator}"
+                                            Command="{Binding Path=CreateArchiveCommand, Mode=OneTime}" />
+                        <local:MenuItemIcon Header="Create patch" 
+                                            IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatchCreator}" 
+                                            Command="{Binding Path=CreateArchivePatchCommand, Mode=OneTime}"/>
+                    </ContextMenu>
+                </local:OverflowMenu.ContextMenu>
+            </local:OverflowMenu>
 
         </Grid>
 
