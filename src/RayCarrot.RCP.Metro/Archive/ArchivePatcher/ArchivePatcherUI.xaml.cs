@@ -88,6 +88,11 @@ public partial class ArchivePatcherUI : WindowContentControl
         dropHandler.ViewModel = container;
     }
 
+    private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        WindowInstance.Close();
+    }
+
     private async void ApplyButton_OnClick(object sender, RoutedEventArgs e)
     {
         await ViewModel.ApplyAsync();

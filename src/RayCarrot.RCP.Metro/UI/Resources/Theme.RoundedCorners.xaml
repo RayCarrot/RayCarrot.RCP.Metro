@@ -39,6 +39,10 @@
     <!-- Some MahApps.Metro styles don't support a custom CornerRadius, so the template needs to be re-implemented.
          The only changes made to the templates are the addition of the CornerRadius property to the containing borders. -->
 
+    <!-- TODO: In the upcoming 3.0.0 release for MahApps.Metro it will allow the corner radius to be set on a lot more controls. When
+         that release becomes available the below code should be removed. A corner radius should also be set on more controls, such as
+         the list box items. -->
+
     <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource {x:Type ToolTip}}">
         <Setter Property="BorderThickness" Value="{StaticResource Thickness.Border.Default}" />
         <Setter Property="Template">
