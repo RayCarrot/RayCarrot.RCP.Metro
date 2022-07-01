@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -17,7 +16,7 @@ public static class DictionaryExtensions
     /// <param name="dictionary">The dictionary</param>
     /// <param name="key">The key</param>
     /// <returns>The value, or the default value if not found</returns>
-    public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+    public static TValue? TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
     {
         return dictionary.TryGetValue(key, out TValue output) ? output : default;
     }
@@ -32,7 +31,7 @@ public static class DictionaryExtensions
     /// <param name="key">The key</param>
     /// <param name="defaultValue">The default value to return if the value can not be found</param>
     /// <returns>The value, or the specified default value if not found</returns>
-    public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+    public static TValue? TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
     {
         return dictionary.TryGetValue(key, out TValue output) ? output : defaultValue;
     }
@@ -47,7 +46,7 @@ public static class DictionaryExtensions
     /// <param name="dictionary">The dictionary</param>
     /// <param name="key">The key</param>
     /// <returns>The value, or the default value if not found</returns>
-    public static TReturnValue TryGetValue<TKey, TValue, TReturnValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+    public static TReturnValue? TryGetValue<TKey, TValue, TReturnValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
         where TReturnValue : TValue
     {
         return dictionary.TryGetValue(key, out TValue value) && value is TReturnValue output ? output : default;

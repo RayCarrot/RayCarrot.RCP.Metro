@@ -238,47 +238,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// Gets the decoded file data in a stream
     /// </summary>
     /// <returns>The file stream with the decoded data</returns>
-    public ArchiveFileStream GetDecodedFileStream()
-    {
-        ArchiveFileStream? encodedStream = null;
-        ArchiveFileStream? decodedStream = null;
-
-        try
-        {
-            // Get the encoded file bytes
-            encodedStream = FileData.GetFileData(Archive.ArchiveFileGenerator);
-
-            // Create a stream for the decoded bytes
-            decodedStream = new ArchiveFileStream(new MemoryStream(), FileName, true);
-
-            // Decode the bytes
-            Manager.DecodeFile(encodedStream.Stream, decodedStream.Stream, FileData.ArchiveEntry);
-
-            // Check if the data was decoded
-            if (decodedStream.Stream.Length > 0)
-            {
-                encodedStream.Dispose();
-                decodedStream.SeekToBeginning();
-                return decodedStream;
-            }
-            else
-            {
-                decodedStream.Dispose();
-                encodedStream.SeekToBeginning();
-                return encodedStream;
-            }
-        }
-        catch (Exception ex)
-        {
-            // Dispose both streams if an exception is thrown
-            encodedStream?.Dispose();
-            decodedStream?.Dispose();
-
-            Logger.Error(ex, "Getting decoded archive file data");
-
-            throw;
-        }
-    }
+    public ArchiveFileStream GetDecodedFileStream() => FileData.GetDecodedFileData(Archive.ArchiveFileGenerator);
 
     [MemberNotNull(nameof(FileType))]
     public void SetFileType(IFileType type) => FileType = type;

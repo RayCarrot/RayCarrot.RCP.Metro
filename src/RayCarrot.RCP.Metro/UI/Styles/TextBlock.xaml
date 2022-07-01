@@ -6,6 +6,11 @@
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
+    <Style x:Key="RCP.Styles.TextBlock.HeaderSmall" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
     <Style x:Key="RCP.Styles.TextBlock.HeaderLarge" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
         <Setter Property="FontSize" Value="22" />
     </Style>

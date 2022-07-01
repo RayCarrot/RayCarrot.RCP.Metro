@@ -72,7 +72,7 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
     /// <param name="progressCallback">A progress callback action</param>
-    void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files, Action<Progress> progressCallback);
+    void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IEnumerable<FileItem> files, Action<Progress> progressCallback);
 
     /// <summary>
     /// Loads the archive data

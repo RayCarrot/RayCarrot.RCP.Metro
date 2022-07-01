@@ -208,7 +208,7 @@ public class AppUIManager
 #nullable enable
 
     /// <summary>
-    /// Shows a new instance of the Archive Explorer, while handling any potential exceptions
+    /// Shows a new instance of the Archive Explorer
     /// </summary>
     /// <param name="manager">The archive data manager</param>
     /// <param name="filePaths">The archive file paths</param>
@@ -242,6 +242,26 @@ public class AppUIManager
 
         // Run on UI thread
         ArchiveCreatorUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorUI(new ArchiveCreatorDialogViewModel(manager)));
+        await Dialog.ShowWindowAsync(ui);
+    }
+
+    /// <summary>
+    /// Shows a new instance of the Archive Patcher
+    /// </summary>
+    /// <param name="manager">The archive data manager</param>
+    /// <param name="filePaths">The archive file paths</param>
+    /// <returns>The task</returns>
+    public async Task ShowArchivePatcherAsync(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("An Archive Patcher window was opened");
+
+        // Run on UI thread
+        using ArchivePatcherViewModel vm = new(manager, filePaths);
+        // ReSharper disable once AccessToDisposedClosure
+        ArchivePatcherUI ui = Application.Current.Dispatcher.Invoke(() => new ArchivePatcherUI(vm));
         await Dialog.ShowWindowAsync(ui);
     }
 

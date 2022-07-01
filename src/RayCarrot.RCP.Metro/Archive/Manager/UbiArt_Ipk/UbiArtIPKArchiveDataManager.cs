@@ -144,7 +144,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
     /// <param name="progressCallback">A progress callback action</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files, Action<Progress> progressCallback)
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IEnumerable<FileItem> files, Action<Progress> progressCallback)
     {
         Logger.Info("An IPK archive is being repacked...");
 

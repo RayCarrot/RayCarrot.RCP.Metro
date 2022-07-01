@@ -15,6 +15,7 @@ public enum GenericIconKind
     GameDisplay_Admin,
     GameDisplay_Map,
     GameDisplay_Archive,
+    GameDisplay_ArchivePatch,
     GameDisplay_Location,
     GameDisplay_Config,
     GameDisplay_Download,
@@ -31,6 +32,7 @@ public enum GenericIconKind
 
     Window_ArchiveExplorer,
     Window_ArchiveCreator,
+    Window_ArchivePatcher,
     Window_GameOptions,
     Window_Installer,
     Window_Downloader,

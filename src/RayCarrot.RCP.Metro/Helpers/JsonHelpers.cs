@@ -44,6 +44,8 @@ public static class JsonHelpers
     {
         JsonSerializer serializer = new();
 
+        serializer.Formatting = Formatting.Indented;
+        
         foreach (JsonConverter c in converters.Concat(GetDefaultConverters()))
             serializer.Converters.Add(c);
 

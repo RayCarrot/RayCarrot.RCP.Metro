@@ -14,6 +14,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchivePatcher">FolderSettingsOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_BinaryTools">Hexadecimal</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
@@ -101,6 +102,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Archive" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_ArchivePatch" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatcher}" 
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Location" 
                        IconKind="{StaticResource RCP.Icons.Folder}" 
                        IconColor="{StaticResource RCP.Brushes.Info}" />
@@ -144,6 +148,9 @@
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_ArchiveCreator" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveCreator}"
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_ArchivePatcher" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatcher}"
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameOptions" 
                        IconKind="{StaticResource RCP.Icons.Settings}"

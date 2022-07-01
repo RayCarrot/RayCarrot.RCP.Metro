@@ -307,7 +307,26 @@ public abstract class GameInfo : BaseGameData
                         }
                         catch (Exception ex)
                         {
-                            Logger.Error(ex, "Archive explorer");
+                            Logger.Error(ex, "Running Archive Explorer");
+
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
+                        }
+                    }), UserLevel.Advanced));
+
+                    // TODO-UPDATE: Localize
+                    actions.Add(new OverflowButtonItemViewModel("Patch archives", GenericIconKind.GameDisplay_ArchivePatch, new AsyncRelayCommand(async () =>
+                    {
+                        using IArchiveDataManager archiveDataManager = GetArchiveDataManager;
+
+                        try
+                        {
+                            // Show the Archive Patcher
+                            IEnumerable<FileSystemPath> paths = GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists);
+                            await Services.UI.ShowArchivePatcherAsync(archiveDataManager, paths);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex, "Runing Archive Patcher");
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
                         }

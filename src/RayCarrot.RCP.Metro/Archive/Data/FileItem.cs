@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
+using NLog;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Archive.UbiArt;
 
@@ -40,6 +42,8 @@ public class FileItem : IDisposable
         ArchiveEntry = archiveEntry;
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     protected IArchiveDataManager Manager { get; }
 
     public string FileName { get; }
@@ -68,6 +72,48 @@ public class FileItem : IDisposable
 
         // Return the stream
         return stream;
+    }
+
+    public ArchiveFileStream GetDecodedFileData(IDisposable? generator)
+    {
+        ArchiveFileStream? encodedStream = null;
+        ArchiveFileStream? decodedStream = null;
+
+        try
+        {
+            // Get the encoded file bytes
+            encodedStream = GetFileData(generator);
+
+            // Create a stream for the decoded bytes
+            decodedStream = new ArchiveFileStream(new MemoryStream(), FileName, true);
+
+            // Decode the bytes
+            Manager.DecodeFile(encodedStream.Stream, decodedStream.Stream, ArchiveEntry);
+
+            // Check if the data was decoded
+            if (decodedStream.Stream.Length > 0)
+            {
+                encodedStream.Dispose();
+                decodedStream.SeekToBeginning();
+                return decodedStream;
+            }
+            else
+            {
+                decodedStream.Dispose();
+                encodedStream.SeekToBeginning();
+                return encodedStream;
+            }
+        }
+        catch (Exception ex)
+        {
+            // Dispose both streams if an exception is thrown
+            encodedStream?.Dispose();
+            decodedStream?.Dispose();
+
+            Logger.Error(ex, "Getting decoded archive file data");
+
+            throw;
+        }
     }
 
     [MemberNotNull(nameof(PendingImport))]

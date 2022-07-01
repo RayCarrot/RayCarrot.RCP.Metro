@@ -131,7 +131,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
     /// <param name="progressCallback">A progress callback action</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IList<FileItem> files, Action<Progress> progressCallback)
+    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IEnumerable<FileItem> files, Action<Progress> progressCallback)
     {
         Logger.Info("A CNT archive is being repacked...");
 
@@ -149,7 +149,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         }).ToArray();
 
         // Set files and directories
-        data.Directories = files.Select(x => x.Directory).Distinct().Where(x => !x.IsNullOrWhiteSpace()).ToArray();
+        data.Directories = archiveFiles.Select(x => x.FileItem.Directory).Distinct().Where(x => !x.IsNullOrWhiteSpace()).ToArray();
         data.Files = archiveFiles.Select(x => x.Entry).ToArray();
 
         // Set the directory indexes

@@ -279,8 +279,7 @@ public class ArchiveViewModel : DirectoryViewModel
                                 outputFileStream: outputStream, 
                                 files: this.GetAllChildren<DirectoryViewModel>(true).
                                     SelectMany(x => x.Files).
-                                    Select(x => x.FileData).
-                                    ToArray(),
+                                    Select(x => x.FileData),
                                 progressCallback: x => operation.SetProgress(x));
                         }
 
