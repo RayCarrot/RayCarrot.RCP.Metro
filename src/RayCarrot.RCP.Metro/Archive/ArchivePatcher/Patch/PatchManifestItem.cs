@@ -12,7 +12,7 @@ public record PatchManifestItem
     }
 
     public string ID { get; }
-    public string? ThumbnailFileName { get; set; }
+    public string? ThumbnailFileName { get; set; } // TODO: Replace with bool - keep file name constant
     public string? Name { get; set; }
     public string? Description { get; set; }
     public string? Author { get; set; }

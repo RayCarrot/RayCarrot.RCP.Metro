@@ -103,6 +103,13 @@
 
                                     </Grid>
 
+                                    <!-- TODO-UPDATE: Localize -->
+                                    <TextBlock Text="Press + to add a patch"
+                                               Visibility="{Binding Path=Patches.Count, Converter={local:InvertedIntToVisibilityConverter}}"
+                                               HorizontalAlignment="Center"
+                                               Margin="0 15 0 20"
+                                               FontSize="16"/>
+
                                     <ListBox SelectedItem="{Binding Path=SelectedPatch}"
                                              ItemsSource="{Binding Path=Patches, Mode=OneTime}"
                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
