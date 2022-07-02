@@ -88,7 +88,7 @@
                                                                     Width="16" Height="16"
                                                                     Kind="FolderOutline"
                                                                     Background="Transparent"
-                                                                    ToolTip="{Binding Path=Container.ArchiveFilePath, Mode=OneTime}"
+                                                                    ToolTip="{Binding Path=ArchiveFilePath, Mode=OneTime}"
                                                                     Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
                                                                     Margin="0 0 5 0" />
 
@@ -125,7 +125,7 @@
                                              dd:DragDrop.IsDragSource="True"
                                              dd:DragDrop.IsDropTarget="True"
                                              dd:DragDrop.SelectDroppedItems="True"
-                                             dd:DragDrop.DragDropContext="{Binding Path=Container.ArchiveFilePath, Mode=OneTime}"
+                                             dd:DragDrop.DragDropContext="{Binding Path=ArchiveFilePath, Mode=OneTime}"
                                              PreviewMouseWheel="PatchesListBox_OnPreviewMouseWheel"
                                              Margin="0 0 0 5"
                                              Loaded="PatchesListBox_OnLoaded">
@@ -345,7 +345,7 @@
                                     <iconPacks:PackIconMaterial Width="16" Height="16"
                                                                 Kind="FolderOutline"
                                                                 Background="Transparent"
-                                                                ToolTip="{Binding Path=Container.ArchiveFilePath, Mode=OneTime}"
+                                                                ToolTip="{Binding Path=ArchiveFilePath, Mode=OneTime}"
                                                                 Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
                                                                 Margin="0 0 5 0" />
 
