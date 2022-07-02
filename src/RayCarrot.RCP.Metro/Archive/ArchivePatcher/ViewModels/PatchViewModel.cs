@@ -21,7 +21,6 @@ public class PatchViewModel : BaseViewModel, IDisposable
         Patch = patch;
 
         // TODO-UPDATE: Localize
-        // TODO-UPDATE: Show id for debug
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
             new("Author", manifest.Author),
@@ -29,6 +28,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
             new("Size", ByteSize.FromBytes(manifest.TotalSize).ToString()),
             new("Date", manifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
             new("Revision", manifest.Revision.ToString()),
+            new("ID", manifest.ID, UserLevel.Debug),
             new("Added Files", (manifest.AddedFiles?.Length ?? 0).ToString()),
             new("Removed Files", (manifest.RemovedFiles?.Length ?? 0).ToString()),
         };
