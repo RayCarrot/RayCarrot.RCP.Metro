@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Windows.Input;
@@ -8,24 +10,26 @@ using ByteSizeLib;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
-public class PatchViewModel : BaseViewModel
+public class PatchViewModel : BaseViewModel, IDisposable
 {
-    public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifest patch, bool isEnabled)
+    public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifest manifest, bool isEnabled, Patch? patch)
     {
         ContainerViewModel = containerViewModel;
-        Patch = patch;
+        Manifest = manifest;
         _isEnabled = isEnabled;
+        Patch = patch;
 
         // TODO-UPDATE: Localize
+        // TODO-UPDATE: Show id for debug
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new("Author", patch.Author),
-            new("Flags", patch.Flags.ToString()),
-            new("Size", ByteSize.FromBytes(patch.TotalSize).ToString()),
-            new("Date", patch.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-            new("Revision", patch.Revision.ToString()),
-            new("Added Files", (patch.AddedFiles?.Length ?? 0).ToString()),
-            new("Removed Files", (patch.RemovedFiles?.Length ?? 0).ToString()),
+            new("Author", manifest.Author),
+            new("Flags", manifest.Flags.ToString()),
+            new("Size", ByteSize.FromBytes(manifest.TotalSize).ToString()),
+            new("Date", manifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+            new("Revision", manifest.Revision.ToString()),
+            new("Added Files", (manifest.AddedFiles?.Length ?? 0).ToString()),
+            new("Removed Files", (manifest.RemovedFiles?.Length ?? 0).ToString()),
         };
 
         RemoveCommand = new RelayCommand(() => ContainerViewModel.RemovePatch(this));
@@ -36,9 +40,13 @@ public class PatchViewModel : BaseViewModel
     private bool _isEnabled;
 
     public PatchContainerViewModel ContainerViewModel { get; }
-    public PatchManifest Patch { get; }
+    public PatchManifest Manifest { get; }
+    public Patch? Patch { get; }
     public ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
     public ImageSource? Thumbnail { get; private set; }
+
+    [MemberNotNullWhen(true, nameof(Patch))]
+    public bool IsPendingImport => Patch != null;
 
     public bool IsEnabled
     {
@@ -50,10 +58,19 @@ public class PatchViewModel : BaseViewModel
         }
     }
 
-    public void LoadThumbnail()
+    public void LoadThumbnail(PatchContainer? container)
     {
-        using Stream? thumbStream = ContainerViewModel.Container.GetPatchThumbnail(Patch.ID);
-        
+        // TODO-UPDATE: Log
+
+        if (!Manifest.HasAsset(PatchAsset.Thumbnail))
+        {
+            Thumbnail = null;
+            return;
+        }
+
+        using Stream? thumbStream = container?.GetPatchAsset(Manifest.ID, PatchAsset.Thumbnail) ??
+                                   Patch?.GetPatchAsset(PatchAsset.Thumbnail) ?? null;
+
         if (thumbStream == null)
         {
             Thumbnail = null;
@@ -62,5 +79,10 @@ public class PatchViewModel : BaseViewModel
 
         Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
         Thumbnail.Freeze();
+    }
+
+    public void Dispose()
+    {
+        Patch?.Dispose();
     }
 }

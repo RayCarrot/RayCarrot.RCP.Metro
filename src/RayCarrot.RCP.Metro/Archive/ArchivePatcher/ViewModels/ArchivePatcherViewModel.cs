@@ -36,7 +36,7 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
     {
         Manager = manager;
         Containers = new ObservableCollection<PatchContainerViewModel>(
-            archiveFilePaths.Select(x => new PatchContainerViewModel(new PatchContainer(x))));
+            archiveFilePaths.Select(x => new PatchContainerViewModel(new PatchContainer(x.AppendFileExtension(new FileExtension(PatchContainer.FileExtensions))), x)));
 
         foreach (PatchContainerViewModel c in Containers)
             c.PropertyChanged += Container_OnPropertyChanged;

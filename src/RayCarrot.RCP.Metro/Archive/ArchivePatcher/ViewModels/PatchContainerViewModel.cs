@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
+// TODO-UPDATE: Log
+
 public class PatchContainerViewModel : BaseViewModel, IDisposable
 {
-    public PatchContainerViewModel(PatchContainer container)
+    public PatchContainerViewModel(PatchContainer container, FileSystemPath archiveFilePath)
     {
         Container = container;
-        DisplayName = container.ArchiveFilePath.Name;
+        ArchiveFilePath = archiveFilePath;
+        DisplayName = archiveFilePath.Name;
         Patches = new ObservableCollection<PatchViewModel>();
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
+
+        AddPatchCommand = new AsyncRelayCommand(AddPatchAsync);
     }
 
-    private readonly HashSet<PatchManifest> _removedPatches = new HashSet<PatchManifest>();
+    private readonly HashSet<string> _removedPatches = new();
+
+    public ICommand AddPatchCommand { get; }
 
     public PatchContainer Container { get; }
+    public FileSystemPath ArchiveFilePath { get; }
     public string DisplayName { get; }
 
     public PatchHistoryManifest? PatchHistory { get; set; }
@@ -37,19 +47,19 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             string id = PatchHistory.ID;
 
             foreach (string addedFile in PatchHistory.AddedFiles)
-                fileModifications[Container.GetResourceName(addedFile)] = 
+                fileModifications[Container.NormalizeResourceName(addedFile)] = 
                     new FileModification(FileModificationType.Remove, id, addedFile, false);
 
             foreach (string replacedFile in PatchHistory.ReplacedFiles)
-                fileModifications[Container.GetResourceName(replacedFile)] = 
+                fileModifications[Container.NormalizeResourceName(replacedFile)] = 
                     new FileModification(FileModificationType.Add, id, replacedFile, false);
 
             foreach (string removedFile in PatchHistory.RemovedFiles)
-                fileModifications[Container.GetResourceName(removedFile)] = 
+                fileModifications[Container.NormalizeResourceName(removedFile)] = 
                     new FileModification(FileModificationType.Add, id, removedFile, false);
         }
 
-        foreach (PatchManifest patch in Patches.Where(x => x.IsEnabled).Select(x => x.Patch).Reverse())
+        foreach (PatchManifest patch in Patches.Where(x => x.IsEnabled).Select(x => x.Manifest).Reverse())
         {
             string id = patch.ID;
 
@@ -59,14 +69,14 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                 {
                     string addedFile = patch.AddedFiles[i];
                     string addedFileChecksum = patch.AddedFileChecksums[i];
-                    fileModifications[Container.GetResourceName(addedFile)] =
+                    fileModifications[Container.NormalizeResourceName(addedFile)] =
                         new FileModification(FileModificationType.Add, id, addedFile, true, addedFileChecksum);
                 }
             }
 
             if (patch.RemovedFiles != null)
                 foreach (string removedFile in patch.RemovedFiles)
-                    fileModifications[Container.GetResourceName(removedFile)] = 
+                    fileModifications[Container.NormalizeResourceName(removedFile)] = 
                         new FileModification(FileModificationType.Remove, id, removedFile, true);
         }
 
@@ -88,7 +98,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         }
         history.TotalSize += fileData.Stream.Length;
 
-        Container.AddResource(history.ID, resourceName, fileData.Stream);
+        Container.AddPatchResource(history.ID, resourceName, true, fileData.Stream);
     }
 
     private void ReplaceArchiveFile(FileItem file, IArchiveDataManager manager, Stream resource)
@@ -117,10 +127,10 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
         foreach (PatchManifest patch in manifest.Patches)
         {
-            PatchViewModel patchVM = new(this, patch, manifest.EnabledPatches?.Contains(patch.ID) == true);
+            PatchViewModel patchVM = new(this, patch, manifest.EnabledPatches?.Contains(patch.ID) == true, null);
 
             // TODO: Load this async? Or maybe it's fast enough that it doesn't matter.
-            patchVM.LoadThumbnail();
+            patchVM.LoadThumbnail(Container);
 
             Patches.Add(patchVM);
         }
@@ -132,7 +142,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
         foreach (PatchViewModel patchViewModel in Patches.Where(x => x.IsEnabled))
         {
-            PatchManifest patch = patchViewModel.Patch;
+            PatchManifest patch = patchViewModel.Manifest;
 
             if (patch.AddedFiles != null)
                 foreach (string addedFile in patch.AddedFiles)
@@ -157,27 +167,130 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         OnPropertyChanged(nameof(HasPatchedFiles));
     }
 
-    public void RemovePatch(PatchViewModel patch)
+    public async Task AddPatchAsync()
     {
-        Patches.Remove(patch);
-        _removedPatches.Add(patch.Patch);
-        SelectedPatch = null;
-        RefreshPatchedFiles();
+        FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+        {
+            // TODO-UPDATE: Localize
+            Title = "Select patches to add",
+            DefaultDirectory = default,
+            DefaultName = null,
+            ExtensionFilter = new FileExtension(".ap").GetFileFilterItem.StringRepresentation,
+            MultiSelection = true
+        });
+
+        if (result.CanceledByUser)
+            return;
+
+        foreach (FileSystemPath patchFile in result.SelectedFiles)
+        {
+            Patch? patch = null;
+
+            try
+            {
+                patch = new Patch(patchFile, true);
+
+                PatchManifest? manifest = patch.ReadManifest();
+
+                if (manifest == null)
+                    throw new Exception("Patch file does not contain a valid manifest");
+
+                PatchViewModel? conflict = Patches.FirstOrDefault(x => x.Manifest.ID == manifest.ID);
+
+                if (conflict != null)
+                {
+                    // TODO-UPDATE: Localize
+                    await Services.MessageUI.DisplayMessageAsync($"The patch {manifest.Name} conflicts with the existing patch {conflict.Manifest.Name}. Please remove the conflicting patch before adding the new one.", 
+                        "Patch conflict", MessageType.Error);
+
+                    patch.Dispose();
+                    continue;
+                }
+
+                // Add the patch view model so we can work with it
+                PatchViewModel patchViewModel = new(this, manifest, false, patch);
+                patchViewModel.LoadThumbnail(null);
+                Patches.Add(patchViewModel);
+            }
+            catch (Exception ex)
+            {
+                // TODO-UPDATE: Log exception
+
+                patch?.Dispose();
+
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
+            }
+        }
+    }
+
+    public void RemovePatch(PatchViewModel patchViewModel)
+    {
+        Patches.Remove(patchViewModel);
+        _removedPatches.Add(patchViewModel.Manifest.ID);
+
+        if (SelectedPatch == patchViewModel)
+            SelectedPatch = null;
+
+        // If the patch was enabled we need to refresh the patched files
+        if (patchViewModel.IsEnabled)
+            RefreshPatchedFiles();
+
+        patchViewModel.Dispose();
     }
 
     public void Apply(IArchiveDataManager manager)
     {
-        FileSystemPath archivePath = Container.ArchiveFilePath;
         using TempFile archiveOutputFile = new(true);
 
         // TODO-UPDATE: In case of error the container will be corrupt. Perhaps we read the container as read-only and then when writing we copy to temp and write to that and then replace?
 
-        PatchHistoryManifest history = new(Container.GetNewPatchID(_removedPatches.Select(x => x.ID).Append(PatchHistory?.ID).ToArray()), Container.ContainerVersion);
+        // Add files for added patches
+        foreach (PatchViewModel patchViewModel in Patches)
+        {
+            if (!patchViewModel.IsPendingImport)
+                continue;
+
+            PatchManifest manifest = patchViewModel.Manifest;
+            Patch patch = patchViewModel.Patch;
+
+            // Clear any leftover files before importing
+            Container.ClearPatchFiles(manifest.ID);
+
+            // Import the resources
+            if (manifest.AddedFiles != null)
+            {
+                foreach (string addedFile in manifest.AddedFiles)
+                {
+                    using Stream resourceStream = patch.GetPatchResource(addedFile, false);
+                    Container.AddPatchResource(manifest.ID, addedFile, false, resourceStream);
+                }
+            }
+
+            // Import the assets
+            if (manifest.Assets != null)
+            {
+                foreach (string asset in manifest.Assets)
+                {
+                    using Stream assetStream = patch.GetPatchAsset(asset);
+                    Container.AddPatchAsset(manifest.ID, asset, assetStream);
+                }
+            }
+        }
+
+        // Clear removed patches
+        foreach (string patch in _removedPatches.Where(x => Patches.All(p => p.Manifest.ID != x)))
+            Container.ClearPatchFiles(patch);
+
+        _removedPatches.Clear();
+
+        // The history gets re-created each time we save, so generate a new ID
+        string newHistoryID = Container.GenerateNewPatchID(Patches.Select(x => x.Manifest.ID).Append(PatchHistory?.ID).ToArray());
+        PatchHistoryManifest history = new(newHistoryID, PatchContainer.Version);
 
         // Read the archive
-        using (FileStream archiveStream = File.OpenRead(archivePath))
+        using (FileStream archiveStream = File.OpenRead(ArchiveFilePath))
         {
-            string archiveFileName = Container.ArchiveFilePath.Name;
+            string archiveFileName = ArchiveFilePath.Name;
             
             object archive = manager.LoadArchive(archiveStream, archiveFileName);
 
@@ -194,8 +307,8 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                 Dictionary<string, FileModification> fileModifications = GetFileModifications();
 
                 // The previously applied modifications
-                string[]? prevAddedFiles = PatchHistory?.AddedFiles.Select(x => Container.GetResourceName(x)).ToArray();
-                string[]? prevReplacedFiles = PatchHistory?.ReplacedFiles.Select(x => Container.GetResourceName(x)).ToArray();
+                string[]? prevAddedFiles = PatchHistory?.AddedFiles.Select(x => Container.NormalizeResourceName(x)).ToArray();
+                string[]? prevReplacedFiles = PatchHistory?.ReplacedFiles.Select(x => Container.NormalizeResourceName(x)).ToArray();
 
                 // Replace or remove existing files
                 foreach (ArchiveDirectory dir in archiveData.Directories)
@@ -203,7 +316,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                     foreach (FileItem file in dir.Files)
                     {
                         string filePath = manager.CombinePaths(file.Directory, file.FileName);
-                        string resourceName = Container.GetResourceName(filePath);
+                        string resourceName = Container.NormalizeResourceName(filePath);
 
                         FileModification? modification = fileModifications.TryGetValue(resourceName);
 
@@ -238,14 +351,14 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                                 // of the one it was replaced with before
                                 else if (prevReplacedFiles?.Any(x => x == resourceName) == true)
                                 {
-                                    using Stream prevSavedFile = Container.GetPatchResource(PatchHistory!.ID, resourceName);
+                                    using Stream prevSavedFile = Container.GetPatchResource(PatchHistory!.ID, resourceName, true);
 
                                     history.ReplacedFiles.Add(filePath);
                                     history.ReplacedFileChecksums.Add(checksum);
 
                                     history.TotalSize += prevSavedFile.Length;
 
-                                    Container.AddResource(history.ID, resourceName, prevSavedFile);
+                                    Container.AddPatchResource(history.ID, resourceName, true, prevSavedFile);
                                 }
                                 else
                                 {
@@ -253,7 +366,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                                 }
                             }
 
-                            using Stream resource = Container.GetPatchResource(modification.PatchID, resourceName);
+                            using Stream resource = Container.GetPatchResource(modification.PatchID, resourceName, true);
                             ReplaceArchiveFile(file, manager, resource);
                         }
                     }
@@ -264,7 +377,6 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                 {
                     // TODO-UPDATE: Don't use System.IO here since a different separator char might be used
                     string filePath = modification.FilePath;
-                    string resourceName = Container.GetResourceName(filePath);
                     string fileName = Path.GetFileName(filePath);
                     string dir = Path.GetDirectoryName(filePath) ?? String.Empty;
                     object entry = manager.GetNewFileEntry(archive, dir, fileName);
@@ -273,7 +385,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
                     archiveFiles.Add(file);
 
-                    using (Stream resource = Container.GetPatchResource(modification.PatchID, resourceName))
+                    using (Stream resource = Container.GetPatchResource(modification.PatchID, filePath, false))
                         ReplaceArchiveFile(file, manager, resource);
 
                     if (modification.AddToHistory)
@@ -296,28 +408,27 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         }
 
         // Replace the archive with the modified one
-        Services.File.MoveFile(archiveOutputFile.TempPath, archivePath, true);
+        Services.File.MoveFile(archiveOutputFile.TempPath, ArchiveFilePath, true);
 
+        // TODO-UPDATE: How should we handle versions?
         // Update the patch manifests
         foreach (PatchViewModel patchViewModel in Patches)
         {
             //patchViewModel.Patch.ContainerVersion = Container.ContainerVersion;
         }
 
+        // Clear old history
         if (PatchHistory != null)
-            Container.ClearResources(PatchHistory.ID);
+            Container.ClearPatchFiles(PatchHistory.ID);
 
         // Update the container manifest
-        string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Patch.ID).ToArray();
-        Container.WriteManifest(history, Patches.Select(x => x.Patch).ToArray(), enabledPatches);
-
-        // Clear removed patches
-        foreach (PatchManifest patch in _removedPatches.Where(x => Patches.All(p => p.Patch.ID != x.ID)))
-            Container.ClearResources(patch.ID);
+        string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
+        Container.WriteManifest(history, Patches.Select(x => x.Manifest).ToArray(), enabledPatches);
     }
 
     public void Dispose()
     {
+        Patches.DisposeAll();
         Container.Dispose();
     }
 

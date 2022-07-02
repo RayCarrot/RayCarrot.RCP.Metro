@@ -7,69 +7,110 @@ using System.Security.Cryptography;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
+/// <summary>
+/// An archive patch container (.apc). This is stored alongside an archive file and keeps track of the applied patches and the original
+/// files which have been replaced so that they can be restored. Each patch contains a manifest with details as well as
+/// resources and assets. The resources are the added files while the assets are things such as a thumbnail.
+/// </summary>
 public class PatchContainer : IDisposable
 {
     // TODO-UPDATE: Logging
 
-    public PatchContainer(FileSystemPath archiveFilePath, bool readOnly = false)
-    {
-        ArchiveFilePath = archiveFilePath;
-        PatchContainerFilePath = archiveFilePath.AppendFileExtension(new FileExtension(ContainerFileExtensions));
+    #region Constructor
 
+    public PatchContainer(FileSystemPath filePath, bool readOnly = false)
+    {
+        FilePath = filePath;
         _readOnly = readOnly;
 
-        if (PatchContainerFilePath.FileExists)
+        if (FilePath.FileExists)
         {
             var fileAccess = readOnly ? FileAccess.Read : FileAccess.ReadWrite;
             var zipArchiveMode = readOnly ? ZipArchiveMode.Read : ZipArchiveMode.Update;
-            _zip = new ZipArchive(File.Open(PatchContainerFilePath, FileMode.Open, fileAccess), zipArchiveMode);
+            _zip = new ZipArchive(File.Open(FilePath, FileMode.Open, fileAccess), zipArchiveMode);
         }
     }
 
-    private const string ContainerFileExtensions = ".apc"; // Archive Patch Container
-    private const string PatchFileExtensions = ".ap"; // Archive Patch
-    private const string ContainerManifestFileName = "Manifest.json";
-    private const string PatchManifestFileName = "Manifest.json";
-    private const int LatestContainerVersion = 0;
+    #endregion
+
+    #region Contants
+
+    private const string ManifestFileName = "manifest.json";
+    public const int Version = 0;
+    public const string FileExtensions = ".apc"; // Archive Patch Container
+
+    #endregion
+
+    #region Private Fields
 
     private readonly bool _readOnly;
     private ZipArchive? _zip;
 
-    public FileSystemPath ArchiveFilePath { get; }
-    public FileSystemPath PatchContainerFilePath { get; }
+    #endregion
 
-    public int ContainerVersion => LatestContainerVersion;
+    #region Public Properties
 
-    private static string GetFullResourcePath(string patchID, string resourceName) => $"{patchID}/resources/{resourceName}";
-    private static string GetThumbnailPath(string patchID) => $"{patchID}/thumb";
+    public FileSystemPath FilePath { get; }
+
+    #endregion
+
+    #region Private Methods
+
+    private string GetPatchResourcePath(string patchID, string resourceName, bool isNormalized)
+    {
+        if (!isNormalized)
+            resourceName = NormalizeResourceName(resourceName);
+
+        return $"{patchID}/resources/{resourceName}";
+    }
+    private string GetPatchAssetPath(string patchID, string assetName) => $"{patchID}/assets/{assetName}";
 
     [MemberNotNull(nameof(_zip))]
     private void InitZipForWriting()
     {
-        if (_zip is not null) 
+        if (_zip is not null)
             return;
-        
+
         FileAccess fileAccess = _readOnly ? FileAccess.Read : FileAccess.ReadWrite;
         ZipArchiveMode zipArchiveMode = _readOnly ? ZipArchiveMode.Read : ZipArchiveMode.Update;
-        _zip = new ZipArchive(File.Open(PatchContainerFilePath, FileMode.CreateNew, fileAccess), zipArchiveMode);
+        _zip = new ZipArchive(File.Open(FilePath, FileMode.CreateNew, fileAccess), zipArchiveMode);
     }
 
     private ZipArchiveEntry CreateZipEntry(string path)
     {
         InitZipForWriting();
 
-        ZipArchiveEntry? existingEntry = _zip.GetEntry(ContainerManifestFileName);
+        ZipArchiveEntry? existingEntry = _zip.GetEntry(path);
         existingEntry?.Delete();
 
-        return _zip.CreateEntry(ContainerManifestFileName);
+        return _zip.CreateEntry(path);
     }
+
+    private void WriteManifest(PatchContainerManifest containerManifest)
+    {
+        ZipArchiveEntry entry = CreateZipEntry(ManifestFileName);
+
+        using Stream s = entry.Open();
+        JsonHelpers.SerializeToStream(containerManifest, s);
+    }
+
+    private void WriteFile(string fullPath, Stream stream)
+    {
+        ZipArchiveEntry entry = CreateZipEntry(fullPath);
+        using Stream fileStream = entry.Open();
+        stream.CopyTo(fileStream);
+    }
+
+    #endregion
+
+    #region Public Methods
 
     public PatchContainerManifest? ReadManifest()
     {
         if (_zip is null)
             return null;
 
-        ZipArchiveEntry? entry = _zip.GetEntry(ContainerManifestFileName);
+        ZipArchiveEntry? entry = _zip.GetEntry(ManifestFileName);
 
         if (entry is null)
             throw new Exception("Container does not contain a valid manifest file");
@@ -78,19 +119,15 @@ public class PatchContainer : IDisposable
         return JsonHelpers.DeserializeFromStream<PatchContainerManifest>(s);
     }
 
-    public void WriteManifest(PatchHistoryManifest history, PatchManifest[] patches, string[] enabledPatches)
+    public void WriteManifest(PatchHistoryManifest history, PatchManifest[] patches, string[]? enabledPatches)
     {
-        PatchContainerManifest manifest = new(history, patches, enabledPatches, LatestContainerVersion);
-        
-        ZipArchiveEntry entry = CreateZipEntry(ContainerManifestFileName);
-        
-        using Stream s = entry.Open();
-        JsonHelpers.SerializeToStream(manifest, s);
+        PatchContainerManifest containerManifest = new(history, patches, enabledPatches, Version);
+        WriteManifest(containerManifest);
     }
 
-    public Stream GetPatchResource(string patchID, string resourceName)
+    public Stream GetPatchResource(string patchID, string resourceName, bool isNormalized)
     {
-        string path = GetFullResourcePath(patchID, resourceName);
+        string path = GetPatchResourcePath(patchID, resourceName, isNormalized);
 
         if (_zip is null)
             throw new Exception("Can't retrieve resource from a container which has not yet been created");
@@ -98,17 +135,17 @@ public class PatchContainer : IDisposable
         return _zip.GetEntry(path)?.Open() ?? throw new Exception($"Resource with ID {patchID} and name {resourceName} was not found");
     }
 
-    public Stream? GetPatchThumbnail(string patchID)
+    public Stream GetPatchAsset(string patchID, string assetName)
     {
-        string path = GetThumbnailPath(patchID);
+        string path = GetPatchAssetPath(patchID, assetName);
 
         if (_zip is null)
-            throw new Exception("Can't retrieve thumbnail from a container which has not yet been created");
+            throw new Exception("Can't retrieve asset from a container which has not yet been created");
 
-        return _zip.GetEntry(path)?.Open();
+        return _zip.GetEntry(path)?.Open() ?? throw new Exception($"Asset with name {assetName} was not found");
     }
 
-    public void ClearResources(string patchID)
+    public void ClearPatchFiles(string patchID)
     {
         InitZipForWriting();
 
@@ -116,11 +153,14 @@ public class PatchContainer : IDisposable
             entry.Delete();
     }
 
-    public void AddResource(string patchID, string resourceName, Stream stream)
+    public void AddPatchResource(string patchID, string resourceName, bool isNormalized, Stream stream)
     {
-        ZipArchiveEntry entry = CreateZipEntry(GetFullResourcePath(patchID, resourceName));
-        using Stream fileStream = entry.Open();
-        stream.CopyTo(fileStream);
+        WriteFile(GetPatchResourcePath(patchID, resourceName, isNormalized), stream);
+    }
+
+    public void AddPatchAsset(string patchID, string assetName, Stream stream)
+    {
+        WriteFile(GetPatchAssetPath(patchID, assetName), stream);
     }
 
     public string CalculateChecksum(Stream stream)
@@ -130,7 +170,7 @@ public class PatchContainer : IDisposable
         return BitConverter.ToString(checksum);
     }
 
-    public string GetNewPatchID(string?[] existingIDs)
+    public string GenerateNewPatchID(params string?[] existingIDs)
     {
         string id;
 
@@ -147,10 +187,12 @@ public class PatchContainer : IDisposable
     /// </summary>
     /// <param name="filePath">The resource file path</param>
     /// <returns>The normalized resource name</returns>
-    public string GetResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
+    public string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
     public void Dispose()
     {
         _zip?.Dispose();
     }
+
+    #endregion
 }

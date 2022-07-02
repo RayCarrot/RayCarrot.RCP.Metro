@@ -101,6 +101,7 @@
                                         <Button Grid.Column="2"
                                                 ToolTip="Add patch"
                                                 Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                Command="{Binding Path=AddPatchCommand, Mode=OneTime}"
                                                 VerticalAlignment="Center"
                                                 Margin="0 0 5 0">
                                             <iconPacks:PackIconMaterial Background="Transparent"
@@ -171,7 +172,7 @@
                                                     <TextBlock Grid.Column="2" 
                                                                VerticalAlignment="Center"
                                                                FontSize="14"
-                                                               Text="{Binding Path=Patch.Name, Mode=OneTime}"
+                                                               Text="{Binding Path=Manifest.Name, Mode=OneTime}"
                                                                TextWrapping="Wrap"/>
 
                                                     <!-- Actions -->
@@ -241,7 +242,7 @@
                 <!-- Title -->
 
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           Text="{Binding Path=Patch.Name, Mode=OneTime}"
+                           Text="{Binding Path=Manifest.Name, Mode=OneTime}"
                            TextTrimming="CharacterEllipsis"
                            Margin="0 0 0 10"/>
 
@@ -255,7 +256,7 @@
 
                         <!-- Description -->
 
-                        <TextBlock Text="{Binding Path=Patch.Description, Mode=OneTime}"
+                        <TextBlock Text="{Binding Path=Manifest.Description, Mode=OneTime}"
                                    TextWrapping="Wrap"
                                    Margin="0 0 0 10"/>
 
