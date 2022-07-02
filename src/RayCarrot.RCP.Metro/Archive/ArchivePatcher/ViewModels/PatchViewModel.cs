@@ -10,11 +10,11 @@ namespace RayCarrot.RCP.Metro.Archive;
 
 public class PatchViewModel : BaseViewModel
 {
-    public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifestItem patch)
+    public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifest patch, bool isEnabled)
     {
         ContainerViewModel = containerViewModel;
         Patch = patch;
-        _isEnabled = patch.IsEnabled;
+        _isEnabled = isEnabled;
 
         // TODO-UPDATE: Localize
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
@@ -36,7 +36,7 @@ public class PatchViewModel : BaseViewModel
     private bool _isEnabled;
 
     public PatchContainerViewModel ContainerViewModel { get; }
-    public PatchManifestItem Patch { get; }
+    public PatchManifest Patch { get; }
     public ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
     public ImageSource? Thumbnail { get; private set; }
 

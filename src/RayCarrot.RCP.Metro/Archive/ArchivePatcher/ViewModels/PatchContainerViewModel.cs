@@ -16,7 +16,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
     }
 
-    private readonly HashSet<PatchManifestItem> _removedPatches = new HashSet<PatchManifestItem>();
+    private readonly HashSet<PatchManifest> _removedPatches = new HashSet<PatchManifest>();
 
     public PatchContainer Container { get; }
     public string DisplayName { get; }
@@ -49,7 +49,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                     new FileModification(FileModificationType.Add, id, removedFile, false);
         }
 
-        foreach (PatchManifestItem patch in Patches.Where(x => x.IsEnabled).Select(x => x.Patch).Reverse())
+        foreach (PatchManifest patch in Patches.Where(x => x.IsEnabled).Select(x => x.Patch).Reverse())
         {
             string id = patch.ID;
 
@@ -104,18 +104,9 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             resource.CopyTo(file.PendingImport);
     }
 
-    private void UpdatePatchManifests()
-    {
-        foreach (PatchViewModel patchViewModel in Patches)
-        {
-            patchViewModel.Patch.IsEnabled = patchViewModel.IsEnabled;
-            //patchViewModel.Patch.ContainerVersion = Container.ContainerVersion;
-        }
-    }
-
     public void LoadExistingPatches()
     {
-        PatchManifest? manifest = Container.ReadManifest();
+        PatchContainerManifest? manifest = Container.ReadManifest();
 
         Patches.Clear();
 
@@ -124,9 +115,9 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         if (manifest is null)
             return;
 
-        foreach (PatchManifestItem patch in manifest.Patches)
+        foreach (PatchManifest patch in manifest.Patches)
         {
-            PatchViewModel patchVM = new(this, patch);
+            PatchViewModel patchVM = new(this, patch, manifest.EnabledPatches?.Contains(patch.ID) == true);
 
             // TODO: Load this async? Or maybe it's fast enough that it doesn't matter.
             patchVM.LoadThumbnail();
@@ -141,7 +132,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
         foreach (PatchViewModel patchViewModel in Patches.Where(x => x.IsEnabled))
         {
-            PatchManifestItem patch = patchViewModel.Patch;
+            PatchManifest patch = patchViewModel.Patch;
 
             if (patch.AddedFiles != null)
                 foreach (string addedFile in patch.AddedFiles)
@@ -308,16 +299,20 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         Services.File.MoveFile(archiveOutputFile.TempPath, archivePath, true);
 
         // Update the patch manifests
-        UpdatePatchManifests();
+        foreach (PatchViewModel patchViewModel in Patches)
+        {
+            //patchViewModel.Patch.ContainerVersion = Container.ContainerVersion;
+        }
 
         if (PatchHistory != null)
             Container.ClearResources(PatchHistory.ID);
 
         // Update the container manifest
-        Container.WriteManifest(history, Patches.Select(x => x.Patch).ToArray());
+        string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Patch.ID).ToArray();
+        Container.WriteManifest(history, Patches.Select(x => x.Patch).ToArray(), enabledPatches);
 
         // Clear removed patches
-        foreach (PatchManifestItem patch in _removedPatches.Where(x => Patches.All(p => p.Patch.ID != x.ID)))
+        foreach (PatchManifest patch in _removedPatches.Where(x => Patches.All(p => p.Patch.ID != x.ID)))
             Container.ClearResources(patch.ID);
     }
 

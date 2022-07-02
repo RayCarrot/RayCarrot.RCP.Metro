@@ -3,8 +3,17 @@ using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
-public record PatchHistoryManifest(string ID, int ContainerVersion)
+public record PatchHistoryManifest
 {
+    public PatchHistoryManifest(string id, int containerVersion)
+    {
+        ID = id;
+        ContainerVersion = containerVersion;
+    }
+
+    public string ID { get; }
+    public int ContainerVersion { get; }
+
     public long TotalSize { get; set; }
     public DateTime ModifiedDate { get; } = DateTime.Now;
 

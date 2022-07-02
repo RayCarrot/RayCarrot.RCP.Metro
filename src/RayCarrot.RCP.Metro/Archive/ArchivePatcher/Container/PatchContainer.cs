@@ -54,7 +54,17 @@ public class PatchContainer : IDisposable
         _zip = new ZipArchive(File.Open(PatchContainerFilePath, FileMode.CreateNew, fileAccess), zipArchiveMode);
     }
 
-    public PatchManifest? ReadManifest()
+    private ZipArchiveEntry CreateZipEntry(string path)
+    {
+        InitZipForWriting();
+
+        ZipArchiveEntry? existingEntry = _zip.GetEntry(ContainerManifestFileName);
+        existingEntry?.Delete();
+
+        return _zip.CreateEntry(ContainerManifestFileName);
+    }
+
+    public PatchContainerManifest? ReadManifest()
     {
         if (_zip is null)
             return null;
@@ -65,16 +75,14 @@ public class PatchContainer : IDisposable
             throw new Exception("Container does not contain a valid manifest file");
 
         using Stream s = entry.Open();
-        return JsonHelpers.DeserializeFromStream<PatchManifest>(s);
+        return JsonHelpers.DeserializeFromStream<PatchContainerManifest>(s);
     }
 
-    public void WriteManifest(PatchHistoryManifest history, PatchManifestItem[] patches)
+    public void WriteManifest(PatchHistoryManifest history, PatchManifest[] patches, string[] enabledPatches)
     {
-        PatchManifest manifest = new(history, patches, LatestContainerVersion);
+        PatchContainerManifest manifest = new(history, patches, enabledPatches, LatestContainerVersion);
         
-        InitZipForWriting();
-
-        ZipArchiveEntry entry = _zip.GetEntry(ContainerManifestFileName) ?? _zip.CreateEntry(ContainerManifestFileName);
+        ZipArchiveEntry entry = CreateZipEntry(ContainerManifestFileName);
         
         using Stream s = entry.Open();
         JsonHelpers.SerializeToStream(manifest, s);
@@ -110,16 +118,14 @@ public class PatchContainer : IDisposable
 
     public void AddResource(string patchID, string resourceName, Stream stream)
     {
-        InitZipForWriting();
-
-        ZipArchiveEntry entry = _zip.CreateEntry(GetFullResourcePath(patchID, resourceName));
+        ZipArchiveEntry entry = CreateZipEntry(GetFullResourcePath(patchID, resourceName));
         using Stream fileStream = entry.Open();
         stream.CopyTo(fileStream);
     }
 
     public string CalculateChecksum(Stream stream)
     {
-        using SHA256Managed sha = new SHA256Managed();
+        using SHA256Managed sha = new();
         byte[] checksum = sha.ComputeHash(stream);
         return BitConverter.ToString(checksum);
     }
