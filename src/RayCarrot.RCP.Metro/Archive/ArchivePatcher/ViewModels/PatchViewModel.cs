@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -77,8 +78,13 @@ public class PatchViewModel : BaseViewModel, IDisposable
             return;
         }
 
-        Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-        Thumbnail.Freeze();
+        // This doesn't seem to work when reading from a zip archive as read-only due to the stream
+        // not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
+        //Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
+
+        if (Thumbnail?.CanFreeze == true)
+            Thumbnail.Freeze();
     }
 
     public void Dispose()
