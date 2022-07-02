@@ -59,6 +59,12 @@ public class PatchViewModel : BaseViewModel, IDisposable
         }
     }
 
+    // Currently unused, but can be used to allow patches to be downloaded
+    public string? PatchURL { get; set; }
+    [MemberNotNullWhen(true, nameof(PatchURL))]
+    public bool IsDownloaded { get; set; }
+    public bool IsDownloadable => PatchURL != null && !IsDownloaded;
+
     public void LoadThumbnail(PatchContainer? container)
     {
         // TODO-UPDATE: Log
