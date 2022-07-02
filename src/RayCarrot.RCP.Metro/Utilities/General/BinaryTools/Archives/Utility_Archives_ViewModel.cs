@@ -141,7 +141,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
     public async Task CreateArchiveAsync()
     {
         // Get the manager
-        using IArchiveDataManager manager = SelectedType.GetManager(Utility_Archives_TypeViewModel.ArchiveMode.Explorer);
+        using IArchiveDataManager manager = SelectedType.GetManager(Utility_Archives_TypeViewModel.ArchiveMode.Creator);
 
         // Show the Archive Creator
         await Services.UI.ShowArchiveCreatorAsync(manager);
