@@ -252,50 +252,57 @@
 
             <!-- Patch Info -->
 
-            <StackPanel Grid.Column="2"
-                        DataContext="{Binding Path=SelectedPatch}"
-                        Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}">
+            <Grid Grid.Column="2"
+                  DataContext="{Binding Path=SelectedPatch}"
+                  Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
                 <!-- Title -->
 
-                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                <TextBlock Grid.Row="0"
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
                            Text="{Binding Path=Manifest.Name, Mode=OneTime}"
                            TextTrimming="CharacterEllipsis"
                            Margin="0 0 0 10"/>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                <ScrollViewer Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0">
+                        <StackPanel Grid.Column="0">
 
-                        <!-- Description -->
+                            <!-- Description -->
 
-                        <TextBlock Text="{Binding Path=Manifest.Description, Mode=OneTime}"
-                                   TextWrapping="Wrap"
-                                   Margin="0 0 0 10"/>
+                            <TextBlock Text="{Binding Path=Manifest.Description, Mode=OneTime}"
+                                       TextWrapping="Wrap"
+                                       Margin="0 0 0 10"/>
 
-                        <!-- Info -->
+                            <!-- Info -->
 
-                        <local:DuoGrid ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" />
+                            <local:DuoGrid ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!-- Thumbnail -->
+                        <!-- Thumbnail -->
 
-                    <ContentPresenter Grid.Column="1"
-                                      Content="{Binding}"
-                                      ContentTemplate="{StaticResource PatchThumbnailTemplate}"
-                                      Width="64" Height="64"
-                                      VerticalAlignment="Center"
-                                      Margin="0 0 5 0" />
+                        <ContentPresenter Grid.Column="1"
+                                          Content="{Binding}"
+                                          ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                          Width="64" Height="64"
+                                          VerticalAlignment="Center"
+                                          Margin="0 0 5 0" />
 
-                </Grid>
+                    </Grid>
+                </ScrollViewer>
 
-
-            </StackPanel>
+            </Grid>
 
         </Grid>
 
