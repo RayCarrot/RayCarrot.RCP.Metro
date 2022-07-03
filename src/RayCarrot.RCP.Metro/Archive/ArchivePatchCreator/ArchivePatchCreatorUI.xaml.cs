@@ -51,5 +51,15 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
         WindowInstance.Close();
     }
 
+    private async void CreateButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        bool result = await ViewModel.CreatePatchAsync();
+        
+        if (!result)
+            return;
+        
+        WindowInstance.Close();
+    }
+
     #endregion
 }

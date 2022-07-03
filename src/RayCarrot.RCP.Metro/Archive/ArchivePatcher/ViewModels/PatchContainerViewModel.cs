@@ -284,7 +284,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         _removedPatches.Clear();
 
         // The history gets re-created each time we save, so generate a new ID
-        string newHistoryID = Container.GenerateNewPatchID(Patches.Select(x => x.Manifest.ID).Append(PatchHistory?.ID).ToArray());
+        string newHistoryID = Patch.GenerateID(Patches.Select(x => x.Manifest.ID).Append(PatchHistory?.ID).ToArray());
         PatchHistoryManifest history = new(newHistoryID, PatchContainer.Version);
 
         // Read the archive

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -96,6 +97,98 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
                 ArchiveFilePath = file - browseResult.SelectedDirectory,
             });
         }
+    }
+
+    public async Task<bool> CreatePatchAsync()
+    {
+        // TODO-UPDATE: Localize
+        SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+        {
+            Title = "Save patch file",
+            Extensions = new FileFilterItem("*.ap", "Archive Patch").StringRepresentation,
+        });
+
+        if (browseResult.CanceledByUser)
+            return false;
+
+        if (browseResult.SelectedFileLocation.FileExists)
+            browseResult.SelectedFileLocation.DeleteFile();
+
+        // TODO-UPDATE: Try/catch
+
+        using (Patch patch = new(browseResult.SelectedFileLocation))
+        {
+            List<string> addedFiles = new();
+            List<string> addedFileChecksums = new();
+            List<string> removedFiles = new();
+            List<string> assets = new();
+            long totalSize = 0;
+
+            foreach (FileViewModel file in Files.Where(x => x.IsValid))
+            {
+                if (file.IsFileAdded)
+                {
+                    using FileStream stream = File.OpenRead(file.SourceFilePath);
+
+                    // Calculate the checksum
+                    string checksum = Patch.CalculateChecksum(stream);
+                    stream.Position = 0;
+
+                    // Add the file
+                    patch.AddPatchResource(file.ArchiveFilePath, false, stream);
+
+                    // Add to the manifest
+                    addedFiles.Add(file.ArchiveFilePath);
+                    addedFileChecksums.Add(checksum);
+
+                    // Update the total size
+                    totalSize += stream.Length;
+                }
+                else
+                {
+                    // Add to the manifest
+                    removedFiles.Add(file.ArchiveFilePath);
+                }
+            }
+
+            // Add the thumbnail if there is one
+            if (Thumbnail != null)
+            {
+                PngBitmapEncoder encoder = new();
+                encoder.Frames.Add(BitmapFrame.Create(Thumbnail));
+
+                using MemoryStream memStream = new();
+                encoder.Save(memStream);
+                memStream.Position = 0;
+
+                // Add the asset
+                patch.AddPatchAsset(PatchAsset.Thumbnail, memStream);
+
+                // Add to the manifest
+                assets.Add(PatchAsset.Thumbnail);
+            }
+
+            // Write the manifest
+            patch.WriteManifest(new PatchManifest(
+                id: Patch.GenerateID(), // TODO-UPDATE: Should we allow existing patches to be updated, retaining their ID?
+                containerVersion: PatchContainer.Version,
+                name: Name,
+                description: Description,
+                author: Author,
+                flags: PatchFlags.None,
+                totalSize: totalSize,
+                modifiedDate: DateTime.Now,
+                revision: Revision,
+                addedFiles: addedFiles.ToArray(),
+                addedFileChecksums: addedFileChecksums.ToArray(),
+                removedFiles: removedFiles.ToArray(),
+                assets: assets.ToArray()));
+        }
+
+        // TODO-UPDATE: Localize
+        await Services.MessageUI.DisplayMessageAsync("The patch was saved successfully", MessageType.Success);
+
+        return true;
     }
 
     public class FileViewModel : BaseViewModel

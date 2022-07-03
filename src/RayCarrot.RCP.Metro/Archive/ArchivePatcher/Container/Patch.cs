@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.IO.Compression;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -13,15 +14,7 @@ public class Patch : IDisposable
 
     public Patch(FileSystemPath filePath, bool readOnly = false)
     {
-        FilePath = filePath;
-        _readOnly = readOnly;
-
-        if (FilePath.FileExists)
-        {
-            var fileAccess = readOnly ? FileAccess.Read : FileAccess.ReadWrite;
-            var zipArchiveMode = readOnly ? ZipArchiveMode.Read : ZipArchiveMode.Update;
-            _zip = new ZipArchive(File.Open(FilePath, FileMode.Open, fileAccess), zipArchiveMode);
-        }
+        _zip = new PatchZip(filePath, readOnly);
     }
 
     #endregion
@@ -36,14 +29,13 @@ public class Patch : IDisposable
 
     #region Private Fields
 
-    private readonly bool _readOnly;
-    private ZipArchive? _zip;
+    private PatchZip _zip;
 
     #endregion
 
     #region Public Properties
 
-    public FileSystemPath FilePath { get; }
+    public FileSystemPath FilePath => _zip.FilePath;
 
     #endregion
 
@@ -56,6 +48,7 @@ public class Patch : IDisposable
 
         return $"resources/{resourceName}";
     }
+
     private string GetPatchAssetPath(string assetName) => $"assets/{assetName}";
 
     #endregion
@@ -64,37 +57,42 @@ public class Patch : IDisposable
 
     public PatchManifest? ReadManifest()
     {
-        if (_zip is null)
+        if (!_zip.CanRead)
             return null;
 
-        // Get the manifest entry
-        ZipArchiveEntry? entry = _zip.GetEntry(ManifestFileName);
+        using Stream? s = _zip.OpenStream(ManifestFileName);
 
-        if (entry is null)
+        if (s is null)
             throw new Exception("Patch does not contain a valid manifest file");
 
-        using Stream s = entry.Open();
         return JsonHelpers.DeserializeFromStream<PatchManifest>(s);
+    }
+
+    public void WriteManifest(PatchManifest manifest)
+    {
+        _zip.WriteJSON(ManifestFileName, manifest);
     }
 
     public Stream GetPatchResource(string resourceName, bool isNormalized)
     {
         string path = GetPatchResourcePath(resourceName, isNormalized);
-
-        if (_zip is null)
-            throw new Exception("Can't retrieve resource from a patch which has not yet been created");
-
-        return _zip.GetEntry(path)?.Open() ?? throw new Exception($"Resource with name {resourceName} was not found");
+        return _zip.OpenStream(path) ?? throw new Exception($"Resource with name {resourceName} was not found");
     }
 
     public Stream GetPatchAsset(string assetName)
     {
         string path = GetPatchAssetPath(assetName);
+        return _zip.OpenStream(path) ?? throw new Exception($"Asset with name {assetName} was not found");
+    }
 
-        if (_zip is null)
-            throw new Exception("Can't retrieve asset from a patch which has not yet been created");
+    public void AddPatchResource(string resourceName, bool isNormalized, Stream stream)
+    {
+        _zip.WriteStream(GetPatchResourcePath(resourceName, isNormalized), stream);
+    }
 
-        return _zip.GetEntry(path)?.Open() ?? throw new Exception($"Asset with name {assetName} was not found");
+    public void AddPatchAsset(string assetName, Stream stream)
+    {
+        _zip.WriteStream(GetPatchAssetPath(assetName), stream);
     }
 
     /// <summary>
@@ -106,7 +104,30 @@ public class Patch : IDisposable
 
     public void Dispose()
     {
-        _zip?.Dispose();
+        _zip.Dispose();
+    }
+
+    #endregion
+
+    #region Public Static Methods
+
+    public static string GenerateID(params string?[] existingIDs)
+    {
+        string id;
+
+        do
+        {
+            id = Guid.NewGuid().ToString();
+        } while (existingIDs.Contains(id));
+
+        return id;
+    }
+
+    public static string CalculateChecksum(Stream stream)
+    {
+        using SHA256Managed sha = new();
+        byte[] checksum = sha.ComputeHash(stream);
+        return BitConverter.ToString(checksum);
     }
 
     #endregion

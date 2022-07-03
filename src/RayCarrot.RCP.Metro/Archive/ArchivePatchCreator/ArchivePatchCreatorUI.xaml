@@ -239,7 +239,8 @@
             <!-- TODO-UPDATE: Localize -->
             <Button Content="Create"
                     Style="{StaticResource RCP.Styles.Button.IconContent}"
-                    local:ButtonAssist.IconKind="ContentSaveOutline" />
+                    local:ButtonAssist.IconKind="ContentSaveOutline"
+                    Click="CreateButton_OnClick"/>
 
         </StackPanel>
 
