@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,11 +15,13 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
         AddFileCommand = new RelayCommand(AddFile);
+        AddFileFromFolderCommand = new AsyncRelayCommand(AddFileFromFolderAsync);
     }
 
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
     public ICommand AddFileCommand { get; }
+    public ICommand AddFileFromFolderCommand { get; }
 
     public string Name { get; set; } = String.Empty;
     public string Description { get; set; } = String.Empty;
@@ -66,6 +69,35 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
         SelectedFile = file;
     }
 
+    public async Task AddFileFromFolderAsync()
+    {
+        // TODO-UPDATE: Localize
+        DirectoryBrowserResult browseResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
+        {
+            Title = "Select folder to add",
+        });
+
+        if (browseResult.CanceledByUser)
+            return;
+
+        // If last file is invalid we remove it
+        if (Files.Count > 0 && !Files.Last().IsValid)
+            Files.RemoveAt(Files.Count - 1);
+
+        // Clear selection
+        SelectedFile = null;
+
+        // TODO-UPDATE: Try/catch
+        foreach (FileSystemPath file in Directory.EnumerateFiles(browseResult.SelectedDirectory, "*", SearchOption.AllDirectories))
+        {
+            Files.Add(new FileViewModel()
+            {
+                SourceFilePath = file,
+                ArchiveFilePath = file - browseResult.SelectedDirectory,
+            });
+        }
+    }
+
     public class FileViewModel : BaseViewModel
     {
         public FileSystemPath SourceFilePath { get; set; }
@@ -74,5 +106,6 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
         public bool IsSelected { get; set; }
 
         public bool IsValid => !ArchiveFilePath.IsNullOrWhiteSpace();
+        public bool IsFileAdded => SourceFilePath.FileExists;
     }
 }
