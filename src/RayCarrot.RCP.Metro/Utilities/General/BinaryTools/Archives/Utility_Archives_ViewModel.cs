@@ -183,7 +183,8 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
     public async Task CreateArchivePatchAsync()
     {
-        // TODO-UPDATE: Implement
+        // Show the Archive Patch Creator
+        await Services.UI.ShowArchivePatchCreatorAsync();
     }
 
     public void Dispose()

@@ -265,5 +265,21 @@ public class AppUIManager
         await Dialog.ShowWindowAsync(ui);
     }
 
+    /// <summary>
+    /// Shows a new instance of the Archive Patch Creator
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ShowArchivePatchCreatorAsync()
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("An Archive Patch Creator window was opened");
+
+        // Run on UI thread
+        ArchivePatchCreatorUI ui = Application.Current.Dispatcher.Invoke(() => new ArchivePatchCreatorUI(new ArchivePatchCreatorViewModel()));
+        await Dialog.ShowWindowAsync(ui);
+    }
+
     #endregion
 }
