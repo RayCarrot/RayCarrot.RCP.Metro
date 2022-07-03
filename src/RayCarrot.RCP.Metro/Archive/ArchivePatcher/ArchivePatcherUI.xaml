@@ -300,7 +300,7 @@
                                               Content="{Binding}"
                                               ContentTemplate="{StaticResource PatchThumbnailTemplate}"
                                               Width="64" Height="64"
-                                              VerticalAlignment="Center"
+                                              VerticalAlignment="Top"
                                               Margin="0 0 5 0" />
 
                         </Grid>
