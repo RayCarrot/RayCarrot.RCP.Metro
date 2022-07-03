@@ -16,9 +16,12 @@
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
     <!-- TODO-UPDATE: Localize -->
-    <local:LoaderContentControl Text="Creating patch" 
-                                IsLoading="{Binding Path=IsLoading}" 
-                                IsIndeterminate="True">
+    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
+                                Text="{Binding Path=LoadingMessage}"
+                                IsIndeterminate="{Binding Path=HasProgress, Converter={local:InvertedBooleanConverter}}"
+                                Minimum="{Binding Path=MinProgress}"
+                                Maximum="{Binding Path=MaxProgress}"
+                                Value="{Binding Path=CurrentProgress}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" MinHeight="200" />
@@ -41,6 +44,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -87,12 +91,22 @@
                                    VerticalAlignment="Center" 
                                    Text="Revision"
                                    Margin="0 0 0 10" />
-                        <metro:NumericUpDown Grid.Column="2"
-                                             Grid.Row="3" 
-                                             Margin="0 0 0 10"
-                                             Value="{Binding Path=Revision}"
-                                             Maximum="999"
-                                             Minimum="0" />
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="3" 
+                                   Margin="0 0 0 10"
+                                   Text="{Binding Path=Revision}" />
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="4"
+                                   VerticalAlignment="Center" 
+                                   Text="ID"
+                                   local:UserLevelAssist.MinUserLevel="Technical"
+                                   Margin="0 0 0 10" />
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="4" 
+                                   Margin="0 0 0 10"
+                                   Text="{Binding Path=ID}" 
+                                   local:UserLevelAssist.MinUserLevel="Technical"/>
                     </Grid>
                 </ScrollViewer>
 

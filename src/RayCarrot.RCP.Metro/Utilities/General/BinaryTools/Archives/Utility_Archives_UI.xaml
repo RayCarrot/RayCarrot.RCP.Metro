@@ -74,9 +74,14 @@
                         <local:MenuItemIcon Header="Create archive" 
                                             IconKind="{StaticResource RCP.Icons.Utilities_ArchiveCreator}"
                                             Command="{Binding Path=CreateArchiveCommand, Mode=OneTime}" />
+                        <Separator />
                         <local:MenuItemIcon Header="Create patch" 
                                             IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatchCreator}" 
                                             Command="{Binding Path=CreateArchivePatchCommand, Mode=OneTime}"/>
+                        <!-- TODO-UPDATE: Normalize icon -->
+                        <local:MenuItemIcon Header="Update patch" 
+                                            IconKind="FolderRefreshOutline" 
+                                            Command="{Binding Path=UpdateArchivePatchCommand, Mode=OneTime}"/>
                     </ContextMenu>
                 </local:OverflowMenu.ContextMenu>
             </local:OverflowMenu>

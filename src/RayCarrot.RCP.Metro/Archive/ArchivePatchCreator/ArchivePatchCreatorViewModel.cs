@@ -9,15 +9,19 @@ using System.Windows.Media.Imaging;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
-public class ArchivePatchCreatorViewModel : BaseViewModel
+public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 {
     public ArchivePatchCreatorViewModel()
     {
+        ID = Patch.GenerateID();
+
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
         AddFileCommand = new RelayCommand(AddFile);
         AddFileFromFolderCommand = new AsyncRelayCommand(AddFileFromFolderAsync);
     }
+
+    private TempDirectory? _tempDir;
 
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
@@ -28,12 +32,101 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
     public string Description { get; set; } = String.Empty;
     public string Author { get; set; } = String.Empty;
     public int Revision { get; set; }
-    public BitmapImage? Thumbnail { get; set; }
+    public string ID { get; set; }
+    public BitmapSource? Thumbnail { get; set; }
 
     public ObservableCollection<FileViewModel> Files { get; } = new();
     public FileViewModel? SelectedFile { get; set; }
 
+    public bool IsImported { get; set; }
+
+    public string? LoadingMessage { get; set; }
     public bool IsLoading { get; set; }
+    public double CurrentProgress { get; set; }
+    public double MinProgress { get; set; }
+    public double MaxProgress { get; set; }
+    public bool HasProgress { get; set; }
+
+    public async Task<bool> ImportFromPatchAsync(FileSystemPath patchFilePath)
+    {
+        if (IsLoading)
+            return false;
+
+        // TODO-UPDATE: Localize
+        LoadingMessage = "Importing from existing patch";
+        HasProgress = false;
+        IsLoading = true;
+
+        // TODO-UPDATE: Try/catch
+
+        try
+        {
+            using Patch patch = new(patchFilePath, true);
+
+            PatchManifest? manifest = patch.ReadManifest();
+
+            if (manifest == null)
+                throw new Exception("Can't read the patch manifest");
+
+            Name = manifest.Name ?? String.Empty;
+            Description = manifest.Description ?? String.Empty;
+            Author = manifest.Author ?? String.Empty;
+            Revision = manifest.Revision + 1;
+            ID = manifest.ID;
+
+            if (manifest.HasAsset(PatchAsset.Thumbnail))
+            {
+                using Stream thumbStream = patch.GetPatchAsset(PatchAsset.Thumbnail);
+
+                Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
+
+                if (Thumbnail?.CanFreeze == true)
+                    Thumbnail.Freeze();
+            }
+
+            _tempDir = new TempDirectory(true);
+
+            // Extract resources to temp
+            if (manifest.AddedFiles != null && manifest.AddedFileChecksums != null)
+            {
+                CurrentProgress = 0;
+                MinProgress = 0;
+                MaxProgress = manifest.AddedFiles.Length;
+                HasProgress = true;
+
+                for (var i = 0; i < manifest.AddedFiles.Length; i++)
+                {
+                    string addedFile = manifest.AddedFiles[i];
+                    string checksum = manifest.AddedFileChecksums[i];
+
+                    FileSystemPath tempFilePath = _tempDir.TempPath + addedFile;
+
+                    Directory.CreateDirectory(tempFilePath.Parent);
+
+                    using Stream file = patch.GetPatchResource(addedFile, false);
+                    using Stream tempFileStream = File.Create(tempFilePath);
+                    await file.CopyToAsync(tempFileStream);
+
+                    Files.Add(new FileViewModel()
+                    {
+                        SourceFilePath = tempFilePath,
+                        ArchiveFilePath = addedFile,
+                        Checksum = checksum,
+                    });
+
+                    CurrentProgress++;
+                }
+            }
+
+            IsImported = true;
+
+            return true;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
 
     public async Task BrowseThumbnailAsync()
     {
@@ -53,7 +146,9 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
             return;
 
         Thumbnail = new BitmapImage(new Uri(browseResult.SelectedFile));
-        Thumbnail.Freeze();
+
+        if (Thumbnail.CanFreeze)
+            Thumbnail.Freeze();
     }
 
     public void RemoveThumbnail() => Thumbnail = null;
@@ -106,6 +201,9 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
         if (IsLoading)
             return false;
 
+        // TODO-UPDATE: Localize
+        LoadingMessage = "Creating patch";
+        HasProgress = false;
         IsLoading = true;
 
         try
@@ -181,7 +279,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
 
                 // Write the manifest
                 patch.WriteManifest(new PatchManifest(
-                    id: Patch.GenerateID(), // TODO-UPDATE: Should we allow existing patches to be updated, retaining their ID?
+                    id: ID,
                     containerVersion: PatchContainer.Version,
                     name: Name,
                     description: Description,
@@ -196,6 +294,10 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
                     assets: assets.ToArray()));
 
                 patch.Apply();
+
+                // Dispose temporary files
+                _tempDir?.Dispose();
+                _tempDir = null;
             });
 
             // TODO-UPDATE: Localize
@@ -209,14 +311,23 @@ public class ArchivePatchCreatorViewModel : BaseViewModel
         }
     }
 
+    public void Dispose()
+    {
+        _tempDir?.Dispose();
+        _tempDir = null;
+    }
+
     public class FileViewModel : BaseViewModel
     {
         public FileSystemPath SourceFilePath { get; set; }
         public string ArchiveFilePath { get; set; } = String.Empty;
 
+        public string? Checksum { get; set; }
+
         public bool IsSelected { get; set; }
 
         public bool IsValid => !ArchiveFilePath.IsNullOrWhiteSpace();
         public bool IsFileAdded => SourceFilePath.FileExists;
+        public bool IsImported => Checksum != null;
     }
 }

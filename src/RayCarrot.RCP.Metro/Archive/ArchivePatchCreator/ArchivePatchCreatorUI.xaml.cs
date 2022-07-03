@@ -10,14 +10,37 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
 {
     #region Constructor
     
-    public ArchivePatchCreatorUI(ArchivePatchCreatorViewModel viewModel)
+    public ArchivePatchCreatorUI(ArchivePatchCreatorViewModel viewModel, FileSystemPath? existingPatch)
     {
         DataContext = viewModel;
         ViewModel = viewModel;
 
+        _patchToImportFrom = existingPatch;
+
         // Set up UI
         InitializeComponent();
+
+        Loaded += ArchivePatchCreatorUI_Loaded;
     }
+
+    private async void ArchivePatchCreatorUI_Loaded(object sender, RoutedEventArgs e)
+    {
+        Loaded -= ArchivePatchCreatorUI_Loaded;
+
+        if (_patchToImportFrom == null)
+            return;
+
+        bool success = await ViewModel.ImportFromPatchAsync(_patchToImportFrom.Value);
+
+        if (!success)
+            WindowInstance.Close();
+    }
+
+    #endregion
+
+    #region Private Fields
+
+    private readonly FileSystemPath? _patchToImportFrom;
 
     #endregion
 
@@ -50,6 +73,18 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
 
         // Cancel the closing if it's loading
         return !ViewModel.IsLoading;
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public override void Dispose()
+    {
+        base.Dispose();
+
+        DataContext = null;
+        ViewModel.Dispose();
     }
 
     #endregion
