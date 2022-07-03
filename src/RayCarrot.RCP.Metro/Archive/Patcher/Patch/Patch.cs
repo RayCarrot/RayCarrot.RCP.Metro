@@ -102,6 +102,8 @@ public class Patch : IDisposable
     /// <returns>The normalized resource name</returns>
     public string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
+    public void Apply() => _zip.Apply();
+
     public void Dispose()
     {
         _zip.Dispose();

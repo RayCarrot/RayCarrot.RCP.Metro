@@ -18,14 +18,11 @@ The way a container works is this:
   manifest.
 
 TODO:
-- Create an Archive Patch Creator for creating .ap files (Archive Patch) containing a patch manifest item and its resources
-- Allow patches to be added from .ap files and downloaded from raym.app. Show downloadable ones in list with download button next to.
 - Create patches for UbiRay in Legends and fixing transparency on Whale Bay texture in Rayman 2
 - Add logs for how each file is modified for easier testing
 - When opening the Archive Patcher we want to check if the checksums for the modified files match, if not show a warning icon next to
   the patch and show which files don't match in the info panel. This means the files have been manually modified after applying 
   the patch.
-- Rather than the patch keeping track of if it was enabled we should have a list of enabled patches in the history
  
  */
 
@@ -46,6 +43,7 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
     public ObservableCollection<PatchContainerViewModel> Containers { get; }
     public PatchViewModel? SelectedPatch { get; set; }
     public bool HasPatchedFiles => Containers.Any(x => x.HasPatchedFiles);
+    public bool IsLoading { get; set; }
 
     private void Container_OnPropertyChanged(object s, PropertyChangedEventArgs e)
     {
@@ -101,12 +99,20 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
 
     public async Task ApplyAsync()
     {
+        if (IsLoading)
+            return;
+
+        IsLoading = true;
+
         // TODO-UPDATE: Log
 
         try
         {
-            foreach (PatchContainerViewModel c in Containers)
-                c.Apply(Manager);
+            await Task.Run(() =>
+            {
+                foreach (PatchContainerViewModel c in Containers)
+                    c.Apply(Manager);
+            });
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
@@ -114,7 +120,12 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
         catch (Exception ex)
         {
             // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when applying the patches. Some patches might still have been applied.");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex,
+                "An error occurred when applying the patches. Some patches might still have been applied.");
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
 

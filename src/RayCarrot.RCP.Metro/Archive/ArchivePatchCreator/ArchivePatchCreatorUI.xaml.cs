@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -40,6 +41,15 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
         WindowInstance.MinHeight = 400;
         WindowInstance.Width = 900;
         WindowInstance.Height = 600;
+    }
+
+    protected override async Task<bool> ClosingAsync()
+    {
+        if (!await base.ClosingAsync())
+            return false;
+
+        // Cancel the closing if it's loading
+        return !ViewModel.IsLoading;
     }
 
     #endregion

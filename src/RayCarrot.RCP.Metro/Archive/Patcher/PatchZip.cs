@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
+// TODO: Zip files can be a bit slow - maybe find better solution? We could create custom archive type
+//       using BinarySerializer, but then we loose the ability to easily view/edit it.
+
 public class PatchZip : IDisposable
 {
     public PatchZip(FileSystemPath filePath, bool readOnly = false)
@@ -22,7 +25,7 @@ public class PatchZip : IDisposable
     }
 
     private readonly bool _readOnly;
-    private ZipArchive? _zip; // TODO-UPDATE: Use DotNetZip instead - better performance?
+    private ZipArchive? _zip;
 
     public FileSystemPath FilePath { get; }
     public bool CanRead => _zip != null;
@@ -80,8 +83,11 @@ public class PatchZip : IDisposable
         return _zip.GetEntry(filePath)?.Open();
     }
 
+    public void Apply() => Dispose();
+
     public void Dispose()
     {
         _zip?.Dispose();
+        _zip = null;
     }
 }

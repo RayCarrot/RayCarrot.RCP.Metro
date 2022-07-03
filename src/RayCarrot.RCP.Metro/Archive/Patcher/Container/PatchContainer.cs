@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -109,6 +109,8 @@ public class PatchContainer : IDisposable
     /// <param name="filePath">The resource file path</param>
     /// <returns>The normalized resource name</returns>
     public string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
+
+    public void Apply() => _zip.Apply();
 
     public void Dispose()
     {

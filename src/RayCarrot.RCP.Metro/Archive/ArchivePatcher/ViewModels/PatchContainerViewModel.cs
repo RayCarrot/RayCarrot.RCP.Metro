@@ -424,6 +424,8 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         // Update the container manifest
         string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
         Container.WriteManifest(history, Patches.Select(x => x.Manifest).ToArray(), enabledPatches);
+
+        Container.Apply();
     }
 
     public void Dispose()

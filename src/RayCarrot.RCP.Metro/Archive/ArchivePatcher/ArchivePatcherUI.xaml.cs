@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -46,6 +47,15 @@ public partial class ArchivePatcherUI : WindowContentControl
         WindowInstance.MinHeight = 400;
         WindowInstance.Width = 900;
         WindowInstance.Height = 600;
+    }
+
+    protected override async Task<bool> ClosingAsync()
+    {
+        if (!await base.ClosingAsync())
+            return false;
+
+        // Cancel the closing if it's loading
+        return !ViewModel.IsLoading;
     }
 
     #endregion
