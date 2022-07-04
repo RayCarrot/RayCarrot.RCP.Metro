@@ -13,12 +13,12 @@ namespace RayCarrot.RCP.Metro.Archive;
 
 public class PatchViewModel : BaseViewModel, IDisposable
 {
-    public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifest manifest, bool isEnabled, Patch? patch)
+    public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifest manifest, bool isEnabled, IPatchDataSource dataSource)
     {
         ContainerViewModel = containerViewModel;
         Manifest = manifest;
         _isEnabled = isEnabled;
-        Patch = patch;
+        DataSource = dataSource;
 
         // TODO-UPDATE: Localize
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
@@ -33,21 +33,24 @@ public class PatchViewModel : BaseViewModel, IDisposable
             new("Removed Files", (manifest.RemovedFiles?.Length ?? 0).ToString()),
         };
 
+        ExtractContentsCommand = new AsyncRelayCommand(async () => await ContainerViewModel.ExtractPatchContentsAsync(this));
+        ExportCommand = new AsyncRelayCommand(async () => await ContainerViewModel.ExportPatchAsync(this));
+        UpdateCommand = new AsyncRelayCommand(async () => await ContainerViewModel.UpdatePatchAsync(this));
         RemoveCommand = new RelayCommand(() => ContainerViewModel.RemovePatch(this));
     }
 
+    public ICommand ExtractContentsCommand { get; }
+    public ICommand ExportCommand { get; }
+    public ICommand UpdateCommand { get; }
     public ICommand RemoveCommand { get; }
 
     private bool _isEnabled;
 
     public PatchContainerViewModel ContainerViewModel { get; }
     public PatchManifest Manifest { get; }
-    public Patch? Patch { get; }
+    public IPatchDataSource DataSource { get; }
     public ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
     public ImageSource? Thumbnail { get; private set; }
-
-    [MemberNotNullWhen(true, nameof(Patch))]
-    public bool IsPendingImport => Patch != null;
 
     public bool IsEnabled
     {
@@ -75,14 +78,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
             return;
         }
 
-        using Stream? thumbStream = container?.GetPatchAsset(Manifest.ID, PatchAsset.Thumbnail) ??
-                                   Patch?.GetPatchAsset(PatchAsset.Thumbnail) ?? null;
-
-        if (thumbStream == null)
-        {
-            Thumbnail = null;
-            return;
-        }
+        using Stream thumbStream = DataSource.GetAsset(PatchAsset.Thumbnail);
 
         // This doesn't seem to work when reading from a zip archive as read-only due to the stream
         // not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
@@ -95,6 +91,6 @@ public class PatchViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
-        Patch?.Dispose();
+        DataSource.Dispose();
     }
 }

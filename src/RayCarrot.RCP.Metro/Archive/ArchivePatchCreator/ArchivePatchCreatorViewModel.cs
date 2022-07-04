@@ -40,6 +40,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
     public bool IsImported { get; set; }
 
+    // TODO-UPDATE: Use bindable operation
     public string? LoadingMessage { get; set; }
     public bool IsLoading { get; set; }
     public double CurrentProgress { get; set; }

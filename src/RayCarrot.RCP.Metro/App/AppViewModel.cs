@@ -66,6 +66,7 @@ public class AppViewModel : BaseViewModel
 
         // NOTE: For some reason it's important to set the message BEFORE the loading bool. Otherwise the loading bar
         //       width won't size correctly. This appears to be a bug in the MahApps.Metro library...
+        // TODO-UPDATE: Use bindable operation
         LoadOperation = new Operation(
             startAction: x =>
             {

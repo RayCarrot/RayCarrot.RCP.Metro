@@ -29,7 +29,7 @@ public class Patch : IDisposable
 
     #region Private Fields
 
-    private PatchZip _zip;
+    private readonly PatchZip _zip;
 
     #endregion
 

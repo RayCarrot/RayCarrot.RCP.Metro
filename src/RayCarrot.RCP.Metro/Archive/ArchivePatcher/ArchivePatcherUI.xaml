@@ -34,9 +34,12 @@
     </local:WindowContentControl.Resources>
 
     <!-- TODO-UPDATE: Localize -->
-    <local:LoaderContentControl Text="Applying patches"
-                                IsLoading="{Binding Path=IsLoading}"
-                                IsIndeterminate="True">
+    <local:LoaderContentControl IsLoading="{Binding Path=LoadOperation.IsLoading}"
+                                Text="{Binding Path=LoadOperation.LoadingMessage}"
+                                IsIndeterminate="{Binding Path=LoadOperation.HasProgress, Converter={local:InvertedBooleanConverter}}"
+                                Minimum="{Binding Path=LoadOperation.MinProgress}"
+                                Maximum="{Binding Path=LoadOperation.MaxProgress}"
+                                Value="{Binding Path=LoadOperation.CurrentProgress}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*" MinHeight="150" />
@@ -197,7 +200,8 @@
 
                                                         <StackPanel x:Name="PatchButtonsPanel"
                                                                     Grid.Column="3"
-                                                                    Orientation="Horizontal">
+                                                                    Orientation="Horizontal"
+                                                                    Margin="15 0 0 0">
                                                             <StackPanel.Style>
                                                                 <Style TargetType="{x:Type StackPanel}">
                                                                     <Setter Property="Visibility" Value="Hidden" />
@@ -216,14 +220,41 @@
                                                             </StackPanel.Style>
 
                                                             <!-- TODO-UPDATE: Localize -->
-                                                            <Button ToolTip="Extract"
+                                                            <Button ToolTip="Extract contents"
                                                                     Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                                    Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
                                                                     VerticalAlignment="Center"
-                                                                    Margin="15 0 10 0">
+                                                                    Margin="0 0 10 0"
+                                                                    local:UserLevelAssist.MinUserLevel="Technical">
                                                                 <iconPacks:PackIconMaterial Background="Transparent"
-                                                                    Kind="Export"
-                                                                    Width="16"
-                                                                    Height="16" />
+                                                                                            Kind="Export"
+                                                                                            Width="16"
+                                                                                            Height="16" />
+                                                            </Button>
+
+                                                            <!-- TODO-UPDATE: Localize -->
+                                                            <Button ToolTip="Export patch"
+                                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                                    Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                                                                    VerticalAlignment="Center"
+                                                                    Margin="0 0 10 0"
+                                                                    local:UserLevelAssist.MinUserLevel="Technical">
+                                                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                                                            Kind="FileExportOutline"
+                                                                                            Width="16"
+                                                                                            Height="16" />
+                                                            </Button>
+
+                                                            <!-- TODO-UPDATE: Localize -->
+                                                            <Button ToolTip="Update"
+                                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                                    Command="{Binding Path=UpdateCommand, Mode=OneTime}"
+                                                                    VerticalAlignment="Center"
+                                                                    Margin="0 0 10 0">
+                                                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                                                            Kind="Refresh"
+                                                                                            Width="16"
+                                                                                            Height="16" />
                                                             </Button>
 
                                                             <!-- TODO-UPDATE: Localize -->
@@ -233,9 +264,9 @@
                                                                     VerticalAlignment="Center"
                                                                     Margin="0 0 10 0">
                                                                 <iconPacks:PackIconMaterial Background="Transparent"
-                                                                    Kind="DeleteOutline"
-                                                                    Width="16"
-                                                                    Height="16" />
+                                                                                            Kind="DeleteOutline"
+                                                                                            Width="16"
+                                                                                            Height="16" />
                                                             </Button>
 
                                                         </StackPanel>

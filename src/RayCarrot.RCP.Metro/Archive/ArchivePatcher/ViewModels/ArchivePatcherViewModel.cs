@@ -31,9 +31,11 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
 {
     public ArchivePatcherViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> archiveFilePaths)
     {
+        LoadOperation = new BindableOperation();
+
         Manager = manager;
         Containers = new ObservableCollection<PatchContainerViewModel>(
-            archiveFilePaths.Select(x => new PatchContainerViewModel(new PatchContainer(x.AppendFileExtension(new FileExtension(PatchContainer.FileExtensions))), x)));
+            archiveFilePaths.Select(x => new PatchContainerViewModel(new PatchContainer(x.AppendFileExtension(new FileExtension(PatchContainer.FileExtensions))), x, LoadOperation)));
 
         foreach (PatchContainerViewModel c in Containers)
             c.PropertyChanged += Container_OnPropertyChanged;
@@ -43,7 +45,8 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
     public ObservableCollection<PatchContainerViewModel> Containers { get; }
     public PatchViewModel? SelectedPatch { get; set; }
     public bool HasPatchedFiles => Containers.Any(x => x.HasPatchedFiles);
-    public bool IsLoading { get; set; }
+
+    public BindableOperation LoadOperation { get; }
 
     private void Container_OnPropertyChanged(object s, PropertyChangedEventArgs e)
     {
@@ -99,33 +102,29 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
 
     public async Task ApplyAsync()
     {
-        if (IsLoading)
-            return;
-
-        IsLoading = true;
-
-        // TODO-UPDATE: Log
-
-        try
+        // TODO-UPDATE: Set progress?
+        // TODO-UPDATE: Localize
+        using (await LoadOperation.RunAsync("Applying patches"))
         {
-            await Task.Run(() =>
+            // TODO-UPDATE: Log
+
+            try
             {
-                foreach (PatchContainerViewModel c in Containers)
-                    c.Apply(Manager);
-            });
+                await Task.Run(() =>
+                {
+                    foreach (PatchContainerViewModel c in Containers)
+                        c.Apply(Manager);
+                });
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
-        }
-        catch (Exception ex)
-        {
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex,
-                "An error occurred when applying the patches. Some patches might still have been applied.");
-        }
-        finally
-        {
-            IsLoading = false;
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
+            }
+            catch (Exception ex)
+            {
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex,
+                    "An error occurred when applying the patches. Some patches might still have been applied.");
+            }
         }
     }
 

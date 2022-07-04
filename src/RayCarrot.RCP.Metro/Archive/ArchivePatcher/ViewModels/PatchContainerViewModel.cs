@@ -12,10 +12,11 @@ namespace RayCarrot.RCP.Metro.Archive;
 
 public class PatchContainerViewModel : BaseViewModel, IDisposable
 {
-    public PatchContainerViewModel(PatchContainer container, FileSystemPath archiveFilePath)
+    public PatchContainerViewModel(PatchContainer container, FileSystemPath archiveFilePath, BindableOperation loadOperation)
     {
         Container = container;
         ArchiveFilePath = archiveFilePath;
+        LoadOperation = loadOperation;
         DisplayName = archiveFilePath.Name;
         Patches = new ObservableCollection<PatchViewModel>();
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
@@ -30,6 +31,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
     public PatchContainer Container { get; }
     public FileSystemPath ArchiveFilePath { get; }
     public string DisplayName { get; }
+    public BindableOperation LoadOperation { get; }
 
     public PatchHistoryManifest? PatchHistory { get; set; }
     public ObservableCollection<PatchViewModel> Patches { get; }
@@ -37,6 +39,13 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public ObservableCollection<PatchedFileViewModel> PatchedFiles { get; set; }
     public bool HasPatchedFiles => PatchedFiles.Any();
+
+    private void AddPatch(Patch patch, PatchManifest manifest)
+    {
+        PatchViewModel patchViewModel = new(this, manifest, false, new PatchFileDataSource(patch, false));
+        patchViewModel.LoadThumbnail(null);
+        Patches.Add(patchViewModel);
+    }
 
     private Dictionary<string, FileModification> GetFileModifications()
     {
@@ -116,18 +125,19 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public void LoadExistingPatches()
     {
-        PatchContainerManifest? manifest = Container.ReadManifest();
+        PatchContainerManifest? containerManifest = Container.ReadManifest();
 
         Patches.Clear();
 
-        PatchHistory = manifest?.History;
+        PatchHistory = containerManifest?.History;
 
-        if (manifest is null)
+        if (containerManifest is null)
             return;
 
-        foreach (PatchManifest patch in manifest.Patches)
+        foreach (PatchManifest patch in containerManifest.Patches)
         {
-            PatchViewModel patchVM = new(this, patch, manifest.EnabledPatches?.Contains(patch.ID) == true, null);
+            PatchContainerDataSource src = new(Container, patch.ID, true);
+            PatchViewModel patchVM = new(this, patch, containerManifest.EnabledPatches?.Contains(patch.ID) == true, src);
 
             // TODO: Load this async? Or maybe it's fast enough that it doesn't matter.
             patchVM.LoadThumbnail(Container);
@@ -208,9 +218,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                 }
 
                 // Add the patch view model so we can work with it
-                PatchViewModel patchViewModel = new(this, manifest, false, patch);
-                patchViewModel.LoadThumbnail(null);
-                Patches.Add(patchViewModel);
+                AddPatch(patch, manifest);
             }
             catch (Exception ex)
             {
@@ -218,9 +226,58 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
                 patch?.Dispose();
 
+                // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
             }
         }
+    }
+
+    public async Task ExtractPatchContentsAsync(PatchViewModel patchViewModel)
+    {
+        DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
+        {
+            Title = "Select destination",
+        });
+
+        if (result.CanceledByUser)
+            return;
+
+        using (DisposableOperation operation = await LoadOperation.RunAsync("Extracting patch contents"))
+        {
+            PatchManifest manifest = patchViewModel.Manifest;
+            IPatchDataSource src = patchViewModel.DataSource;
+
+            // TODO-UPDATE: Try/catch
+            // Extract resources
+            if (manifest.AddedFiles != null)
+            {
+                int fileIndex = 0;
+
+                foreach (string addedFile in manifest.AddedFiles)
+                {
+                    operation.SetProgress(new Progress(fileIndex, manifest.AddedFiles.Length));
+                    fileIndex++;
+
+                    FileSystemPath fileDest = result.SelectedDirectory + addedFile;
+                    Directory.CreateDirectory(fileDest.Parent);
+
+                    using FileStream dstStream = File.Create(fileDest);
+                    using Stream srcStream = src.GetResource(addedFile, false);
+
+                    await srcStream.CopyToAsync(dstStream);
+                }
+
+                operation.SetProgress(new Progress(fileIndex, manifest.AddedFiles.Length));
+            }
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch contents were successfully extracted");
+        }
+    }
+
+    public async Task ExportPatchAsync(PatchViewModel patchViewModel)
+    {
+        throw new NotImplementedException();
     }
 
     public void RemovePatch(PatchViewModel patchViewModel)
@@ -238,20 +295,79 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         patchViewModel.Dispose();
     }
 
+    public async Task UpdatePatchAsync(PatchViewModel patchViewModel)
+    {
+        FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+        {
+            // TODO-UPDATE: Localize
+            Title = "Select updated patch",
+            DefaultDirectory = default,
+            DefaultName = null,
+            ExtensionFilter = new FileExtension(".ap").GetFileFilterItem.StringRepresentation,
+        });
+
+        if (result.CanceledByUser)
+            return;
+
+        Patch? patch = null;
+
+        try
+        {
+            patch = new Patch(result.SelectedFile, true);
+
+            PatchManifest? manifest = patch.ReadManifest();
+
+            if (manifest == null)
+                throw new Exception("Patch file does not contain a valid manifest");
+
+            // Verify the ID
+            if (patchViewModel.Manifest.ID != manifest.ID)
+            {
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayMessageAsync($"The selected patch does not match and can not be used to update {patchViewModel.Manifest.Name}.", MessageType.Error);
+
+                patch.Dispose();
+                return;
+            }
+
+            // Verify the revision is newer
+            if (patchViewModel.Manifest.Revision > manifest.Revision)
+            {
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayMessageAsync($"The selected patch revision is lower or the same as the current revision and can not be used to update {patchViewModel.Manifest.Name}.", MessageType.Error);
+
+                patch.Dispose();
+                return;
+            }
+
+            // Remove the current patch
+            RemovePatch(patchViewModel);
+
+            // Add the updated patch
+            AddPatch(patch, manifest);
+        }
+        catch (Exception ex)
+        {
+            // TODO-UPDATE: Log exception
+
+            patch?.Dispose();
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the patch");
+        }
+    }
+
     public void Apply(IArchiveDataManager manager)
     {
         using TempFile archiveOutputFile = new(true);
 
         // TODO-UPDATE: In case of error the container will be corrupt. Perhaps we read the container as read-only and then when writing we copy to temp and write to that and then replace?
 
-        // Add files for added patches
-        foreach (PatchViewModel patchViewModel in Patches)
+        // Add files to the container for patches which do not currently exist in the container
+        foreach (PatchViewModel patchViewModel in Patches.Where(x => x.DataSource is not PatchContainerDataSource))
         {
-            if (!patchViewModel.IsPendingImport)
-                continue;
-
             PatchManifest manifest = patchViewModel.Manifest;
-            Patch patch = patchViewModel.Patch;
+            IPatchDataSource src = patchViewModel.DataSource;
 
             // Clear any leftover files before importing
             Container.ClearPatchFiles(manifest.ID);
@@ -261,7 +377,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             {
                 foreach (string addedFile in manifest.AddedFiles)
                 {
-                    using Stream resourceStream = patch.GetPatchResource(addedFile, false);
+                    using Stream resourceStream = src.GetResource(addedFile, false);
                     Container.AddPatchResource(manifest.ID, addedFile, false, resourceStream);
                 }
             }
@@ -271,7 +387,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             {
                 foreach (string asset in manifest.Assets)
                 {
-                    using Stream assetStream = patch.GetPatchAsset(asset);
+                    using Stream assetStream = src.GetAsset(asset);
                     Container.AddPatchAsset(manifest.ID, asset, assetStream);
                 }
             }

@@ -51,6 +51,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
             // Get the manager
             Manager = manager;
 
+            // TODO-UPDATE: Use bindable operation
             // Create the load action
             Operation load = new(
                 startAction: x =>
