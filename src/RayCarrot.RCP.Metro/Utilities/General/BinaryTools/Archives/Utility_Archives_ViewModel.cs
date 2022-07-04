@@ -34,7 +34,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
             new Utility_Archives_TypeViewModel(
                 name: new ResourceLocString(resourcekey: nameof(Resources.Utilities_ArchiveExplorer_CNTHeader)),
                 fileExtension: new FileExtension(".cnt"),
-                getManagerFunc: (data, mode) => new CPACntArchiveDataManager(data.GetAttribute<CPAGameModeInfoAttribute>().GetSettings()),
+                getManagerFunc: (data, mode) => new CPACntArchiveDataManager(data.GetAttribute<CPAGameModeInfoAttribute>().GetSettings(), null),
                 modes: new EnumSelectionViewModel<Enum>(CPAGameMode.Rayman2_PC, new Enum[]
                 {
                     CPAGameMode.Rayman2_PC,

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
 using ByteSizeLib;
@@ -20,9 +21,11 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
-    public CPACntArchiveDataManager(OpenSpaceSettings settings)
+    /// <param name="game">The game or null if one is not specified</param>
+    public CPACntArchiveDataManager(OpenSpaceSettings settings, Games? game)
     {
         Settings = settings;
+        Game = game;
 
         Context = new RCPContext(String.Empty, new RCPSerializerSettings()
         {
@@ -40,6 +43,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     #endregion
 
     #region Public Properties
+
+    public Games? Game { get; }
 
     public Context Context { get; }
 
@@ -238,6 +243,35 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         {
             Context.RemoveFile(binaryFile);
         }
+    }
+
+    public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths)
+    {
+        // If we don't have a game then we can't auto-sync the textures
+        if (Game == null)
+            return;
+
+        // TODO-UPDATE: First time if user has the setting set to false (default value) then ask user if they want to turn
+        //              the setting on. Be clear they can change it in settings page at any time.
+        // Only auto-sync if set to do so
+        if (!Services.Data.Archive_CNT_SyncOnRepack)
+            return;
+
+        // TODO: Find a better solution than first creating the utilities to then get the view models
+        Utility_BaseGameSyncTextureInfo_ViewModel? syncVm = Game switch
+        {
+            Games.Rayman2 => new Utility_Rayman2_GameSyncTextureInfo().ViewModel,
+            Games.RaymanM => new Utility_RaymanM_GameSyncTextureInfo().ViewModel,
+            Games.RaymanArena => new Utility_RaymanArena_GameSyncTextureInfo().ViewModel,
+            Games.Rayman3 => new Utility_Rayman3_GameSyncTextureInfo().ViewModel,
+            _ => null
+        };
+
+        if (syncVm == null)
+            return;
+
+        // TODO-UPDATE: Don't show success message?
+        await syncVm.SyncTextureInfoAsync(archiveFilePaths);
     }
 
     /// <summary>

@@ -116,6 +116,8 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
                         c.Apply(Manager);
                 });
 
+                await Manager.OnRepackedArchivesAsync(Containers.Select(x => x.ArchiveFilePath).ToArray());
+
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
             }

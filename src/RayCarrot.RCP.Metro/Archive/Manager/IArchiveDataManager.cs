@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Archive;
@@ -73,6 +74,13 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="files">The files to include</param>
     /// <param name="progressCallback">A progress callback action</param>
     void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IEnumerable<FileItem> files, Action<Progress> progressCallback);
+
+    /// <summary>
+    /// Optional operations to perform after repacking archives
+    /// </summary>
+    /// <param name="archiveFilePaths">The file paths of the repacked archives</param>
+    /// <returns>The task</returns>
+    Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths);
 
     /// <summary>
     /// Loads the archive data

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using ByteSizeLib;
@@ -236,6 +237,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             Context.RemoveFile(binaryFile);
         }
     }
+
+    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths) => Task.CompletedTask;
 
     private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock, Action<Progress> progressCallback)
     {

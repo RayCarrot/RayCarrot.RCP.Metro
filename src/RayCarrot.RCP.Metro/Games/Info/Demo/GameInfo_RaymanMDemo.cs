@@ -94,7 +94,7 @@ public sealed class GameInfo_RaymanMDemo : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanM, Platform.PC));
+    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanM, Platform.PC), Game);
 
     /// <summary>
     /// Gets the archive file paths for the game

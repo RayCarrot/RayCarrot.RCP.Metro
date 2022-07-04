@@ -26,10 +26,8 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// </summary>
     /// <param name="manager">The archive data manager</param>
     /// <param name="filePaths">The archive file paths</param>
-    /// <param name="onRepackAction">An optional action to call after repacking an archive</param>
-    public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, FileSystemPath[] filePaths, Func<FileSystemPath, Task>? onRepackAction = null)
+    public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, FileSystemPath[] filePaths)
     {
-        OnRepackAction = onRepackAction;
         // Create commands
         NavigateToAddressCommand = new RelayCommand(() => LoadDirectory(CurrentDirectoryAddress));
         DeleteSelectedDirCommand = new AsyncRelayCommand(DeleteSelectedDirAsync);
@@ -142,11 +140,6 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     #endregion
 
     #region Public Properties
-
-    /// <summary>
-    /// An optional action to call after repacking an archive
-    /// </summary>
-    public Func<FileSystemPath, Task>? OnRepackAction { get; }
 
     /// <summary>
     /// Enumerates the directories in all available archives

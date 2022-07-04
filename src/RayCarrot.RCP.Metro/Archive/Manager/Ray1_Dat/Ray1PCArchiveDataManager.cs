@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using BinarySerializer;
 using BinarySerializer.Ray1;
 using ByteSizeLib;
@@ -241,6 +242,8 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
             Context.RemoveFile(binaryFile);
         }
     }
+
+    public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths) => Task.CompletedTask;
 
     /// <summary>
     /// Loads the archive data

@@ -291,9 +291,8 @@ public class ArchiveViewModel : DirectoryViewModel
                         // If the operation succeeded, replace the archive file with the temporary output
                         Services.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
-                        // Perform repack action if set
-                        if (ExplorerDialogViewModel.OnRepackAction != null)
-                            await ExplorerDialogViewModel.OnRepackAction.Invoke(FilePath);
+                        // On repack
+                        await Manager.OnRepackedArchivesAsync(new[] { FilePath });
 
                         // Re-open the file stream
                         OpenFile();

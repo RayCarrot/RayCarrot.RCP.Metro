@@ -283,27 +283,7 @@ public abstract class GameInfo : BaseGameData
                             // Show the archive explorer
                             await Services.UI.ShowArchiveExplorerAsync(
                                 manager: archiveDataManager, 
-                                filePaths: GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray(),
-                                onRepackAction: async archiveFilePath =>
-                                {
-                                    if (!Services.Data.Archive_CNT_SyncOnRepack)
-                                        return;
-
-                                    // TODO: Find a better solution than first creating the utilities to then get the view models
-                                    Utility_BaseGameSyncTextureInfo_ViewModel syncVm = Game switch
-                                    {
-                                        Games.Rayman2 => new Utility_Rayman2_GameSyncTextureInfo().ViewModel,
-                                        Games.RaymanM => new Utility_RaymanM_GameSyncTextureInfo().ViewModel,
-                                        Games.RaymanArena => new Utility_RaymanArena_GameSyncTextureInfo().ViewModel,
-                                        Games.Rayman3 => new Utility_Rayman3_GameSyncTextureInfo().ViewModel,
-                                        _ => null
-                                    };
-
-                                    if (syncVm == null)
-                                        return;
-
-                                    await syncVm.SyncTextureInfoAsync(new FileSystemPath[] { archiveFilePath });
-                                });
+                                filePaths: GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
                         }
                         catch (Exception ex)
                         {
