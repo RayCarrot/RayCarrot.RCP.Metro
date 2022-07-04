@@ -234,16 +234,18 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public async Task ExtractPatchContentsAsync(PatchViewModel patchViewModel)
     {
-        DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
-        {
-            Title = "Select destination",
-        });
-
-        if (result.CanceledByUser)
-            return;
-
+        // TODO-UPDATE: Localize
         using (DisposableOperation operation = await LoadOperation.RunAsync("Extracting patch contents"))
         {
+            DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
+            {
+                // TODO-UPDATE: Localize
+                Title = "Select destination",
+            });
+
+            if (result.CanceledByUser)
+                return;
+
             PatchManifest manifest = patchViewModel.Manifest;
             IPatchDataSource src = patchViewModel.DataSource;
 
@@ -277,7 +279,57 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public async Task ExportPatchAsync(PatchViewModel patchViewModel)
     {
-        throw new NotImplementedException();
+        // TODO-UPDATE: Localize
+        using (await LoadOperation.RunAsync("Exporting patch"))
+        {
+            // TODO-UPDATE: Localize
+            SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+            {
+                Title = "Save patch file",
+                Extensions = new FileFilterItem("*.ap", "Archive Patch").StringRepresentation,
+            });
+
+            if (browseResult.CanceledByUser)
+                return;
+
+            PatchManifest manifest = patchViewModel.Manifest;
+            IPatchDataSource src = patchViewModel.DataSource;
+
+            // TODO-UPDATE: Try/catch
+            await Task.Run(() =>
+            {
+                // Create a new patch
+                using Patch patch = new(browseResult.SelectedFileLocation);
+
+                // Copy resources
+                if (manifest.AddedFiles != null)
+                {
+                    foreach (string addedFile in manifest.AddedFiles)
+                    {
+                        using Stream srcStream = src.GetResource(addedFile, false);
+                        patch.AddPatchResource(addedFile, false, srcStream);
+                    }
+                }
+
+                // Copy assets
+                if (manifest.Assets != null)
+                {
+                    foreach (string asset in manifest.Assets)
+                    {
+                        using Stream srcStream = src.GetAsset(asset);
+                        patch.AddPatchAsset(asset, srcStream);
+                    }
+                }
+
+                // Write the manifest
+                patch.WriteManifest(manifest);
+
+                patch.Apply();
+            });
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch was successfully exported");
+        }
     }
 
     public void RemovePatch(PatchViewModel patchViewModel)
