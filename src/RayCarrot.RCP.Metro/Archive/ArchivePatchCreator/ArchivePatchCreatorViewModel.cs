@@ -280,19 +280,18 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
                 // Write the manifest
                 patch.WriteManifest(new PatchManifest(
-                    id: ID,
-                    containerVersion: PatchContainer.Version,
-                    name: Name,
-                    description: Description,
-                    author: Author,
-                    flags: PatchFlags.None,
-                    totalSize: totalSize,
-                    modifiedDate: DateTime.Now,
-                    revision: Revision,
-                    addedFiles: addedFiles.ToArray(),
-                    addedFileChecksums: addedFileChecksums.ToArray(),
-                    removedFiles: removedFiles.ToArray(),
-                    assets: assets.ToArray()));
+                    ID: ID,
+                    ContainerVersion: PatchContainer.Version,
+                    Name: Name,
+                    Description: Description,
+                    Author: Author,
+                    TotalSize: totalSize,
+                    ModifiedDate: DateTime.Now,
+                    Revision: Revision,
+                    AddedFiles: addedFiles.ToArray(),
+                    AddedFileChecksums: addedFileChecksums.ToArray(),
+                    RemovedFiles: removedFiles.ToArray(),
+                    Assets: assets.ToArray()));
 
                 patch.Apply();
 

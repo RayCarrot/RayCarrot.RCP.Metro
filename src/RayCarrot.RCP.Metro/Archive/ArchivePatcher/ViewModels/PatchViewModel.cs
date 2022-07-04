@@ -24,7 +24,6 @@ public class PatchViewModel : BaseViewModel, IDisposable
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
             new("Author", manifest.Author),
-            new("Flags", manifest.Flags.ToString()),
             new("Size", ByteSize.FromBytes(manifest.TotalSize).ToString()),
             new("Date", manifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
             new("Revision", manifest.Revision.ToString()),
