@@ -6,10 +6,6 @@
                     xmlns:archive="clr-namespace:RayCarrot.RCP.Metro.Archive"
                     mc:Ignorable="d">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ArchiveExplorer.Colors.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <!-- File (single) -->
 
     <ContextMenu x:Key="FileContextMenu_Single"
@@ -70,7 +66,7 @@
 
         <local:MenuItemIcon Header="{Resx Archive_Delete}"
                             Command="{Binding Path=DeleteCommand, Mode=OneTime}"
-                            IconForeground="{StaticResource Archive_DeleteItemBrush}"
+                            IconForeground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
                             InputGestureText="Del"
                             IconKind="DeleteOutline" />
 
@@ -100,7 +96,7 @@
 
         <local:MenuItemIcon Header="{Resx Archive_Delete}"
                             Command="{Binding Path=Directory.DeleteSelectedFilesCommand, Mode=OneTime}"
-                            IconForeground="{StaticResource Archive_DeleteItemBrush}"
+                            IconForeground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
                             InputGestureText="Del"
                             IconKind="DeleteOutline" />
 
@@ -149,7 +145,7 @@
         <local:MenuItemIcon Header="{Resx Archive_CreateDir}"
                             ToolTip="{Resx Archive_CreateDir_Info}"
                             Command="{Binding Path=CreateDirectoryCommand}"
-                            IconForeground="{StaticResource Archive_AddItemBrush}"
+                            IconForeground="{StaticResource RCP.Brushes.Archive.AddItem}"
                             IconKind="FolderPlusOutline"
                             IsEnabled="{Binding Path=CanAddSubDirectory, Mode=OneTime}" />
 
@@ -158,7 +154,7 @@
         <local:MenuItemIcon Header="{Resx Archive_Delete}"
                             ToolTip="{Resx Archive_DeleteDir_Info}"
                             Command="{Binding Path=DeleteCommand}"
-                            IconForeground="{StaticResource Archive_DeleteItemBrush}"
+                            IconForeground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
                             IconKind="DeleteOutline"
                             InputGestureText="Del"
                             IsEnabled="{Binding Path=CanBeDeleted, Mode=OneTime}" />

@@ -20,7 +20,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ArchiveExplorer.Colors.xaml" />
                 <ResourceDictionary Source="ArchiveExplorer.ContextMenus.xaml" />
                 <ResourceDictionary Source="ArchiveExplorer.Templates.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -97,10 +96,10 @@
                                         <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Path=IsFile, Mode=OneTime}" Value="True">
-                                                    <Setter Property="Foreground" Value="{StaticResource Archive_FileBrush}" />
+                                                    <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Archive.File}" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Path=IsFile, Mode=OneTime}" Value="False">
-                                                    <Setter Property="Foreground" Value="{StaticResource Archive_FolderBrush}" />
+                                                    <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Archive.Folder}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -201,7 +200,7 @@
 
                                 <iconPacks:PackIconMaterial Grid.Column="0"
                                                             Kind="{Binding Path=IsExpanded, Converter={archive:ArchiveExplorerIsFolderExpandedToIconConverter}}" 
-                                                            Foreground="{StaticResource Archive_FolderBrush}" />
+                                                            Foreground="{StaticResource RCP.Brushes.Archive.Folder}" />
 
                                 <TextBlock Grid.Column="2"
                                            Text="{Binding Path=DisplayName, Mode=OneTime}"
@@ -282,7 +281,7 @@
                 <!-- Add File Button -->
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}"
-                        Foreground="{StaticResource Archive_AddItemBrush}"
+                        Foreground="{StaticResource RCP.Brushes.Archive.AddItem}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Margin="15"

@@ -176,14 +176,14 @@
                                                                     HorizontalAlignment="Center"
                                                                     Width="16" Height="16"
                                                                     Kind="Plus"
-                                                                    Foreground="Green" />
+                                                                    Foreground="{StaticResource RCP.Brushes.Archive.AddItem}" />
 
                                         <iconPacks:PackIconMaterial Grid.Column="0"
                                                                     Visibility="{Binding Path=IsFileAdded, Converter={local:InvertedBooleanToVisibilityConverter}}"
                                                                     HorizontalAlignment="Center"
                                                                     Width="16" Height="16"
                                                                     Kind="DeleteOutline"
-                                                                    Foreground="Red" />
+                                                                    Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}" />
                                     </Grid>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

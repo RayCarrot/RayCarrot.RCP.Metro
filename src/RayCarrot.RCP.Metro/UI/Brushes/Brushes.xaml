@@ -44,4 +44,10 @@
     <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Error" Color="{StaticResource RCP.Colors.DeepOrangePrimary700}" />
     <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Fatal" Color="{StaticResource RCP.Colors.RedPrimary700}" />
 
+    <!-- Archive -->
+    <SolidColorBrush x:Key="RCP.Brushes.Archive.File" Color="{StaticResource RCP.Colors.PurplePrimary600}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Archive.Folder" Color="{StaticResource RCP.Colors.OrangePrimary600}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Archive.AddItem" Color="{StaticResource RCP.Colors.GreenPrimary600}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Archive.DeleteItem" Color="{StaticResource RCP.Colors.RedPrimary600}" />
+
 </ResourceDictionary>

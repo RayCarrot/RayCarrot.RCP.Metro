@@ -8,10 +8,6 @@
                     xmlns:archive="clr-namespace:RayCarrot.RCP.Metro.Archive"
                     mc:Ignorable="d">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ArchiveExplorer.Colors.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <!-- File -->
 
     <DataTemplate x:Key="FileDataTemplate" DataType="{x:Type archive:FileViewModel}">
@@ -40,7 +36,7 @@
                     <!-- Fallback icon -->
 
                     <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                Foreground="{StaticResource Archive_FileBrush}"
+                                                Foreground="{StaticResource RCP.Brushes.Archive.File}"
                                                 HorizontalAlignment="Center"
                                                 Visibility="{Binding Path=ThumbnailSource, Converter={local:ObjectNullToVisibilityConverter}}"
                                                 Width="48"

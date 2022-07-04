@@ -3,6 +3,8 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
+    <!-- TODO: A lot of icons are hard-coded throughout the app when referenced directly from XAML. Maybe move them here? -->
+
     <!-- Icons -->
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Games">GamepadVariantOutline</iconPacks:PackIconMaterialKind>

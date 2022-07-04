@@ -426,20 +426,20 @@
                                                     </Grid.ColumnDefinitions>
 
                                                     <iconPacks:PackIconMaterial Grid.Column="0"
-                                                        Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Add}"
-                                                        HorizontalAlignment="Center"
-                                                        Width="16" Height="16"
-                                                        Kind="Plus"
-                                                        Foreground="Green"
-                                                        Margin="0 0 5 0" />
+                                                                                Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Add}"
+                                                                                HorizontalAlignment="Center"
+                                                                                Width="16" Height="16"
+                                                                                Kind="Plus"
+                                                                                Foreground="{StaticResource RCP.Brushes.Archive.AddItem}"
+                                                                                Margin="0 0 5 0" />
 
                                                     <iconPacks:PackIconMaterial Grid.Column="0"
-                                                        Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Remove}"
-                                                        HorizontalAlignment="Center"
-                                                        Width="16" Height="16"
-                                                        Kind="DeleteOutline"
-                                                        Foreground="Red"
-                                                        Margin="0 0 5 0" />
+                                                                                Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Remove}"
+                                                                                HorizontalAlignment="Center"
+                                                                                Width="16" Height="16"
+                                                                                Kind="DeleteOutline"
+                                                                                Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
+                                                                                Margin="0 0 5 0" />
 
                                                     <TextBlock Grid.Column="1"
                                                                Text="{Binding Path=FilePath, Mode=OneTime}"
