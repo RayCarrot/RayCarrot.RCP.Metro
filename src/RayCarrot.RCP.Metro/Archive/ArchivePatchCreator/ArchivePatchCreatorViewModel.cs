@@ -241,7 +241,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                         using FileStream stream = File.OpenRead(file.SourceFilePath);
 
                         // Calculate the checksum
-                        string checksum = Patch.CalculateChecksum(stream);
+                        string checksum = file.Checksum ?? Patch.CalculateChecksum(stream);
                         stream.Position = 0;
 
                         // Add the file
