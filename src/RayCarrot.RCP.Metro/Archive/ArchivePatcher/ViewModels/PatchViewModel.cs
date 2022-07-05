@@ -28,6 +28,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
             new("Date", manifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
             new("Revision", manifest.Revision.ToString()),
             new("ID", manifest.ID, UserLevel.Technical),
+            new("Version", manifest.PatchVersion.ToString(), UserLevel.Debug),
             new("Added Files", (manifest.AddedFiles?.Length ?? 0).ToString()),
             new("Removed Files", (manifest.RemovedFiles?.Length ?? 0).ToString()),
         };
