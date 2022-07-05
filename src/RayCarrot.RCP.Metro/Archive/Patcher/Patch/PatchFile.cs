@@ -8,11 +8,11 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// <summary>
 /// An archive patch (.ap)
 /// </summary>
-public class Patch : IDisposable
+public class PatchFile : IDisposable
 {
     #region Constructor
 
-    public Patch(FileSystemPath filePath, bool readOnly = false)
+    public PatchFile(FileSystemPath filePath, bool readOnly = false)
     {
         _zip = new PatchZip(filePath, readOnly);
     }

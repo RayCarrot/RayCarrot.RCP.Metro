@@ -67,7 +67,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
     public bool IsDownloaded { get; set; }
     public bool IsDownloadable => PatchURL != null && !IsDownloaded;
 
-    public void LoadThumbnail(PatchContainer? container)
+    public void LoadThumbnail(PatchContainerFile? container)
     {
         // TODO-UPDATE: Log
 

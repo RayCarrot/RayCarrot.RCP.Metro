@@ -13,7 +13,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 {
     public ArchivePatchCreatorViewModel()
     {
-        ID = Patch.GenerateID();
+        ID = PatchFile.GenerateID();
 
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
@@ -62,9 +62,9 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
         try
         {
-            using Patch patch = new(patchFilePath, true);
+            using PatchFile patchFile = new(patchFilePath, true);
 
-            PatchManifest? manifest = patch.ReadManifest();
+            PatchManifest? manifest = patchFile.ReadManifest();
 
             if (manifest == null)
                 throw new Exception("Can't read the patch manifest");
@@ -77,7 +77,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
             if (manifest.HasAsset(PatchAsset.Thumbnail))
             {
-                using Stream thumbStream = patch.GetPatchAsset(PatchAsset.Thumbnail);
+                using Stream thumbStream = patchFile.GetPatchAsset(PatchAsset.Thumbnail);
 
                 Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
 
@@ -104,7 +104,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
                     Directory.CreateDirectory(tempFilePath.Parent);
 
-                    using Stream file = patch.GetPatchResource(addedFile, false);
+                    using Stream file = patchFile.GetPatchResource(addedFile, false);
                     using Stream tempFileStream = File.Create(tempFilePath);
                     await file.CopyToAsync(tempFileStream);
 
@@ -226,7 +226,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
             await Task.Run(() =>
             {
-                using Patch patch = new(browseResult.SelectedFileLocation);
+                using PatchFile patchFile = new(browseResult.SelectedFileLocation);
 
                 List<string> addedFiles = new();
                 List<string> addedFileChecksums = new();
@@ -241,11 +241,11 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                         using FileStream stream = File.OpenRead(file.SourceFilePath);
 
                         // Calculate the checksum
-                        string checksum = file.Checksum ?? Patch.CalculateChecksum(stream);
+                        string checksum = file.Checksum ?? PatchFile.CalculateChecksum(stream);
                         stream.Position = 0;
 
                         // Add the file
-                        patch.AddPatchResource(file.ArchiveFilePath, false, stream);
+                        patchFile.AddPatchResource(file.ArchiveFilePath, false, stream);
 
                         // Add to the manifest
                         addedFiles.Add(file.ArchiveFilePath);
@@ -272,16 +272,16 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                     memStream.Position = 0;
 
                     // Add the asset
-                    patch.AddPatchAsset(PatchAsset.Thumbnail, memStream);
+                    patchFile.AddPatchAsset(PatchAsset.Thumbnail, memStream);
 
                     // Add to the manifest
                     assets.Add(PatchAsset.Thumbnail);
                 }
 
                 // Write the manifest
-                patch.WriteManifest(new PatchManifest(
+                patchFile.WriteManifest(new PatchManifest(
                     ID: ID,
-                    ContainerVersion: PatchContainer.Version,
+                    PatchVersion: PatchFile.Version,
                     Name: Name,
                     Description: Description,
                     Author: Author,
@@ -293,7 +293,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                     RemovedFiles: removedFiles.ToArray(),
                     Assets: assets.ToArray()));
 
-                patch.Apply();
+                patchFile.Apply();
 
                 // Dispose temporary files
                 _tempDir?.Dispose();

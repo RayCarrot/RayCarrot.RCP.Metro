@@ -4,7 +4,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 
 public class PatchContainerDataSource : IPatchDataSource
 {
-    public PatchContainerDataSource(PatchContainer container, string patchId, bool leaveOpen)
+    public PatchContainerDataSource(PatchContainerFile container, string patchId, bool leaveOpen)
     {
         Container = container;
         PatchID = patchId;
@@ -13,7 +13,7 @@ public class PatchContainerDataSource : IPatchDataSource
 
     private readonly bool _leaveOpen;
 
-    public PatchContainer Container { get; }
+    public PatchContainerFile Container { get; }
     public string PatchID { get; }
 
     public Stream GetResource(string resourceName, bool isNormalized) => Container.GetPatchResource(PatchID, resourceName, isNormalized);

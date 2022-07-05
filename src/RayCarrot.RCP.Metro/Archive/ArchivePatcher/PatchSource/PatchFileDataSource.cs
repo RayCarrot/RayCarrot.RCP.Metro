@@ -4,22 +4,22 @@ namespace RayCarrot.RCP.Metro.Archive;
 
 public class PatchFileDataSource : IPatchDataSource
 {
-    public PatchFileDataSource(Patch patch, bool leaveOpen)
+    public PatchFileDataSource(PatchFile patchFile, bool leaveOpen)
     {
-        Patch = patch;
+        PatchFile = patchFile;
         _leaveOpen = leaveOpen;
     }
 
     private readonly bool _leaveOpen;
 
-    public Patch Patch { get; }
+    public PatchFile PatchFile { get; }
 
-    public Stream GetResource(string resourceName, bool isNormalized) => Patch.GetPatchResource(resourceName, isNormalized);
-    public Stream GetAsset(string assetName) => Patch.GetPatchAsset(assetName);
+    public Stream GetResource(string resourceName, bool isNormalized) => PatchFile.GetPatchResource(resourceName, isNormalized);
+    public Stream GetAsset(string assetName) => PatchFile.GetPatchAsset(assetName);
 
     public void Dispose()
     {
         if (!_leaveOpen)
-            Patch.Dispose();
+            PatchFile.Dispose();
     }
 }

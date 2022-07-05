@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Security.Cryptography;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -9,13 +8,13 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// files which have been replaced so that they can be restored. Each patch contains a manifest with details as well as
 /// resources and assets. The resources are the added files while the assets are things such as a thumbnail.
 /// </summary>
-public class PatchContainer : IDisposable
+public class PatchContainerFile : IDisposable
 {
     // TODO-UPDATE: Logging
 
     #region Constructor
 
-    public PatchContainer(FileSystemPath filePath, bool readOnly = false)
+    public PatchContainerFile(FileSystemPath filePath, bool readOnly = false)
     {
         _zip = new PatchZip(filePath, readOnly);
     }

@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro.Archive;
 
 public class PatchContainerViewModel : BaseViewModel, IDisposable
 {
-    public PatchContainerViewModel(PatchContainer container, FileSystemPath archiveFilePath, BindableOperation loadOperation)
+    public PatchContainerViewModel(PatchContainerFile container, FileSystemPath archiveFilePath, BindableOperation loadOperation)
     {
         Container = container;
         ArchiveFilePath = archiveFilePath;
@@ -28,7 +28,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public ICommand AddPatchCommand { get; }
 
-    public PatchContainer Container { get; }
+    public PatchContainerFile Container { get; }
     public FileSystemPath ArchiveFilePath { get; }
     public string DisplayName { get; }
     public BindableOperation LoadOperation { get; }
@@ -40,9 +40,9 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
     public ObservableCollection<PatchedFileViewModel> PatchedFiles { get; set; }
     public bool HasPatchedFiles => PatchedFiles.Any();
 
-    private void AddPatch(Patch patch, PatchManifest manifest)
+    private void AddPatch(PatchFile patchFile, PatchManifest manifest)
     {
-        PatchViewModel patchViewModel = new(this, manifest, false, new PatchFileDataSource(patch, false));
+        PatchViewModel patchViewModel = new(this, manifest, false, new PatchFileDataSource(patchFile, false));
         patchViewModel.LoadThumbnail(null);
         Patches.Add(patchViewModel);
     }
@@ -194,11 +194,11 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
         foreach (FileSystemPath patchFile in result.SelectedFiles)
         {
-            Patch? patch = null;
+            PatchFile? patch = null;
 
             try
             {
-                patch = new Patch(patchFile, true);
+                patch = new PatchFile(patchFile, true);
 
                 PatchManifest? manifest = patch.ReadManifest();
 
@@ -299,7 +299,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             await Task.Run(() =>
             {
                 // Create a new patch
-                using Patch patch = new(browseResult.SelectedFileLocation);
+                using PatchFile patchFile = new(browseResult.SelectedFileLocation);
 
                 // Copy resources
                 if (manifest.AddedFiles != null)
@@ -307,7 +307,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                     foreach (string addedFile in manifest.AddedFiles)
                     {
                         using Stream srcStream = src.GetResource(addedFile, false);
-                        patch.AddPatchResource(addedFile, false, srcStream);
+                        patchFile.AddPatchResource(addedFile, false, srcStream);
                     }
                 }
 
@@ -317,14 +317,14 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                     foreach (string asset in manifest.Assets)
                     {
                         using Stream srcStream = src.GetAsset(asset);
-                        patch.AddPatchAsset(asset, srcStream);
+                        patchFile.AddPatchAsset(asset, srcStream);
                     }
                 }
 
                 // Write the manifest
-                patch.WriteManifest(manifest);
+                patchFile.WriteManifest(manifest);
 
-                patch.Apply();
+                patchFile.Apply();
             });
 
             // TODO-UPDATE: Localize
@@ -361,11 +361,11 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         if (result.CanceledByUser)
             return;
 
-        Patch? patch = null;
+        PatchFile? patch = null;
 
         try
         {
-            patch = new Patch(result.SelectedFile, true);
+            patch = new PatchFile(result.SelectedFile, true);
 
             PatchManifest? manifest = patch.ReadManifest();
 
@@ -452,8 +452,8 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         _removedPatches.Clear();
 
         // The history gets re-created each time we save, so generate a new ID
-        string newHistoryID = Patch.GenerateID(Patches.Select(x => x.Manifest.ID).Append(PatchHistory?.ID).ToArray());
-        PatchHistoryManifest history = new(newHistoryID, PatchContainer.Version);
+        string newHistoryID = PatchFile.GenerateID(Patches.Select(x => x.Manifest.ID).Append(PatchHistory?.ID).ToArray());
+        PatchHistoryManifest history = new(newHistoryID, PatchContainerFile.Version);
 
         // Read the archive
         using (FileStream archiveStream = File.OpenRead(ArchiveFilePath))
@@ -578,20 +578,18 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         // Replace the archive with the modified one
         Services.File.MoveFile(archiveOutputFile.TempPath, ArchiveFilePath, true);
 
-        // TODO-UPDATE: How should we handle versions?
-        // Update the patch manifests
-        foreach (PatchViewModel patchViewModel in Patches)
-        {
-            //patchViewModel.Patch.ContainerVersion = Container.ContainerVersion;
-        }
-
         // Clear old history
         if (PatchHistory != null)
             Container.ClearPatchFiles(PatchHistory.ID);
 
-        // Update the container manifest
+        // Get the current patch data
+        PatchManifest[] patchManifests = Patches.Select(
+            // Update each patch manifest to the latest version
+            x => x.Manifest with { PatchVersion = PatchFile.Version }).ToArray();
         string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
-        Container.WriteManifest(history, Patches.Select(x => x.Manifest).ToArray(), enabledPatches);
+        
+        // Update the container manifest
+        Container.WriteManifest(history, patchManifests, enabledPatches);
 
         Container.Apply();
     }
