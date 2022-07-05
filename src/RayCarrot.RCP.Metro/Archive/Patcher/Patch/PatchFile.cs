@@ -117,6 +117,8 @@ public class PatchFile : IDisposable
     {
         string id;
 
+        // We probably don't need to verify the ID doesn't conflict with an existing one,
+        // but let's do so anyway just to be on the safe side
         do
         {
             id = Guid.NewGuid().ToString();

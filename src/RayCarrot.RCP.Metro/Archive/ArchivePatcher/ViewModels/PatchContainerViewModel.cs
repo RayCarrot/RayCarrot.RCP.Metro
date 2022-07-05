@@ -47,67 +47,6 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         Patches.Add(patchViewModel);
     }
 
-    private Dictionary<string, FileModification> GetFileModifications()
-    {
-        Dictionary<string, FileModification> fileModifications = new();
-
-        if (PatchHistory != null)
-        {
-            string id = PatchHistory.ID;
-
-            if (PatchHistory.AddedFiles != null)
-                foreach (string addedFile in PatchHistory.AddedFiles)
-                    fileModifications[Container.NormalizeResourceName(addedFile)] = 
-                        new FileModification(FileModificationType.Remove, id, addedFile, false);
-
-            if (PatchHistory.ReplacedFiles != null)
-                foreach (string replacedFile in PatchHistory.ReplacedFiles)
-                    fileModifications[Container.NormalizeResourceName(replacedFile)] = 
-                        new FileModification(FileModificationType.Add, id, replacedFile, false);
-
-            if (PatchHistory.RemovedFiles != null)
-                foreach (string removedFile in PatchHistory.RemovedFiles)
-                    fileModifications[Container.NormalizeResourceName(removedFile)] = 
-                        new FileModification(FileModificationType.Add, id, removedFile, false);
-        }
-
-        foreach (PatchManifest patch in Patches.Where(x => x.IsEnabled).Select(x => x.Manifest).Reverse())
-        {
-            string id = patch.ID;
-
-            if (patch.AddedFiles != null && patch.AddedFileChecksums != null)
-            {
-                for (var i = 0; i < patch.AddedFiles.Length; i++)
-                {
-                    string addedFile = patch.AddedFiles[i];
-                    string addedFileChecksum = patch.AddedFileChecksums[i];
-                    fileModifications[Container.NormalizeResourceName(addedFile)] =
-                        new FileModification(FileModificationType.Add, id, addedFile, true, addedFileChecksum);
-                }
-            }
-
-            if (patch.RemovedFiles != null)
-                foreach (string removedFile in patch.RemovedFiles)
-                    fileModifications[Container.NormalizeResourceName(removedFile)] = 
-                        new FileModification(FileModificationType.Remove, id, removedFile, true);
-        }
-
-        return fileModifications;
-    }
-
-    private void ReplaceArchiveFile(FileItem file, IArchiveDataManager manager, Stream resource)
-    {
-        // Get the temp stream to store the pending import data
-        file.SetPendingImport();
-
-        // Encode the data to the pending import stream
-        manager.EncodeFile(resource, file.PendingImport, file.ArchiveEntry);
-
-        // If no data was encoded we copy over the decoded data
-        if (file.PendingImport.Length == 0)
-            resource.CopyTo(file.PendingImport);
-    }
-
     public async Task<bool> LoadExistingPatchesAsync()
     {
         PatchContainerManifest? containerManifest = Container.ReadManifest();
@@ -416,39 +355,12 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public void Apply(IArchiveDataManager manager)
     {
-        using TempFile archiveOutputFile = new(true);
-
-        // TODO-UPDATE: In case of error the container will be corrupt. Perhaps we read the container as read-only and then when writing we copy to temp and write to that and then replace?
+        // Create a patcher
+        Patcher patcher = new(); // TODO: Use DI?
 
         // Add files to the container for patches which do not currently exist in the container
         foreach (PatchViewModel patchViewModel in Patches.Where(x => x.DataSource is not PatchContainerDataSource))
-        {
-            PatchManifest manifest = patchViewModel.Manifest;
-            IPatchDataSource src = patchViewModel.DataSource;
-
-            // Clear any leftover files before importing
-            Container.ClearPatchFiles(manifest.ID);
-
-            // Import the resources
-            if (manifest.AddedFiles != null)
-            {
-                foreach (string addedFile in manifest.AddedFiles)
-                {
-                    using Stream resourceStream = src.GetResource(addedFile, false);
-                    Container.AddPatchResource(manifest.ID, addedFile, false, resourceStream);
-                }
-            }
-
-            // Import the assets
-            if (manifest.Assets != null)
-            {
-                foreach (string asset in manifest.Assets)
-                {
-                    using Stream assetStream = src.GetAsset(asset);
-                    Container.AddPatchAsset(manifest.ID, asset, assetStream);
-                }
-            }
-        }
+            patcher.AddPatchFiles(Container, patchViewModel.Manifest, patchViewModel.DataSource);
 
         // Clear removed patches
         foreach (string patch in _removedPatches.Where(x => Patches.All(p => p.Manifest.ID != x)))
@@ -456,195 +368,16 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
         _removedPatches.Clear();
 
-        // The history gets re-created each time we save, so generate a new ID
-        string newHistoryID = PatchFile.GenerateID(Patches.Select(x => x.Manifest.ID).Append(PatchHistory?.ID).ToArray());
-
-        List<string> addedFiles = new();
-        List<string> addedFileChecksums = new();
-        List<string> replacedFiles = new();
-        List<string> replacedFileChecksums = new();
-        List<string> removedFiles = new();
-        long totalSize = 0;
-
-        // Local helper
-        void saveRemovedFileInHistory(FileItem file, IDisposable generator, string filePath, string resourceName, string? replacedFileChecksum = null)
-        {
-            using ArchiveFileStream fileData = file.GetDecodedFileData(generator);
-
-            if (replacedFileChecksum != null)
-            {
-                replacedFiles.Add(filePath);
-                replacedFileChecksums.Add(replacedFileChecksum);
-            }
-            else
-            {
-                removedFiles.Add(filePath);
-            }
-            
-            totalSize += fileData.Stream.Length;
-
-            Container.AddPatchResource(newHistoryID, resourceName, true, fileData.Stream);
-        }
-
-        // Read the archive
-        using (FileStream archiveStream = File.OpenRead(ArchiveFilePath))
-        {
-            string archiveFileName = ArchiveFilePath.Name;
-            
-            object archive = manager.LoadArchive(archiveStream, archiveFileName);
-
-            ArchiveData? archiveData = null;
-
-            // Files to be repacked
-            List<FileItem> archiveFiles = new();
-
-            try
-            {
-                archiveData = manager.LoadArchiveData(archive, archiveStream, archiveFileName);
-
-                // The file modifications we want to perform
-                Dictionary<string, FileModification> fileModifications = GetFileModifications();
-
-                // The previously applied modifications
-                string[]? prevAddedFiles = PatchHistory?.AddedFiles?.Select(x => Container.NormalizeResourceName(x)).ToArray();
-                string[]? prevReplacedFiles = PatchHistory?.ReplacedFiles?.Select(x => Container.NormalizeResourceName(x)).ToArray();
-
-                // Replace or remove existing files
-                foreach (ArchiveDirectory dir in archiveData.Directories)
-                {
-                    foreach (FileItem file in dir.Files)
-                    {
-                        string filePath = manager.CombinePaths(file.Directory, file.FileName);
-                        string resourceName = Container.NormalizeResourceName(filePath);
-
-                        FileModification? modification = fileModifications.TryGetValue(resourceName);
-
-                        if (modification is not null)
-                            fileModifications.Remove(resourceName);
-
-                        // Remove existing file
-                        if (modification?.Type == FileModificationType.Remove)
-                        {
-                            if (modification.AddToHistory)
-                                saveRemovedFileInHistory(file, archiveData.Generator, filePath, resourceName);
-                            continue;
-                        }
-
-                        archiveFiles.Add(file);
-
-                        // Replace existing file
-                        if (modification?.Type == FileModificationType.Add)
-                        {
-                            if (modification.AddToHistory)
-                            {
-                                string checksum = modification.Checksum ?? throw new Exception("Missing checksum");
-
-                                // If the file was added previously we don't want to mark it as being replaced or else we'd 
-                                // be replacing the previously added file
-                                if (prevAddedFiles?.Any(x => x == resourceName) == true)
-                                {
-                                    addedFiles.Add(modification.FilePath);
-                                    addedFileChecksums.Add(checksum);
-                                }
-                                // If the file was replaced previously we want to keep the originally removed file instead
-                                // of the one it was replaced with before
-                                else if (prevReplacedFiles?.Any(x => x == resourceName) == true)
-                                {
-                                    using Stream prevSavedFile = Container.GetPatchResource(PatchHistory!.ID, resourceName, true);
-
-                                    replacedFiles.Add(filePath);
-                                    replacedFileChecksums.Add(checksum);
-
-                                    totalSize += prevSavedFile.Length;
-
-                                    Container.AddPatchResource(newHistoryID, resourceName, true, prevSavedFile);
-                                }
-                                else
-                                {
-                                    saveRemovedFileInHistory(file, archiveData.Generator, filePath, resourceName, checksum);
-                                }
-                            }
-
-                            using Stream resource = Container.GetPatchResource(modification.PatchID, resourceName, true);
-                            ReplaceArchiveFile(file, manager, resource);
-                        }
-                    }
-                }
-
-                // Add files not already in the archive
-                foreach (FileModification modification in fileModifications.Values.Where(x => x.Type == FileModificationType.Add))
-                {
-                    // TODO-UPDATE: Don't use System.IO here since a different separator char might be used
-                    string filePath = modification.FilePath;
-                    string fileName = Path.GetFileName(filePath);
-                    string dir = Path.GetDirectoryName(filePath) ?? String.Empty;
-                    object entry = manager.GetNewFileEntry(archive, dir, fileName);
-
-                    FileItem file = new(manager, fileName, dir, entry);
-
-                    archiveFiles.Add(file);
-
-                    using (Stream resource = Container.GetPatchResource(modification.PatchID, filePath, false))
-                        ReplaceArchiveFile(file, manager, resource);
-
-                    if (modification.AddToHistory)
-                    {
-                        addedFiles.Add(filePath);
-                        addedFileChecksums.Add(modification.Checksum ?? throw new Exception("Missing checksum"));
-                    }
-                }
-
-                using ArchiveFileStream archiveOutputStream = new(File.OpenWrite(archiveOutputFile.TempPath),
-                    archiveOutputFile.TempPath.Name, true);
-
-                manager.WriteArchive(archiveData.Generator, archive, archiveOutputStream, archiveFiles, _ => { });
-            }
-            finally
-            {
-                archiveData?.Generator.Dispose();
-                archiveFiles.DisposeAll();
-            }
-        }
-
-        // Replace the archive with the modified one
-        Services.File.MoveFile(archiveOutputFile.TempPath, ArchiveFilePath, true);
-
-        // Clear old history
-        if (PatchHistory != null)
-            Container.ClearPatchFiles(PatchHistory.ID);
-
-        // Create new history
-        PatchHistoryManifest history = new(
-            ID: newHistoryID, 
-            TotalSize: totalSize, 
-            ModifiedDate: DateTime.Now, 
-            AddedFiles: addedFiles.ToArray(), 
-            AddedFileChecksums: addedFileChecksums.ToArray(), 
-            ReplacedFiles: replacedFiles.ToArray(), 
-            ReplacedFileChecksums: replacedFileChecksums.ToArray(), 
-            RemovedFiles: removedFiles.ToArray());
-
         // Get the current patch data
         PatchManifest[] patchManifests = Patches.Select(x => x.Manifest).ToArray();
         string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
 
-        // Update the container manifest
-        Container.WriteManifest(history, patchManifests, enabledPatches);
-
-        Container.Apply();
+        patcher.Apply(manager, Container, PatchHistory, ArchiveFilePath, patchManifests, enabledPatches);
     }
 
     public void Dispose()
     {
         Patches.DisposeAll();
         Container.Dispose();
-    }
-
-    private record FileModification(FileModificationType Type, string PatchID, string FilePath, bool AddToHistory, string? Checksum = null);
-
-    private enum FileModificationType
-    {
-        Add,
-        Remove,
     }
 }
