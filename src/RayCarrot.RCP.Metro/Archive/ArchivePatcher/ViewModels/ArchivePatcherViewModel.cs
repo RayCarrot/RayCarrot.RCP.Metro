@@ -79,7 +79,14 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
         {
             try
             {
-                container.LoadExistingPatches();
+                bool success = await container.LoadExistingPatchesAsync();
+
+                if (!success)
+                {
+                    failedContainers.Add(container);
+                    continue;
+                }
+
                 container.RefreshPatchedFiles();
             }
             catch (Exception ex)

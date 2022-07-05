@@ -55,10 +55,10 @@ public class PatchFile : IDisposable
 
     #region Public Methods
 
-    public PatchManifest? ReadManifest()
+    public PatchManifest ReadManifest()
     {
         if (!_zip.CanRead)
-            return null;
+            throw new Exception("The manifest can not be read from the patch");
 
         using Stream? s = _zip.OpenStream(ManifestFileName);
 

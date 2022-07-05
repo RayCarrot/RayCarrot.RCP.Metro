@@ -71,7 +71,7 @@ public class PatchContainerFile : IDisposable
 
     public void WriteManifest(PatchHistoryManifest history, PatchManifest[] patches, string[]? enabledPatches)
     {
-        PatchContainerManifest containerManifest = new(history, patches, enabledPatches, Version);
+        PatchContainerManifest containerManifest = new(Version, history, patches, enabledPatches);
         _zip.WriteJSON(ManifestFileName, containerManifest);
     }
 

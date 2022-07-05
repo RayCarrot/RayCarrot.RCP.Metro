@@ -64,10 +64,14 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         {
             using PatchFile patchFile = new(patchFilePath, true);
 
-            PatchManifest? manifest = patchFile.ReadManifest();
+            PatchManifest manifest = patchFile.ReadManifest();
 
-            if (manifest == null)
-                throw new Exception("Can't read the patch manifest");
+            if (manifest.PatchVersion > PatchFile.Version)
+            {
+                await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+
+                return false;
+            }
 
             Name = manifest.Name ?? String.Empty;
             Description = manifest.Description ?? String.Empty;

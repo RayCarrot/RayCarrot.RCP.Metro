@@ -1,3 +1,15 @@
-﻿namespace RayCarrot.RCP.Metro.Archive;
+﻿using Newtonsoft.Json;
 
-public record PatchContainerManifest(PatchHistoryManifest History, PatchManifest[] Patches, string[]? EnabledPatches, int ContainerVersion);
+namespace RayCarrot.RCP.Metro.Archive;
+
+public record PatchContainerManifest(
+    [property: JsonProperty(Required = Required.Always)]
+    int ContainerVersion,
+
+    [property: JsonProperty(Required = Required.Always)]
+    PatchHistoryManifest History,
+
+    [property: JsonProperty(Required = Required.Always)]
+    PatchManifest[] Patches,
+
+    string[]? EnabledPatches);

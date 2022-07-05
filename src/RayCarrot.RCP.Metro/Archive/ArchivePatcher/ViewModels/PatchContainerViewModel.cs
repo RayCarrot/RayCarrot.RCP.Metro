@@ -55,17 +55,20 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         {
             string id = PatchHistory.ID;
 
-            foreach (string addedFile in PatchHistory.AddedFiles)
-                fileModifications[Container.NormalizeResourceName(addedFile)] = 
-                    new FileModification(FileModificationType.Remove, id, addedFile, false);
+            if (PatchHistory.AddedFiles != null)
+                foreach (string addedFile in PatchHistory.AddedFiles)
+                    fileModifications[Container.NormalizeResourceName(addedFile)] = 
+                        new FileModification(FileModificationType.Remove, id, addedFile, false);
 
-            foreach (string replacedFile in PatchHistory.ReplacedFiles)
-                fileModifications[Container.NormalizeResourceName(replacedFile)] = 
-                    new FileModification(FileModificationType.Add, id, replacedFile, false);
+            if (PatchHistory.ReplacedFiles != null)
+                foreach (string replacedFile in PatchHistory.ReplacedFiles)
+                    fileModifications[Container.NormalizeResourceName(replacedFile)] = 
+                        new FileModification(FileModificationType.Add, id, replacedFile, false);
 
-            foreach (string removedFile in PatchHistory.RemovedFiles)
-                fileModifications[Container.NormalizeResourceName(removedFile)] = 
-                    new FileModification(FileModificationType.Add, id, removedFile, false);
+            if (PatchHistory.RemovedFiles != null)
+                foreach (string removedFile in PatchHistory.RemovedFiles)
+                    fileModifications[Container.NormalizeResourceName(removedFile)] = 
+                        new FileModification(FileModificationType.Add, id, removedFile, false);
         }
 
         foreach (PatchManifest patch in Patches.Where(x => x.IsEnabled).Select(x => x.Manifest).Reverse())
@@ -92,24 +95,6 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         return fileModifications;
     }
 
-    private void SaveRemovedFileInHistory(FileItem file, IDisposable generator, string filePath, string resourceName, PatchHistoryManifest history, string? replacedFileChecksum = null)
-    {
-        using ArchiveFileStream fileData = file.GetDecodedFileData(generator);
-
-        if (replacedFileChecksum != null)
-        {
-            history.ReplacedFiles.Add(filePath);
-            history.ReplacedFileChecksums.Add(replacedFileChecksum);
-        }
-        else
-        {
-            history.RemovedFiles.Add(filePath);
-        }
-        history.TotalSize += fileData.Stream.Length;
-
-        Container.AddPatchResource(history.ID, resourceName, true, fileData.Stream);
-    }
-
     private void ReplaceArchiveFile(FileItem file, IArchiveDataManager manager, Stream resource)
     {
         // Get the temp stream to store the pending import data
@@ -123,16 +108,24 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             resource.CopyTo(file.PendingImport);
     }
 
-    public void LoadExistingPatches()
+    public async Task<bool> LoadExistingPatchesAsync()
     {
         PatchContainerManifest? containerManifest = Container.ReadManifest();
 
         Patches.Clear();
 
+        if (containerManifest is { ContainerVersion: > PatchContainerFile.Version })
+        {
+            await Services.MessageUI.DisplayMessageAsync("The archive patch container was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+            PatchHistory = null;
+
+            return false;
+        }
+
         PatchHistory = containerManifest?.History;
 
         if (containerManifest is null)
-            return;
+            return true;
 
         foreach (PatchManifest patch in containerManifest.Patches)
         {
@@ -144,6 +137,8 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
             Patches.Add(patchVM);
         }
+
+        return true;
     }
 
     public void RefreshPatchedFiles()
@@ -200,10 +195,15 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             {
                 patch = new PatchFile(patchFile, true);
 
-                PatchManifest? manifest = patch.ReadManifest();
+                PatchManifest manifest = patch.ReadManifest();
 
-                if (manifest == null)
-                    throw new Exception("Patch file does not contain a valid manifest");
+                if (manifest.PatchVersion > PatchFile.Version)
+                {
+                    await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+
+                    patch.Dispose();
+                    continue;
+                }
 
                 PatchViewModel? conflict = Patches.FirstOrDefault(x => x.Manifest.ID == manifest.ID);
 
@@ -367,10 +367,15 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         {
             patch = new PatchFile(result.SelectedFile, true);
 
-            PatchManifest? manifest = patch.ReadManifest();
+            PatchManifest manifest = patch.ReadManifest();
 
-            if (manifest == null)
-                throw new Exception("Patch file does not contain a valid manifest");
+            if (manifest.PatchVersion > PatchFile.Version)
+            {
+                await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+
+                patch.Dispose();
+                return;
+            }
 
             // Verify the ID
             if (patchViewModel.Manifest.ID != manifest.ID)
@@ -453,7 +458,33 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
         // The history gets re-created each time we save, so generate a new ID
         string newHistoryID = PatchFile.GenerateID(Patches.Select(x => x.Manifest.ID).Append(PatchHistory?.ID).ToArray());
-        PatchHistoryManifest history = new(newHistoryID, PatchContainerFile.Version);
+
+        List<string> addedFiles = new();
+        List<string> addedFileChecksums = new();
+        List<string> replacedFiles = new();
+        List<string> replacedFileChecksums = new();
+        List<string> removedFiles = new();
+        long totalSize = 0;
+
+        // Local helper
+        void saveRemovedFileInHistory(FileItem file, IDisposable generator, string filePath, string resourceName, string? replacedFileChecksum = null)
+        {
+            using ArchiveFileStream fileData = file.GetDecodedFileData(generator);
+
+            if (replacedFileChecksum != null)
+            {
+                replacedFiles.Add(filePath);
+                replacedFileChecksums.Add(replacedFileChecksum);
+            }
+            else
+            {
+                removedFiles.Add(filePath);
+            }
+            
+            totalSize += fileData.Stream.Length;
+
+            Container.AddPatchResource(newHistoryID, resourceName, true, fileData.Stream);
+        }
 
         // Read the archive
         using (FileStream archiveStream = File.OpenRead(ArchiveFilePath))
@@ -475,8 +506,8 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                 Dictionary<string, FileModification> fileModifications = GetFileModifications();
 
                 // The previously applied modifications
-                string[]? prevAddedFiles = PatchHistory?.AddedFiles.Select(x => Container.NormalizeResourceName(x)).ToArray();
-                string[]? prevReplacedFiles = PatchHistory?.ReplacedFiles.Select(x => Container.NormalizeResourceName(x)).ToArray();
+                string[]? prevAddedFiles = PatchHistory?.AddedFiles?.Select(x => Container.NormalizeResourceName(x)).ToArray();
+                string[]? prevReplacedFiles = PatchHistory?.ReplacedFiles?.Select(x => Container.NormalizeResourceName(x)).ToArray();
 
                 // Replace or remove existing files
                 foreach (ArchiveDirectory dir in archiveData.Directories)
@@ -495,7 +526,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                         if (modification?.Type == FileModificationType.Remove)
                         {
                             if (modification.AddToHistory)
-                                SaveRemovedFileInHistory(file, archiveData.Generator, filePath, resourceName, history);
+                                saveRemovedFileInHistory(file, archiveData.Generator, filePath, resourceName);
                             continue;
                         }
 
@@ -512,8 +543,8 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                                 // be replacing the previously added file
                                 if (prevAddedFiles?.Any(x => x == resourceName) == true)
                                 {
-                                    history.AddedFiles.Add(modification.FilePath);
-                                    history.AddedFileChecksums.Add(checksum);
+                                    addedFiles.Add(modification.FilePath);
+                                    addedFileChecksums.Add(checksum);
                                 }
                                 // If the file was replaced previously we want to keep the originally removed file instead
                                 // of the one it was replaced with before
@@ -521,16 +552,16 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                                 {
                                     using Stream prevSavedFile = Container.GetPatchResource(PatchHistory!.ID, resourceName, true);
 
-                                    history.ReplacedFiles.Add(filePath);
-                                    history.ReplacedFileChecksums.Add(checksum);
+                                    replacedFiles.Add(filePath);
+                                    replacedFileChecksums.Add(checksum);
 
-                                    history.TotalSize += prevSavedFile.Length;
+                                    totalSize += prevSavedFile.Length;
 
-                                    Container.AddPatchResource(history.ID, resourceName, true, prevSavedFile);
+                                    Container.AddPatchResource(newHistoryID, resourceName, true, prevSavedFile);
                                 }
                                 else
                                 {
-                                    SaveRemovedFileInHistory(file, archiveData.Generator, filePath, resourceName, history, checksum);
+                                    saveRemovedFileInHistory(file, archiveData.Generator, filePath, resourceName, checksum);
                                 }
                             }
 
@@ -558,8 +589,8 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
                     if (modification.AddToHistory)
                     {
-                        history.AddedFiles.Add(filePath);
-                        history.AddedFileChecksums.Add(modification.Checksum ?? throw new Exception("Missing checksum"));
+                        addedFiles.Add(filePath);
+                        addedFileChecksums.Add(modification.Checksum ?? throw new Exception("Missing checksum"));
                     }
                 }
 
@@ -582,12 +613,21 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         if (PatchHistory != null)
             Container.ClearPatchFiles(PatchHistory.ID);
 
+        // Create new history
+        PatchHistoryManifest history = new(
+            ID: newHistoryID, 
+            TotalSize: totalSize, 
+            ModifiedDate: DateTime.Now, 
+            AddedFiles: addedFiles.ToArray(), 
+            AddedFileChecksums: addedFileChecksums.ToArray(), 
+            ReplacedFiles: replacedFiles.ToArray(), 
+            ReplacedFileChecksums: replacedFileChecksums.ToArray(), 
+            RemovedFiles: removedFiles.ToArray());
+
         // Get the current patch data
-        PatchManifest[] patchManifests = Patches.Select(
-            // Update each patch manifest to the latest version
-            x => x.Manifest with { PatchVersion = PatchFile.Version }).ToArray();
+        PatchManifest[] patchManifests = Patches.Select(x => x.Manifest).ToArray();
         string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
-        
+
         // Update the container manifest
         Container.WriteManifest(history, patchManifests, enabledPatches);
 
