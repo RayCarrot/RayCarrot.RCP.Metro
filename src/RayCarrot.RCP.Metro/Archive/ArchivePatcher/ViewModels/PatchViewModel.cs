@@ -59,6 +59,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
         {
             _isEnabled = value;
             ContainerViewModel.RefreshPatchedFiles();
+            ContainerViewModel.HasChanges = true;
         }
     }
 

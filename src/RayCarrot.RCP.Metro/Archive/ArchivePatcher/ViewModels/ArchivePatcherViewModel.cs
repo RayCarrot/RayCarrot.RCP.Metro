@@ -45,6 +45,7 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
     public ObservableCollection<PatchContainerViewModel> Containers { get; }
     public PatchViewModel? SelectedPatch { get; set; }
     public bool HasPatchedFiles => Containers.Any(x => x.HasPatchedFiles);
+    public bool HasChanges => Containers.Any(x => x.HasChanges);
 
     public BindableOperation LoadOperation { get; }
 
@@ -53,6 +54,10 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
         if (e.PropertyName == nameof(PatchContainerViewModel.HasPatchedFiles))
         {
             OnPropertyChanged(nameof(HasPatchedFiles));
+        }
+        else if(e.PropertyName == nameof(PatchContainerViewModel.HasChanges))
+        {
+            OnPropertyChanged(nameof(HasChanges));
         }
         else if (e.PropertyName == nameof(PatchContainerViewModel.SelectedPatch))
         {
@@ -119,11 +124,11 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
             {
                 await Task.Run(() =>
                 {
-                    foreach (PatchContainerViewModel c in Containers)
+                    foreach (PatchContainerViewModel c in Containers.Where(x => x.HasChanges))
                         c.Apply(Manager);
                 });
 
-                await Manager.OnRepackedArchivesAsync(Containers.Select(x => x.ArchiveFilePath).ToArray());
+                await Manager.OnRepackedArchivesAsync(Containers.Where(x => x.HasChanges).Select(x => x.ArchiveFilePath).ToArray());
 
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");

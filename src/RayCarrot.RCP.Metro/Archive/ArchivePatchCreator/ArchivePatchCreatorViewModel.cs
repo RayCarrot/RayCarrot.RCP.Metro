@@ -68,6 +68,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
             if (manifest.PatchVersion > PatchFile.Version)
             {
+                // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
 
                 return false;

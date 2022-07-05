@@ -16,26 +16,32 @@ public class Patcher
     {
         Dictionary<string, FileModification> fileModifications = new();
 
+        // If a patch history exists then we start by reverting the changes. If any of these changes shouldn't
+        // actually be reverted then that will be overridden when we go through the patches to apply.
         if (patchHistory != null)
         {
             string id = patchHistory.ID;
 
+            // Remove added files
             if (patchHistory.AddedFiles != null)
                 foreach (string addedFile in patchHistory.AddedFiles)
                     fileModifications[container.NormalizeResourceName(addedFile)] =
                         new FileModification(FileModificationType.Remove, id, addedFile, false);
 
+            // Add back replaced files
             if (patchHistory.ReplacedFiles != null)
                 foreach (string replacedFile in patchHistory.ReplacedFiles)
                     fileModifications[container.NormalizeResourceName(replacedFile)] =
                         new FileModification(FileModificationType.Add, id, replacedFile, false);
 
+            // Add back removed files
             if (patchHistory.RemovedFiles != null)
                 foreach (string removedFile in patchHistory.RemovedFiles)
                     fileModifications[container.NormalizeResourceName(removedFile)] =
                         new FileModification(FileModificationType.Add, id, removedFile, false);
         }
 
+        // Add modifications for each enabled patch. Reverse the order for the correct patch priority.
         foreach (PatchManifest patch in enabledPatches.Reverse())
         {
             string id = patch.ID;

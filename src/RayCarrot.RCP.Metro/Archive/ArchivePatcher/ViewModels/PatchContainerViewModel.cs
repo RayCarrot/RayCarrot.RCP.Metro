@@ -39,12 +39,14 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public ObservableCollection<PatchedFileViewModel> PatchedFiles { get; set; }
     public bool HasPatchedFiles => PatchedFiles.Any();
+    public bool HasChanges { get; set; }
 
     private void AddPatch(PatchFile patchFile, PatchManifest manifest)
     {
         PatchViewModel patchViewModel = new(this, manifest, false, new PatchFileDataSource(patchFile, false));
         patchViewModel.LoadThumbnail(null);
         Patches.Add(patchViewModel);
+        HasChanges = true;
     }
 
     public async Task<bool> LoadExistingPatchesAsync()
@@ -138,6 +140,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
                 if (manifest.PatchVersion > PatchFile.Version)
                 {
+                    // TODO-UPDATE: Localize
                     await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
 
                     patch.Dispose();
@@ -284,6 +287,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             RefreshPatchedFiles();
 
         patchViewModel.Dispose();
+        HasChanges = true;
     }
 
     public async Task UpdatePatchAsync(PatchViewModel patchViewModel)
@@ -310,6 +314,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
             if (manifest.PatchVersion > PatchFile.Version)
             {
+                // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
 
                 patch.Dispose();
