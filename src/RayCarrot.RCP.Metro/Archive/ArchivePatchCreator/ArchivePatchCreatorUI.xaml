@@ -129,7 +129,7 @@
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                                 local:ButtonAssist.IconKind="FileImageOutline"
                                 Command="{Binding Path=BrowseThumbnailCommand, Mode=OneTime}"
-                                ToolTip="Select a thumbnail"
+                                ToolTip="Select a thumbnail. The recommended size is 128x128."
                                 Margin="0 0 4 0"/>
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                                 local:ButtonAssist.IconKind="CloseOutline"

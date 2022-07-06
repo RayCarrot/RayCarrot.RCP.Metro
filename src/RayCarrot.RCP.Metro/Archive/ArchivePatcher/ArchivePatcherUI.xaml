@@ -305,36 +305,37 @@
                                Margin="0 0 0 10"/>
 
                     <ScrollViewer Grid.Row="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel>
 
-                            <StackPanel Grid.Column="0">
+                            <!-- Description -->
 
-                                <!-- Description -->
+                            <TextBlock Text="{Binding Path=Manifest.Description, Mode=OneTime}"
+                                       TextWrapping="Wrap"
+                                       Margin="0 0 0 10"/>
 
-                                <TextBlock Text="{Binding Path=Manifest.Description, Mode=OneTime}"
-                                           TextWrapping="Wrap"
-                                           Margin="0 0 0 10"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
                                 <!-- Info -->
 
-                                <local:DuoGrid ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" />
+                                <local:DuoGrid Grid.Column="0"
+                                               ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" />
 
-                            </StackPanel>
+                                <!-- Thumbnail -->
 
-                            <!-- Thumbnail -->
+                                <ContentPresenter Grid.Column="1"
+                                                  Content="{Binding}"
+                                                  ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                                  Width="128" Height="128"
+                                                  VerticalAlignment="Top"
+                                                  Margin="0 0 5 0" />
 
-                            <ContentPresenter Grid.Column="1"
-                                              Content="{Binding}"
-                                              ContentTemplate="{StaticResource PatchThumbnailTemplate}"
-                                              Width="64" Height="64"
-                                              VerticalAlignment="Top"
-                                              Margin="0 0 5 0" />
+                            </Grid>
 
-                        </Grid>
+                        </StackPanel>
                     </ScrollViewer>
 
                 </Grid>
