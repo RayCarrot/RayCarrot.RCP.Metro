@@ -65,26 +65,27 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="1"
                                    VerticalAlignment="Center" 
-                                   Text="Description"
+                                   Text="Author"
                                    Margin="0 0 0 10" />
                         <TextBox Grid.Column="2"
                                  Grid.Row="1" 
+                                 Margin="0 0 0 10"
+                                 Text="{Binding Path=Author}"
+                                 MaxLength="150"/>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="2"
+                                   VerticalAlignment="Center" 
+                                   Text="Description"
+                                   Margin="0 0 0 10" />
+                        <TextBox Grid.Column="2"
+                                 Grid.Row="2" 
+                                 MinHeight="50"
                                  AcceptsReturn="True"
                                  Margin="0 0 0 10"
                                  Text="{Binding Path=Description}"
                                  MaxLength="700"
                                  MaxLines="10"/>
-
-                        <TextBlock Grid.Column="0"
-                                   Grid.Row="2"
-                                   VerticalAlignment="Center" 
-                                   Text="Author"
-                                   Margin="0 0 0 10" />
-                        <TextBox Grid.Column="2"
-                                 Grid.Row="2" 
-                                 Margin="0 0 0 10"
-                                 Text="{Binding Path=Author}"
-                                 MaxLength="150"/>
 
                         <TextBlock Grid.Column="0"
                                    Grid.Row="3"
