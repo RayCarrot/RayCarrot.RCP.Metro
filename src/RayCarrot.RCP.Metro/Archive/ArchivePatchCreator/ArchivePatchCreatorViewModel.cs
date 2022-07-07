@@ -22,7 +22,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
-        AddFileCommand = new RelayCommand(AddFile);
+        AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
         AddFilesFromFolderCommand = new AsyncRelayCommand(AddFilesFromFolderAsync);
     }
 
@@ -44,7 +44,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
-    public ICommand AddFileCommand { get; }
+    public ICommand AddFilesCommand { get; }
     public ICommand AddFilesFromFolderCommand { get; }
 
     #endregion
@@ -179,18 +179,32 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         Logger.Info("Removed the thumbnail");
     }
 
-    public void AddFile()
+    public async Task AddFilesAsync()
     {
-        // Only add a new entry if the previous one is valid
-        if (Files.Count > 0 && !Files.Last().IsValid)
+        // TODO-UPDATE: Localize
+        FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
-            SelectedFile = Files.Last();
-            return;
-        }
+            Title = "Select files to add",
+            MultiSelection = true,
+        });
 
-        FileViewModel file = new();
-        Files.Add(file);
-        SelectedFile = file;
+        if (browseResult.CanceledByUser)
+            return;
+
+        Logger.Info("Adding files");
+
+        // Clear selection
+        SelectedFile = null;
+
+        // TODO-UPDATE: Try/catch
+        foreach (FileSystemPath file in browseResult.SelectedFiles)
+        {
+            Files.Add(new FileViewModel()
+            {
+                SourceFilePath = file,
+                ArchiveFilePath = file.Name,
+            });
+        }
     }
 
     public async Task AddFilesFromFolderAsync()
@@ -205,10 +219,6 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
             return;
 
         Logger.Info("Adding files from folder");
-
-        // If last file is invalid we remove it
-        if (Files.Count > 0 && !Files.Last().IsValid)
-            Files.RemoveAt(Files.Count - 1);
 
         // Clear selection
         SelectedFile = null;

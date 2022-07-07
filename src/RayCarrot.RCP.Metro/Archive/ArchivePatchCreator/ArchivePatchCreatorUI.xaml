@@ -225,9 +225,9 @@
                             Margin="5">
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                            local:ButtonAssist.IconKind="Plus"
-                            Command="{Binding Path=AddFileCommand, Mode=OneTime}"
-                            ToolTip="Add file"
+                            local:ButtonAssist.IconKind="FilePlusOutline"
+                            Command="{Binding Path=AddFilesCommand, Mode=OneTime}"
+                            ToolTip="Add files"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
