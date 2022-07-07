@@ -24,5 +24,6 @@ public class PatchDropHandler : DefaultDropHandler
         Logger.Debug("The patches for {0} have been reordered", ViewModel.DisplayName);
 
         ViewModel.RefreshPatchedFiles();
+        ViewModel.HasChanges = true;
     }
 }
