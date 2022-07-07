@@ -134,7 +134,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
         try
         {
             // Show the Archive Explorer
-            await Services.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
+            await Services.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles);
         }
         catch (Exception ex)
         {

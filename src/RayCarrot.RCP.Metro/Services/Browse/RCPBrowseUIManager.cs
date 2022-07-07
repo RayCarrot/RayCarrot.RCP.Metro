@@ -100,7 +100,7 @@ public class RCPBrowseUIManager : IBrowseUIManager
             {
                 CanceledByUser = canceled,
                 SelectedFile = openFileDialog.FileName,
-                SelectedFiles = openFileDialog.FileNames.Select(x => new FileSystemPath(x))
+                SelectedFiles = openFileDialog.FileNames.Select(x => new FileSystemPath(x)).ToArray()
             });
         });
     }

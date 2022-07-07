@@ -8,11 +8,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ByteSizeLib;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
 public class PatchViewModel : BaseViewModel, IDisposable
 {
+    #region Constructor
+
     public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifest manifest, bool isEnabled, IPatchDataSource dataSource)
     {
         ContainerViewModel = containerViewModel;
@@ -39,12 +42,30 @@ public class PatchViewModel : BaseViewModel, IDisposable
         RemoveCommand = new RelayCommand(() => ContainerViewModel.RemovePatch(this));
     }
 
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Commands
+
     public ICommand ExtractContentsCommand { get; }
     public ICommand ExportCommand { get; }
     public ICommand UpdateCommand { get; }
     public ICommand RemoveCommand { get; }
 
+    #endregion
+
+    #region Private Fields
+
     private bool _isEnabled;
+
+    #endregion
+
+    #region Public Properties
 
     public PatchContainerViewModel ContainerViewModel { get; }
     public PatchManifest Manifest { get; }
@@ -69,12 +90,18 @@ public class PatchViewModel : BaseViewModel, IDisposable
     public bool IsDownloaded { get; set; }
     public bool IsDownloadable => PatchURL != null && !IsDownloaded;
 
-    public void LoadThumbnail(PatchContainerFile? container)
+    #endregion
+
+    #region Public Methods
+
+    public void LoadThumbnail()
     {
-        // TODO-UPDATE: Log
+        Logger.Trace("Loading thumbnail for patch with ID {0}", Manifest.ID);
 
         if (!Manifest.HasAsset(PatchAsset.Thumbnail))
         {
+            Logger.Trace("No thumbnail asset was found");
+
             Thumbnail = null;
             return;
         }
@@ -94,4 +121,6 @@ public class PatchViewModel : BaseViewModel, IDisposable
     {
         DataSource.Dispose();
     }
+
+    #endregion
 }

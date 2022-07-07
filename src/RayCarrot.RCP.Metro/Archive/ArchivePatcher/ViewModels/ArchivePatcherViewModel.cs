@@ -4,31 +4,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
-/*
- 
-This is a work in process Archive Patcher system. It works by creating an .apc (Archive Patch Container) file next to the archive
-file which keeps track of all patches and the modified file history to then allow it to be restored.
-The way a container works is this:
-- At the root we have a manifest file. It has the history (which files have been modified) and a list of patches.
-- Each patch has an ID (a GUID) which identifies it. It stores its resources in a folder matching the ID. The patch resources are 
-  always lower-case and use forward slashes so that they can be normalized. The correct character casing is stored in the patch
-  manifest.
-
-TODO:
-- Create patches for UbiRay in Legends and fixing transparency on Whale Bay texture in Rayman 2
-- Add logs for how each file is modified for easier testing
-- When opening the Archive Patcher we want to check if the checksums for the modified files match, if not show a warning icon next to
-  the patch and show which files don't match in the info panel. This means the files have been manually modified after applying 
-  the patch.
- 
- */
-
-
 public class ArchivePatcherViewModel : BaseViewModel, IDisposable
 {
+    #region Constructor
+
     public ArchivePatcherViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> archiveFilePaths)
     {
         LoadOperation = new BindableOperation();
@@ -41,6 +24,16 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
             c.PropertyChanged += Container_OnPropertyChanged;
     }
 
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Public Properties
+
     public IArchiveDataManager Manager { get; }
     public ObservableCollection<PatchContainerViewModel> Containers { get; }
     public PatchViewModel? SelectedPatch { get; set; }
@@ -48,6 +41,10 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
     public bool HasChanges => Containers.Any(x => x.HasChanges);
 
     public BindableOperation LoadOperation { get; }
+
+    #endregion
+
+    #region Private Methods
 
     private void Container_OnPropertyChanged(object s, PropertyChangedEventArgs e)
     {
@@ -71,14 +68,21 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
         }
     }
 
+    #endregion
+
+    #region Public Methods
+
     public void DeselectAll()
     {
         Containers.ForEach(x => x.SelectedPatch = null);
+        Logger.Trace("Deselected all patches");
     }
 
     public async Task LoadPatchesAsync()
     {
         List<PatchContainerViewModel> failedContainers = new();
+
+        Logger.Info("Loading patch containers");
 
         foreach (PatchContainerViewModel container in Containers)
         {
@@ -88,11 +92,14 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
 
                 if (!success)
                 {
+                    Logger.Warn("Failed to load patch container {0}", container.DisplayName);
                     failedContainers.Add(container);
                     continue;
                 }
 
                 container.RefreshPatchedFiles();
+
+                Logger.Info("Loaded patch container {0}", container.DisplayName);
             }
             catch (Exception ex)
             {
@@ -110,6 +117,8 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
             container.PropertyChanged -= Container_OnPropertyChanged;
             container.Dispose();
         }
+
+        Logger.Trace("Removed {0} containers which failed to load", failedContainers.Count);
     }
 
     public async Task ApplyAsync()
@@ -118,7 +127,7 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Localize
         using (await LoadOperation.RunAsync("Applying patches"))
         {
-            // TODO-UPDATE: Log
+            Logger.Info("Applying patches");
 
             try
             {
@@ -129,6 +138,8 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
                 });
 
                 await Manager.OnRepackedArchivesAsync(Containers.Where(x => x.HasChanges).Select(x => x.ArchiveFilePath).ToArray());
+
+                Logger.Info("Applied patches");
 
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
@@ -147,4 +158,6 @@ public class ArchivePatcherViewModel : BaseViewModel, IDisposable
         Containers.DisposeAll();
         Manager.Dispose();
     }
+
+    #endregion
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -22,8 +23,14 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
         AddFileCommand = new RelayCommand(AddFile);
-        AddFileFromFolderCommand = new AsyncRelayCommand(AddFileFromFolderAsync);
+        AddFilesFromFolderCommand = new AsyncRelayCommand(AddFilesFromFolderAsync);
     }
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
@@ -38,7 +45,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
     public ICommand AddFileCommand { get; }
-    public ICommand AddFileFromFolderCommand { get; }
+    public ICommand AddFilesFromFolderCommand { get; }
 
     #endregion
 
@@ -67,6 +74,8 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Localize
         using (DisposableOperation operation = await LoadOperation.RunAsync("Importing from existing patch"))
         {
+            Logger.Trace("Importing from patch at {0}", patchFilePath);
+
             // TODO-UPDATE: Try/catch
 
             using PatchFile patchFile = new(patchFilePath, true);
@@ -75,6 +84,9 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
             if (manifest.PatchVersion > PatchFile.Version)
             {
+                Logger.Warn("Failed to import from patch due to the version number {0} being higher than the current one ({1})",
+                    manifest.PatchVersion, PatchFile.Version);
+
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
 
@@ -130,6 +142,8 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
             IsImported = true;
 
+            Logger.Info("Imported patch {0} with version {1}", manifest.Name, manifest.PatchVersion);
+
             return true;
         }
     }
@@ -155,9 +169,15 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
         if (Thumbnail.CanFreeze)
             Thumbnail.Freeze();
+
+        Logger.Info("Changed the thumbnail");
     }
 
-    public void RemoveThumbnail() => Thumbnail = null;
+    public void RemoveThumbnail()
+    {
+        Thumbnail = null;
+        Logger.Info("Removed the thumbnail");
+    }
 
     public void AddFile()
     {
@@ -173,7 +193,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         SelectedFile = file;
     }
 
-    public async Task AddFileFromFolderAsync()
+    public async Task AddFilesFromFolderAsync()
     {
         // TODO-UPDATE: Localize
         DirectoryBrowserResult browseResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
@@ -183,6 +203,8 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
         if (browseResult.CanceledByUser)
             return;
+
+        Logger.Info("Adding files from folder");
 
         // If last file is invalid we remove it
         if (Files.Count > 0 && !Files.Last().IsValid)
@@ -206,6 +228,8 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
     {
         using (await LoadOperation.RunAsync("Creating patch"))
         {
+            Logger.Info("Creating the patch '{0}' with revision {1} and ID {2}", Name, Revision, ID);
+
             // TODO-UPDATE: Localize
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
@@ -261,6 +285,8 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                 // Add the thumbnail if there is one
                 if (Thumbnail != null)
                 {
+                    Logger.Info("Adding patch thumbnail");
+
                     PngBitmapEncoder encoder = new();
                     encoder.Frames.Add(BitmapFrame.Create(Thumbnail));
 
@@ -273,6 +299,8 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
                     // Add to the manifest
                     assets.Add(PatchAsset.Thumbnail);
+
+                    Logger.Info("Added patch thumbnail");
                 }
 
                 // Write the manifest
@@ -296,6 +324,8 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                 _tempDir?.Dispose();
                 _tempDir = null;
             });
+
+            Logger.Info("Created patch");
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync("The patch was saved successfully", MessageType.Success);

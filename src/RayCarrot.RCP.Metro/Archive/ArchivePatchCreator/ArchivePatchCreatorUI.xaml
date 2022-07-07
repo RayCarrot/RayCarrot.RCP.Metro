@@ -232,7 +232,7 @@
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:ButtonAssist.IconKind="FolderPlusOutline"
-                            Command="{Binding Path=AddFileFromFolderCommand, Mode=OneTime}"
+                            Command="{Binding Path=AddFilesFromFolderCommand, Mode=OneTime}"
                             ToolTip="Add files from folder"/>
 
                 </StackPanel>

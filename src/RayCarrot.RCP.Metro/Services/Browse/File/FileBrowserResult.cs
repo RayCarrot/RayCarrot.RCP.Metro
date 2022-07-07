@@ -16,5 +16,5 @@ public class FileBrowserResult : UserInputResult
     /// <summary>
     /// The list of selected files
     /// </summary>
-    public IEnumerable<FileSystemPath> SelectedFiles { get; set; }
+    public FileSystemPath[] SelectedFiles { get; set; }
 }

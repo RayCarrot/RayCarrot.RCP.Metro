@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -10,14 +11,18 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// </summary>
 public class PatchContainerFile : IDisposable
 {
-    // TODO-UPDATE: Logging
-
     #region Constructor
 
     public PatchContainerFile(FileSystemPath filePath, bool readOnly = false)
     {
         _zip = new PatchZip(filePath, readOnly);
     }
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
@@ -58,21 +63,31 @@ public class PatchContainerFile : IDisposable
 
     public PatchContainerManifest? ReadManifest()
     {
+        Logger.Info("Reading patch container manifest");
+
         if (!_zip.CanRead)
+        {
+            Logger.Info("Can't read patch container manifest due to the zip not being readable");
             return null;
+        }
 
         using Stream? s = _zip.OpenStream(ManifestFileName);
 
         if (s is null)
             throw new Exception("Container does not contain a valid manifest file");
 
-        return JsonHelpers.DeserializeFromStream<PatchContainerManifest>(s);
+        PatchContainerManifest manifest = JsonHelpers.DeserializeFromStream<PatchContainerManifest>(s);
+
+        Logger.Info("Read patch container manifest with version {0}", manifest.ContainerVersion);
+
+        return manifest;
     }
 
     public void WriteManifest(PatchHistoryManifest history, PatchManifest[] patches, string[]? enabledPatches)
     {
         PatchContainerManifest containerManifest = new(Version, history, patches, enabledPatches);
         _zip.WriteJSON(ManifestFileName, containerManifest);
+        Logger.Info("Wrote patch container manifest");
     }
 
     public Stream GetPatchResource(string patchID, string resourceName, bool isNormalized)
@@ -90,6 +105,7 @@ public class PatchContainerFile : IDisposable
     public void ClearPatchFiles(string patchID)
     {
         _zip.DeleteDirectory(patchID);
+        Logger.Info("Cleared patch files for patch {0}", patchID);
     }
 
     public void AddPatchResource(string patchID, string resourceName, bool isNormalized, Stream stream)
@@ -109,7 +125,11 @@ public class PatchContainerFile : IDisposable
     /// <returns>The normalized resource name</returns>
     public string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
-    public void Apply() => _zip.Apply();
+    public void Apply()
+    {
+        _zip.Apply();
+        Logger.Info("Applied patch container file modifications");
+    }
 
     public void Dispose()
     {

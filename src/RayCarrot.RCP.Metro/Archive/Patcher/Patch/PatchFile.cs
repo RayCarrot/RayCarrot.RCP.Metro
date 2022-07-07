@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -16,6 +17,12 @@ public class PatchFile : IDisposable
     {
         _zip = new PatchZip(filePath, readOnly);
     }
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
@@ -57,6 +64,8 @@ public class PatchFile : IDisposable
 
     public PatchManifest ReadManifest()
     {
+        Logger.Info("Reading patch manifest");
+
         if (!_zip.CanRead)
             throw new Exception("The manifest can not be read from the patch");
 
@@ -65,12 +74,17 @@ public class PatchFile : IDisposable
         if (s is null)
             throw new Exception("Patch does not contain a valid manifest file");
 
-        return JsonHelpers.DeserializeFromStream<PatchManifest>(s);
+        PatchManifest manifest = JsonHelpers.DeserializeFromStream<PatchManifest>(s);
+
+        Logger.Info("Read patch manifest with version {0} and ID {1}", manifest.PatchVersion, manifest.ID);
+
+        return manifest;
     }
 
     public void WriteManifest(PatchManifest manifest)
     {
         _zip.WriteJSON(ManifestFileName, manifest);
+        Logger.Info("Wrote patch manifest");
     }
 
     public Stream GetPatchResource(string resourceName, bool isNormalized)
@@ -102,7 +116,11 @@ public class PatchFile : IDisposable
     /// <returns>The normalized resource name</returns>
     public string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
-    public void Apply() => _zip.Apply();
+    public void Apply()
+    {
+        _zip.Apply();
+        Logger.Info("Applied patch file modifications");
+    }
 
     public void Dispose()
     {

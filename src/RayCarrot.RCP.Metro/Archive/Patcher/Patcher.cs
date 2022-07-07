@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -10,6 +11,12 @@ namespace RayCarrot.RCP.Metro.Archive;
 /// </summary>
 public class Patcher
 {
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Private Methods
 
     private Dictionary<string, FileModification> GetFileModifications(PatchContainerFile container, PatchHistoryManifest? patchHistory, IEnumerable<PatchManifest> enabledPatches)
@@ -20,26 +27,39 @@ public class Patcher
         // actually be reverted then that will be overridden when we go through the patches to apply.
         if (patchHistory != null)
         {
+            Logger.Info("Getting file modifications from history");
+
             string id = patchHistory.ID;
 
             // Remove added files
             if (patchHistory.AddedFiles != null)
                 foreach (string addedFile in patchHistory.AddedFiles)
+                {
                     fileModifications[container.NormalizeResourceName(addedFile)] =
                         new FileModification(FileModificationType.Remove, id, addedFile, false);
+                    Logger.Trace("File mod add -> remove: {0}", addedFile);
+                }
 
             // Add back replaced files
             if (patchHistory.ReplacedFiles != null)
                 foreach (string replacedFile in patchHistory.ReplacedFiles)
+                {
                     fileModifications[container.NormalizeResourceName(replacedFile)] =
                         new FileModification(FileModificationType.Add, id, replacedFile, false);
+                    Logger.Trace("File mod replace -> add: {0}", replacedFile);
+                }
 
             // Add back removed files
             if (patchHistory.RemovedFiles != null)
                 foreach (string removedFile in patchHistory.RemovedFiles)
+                {
                     fileModifications[container.NormalizeResourceName(removedFile)] =
                         new FileModification(FileModificationType.Add, id, removedFile, false);
+                    Logger.Trace("File mod remove -> add: {0}", removedFile);
+                }
         }
+
+        Logger.Info("Getting file modifications from enabled patches");
 
         // Add modifications for each enabled patch. Reverse the order for the correct patch priority.
         foreach (PatchManifest patch in enabledPatches.Reverse())
@@ -54,20 +74,38 @@ public class Patcher
                     string addedFileChecksum = patch.AddedFileChecksums[i];
                     fileModifications[container.NormalizeResourceName(addedFile)] =
                         new FileModification(FileModificationType.Add, id, addedFile, true, addedFileChecksum);
+                    Logger.Trace("File mod add: {0}", addedFile);
                 }
+            }
+            else
+            {
+                Logger.Warn("Patch {0} added files array is null", id);
             }
 
             if (patch.RemovedFiles != null)
+            {
                 foreach (string removedFile in patch.RemovedFiles)
+                {
                     fileModifications[container.NormalizeResourceName(removedFile)] =
                         new FileModification(FileModificationType.Remove, id, removedFile, true);
+                    Logger.Trace("File mod remove: {0}", removedFile);
+                }
+            }
+            else
+            {
+                Logger.Warn("Patch {0} removed files array is null", id);
+            }
         }
+
+        Logger.Info("Got {0} file modifications", fileModifications.Count);
 
         return fileModifications;
     }
 
     private void ReplaceArchiveFile(FileItem file, IArchiveDataManager manager, Stream resource)
     {
+        Logger.Trace("Replacing archive file {0}/{1}", file.Directory, file.FileName);
+
         // Get the temp stream to store the pending import data
         file.SetPendingImport();
 
@@ -91,6 +129,8 @@ public class Patcher
     /// <param name="src">The patch data source</param>
     public void AddPatchFiles(PatchContainerFile container, PatchManifest manifest, IPatchDataSource src)
     {
+        Logger.Info("Adding patch files to container for patch {0} with ID {1}", manifest.Name, manifest.ID);
+
         // Clear any leftover files before importing
         container.ClearPatchFiles(manifest.ID);
 
@@ -125,6 +165,8 @@ public class Patcher
     {
         // TODO-UPDATE: In case of error the container will be corrupt. Perhaps we read the container as read-only and then when writing we copy to temp and write to that and then replace?
 
+        Logger.Info("Applying patcher modifications with {0}/{1} enabled patches", enabledPatches.Length, patchManifests.Length);
+
         // The history gets re-created each time we save, so generate a new ID
         string newHistoryID = PatchFile.GenerateID(patchManifests.Select(x => x.ID).Append(patchHistory?.ID).ToArray());
 
@@ -153,6 +195,8 @@ public class Patcher
             totalSize += fileData.Stream.Length;
 
             container.AddPatchResource(newHistoryID, resourceName, true, fileData.Stream);
+            
+            Logger.Trace("Saved removed file {0} in history", filePath);
         }
 
         using TempFile archiveOutputFile = new(true);
@@ -161,7 +205,6 @@ public class Patcher
         using (FileStream archiveStream = File.OpenRead(archiveFilePath))
         {
             string archiveFileName = archiveFilePath.Name;
-
             object archive = manager.LoadArchive(archiveStream, archiveFileName);
 
             ArchiveData? archiveData = null;
@@ -181,6 +224,8 @@ public class Patcher
                 string[]? prevAddedFiles = patchHistory?.AddedFiles?.Select(x => container.NormalizeResourceName(x)).ToArray();
                 string[]? prevReplacedFiles = patchHistory?.ReplacedFiles?.Select(x => container.NormalizeResourceName(x)).ToArray();
 
+                Logger.Info("Modifying archive");
+
                 // Replace or remove existing files
                 foreach (ArchiveDirectory dir in archiveData.Directories)
                 {
@@ -197,6 +242,8 @@ public class Patcher
                         // Remove existing file
                         if (modification?.Type == FileModificationType.Remove)
                         {
+                            Logger.Trace("Removing file {0}", filePath);
+
                             if (modification.AddToHistory)
                                 saveRemovedFileInHistory(file, archiveData.Generator, filePath, resourceName);
                             continue;
@@ -207,9 +254,13 @@ public class Patcher
                         // Replace existing file
                         if (modification?.Type == FileModificationType.Add)
                         {
+                            Logger.Trace("Replacing file {0}", filePath);
+
                             if (modification.AddToHistory)
                             {
                                 string checksum = modification.Checksum ?? throw new Exception("Missing checksum");
+
+                                // TODO-UPDATE: There could be some issues with below code if you switch patches which use same file
 
                                 // If the file was added previously we don't want to mark it as being replaced or else we'd 
                                 // be replacing the previously added file
@@ -251,6 +302,8 @@ public class Patcher
                     string fileName = Path.GetFileName(filePath);
                     string dir = Path.GetDirectoryName(filePath) ?? String.Empty;
                     object entry = manager.GetNewFileEntry(archive, dir, fileName);
+
+                    Logger.Trace("Adding file {0}", filePath);
 
                     FileItem file = new(manager, fileName, dir, entry);
 
@@ -306,7 +359,12 @@ public class Patcher
 
     #region Data Types
 
-    private record FileModification(FileModificationType Type, string PatchID, string FilePath, bool AddToHistory, string? Checksum = null);
+    private record FileModification(
+        FileModificationType Type, 
+        string PatchID, 
+        string FilePath, 
+        bool AddToHistory, 
+        string? Checksum = null);
 
     private enum FileModificationType
     {
