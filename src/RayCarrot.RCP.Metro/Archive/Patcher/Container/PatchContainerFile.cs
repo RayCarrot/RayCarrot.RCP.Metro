@@ -118,13 +118,6 @@ public class PatchContainerFile : IDisposable
         _zip.WriteStream(GetPatchAssetPath(patchID, assetName), stream);
     }
 
-    /// <summary>
-    /// Gets the normalized resource name for the resource file path
-    /// </summary>
-    /// <param name="filePath">The resource file path</param>
-    /// <returns>The normalized resource name</returns>
-    public string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
-
     public void Apply()
     {
         _zip.Apply();
@@ -135,6 +128,20 @@ public class PatchContainerFile : IDisposable
     {
         _zip.Dispose();
     }
+
+    #endregion
+
+    #region Public Static Methods
+
+    /// <summary>
+    /// Gets the normalized resource name for the resource file path
+    /// </summary>
+    /// <param name="filePath">The resource file path</param>
+    /// <returns>The normalized resource name</returns>
+    public static string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
+
+    public static FileSystemPath GetContainerFilePath(FileSystemPath archiveFilePath) =>
+        archiveFilePath.AppendFileExtension(new FileExtension(FileExtensions));
 
     #endregion
 }

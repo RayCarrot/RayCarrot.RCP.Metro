@@ -51,7 +51,7 @@ public class PatchFile : IDisposable
     private string GetPatchResourcePath(string resourceName, bool isNormalized)
     {
         if (!isNormalized)
-            resourceName = NormalizeResourceName(resourceName);
+            resourceName = PatchContainerFile.NormalizeResourceName(resourceName);
 
         return $"resources/{resourceName}";
     }
@@ -108,13 +108,6 @@ public class PatchFile : IDisposable
     {
         _zip.WriteStream(GetPatchAssetPath(assetName), stream);
     }
-
-    /// <summary>
-    /// Gets the normalized resource name for the resource file path
-    /// </summary>
-    /// <param name="filePath">The resource file path</param>
-    /// <returns>The normalized resource name</returns>
-    public string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
     public void Apply()
     {

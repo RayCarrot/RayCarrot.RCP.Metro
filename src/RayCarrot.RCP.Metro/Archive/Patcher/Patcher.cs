@@ -35,7 +35,7 @@ public class Patcher
             if (patchHistory.AddedFiles != null)
                 foreach (string addedFile in patchHistory.AddedFiles)
                 {
-                    fileModifications[container.NormalizeResourceName(addedFile)] =
+                    fileModifications[PatchContainerFile.NormalizeResourceName(addedFile)] =
                         new FileModification(FileModificationType.Remove, id, addedFile, false);
                     Logger.Trace("File mod add -> remove: {0}", addedFile);
                 }
@@ -44,7 +44,7 @@ public class Patcher
             if (patchHistory.ReplacedFiles != null)
                 foreach (string replacedFile in patchHistory.ReplacedFiles)
                 {
-                    fileModifications[container.NormalizeResourceName(replacedFile)] =
+                    fileModifications[PatchContainerFile.NormalizeResourceName(replacedFile)] =
                         new FileModification(FileModificationType.Add, id, replacedFile, false);
                     Logger.Trace("File mod replace -> add: {0}", replacedFile);
                 }
@@ -53,7 +53,7 @@ public class Patcher
             if (patchHistory.RemovedFiles != null)
                 foreach (string removedFile in patchHistory.RemovedFiles)
                 {
-                    fileModifications[container.NormalizeResourceName(removedFile)] =
+                    fileModifications[PatchContainerFile.NormalizeResourceName(removedFile)] =
                         new FileModification(FileModificationType.Add, id, removedFile, false);
                     Logger.Trace("File mod remove -> add: {0}", removedFile);
                 }
@@ -72,7 +72,7 @@ public class Patcher
                 {
                     string addedFile = patch.AddedFiles[i];
                     string addedFileChecksum = patch.AddedFileChecksums[i];
-                    fileModifications[container.NormalizeResourceName(addedFile)] =
+                    fileModifications[PatchContainerFile.NormalizeResourceName(addedFile)] =
                         new FileModification(FileModificationType.Add, id, addedFile, true, addedFileChecksum);
                     Logger.Trace("File mod add: {0}", addedFile);
                 }
@@ -86,7 +86,7 @@ public class Patcher
             {
                 foreach (string removedFile in patch.RemovedFiles)
                 {
-                    fileModifications[container.NormalizeResourceName(removedFile)] =
+                    fileModifications[PatchContainerFile.NormalizeResourceName(removedFile)] =
                         new FileModification(FileModificationType.Remove, id, removedFile, true);
                     Logger.Trace("File mod remove: {0}", removedFile);
                 }
@@ -221,8 +221,8 @@ public class Patcher
                     GetFileModifications(container, patchHistory, patchManifests.Where(x => enabledPatches.Contains(x.ID)));
 
                 // The previously applied modifications
-                string[]? prevAddedFiles = patchHistory?.AddedFiles?.Select(x => container.NormalizeResourceName(x)).ToArray();
-                string[]? prevReplacedFiles = patchHistory?.ReplacedFiles?.Select(x => container.NormalizeResourceName(x)).ToArray();
+                string[]? prevAddedFiles = patchHistory?.AddedFiles?.Select(x => PatchContainerFile.NormalizeResourceName(x)).ToArray();
+                string[]? prevReplacedFiles = patchHistory?.ReplacedFiles?.Select(x => PatchContainerFile.NormalizeResourceName(x)).ToArray();
 
                 Logger.Info("Modifying archive");
 
@@ -232,7 +232,7 @@ public class Patcher
                     foreach (FileItem file in dir.Files)
                     {
                         string filePath = manager.CombinePaths(file.Directory, file.FileName);
-                        string resourceName = container.NormalizeResourceName(filePath);
+                        string resourceName = PatchContainerFile.NormalizeResourceName(filePath);
 
                         FileModification? modification = fileModifications.TryGetValue(resourceName);
 
