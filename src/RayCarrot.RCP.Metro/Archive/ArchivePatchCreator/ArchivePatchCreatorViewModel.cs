@@ -11,9 +11,13 @@ namespace RayCarrot.RCP.Metro.Archive;
 
 public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 {
+    #region Constructor
+
     public ArchivePatchCreatorViewModel()
     {
         ID = PatchFile.GenerateID();
+
+        LoadOperation = new BindableOperation();
 
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
@@ -21,12 +25,24 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         AddFileFromFolderCommand = new AsyncRelayCommand(AddFileFromFolderAsync);
     }
 
+    #endregion
+
+    #region Private Fields
+
     private TempDirectory? _tempDir;
+
+    #endregion
+
+    #region Commands
 
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
     public ICommand AddFileCommand { get; }
     public ICommand AddFileFromFolderCommand { get; }
+
+    #endregion
+
+    #region Public Properties
 
     public string Name { get; set; } = String.Empty;
     public string Description { get; set; } = String.Empty;
@@ -40,28 +56,19 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
     public bool IsImported { get; set; }
 
-    // TODO-UPDATE: Use bindable operation
-    public string? LoadingMessage { get; set; }
-    public bool IsLoading { get; set; }
-    public double CurrentProgress { get; set; }
-    public double MinProgress { get; set; }
-    public double MaxProgress { get; set; }
-    public bool HasProgress { get; set; }
+    public BindableOperation LoadOperation { get; }
+
+    #endregion
+
+    #region Public Methods
 
     public async Task<bool> ImportFromPatchAsync(FileSystemPath patchFilePath)
     {
-        if (IsLoading)
-            return false;
-
         // TODO-UPDATE: Localize
-        LoadingMessage = "Importing from existing patch";
-        HasProgress = false;
-        IsLoading = true;
-
-        // TODO-UPDATE: Try/catch
-
-        try
+        using (DisposableOperation operation = await LoadOperation.RunAsync("Importing from existing patch"))
         {
+            // TODO-UPDATE: Try/catch
+
             using PatchFile patchFile = new(patchFilePath, true);
 
             PatchManifest manifest = patchFile.ReadManifest();
@@ -95,13 +102,10 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
             // Extract resources to temp
             if (manifest.AddedFiles != null && manifest.AddedFileChecksums != null)
             {
-                CurrentProgress = 0;
-                MinProgress = 0;
-                MaxProgress = manifest.AddedFiles.Length;
-                HasProgress = true;
-
                 for (var i = 0; i < manifest.AddedFiles.Length; i++)
                 {
+                    operation.SetProgress(new Progress(i, manifest.AddedFiles.Length));
+
                     string addedFile = manifest.AddedFiles[i];
                     string checksum = manifest.AddedFileChecksums[i];
 
@@ -119,18 +123,14 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                         ArchiveFilePath = addedFile,
                         Checksum = checksum,
                     });
-
-                    CurrentProgress++;
                 }
+
+                operation.SetProgress(new Progress(manifest.AddedFiles.Length, manifest.AddedFiles.Length));
             }
 
             IsImported = true;
 
             return true;
-        }
-        finally
-        {
-            IsLoading = false;
         }
     }
 
@@ -204,15 +204,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> CreatePatchAsync()
     {
-        if (IsLoading)
-            return false;
-
-        // TODO-UPDATE: Localize
-        LoadingMessage = "Creating patch";
-        HasProgress = false;
-        IsLoading = true;
-
-        try
+        using (await LoadOperation.RunAsync("Creating patch"))
         {
             // TODO-UPDATE: Localize
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
@@ -310,10 +302,6 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
 
             return true;
         }
-        finally
-        {
-            IsLoading = false;
-        }
     }
 
     public void Dispose()
@@ -321,6 +309,10 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         _tempDir?.Dispose();
         _tempDir = null;
     }
+
+    #endregion
+
+    #region Data Types
 
     public class FileViewModel : BaseViewModel
     {
@@ -335,4 +327,6 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
         public bool IsFileAdded => SourceFilePath.FileExists;
         public bool IsImported => Checksum != null;
     }
+
+    #endregion
 }

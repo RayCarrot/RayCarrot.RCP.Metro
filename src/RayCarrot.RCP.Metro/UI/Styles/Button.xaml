@@ -6,7 +6,7 @@
 
     <!-- Icon Content -->
 
-    <DataTemplate x:Key="RCP.Templates.Button.IconContent" x:Shared="False">
+    <DataTemplate x:Key="RCP.Templates.Button.IconContent">
         <StackPanel Orientation="Horizontal">
             <iconpacks:PackIconMaterial Kind="{Binding Path=(local:ButtonAssist.IconKind), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
                                         VerticalAlignment="Center"/>

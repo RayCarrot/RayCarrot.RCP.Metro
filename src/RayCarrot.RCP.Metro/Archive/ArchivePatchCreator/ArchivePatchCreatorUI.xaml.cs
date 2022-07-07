@@ -72,7 +72,7 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
             return false;
 
         // Cancel the closing if it's loading
-        return !ViewModel.IsLoading;
+        return !ViewModel.LoadOperation.IsLoading;
     }
 
     #endregion

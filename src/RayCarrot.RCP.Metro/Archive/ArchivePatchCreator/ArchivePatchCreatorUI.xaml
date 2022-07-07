@@ -6,8 +6,6 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:archive="clr-namespace:RayCarrot.RCP.Metro.Archive"
-                            xmlns:dd="urn:gong-wpf-dragdrop"
-                            xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                             mc:Ignorable="d"
                             d:DesignWidth="800" d:DesignHeight="600"
                             d:DataContext="{d:DesignInstance archive:ArchivePatchCreatorViewModel}"
@@ -16,12 +14,12 @@
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
     <!-- TODO-UPDATE: Localize -->
-    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
-                                Text="{Binding Path=LoadingMessage}"
-                                IsIndeterminate="{Binding Path=HasProgress, Converter={local:InvertedBooleanConverter}}"
-                                Minimum="{Binding Path=MinProgress}"
-                                Maximum="{Binding Path=MaxProgress}"
-                                Value="{Binding Path=CurrentProgress}">
+    <local:LoaderContentControl IsLoading="{Binding Path=LoadOperation.IsLoading}"
+                                Text="{Binding Path=LoadOperation.LoadingMessage}"
+                                IsIndeterminate="{Binding Path=LoadOperation.HasProgress, Converter={local:InvertedBooleanConverter}}"
+                                Minimum="{Binding Path=LoadOperation.MinProgress}"
+                                Maximum="{Binding Path=LoadOperation.MaxProgress}"
+                                Value="{Binding Path=LoadOperation.CurrentProgress}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" MinHeight="200" />
