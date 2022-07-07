@@ -260,8 +260,6 @@ public class Patcher
                             {
                                 string checksum = modification.Checksum ?? throw new Exception("Missing checksum");
 
-                                // TODO-UPDATE: There could be some issues with below code if you switch patches which use same file
-
                                 // If the file was added previously we don't want to mark it as being replaced or else we'd 
                                 // be replacing the previously added file
                                 if (prevAddedFiles?.Any(x => x == resourceName) == true)

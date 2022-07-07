@@ -121,7 +121,9 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
             CNT cntData = FileFactory.Read<CNT>(context, cntFile.Name);
 
             // Read the size from every .gf file
-            gfFiles.AddRange(cntData.Files.Select(x =>
+            gfFiles.AddRange(cntData.Files.
+                Where(x => x.FileName.EndsWith(".gf", StringComparison.InvariantCultureIgnoreCase)).
+                Select(x =>
             {
                 int width = 0;
                 int height = 0;
