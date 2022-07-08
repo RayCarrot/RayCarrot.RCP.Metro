@@ -44,6 +44,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
         });
         OtherViewModels.AddRange(new UtilityViewModel[]
         {
+            new UtilityViewModel(new Utility_PatchCreator()),
             new UtilityViewModel(new Utility_SyncTextureInfo()),
             new UtilityViewModel(new Utility_R1PasswordGenerator()),
         });

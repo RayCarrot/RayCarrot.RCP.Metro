@@ -33,6 +33,7 @@ public enum GenericIconKind
     Window_ArchiveExplorer,
     Window_ArchiveCreator,
     Window_Patcher,
+    Window_PatchCreator,
     Window_GameOptions,
     Window_Installer,
     Window_Downloader,
@@ -67,6 +68,7 @@ public enum GenericIconKind
     Utilities_Converters,
     Utilities_Decoders,
     Utilities_Serializers,
+    Utilities_PatchCreator,
 
     Mods_Mem,
     Mods_RRR,

@@ -42,6 +42,9 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Steam">Steam</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Microsoft">MicrosoftWindows</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Patcher">ArchiveOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.PatchCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
+
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_SyncTextureInfo">FileSyncOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_CompleteSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
@@ -58,8 +61,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanFiestaRun_SaveFix">AutoFix</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Patcher">FolderSettingsOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_PatchCreator">FolderPlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_R1PasswordGenerator">KeyOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
@@ -106,8 +107,8 @@
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Patcher" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_Patcher}" 
-                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+                       IconKind="{StaticResource RCP.Icons.Patcher}" 
+                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Location" 
                        IconKind="{StaticResource RCP.Icons.Folder}" 
                        IconColor="{StaticResource RCP.Brushes.Info}" />
@@ -153,8 +154,11 @@
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveCreator}"
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_Patcher" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_Patcher}"
-                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+                       IconKind="{StaticResource RCP.Icons.Patcher}"
+                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_PatchCreator" 
+                       IconKind="{StaticResource RCP.Icons.PatchCreator}"
+                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameOptions" 
                        IconKind="{StaticResource RCP.Icons.Settings}"
                        IconColor="{StaticResource RCP.Brushes.Settings}" />
@@ -255,6 +259,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_Serializers" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Serializers}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_PatchCreator" 
+                       IconKind="{StaticResource RCP.Icons.PatchCreator}"
+                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
     
     <local:GenericIcon x:Key="RCP.GenericIcons.Mods_Mem" 
                        IconKind="{StaticResource RCP.Icons.Mods_Mem}"

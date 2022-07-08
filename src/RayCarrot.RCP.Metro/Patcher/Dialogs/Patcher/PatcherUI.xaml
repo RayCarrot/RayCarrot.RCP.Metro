@@ -138,8 +138,8 @@
                                         <CheckBox Grid.Column="0"
                                                   Visibility="{Binding Path=IsDownloadable, Converter={local:InvertedBooleanToVisibilityConverter}}"
                                                   VerticalAlignment="Center"
-                                                  IsChecked="{Binding Path=IsEnabled}"
-                                                  Margin="0 0 5 0"/>
+                                                  HorizontalAlignment="Center"
+                                                  IsChecked="{Binding Path=IsEnabled}" />
 
                                         <!-- TODO-UPDATE: Localize -->
                                         <Button Grid.Column="0"

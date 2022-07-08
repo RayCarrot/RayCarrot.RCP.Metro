@@ -82,8 +82,6 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
         OpenArchiveCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
         CreateArchiveCommand = new AsyncRelayCommand(CreateArchiveAsync);
-        CreateArchivePatchCommand = new AsyncRelayCommand(CreateArchivePatchAsync);
-        UpdateArchivePatchCommand = new AsyncRelayCommand(UpdateArchivePatchAsync);
     }
 
     #endregion
@@ -98,8 +96,6 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
     public ICommand OpenArchiveCommand { get; }
     public ICommand CreateArchiveCommand { get; }
-    public ICommand CreateArchivePatchCommand { get; }
-    public ICommand UpdateArchivePatchCommand { get; }
 
     #endregion
 
@@ -149,28 +145,6 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
         // Show the Archive Creator
         await Services.UI.ShowArchiveCreatorAsync(manager);
-    }
-
-    public async Task CreateArchivePatchAsync()
-    {
-        // Show the Archive Patch Creator
-        await Services.UI.ShowPatchCreatorAsync(null);
-    }
-
-    public async Task UpdateArchivePatchAsync()
-    {
-        // TODO-UPDATE: Localize
-        FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
-        {
-            Title = "Select a patch to import from",
-            ExtensionFilter = new FileFilterItem("*.ap", "Archive Patch").StringRepresentation,
-        });
-
-        if (browseResult.CanceledByUser)
-            return;
-
-        // Show the Archive Patch Creator
-        await Services.UI.ShowPatchCreatorAsync(browseResult.SelectedFile);
     }
 
     public void Dispose()

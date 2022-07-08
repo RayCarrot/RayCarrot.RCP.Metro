@@ -59,7 +59,7 @@ public partial class PatchCreatorUI : WindowContentControl
         base.WindowAttached();
 
         WindowInstance.Title = "Patch Creator"; // TODO-UPDATE: Localize
-        WindowInstance.Icon = GenericIconKind.Window_Patcher; // TODO-UPDATE: Change icon
+        WindowInstance.Icon = GenericIconKind.Window_PatchCreator;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
         WindowInstance.Width = 900;
