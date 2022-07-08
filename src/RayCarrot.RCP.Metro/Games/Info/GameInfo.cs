@@ -271,6 +271,24 @@ public abstract class GameInfo : BaseGameData
                     actions.Add(new OverflowButtonItemViewModel());
                 }
 
+                // TODO-UPDATE: Localize
+                actions.Add(new OverflowButtonItemViewModel("Patches", GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
+                {
+                    try
+                    {
+                        // Show the Patcher
+                        await Services.UI.ShowPatcherAsync(Game);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error(ex, "Runing Patcher");
+
+                        // TODO-UPDATE: Localize
+                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error ocurred in the patcher and it had to close");
+                    }
+                }), UserLevel.Advanced));
+                actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
+
                 // Add open archive
                 if (HasArchives)
                 {
@@ -288,25 +306,6 @@ public abstract class GameInfo : BaseGameData
                         catch (Exception ex)
                         {
                             Logger.Error(ex, "Running Archive Explorer");
-
-                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
-                        }
-                    }), UserLevel.Advanced));
-
-                    // TODO-UPDATE: Localize
-                    actions.Add(new OverflowButtonItemViewModel("Patch archives", GenericIconKind.GameDisplay_ArchivePatch, new AsyncRelayCommand(async () =>
-                    {
-                        using IArchiveDataManager archiveDataManager = GetArchiveDataManager;
-
-                        try
-                        {
-                            // Show the Archive Patcher
-                            IEnumerable<FileSystemPath> paths = GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists);
-                            await Services.UI.ShowArchivePatcherAsync(archiveDataManager, paths);
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Error(ex, "Runing Archive Patcher");
 
                             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
                         }

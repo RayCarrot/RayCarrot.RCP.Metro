@@ -4,10 +4,10 @@ using System.Linq;
 using System.Security.Cryptography;
 using NLog;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
-/// An archive patch (.ap)
+/// A game patch (.gp)
 /// </summary>
 public class PatchFile : IDisposable
 {
@@ -30,7 +30,7 @@ public class PatchFile : IDisposable
 
     private const string ManifestFileName = "manifest.json";
     public const int Version = 0;
-    public const string FileExtensions = ".ap"; // Archive Patch
+    public const string FileExtension = ".gp"; // Game Patch
 
     #endregion
 

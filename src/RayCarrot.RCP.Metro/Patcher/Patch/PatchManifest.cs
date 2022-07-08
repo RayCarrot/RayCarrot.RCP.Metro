@@ -2,7 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 public record PatchManifest(
     [property: JsonProperty(Required = Required.Always)]

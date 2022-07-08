@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro.Archive;
+﻿namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
 /// The names of common assets

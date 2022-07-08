@@ -4,7 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 // TODO: Zip files can be a bit slow - maybe find better solution? We could create custom archive type
 //       using BinarySerializer, but then we loose the ability to easily view/edit it.

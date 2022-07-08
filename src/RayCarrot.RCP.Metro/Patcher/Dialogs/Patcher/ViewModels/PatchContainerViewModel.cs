@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NLog;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
+// TODO-UPDATE: Merge with PatcherViewModel
 public class PatchContainerViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public PatchContainerViewModel(PatchContainerFile container, FileSystemPath archiveFilePath, BindableOperation loadOperation)
+    public PatchContainerViewModel(Games game, FileSystemPath gameDirectory, BindableOperation loadOperation)
     {
-        Container = container;
-        ArchiveFilePath = archiveFilePath;
+        ContainerFilePath = PatchContainerFile.GetContainerFilePath(gameDirectory);
+        Container = new PatchContainerFile(ContainerFilePath, readOnly: true);
+
+        Game = game;
+        GameDirectory = gameDirectory;
         LoadOperation = loadOperation;
-        DisplayName = archiveFilePath.Name;
         Patches = new ObservableCollection<PatchViewModel>();
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
 
@@ -48,8 +51,9 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
     #region Public Properties
 
     public PatchContainerFile Container { get; }
-    public FileSystemPath ArchiveFilePath { get; }
-    public string DisplayName { get; }
+    public Games Game { get; }
+    public FileSystemPath GameDirectory { get; }
+    public FileSystemPath ContainerFilePath { get; }
     public BindableOperation LoadOperation { get; }
 
     public PatchHistoryManifest? PatchHistory { get; set; }
@@ -80,7 +84,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> LoadExistingPatchesAsync()
     {
-        Logger.Info("Loading existing patches for container {0}", DisplayName);
+        Logger.Info("Loading existing patches");
 
         PatchContainerManifest ? containerManifest = Container.ReadManifest();
 
@@ -92,7 +96,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
                 containerManifest.ContainerVersion, PatchContainerFile.Version);
 
             // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The archive patch container was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync("The game patch container was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
             PatchHistory = null;
 
             return false;
@@ -283,7 +287,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
                 Title = "Save patch file",
-                Extensions = new FileFilterItem("*.ap", "Archive Patch").StringRepresentation,
+                Extensions = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
             });
 
             if (browseResult.CanceledByUser)
@@ -361,7 +365,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
             Title = "Select updated patch",
             DefaultDirectory = default,
             DefaultName = null,
-            ExtensionFilter = new FileExtension(".ap").GetFileFilterItem.StringRepresentation,
+            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
         });
 
         if (result.CanceledByUser)
@@ -435,9 +439,9 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         }
     }
 
-    public void Apply(IArchiveDataManager manager)
+    public void Apply()
     {
-        Logger.Info("Applying patches for container {0}", DisplayName);
+        Logger.Info("Applying patches for container for game {0}", Game);
 
         // Create a patcher
         Patcher patcher = new(); // TODO: Use DI?
@@ -456,7 +460,7 @@ public class PatchContainerViewModel : BaseViewModel, IDisposable
         PatchManifest[] patchManifests = Patches.Select(x => x.Manifest).ToArray();
         string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
 
-        patcher.Apply(manager, Container, PatchHistory, ArchiveFilePath, patchManifests, enabledPatches);
+        patcher.Apply(Container, PatchHistory, GameDirectory, ContainerFilePath, patchManifests, enabledPatches);
     }
 
     public void Dispose()

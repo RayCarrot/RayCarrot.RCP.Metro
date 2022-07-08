@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 // NOTE: Currently the checksum values are unused. The checksum gets calculated when creating a patch and then copied into
 //       here, but not used for anything. The original intention was to use them for verifying that a file had not been
@@ -15,13 +15,13 @@ public record PatchHistoryManifest(
     long TotalSize, 
     DateTime ModifiedDate, 
     
-    // Files added to the archive. No data is saved for these. Restore by deleting them.
+    // Files added to the game. No data is saved for these. Restore by deleting them.
     string[]? AddedFiles,
-    string[]? AddedFileChecksums, 
-    
-    // Files replaced in the archive. The original file is saved. Restore by replacing it back.
+    string[]? AddedFileChecksums,
+
+    // Files replaced in the game. The original file is saved. Restore by replacing it back.
     string[]? ReplacedFiles,
-    string[]? ReplacedFileChecksums, 
-    
-    // Files removed from the archive. The original file is saved. Restore by adding it back.
+    string[]? ReplacedFileChecksums,
+
+    // Files removed from the game. The original file is saved. Restore by adding it back.
     string[]? RemovedFiles);

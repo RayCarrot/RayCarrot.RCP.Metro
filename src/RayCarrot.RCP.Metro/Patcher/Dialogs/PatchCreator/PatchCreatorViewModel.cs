@@ -8,13 +8,13 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using NLog;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
-public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
+public class PatchCreatorViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public ArchivePatchCreatorViewModel()
+    public PatchCreatorViewModel()
     {
         ID = PatchFile.GenerateID();
 
@@ -132,7 +132,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                     Files.Add(new FileViewModel()
                     {
                         SourceFilePath = tempFilePath,
-                        ArchiveFilePath = addedFile,
+                        DestFilePath = addedFile,
                         Checksum = checksum,
                     });
                 }
@@ -202,7 +202,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
             Files.Add(new FileViewModel()
             {
                 SourceFilePath = file,
-                ArchiveFilePath = file.Name,
+                DestFilePath = file.Name,
             });
         }
     }
@@ -229,7 +229,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
             Files.Add(new FileViewModel()
             {
                 SourceFilePath = file,
-                ArchiveFilePath = file - browseResult.SelectedDirectory,
+                DestFilePath = file - browseResult.SelectedDirectory,
             });
         }
     }
@@ -244,7 +244,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
                 Title = "Save patch file",
-                Extensions = new FileFilterItem("*.ap", "Archive Patch").StringRepresentation,
+                Extensions = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
             });
 
             if (browseResult.CanceledByUser)
@@ -276,10 +276,10 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                         stream.Position = 0;
 
                         // Add the file
-                        patchFile.AddPatchResource(file.ArchiveFilePath, false, stream);
+                        patchFile.AddPatchResource(file.DestFilePath, false, stream);
 
                         // Add to the manifest
-                        addedFiles.Add(file.ArchiveFilePath);
+                        addedFiles.Add(file.DestFilePath);
                         addedFileChecksums.Add(checksum);
 
                         // Update the total size
@@ -288,7 +288,7 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
                     else
                     {
                         // Add to the manifest
-                        removedFiles.Add(file.ArchiveFilePath);
+                        removedFiles.Add(file.DestFilePath);
                     }
                 }
 
@@ -357,13 +357,13 @@ public class ArchivePatchCreatorViewModel : BaseViewModel, IDisposable
     public class FileViewModel : BaseViewModel
     {
         public FileSystemPath SourceFilePath { get; set; }
-        public string ArchiveFilePath { get; set; } = String.Empty;
+        public string DestFilePath { get; set; } = String.Empty;
 
         public string? Checksum { get; set; }
 
         public bool IsSelected { get; set; }
 
-        public bool IsValid => !ArchiveFilePath.IsNullOrWhiteSpace();
+        public bool IsValid => !DestFilePath.IsNullOrWhiteSpace();
         public bool IsFileAdded => SourceFilePath.FileExists;
         public bool IsImported => Checksum != null;
     }

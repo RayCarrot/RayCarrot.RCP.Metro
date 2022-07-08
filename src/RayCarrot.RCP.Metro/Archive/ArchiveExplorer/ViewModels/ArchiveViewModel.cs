@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -105,7 +106,7 @@ public class ArchiveViewModel : DirectoryViewModel
     /// <summary>
     /// The files (normalized) effected by patches
     /// </summary>
-    public HashSet<string> PatchedFiles { get; } = new();s
+    public HashSet<string> PatchedFiles { get; } = new();
 
     /// <summary>
     /// The lock to use when accessing the archive stream
@@ -165,21 +166,25 @@ public class ArchiveViewModel : DirectoryViewModel
 
     private PatchHistoryManifest? LoadPatchHistory()
     {
-        // Get the container file path
-        FileSystemPath containerFilePath = PatchContainerFile.GetContainerFilePath(FilePath);
+        return null;
 
-        // Make sure a container exists
-        if (!containerFilePath.FileExists)
-            return null;
+        // TODO-UPDATE: Fix
 
-        // Open the container
-        using PatchContainerFile container = new(containerFilePath, true);
+        //// Get the container file path
+        //FileSystemPath containerFilePath = PatchContainerFile.GetContainerFilePath(FilePath);
 
-        // Read the manifest
-        PatchContainerManifest? manifest = container.ReadManifest();
+        //// Make sure a container exists
+        //if (!containerFilePath.FileExists)
+        //    return null;
+
+        //// Open the container
+        //using PatchContainerFile container = new(containerFilePath, true);
+
+        //// Read the manifest
+        //PatchContainerManifest? manifest = container.ReadManifest();
         
-        // Return the history
-        return manifest?.History;
+        //// Return the history
+        //return manifest?.History;
     }
 
     private void AddPatchedFiles(string[]? files)

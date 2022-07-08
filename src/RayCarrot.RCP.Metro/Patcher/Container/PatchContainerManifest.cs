@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 public record PatchContainerManifest(
     [property: JsonProperty(Required = Required.Always)]

@@ -58,8 +58,8 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_RaymanFiestaRun_SaveFix">AutoFix</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchivePatcher">FolderSettingsOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchivePatchCreator">FolderPlusOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Patcher">FolderSettingsOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_PatchCreator">FolderPlusOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_R1PasswordGenerator">KeyOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
@@ -105,8 +105,8 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Archive" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_ArchivePatch" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatcher}" 
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Patcher" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_Patcher}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Location" 
                        IconKind="{StaticResource RCP.Icons.Folder}" 
@@ -152,8 +152,8 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_ArchiveCreator" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveCreator}"
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Window_ArchivePatcher" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatcher}"
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_Patcher" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_Patcher}"
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameOptions" 
                        IconKind="{StaticResource RCP.Icons.Settings}"

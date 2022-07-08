@@ -1,0 +1,478 @@
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.Patcher.PatcherUI"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            xmlns:patcher="clr-namespace:RayCarrot.RCP.Metro.Patcher"
+                            xmlns:dd="urn:gong-wpf-dragdrop"
+                            mc:Ignorable="d"
+                            d:DesignWidth="600" d:DesignHeight="400"
+                            d:DataContext="{d:DesignInstance patcher:PatcherViewModel}"
+                            Language="{UICulture}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+
+    <local:WindowContentControl.Resources>
+        <DataTemplate x:Key="PatchThumbnailTemplate" DataType="{x:Type patcher:PatchViewModel}">
+            <Grid>
+
+                <Image Source="{Binding Path=Thumbnail}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+                <iconPacks:PackIconMaterial Visibility="{Binding Path=Thumbnail, Converter={local:ObjectNullToVisibilityConverter}}" 
+                                            Kind="FileSettingsOutline" 
+                                            Width="Auto" Height="Auto"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" />
+
+            </Grid>
+        </DataTemplate>
+    </local:WindowContentControl.Resources>
+
+    <!-- TODO-UPDATE: Localize -->
+    <local:LoaderContentControl IsLoading="{Binding Path=LoadOperation.IsLoading}"
+                                Text="{Binding Path=LoadOperation.LoadingMessage}"
+                                IsIndeterminate="{Binding Path=LoadOperation.HasProgress, Converter={local:InvertedBooleanConverter}}"
+                                Minimum="{Binding Path=LoadOperation.MinProgress}"
+                                Maximum="{Binding Path=LoadOperation.MaxProgress}"
+                                Value="{Binding Path=LoadOperation.CurrentProgress}">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*" MinHeight="150" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" MinHeight="150" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Patches -->
+
+            <Grid Grid.Row="0"
+                  DataContext="{Binding Path=Container, Mode=OneTime}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Patches List -->
+
+                <Grid Grid.Column="0"
+                      Background="Transparent" 
+                      MouseDown="PatchesGrid_OnMouseDown">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Patches Header -->
+
+                    <Grid Grid.Row="0"
+                          Margin="0 0 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                   VerticalAlignment="Center"
+                                   Text="Patches" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <Button Grid.Column="1"
+                                ToolTip="Add patch"
+                                Style="{StaticResource RCP.Styles.Button.Flat}"
+                                Command="{Binding Path=AddPatchCommand, Mode=OneTime}"
+                                VerticalAlignment="Center"
+                                Margin="0 0 5 0">
+                            <iconPacks:PackIconMaterial Background="Transparent"
+                                                        Kind="PlusCircleOutline"
+                                                        Width="16"
+                                                        Height="16" />
+                        </Button>
+
+                    </Grid>
+
+                    <!-- Patches List -->
+
+                    <Grid Grid.Row="1">
+
+                        <ListBox SelectedItem="{Binding Path=SelectedPatch}"
+                                 ItemsSource="{Binding Path=Patches, Mode=OneTime}"
+                                 d:ItemsSource="{d:SampleData ItemCount=3}"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 dd:DragDrop.IsDragSource="True"
+                                 dd:DragDrop.IsDropTarget="True"
+                                 dd:DragDrop.SelectDroppedItems="True"
+                                 dd:DragDrop.DragDropContext="{Binding Mode=OneTime}"
+                                 Margin="0 0 0 5"
+                                 Loaded="PatchesListBox_OnLoaded">
+
+                            <dd:DragDrop.DropHandler>
+                                <patcher:PatchDropHandler />
+                            </dd:DragDrop.DropHandler>
+
+                            <dd:DragDrop.DragAdornerTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                                      Width="32" Height="32" />
+                                </DataTemplate>
+                            </dd:DragDrop.DragAdornerTemplate>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="32" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Patch Toggle -->
+
+                                        <CheckBox Grid.Column="0"
+                                                  Visibility="{Binding Path=IsDownloadable, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                                                  VerticalAlignment="Center"
+                                                  IsChecked="{Binding Path=IsEnabled}"
+                                                  Margin="0 0 5 0"/>
+
+                                        <!-- TODO-UPDATE: Localize -->
+                                        <Button Grid.Column="0"
+                                                ToolTip="Download"
+                                                Visibility="{Binding Path=IsDownloadable, Converter={local:BooleanToVisibilityConverter}}"
+                                                Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                VerticalAlignment="Center"
+                                                Margin="2 0 5 0">
+                                            <iconPacks:PackIconMaterial Background="Transparent"
+                                                                        Kind="DownloadOutline"
+                                                                        Width="16"
+                                                                        Height="16" />
+                                        </Button>
+
+                                        <!-- Thumbnail -->
+
+                                        <ContentPresenter Grid.Column="1"
+                                                          Content="{Binding}"
+                                                          ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                                          Width="32" Height="32"
+                                                          VerticalAlignment="Center"
+                                                          Margin="0 0 5 0" />
+
+                                        <!-- Title -->
+
+                                        <TextBlock Grid.Column="2" 
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"
+                                                   Text="{Binding Path=Manifest.Name, Mode=OneTime}"
+                                                   TextWrapping="Wrap"/>
+
+                                        <!-- Actions -->
+
+                                        <StackPanel x:Name="PatchButtonsPanel"
+                                                    Grid.Column="3"
+                                                    Orientation="Horizontal"
+                                                    Margin="15 0 0 0">
+                                            <StackPanel.Style>
+                                                <Style TargetType="{x:Type StackPanel}">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=IsDownloadable}" Value="True">
+                                                            <Setter Property="Visibility" Value="Hidden" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Style>
+
+                                            <!-- TODO-UPDATE: Localize -->
+                                            <Button ToolTip="Extract contents"
+                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                    Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 10 0"
+                                                    local:UserLevelAssist.MinUserLevel="Technical">
+                                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                                            Kind="Export"
+                                                                            Width="16"
+                                                                            Height="16" />
+                                            </Button>
+
+                                            <!-- TODO-UPDATE: Localize -->
+                                            <Button ToolTip="Export patch"
+                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                    Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 10 0"
+                                                    local:UserLevelAssist.MinUserLevel="Technical">
+                                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                                            Kind="FileExportOutline"
+                                                                            Width="16"
+                                                                            Height="16" />
+                                            </Button>
+
+                                            <!-- TODO-UPDATE: Localize -->
+                                            <Button ToolTip="Update"
+                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                    Command="{Binding Path=UpdateCommand, Mode=OneTime}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 10 0">
+                                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                                            Kind="Refresh"
+                                                                            Width="16"
+                                                                            Height="16" />
+                                            </Button>
+
+                                            <!-- TODO-UPDATE: Localize -->
+                                            <Button ToolTip="Remove"
+                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                    Command="{Binding Path=RemoveCommand, Mode=OneTime}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 10 0">
+                                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                                            Kind="DeleteOutline"
+                                                                            Width="16"
+                                                                            Height="16" />
+                                            </Button>
+
+                                        </StackPanel>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Text="Press + to add a patch"
+                                   Visibility="{Binding Path=Patches.Count, Converter={local:InvertedIntToVisibilityConverter}}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 15 0 20"
+                                   FontSize="16"/>
+
+                    </Grid>
+
+                </Grid>
+
+                <!-- Patch Info -->
+
+                <Grid Grid.Column="2"
+                      DataContext="{Binding Path=SelectedPatch}"
+                      Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Title -->
+
+                    <TextBlock Grid.Row="0"
+                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               Text="{Binding Path=Manifest.Name, Mode=OneTime}"
+                               TextTrimming="CharacterEllipsis"
+                               Margin="0 0 0 10"/>
+
+                    <ScrollViewer Grid.Row="1">
+                        <StackPanel>
+
+                            <!-- Description -->
+
+                            <TextBlock Text="{Binding Path=Manifest.Description, Mode=OneTime}"
+                                       TextWrapping="Wrap"
+                                       Margin="0 0 0 10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Info -->
+
+                                <local:DuoGrid Grid.Column="0"
+                                               ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" />
+
+                                <!-- Thumbnail -->
+
+                                <ContentPresenter Grid.Column="1"
+                                                  Content="{Binding}"
+                                                  ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                                  Width="128" Height="128"
+                                                  VerticalAlignment="Top"
+                                                  Margin="0 0 5 0" />
+
+                            </Grid>
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </Grid>
+
+            </Grid>
+
+            <!-- Splitter -->
+
+            <GridSplitter Grid.Row="1" Height="4" Margin="0 0 0 10" />
+
+            <!-- Modified Files -->
+
+            <Grid Grid.Row="2"
+                  DataContext="{Binding Path=Container, Mode=OneTime}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+
+                <!-- TODO-UPDATE: Localize -->
+                <TextBlock Grid.Row="0"
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="Modified files"
+                           Margin="0 0 0 10"/>
+
+                <!-- TODO-UPDATE: Localize -->
+                <TextBlock Grid.Row="1"
+                           Text="Add and enable a patch to modify the archive files"
+                           Visibility="{Binding Path=HasPatchedFiles, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="16"/>
+
+                <ScrollViewer Grid.Row="1"
+                              Margin="0 0 0 5">
+                    <StackPanel Grid.IsSharedSizeScope="True"
+                                Visibility="{Binding Path=PatchedFiles.Count, Converter={local:IntToVisibilityConverter}}">
+
+                        <!-- Table Headers -->
+
+                        <Grid Margin="0 0 0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Patch" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <TextBlock Grid.Column="1"
+                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                       Text="File" />
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <TextBlock Grid.Column="2"
+                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                       Text="Patch" />
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <TextBlock Grid.Column="3"
+                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                       Text="Overriden Patches" />
+
+                        </Grid>
+
+                        <!-- Table Items -->
+
+                        <ItemsControl ItemsSource="{Binding Path=PatchedFiles}"
+                                      d:ItemsSource="{d:SampleData ItemCount=3}"
+                                      Margin="0 0 0 5">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0 0 0 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                                            <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Name" />
+                                            <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Patch" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- TODO-UPDATE: Don't use archive brushes -->
+                                        <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                    Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Add}"
+                                                                    HorizontalAlignment="Center"
+                                                                    Width="16" Height="16"
+                                                                    Kind="Plus"
+                                                                    Foreground="{StaticResource RCP.Brushes.Archive.AddItem}"
+                                                                    Margin="0 0 5 0" />
+
+                                        <!-- TODO-UPDATE: Don't use archive brushes -->
+                                        <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                    Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Remove}"
+                                                                    HorizontalAlignment="Center"
+                                                                    Width="16" Height="16"
+                                                                    Kind="DeleteOutline"
+                                                                    Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
+                                                                    Margin="0 0 5 0" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Path=FilePath, Mode=OneTime}"
+                                                   Margin="0 0 15 0" />
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding Path=Patch.Name, Mode=OneTime}"
+                                                   Margin="0 0 15 0" />
+
+                                        <ItemsControl Grid.Column="3"
+                                                      ItemsSource="{Binding Path=OverridenPatches, Mode=OneWay}">
+
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Name, Mode=OneTime}"
+                                                               Margin="0 0 10 0" 
+                                                               TextDecorations="Strikethrough"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+
+            <!-- Actions -->
+
+            <StackPanel Grid.Row="3"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        DataContext="{Binding Path=Container, Mode=OneTime}">
+
+                <Button Content="{Resx Cancel}"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        local:ButtonAssist.IconKind="CloseOutline"
+                        IsCancel="True"
+                        Click="CancelButton_OnClick"
+                        Margin="0 0 10 0" />
+
+                <!-- TODO-UPDATE: Localize -->
+                <Button Content="Apply"
+                        IsEnabled="{Binding Path=HasChanges}"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        local:ButtonAssist.IconKind="ContentSaveOutline"
+                        Click="ApplyButton_OnClick" />
+
+            </StackPanel>
+
+        </Grid>
+    </local:LoaderContentControl>
+
+</local:WindowContentControl>

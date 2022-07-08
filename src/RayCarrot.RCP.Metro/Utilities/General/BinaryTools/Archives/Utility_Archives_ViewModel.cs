@@ -81,7 +81,6 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
         SelectedType = Types.First();
 
         OpenArchiveCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
-        PatchArchiveCommand = new AsyncRelayCommand(PatchArchiveAsync);
         CreateArchiveCommand = new AsyncRelayCommand(CreateArchiveAsync);
         CreateArchivePatchCommand = new AsyncRelayCommand(CreateArchivePatchAsync);
         UpdateArchivePatchCommand = new AsyncRelayCommand(UpdateArchivePatchAsync);
@@ -98,7 +97,6 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
     #region Commands
 
     public ICommand OpenArchiveCommand { get; }
-    public ICommand PatchArchiveCommand { get; }
     public ICommand CreateArchiveCommand { get; }
     public ICommand CreateArchivePatchCommand { get; }
     public ICommand UpdateArchivePatchCommand { get; }
@@ -144,36 +142,6 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
         }
     }
 
-    public async Task PatchArchiveAsync()
-    {
-        // Allow the user to select the files
-        FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-        {
-            Title = Resources.Utilities_ArchiveExplorer_FileSelectionHeader,
-            DefaultDirectory = SelectedType.Modes.SelectedValue.GetAttribute<GameModeBaseAttribute>()?.Game?.GetInstallDir(false).FullPath,
-            ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
-            MultiSelection = true,
-        });
-
-        if (fileResult.CanceledByUser)
-            return;
-
-        // Get the manager
-        using IArchiveDataManager manager = SelectedType.GetManager(Utility_Archives_TypeViewModel.ArchiveMode.Explorer);
-
-        try
-        {
-            // Show the Archive Patcher
-            await Services.UI.ShowArchivePatcherAsync(manager, fileResult.SelectedFiles);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Archive patcher");
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
-        }
-    }
-
     public async Task CreateArchiveAsync()
     {
         // Get the manager
@@ -186,7 +154,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
     public async Task CreateArchivePatchAsync()
     {
         // Show the Archive Patch Creator
-        await Services.UI.ShowArchivePatchCreatorAsync(null);
+        await Services.UI.ShowPatchCreatorAsync(null);
     }
 
     public async Task UpdateArchivePatchAsync()
@@ -202,7 +170,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
             return;
 
         // Show the Archive Patch Creator
-        await Services.UI.ShowArchivePatchCreatorAsync(browseResult.SelectedFile);
+        await Services.UI.ShowPatchCreatorAsync(browseResult.SelectedFile);
     }
 
     public void Dispose()

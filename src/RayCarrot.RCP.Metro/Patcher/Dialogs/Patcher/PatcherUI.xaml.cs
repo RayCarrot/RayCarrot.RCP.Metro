@@ -5,21 +5,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
-/// Interaction logic for ArchivePatcherUI.xaml
+/// Interaction logic for PatcherUI.xaml
 /// </summary>
-public partial class ArchivePatcherUI : WindowContentControl
+public partial class PatcherUI : WindowContentControl
 {
     #region Constructor
     
-    public ArchivePatcherUI(ArchivePatcherViewModel viewModel)
+    public PatcherUI(PatcherViewModel viewModel)
     {
         DataContext = viewModel;
         ViewModel = viewModel;
 
-        Loaded += ArchivePatcherUI_OnLoaded;
+        Loaded += PatcherUI_OnLoaded;
 
         // Set up UI
         InitializeComponent();
@@ -31,7 +31,7 @@ public partial class ArchivePatcherUI : WindowContentControl
 
     public override bool IsResizable => true;
 
-    public ArchivePatcherViewModel ViewModel { get; }
+    public PatcherViewModel ViewModel { get; }
 
     #endregion
 
@@ -41,8 +41,8 @@ public partial class ArchivePatcherUI : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Archive Patcher"; // TODO-UPDATE: Localize
-        WindowInstance.Icon = GenericIconKind.Window_ArchivePatcher;
+        WindowInstance.Title = "Patcher"; // TODO-UPDATE: Localize
+        WindowInstance.Icon = GenericIconKind.Window_Patcher;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
         WindowInstance.Width = 900;
@@ -62,32 +62,19 @@ public partial class ArchivePatcherUI : WindowContentControl
 
     #region Event Handlers
 
-    private async void ArchivePatcherUI_OnLoaded(object sender, RoutedEventArgs e)
+    private async void PatcherUI_OnLoaded(object sender, RoutedEventArgs e)
     {
-        Loaded -= ArchivePatcherUI_OnLoaded;
+        Loaded -= PatcherUI_OnLoaded;
 
         await ViewModel.LoadPatchesAsync();
     }
 
-    private void PatchesItemsControl_OnMouseDown(object sender, MouseButtonEventArgs e)
+    private void PatchesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
     {
         HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
 
         if (r.VisualHit.GetType() != typeof(ListBoxItem))
             ViewModel.DeselectAll();
-    }
-
-    private void PatchesListBox_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
-    {
-        // Redirect the mouse wheel movement to allow scrolling
-        var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
-        {
-            RoutedEvent = MouseWheelEvent,
-            Source = e.Source
-        };
-
-        PatchesScrollViewer?.RaiseEvent(eventArg);
-        e.Handled = true;
     }
 
     private void PatchesListBox_OnLoaded(object sender, RoutedEventArgs e)

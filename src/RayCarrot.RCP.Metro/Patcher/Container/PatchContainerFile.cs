@@ -2,12 +2,12 @@ using System;
 using System.IO;
 using NLog;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
-/// An archive patch container (.apc). This is stored alongside an archive file and keeps track of the applied patches and the original
-/// files which have been replaced so that they can be restored. Each patch contains a manifest with details as well as
-/// resources and assets. The resources are the added files while the assets are things such as a thumbnail.
+/// A game patch container (.gpc). his is stored in the root of a game installation and keeps track of the applied patches
+/// and the original files which have been replaced so that they can be restored. Each patch contains a manifest with
+/// details as well as resources and assets. The resources are the added files while the assets are things such as a thumbnail.
 /// </summary>
 public class PatchContainerFile : IDisposable
 {
@@ -30,7 +30,8 @@ public class PatchContainerFile : IDisposable
 
     private const string ManifestFileName = "manifest.json";
     public const int Version = 0;
-    public const string FileExtensions = ".apc"; // Archive Patch Container
+    // Game Patch Container, not to be confused with a Geodesic Psychoisolation Chamber from the amazing game Psychonauts
+    public const string FileExtension = ".gpc";
 
     #endregion
 
@@ -140,8 +141,7 @@ public class PatchContainerFile : IDisposable
     /// <returns>The normalized resource name</returns>
     public static string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
-    public static FileSystemPath GetContainerFilePath(FileSystemPath archiveFilePath) =>
-        archiveFilePath.AppendFileExtension(new FileExtension(FileExtensions));
+    public static FileSystemPath GetContainerFilePath(FileSystemPath installDir) => installDir + $"Patches{FileExtension}";
 
     #endregion
 }

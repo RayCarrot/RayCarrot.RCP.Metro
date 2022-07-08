@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
-/// Interaction logic for ArchivePatchCreatorUI.xaml
+/// Interaction logic for PatchCreatorUI.xaml
 /// </summary>
-public partial class ArchivePatchCreatorUI : WindowContentControl
+public partial class PatchCreatorUI : WindowContentControl
 {
     #region Constructor
     
-    public ArchivePatchCreatorUI(ArchivePatchCreatorViewModel viewModel, FileSystemPath? existingPatch)
+    public PatchCreatorUI(PatchCreatorViewModel viewModel, FileSystemPath? existingPatch)
     {
         DataContext = viewModel;
         ViewModel = viewModel;
@@ -20,12 +20,12 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
         // Set up UI
         InitializeComponent();
 
-        Loaded += ArchivePatchCreatorUI_Loaded;
+        Loaded += PatchCreatorUI_Loaded;
     }
 
-    private async void ArchivePatchCreatorUI_Loaded(object sender, RoutedEventArgs e)
+    private async void PatchCreatorUI_Loaded(object sender, RoutedEventArgs e)
     {
-        Loaded -= ArchivePatchCreatorUI_Loaded;
+        Loaded -= PatchCreatorUI_Loaded;
 
         if (_patchToImportFrom == null)
             return;
@@ -48,7 +48,7 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
 
     public override bool IsResizable => true;
 
-    public ArchivePatchCreatorViewModel ViewModel { get; }
+    public PatchCreatorViewModel ViewModel { get; }
 
     #endregion
 
@@ -58,8 +58,8 @@ public partial class ArchivePatchCreatorUI : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Archive Patch Creator"; // TODO-UPDATE: Localize
-        WindowInstance.Icon = GenericIconKind.Window_ArchivePatcher; // TODO-UPDATE: Change icon
+        WindowInstance.Title = "Patch Creator"; // TODO-UPDATE: Localize
+        WindowInstance.Icon = GenericIconKind.Window_Patcher; // TODO-UPDATE: Change icon
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
         WindowInstance.Width = 900;

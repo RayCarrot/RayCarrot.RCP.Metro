@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Media;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -245,40 +246,39 @@ public class AppUIManager
     }
 
     /// <summary>
-    /// Shows a new instance of the Archive Patcher
+    /// Shows a new instance of the Patcher
     /// </summary>
-    /// <param name="manager">The archive data manager</param>
-    /// <param name="filePaths">The archive file paths</param>
+    /// <param name="game">The game</param>
     /// <returns>The task</returns>
-    public async Task ShowArchivePatcherAsync(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
+    public async Task ShowPatcherAsync(Games game)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        Logger.Trace("An Archive Patcher window was opened");
+        Logger.Trace("A Patcher window was opened");
 
         // Run on UI thread
-        using ArchivePatcherViewModel vm = new(manager, filePaths);
+        using PatcherViewModel vm = new(game);
         // ReSharper disable once AccessToDisposedClosure
-        ArchivePatcherUI ui = Application.Current.Dispatcher.Invoke(() => new ArchivePatcherUI(vm));
+        PatcherUI ui = Application.Current.Dispatcher.Invoke(() => new PatcherUI(vm));
         await Dialog.ShowWindowAsync(ui);
     }
 
     /// <summary>
-    /// Shows a new instance of the Archive Patch Creator
+    /// Shows a new instance of the Patch Creator
     /// </summary>
     /// <param name="existingPatch">Optionally an existing patch to update</param>
     /// <returns>The task</returns>
-    public async Task ShowArchivePatchCreatorAsync(FileSystemPath? existingPatch)
+    public async Task ShowPatchCreatorAsync(FileSystemPath? existingPatch)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        Logger.Trace("An Archive Patch Creator window was opened");
+        Logger.Trace("A Patch Creator window was opened");
 
         // Run on UI thread
-        ArchivePatchCreatorUI ui = Application.Current.Dispatcher.Invoke(
-            () => new ArchivePatchCreatorUI(new ArchivePatchCreatorViewModel(), existingPatch));
+        PatchCreatorUI ui = Application.Current.Dispatcher.Invoke(
+            () => new PatchCreatorUI(new PatchCreatorViewModel(), existingPatch));
         await Dialog.ShowWindowAsync(ui);
     }
 

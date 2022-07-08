@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 using ByteSizeLib;
 using NLog;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 public class PatchViewModel : BaseViewModel, IDisposable
 {

@@ -63,7 +63,7 @@
             <Button Grid.Column="1"
                     Margin="0 0 10 0"
                     Style="{StaticResource RCP.Styles.Button.IconContent}"
-                    local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatcher}"
+                    local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Utilities_Patcher}"
                     Content="Patch" 
                     Command="{Binding Path=PatchArchiveCommand, Mode=OneTime}"/>
 
@@ -76,7 +76,7 @@
                                             Command="{Binding Path=CreateArchiveCommand, Mode=OneTime}" />
                         <Separator />
                         <local:MenuItemIcon Header="Create patch" 
-                                            IconKind="{StaticResource RCP.Icons.Utilities_ArchivePatchCreator}" 
+                                            IconKind="{StaticResource RCP.Icons.Utilities_PatchCreator}" 
                                             Command="{Binding Path=CreateArchivePatchCommand, Mode=OneTime}"/>
                         <!-- TODO-UPDATE: Normalize icon -->
                         <local:MenuItemIcon Header="Update patch" 

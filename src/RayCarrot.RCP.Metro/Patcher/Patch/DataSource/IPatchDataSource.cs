@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 public interface IPatchDataSource : IDisposable
 {

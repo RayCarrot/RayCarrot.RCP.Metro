@@ -2,7 +2,7 @@
 using GongSolutions.Wpf.DragDrop;
 using NLog;
 
-namespace RayCarrot.RCP.Metro.Archive;
+namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
 /// The drop handler for a <see cref="PatchViewModel"/> collection
@@ -21,7 +21,7 @@ public class PatchDropHandler : DefaultDropHandler
         // Call base drop handler
         base.Drop(dropInfo);
             
-        Logger.Debug("The patches for {0} have been reordered", ViewModel.DisplayName);
+        Logger.Debug("The patches have been reordered");
 
         ViewModel.RefreshPatchedFiles();
         ViewModel.HasChanges = true;
