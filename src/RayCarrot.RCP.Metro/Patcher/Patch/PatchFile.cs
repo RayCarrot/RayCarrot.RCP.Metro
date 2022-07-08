@@ -51,7 +51,7 @@ public class PatchFile : IDisposable
     private string GetPatchResourcePath(string resourceName, bool isNormalized)
     {
         if (!isNormalized)
-            resourceName = PatchContainerFile.NormalizeResourceName(resourceName);
+            resourceName = PatchContainerFile.NormalizePath(resourceName);
 
         return $"resources/{resourceName}";
     }

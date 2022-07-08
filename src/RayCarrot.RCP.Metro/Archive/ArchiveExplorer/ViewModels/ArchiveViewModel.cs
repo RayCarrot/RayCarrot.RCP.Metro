@@ -193,7 +193,7 @@ public class ArchiveViewModel : DirectoryViewModel
             return;
 
         foreach (string filePath in files)
-            PatchedFiles.Add(PatchContainerFile.NormalizeResourceName(filePath));
+            PatchedFiles.Add(PatchContainerFile.NormalizePath(filePath));
     }
 
     #endregion
@@ -420,7 +420,7 @@ public class ArchiveViewModel : DirectoryViewModel
     /// </summary>
     /// <param name="filePath">The file path to check</param>
     /// <returns>True if the file is effected by an applied patch, otherwise false</returns>
-    public bool IsEffectedByPatch(string filePath) => PatchedFiles.Contains(PatchContainerFile.NormalizeResourceName(filePath));
+    public bool IsEffectedByPatch(string filePath) => PatchedFiles.Contains(PatchContainerFile.NormalizePath(filePath));
 
     /// <summary>
     /// Disposes the archive and its folders and files

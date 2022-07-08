@@ -74,15 +74,14 @@ public partial class PatcherUI : WindowContentControl
         HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
 
         if (r.VisualHit.GetType() != typeof(ListBoxItem))
-            ViewModel.DeselectAll();
+            ViewModel.SelectedPatch = null;
     }
 
     private void PatchesListBox_OnLoaded(object sender, RoutedEventArgs e)
     {
         var listBox = (ListBox)sender;
-        var container = (PatchContainerViewModel)listBox.DataContext;
         var dropHandler = (PatchDropHandler)DragDrop.GetDropHandler(listBox);
-        dropHandler.ViewModel = container;
+        dropHandler.ViewModel = ViewModel;
     }
 
     private void CancelButton_OnClick(object sender, RoutedEventArgs e)

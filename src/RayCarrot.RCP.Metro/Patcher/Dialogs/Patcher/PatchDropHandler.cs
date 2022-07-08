@@ -14,7 +14,7 @@ public class PatchDropHandler : DefaultDropHandler
     /// <summary>
     /// The options view model
     /// </summary>
-    public PatchContainerViewModel ViewModel { get; set; }
+    public PatcherViewModel ViewModel { get; set; }
 
     public override void Drop(IDropInfo dropInfo)
     {

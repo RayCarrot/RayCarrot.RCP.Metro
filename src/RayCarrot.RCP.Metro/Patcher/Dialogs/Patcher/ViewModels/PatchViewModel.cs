@@ -16,9 +16,9 @@ public class PatchViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public PatchViewModel(PatchContainerViewModel containerViewModel, PatchManifest manifest, bool isEnabled, IPatchDataSource dataSource)
+    public PatchViewModel(PatcherViewModel patcherViewModel, PatchManifest manifest, bool isEnabled, IPatchDataSource dataSource)
     {
-        ContainerViewModel = containerViewModel;
+        PatcherViewModel = patcherViewModel;
         Manifest = manifest;
         _isEnabled = isEnabled;
         DataSource = dataSource;
@@ -36,10 +36,10 @@ public class PatchViewModel : BaseViewModel, IDisposable
             new("Removed Files", (manifest.RemovedFiles?.Length ?? 0).ToString()),
         };
 
-        ExtractContentsCommand = new AsyncRelayCommand(async () => await ContainerViewModel.ExtractPatchContentsAsync(this));
-        ExportCommand = new AsyncRelayCommand(async () => await ContainerViewModel.ExportPatchAsync(this));
-        UpdateCommand = new AsyncRelayCommand(async () => await ContainerViewModel.UpdatePatchAsync(this));
-        RemoveCommand = new RelayCommand(() => ContainerViewModel.RemovePatch(this));
+        ExtractContentsCommand = new AsyncRelayCommand(async () => await PatcherViewModel.ExtractPatchContentsAsync(this));
+        ExportCommand = new AsyncRelayCommand(async () => await PatcherViewModel.ExportPatchAsync(this));
+        UpdateCommand = new AsyncRelayCommand(async () => await PatcherViewModel.UpdatePatchAsync(this));
+        RemoveCommand = new RelayCommand(() => PatcherViewModel.RemovePatch(this));
     }
 
     #endregion
@@ -67,7 +67,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
-    public PatchContainerViewModel ContainerViewModel { get; }
+    public PatcherViewModel PatcherViewModel { get; }
     public PatchManifest Manifest { get; }
     public IPatchDataSource DataSource { get; }
     public ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
@@ -79,8 +79,8 @@ public class PatchViewModel : BaseViewModel, IDisposable
         set
         {
             _isEnabled = value;
-            ContainerViewModel.RefreshPatchedFiles();
-            ContainerViewModel.HasChanges = true;
+            PatcherViewModel.RefreshPatchedFiles();
+            PatcherViewModel.HasChanges = true;
         }
     }
 

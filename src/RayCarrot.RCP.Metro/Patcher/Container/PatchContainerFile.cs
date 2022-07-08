@@ -52,7 +52,7 @@ public class PatchContainerFile : IDisposable
     private string GetPatchResourcePath(string patchID, string resourceName, bool isNormalized)
     {
         if (!isNormalized)
-            resourceName = NormalizeResourceName(resourceName);
+            resourceName = NormalizePath(resourceName);
 
         return $"{patchID}/resources/{resourceName}";
     }
@@ -139,7 +139,7 @@ public class PatchContainerFile : IDisposable
     /// </summary>
     /// <param name="filePath">The resource file path</param>
     /// <returns>The normalized resource name</returns>
-    public static string NormalizeResourceName(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
+    public static string NormalizePath(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
     public static FileSystemPath GetContainerFilePath(FileSystemPath installDir) => installDir + $"Patches{FileExtension}";
 

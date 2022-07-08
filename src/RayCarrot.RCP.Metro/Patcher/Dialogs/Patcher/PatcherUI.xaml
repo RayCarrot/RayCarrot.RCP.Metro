@@ -50,8 +50,7 @@
 
             <!-- Patches -->
 
-            <Grid Grid.Row="0"
-                  DataContext="{Binding Path=Container, Mode=OneTime}">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="10" />
@@ -325,8 +324,7 @@
 
             <!-- Modified Files -->
 
-            <Grid Grid.Row="2"
-                  DataContext="{Binding Path=Container, Mode=OneTime}">
+            <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -453,8 +451,7 @@
 
             <StackPanel Grid.Row="3"
                         HorizontalAlignment="Right"
-                        Orientation="Horizontal"
-                        DataContext="{Binding Path=Container, Mode=OneTime}">
+                        Orientation="Horizontal">
 
                 <Button Content="{Resx Cancel}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
