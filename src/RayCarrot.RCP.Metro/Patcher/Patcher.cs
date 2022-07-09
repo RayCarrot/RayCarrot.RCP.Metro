@@ -124,7 +124,90 @@ public class Patcher
         FileSystemPath dirPath,
         PatchHistoryManifest? patchHistory)
     {
-        throw new NotImplementedException();
+        // The previously applied modifications for this location
+        string[]? prevAddedFiles = patchHistory?.AddedFiles?.
+            Where(x => NormalizePath(x.Location) == locationKey).
+            Select(x => NormalizePath(x.FilePath)).
+            ToArray();
+        string[]? prevReplacedFiles = patchHistory?.ReplacedFiles?.
+            Where(x => NormalizePath(x.Location) == locationKey).
+            Select(x => NormalizePath(x.FilePath)).
+            ToArray();
+
+        // Process each file modification
+        foreach (var fileModification in fileModifications)
+        {
+            FileModification modification = fileModification.Value;
+            string filePathKey = fileModification.Key;
+            PatchFilePath patchFilePath = modification.PatchFilePath;
+            FileSystemPath physicalFilePath = dirPath + patchFilePath.FilePath;
+
+            if (modification.Type == FileModificationType.Add)
+            {
+                if (physicalFilePath.FileExists)
+                {
+                    Logger.Trace("Replacing file {0}", patchFilePath);
+
+                    if (modification.AddToHistory)
+                    {
+                        string checksum = modification.Checksum ?? throw new Exception("Missing checksum");
+
+                        // If the file was added previously we don't want to mark it as being replaced or else we'd 
+                        // be replacing the previously added file
+                        if (prevAddedFiles?.Contains(filePathKey) == true)
+                        {
+                            fileChanges.AddedFiles.Add(patchFilePath);
+                            fileChanges.AddedFileChecksums.Add(checksum);
+                        }
+                        // If the file was replaced previously we want to keep the originally removed file instead
+                        // of the one it was replaced with before
+                        else if (prevReplacedFiles?.Contains(filePathKey) == true)
+                        {
+                            using Stream prevSavedFile = container.GetPatchResource(patchHistory!.ID, patchFilePath);
+
+                            fileChanges.ReplacedFiles.Add(patchFilePath);
+                            fileChanges.ReplacedFileChecksums.Add(checksum);
+
+                            fileChanges.TotalSize += prevSavedFile.Length;
+
+                            container.AddPatchResource(fileChanges.NewHistoryID, patchFilePath, prevSavedFile);
+                        }
+                        else
+                        {
+                            SaveRemovedPhysicalFileInHistory(container, fileChanges, physicalFilePath, patchFilePath, checksum);
+                        }
+                    }
+
+                    // Replace the file
+                    using Stream resource = container.GetPatchResource(modification.PatchID, patchFilePath);
+                    ReplacePhysicalFile(physicalFilePath, resource);
+                }
+                else
+                {
+                    Logger.Trace("Adding file {0}", patchFilePath);
+
+                    // Replace the file
+                    using (Stream resource = container.GetPatchResource(modification.PatchID, patchFilePath))
+                        ReplacePhysicalFile(physicalFilePath, resource);
+
+                    if (modification.AddToHistory)
+                    {
+                        fileChanges.AddedFiles.Add(patchFilePath);
+                        fileChanges.AddedFileChecksums.Add(modification.Checksum ?? throw new Exception("Missing checksum"));
+                    }
+                }
+            }
+            else if (modification.Type == FileModificationType.Remove)
+            {
+                Logger.Trace("Removing file {0}", patchFilePath);
+
+                if (modification.AddToHistory)
+                    SaveRemovedPhysicalFileInHistory(container, fileChanges, physicalFilePath, patchFilePath);
+
+                // Delete the file
+                physicalFilePath.DeleteFile();
+            }
+        }
     }
 
     private void ModifyArchive(
@@ -281,16 +364,13 @@ public class Patcher
         Services.File.MoveFile(archiveOutputFile.TempPath, archiveFilePath, true);
     }
 
-    private void SaveRemovedArchiveFileInHistory(
+    private void SaveRemovedFileInHistory(
         PatchContainerFile container, 
         PatchFileChanges fileChanges, 
-        FileItem file, 
-        IDisposable generator,
+        Stream fileStream, 
         PatchFilePath patchFilePath, 
         string? replacedFileChecksum = null)
     {
-        using ArchiveFileStream fileData = file.GetDecodedFileData(generator);
-
         if (replacedFileChecksum != null)
         {
             fileChanges.ReplacedFiles.Add(patchFilePath);
@@ -301,11 +381,42 @@ public class Patcher
             fileChanges.RemovedFiles.Add(patchFilePath);
         }
 
-        fileChanges.TotalSize += fileData.Stream.Length;
+        fileChanges.TotalSize += fileStream.Length;
 
-        container.AddPatchResource(fileChanges.NewHistoryID, patchFilePath, fileData.Stream);
+        container.AddPatchResource(fileChanges.NewHistoryID, patchFilePath, fileStream);
 
         Logger.Trace("Saved removed file {0} in history", patchFilePath);
+    }
+
+    private void SaveRemovedPhysicalFileInHistory(
+        PatchContainerFile container,
+        PatchFileChanges fileChanges,
+        FileSystemPath filePath,
+        PatchFilePath patchFilePath,
+        string? replacedFileChecksum = null)
+    {
+        using Stream fileStream = File.OpenRead(filePath);
+        SaveRemovedFileInHistory(container, fileChanges, fileStream, patchFilePath, replacedFileChecksum);
+    }
+
+    private void SaveRemovedArchiveFileInHistory(
+        PatchContainerFile container, 
+        PatchFileChanges fileChanges, 
+        FileItem file, 
+        IDisposable generator,
+        PatchFilePath patchFilePath, 
+        string? replacedFileChecksum = null)
+    {
+        using ArchiveFileStream fileData = file.GetDecodedFileData(generator);
+        SaveRemovedFileInHistory(container, fileChanges, fileData.Stream, patchFilePath, replacedFileChecksum);
+    }
+
+    private void ReplacePhysicalFile(FileSystemPath filePath, Stream resource)
+    {
+        Directory.CreateDirectory(filePath.Parent);
+        using Stream fileStream = File.OpenWrite(filePath);
+        fileStream.SetLength(0);
+        resource.CopyTo(fileStream);
     }
 
     private void ReplaceArchiveFile(FileItem file, IArchiveDataManager manager, Stream resource)
