@@ -19,11 +19,11 @@ public record PatchManifest(
     long TotalSize, 
     DateTime ModifiedDate, 
 
-    int Revision, 
+    int Revision,
 
-    string[]? AddedFiles,
-    string[]? AddedFileChecksums, 
-    string[]? RemovedFiles,
+    PatchFilePath[]? AddedFiles,
+    string[]? AddedFileChecksums,
+    PatchFilePath[]? RemovedFiles,
 
     // Optional asset files, such as a thumbnail
     string[]? Assets) 

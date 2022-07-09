@@ -118,21 +118,22 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 {
                     operation.SetProgress(new Progress(i, manifest.AddedFiles.Length));
 
-                    string addedFile = manifest.AddedFiles[i];
+                    PatchFilePath addedFile = manifest.AddedFiles[i];
                     string checksum = manifest.AddedFileChecksums[i];
 
-                    FileSystemPath tempFilePath = _tempDir.TempPath + addedFile;
+                    FileSystemPath tempFilePath = _tempDir.TempPath + addedFile.FullFilePath;
 
                     Directory.CreateDirectory(tempFilePath.Parent);
 
-                    using Stream file = patchFile.GetPatchResource(addedFile, false);
+                    using Stream file = patchFile.GetPatchResource(addedFile);
                     using Stream tempFileStream = File.Create(tempFilePath);
                     await file.CopyToAsync(tempFileStream);
 
                     Files.Add(new FileViewModel()
                     {
                         SourceFilePath = tempFilePath,
-                        DestFilePath = addedFile,
+                        Location = addedFile.Location,
+                        FilePath = addedFile.FilePath,
                         Checksum = checksum,
                     });
                 }
@@ -202,7 +203,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             Files.Add(new FileViewModel()
             {
                 SourceFilePath = file,
-                DestFilePath = file.Name,
+                FilePath = file.Name,
             });
         }
     }
@@ -229,7 +230,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             Files.Add(new FileViewModel()
             {
                 SourceFilePath = file,
-                DestFilePath = file - browseResult.SelectedDirectory,
+                FilePath = file - browseResult.SelectedDirectory,
             });
         }
     }
@@ -259,9 +260,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             {
                 using PatchFile patchFile = new(browseResult.SelectedFileLocation);
 
-                List<string> addedFiles = new();
+                List<PatchFilePath> addedFiles = new();
                 List<string> addedFileChecksums = new();
-                List<string> removedFiles = new();
+                List<PatchFilePath> removedFiles = new();
                 List<string> assets = new();
                 long totalSize = 0;
 
@@ -276,10 +277,10 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         stream.Position = 0;
 
                         // Add the file
-                        patchFile.AddPatchResource(file.DestFilePath, false, stream);
+                        patchFile.AddPatchResource(file.PatchFilePath, stream);
 
                         // Add to the manifest
-                        addedFiles.Add(file.DestFilePath);
+                        addedFiles.Add(file.PatchFilePath);
                         addedFileChecksums.Add(checksum);
 
                         // Update the total size
@@ -288,7 +289,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     else
                     {
                         // Add to the manifest
-                        removedFiles.Add(file.DestFilePath);
+                        removedFiles.Add(file.PatchFilePath);
                     }
                 }
 
@@ -357,15 +358,17 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public class FileViewModel : BaseViewModel
     {
         public FileSystemPath SourceFilePath { get; set; }
-        public string DestFilePath { get; set; } = String.Empty;
+        public string Location { get; set; } = String.Empty; // TODO-UPDATE: Allow setting from UI
+        public string FilePath { get; set; } = String.Empty;
 
         public string? Checksum { get; set; }
 
         public bool IsSelected { get; set; }
 
-        public bool IsValid => !DestFilePath.IsNullOrWhiteSpace();
+        public bool IsValid => !FilePath.IsNullOrWhiteSpace();
         public bool IsFileAdded => SourceFilePath.FileExists;
         public bool IsImported => Checksum != null;
+        public PatchFilePath PatchFilePath => new(Location, FilePath);
     }
 
     #endregion

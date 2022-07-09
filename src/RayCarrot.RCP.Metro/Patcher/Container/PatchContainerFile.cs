@@ -49,12 +49,9 @@ public class PatchContainerFile : IDisposable
 
     #region Private Methods
 
-    private string GetPatchResourcePath(string patchID, string resourceName, bool isNormalized)
+    private string GetPatchResourcePath(string patchID, PatchFilePath resourcePath)
     {
-        if (!isNormalized)
-            resourceName = NormalizePath(resourceName);
-
-        return $"{patchID}/resources/{resourceName}";
+        return $"{patchID}/resources/{resourcePath.NormalizedFullFilePath}";
     }
     private string GetPatchAssetPath(string patchID, string assetName) => $"{patchID}/assets/{assetName}";
 
@@ -91,10 +88,10 @@ public class PatchContainerFile : IDisposable
         Logger.Info("Wrote patch container manifest");
     }
 
-    public Stream GetPatchResource(string patchID, string resourceName, bool isNormalized)
+    public Stream GetPatchResource(string patchID, PatchFilePath resourcePath)
     {
-        string path = GetPatchResourcePath(patchID, resourceName, isNormalized);
-        return _zip.OpenStream(path) ?? throw new Exception($"Resource with ID {patchID} and name {resourceName} was not found");
+        string path = GetPatchResourcePath(patchID, resourcePath);
+        return _zip.OpenStream(path) ?? throw new Exception($"Resource with ID {patchID} and name {resourcePath} was not found");
     }
 
     public Stream GetPatchAsset(string patchID, string assetName)
@@ -109,9 +106,9 @@ public class PatchContainerFile : IDisposable
         Logger.Info("Cleared patch files for patch {0}", patchID);
     }
 
-    public void AddPatchResource(string patchID, string resourceName, bool isNormalized, Stream stream)
+    public void AddPatchResource(string patchID, PatchFilePath resourcePath, Stream stream)
     {
-        _zip.WriteStream(GetPatchResourcePath(patchID, resourceName, isNormalized), stream);
+        _zip.WriteStream(GetPatchResourcePath(patchID, resourcePath), stream);
     }
 
     public void AddPatchAsset(string patchID, string assetName, Stream stream)
@@ -133,13 +130,6 @@ public class PatchContainerFile : IDisposable
     #endregion
 
     #region Public Static Methods
-
-    /// <summary>
-    /// Gets the normalized resource name for the resource file path
-    /// </summary>
-    /// <param name="filePath">The resource file path</param>
-    /// <returns>The normalized resource name</returns>
-    public static string NormalizePath(string filePath) => filePath.ToLowerInvariant().Replace('\\', '/');
 
     public static FileSystemPath GetContainerFilePath(FileSystemPath installDir) => installDir + $"Patches{FileExtension}";
 

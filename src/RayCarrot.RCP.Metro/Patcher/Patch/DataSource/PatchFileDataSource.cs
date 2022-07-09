@@ -14,7 +14,7 @@ public class PatchFileDataSource : IPatchDataSource
 
     public PatchFile PatchFile { get; }
 
-    public Stream GetResource(string resourceName, bool isNormalized) => PatchFile.GetPatchResource(resourceName, isNormalized);
+    public Stream GetResource(PatchFilePath resourcePath) => PatchFile.GetPatchResource(resourcePath);
     public Stream GetAsset(string assetName) => PatchFile.GetPatchAsset(assetName);
 
     public void Dispose()

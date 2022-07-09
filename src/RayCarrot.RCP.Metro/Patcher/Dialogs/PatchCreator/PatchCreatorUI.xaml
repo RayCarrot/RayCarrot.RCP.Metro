@@ -203,7 +203,7 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Archive path" Width="*" MinWidth="100">
                             <DataGridTextColumn.Binding>
-                                <Binding Path="ArchiveFilePath" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:NotEmptyValidationRule />
                                     </Binding.ValidationRules>

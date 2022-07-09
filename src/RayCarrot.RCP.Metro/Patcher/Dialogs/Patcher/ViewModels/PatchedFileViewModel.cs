@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro.Patcher;
 
 public class PatchedFileViewModel : BaseViewModel
 {
-    public PatchedFileViewModel(string filePath, PatchedFileModification modification, PatchManifest patch)
+    public PatchedFileViewModel(PatchFilePath filePath, PatchedFileModification modification, PatchManifest patch)
     {
         FilePath = filePath;
         Modification = modification;
@@ -13,7 +13,7 @@ public class PatchedFileViewModel : BaseViewModel
         OverridenPatches = new ObservableCollection<PatchManifest>();
     }
 
-    public string FilePath { get; }
+    public PatchFilePath FilePath { get; }
     public PatchedFileModification Modification { get; }
     public PatchManifest Patch { get; }
     public ObservableCollection<PatchManifest> OverridenPatches { get; }

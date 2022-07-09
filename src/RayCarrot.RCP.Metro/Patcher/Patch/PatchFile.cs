@@ -48,12 +48,9 @@ public class PatchFile : IDisposable
 
     #region Private Methods
 
-    private string GetPatchResourcePath(string resourceName, bool isNormalized)
+    private string GetPatchResourcePath(PatchFilePath resourcePath)
     {
-        if (!isNormalized)
-            resourceName = PatchContainerFile.NormalizePath(resourceName);
-
-        return $"resources/{resourceName}";
+        return $"resources/{resourcePath.NormalizedFullFilePath}";
     }
 
     private string GetPatchAssetPath(string assetName) => $"assets/{assetName}";
@@ -87,10 +84,10 @@ public class PatchFile : IDisposable
         Logger.Info("Wrote patch manifest");
     }
 
-    public Stream GetPatchResource(string resourceName, bool isNormalized)
+    public Stream GetPatchResource(PatchFilePath resourcePath)
     {
-        string path = GetPatchResourcePath(resourceName, isNormalized);
-        return _zip.OpenStream(path) ?? throw new Exception($"Resource with name {resourceName} was not found");
+        string path = GetPatchResourcePath(resourcePath);
+        return _zip.OpenStream(path) ?? throw new Exception($"Resource with name {resourcePath} was not found");
     }
 
     public Stream GetPatchAsset(string assetName)
@@ -99,9 +96,9 @@ public class PatchFile : IDisposable
         return _zip.OpenStream(path) ?? throw new Exception($"Asset with name {assetName} was not found");
     }
 
-    public void AddPatchResource(string resourceName, bool isNormalized, Stream stream)
+    public void AddPatchResource(PatchFilePath resourcePath, Stream stream)
     {
-        _zip.WriteStream(GetPatchResourcePath(resourceName, isNormalized), stream);
+        _zip.WriteStream(GetPatchResourcePath(resourcePath), stream);
     }
 
     public void AddPatchAsset(string assetName, Stream stream)

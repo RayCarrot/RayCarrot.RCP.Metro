@@ -10,6 +10,7 @@ namespace RayCarrot.RCP.Metro
 {
     // TODO: Move to separate library? This was originally a part of the RayCarrot.IO library but was moved into RCP with version 13.0
     // TODO: Use Path.DirectorySeparatorChar
+    // TODO: Clean up and improve performance. Remove IsRelative bool.
     /// <summary>
     /// A path on a file system
     /// </summary>

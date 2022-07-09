@@ -18,7 +18,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         Game = game;
         GameDirectory = game.GetInstallDir();
         ContainerFilePath = PatchContainerFile.GetContainerFilePath(GameDirectory);
-        Container = new PatchContainerFile(ContainerFilePath, readOnly: true);
 
         Patches = new ObservableCollection<PatchViewModel>();
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
@@ -54,7 +53,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     public FileSystemPath GameDirectory { get; }
     public FileSystemPath ContainerFilePath { get; }
     
-    public PatchContainerFile Container { get; }
     public PatchHistoryManifest? PatchHistory { get; set; }
 
     public ObservableCollection<PatchViewModel> Patches { get; }
@@ -88,7 +86,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     {
         Logger.Info("Loading existing patches");
 
-        PatchContainerManifest? containerManifest = Container.ReadManifest();
+        using PatchContainerFile container = new(ContainerFilePath, readOnly: true);
+
+        PatchContainerManifest? containerManifest = container.ReadManifest();
 
         Patches.Clear();
 
@@ -111,7 +111,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
         foreach (PatchManifest patch in containerManifest.Patches)
         {
-            PatchContainerDataSource src = new(Container, patch.ID, true);
+            PatchContainerDataSource src = new(container, patch.ID, true);
             PatchViewModel patchVM = new(this, patch, containerManifest.EnabledPatches?.Contains(patch.ID) == true, src);
 
             // TODO: Load this async? Or maybe it's fast enough that it doesn't matter.
@@ -134,25 +134,28 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             PatchManifest patch = patchViewModel.Manifest;
 
             if (patch.AddedFiles != null)
-                foreach (string addedFile in patch.AddedFiles)
+                foreach (PatchFilePath addedFile in patch.AddedFiles)
                     addFile(addedFile, PatchedFileViewModel.PatchedFileModification.Add);
 
             if (patch.RemovedFiles != null)
-                foreach (string removedFile in patch.RemovedFiles)
+                foreach (PatchFilePath removedFile in patch.RemovedFiles)
                     addFile(removedFile, PatchedFileViewModel.PatchedFileModification.Remove);
 
-            void addFile(string fileName, PatchedFileViewModel.PatchedFileModification modification)
+            void addFile(PatchFilePath fileName, PatchedFileViewModel.PatchedFileModification modification)
             {
-                string lowerCaseFile = fileName.ToLowerInvariant();
+                string key = fileName.HasLocation ? $"{fileName.Location}:{fileName.FilePath}" : fileName.FilePath;
+                key = key.ToLowerInvariant().Replace('\\', '/');
 
-                if (files.ContainsKey(lowerCaseFile))
-                    files[lowerCaseFile].OverridenPatches.Add(patch);
+                if (files.ContainsKey(key))
+                    files[key].OverridenPatches.Add(patch);
                 else
-                    files.Add(lowerCaseFile, new PatchedFileViewModel(fileName, modification, patch));
+                    files.Add(key, new PatchedFileViewModel(fileName, modification, patch));
             }
         }
 
-        PatchedFiles = new ObservableCollection<PatchedFileViewModel>(files.Values.OrderBy(x => x.FilePath));
+        PatchedFiles = new ObservableCollection<PatchedFileViewModel>(files.Values.
+            OrderBy(x => x.FilePath.Location).
+            ThenBy(x => x.FilePath.FilePath));
         OnPropertyChanged(nameof(HasPatchedFiles));
 
         Logger.Info("Refresh patches files");
@@ -166,7 +169,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             Title = "Select patches to add",
             DefaultDirectory = default,
             DefaultName = null,
-            ExtensionFilter = new FileExtension(".ap").GetFileFilterItem.StringRepresentation,
+            ExtensionFilter = new FileExtension(PatchFile.FileExtension).GetFileFilterItem.StringRepresentation,
             MultiSelection = true
         });
 
@@ -258,16 +261,16 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 int fileIndex = 0;
 
-                foreach (string addedFile in manifest.AddedFiles)
+                foreach (PatchFilePath addedFile in manifest.AddedFiles)
                 {
                     operation.SetProgress(new Progress(fileIndex, manifest.AddedFiles.Length));
                     fileIndex++;
 
-                    FileSystemPath fileDest = result.SelectedDirectory + addedFile;
+                    FileSystemPath fileDest = result.SelectedDirectory + addedFile.FullFilePath;
                     Directory.CreateDirectory(fileDest.Parent);
 
                     using FileStream dstStream = File.Create(fileDest);
-                    using Stream srcStream = src.GetResource(addedFile, false);
+                    using Stream srcStream = src.GetResource(addedFile);
 
                     await srcStream.CopyToAsync(dstStream);
                 }
@@ -311,10 +314,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 // Copy resources
                 if (manifest.AddedFiles != null)
                 {
-                    foreach (string addedFile in manifest.AddedFiles)
+                    foreach (PatchFilePath addedFile in manifest.AddedFiles)
                     {
-                        using Stream srcStream = src.GetResource(addedFile, false);
-                        patchFile.AddPatchResource(addedFile, false, srcStream);
+                        using Stream srcStream = src.GetResource(addedFile);
+                        patchFile.AddPatchResource(addedFile, srcStream);
                     }
                 }
 
@@ -485,16 +488,22 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 {
                     await Task.Run(() =>
                     {
+                        // TODO-UPDATE: In case of error we should copy existing container to temp, open the temp one here and replace
+                        //              actual container with temp once it succeeds. This avoids corrupting it in case of error. Though
+                        //              on the other hand if it fails then some patches might be half applied...
+                        // Open the container for writing
+                        using PatchContainerFile container = new(ContainerFilePath);
+
                         // Create a patcher
                         Patcher patcher = new(); // TODO: Use DI?
 
                         // Add files to the container for patches which do not currently exist in the container
                         foreach (PatchViewModel patchViewModel in Patches.Where(x => x.DataSource is not PatchContainerDataSource))
-                            patcher.AddPatchFiles(Container, patchViewModel.Manifest, patchViewModel.DataSource);
+                            patcher.AddPatchFiles(container, patchViewModel.Manifest, patchViewModel.DataSource);
 
                         // Clear removed patches
                         foreach (string patch in _removedPatches.Where(x => Patches.All(p => p.Manifest.ID != x)))
-                            Container.ClearPatchFiles(patch);
+                            container.ClearPatchFiles(patch);
 
                         _removedPatches.Clear();
 
@@ -503,7 +512,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
 
                         patcher.Apply(
-                            container: Container, 
+                            container: container, 
                             archiveDataManager: Game.GetGameInfo().GetArchiveDataManager, 
                             patchHistory: PatchHistory, 
                             gameDirectory: GameDirectory, 
@@ -532,7 +541,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     public void Dispose()
     {
         Patches.DisposeAll();
-        Container.Dispose();
     }
 
     #endregion

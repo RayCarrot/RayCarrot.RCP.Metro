@@ -5,6 +5,6 @@ namespace RayCarrot.RCP.Metro.Patcher;
 
 public interface IPatchDataSource : IDisposable
 {
-    Stream GetResource(string resourceName, bool isNormalized);
+    Stream GetResource(PatchFilePath resourcePath);
     Stream GetAsset(string assetName);
 }

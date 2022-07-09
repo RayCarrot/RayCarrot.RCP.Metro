@@ -16,7 +16,7 @@ public class PatchContainerDataSource : IPatchDataSource
     public PatchContainerFile Container { get; }
     public string PatchID { get; }
 
-    public Stream GetResource(string resourceName, bool isNormalized) => Container.GetPatchResource(PatchID, resourceName, isNormalized);
+    public Stream GetResource(PatchFilePath resourcePath) => Container.GetPatchResource(PatchID, resourcePath);
     public Stream GetAsset(string assetName) => Container.GetPatchAsset(PatchID, assetName);
 
     public void Dispose()

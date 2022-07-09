@@ -187,13 +187,13 @@ public class ArchiveViewModel : DirectoryViewModel
         //return manifest?.History;
     }
 
-    private void AddPatchedFiles(string[]? files)
+    private void AddPatchedFiles(PatchFilePath[]? files)
     {
-        if (files == null)
-            return;
+        //if (files == null)
+        //    return;
 
-        foreach (string filePath in files)
-            PatchedFiles.Add(PatchContainerFile.NormalizePath(filePath));
+        //foreach (string filePath in files)
+        //    PatchedFiles.Add(PatchContainerFile.NormalizeResourcePath(filePath));
     }
 
     #endregion
@@ -415,12 +415,12 @@ public class ArchiveViewModel : DirectoryViewModel
     }
 
     // TODO-UPDATE: Use this to check if file in archive is effect by an applied patch. If so, show icon next to it and warning when repacking.
-    /// <summary>
-    /// Checks if the file path is effected by an applied patch
-    /// </summary>
-    /// <param name="filePath">The file path to check</param>
-    /// <returns>True if the file is effected by an applied patch, otherwise false</returns>
-    public bool IsEffectedByPatch(string filePath) => PatchedFiles.Contains(PatchContainerFile.NormalizePath(filePath));
+    ///// <summary>
+    ///// Checks if the file path is effected by an applied patch
+    ///// </summary>
+    ///// <param name="filePath">The file path to check</param>
+    ///// <returns>True if the file is effected by an applied patch, otherwise false</returns>
+    //public bool IsEffectedByPatch(string filePath) => PatchedFiles.Contains(PatchContainerFile.NormalizeResourcePath(filePath));
 
     /// <summary>
     /// Disposes the archive and its folders and files
