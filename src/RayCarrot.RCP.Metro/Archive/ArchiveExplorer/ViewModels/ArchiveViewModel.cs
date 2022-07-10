@@ -1,13 +1,11 @@
-﻿using Nito.AsyncEx;
-using NLog;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.RCP.Metro.Patcher;
+using Nito.AsyncEx;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -104,11 +102,6 @@ public class ArchiveViewModel : DirectoryViewModel
     public object? ArchiveData { get; set; }
 
     /// <summary>
-    /// The files (normalized) effected by patches
-    /// </summary>
-    public HashSet<string> PatchedFiles { get; } = new();
-
-    /// <summary>
     /// The lock to use when accessing the archive stream
     /// </summary>
     public AsyncLock ArchiveLock => ExplorerDialogViewModel.ArchiveLock;
@@ -162,42 +155,6 @@ public class ArchiveViewModel : DirectoryViewModel
 
     #endregion
 
-    #region Private Methods
-
-    private PatchHistoryManifest? LoadPatchHistory()
-    {
-        return null;
-
-        // TODO-UPDATE: Fix
-
-        //// Get the container file path
-        //FileSystemPath containerFilePath = PatchContainerFile.GetContainerFilePath(FilePath);
-
-        //// Make sure a container exists
-        //if (!containerFilePath.FileExists)
-        //    return null;
-
-        //// Open the container
-        //using PatchContainerFile container = new(containerFilePath, true);
-
-        //// Read the manifest
-        //PatchContainerManifest? manifest = container.ReadManifest();
-        
-        //// Return the history
-        //return manifest?.History;
-    }
-
-    private void AddPatchedFiles(PatchFilePath[]? files)
-    {
-        //if (files == null)
-        //    return;
-
-        //foreach (string filePath in files)
-        //    PatchedFiles.Add(PatchContainerFile.NormalizeResourcePath(filePath));
-    }
-
-    #endregion
-
     #region Protected Methods
 
     [MemberNotNull(nameof(ArchiveFileStream))]
@@ -241,26 +198,6 @@ public class ArchiveViewModel : DirectoryViewModel
         // Indicate that no files have pending edits
         ModifiedFilesCount = 0;
         HasModifiedFiles = false;
-
-        try
-        {
-            PatchedFiles.Clear();
-
-            // Load the patch history
-            PatchHistoryManifest? history = LoadPatchHistory();
-
-            if (history != null)
-            {
-                AddPatchedFiles(history.AddedFiles);
-                AddPatchedFiles(history.RemovedFiles);
-                AddPatchedFiles(history.ReplacedFiles);
-            }
-        }
-        catch (Exception ex)
-        {
-            // Don't show a message if this fails as it's not that important, but log a warning message
-            Logger.Warn(ex, "Loading patch history");
-        }
 
         // Load the archive data
         ArchiveData = Manager.LoadArchive(ArchiveFileStream, Name);
@@ -413,14 +350,6 @@ public class ArchiveViewModel : DirectoryViewModel
         // Update boolean
         HasModifiedFiles = true;
     }
-
-    // TODO-UPDATE: Use this to check if file in archive is effect by an applied patch. If so, show icon next to it and warning when repacking.
-    ///// <summary>
-    ///// Checks if the file path is effected by an applied patch
-    ///// </summary>
-    ///// <param name="filePath">The file path to check</param>
-    ///// <returns>True if the file is effected by an applied patch, otherwise false</returns>
-    //public bool IsEffectedByPatch(string filePath) => PatchedFiles.Contains(PatchContainerFile.NormalizeResourcePath(filePath));
 
     /// <summary>
     /// Disposes the archive and its folders and files
