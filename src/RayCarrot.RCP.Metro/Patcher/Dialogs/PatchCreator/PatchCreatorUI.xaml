@@ -6,6 +6,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:patcher="clr-namespace:RayCarrot.RCP.Metro.Patcher"
+                            xmlns:sys="clr-namespace:System;assembly=mscorlib"
                             mc:Ignorable="d"
                             d:DesignWidth="800" d:DesignHeight="600"
                             d:DataContext="{d:DesignInstance patcher:PatchCreatorViewModel}"
@@ -160,94 +161,118 @@
 
             <GridSplitter Grid.Row="1" Height="4" Margin="0 0 0 10" />
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Background="Transparent" MouseDown="FilesGrid_OnMouseDown">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- TODO-UPDATE: Add info icons describing how these work and that leaving source empty removes the file -->
-                <DataGrid Grid.Row="0"
-                          ItemsSource="{Binding Path=Files, Mode=OneTime}"
-                          d:ItemsSource="{d:SampleData}"
-                          SelectedItem="{Binding Path=SelectedFile}"
-                          AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-                          CanUserDeleteRows="True"
-                          CanUserReorderColumns="False"
-                          CanUserResizeColumns="True"
-                          CanUserResizeRows="False"
-                          CanUserSortColumns="False"
-                          SelectionMode="Extended">
+                <ItemsControl Grid.Row="0"
+                              ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData}">
+                    <ItemsControl.Resources>
+                        <local:BindingProxy x:Key="CreatorViewModel" Data="{Binding Mode=OneTime}" />
+                    </ItemsControl.Resources>
 
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="32" CanUserResize="False" IsReadOnly="True">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="{x:Type patcher:PatchCreatorViewModel+FileViewModel}">
-                                    <Grid>
-                                        <!-- TODO-UPDATE: Don't use archive brushes -->
-                                        <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                    Visibility="{Binding Path=IsFileAdded, Converter={local:BooleanToVisibilityConverter}}"
-                                                                    HorizontalAlignment="Center"
-                                                                    Width="16" Height="16"
-                                                                    Kind="Plus"
-                                                                    Foreground="{StaticResource RCP.Brushes.Archive.AddItem}" />
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
 
-                                        <!-- TODO-UPDATE: Don't use archive brushes -->
-                                        <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                    Visibility="{Binding Path=IsFileAdded, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                                                                    HorizontalAlignment="Center"
-                                                                    Width="16" Height="16"
-                                                                    Kind="DeleteOutline"
-                                                                    Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Source" Width="*" MinWidth="100">
-                            <DataGridTextColumn.Binding>
-                                <Binding Path="SourceFilePath" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <local:FileExistsValidationRule />
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </DataGridTextColumn.Binding>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
-                                    <Setter Property="ToolTip" Value="{Binding Path=SourceFilePath}" />
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Destination location" Width="Auto" MinWidth="100" Binding="{Binding Path=Location}">
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
-                                    <Setter Property="ToolTip" Value="{Binding Path=Location}" />
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Destination path" Width="*" MinWidth="100">
-                            <DataGridTextColumn.Binding>
-                                <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <local:NotEmptyValidationRule />
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </DataGridTextColumn.Binding>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
-                                    <Setter Property="ToolTip" Value="{Binding Path=FilePath}" />
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
+                                <!-- Location Header -->
 
-                    <DataGrid.RowStyle>
-                        <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
-                            <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
-                        </Style>
-                    </DataGrid.RowStyle>
-                </DataGrid>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0 0 0 5">
+                                    <iconPacks:PackIconMaterial Width="16" Height="16"
+                                                                Kind="FolderOutline"
+                                                                Background="Transparent"
+                                                                Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+                                                                Margin="0 0 5 0" />
+
+                                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                               Text="{Binding Path=Location.DisplayName.Value}" />
+                                </StackPanel>
+
+                                <!-- Files -->
+
+                                <!-- TODO-UPDATE: Add info icons describing how these work and that leaving source empty removes the file -->
+                                <DataGrid ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                                          d:ItemsSource="{d:SampleData}"
+                                          SelectedItem="{Binding Path=Data.SelectedFile, Source={StaticResource CreatorViewModel}}"
+                                          AutoGenerateColumns="False"
+                                          CanUserAddRows="False"
+                                          CanUserDeleteRows="True"
+                                          CanUserReorderColumns="False"
+                                          CanUserResizeColumns="True"
+                                          CanUserResizeRows="False"
+                                          CanUserSortColumns="False"
+                                          SelectionMode="Extended"
+                                          Margin="0 0 0 10">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="32" CanUserResize="False" IsReadOnly="True">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate DataType="{x:Type patcher:PatchCreatorViewModel+FileViewModel}">
+                                                    <Grid>
+                                                        <!-- TODO-UPDATE: Don't use archive brushes -->
+                                                        <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Visibility="{Binding Path=IsFileAdded, Converter={local:BooleanToVisibilityConverter}}"
+                                                            HorizontalAlignment="Center"
+                                                            Width="16" Height="16"
+                                                            Kind="Plus"
+                                                            Foreground="{StaticResource RCP.Brushes.Archive.AddItem}" />
+
+                                                        <!-- TODO-UPDATE: Don't use archive brushes -->
+                                                        <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Visibility="{Binding Path=IsFileAdded, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                                                            HorizontalAlignment="Center"
+                                                            Width="16" Height="16"
+                                                            Kind="DeleteOutline"
+                                                            Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}" />
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Header="Source" Width="*" MinWidth="100">
+                                            <DataGridTextColumn.Binding>
+                                                <Binding Path="SourceFilePath" UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <local:FileExistsValidationRule />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </DataGridTextColumn.Binding>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
+                                                    <Setter Property="ToolTip" Value="{Binding Path=SourceFilePath}" />
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Destination path" Width="*" MinWidth="100">
+                                            <DataGridTextColumn.Binding>
+                                                <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <local:NotEmptyValidationRule />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </DataGridTextColumn.Binding>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
+                                                    <Setter Property="ToolTip" Value="{Binding Path=FilePath}" />
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+
+                                    <DataGrid.RowStyle>
+                                        <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
+                                            <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                </DataGrid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <StackPanel Grid.Row="1"
                             Orientation="Horizontal"
@@ -269,7 +294,7 @@
                     <ComboBox MinWidth="250"
                               ItemsSource="{Binding Path=AvailableLocations, Mode=OneTime}"
                               SelectedItem="{Binding Path=SelectedLocation}"
-                              ItemStringFormat="Game\{0}"/>
+                              DisplayMemberPath="DisplayName.Value"/>
 
                 </StackPanel>
 
@@ -292,7 +317,15 @@
                 <Button Content="Create"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         local:ButtonAssist.IconKind="ContentSaveOutline"
-                        Click="CreateButton_OnClick"/>
+                        Click="CreateButton_OnClick">
+                    <Button.IsEnabled>
+                        <Binding Path="Files.Count" Converter="{local:InvertedEqualsToConverter}">
+                            <Binding.ConverterParameter>
+                                <sys:Int32>0</sys:Int32>
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </Button.IsEnabled>
+                </Button>
 
             </StackPanel>
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,17 +19,23 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     {
         Game = game;
         ID = PatchFile.GenerateID();
-        AvailableLocations = new ObservableCollection<string>() { String.Empty };
+        AvailableLocations = new ObservableCollection<AvailableFileLocation>()
+        {
+            // TODO-UPDATE: Localize
+            new("Game", String.Empty)
+        };
 
         FileSystemPath installDir = game.GetInstallDir();
-        IEnumerable<string>? archivePaths = game.GetGameInfo().
+        IEnumerable<AvailableFileLocation>? archivePaths = game.GetGameInfo().
             GetArchiveFilePaths(installDir)?.
             Where(x => x.FileExists).
             Select(x => x - installDir).
-            Select(x => x.FullPath);
+            Select(x => new AvailableFileLocation(x.FullPath, x.FullPath));
 
         if (archivePaths != null)
             AvailableLocations.AddRange(archivePaths);
+
+        SelectedLocation = AvailableLocations.First();
 
         LoadOperation = new BindableOperation();
 
@@ -72,15 +79,37 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public bool LockToGame { get; set; } = true;
     public BitmapSource? Thumbnail { get; set; }
 
-    public ObservableCollection<FileViewModel> Files { get; } = new();
+    public ObservableCollection<FileLocationViewModel> Files { get; } = new();
     public FileViewModel? SelectedFile { get; set; }
 
-    public ObservableCollection<string> AvailableLocations { get; }
-    public string SelectedLocation { get; set; } = String.Empty;
+    public ObservableCollection<AvailableFileLocation> AvailableLocations { get; }
+    public AvailableFileLocation SelectedLocation { get; set; }
 
     public bool IsImported { get; set; }
 
     public BindableOperation LoadOperation { get; }
+
+    #endregion
+
+    #region Private Methods
+
+    private void AddFile(FileViewModel file, AvailableFileLocation location)
+    {
+        FileLocationViewModel? locVM = Files.FirstOrDefault(x => x.Location == location);
+
+        if (locVM == null)
+        {
+            locVM = new FileLocationViewModel(location);
+            locVM.Files.CollectionChanged += (_, e) =>
+            {
+                if (e.Action == NotifyCollectionChangedAction.Remove && !locVM.Files.Any())
+                    Files.Remove(locVM);
+            };
+            Files.Add(locVM);
+        }
+
+        locVM.Files.Add(file);
+    }
 
     #endregion
 
@@ -98,6 +127,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             using PatchFile patchFile = new(patchFilePath, true);
 
             PatchManifest manifest = patchFile.ReadManifest();
+
+            // TODO-UPDATE: Verify game since games have different archives
 
             if (manifest.PatchVersion > PatchFile.Version)
             {
@@ -147,13 +178,16 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     using Stream tempFileStream = File.Create(tempFilePath);
                     await file.CopyToAsync(tempFileStream);
 
-                    Files.Add(new FileViewModel()
+                    AvailableFileLocation loc = AvailableLocations.FirstOrDefault(x => 
+                        x.Location.Equals(addedFile.Location, StringComparison.InvariantCultureIgnoreCase)) ?? AvailableLocations.First();
+
+                    AddFile(new FileViewModel()
                     {
                         SourceFilePath = tempFilePath,
                         Location = addedFile.Location,
                         FilePath = addedFile.FilePath,
                         Checksum = checksum,
-                    });
+                    }, loc);
                 }
 
                 operation.SetProgress(new Progress(manifest.AddedFiles.Length, manifest.AddedFiles.Length));
@@ -218,12 +252,12 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Try/catch
         foreach (FileSystemPath file in browseResult.SelectedFiles)
         {
-            Files.Add(new FileViewModel()
+            AddFile(new FileViewModel()
             {
                 SourceFilePath = file,
-                Location = SelectedLocation,
+                Location = SelectedLocation.Location,
                 FilePath = file.Name,
-            });
+            }, SelectedLocation);
         }
     }
 
@@ -246,12 +280,12 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Try/catch
         foreach (FileSystemPath file in Directory.EnumerateFiles(browseResult.SelectedDirectory, "*", SearchOption.AllDirectories))
         {
-            Files.Add(new FileViewModel()
+            AddFile(new FileViewModel()
             {
                 SourceFilePath = file,
-                Location = SelectedLocation,
+                Location = SelectedLocation.Location,
                 FilePath = file - browseResult.SelectedDirectory,
-            });
+            }, SelectedLocation);
         }
     }
 
@@ -288,7 +322,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 List<string> assets = new();
                 long totalSize = 0;
 
-                foreach (FileViewModel file in Files.Where(x => x.IsValid))
+                foreach (FileViewModel file in Files.SelectMany(x => x.Files).Where(x => x.IsValid))
                 {
                     if (file.IsFileAdded)
                     {
@@ -378,6 +412,17 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #region Data Types
 
+    public class FileLocationViewModel : BaseViewModel
+    {
+        public FileLocationViewModel(AvailableFileLocation location)
+        {
+            Location = location;
+        }
+
+        public AvailableFileLocation Location { get; }
+        public ObservableCollection<FileViewModel> Files { get; } = new();
+    }
+
     public class FileViewModel : BaseViewModel
     {
         public FileSystemPath SourceFilePath { get; set; }
@@ -393,6 +438,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         public bool IsImported => Checksum != null;
         public PatchFilePath PatchFilePath => new(Location, FilePath);
     }
+
+    public record AvailableFileLocation(LocalizedString DisplayName, string Location);
 
     #endregion
 }

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
@@ -90,6 +91,11 @@ public partial class PatchCreatorUI : WindowContentControl
     #endregion
 
     #region Event Handlers
+
+    private void FilesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        ViewModel.SelectedFile = null;
+    }
 
     private void CancelButton_OnClick(object sender, RoutedEventArgs e)
     {
