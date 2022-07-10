@@ -92,6 +92,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
         Patches.Clear();
 
+        // Verify version
         if (containerManifest is { ContainerVersion: > PatchContainerFile.Version })
         {
             Logger.Warn("Failed to load container due to the version number {0} being higher than the current one ({1})",
@@ -99,6 +100,19 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync("The game patch container was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+            PatchHistory = null;
+
+            return false;
+        }
+
+        // Verify game
+        if (containerManifest != null && containerManifest.Game != Game)
+        {
+            Logger.Warn("Failed to load container due to the game {0} not matching the current one ({1})",
+                containerManifest.Game, Game);
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync($"The game patch container was made with for {Game}", MessageType.Error);
             PatchHistory = null;
 
             return false;
@@ -190,8 +204,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 PatchManifest manifest = patch.ReadManifest();
 
-                // TODO-UPDATE: Verify game
-
+                // Verify version
                 if (manifest.PatchVersion > PatchFile.Version)
                 {
                     Logger.Warn("Failed to add patch due to the version number {0} being higher than the current one ({1})",
@@ -199,6 +212,19 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                     // TODO-UPDATE: Localize
                     await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+
+                    patch.Dispose();
+                    continue;
+                }
+
+                // Verify game, if locked to one
+                if (manifest.Game != null && manifest.Game != Game)
+                {
+                    Logger.Warn("Failed to add patch due to the specified game {0} not matching the current one ({1})",
+                        manifest.Game, Game);
+
+                    // TODO-UPDATE: Localize
+                    await Services.MessageUI.DisplayMessageAsync($"The selected patch can only be applied to {manifest.Game}", MessageType.Error);
 
                     patch.Dispose();
                     continue;
@@ -389,6 +415,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             PatchManifest manifest = patch.ReadManifest();
 
+            // Verify version
             if (manifest.PatchVersion > PatchFile.Version)
             {
                 Logger.Warn("Failed to update patch due to the version number {0} being higher than the current one ({1})",
@@ -446,7 +473,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         }
     }
 
-    public async Task LoadPatchesAsync()
+    public async Task<bool> LoadPatchesAsync()
     {
         Logger.Info("Loading patch containers");
 
@@ -457,20 +484,23 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             if (!success)
             {
                 Logger.Warn("Failed to load patch container for game {0}", Game);
-                // TODO-UPDATE: Failed to load container - handle
-                return;
+                return false;
             }
 
             RefreshPatchedFiles();
 
             Logger.Info("Loaded patch container for game {0}", Game);
+
+            return true;
         }
         catch (Exception ex)
         {
+            // TODO-UPDATE: Log exception
+
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the patches");
 
-            // TODO-UPDATE: Failed to load container - handle
+            return false;
         }
     }
 
@@ -512,6 +542,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
 
                         patcher.Apply(
+                            game: Game,
                             container: container, 
                             archiveDataManager: Game.GetGameInfo().GetArchiveDataManager, 
                             patchHistory: PatchHistory, 

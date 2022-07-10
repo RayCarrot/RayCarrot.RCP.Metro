@@ -7,6 +7,9 @@ public record PatchContainerManifest(
     int ContainerVersion,
 
     [property: JsonProperty(Required = Required.Always)]
+    Games Game, // TODO-UPDATE: Verify on read
+
+    [property: JsonProperty(Required = Required.Always)]
     PatchHistoryManifest History,
 
     [property: JsonProperty(Required = Required.Always)]

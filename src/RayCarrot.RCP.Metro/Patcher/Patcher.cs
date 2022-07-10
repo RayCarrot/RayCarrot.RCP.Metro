@@ -473,6 +473,7 @@ public class Patcher
     }
 
     public void Apply(
+        Games game,
         PatchContainerFile container, 
         IArchiveDataManager archiveDataManager,
         PatchHistoryManifest? patchHistory, 
@@ -536,7 +537,7 @@ public class Patcher
             RemovedFiles: fileChanges.RemovedFiles.ToArray());
 
         // Update the container manifest
-        container.WriteManifest(history, patchManifests, enabledPatches);
+        container.WriteManifest(game, history, patchManifests, enabledPatches);
 
         // Apply changes
         container.Apply();

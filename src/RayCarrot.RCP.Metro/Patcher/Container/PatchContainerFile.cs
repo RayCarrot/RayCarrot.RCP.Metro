@@ -81,9 +81,9 @@ public class PatchContainerFile : IDisposable
         return manifest;
     }
 
-    public void WriteManifest(PatchHistoryManifest history, PatchManifest[] patches, string[]? enabledPatches)
+    public void WriteManifest(Games game, PatchHistoryManifest history, PatchManifest[] patches, string[]? enabledPatches)
     {
-        PatchContainerManifest containerManifest = new(Version, history, patches, enabledPatches);
+        PatchContainerManifest containerManifest = new(Version, game, history, patches, enabledPatches);
         _zip.WriteJSON(ManifestFileName, containerManifest);
         Logger.Info("Wrote patch container manifest");
     }

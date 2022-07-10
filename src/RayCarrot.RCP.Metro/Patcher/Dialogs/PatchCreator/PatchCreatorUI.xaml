@@ -22,7 +22,7 @@
                                 Value="{Binding Path=LoadOperation.CurrentProgress}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" MinHeight="200" />
+                <RowDefinition Height="*" MinHeight="230" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1.5*" MinHeight="150" />
                 <RowDefinition Height="Auto" />
@@ -42,6 +42,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -85,24 +86,38 @@
                                  MaxLength="700"
                                  MaxLines="10"/>
 
+                        <StackPanel Grid.Column="0"
+                                    Grid.Row="3"
+                                    Orientation="Horizontal"
+                                    Margin="0 0 0 10">
+                            <TextBlock VerticalAlignment="Center" 
+                                       Text="Lock to game" />
+                            <local:InfoIcon Text="If checked then this patch can only be applied to the selected game" />
+                        </StackPanel>
+                        <CheckBox Grid.Column="2"
+                                  Grid.Row="3"
+                                  VerticalAlignment="Center" 
+                                  IsChecked="{Binding Path=LockToGame}"
+                                  Margin="0 0 0 10" />
+
                         <TextBlock Grid.Column="0"
-                                   Grid.Row="3"
+                                   Grid.Row="4"
                                    VerticalAlignment="Center" 
                                    Text="Revision"
                                    Margin="0 0 0 10" />
                         <TextBlock Grid.Column="2"
-                                   Grid.Row="3" 
+                                   Grid.Row="4" 
                                    Margin="0 0 0 10"
                                    Text="{Binding Path=Revision}" />
 
                         <TextBlock Grid.Column="0"
-                                   Grid.Row="4"
+                                   Grid.Row="5"
                                    VerticalAlignment="Center" 
                                    Text="ID"
                                    local:UserLevelAssist.MinUserLevel="Technical"
                                    Margin="0 0 0 10" />
                         <TextBlock Grid.Column="2"
-                                   Grid.Row="4" 
+                                   Grid.Row="5" 
                                    Margin="0 0 0 10"
                                    Text="{Binding Path=ID}" 
                                    local:UserLevelAssist.MinUserLevel="Technical"/>
@@ -204,7 +219,13 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Destination location" Width="*" MinWidth="100" Binding="{Binding Path=Location}" />
+                        <DataGridTextColumn Header="Destination location" Width="Auto" MinWidth="100" Binding="{Binding Path=Location}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
+                                    <Setter Property="ToolTip" Value="{Binding Path=Location}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="Destination path" Width="*" MinWidth="100">
                             <DataGridTextColumn.Binding>
                                 <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
@@ -213,6 +234,11 @@
                                     </Binding.ValidationRules>
                                 </Binding>
                             </DataGridTextColumn.Binding>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
+                                    <Setter Property="ToolTip" Value="{Binding Path=FilePath}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
                     </DataGrid.Columns>
 

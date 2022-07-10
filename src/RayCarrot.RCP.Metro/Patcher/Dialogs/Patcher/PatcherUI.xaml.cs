@@ -66,7 +66,10 @@ public partial class PatcherUI : WindowContentControl
     {
         Loaded -= PatcherUI_OnLoaded;
 
-        await ViewModel.LoadPatchesAsync();
+        bool success = await ViewModel.LoadPatchesAsync();
+
+        if (!success)
+            WindowInstance.Close();
     }
 
     private void PatchesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)

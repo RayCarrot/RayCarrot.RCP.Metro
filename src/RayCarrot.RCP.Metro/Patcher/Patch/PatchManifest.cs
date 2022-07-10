@@ -12,6 +12,9 @@ public record PatchManifest(
     [property: JsonProperty(Required = Required.Always)]
     int PatchVersion,
 
+    [property: JsonProperty(Required = Required.AllowNull)]
+    Games? Game,
+
     string? Name, 
     string? Description, 
     string? Author, 
