@@ -72,6 +72,8 @@
                     <Grid Grid.Row="0"
                           Margin="0 0 0 10">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
@@ -81,8 +83,12 @@
                                    VerticalAlignment="Center"
                                    Text="Patches" />
 
+                        <!-- TODO-UPDATE: Add info + localize -->
+                        <local:InfoIcon Grid.Column="1"
+                                        Text="" />
+
                         <!-- TODO-UPDATE: Localize -->
-                        <Button Grid.Column="1"
+                        <Button Grid.Column="3"
                                 ToolTip="Add patch"
                                 Style="{StaticResource RCP.Styles.Button.Flat}"
                                 Command="{Binding Path=AddPatchCommand, Mode=OneTime}"
@@ -340,7 +346,7 @@
 
                 <!-- TODO-UPDATE: Localize -->
                 <TextBlock Grid.Row="1"
-                           Text="Add and enable a patch to modify the archive files"
+                           Text="Add and enable a patch to modify the game files"
                            Visibility="{Binding Path=HasPatchedFiles, Converter={local:InvertedBooleanToVisibilityConverter}}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"

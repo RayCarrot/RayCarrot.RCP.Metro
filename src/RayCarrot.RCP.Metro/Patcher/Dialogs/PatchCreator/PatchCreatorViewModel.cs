@@ -14,9 +14,21 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public PatchCreatorViewModel()
+    public PatchCreatorViewModel(Games game)
     {
+        Game = game;
         ID = PatchFile.GenerateID();
+        AvailableLocations = new ObservableCollection<string>() { String.Empty };
+
+        FileSystemPath installDir = game.GetInstallDir();
+        IEnumerable<string>? archivePaths = game.GetGameInfo().
+            GetArchiveFilePaths(installDir)?.
+            Where(x => x.FileExists).
+            Select(x => x - installDir).
+            Select(x => x.FullPath);
+
+        if (archivePaths != null)
+            AvailableLocations.AddRange(archivePaths);
 
         LoadOperation = new BindableOperation();
 
@@ -56,10 +68,14 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public string Author { get; set; } = String.Empty;
     public int Revision { get; set; }
     public string ID { get; set; }
+    public Games Game { get; }
     public BitmapSource? Thumbnail { get; set; }
 
     public ObservableCollection<FileViewModel> Files { get; } = new();
     public FileViewModel? SelectedFile { get; set; }
+
+    public ObservableCollection<string> AvailableLocations { get; }
+    public string SelectedLocation { get; set; } = String.Empty;
 
     public bool IsImported { get; set; }
 
@@ -203,6 +219,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             Files.Add(new FileViewModel()
             {
                 SourceFilePath = file,
+                Location = SelectedLocation,
                 FilePath = file.Name,
             });
         }
@@ -230,6 +247,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             Files.Add(new FileViewModel()
             {
                 SourceFilePath = file,
+                Location = SelectedLocation,
                 FilePath = file - browseResult.SelectedDirectory,
             });
         }
@@ -237,6 +255,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> CreatePatchAsync()
     {
+        // TODO-UPDATE: Filter out duplicates and invalid locations
+
         using (await LoadOperation.RunAsync("Creating patch"))
         {
             Logger.Info("Creating the patch '{0}' with revision {1} and ID {2}", Name, Revision, ID);
@@ -358,7 +378,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public class FileViewModel : BaseViewModel
     {
         public FileSystemPath SourceFilePath { get; set; }
-        public string Location { get; set; } = String.Empty; // TODO-UPDATE: Allow setting from UI
+        public string Location { get; set; } = String.Empty;
         public string FilePath { get; set; } = String.Empty;
 
         public string? Checksum { get; set; }

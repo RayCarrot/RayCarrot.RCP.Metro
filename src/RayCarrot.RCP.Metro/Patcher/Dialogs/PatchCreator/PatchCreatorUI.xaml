@@ -155,6 +155,7 @@
                 <!-- TODO-UPDATE: Add info icons describing how these work and that leaving source empty removes the file -->
                 <DataGrid Grid.Row="0"
                           ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                          d:ItemsSource="{d:SampleData}"
                           SelectedItem="{Binding Path=SelectedFile}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
@@ -170,6 +171,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="{x:Type patcher:PatchCreatorViewModel+FileViewModel}">
                                     <Grid>
+                                        <!-- TODO-UPDATE: Don't use archive brushes -->
                                         <iconPacks:PackIconMaterial Grid.Column="0"
                                                                     Visibility="{Binding Path=IsFileAdded, Converter={local:BooleanToVisibilityConverter}}"
                                                                     HorizontalAlignment="Center"
@@ -177,6 +179,7 @@
                                                                     Kind="Plus"
                                                                     Foreground="{StaticResource RCP.Brushes.Archive.AddItem}" />
 
+                                        <!-- TODO-UPDATE: Don't use archive brushes -->
                                         <iconPacks:PackIconMaterial Grid.Column="0"
                                                                     Visibility="{Binding Path=IsFileAdded, Converter={local:InvertedBooleanToVisibilityConverter}}"
                                                                     HorizontalAlignment="Center"
@@ -201,7 +204,8 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Archive path" Width="*" MinWidth="100">
+                        <DataGridTextColumn Header="Destination location" Width="*" MinWidth="100" Binding="{Binding Path=Location}" />
+                        <DataGridTextColumn Header="Destination path" Width="*" MinWidth="100">
                             <DataGridTextColumn.Binding>
                                 <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -233,7 +237,13 @@
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:ButtonAssist.IconKind="FolderPlusOutline"
                             Command="{Binding Path=AddFilesFromFolderCommand, Mode=OneTime}"
-                            ToolTip="Add files from folder"/>
+                            ToolTip="Add files from folder"
+                            Margin="0 0 8 0"/>
+
+                    <ComboBox MinWidth="250"
+                              ItemsSource="{Binding Path=AvailableLocations, Mode=OneTime}"
+                              SelectedItem="{Binding Path=SelectedLocation}"
+                              ItemStringFormat="Game\{0}"/>
 
                 </StackPanel>
 

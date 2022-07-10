@@ -279,7 +279,7 @@ public class AppUIManager
 
         // Run on UI thread
         PatchCreatorUI ui = Application.Current.Dispatcher.Invoke(
-            () => new PatchCreatorUI(new PatchCreatorViewModel(), existingPatch));
+            () => new PatchCreatorUI(new PatchCreatorViewModel(game), existingPatch));
         await Dialog.ShowWindowAsync(ui);
     }
 

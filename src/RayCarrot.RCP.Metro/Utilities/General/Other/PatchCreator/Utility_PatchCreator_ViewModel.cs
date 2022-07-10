@@ -12,6 +12,7 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     public Utility_PatchCreator_ViewModel()
     {
+        // TODO-UPDATE: You can only create patches for games you have added
         Games = new ObservableCollection<GameItem>(App.GetGames.Select(x => new GameItem(x, x.GetGameInfo().DisplayName)));
         SelectedGame = Games.First();
 
