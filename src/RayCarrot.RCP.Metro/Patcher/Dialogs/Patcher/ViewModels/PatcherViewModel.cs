@@ -20,7 +20,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         ContainerFilePath = PatchContainerFile.GetContainerFilePath(GameDirectory);
 
         Patches = new ObservableCollection<PatchViewModel>();
-        PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
+        PatchedFileLocations = new ObservableCollection<PatchedFileLocationViewModel>();
 
         LoadOperation = new BindableOperation();
 
@@ -58,10 +58,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     public ObservableCollection<PatchViewModel> Patches { get; }
     public PatchViewModel? SelectedPatch { get; set; }
 
-    public ObservableCollection<PatchedFileViewModel> PatchedFiles { get; set; }
+    public ObservableCollection<PatchedFileLocationViewModel> PatchedFileLocations { get; set; }
     
     public BindableOperation LoadOperation { get; }
-    public bool HasPatchedFiles => PatchedFiles.Any();
+    public bool HasPatchedFiles => PatchedFileLocations.Any();
     public bool HasChanges { get; set; }
 
     #endregion
@@ -141,7 +141,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public void RefreshPatchedFiles()
     {
-        Dictionary<string, PatchedFileViewModel> files = new();
+        Dictionary<string, Dictionary<string, PatchedFileViewModel>> files = new();
 
         foreach (PatchViewModel patchViewModel in Patches.Where(x => x.IsEnabled))
         {
@@ -157,19 +157,22 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             void addFile(PatchFilePath fileName, PatchedFileViewModel.PatchedFileModification modification)
             {
-                string key = fileName.HasLocation ? $"{fileName.Location}:{fileName.FilePath}" : fileName.FilePath;
-                key = key.ToLowerInvariant().Replace('\\', '/');
+                string locationKey = fileName.Location.ToLowerInvariant().Replace('\\', '/');
+                string filePathKey = fileName.FilePath.ToLowerInvariant().Replace('\\', '/');
 
-                if (files.ContainsKey(key))
-                    files[key].OverridenPatches.Add(patch);
+                if (!files.ContainsKey(locationKey))
+                    files.Add(locationKey, new Dictionary<string, PatchedFileViewModel>());
+
+                if (files[locationKey].ContainsKey(filePathKey))
+                    files[locationKey][filePathKey].OverridenPatches.Add(patch);
                 else
-                    files.Add(key, new PatchedFileViewModel(fileName, modification, patch));
+                    files[locationKey].Add(filePathKey, new PatchedFileViewModel(fileName, modification, patch));
             }
         }
 
-        PatchedFiles = new ObservableCollection<PatchedFileViewModel>(files.Values.
-            OrderBy(x => x.FilePath.Location).
-            ThenBy(x => x.FilePath.FilePath));
+        var locations = files.Values.Select(x =>
+            new PatchedFileLocationViewModel(x.First().Value.FilePath.Location, x.Values.OrderBy(f => f.FilePath.FilePath)));
+        PatchedFileLocations = new ObservableCollection<PatchedFileLocationViewModel>(locations.OrderBy(x => x.Location));
         OnPropertyChanged(nameof(HasPatchedFiles));
 
         Logger.Info("Refresh patches files");

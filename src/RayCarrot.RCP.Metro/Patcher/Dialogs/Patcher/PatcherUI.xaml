@@ -354,101 +354,121 @@
 
                 <ScrollViewer Grid.Row="1"
                               Margin="0 0 0 5">
-                    <StackPanel Grid.IsSharedSizeScope="True"
-                                Visibility="{Binding Path=PatchedFiles.Count, Converter={local:IntToVisibilityConverter}}">
+                    <ItemsControl ItemsSource="{Binding Path=PatchedFileLocations}"
+                                  d:ItemsSource="{d:SampleData}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Grid.IsSharedSizeScope="True">
 
-                        <!-- Table Headers -->
+                                    <!-- Location Header -->
 
-                        <Grid Margin="0 0 0 5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Patch" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0 0 0 5">
+                                        <iconPacks:PackIconMaterial Width="16" Height="16"
+                                                                    Kind="FolderOutline"
+                                                                    Background="Transparent"
+                                                                    Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+                                                                    Margin="0 0 5 0" />
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <TextBlock Grid.Column="1"
-                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                       Text="File" />
+                                        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                   Text="{Binding Path=DisplayName.Value}" />
+                                    </StackPanel>
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <TextBlock Grid.Column="2"
-                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                       Text="Patch" />
+                                    <!-- Table Headers -->
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <TextBlock Grid.Column="3"
-                                       Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                       Text="Overriden Patches" />
-
-                        </Grid>
-
-                        <!-- Table Items -->
-
-                        <ItemsControl ItemsSource="{Binding Path=PatchedFiles}"
-                                      d:ItemsSource="{d:SampleData ItemCount=3}"
-                                      Margin="0 0 0 5">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
                                     <Grid Margin="0 0 0 5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
-                                            <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Name" />
-                                            <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Patch" />
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Patch" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <!-- TODO-UPDATE: Don't use archive brushes -->
-                                        <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                    Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Add}"
-                                                                    HorizontalAlignment="Center"
-                                                                    Width="16" Height="16"
-                                                                    Kind="Plus"
-                                                                    Foreground="{StaticResource RCP.Brushes.Archive.AddItem}"
-                                                                    Margin="0 0 5 0" />
-
-                                        <!-- TODO-UPDATE: Don't use archive brushes -->
-                                        <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                    Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Remove}"
-                                                                    HorizontalAlignment="Center"
-                                                                    Width="16" Height="16"
-                                                                    Kind="DeleteOutline"
-                                                                    Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
-                                                                    Margin="0 0 5 0" />
-
+                                        <!-- TODO-UPDATE: Localize -->
                                         <TextBlock Grid.Column="1"
-                                                   Text="{Binding Path=FilePath, Mode=OneTime}"
-                                                   Margin="0 0 15 0" />
+                                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                   Text="File" />
 
+                                        <!-- TODO-UPDATE: Localize -->
                                         <TextBlock Grid.Column="2"
-                                                   Text="{Binding Path=Patch.Name, Mode=OneTime}"
-                                                   Margin="0 0 15 0" />
+                                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                   Text="Patch" />
 
-                                        <ItemsControl Grid.Column="3"
-                                                      ItemsSource="{Binding Path=OverridenPatches, Mode=OneWay}">
-
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Horizontal" />
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Name, Mode=OneTime}"
-                                                               Margin="0 0 10 0" 
-                                                               TextDecorations="Strikethrough"/>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
+                                        <!-- TODO-UPDATE: Localize -->
+                                        <TextBlock Grid.Column="3"
+                                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                                   Text="Overriden Patches" />
 
                                     </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
 
-                    </StackPanel>
+                                    <!-- Table Items -->
+
+                                    <ItemsControl ItemsSource="{Binding Path=PatchedFiles, Mode=OneTime}"
+                                                  d:ItemsSource="{d:SampleData ItemCount=3}"
+                                                  Margin="0 0 0 5">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0 0 0 5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                                                        <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Name" />
+                                                        <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Patch" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <!-- TODO-UPDATE: Don't use archive brushes -->
+                                                    <iconPacks:PackIconMaterial Grid.Column="0"
+                                                        Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Add}"
+                                                        HorizontalAlignment="Center"
+                                                        Width="16" Height="16"
+                                                        Kind="Plus"
+                                                        Foreground="{StaticResource RCP.Brushes.Archive.AddItem}"
+                                                        Margin="0 0 5 0" />
+
+                                                    <!-- TODO-UPDATE: Don't use archive brushes -->
+                                                    <iconPacks:PackIconMaterial Grid.Column="0"
+                                                        Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Remove}"
+                                                        HorizontalAlignment="Center"
+                                                        Width="16" Height="16"
+                                                        Kind="DeleteOutline"
+                                                        Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
+                                                        Margin="0 0 5 0" />
+
+                                                    <TextBlock Grid.Column="1"
+                                                               Text="{Binding Path=FilePath.FilePath, Mode=OneTime}"
+                                                               Margin="0 0 15 0" />
+
+                                                    <TextBlock Grid.Column="2"
+                                                               Text="{Binding Path=Patch.Name, Mode=OneTime}"
+                                                               Margin="0 0 15 0" />
+
+                                                    <ItemsControl Grid.Column="3"
+                                                                  ItemsSource="{Binding Path=OverridenPatches, Mode=OneWay}">
+
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Text="{Binding Path=Name, Mode=OneTime}"
+                                                                           Margin="0 0 10 0" 
+                                                                           TextDecorations="Strikethrough"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </ScrollViewer>
 
             </Grid>
