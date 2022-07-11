@@ -122,7 +122,8 @@ public class Patcher
         string locationKey,
         Dictionary<string, FileModification> fileModifications,
         FileSystemPath dirPath,
-        PatchHistoryManifest? patchHistory)
+        PatchHistoryManifest? patchHistory,
+        Action<Progress>? progressCallback)
     {
         // The previously applied modifications for this location
         string[]? prevAddedFiles = patchHistory?.AddedFiles?.
@@ -133,6 +134,8 @@ public class Patcher
             Where(x => NormalizePath(x.Location) == locationKey).
             Select(x => NormalizePath(x.FilePath)).
             ToArray();
+
+        int fileIndex = 0;
 
         // Process each file modification
         foreach (var fileModification in fileModifications)
@@ -207,6 +210,9 @@ public class Patcher
                 // Delete the file
                 physicalFilePath.DeleteFile();
             }
+
+            fileIndex++;
+            progressCallback?.Invoke(new Progress(fileIndex, fileModifications.Count));
         }
     }
 
@@ -217,7 +223,8 @@ public class Patcher
         Dictionary<string, FileModification> fileModifications, 
         FileSystemPath archiveFilePath, 
         IArchiveDataManager manager, 
-        PatchHistoryManifest? patchHistory)
+        PatchHistoryManifest? patchHistory,
+        Action<Progress>? progressCallback)
     {
         if (!archiveFilePath.FileExists)
         {
@@ -351,7 +358,7 @@ public class Patcher
                 using ArchiveFileStream archiveOutputStream = new(File.OpenWrite(archiveOutputFile.TempPath),
                     archiveOutputFile.TempPath.Name, true);
 
-                manager.WriteArchive(archiveData.Generator, archive, archiveOutputStream, archiveFiles, _ => { });
+                manager.WriteArchive(archiveData.Generator, archive, archiveOutputStream, archiveFiles, progressCallback ?? (_ => { }));
             }
             finally
             {
@@ -479,7 +486,8 @@ public class Patcher
         PatchHistoryManifest? patchHistory, 
         FileSystemPath gameDirectory,
         PatchManifest[] patchManifests,
-        string[] enabledPatches)
+        string[] enabledPatches,
+        Action<Progress>? progressCallback = null)
     {
         Logger.Info("Applying patcher modifications with {0}/{1} enabled patches", enabledPatches.Length, patchManifests.Length);
 
@@ -493,6 +501,13 @@ public class Patcher
         Dictionary<string, LocationModifications> locationModifications =
             GetFileModificationsPerLocation(patchHistory, patchManifests.Where(x => enabledPatches.Contains(x.ID)));
 
+        // Progress:
+        // 00-80%  -> Modifying files
+        // 80-100% -> Applying changes (repacking the container)
+        // Sadly we can't get any actual progress for the last step, so even though it's slower
+        // than the first it'll be better to show it like this
+        progressCallback?.Invoke(new Progress(0, 100));
+
         // Modify every location
         foreach (string locationKey in locationModifications.Keys)
         {
@@ -505,7 +520,8 @@ public class Patcher
                     locationKey: locationKey,
                     fileModifications: locationModifications[locationKey].FileModifications,
                     dirPath: gameDirectory,
-                    patchHistory: patchHistory);
+                    patchHistory: patchHistory,
+                    progressCallback: progressCallback == null ? null : x => progressCallback(new Progress(x.Percentage * 0.8d, 100)));
             }
             // Archive
             else
@@ -517,7 +533,8 @@ public class Patcher
                     fileModifications: locationModifications[locationKey].FileModifications, 
                     archiveFilePath: gameDirectory + locationModifications[locationKey].Location, 
                     manager: archiveDataManager, 
-                    patchHistory: patchHistory);
+                    patchHistory: patchHistory,
+                    progressCallback: progressCallback == null ? null : x => progressCallback(new Progress(x.Percentage * 0.8d, 100)));
             }
         }
 
@@ -539,8 +556,12 @@ public class Patcher
         // Update the container manifest
         container.WriteManifest(game, history, patchManifests, enabledPatches);
 
+        progressCallback?.Invoke(new Progress(80, 100));
+
         // Apply changes
         container.Apply();
+
+        progressCallback?.Invoke(new Progress(100, 100));
     }
 
     #endregion

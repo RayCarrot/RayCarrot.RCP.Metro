@@ -527,9 +527,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task ApplyAsync()
     {
-        // TODO-UPDATE: Set progress?
         // TODO-UPDATE: Localize
-        using (await LoadOperation.RunAsync("Applying patches"))
+        using (DisposableOperation operation = await LoadOperation.RunAsync("Applying patches"))
         {
             Logger.Info("Applying patches");
 
@@ -569,7 +568,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                             patchHistory: PatchHistory, 
                             gameDirectory: GameDirectory, 
                             patchManifests: patchManifests, 
-                            enabledPatches: enabledPatches);
+                            enabledPatches: enabledPatches,
+                            progressCallback: operation.SetProgress);
                     });
                 }
 

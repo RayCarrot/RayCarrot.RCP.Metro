@@ -69,7 +69,7 @@ public readonly struct Progress
     /// <summary>
     /// The progress percentage of the operation
     /// </summary>
-    public double Percentage => Current / (Max - Min) * 100;
+    public double Percentage => Current / (Max - Min) * 100; // TODO: Wouldn't 0-1 make more sense?
 
     #endregion
 
