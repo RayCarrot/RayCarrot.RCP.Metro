@@ -186,7 +186,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             Title = "Select patches to add",
             DefaultDirectory = default,
             DefaultName = null,
-            ExtensionFilter = new FileExtension(PatchFile.FileExtension).GetFileFilterItem.StringRepresentation,
+            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
             MultiSelection = true
         });
 
@@ -227,7 +227,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         manifest.Game, Game);
 
                     // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync($"The selected patch can only be applied to {manifest.Game}", MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync($"The selected patch can only be applied to {manifest.Game.Value.GetGameInfo().DisplayName}", MessageType.Error);
 
                     patch.Dispose();
                     continue;
@@ -284,33 +284,42 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             Logger.Info("Extracting patch contents");
 
-            // TODO-UPDATE: Try/catch
-            // Extract resources
-            if (manifest.AddedFiles != null)
+            try
             {
-                int fileIndex = 0;
-
-                foreach (PatchFilePath addedFile in manifest.AddedFiles)
+                // Extract resources
+                if (manifest.AddedFiles != null)
                 {
+                    int fileIndex = 0;
+
+                    foreach (PatchFilePath addedFile in manifest.AddedFiles)
+                    {
+                        operation.SetProgress(new Progress(fileIndex, manifest.AddedFiles.Length));
+                        fileIndex++;
+
+                        FileSystemPath fileDest = result.SelectedDirectory + addedFile.FullFilePath;
+                        Directory.CreateDirectory(fileDest.Parent);
+
+                        using FileStream dstStream = File.Create(fileDest);
+                        using Stream srcStream = src.GetResource(addedFile);
+
+                        await srcStream.CopyToAsync(dstStream);
+                    }
+
                     operation.SetProgress(new Progress(fileIndex, manifest.AddedFiles.Length));
-                    fileIndex++;
-
-                    FileSystemPath fileDest = result.SelectedDirectory + addedFile.FullFilePath;
-                    Directory.CreateDirectory(fileDest.Parent);
-
-                    using FileStream dstStream = File.Create(fileDest);
-                    using Stream srcStream = src.GetResource(addedFile);
-
-                    await srcStream.CopyToAsync(dstStream);
                 }
 
-                operation.SetProgress(new Progress(fileIndex, manifest.AddedFiles.Length));
+                Logger.Info("Extracted patch contents");
+
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch contents were successfully extracted");
             }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Extracting patch contents");
 
-            Logger.Info("Extracted patch contents");
-
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch contents were successfully extracted");
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch contents");
+            }
         }
     }
 
@@ -334,42 +343,51 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             Logger.Info("Exporting patch from container");
 
-            // TODO-UPDATE: Try/catch
-            await Task.Run(() =>
+            try
             {
-                // Create a new patch
-                using PatchFile patchFile = new(browseResult.SelectedFileLocation);
-
-                // Copy resources
-                if (manifest.AddedFiles != null)
+                await Task.Run(() =>
                 {
-                    foreach (PatchFilePath addedFile in manifest.AddedFiles)
+                    // Create a new patch
+                    using PatchFile patchFile = new(browseResult.SelectedFileLocation);
+
+                    // Copy resources
+                    if (manifest.AddedFiles != null)
                     {
-                        using Stream srcStream = src.GetResource(addedFile);
-                        patchFile.AddPatchResource(addedFile, srcStream);
+                        foreach (PatchFilePath addedFile in manifest.AddedFiles)
+                        {
+                            using Stream srcStream = src.GetResource(addedFile);
+                            patchFile.AddPatchResource(addedFile, srcStream);
+                        }
                     }
-                }
 
-                // Copy assets
-                if (manifest.Assets != null)
-                {
-                    foreach (string asset in manifest.Assets)
+                    // Copy assets
+                    if (manifest.Assets != null)
                     {
-                        using Stream srcStream = src.GetAsset(asset);
-                        patchFile.AddPatchAsset(asset, srcStream);
+                        foreach (string asset in manifest.Assets)
+                        {
+                            using Stream srcStream = src.GetAsset(asset);
+                            patchFile.AddPatchAsset(asset, srcStream);
+                        }
                     }
-                }
 
-                // Write the manifest
-                patchFile.WriteManifest(manifest);
+                    // Write the manifest
+                    patchFile.WriteManifest(manifest);
 
-                patchFile.Apply();
-            });
+                    patchFile.Apply();
+                });
 
-            Logger.Info("Exported patch");
+                Logger.Info("Exported patch");
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch was successfully exported");
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch was successfully exported");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Extracting patch");
+
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch");
+            }
         }
     }
 
@@ -498,7 +516,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         }
         catch (Exception ex)
         {
-            // TODO-UPDATE: Log exception
+            Logger.Error(ex, "Loading patches");
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the patches");
@@ -555,7 +573,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     });
                 }
 
-                // TODO-UPDATE: Do we actually still want to auto-sync textures?
+                // TODO-UPDATE: Do we actually still want to auto-sync textures? - yes
                 //await Manager.OnRepackedArchivesAsync(Containers.Where(x => x.HasChanges).Select(x => x.ArchiveFilePath).ToArray());
 
                 Logger.Info("Applied patches");

@@ -53,7 +53,7 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// The game display name
     /// </summary>
-    public abstract string DisplayName { get; }
+    public abstract string DisplayName { get; } // TODO: Localize
 
     /// <summary>
     /// The game backup name

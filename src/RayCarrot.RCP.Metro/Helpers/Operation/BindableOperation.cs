@@ -2,6 +2,10 @@
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO: Refactor this by combining BindableOperation and Operation. Rather than creating a disposable we can pass in an Action. This
+//       will allow us to have an option where it will return and not run the action if it's already running rather than just waiting
+//       for the lock to release. We should also avoid all of these actions for setting text, progress etc.
+
 public class BindableOperation : BaseViewModel
 {
     public BindableOperation()

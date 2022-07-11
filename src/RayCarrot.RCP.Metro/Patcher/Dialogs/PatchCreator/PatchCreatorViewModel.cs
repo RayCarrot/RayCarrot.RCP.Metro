@@ -122,82 +122,100 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         {
             Logger.Trace("Importing from patch at {0}", patchFilePath);
 
-            // TODO-UPDATE: Try/catch
-
-            using PatchFile patchFile = new(patchFilePath, true);
-
-            PatchManifest manifest = patchFile.ReadManifest();
-
-            // TODO-UPDATE: Verify game since games have different archives
-
-            if (manifest.PatchVersion > PatchFile.Version)
+            try
             {
-                Logger.Warn("Failed to import from patch due to the version number {0} being higher than the current one ({1})",
-                    manifest.PatchVersion, PatchFile.Version);
+                using PatchFile patchFile = new(patchFilePath, true);
+
+                PatchManifest manifest = patchFile.ReadManifest();
+
+                if (manifest.PatchVersion > PatchFile.Version)
+                {
+                    Logger.Warn("Failed to import from patch due to the version number {0} being higher than the current one ({1})",
+                        manifest.PatchVersion, PatchFile.Version);
+
+                    // TODO-UPDATE: Localize
+                    await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+
+                    return false;
+                }
+
+                Name = manifest.Name ?? String.Empty;
+                Description = manifest.Description ?? String.Empty;
+                Author = manifest.Author ?? String.Empty;
+                Revision = manifest.Revision + 1;
+                ID = manifest.ID;
+                LockToGame = manifest.Game != null;
+
+                if (manifest.HasAsset(PatchAsset.Thumbnail))
+                {
+                    using Stream thumbStream = patchFile.GetPatchAsset(PatchAsset.Thumbnail);
+
+                    Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
+
+                    if (Thumbnail?.CanFreeze == true)
+                        Thumbnail.Freeze();
+                }
+
+                _tempDir = new TempDirectory(true);
+
+                // Extract resources to temp
+                if (manifest.AddedFiles != null && manifest.AddedFileChecksums != null)
+                {
+                    List<AvailableFileLocation> availableLocations = AvailableLocations.ToList();
+
+                    for (var i = 0; i < manifest.AddedFiles.Length; i++)
+                    {
+                        operation.SetProgress(new Progress(i, manifest.AddedFiles.Length));
+
+                        PatchFilePath addedFile = manifest.AddedFiles[i];
+                        string checksum = manifest.AddedFileChecksums[i];
+
+                        FileSystemPath tempFilePath = _tempDir.TempPath + addedFile.FullFilePath;
+
+                        Directory.CreateDirectory(tempFilePath.Parent);
+
+                        using Stream file = patchFile.GetPatchResource(addedFile);
+                        using Stream tempFileStream = File.Create(tempFilePath);
+                        await file.CopyToAsync(tempFileStream);
+
+                        // Attempt to find a matching location
+                        AvailableFileLocation? loc = availableLocations.FirstOrDefault(x => 
+                            x.Location.Equals(addedFile.Location, StringComparison.InvariantCultureIgnoreCase));
+
+                        // If a location is not found we create a new one
+                        if (loc == null)
+                        {
+                            loc = new AvailableFileLocation(addedFile.Location, addedFile.Location);
+                            availableLocations.Add(loc);
+                        }
+
+                        AddFile(new FileViewModel()
+                        {
+                            SourceFilePath = tempFilePath,
+                            Location = addedFile.Location,
+                            FilePath = addedFile.FilePath,
+                            Checksum = checksum,
+                        }, loc);
+                    }
+
+                    operation.SetProgress(new Progress(manifest.AddedFiles.Length, manifest.AddedFiles.Length));
+                }
+
+                IsImported = true;
+
+                Logger.Info("Imported patch {0} with version {1}", manifest.Name, manifest.PatchVersion);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Importing patch to creator");
 
                 // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The selected patch could not be read");
 
                 return false;
             }
-
-            Name = manifest.Name ?? String.Empty;
-            Description = manifest.Description ?? String.Empty;
-            Author = manifest.Author ?? String.Empty;
-            Revision = manifest.Revision + 1;
-            ID = manifest.ID;
-            LockToGame = manifest.Game != null;
-
-            if (manifest.HasAsset(PatchAsset.Thumbnail))
-            {
-                using Stream thumbStream = patchFile.GetPatchAsset(PatchAsset.Thumbnail);
-
-                Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
-
-                if (Thumbnail?.CanFreeze == true)
-                    Thumbnail.Freeze();
-            }
-
-            _tempDir = new TempDirectory(true);
-
-            // Extract resources to temp
-            if (manifest.AddedFiles != null && manifest.AddedFileChecksums != null)
-            {
-                for (var i = 0; i < manifest.AddedFiles.Length; i++)
-                {
-                    operation.SetProgress(new Progress(i, manifest.AddedFiles.Length));
-
-                    PatchFilePath addedFile = manifest.AddedFiles[i];
-                    string checksum = manifest.AddedFileChecksums[i];
-
-                    FileSystemPath tempFilePath = _tempDir.TempPath + addedFile.FullFilePath;
-
-                    Directory.CreateDirectory(tempFilePath.Parent);
-
-                    using Stream file = patchFile.GetPatchResource(addedFile);
-                    using Stream tempFileStream = File.Create(tempFilePath);
-                    await file.CopyToAsync(tempFileStream);
-
-                    AvailableFileLocation loc = AvailableLocations.FirstOrDefault(x => 
-                        x.Location.Equals(addedFile.Location, StringComparison.InvariantCultureIgnoreCase)) ?? AvailableLocations.First();
-
-                    AddFile(new FileViewModel()
-                    {
-                        SourceFilePath = tempFilePath,
-                        Location = addedFile.Location,
-                        FilePath = addedFile.FilePath,
-                        Checksum = checksum,
-                    }, loc);
-                }
-
-                operation.SetProgress(new Progress(manifest.AddedFiles.Length, manifest.AddedFiles.Length));
-            }
-
-            IsImported = true;
-
-            Logger.Info("Imported patch {0} with version {1}", manifest.Name, manifest.PatchVersion);
-
-            return true;
         }
     }
 
@@ -249,7 +267,6 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         // Clear selection
         SelectedFile = null;
 
-        // TODO-UPDATE: Try/catch
         foreach (FileSystemPath file in browseResult.SelectedFiles)
         {
             AddFile(new FileViewModel()
@@ -277,22 +294,29 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         // Clear selection
         SelectedFile = null;
 
-        // TODO-UPDATE: Try/catch
-        foreach (FileSystemPath file in Directory.EnumerateFiles(browseResult.SelectedDirectory, "*", SearchOption.AllDirectories))
+        try
         {
-            AddFile(new FileViewModel()
+            foreach (FileSystemPath file in Directory.EnumerateFiles(browseResult.SelectedDirectory, "*", SearchOption.AllDirectories))
             {
-                SourceFilePath = file,
-                Location = SelectedLocation.Location,
-                FilePath = file - browseResult.SelectedDirectory,
-            }, SelectedLocation);
+                AddFile(new FileViewModel()
+                {
+                    SourceFilePath = file,
+                    Location = SelectedLocation.Location,
+                    FilePath = file - browseResult.SelectedDirectory,
+                }, SelectedLocation);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Adding files from folder");
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the selected files");
         }
     }
 
     public async Task<bool> CreatePatchAsync()
     {
-        // TODO-UPDATE: Filter out duplicates and invalid locations
-
         using (await LoadOperation.RunAsync("Creating patch"))
         {
             Logger.Info("Creating the patch '{0}' with revision {1} and ID {2}", Name, Revision, ID);
@@ -310,95 +334,105 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             if (browseResult.SelectedFileLocation.FileExists)
                 browseResult.SelectedFileLocation.DeleteFile();
 
-            // TODO-UPDATE: Try/catch
-
-            await Task.Run(() =>
+            try
             {
-                using PatchFile patchFile = new(browseResult.SelectedFileLocation);
-
-                List<PatchFilePath> addedFiles = new();
-                List<string> addedFileChecksums = new();
-                List<PatchFilePath> removedFiles = new();
-                List<string> assets = new();
-                long totalSize = 0;
-
-                foreach (FileViewModel file in Files.SelectMany(x => x.Files).Where(x => x.IsValid))
+                await Task.Run(() =>
                 {
-                    if (file.IsFileAdded)
+                    using PatchFile patchFile = new(browseResult.SelectedFileLocation);
+
+                    List<PatchFilePath> addedFiles = new();
+                    List<string> addedFileChecksums = new();
+                    List<PatchFilePath> removedFiles = new();
+                    List<string> assets = new();
+                    long totalSize = 0;
+
+                    foreach (FileViewModel file in Files.SelectMany(x => x.Files).Where(x => x.IsValid))
                     {
-                        using FileStream stream = File.OpenRead(file.SourceFilePath);
+                        if (file.IsFileAdded)
+                        {
+                            using FileStream stream = File.OpenRead(file.SourceFilePath);
 
-                        // Calculate the checksum
-                        string checksum = file.Checksum ?? PatchFile.CalculateChecksum(stream);
-                        stream.Position = 0;
+                            // Calculate the checksum
+                            string checksum = file.Checksum ?? PatchFile.CalculateChecksum(stream);
+                            stream.Position = 0;
 
-                        // Add the file
-                        patchFile.AddPatchResource(file.PatchFilePath, stream);
+                            // Add the file
+                            patchFile.AddPatchResource(file.PatchFilePath, stream);
+
+                            // Add to the manifest
+                            addedFiles.Add(file.PatchFilePath);
+                            addedFileChecksums.Add(checksum);
+
+                            // Update the total size
+                            totalSize += stream.Length;
+                        }
+                        else
+                        {
+                            // Add to the manifest
+                            removedFiles.Add(file.PatchFilePath);
+                        }
+                    }
+
+                    // Add the thumbnail if there is one
+                    if (Thumbnail != null)
+                    {
+                        Logger.Info("Adding patch thumbnail");
+
+                        PngBitmapEncoder encoder = new();
+                        encoder.Frames.Add(BitmapFrame.Create(Thumbnail));
+
+                        using MemoryStream memStream = new();
+                        encoder.Save(memStream);
+                        memStream.Position = 0;
+
+                        // Add the asset
+                        patchFile.AddPatchAsset(PatchAsset.Thumbnail, memStream);
 
                         // Add to the manifest
-                        addedFiles.Add(file.PatchFilePath);
-                        addedFileChecksums.Add(checksum);
+                        assets.Add(PatchAsset.Thumbnail);
 
-                        // Update the total size
-                        totalSize += stream.Length;
+                        Logger.Info("Added patch thumbnail");
                     }
-                    else
-                    {
-                        // Add to the manifest
-                        removedFiles.Add(file.PatchFilePath);
-                    }
-                }
 
-                // Add the thumbnail if there is one
-                if (Thumbnail != null)
-                {
-                    Logger.Info("Adding patch thumbnail");
+                    // Write the manifest
+                    patchFile.WriteManifest(new PatchManifest(
+                        ID: ID,
+                        PatchVersion: PatchFile.Version,
+                        Game: LockToGame ? Game : null,
+                        Name: Name,
+                        Description: Description,
+                        Author: Author,
+                        TotalSize: totalSize,
+                        ModifiedDate: DateTime.Now,
+                        Revision: Revision,
+                        AddedFiles: addedFiles.ToArray(),
+                        AddedFileChecksums: addedFileChecksums.ToArray(),
+                        RemovedFiles: removedFiles.ToArray(),
+                        Assets: assets.ToArray()));
 
-                    PngBitmapEncoder encoder = new();
-                    encoder.Frames.Add(BitmapFrame.Create(Thumbnail));
+                    patchFile.Apply();
 
-                    using MemoryStream memStream = new();
-                    encoder.Save(memStream);
-                    memStream.Position = 0;
+                    // Dispose temporary files
+                    _tempDir?.Dispose();
+                    _tempDir = null;
+                });
 
-                    // Add the asset
-                    patchFile.AddPatchAsset(PatchAsset.Thumbnail, memStream);
+                Logger.Info("Created patch");
 
-                    // Add to the manifest
-                    assets.Add(PatchAsset.Thumbnail);
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayMessageAsync("The patch was saved successfully", MessageType.Success);
 
-                    Logger.Info("Added patch thumbnail");
-                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Creating patch");
 
-                // Write the manifest
-                patchFile.WriteManifest(new PatchManifest(
-                    ID: ID,
-                    PatchVersion: PatchFile.Version,
-                    Game: LockToGame ? Game : null,
-                    Name: Name,
-                    Description: Description,
-                    Author: Author,
-                    TotalSize: totalSize,
-                    ModifiedDate: DateTime.Now,
-                    Revision: Revision,
-                    AddedFiles: addedFiles.ToArray(),
-                    AddedFileChecksums: addedFileChecksums.ToArray(),
-                    RemovedFiles: removedFiles.ToArray(),
-                    Assets: assets.ToArray()));
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when creating the patch");
 
-                patchFile.Apply();
-
-                // Dispose temporary files
-                _tempDir?.Dispose();
-                _tempDir = null;
-            });
-
-            Logger.Info("Created patch");
-
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The patch was saved successfully", MessageType.Success);
-
-            return true;
+                return false;
+            }
         }
     }
 

@@ -83,9 +83,9 @@
                                    VerticalAlignment="Center"
                                    Text="Patches" />
 
-                        <!-- TODO-UPDATE: Add info + localize -->
+                        <!-- TODO-UPDATE: Localize (and maybe rewrite) -->
                         <local:InfoIcon Grid.Column="1"
-                                        Text="" />
+                                        Text="Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won't go into effect until it's both added and enabled, allowing patches to be easily toggled on and off. It is not recommended manually changing game files which a patch modifies as it might result in some changes being lost." />
 
                         <!-- TODO-UPDATE: Localize -->
                         <Button Grid.Column="3"
