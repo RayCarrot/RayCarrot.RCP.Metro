@@ -195,7 +195,6 @@
 
                                 <!-- Files -->
 
-                                <!-- TODO-UPDATE: Add info icons describing how these work and that leaving source empty removes the file -->
                                 <DataGrid ItemsSource="{Binding Path=Files, Mode=OneTime}"
                                           d:ItemsSource="{d:SampleData}"
                                           SelectedItem="{Binding Path=Data.SelectedFile, Source={StaticResource CreatorViewModel}}"
@@ -205,11 +204,13 @@
                                           CanUserReorderColumns="False"
                                           CanUserResizeColumns="True"
                                           CanUserResizeRows="False"
-                                          CanUserSortColumns="False"
                                           SelectionMode="Extended"
                                           Margin="0 0 0 10">
 
                                     <DataGrid.Columns>
+
+                                        <!-- Icon -->
+
                                         <DataGridTemplateColumn Width="32" CanUserResize="False" IsReadOnly="True">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate DataType="{x:Type patcher:PatchCreatorViewModel+FileViewModel}">
@@ -233,7 +234,16 @@
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
-                                        <DataGridTextColumn Header="Source" Width="*" MinWidth="100">
+
+                                        <!-- Source -->
+
+                                        <DataGridTextColumn Width="*" MinWidth="100">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Source" />
+                                                    <local:InfoIcon Text="The path of the file to add to the specified destination. If this is empty then any existing file at the destination will be removed instead." />
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
                                             <DataGridTextColumn.Binding>
                                                 <Binding Path="SourceFilePath" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
@@ -247,7 +257,10 @@
                                                 </Style>
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="Destination path" Width="*" MinWidth="100">
+
+                                        <!-- Destination -->
+
+                                        <DataGridTextColumn Header="Destination" Width="*" MinWidth="100">
                                             <DataGridTextColumn.Binding>
                                                 <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>

@@ -285,7 +285,6 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         if (syncVm == null)
             return;
 
-        // TODO-UPDATE: Don't show success message?
         await syncVm.SyncTextureInfoAsync(archiveFilePaths);
     }
 
