@@ -251,11 +251,26 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         if (Game == null)
             return;
 
-        // TODO-UPDATE: First time if user has the setting set to false (default value) then ask user if they want to turn
-        //              the setting on. Be clear they can change it in settings page at any time.
+        AppUserData data = Services.Data;
+
         // Only auto-sync if set to do so
-        if (!Services.Data.Archive_CNT_SyncOnRepack)
-            return;
+        if (!data.Archive_CNT_SyncOnRepack)
+        {
+            // Ask user the first time
+            if (!data.Archive_CNT_SyncOnRepackRequested)
+            {
+                // TODO-UPDATE: Localize
+                if (await Services.MessageUI.DisplayMessageAsync("Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page.", MessageType.Question, true))
+                    data.Archive_CNT_SyncOnRepack = true;
+
+                data.Archive_CNT_SyncOnRepackRequested = true;
+            }
+
+            if (!data.Archive_CNT_SyncOnRepack)
+                return;
+        }
+
+        data.Archive_CNT_SyncOnRepackRequested = true;
 
         // TODO: Find a better solution than first creating the utilities to then get the view models
         Utility_BaseGameSyncTextureInfo_ViewModel? syncVm = Game switch

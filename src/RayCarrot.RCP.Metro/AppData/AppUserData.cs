@@ -96,6 +96,7 @@ public class AppUserData : BaseViewModel
         Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
         Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
         Archive_CNT_SyncOnRepack = false;
+        Archive_CNT_SyncOnRepackRequested = false;
 
         // Binary
         Binary_IsSerializationLogEnabled = false;
@@ -444,6 +445,11 @@ public class AppUserData : BaseViewModel
     /// Indicates if the textures for a CNT file should be synchronized with the game on repacking the archive
     /// </summary>
     public bool Archive_CNT_SyncOnRepack { get; set; }
+
+    /// <summary>
+    /// Indicates if the user has been asked to enable <see cref="Archive_CNT_SyncOnRepack"/>
+    /// </summary>
+    public bool Archive_CNT_SyncOnRepackRequested { get; set; }
 
     public void Archive_AddAssociatedProgram(FileExtension ext, FileSystemPath exePath)
     {

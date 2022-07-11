@@ -1086,6 +1086,9 @@ public partial class App : Application
         if (Data.App_LastVersion < new Version(13, 1, 0, 0))
             Data.Archive_CNT_SyncOnRepack = false;
 
+        if (Data.App_LastVersion < new Version(13, 3, 0, 0))
+            Data.Archive_CNT_SyncOnRepackRequested = false;
+
         // Refresh the jump list
         RefreshJumpList();
 
