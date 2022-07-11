@@ -416,22 +416,20 @@
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
 
-                                                    <!-- TODO-UPDATE: Don't use archive brushes -->
                                                     <iconPacks:PackIconMaterial Grid.Column="0"
                                                         Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Add}"
                                                         HorizontalAlignment="Center"
                                                         Width="16" Height="16"
                                                         Kind="Plus"
-                                                        Foreground="{StaticResource RCP.Brushes.Archive.AddItem}"
+                                                        Foreground="{StaticResource RCP.Brushes.AddItem}"
                                                         Margin="0 0 5 0" />
 
-                                                    <!-- TODO-UPDATE: Don't use archive brushes -->
                                                     <iconPacks:PackIconMaterial Grid.Column="0"
                                                         Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Remove}"
                                                         HorizontalAlignment="Center"
                                                         Width="16" Height="16"
                                                         Kind="DeleteOutline"
-                                                        Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}"
+                                                        Foreground="{StaticResource RCP.Brushes.DeleteItem}"
                                                         Margin="0 0 5 0" />
 
                                                     <TextBlock Grid.Column="1"

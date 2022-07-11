@@ -36,7 +36,7 @@
                     <!-- Fallback icon -->
 
                     <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                Foreground="{StaticResource RCP.Brushes.Archive.File}"
+                                                Foreground="{StaticResource RCP.Brushes.File}"
                                                 HorizontalAlignment="Center"
                                                 Visibility="{Binding Path=ThumbnailSource, Converter={local:ObjectNullToVisibilityConverter}}"
                                                 Width="48"

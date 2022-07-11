@@ -215,21 +215,19 @@
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate DataType="{x:Type patcher:PatchCreatorViewModel+FileViewModel}">
                                                     <Grid>
-                                                        <!-- TODO-UPDATE: Don't use archive brushes -->
                                                         <iconPacks:PackIconMaterial Grid.Column="0"
                                                             Visibility="{Binding Path=IsFileAdded, Converter={local:BooleanToVisibilityConverter}}"
                                                             HorizontalAlignment="Center"
                                                             Width="16" Height="16"
                                                             Kind="Plus"
-                                                            Foreground="{StaticResource RCP.Brushes.Archive.AddItem}" />
+                                                            Foreground="{StaticResource RCP.Brushes.AddItem}" />
 
-                                                        <!-- TODO-UPDATE: Don't use archive brushes -->
                                                         <iconPacks:PackIconMaterial Grid.Column="0"
                                                             Visibility="{Binding Path=IsFileAdded, Converter={local:InvertedBooleanToVisibilityConverter}}"
                                                             HorizontalAlignment="Center"
                                                             Width="16" Height="16"
                                                             Kind="DeleteOutline"
-                                                            Foreground="{StaticResource RCP.Brushes.Archive.DeleteItem}" />
+                                                            Foreground="{StaticResource RCP.Brushes.DeleteItem}" />
                                                     </Grid>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>

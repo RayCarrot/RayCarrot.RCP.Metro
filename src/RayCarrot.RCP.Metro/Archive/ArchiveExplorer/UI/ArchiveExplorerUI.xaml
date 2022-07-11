@@ -96,10 +96,10 @@
                                         <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Path=IsFile, Mode=OneTime}" Value="True">
-                                                    <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Archive.File}" />
+                                                    <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.File}" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Path=IsFile, Mode=OneTime}" Value="False">
-                                                    <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Archive.Folder}" />
+                                                    <Setter Property="Foreground" Value="{StaticResource RCP.Brushes.Folder}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -200,7 +200,7 @@
 
                                 <iconPacks:PackIconMaterial Grid.Column="0"
                                                             Kind="{Binding Path=IsExpanded, Converter={archive:ArchiveExplorerIsFolderExpandedToIconConverter}}" 
-                                                            Foreground="{StaticResource RCP.Brushes.Archive.Folder}" />
+                                                            Foreground="{StaticResource RCP.Brushes.Folder}" />
 
                                 <TextBlock Grid.Column="2"
                                            Text="{Binding Path=DisplayName, Mode=OneTime}"
@@ -281,7 +281,7 @@
                 <!-- Add File Button -->
 
                 <Button Style="{StaticResource RCP.Styles.Button.IconCircle}"
-                        Foreground="{StaticResource RCP.Brushes.Archive.AddItem}"
+                        Foreground="{StaticResource RCP.Brushes.AddItem}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Margin="15"
