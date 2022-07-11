@@ -534,47 +534,40 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             try
             {
-                if (HasChanges)
+                await Task.Run(async () =>
                 {
-                    await Task.Run(() =>
-                    {
-                        // TODO-UPDATE: In case of error we should copy existing container to temp, open the temp one here and replace
-                        //              actual container with temp once it succeeds. This avoids corrupting it in case of error. Though
-                        //              on the other hand if it fails then some patches might be half applied...
-                        // Open the container for writing
-                        using PatchContainerFile container = new(ContainerFilePath);
+                    // TODO-UPDATE: Create new container in temp and write to that. If this succeeds we replace original with new one.
 
-                        // Create a patcher
-                        Patcher patcher = new(); // TODO: Use DI?
+                    // Open the container for writing
+                    using PatchContainerFile container = new(ContainerFilePath);
 
-                        // Add files to the container for patches which do not currently exist in the container
-                        foreach (PatchViewModel patchViewModel in Patches.Where(x => x.DataSource is not PatchContainerDataSource))
-                            patcher.AddPatchFiles(container, patchViewModel.Manifest, patchViewModel.DataSource);
+                    // Create a patcher
+                    Patcher patcher = new(); // TODO: Use DI?
 
-                        // Clear removed patches
-                        foreach (string patch in _removedPatches.Where(x => Patches.All(p => p.Manifest.ID != x)))
-                            container.ClearPatchFiles(patch);
+                    // Add files to the container for patches which do not currently exist in the container
+                    foreach (PatchViewModel patchViewModel in Patches.Where(x => x.DataSource is not PatchContainerDataSource))
+                        patcher.AddPatchFiles(container, patchViewModel.Manifest, patchViewModel.DataSource);
 
-                        _removedPatches.Clear();
+                    // Clear removed patches
+                    foreach (string patch in _removedPatches.Where(x => Patches.All(p => p.Manifest.ID != x)))
+                        container.ClearPatchFiles(patch);
 
-                        // Get the current patch data
-                        PatchManifest[] patchManifests = Patches.Select(x => x.Manifest).ToArray();
-                        string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
+                    _removedPatches.Clear();
 
-                        patcher.Apply(
-                            game: Game,
-                            container: container, 
-                            archiveDataManager: Game.GetGameInfo().GetArchiveDataManager, 
-                            patchHistory: PatchHistory, 
-                            gameDirectory: GameDirectory, 
-                            patchManifests: patchManifests, 
-                            enabledPatches: enabledPatches,
-                            progressCallback: operation.SetProgress);
-                    });
-                }
+                    // Get the current patch data
+                    PatchManifest[] patchManifests = Patches.Select(x => x.Manifest).ToArray();
+                    string[] enabledPatches = Patches.Where(x => x.IsEnabled).Select(x => x.Manifest.ID).ToArray();
 
-                // TODO-UPDATE: Do we actually still want to auto-sync textures? - yes
-                //await Manager.OnRepackedArchivesAsync(Containers.Where(x => x.HasChanges).Select(x => x.ArchiveFilePath).ToArray());
+                    await patcher.ApplyAsync(
+                        game: Game,
+                        container: container,
+                        archiveDataManager: Game.GetGameInfo().GetArchiveDataManager,
+                        patchHistory: PatchHistory,
+                        gameDirectory: GameDirectory,
+                        patchManifests: patchManifests,
+                        enabledPatches: enabledPatches,
+                        progressCallback: operation.SetProgress);
+                });
 
                 Logger.Info("Applied patches");
 
@@ -585,7 +578,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex,
-                    "An error occurred when applying the patches. Some patches might still have been applied.");
+                    "An error occurred when applying the patches. Some files might still have been modified by patches.");
             }
         }
     }

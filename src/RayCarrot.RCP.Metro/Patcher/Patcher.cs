@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
 
@@ -479,7 +480,7 @@ public class Patcher
         }
     }
 
-    public void Apply(
+    public async Task ApplyAsync(
         Games game,
         PatchContainerFile container, 
         IArchiveDataManager archiveDataManager,
@@ -537,6 +538,12 @@ public class Patcher
                     progressCallback: progressCallback == null ? null : x => progressCallback(new Progress(x.Percentage * 0.8d, 100)));
             }
         }
+
+        FileSystemPath[] archiveFilePaths = locationModifications.Keys.
+            Where(x => x != String.Empty).
+            Select(x => gameDirectory + x).
+            ToArray();
+        await archiveDataManager.OnRepackedArchivesAsync(archiveFilePaths);
 
         // Clear old history
         if (patchHistory != null)

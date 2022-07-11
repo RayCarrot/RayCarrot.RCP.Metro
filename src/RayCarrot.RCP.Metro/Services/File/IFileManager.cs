@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 // TODO: Clean up and split up - move some of these to FileSystemPathExtensions
+// TODO: Remove this interface - no need for it and it's implemented very poorly. Just creating an interface with every member of a class
+//       is bad design as it enforces that every version of it has to be implemented nearly the same.
 
 /// <summary>
 /// Defines a generic file manager
