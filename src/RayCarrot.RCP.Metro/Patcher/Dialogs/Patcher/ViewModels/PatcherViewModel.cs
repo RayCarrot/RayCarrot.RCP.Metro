@@ -215,14 +215,14 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     continue;
                 }
 
-                // Verify game, if locked to one
-                if (manifest.Game != null && manifest.Game != Game)
+                // Verify game
+                if (manifest.Game != Game)
                 {
                     Logger.Warn("Failed to add patch due to the specified game {0} not matching the current one ({1})",
                         manifest.Game, Game);
 
                     // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync($"The selected patch can only be applied to {manifest.Game.Value.GetGameInfo().DisplayName}", MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync($"The selected patch can only be applied to {manifest.Game.GetGameInfo().DisplayName}", MessageType.Error);
 
                     patch.Dispose();
                     continue;

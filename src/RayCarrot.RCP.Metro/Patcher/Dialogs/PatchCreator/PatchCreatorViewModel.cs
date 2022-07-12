@@ -76,7 +76,6 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public int Revision { get; set; }
     public string ID { get; set; }
     public Games Game { get; }
-    public bool LockToGame { get; set; } = true;
     public BitmapSource? Thumbnail { get; set; }
 
     public ObservableCollection<FileLocationViewModel> Files { get; } = new();
@@ -144,7 +143,6 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 Author = manifest.Author ?? String.Empty;
                 Revision = manifest.Revision + 1;
                 ID = manifest.ID;
-                LockToGame = manifest.Game != null;
 
                 if (manifest.HasAsset(PatchAsset.Thumbnail))
                 {
@@ -398,7 +396,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     patchFile.WriteManifest(new PatchManifest(
                         ID: ID,
                         PatchVersion: PatchFile.Version,
-                        Game: LockToGame ? Game : null,
+                        Game: Game,
                         Name: Name,
                         Description: Description,
                         Author: Author,
