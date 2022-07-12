@@ -80,7 +80,18 @@ public class PatchZip : IDisposable
         if (_zip is null)
             throw new Exception("Can't open patch stream from a zip which has not yet been created");
 
-        return _zip.GetEntry(filePath)?.Open();
+        ZipArchiveEntry? entry = _zip.GetEntry(filePath);
+
+        if (entry == null)
+            return null;
+
+        Stream stream = entry.Open();
+
+        // Wrap the entry in a stream where we can set a fixed length if read-only. If we don't do this
+        // then the length can't be read from the stream as the deflate stream does not support it.
+        return _readOnly 
+            ? new PatchZipFileEntryReadStream(stream, entry.Length) 
+            : stream;
     }
 
     public void Apply() => Dispose();

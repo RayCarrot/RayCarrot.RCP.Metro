@@ -41,18 +41,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #endregion
 
-    #region Private Fields
-
-    private readonly HashSet<string> _removedPatches = new();
-
-    #endregion
-
     #region Public Properties
 
     public Games Game { get; }
     public FileSystemPath GameDirectory { get; }
     public FileSystemPath ContainerFilePath { get; }
     
+    public PatchContainerFile? Container { get; set; }
     public PatchHistoryManifest? PatchHistory { get; set; }
 
     public ObservableCollection<PatchViewModel> Patches { get; }
@@ -86,9 +81,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     {
         Logger.Info("Loading existing patches");
 
-        using PatchContainerFile container = new(ContainerFilePath, readOnly: true);
+        Container = new PatchContainerFile(ContainerFilePath, readOnly: true);
 
-        PatchContainerManifest? containerManifest = container.ReadManifest();
+        PatchContainerManifest? containerManifest = Container.ReadManifest();
 
         Patches.Clear();
 
@@ -125,7 +120,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
         foreach (PatchManifest patch in containerManifest.Patches)
         {
-            PatchContainerDataSource src = new(container, patch.ID, true);
+            PatchContainerDataSource src = new(Container, patch.ID, true);
             PatchViewModel patchVM = new(this, patch, containerManifest.EnabledPatches?.Contains(patch.ID) == true, src);
 
             // TODO: Load this async? Or maybe it's fast enough that it doesn't matter.
@@ -396,7 +391,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         PatchManifest manifest = patchViewModel.Manifest;
 
         Patches.Remove(patchViewModel);
-        _removedPatches.Add(manifest.ID);
 
         if (SelectedPatch == patchViewModel)
             SelectedPatch = null;
@@ -536,23 +530,20 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 await Task.Run(async () =>
                 {
-                    // TODO-UPDATE: Create new container in temp and write to that. If this succeeds we replace original with new one.
+                    // Make sure the old container is open
+                    Container ??= new PatchContainerFile(ContainerFilePath, readOnly: true);
 
-                    // Open the container for writing
-                    using PatchContainerFile container = new(ContainerFilePath);
+                    // Open a new container for writing in temp. This way if it fails during
+                    // this process we won't corrupt the original container file.
+                    using TempFile tempFile = new(false);
+                    using PatchContainerFile newContainer = new(tempFile.TempPath);
 
                     // Create a patcher
                     Patcher patcher = new(); // TODO: Use DI?
 
-                    // Add files to the container for patches which do not currently exist in the container
-                    foreach (PatchViewModel patchViewModel in Patches.Where(x => x.DataSource is not PatchContainerDataSource))
-                        patcher.AddPatchFiles(container, patchViewModel.Manifest, patchViewModel.DataSource);
-
-                    // Clear removed patches
-                    foreach (string patch in _removedPatches.Where(x => Patches.All(p => p.Manifest.ID != x)))
-                        container.ClearPatchFiles(patch);
-
-                    _removedPatches.Clear();
+                    // Add patch files to the container
+                    foreach (PatchViewModel patchViewModel in Patches)
+                        patcher.AddPatchFiles(newContainer, patchViewModel.Manifest, patchViewModel.DataSource);
 
                     // Get the current patch data
                     PatchManifest[] patchManifests = Patches.Select(x => x.Manifest).ToArray();
@@ -560,13 +551,20 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                     await patcher.ApplyAsync(
                         game: Game,
-                        container: container,
+                        oldContainer: Container,
+                        newContainer: newContainer,
                         archiveDataManager: Game.GetGameInfo().GetArchiveDataManager,
                         patchHistory: PatchHistory,
                         gameDirectory: GameDirectory,
                         patchManifests: patchManifests,
                         enabledPatches: enabledPatches,
                         progressCallback: operation.SetProgress);
+
+                    // Close the old container
+                    Container?.Dispose();
+
+                    // Replace old container with new one
+                    Services.File.MoveFile(tempFile.TempPath, ContainerFilePath, true);
                 });
 
                 Logger.Info("Applied patches");
@@ -585,6 +583,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
+        Container?.Dispose();
         Patches.DisposeAll();
     }
 

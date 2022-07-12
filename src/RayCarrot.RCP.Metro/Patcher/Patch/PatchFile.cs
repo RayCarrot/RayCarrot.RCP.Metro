@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
+using System.Runtime.Remoting;
 using System.Security.Cryptography;
 using NLog;
 
@@ -121,19 +121,7 @@ public class PatchFile : IDisposable
 
     #region Public Static Methods
 
-    public static string GenerateID(params string?[] existingIDs)
-    {
-        string id;
-
-        // We probably don't need to verify the ID doesn't conflict with an existing one,
-        // but let's do so anyway just to be on the safe side
-        do
-        {
-            id = Guid.NewGuid().ToString();
-        } while (existingIDs.Contains(id));
-
-        return id;
-    }
+    public static string GenerateID() => Guid.NewGuid().ToString();
 
     public static string CalculateChecksum(Stream stream)
     {

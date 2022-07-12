@@ -49,13 +49,11 @@ public class Patcher
         {
             Logger.Info("Getting file modifications from history");
 
-            string id = patchHistory.ID;
-
             // Remove added files
             if (patchHistory.AddedFiles != null)
                 foreach (PatchFilePath addedFile in patchHistory.AddedFiles)
                 {
-                    addModification(addedFile, FileModificationType.Remove, id, false);
+                    addModification(addedFile, FileModificationType.Remove, PatchHistoryManifest.ID, false);
                     Logger.Trace("File mod add -> remove: {0}", addedFile);
                 }
 
@@ -63,7 +61,7 @@ public class Patcher
             if (patchHistory.ReplacedFiles != null)
                 foreach (PatchFilePath replacedFile in patchHistory.ReplacedFiles)
                 {
-                    addModification(replacedFile, FileModificationType.Add, id, false);
+                    addModification(replacedFile, FileModificationType.Add, PatchHistoryManifest.ID, false);
                     Logger.Trace("File mod replace -> add: {0}", replacedFile);
                 }
 
@@ -71,7 +69,7 @@ public class Patcher
             if (patchHistory.RemovedFiles != null)
                 foreach (PatchFilePath removedFile in patchHistory.RemovedFiles)
                 {
-                    addModification(removedFile, FileModificationType.Add, id, false);
+                    addModification(removedFile, FileModificationType.Add, PatchHistoryManifest.ID, false);
                     Logger.Trace("File mod remove -> add: {0}", removedFile);
                 }
         }
@@ -118,7 +116,6 @@ public class Patcher
     }
 
     private void ModifyPhysicalFiles(
-        PatchContainerFile container,
         PatchFileChanges fileChanges,
         string locationKey,
         Dictionary<string, FileModification> fileModifications,
@@ -167,23 +164,23 @@ public class Patcher
                         // of the one it was replaced with before
                         else if (prevReplacedFiles?.Contains(filePathKey) == true)
                         {
-                            using Stream prevSavedFile = container.GetPatchResource(patchHistory!.ID, patchFilePath);
+                            using Stream prevSavedFile = fileChanges.GetPatchResource(PatchHistoryManifest.ID, patchFilePath);
 
                             fileChanges.ReplacedFiles.Add(patchFilePath);
                             fileChanges.ReplacedFileChecksums.Add(checksum);
 
                             fileChanges.TotalSize += prevSavedFile.Length;
 
-                            container.AddPatchResource(fileChanges.NewHistoryID, patchFilePath, prevSavedFile);
+                            fileChanges.AddHistoryResource(patchFilePath, prevSavedFile);
                         }
                         else
                         {
-                            SaveRemovedPhysicalFileInHistory(container, fileChanges, physicalFilePath, patchFilePath, checksum);
+                            SaveRemovedPhysicalFileInHistory(fileChanges, physicalFilePath, patchFilePath, checksum);
                         }
                     }
 
                     // Replace the file
-                    using Stream resource = container.GetPatchResource(modification.PatchID, patchFilePath);
+                    using Stream resource = fileChanges.GetPatchResource(modification.PatchID, patchFilePath);
                     ReplacePhysicalFile(physicalFilePath, resource);
                 }
                 else
@@ -191,7 +188,7 @@ public class Patcher
                     Logger.Trace("Adding file {0}", patchFilePath);
 
                     // Replace the file
-                    using (Stream resource = container.GetPatchResource(modification.PatchID, patchFilePath))
+                    using (Stream resource = fileChanges.GetPatchResource(modification.PatchID, patchFilePath))
                         ReplacePhysicalFile(physicalFilePath, resource);
 
                     if (modification.AddToHistory)
@@ -206,7 +203,7 @@ public class Patcher
                 Logger.Trace("Removing file {0}", patchFilePath);
 
                 if (modification.AddToHistory)
-                    SaveRemovedPhysicalFileInHistory(container, fileChanges, physicalFilePath, patchFilePath);
+                    SaveRemovedPhysicalFileInHistory(fileChanges, physicalFilePath, patchFilePath);
 
                 // Delete the file
                 physicalFilePath.DeleteFile();
@@ -218,7 +215,6 @@ public class Patcher
     }
 
     private void ModifyArchive(
-        PatchContainerFile container, 
         PatchFileChanges fileChanges, 
         string locationKey,
         Dictionary<string, FileModification> fileModifications, 
@@ -281,7 +277,7 @@ public class Patcher
                             Logger.Trace("Removing file {0}", patchFilePath);
 
                             if (modification.AddToHistory)
-                                SaveRemovedArchiveFileInHistory(container, fileChanges, file, archiveData.Generator, patchFilePath);
+                                SaveRemovedArchiveFileInHistory(fileChanges, file, archiveData.Generator, patchFilePath);
                             continue;
                         }
 
@@ -309,22 +305,22 @@ public class Patcher
                                 // of the one it was replaced with before
                                 else if (prevReplacedFiles?.Contains(filePathKey) == true)
                                 {
-                                    using Stream prevSavedFile = container.GetPatchResource(patchHistory!.ID, patchFilePath);
+                                    using Stream prevSavedFile = fileChanges.GetPatchResource(PatchHistoryManifest.ID, patchFilePath);
 
                                     fileChanges.ReplacedFiles.Add(patchFilePath);
                                     fileChanges.ReplacedFileChecksums.Add(checksum);
 
                                     fileChanges.TotalSize += prevSavedFile.Length;
 
-                                    container.AddPatchResource(fileChanges.NewHistoryID, patchFilePath, prevSavedFile);
+                                    fileChanges.AddHistoryResource(patchFilePath, prevSavedFile);
                                 }
                                 else
                                 {
-                                    SaveRemovedArchiveFileInHistory(container, fileChanges, file, archiveData.Generator, patchFilePath, checksum);
+                                    SaveRemovedArchiveFileInHistory(fileChanges, file, archiveData.Generator, patchFilePath, checksum);
                                 }
                             }
 
-                            using Stream resource = container.GetPatchResource(modification.PatchID, patchFilePath);
+                            using Stream resource = fileChanges.GetPatchResource(modification.PatchID, patchFilePath);
                             ReplaceArchiveFile(file, manager, resource);
                         }
                     }
@@ -346,7 +342,7 @@ public class Patcher
 
                     archiveFiles.Add(file);
 
-                    using (Stream resource = container.GetPatchResource(modification.PatchID, patchFilePath))
+                    using (Stream resource = fileChanges.GetPatchResource(modification.PatchID, patchFilePath))
                         ReplaceArchiveFile(file, manager, resource);
 
                     if (modification.AddToHistory)
@@ -373,7 +369,6 @@ public class Patcher
     }
 
     private void SaveRemovedFileInHistory(
-        PatchContainerFile container, 
         PatchFileChanges fileChanges, 
         Stream fileStream, 
         PatchFilePath patchFilePath, 
@@ -391,24 +386,22 @@ public class Patcher
 
         fileChanges.TotalSize += fileStream.Length;
 
-        container.AddPatchResource(fileChanges.NewHistoryID, patchFilePath, fileStream);
+        fileChanges.AddHistoryResource(patchFilePath, fileStream);
 
         Logger.Trace("Saved removed file {0} in history", patchFilePath);
     }
 
     private void SaveRemovedPhysicalFileInHistory(
-        PatchContainerFile container,
         PatchFileChanges fileChanges,
         FileSystemPath filePath,
         PatchFilePath patchFilePath,
         string? replacedFileChecksum = null)
     {
         using Stream fileStream = File.OpenRead(filePath);
-        SaveRemovedFileInHistory(container, fileChanges, fileStream, patchFilePath, replacedFileChecksum);
+        SaveRemovedFileInHistory(fileChanges, fileStream, patchFilePath, replacedFileChecksum);
     }
 
     private void SaveRemovedArchiveFileInHistory(
-        PatchContainerFile container, 
         PatchFileChanges fileChanges, 
         FileItem file, 
         IDisposable generator,
@@ -416,7 +409,7 @@ public class Patcher
         string? replacedFileChecksum = null)
     {
         using ArchiveFileStream fileData = file.GetDecodedFileData(generator);
-        SaveRemovedFileInHistory(container, fileChanges, fileData.Stream, patchFilePath, replacedFileChecksum);
+        SaveRemovedFileInHistory(fileChanges, fileData.Stream, patchFilePath, replacedFileChecksum);
     }
 
     private void ReplacePhysicalFile(FileSystemPath filePath, Stream resource)
@@ -456,9 +449,6 @@ public class Patcher
     {
         Logger.Info("Adding patch files to container for patch {0} with ID {1}", manifest.Name, manifest.ID);
 
-        // Clear any leftover files before importing
-        container.ClearPatchFiles(manifest.ID);
-
         // Import the resources
         if (manifest.AddedFiles != null)
         {
@@ -482,7 +472,8 @@ public class Patcher
 
     public async Task ApplyAsync(
         Games game,
-        PatchContainerFile container, 
+        PatchContainerFile oldContainer, 
+        PatchContainerFile newContainer, 
         IArchiveDataManager archiveDataManager,
         PatchHistoryManifest? patchHistory, 
         FileSystemPath gameDirectory,
@@ -492,11 +483,8 @@ public class Patcher
     {
         Logger.Info("Applying patcher modifications with {0}/{1} enabled patches", enabledPatches.Length, patchManifests.Length);
 
-        // The history gets re-created each time we save, so generate a new ID
-        string newHistoryID = PatchFile.GenerateID(patchManifests.Select(x => x.ID).Append(patchHistory?.ID).ToArray());
-
         // Keep track of file changes
-        PatchFileChanges fileChanges = new(newHistoryID);
+        PatchFileChanges fileChanges = new(oldContainer, newContainer);
 
         // Get the file modifications for each location
         Dictionary<string, LocationModifications> locationModifications =
@@ -516,7 +504,6 @@ public class Patcher
             if (locationKey == String.Empty)
             {
                 ModifyPhysicalFiles(
-                    container: container,
                     fileChanges: fileChanges,
                     locationKey: locationKey,
                     fileModifications: locationModifications[locationKey].FileModifications,
@@ -528,7 +515,6 @@ public class Patcher
             else
             {
                 ModifyArchive(
-                    container: container, 
                     fileChanges: fileChanges, 
                     locationKey: locationKey,
                     fileModifications: locationModifications[locationKey].FileModifications, 
@@ -545,13 +531,8 @@ public class Patcher
             ToArray();
         await archiveDataManager.OnRepackedArchivesAsync(archiveFilePaths);
 
-        // Clear old history
-        if (patchHistory != null)
-            container.ClearPatchFiles(patchHistory.ID);
-
         // Create new history
         PatchHistoryManifest history = new(
-            ID: newHistoryID,
             TotalSize: fileChanges.TotalSize,
             ModifiedDate: DateTime.Now,
             AddedFiles: fileChanges.AddedFiles.ToArray(),
@@ -560,13 +541,13 @@ public class Patcher
             ReplacedFileChecksums: fileChanges.ReplacedFileChecksums.ToArray(),
             RemovedFiles: fileChanges.RemovedFiles.ToArray());
 
-        // Update the container manifest
-        container.WriteManifest(game, history, patchManifests, enabledPatches);
+        // Write the container manifest
+        newContainer.WriteManifest(game, history, patchManifests, enabledPatches);
 
         progressCallback?.Invoke(new Progress(80, 100));
 
         // Apply changes
-        container.Apply();
+        newContainer.Apply();
 
         progressCallback?.Invoke(new Progress(100, 100));
     }
@@ -601,18 +582,37 @@ public class Patcher
 
     private class PatchFileChanges
     {
-        public PatchFileChanges(string newHistoryId)
+        public PatchFileChanges(PatchContainerFile oldContainer, PatchContainerFile newContainer)
         {
-            NewHistoryID = newHistoryId;
+            OldContainer = oldContainer;
+            NewContainer = newContainer;
         }
 
-        public string NewHistoryID { get; }
+        public PatchContainerFile OldContainer { get; }
+        public PatchContainerFile NewContainer { get; }
+
         public List<PatchFilePath> AddedFiles { get; } = new();
         public List<string> AddedFileChecksums { get; } = new();
         public List<PatchFilePath> ReplacedFiles { get; } = new();
         public List<string> ReplacedFileChecksums { get; } = new();
         public List<PatchFilePath> RemovedFiles { get; } = new();
         public long TotalSize { get; set; }
+
+        public Stream GetPatchResource(string patchID, PatchFilePath resourcePath)
+        {
+            // If we're reading from the history we want to use the old container
+            PatchContainerFile container = patchID == PatchHistoryManifest.ID
+                ? OldContainer
+                : NewContainer;
+
+            return container.GetPatchResource(patchID, resourcePath);
+        }
+
+        public void AddHistoryResource(PatchFilePath resourcePath, Stream stream)
+        {
+            // Always add history resources to the new container
+            NewContainer.AddPatchResource(PatchHistoryManifest.ID, resourcePath, stream);
+        }
     }
 
     #endregion
