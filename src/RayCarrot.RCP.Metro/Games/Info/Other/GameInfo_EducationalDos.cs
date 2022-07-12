@@ -87,5 +87,9 @@ public sealed class GameInfo_EducationalDos : GameInfo
     /// </summary>
     public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.EducationalDosBox);
 
+    // Don't allow patching for now since this game actually contains multiple games and the
+    // patching system doesn't support that right now.
+    public override bool AllowPatching => false;
+
     #endregion
 }

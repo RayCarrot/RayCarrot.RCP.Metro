@@ -181,6 +181,8 @@ public abstract class GameInfo : BaseGameData
 
     public virtual bool AutoAddToJumpList => Category != GameCategory.Demo;
 
+    public virtual bool AllowPatching => true;
+
     #endregion
 
     #region Public Virtual Methods
@@ -312,23 +314,27 @@ public abstract class GameInfo : BaseGameData
 
                 actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
 
-                // TODO-UPDATE: Localize
-                actions.Add(new OverflowButtonItemViewModel("Patches", GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
+                // Add patcher option
+                if (AllowPatching)
                 {
-                    try
+                    // TODO-UPDATE: Localize
+                    actions.Add(new OverflowButtonItemViewModel("Patches", GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
                     {
-                        // Show the Patcher
-                        await Services.UI.ShowPatcherAsync(Game);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error(ex, "Runing Patcher");
+                        try
+                        {
+                            // Show the Patcher
+                            await Services.UI.ShowPatcherAsync(Game);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex, "Runing Patcher");
 
-                        // TODO-UPDATE: Localize
-                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred in the patcher and it had to close");
-                    }
-                }), UserLevel.Advanced));
-                actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
+                            // TODO-UPDATE: Localize
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred in the patcher and it had to close");
+                        }
+                    }), UserLevel.Advanced));
+                    actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
+                }
 
                 // Add Game options
                 var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, GenericIconKind.GameDisplay_Config, new AsyncRelayCommand(async () =>
