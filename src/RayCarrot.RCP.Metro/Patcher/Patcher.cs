@@ -223,9 +223,11 @@ public class Patcher
         PatchHistoryManifest? patchHistory,
         Action<Progress>? progressCallback)
     {
+        // TODO: Instead of ignoring maybe we should create a new archive?
         if (!archiveFilePath.FileExists)
         {
-            // TODO-UPDATE: What do we do here? Log warning and ignore?
+            Logger.Warn("Archive {0} does not exist and its file modifications will be ignored", archiveFilePath);
+            return;
         }
 
         using TempFile archiveOutputFile = new(true);
