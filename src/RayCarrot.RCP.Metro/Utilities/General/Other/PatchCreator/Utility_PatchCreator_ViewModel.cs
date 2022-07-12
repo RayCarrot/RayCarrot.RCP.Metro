@@ -12,7 +12,6 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     public Utility_PatchCreator_ViewModel()
     {
-        // TODO-UPDATE: You can only create patches for games you have added
         Games = new ObservableCollection<GameItem>(App.GetGames.Select(x => new GameItem(x, x.GetGameInfo().DisplayName)));
         SelectedGame = Games.First();
 
@@ -40,12 +39,24 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     public async Task CreateArchivePatchAsync()
     {
+        if (!SelectedGame.Game.IsAdded())
+        {
+            await Services.MessageUI.DisplayMessageAsync("You can only create a patch for a game that you have added to the Rayman Control Panel", MessageType.Error);
+            return;
+        }
+
         // Show the Patch Creator
         await Services.UI.ShowPatchCreatorAsync(SelectedGame.Game, null);
     }
 
     public async Task UpdateArchivePatchAsync()
     {
+        if (!SelectedGame.Game.IsAdded())
+        {
+            await Services.MessageUI.DisplayMessageAsync("You can only create a patch for a game that you have added to the Rayman Control Panel", MessageType.Error);
+            return;
+        }
+
         // TODO-UPDATE: Localize
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
