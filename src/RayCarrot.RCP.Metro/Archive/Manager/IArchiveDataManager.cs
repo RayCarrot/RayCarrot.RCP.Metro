@@ -12,6 +12,11 @@ namespace RayCarrot.RCP.Metro.Archive;
 public interface IArchiveDataManager : IDisposable
 {
     /// <summary>
+    /// An ID to use to identify this type of archive
+    /// </summary>
+    string ID { get; }
+
+    /// <summary>
     /// The serializer context
     /// </summary>
     Context? Context { get; }

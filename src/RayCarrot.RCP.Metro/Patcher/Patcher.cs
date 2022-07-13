@@ -23,9 +23,10 @@ public class Patcher
 
     private string NormalizePath(string path) => path.ToLowerInvariant().Replace('\\', '/');
 
-    private Dictionary<string, LocationModifications> GetFileModificationsPerLocation(PatchHistoryManifest? patchHistory, IEnumerable<PatchManifest> enabledPatches)
+    private Dictionary<string, LocationModifications> GetFileModificationsPerLocation(Games game, PatchHistoryManifest? patchHistory, IEnumerable<PatchManifest> enabledPatches)
     {
         Dictionary<string, LocationModifications> locationModifications = new();
+        Dictionary<string, IArchiveDataManager> archiveDataManagers = new();
 
         void addModification(
             PatchFilePath patchFilePath, 
@@ -38,7 +39,24 @@ public class Patcher
             string filePathKey = NormalizePath(patchFilePath.FilePath);
 
             if (!locationModifications.ContainsKey(locationKey))
-                locationModifications.Add(locationKey, new LocationModifications(patchFilePath.Location));
+            {
+                IArchiveDataManager? manager = null;
+
+                if (patchFilePath.Location != String.Empty && patchFilePath.LocationID != String.Empty)
+                {
+                    if (!archiveDataManagers.ContainsKey(patchFilePath.LocationID))
+                    {
+                        // NOTE: In the future we'll want to use the location ID to get the corresponding
+                        //       manager. This makes it so we can have one game support multiple archive
+                        //       formats. But for now it doesn't matter, so we just get the default one.
+                        archiveDataManagers.Add(patchFilePath.LocationID, game.GetGameInfo().GetArchiveDataManager);
+                    }
+
+                    manager = archiveDataManagers[patchFilePath.LocationID];
+                }
+
+                locationModifications.Add(locationKey, new LocationModifications(patchFilePath.Location, manager));
+            }
 
             locationModifications[locationKey].FileModifications[filePathKey] = new FileModification(type, patchID, patchFilePath, addToHistory, checksum);
         }
@@ -476,7 +494,6 @@ public class Patcher
         Games game,
         PatchContainerFile oldContainer, 
         PatchContainerFile newContainer, 
-        IArchiveDataManager archiveDataManager,
         PatchHistoryManifest? patchHistory, 
         FileSystemPath gameDirectory,
         PatchManifest[] patchManifests,
@@ -490,7 +507,7 @@ public class Patcher
 
         // Get the file modifications for each location
         Dictionary<string, LocationModifications> locationModifications =
-            GetFileModificationsPerLocation(patchHistory, patchManifests.Where(x => enabledPatches.Contains(x.ID)));
+            GetFileModificationsPerLocation(game, patchHistory, patchManifests.Where(x => enabledPatches.Contains(x.ID)));
 
         // Progress:
         // 00-80%  -> Modifying files
@@ -516,22 +533,26 @@ public class Patcher
             // Archive
             else
             {
+                IArchiveDataManager manager = locationModifications[locationKey].ArchiveDataManager ??
+                                              throw new Exception($"No archive data manager for location {locationKey}");
+
                 ModifyArchive(
                     fileChanges: fileChanges, 
                     locationKey: locationKey,
                     fileModifications: locationModifications[locationKey].FileModifications, 
                     archiveFilePath: gameDirectory + locationModifications[locationKey].Location, 
-                    manager: archiveDataManager, 
+                    manager: manager, 
                     patchHistory: patchHistory,
                     progressCallback: progressCallback == null ? null : x => progressCallback(new Progress(x.Percentage * 0.8d, 100)));
             }
         }
 
-        FileSystemPath[] archiveFilePaths = locationModifications.Keys.
-            Where(x => x != String.Empty).
-            Select(x => gameDirectory + x).
-            ToArray();
-        await archiveDataManager.OnRepackedArchivesAsync(archiveFilePaths);
+        foreach (var archivedLocations in locationModifications.
+                     Where(x => x.Key != String.Empty && x.Value.ArchiveDataManager != null).
+                     GroupBy(x => x.Value.ArchiveDataManager))
+        {
+            await archivedLocations.Key!.OnRepackedArchivesAsync(archivedLocations.Select(x => gameDirectory + x.Value.Location).ToArray());
+        }
 
         // Create new history
         PatchHistoryManifest history = new(
@@ -567,12 +588,14 @@ public class Patcher
 
     private class LocationModifications
     {
-        public LocationModifications(string location)
+        public LocationModifications(string location, IArchiveDataManager? archiveDataManager)
         {
             Location = location;
+            ArchiveDataManager = archiveDataManager;
         }
 
         public string Location { get; }
+        public IArchiveDataManager? ArchiveDataManager { get; }
         public Dictionary<string, FileModification> FileModifications { get; } = new();
     }
 

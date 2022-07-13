@@ -22,15 +22,16 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         AvailableLocations = new ObservableCollection<AvailableFileLocation>()
         {
             // TODO-UPDATE: Localize
-            new("Game", String.Empty)
+            new("Game", String.Empty, String.Empty)
         };
 
         FileSystemPath installDir = game.GetInstallDir();
+        string archiveID = game.GetGameInfo().GetArchiveDataManager.ID;
         IEnumerable<AvailableFileLocation>? archivePaths = game.GetGameInfo().
             GetArchiveFilePaths(installDir)?.
             Where(x => x.FileExists).
             Select(x => x - installDir).
-            Select(x => new AvailableFileLocation(x.FullPath, x.FullPath));
+            Select(x => new AvailableFileLocation(x.FullPath, x.FullPath, archiveID));
 
         if (archivePaths != null)
             AvailableLocations.AddRange(archivePaths);
@@ -183,7 +184,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         // If a location is not found we create a new one
                         if (loc == null)
                         {
-                            loc = new AvailableFileLocation(addedFile.Location, addedFile.Location);
+                            loc = new AvailableFileLocation(addedFile.Location, addedFile.Location, addedFile.LocationID);
                             availableLocations.Add(loc);
                         }
 
@@ -191,6 +192,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         {
                             SourceFilePath = tempFilePath,
                             Location = addedFile.Location,
+                            LocationID = addedFile.LocationID,
                             FilePath = addedFile.FilePath,
                             Checksum = checksum,
                         }, loc);
@@ -271,6 +273,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             {
                 SourceFilePath = file,
                 Location = SelectedLocation.Location,
+                LocationID = SelectedLocation.LocationID,
                 FilePath = file.Name,
             }, SelectedLocation);
         }
@@ -300,6 +303,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 {
                     SourceFilePath = file,
                     Location = SelectedLocation.Location,
+                    LocationID = SelectedLocation.LocationID,
                     FilePath = file - browseResult.SelectedDirectory,
                 }, SelectedLocation);
             }
@@ -459,6 +463,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     {
         public FileSystemPath SourceFilePath { get; set; }
         public string Location { get; set; } = String.Empty;
+        public string LocationID { get; set; } = String.Empty;
         public string FilePath { get; set; } = String.Empty;
 
         public string? Checksum { get; set; }
@@ -468,10 +473,10 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         public bool IsValid => !FilePath.IsNullOrWhiteSpace();
         public bool IsFileAdded => SourceFilePath.FileExists;
         public bool IsImported => Checksum != null;
-        public PatchFilePath PatchFilePath => new(Location, FilePath);
+        public PatchFilePath PatchFilePath => new(Location, LocationID, FilePath);
     }
 
-    public record AvailableFileLocation(LocalizedString DisplayName, string Location);
+    public record AvailableFileLocation(LocalizedString DisplayName, string Location, string LocationID);
 
     #endregion
 }

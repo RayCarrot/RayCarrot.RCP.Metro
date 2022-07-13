@@ -9,7 +9,9 @@ public class PatchFilePathJsonConverter : JsonConverter<PatchFilePath>
 
     public override void WriteJson(JsonWriter writer, PatchFilePath value, JsonSerializer serializer)
     {
-        string str = value.HasLocation ? $"{value.Location}{LocationSeparator}{value.FilePath}" : value.FilePath;
+        string str = value.HasLocation 
+            ? $"{value.Location}{LocationSeparator}{value.LocationID}{LocationSeparator}{value.FilePath}" 
+            : value.FilePath;
         writer.WriteValue(str);
     }
 
@@ -19,11 +21,13 @@ public class PatchFilePathJsonConverter : JsonConverter<PatchFilePath>
         if (reader.Value is not string str)
             return default;
 
-        int separatorIndex = str.IndexOf(LocationSeparator);
+        string[] values = str.Split(LocationSeparator);
 
-        if (separatorIndex == -1)
-            return new PatchFilePath(String.Empty, str);
-        else
-            return new PatchFilePath(str.Substring(0, separatorIndex), str.Substring(separatorIndex + 1));
+        return values.Length switch
+        {
+            1 => new PatchFilePath(String.Empty, String.Empty, str),
+            3 => new PatchFilePath(values[0], values[1], values[2]),
+            _ => throw new Exception($"Invalid patch file path format '{str}'")
+        };
     }
 }

@@ -43,6 +43,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
     #region Public Properties
 
+    public string ID => "UBIART_IPK";
+
     public Context Context { get; }
 
     /// <summary>

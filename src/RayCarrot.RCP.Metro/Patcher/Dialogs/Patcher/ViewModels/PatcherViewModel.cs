@@ -553,7 +553,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         game: Game,
                         oldContainer: Container,
                         newContainer: newContainer,
-                        archiveDataManager: Game.GetGameInfo().GetArchiveDataManager,
                         patchHistory: PatchHistory,
                         gameDirectory: GameDirectory,
                         patchManifests: patchManifests,

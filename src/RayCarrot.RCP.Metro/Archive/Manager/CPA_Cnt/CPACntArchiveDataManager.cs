@@ -46,6 +46,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
     public Games? Game { get; }
 
+    public string ID => "CPA_CNT";
+
     public Context Context { get; }
 
     /// <summary>
