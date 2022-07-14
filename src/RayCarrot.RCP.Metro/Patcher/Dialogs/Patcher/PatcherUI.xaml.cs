@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using MahApps.Metro.Controls;
 using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 
 namespace RayCarrot.RCP.Metro.Patcher;
@@ -70,6 +71,27 @@ public partial class PatcherUI : WindowContentControl
 
         if (!success)
             WindowInstance.Close();
+    }
+
+    private void FileTableHeadersGrid_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        ItemsPresenter? itemsPresenter = FileTableItems.FindChild<ItemsPresenter>();
+
+        if (itemsPresenter == null)
+            return;
+
+        // Hacky workaround for having the headers be aligned with the table items. Without this
+        // the scroll bar thumb will offset it incorrectly.
+        itemsPresenter.SizeChanged -= FileTableItemsPresenter_OnSizeChanged;
+        itemsPresenter.SizeChanged += FileTableItemsPresenter_OnSizeChanged;
+
+        FileTableHeadersGrid.Width = itemsPresenter.ActualWidth;
+    }
+
+    private void FileTableItemsPresenter_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        ItemsPresenter control = (ItemsPresenter)sender;
+        FileTableHeadersGrid.Width = control.ActualWidth;
     }
 
     private void PatchesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
