@@ -15,6 +15,7 @@ using System.Windows.Media;
 using ControlzEx.Theming;
 using Newtonsoft.Json;
 using NLog;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -60,6 +61,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
         ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownAppAsync(false)));
         UpdateThemeCommand = new RelayCommand(UpdateTheme);
+        ExportWebPatchesFilesCommand = new AsyncRelayCommand(ExportWebPatchesFilesAsync);
     }
 
     #endregion
@@ -86,6 +88,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public ICommand RunInstallerCommand { get; }
     public ICommand ShutdownAppCommand { get; }
     public ICommand UpdateThemeCommand { get; }
+    public ICommand ExportWebPatchesFilesCommand { get; }
 
     #endregion
 
@@ -557,6 +560,98 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public void UpdateTheme()
     {
         Metro.App.Current.SetTheme(Data.Theme_DarkMode, false, SelectedAccentColor);
+    }
+
+    public async Task ExportWebPatchesFilesAsync()
+    {
+        try
+        {
+            FileBrowserResult inputResult = await BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            {
+                Title = "Select patches",
+                MultiSelection = true,
+                ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
+            });
+
+            if (inputResult.CanceledByUser)
+                return;
+
+            DirectoryBrowserResult outputResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            {
+                Title = "Select output folder",
+            });
+
+            if (outputResult.CanceledByUser)
+                return;
+
+            List<(Games Game, ExternalPatchManifest Manifest)> patches = new();
+            Dictionary<Games, string> gameManifestURLs = new();
+
+            // Process each patch
+            foreach (FileSystemPath patchFilePath in inputResult.SelectedFiles)
+            {
+                PatchManifest manifest;
+                string? thumbURL = null;
+
+                // Open the patch
+                using (PatchFile patch = new(patchFilePath, readOnly: true))
+                {
+                    // Read the manifest
+                    manifest = patch.ReadManifest();
+
+                    // Extract thumbnail, if one exists
+                    if (manifest.HasAsset(PatchAsset.Thumbnail))
+                    {
+                        thumbURL = $"{manifest.Game.ToString().ToLowerInvariant()}/{patchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
+
+                        using Stream thumbOutputStream = File.Create(outputResult.SelectedDirectory + "patches" + thumbURL);
+                        using Stream thumbStream = patch.GetPatchAsset(PatchAsset.Thumbnail);
+
+                        thumbStream.CopyTo(thumbOutputStream);
+                    }
+                }
+
+                string patchURL = $"{manifest.Game.ToString().ToLowerInvariant()}/{patchFilePath.Name}";
+
+                // Copy the patch file
+                FileManager.CopyFile(patchFilePath, outputResult.SelectedDirectory + "patches" + patchURL, true);
+
+                patches.Add((manifest.Game, new ExternalPatchManifest(
+                    ID: manifest.ID,
+                    Name: manifest.Name,
+                    Description: manifest.Description,
+                    Author: manifest.Author,
+                    TotalSize: manifest.TotalSize,
+                    ModifiedDate: manifest.ModifiedDate,
+                    Revision: manifest.Revision,
+                    AddedFilesCount: manifest.AddedFiles?.Length ?? 0,
+                    RemovedFilesCount: manifest.RemovedFiles?.Length ?? 0,
+                    Patch: patchURL,
+                    PatchSize: (int)patchFilePath.GetSize().Bytes,
+                    Thumbnail: thumbURL)));
+            }
+
+            // Write game manifests detailing the patches for each game
+            foreach (var gamePatches in patches.GroupBy(x => x.Game))
+            {
+                ExternalGamePatchesManifest manifest = new(gamePatches.Key, gamePatches.Select(x => x.Manifest).ToArray());
+
+                string url = $"patches/{gamePatches.Key}.json";
+                gameManifestURLs[gamePatches.Key] = url;
+
+                JsonHelpers.SerializeToFile(manifest, outputResult.SelectedDirectory + url);
+            }
+
+            // Write the main patches manifest
+            ExternalPatchesManifest patchesManifest = new(ExternalPatchesManifest.LatestVersion, gameManifestURLs);
+            JsonHelpers.SerializeToFile(patchesManifest, outputResult.SelectedDirectory + "patches.json");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Generating web patches files");
+
+            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when generating the files");
+        }
     }
 
     #endregion

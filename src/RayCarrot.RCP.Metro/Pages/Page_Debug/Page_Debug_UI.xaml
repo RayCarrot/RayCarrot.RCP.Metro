@@ -266,7 +266,7 @@
 
         </TabItem>
 
-        <!-- Services -->
+        <!-- Output -->
 
         <TabItem local:TabItemAssist.IconKind="TextBoxMultipleOutline"
                  local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
@@ -315,7 +315,40 @@
 
         </TabItem>
 
-        <!-- Theme -->
+        <!-- Web -->
+
+        <TabItem local:TabItemAssist.IconKind="Web"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
+                 Header="Web">
+
+            <ScrollViewer>
+                <StackPanel Margin="2 0">
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                    </i:Interaction.Behaviors>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="Patches"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
+
+                        <Button Content="Generate files" 
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource RCP.Styles.Button.IconContent}"
+                                local:ButtonAssist.IconKind="FileExportOutline"
+                                Command="{Binding Path=ExportWebPatchesFilesCommand, Mode=OneTime}"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- User Interface -->
 
         <TabItem local:TabItemAssist.IconKind="PaletteOutline"
                  local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
