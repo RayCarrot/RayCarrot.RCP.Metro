@@ -7,6 +7,7 @@
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:patcher="clr-namespace:RayCarrot.RCP.Metro.Patcher"
                             xmlns:dd="urn:gong-wpf-dragdrop"
+                            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                             mc:Ignorable="d"
                             d:DesignWidth="600" d:DesignHeight="400"
                             d:DataContext="{d:DesignInstance patcher:PatcherViewModel}"
@@ -104,166 +105,226 @@
 
                     <!-- Patches List -->
 
-                    <Grid Grid.Row="1">
+                    <ScrollViewer x:Name="PatchesScrollViewer"
+                                  VerticalAlignment="Top"
+                                  Grid.Row="1">
+                        <StackPanel>
 
-                        <ListBox SelectedItem="{Binding Path=SelectedPatch}"
-                                 ItemsSource="{Binding Path=Patches, Mode=OneTime}"
-                                 d:ItemsSource="{d:SampleData ItemCount=3}"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 dd:DragDrop.IsDragSource="True"
-                                 dd:DragDrop.IsDropTarget="True"
-                                 dd:DragDrop.SelectDroppedItems="True"
-                                 dd:DragDrop.DragDropContext="{Binding Mode=OneTime}"
-                                 Margin="0 0 0 5"
-                                 Loaded="PatchesListBox_OnLoaded">
+                            <!-- Local -->
 
-                            <dd:DragDrop.DropHandler>
-                                <patcher:PatchDropHandler />
-                            </dd:DragDrop.DropHandler>
+                            <ListBox SelectedItem="{Binding Path=SelectedLocalPatch}"
+                                     ItemsSource="{Binding Path=LocalPatches, Mode=OneTime}"
+                                     d:ItemsSource="{d:SampleData ItemCount=3}"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     dd:DragDrop.IsDragSource="True"
+                                     dd:DragDrop.IsDropTarget="True"
+                                     dd:DragDrop.SelectDroppedItems="True"
+                                     dd:DragDrop.DragDropContext="{Binding Mode=OneTime}"
+                                     Margin="0 0 0 5"
+                                     PreviewMouseWheel="PatchesListBox_OnPreviewMouseWheel"
+                                     Loaded="PatchesListBox_OnLoaded">
 
-                            <dd:DragDrop.DragAdornerTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter ContentTemplate="{StaticResource PatchThumbnailTemplate}"
-                                                      Width="32" Height="32" />
-                                </DataTemplate>
-                            </dd:DragDrop.DragAdornerTemplate>
+                                <dd:DragDrop.DropHandler>
+                                    <patcher:PatchDropHandler />
+                                </dd:DragDrop.DropHandler>
 
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="0 5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="32" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
+                                <dd:DragDrop.DragAdornerTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                                          Width="32" Height="32" />
+                                    </DataTemplate>
+                                </dd:DragDrop.DragAdornerTemplate>
 
-                                        <!-- Patch Toggle -->
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type patcher:LocalPatchViewModel}">
+                                        <Grid Margin="0 5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
 
-                                        <CheckBox Grid.Column="0"
-                                                  Visibility="{Binding Path=IsDownloadable, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                                                  VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"
-                                                  IsChecked="{Binding Path=IsEnabled}" />
+                                            <!-- Patch Toggle -->
 
-                                        <!-- TODO-UPDATE: Localize -->
-                                        <Button Grid.Column="0"
-                                                ToolTip="Download"
-                                                Visibility="{Binding Path=IsDownloadable, Converter={local:BooleanToVisibilityConverter}}"
-                                                Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                VerticalAlignment="Center"
-                                                Margin="2 0 5 0">
-                                            <iconPacks:PackIconMaterial Background="Transparent"
-                                                                        Kind="DownloadOutline"
-                                                                        Width="16"
-                                                                        Height="16" />
-                                        </Button>
+                                            <CheckBox Grid.Column="0"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      IsChecked="{Binding Path=IsEnabled}" />
 
-                                        <!-- Thumbnail -->
+                                            <!-- Thumbnail -->
 
-                                        <ContentPresenter Grid.Column="1"
-                                                          Content="{Binding}"
-                                                          ContentTemplate="{StaticResource PatchThumbnailTemplate}"
-                                                          Width="32" Height="32"
-                                                          VerticalAlignment="Center"
-                                                          Margin="0 0 5 0" />
+                                            <ContentPresenter Grid.Column="1"
+                                                              Content="{Binding}"
+                                                              ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                                              Width="32" Height="32"
+                                                              VerticalAlignment="Center"
+                                                              Margin="0 0 5 0" />
 
-                                        <!-- Title -->
+                                            <!-- Title -->
 
-                                        <TextBlock Grid.Column="2" 
-                                                   VerticalAlignment="Center"
-                                                   FontSize="14"
-                                                   Text="{Binding Path=Manifest.Name, Mode=OneTime}"
-                                                   TextWrapping="Wrap"/>
+                                            <TextBlock Grid.Column="2" 
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       Text="{Binding Path=Name, Mode=OneTime}"
+                                                       TextWrapping="Wrap"/>
 
-                                        <!-- Actions -->
+                                            <!-- Actions -->
 
-                                        <StackPanel x:Name="PatchButtonsPanel"
-                                                    Grid.Column="3"
-                                                    Orientation="Horizontal"
-                                                    Margin="15 0 0 0">
-                                            <StackPanel.Style>
-                                                <Style TargetType="{x:Type StackPanel}">
-                                                    <Setter Property="Visibility" Value="Hidden" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding Path=IsDownloadable}" Value="True">
-                                                            <Setter Property="Visibility" Value="Hidden" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </StackPanel.Style>
+                                            <StackPanel x:Name="PatchButtonsPanel"
+                                                        Grid.Column="3"
+                                                        Orientation="Horizontal"
+                                                        Margin="15 0 0 0">
+                                                <StackPanel.Style>
+                                                    <Style TargetType="{x:Type StackPanel}">
+                                                        <Setter Property="Visibility" Value="Hidden" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </StackPanel.Style>
+
+                                                <!-- TODO-UPDATE: Localize -->
+                                                <Button ToolTip="Extract contents"
+                                                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                        Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0"
+                                                        local:UserLevelAssist.MinUserLevel="Technical">
+                                                    <iconPacks:PackIconMaterial Background="Transparent"
+                                                        Kind="Export"
+                                                        Width="16"
+                                                        Height="16" />
+                                                </Button>
+
+                                                <!-- TODO-UPDATE: Localize -->
+                                                <Button ToolTip="Export patch"
+                                                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                        Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0"
+                                                        local:UserLevelAssist.MinUserLevel="Technical">
+                                                    <iconPacks:PackIconMaterial Background="Transparent"
+                                                        Kind="FileExportOutline"
+                                                        Width="16"
+                                                        Height="16" />
+                                                </Button>
+
+                                                <!-- TODO-UPDATE: Localize -->
+                                                <Button ToolTip="Update"
+                                                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                        Command="{Binding Path=UpdateCommand, Mode=OneTime}"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0">
+                                                    <iconPacks:PackIconMaterial Background="Transparent"
+                                                        Kind="Refresh"
+                                                        Width="16"
+                                                        Height="16" />
+                                                </Button>
+
+                                                <!-- TODO-UPDATE: Localize -->
+                                                <Button ToolTip="Remove"
+                                                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                        Command="{Binding Path=RemoveCommand, Mode=OneTime}"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0">
+                                                    <iconPacks:PackIconMaterial Background="Transparent"
+                                                        Kind="DeleteOutline"
+                                                        Width="16"
+                                                        Height="16" />
+                                                </Button>
+
+                                            </StackPanel>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+
+                            </ListBox>
+
+                            <Separator Margin="0 0 0 5">
+                                <Separator.Style>
+                                    <Style TargetType="{x:Type Separator}" BasedOn="{StaticResource {x:Type Separator}}">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=LocalPatches.Count}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=ExternalPatches.Count}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Separator.Style>
+                            </Separator>
+
+                            <!-- External -->
+
+                            <ListBox SelectedItem="{Binding Path=SelectedExternalPatch}"
+                                     ItemsSource="{Binding Path=ExternalPatches, Mode=OneTime}"
+                                     d:ItemsSource="{d:SampleData ItemCount=3}"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     Margin="0 0 0 5"
+                                     PreviewMouseWheel="PatchesListBox_OnPreviewMouseWheel">
+
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type patcher:ExternalPatchViewModel}">
+                                        <Grid Margin="0 5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Download -->
 
                                             <!-- TODO-UPDATE: Localize -->
-                                            <Button ToolTip="Extract contents"
+                                            <Button Grid.Column="0"
+                                                    ToolTip="Download"
                                                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                    Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
+                                                    Command="{Binding Path=DownloadCommand, Mode=OneTime}"
                                                     VerticalAlignment="Center"
-                                                    Margin="0 0 10 0"
-                                                    local:UserLevelAssist.MinUserLevel="Technical">
+                                                    HorizontalAlignment="Center"
+                                                    Margin="2 0 5 0">
                                                 <iconPacks:PackIconMaterial Background="Transparent"
-                                                                            Kind="Export"
+                                                                            Kind="DownloadOutline"
                                                                             Width="16"
                                                                             Height="16" />
                                             </Button>
 
-                                            <!-- TODO-UPDATE: Localize -->
-                                            <Button ToolTip="Export patch"
-                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                    Command="{Binding Path=ExportCommand, Mode=OneTime}"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 10 0"
-                                                    local:UserLevelAssist.MinUserLevel="Technical">
-                                                <iconPacks:PackIconMaterial Background="Transparent"
-                                                                            Kind="FileExportOutline"
-                                                                            Width="16"
-                                                                            Height="16" />
-                                            </Button>
+                                            <!-- Thumbnail -->
 
-                                            <!-- TODO-UPDATE: Localize -->
-                                            <Button ToolTip="Update"
-                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                    Command="{Binding Path=UpdateCommand, Mode=OneTime}"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 10 0">
-                                                <iconPacks:PackIconMaterial Background="Transparent"
-                                                                            Kind="Refresh"
-                                                                            Width="16"
-                                                                            Height="16" />
-                                            </Button>
+                                            <ContentPresenter Grid.Column="1"
+                                                              Content="{Binding}"
+                                                              ContentTemplate="{StaticResource PatchThumbnailTemplate}"
+                                                              Width="32" Height="32"
+                                                              VerticalAlignment="Center"
+                                                              Margin="0 0 5 0" />
 
-                                            <!-- TODO-UPDATE: Localize -->
-                                            <Button ToolTip="Remove"
-                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                    Command="{Binding Path=RemoveCommand, Mode=OneTime}"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 10 0">
-                                                <iconPacks:PackIconMaterial Background="Transparent"
-                                                                            Kind="DeleteOutline"
-                                                                            Width="16"
-                                                                            Height="16" />
-                                            </Button>
+                                            <!-- Title -->
 
-                                        </StackPanel>
+                                            <TextBlock Grid.Column="2" 
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       Text="{Binding Path=Name, Mode=OneTime}"
+                                                       TextWrapping="Wrap"/>
 
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                                        </Grid>
+                                    </DataTemplate>
 
-                        <!-- TODO-UPDATE: Localize -->
-                        <TextBlock Text="Press + to add a patch"
-                                   Visibility="{Binding Path=Patches.Count, Converter={local:InvertedIntToVisibilityConverter}}"
-                                   HorizontalAlignment="Center"
-                                   Margin="0 15 0 20"
-                                   FontSize="16"/>
+                                </ListBox.ItemTemplate>
 
-                    </Grid>
+                            </ListBox>
+
+                            <mah:ProgressRing Visibility="{Binding Path=IsLoadingExternalPatches, Converter={local:BooleanToVisibilityConverter}}" />
+
+                        </StackPanel>
+                    </ScrollViewer>
 
                 </Grid>
 
@@ -282,7 +343,7 @@
 
                     <TextBlock Grid.Row="0"
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                               Text="{Binding Path=Manifest.Name, Mode=OneTime}"
+                               Text="{Binding Path=Name, Mode=OneTime}"
                                TextTrimming="CharacterEllipsis"
                                Margin="0 0 0 10"/>
 
@@ -291,7 +352,7 @@
 
                             <!-- Description -->
 
-                            <TextBlock Text="{Binding Path=Manifest.Description, Mode=OneTime}"
+                            <TextBlock Text="{Binding Path=Description, Mode=OneTime}"
                                        TextWrapping="Wrap"
                                        Margin="0 0 0 10"/>
 

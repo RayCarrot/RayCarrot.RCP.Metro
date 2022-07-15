@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ByteSizeLib;
 using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
-public class PatchViewModel : BaseViewModel, IDisposable
+public class LocalPatchViewModel : PatchViewModel
 {
     #region Constructor
 
-    public PatchViewModel(PatcherViewModel patcherViewModel, PatchManifest manifest, bool isEnabled, IPatchDataSource dataSource)
+    public LocalPatchViewModel(PatcherViewModel patcherViewModel, PatchManifest manifest, bool isEnabled, IPatchDataSource dataSource) 
+        : base(patcherViewModel)
     {
-        PatcherViewModel = patcherViewModel;
         Manifest = manifest;
         _isEnabled = isEnabled;
         DataSource = dataSource;
@@ -30,7 +28,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
             new("Size", ByteSize.FromBytes(manifest.TotalSize).ToString()),
             new("Date", manifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
             new("Revision", manifest.Revision.ToString()),
-            new("ID", manifest.ID, UserLevel.Technical),
+            new("ID", manifest.ID, UserLevel.Debug),
             new("Version", manifest.PatchVersion.ToString(), UserLevel.Debug),
             new("Added Files", (manifest.AddedFiles?.Length ?? 0).ToString()),
             new("Removed Files", (manifest.RemovedFiles?.Length ?? 0).ToString()),
@@ -39,7 +37,7 @@ public class PatchViewModel : BaseViewModel, IDisposable
         ExtractContentsCommand = new AsyncRelayCommand(async () => await PatcherViewModel.ExtractPatchContentsAsync(this));
         ExportCommand = new AsyncRelayCommand(async () => await PatcherViewModel.ExportPatchAsync(this));
         UpdateCommand = new AsyncRelayCommand(async () => await PatcherViewModel.UpdatePatchAsync(this));
-        RemoveCommand = new RelayCommand(() => PatcherViewModel.RemovePatch(this));
+        RemoveCommand = new RelayCommand(() => PatcherViewModel.RemovePatch(this, true));
     }
 
     #endregion
@@ -67,11 +65,12 @@ public class PatchViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
-    public PatcherViewModel PatcherViewModel { get; }
+    public override string Name => Manifest.Name ?? String.Empty;
+    public override string Description => Manifest.Description ?? String.Empty;
+    public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
+
     public PatchManifest Manifest { get; }
     public IPatchDataSource DataSource { get; }
-    public ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
-    public ImageSource? Thumbnail { get; private set; }
 
     public bool IsEnabled
     {
@@ -83,12 +82,6 @@ public class PatchViewModel : BaseViewModel, IDisposable
             PatcherViewModel.HasChanges = true;
         }
     }
-
-    // Currently unused, but can be used to allow patches to be downloaded
-    public string? PatchURL { get; set; }
-    [MemberNotNullWhen(true, nameof(PatchURL))]
-    public bool IsDownloaded { get; set; }
-    public bool IsDownloadable => PatchURL != null && !IsDownloaded;
 
     #endregion
 
@@ -117,8 +110,10 @@ public class PatchViewModel : BaseViewModel, IDisposable
             Thumbnail.Freeze();
     }
 
-    public void Dispose()
+    public override void Dispose()
     {
+        base.Dispose();
+
         DataSource.Dispose();
     }
 

@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -69,6 +72,25 @@ public static class JsonHelpers
 
         // Return the deserialized object
         return JsonConvert.DeserializeObject<T>(json, converters.Concat(GetDefaultConverters()).ToArray());
+    }
+
+    /// <summary>
+    /// Deserializes an object from a URL
+    /// </summary>
+    /// <typeparam name="T">The type of object to deserialize</typeparam>
+    /// <param name="url">The URL of the JSON string to deserialize</param>
+    /// <param name="converters">Optional converters to use</param>
+    /// <returns>The deserialized object</returns>
+    public static async Task<T> DeserializeFromURLAsync<T>(string url, params JsonConverter[] converters)
+    {
+        // Create the web client
+        using WebClient wc = new();
+
+        // Download the string
+        string str = await wc.DownloadStringTaskAsync(url);
+
+        // Deserialize
+        return JsonConvert.DeserializeObject<T>(str, converters.Concat(GetDefaultConverters()).ToArray());
     }
 
     /// <summary>

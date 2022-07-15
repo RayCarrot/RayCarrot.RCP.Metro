@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using MahApps.Metro.Controls;
 using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 
 namespace RayCarrot.RCP.Metro.Patcher;
@@ -67,21 +66,23 @@ public partial class PatcherUI : WindowContentControl
     {
         Loaded -= PatcherUI_OnLoaded;
 
+        // Load patches
         bool success = await ViewModel.LoadPatchesAsync();
 
         if (!success)
             WindowInstance.Close();
+
+        // Load external patches
+        await ViewModel.LoadExternalPatchesAsync();
     }
 
     private void FileTableHeadersGrid_OnLoaded(object sender, RoutedEventArgs e)
     {
-        ItemsPresenter? itemsPresenter = FileTableItems.FindChild<ItemsPresenter>();
-
-        if (itemsPresenter == null)
-            return;
-
         // Hacky workaround for having the headers be aligned with the table items. Without this
         // the scroll bar thumb will offset it incorrectly.
+        FileTableItems.ApplyTemplate();
+        ItemsPresenter itemsPresenter = (ItemsPresenter)FileTableItems.Template.FindName("Presenter", FileTableItems);
+
         itemsPresenter.SizeChanged -= FileTableItemsPresenter_OnSizeChanged;
         itemsPresenter.SizeChanged += FileTableItemsPresenter_OnSizeChanged;
 
@@ -99,7 +100,10 @@ public partial class PatcherUI : WindowContentControl
         HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
 
         if (r.VisualHit.GetType() != typeof(ListBoxItem))
-            ViewModel.SelectedPatch = null;
+        {
+            ViewModel.SelectedLocalPatch = null;
+            ViewModel.SelectedExternalPatch = null;
+        }
     }
 
     private void PatchesListBox_OnLoaded(object sender, RoutedEventArgs e)
@@ -107,6 +111,19 @@ public partial class PatcherUI : WindowContentControl
         var listBox = (ListBox)sender;
         var dropHandler = (PatchDropHandler)DragDrop.GetDropHandler(listBox);
         dropHandler.ViewModel = ViewModel;
+    }
+
+    private void PatchesListBox_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        // Redirect the mouse wheel movement to allow scrolling
+        var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+        {
+            RoutedEvent = MouseWheelEvent,
+            Source = e.Source
+        };
+
+        PatchesScrollViewer?.RaiseEvent(eventArg);
+        e.Handled = true;
     }
 
     private void CancelButton_OnClick(object sender, RoutedEventArgs e)

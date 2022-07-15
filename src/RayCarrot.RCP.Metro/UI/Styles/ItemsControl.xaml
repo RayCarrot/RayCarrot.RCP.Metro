@@ -33,7 +33,8 @@
                         <ScrollViewer CanContentScroll="True" 
                                       Padding="{TemplateBinding Padding}" 
                                       Focusable="False">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <ItemsPresenter x:Name="Presenter"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </ScrollViewer>
                     </Border>
                 </ControlTemplate>

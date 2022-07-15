@@ -2,6 +2,9 @@
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-UPDATE: Refactor this. Don't use constant strings, but rather turn into a service class in DI. This way we can easily
+//              change the URLs for testing, or even have local ones.
+
 /// <summary>
 /// Commons URLs used in the Rayman Control Panel
 /// </summary>
@@ -23,6 +26,11 @@ public static class AppURLs
     /// The update manifest URL
     /// </summary>
     public const string UpdateManifestUrl = RCPBaseUrl + "RCP_Metro_Manifest.json";
+
+    /// <summary>
+    /// The patches manifest URL
+    /// </summary>
+    public const string PatchesManifestUrl = RCPBaseUrl + "patches.json";
 
     /// <summary>
     /// The base resource URL
