@@ -636,7 +636,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
             {
                 ExternalGamePatchesManifest manifest = new(gamePatches.Key, gamePatches.Select(x => x.Manifest).ToArray());
 
-                string url = $"patches/{gamePatches.Key}.json";
+                string url = $"patches/{gamePatches.Key.ToString().ToLowerInvariant()}.json";
                 gameManifestURLs[gamePatches.Key] = url;
 
                 JsonHelpers.SerializeToFile(manifest, outputResult.SelectedDirectory + url);

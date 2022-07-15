@@ -9,6 +9,9 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO: Refactor. Properties before methods. Use something like this:
+//       public record DownloadableFile(Uri FileURL, FileSystemPath DestinationFilePath, bool IsCompressed);
+
 /// <summary>
 /// View model for the downloader
 /// </summary>

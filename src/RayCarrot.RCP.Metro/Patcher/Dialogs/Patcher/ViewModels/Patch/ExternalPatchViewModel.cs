@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
 
@@ -25,7 +24,7 @@ public class ExternalPatchViewModel : PatchViewModel
             new("Removed Files", (externalManifest.RemovedFilesCount).ToString()),
         };
 
-        DownloadCommand = new AsyncRelayCommand(DownloadAsync);
+        DownloadCommand = new AsyncRelayCommand(() => PatcherViewModel.DownloadPatchAsync(ExternalManifest));
     }
 
     public ICommand DownloadCommand { get; }
@@ -35,9 +34,4 @@ public class ExternalPatchViewModel : PatchViewModel
     public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
 
     public ExternalPatchManifest ExternalManifest { get; }
-
-    public async Task DownloadAsync()
-    {
-        //Services.App.DownloadAsync()
-    }
 }

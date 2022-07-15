@@ -60,6 +60,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     public PatchHistoryManifest? PatchHistory { get; set; }
 
     public ExternalPatchManifest[]? ExternalPatchManifests { get; set; }
+    public Uri? ExternalGamePatchesURL { get; set; }
 
     public ObservableCollection<LocalPatchViewModel> LocalPatches { get; }
     public ObservableCollection<ExternalPatchViewModel> ExternalPatches { get; }
@@ -114,14 +115,34 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #region Private Methods
 
-    private void AddPatch(PatchFile patchFile, PatchManifest manifest)
+    private void AddPatchFromFile(PatchFile patchFile, PatchManifest manifest)
     {
-        LocalPatchViewModel patchViewModel = new(this, manifest, false, new PatchFileDataSource(patchFile, false));
+        PatchFileDataSource src = new(patchFile, false);
+        LocalPatchViewModel patchViewModel = new(this, manifest, false, src);
         patchViewModel.LoadThumbnail();
         LocalPatches.Add(patchViewModel);
-        HasChanges = true;
 
-        Logger.Info("Added patch '{0}' with revision {1} and ID {2}", manifest.Name, manifest.Revision, manifest.ID);
+        Logger.Info("Added patch '{0}' from file with revision {1} and ID {2}", manifest.Name, manifest.Revision, manifest.ID);
+    }
+
+    private void AddDownloadedPatchFromFile(PatchFile patchFile, PatchManifest manifest, TempDirectory tempDir)
+    {
+        PatchFileDataSource src = new(patchFile, false);
+        DownloadedLocalPatchViewModel patchViewModel = new(this, manifest, false, src, tempDir);
+        patchViewModel.LoadThumbnail();
+        LocalPatches.Add(patchViewModel);
+
+        Logger.Info("Added patch '{0}' from downloaded file with revision {1} and ID {2}", manifest.Name, manifest.Revision, manifest.ID);
+    }
+
+    private void AddPatchFromContainer(PatchContainerFile container, PatchContainerManifest containerManifest, PatchManifest manifest)
+    {
+        PatchContainerDataSource src = new(container, manifest.ID, true);
+        LocalPatchViewModel patchViewModel = new(this, manifest, containerManifest.EnabledPatches?.Contains(manifest.ID) == true, src);
+        patchViewModel.LoadThumbnail();
+        LocalPatches.Add(patchViewModel);
+
+        Logger.Info("Added patch '{0}' from container with revision {1} and ID {2}", manifest.Name, manifest.Revision, manifest.ID);
     }
 
     private async Task<bool> LoadExistingPatchesAsync()
@@ -132,6 +153,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
         PatchContainerManifest? containerManifest = Container.ReadManifest();
 
+        LocalPatches.DisposeAll();
         LocalPatches.Clear();
 
         // Verify version
@@ -165,16 +187,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         if (containerManifest is null)
             return true;
 
-        foreach (PatchManifest patch in containerManifest.Patches)
-        {
-            PatchContainerDataSource src = new(Container, patch.ID, true);
-            LocalPatchViewModel patchVM = new(this, patch, containerManifest.EnabledPatches?.Contains(patch.ID) == true, src);
-
-            // TODO: Load this async? Or maybe it's fast enough that it doesn't matter.
-            patchVM.LoadThumbnail();
-
-            LocalPatches.Add(patchVM);
-        }
+        foreach (PatchManifest patchManifest in containerManifest.Patches)
+            AddPatchFromContainer(Container, containerManifest, patchManifest);
 
         RefreshExternalPatches();
 
@@ -294,7 +308,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 }
 
                 // Add the patch view model so we can work with it
-                AddPatch(patch, manifest);
+                AddPatchFromFile(patch, manifest);
+
+                HasChanges = true;
             }
             catch (Exception ex)
             {
@@ -310,6 +326,57 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         RefreshExternalPatches();
 
         Logger.Info("Added patches");
+    }
+
+    public async Task DownloadPatchAsync(ExternalPatchManifest externalManifest)
+    {
+        if (ExternalGamePatchesURL == null)
+            throw new Exception("Attempted to download patch before the URL was set");
+
+        // TODO-UPDATE: Verify there is no patch added with conflicting ID. Shouldn't be possible, but make sure!
+        // TODO-UPDATE: Log
+
+        TempDirectory tempDir = new(true);
+        PatchFile? patch = null;
+
+        try
+        {
+            Uri patchURL = new(ExternalGamePatchesURL, externalManifest.Patch);
+
+            bool result = await Services.App.DownloadAsync(new[] { patchURL }, false, tempDir.TempPath);
+
+            if (!result)
+            {
+                tempDir.Dispose();
+                return;
+            }
+
+            // Due to how the downloading system currently works we need to get the path like this
+            FileSystemPath patchFilePath = tempDir.TempPath + Path.GetFileName(patchURL.AbsoluteUri);
+
+            // Open the patch file
+            patch = new PatchFile(patchFilePath, true);
+            
+            // Read the manifest
+            PatchManifest manifest = patch.ReadManifest();
+
+            // Add the patch view model so we can work with it
+            AddDownloadedPatchFromFile(patch, manifest, tempDir);
+
+            HasChanges = true;
+
+            RefreshExternalPatches();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Adding downloaded patch");
+
+            patch?.Dispose();
+            tempDir.Dispose();
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
+        }
     }
 
     public async Task ExtractPatchContentsAsync(LocalPatchViewModel patchViewModel)
@@ -528,7 +595,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             RemovePatch(patchViewModel, false);
 
             // Add the updated patch
-            AddPatch(patch, manifest);
+            AddPatchFromFile(patch, manifest);
+
+            HasChanges = true;
 
             Logger.Info("Updated patch to revision {0}", manifest.Revision);
         }
@@ -585,9 +654,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             // TODO-UPDATE: Try/catch
             // TODO-UPDATE: Log
 
-            // TODO-UPDATE: Remove
-            await Task.Delay(2000);
-
             ExternalPatchesManifest manifest = await JsonHelpers.DeserializeFromURLAsync<ExternalPatchesManifest>(AppURLs.PatchesManifestUrl);
 
             if (manifest.ManifestVersion > ExternalPatchesManifest.LatestVersion)
@@ -609,9 +675,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 return;
             }
 
-            Uri gameUrl = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[Game]);
+            ExternalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[Game]);
 
-            ExternalGamePatchesManifest gameManifest = await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(gameUrl.AbsoluteUri);
+            ExternalGamePatchesManifest gameManifest = await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(ExternalGamePatchesURL.AbsoluteUri);
 
             if (gameManifest.Patches == null)
             {
@@ -634,6 +700,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         if (!HasLoadedExternalPatches)
             return;
 
+        ExternalPatches.DisposeAll();
         ExternalPatches.Clear();
 
         foreach (ExternalPatchManifest externalPatchManifest in ExternalPatchManifests)
