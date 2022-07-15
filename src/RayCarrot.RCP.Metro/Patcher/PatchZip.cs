@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
@@ -23,6 +25,8 @@ public class PatchZip : IDisposable
             _zip = new ZipArchive(File.Open(FilePath, FileMode.Open, fileAccess), zipArchiveMode);
         }
     }
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly bool _readOnly;
     private ZipArchive? _zip;
@@ -48,7 +52,9 @@ public class PatchZip : IDisposable
         ZipArchiveEntry? existingEntry = _zip.GetEntry(filePath);
         existingEntry?.Delete();
 
-        return _zip.CreateEntry(filePath);
+        // Use fastest compression level. It doesn't loose that much space and is usually much faster. In a test
+        // I made it went down from around 40 to 15 seconds while only loosing 10 MB gained space (out of 310).
+        return _zip.CreateEntry(filePath, CompressionLevel.Fastest);
     }
 
     public void WriteStream(string filePath, Stream stream)
@@ -94,7 +100,13 @@ public class PatchZip : IDisposable
             : stream;
     }
 
-    public void Apply() => Dispose();
+    public void Apply()
+    {
+        Stopwatch s = Stopwatch.StartNew();
+        Dispose();
+        s.Stop();
+        Logger.Trace("Repacked ZIP in {0} ms", s.ElapsedMilliseconds);
+    }
 
     public void Dispose()
     {
