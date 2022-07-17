@@ -105,10 +105,10 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                 PatchManifest manifest = patchFile.ReadManifest();
 
-                if (manifest.PatchVersion > PatchFile.Version)
+                if (manifest.PatchVersion > PatchManifest.LatestVersion)
                 {
                     Logger.Warn("Failed to import from patch due to the version number {0} being higher than the current one ({1})",
-                        manifest.PatchVersion, PatchFile.Version);
+                        manifest.PatchVersion, PatchManifest.LatestVersion);
 
                     // TODO-UPDATE: Localize
                     await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
@@ -366,7 +366,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     // Write the manifest
                     patchFile.WriteManifest(new PatchManifest(
                         ID: ID,
-                        PatchVersion: PatchFile.Version,
+                        PatchVersion: PatchManifest.LatestVersion,
                         Game: Game,
                         Name: Name,
                         Description: Description,

@@ -8,7 +8,6 @@ namespace RayCarrot.RCP.Metro.Patcher;
 //       be quite slow. So for now we keep them here, unused, until they might be needed in the future.
 
 public record PatchHistoryManifest(
-    long TotalSize,
     DateTime ModifiedDate,
 
     // Files added to the game. No data is saved for these. Restore by deleting them.
@@ -20,7 +19,4 @@ public record PatchHistoryManifest(
     string[]? ReplacedFileChecksums,
 
     // Files removed from the game. The original file is saved. Restore by adding it back.
-    PatchFilePath[]? RemovedFiles)
-{
-    public const string ID = "history";
-}
+    PatchFilePath[]? RemovedFiles);

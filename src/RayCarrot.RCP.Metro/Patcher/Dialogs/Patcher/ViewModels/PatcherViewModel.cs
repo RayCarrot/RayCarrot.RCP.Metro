@@ -18,7 +18,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     {
         Game = game;
         GameDirectory = game.GetInstallDir();
-        ContainerFilePath = PatchContainerFile.GetContainerFilePath(GameDirectory);
+        Library = new PatchLibrary(PatchLibrary.GetLibraryDirectoryPath(GameDirectory), Services.File);
 
         LocalPatches = new ObservableCollection<LocalPatchViewModel>();
         ExternalPatches = new ObservableCollection<ExternalPatchViewModel>();
@@ -45,6 +45,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private readonly HashSet<string> _removedPatches = new();
+
     private LocalPatchViewModel? _selectedLocalPatch;
     private ExternalPatchViewModel? _selectedExternalPatch;
 
@@ -54,10 +56,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public Games Game { get; }
     public FileSystemPath GameDirectory { get; }
-    public FileSystemPath ContainerFilePath { get; }
     
-    public PatchContainerFile? Container { get; set; }
-    public PatchHistoryManifest? PatchHistory { get; set; }
+    public PatchLibrary Library { get; }
+    public PatchHistoryManifest? HistoryManifest { get; set; }
 
     public ExternalPatchManifest[]? ExternalPatchManifests { get; set; }
     public Uri? ExternalGamePatchesURL { get; set; }
@@ -117,8 +118,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     private void AddPatchFromFile(PatchFile patchFile, PatchManifest manifest)
     {
-        PatchFileDataSource src = new(patchFile, false);
-        LocalPatchViewModel patchViewModel = new(this, manifest, false, src);
+        PendingImportedLocalPatchViewModel patchViewModel = new(this, manifest, false, patchFile.FilePath);
         patchViewModel.LoadThumbnail();
         LocalPatches.Add(patchViewModel);
 
@@ -127,72 +127,67 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     private void AddDownloadedPatchFromFile(PatchFile patchFile, PatchManifest manifest, TempDirectory tempDir)
     {
-        PatchFileDataSource src = new(patchFile, false);
-        DownloadedLocalPatchViewModel patchViewModel = new(this, manifest, false, src, tempDir);
+        DownloadedLocalPatchViewModel patchViewModel = new(this, manifest, false, patchFile.FilePath, tempDir);
         patchViewModel.LoadThumbnail();
         LocalPatches.Add(patchViewModel);
 
         Logger.Info("Added patch '{0}' from downloaded file with revision {1} and ID {2}", manifest.Name, manifest.Revision, manifest.ID);
     }
 
-    private void AddPatchFromContainer(PatchContainerFile container, PatchContainerManifest containerManifest, PatchManifest manifest)
+    private void AddPatchFromLibrary(PatchLibrary library, PatchLibraryManifest libraryManifest, PatchManifest manifest)
     {
-        PatchContainerDataSource src = new(container, manifest.ID, true);
-        LocalPatchViewModel patchViewModel = new(this, manifest, containerManifest.EnabledPatches?.Contains(manifest.ID) == true, src);
+        ExistingLocalPatchViewModel patchViewModel = new( this, manifest, libraryManifest.EnabledPatches?.Contains(manifest.ID) == true, library);
         patchViewModel.LoadThumbnail();
         LocalPatches.Add(patchViewModel);
 
-        Logger.Info("Added patch '{0}' from container with revision {1} and ID {2}", manifest.Name, manifest.Revision, manifest.ID);
+        Logger.Info("Added patch '{0}' from library with revision {1} and ID {2}", manifest.Name, manifest.Revision, manifest.ID);
     }
 
     private async Task<bool> LoadExistingPatchesAsync()
     {
         Logger.Info("Loading existing patches");
 
-        Container = new PatchContainerFile(ContainerFilePath, readOnly: true);
-
-        PatchContainerManifest? containerManifest = Container.ReadManifest();
-
+        // Clear any previously loaded patches
         LocalPatches.DisposeAll();
         LocalPatches.Clear();
 
+        // Read the library manifest
+        PatchLibraryManifest? libraryManifest = Library.ReadManifest();
+
         // Verify version
-        if (containerManifest is { ContainerVersion: > PatchContainerFile.Version })
+        if (libraryManifest is { LibraryVersion: > PatchLibraryManifest.LatestVersion })
         {
-            Logger.Warn("Failed to load container due to the version number {0} being higher than the current one ({1})",
-                containerManifest.ContainerVersion, PatchContainerFile.Version);
+            Logger.Warn("Failed to load library due to the version number {0} being higher than the current one ({1})",
+                libraryManifest.LibraryVersion, PatchLibraryManifest.LatestVersion);
 
             // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The game patch container was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
-            PatchHistory = null;
+            await Services.MessageUI.DisplayMessageAsync("The game patch library was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);
 
             return false;
         }
 
         // Verify game
-        if (containerManifest != null && containerManifest.Game != Game)
+        if (libraryManifest != null && libraryManifest.Game != Game)
         {
-            Logger.Warn("Failed to load container due to the game {0} not matching the current one ({1})",
-                containerManifest.Game, Game);
+            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryManifest.Game, Game);
 
             // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync($"The game patch container was made with for {Game}", MessageType.Error);
-            PatchHistory = null;
+            await Services.MessageUI.DisplayMessageAsync($"The game patch library was made with for {Game}", MessageType.Error);
 
             return false;
         }
 
-        PatchHistory = containerManifest?.History;
+        HistoryManifest = libraryManifest?.History;
 
-        if (containerManifest is null)
+        if (libraryManifest?.Patches is null)
             return true;
 
-        foreach (PatchManifest patchManifest in containerManifest.Patches)
-            AddPatchFromContainer(Container, containerManifest, patchManifest);
+        foreach (PatchManifest patchManifest in libraryManifest.Patches)
+            AddPatchFromLibrary(Library, libraryManifest, patchManifest);
 
         RefreshExternalPatches();
 
-        Logger.Info("Loaded {0} patches", containerManifest.Patches.Length);
+        Logger.Info("Loaded {0} patches", libraryManifest.Patches.Length);
 
         return true;
     }
@@ -258,19 +253,17 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Trace("Adding patch from {0}", patchFile);
 
-            PatchFile? patch = null;
-
             try
             {
-                patch = new PatchFile(patchFile, true);
+                using PatchFile patch = new(patchFile, true);
 
                 PatchManifest manifest = patch.ReadManifest();
 
                 // Verify version
-                if (manifest.PatchVersion > PatchFile.Version)
+                if (manifest.PatchVersion > PatchManifest.LatestVersion)
                 {
                     Logger.Warn("Failed to add patch due to the version number {0} being higher than the current one ({1})",
-                        manifest.PatchVersion, PatchFile.Version);
+                        manifest.PatchVersion, PatchManifest.LatestVersion);
 
                     // TODO-UPDATE: Localize
                     await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
@@ -316,8 +309,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 Logger.Error(ex, "Adding patch");
 
-                patch?.Dispose();
-
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
             }
@@ -337,7 +328,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Log
 
         TempDirectory tempDir = new(true);
-        PatchFile? patch = null;
 
         try
         {
@@ -355,7 +345,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             FileSystemPath patchFilePath = tempDir.TempPath + Path.GetFileName(patchURL.AbsoluteUri);
 
             // Open the patch file
-            patch = new PatchFile(patchFilePath, true);
+            using PatchFile patch = new(patchFilePath, readOnly: true);
             
             // Read the manifest
             PatchManifest manifest = patch.ReadManifest();
@@ -371,7 +361,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Adding downloaded patch");
 
-            patch?.Dispose();
             tempDir.Dispose();
 
             // TODO-UPDATE: Localize
@@ -394,7 +383,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 return;
 
             PatchManifest manifest = patchViewModel.Manifest;
-            IPatchDataSource src = patchViewModel.DataSource;
 
             Logger.Info("Extracting patch contents");
 
@@ -403,6 +391,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 // Extract resources
                 if (manifest.AddedFiles != null)
                 {
+                    using PatchFile patch = patchViewModel.ReadPatchFile();
+
                     int fileIndex = 0;
 
                     foreach (PatchFilePath addedFile in manifest.AddedFiles)
@@ -414,7 +404,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         Directory.CreateDirectory(fileDest.Parent);
 
                         using FileStream dstStream = File.Create(fileDest);
-                        using Stream srcStream = src.GetResource(addedFile);
+                        using Stream srcStream = patch.GetPatchResource(addedFile);
 
                         await srcStream.CopyToAsync(dstStream);
                     }
@@ -452,56 +442,58 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             if (browseResult.CanceledByUser)
                 return;
 
-            PatchManifest manifest = patchViewModel.Manifest;
-            IPatchDataSource src = patchViewModel.DataSource;
+            // TODO-UPDATE: Re-implement
 
-            Logger.Info("Exporting patch from container");
+            //PatchManifest manifest = patchViewModel.Manifest;
+            //IPatchDataSource src = patchViewModel.DataSource;
 
-            try
-            {
-                await Task.Run(() =>
-                {
-                    // Create a new patch
-                    using PatchFile patchFile = new(browseResult.SelectedFileLocation);
+            //Logger.Info("Exporting patch from library");
 
-                    // Copy resources
-                    if (manifest.AddedFiles != null)
-                    {
-                        foreach (PatchFilePath addedFile in manifest.AddedFiles)
-                        {
-                            using Stream srcStream = src.GetResource(addedFile);
-                            patchFile.AddPatchResource(addedFile, srcStream);
-                        }
-                    }
+            //try
+            //{
+            //    await Task.Run(() =>
+            //    {
+            //        // Create a new patch
+            //        using PatchFile patchFile = new(browseResult.SelectedFileLocation);
 
-                    // Copy assets
-                    if (manifest.Assets != null)
-                    {
-                        foreach (string asset in manifest.Assets)
-                        {
-                            using Stream srcStream = src.GetAsset(asset);
-                            patchFile.AddPatchAsset(asset, srcStream);
-                        }
-                    }
+            //        // Copy resources
+            //        if (manifest.AddedFiles != null)
+            //        {
+            //            foreach (PatchFilePath addedFile in manifest.AddedFiles)
+            //            {
+            //                using Stream srcStream = src.GetResource(addedFile);
+            //                patchFile.AddPatchResource(addedFile, srcStream);
+            //            }
+            //        }
 
-                    // Write the manifest
-                    patchFile.WriteManifest(manifest);
+            //        // Copy assets
+            //        if (manifest.Assets != null)
+            //        {
+            //            foreach (string asset in manifest.Assets)
+            //            {
+            //                using Stream srcStream = src.GetAsset(asset);
+            //                patchFile.AddPatchAsset(asset, srcStream);
+            //            }
+            //        }
 
-                    patchFile.Apply();
-                });
+            //        // Write the manifest
+            //        patchFile.WriteManifest(manifest);
 
-                Logger.Info("Exported patch");
+            //        patchFile.Apply();
+            //    });
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch was successfully exported");
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Extracting patch");
+            //    Logger.Info("Exported patch");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch");
-            }
+            //    // TODO-UPDATE: Localize
+            //    await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch was successfully exported");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Logger.Error(ex, "Extracting patch");
+
+            //    // TODO-UPDATE: Localize
+            //    await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch");
+            //}
         }
     }
 
@@ -510,6 +502,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         PatchManifest manifest = patchViewModel.Manifest;
 
         LocalPatches.Remove(patchViewModel);
+        _removedPatches.Add(manifest.ID);
 
         if (SelectedPatch == patchViewModel)
             SelectedPatch = null;
@@ -541,22 +534,20 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         if (result.CanceledByUser)
             return;
 
-        PatchFile? patch = null;
-
         Logger.Info("Updating patch '{0}' with revision {1} and ID {2}",
             patchViewModel.Manifest.Name, patchViewModel.Manifest.Revision, patchViewModel.Manifest.ID);
 
         try
         {
-            patch = new PatchFile(result.SelectedFile, true);
+            using PatchFile patch = new(result.SelectedFile, true);
 
             PatchManifest manifest = patch.ReadManifest();
 
             // Verify version
-            if (manifest.PatchVersion > PatchFile.Version)
+            if (manifest.PatchVersion > PatchManifest.LatestVersion)
             {
                 Logger.Warn("Failed to update patch due to the version number {0} being higher than the current one ({1})",
-                    manifest.PatchVersion, PatchFile.Version);
+                    manifest.PatchVersion, PatchManifest.LatestVersion);
 
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
@@ -605,8 +596,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Updated patch with ID {0}", patchViewModel.Manifest.ID);
 
-            patch?.Dispose();
-
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the patch");
         }
@@ -616,7 +605,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> LoadPatchesAsync()
     {
-        Logger.Info("Loading patch containers");
+        Logger.Info("Loading patch library");
 
         try
         {
@@ -624,13 +613,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             if (!success)
             {
-                Logger.Warn("Failed to load patch container for game {0}", Game);
+                Logger.Warn("Failed to load patch library for game {0}", Game);
                 return false;
             }
 
             RefreshPatchedFiles();
 
-            Logger.Info("Loaded patch container for game {0}", Game);
+            Logger.Info("Loaded patch library for game {0}", Game);
 
             return true;
         }
@@ -728,20 +717,18 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 await Task.Run(async () =>
                 {
-                    // Make sure the old container is open
-                    Container ??= new PatchContainerFile(ContainerFilePath, readOnly: true);
-
-                    // Open a new container for writing in temp. This way if it fails during
-                    // this process we won't corrupt the original container file.
-                    using TempFile tempFile = new(false);
-                    using PatchContainerFile newContainer = new(tempFile.TempPath);
-
                     // Create a patcher
                     Patcher patcher = new(); // TODO: Use DI?
 
-                    // Add patch files to the container
-                    foreach (LocalPatchViewModel patchViewModel in LocalPatches)
-                        patcher.AddPatchFiles(newContainer, patchViewModel.Manifest, patchViewModel.DataSource);
+                    // Add pending patches to the library
+                    foreach (var patchViewModel in LocalPatches.OfType<PendingImportedLocalPatchViewModel>())
+                        Library.AddPatch(patchViewModel.PatchFilePath, patchViewModel.Manifest.ID, patchViewModel.MovePatch);
+
+                    // Remove removed patches
+                    foreach (string patch in _removedPatches.Where(x => LocalPatches.All(p => p.Manifest.ID != x)))
+                        Library.RemovePatch(patch);
+
+                    _removedPatches.Clear();
 
                     // Get the current patch data
                     PatchManifest[] patchManifests = LocalPatches.Select(x => x.Manifest).ToArray();
@@ -749,19 +736,12 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                     await patcher.ApplyAsync(
                         game: Game,
-                        oldContainer: Container,
-                        newContainer: newContainer,
-                        patchHistory: PatchHistory,
+                        library: Library,
+                        patchHistory: HistoryManifest,
                         gameDirectory: GameDirectory,
                         patchManifests: patchManifests,
                         enabledPatches: enabledPatches,
                         progressCallback: operation.SetProgress);
-
-                    // Close the old container
-                    Container?.Dispose();
-
-                    // Replace old container with new one
-                    Services.File.MoveFile(tempFile.TempPath, ContainerFilePath, true);
                 });
 
                 Logger.Info("Applied patches");
@@ -780,7 +760,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
-        Container?.Dispose();
         LocalPatches.DisposeAll();
         ExternalPatches.DisposeAll();
     }

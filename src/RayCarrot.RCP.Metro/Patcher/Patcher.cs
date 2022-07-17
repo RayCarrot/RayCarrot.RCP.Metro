@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using RayCarrot.RCP.Metro.Archive;
 namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
-/// The service for patching game files and updating a patch container
+/// The service for patching game files and updating a patch library
 /// </summary>
 public class Patcher
 {
@@ -31,7 +32,7 @@ public class Patcher
         void addModification(
             PatchFilePath patchFilePath, 
             FileModificationType type,
-            string patchID,
+            string? patchID, // Null if from history instead of a patch
             bool addToHistory,
             string? checksum = null)
         {
@@ -71,7 +72,7 @@ public class Patcher
             if (patchHistory.AddedFiles != null)
                 foreach (PatchFilePath addedFile in patchHistory.AddedFiles)
                 {
-                    addModification(addedFile, FileModificationType.Remove, PatchHistoryManifest.ID, false);
+                    addModification(addedFile, FileModificationType.Remove, null, false);
                     Logger.Trace("File mod add -> remove: {0}", addedFile);
                 }
 
@@ -79,7 +80,7 @@ public class Patcher
             if (patchHistory.ReplacedFiles != null)
                 foreach (PatchFilePath replacedFile in patchHistory.ReplacedFiles)
                 {
-                    addModification(replacedFile, FileModificationType.Add, PatchHistoryManifest.ID, false);
+                    addModification(replacedFile, FileModificationType.Add, null, false);
                     Logger.Trace("File mod replace -> add: {0}", replacedFile);
                 }
 
@@ -87,7 +88,7 @@ public class Patcher
             if (patchHistory.RemovedFiles != null)
                 foreach (PatchFilePath removedFile in patchHistory.RemovedFiles)
                 {
-                    addModification(removedFile, FileModificationType.Add, PatchHistoryManifest.ID, false);
+                    addModification(removedFile, FileModificationType.Add, null, false);
                     Logger.Trace("File mod remove -> add: {0}", removedFile);
                 }
         }
@@ -182,14 +183,10 @@ public class Patcher
                         // of the one it was replaced with before
                         else if (prevReplacedFiles?.Contains(filePathKey) == true)
                         {
-                            using Stream prevSavedFile = fileChanges.GetPatchResource(PatchHistoryManifest.ID, patchFilePath);
-
                             fileChanges.ReplacedFiles.Add(patchFilePath);
                             fileChanges.ReplacedFileChecksums.Add(checksum);
 
-                            fileChanges.TotalSize += prevSavedFile.Length;
-
-                            fileChanges.AddHistoryResource(patchFilePath, prevSavedFile);
+                            fileChanges.KeepHistoryResource(patchFilePath);
                         }
                         else
                         {
@@ -277,11 +274,20 @@ public class Patcher
 
                 Logger.Info("Modifying archive");
 
+                Stopwatch sw = Stopwatch.StartNew();
+
+                int totalFilesMax = archiveData.Directories.Sum(x => x.Files.Length) + fileModifications.Values.Count(x => x.Type == FileModificationType.Add);
+                totalFilesMax *= 2; // 0-50%
+                int totalFilesIndex = 0;
+
                 // Replace or remove existing files
                 foreach (ArchiveDirectory dir in archiveData.Directories)
                 {
                     foreach (FileItem file in dir.Files)
                     {
+                        progressCallback?.Invoke(new Progress(totalFilesIndex, totalFilesMax));
+                        totalFilesIndex++;
+
                         string filePathKey = NormalizePath(manager.CombinePaths(file.Directory, file.FileName));
 
                         FileModification? modification = fileModifications.TryGetValue(filePathKey);
@@ -325,14 +331,10 @@ public class Patcher
                                 // of the one it was replaced with before
                                 else if (prevReplacedFiles?.Contains(filePathKey) == true)
                                 {
-                                    using Stream prevSavedFile = fileChanges.GetPatchResource(PatchHistoryManifest.ID, patchFilePath);
-
                                     fileChanges.ReplacedFiles.Add(patchFilePath);
                                     fileChanges.ReplacedFileChecksums.Add(checksum);
 
-                                    fileChanges.TotalSize += prevSavedFile.Length;
-
-                                    fileChanges.AddHistoryResource(patchFilePath, prevSavedFile);
+                                    fileChanges.KeepHistoryResource(patchFilePath);
                                 }
                                 else
                                 {
@@ -349,6 +351,9 @@ public class Patcher
                 // Add files not already in the archive
                 foreach (FileModification modification in fileModifications.Values.Where(x => x.Type == FileModificationType.Add))
                 {
+                    progressCallback?.Invoke(new Progress(totalFilesIndex, totalFilesMax));
+                    totalFilesIndex++;
+
                     string fileName = Path.GetFileName(modification.PatchFilePath.FilePath);
                     string dir = Path.GetDirectoryName(modification.PatchFilePath.FilePath)?.
                         Replace(Path.DirectorySeparatorChar, manager.PathSeparatorCharacter) ?? String.Empty;
@@ -372,10 +377,24 @@ public class Patcher
                     }
                 }
 
+                sw.Stop();
+
+                Logger.Info($"Processed modified archive files in {sw.ElapsedMilliseconds} ms");
+
+                // 50%
+                progressCallback?.Invoke(new Progress(50, 100));
+
+                sw.Restart();
+
                 using ArchiveFileStream archiveOutputStream = new(File.OpenWrite(archiveOutputFile.TempPath),
                     archiveOutputFile.TempPath.Name, true);
 
-                manager.WriteArchive(archiveData.Generator, archive, archiveOutputStream, archiveFiles, progressCallback ?? (_ => { }));
+                manager.WriteArchive(archiveData.Generator, archive, archiveOutputStream, archiveFiles, progressCallback: 
+                    x => progressCallback?.Invoke(new Progress(x.Percentage * 0.5 + 50, 100))); // 50-100%
+
+                sw.Stop();
+
+                Logger.Info($"Repacked modified archive files in {sw.ElapsedMilliseconds} ms");
             }
             finally
             {
@@ -403,8 +422,6 @@ public class Patcher
         {
             fileChanges.RemovedFiles.Add(patchFilePath);
         }
-
-        fileChanges.TotalSize += fileStream.Length;
 
         fileChanges.AddHistoryResource(patchFilePath, fileStream);
 
@@ -459,41 +476,11 @@ public class Patcher
 
     #region Public Methods
 
-    /// <summary>
-    /// Adds the files to the container for a new patch not previously in the container
-    /// </summary>
-    /// <param name="container">The container to add the patch files to</param>
-    /// <param name="manifest">The patch manifest</param>
-    /// <param name="src">The patch data source</param>
-    public void AddPatchFiles(PatchContainerFile container, PatchManifest manifest, IPatchDataSource src)
-    {
-        Logger.Info("Adding patch files to container for patch {0} with ID {1}", manifest.Name, manifest.ID);
-
-        // Import the resources
-        if (manifest.AddedFiles != null)
-        {
-            foreach (PatchFilePath addedFile in manifest.AddedFiles)
-            {
-                using Stream resourceStream = src.GetResource(addedFile);
-                container.AddPatchResource(manifest.ID, addedFile, resourceStream);
-            }
-        }
-
-        // Import the assets
-        if (manifest.Assets != null)
-        {
-            foreach (string asset in manifest.Assets)
-            {
-                using Stream assetStream = src.GetAsset(asset);
-                container.AddPatchAsset(manifest.ID, asset, assetStream);
-            }
-        }
-    }
+    // TODO-UPDATE: Error handling to avoid corruption
 
     public async Task ApplyAsync(
         Games game,
-        PatchContainerFile oldContainer, 
-        PatchContainerFile newContainer, 
+        PatchLibrary library,
         PatchHistoryManifest? patchHistory, 
         FileSystemPath gameDirectory,
         PatchManifest[] patchManifests,
@@ -503,22 +490,26 @@ public class Patcher
         Logger.Info("Applying patcher modifications with {0}/{1} enabled patches", enabledPatches.Length, patchManifests.Length);
 
         // Keep track of file changes
-        PatchFileChanges fileChanges = new(oldContainer, newContainer);
+        using PatchFileChanges fileChanges = new(library);
 
         // Get the file modifications for each location
         Dictionary<string, LocationModifications> locationModifications =
             GetFileModificationsPerLocation(game, patchHistory, patchManifests.Where(x => enabledPatches.Contains(x.ID)));
 
         // Progress:
-        // 00-80%  -> Modifying files
-        // 80-100% -> Applying changes (repacking the container)
-        // Sadly we can't get any actual progress for the last step, so even though it's slower
-        // than the first it'll be better to show it like this
+        // 00-90%  -> Modifying files
+        // 90-100% -> Applying library/history changes
         progressCallback?.Invoke(new Progress(0, 100));
+
+        int locationIndex = 0;
 
         // Modify every location
         foreach (string locationKey in locationModifications.Keys)
         {
+            Action<Progress>? locationProgressCallback = progressCallback == null
+                ? null
+                : x => progressCallback(new Progress(x.Percentage * 0.9 * ((locationIndex + 1) / locationModifications.Keys.Count), 100));
+
             // Physical
             if (locationKey == String.Empty)
             {
@@ -528,7 +519,7 @@ public class Patcher
                     fileModifications: locationModifications[locationKey].FileModifications,
                     dirPath: gameDirectory,
                     patchHistory: patchHistory,
-                    progressCallback: progressCallback == null ? null : x => progressCallback(new Progress(x.Percentage * 0.8d, 100)));
+                    progressCallback: locationProgressCallback);
             }
             // Archive
             else
@@ -543,8 +534,10 @@ public class Patcher
                     archiveFilePath: gameDirectory + locationModifications[locationKey].Location, 
                     manager: manager, 
                     patchHistory: patchHistory,
-                    progressCallback: progressCallback == null ? null : x => progressCallback(new Progress(x.Percentage * 0.8d, 100)));
+                    progressCallback: locationProgressCallback);
             }
+
+            locationIndex++;
         }
 
         foreach (var archivedLocations in locationModifications.
@@ -554,9 +547,13 @@ public class Patcher
             await archivedLocations.Key!.OnRepackedArchivesAsync(archivedLocations.Select(x => gameDirectory + x.Value.Location).ToArray());
         }
 
+        progressCallback?.Invoke(new Progress(90, 100));
+
+        // Remove old history and apply new history files
+        fileChanges.ApplyNewHistory();
+
         // Create new history
         PatchHistoryManifest history = new(
-            TotalSize: fileChanges.TotalSize,
             ModifiedDate: DateTime.Now,
             AddedFiles: fileChanges.AddedFiles.ToArray(),
             AddedFileChecksums: fileChanges.AddedFileChecksums.ToArray(),
@@ -564,13 +561,8 @@ public class Patcher
             ReplacedFileChecksums: fileChanges.ReplacedFileChecksums.ToArray(),
             RemovedFiles: fileChanges.RemovedFiles.ToArray());
 
-        // Write the container manifest
-        newContainer.WriteManifest(game, history, patchManifests, enabledPatches);
-
-        progressCallback?.Invoke(new Progress(80, 100));
-
-        // Apply changes
-        newContainer.Apply();
+        // Write the library manifest
+        library.WriteManifest(game, history, patchManifests, enabledPatches);
 
         progressCallback?.Invoke(new Progress(100, 100));
     }
@@ -581,7 +573,7 @@ public class Patcher
 
     private record FileModification(
         FileModificationType Type, 
-        string PatchID,
+        string? PatchID,
         PatchFilePath PatchFilePath,
         bool AddToHistory, 
         string? Checksum = null);
@@ -605,38 +597,60 @@ public class Patcher
         Remove,
     }
 
-    private class PatchFileChanges
+    private class PatchFileChanges : IDisposable
     {
-        public PatchFileChanges(PatchContainerFile oldContainer, PatchContainerFile newContainer)
+        public PatchFileChanges(PatchLibrary library)
         {
-            OldContainer = oldContainer;
-            NewContainer = newContainer;
+            Library = library;
+
+            OldHistory = library.GetHistory();
+            NewHistoryTempDir = new TempDirectory(true);
+            NewHistory = new PatchHistory(NewHistoryTempDir.TempPath);
         }
 
-        public PatchContainerFile OldContainer { get; }
-        public PatchContainerFile NewContainer { get; }
+        private TempDirectory NewHistoryTempDir { get; }
+        private PatchLibrary Library { get; }
+        private PatchHistory OldHistory { get; }
+        private PatchHistory NewHistory { get; }
+        private Dictionary<string, PatchFile> PatchFiles { get; } = new();
 
         public List<PatchFilePath> AddedFiles { get; } = new();
         public List<string> AddedFileChecksums { get; } = new();
         public List<PatchFilePath> ReplacedFiles { get; } = new();
         public List<string> ReplacedFileChecksums { get; } = new();
         public List<PatchFilePath> RemovedFiles { get; } = new();
-        public long TotalSize { get; set; }
 
-        public Stream GetPatchResource(string patchID, PatchFilePath resourcePath)
+        public Stream GetPatchResource(string? patchID, PatchFilePath resourcePath)
         {
-            // If we're reading from the history we want to use the old container
-            PatchContainerFile container = patchID == PatchHistoryManifest.ID
-                ? OldContainer
-                : NewContainer;
+            if (patchID == null)
+                return OldHistory.ReadFile(resourcePath);
 
-            return container.GetPatchResource(patchID, resourcePath);
+            if (!PatchFiles.ContainsKey(patchID))
+                PatchFiles[patchID] = Library.ReadPatchFile(patchID);
+
+            return PatchFiles[patchID].GetPatchResource(resourcePath);
         }
 
         public void AddHistoryResource(PatchFilePath resourcePath, Stream stream)
         {
-            // Always add history resources to the new container
-            NewContainer.AddPatchResource(PatchHistoryManifest.ID, resourcePath, stream);
+            NewHistory.AddFile(resourcePath, stream);
+        }
+
+        public void KeepHistoryResource(PatchFilePath resourcePath)
+        {
+            OldHistory.MoveFile(resourcePath, NewHistory);
+        }
+
+        public void ApplyNewHistory()
+        {
+            // Replace old history with new one
+            Services.File.MoveDirectory(NewHistory.DirectoryPath, OldHistory.DirectoryPath, true, true);
+        }
+
+        public void Dispose()
+        {
+            NewHistoryTempDir.Dispose();
+            PatchFiles.Values.DisposeAll();
         }
     }
 

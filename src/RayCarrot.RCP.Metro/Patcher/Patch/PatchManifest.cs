@@ -29,7 +29,9 @@ public record PatchManifest(
     PatchFilePath[]? RemovedFiles,
 
     // Optional asset files, such as a thumbnail
-    string[]? Assets) 
+    string[]? Assets)
 {
+    public const int LatestVersion = 0;
+
     public bool HasAsset(string assetName) => Assets?.Contains(assetName) == true;
 }

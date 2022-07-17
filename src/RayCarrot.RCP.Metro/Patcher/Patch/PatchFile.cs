@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Remoting;
 using System.Security.Cryptography;
 using NLog;
 
@@ -29,7 +28,6 @@ public class PatchFile : IDisposable
     #region Constants
 
     private const string ManifestFileName = "manifest.json";
-    public const int Version = 0;
     public const string FileExtension = ".gp"; // Game Patch
 
     #endregion

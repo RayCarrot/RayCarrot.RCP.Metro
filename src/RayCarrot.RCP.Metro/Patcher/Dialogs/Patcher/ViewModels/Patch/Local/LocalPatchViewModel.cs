@@ -10,16 +10,15 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
-public class LocalPatchViewModel : PatchViewModel
+public abstract class LocalPatchViewModel : PatchViewModel
 {
     #region Constructor
 
-    public LocalPatchViewModel(PatcherViewModel patcherViewModel, PatchManifest manifest, bool isEnabled, IPatchDataSource dataSource) 
+    protected LocalPatchViewModel(PatcherViewModel patcherViewModel, PatchManifest manifest, bool isEnabled) 
         : base(patcherViewModel)
     {
         Manifest = manifest;
         _isEnabled = isEnabled;
-        DataSource = dataSource;
 
         // TODO-UPDATE: Localize
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
@@ -70,7 +69,6 @@ public class LocalPatchViewModel : PatchViewModel
     public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
 
     public PatchManifest Manifest { get; }
-    public IPatchDataSource DataSource { get; }
 
     public bool IsEnabled
     {
@@ -89,33 +87,29 @@ public class LocalPatchViewModel : PatchViewModel
 
     public void LoadThumbnail()
     {
-        Logger.Trace("Loading thumbnail for patch with ID {0}", Manifest.ID);
+        // TODO-UPDATE: Re-implement
+        //Logger.Trace("Loading thumbnail for patch with ID {0}", Manifest.ID);
 
-        if (!Manifest.HasAsset(PatchAsset.Thumbnail))
-        {
-            Logger.Trace("No thumbnail asset was found");
+        //if (!Manifest.HasAsset(PatchAsset.Thumbnail))
+        //{
+        //    Logger.Trace("No thumbnail asset was found");
 
-            Thumbnail = null;
-            return;
-        }
+        //    Thumbnail = null;
+        //    return;
+        //}
 
-        using Stream thumbStream = DataSource.GetAsset(PatchAsset.Thumbnail);
+        //using Stream thumbStream = PatchFile.GetPatchAsset(PatchAsset.Thumbnail);
 
-        // This doesn't seem to work when reading from a zip archive as read-only due to the stream
-        // not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
-        //Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-        Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
+        //// This doesn't seem to work when reading from a zip archive as read-only due to the stream
+        //// not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
+        ////Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        //Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
 
-        if (Thumbnail?.CanFreeze == true)
-            Thumbnail.Freeze();
+        //if (Thumbnail?.CanFreeze == true)
+        //    Thumbnail.Freeze();
     }
 
-    public override void Dispose()
-    {
-        base.Dispose();
-
-        DataSource.Dispose();
-    }
+    public abstract PatchFile ReadPatchFile();
 
     #endregion
 }

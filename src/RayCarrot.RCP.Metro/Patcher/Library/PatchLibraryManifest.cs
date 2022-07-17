@@ -2,9 +2,9 @@
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
-public record PatchContainerManifest(
+public record PatchLibraryManifest(
     [property: JsonProperty(Required = Required.Always)]
-    int ContainerVersion,
+    int LibraryVersion,
 
     [property: JsonProperty(Required = Required.Always)]
     Games Game,
@@ -12,7 +12,8 @@ public record PatchContainerManifest(
     [property: JsonProperty(Required = Required.Always)]
     PatchHistoryManifest History,
 
-    [property: JsonProperty(Required = Required.Always)]
-    PatchManifest[] Patches,
-
-    string[]? EnabledPatches);
+    PatchManifest[]? Patches,
+    string[]? EnabledPatches)
+{
+    public const int LatestVersion = 0;
+}
