@@ -12,7 +12,7 @@ public record PatchLibraryManifest(
     [property: JsonProperty(Required = Required.Always)]
     PatchHistoryManifest History,
 
-    PatchManifest[]? Patches,
+    string[]? Patches,
     string[]? EnabledPatches)
 {
     public const int LatestVersion = 0;

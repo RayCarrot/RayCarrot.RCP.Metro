@@ -57,9 +57,6 @@ public class PatchLibrary
         dirInfo.Attributes |= FileAttributes.Hidden;
     }
 
-    private FileSystemPath GetPatchFilePath(string patchID) => DirectoryPath + $"{patchID}{PatchFile.FileExtension}";
-    private FileSystemPath GetHistoryPath() => DirectoryPath + "history";
-
     #endregion
 
     #region Public Methods
@@ -80,7 +77,7 @@ public class PatchLibrary
 
         return manifest;
     }
-    public void WriteManifest(Games game, PatchHistoryManifest history, PatchManifest[] patches, string[]? enabledPatches)
+    public void WriteManifest(Games game, PatchHistoryManifest history, string[] patches, string[]? enabledPatches)
     {
         EnsureDirectoryExists();
 
@@ -91,7 +88,9 @@ public class PatchLibrary
         Logger.Info("Wrote patch library manifest");
     }
 
-    public PatchFile ReadPatchFile(string patchID) => new(GetPatchFilePath(patchID), readOnly: true);
+    public string GetPatchFileName(string patchID) => $"{patchID}{PatchFile.FileExtension}";
+    public FileSystemPath GetPatchFilePath(string patchID) => DirectoryPath + GetPatchFileName(patchID);
+
     public void AddPatch(FileSystemPath patchFile, string patchID, bool move)
     {
         EnsureDirectoryExists();
@@ -105,6 +104,7 @@ public class PatchLibrary
     }
     public void RemovePatch(string patchID) => FileManager.DeleteFile(GetPatchFilePath(patchID));
 
+    public FileSystemPath GetHistoryPath() => DirectoryPath + "history";
     public PatchHistory GetHistory() => new(GetHistoryPath());
 
     #endregion

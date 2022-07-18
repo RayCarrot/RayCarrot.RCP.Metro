@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
-public class PatchZipFileEntryReadStream : Stream
+/// <summary>
+/// A wrapper stream where the length is fixed. Useful for streams decompressing other streams where the length is known.
+/// </summary>
+public class FixedLengthWrapperStream : Stream
 {
-    public PatchZipFileEntryReadStream(Stream baseStream, long? fixedLength)
+    public FixedLengthWrapperStream(Stream baseStream, long? fixedLength)
     {
         BaseStream = baseStream;
         _fixedLength = fixedLength;

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using BinarySerializer;
 using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
@@ -101,14 +103,20 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
             try
             {
-                using PatchFile patchFile = new(patchFilePath, true);
+                // Create a context
+                using RCPContext context = new(String.Empty);
+                context.AddFile(new LinearFile(context, patchFilePath));
 
-                PatchManifest manifest = patchFile.ReadManifest();
+                PatchFile patchFile;
 
-                if (manifest.PatchVersion > PatchManifest.LatestVersion)
+                try
                 {
-                    Logger.Warn("Failed to import from patch due to the version number {0} being higher than the current one ({1})",
-                        manifest.PatchVersion, PatchManifest.LatestVersion);
+                    // Read the patch file
+                    patchFile = FileFactory.Read<PatchFile>(context, patchFilePath);
+                }
+                catch (UnsupportedFormatVersionException ex)
+                {
+                    Logger.Warn(ex, "Importing patch to creator");
 
                     // TODO-UPDATE: Localize
                     await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
@@ -116,15 +124,19 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     return false;
                 }
 
-                Name = manifest.Name ?? String.Empty;
-                Description = manifest.Description ?? String.Empty;
-                Author = manifest.Author ?? String.Empty;
-                Revision = manifest.Revision + 1;
-                ID = manifest.ID;
+                PatchMetadata metadata = patchFile.Metadata;
 
-                if (manifest.HasAsset(PatchAsset.Thumbnail))
+                // Copy metadata
+                Name = metadata.Name;
+                Description = metadata.Description;
+                Author = metadata.Author;
+                Revision = metadata.Revision + 1;
+                ID = metadata.ID;
+
+                // Extract thumbnail
+                if (patchFile.HasThumbnail)
                 {
-                    using Stream thumbStream = patchFile.GetPatchAsset(PatchAsset.Thumbnail);
+                    using MemoryStream thumbStream = new(patchFile.Thumbnail);
 
                     Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
 
@@ -135,39 +147,36 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 _tempDir = new TempDirectory(true);
 
                 // Extract resources to temp
-                if (manifest.AddedFiles != null && manifest.AddedFileChecksums != null)
+                int fileIndex = 0;
+                foreach (PatchFileResourceEntry resource in patchFile.AddedFiles)
                 {
-                    for (var i = 0; i < manifest.AddedFiles.Length; i++)
+                    operation.SetProgress(new Progress(fileIndex, patchFile.AddedFiles.Length));
+                    fileIndex++;
+
+                    FileSystemPath tempFilePath = _tempDir.TempPath + resource.FilePath.FullFilePath;
+
+                    Directory.CreateDirectory(tempFilePath.Parent);
+
+                    using Stream srcStream = resource.ReadData(context.Deserializer, patchFile.Offset);
+                    using FileStream dstStream = File.Create(tempFilePath);
+
+                    await srcStream.CopyToAsync(dstStream);
+
+                    Files.Add(new FileViewModel()
                     {
-                        operation.SetProgress(new Progress(i, manifest.AddedFiles.Length));
-
-                        PatchFilePath addedFile = manifest.AddedFiles[i];
-                        string checksum = manifest.AddedFileChecksums[i];
-
-                        FileSystemPath tempFilePath = _tempDir.TempPath + addedFile.FullFilePath;
-
-                        Directory.CreateDirectory(tempFilePath.Parent);
-
-                        using Stream file = patchFile.GetPatchResource(addedFile);
-                        using Stream tempFileStream = File.Create(tempFilePath);
-                        await file.CopyToAsync(tempFileStream);
-
-                        Files.Add(new FileViewModel()
-                        {
-                            SourceFilePath = tempFilePath,
-                            Location = addedFile.Location,
-                            LocationID = addedFile.LocationID,
-                            FilePath = addedFile.FilePath,
-                            Checksum = checksum,
-                        });
-                    }
-
-                    operation.SetProgress(new Progress(manifest.AddedFiles.Length, manifest.AddedFiles.Length));
+                        SourceFilePath = tempFilePath,
+                        Location = resource.FilePath.Location,
+                        LocationID = resource.FilePath.LocationID,
+                        FilePath = resource.FilePath.FilePath,
+                        Checksum = resource.Checksum,
+                    });
                 }
+
+                operation.SetProgress(new Progress(fileIndex, patchFile.AddedFiles.Length));
 
                 IsImported = true;
 
-                Logger.Info("Imported patch {0} with version {1}", manifest.Name, manifest.PatchVersion);
+                Logger.Info("Imported patch {0} with version {1}", metadata.Name, patchFile.Version);
 
                 return true;
             }
@@ -300,21 +309,38 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             if (browseResult.CanceledByUser)
                 return false;
 
-            if (browseResult.SelectedFileLocation.FileExists)
-                browseResult.SelectedFileLocation.DeleteFile();
-
             try
             {
                 await Task.Run(() =>
                 {
-                    using PatchFile patchFile = new(browseResult.SelectedFileLocation);
+                    // Create a context and add the patch file
+                    using RCPContext context = new(String.Empty);
+                    LinearFile binaryFile = context.AddFile(new LinearFile(context, browseResult.SelectedFileLocation)
+                    {
+                        RecreateOnWrite = false
+                    });
 
-                    List<PatchFilePath> addedFiles = new();
-                    List<string> addedFileChecksums = new();
+                    // Create a new patch file
+                    PatchFile patchFile = new()
+                    {
+                        Version = PatchFile.LatestVersion,
+                        Metadata = new PatchMetadata
+                        {
+                            ID = ID,
+                            Game = Game,
+                            Name = Name,
+                            Description = Description,
+                            Author = Author,
+                            Revision = Revision,
+                            ModifiedDate = DateTime.Now
+                        },
+                    };
+
+                    Dictionary<FileViewModel, PatchFileResourceEntry> addedFiles = new();
                     List<PatchFilePath> removedFiles = new();
-                    List<string> assets = new();
                     long totalSize = 0;
 
+                    // Add the file entries
                     foreach (FileViewModel file in Files.Where(x => x.IsValid))
                     {
                         if (file.IsFileAdded)
@@ -322,15 +348,18 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                             using FileStream stream = File.OpenRead(file.SourceFilePath);
 
                             // Calculate the checksum
-                            string checksum = file.Checksum ?? PatchFile.CalculateChecksum(stream);
-                            stream.Position = 0;
+                            byte[] checksum = file.Checksum ?? PatchFile.CalculateChecksum(stream);
+                            
+                            addedFiles.Add(file, new PatchFileResourceEntry
+                            {
+                                FilePath = file.PatchFilePath,
+                                Checksum = checksum,
 
-                            // Add the file
-                            patchFile.AddPatchResource(file.PatchFilePath, stream);
-
-                            // Add to the manifest
-                            addedFiles.Add(file.PatchFilePath);
-                            addedFileChecksums.Add(checksum);
+                                // Gets set when we pack the resources
+                                DataOffset = 0,
+                                CompressedDataLength = 0,
+                                DecompressedDataLength = 0
+                            });
 
                             // Update the total size
                             totalSize += stream.Length;
@@ -354,33 +383,55 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         encoder.Save(memStream);
                         memStream.Position = 0;
 
-                        // Add the asset
-                        patchFile.AddPatchAsset(PatchAsset.Thumbnail, memStream);
-
-                        // Add to the manifest
-                        assets.Add(PatchAsset.Thumbnail);
+                        patchFile.Thumbnail = memStream.ToArray();
+                        patchFile.HasThumbnail = true;
 
                         Logger.Info("Added patch thumbnail");
                     }
 
-                    // Write the manifest
-                    patchFile.WriteManifest(new PatchManifest(
-                        ID: ID,
-                        PatchVersion: PatchManifest.LatestVersion,
-                        Game: Game,
-                        Name: Name,
-                        Description: Description,
-                        Author: Author,
-                        TotalSize: totalSize,
-                        ModifiedDate: DateTime.Now,
-                        Revision: Revision,
-                        AddedFiles: addedFiles.ToArray(),
-                        AddedFileChecksums: addedFileChecksums.ToArray(),
-                        RemovedFiles: removedFiles.ToArray(),
-                        Assets: assets.ToArray()));
+                    patchFile.AddedFiles = addedFiles.Values.ToArray();
+                    patchFile.RemovedFiles = removedFiles.ToArray();
+                    patchFile.Metadata.TotalSize = totalSize;
 
-                    patchFile.Apply();
+                    // Calculate the header size to get the start offset for packing the resources
+                    patchFile.Init(binaryFile.StartPointer);
+                    patchFile.RecalculateSize();
+                    long dataOffset = patchFile.Size;
 
+                    // Create the patch files and pack the files. We leave the header empty for now.
+                    using (Stream patchFileStream = File.Create(browseResult.SelectedFileLocation))
+                    {
+                        patchFileStream.Position = dataOffset;
+
+                        foreach (FileViewModel file in Files.Where(x => x.IsValid && x.IsFileAdded))
+                        {
+                            // Get the resource entry
+                            PatchFileResourceEntry resourceEntry = addedFiles[file];
+
+                            // Open the file to pack
+                            using FileStream stream = File.OpenRead(file.SourceFilePath);
+
+                            // Compress the file
+                            using (DeflateStream deflateStream = new(patchFileStream, CompressionLevel.Fastest, leaveOpen: true))
+                                // Write to the patch file
+                                stream.CopyTo(deflateStream);
+
+                            // Get the compressed data length
+                            long compressedLength = patchFileStream.Position - dataOffset;
+
+                            // Set the resource entry values
+                            resourceEntry.DataOffset = dataOffset;
+                            resourceEntry.CompressedDataLength = compressedLength;
+                            resourceEntry.DecompressedDataLength = stream.Length;
+
+                            // Update the data offset for the next resource
+                            dataOffset += compressedLength;
+                        }
+                    }
+
+                    // Write the patch file header
+                    FileFactory.Write(context, binaryFile.FilePath, patchFile);
+                    
                     // Dispose temporary files
                     _tempDir?.Dispose();
                     _tempDir = null;
@@ -422,7 +473,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         public string LocationID { get; set; } = String.Empty;
         public string FilePath { get; set; } = String.Empty;
 
-        public string? Checksum { get; set; }
+        public byte[]? Checksum { get; set; }
 
         public bool IsSelected { get; set; }
 

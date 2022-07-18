@@ -1,131 +1,108 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.IO;
 using System.Security.Cryptography;
-using NLog;
+using System.Text;
+using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
-/// A game patch (.gp)
+/// A patch file (.gp). This is a custom binary file format which stores the data and resources for a game patch.
 /// </summary>
-public class PatchFile : IDisposable
+public class PatchFile : BinarySerializable
 {
-    #region Constructor
-
-    public PatchFile(FileSystemPath filePath, bool readOnly = false)
-    {
-        _zip = new PatchZip(filePath, readOnly);
-    }
-
-    #endregion
-
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
     #region Constants
 
-    private const string ManifestFileName = "manifest.json";
     public const string FileExtension = ".gp"; // Game Patch
-
-    #endregion
-
-    #region Private Fields
-
-    private readonly PatchZip _zip;
+    public const int LatestVersion = 0;
 
     #endregion
 
     #region Public Properties
 
-    public FileSystemPath FilePath => _zip.FilePath;
+    /// <summary>
+    /// The patch file version. This is used for backwards compatibility if the format ever changes.
+    /// </summary>
+    public int Version { get; set; }
 
-    #endregion
+    /// <summary>
+    /// The patch metadata containing general information about the patch
+    /// </summary>
+    public PatchMetadata Metadata { get; set; }
 
-    #region Private Methods
+    /// <summary>
+    /// Indicates if the patch has a thumbnail or not
+    /// </summary>
+    public bool HasThumbnail { get; set; }
 
-    private string GetPatchResourcePath(PatchFilePath resourcePath)
-    {
-        return $"resources/{resourcePath.NormalizedFullFilePath}";
-    }
+    /// <summary>
+    /// The patch thumbnail or <see langword="null" /> if <see cref="HasThumbnail"/> is false. As of version 0
+    /// this is always expected to be a a PNG file.
+    /// </summary>
+    public byte[] Thumbnail { get; set; }
 
-    private string GetPatchAssetPath(string assetName) => $"assets/{assetName}";
+    /// <summary>
+    /// The files added or replaced by this patch. These are resources as they contain packed data.
+    /// </summary>
+    public PatchFileResourceEntry[] AddedFiles { get; set; }
 
-    #endregion
-
-    #region Public Methods
-
-    public PatchManifest ReadManifest()
-    {
-        Logger.Info("Reading patch manifest");
-
-        if (!_zip.CanRead)
-            throw new Exception("The manifest can not be read from the patch");
-
-        using Stream? s = _zip.OpenStream(ManifestFileName);
-
-        if (s is null)
-            throw new Exception("Patch does not contain a valid manifest file");
-
-        PatchManifest manifest = JsonHelpers.DeserializeFromStream<PatchManifest>(s);
-
-        Logger.Info("Read patch manifest with version {0} and ID {1}", manifest.PatchVersion, manifest.ID);
-
-        return manifest;
-    }
-
-    public void WriteManifest(PatchManifest manifest)
-    {
-        _zip.WriteJSON(ManifestFileName, manifest);
-        Logger.Info("Wrote patch manifest");
-    }
-
-    public Stream GetPatchResource(PatchFilePath resourcePath)
-    {
-        string path = GetPatchResourcePath(resourcePath);
-        return _zip.OpenStream(path) ?? throw new Exception($"Resource with name {resourcePath} was not found");
-    }
-
-    public Stream GetPatchAsset(string assetName)
-    {
-        string path = GetPatchAssetPath(assetName);
-        return _zip.OpenStream(path) ?? throw new Exception($"Asset with name {assetName} was not found");
-    }
-
-    public void AddPatchResource(PatchFilePath resourcePath, Stream stream)
-    {
-        _zip.WriteStream(GetPatchResourcePath(resourcePath), stream);
-    }
-
-    public void AddPatchAsset(string assetName, Stream stream)
-    {
-        _zip.WriteStream(GetPatchAssetPath(assetName), stream);
-    }
-
-    public void Apply()
-    {
-        _zip.Apply();
-        Logger.Info("Applied patch file modifications");
-    }
-
-    public void Dispose()
-    {
-        _zip.Dispose();
-    }
+    /// <summary>
+    /// The files removed by this patch. This only includes their paths.
+    /// </summary>
+    public PatchFilePath[] RemovedFiles { get; set; }
 
     #endregion
 
     #region Public Static Methods
 
+    /// <summary>
+    /// Generates a new unique ID for a patch
+    /// </summary>
+    /// <returns>The generated ID</returns>
     public static string GenerateID() => Guid.NewGuid().ToString();
 
-    public static string CalculateChecksum(Stream stream)
+    /// <summary>
+    /// Calculates the checksum for a patch resource
+    /// </summary>
+    /// <param name="stream">The resource stream</param>
+    /// <returns>The calculated checksum as a byte array</returns>
+    public static byte[] CalculateChecksum(Stream stream)
     {
         using SHA256Managed sha = new();
-        byte[] checksum = sha.ComputeHash(stream);
-        return BitConverter.ToString(checksum);
+        return sha.ComputeHash(stream);
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public override void SerializeImpl(SerializerObject s)
+    {
+        s.DoWithDefaults(new SerializerDefaults() { StringEncoding = Encoding.UTF8 }, () =>
+        {
+            s.SerializeMagicString("GP", 2);
+            Version = s.Serialize<int>(Version, name: nameof(Version));
+
+            if (Version > LatestVersion)
+                throw new UnsupportedFormatVersionException($"The patch version {Version} is higher than the latest supported version {LatestVersion}");
+
+            Metadata = s.SerializeObject<PatchMetadata>(Metadata, name: nameof(Metadata));
+
+            HasThumbnail = s.Serialize<bool>(HasThumbnail, name: nameof(HasThumbnail));
+
+            if (HasThumbnail)
+            {
+                Thumbnail = s.SerializeArraySize<byte, int>(Thumbnail, name: nameof(Thumbnail));
+                Thumbnail = s.SerializeArray<byte>(Thumbnail, Thumbnail.Length, name: nameof(Thumbnail));
+            }
+
+            AddedFiles = s.SerializeArraySize<PatchFileResourceEntry, int>(AddedFiles, name: nameof(AddedFiles));
+            AddedFiles = s.SerializeObjectArray<PatchFileResourceEntry>(AddedFiles, AddedFiles.Length, name: nameof(AddedFiles));
+
+            RemovedFiles = s.SerializeArraySize<PatchFilePath, int>(RemovedFiles, name: nameof(RemovedFiles));
+            RemovedFiles = s.SerializeObjectArray<PatchFilePath>(RemovedFiles, RemovedFiles.Length, name: nameof(RemovedFiles));
+        });
     }
 
     #endregion

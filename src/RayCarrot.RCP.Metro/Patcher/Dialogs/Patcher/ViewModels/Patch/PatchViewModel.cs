@@ -18,6 +18,7 @@ public abstract class PatchViewModel : BaseViewModel, IDisposable
     #region Public Properties
 
     public PatcherViewModel PatcherViewModel { get; }
+    public abstract string ID { get; }
     public abstract string Name { get; }
     public abstract string Description { get; }
     public abstract ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }

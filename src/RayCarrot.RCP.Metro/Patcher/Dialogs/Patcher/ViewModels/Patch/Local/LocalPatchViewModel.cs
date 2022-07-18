@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ByteSizeLib;
@@ -14,23 +13,24 @@ public abstract class LocalPatchViewModel : PatchViewModel
 {
     #region Constructor
 
-    protected LocalPatchViewModel(PatcherViewModel patcherViewModel, PatchManifest manifest, bool isEnabled) 
+    protected LocalPatchViewModel(PatcherViewModel patcherViewModel, PatchFile patchFile, FileSystemPath filePath, bool isEnabled) 
         : base(patcherViewModel)
     {
-        Manifest = manifest;
+        PatchFile = patchFile;
         _isEnabled = isEnabled;
+        FilePath = filePath;
 
         // TODO-UPDATE: Localize
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new("Author", manifest.Author),
-            new("Size", ByteSize.FromBytes(manifest.TotalSize).ToString()),
-            new("Date", manifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-            new("Revision", manifest.Revision.ToString()),
-            new("ID", manifest.ID, UserLevel.Debug),
-            new("Version", manifest.PatchVersion.ToString(), UserLevel.Debug),
-            new("Added Files", (manifest.AddedFiles?.Length ?? 0).ToString()),
-            new("Removed Files", (manifest.RemovedFiles?.Length ?? 0).ToString()),
+            new("Author", patchFile.Metadata.Author),
+            new("Size", ByteSize.FromBytes(patchFile.Metadata.TotalSize).ToString()),
+            new("Date", patchFile.Metadata.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+            new("Revision", patchFile.Metadata.Revision.ToString()),
+            new("ID", patchFile.Metadata.ID, UserLevel.Debug),
+            new("File Version", patchFile.Version.ToString(), UserLevel.Debug),
+            new("Added Files", (patchFile.AddedFiles?.Length ?? 0).ToString()),
+            new("Removed Files", (patchFile.RemovedFiles?.Length ?? 0).ToString()),
         };
 
         ExtractContentsCommand = new AsyncRelayCommand(async () => await PatcherViewModel.ExtractPatchContentsAsync(this));
@@ -64,11 +64,14 @@ public abstract class LocalPatchViewModel : PatchViewModel
 
     #region Public Properties
 
-    public override string Name => Manifest.Name ?? String.Empty;
-    public override string Description => Manifest.Description ?? String.Empty;
+    public override string ID => Metadata.ID;
+    public override string Name => Metadata.Name ?? String.Empty;
+    public override string Description => Metadata.Description ?? String.Empty;
     public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
 
-    public PatchManifest Manifest { get; }
+    public PatchFile PatchFile { get; }
+    public PatchMetadata Metadata => PatchFile.Metadata;
+    public FileSystemPath FilePath { get; }
 
     public bool IsEnabled
     {
@@ -87,29 +90,24 @@ public abstract class LocalPatchViewModel : PatchViewModel
 
     public void LoadThumbnail()
     {
-        // TODO-UPDATE: Re-implement
-        //Logger.Trace("Loading thumbnail for patch with ID {0}", Manifest.ID);
+        Logger.Trace("Loading thumbnail for patch with ID {0}", ID);
 
-        //if (!Manifest.HasAsset(PatchAsset.Thumbnail))
-        //{
-        //    Logger.Trace("No thumbnail asset was found");
+        if (!PatchFile.HasThumbnail)
+        {
+            Logger.Trace("No thumbnail was found");
 
-        //    Thumbnail = null;
-        //    return;
-        //}
+            Thumbnail = null;
+            return;
+        }
 
-        //using Stream thumbStream = PatchFile.GetPatchAsset(PatchAsset.Thumbnail);
+        using MemoryStream thumbStream = new(PatchFile.Thumbnail);
 
-        //// This doesn't seem to work when reading from a zip archive as read-only due to the stream
-        //// not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
-        ////Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-        //Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
+        // TODO-UPDATE: Try/catch
+        Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
 
-        //if (Thumbnail?.CanFreeze == true)
-        //    Thumbnail.Freeze();
+        if (Thumbnail?.CanFreeze == true)
+            Thumbnail.Freeze();
     }
-
-    public abstract PatchFile ReadPatchFile();
 
     #endregion
 }

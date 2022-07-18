@@ -3,11 +3,11 @@
 public class DownloadedLocalPatchViewModel : PendingImportedLocalPatchViewModel
 {
     public DownloadedLocalPatchViewModel(
-        PatcherViewModel patcherViewModel, 
-        PatchManifest manifest, 
+        PatcherViewModel patcherViewModel,
+        PatchFile patchFile, 
         bool isEnabled,
         FileSystemPath patchFilePath,
-        TempDirectory tempDirectory) : base(patcherViewModel, manifest, isEnabled, patchFilePath)
+        TempDirectory tempDirectory) : base(patcherViewModel, patchFile, isEnabled, patchFilePath)
     {
         TempDirectory = tempDirectory;
     }

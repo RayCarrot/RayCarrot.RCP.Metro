@@ -30,6 +30,14 @@ public static class ContextExtensions
         }
     }
 
+    public static T ReadRequiredFileData<T>(this Context context, string fileName, IStreamEncoder? encoder = null,
+        Endian? endian = null, Action<T>? onPreSerialize = null, bool removeFileWhenComplete = true)
+        where T : BinarySerializable, new()
+    {
+        return ReadFileData<T>(context, fileName, encoder, endian, onPreSerialize, removeFileWhenComplete) 
+               ?? throw new FileNotFoundException($"The requested file {fileName} was not found");
+    }
+
     public static T ReadStreamData<T>(this Context context, Stream stream, string name = "Stream", Endian? endian = null, bool leaveOpen = false, Action<T>? onPreSerialize = null)
         where T : BinarySerializable, new()
     {

@@ -587,45 +587,40 @@ public class Page_Debug_ViewModel : BasePageViewModel
             List<(Games Game, ExternalPatchManifest Manifest)> patches = new();
             Dictionary<Games, string> gameManifestURLs = new();
 
+            using RCPContext context = new(String.Empty);
+
             // Process each patch
             foreach (FileSystemPath patchFilePath in inputResult.SelectedFiles)
             {
-                PatchManifest manifest;
+                // Read the file
+                PatchFile patch = context.ReadRequiredFileData<PatchFile>(patchFilePath);
+
+                Games game = patch.Metadata.Game;
                 string? thumbURL = null;
 
-                // Open the patch
-                using (PatchFile patch = new(patchFilePath, readOnly: true))
+                // Extract thumbnail, if one exists
+                if (patch.HasThumbnail)
                 {
-                    // Read the manifest
-                    manifest = patch.ReadManifest();
+                    thumbURL = $"{game.ToString().ToLowerInvariant()}/{patchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
 
-                    // Extract thumbnail, if one exists
-                    if (manifest.HasAsset(PatchAsset.Thumbnail))
-                    {
-                        thumbURL = $"{manifest.Game.ToString().ToLowerInvariant()}/{patchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
-
-                        using Stream thumbOutputStream = File.Create(outputResult.SelectedDirectory + "patches" + thumbURL);
-                        using Stream thumbStream = patch.GetPatchAsset(PatchAsset.Thumbnail);
-
-                        thumbStream.CopyTo(thumbOutputStream);
-                    }
+                    File.WriteAllBytes(outputResult.SelectedDirectory + "patches" + thumbURL, patch.Thumbnail);
                 }
 
-                string patchURL = $"{manifest.Game.ToString().ToLowerInvariant()}/{patchFilePath.Name}";
+                string patchURL = $"{game.ToString().ToLowerInvariant()}/{patchFilePath.Name}";
 
                 // Copy the patch file
                 FileManager.CopyFile(patchFilePath, outputResult.SelectedDirectory + "patches" + patchURL, true);
 
-                patches.Add((manifest.Game, new ExternalPatchManifest(
-                    ID: manifest.ID,
-                    Name: manifest.Name,
-                    Description: manifest.Description,
-                    Author: manifest.Author,
-                    TotalSize: manifest.TotalSize,
-                    ModifiedDate: manifest.ModifiedDate,
-                    Revision: manifest.Revision,
-                    AddedFilesCount: manifest.AddedFiles?.Length ?? 0,
-                    RemovedFilesCount: manifest.RemovedFiles?.Length ?? 0,
+                patches.Add((game, new ExternalPatchManifest(
+                    ID: patch.Metadata.ID,
+                    Name: patch.Metadata.Name,
+                    Description: patch.Metadata.Description,
+                    Author: patch.Metadata.Author,
+                    TotalSize: patch.Metadata.TotalSize,
+                    ModifiedDate: patch.Metadata.ModifiedDate,
+                    Revision: patch.Metadata.Revision,
+                    AddedFilesCount: patch.AddedFiles?.Length ?? 0,
+                    RemovedFilesCount: patch.RemovedFiles?.Length ?? 0,
                     Patch: patchURL,
                     PatchSize: (int)patchFilePath.GetSize().Bytes,
                     Thumbnail: thumbURL)));

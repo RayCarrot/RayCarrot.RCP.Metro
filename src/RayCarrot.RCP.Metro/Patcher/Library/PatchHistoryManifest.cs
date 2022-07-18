@@ -12,11 +12,11 @@ public record PatchHistoryManifest(
 
     // Files added to the game. No data is saved for these. Restore by deleting them.
     PatchFilePath[]? AddedFiles,
-    string[]? AddedFileChecksums,
+    byte[][]? AddedFileChecksums,
 
     // Files replaced in the game. The original file is saved. Restore by replacing it back.
     PatchFilePath[]? ReplacedFiles,
-    string[]? ReplacedFileChecksums,
+    byte[][]? ReplacedFileChecksums,
 
     // Files removed from the game. The original file is saved. Restore by adding it back.
     PatchFilePath[]? RemovedFiles);

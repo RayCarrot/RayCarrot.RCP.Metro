@@ -27,7 +27,6 @@ public class PatchHistory
         
         using DeflateStream deflateStream = new(fileStream, CompressionMode.Decompress);
         
-        // TODO-UPDATE: Will this cause big memory usage?
         // Decompress to a memory stream or else we can't access the length
         MemoryStream memStream = new();
         deflateStream.CopyTo(memStream);

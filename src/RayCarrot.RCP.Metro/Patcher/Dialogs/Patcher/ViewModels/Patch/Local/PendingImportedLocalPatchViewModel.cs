@@ -5,21 +5,11 @@
 /// </summary>
 public class PendingImportedLocalPatchViewModel : LocalPatchViewModel
 {
-    public PendingImportedLocalPatchViewModel(PatcherViewModel patcherViewModel, PatchManifest manifest, bool isEnabled, FileSystemPath patchFilePath) 
-        : base(patcherViewModel, manifest, isEnabled)
-    {
-        PatchFilePath = patchFilePath;
-    }
-
-    /// <summary>
-    /// The path of the file to be imported
-    /// </summary>
-    public FileSystemPath PatchFilePath { get; }
+    public PendingImportedLocalPatchViewModel(PatcherViewModel patcherViewModel, PatchFile patchFile, bool isEnabled, FileSystemPath patchFilePath) 
+        : base(patcherViewModel, patchFile, patchFilePath, isEnabled) { }
 
     /// <summary>
     /// True if the patch should be moved when added to the library. False if it should be copied.
     /// </summary>
     public virtual bool MovePatch => false;
-
-    public override PatchFile ReadPatchFile() => new(PatchFilePath, readOnly: true);
 }
