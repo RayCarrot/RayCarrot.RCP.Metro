@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -348,22 +349,42 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     List<PatchFilePath> removedFiles = new();
                     long totalSize = 0;
 
-                    // Add the file entries
+                    Stopwatch sw = Stopwatch.StartNew();
+
+                    int fileIndex = 0;
+
+                    // Add the file entries and calculate the checksums
                     foreach (FileViewModel file in Files)
                     {
+                        operation.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
+                        fileIndex++;
+
                         if (file.IsFileAdded)
                         {
-                            using FileStream stream = File.OpenRead(file.SourceFilePath);
+                            long length;
+                            PackagedResourceChecksum checksum;
 
-                            // Calculate the checksum
-                            PackagedResourceChecksum checksum = file.Checksum ?? PackagedResourceChecksum.FromStream(stream);
+                            if (file.Checksum == null)
+                            {
+                                using FileStream stream = File.OpenRead(file.SourceFilePath);
+
+                                // Calculate the checksum
+                                checksum = file.Checksum ?? PackagedResourceChecksum.FromStream(stream);
+
+                                length = stream.Length;
+                            }
+                            else
+                            {
+                                checksum = file.Checksum;
+                                length = file.SourceFilePath.GetFileInfo().Length;
+                            }
 
                             PackagedResourceEntry resource = new();
                             addedFiles.Add((file.PatchFilePath, checksum, resource));
                             resource.SetPendingImport(() => File.OpenRead(file.SourceFilePath), false);
 
                             // Update the total size
-                            totalSize += stream.Length;
+                            totalSize += length;
                         }
                         else
                         {
@@ -371,6 +392,11 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                             removedFiles.Add(file.PatchFilePath);
                         }
                     }
+
+                    operation.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
+
+                    sw.Stop();
+                    Logger.Debug("Calculated file checksums in {0} ms", sw.ElapsedMilliseconds);
 
                     // Add the thumbnail if there is one
                     if (Thumbnail != null)
@@ -401,7 +427,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     patchFile.Metadata.TotalSize = totalSize;
 
                     // Pack the file
-                    patchFile.WriteAndPackResources(operation.SetProgress);
+                    patchFile.WriteAndPackResources(x => operation.SetProgress(new Progress(1 + x.Percentage / 100, 2)));
                     
                     // Dispose temporary files
                     _tempDir?.Dispose();
