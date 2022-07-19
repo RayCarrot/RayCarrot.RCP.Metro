@@ -168,6 +168,10 @@
                           SelectionMode="Extended"
                           Margin="0 0 0 10">
 
+                    <DataGrid.Resources>
+                        <local:BindingProxy x:Key="BindingProxy" Data="{Binding}" />
+                    </DataGrid.Resources>
+
                     <DataGrid.Columns>
 
                         <!-- Icon -->
@@ -233,7 +237,11 @@
                             <DataGridTextColumn.Binding>
                                 <Binding Path="FilePath" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <local:NotEmptyValidationRule />
+                                        <patcher:PatchCreatorFilePathValidationRule>
+                                            <patcher:PatchCreatorFilePathValidationRule.AvailableFileLocations>
+                                                <patcher:AvailableFileLocationsWrapper Value="{Binding Path=Data.AvailableLocations, Source={StaticResource BindingProxy}}" />
+                                            </patcher:PatchCreatorFilePathValidationRule.AvailableFileLocations>
+                                        </patcher:PatchCreatorFilePathValidationRule>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </DataGridTextColumn.Binding>

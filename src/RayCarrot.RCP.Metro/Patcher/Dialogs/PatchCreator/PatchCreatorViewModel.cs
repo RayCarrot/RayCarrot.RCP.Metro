@@ -91,6 +91,21 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #endregion
 
+    #region Private Methods
+
+    private void AddFile(FileViewModel file)
+    {
+        string normalizedPath = file.FilePath.ToLowerInvariant().Replace('/', '\\');
+
+        // Don't allow adding files which conflict with existing locations
+        if (file.Location == String.Empty && AvailableLocations.Any(x => x.Location.Replace('/', '\\').ToLowerInvariant() == normalizedPath))
+            return;
+
+        Files.Add(file);
+    }
+
+    #endregion
+
     #region Public Methods
 
     public async Task<bool> ImportFromPatchAsync(FileSystemPath patchFilePath)
@@ -162,14 +177,12 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                     await srcStream.CopyToAsync(dstStream);
 
-                    Files.Add(new FileViewModel()
-                    {
-                        SourceFilePath = tempFilePath,
-                        Location = filePath.Location,
-                        LocationID = filePath.LocationID,
-                        FilePath = filePath.FilePath,
-                        Checksum = checksum,
-                    });
+                    Files.Add(new FileViewModel(
+                        sourceFilePath: tempFilePath,
+                        filePath: filePath.FilePath,
+                        location: filePath.Location,
+                        locationId: filePath.LocationID,
+                        checksum: checksum));
                 }
 
                 operation.SetProgress(new Progress(patchFile.AddedFiles.Length, patchFile.AddedFiles.Length));
@@ -242,13 +255,11 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
         foreach (FileSystemPath file in browseResult.SelectedFiles)
         {
-            Files.Add(new FileViewModel()
-            {
-                SourceFilePath = file,
-                Location = SelectedLocation.Location,
-                LocationID = SelectedLocation.LocationID,
-                FilePath = file.Name,
-            });
+            AddFile(new FileViewModel(
+                sourceFilePath: file,
+                filePath: file.Name,
+                location: SelectedLocation.Location,
+                locationId: SelectedLocation.LocationID));
         }
     }
 
@@ -273,13 +284,11 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             // TODO-UPDATE: Localize
             foreach (FileSystemPath file in Directory.EnumerateFiles(browseResult.SelectedDirectory, "*", SearchOption.AllDirectories))
             {
-                Files.Add(new FileViewModel()
-                {
-                    SourceFilePath = file,
-                    Location = SelectedLocation.Location,
-                    LocationID = SelectedLocation.LocationID,
-                    FilePath = file - browseResult.SelectedDirectory,
-                });
+                AddFile(new FileViewModel(
+                    sourceFilePath: file,
+                    filePath: file - browseResult.SelectedDirectory,
+                    location: SelectedLocation.Location,
+                    locationId: SelectedLocation.LocationID));
             }
         }
         catch (Exception ex)
@@ -340,7 +349,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     long totalSize = 0;
 
                     // Add the file entries
-                    foreach (FileViewModel file in Files.Where(x => x.IsValid))
+                    foreach (FileViewModel file in Files)
                     {
                         if (file.IsFileAdded)
                         {
@@ -430,16 +439,29 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public class FileViewModel : BaseViewModel
     {
-        public FileSystemPath SourceFilePath { get; set; }
-        public string Location { get; set; } = String.Empty;
-        public string LocationID { get; set; } = String.Empty;
-        public string FilePath { get; set; } = String.Empty;
+        public FileViewModel(
+            FileSystemPath sourceFilePath, 
+            string filePath, 
+            string? location, 
+            string? locationId,
+            PackagedResourceChecksum? checksum = null)
+        {
+            SourceFilePath = sourceFilePath;
+            FilePath = filePath;
+            Location = location ?? String.Empty;
+            LocationID = locationId ?? String.Empty;
+            Checksum = checksum;
+        }
 
-        public PackagedResourceChecksum? Checksum { get; set; }
+        public string Location { get; }
+        public string LocationID { get; }
+        public PackagedResourceChecksum? Checksum { get; }
+
+        public FileSystemPath SourceFilePath { get; set; }
+        public string FilePath { get; set; }
 
         public bool IsSelected { get; set; }
 
-        public bool IsValid => !FilePath.IsNullOrWhiteSpace();
         public bool IsFileAdded => SourceFilePath.FileExists;
         public bool IsImported => Checksum != null;
         public PatchFilePath PatchFilePath => new(Location, LocationID, FilePath);
