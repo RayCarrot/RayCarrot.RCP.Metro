@@ -792,28 +792,35 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         IsEnabled = x.IsEnabled
                     }).ToArray();
 
-                    await patcher.ApplyAsync(
+                    bool success = await patcher.ApplyAsync(
                         game: Game,
                         library: Library,
                         gameDirectory: GameDirectory,
                         patches: patches,
                         progressCallback: operation.SetProgress);
+
+                    Logger.Info("Applied patches");
+
+                    // TODO-UPDATE: Localize
+                    if (success)
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
+                    else
+                        await Services.MessageUI.DisplayMessageAsync("Finished applying patches. Some files could not be modified.", MessageType.Warning);
                 });
-
-                Logger.Info("Applied patches");
-
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, "Applying patches");
+
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex,
                     "An error occurred when applying the patches. Some files might still have been modified by patches.");
             }
-
-            // At this point we have to clear the local patches since the files might have been moved around
-            ClearLocalPatches();
+            finally
+            {
+                // At this point we have to clear the local patches since the files might have been moved around
+                ClearLocalPatches();
+            }
         }
     }
 

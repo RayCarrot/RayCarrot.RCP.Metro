@@ -467,9 +467,7 @@ public class Patcher
 
     #region Public Methods
 
-    // TODO-UPDATE: Error handling to avoid corruption
-
-    public async Task ApplyAsync(
+    public async Task<bool> ApplyAsync(
         Games game,
         PatchLibrary library,
         FileSystemPath gameDirectory,
@@ -505,34 +503,44 @@ public class Patcher
             ? null
             : x => progressCallback?.Invoke(new Progress(progressIndex + x.Percentage / 100, maxProgress));
 
+        bool success = true;
+
         // Modify every location
         foreach (string locationKey in locationModifications.Keys)
         {
-            // Physical
-            if (locationKey == String.Empty)
+            try
             {
-                ModifyPhysicalFiles(
-                    fileChanges: fileChanges,
-                    locationKey: locationKey,
-                    fileModifications: locationModifications[locationKey].FileModifications,
-                    dirPath: gameDirectory,
-                    patchHistory: libraryFile?.History,
-                    progressCallback: operationProgressCallback);
-            }
-            // Archive
-            else
-            {
-                IArchiveDataManager manager = locationModifications[locationKey].ArchiveDataManager ??
-                                              throw new Exception($"No archive data manager for location {locationKey}");
+                // Physical
+                if (locationKey == String.Empty)
+                {
+                    ModifyPhysicalFiles(
+                        fileChanges: fileChanges,
+                        locationKey: locationKey,
+                        fileModifications: locationModifications[locationKey].FileModifications,
+                        dirPath: gameDirectory,
+                        patchHistory: libraryFile?.History,
+                        progressCallback: operationProgressCallback);
+                }
+                // Archive
+                else
+                {
+                    IArchiveDataManager manager = locationModifications[locationKey].ArchiveDataManager ??
+                                                  throw new Exception($"No archive data manager for location {locationKey}");
 
-                ModifyArchive(
-                    fileChanges: fileChanges, 
-                    locationKey: locationKey,
-                    fileModifications: locationModifications[locationKey].FileModifications, 
-                    archiveFilePath: gameDirectory + locationModifications[locationKey].Location, 
-                    manager: manager, 
-                    patchHistory: libraryFile?.History,
-                    progressCallback: operationProgressCallback);
+                    ModifyArchive(
+                        fileChanges: fileChanges,
+                        locationKey: locationKey,
+                        fileModifications: locationModifications[locationKey].FileModifications,
+                        archiveFilePath: gameDirectory + locationModifications[locationKey].Location,
+                        manager: manager,
+                        patchHistory: libraryFile?.History,
+                        progressCallback: operationProgressCallback);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Applying file modification for location {0}", locationModifications[locationKey].Location);
+                success = false;
             }
 
             progressIndex++;
@@ -568,11 +576,15 @@ public class Patcher
         libraryFile.WriteAndPackResources(operationProgressCallback);
 
         progressCallback?.Invoke(new Progress(maxProgress, maxProgress));
+
+        return success;
     }
 
     #endregion
 
     #region Data Types
+
+    public record PatcherResult(bool Suceeded, string ErrorMessage);
 
     private record FileModification(
         FileModificationType Type,
