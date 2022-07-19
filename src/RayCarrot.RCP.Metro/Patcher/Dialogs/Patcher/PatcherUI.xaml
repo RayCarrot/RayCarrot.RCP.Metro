@@ -255,7 +255,7 @@
                                             <DataTrigger Binding="{Binding Path=LocalPatches.Count}" Value="0">
                                                 <Setter Property="Visibility" Value="Collapsed" />
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=ExternalPatches.Count}" Value="0">
+                                            <DataTrigger Binding="{Binding Path=DisplayedExternalPatches.Count}" Value="0">
                                                 <Setter Property="Visibility" Value="Collapsed" />
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -266,7 +266,7 @@
                             <!-- External -->
 
                             <ListBox SelectedItem="{Binding Path=SelectedExternalPatch}"
-                                     ItemsSource="{Binding Path=ExternalPatches, Mode=OneTime}"
+                                     ItemsSource="{Binding Path=DisplayedExternalPatches, Mode=OneTime}"
                                      d:ItemsSource="{d:SampleData ItemCount=3}"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                      Margin="0 0 0 5"

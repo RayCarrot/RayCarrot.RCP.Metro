@@ -603,7 +603,11 @@ public class Page_Debug_ViewModel : BasePageViewModel
                 {
                     thumbURL = $"{game.ToString().ToLowerInvariant()}/{patchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
 
-                    using Stream thumbOutputStream = File.Create(outputResult.SelectedDirectory + "patches" + thumbURL);
+                    FileSystemPath thumbFilePath = outputResult.SelectedDirectory + "patches" + thumbURL;
+
+                    Directory.CreateDirectory(thumbFilePath.Parent);
+
+                    using Stream thumbOutputStream = File.Create(thumbFilePath);
                     patch.ThumbnailResource.ReadData(context, true).CopyTo(thumbOutputStream);
                 }
 
@@ -614,6 +618,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                 patches.Add((game, new ExternalPatchManifest(
                     ID: patch.Metadata.ID,
+                    FileVersion: patch.Version,
                     Name: patch.Metadata.Name,
                     Description: patch.Metadata.Description,
                     Author: patch.Metadata.Author,

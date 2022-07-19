@@ -102,16 +102,22 @@ public abstract class LocalPatchViewModel : PatchViewModel
             return;
         }
 
-        // TODO-UPDATE: Try/catch
-        using Stream thumbStream = PatchFile.ThumbnailResource.ReadData(context, true);
+        try
+        {
+            using Stream thumbStream = PatchFile.ThumbnailResource.ReadData(context, true);
 
-        // This doesn't seem to work when reading from a compressed stream as read-only due to the stream
-        // not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
-        //Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-        Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
+            // This doesn't seem to work when reading from a compressed stream as read-only due to the stream
+            // not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
+            //Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
 
-        if (Thumbnail?.CanFreeze == true)
-            Thumbnail.Freeze();
+            if (Thumbnail?.CanFreeze == true)
+                Thumbnail.Freeze();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading local thumbnail");
+        }
     }
 
     #endregion

@@ -22,7 +22,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         Library = new PatchLibrary(GameDirectory, Services.File);
 
         LocalPatches = new ObservableCollection<LocalPatchViewModel>();
-        ExternalPatches = new ObservableCollection<ExternalPatchViewModel>();
+        DisplayedExternalPatches = new ObservableCollection<ExternalPatchViewModel>();
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
 
         LoadOperation = new BindableOperation();
@@ -51,6 +51,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     private readonly HashSet<string> _removedPatches = new();
     private readonly RCPContext _context;
 
+    private ExternalPatchViewModel[]? _externalPatches;
+    private Uri? _externalGamePatchesURL;
+
     private LocalPatchViewModel? _selectedLocalPatch;
     private ExternalPatchViewModel? _selectedExternalPatch;
 
@@ -63,11 +66,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     
     public PatchLibrary Library { get; }
 
-    public ExternalPatchManifest[]? ExternalPatchManifests { get; set; }
-    public Uri? ExternalGamePatchesURL { get; set; }
-
     public ObservableCollection<LocalPatchViewModel> LocalPatches { get; }
-    public ObservableCollection<ExternalPatchViewModel> ExternalPatches { get; }
+    public ObservableCollection<ExternalPatchViewModel> DisplayedExternalPatches { get; }
 
     public LocalPatchViewModel? SelectedLocalPatch
     {
@@ -111,8 +111,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public BindableOperation LoadOperation { get; }
     public bool IsLoadingExternalPatches { get; set; }
-    [MemberNotNullWhen(true, nameof(ExternalPatchManifests))]
-    public bool HasLoadedExternalPatches => ExternalPatchManifests != null;
+    [MemberNotNullWhen(true, nameof(_externalPatches), nameof(_externalGamePatchesURL))]
+    public bool HasLoadedExternalPatches => _externalPatches != null && _externalGamePatchesURL != null;
     public bool HasChanges { get; set; }
 
     #endregion
@@ -218,7 +218,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         foreach (PatchLibraryPatchEntry patch in libraryFile.Patches)
             AddPatchFromLibrary(Library, patch);
 
-        RefreshExternalPatches();
+        RefreshDisplayExternalPatches();
 
         Logger.Info("Loaded {0} patches", libraryFile.Patches.Length);
 
@@ -349,24 +349,26 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
         }
 
-        RefreshExternalPatches();
+        RefreshDisplayExternalPatches();
 
         Logger.Info("Added patches");
     }
 
     public async Task DownloadPatchAsync(ExternalPatchManifest externalManifest)
     {
-        if (ExternalGamePatchesURL == null)
+        if (_externalGamePatchesURL == null)
             throw new Exception("Attempted to download patch before the URL was set");
 
-        // TODO-UPDATE: Verify there is no patch added with conflicting ID. Shouldn't be possible, but make sure!
-        // TODO-UPDATE: Log
+        if (LocalPatches.Any(x => x.ID == externalManifest.ID))
+            throw new Exception("Attempted to download patch with conflicting ID");
+
+        Logger.Info("Downloading external patch");
 
         TempDirectory tempDir = new(true);
 
         try
         {
-            Uri patchURL = new(ExternalGamePatchesURL, externalManifest.Patch);
+            Uri patchURL = new(_externalGamePatchesURL, externalManifest.Patch);
 
             bool result = await Services.App.DownloadAsync(new[] { patchURL }, false, tempDir.TempPath);
 
@@ -389,8 +391,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 HasChanges = true;
 
-                RefreshExternalPatches();
+                RefreshDisplayExternalPatches();
             }
+
+            Logger.Info("Added downloaded external patch");
         }
         catch (Exception ex)
         {
@@ -530,7 +534,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         HasChanges = true;
 
         if (refreshExternalPatches)
-            RefreshExternalPatches();
+            RefreshDisplayExternalPatches();
 
         Logger.Info("Removed patch '{0}' with revision {1} and ID {2}", patchViewModel.Name, patchViewModel.Metadata.Revision, patchViewModel.ID);
     }
@@ -615,7 +619,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             Logger.Info("Updated patch to revision {0}", metaData.Revision);
 
-            RefreshExternalPatches();
+            RefreshDisplayExternalPatches();
         }
     }
 
@@ -656,70 +660,105 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
         try
         {
-            // TODO-UPDATE: Try/catch
-            // TODO-UPDATE: Log
+            Logger.Info("Loading external patches");
 
-            ExternalPatchesManifest manifest = await JsonHelpers.DeserializeFromURLAsync<ExternalPatchesManifest>(AppURLs.PatchesManifestUrl);
+            ExternalPatchesManifest manifest =
+                await JsonHelpers.DeserializeFromURLAsync<ExternalPatchesManifest>(AppURLs.PatchesManifestUrl);
+
+            Logger.Info("Read external patches manifest with version {0}", manifest.ManifestVersion);
 
             if (manifest.ManifestVersion > ExternalPatchesManifest.LatestVersion)
             {
-                Logger.Warn("Failed to load external patches due to the version number {0} being higher than the current one ({1})",
+                Logger.Warn(
+                    "Failed to load external patches due to the version number {0} being higher than the current one ({1})",
                     manifest.ManifestVersion, ExternalPatchesManifest.LatestVersion);
 
                 // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("External patches could not be loaded due to using a newer format. Please update the Rayman Control Panel to continue being able to download external patches.", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(
+                    "External patches could not be loaded due to using a newer format. Please update the Rayman Control Panel to continue being able to download external patches.",
+                    MessageType.Error);
 
-                ExternalPatchManifests = null;
+                _externalPatches = null;
                 return;
             }
 
             // Make sure the game has external patches defined
             if (manifest.Games?.ContainsKey(Game) != true)
             {
-                ExternalPatchManifests = null;
+                Logger.Info("The game {0} has no external patches", Game);
+                _externalGamePatchesURL = null;
+                _externalPatches = null;
                 return;
             }
 
-            ExternalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[Game]);
+            Logger.Info("Loading external patches for game {0}", Game);
 
-            ExternalGamePatchesManifest gameManifest = await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(ExternalGamePatchesURL.AbsoluteUri);
+            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[Game]);
+
+            ExternalGamePatchesManifest gameManifest =
+                await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(_externalGamePatchesURL
+                    .AbsoluteUri);
+
+            Logger.Info("Loaded {0} external patches for game {1}", gameManifest.Patches?.Length, Game);
 
             if (gameManifest.Patches == null)
             {
-                ExternalPatchManifests = null;
+                _externalPatches = null;
                 return;
             }
 
-            ExternalPatchManifests = gameManifest.Patches;
-            
-            RefreshExternalPatches();
+            _externalPatches = gameManifest.Patches.
+                Where(x => x.FileVersion <= PatchFile.LatestVersion).
+                Select(x => new ExternalPatchViewModel(this, x)).
+                ToArray();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading external patches");
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading external patches");
+
+            _externalGamePatchesURL = null;
+            _externalPatches = null;
         }
         finally
         {
             IsLoadingExternalPatches = false;
+            RefreshDisplayExternalPatches();
         }
     }
 
-    public void RefreshExternalPatches()
+    public void RefreshDisplayExternalPatches()
     {
+        Logger.Info("Refreshing displayed external patches");
+
+        DisplayedExternalPatches.DisposeAll();
+        DisplayedExternalPatches.Clear();
+
         if (!HasLoadedExternalPatches)
-            return;
-
-        ExternalPatches.DisposeAll();
-        ExternalPatches.Clear();
-
-        foreach (ExternalPatchManifest externalPatchManifest in ExternalPatchManifests)
         {
+            Logger.Info("The external patches haven't been loaded yet");
+            return;
+        }
+
+        foreach (ExternalPatchViewModel externalPatch in _externalPatches)
+        {
+            string id = externalPatch.ID;
+
             // TODO: Ideally access to the local patches collection should be locked as it might be modified on another thread
-            // Don't show external patches if they exist locally
-            if (LocalPatches.Any(x => x.ID == externalPatchManifest.ID))
+            // Don't show if it exists locally
+            if (LocalPatches.Any(x => x.ID == id))
                 continue;
 
             // Add view model
-            ExternalPatches.Add(new ExternalPatchViewModel(this, externalPatchManifest));
-            
-            // TODO-UPDATE: Load thumbnail async (also cache them somewhere)
+            DisplayedExternalPatches.Add(externalPatch);
+
+            // Load the thumbnail
+            _ = externalPatch.LoadThumbnailAsync(_externalGamePatchesURL);
         }
+        
+        Logger.Info("Refreshed displayed external patches");
     }
 
     public async Task ApplyAsync()
@@ -782,7 +821,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     {
         _context.Dispose();
         LocalPatches.DisposeAll();
-        ExternalPatches.DisposeAll();
+        DisplayedExternalPatches.DisposeAll();
     }
 
     #endregion

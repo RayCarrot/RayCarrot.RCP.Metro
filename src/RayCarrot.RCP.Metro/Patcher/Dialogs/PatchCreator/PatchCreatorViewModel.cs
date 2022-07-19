@@ -271,7 +271,6 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         try
         {
             // TODO-UPDATE: Localize
-            // TODO-UPDATE: Keep async?
             foreach (FileSystemPath file in Directory.EnumerateFiles(browseResult.SelectedDirectory, "*", SearchOption.AllDirectories))
             {
                 Files.Add(new FileViewModel()

@@ -7,6 +7,9 @@ public record ExternalPatchManifest(
     [property: JsonProperty(Required = Required.Always)]
     string ID,
 
+    [property: JsonProperty(Required = Required.Always)]
+    int FileVersion,
+
     string? Name,
     string? Description,
     string? Author,
