@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,7 +18,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public PatchCreatorViewModel(Games game)
     {
         Game = game;
-        ID = PatchFile.GenerateID();
+        ID = PatchMetadata.GenerateID();
         AvailableLocations = new ObservableCollection<AvailableFileLocation>()
         {
             // TODO-UPDATE: Localize
@@ -105,14 +104,13 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             {
                 // Create a context
                 using RCPContext context = new(String.Empty);
-                context.AddFile(new LinearFile(context, patchFilePath));
 
                 PatchFile patchFile;
 
                 try
                 {
                     // Read the patch file
-                    patchFile = FileFactory.Read<PatchFile>(context, patchFilePath);
+                    patchFile = context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
                 }
                 catch (UnsupportedFormatVersionException ex)
                 {
@@ -130,13 +128,13 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 Name = metadata.Name;
                 Description = metadata.Description;
                 Author = metadata.Author;
-                Revision = metadata.Revision + 1;
+                Revision = metadata.Revision + 1; // Increment the revision
                 ID = metadata.ID;
 
                 // Extract thumbnail
                 if (patchFile.HasThumbnail)
                 {
-                    using MemoryStream thumbStream = new(patchFile.Thumbnail);
+                    using Stream thumbStream = patchFile.ThumbnailResource.ReadData(context, true);
 
                     Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
 
@@ -147,17 +145,19 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 _tempDir = new TempDirectory(true);
 
                 // Extract resources to temp
-                int fileIndex = 0;
-                foreach (PatchFileResourceEntry resource in patchFile.AddedFiles)
+                for (int i = 0; i < patchFile.AddedFiles.Length; i++)
                 {
-                    operation.SetProgress(new Progress(fileIndex, patchFile.AddedFiles.Length));
-                    fileIndex++;
+                    PatchFilePath filePath = patchFile.AddedFiles[i];
+                    PackagedResourceEntry resource = patchFile.AddedFileResources[i];
+                    PackagedResourceChecksum checksum = patchFile.AddedFileChecksums[i];
 
-                    FileSystemPath tempFilePath = _tempDir.TempPath + resource.FilePath.FullFilePath;
+                    operation.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
+
+                    FileSystemPath tempFilePath = _tempDir.TempPath + filePath.FullFilePath;
 
                     Directory.CreateDirectory(tempFilePath.Parent);
 
-                    using Stream srcStream = resource.ReadData(context.Deserializer, patchFile.Offset);
+                    using Stream srcStream = resource.ReadData(context, true);
                     using FileStream dstStream = File.Create(tempFilePath);
 
                     await srcStream.CopyToAsync(dstStream);
@@ -165,14 +165,14 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     Files.Add(new FileViewModel()
                     {
                         SourceFilePath = tempFilePath,
-                        Location = resource.FilePath.Location,
-                        LocationID = resource.FilePath.LocationID,
-                        FilePath = resource.FilePath.FilePath,
-                        Checksum = resource.Checksum,
+                        Location = filePath.Location,
+                        LocationID = filePath.LocationID,
+                        FilePath = filePath.FilePath,
+                        Checksum = checksum,
                     });
                 }
 
-                operation.SetProgress(new Progress(fileIndex, patchFile.AddedFiles.Length));
+                operation.SetProgress(new Progress(patchFile.AddedFiles.Length, patchFile.AddedFiles.Length));
 
                 IsImported = true;
 
@@ -295,7 +295,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public async Task<bool> CreatePatchAsync()
     {
         // TODO-UPDATE: Localize
-        using (await LoadOperation.RunAsync("Creating patch"))
+        using (DisposableOperation operation = await LoadOperation.RunAsync("Creating patch"))
         {
             Logger.Info("Creating the patch '{0}' with revision {1} and ID {2}", Name, Revision, ID);
 
@@ -315,10 +315,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 {
                     // Create a context and add the patch file
                     using RCPContext context = new(String.Empty);
-                    LinearFile binaryFile = context.AddFile(new LinearFile(context, browseResult.SelectedFileLocation)
-                    {
-                        RecreateOnWrite = false
-                    });
+                    LinearFile binaryFile = context.AddFile(new LinearFile(context, browseResult.SelectedFileLocation));
 
                     // Create a new patch file
                     PatchFile patchFile = new()
@@ -336,7 +333,10 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         },
                     };
 
-                    Dictionary<FileViewModel, PatchFileResourceEntry> addedFiles = new();
+                    // Initialize the file
+                    patchFile.Init(binaryFile.StartPointer);
+
+                    List<(PatchFilePath FilePath, PackagedResourceChecksum Checksum, PackagedResourceEntry Resource)> addedFiles = new();
                     List<PatchFilePath> removedFiles = new();
                     long totalSize = 0;
 
@@ -348,25 +348,18 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                             using FileStream stream = File.OpenRead(file.SourceFilePath);
 
                             // Calculate the checksum
-                            byte[] checksum = file.Checksum ?? PatchFile.CalculateChecksum(stream);
-                            
-                            addedFiles.Add(file, new PatchFileResourceEntry
-                            {
-                                FilePath = file.PatchFilePath,
-                                Checksum = checksum,
+                            PackagedResourceChecksum checksum = file.Checksum ?? PackagedResourceChecksum.FromStream(stream);
 
-                                // Gets set when we pack the resources
-                                DataOffset = 0,
-                                CompressedDataLength = 0,
-                                DecompressedDataLength = 0
-                            });
+                            PackagedResourceEntry resource = new();
+                            addedFiles.Add((file.PatchFilePath, checksum, resource));
+                            resource.SetPendingImport(() => File.OpenRead(file.SourceFilePath), false);
 
                             // Update the total size
                             totalSize += stream.Length;
                         }
                         else
                         {
-                            // Add to the manifest
+                            // Add to the patch
                             removedFiles.Add(file.PatchFilePath);
                         }
                     }
@@ -376,61 +369,31 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     {
                         Logger.Info("Adding patch thumbnail");
 
-                        PngBitmapEncoder encoder = new();
-                        encoder.Frames.Add(BitmapFrame.Create(Thumbnail));
+                        patchFile.ThumbnailResource = new PackagedResourceEntry();
+                        patchFile.ThumbnailResource.SetPendingImport(() =>
+                        {
+                            PngBitmapEncoder encoder = new();
+                            encoder.Frames.Add(BitmapFrame.Create(Thumbnail));
 
-                        using MemoryStream memStream = new();
-                        encoder.Save(memStream);
-                        memStream.Position = 0;
+                            MemoryStream memStream = new();
+                            encoder.Save(memStream);
+                            memStream.Position = 0;
 
-                        patchFile.Thumbnail = memStream.ToArray();
+                            return memStream;
+                        }, false);
                         patchFile.HasThumbnail = true;
 
                         Logger.Info("Added patch thumbnail");
                     }
 
-                    patchFile.AddedFiles = addedFiles.Values.ToArray();
+                    patchFile.AddedFiles = addedFiles.Select(x => x.FilePath).ToArray();
+                    patchFile.AddedFileChecksums = addedFiles.Select(x => x.Checksum).ToArray();
+                    patchFile.AddedFileResources = addedFiles.Select(x => x.Resource).ToArray();
                     patchFile.RemovedFiles = removedFiles.ToArray();
                     patchFile.Metadata.TotalSize = totalSize;
 
-                    // Calculate the header size to get the start offset for packing the resources
-                    patchFile.Init(binaryFile.StartPointer);
-                    patchFile.RecalculateSize();
-                    long dataOffset = patchFile.Size;
-
-                    // Create the patch files and pack the files. We leave the header empty for now.
-                    using (Stream patchFileStream = File.Create(browseResult.SelectedFileLocation))
-                    {
-                        patchFileStream.Position = dataOffset;
-
-                        foreach (FileViewModel file in Files.Where(x => x.IsValid && x.IsFileAdded))
-                        {
-                            // Get the resource entry
-                            PatchFileResourceEntry resourceEntry = addedFiles[file];
-
-                            // Open the file to pack
-                            using FileStream stream = File.OpenRead(file.SourceFilePath);
-
-                            // Compress the file
-                            using (DeflateStream deflateStream = new(patchFileStream, CompressionLevel.Fastest, leaveOpen: true))
-                                // Write to the patch file
-                                stream.CopyTo(deflateStream);
-
-                            // Get the compressed data length
-                            long compressedLength = patchFileStream.Position - dataOffset;
-
-                            // Set the resource entry values
-                            resourceEntry.DataOffset = dataOffset;
-                            resourceEntry.CompressedDataLength = compressedLength;
-                            resourceEntry.DecompressedDataLength = stream.Length;
-
-                            // Update the data offset for the next resource
-                            dataOffset += compressedLength;
-                        }
-                    }
-
-                    // Write the patch file header
-                    FileFactory.Write(context, binaryFile.FilePath, patchFile);
+                    // Pack the file
+                    patchFile.WriteAndPackResources(operation.SetProgress);
                     
                     // Dispose temporary files
                     _tempDir?.Dispose();
@@ -473,7 +436,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         public string LocationID { get; set; } = String.Empty;
         public string FilePath { get; set; } = String.Empty;
 
-        public byte[]? Checksum { get; set; }
+        public PackagedResourceChecksum? Checksum { get; set; }
 
         public bool IsSelected { get; set; }
 

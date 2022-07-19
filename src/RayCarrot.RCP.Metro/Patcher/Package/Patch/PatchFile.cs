@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
-using System.IO;
-using System.Security.Cryptography;
+using System.Collections.Generic;
 using System.Text;
 using BinarySerializer;
 
@@ -10,7 +9,7 @@ namespace RayCarrot.RCP.Metro.Patcher;
 /// <summary>
 /// A patch file (.gp). This is a custom binary file format which stores the data and resources for a game patch.
 /// </summary>
-public class PatchFile : BinarySerializable
+public class PatchFile : BinarySerializable, IPackageFile
 {
     #region Constants
 
@@ -20,6 +19,18 @@ public class PatchFile : BinarySerializable
     #endregion
 
     #region Public Properties
+
+    public IEnumerable<PackagedResourceEntry> Resources
+    {
+        get
+        {
+            foreach (PackagedResourceEntry resource in AddedFileResources)
+                yield return resource;
+
+            if (HasThumbnail)
+                yield return ThumbnailResource;
+        }
+    }
 
     /// <summary>
     /// The patch file version. This is used for backwards compatibility if the format ever changes.
@@ -40,38 +51,27 @@ public class PatchFile : BinarySerializable
     /// The patch thumbnail or <see langword="null" /> if <see cref="HasThumbnail"/> is false. As of version 0
     /// this is always expected to be a a PNG file.
     /// </summary>
-    public byte[] Thumbnail { get; set; }
+    public PackagedResourceEntry ThumbnailResource { get; set; }
 
     /// <summary>
-    /// The files added or replaced by this patch. These are resources as they contain packed data.
+    /// The files added or replaced by this patch
     /// </summary>
-    public PatchFileResourceEntry[] AddedFiles { get; set; }
+    public PatchFilePath[] AddedFiles { get; set; }
 
     /// <summary>
-    /// The files removed by this patch. This only includes their paths.
+    /// The checksums for the added files
+    /// </summary>
+    public PackagedResourceChecksum[] AddedFileChecksums { get; set; }
+
+    /// <summary>
+    /// The resources for the added files
+    /// </summary>
+    public PackagedResourceEntry[] AddedFileResources { get; set; }
+
+    /// <summary>
+    /// The files removed by this patch
     /// </summary>
     public PatchFilePath[] RemovedFiles { get; set; }
-
-    #endregion
-
-    #region Public Static Methods
-
-    /// <summary>
-    /// Generates a new unique ID for a patch
-    /// </summary>
-    /// <returns>The generated ID</returns>
-    public static string GenerateID() => Guid.NewGuid().ToString();
-
-    /// <summary>
-    /// Calculates the checksum for a patch resource
-    /// </summary>
-    /// <param name="stream">The resource stream</param>
-    /// <returns>The calculated checksum as a byte array</returns>
-    public static byte[] CalculateChecksum(Stream stream)
-    {
-        using SHA256Managed sha = new();
-        return sha.ComputeHash(stream);
-    }
 
     #endregion
 
@@ -81,7 +81,7 @@ public class PatchFile : BinarySerializable
     {
         s.DoWithDefaults(new SerializerDefaults() { StringEncoding = Encoding.UTF8 }, () =>
         {
-            s.SerializeMagicString("GP", 2);
+            s.SerializeMagicString("GP", 4);
             Version = s.Serialize<int>(Version, name: nameof(Version));
 
             if (Version > LatestVersion)
@@ -92,13 +92,19 @@ public class PatchFile : BinarySerializable
             HasThumbnail = s.Serialize<bool>(HasThumbnail, name: nameof(HasThumbnail));
 
             if (HasThumbnail)
-            {
-                Thumbnail = s.SerializeArraySize<byte, int>(Thumbnail, name: nameof(Thumbnail));
-                Thumbnail = s.SerializeArray<byte>(Thumbnail, Thumbnail.Length, name: nameof(Thumbnail));
-            }
+                ThumbnailResource = s.SerializeObject<PackagedResourceEntry>(ThumbnailResource, name: nameof(ThumbnailResource));
 
-            AddedFiles = s.SerializeArraySize<PatchFileResourceEntry, int>(AddedFiles, name: nameof(AddedFiles));
-            AddedFiles = s.SerializeObjectArray<PatchFileResourceEntry>(AddedFiles, AddedFiles.Length, name: nameof(AddedFiles));
+            AddedFiles = s.SerializeArraySize<PatchFilePath, int>(AddedFiles, name: nameof(AddedFiles));
+            AddedFiles = s.SerializeObjectArray<PatchFilePath>(AddedFiles, AddedFiles.Length, name: nameof(AddedFiles));
+
+            AddedFileChecksums = s.SerializeArraySize<PackagedResourceChecksum, int>(AddedFileChecksums, name: nameof(AddedFileChecksums));
+            AddedFileChecksums = s.SerializeObjectArray<PackagedResourceChecksum>(AddedFileChecksums, AddedFileChecksums.Length, name: nameof(AddedFileChecksums));
+
+            AddedFileResources = s.SerializeArraySize<PackagedResourceEntry, int>(AddedFileResources, name: nameof(AddedFileResources));
+            AddedFileResources = s.SerializeObjectArray<PackagedResourceEntry>(AddedFileResources, AddedFileResources.Length, name: nameof(AddedFileResources));
+
+            if (AddedFiles.Length != AddedFileChecksums.Length || AddedFiles.Length != AddedFileResources.Length)
+                throw new BinarySerializableException(this, $"The added file array lengths don't match ({AddedFiles.Length}, {AddedFileChecksums.Length}, {AddedFileResources.Length})");
 
             RemovedFiles = s.SerializeArraySize<PatchFilePath, int>(RemovedFiles, name: nameof(RemovedFiles));
             RemovedFiles = s.SerializeObjectArray<PatchFilePath>(RemovedFiles, RemovedFiles.Length, name: nameof(RemovedFiles));

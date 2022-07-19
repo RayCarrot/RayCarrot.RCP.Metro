@@ -593,7 +593,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
             foreach (FileSystemPath patchFilePath in inputResult.SelectedFiles)
             {
                 // Read the file
-                PatchFile patch = context.ReadRequiredFileData<PatchFile>(patchFilePath);
+                PatchFile patch = context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
 
                 Games game = patch.Metadata.Game;
                 string? thumbURL = null;
@@ -603,7 +603,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
                 {
                     thumbURL = $"{game.ToString().ToLowerInvariant()}/{patchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
 
-                    File.WriteAllBytes(outputResult.SelectedDirectory + "patches" + thumbURL, patch.Thumbnail);
+                    using Stream thumbOutputStream = File.Create(outputResult.SelectedDirectory + "patches" + thumbURL);
+                    patch.ThumbnailResource.ReadData(context, true).CopyTo(thumbOutputStream);
                 }
 
                 string patchURL = $"{game.ToString().ToLowerInvariant()}/{patchFilePath.Name}";

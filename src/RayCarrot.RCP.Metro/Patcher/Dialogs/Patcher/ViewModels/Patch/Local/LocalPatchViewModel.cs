@@ -2,8 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using BinarySerializer;
 using ByteSizeLib;
 using NLog;
 
@@ -88,7 +90,7 @@ public abstract class LocalPatchViewModel : PatchViewModel
 
     #region Public Methods
 
-    public void LoadThumbnail()
+    public void LoadThumbnail(Context context)
     {
         Logger.Trace("Loading thumbnail for patch with ID {0}", ID);
 
@@ -100,10 +102,13 @@ public abstract class LocalPatchViewModel : PatchViewModel
             return;
         }
 
-        using MemoryStream thumbStream = new(PatchFile.Thumbnail);
-
         // TODO-UPDATE: Try/catch
-        Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        using Stream thumbStream = PatchFile.ThumbnailResource.ReadData(context, true);
+
+        // This doesn't seem to work when reading from a compressed stream as read-only due to the stream
+        // not supporting seeking. Specifying the format directly using a PngBitmapDecoder still works.
+        //Thumbnail = BitmapFrame.Create(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
 
         if (Thumbnail?.CanFreeze == true)
             Thumbnail.Freeze();

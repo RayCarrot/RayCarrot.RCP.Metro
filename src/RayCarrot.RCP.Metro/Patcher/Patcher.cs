@@ -25,7 +25,7 @@ public class Patcher
 
     private string NormalizePath(string path) => path.ToLowerInvariant().Replace('\\', '/');
 
-    private Dictionary<string, LocationModifications> GetFileModificationsPerLocation(Games game, PatchHistoryManifest? patchHistory, IEnumerable<PatchFile> enabledPatches)
+    private Dictionary<string, LocationModifications> GetFileModificationsPerLocation(Games game, PatchLibraryHistory? patchHistory, IEnumerable<PatchFile> enabledPatches)
     {
         Dictionary<string, LocationModifications> locationModifications = new();
         Dictionary<string, IArchiveDataManager> archiveDataManagers = new();
@@ -33,9 +33,9 @@ public class Patcher
         void addModification(
             PatchFilePath patchFilePath, 
             FileModificationType type,
-            string? patchID, // Null if from history instead of a patch
             bool addToHistory,
-            PatchFileResourceEntry? resourceEntry = null)
+            PackagedResourceEntry? resourceEntry = null,
+            PackagedResourceChecksum? checksum = null)
         {
             string locationKey = NormalizePath(patchFilePath.Location);
             string filePathKey = NormalizePath(patchFilePath.FilePath);
@@ -60,7 +60,7 @@ public class Patcher
                 locationModifications.Add(locationKey, new LocationModifications(patchFilePath.Location, manager));
             }
 
-            locationModifications[locationKey].FileModifications[filePathKey] = new FileModification(type, patchID, patchFilePath, addToHistory, resourceEntry);
+            locationModifications[locationKey].FileModifications[filePathKey] = new FileModification(type, patchFilePath, addToHistory, resourceEntry, checksum);
         }
 
         // If a patch history exists then we start by reverting the changes. If any of these changes shouldn't
@@ -70,28 +70,32 @@ public class Patcher
             Logger.Info("Getting file modifications from history");
 
             // Remove added files
-            if (patchHistory.AddedFiles != null)
-                foreach (PatchFilePath addedFile in patchHistory.AddedFiles)
-                {
-                    addModification(addedFile, FileModificationType.Remove, null, false);
-                    Logger.Trace("File mod add -> remove: {0}", addedFile);
-                }
+            foreach (PatchFilePath addedFile in patchHistory.AddedFiles)
+            {
+                addModification(addedFile, FileModificationType.Remove, false);
+                Logger.Trace("File mod add -> remove: {0}", addedFile);
+            }
 
             // Add back replaced files
-            if (patchHistory.ReplacedFiles != null)
-                foreach (PatchFilePath replacedFile in patchHistory.ReplacedFiles)
-                {
-                    addModification(replacedFile, FileModificationType.Add, null, false);
-                    Logger.Trace("File mod replace -> add: {0}", replacedFile);
-                }
+            for (var i = 0; i < patchHistory.ReplacedFiles.Length; i++)
+            {
+                PatchFilePath filePath = patchHistory.ReplacedFiles[i];
+                PackagedResourceEntry resource = patchHistory.ReplacedFileResources[i];
+                PackagedResourceChecksum checksum = patchHistory.ReplacedFileChecksums[i];
+
+                addModification(filePath, FileModificationType.Add, false, resource, checksum);
+                Logger.Trace("File mod replace -> add: {0}", filePath);
+            }
 
             // Add back removed files
-            if (patchHistory.RemovedFiles != null)
-                foreach (PatchFilePath removedFile in patchHistory.RemovedFiles)
-                {
-                    addModification(removedFile, FileModificationType.Add, null, false);
-                    Logger.Trace("File mod remove -> add: {0}", removedFile);
-                }
+            for (var i = 0; i < patchHistory.RemovedFiles.Length; i++)
+            {
+                PatchFilePath filePath = patchHistory.RemovedFiles[i];
+                PackagedResourceEntry resource = patchHistory.RemovedFileResources[i];
+                
+                addModification(filePath, FileModificationType.Add, false, resource);
+                Logger.Trace("File mod remove -> add: {0}", filePath);
+            }
         }
 
         Logger.Info("Getting file modifications from enabled patches");
@@ -99,25 +103,26 @@ public class Patcher
         // Add modifications for each enabled patch. Reverse the order for the correct patch priority.
         foreach (PatchFile patch in enabledPatches.Reverse())
         {
-            string id = patch.Metadata.ID;
-
-            foreach (PatchFileResourceEntry addedFile in patch.AddedFiles)
+            for (var i = 0; i < patch.AddedFileResources.Length; i++)
             {
-                addModification(addedFile.FilePath, FileModificationType.Add, id, true, addedFile);
-                Logger.Trace("File mod add: {0}", addedFile);
+                PatchFilePath filePath = patch.AddedFiles[i];
+                PackagedResourceChecksum checksum = patch.AddedFileChecksums[i];
+                PackagedResourceEntry resource = patch.AddedFileResources[i];
+                addModification(filePath, FileModificationType.Add, true, resource, checksum);
+                Logger.Trace("File mod add: {0}", filePath);
             }
 
             if (patch.RemovedFiles != null)
             {
                 foreach (PatchFilePath removedFile in patch.RemovedFiles)
                 {
-                    addModification(removedFile, FileModificationType.Remove, id, true);
+                    addModification(removedFile, FileModificationType.Remove, true);
                     Logger.Trace("File mod remove: {0}", removedFile);
                 }
             }
             else
             {
-                Logger.Warn("Patch {0} removed files array is null", id);
+                Logger.Warn("Patch {0} removed files array is null", patch.Metadata.ID);
             }
         }
 
@@ -131,7 +136,7 @@ public class Patcher
         string locationKey,
         Dictionary<string, FileModification> fileModifications,
         FileSystemPath dirPath,
-        PatchHistoryManifest? patchHistory,
+        PatchLibraryHistory? patchHistory,
         Action<Progress>? progressCallback)
     {
         // The previously applied modifications for this location
@@ -162,32 +167,30 @@ public class Patcher
 
                     if (modification.AddToHistory)
                     {
-                        PatchFileResourceEntry resourceEntry = modification.ResourceEntry ?? throw new Exception("Missing resource entry");
+                        PackagedResourceChecksum checksum = modification.Checksum ?? throw new Exception("Missing resource checksum");
 
                         // If the file was added previously we don't want to mark it as being replaced or else we'd 
                         // be replacing the previously added file
                         if (prevAddedFiles?.Contains(filePathKey) == true)
                         {
-                            fileChanges.AddedFiles.Add(patchFilePath);
-                            fileChanges.AddedFileChecksums.Add(resourceEntry.Checksum);
+                            fileChanges.AddAddedFile(patchFilePath, checksum);
                         }
                         // If the file was replaced previously we want to keep the originally removed file instead
                         // of the one it was replaced with before
                         else if (prevReplacedFiles?.Contains(filePathKey) == true)
                         {
-                            fileChanges.ReplacedFiles.Add(patchFilePath);
-                            fileChanges.ReplacedFileChecksums.Add(resourceEntry.Checksum);
+                            PackagedResourceEntry resourceEntry = modification.ResourceEntry ?? throw new Exception("Missing resource entry");
 
-                            fileChanges.KeepHistoryResource(patchFilePath);
+                            fileChanges.AddReplacedFile(patchFilePath, checksum, resourceEntry);
                         }
                         else
                         {
-                            SaveRemovedPhysicalFileInHistory(fileChanges, physicalFilePath, patchFilePath, resourceEntry.Checksum);
+                            SaveRemovedPhysicalFileInHistory(fileChanges, physicalFilePath, patchFilePath, checksum);
                         }
                     }
 
                     // Replace the file
-                    using Stream resource = fileChanges.GetPatchResource(modification);
+                    using Stream resource = modification.GetPatchResource(fileChanges.Context);
                     ReplacePhysicalFile(physicalFilePath, resource);
                 }
                 else
@@ -195,15 +198,14 @@ public class Patcher
                     Logger.Trace("Adding file {0}", patchFilePath);
 
                     // Replace the file
-                    using (Stream resource = fileChanges.GetPatchResource(modification))
+                    using (Stream resource = modification.GetPatchResource(fileChanges.Context))
                         ReplacePhysicalFile(physicalFilePath, resource);
 
                     if (modification.AddToHistory)
                     {
-                        PatchFileResourceEntry resourceEntry = modification.ResourceEntry ?? throw new Exception("Missing resource entry");
+                        PackagedResourceChecksum checksum = modification.Checksum ?? throw new Exception("Missing resource checksum");
 
-                        fileChanges.AddedFiles.Add(patchFilePath);
-                        fileChanges.AddedFileChecksums.Add(resourceEntry.Checksum);
+                        fileChanges.AddAddedFile(patchFilePath, checksum);
                     }
                 }
             }
@@ -214,6 +216,7 @@ public class Patcher
                 if (modification.AddToHistory)
                     SaveRemovedPhysicalFileInHistory(fileChanges, physicalFilePath, patchFilePath);
 
+                // TODO-UPDATE: This might end up leaving a lot of empty folders - delete folder if empty?
                 // Delete the file
                 physicalFilePath.DeleteFile();
             }
@@ -229,7 +232,7 @@ public class Patcher
         Dictionary<string, FileModification> fileModifications, 
         FileSystemPath archiveFilePath, 
         IArchiveDataManager manager, 
-        PatchHistoryManifest? patchHistory,
+        PatchLibraryHistory? patchHistory,
         Action<Progress>? progressCallback)
     {
         // TODO: Instead of ignoring maybe we should create a new archive?
@@ -312,24 +315,21 @@ public class Patcher
 
                             if (modification.AddToHistory)
                             {
-                                PatchFileResourceEntry resourceEntry = modification.ResourceEntry ?? throw new Exception("Missing resource entry");
-                                byte[] checksum = resourceEntry.Checksum;
+                                PackagedResourceChecksum checksum = modification.Checksum ?? throw new Exception("Missing resource checksum");
 
                                 // If the file was added previously we don't want to mark it as being replaced or else we'd 
                                 // be replacing the previously added file
                                 if (prevAddedFiles?.Contains(filePathKey) == true)
                                 {
-                                    fileChanges.AddedFiles.Add(patchFilePath);
-                                    fileChanges.AddedFileChecksums.Add(checksum);
+                                    fileChanges.AddAddedFile(patchFilePath, checksum);
                                 }
                                 // If the file was replaced previously we want to keep the originally removed file instead
                                 // of the one it was replaced with before
                                 else if (prevReplacedFiles?.Contains(filePathKey) == true)
                                 {
-                                    fileChanges.ReplacedFiles.Add(patchFilePath);
-                                    fileChanges.ReplacedFileChecksums.Add(checksum);
+                                    PackagedResourceEntry resourceEntry = modification.ResourceEntry ?? throw new Exception("Missing resource entry");
 
-                                    fileChanges.KeepHistoryResource(patchFilePath);
+                                    fileChanges.AddReplacedFile(patchFilePath, checksum, resourceEntry);
                                 }
                                 else
                                 {
@@ -337,7 +337,7 @@ public class Patcher
                                 }
                             }
 
-                            using Stream resource = fileChanges.GetPatchResource(modification);
+                            using Stream resource = modification.GetPatchResource(fileChanges.Context);
                             ReplaceArchiveFile(file, manager, resource);
                         }
                     }
@@ -362,15 +362,14 @@ public class Patcher
 
                     archiveFiles.Add(file);
 
-                    using (Stream resource = fileChanges.GetPatchResource(modification))
+                    using (Stream resource = modification.GetPatchResource(fileChanges.Context))
                         ReplaceArchiveFile(file, manager, resource);
 
                     if (modification.AddToHistory)
                     {
-                        PatchFileResourceEntry resourceEntry = modification.ResourceEntry ?? throw new Exception("Missing resource entry");
+                        PackagedResourceChecksum checksum = modification.Checksum ?? throw new Exception("Missing resource checksum");
 
-                        fileChanges.AddedFiles.Add(patchFilePath);
-                        fileChanges.AddedFileChecksums.Add(resourceEntry.Checksum);
+                        fileChanges.AddAddedFile(patchFilePath, checksum);
                     }
                 }
 
@@ -408,19 +407,14 @@ public class Patcher
         PatchFileChanges fileChanges, 
         Stream fileStream, 
         PatchFilePath patchFilePath,
-        byte[]? replacedFileChecksum = null)
+        PackagedResourceChecksum? replacedFileChecksum = null)
     {
-        if (replacedFileChecksum != null)
-        {
-            fileChanges.ReplacedFiles.Add(patchFilePath);
-            fileChanges.ReplacedFileChecksums.Add(replacedFileChecksum);
-        }
-        else
-        {
-            fileChanges.RemovedFiles.Add(patchFilePath);
-        }
+        PackagedResourceEntry resource = fileChanges.CreateResourceEntry(fileStream);
 
-        fileChanges.AddHistoryResource(patchFilePath, fileStream);
+        if (replacedFileChecksum != null)
+            fileChanges.AddReplacedFile(patchFilePath, replacedFileChecksum, resource);
+        else
+            fileChanges.AddRemovedFile(patchFilePath, resource);
 
         Logger.Trace("Saved removed file {0} in history", patchFilePath);
     }
@@ -429,7 +423,7 @@ public class Patcher
         PatchFileChanges fileChanges,
         FileSystemPath filePath,
         PatchFilePath patchFilePath,
-        byte[]? replacedFileChecksum = null)
+        PackagedResourceChecksum? replacedFileChecksum = null)
     {
         using Stream fileStream = File.OpenRead(filePath);
         SaveRemovedFileInHistory(fileChanges, fileStream, patchFilePath, replacedFileChecksum);
@@ -440,7 +434,7 @@ public class Patcher
         FileItem file, 
         IDisposable generator,
         PatchFilePath patchFilePath,
-        byte[]? replacedFileChecksum = null)
+        PackagedResourceChecksum? replacedFileChecksum = null)
     {
         using ArchiveFileStream fileData = file.GetDecodedFileData(generator);
         SaveRemovedFileInHistory(fileChanges, fileData.Stream, patchFilePath, replacedFileChecksum);
@@ -478,43 +472,42 @@ public class Patcher
     public async Task ApplyAsync(
         Games game,
         PatchLibrary library,
-        PatchHistoryManifest? patchHistory, 
         FileSystemPath gameDirectory,
-        string[] patches,
-        string[] enabledPatches,
+        PatchLibraryPatchEntry[] patches,
         Action<Progress>? progressCallback = null)
     {
-        Logger.Info("Applying patcher modifications with {0}/{1} enabled patches", enabledPatches.Length, patches.Length);
+        Logger.Info("Applying patcher modifications with {0}/{1} enabled patches", patches.Count(x => x.IsEnabled), patches.Length);
 
         using RCPContext context = new(library.DirectoryPath);
 
-        foreach (string patchID in patches)
-            context.AddFile(new LinearFile(context, library.GetPatchFileName(patchID)));
+        // Read the patch files for the enabled patches
+        PatchFile[] enabledPatchFiles = patches.
+            Where(x => x.IsEnabled).
+            Select(x => context.ReadRequiredFileData<PatchFile>(library.GetPatchFileName(x.ID), removeFileWhenComplete: false)).
+            ToArray();
 
-        // Read the patch files
-        PatchFile[] patchFiles = patches.Select(x => FileFactory.Read<PatchFile>(context, library.GetPatchFileName(x))).ToArray();
+        // Read any existing patch history
+        PatchLibraryFile? libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFileName, removeFileWhenComplete: false);
 
         // Keep track of file changes
-        using PatchFileChanges fileChanges = new(context, library, patchFiles);
+        using PatchFileChanges fileChanges = new(context);
 
         // Get the file modifications for each location
         Dictionary<string, LocationModifications> locationModifications =
-            GetFileModificationsPerLocation(game, patchHistory, patchFiles.Where(x => enabledPatches.Contains(x.Metadata.ID)));
+            GetFileModificationsPerLocation(game, libraryFile?.History, enabledPatchFiles);
 
-        // Progress:
-        // 00-90%  -> Modifying files
-        // 90-100% -> Applying library/history changes
-        progressCallback?.Invoke(new Progress(0, 100));
+        int maxProgress = locationModifications.Count + 1;
+        int progressIndex = 0;
 
-        int locationIndex = 0;
+        progressCallback?.Invoke(new Progress(progressIndex, maxProgress));
+
+        Action<Progress>? operationProgressCallback = progressCallback == null
+            ? null
+            : x => progressCallback?.Invoke(new Progress(progressIndex + x.Percentage / 100, maxProgress));
 
         // Modify every location
         foreach (string locationKey in locationModifications.Keys)
         {
-            Action<Progress>? locationProgressCallback = progressCallback == null
-                ? null
-                : x => progressCallback(new Progress(x.Percentage * 0.9 * ((locationIndex + 1) / locationModifications.Keys.Count), 100));
-
             // Physical
             if (locationKey == String.Empty)
             {
@@ -523,8 +516,8 @@ public class Patcher
                     locationKey: locationKey,
                     fileModifications: locationModifications[locationKey].FileModifications,
                     dirPath: gameDirectory,
-                    patchHistory: patchHistory,
-                    progressCallback: locationProgressCallback);
+                    patchHistory: libraryFile?.History,
+                    progressCallback: operationProgressCallback);
             }
             // Archive
             else
@@ -538,11 +531,11 @@ public class Patcher
                     fileModifications: locationModifications[locationKey].FileModifications, 
                     archiveFilePath: gameDirectory + locationModifications[locationKey].Location, 
                     manager: manager, 
-                    patchHistory: patchHistory,
-                    progressCallback: locationProgressCallback);
+                    patchHistory: libraryFile?.History,
+                    progressCallback: operationProgressCallback);
             }
 
-            locationIndex++;
+            progressIndex++;
         }
 
         foreach (var archivedLocations in locationModifications.
@@ -552,24 +545,29 @@ public class Patcher
             await archivedLocations.Key!.OnRepackedArchivesAsync(archivedLocations.Select(x => gameDirectory + x.Value.Location).ToArray());
         }
 
-        progressCallback?.Invoke(new Progress(90, 100));
+        progressCallback?.Invoke(new Progress(progressIndex, maxProgress));
 
-        // Remove old history and apply new history files
-        fileChanges.ApplyNewHistory();
+        // Create the library file if it didn't already exist
+        if (libraryFile == null)
+        {
+            libraryFile = new PatchLibraryFile();
+            LinearFile file = context.AddFile(new LinearFile(context, library.LibraryFileName));
+            libraryFile.Init(file.StartPointer);
+        }
 
         // Create new history
-        PatchHistoryManifest history = new(
-            ModifiedDate: DateTime.Now,
-            AddedFiles: fileChanges.AddedFiles.ToArray(),
-            AddedFileChecksums: fileChanges.AddedFileChecksums.ToArray(),
-            ReplacedFiles: fileChanges.ReplacedFiles.ToArray(),
-            ReplacedFileChecksums: fileChanges.ReplacedFileChecksums.ToArray(),
-            RemovedFiles: fileChanges.RemovedFiles.ToArray());
+        PatchLibraryHistory history = fileChanges.CreateHistory();
 
-        // Write the library manifest
-        library.WriteManifest(game, history, patches, enabledPatches);
+        // Update the library file
+        libraryFile.Version = PatchLibraryFile.LatestVersion;
+        libraryFile.Game = game;
+        libraryFile.History = history;
+        libraryFile.Patches = patches;
 
-        progressCallback?.Invoke(new Progress(100, 100));
+        // Write and pack the library file
+        libraryFile.WriteAndPackResources(operationProgressCallback);
+
+        progressCallback?.Invoke(new Progress(maxProgress, maxProgress));
     }
 
     #endregion
@@ -577,11 +575,18 @@ public class Patcher
     #region Data Types
 
     private record FileModification(
-        FileModificationType Type, 
-        string? PatchID,
+        FileModificationType Type,
         PatchFilePath PatchFilePath,
-        bool AddToHistory, 
-        PatchFileResourceEntry? ResourceEntry = null);
+        bool AddToHistory,
+        PackagedResourceEntry? ResourceEntry = null,
+        PackagedResourceChecksum? Checksum = null)
+    {
+        public Stream GetPatchResource(Context context)
+        {
+            PackagedResourceEntry resourceEntry = ResourceEntry ?? throw new Exception("Missing resource entry");
+            return resourceEntry.ReadData(context, true);
+        }
+    }
 
     private class LocationModifications
     {
@@ -604,59 +609,70 @@ public class Patcher
 
     private class PatchFileChanges : IDisposable
     {
-        public PatchFileChanges(Context context, PatchLibrary library, IEnumerable<PatchFile> patches)
+        public PatchFileChanges(Context context)
         {
             Context = context;
-
-            OldHistory = library.GetHistory();
-            NewHistoryTempDir = new TempDirectory(true);
-            NewHistory = new PatchHistory(NewHistoryTempDir.TempPath);
-            PatchFiles = patches.ToDictionary(x => x.Metadata.ID, x => x);
         }
 
-        private TempDirectory NewHistoryTempDir { get; }
-        private Context Context { get; }
-        private PatchHistory OldHistory { get; }
-        private PatchHistory NewHistory { get; }
-        private Dictionary<string, PatchFile> PatchFiles { get; }
+        private List<TempFile> TempFiles { get; } = new();
 
-        public List<PatchFilePath> AddedFiles { get; } = new();
-        public List<byte[]> AddedFileChecksums { get; } = new();
-        public List<PatchFilePath> ReplacedFiles { get; } = new();
-        public List<byte[]> ReplacedFileChecksums { get; } = new();
-        public List<PatchFilePath> RemovedFiles { get; } = new();
+        private List<PatchFilePath> AddedFiles { get; } = new();
+        private List<PackagedResourceChecksum> AddedFileChecksums { get; } = new();
+        private List<PatchFilePath> ReplacedFiles { get; } = new();
+        private List<PackagedResourceChecksum> ReplacedFileChecksums { get; } = new();
+        private List<PackagedResourceEntry> ReplacedFileResources { get; } = new();
+        private List<PatchFilePath> RemovedFiles { get; } = new();
+        private List<PackagedResourceEntry> RemovedFileResources { get; } = new();
 
-        public Stream GetPatchResource(FileModification modification)
+        public Context Context { get; }
+
+        public void AddAddedFile(PatchFilePath filePath, PackagedResourceChecksum checksum)
         {
-            // If there's no patch ID we read from history
-            if (modification.PatchID == null)
-                return OldHistory.ReadFile(modification.PatchFilePath);
-
-            PatchFileResourceEntry resourceEntry = modification.ResourceEntry ?? throw new Exception("Missing resource entry");
-            PatchFile patchFile = PatchFiles[modification.PatchID];
-
-            return resourceEntry.ReadData(Context.Deserializer, patchFile.Offset);
+            AddedFiles.Add(filePath);
+            AddedFileChecksums.Add(checksum);
         }
 
-        public void AddHistoryResource(PatchFilePath resourcePath, Stream stream)
+        public void AddReplacedFile(PatchFilePath filePath, PackagedResourceChecksum checksum, PackagedResourceEntry resource)
         {
-            NewHistory.AddFile(resourcePath, stream);
+            ReplacedFiles.Add(filePath);
+            ReplacedFileChecksums.Add(checksum);
+            ReplacedFileResources.Add(resource);
         }
 
-        public void KeepHistoryResource(PatchFilePath resourcePath)
+        public void AddRemovedFile(PatchFilePath filePath, PackagedResourceEntry resource)
         {
-            OldHistory.MoveFile(resourcePath, NewHistory);
+            RemovedFiles.Add(filePath);
+            RemovedFileResources.Add(resource);
         }
 
-        public void ApplyNewHistory()
+        public PackagedResourceEntry CreateResourceEntry(Stream stream)
         {
-            // Replace old history with new one
-            Services.File.MoveDirectory(NewHistory.DirectoryPath, OldHistory.DirectoryPath, true, true);
+            TempFile tempFile = new(false);
+            TempFiles.Add(tempFile);
+
+            using Stream tempFileStream = File.Create(tempFile.TempPath);
+            stream.CopyTo(tempFileStream);
+
+            PackagedResourceEntry resource = new();
+            resource.SetPendingImport(() => File.OpenRead(tempFile.TempPath), false);
+            return resource;
         }
+
+        public PatchLibraryHistory CreateHistory() => new()
+        {
+            ModifiedDate = DateTime.Now,
+            AddedFiles = AddedFiles.ToArray(),
+            AddedFileChecksums = AddedFileChecksums.ToArray(),
+            ReplacedFiles = ReplacedFiles.ToArray(),
+            ReplacedFileChecksums = ReplacedFileChecksums.ToArray(),
+            ReplacedFileResources = ReplacedFileResources.ToArray(),
+            RemovedFiles = RemovedFiles.ToArray(),
+            RemovedFileResources = RemovedFileResources.ToArray(),
+        };
 
         public void Dispose()
         {
-            NewHistoryTempDir.Dispose();
+            TempFiles.DisposeAll();
         }
     }
 
