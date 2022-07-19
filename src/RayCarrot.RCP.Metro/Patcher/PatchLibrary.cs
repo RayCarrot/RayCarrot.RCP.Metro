@@ -2,7 +2,7 @@ using System.IO;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
-// TODO-UPDATE: Merge with Patcher?
+// TODO: Merge with Patcher?
 
 /// <summary>
 /// A game patch library. This is stored in the root of a game installation as a hidden folder and keeps track of the

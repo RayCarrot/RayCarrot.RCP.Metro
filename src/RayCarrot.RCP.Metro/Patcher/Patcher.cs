@@ -216,9 +216,11 @@ public class Patcher
                 if (modification.AddToHistory)
                     SaveRemovedPhysicalFileInHistory(fileChanges, physicalFilePath, patchFilePath);
 
-                // TODO-UPDATE: This might end up leaving a lot of empty folders - delete folder if empty?
                 // Delete the file
                 physicalFilePath.DeleteFile();
+
+                // Delete the directory if it's empty
+                fileChanges.DeleteDirectoryIfEmpty(physicalFilePath.Parent);
             }
 
             fileIndex++;
@@ -635,6 +637,7 @@ public class Patcher
         private List<PackagedResourceEntry> ReplacedFileResources { get; } = new();
         private List<PatchFilePath> RemovedFiles { get; } = new();
         private List<PackagedResourceEntry> RemovedFileResources { get; } = new();
+        private HashSet<string> DirsToDeleteIfEmpty { get; } = new();
 
         public Context Context { get; }
 
@@ -655,6 +658,11 @@ public class Patcher
         {
             RemovedFiles.Add(filePath);
             RemovedFileResources.Add(resource);
+        }
+
+        public void DeleteDirectoryIfEmpty(string dirPath)
+        {
+            DirsToDeleteIfEmpty.Add(dirPath);
         }
 
         public PackagedResourceEntry CreateResourceEntry(Stream stream)
@@ -682,9 +690,44 @@ public class Patcher
             RemovedFileResources = RemovedFileResources.ToArray(),
         };
 
+        public void Flush()
+        {
+            foreach (string dirPath in DirsToDeleteIfEmpty)
+            {
+                try
+                {
+                    if (!Directory.Exists(dirPath))
+                        continue;
+
+                    string? currentDirPath = dirPath;
+
+                    while (true)
+                    {
+                        bool isEmpty = !Directory.EnumerateFileSystemEntries(currentDirPath, "*", SearchOption.AllDirectories).Any();
+
+                        if (!isEmpty)
+                            break;
+
+                        Directory.Delete(currentDirPath);
+                        currentDirPath = Path.GetDirectoryName(currentDirPath);
+
+                        if (currentDirPath == null)
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn(ex, "Removing empty directories");
+                }
+            }
+
+            DirsToDeleteIfEmpty.Clear();
+        }
+
         public void Dispose()
         {
             TempFiles.DisposeAll();
+            Flush();
         }
     }
 
