@@ -453,7 +453,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 PatchFile patchFile = patchViewModel.PatchFile;
 
                 // Extract metadata
-                JsonHelpers.SerializeToFile(patchFile.Metadata, result.SelectedDirectory + "Metadata.png");
+                JsonHelpers.SerializeToFile(patchFile.Metadata, result.SelectedDirectory + "metadata.json");
 
                 // Extract resources
                 using (_context)
@@ -461,7 +461,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     // Extract thumbnail
                     if (patchFile.HasThumbnail)
                     {
-                        using Stream thumbOutputStream = File.Create(result.SelectedDirectory + "Thumbnail.png");
+                        using Stream thumbOutputStream = File.Create(result.SelectedDirectory + "thumbnail.png");
                         await patchFile.ThumbnailResource.ReadData(_context, true).CopyToAsync(thumbOutputStream);
                     }
 
@@ -473,7 +473,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         
                         operation.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
 
-                        FileSystemPath fileDest = result.SelectedDirectory + filePath.FullFilePath;
+                        FileSystemPath fileDest = result.SelectedDirectory + "added_files" + filePath.FullFilePath;
                         Directory.CreateDirectory(fileDest.Parent);
 
                         using FileStream dstStream = File.Create(fileDest);
@@ -486,7 +486,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 }
 
                 // Extract removed files
-                File.WriteAllLines(result.SelectedDirectory + "Removed Files.txt", patchFile.RemovedFiles.Select(x => x.ToString()));
+                File.WriteAllLines(result.SelectedDirectory + "removed_files.txt", patchFile.RemovedFiles.Select(x => x.ToString()));
 
                 Logger.Info("Extracted patch contents");
 
