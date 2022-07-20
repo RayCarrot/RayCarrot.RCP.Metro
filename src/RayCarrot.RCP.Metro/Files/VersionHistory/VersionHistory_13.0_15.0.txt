@@ -1,4 +1,13 @@
-﻿-----   Version 13.2.0 - June 30, 2022   -----
+﻿-----   Version 13.3.0 - August ??, 2022   -----
+• Added support for game patches which can be applied from local files or externally available ones
+
+Other changes:
+• The first time you repack a .cnt archive it will now ask if you want to automatically synchronize the game textures
+• Fixed a bug where synchronizing textures would not work if one of the archives contained non-texture files
+• Fixed a bug where creating a .ipk archive wouldn't respect the settings for which files to compress
+
+
+-----   Version 13.2.0 - June 30, 2022   -----
 • Added Memory Mods to the mods page, allowing game values to be modified and unused features to be toggled for select games
 • The target platform has been changed from x86 to x64. With this 32-bit support for the Rayman Control Panel has been dropped.
 
