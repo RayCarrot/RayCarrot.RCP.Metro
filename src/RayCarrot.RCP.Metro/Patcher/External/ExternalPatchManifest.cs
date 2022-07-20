@@ -17,7 +17,7 @@ public record ExternalPatchManifest(
     long TotalSize,
     DateTime ModifiedDate,
 
-    Version Version,
+    PatchVersion Version,
 
     int AddedFilesCount,
     int RemovedFilesCount,

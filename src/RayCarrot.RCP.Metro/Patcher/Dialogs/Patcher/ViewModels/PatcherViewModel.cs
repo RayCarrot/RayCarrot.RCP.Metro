@@ -689,7 +689,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         foreach (ExternalPatchViewModel externalPatch in _externalPatches)
         {
             string id = externalPatch.ID;
-            Version version = externalPatch.ExternalManifest.Version;
+            PatchVersion version = externalPatch.ExternalManifest.Version;
 
             // TODO: Ideally access to the local patches collection should be locked as it might be modified on another thread
             // Don't show if it exists locally (except if the external revision is newer)

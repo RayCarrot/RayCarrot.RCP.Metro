@@ -315,7 +315,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Localize
         using (DisposableOperation operation = await LoadOperation.RunAsync("Creating patch"))
         {
-            Version version = new(Version_Major, Version_Minor, Version_Revision);
+            PatchVersion version = new(Version_Major, Version_Minor, Version_Revision);
 
             Logger.Info("Creating the patch '{0}' with version {1} and ID {2}", Name, version, ID);
 

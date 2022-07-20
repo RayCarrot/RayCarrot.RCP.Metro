@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
 using BinarySerializer;
-using Newtonsoft.Json;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
@@ -19,21 +18,17 @@ public class PatchMetadata : BinarySerializable
     public string Name { get; set; }
     public string Description { get; set; }
     public string Author { get; set; }
-    [JsonProperty]
     private int Version_Major { get; set; }
-    [JsonProperty]
     private int Version_Minor { get; set; }
-    [JsonProperty]
     private int Version_Revision { get; set; }
-    [JsonIgnore]
-    public Version Version
+    public PatchVersion Version
     {
         get => new(Version_Major, Version_Minor, Version_Revision);
         set
         {
             Version_Major = value.Major;
             Version_Minor = value.Minor;
-            Version_Revision = value.Build;
+            Version_Revision = value.Revision;
         }
     }
 
