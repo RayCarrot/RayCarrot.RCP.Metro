@@ -474,6 +474,49 @@
 
         </TabItem>
 
+        <!-- Patcher -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_Patcher}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Patcher}"
+                 Header="Patcher">
+
+            <ScrollViewer>
+                <StackPanel Margin="2 0">
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                    </i:Interaction.Behaviors>
+
+                    <!-- Patcher -->
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Text="Patcher"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
+
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                            </i:Interaction.Behaviors>
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <CheckBox Content="Show external patches"
+                                      ToolTip="If enabled then the patcher will show a list of external patches available for download"
+                                      IsChecked="{Binding Path=Data.Patcher_LoadExternalPatches}" />
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </TabItem>
+
         <!-- DOSBox -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_ArchiveExplorer}"

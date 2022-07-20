@@ -1087,7 +1087,10 @@ public partial class App : Application
             Data.Archive_CNT_SyncOnRepack = false;
 
         if (Data.App_LastVersion < new Version(13, 3, 0, 0))
+        {
             Data.Archive_CNT_SyncOnRepackRequested = false;
+            Data.Patcher_LoadExternalPatches = true;
+        }
 
         // Refresh the jump list
         RefreshJumpList();

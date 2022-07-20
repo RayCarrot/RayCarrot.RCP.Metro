@@ -101,6 +101,9 @@ public class AppUserData : BaseViewModel
         // Binary
         Binary_IsSerializationLogEnabled = false;
         Binary_BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
+
+        // Patcher
+        Patcher_LoadExternalPatches = true;
     }
 
     /// <summary>
@@ -476,6 +479,15 @@ public class AppUserData : BaseViewModel
     /// Indicates if the serialization log is enabled
     /// </summary>
     public bool Binary_IsSerializationLogEnabled { get; set; }
+
+    #endregion
+
+    #region Patcher
+
+    /// <summary>
+    /// Indicates if external patches should be loaded in the patcher
+    /// </summary>
+    public bool Patcher_LoadExternalPatches { get; set; }
 
     #endregion
 

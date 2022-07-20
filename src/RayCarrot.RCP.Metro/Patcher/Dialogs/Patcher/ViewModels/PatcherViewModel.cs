@@ -659,6 +659,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task LoadExternalPatchesAsync()
     {
+        if (!Services.Data.Patcher_LoadExternalPatches)
+            return;
+
         IsLoadingExternalPatches = true;
 
         try
