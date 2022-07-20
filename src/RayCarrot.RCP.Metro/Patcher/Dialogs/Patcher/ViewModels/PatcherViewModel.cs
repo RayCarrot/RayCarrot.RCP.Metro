@@ -119,21 +119,39 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #region Private Methods
 
-    private void AddPatchFromFile(Context context, PatchFile patchFile, FileSystemPath filePath)
+    private void AddPatchFromFile(Context context, PatchFile patchFile, FileSystemPath filePath, int? insertIndex = null, bool isEnabled = false)
     {
         PendingImportedLocalPatchViewModel patchViewModel = new(this, patchFile, false, filePath);
         patchViewModel.LoadThumbnail(context);
-        LocalPatches.Add(patchViewModel);
+
+        if (insertIndex == null)
+            LocalPatches.Add(patchViewModel);
+        else
+            LocalPatches.Insert(insertIndex.Value, patchViewModel);
+
+        if (isEnabled)
+            patchViewModel.IsEnabled = true;
+
+        SelectedLocalPatch = patchViewModel;
 
         PatchMetadata metaData = patchFile.Metadata;
         Logger.Info("Added patch '{0}' from file with version {1} and ID {2}", metaData.Name, metaData.Version, metaData.ID);
     }
 
-    private void AddDownloadedPatchFromFile(Context context, PatchFile patchFile, FileSystemPath filePath, TempDirectory tempDir)
+    private void AddDownloadedPatchFromFile(Context context, PatchFile patchFile, FileSystemPath filePath, TempDirectory tempDir, int? insertIndex = null, bool isEnabled = false)
     {
         DownloadedLocalPatchViewModel patchViewModel = new(this, patchFile, false, filePath, tempDir);
         patchViewModel.LoadThumbnail(context);
-        LocalPatches.Add(patchViewModel);
+
+        if (insertIndex == null)
+            LocalPatches.Add(patchViewModel);
+        else
+            LocalPatches.Insert(insertIndex.Value, patchViewModel);
+
+        if (isEnabled)
+            patchViewModel.IsEnabled = true;
+
+        SelectedLocalPatch = patchViewModel;
 
         PatchMetadata metaData = patchFile.Metadata;
         Logger.Info("Added patch '{0}' from downloaded file with version {1} and ID {2}", metaData.Name, metaData.Version, metaData.ID);
@@ -284,6 +302,12 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             foreach (FileSystemPath patchFilePath in result.SelectedFiles)
             {
+                if (_context.FileExists(patchFilePath))
+                {
+                    Logger.Trace("Skip adding patch from {0} due to it already having been added", patchFilePath);
+                    continue;
+                }
+
                 Logger.Trace("Adding patch from {0}", patchFilePath);
 
                 PatchFile patch;
@@ -328,22 +352,16 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 }
 
                 LocalPatchViewModel? conflict = LocalPatches.FirstOrDefault(x => x.ID == metaData.ID);
+                int? insertIndex = null;
 
                 if (conflict != null)
                 {
-                    Logger.Warn("Failed to add patch due to the ID {0} conflicting with an existing patch",
-                        metaData.ID);
-
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync(
-                        $"The patch {metaData.Name} conflicts with the existing patch {conflict.Name}. Please remove the conflicting patch before adding the new one.",
-                        "Patch conflict", MessageType.Error);
-
-                    continue;
+                    insertIndex = LocalPatches.IndexOf(conflict);
+                    RemovePatch(conflict, false, false);
                 }
 
                 // Add the patch view model so we can work with it
-                AddPatchFromFile(_context, patch, patchFilePath);
+                AddPatchFromFile(_context, patch, patchFilePath, insertIndex, conflict?.IsEnabled ?? false);
 
                 HasChanges = true;
             }
@@ -385,12 +403,16 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 // Remove any existing patch with the same ID (this allows it to be updated)
                 LocalPatchViewModel? conflict = LocalPatches.FirstOrDefault(x => x.ID == patch.Metadata.ID);
+                int? insertIndex = null;
 
                 if (conflict != null)
-                    RemovePatch(conflict, false);
+                {
+                    insertIndex = LocalPatches.IndexOf(conflict);
+                    RemovePatch(conflict, false, false);
+                }
 
                 // Add the patch view model so we can work with it
-                AddDownloadedPatchFromFile(_context, patch, patchFilePath, tempDir);
+                AddDownloadedPatchFromFile(_context, patch, patchFilePath, tempDir, insertIndex, conflict?.IsEnabled ?? false);
 
                 HasChanges = true;
 
@@ -518,7 +540,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         }
     }
 
-    public void RemovePatch(LocalPatchViewModel patchViewModel, bool refreshExternalPatches)
+    public void RemovePatch(LocalPatchViewModel patchViewModel, bool refreshExternalPatches, bool refreshPatchedFiles)
     {
         LocalPatches.Remove(patchViewModel);
         _removedPatches.Add(patchViewModel.ID);
@@ -527,7 +549,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             SelectedPatch = null;
 
         // If the patch was enabled we need to refresh the patched files
-        if (patchViewModel.IsEnabled)
+        if (patchViewModel.IsEnabled && refreshPatchedFiles)
             RefreshPatchedFiles();
 
         // Remove the file from the context
@@ -540,90 +562,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             RefreshDisplayExternalPatches();
 
         Logger.Info("Removed patch '{0}' with version {1} and ID {2}", patchViewModel.Name, patchViewModel.Metadata.Version, patchViewModel.ID);
-    }
-
-    public async Task UpdatePatchAsync(LocalPatchViewModel patchViewModel)
-    {
-        FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
-        {
-            // TODO-UPDATE: Localize
-            Title = "Select updated patch",
-            DefaultDirectory = default,
-            DefaultName = null,
-            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
-        });
-
-        if (result.CanceledByUser)
-            return;
-
-        Logger.Info("Updating patch '{0}' with version {1} and ID {2}",
-            patchViewModel.Name, patchViewModel.Metadata.Version, patchViewModel.ID);
-
-        using (_context)
-        {
-            PatchFile patch;
-
-            try
-            {
-                patch = _context.ReadRequiredFileData<PatchFile>(result.SelectedFile, removeFileWhenComplete: false);
-            }
-            catch (UnsupportedFormatVersionException ex)
-            {
-                Logger.Warn(ex, "Updating patch with ID {0}", patchViewModel.ID);
-
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync(
-                    "The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read",
-                    MessageType.Error);
-                return;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Updating patch with ID {0}", patchViewModel.ID);
-
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the patch");
-                return;
-            }
-
-            PatchMetadata metaData = patch.Metadata;
-
-            // Verify the ID
-            if (patchViewModel.ID != metaData.ID)
-            {
-                Logger.Warn("Failed to update patch due to the selected patch ID {0} not matching the original ID {1}",
-                    metaData.ID, patchViewModel.ID);
-
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync($"The selected patch does not match and can not be used to update {patchViewModel.Name}.", MessageType.Error);
-
-                return;
-            }
-
-            // Verify the version is newer
-            if (patchViewModel.Metadata.Version > metaData.Version)
-            {
-                Logger.Warn("Failed to update patch due to the selected patch version {0} being less than or equal to the original version {1}",
-                    metaData.Version, patchViewModel.Metadata.Version);
-
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync($"The selected patch version is lower or the same as the current version and can not be used to update {patchViewModel.Name}.", MessageType.Error);
-
-                return;
-            }
-
-            // Remove the current patch
-            RemovePatch(patchViewModel, false);
-
-            // Add the updated patch
-            AddPatchFromFile(_context, patch, result.SelectedFile);
-
-            HasChanges = true;
-
-            Logger.Info("Updated patch to version {0}", metaData.Version);
-
-            RefreshDisplayExternalPatches();
-        }
     }
 
     public async Task<bool> LoadPatchesAsync()

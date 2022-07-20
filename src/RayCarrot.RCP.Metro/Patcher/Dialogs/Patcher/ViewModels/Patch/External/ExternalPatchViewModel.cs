@@ -22,7 +22,7 @@ public class ExternalPatchViewModel : PatchViewModel
             new("Author", externalManifest.Author),
             new("Size", ByteSize.FromBytes(externalManifest.TotalSize).ToString()),
             new("Download Size", ByteSize.FromBytes(externalManifest.PatchSize).ToString()),
-            new("Date", externalManifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+            new("Modified Date", externalManifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
             new("Revision", externalManifest.Version.ToString()),
             new("ID", externalManifest.ID, UserLevel.Debug),
             new("Added Files", (externalManifest.AddedFilesCount).ToString()),

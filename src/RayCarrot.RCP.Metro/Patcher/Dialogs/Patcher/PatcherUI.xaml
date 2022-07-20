@@ -207,22 +207,9 @@
                                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                         VerticalAlignment="Center"
-                                                        Margin="0 0 10 0"
-                                                        local:UserLevelAssist.MinUserLevel="Technical">
-                                                    <iconPacks:PackIconMaterial Background="Transparent"
-                                                        Kind="FileExportOutline"
-                                                        Width="16"
-                                                        Height="16" />
-                                                </Button>
-
-                                                <!-- TODO-UPDATE: Localize -->
-                                                <Button ToolTip="Update"
-                                                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                        Command="{Binding Path=UpdateCommand, Mode=OneTime}"
-                                                        VerticalAlignment="Center"
                                                         Margin="0 0 10 0">
                                                     <iconPacks:PackIconMaterial Background="Transparent"
-                                                        Kind="Refresh"
+                                                        Kind="FileExportOutline"
                                                         Width="16"
                                                         Height="16" />
                                                 </Button>
