@@ -126,7 +126,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         LocalPatches.Add(patchViewModel);
 
         PatchMetadata metaData = patchFile.Metadata;
-        Logger.Info("Added patch '{0}' from file with revision {1} and ID {2}", metaData.Name, metaData.Revision, metaData.ID);
+        Logger.Info("Added patch '{0}' from file with version {1} and ID {2}", metaData.Name, metaData.Version, metaData.ID);
     }
 
     private void AddDownloadedPatchFromFile(Context context, PatchFile patchFile, FileSystemPath filePath, TempDirectory tempDir)
@@ -136,7 +136,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         LocalPatches.Add(patchViewModel);
 
         PatchMetadata metaData = patchFile.Metadata;
-        Logger.Info("Added patch '{0}' from downloaded file with revision {1} and ID {2}", metaData.Name, metaData.Revision, metaData.ID);
+        Logger.Info("Added patch '{0}' from downloaded file with version {1} and ID {2}", metaData.Name, metaData.Version, metaData.ID);
     }
 
     private void AddPatchFromLibrary(PatchLibrary library, PatchLibraryPatchEntry patchEntry)
@@ -156,7 +156,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             LocalPatches.Add(patchViewModel);
 
             PatchMetadata metaData = patchFile.Metadata;
-            Logger.Info("Added patch '{0}' from library with revision {1} and ID {2}", metaData.Name, metaData.Revision, metaData.ID);
+            Logger.Info("Added patch '{0}' from library with version {1} and ID {2}", metaData.Name, metaData.Version, metaData.ID);
         }
     }
 
@@ -189,7 +189,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             if (libraryFile == null)
                 Logger.Info("The library file does not exist");
             else
-                Logger.Info("Read patch library file with version {0}", libraryFile.Version);
+                Logger.Info("Read patch library file with format version {0}", libraryFile.FormatVersion);
         }
         catch (UnsupportedFormatVersionException ex)
         {
@@ -539,7 +539,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         if (refreshExternalPatches)
             RefreshDisplayExternalPatches();
 
-        Logger.Info("Removed patch '{0}' with revision {1} and ID {2}", patchViewModel.Name, patchViewModel.Metadata.Revision, patchViewModel.ID);
+        Logger.Info("Removed patch '{0}' with version {1} and ID {2}", patchViewModel.Name, patchViewModel.Metadata.Version, patchViewModel.ID);
     }
 
     public async Task UpdatePatchAsync(LocalPatchViewModel patchViewModel)
@@ -556,8 +556,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         if (result.CanceledByUser)
             return;
 
-        Logger.Info("Updating patch '{0}' with revision {1} and ID {2}",
-            patchViewModel.Name, patchViewModel.Metadata.Revision, patchViewModel.ID);
+        Logger.Info("Updating patch '{0}' with version {1} and ID {2}",
+            patchViewModel.Name, patchViewModel.Metadata.Version, patchViewModel.ID);
 
         using (_context)
         {
@@ -600,14 +600,14 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 return;
             }
 
-            // Verify the revision is newer
-            if (patchViewModel.Metadata.Revision > metaData.Revision)
+            // Verify the version is newer
+            if (patchViewModel.Metadata.Version > metaData.Version)
             {
-                Logger.Warn("Failed to update patch due to the selected patch revision {0} being less than or equal to the original revision {1}",
-                    metaData.Revision, patchViewModel.Metadata.Revision);
+                Logger.Warn("Failed to update patch due to the selected patch version {0} being less than or equal to the original version {1}",
+                    metaData.Version, patchViewModel.Metadata.Version);
 
                 // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync($"The selected patch revision is lower or the same as the current revision and can not be used to update {patchViewModel.Name}.", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync($"The selected patch version is lower or the same as the current version and can not be used to update {patchViewModel.Name}.", MessageType.Error);
 
                 return;
             }
@@ -620,7 +620,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             HasChanges = true;
 
-            Logger.Info("Updated patch to revision {0}", metaData.Revision);
+            Logger.Info("Updated patch to version {0}", metaData.Version);
 
             RefreshDisplayExternalPatches();
         }
@@ -714,7 +714,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             _externalPatches = gameManifest.Patches.
-                Where(x => x.FileVersion <= PatchFile.LatestVersion).
+                Where(x => x.FormatVersion <= PatchFile.LatestFormatVersion).
                 Select(x => new ExternalPatchViewModel(this, x)).
                 ToArray();
         }
@@ -751,11 +751,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         foreach (ExternalPatchViewModel externalPatch in _externalPatches)
         {
             string id = externalPatch.ID;
-            int revision = externalPatch.ExternalManifest.Revision;
+            Version version = externalPatch.ExternalManifest.Version;
 
             // TODO: Ideally access to the local patches collection should be locked as it might be modified on another thread
             // Don't show if it exists locally (except if the external revision is newer)
-            if (LocalPatches.Any(x => x.ID == id && x.Metadata.Revision >= revision))
+            if (LocalPatches.Any(x => x.ID == id && x.Metadata.Version >= version))
                 continue;
 
             // Add view model

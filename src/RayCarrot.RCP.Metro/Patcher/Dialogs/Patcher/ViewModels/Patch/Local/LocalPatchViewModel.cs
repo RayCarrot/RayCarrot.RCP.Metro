@@ -28,9 +28,9 @@ public abstract class LocalPatchViewModel : PatchViewModel
             new("Author", patchFile.Metadata.Author),
             new("Size", ByteSize.FromBytes(patchFile.Metadata.TotalSize).ToString()),
             new("Date", patchFile.Metadata.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-            new("Revision", patchFile.Metadata.Revision.ToString()),
+            new("Version", patchFile.Metadata.Version.ToString()),
             new("ID", patchFile.Metadata.ID, UserLevel.Debug),
-            new("File Version", patchFile.Version.ToString(), UserLevel.Debug),
+            new("Format Version", patchFile.FormatVersion.ToString(), UserLevel.Debug),
             new("Added Files", (patchFile.AddedFiles?.Length ?? 0).ToString()),
             new("Removed Files", (patchFile.RemovedFiles?.Length ?? 0).ToString()),
         };

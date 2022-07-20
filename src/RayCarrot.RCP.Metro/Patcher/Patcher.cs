@@ -569,7 +569,7 @@ public class Patcher
         PatchLibraryHistory history = fileChanges.CreateHistory();
 
         // Update the library file
-        libraryFile.Version = PatchLibraryFile.LatestVersion;
+        libraryFile.FormatVersion = PatchLibraryFile.LatestFormatVersion;
         libraryFile.Game = game;
         libraryFile.History = history;
         libraryFile.Patches = patches;

@@ -16,7 +16,7 @@ public class PatchLibraryFile : BinarySerializable, IPackageFile
     #region Constants
 
     public const string FileExtension = ".gpl"; // Game Patch Library
-    public const int LatestVersion = 0;
+    public const int LatestFormatVersion = 0;
 
     #endregion
 
@@ -25,9 +25,9 @@ public class PatchLibraryFile : BinarySerializable, IPackageFile
     public IEnumerable<PackagedResourceEntry> Resources => History.RemovedFileResources.Concat(History.ReplacedFileResources);
 
     /// <summary>
-    /// The library file version. This is used for backwards compatibility if the format ever changes.
+    /// The library file format version. This is used for backwards compatibility if the format ever changes.
     /// </summary>
-    public int Version { get; set; }
+    public int FormatVersion { get; set; }
 
     private string GameName { get; set; }
 
@@ -59,10 +59,10 @@ public class PatchLibraryFile : BinarySerializable, IPackageFile
         s.DoWithDefaults(new SerializerDefaults() { StringEncoding = Encoding.UTF8 }, () =>
         {
             s.SerializeMagicString("GPL", 4);
-            Version = s.Serialize<int>(Version, name: nameof(Version));
+            FormatVersion = s.Serialize<int>(FormatVersion, name: nameof(FormatVersion));
 
-            if (Version > LatestVersion)
-                throw new UnsupportedFormatVersionException($"The library version {Version} is higher than the latest supported version {LatestVersion}");
+            if (FormatVersion > LatestFormatVersion)
+                throw new UnsupportedFormatVersionException($"The library format version {FormatVersion} is higher than the latest supported version {LatestFormatVersion}");
 
             GameName = s.SerializeString(GameName, name: nameof(GameName));
 

@@ -7,6 +7,7 @@
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:patcher="clr-namespace:RayCarrot.RCP.Metro.Patcher"
                             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                             mc:Ignorable="d"
                             d:DesignWidth="800" d:DesignHeight="600"
                             d:DataContext="{d:DesignInstance patcher:PatchCreatorViewModel}"
@@ -23,7 +24,7 @@
                                 Value="{Binding Path=LoadOperation.CurrentProgress}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" MinHeight="230" />
+                <RowDefinition Height="*" MinHeight="250" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1.5*" MinHeight="150" />
                 <RowDefinition Height="Auto" />
@@ -43,6 +44,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -81,6 +83,7 @@
                                  Grid.Row="2" 
                                  MinHeight="50"
                                  AcceptsReturn="True"
+                                 TextWrapping="Wrap"
                                  Margin="0 0 0 10"
                                  Text="{Binding Path=Description}"
                                  MaxLength="700"
@@ -89,12 +92,18 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="3"
                                    VerticalAlignment="Center" 
-                                   Text="Revision"
+                                   Text="Version"
                                    Margin="0 0 0 10" />
-                        <TextBlock Grid.Column="2"
-                                   Grid.Row="3" 
-                                   Margin="0 0 0 10"
-                                   Text="{Binding Path=Revision}" />
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="2"
+                                    Grid.Row="3"
+                                    Margin="0 0 0 10">
+                            <mah:NumericUpDown MinWidth="0" Margin="0 0 3 0" Value="{Binding Path=Version_Major}" />
+                            <TextBlock Text="." VerticalAlignment="Bottom"  Margin="0 0 3 0"/>
+                            <mah:NumericUpDown MinWidth="0" Margin="0 0 3 0" Value="{Binding Path=Version_Minor}" />
+                            <TextBlock Text="." VerticalAlignment="Bottom"  Margin="0 0 3 0"/>
+                            <mah:NumericUpDown  MinWidth="0"  Value="{Binding Path=Version_Revision}" />
+                        </StackPanel>
 
                         <TextBlock Grid.Column="0"
                                    Grid.Row="4"
@@ -107,6 +116,17 @@
                                    Margin="0 0 0 10"
                                    Text="{Binding Path=ID}" 
                                    local:UserLevelAssist.MinUserLevel="Technical"/>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="5"
+                                   VerticalAlignment="Center" 
+                                   Text="Game"
+                                   local:UserLevelAssist.MinUserLevel="Technical"
+                                   Margin="0 0 0 10" />
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="5" 
+                                   Margin="0 0 0 10"
+                                   Text="{Binding Path=GameDisplayName, Mode=OneTime}" />
                     </Grid>
                 </ScrollViewer>
 

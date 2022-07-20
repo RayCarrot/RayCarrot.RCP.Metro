@@ -618,13 +618,13 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                 patches.Add((game, new ExternalPatchManifest(
                     ID: patch.Metadata.ID,
-                    FileVersion: patch.Version,
+                    FormatVersion: patch.FormatVersion,
                     Name: patch.Metadata.Name,
                     Description: patch.Metadata.Description,
                     Author: patch.Metadata.Author,
                     TotalSize: patch.Metadata.TotalSize,
                     ModifiedDate: patch.Metadata.ModifiedDate,
-                    Revision: patch.Metadata.Revision,
+                    Version: patch.Metadata.Version,
                     AddedFilesCount: patch.AddedFiles?.Length ?? 0,
                     RemovedFilesCount: patch.RemovedFiles?.Length ?? 0,
                     Patch: patchURL,

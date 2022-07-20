@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using System;
 using System.Collections.Generic;
 using System.Text;
 using BinarySerializer;
@@ -14,7 +13,7 @@ public class PatchFile : BinarySerializable, IPackageFile
     #region Constants
 
     public const string FileExtension = ".gp"; // Game Patch
-    public const int LatestVersion = 0;
+    public const int LatestFormatVersion = 0;
 
     #endregion
 
@@ -33,9 +32,9 @@ public class PatchFile : BinarySerializable, IPackageFile
     }
 
     /// <summary>
-    /// The patch file version. This is used for backwards compatibility if the format ever changes.
+    /// The patch file format version. This is used for backwards compatibility if the format ever changes.
     /// </summary>
-    public int Version { get; set; }
+    public int FormatVersion { get; set; }
 
     /// <summary>
     /// The patch metadata containing general information about the patch
@@ -82,10 +81,10 @@ public class PatchFile : BinarySerializable, IPackageFile
         s.DoWithDefaults(new SerializerDefaults() { StringEncoding = Encoding.UTF8 }, () =>
         {
             s.SerializeMagicString("GP", 4);
-            Version = s.Serialize<int>(Version, name: nameof(Version));
+            FormatVersion = s.Serialize<int>(FormatVersion, name: nameof(FormatVersion));
 
-            if (Version > LatestVersion)
-                throw new UnsupportedFormatVersionException($"The patch version {Version} is higher than the latest supported version {LatestVersion}");
+            if (FormatVersion > LatestFormatVersion)
+                throw new UnsupportedFormatVersionException($"The patch format version {FormatVersion} is higher than the latest supported version {LatestFormatVersion}");
 
             Metadata = s.SerializeObject<PatchMetadata>(Metadata, name: nameof(Metadata));
 

@@ -18,7 +18,19 @@ public class PatchMetadata : BinarySerializable
     public string Name { get; set; }
     public string Description { get; set; }
     public string Author { get; set; }
-    public int Revision { get; set; }
+    private int Version_Major { get; set; }
+    private int Version_Minor { get; set; }
+    private int Version_Revision { get; set; }
+    public Version Version
+    {
+        get => new(Version_Major, Version_Minor, Version_Revision);
+        set
+        {
+            Version_Major = value.Major;
+            Version_Minor = value.Minor;
+            Version_Revision = value.Build;
+        }
+    }
 
     public long TotalSize { get; set; }
     public long ModifiedDateValue { get; set; }
@@ -51,7 +63,9 @@ public class PatchMetadata : BinarySerializable
         Name = s.SerializeString(Name, name: nameof(Name));
         Description = s.SerializeString(Description, name: nameof(Description));
         Author = s.SerializeString(Author, name: nameof(Author));
-        Revision = s.Serialize<int>(Revision, name: nameof(Revision));
+        Version_Major = s.Serialize<int>(Version_Major, name: nameof(Version_Major));
+        Version_Minor = s.Serialize<int>(Version_Minor, name: nameof(Version_Minor));
+        Version_Revision = s.Serialize<int>(Version_Revision, name: nameof(Version_Revision));
 
         TotalSize = s.Serialize<long>(TotalSize, name: nameof(TotalSize));
 

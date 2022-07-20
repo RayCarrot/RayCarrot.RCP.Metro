@@ -26,9 +26,13 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             new("Game", String.Empty, String.Empty)
         };
 
+        GameInfo gameInfo = game.GetGameInfo();
+
+        GameDisplayName = gameInfo.DisplayName;
+
         FileSystemPath installDir = game.GetInstallDir();
         string? archiveID = game.GetGameInfo().GetArchiveDataManager?.ID;
-        IEnumerable<AvailableFileLocation>? archiveLocations = archiveID == null ? null : game.GetGameInfo().
+        IEnumerable<AvailableFileLocation>? archiveLocations = archiveID == null ? null : gameInfo.
             GetArchiveFilePaths(installDir)?.
             Where(x => x.FileExists).
             Select(x => x - installDir).
@@ -72,12 +76,15 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
-    public string Name { get; set; } = String.Empty;
+    public string Name { get; set; } = String.Empty; // TODO-UPDATE: Don't allow empty name
     public string Description { get; set; } = String.Empty;
     public string Author { get; set; } = String.Empty;
-    public int Revision { get; set; }
+    public int Version_Major { get; set; } = 1;
+    public int Version_Minor { get; set; }
+    public int Version_Revision { get; set; }
     public string ID { get; set; }
     public Games Game { get; }
+    public string GameDisplayName { get; }
     public BitmapSource? Thumbnail { get; set; }
 
     public ObservableCollection<FileViewModel> Files { get; } = new();
@@ -144,7 +151,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 Name = metadata.Name;
                 Description = metadata.Description;
                 Author = metadata.Author;
-                Revision = metadata.Revision + 1; // Increment the revision
+                Version_Major = metadata.Version.Major;
+                Version_Minor = metadata.Version.Minor;
+                Version_Revision = metadata.Version.Revision;
                 ID = metadata.ID;
 
                 // Extract thumbnail
@@ -190,7 +199,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                 IsImported = true;
 
-                Logger.Info("Imported patch {0} with version {1}", metadata.Name, patchFile.Version);
+                Logger.Info("Imported patch {0} with format version {1}", metadata.Name, patchFile.FormatVersion);
 
                 return true;
             }
@@ -306,7 +315,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         // TODO-UPDATE: Localize
         using (DisposableOperation operation = await LoadOperation.RunAsync("Creating patch"))
         {
-            Logger.Info("Creating the patch '{0}' with revision {1} and ID {2}", Name, Revision, ID);
+            Version version = new(Version_Major, Version_Minor, Version_Revision);
+
+            Logger.Info("Creating the patch '{0}' with version {1} and ID {2}", Name, version, ID);
 
             // TODO-UPDATE: Localize
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
@@ -329,7 +340,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     // Create a new patch file
                     PatchFile patchFile = new()
                     {
-                        Version = PatchFile.LatestVersion,
+                        FormatVersion = PatchFile.LatestFormatVersion,
                         Metadata = new PatchMetadata
                         {
                             ID = ID,
@@ -337,7 +348,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                             Name = Name,
                             Description = Description,
                             Author = Author,
-                            Revision = Revision,
+                            Version = version,
                             ModifiedDate = DateTime.Now
                         },
                     };

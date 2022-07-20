@@ -8,7 +8,7 @@ public record ExternalPatchManifest(
     string ID,
 
     [property: JsonProperty(Required = Required.Always)]
-    int FileVersion,
+    int FormatVersion,
 
     string? Name,
     string? Description,
@@ -17,7 +17,7 @@ public record ExternalPatchManifest(
     long TotalSize,
     DateTime ModifiedDate,
 
-    int Revision,
+    Version Version,
 
     int AddedFilesCount,
     int RemovedFilesCount,
