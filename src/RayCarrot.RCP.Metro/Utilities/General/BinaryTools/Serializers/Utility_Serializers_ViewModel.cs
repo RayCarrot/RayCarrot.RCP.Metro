@@ -8,6 +8,7 @@ using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
 using BinarySerializer.UbiArt;
 using NLog;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -167,6 +168,24 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                         Encoder = new GameMaker_HexStringEncoder(),
                         GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption"
                     },
+                }),
+
+            new Serializers_TypeViewModel<PatchFile>(
+                name: "Game Patch (.gp)", // TODO-UPDATE: Localize
+                fileExtension: new FileExtension(PatchFile.FileExtension),
+                getEndianFunc: c => Endian.Little,
+                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                {
+                    new Utility_SerializableTypeModeViewModel("Rayman Control Panel"),
+                }),
+
+            new Serializers_TypeViewModel<PatchLibraryFile>(
+                name: "Game Patch Library (.gpl)", // TODO-UPDATE: Localize
+                fileExtension: new FileExtension(PatchLibraryFile.FileExtension),
+                getEndianFunc: c => Endian.Little,
+                modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
+                {
+                    new Utility_SerializableTypeModeViewModel("Rayman Control Panel"),
                 }),
         };
 
