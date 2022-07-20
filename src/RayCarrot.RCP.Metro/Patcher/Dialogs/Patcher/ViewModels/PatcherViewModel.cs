@@ -359,9 +359,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         if (_externalGamePatchesURL == null)
             throw new Exception("Attempted to download patch before the URL was set");
 
-        if (LocalPatches.Any(x => x.ID == externalManifest.ID))
-            throw new Exception("Attempted to download patch with conflicting ID");
-
         Logger.Info("Downloading external patch");
 
         TempDirectory tempDir = new(true);
@@ -385,6 +382,12 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 // Read the patch file
                 PatchFile patch = _context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
+
+                // Remove any existing patch with the same ID (this allows it to be updated)
+                LocalPatchViewModel? conflict = LocalPatches.FirstOrDefault(x => x.ID == patch.Metadata.ID);
+
+                if (conflict != null)
+                    RemovePatch(conflict, false);
 
                 // Add the patch view model so we can work with it
                 AddDownloadedPatchFromFile(_context, patch, patchFilePath, tempDir);
@@ -745,10 +748,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         foreach (ExternalPatchViewModel externalPatch in _externalPatches)
         {
             string id = externalPatch.ID;
+            int revision = externalPatch.ExternalManifest.Revision;
 
             // TODO: Ideally access to the local patches collection should be locked as it might be modified on another thread
-            // Don't show if it exists locally
-            if (LocalPatches.Any(x => x.ID == id))
+            // Don't show if it exists locally (except if the external revision is newer)
+            if (LocalPatches.Any(x => x.ID == id && x.Metadata.Revision >= revision))
                 continue;
 
             // Add view model
