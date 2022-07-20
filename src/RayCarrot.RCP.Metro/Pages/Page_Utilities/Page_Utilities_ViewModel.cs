@@ -38,13 +38,13 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
         BinaryToolViewModels.AddRange(new UtilityViewModel[]
         {
             new UtilityViewModel(new Utility_Archives()),
+            new UtilityViewModel(new Utility_PatchCreator()),
             new UtilityViewModel(new Utility_Serializers()),
             new UtilityViewModel(new Utility_Converters()),
             new UtilityViewModel(new Utility_Decoders()),
         });
         OtherViewModels.AddRange(new UtilityViewModel[]
         {
-            new UtilityViewModel(new Utility_PatchCreator()),
             new UtilityViewModel(new Utility_SyncTextureInfo()),
             new UtilityViewModel(new Utility_R1PasswordGenerator()),
         });
