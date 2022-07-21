@@ -76,7 +76,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
-    public string Name { get; set; } = String.Empty; // TODO-UPDATE: Don't allow empty name
+    public string Name { get; set; } = String.Empty;
     public string Description { get; set; } = String.Empty;
     public string Author { get; set; } = String.Empty;
     public int Version_Major { get; set; } = 1;
@@ -345,7 +345,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         {
                             ID = ID,
                             Game = Game,
-                            Name = Name,
+                            Name = Name.IsNullOrWhiteSpace() ? "Unnamed patch" : Name,
                             Description = Description,
                             Author = Author,
                             Version = version,
