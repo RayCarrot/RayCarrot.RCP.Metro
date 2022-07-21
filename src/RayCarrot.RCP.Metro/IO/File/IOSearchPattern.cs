@@ -52,7 +52,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the current instance should include the entire directory and its sub content, otherwise false</returns>
         public bool IsEntireDir() => SearchPattern is null or "*" && SearchOption == SearchOption.AllDirectories;
 
-        // TODO-UPDATE: If dir does not exist we should return an empty array
         public string[] GetFiles() => Directory.GetFiles(DirPath, SearchPattern, SearchOption);
     }
 }

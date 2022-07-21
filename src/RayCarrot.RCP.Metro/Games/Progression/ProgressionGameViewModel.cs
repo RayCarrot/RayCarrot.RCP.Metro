@@ -244,7 +244,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             BackupSearchPattern[] backupDirs = BackupInfo.BackupDirectories!;
 
             // Get the current progress files
-            var currentFiles = backupDirs.Select(x => new
+            var currentFiles = backupDirs.Where(x => x.SearchPattern.DirPath.DirectoryExists).Select(x => new
             {
                 ID = x.ID,
                 Files = x.SearchPattern.GetFiles(),
