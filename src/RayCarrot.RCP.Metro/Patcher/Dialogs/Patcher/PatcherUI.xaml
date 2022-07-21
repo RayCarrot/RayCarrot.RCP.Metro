@@ -522,8 +522,7 @@
                                                 <TextBlock Text="{Binding Path=Name, Mode=OneTime}"
                                                            TextWrapping="Wrap"
                                                            VerticalAlignment="Center"
-                                                           Margin="0 0 10 0" 
-                                                           TextDecorations="Strikethrough"/>
+                                                           Margin="0 0 10 0" />
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>

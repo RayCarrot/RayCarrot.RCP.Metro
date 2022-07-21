@@ -278,7 +278,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             OrderBy(x => x.FilePath.Location).
             ThenBy(x => x.FilePath.FilePath));
 
-        Logger.Info("Refresh patches files");
+        Logger.Info("Refreshed patches files");
     }
 
     public async Task AddPatchAsync()

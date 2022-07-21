@@ -11,6 +11,7 @@ public abstract class BasePageViewModel : BaseViewModel
     {
         App = app ?? throw new ArgumentNullException(nameof(app));
 
+        // TODO: This won't trigger for the initially selected page
         app.SelectedPageChanged += App_SelectedPageChangedAsync;
         _pageChangedLock = new AsyncLock();
     }
@@ -25,11 +26,16 @@ public abstract class BasePageViewModel : BaseViewModel
 
     private async void App_SelectedPageChangedAsync(object sender, PropertyChangedEventArgs<AppPage> e)
     {
+        if (e.NewValue != Page)
+            return;
+
+        await OnSelectedPageAsync();
+    }
+
+    private async Task OnSelectedPageAsync()
+    {
         using (await _pageChangedLock.LockAsync())
         {
-            if (e.NewValue != Page)
-                return;
-
             await NavigatedToAsync();
 
             if (_hasInitialized)
