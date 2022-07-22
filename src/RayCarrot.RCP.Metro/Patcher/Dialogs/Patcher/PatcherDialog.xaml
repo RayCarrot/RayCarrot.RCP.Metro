@@ -114,7 +114,7 @@
 
                             <ListBox SelectedItem="{Binding Path=SelectedLocalPatch}"
                                      ItemsSource="{Binding Path=LocalPatches, Mode=OneTime}"
-                                     d:ItemsSource="{d:SampleData ItemCount=3}"
+                                     d:ItemsSource="{d:SampleData ItemCount=2}"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                      dd:DragDrop.IsDragSource="True"
                                      dd:DragDrop.IsDropTarget="True"
@@ -254,7 +254,7 @@
 
                             <ListBox SelectedItem="{Binding Path=SelectedExternalPatch}"
                                      ItemsSource="{Binding Path=DisplayedExternalPatches, Mode=OneTime}"
-                                     d:ItemsSource="{d:SampleData ItemCount=3}"
+                                     d:ItemsSource="{d:SampleData ItemCount=2}"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                      Margin="0 0 0 5"
                                      PreviewMouseWheel="PatchesListBox_OnPreviewMouseWheel">
@@ -340,6 +340,7 @@
                             <!-- Description -->
 
                             <TextBlock Text="{Binding Path=Description, Mode=OneTime}"
+                                       Visibility="{Binding Path=HasDescripton, Converter={local:BooleanToVisibilityConverter}}"
                                        TextWrapping="Wrap"
                                        Margin="0 0 0 10"/>
 
@@ -368,6 +369,32 @@
                         </StackPanel>
                     </ScrollViewer>
 
+                </Grid>
+
+                <!-- Library Info -->
+
+                <Grid Grid.Column="2"
+                      local:UserLevelAssist.MinUserLevel="Technical">
+                    <Grid 
+                        Visibility="{Binding Path=SelectedPatch, Converter={local:ObjectNullToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Title -->
+
+                        <TextBlock Grid.Row="0"
+                                   Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                   Visibility="{Binding Path=LibraryInfo, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                                   Text="Patch Library"
+                                   Margin="0 0 0 10" />
+
+                        <ScrollViewer Grid.Row="1">
+                            <local:DuoGrid ItemsSource="{Binding Path=LibraryInfo}" />
+                        </ScrollViewer>
+
+                    </Grid>
                 </Grid>
 
             </Grid>

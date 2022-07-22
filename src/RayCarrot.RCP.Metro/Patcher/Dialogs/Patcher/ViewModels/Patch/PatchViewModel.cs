@@ -21,6 +21,7 @@ public abstract class PatchViewModel : BaseViewModel, IDisposable
     public abstract string ID { get; }
     public abstract string Name { get; }
     public abstract string Description { get; }
+    public bool HasDescripton => !Description.IsNullOrWhiteSpace();
     public abstract ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
     public ImageSource? Thumbnail { get; set; }
 

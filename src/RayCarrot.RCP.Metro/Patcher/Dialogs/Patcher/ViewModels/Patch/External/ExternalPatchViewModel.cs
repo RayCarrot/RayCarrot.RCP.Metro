@@ -19,14 +19,14 @@ public class ExternalPatchViewModel : PatchViewModel
         
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new("Author", externalManifest.Author),
-            new("Size", ByteSize.FromBytes(externalManifest.TotalSize).ToString()),
-            new("Download Size", ByteSize.FromBytes(externalManifest.PatchSize).ToString()),
-            new("Modified Date", externalManifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-            new("Revision", externalManifest.Version.ToString()),
-            new("ID", externalManifest.ID, UserLevel.Debug),
-            new("Added Files", (externalManifest.AddedFilesCount).ToString()),
-            new("Removed Files", (externalManifest.RemovedFilesCount).ToString()),
+            new("Author:", externalManifest.Author),
+            new("Size:", ByteSize.FromBytes(externalManifest.TotalSize).ToString()),
+            new("Download size:", ByteSize.FromBytes(externalManifest.PatchSize).ToString()),
+            new("Last modified:", externalManifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+            new("Revision:", externalManifest.Version.ToString()),
+            new("ID:", externalManifest.ID, UserLevel.Debug),
+            new("Added files:", (externalManifest.AddedFilesCount).ToString()),
+            new("Removed files:", (externalManifest.RemovedFilesCount).ToString()),
         };
 
         DownloadCommand = new AsyncRelayCommand(() => PatcherViewModel.DownloadPatchAsync(ExternalManifest));

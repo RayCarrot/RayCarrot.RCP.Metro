@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using BinarySerializer;
+using ByteSizeLib;
 using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
@@ -65,6 +67,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     public FileSystemPath GameDirectory { get; }
     
     public PatchLibrary Library { get; }
+    public ObservableCollection<DuoGridItemViewModel>? LibraryInfo { get; set; }
 
     public ObservableCollection<LocalPatchViewModel> LocalPatches { get; }
     public ObservableCollection<ExternalPatchViewModel> DisplayedExternalPatches { get; }
@@ -205,13 +208,33 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 libraryFile = _context.ReadFileData<PatchLibraryFile>(Library.LibraryFilePath, removeFileWhenComplete: true);
 
             if (libraryFile == null)
+            {
+                LibraryInfo = null;
                 Logger.Info("The library file does not exist");
+            }
             else
+            {
+                // TODO-UPDATE: Localize
+                LibraryInfo = new ObservableCollection<DuoGridItemViewModel>()
+                {
+                    new("Game:", libraryFile.Game.GetGameInfo().DisplayName),
+                    new("Patches:", libraryFile.Patches.Length.ToString()),
+                    new("Applied patches:", libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
+                    new("Last modified:", libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+                    new("Format version:", libraryFile.FormatVersion.ToString(), UserLevel.Debug),
+                    new("Directory:", Library.DirectoryPath.FullPath, UserLevel.Debug),
+                    new("Added files:", libraryFile.History.AddedFiles.Length.ToString()),
+                    new("Replaced files:", libraryFile.History.ReplacedFiles.Length.ToString()),
+                    new("Removed files:", libraryFile.History.RemovedFiles.Length.ToString()),
+                };
                 Logger.Info("Read patch library file with format version {0}", libraryFile.FormatVersion);
+            }
         }
         catch (UnsupportedFormatVersionException ex)
         {
             Logger.Warn(ex, "Reading library file");
+
+            LibraryInfo = null;
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync("The game patch library was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);

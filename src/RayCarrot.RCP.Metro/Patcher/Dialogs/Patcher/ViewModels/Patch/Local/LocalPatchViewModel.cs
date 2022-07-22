@@ -25,15 +25,15 @@ public abstract class LocalPatchViewModel : PatchViewModel
         // TODO-UPDATE: Localize
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new("Author", patchFile.Metadata.Author),
-            new("Size", ByteSize.FromBytes(patchFile.Metadata.TotalSize).ToString()),
-            new("Modified Date", patchFile.Metadata.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-            new("Version", patchFile.Metadata.Version.ToString()),
-            new("ID", patchFile.Metadata.ID, UserLevel.Debug),
-            new("Format Version", patchFile.FormatVersion.ToString(), UserLevel.Debug),
-            new("File Path", FilePath.FullPath, UserLevel.Debug),
-            new("Added Files", (patchFile.AddedFiles?.Length ?? 0).ToString()),
-            new("Removed Files", (patchFile.RemovedFiles?.Length ?? 0).ToString()),
+            new("Author:", patchFile.Metadata.Author),
+            new("Size:", ByteSize.FromBytes(patchFile.Metadata.TotalSize).ToString()),
+            new("Last modified:", patchFile.Metadata.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+            new("Version:", patchFile.Metadata.Version.ToString()),
+            new("ID:", patchFile.Metadata.ID, UserLevel.Debug),
+            new("Format version:", patchFile.FormatVersion.ToString(), UserLevel.Debug),
+            new("File path", FilePath.FullPath, UserLevel.Debug),
+            new("Added files:", (patchFile.AddedFiles?.Length ?? 0).ToString()),
+            new("Removed files:", (patchFile.RemovedFiles?.Length ?? 0).ToString()),
         };
 
         ExtractContentsCommand = new AsyncRelayCommand(async () => await PatcherViewModel.ExtractPatchContentsAsync(this));
