@@ -364,7 +364,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
 
     #region Protected Methods
 
-    protected override object GetPageUI() => new Emulator_DOSBox_ConfigUI()
+    protected override object GetPageUI() => new Emulator_DOSBox_ConfigControl()
     {
         DataContext = this
     };

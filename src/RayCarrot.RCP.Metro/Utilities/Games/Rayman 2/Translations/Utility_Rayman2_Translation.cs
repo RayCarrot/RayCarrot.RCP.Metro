@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 2 translation utility
 /// </summary>
-public class Utility_Rayman2_Translation : Utility<Utility_Rayman2_Translation_UI, Utility_Rayman2_Translation_ViewModel>
+public class Utility_Rayman2_Translation : Utility<Utility_Rayman2_Translation_Control, Utility_Rayman2_Translation_ViewModel>
 {
     public override string DisplayHeader => Resources.R2U_TranslationsHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_Rayman2_Translation;

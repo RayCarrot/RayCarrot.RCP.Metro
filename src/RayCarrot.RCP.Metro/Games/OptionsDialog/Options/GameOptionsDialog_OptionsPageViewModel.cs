@@ -108,7 +108,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
         GameInfoItems.AddRange(Game.GetManager().GetGameInfoItems);
     }
 
-    protected override object GetPageUI() => new GameOptions_UI()
+    protected override object GetPageUI() => new GameOptions_Control()
     {
         DataContext = this
     };

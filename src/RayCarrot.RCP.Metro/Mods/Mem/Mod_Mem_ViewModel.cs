@@ -97,7 +97,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private Mod_Mem_UI? _uiContent;
+    private Mod_Mem_Control? _uiContent;
     private CancellationTokenSource? _updateCancellation;
     private Mod_Mem_MemoryDataContainer? _memContainer;
     private Mod_Mem_GameViewModel _selectedGame;
@@ -121,7 +121,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.Mod_Mem_Header));
     public override GenericIconKind Icon => GenericIconKind.Mods_Mem;
-    public override object UIContent => _uiContent ??= new Mod_Mem_UI()
+    public override object UIContent => _uiContent ??= new Mod_Mem_Control()
     {
         DataContext = this
     };

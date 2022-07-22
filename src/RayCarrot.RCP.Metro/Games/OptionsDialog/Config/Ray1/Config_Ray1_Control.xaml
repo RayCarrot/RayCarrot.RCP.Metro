@@ -1,0 +1,322 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Config_Ray1_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             IsTabStop="False"
+             mc:Ignorable="d"
+             d:DesignHeight="800" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance local:Config_Ray1_BaseViewModel}">
+
+    <StackPanel>
+        <i:Interaction.Behaviors>
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+        </i:Interaction.Behaviors>
+
+        <!-- Language -->
+
+        <StackPanel Orientation="Horizontal"
+                    Visibility="{Binding Path=IsGameLanguageAvailable, Converter={local:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Language}" />
+
+            <local:InfoIcon Text="{Resx DosBoxConfig_LanguageInfo}" />
+
+        </StackPanel>
+
+        <ComboBox SelectedIndex="{Binding Path=GameLanguage, Converter={local:ByteEnumToIntConverter}}"
+                  Visibility="{Binding Path=IsGameLanguageAvailable, Converter={local:BooleanToVisibilityConverter}}"
+                  HorizontalAlignment="Left">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                    <Setter Property="Visibility"
+                            Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+
+            <TextBlock Text="{Resx Lang_English}"
+                       Visibility="{Binding Path=IsEnglishAvailable, Converter={local:BooleanToVisibilityConverter}}" />
+            <TextBlock Text="{Resx Lang_French}"
+                       Visibility="{Binding Path=IsFrenchAvailable, Converter={local:BooleanToVisibilityConverter}}" />
+            <TextBlock Text="{Resx Lang_German}"
+                       Visibility="{Binding Path=IsGermanAvailable, Converter={local:BooleanToVisibilityConverter}}" />
+        </ComboBox>
+
+        <!-- Sound -->
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_Sound}" />
+
+        <CheckBox Content="{Resx Config_Music}"
+                  IsChecked="{Binding Path=IsMusicEnabled}" />
+
+        <metro:ToggleSwitch IsOn="{Binding Path=IsStero}"
+                            HorizontalAlignment="Left"
+                            OnContent="{Resx Config_Stereo}"
+                            OffContent="{Resx Config_Mono}" />
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_SoundVolumeHeader}" />
+
+        <Slider Value="{Binding Path=SoundVolume}"
+                Minimum="0"
+                Maximum="20"
+                TickPlacement="BottomRight"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"
+                Width="300"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left" />
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                    Visibility="{Binding Path=IsVoicesVolumeAvailable, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                   Text="{Resx Config_VolumeVoices}" />
+
+        <Slider Value="{Binding Path=VoicesVolume}"
+                Visibility="{Binding Path=IsVoicesVolumeAvailable, Converter={local:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                Minimum="0"
+                Maximum="20"
+                TickPlacement="BottomRight"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"
+                Width="300"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left" />
+
+        <!-- Graphics -->
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_Graphics}" />
+
+        <CheckBox Content="{Resx Config_Background}"
+                  IsChecked="{Binding Path=ShowBackground}" />
+
+        <CheckBox Content="{Resx Config_ScrollBackground}"
+                  Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
+                  IsEnabled="{Binding Path=ShowBackground}"
+                  IsChecked="{Binding Path=ShowParallaxBackground}" />
+
+        <CheckBox Content="{Resx Config_ShowHUD}"
+                  IsChecked="{Binding Path=ShowHUD}" />
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_FPS}" />
+
+        <ComboBox HorizontalAlignment="Left"
+                  ItemsSource="{Binding Path=FrameRateOptions_Names, Mode=OneTime}"
+                  SelectedIndex="{Binding Path=SelectedFrameRateOption}" />
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
+                   Text="{Resx Config_Border}" />
+
+        <Slider Value="{Binding Path=ZoneOfPlay}"
+                Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
+                Minimum="0"
+                Maximum="3"
+                TickPlacement="BottomRight"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"
+                Width="100"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left" />
+
+        <!-- Controls -->
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_Controls}" />
+
+        <local:ButtonMapper ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_GamePad}" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <i:Interaction.Behaviors>
+                    <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                </i:Interaction.Behaviors>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" MinWidth="50" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="0 0 10 0" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <i:Interaction.Behaviors>
+                        <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                    </i:Interaction.Behaviors>
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="0"
+                               Text="{Resx Config_Action_Jump}" />
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="0"
+                              SelectedIndex="{Binding Path=GamePad_Jump}">
+                        <TextBlock Text="A" />
+                        <TextBlock Text="B" />
+                        <TextBlock Text="C" />
+                        <TextBlock Text="D" />
+                    </ComboBox>
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="1"
+                               Text="{Resx Config_Action_Fist}" />
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="1"
+                              SelectedIndex="{Binding Path=GamePad_Fist}">
+                        <TextBlock Text="A" />
+                        <TextBlock Text="B" />
+                        <TextBlock Text="C" />
+                        <TextBlock Text="D" />
+                    </ComboBox>
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="2"
+                               Text="{Resx Config_Action_Action}" />
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="2"
+                              SelectedIndex="{Binding Path=GamePad_Action}">
+                        <TextBlock Text="A" />
+                        <TextBlock Text="B" />
+                        <TextBlock Text="C" />
+                        <TextBlock Text="D" />
+                    </ComboBox>
+
+                </Grid>
+
+            </StackPanel>
+
+            <Border Grid.Column="1"
+                    Width="250" Height="250" 
+                    BorderThickness="1" 
+                    BorderBrush="{DynamicResource MahApps.Brushes.Border.NonActive}" 
+                    HorizontalAlignment="Left"
+                    local:UserLevelAssist.MinUserLevel="Advanced">
+                <Grid Margin="5">
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type metro:NumericUpDown}" BasedOn="{StaticResource {x:Type metro:NumericUpDown}}">
+                            <Setter Property="Maximum" Value="32767" />
+                            <Setter Property="MinWidth" Value="10" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <metro:NumericUpDown Value="{Binding Path=YPadMin}" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                    <metro:NumericUpDown Value="{Binding Path=YPadMax}" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                    <metro:NumericUpDown Value="{Binding Path=XPadMax}" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <metro:NumericUpDown Value="{Binding Path=XPadMin}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+                    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <metro:NumericUpDown Grid.Column="0" Value="{Binding Path=XPadCenter}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text=" x " VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <metro:NumericUpDown Grid.Column="2" Value="{Binding Path=YPadCenter}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Device -->
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Config_Device}"
+                   local:UserLevelAssist.MinUserLevel="Technical" />
+
+        <Grid local:UserLevelAssist.MinUserLevel="Technical">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="100" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="0 0 10 0" />
+                </Style>
+            </Grid.Resources>
+
+            <i:Interaction.Behaviors>
+                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            </i:Interaction.Behaviors>
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       Text="{Resx Config_Device_Port}" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="0" Maximum="2147483647" Value="{Binding Path=Port}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="1"
+                       Text="{Resx Config_Device_Irq}" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="1" Maximum="2147483647" Value="{Binding Path=IRQ}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Text="{Resx Config_Device_Dma}" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="2" Maximum="2147483647" Value="{Binding Path=DMA}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="3"
+                       Text="{Resx Config_Device_Param}" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="3" Maximum="2147483647" Value="{Binding Path=Param}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="4"
+                       Text="{Resx Config_Device_ID}" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="4" Maximum="2147483647" Value="{Binding Path=DeviceID}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="5"
+                       Text="{Resx Config_Device_Cards}" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="5" Maximum="127" Value="{Binding Path=NumCard}" />
+
+        </Grid>
+
+    </StackPanel>
+</UserControl>

@@ -102,7 +102,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
 
     #region Protected Methods
 
-    protected override object GetPageUI() => new Config_UbiArt_UI()
+    protected override object GetPageUI() => new Config_UbiArt_Control()
     {
         DataContext = this
     };

@@ -52,7 +52,7 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
         };
     }
 
-    protected override object GetPageUI() => new Config_RaymanRavingRabbids2_UI()
+    protected override object GetPageUI() => new Config_RaymanRavingRabbids2_Control()
     {
         DataContext = this
     };

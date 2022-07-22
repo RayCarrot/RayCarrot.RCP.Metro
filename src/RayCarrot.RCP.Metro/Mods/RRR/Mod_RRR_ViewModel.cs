@@ -366,7 +366,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
     public override GenericIconKind Icon => GenericIconKind.Mods_RRR;
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.Mod_RRR_Header));
-    public override object UIContent => _uiContent ??= new Mod_RRR_UI()
+    public override object UIContent => _controlContent ??= new Mod_RRR_Control()
     {
         DataContext = this
     };
@@ -375,7 +375,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private Mod_RRR_UI _uiContent;
+    private Mod_RRR_Control _controlContent;
     private FileSystemPath _gameDirectoryPath;
 
     #endregion

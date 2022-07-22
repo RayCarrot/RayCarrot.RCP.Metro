@@ -3,7 +3,7 @@
 /// <summary>
 /// The Rayman Designer create config utility
 /// </summary>
-public class Utility_RaymanDesigner_CreateConfig : Utility<Utility_RaymanDesigner_CreateConfig_UI, Utility_RaymanDesigner_CreateConfig_ViewModel>
+public class Utility_RaymanDesigner_CreateConfig : Utility<Utility_RaymanDesigner_CreateConfig_Control, Utility_RaymanDesigner_CreateConfig_ViewModel>
 {
     public override string DisplayHeader => Resources.RDU_CreateConfigHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanDesigner_CreateConfig;

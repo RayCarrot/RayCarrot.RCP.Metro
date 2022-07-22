@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Archive.UbiArt.UbiArtIPKArchiveConfigControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:ubiArt="clr-namespace:RayCarrot.RCP.Metro.Archive.UbiArt"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance ubiArt:UbiArtIPKArchiveConfigViewModel}">
+    <StackPanel>
+        <i:Interaction.Behaviors>
+            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+        </i:Interaction.Behaviors>
+
+        <CheckBox Content="{Resx Archive_IPK_CompressEntireBlock}"
+                  IsEnabled="{Binding Path=CanCompressEntireBlock, Mode=OneTime}"
+                  IsChecked="{Binding Path=CompressEntireBlock}"/>
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Archive_IPK_CompressExtensions}" />
+
+        <TextBox Text="{Binding Path=CompressedExtensions}"
+                 IsEnabled="{Binding Path=CompressEntireBlock, Converter={local:InvertedBooleanConverter}}"/>
+
+    </StackPanel>
+</UserControl>

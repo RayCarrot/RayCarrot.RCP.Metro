@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Legends UbiRay utility
 /// </summary>
-public class Utility_RaymanLegends_UbiRay : Utility<Utility_RaymanLegends_UbiRay_UI, Utility_RaymanLegends_UbiRay_ViewModel>
+public class Utility_RaymanLegends_UbiRay : Utility<Utility_RaymanLegends_UbiRay_Control, Utility_RaymanLegends_UbiRay_ViewModel>
 {
     public override string DisplayHeader => Resources.RLU_UbiRayHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanLegends_UbiRay;

@@ -1,0 +1,329 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Mod_RRR_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" d:DesignHeight="500" d:DataContext="{d:DesignInstance local:Mod_RRR_ViewModel}">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Memory Mods -->
+
+        <Grid Grid.Column="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        Margin="{StaticResource RCP.Thicknesses.Vertical}">
+
+                <TextBlock Text="{Resx Mod_RRR_MemoryModsHeader}"
+                           Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
+
+                <local:InfoIcon Text="{Resx Mod_RRR_MemoryModsInfo}" />
+
+            </StackPanel>
+
+            <!-- Mods -->
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                          Margin="{StaticResource RCP.Thicknesses.Vertical}">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Sections -->
+
+                    <ItemsControl Grid.Row="0" ItemsSource="{Binding Path=MemoryModSections, Mode=OneTime}">
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModsSectonViewModel}">
+
+                                <StackPanel IsEnabled="{Binding Path=IsEnabled}">
+
+                                    <!-- Section header -->
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Text="{Binding Path=Header.Value}"
+                                                   Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                                   Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+
+                                        <local:InfoIcon Text="{Binding Path=Info.Value}"
+                                                        Visibility="{Binding Path=Info, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
+
+                                    </StackPanel>
+
+                                    <!-- Mod toggles -->
+
+                                    <ItemsControl ItemsSource="{Binding Path=ModToggles, Mode=OneTime}">
+
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModToggleViewModel}">
+                                                <Grid>
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <CheckBox Grid.Row="0"
+                                                              Margin="{StaticResource RCP.Thicknesses.VerticalSmall}"
+                                                              IsChecked="{Binding Path=IsToggled}">
+
+                                                        <StackPanel>
+
+                                                            <TextBlock Text="{Binding Path=Header.Value}"
+                                                                       TextWrapping="Wrap"
+                                                                       Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}"
+                                                                       Margin="0 0 0 2" />
+
+                                                            <TextBlock FontSize="11"
+                                                                       Text="{Binding Path=Description.Value}"
+                                                                       TextWrapping="Wrap"
+                                                                       Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}" />
+
+                                                        </StackPanel>
+
+                                                    </CheckBox>
+
+                                                    <ComboBox Grid.Row="1"
+                                                              IsEnabled="{Binding Path=IsToggled}"
+                                                              HorizontalAlignment="Left"
+                                                              Visibility="{Binding Path=SelectionOptions, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                                              ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
+                                                              DisplayMemberPath="Value"
+                                                              SelectedIndex="{Binding Path=SelectedSelectionIndex}"
+                                                              Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+
+                                    </ItemsControl>
+
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+
+                    <!-- Keyboard Button Mapping -->
+
+                    <StackPanel Grid.Row="1" IsEnabled="{Binding Path=IsCustomButtonMappingEnabled}">
+
+                        <TextBlock Text="{Resx Mod_RRR_ButtonMappingHeader}"
+                                   Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                   Margin="{StaticResource RCP.Thicknesses.VerticalSmall}"/>
+
+                        <CheckBox Content="{Resx Mod_RRR_ButtonMappingToggle}"
+                                  Margin="{StaticResource RCP.Thicknesses.VerticalSmall}"
+                                  IsChecked="{Binding Path=UseCustomButtonMapping}"/>
+
+                        <local:ButtonMapper ItemsSource="{Binding Path=ButtonMappingItems, Mode=OneTime}"
+                                            IsEnabled="{Binding Path=UseCustomButtonMapping}"
+                                            Margin="{StaticResource RCP.Thicknesses.VerticalSmall}"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </ScrollViewer>
+
+            <Button Grid.Row="2"
+                    Style="{StaticResource RCP.Styles.Button.IconContent}"
+                    Command="{Binding Path=ApplyMemoryPatchCommand, Mode=OneTime}"
+                    HorizontalAlignment="Left"
+                    Margin="{StaticResource RCP.Thicknesses.Vertical}"
+                    local:ButtonAssist.IconKind="AutoFix"
+                    Content="{Resx Mod_RRR_ApplyMemoryMod}" />
+
+        </Grid>
+
+        <!-- BF Mods -->
+
+        <Grid Grid.Column="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="{StaticResource RCP.Thicknesses.Vertical}">
+
+                <TextBlock Text="{Resx Mod_RRR_BFModsHeader}"
+                           Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
+
+                <local:InfoIcon Text="{Resx Mod_RRR_BFModsInfo}" />
+
+            </StackPanel>
+
+            <!-- Game Directory -->
+
+            <StackPanel Grid.Row="1">
+                <i:Interaction.Behaviors>
+                    <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="{Resx Mod_RRR_GameDirHeader}"
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}" />
+
+                <local:BrowseBox SelectedPath="{Binding Path=GameDirectoryPath}"
+                                BrowseType="Directory"
+                                PathValidation="DirectoryExists" />
+
+            </StackPanel>
+
+            <!-- Patch Buttons -->
+
+            <StackPanel Grid.Row="2">
+                <i:Interaction.Behaviors>
+                    <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                </i:Interaction.Behaviors>
+
+                <!-- Apply Exe Patch -->
+
+                <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
+                        Command="{Binding Path=ApplyExePatchCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsExePatched, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                        local:ButtonAssist.IconKind="AutoFix"
+                        Content="{Resx Mod_RRR_ApplyExePatch}"/>
+
+                    <!-- Revert Exe Patch -->
+
+                <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
+                        Command="{Binding Path=RevertExePatchCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsExePatched, Converter={local:BooleanToVisibilityConverter}}"
+                        local:ButtonAssist.IconKind="UndoVariant"
+                        Content="{Resx Mod_RRR_RevertExePatch}" />
+
+                <!-- Download Patched BF -->
+
+                <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        IsEnabled="{Binding Path=CanDownloadPatchedBF}"
+                        Command="{Binding Path=DownloadPatchedBFCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                        local:ButtonAssist.IconKind="DownloadOutline"
+                        Content="{Resx Mod_RRR_DownloadBFPatch}" />
+
+                <!-- Remove Patched BF -->
+
+                <Button HorizontalAlignment="Left"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        Command="{Binding Path=RemovePatchedBFCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:BooleanToVisibilityConverter}}"
+                        local:ButtonAssist.IconKind="DeleteOutline"
+                        Content="{Resx Mod_RRR_RemoveBFPatch}" />
+
+            </StackPanel>
+
+            <!-- Patches Header -->
+
+            <TextBlock Grid.Row="3"
+                       Text="{Resx Mod_RRR_BFPatchesHeader}"
+                       Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+
+            <!-- Patches -->
+
+            <ScrollViewer Grid.Row="4"
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="{StaticResource RCP.Thicknesses.Vertical}">
+
+                <ItemsControl ItemsSource="{Binding Path=BFModToggles, Mode=OneTime}"
+                              IsEnabled="{Binding Path=CanUpdatePatchedBF}">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <CheckBox Grid.Row="0"
+                                          Margin="{StaticResource RCP.Thicknesses.VerticalSmall}"
+                                          IsChecked="{Binding Path=IsToggled}">
+                                    <TextBlock Text="{Binding Path=Header.Value}" 
+                                               TextWrapping="Wrap"
+                                               Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}"/>
+                                </CheckBox>
+
+                                <ComboBox Grid.Row="1"
+                                          IsEnabled="{Binding Path=IsToggled}"
+                                          HorizontalAlignment="Left"
+                                          Visibility="{Binding Path=SelectionOptions, Converter={local:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                          ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
+                                          DisplayMemberPath="Value"
+                                          SelectedIndex="{Binding Path=SelectedSelectionIndex}"
+                                          Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+            </ScrollViewer>
+
+            <!-- Apply Buttons -->
+
+            <StackPanel Grid.Row="5">
+                <i:Interaction.Behaviors>
+                    <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                </i:Interaction.Behaviors>
+
+                <Button Command="{Binding Path=UpdatePatchedBFCommand, Mode=OneTime}"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        HorizontalAlignment="Left"
+                        IsEnabled="{Binding Path=CanUpdatePatchedBF}"
+                        local:ButtonAssist.IconKind="FileEditOutline"
+                        Content="{Resx Mod_RRR_UpdateBFPatch}" />
+
+                <Button Command="{Binding Path=LaunchWithPatchedBFCommand, Mode=OneTime}"
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        HorizontalAlignment="Left"
+                        IsEnabled="{Binding Path=IsPatchedBFDownloaded}"
+                        local:ButtonAssist.IconKind="PlayOutline"
+                        Content="{Resx Mod_RRR_LaunchBFPatch}" />
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

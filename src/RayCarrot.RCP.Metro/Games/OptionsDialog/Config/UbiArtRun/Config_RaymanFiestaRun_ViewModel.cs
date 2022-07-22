@@ -16,7 +16,7 @@ public class Config_RaymanFiestaRun_ViewModel : Config_UbiArtRun_BaseViewModel
 
     protected override Task OnGameInfoModified() => LoadPageAsync();
 
-    protected override object GetPageUI() => new Config_RaymanFiestaRun_UI()
+    protected override object GetPageUI() => new Config_RaymanFiestaRun_Control()
     {
         DataContext = this
     };

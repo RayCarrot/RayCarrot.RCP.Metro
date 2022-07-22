@@ -3,7 +3,7 @@
 /// <summary>
 /// The Rayman 3 Direct Play utility
 /// </summary>
-public class Utility_Rayman3_DirectPlay : Utility<Utility_Rayman3_DirectPlay_UI, Utility_Rayman3_DirectPlay_ViewModel>
+public class Utility_Rayman3_DirectPlay : Utility<Utility_Rayman3_DirectPlay_Control, Utility_Rayman3_DirectPlay_ViewModel>
 {
     public Utility_Rayman3_DirectPlay()
     {

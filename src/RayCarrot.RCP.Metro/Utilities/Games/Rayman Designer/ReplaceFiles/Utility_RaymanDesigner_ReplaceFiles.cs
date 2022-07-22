@@ -3,7 +3,7 @@
 /// <summary>
 /// The Rayman Designer replace files utility
 /// </summary>
-public class Utility_RaymanDesigner_ReplaceFiles : Utility<Utility_RaymanDesigner_ReplaceFiles_UI, Utility_RaymanDesigner_ReplaceFiles_ViewModel>
+public class Utility_RaymanDesigner_ReplaceFiles : Utility<Utility_RaymanDesigner_ReplaceFiles_Control, Utility_RaymanDesigner_ReplaceFiles_ViewModel>
 {
     public override string DisplayHeader => Resources.RDU_ReplaceFilesHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanDesigner_ReplaceFiles;

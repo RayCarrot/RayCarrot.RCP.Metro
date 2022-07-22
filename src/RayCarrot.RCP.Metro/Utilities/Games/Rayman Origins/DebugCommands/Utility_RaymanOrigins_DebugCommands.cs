@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Origins debug commands utility
 /// </summary>
-public class Utility_RaymanOrigins_DebugCommands : Utility<Utility_RaymanOrigins_DebugCommands_UI, Utility_RaymanOrigins_DebugCommands_ViewModel>
+public class Utility_RaymanOrigins_DebugCommands : Utility<Utility_RaymanOrigins_DebugCommands_Control, Utility_RaymanOrigins_DebugCommands_ViewModel>
 {
     public override string DisplayHeader => Resources.ROU_DebugCommandsHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanOrigins_DebugCommands;

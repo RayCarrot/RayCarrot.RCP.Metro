@@ -154,7 +154,7 @@ public class Config_RabbidsGoHome_ViewModel : GameOptionsDialog_ConfigPageViewMo
 
     #region Protected Methods
 
-    protected override object GetPageUI() => new Config_RabbidsGoHome_UI()
+    protected override object GetPageUI() => new Config_RabbidsGoHome_Control()
     {
         DataContext = this
     };

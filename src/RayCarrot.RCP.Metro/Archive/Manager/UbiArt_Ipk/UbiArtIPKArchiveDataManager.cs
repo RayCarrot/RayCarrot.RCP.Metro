@@ -70,7 +70,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <summary>
     /// Gets the configuration UI to use for creator
     /// </summary>
-    public object GetCreatorUIConfig => new UbiArtIPKArchiveConfigUI()
+    public object GetCreatorUIConfig => new UbiArtIPKArchiveConfigControl()
     {
         DataContext = Config
     };

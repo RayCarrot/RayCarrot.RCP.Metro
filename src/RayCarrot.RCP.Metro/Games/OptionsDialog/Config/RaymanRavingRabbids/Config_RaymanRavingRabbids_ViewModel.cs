@@ -185,7 +185,7 @@ public class Config_RaymanRavingRabbids_ViewModel : GameOptionsDialog_ConfigPage
 
     protected int GetValue_DWORD(RegistryKey? key, string name, int defaultValue) => (int)(key?.GetValue(name, defaultValue) ?? defaultValue);
 
-    protected override object GetPageUI() => new Config_RaymanRavingRabbids_UI()
+    protected override object GetPageUI() => new Config_RaymanRavingRabbids_Control()
     {
         DataContext = this
     };

@@ -5,7 +5,7 @@ using NLog;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The drop handler for <see cref="GameOptions_EducationalDos_UI"/> games collection
+/// The drop handler for <see cref="GameOptions_EducationalDos_Control"/> games collection
 /// </summary>
 public class GameOptions_EducationalDos_GameCollectionDropHandler : DefaultDropHandler
 {

@@ -49,7 +49,7 @@ public sealed class GameInfo_EducationalDos : GameInfo
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_EducationalDos_UI();
+    public override FrameworkElement OptionsUI => new GameOptions_EducationalDos_Control();
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels
     {

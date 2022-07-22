@@ -41,7 +41,7 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_FiestaRun_UI();
+    public override FrameworkElement OptionsUI => new GameOptions_FiestaRun_Control();
 
     /// <summary>
     /// The config page view model, if any is available

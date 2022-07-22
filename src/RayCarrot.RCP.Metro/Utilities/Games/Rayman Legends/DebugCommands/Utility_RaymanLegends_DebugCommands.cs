@@ -3,7 +3,7 @@
 /// <summary>
 /// The Rayman Legends debug commands utility
 /// </summary>
-public class Utility_RaymanLegends_DebugCommands : Utility<Utility_RaymanLegends_DebugCommands_UI, Utility_RaymanLegends_DebugCommands_ViewModel>
+public class Utility_RaymanLegends_DebugCommands : Utility<Utility_RaymanLegends_DebugCommands_Control, Utility_RaymanLegends_DebugCommands_ViewModel>
 {
     public override string DisplayHeader => Resources.ROU_DebugCommandsHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanLegends_DebugCommands;

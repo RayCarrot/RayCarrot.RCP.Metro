@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Origins HQ videos utility
 /// </summary>
-public class Utility_RaymanOrigins_HQVideos : Utility<Utility_RaymanOrigins_HQVideos_UI, Utility_RaymanOrigins_HQVideos_ViewModel>
+public class Utility_RaymanOrigins_HQVideos : Utility<Utility_RaymanOrigins_HQVideos_Control, Utility_RaymanOrigins_HQVideos_ViewModel>
 {
     public override string DisplayHeader => Resources.ROU_HQVideosHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanOrigins_HQVideos;

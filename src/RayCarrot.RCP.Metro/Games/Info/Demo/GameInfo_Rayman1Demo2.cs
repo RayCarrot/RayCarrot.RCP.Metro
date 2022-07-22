@@ -69,7 +69,7 @@ public sealed class GameInfo_Rayman1Demo2 : GameInfo
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_UI(Game);
+    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_Control(Game);
 
     /// <summary>
     /// An optional emulator to use for the game

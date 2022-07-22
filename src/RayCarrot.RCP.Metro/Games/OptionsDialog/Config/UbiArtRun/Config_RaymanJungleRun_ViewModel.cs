@@ -66,7 +66,7 @@ public class Config_RaymanJungleRun_ViewModel : Config_UbiArtRun_BaseViewModel
 
     #region Protected Override Methods
 
-    protected override object GetPageUI() => new Config_RaymanJungleRun_UI()
+    protected override object GetPageUI() => new Config_RaymanJungleRun_Control()
     {
         DataContext = this
     };

@@ -39,7 +39,7 @@ public sealed class GameInfo_RaymanRavingRabbids2 : GameInfo
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_RavingRabbids2_UI();
+    public override FrameworkElement OptionsUI => new GameOptions_RavingRabbids2_Control();
 
     /// <summary>
     /// The config page view model, if any is available

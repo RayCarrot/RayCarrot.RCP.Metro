@@ -222,7 +222,7 @@ public class AppUIManager
         Logger.Trace("An Archive Explorer window was opened");
 
         // Run on UI thread
-        ArchiveExplorerUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths)));
+        ArchiveExplorerDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerDialog(new ArchiveExplorerDialogViewModel(manager, filePaths)));
         await Dialog.ShowWindowAsync(ui);
     }
 
@@ -241,7 +241,7 @@ public class AppUIManager
         Logger.Trace("An Archive Creator window was opened");
 
         // Run on UI thread
-        ArchiveCreatorUI ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorUI(new ArchiveCreatorDialogViewModel(manager)));
+        ArchiveCreatorDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorDialog(new ArchiveCreatorDialogViewModel(manager)));
         await Dialog.ShowWindowAsync(ui);
     }
 
@@ -260,8 +260,8 @@ public class AppUIManager
         // Run on UI thread
         using PatcherViewModel vm = new(game);
         // ReSharper disable once AccessToDisposedClosure
-        PatcherUI ui = Application.Current.Dispatcher.Invoke(() => new PatcherUI(vm));
-        await Dialog.ShowWindowAsync(ui);
+        PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
+        await Dialog.ShowWindowAsync(dialog);
     }
 
     /// <summary>
@@ -278,9 +278,9 @@ public class AppUIManager
         Logger.Trace("A Patch Creator window was opened");
 
         // Run on UI thread
-        PatchCreatorUI ui = Application.Current.Dispatcher.Invoke(
-            () => new PatchCreatorUI(new PatchCreatorViewModel(game), existingPatch));
-        await Dialog.ShowWindowAsync(ui);
+        PatchCreatorDialog dialog = Application.Current.Dispatcher.Invoke(
+            () => new PatchCreatorDialog(new PatchCreatorViewModel(game), existingPatch));
+        await Dialog.ShowWindowAsync(dialog);
     }
 
     #endregion

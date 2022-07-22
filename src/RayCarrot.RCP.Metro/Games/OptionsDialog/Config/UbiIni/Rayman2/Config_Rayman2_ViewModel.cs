@@ -235,7 +235,7 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
 
     #region Protected Override Methods
 
-    protected override object GetPageUI() => new Config_Rayman2_UI()
+    protected override object GetPageUI() => new Config_Rayman2_Control()
     {
         DataContext = this
     };

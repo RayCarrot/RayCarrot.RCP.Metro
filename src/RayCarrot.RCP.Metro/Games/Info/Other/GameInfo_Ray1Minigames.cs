@@ -58,7 +58,7 @@ public sealed class GameInfo_Ray1Minigames : GameInfo
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_Ray1Minigames_UI();
+    public override FrameworkElement OptionsUI => new GameOptions_Ray1Minigames_Controls();
 
     #endregion
 }

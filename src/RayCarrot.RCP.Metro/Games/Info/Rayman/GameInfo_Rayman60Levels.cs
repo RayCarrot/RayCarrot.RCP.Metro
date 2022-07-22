@@ -47,7 +47,7 @@ public sealed class GameInfo_Rayman60Levels : GameInfo
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_UI(Game);
+    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_Control(Game);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_Rayman60Levels().Yield();
 

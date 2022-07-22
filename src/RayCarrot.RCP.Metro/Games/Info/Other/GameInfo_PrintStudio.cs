@@ -59,7 +59,7 @@ public sealed class GameInfo_PrintStudio : GameInfo
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_PrintStudio_UI();
+    public override FrameworkElement OptionsUI => new GameOptions_PrintStudio_Control();
 
     #endregion
 }

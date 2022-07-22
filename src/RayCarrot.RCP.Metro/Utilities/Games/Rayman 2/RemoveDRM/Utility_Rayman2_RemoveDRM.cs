@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 2 DRM removal utility
 /// </summary>
-public class Utility_Rayman2_RemoveDRM : Utility<Utility_Rayman2_RemoveDRM_UI, Utility_Rayman2_RemoveDRM_ViewModel>
+public class Utility_Rayman2_RemoveDRM : Utility<Utility_Rayman2_RemoveDRM_Control, Utility_Rayman2_RemoveDRM_ViewModel>
 {
     public Utility_Rayman2_RemoveDRM()
     {

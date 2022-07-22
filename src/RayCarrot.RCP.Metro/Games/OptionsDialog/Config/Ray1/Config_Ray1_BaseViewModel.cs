@@ -437,7 +437,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
 
     #region Protected Methods
 
-    protected override object GetPageUI() => new Config_Ray1_UI()
+    protected override object GetPageUI() => new Config_Ray1_Control()
     {
         DataContext = this
     };

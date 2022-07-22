@@ -3,7 +3,7 @@
 /// <summary>
 /// The Rayman Fiesta Run save fix utility
 /// </summary>
-public class Utility_RaymanFiestaRun_SaveFix : Utility<Utility_RaymanFiestaRun_SaveFix_UI, Utility_RaymanFiestaRun_SaveFix_ViewModel>
+public class Utility_RaymanFiestaRun_SaveFix : Utility<Utility_RaymanFiestaRun_SaveFix_Control, Utility_RaymanFiestaRun_SaveFix_ViewModel>
 {
     public override string DisplayHeader => Resources.RFRU_SaveFixHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanFiestaRun_SaveFix;

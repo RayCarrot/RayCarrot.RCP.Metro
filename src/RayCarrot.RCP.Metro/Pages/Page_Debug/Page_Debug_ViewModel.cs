@@ -554,7 +554,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     /// </summary>
     public async Task RunInstallerAsync()
     {
-        await DialogBaseManager.ShowDialogWindowAsync(new GameInstaller_Window(SelectedInstaller));
+        await DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(SelectedInstaller));
     }
 
     public void UpdateTheme()

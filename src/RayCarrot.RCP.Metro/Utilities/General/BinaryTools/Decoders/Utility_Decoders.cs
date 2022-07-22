@@ -3,7 +3,7 @@
 /// <summary>
 /// The decoders utility
 /// </summary>
-public class Utility_Decoders : Utility<Utility_Decoders_UI, Utility_Decoders_ViewModel>
+public class Utility_Decoders : Utility<Utility_Decoders_Control, Utility_Decoders_ViewModel>
 {
     public Utility_Decoders()
     {

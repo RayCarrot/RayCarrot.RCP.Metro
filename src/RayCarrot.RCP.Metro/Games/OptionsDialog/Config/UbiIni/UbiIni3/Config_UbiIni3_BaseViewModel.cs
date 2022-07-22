@@ -341,7 +341,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
 
     #region Protected Override Methods
 
-    protected override object GetPageUI() => new Config_UbiIni3_UI()
+    protected override object GetPageUI() => new Config_UbiIni3_Control()
     {
         DataContext = this
     };

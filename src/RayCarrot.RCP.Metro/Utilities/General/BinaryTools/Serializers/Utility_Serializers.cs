@@ -3,7 +3,7 @@
 /// <summary>
 /// The decoders utility
 /// </summary>
-public class Utility_Serializers : Utility<Utility_Serializers_UI, Utility_Serializers_ViewModel>
+public class Utility_Serializers : Utility<Utility_Serializers_Control, Utility_Serializers_ViewModel>
 {
     public Utility_Serializers()
     {

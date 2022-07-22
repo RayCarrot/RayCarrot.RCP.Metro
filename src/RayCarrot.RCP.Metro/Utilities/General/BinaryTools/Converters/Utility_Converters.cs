@@ -3,7 +3,7 @@
 /// <summary>
 /// The converters utility
 /// </summary>
-public class Utility_Converters : Utility<Utility_Converters_UI, Utility_Converters_ViewModel>
+public class Utility_Converters : Utility<Utility_Converters_Control, Utility_Converters_ViewModel>
 {
     public Utility_Converters()
     {

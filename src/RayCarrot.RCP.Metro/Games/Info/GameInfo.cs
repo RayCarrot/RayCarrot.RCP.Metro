@@ -403,7 +403,7 @@ public abstract class GameInfo : BaseGameData
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new AsyncRelayCommand(async () =>
                     {
                         // Show and run the installer
-                        await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstaller_Window(Game));
+                        await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(Game));
                     })));
                 }
 

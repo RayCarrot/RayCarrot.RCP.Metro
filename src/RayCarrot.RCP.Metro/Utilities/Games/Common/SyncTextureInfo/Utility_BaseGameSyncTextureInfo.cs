@@ -3,7 +3,7 @@
 /// <summary>
 /// The base game sync texture info utility
 /// </summary>
-public abstract class Utility_BaseGameSyncTextureInfo : Utility<Utility_BaseGameSyncTextureInfo_UI, Utility_BaseGameSyncTextureInfo_ViewModel>
+public abstract class Utility_BaseGameSyncTextureInfo : Utility<Utility_BaseGameSyncTextureInfo_Control, Utility_BaseGameSyncTextureInfo_ViewModel>
 {
     protected Utility_BaseGameSyncTextureInfo(Utility_BaseGameSyncTextureInfo_ViewModel viewModel) : base(viewModel)
     {
