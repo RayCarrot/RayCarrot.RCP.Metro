@@ -243,10 +243,10 @@
 
                         <!-- Location -->
 
-                        <DataGridTextColumn Header="Location" Width="Auto" MinWidth="100" Binding="{Binding Path=Location}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Location" Width="Auto" MinWidth="100" Binding="{Binding Path=LocationDisplayName.Value}" IsReadOnly="True">
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MahApps.Styles.DataGridCell}">
-                                    <Setter Property="ToolTip" Value="{Binding Path=Location}" />
+                                    <Setter Property="ToolTip" Value="{Binding Path=LocationDisplayName.Value}" />
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
@@ -286,15 +286,21 @@
                             Margin="5">
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
+                            local:ButtonAssist.IconKind="Plus"
+                            Command="{Binding Path=AddFileCommand, Mode=OneTime}"
+                            ToolTip="Add"
+                            Margin="0 0 4 0"/>
+
+                    <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:ButtonAssist.IconKind="FilePlusOutline"
-                            Command="{Binding Path=AddFilesCommand, Mode=OneTime}"
-                            ToolTip="Add files"
+                            Command="{Binding Path=AddFromFilesCommand, Mode=OneTime}"
+                            ToolTip="Add from files"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:ButtonAssist.IconKind="FolderPlusOutline"
-                            Command="{Binding Path=AddFilesFromFolderCommand, Mode=OneTime}"
-                            ToolTip="Add files from folder"
+                            Command="{Binding Path=AddFromFolderCommand, Mode=OneTime}"
+                            ToolTip="Add from folder"
                             Margin="0 0 8 0"/>
 
                     <ComboBox MinWidth="250"

@@ -47,8 +47,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
-        AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
-        AddFilesFromFolderCommand = new AsyncRelayCommand(AddFilesFromFolderAsync);
+        AddFileCommand = new RelayCommand(AddFile);
+        AddFromFilesCommand = new AsyncRelayCommand(AddFromFilesAsync);
+        AddFromFolderCommand = new AsyncRelayCommand(AddFromFolderAsync);
     }
 
     #endregion
@@ -69,8 +70,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
-    public ICommand AddFilesCommand { get; }
-    public ICommand AddFilesFromFolderCommand { get; }
+    public ICommand AddFileCommand { get; }
+    public ICommand AddFromFilesCommand { get; }
+    public ICommand AddFromFolderCommand { get; }
 
     #endregion
 
@@ -246,7 +248,15 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         Logger.Info("Removed the thumbnail");
     }
 
-    public async Task AddFilesAsync()
+    public void AddFile()
+    {
+        FileViewModel vm = new(FileSystemPath.EmptyPath, String.Empty, SelectedLocation.Location,
+            SelectedLocation.LocationID);
+        Files.Add(vm);
+        vm.IsSelected = true;
+    }
+
+    public async Task AddFromFilesAsync()
     {
         // TODO-UPDATE: Localize
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
@@ -273,7 +283,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         }
     }
 
-    public async Task AddFilesFromFolderAsync()
+    public async Task AddFromFolderAsync()
     {
         // TODO-UPDATE: Localize
         DirectoryBrowserResult browseResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
@@ -369,6 +379,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     {
                         operation.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
                         fileIndex++;
+
+                        if (file.FilePath.IsNullOrWhiteSpace())
+                            continue;
 
                         if (file.IsFileAdded)
                         {
@@ -479,18 +492,20 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         public FileViewModel(
             FileSystemPath sourceFilePath, 
             string filePath, 
-            string? location, 
-            string? locationId,
+            string location, 
+            string locationId,
             PackagedResourceChecksum? checksum = null)
         {
             SourceFilePath = sourceFilePath;
             FilePath = filePath;
-            Location = location ?? String.Empty;
-            LocationID = locationId ?? String.Empty;
+            LocationDisplayName = location == String.Empty ? "Game" : location; // TODO-UPDATE: Localize
+            Location = location;
+            LocationID = locationId;
             Checksum = checksum;
         }
 
         public string Location { get; }
+        public LocalizedString LocationDisplayName { get; }
         public string LocationID { get; }
         public PackagedResourceChecksum? Checksum { get; }
 
