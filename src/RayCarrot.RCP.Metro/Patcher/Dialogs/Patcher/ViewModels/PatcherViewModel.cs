@@ -782,7 +782,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 // TODO-UPDATE: Localize
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex,
-                    "An error occurred when applying the patches. Some files might still have been modified by patches.");
+                    "An error occurred when applying the patches. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying patches.");
             }
             finally
             {
