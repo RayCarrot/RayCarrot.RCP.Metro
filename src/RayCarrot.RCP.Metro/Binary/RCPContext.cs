@@ -13,10 +13,13 @@ public class RCPContext : Context
         : base(
             basePath: basePath, 
             settings: settings ?? new RCPSerializerSettings(), 
-            serializerLog: noLog ? null : log ?? new RCPSerializerLog(), 
+            serializerLog: noLog ? null : log ?? LogInstance, 
             fileManager: new RCPFileManager(), 
             logger: new RCPLogger())
     { }
+
+    // Use a static log instance so that multiple contexts can be open and log at the same time without conflicts
+    private static readonly RCPSerializerLog LogInstance = new();
 
     public class RCPSerializerLog : ISerializerLog
     {
