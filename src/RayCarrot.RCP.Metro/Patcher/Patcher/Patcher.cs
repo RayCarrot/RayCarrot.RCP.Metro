@@ -30,6 +30,7 @@ public class Patcher
         Dictionary<string, LocationModifications> locationModifications = new();
         Dictionary<string, IArchiveDataManager> archiveDataManagers = new();
 
+        // Local helper method for adding a file modification
         void addModification(
             PatcherFileModification.FileType type,
             PatcherFileModification.FileSource source,
@@ -146,20 +147,13 @@ public class Patcher
                 Logger.Trace("File mod add: {0}", filePath);
             }
 
-            if (patch.RemovedFiles != null)
+            foreach (PatchFilePath removedFile in patch.RemovedFiles)
             {
-                foreach (PatchFilePath removedFile in patch.RemovedFiles)
-                {
-                    addModification(
-                        type: PatcherFileModification.FileType.Remove, 
-                        source: PatcherFileModification.FileSource.Patch,
-                        patchFilePath: removedFile);
-                    Logger.Trace("File mod remove: {0}", removedFile);
-                }
-            }
-            else
-            {
-                Logger.Warn("Patch {0} removed files array is null", patch.Metadata.ID);
+                addModification(
+                    type: PatcherFileModification.FileType.Remove,
+                    source: PatcherFileModification.FileSource.Patch,
+                    patchFilePath: removedFile);
+                Logger.Trace("File mod remove: {0}", removedFile);
             }
         }
 
