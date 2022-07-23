@@ -4,6 +4,7 @@ using System.Text;
 using BinarySerializer;
 using NLog;
 using ILogger = BinarySerializer.ILogger;
+using LogLevel = BinarySerializer.LogLevel;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -77,19 +78,19 @@ public class RCPContext : Context
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public void Log(object log, params object[] args)
+        public void Log(LogLevel logLevel, object? log, params object[] args)
         {
-            Logger.Info($"BinarySerializer: {log}", args);
-        }
+            NLog.LogLevel nlogLevel = logLevel switch
+            {
+                LogLevel.Trace => NLog.LogLevel.Trace,
+                LogLevel.Debug => NLog.LogLevel.Debug,
+                LogLevel.Info => NLog.LogLevel.Info,
+                LogLevel.Warning => NLog.LogLevel.Warn,
+                LogLevel.Error => NLog.LogLevel.Error,
+                _ => NLog.LogLevel.Info,
+            };
 
-        public void LogWarning(object log, params object[] args)
-        {
-            Logger.Info($"BinarySerializer: {log}", args);
-        }
-
-        public void LogError(object log, params object[] args)
-        {
-            Logger.Info($"BinarySerializer: {log}", args);
+            Logger.Log(nlogLevel, () => String.Format($"BinarySerializer: {log}", args));
         }
     }
 }
