@@ -84,7 +84,7 @@ public class PatchFile : BinarySerializable, IPackageFile
             FormatVersion = s.Serialize<int>(FormatVersion, name: nameof(FormatVersion));
 
             if (FormatVersion > LatestFormatVersion)
-                throw new UnsupportedFormatVersionException($"The patch format version {FormatVersion} is higher than the latest supported version {LatestFormatVersion}");
+                throw new UnsupportedFormatVersionException(this, $"The patch format version {FormatVersion} is higher than the latest supported version {LatestFormatVersion}");
 
             Metadata = s.SerializeObject<PatchMetadata>(Metadata, name: nameof(Metadata));
 

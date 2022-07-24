@@ -62,7 +62,7 @@ public class PatchLibraryFile : BinarySerializable, IPackageFile
             FormatVersion = s.Serialize<int>(FormatVersion, name: nameof(FormatVersion));
 
             if (FormatVersion > LatestFormatVersion)
-                throw new UnsupportedFormatVersionException($"The library format version {FormatVersion} is higher than the latest supported version {LatestFormatVersion}");
+                throw new UnsupportedFormatVersionException(this, $"The library format version {FormatVersion} is higher than the latest supported version {LatestFormatVersion}");
 
             GameName = s.SerializeString(GameName, name: nameof(GameName));
 
