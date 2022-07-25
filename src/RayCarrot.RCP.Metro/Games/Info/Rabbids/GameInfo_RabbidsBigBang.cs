@@ -42,5 +42,7 @@ public sealed class GameInfo_RabbidsBigBang : GameInfo
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RabbidsBigBang().Yield();
 
+    public override bool AllowPatching => false;
+
     #endregion
 }

@@ -66,6 +66,8 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     /// </summary>
     public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
 
+    public override bool AllowPatching => false;
+
     #endregion
 
     #region Public Methods
