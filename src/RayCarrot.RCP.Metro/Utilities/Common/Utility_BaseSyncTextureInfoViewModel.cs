@@ -46,6 +46,7 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
     /// <returns>The file names</returns>
     protected string[] GetCntFileNames(OpenSpaceSettings gameSettings)
     {
+        // TODO: Rather than hard-coding this here we can get it from the game info? Or pass in?
         return gameSettings.EngineVersion switch
         {
             EngineVersion.TonicTroubleSpecialEdition => new string[]

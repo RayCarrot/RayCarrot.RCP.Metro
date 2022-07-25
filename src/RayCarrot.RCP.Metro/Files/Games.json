@@ -34,6 +34,12 @@
     ],
     "RaymanFiestaRun": [
       "Utility_RaymanFiestaRun_SaveFix"
+    ],
+    "TonicTrouble": [
+      "Utility_TonicTrouble_GameSyncTextureInfo"
+    ],
+    "TonicTroubleSpecialEdition": [
+      "Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo"
     ]
   },
   "GameManagers": {
@@ -140,6 +146,12 @@
     "EducationalDos": {
       "EducationalDosBox": "GameManager_EducationalDos_EducationalDOSBox"
     },
+    "TonicTrouble": {
+	    "Win32": "GameManager_TonicTrouble_Win32"
+    },
+    "TonicTroubleSpecialEdition": {
+	    "Win32": "GameManager_TonicTroubleSpecialEdition_Win32"
+    },
     "RaymanDictées": {
       "Win32": "GameManager_RaymanDictées_Win32"
     },
@@ -211,6 +223,8 @@
 
     "Ray1Minigames": "GameInfo_Ray1Minigames",
     "EducationalDos": "GameInfo_EducationalDos",
+    "TonicTrouble": "GameInfo_TonicTrouble",
+    "TonicTroubleSpecialEdition": "GameInfo_TonicTroubleSpecialEdition",
     "RaymanDictées": "GameInfo_RaymanDictées",
     "RaymanPremiersClics": "GameInfo_RaymanPremiersClics",
     "PrintStudio": "GameInfo_PrintStudio",

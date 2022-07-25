@@ -139,6 +139,16 @@ public enum Games
     EducationalDos,
 
     /// <summary>
+    /// Tonic Trouble
+    /// </summary>
+    TonicTrouble,
+
+    /// <summary>
+    /// Tonic Trouble Special Edition
+    /// </summary>
+    TonicTroubleSpecialEdition,
+
+    /// <summary>
     /// Rayman Dictées
     /// </summary>
     RaymanDictées,

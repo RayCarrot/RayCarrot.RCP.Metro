@@ -1,5 +1,6 @@
 ﻿-----   Version 13.3.0 - August ??, 2022   -----
 • Added support for game patches which can be applied from local files or externally available ones
+• Added support for Tonic Trouble and Tonic Trouble Special Edition
 
 Other changes:
 • The first time you repack a .cnt archive it will now ask if you want to automatically synchronize the game textures
