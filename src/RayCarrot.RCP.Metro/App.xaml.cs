@@ -722,7 +722,7 @@ public partial class App : Application
         LogStartupTime("Setup: Setup WPF trace listener");
 
         // Listen to data binding logs
-        WPFTraceListener.Setup();
+        PresentationTraceSources.DataBindingSource.Listeners.Add(new NLogTraceListener());
 
         LogStartupTime("Setup: Subscribing to events");
 

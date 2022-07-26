@@ -4,6 +4,7 @@
 
 Other changes:
 • The first time you repack a .cnt archive it will now ask if you want to automatically synchronize the game textures
+• Changed the logging backend for XAML binding errors
 • Fixed a bug where an error would appear in the progression page if the save file directory didn't exist for a game
 • Fixed a bug where synchronizing textures would not work if one of the archives contained non-texture files
 • Fixed a bug where creating a .ipk archive wouldn't respect the settings for which files to compress
