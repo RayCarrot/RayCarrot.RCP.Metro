@@ -7,6 +7,7 @@ Other changes:
 • Fixed a bug where an error would appear in the progression page if the save file directory didn't exist for a game
 • Fixed a bug where synchronizing textures would not work if one of the archives contained non-texture files
 • Fixed a bug where creating a .ipk archive wouldn't respect the settings for which files to compress
+• Fixed a bug where the application wouldn't shut down under rare circumstances
 
 
 -----   Version 13.2.0 - June 30, 2022   -----

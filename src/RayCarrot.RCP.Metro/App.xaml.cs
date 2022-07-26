@@ -1127,7 +1127,7 @@ public partial class App : Application
 
         try
         {
-            await Dispatcher.InvokeAsync(async () =>
+            await await Dispatcher.InvokeAsync(async () =>
             {
                 // Don't close if loading
                 if (AppVM.IsLoading)
