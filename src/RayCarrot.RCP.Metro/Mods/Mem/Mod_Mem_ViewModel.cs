@@ -345,7 +345,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     private void RefreshFields()
     {
-        MemorySerializerLog? logger = Context?.Log as MemorySerializerLog;
+        MemorySerializerLog? logger = Context?.SerializerLog as MemorySerializerLog;
 
         if (_logNextTick && logger != null)
             logger.IsEnabled = true;

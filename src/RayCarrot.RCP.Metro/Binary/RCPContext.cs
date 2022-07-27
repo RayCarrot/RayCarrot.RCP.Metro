@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using BinarySerializer;
 using NLog;
-using ILogger = BinarySerializer.ILogger;
 using LogLevel = BinarySerializer.LogLevel;
 
 namespace RayCarrot.RCP.Metro;
@@ -16,7 +15,7 @@ public class RCPContext : Context
             settings: settings ?? new RCPSerializerSettings(), 
             serializerLog: noLog ? null : log ?? LogInstance, 
             fileManager: new RCPFileManager(), 
-            logger: new RCPLogger())
+            systemLog: new RCPLogger())
     { }
 
     // Use a static log instance so that multiple contexts can be open and log at the same time without conflicts
@@ -74,7 +73,7 @@ public class RCPContext : Context
         public override PathSeparatorChar SeparatorCharacter => PathSeparatorChar.BackSlash;
     }
 
-    private class RCPLogger : ILogger
+    private class RCPLogger : ISystemLog
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
