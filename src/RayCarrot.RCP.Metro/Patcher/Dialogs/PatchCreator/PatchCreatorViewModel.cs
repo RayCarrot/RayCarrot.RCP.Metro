@@ -62,6 +62,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private TempFile? _tempThumbFile;
     private TempDirectory? _tempDir;
 
     #endregion
@@ -161,11 +162,17 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 // Extract thumbnail
                 if (patchFile.HasThumbnail)
                 {
-                    using Stream thumbStream = patchFile.ThumbnailResource.ReadData(context, true);
+                    _tempThumbFile = new TempFile(false);
 
-                    Thumbnail = new PngBitmapDecoder(thumbStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.FirstOrDefault();
+                    using (Stream thumbStream = patchFile.ThumbnailResource.ReadData(context, true))
+                    {
+                        using FileStream dstStream = File.Create(_tempThumbFile.TempPath);
+                        await thumbStream.CopyToAsync(dstStream);
+                    }
 
-                    if (Thumbnail?.CanFreeze == true)
+                    Thumbnail = new BitmapImage(new Uri(_tempThumbFile.TempPath));
+
+                    if (Thumbnail.CanFreeze)
                         Thumbnail.Freeze();
                 }
 
@@ -466,6 +473,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     // Dispose temporary files
                     _tempDir?.Dispose();
                     _tempDir = null;
+                    _tempThumbFile?.Dispose();
+                    _tempThumbFile = null;
                 });
 
                 Logger.Info("Created patch");
@@ -491,6 +500,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     {
         _tempDir?.Dispose();
         _tempDir = null;
+
+        _tempThumbFile?.Dispose();
+        _tempThumbFile = null;
     }
 
     #endregion
