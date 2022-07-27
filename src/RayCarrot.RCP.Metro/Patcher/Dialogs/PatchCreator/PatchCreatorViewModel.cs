@@ -171,7 +171,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                 _tempDir = new TempDirectory(true);
 
-                // Extract resources to temp
+                // Add added files and extract resources to temp
                 for (int i = 0; i < patchFile.AddedFiles.Length; i++)
                 {
                     PatchFilePath filePath = patchFile.AddedFiles[i];
@@ -198,6 +198,16 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 }
 
                 operation.SetProgress(new Progress(patchFile.AddedFiles.Length, patchFile.AddedFiles.Length));
+
+                // Add removed files
+                foreach (PatchFilePath filePath in patchFile.RemovedFiles)
+                {
+                    Files.Add(new FileViewModel(
+                        sourceFilePath: FileSystemPath.EmptyPath,
+                        filePath: filePath.FilePath,
+                        location: filePath.Location,
+                        locationId: filePath.LocationID));
+                }
 
                 IsImported = true;
 
