@@ -17,14 +17,14 @@ public partial class LogViewer : BaseWindow
     /// <summary>
     /// Default constructor
     /// </summary>
-    public LogViewer()
+    public LogViewer(LogViewerViewModel viewModel)
     {
         InitializeComponent();
 
         if (DesignerProperties.GetIsInDesignMode(this))
             return;
 
-        DataContext = App.Current.LogViewerViewModel;
+        DataContext = viewModel;
     }
 
     #endregion
@@ -40,9 +40,9 @@ public partial class LogViewer : BaseWindow
 
     #region Public Static Methods
 
-    public static void Open()
+    public static void Open(LogViewerViewModel viewModel)
     {
-        var logViewer = new LogViewer();
+        var logViewer = new LogViewer(viewModel);
         logViewer.Show();
 
         // Avoid the log viewer blocking the main window

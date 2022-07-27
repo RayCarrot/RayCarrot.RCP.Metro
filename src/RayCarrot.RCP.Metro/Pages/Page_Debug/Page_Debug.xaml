@@ -112,8 +112,6 @@
 
                         <StackPanel>
 
-                            <local:DuoGridItem Header="-noui" 
-                                               Text="Indicates that the app should run in console mode." />
                             <local:DuoGridItem Header="-reset" 
                                                Text="Resets the app user data. This will not reset that the license has been accepted." />
                             <local:DuoGridItem Header="-ul (1 param)" 
@@ -135,45 +133,6 @@
 
                             Example: RCP.exe -reset -loglevel Trace -logviewer<LineBreak/>
                             This will run the app, reset the app data, set the log level to Trace and enable the log viewer.
-
-                        </TextBlock>
-
-                    </StackPanel>
-
-                    <StackPanel>
-                        <i:Interaction.Behaviors>
-                            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmallest}" />
-                        </i:Interaction.Behaviors>
-
-                        <TextBlock Text="Console Mode"
-                                   Style="{StaticResource RCP.Styles.TextBlock.Header}" />
-
-                        <TextBlock TextWrapping="Wrap">
-
-                            By launching the app with the argument -noui (has to be the first argument) it will run in an experimental console mode.
-                            This will not have any UI (the WPF App won't be initialized) and is entirely command based. Each command has to be entered
-                            as an argument when launching the app. The app will then process each command and then close once finished.<LineBreak/>
-                            <LineBreak/>
-
-                            Commands:
-
-                        </TextBlock>
-
-                        <StackPanel>
-
-                            <local:DuoGridItem Header="test" 
-                                               Text="A simple test command. Does nothing." />
-                            <local:DuoGridItem Header="games" 
-                                               Text="Outputs the games configuration used by the app." />
-                            <local:DuoGridItem Header="wait (1 param)" 
-                                               Text="waits {param0} milliseconds" />
-
-                        </StackPanel>
-
-                        <TextBlock TextWrapping="Wrap">
-
-                            Example: RCP.exe test wait 1000 games<LineBreak/>
-                            This will run the app, process the test command, wait 1 second and then output the games configuration before closing.
 
                         </TextBlock>
 

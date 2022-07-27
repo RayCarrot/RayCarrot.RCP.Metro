@@ -5,6 +5,8 @@
 /// </summary>
 public enum AppPage
 {
+    None,
+
     /// <summary>
     /// The games page
     /// </summary>

@@ -163,7 +163,7 @@
                 <TabItem Header="{Resx GamesPageHeader}"
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Games}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Games}"
-                         IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
                     <local:Page_Games DataContext="{Binding Path=GamesPage, Mode=OneTime}" />
                 </TabItem>
 
@@ -173,7 +173,7 @@
                          Header="{Resx Progression_Header}"
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Progression}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Progression}"
-                         IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Progression}">
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Progression}">
                     <local:Page_Progression DataContext="{Binding Path=ProgressionPage, Mode=OneTime}" />
                 </TabItem>
 
@@ -182,7 +182,7 @@
                 <TabItem Header="{Resx UtilitiesPageHeader}"
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Utilities}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Utilities}"
-                         IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Utilities}">
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Utilities}">
                     <local:Page_Utilities DataContext="{Binding Path=UtilitiesPage, Mode=OneTime}" />
                 </TabItem>
 
@@ -191,7 +191,7 @@
                 <TabItem Header="{Resx ModsPageHeader}"
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Mods}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Mods}"
-                         IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Mods}">
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Mods}">
                     <local:Page_Mods DataContext="{Binding Path=ModsPage, Mode=OneTime}" />
                 </TabItem>
 
@@ -200,7 +200,7 @@
                 <TabItem Header="{Resx SettingsPageHeader}"
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Settings}"
-                         IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Settings}">
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Settings}">
                     <local:Page_Settings DataContext="{Binding Path=SettingsPage, Mode=OneTime}" />
                 </TabItem>
 
@@ -209,7 +209,7 @@
                 <TabItem Header="{Resx AboutPageHeader}"
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Info}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Info}"
-                         IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=About}">
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=About}">
                     <local:Page_About DataContext="{Binding Path=AboutPage, Mode=OneTime}" />
                 </TabItem>
 
@@ -218,7 +218,7 @@
                 <TabItem Header="{Resx DebugPageHeader}"
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Debug}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
-                         IsSelected="{Binding Path=App.SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
                          local:UserLevelAssist.MinUserLevel="Debug">
                     <local:Page_Debug DataContext="{Binding Path=DebugPage, Mode=OneTime}" />
                 </TabItem>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using NLog;
 
@@ -8,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Contains general user data for the application
 /// </summary>
-[DebuggerDisplay("UL = {CurrentUserLevel}, Culture = {CurrentCulture}, {Arguments.Length} args")]
+[DebuggerDisplay("UL = {CurrentUserLevel}, Culture = {CurrentCulture}")]
 public class AppInstanceData : IAppInstanceData
 {
     #region Constructor
@@ -20,7 +19,6 @@ public class AppInstanceData : IAppInstanceData
     {
         CurrentUserLevel = UserLevel.Normal;
         CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
-        _arguments = Array.Empty<string>();
     }
 
     #endregion
@@ -36,8 +34,6 @@ public class AppInstanceData : IAppInstanceData
     private UserLevel _currentUserLevel;
 
     private CultureInfo? _currentCulture;
-
-    private string[] _arguments;
 
     #endregion
 
@@ -90,25 +86,6 @@ public class AppInstanceData : IAppInstanceData
 
             // Fire event
             CultureChanged(this, new PropertyChangedEventArgs<CultureInfo>(oldValue, CurrentCulture));
-        }
-    }
-
-    /// <summary>
-    /// The launch arguments for the current application
-    /// </summary>
-    public string[] Arguments
-    {
-        get => _arguments;
-        set
-        {
-            if (_arguments == value)
-                return;
-
-            // Set the field
-            _arguments = value;
-
-            // Log the change
-            Logger.Info("The program arguments have been set to \"{0}\"", Arguments.JoinItems(", "));
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -24,7 +25,13 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
         DebugPage = debugPage ?? throw new ArgumentNullException(nameof(debugPage));
 
         AppTitle = App.IsRunningAsAdmin ? Resources.AppNameAdmin : Resources.AppName;
+
+        SelectedPageChanged += MainWindowViewModel_SelectedPageChanged;
+
+        SelectedPage = AppPage.Games;
     }
+
+    private AppPage _selectedPage = AppPage.None;
 
     public AppViewModel App { get; } // TODO: Remove this from here
     public Page_Games_ViewModel GamesPage { get; }
@@ -36,9 +43,54 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
     public Page_Debug_ViewModel DebugPage { get; }
 
     /// <summary>
+    /// The currently selected page
+    /// </summary>
+    public AppPage SelectedPage
+    {
+        get => _selectedPage;
+        set
+        {
+            if (_selectedPage == value)
+                return;
+
+            var oldValue = _selectedPage;
+            _selectedPage = value;
+            OnSelectedPageChanged(new PropertyChangedEventArgs<AppPage>(oldValue, value));
+        }
+    }
+
+    /// <summary>
     /// The title of the application
     /// </summary>
     public string AppTitle { get; }
+
+    /// <summary>
+    /// Occurs when the selected page changes
+    /// </summary>
+    public event EventHandler<PropertyChangedEventArgs<AppPage>> SelectedPageChanged = delegate { };
+
+    private async void MainWindowViewModel_SelectedPageChanged(object sender, PropertyChangedEventArgs<AppPage> e)
+    {
+        BasePageViewModel vm = e.NewValue switch
+        {
+            AppPage.Games => GamesPage,
+            AppPage.Progression => ProgressionPage,
+            AppPage.Utilities => UtilitiesPage,
+            AppPage.Mods => ModsPage,
+            AppPage.Settings => SettingsPage,
+            AppPage.About => AboutPage,
+            AppPage.Debug => DebugPage,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        await vm.OnPageSelectedAsync();
+    }
+
+    [SuppressPropertyChangedWarnings]
+    protected void OnSelectedPageChanged(PropertyChangedEventArgs<AppPage> e)
+    {
+        SelectedPageChanged(this, e);
+    }
 
     public void Dispose()
     {

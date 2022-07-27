@@ -1,7 +1,4 @@
-﻿using ByteSizeLib;
-using Newtonsoft.Json;
-using Nito.AsyncEx;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,8 +7,10 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ByteSizeLib;
+using Newtonsoft.Json;
+using Nito.AsyncEx;
 using NLog;
-using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -50,9 +49,6 @@ public class AppViewModel : BaseViewModel
         DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
         Data = data ?? throw new ArgumentNullException(nameof(data));
 
-        // Flag that the startup has begun
-        IsStartupRunning = true;
-
         // Check if the application is running as administrator
         try
         {
@@ -86,7 +82,6 @@ public class AppViewModel : BaseViewModel
             });
 
         // Create locks
-        SaveUserDataAsyncLock = new AsyncLock();
         MoveBackupsAsyncLock = new AsyncLock();
         AdminWorkerAsyncLock = new AsyncLock();
         OnRefreshRequiredAsyncLock = new AsyncLock();
@@ -133,12 +128,6 @@ public class AppViewModel : BaseViewModel
 
     #endregion
 
-    #region Private Fields
-
-    private AppPage _selectedPage;
-
-    #endregion
-
     #region Private Properties
 
     private IUpdaterManager Updater { get; }
@@ -147,11 +136,6 @@ public class AppViewModel : BaseViewModel
     private AppUIManager UI { get; }
     private DeployableFilesManager DeployableFiles { get; }
     private AppUserData Data { get; }
-
-    /// <summary>
-    /// An async lock for the <see cref="SaveUserDataAsync"/> method
-    /// </summary>
-    private AsyncLock SaveUserDataAsyncLock { get; }
 
     /// <summary>
     /// An async lock for the <see cref="MoveBackupsAsync"/> method
@@ -208,23 +192,6 @@ public class AppViewModel : BaseViewModel
     public bool IsGameFinderRunning { get; set; }
 
     /// <summary>
-    /// The currently selected page
-    /// </summary>
-    public AppPage SelectedPage
-    {
-        get => _selectedPage;
-        set
-        {
-            if (_selectedPage == value)
-                return;
-
-            var oldValue = _selectedPage;
-            _selectedPage = value;
-            OnSelectedPageChanged(new PropertyChangedEventArgs<AppPage>(oldValue, value));
-        }
-    }
-
-    /// <summary>
     /// A flag indicating if an update check is in progress
     /// </summary>
     public bool CheckingForUpdates { get; set; }
@@ -261,19 +228,9 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// The Windows version the program is running on
     /// </summary>
-    public static WindowsVersion WindowsVersion { get; }
+    public static WindowsVersion WindowsVersion { get; } // TODO: Why is this static?
 
     public static Version AppVersion => new(13, 3, 0, 0);
-
-    #endregion
-
-    #region Protected Methods
-
-    [SuppressPropertyChangedWarnings]
-    protected virtual void OnSelectedPageChanged(PropertyChangedEventArgs<AppPage> e)
-    {
-        SelectedPageChanged(this, e);
-    }
 
     #endregion
 
@@ -770,33 +727,6 @@ public class AppViewModel : BaseViewModel
         }
     }
 
-    /// <summary>
-    /// Saves all user data for the application
-    /// </summary>
-    public virtual async Task SaveUserDataAsync()
-    {
-        // Lock the saving of user data
-        using (await SaveUserDataAsyncLock.LockAsync())
-        {
-            // Run it as a new task
-            await Task.Run(() =>
-            {
-                // Save the user data
-                try
-                {
-                    // Save the user data
-                    JsonHelpers.SerializeToFile(Data, AppFilePaths.AppUserDataPath);
-
-                    Logger.Info("The application user data was saved");
-                }
-                catch (Exception ex)
-                {
-                    Logger.Fatal(ex, "Saving user data");
-                }
-            });
-        }
-    }
-
     #endregion
 
     #region Events
@@ -805,11 +735,6 @@ public class AppViewModel : BaseViewModel
     /// Occurs when a refresh is required for the app
     /// </summary>
     public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired = (_, _) => Task.CompletedTask;
-
-    /// <summary>
-    /// Occurs when the selected page changes
-    /// </summary>
-    public event EventHandler<PropertyChangedEventArgs<AppPage>> SelectedPageChanged = delegate { };
 
     #endregion
 

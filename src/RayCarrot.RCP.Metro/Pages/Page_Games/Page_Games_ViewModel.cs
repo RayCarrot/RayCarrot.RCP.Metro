@@ -68,9 +68,6 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         // Refresh on culture changed
         instanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync());
 
-        // Refresh on startup
-        Metro.App.Current.StartupComplete += async (_, _) => await RefreshAsync();
-
         // Refresh visibility on setting change
         Data.PropertyChanged += Data_PropertyChanged;
     }
@@ -130,6 +127,11 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     #endregion
     
     #region Public Methods
+
+    protected override Task InitializeAsync()
+    {
+        return RefreshAsync();
+    }
 
     /// <summary>
     /// Refreshes the added game

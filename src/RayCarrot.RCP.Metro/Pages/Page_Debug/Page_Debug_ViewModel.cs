@@ -36,7 +36,9 @@ public class Page_Debug_ViewModel : BasePageViewModel
         IFileManager fileManager, 
         IBrowseUIManager browseUi, 
         IMessageUIManager messageUi, 
-        IDialogBaseManager dialogBaseManager) : base(app)
+        IDialogBaseManager dialogBaseManager, 
+        LoggerManager loggerManager, 
+        AppDataManager appDataManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
@@ -45,6 +47,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
         BrowseUI = browseUi ?? throw new ArgumentNullException(nameof(browseUi));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         DialogBaseManager = dialogBaseManager ?? throw new ArgumentNullException(nameof(dialogBaseManager));
+        LoggerManager = loggerManager ?? throw new ArgumentNullException(nameof(loggerManager));
+        AppDataManager = appDataManager ?? throw new ArgumentNullException(nameof(appDataManager));
 
         // Create commands
         ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
@@ -106,6 +110,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public IBrowseUIManager BrowseUI { get; }
     public IMessageUIManager MessageUI { get; }
     public IDialogBaseManager DialogBaseManager { get; }
+    public LoggerManager LoggerManager { get; }
+    public AppDataManager AppDataManager { get; }
 
     #endregion
 
@@ -300,7 +306,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     /// <returns>The task</returns>
     public async Task ShowLogAsync()
     {
-        if (!Metro.App.Current.IsLogViewerAvailable)
+        if (!LoggerManager.IsLogViewerAvailable)
         {
             await MessageUI.DisplayMessageAsync("The log viewer is not enabled. Use the launch argument -logviewer to enabled it. The log file will open instead.", MessageType.Warning);
 
@@ -309,7 +315,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
             return;
         }
 
-        LogViewer.Open();
+        LogViewer.Open(LoggerManager.LogViewerViewModel);
     }
 
     /// <summary>
@@ -389,7 +395,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                 case DebugDataOutputType.AppUserData:
                     // Save app user data to update the file
-                    await App.SaveUserDataAsync();
+                    AppDataManager.Save();
 
                     // Display the file contents
                     DataOutput = File.ReadAllText(AppFilePaths.AppUserDataPath);

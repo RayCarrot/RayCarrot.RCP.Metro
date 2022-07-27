@@ -114,15 +114,6 @@ public static class SecretCodeManager
     #region Public Static Methods
 
     /// <summary>
-    /// Sets up the manager
-    /// </summary>
-    public static void Setup()
-    {
-        if (Application.Current.MainWindow != null)
-            Application.Current.MainWindow.PreviewKeyDown += async (_, e) => await AddKeyAsync(e.Key);
-    }
-
-    /// <summary>
     /// Add a new key to the manager
     /// </summary>
     /// <param name="key">The key to add</param>
