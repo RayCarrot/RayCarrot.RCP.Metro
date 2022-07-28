@@ -1170,7 +1170,7 @@ Opnieuw proberen?</value>
     <value>Niet in staat het spel te vinden</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>In het bijzonder dank aan AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski en alle andere Rayman fans!</value>
+    <value>In het bijzonder dank aan AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, BinarySerializer</value>
@@ -4296,7 +4296,7 @@ Conflicten:
     <value>Staat toe dat Rayman vrij in een level wordt geplaatst</value>
   </data>
   <data name="Mod_Mem_Map" xml:space="preserve">
-    <value>Map</value>
+    <value>Huidige map</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
     <value>Mapselectie</value>

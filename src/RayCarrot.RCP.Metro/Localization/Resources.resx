@@ -1235,7 +1235,7 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, BinarySerializer</value>
@@ -4453,7 +4453,7 @@ Prototype Restoration</value>
     <value>Allows Rayman to be placed freely in the level</value>
   </data>
   <data name="Mod_Mem_Map" xml:space="preserve">
-    <value>Map</value>
+    <value>Current map</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
     <value>Map selection</value>

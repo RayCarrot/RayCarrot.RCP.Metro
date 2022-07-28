@@ -1170,7 +1170,7 @@ Voulez vous réessayer ?</value>
     <value>Impossible de trouver le jeu</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Remerciements spéciaux à AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski et tous les fans de Rayman !</value>
+    <value>Remerciements spéciaux à AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski et tous les fans de Rayman !</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, utilitaires, pistes de musique par niveau, Archive Explorer, traductions de Rayman 2, BinarySerializer</value>
@@ -4219,7 +4219,7 @@ Rayman contre Les Lapins Crétins</value>
     <value>Permet de placer Rayman librement dans le niveau</value>
   </data>
   <data name="Mod_Mem_Map" xml:space="preserve">
-    <value>Carte</value>
+    <value>Carte actuelle</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
     <value>Sélection de carte</value>

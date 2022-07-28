@@ -1181,7 +1181,7 @@ Spróbować ponownie?</value>
     <value>Nie można znaleźć gry</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Specjalne podziękowania dla AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski i wszystkich innych fanów Raymana!</value>
+    <value>Specjalne podziękowania dla AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski i wszystkich innych fanów Raymana!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer, Tłumaczenie gry Rayman 2, BinarySerializer</value>
@@ -4332,7 +4332,7 @@ Konflikty:
     <value>Pozwala na dowolne rozmieszczenie Raymana na poziomie</value>
   </data>
   <data name="Mod_Mem_Map" xml:space="preserve">
-    <value>Mapa</value>
+    <value>Aktualna mapa</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
     <value>Wybór mapy</value>
