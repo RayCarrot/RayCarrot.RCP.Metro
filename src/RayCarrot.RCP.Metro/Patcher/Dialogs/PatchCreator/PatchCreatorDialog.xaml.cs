@@ -24,19 +24,6 @@ public partial class PatchCreatorDialog : WindowContentControl
         Loaded += PatchCreatorUI_Loaded;
     }
 
-    private async void PatchCreatorUI_Loaded(object sender, RoutedEventArgs e)
-    {
-        Loaded -= PatchCreatorUI_Loaded;
-
-        if (_patchToImportFrom == null)
-            return;
-
-        bool success = await ViewModel.ImportFromPatchAsync(_patchToImportFrom.Value);
-
-        if (!success)
-            WindowInstance.Close();
-    }
-
     #endregion
 
     #region Private Fields
@@ -91,6 +78,19 @@ public partial class PatchCreatorDialog : WindowContentControl
     #endregion
 
     #region Event Handlers
+
+    private async void PatchCreatorUI_Loaded(object sender, RoutedEventArgs e)
+    {
+        Loaded -= PatchCreatorUI_Loaded;
+
+        if (_patchToImportFrom == null)
+            return;
+
+        bool success = await ViewModel.ImportFromPatchAsync(_patchToImportFrom.Value);
+
+        if (!success)
+            WindowInstance.Close();
+    }
 
     private void FilesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
     {

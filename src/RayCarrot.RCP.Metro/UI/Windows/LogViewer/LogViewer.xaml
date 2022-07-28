@@ -74,6 +74,7 @@
 
         <!-- Log List -->
 
+        <!-- TODO: Use virtualized items control. Currently not fully possible due to needing to access the scroll viewer. -->
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Row="1"
                       VerticalScrollBarVisibility="Auto">
