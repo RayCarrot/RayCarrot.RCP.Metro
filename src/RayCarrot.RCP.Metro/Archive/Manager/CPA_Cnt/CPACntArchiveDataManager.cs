@@ -281,6 +281,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             Games.RaymanM => new Utility_RaymanM_GameSyncTextureInfo().ViewModel,
             Games.RaymanArena => new Utility_RaymanArena_GameSyncTextureInfo().ViewModel,
             Games.Rayman3 => new Utility_Rayman3_GameSyncTextureInfo().ViewModel,
+            Games.TonicTrouble => new Utility_TonicTrouble_GameSyncTextureInfo().ViewModel,
+            Games.TonicTroubleSpecialEdition => new Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo().ViewModel,
             _ => null
         };
 
