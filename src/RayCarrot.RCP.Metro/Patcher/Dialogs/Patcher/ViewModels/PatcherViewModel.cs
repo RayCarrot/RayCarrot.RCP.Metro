@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using BinarySerializer;
-using ByteSizeLib;
 using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
@@ -17,7 +16,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public PatcherViewModel(Games game)
+    private PatcherViewModel(Games game, Context context)
     {
         Game = game;
         GameDirectory = game.GetInstallDir();
@@ -29,10 +28,17 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
         LoadOperation = new BindableOperation();
 
-        _context = new RCPContext(String.Empty);
+        _context = context;
 
         AddPatchCommand = new AsyncRelayCommand(AddPatchAsync);
     }
+
+    private PatcherViewModel(Games game, Context context, (PatchFile, FileSystemPath) pendingPatchFile) : this(game, context)
+    {
+        _pendingPatchFile = pendingPatchFile;
+    }
+
+    public PatcherViewModel(Games game) : this(game, new RCPContext(String.Empty)) { }
 
     #endregion
 
@@ -50,8 +56,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
+    private (PatchFile PatchFile, FileSystemPath PatchFilePath)? _pendingPatchFile;
+
     private readonly HashSet<string> _removedPatches = new();
-    private readonly RCPContext _context;
+    private readonly Context _context;
 
     private ExternalPatchViewModel[]? _externalPatches;
     private Uri? _externalGamePatchesURL;
@@ -120,10 +128,53 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #endregion
 
+    #region Private Static Methods
+
+    private static async Task<PatchFile?> ReadPatchFileAsync(Context context, FileSystemPath patchFilePath)
+    {
+        try
+        {
+            return context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
+        }
+        catch (UnsupportedFormatVersionException ex)
+        {
+            Logger.Warn(ex, "Adding patch");
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync(
+                "The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read",
+                MessageType.Error);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Adding patch");
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
+            return null;
+        }
+    }
+
+    #endregion
+
     #region Private Methods
 
-    private void AddPatchFromFile(Context context, PatchFile patchFile, FileSystemPath filePath, int? insertIndex = null, bool isEnabled = false)
+    private void AddPatchFromFile(Context context, PatchFile patchFile, FileSystemPath filePath)
     {
+        PatchMetadata metaData = patchFile.Metadata;
+
+        // Check for a conflict
+        LocalPatchViewModel? conflict = LocalPatches.FirstOrDefault(x => x.ID == metaData.ID);
+        int? insertIndex = null;
+
+        // Replace if there's a conflict
+        if (conflict != null)
+        {
+            insertIndex = LocalPatches.IndexOf(conflict);
+            RemovePatch(conflict, false, false);
+        }
+
         PendingImportedLocalPatchViewModel patchViewModel = new(this, patchFile, false, filePath);
         patchViewModel.LoadThumbnail(context);
 
@@ -132,12 +183,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         else
             LocalPatches.Insert(insertIndex.Value, patchViewModel);
 
-        if (isEnabled)
+        if (conflict?.IsEnabled == true)
             patchViewModel.IsEnabled = true;
 
         SelectedLocalPatch = patchViewModel;
 
-        PatchMetadata metaData = patchFile.Metadata;
         Logger.Info("Added patch '{0}' from file with version {1} and ID {2}", metaData.Name, metaData.Version, metaData.ID);
     }
 
@@ -268,6 +318,46 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #endregion
 
+    #region Public Static Methods
+
+    public static async Task<PatcherViewModel?> FromFileAsync(FileSystemPath patchFilePath)
+    {
+        // Create the context. Normally we do this in the constructor, but we need
+        // to read the patch file first here, so we create it earlier
+        RCPContext context = new(String.Empty);
+        PatcherViewModel? vm = null;
+
+        try
+        {
+            // Read the patch file
+            PatchFile? patch = await ReadPatchFileAsync(context, patchFilePath);
+
+            // If the patch file could not be read then we return null
+            if (patch == null)
+                return null;
+
+            if (!patch.Metadata.Game.IsAdded())
+            {
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayMessageAsync($"Can't open the patch {patch.Metadata.Name} for {patch.Metadata.Game.GetGameInfo().DisplayName} due to the game not having been added in the Rayman Control Panel", MessageType.Error);
+                return null;
+            }
+
+            // Create the view model
+            vm = new PatcherViewModel(patch.Metadata.Game, context, (patch, patchFilePath));
+
+            return vm;
+        }
+        catch
+        {
+            context.Dispose();
+            vm?.Dispose();
+            throw;
+        }
+    }
+
+    #endregion
+
     #region Public Methods
 
     public void RefreshPatchedFiles()
@@ -333,30 +423,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 Logger.Trace("Adding patch from {0}", patchFilePath);
 
-                PatchFile patch;
+                PatchFile? patch = await ReadPatchFileAsync(_context, patchFilePath);
 
-                try
-                {
-                    patch = _context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
-                }
-                catch (UnsupportedFormatVersionException ex)
-                {
-                    Logger.Warn(ex, "Adding patch");
-
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync(
-                        "The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read",
-                        MessageType.Error);
+                if (patch == null)
                     continue;
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error(ex, "Adding patch");
-
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
-                    continue;
-                }
 
                 PatchMetadata metaData = patch.Metadata;
 
@@ -374,17 +444,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     continue;
                 }
 
-                LocalPatchViewModel? conflict = LocalPatches.FirstOrDefault(x => x.ID == metaData.ID);
-                int? insertIndex = null;
-
-                if (conflict != null)
-                {
-                    insertIndex = LocalPatches.IndexOf(conflict);
-                    RemovePatch(conflict, false, false);
-                }
-
                 // Add the patch view model so we can work with it
-                AddPatchFromFile(_context, patch, patchFilePath, insertIndex, conflict?.IsEnabled ?? false);
+                AddPatchFromFile(_context, patch, patchFilePath);
 
                 HasChanges = true;
             }
@@ -585,6 +646,29 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             RefreshDisplayExternalPatches();
 
         Logger.Info("Removed patch '{0}' with version {1} and ID {2}", patchViewModel.Name, patchViewModel.Metadata.Version, patchViewModel.ID);
+    }
+
+    public async Task<bool> InitializeAsync()
+    {
+        // Load patches
+        bool success = await LoadPatchesAsync();
+
+        if (!success)
+            return false;
+
+        // Add any pending patch files
+        if (_pendingPatchFile != null)
+        {
+            // Add the patch file
+            AddPatchFromFile(_context, _pendingPatchFile.Value.PatchFile, _pendingPatchFile.Value.PatchFilePath);
+            _pendingPatchFile = null;
+            HasChanges = true;
+        }
+
+        // Load external patches
+        await LoadExternalPatchesAsync();
+
+        return true;
     }
 
     public async Task<bool> LoadPatchesAsync()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -46,6 +47,11 @@ public class StartupManager
     #endregion
 
     #region Private Properties
+
+    private FileLaunchHandler[] FileLaunchHandlers => new FileLaunchHandler[]
+    {
+        new PatchFileLaunchHandler()
+    };
 
     private TimeSpan SplashScreenFadeoutTime => TimeSpan.FromMilliseconds(200);
     private SplashScreen? SplashScreen { get; set; }
@@ -152,6 +158,16 @@ public class StartupManager
                 Logger.Error(ex, "Deleting updater");
             }
         }
+    }
+
+    private FileLaunchHandler? CheckFileLaunch()
+    {
+        // Check if the app was opened from a file
+        if (Args.FilePathArg != null)
+            // Attempt to validate with an available file launch handler
+            return FileLaunchHandlers.FirstOrDefault(x => x.IsValid(Args.FilePathArg.Value));
+
+        return null;
     }
 
     private void InitWebProtocol()
@@ -367,8 +383,13 @@ public class StartupManager
             Logger.Debug("Startup {0} ms: Initialized XAML, localization and jump list", sw.ElapsedMilliseconds);
 
             CheckLaunchArgs();
+            FileLaunchHandler? fileLaunchHandler = CheckFileLaunch();
             InitWebProtocol();
             Logger.Debug("Startup {0} ms: Checked launch arguments and initialized web protocol", sw.ElapsedMilliseconds);
+
+            // The file launch can optionally disable the full startup
+            if (fileLaunchHandler?.DisableFullStartup == true)
+                isFullStartup = false;
 
             if (isFullStartup)
             {
@@ -384,6 +405,9 @@ public class StartupManager
             // Show the log viewer if set to do so
             await ShowLogViewerAsync();
             Logger.Debug("Startup {0} ms: Optionally showed log viewer", sw.ElapsedMilliseconds);
+
+            // Invoke the file launch handler if we have one
+            fileLaunchHandler?.Invoke(Args.FilePathArg!.Value);
 
             // The following startup actions can run in the background after the app window has opened
             if (isFullStartup)

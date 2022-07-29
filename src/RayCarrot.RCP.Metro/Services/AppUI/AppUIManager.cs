@@ -246,7 +246,7 @@ public class AppUIManager
     }
 
     /// <summary>
-    /// Shows a new instance of the Patcher
+    /// Shows a new instance of the Patcher from a game
     /// </summary>
     /// <param name="game">The game</param>
     /// <returns>The task</returns>
@@ -255,10 +255,34 @@ public class AppUIManager
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
+        using PatcherViewModel vm = new(game);
+        
+        Logger.Trace("A Patcher window was opened");
+        
+        // Run on UI thread
+        // ReSharper disable once AccessToDisposedClosure
+        PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
+        await Dialog.ShowWindowAsync(dialog);
+    }
+
+    /// <summary>
+    /// Shows a new instance of the Patcher from a patch file path
+    /// </summary>
+    /// <param name="patchFilePath">The patch file path</param>
+    /// <returns>The task</returns>
+    public async Task ShowPatcherAsync(FileSystemPath patchFilePath)
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        PatcherViewModel? vm = await PatcherViewModel.FromFileAsync(patchFilePath);
+
+        if (vm == null)
+            return;
+
         Logger.Trace("A Patcher window was opened");
 
         // Run on UI thread
-        using PatcherViewModel vm = new(game);
         // ReSharper disable once AccessToDisposedClosure
         PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
         await Dialog.ShowWindowAsync(dialog);

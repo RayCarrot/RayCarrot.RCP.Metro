@@ -66,14 +66,11 @@ public partial class PatcherDialog : WindowContentControl
     {
         Loaded -= PatcherUI_OnLoaded;
 
-        // Load patches
-        bool success = await ViewModel.LoadPatchesAsync();
+        // Initialize
+        bool success = await ViewModel.InitializeAsync();
 
         if (!success)
             WindowInstance.Close();
-
-        // Load external patches
-        await ViewModel.LoadExternalPatchesAsync();
     }
 
     private void FileTableHeadersGrid_OnLoaded(object sender, RoutedEventArgs e)
