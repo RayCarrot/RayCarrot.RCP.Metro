@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using NLog;
@@ -70,7 +71,7 @@ public partial class App : Application
     /// <summary>
     /// The mutex
     /// </summary>m
-    private Mutex? Mutex { get; }
+    private Mutex Mutex { get; }
 
     /// <summary>
     /// Indicates if the main window is currently closing
@@ -104,19 +105,10 @@ public partial class App : Application
         ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
         // Verify single instance
-        try
+        if (!VerifySingleInstance())
         {
-            if (Mutex is not null && !Mutex.WaitOne(0, false))
-            {
-                MessageBox.Show("An instance of the Rayman Control Panel is already running", "Error starting",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-        }
-        catch (AbandonedMutexException)
-        {
-            // Break if debugging
-            Debugger.Break();
+            Shutdown();
+            return;
         }
 
         // Verify runtime
@@ -191,6 +183,48 @@ public partial class App : Application
 
     #region Private Methods
 
+    private bool VerifySingleInstance()
+    {
+        try
+        {
+            if (!Mutex.WaitOne(0, false))
+            {
+                // Get the current process
+                using Process currentProcess = Process.GetCurrentProcess();
+                string currentProcessName = currentProcess.ProcessName;
+                int currentProcessID = currentProcess.Id;
+                
+                // NOTE: This will only work if the processes were opened from the same file. Find better solution?
+                // Attempt to find the other running process
+                using Process? otherProcess = Process.GetProcessesByName(currentProcessName).
+                    FirstOrDefault(x => x.Id != currentProcessID);
+
+                if (otherProcess != null)
+                {
+                    // Focus the process
+                    AutomationElement element = AutomationElement.FromHandle(otherProcess.MainWindowHandle);
+                    WindowPattern wPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
+                    wPattern.SetWindowVisualState(WindowVisualState.Normal);
+                }
+                else
+                {
+                    // Fall back to show a warning message if no process was found
+                    MessageBox.Show("An instance of the Rayman Control Panel is already running", "Error starting",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                return false;
+            }
+        }
+        catch (AbandonedMutexException)
+        {
+            // Break if debugging
+            Debugger.Break();
+        }
+
+        return true;
+    }
+
     private bool VerifyRuntime()
     {
         // Make sure we are on Windows Vista or higher for APIs such as the
@@ -223,7 +257,7 @@ public partial class App : Application
         }
     }
 
-    private void Dispose() => Mutex?.Dispose();
+    private void Dispose() => Mutex.Dispose();
 
     #endregion
 
