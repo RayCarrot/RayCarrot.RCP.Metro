@@ -8,6 +8,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
+using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Shell;
 
 namespace RayCarrot.RCP.Metro;
@@ -251,6 +252,41 @@ public static class WindowsHelpers
         return thumb.GetTransparentBitmap(shellThumbnailSize);
     }
 
+    /// <summary>
+    /// Sets the program associated with a file type
+    /// </summary>
+    /// <param name="programFilePath">The program file path</param>
+    /// <param name="fileExtension">The file extension, including the period</param>
+    /// <param name="description">The file type description</param>
+    /// <param name="id">The ID</param>
+    /// <param name="enable">Indicates if the file type association should be set. If false it is removed.</param>
+    public static void SetFileTypeAssociation(FileSystemPath programFilePath, string fileExtension, string description, string id, bool enable)
+    {
+        if (enable)
+        {
+            Registry.SetValue(@$"HKEY_CURRENT_USER\Software\Classes\{fileExtension}", null, id);
+            Registry.SetValue(@$"HKEY_CURRENT_USER\Software\Classes\{id}", null, description);
+            Registry.SetValue(@$"HKEY_CURRENT_USER\Software\Classes\{id}\shell\open\command", null, $"\"{programFilePath.FullPath}\" \"%1\"");
+        }
+        else
+        {
+            Registry.CurrentUser.DeleteSubKeyTree(@$"Software\Classes\{fileExtension}");
+            Registry.CurrentUser.DeleteSubKeyTree(@$"Software\Classes\{id}");
+        }
+
+        // Notify explorer of the change
+        SHChangeNotify(
+            // SHCNE_ASSOCCHANGED
+            0x8000000,
+            // SHCNF_FLUSH
+            0x1000, IntPtr.Zero, IntPtr.Zero);
+    }
+
+    public static string GetFileTypeAssociationID(string fileExtension)
+    {
+        return Registry.GetValue(@$"HKEY_CURRENT_USER\Software\Classes\{fileExtension}", null, null) as string;
+    }
+
     [Flags]
     private enum MoveFileFlags
     {
@@ -277,4 +313,7 @@ public static class WindowsHelpers
 
     [DllImport("shell32.dll", EntryPoint = "FindExecutable", SetLastError = true)]
     private static extern uint FindExecutable(string lpFile, string lpDirectory, StringBuilder lpResult);
+
+    [DllImport("Shell32.dll", SetLastError = true)]
+    private static extern void SHChangeNotify(int eventId, int flags, IntPtr item1, IntPtr item2);
 }

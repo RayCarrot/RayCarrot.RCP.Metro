@@ -1,7 +1,9 @@
 ﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Text;
 using BinarySerializer;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
@@ -12,8 +14,16 @@ public class PatchFile : BinarySerializable, IPackageFile
 {
     #region Constants
 
+    private const string FileTypeID = "RCP_Metro.GamePatch";
+
     public const string FileExtension = ".gp"; // Game Patch
     public const int LatestFormatVersion = 0;
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
@@ -71,6 +81,33 @@ public class PatchFile : BinarySerializable, IPackageFile
     /// The files removed by this patch
     /// </summary>
     public PatchFilePath[] RemovedFiles { get; set; }
+
+    #endregion
+
+    #region Public Static Methods
+
+    public static bool? IsAssociatedWithFileType()
+    {
+        try
+        {
+            return WindowsHelpers.GetFileTypeAssociationID(FileExtension) == FileTypeID;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Checking if the patch file type association is set");
+            return null;
+        }
+    }
+
+    public static void AssociateWithFileType(FileSystemPath programFilePath, bool enable)
+    {
+        WindowsHelpers.SetFileTypeAssociation(programFilePath, FileExtension, "Rayman Control Panel Game Patch", FileTypeID, enable);
+        
+        if (enable)
+            Logger.Info("Set the file type association for patch files");
+        else
+            Logger.Info("Removed the file type association for patch files");
+    }
 
     #endregion
 

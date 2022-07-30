@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
 using NLog;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -159,6 +160,20 @@ public class AppDataManager
         {
             Data.App_ApplicationPath = assemblyPath;
             Logger.Info("The application path has been updated");
+
+            // If the file type association is set for patch files we need to update them
+            if (File.Exists(assemblyPath) && PatchFile.IsAssociatedWithFileType() == true)
+            {
+                try
+                {
+                    // Default to the file association being enabled
+                    PatchFile.AssociateWithFileType(assemblyPath, true);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Setting patch file type association");
+                }
+            }
         }
 
         // Track changes to the user data
@@ -387,6 +402,19 @@ public class AppDataManager
         {
             Data.Archive_CNT_SyncOnRepackRequested = false;
             Data.Patcher_LoadExternalPatches = true;
+        }
+
+        if (lastVersion < new Version(13, 3, 0, 2))
+        {
+            try
+            {
+                // Default to the file association being enabled
+                PatchFile.AssociateWithFileType(Data.App_ApplicationPath, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting patch file type association");
+            }
         }
     }
 }

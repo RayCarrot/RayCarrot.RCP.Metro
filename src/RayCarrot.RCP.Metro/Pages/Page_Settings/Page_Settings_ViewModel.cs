@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -37,8 +38,10 @@ public class Page_Settings_ViewModel : BasePageViewModel
         // Create commands
         ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
         EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
-        RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync(true, true)));
+        RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync(true, true, true)));
         ResetCommand = new AsyncRelayCommand(ResetAsync);
+
+        UpdatePatchFileTypeAssociationCommand = new AsyncRelayCommand(UpdatePatchFileTypeAssociationAsync);
 
         // Create properties
         AsyncLock = new AsyncLock();
@@ -49,8 +52,8 @@ public class Page_Settings_ViewModel : BasePageViewModel
         BindingOperations.EnableCollectionSynchronization(LocalLinkItems, this);
 
         // Refresh when needed
-        InstanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
-        InstanceData.UserLevelChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false));
+        InstanceData.CultureChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false, false));
+        InstanceData.UserLevelChanged += async (_, _) => await Task.Run(async () => await RefreshAsync(false, false, false));
         Data.PropertyChanged += (_, e) =>
         {
             if (e.PropertyName == nameof(Data.Archive_AssociatedPrograms))
@@ -84,6 +87,8 @@ public class Page_Settings_ViewModel : BasePageViewModel
     public ICommand EditJumpListCommand { get; }
     public ICommand RefreshCommand { get; }
     public ICommand ResetCommand { get; }
+
+    public ICommand UpdatePatchFileTypeAssociationCommand { get; }
 
     #endregion
 
@@ -141,13 +146,17 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
     public ObservableCollection<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
 
+    public bool CanAssociatePatchFileType { get; set; }
+    public bool AssociatePatchFileType { get; set; }
+    public bool AssociatePatchURL { get; set; }
+
     #endregion
 
     #region Public Methods
 
     protected override Task InitializeAsync()
     {
-        return RefreshAsync(true, true);
+        return RefreshAsync(true, true, true);
     }
 
     /// <summary>
@@ -182,8 +191,9 @@ public class Page_Settings_ViewModel : BasePageViewModel
     /// </summary>
     /// <param name="refreshLocalization">Indicates if the localization should be refreshed</param>
     /// <param name="refreshAssociatedPrograms">Indicates if the associated programs should be refreshed</param>
+    /// <param name="refreshPatchAssociations">Indicates if the patch file and URL associations should be refreshed</param>
     /// <returns>The task</returns>
-    public async Task RefreshAsync(bool refreshLocalization, bool refreshAssociatedPrograms)
+    public async Task RefreshAsync(bool refreshLocalization, bool refreshAssociatedPrograms, bool refreshPatchAssociations)
     {
         using (await AsyncLock.LockAsync())
         {
@@ -194,6 +204,15 @@ public class Page_Settings_ViewModel : BasePageViewModel
             // Refresh associated programs
             if (refreshAssociatedPrograms)
                 RefreshAssociatedPrograms();
+
+            if (refreshPatchAssociations)
+            {
+                // TODO-UPDATE: Try/catch
+                bool? isAssociatedWithFileType = PatchFile.IsAssociatedWithFileType();
+                CanAssociatePatchFileType = isAssociatedWithFileType != null;
+                AssociatePatchFileType = isAssociatedWithFileType ?? false;
+                AssociatePatchURL = false; // TODO-UPDATE: Implement
+            }
 
             try
             {
@@ -338,6 +357,21 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
         // The app data can't be reset while the app is running as it could cause multiple issues, so better to restart
         await App.RestartAsync("-reset");
+    }
+
+    public async Task UpdatePatchFileTypeAssociationAsync()
+    {
+        try
+        {
+            PatchFile.AssociateWithFileType(Data.App_ApplicationPath, AssociatePatchFileType);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Setting patch file type association");            
+
+            // TODO-UPDATE: Localize
+            await MessageUI.DisplayExceptionMessageAsync(ex, "An error ocurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again.");
+        }
     }
 
     #endregion

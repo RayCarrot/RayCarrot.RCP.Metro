@@ -512,6 +512,36 @@
 
                     </StackPanel>
 
+                    <!-- File Associations -->
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <local:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Text="File Associations"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
+
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                            </i:Interaction.Behaviors>
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <CheckBox Content="Open game patch (.gp) files in Rayman Control Panel from File Explorer"
+                                      IsEnabled="{Binding Path=CanAssociatePatchFileType}"
+                                      IsChecked="{Binding Path=AssociatePatchFileType}"
+                                      Command="{Binding Path=UpdatePatchFileTypeAssociationCommand, Mode=OneTime}" />
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <CheckBox Content="Open game patch (.gp) files in Rayman Control Panel from URLs"
+                                      IsChecked="{Binding Path=AssociatePatchURL}" />
+
+                        </StackPanel>
+
+                    </StackPanel>
+
                 </StackPanel>
             </ScrollViewer>
 
