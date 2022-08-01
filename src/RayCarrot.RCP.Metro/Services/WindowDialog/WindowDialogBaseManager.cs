@@ -153,7 +153,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
             // If there is a window blocking this one from showing we return
             if (blockingWindow != null)
             {
-                Logger.Info("The window is not being shown due to a window of the same type or ID being available", contentType);
+                Logger.Info("The window is not being shown due to a window of the same type or ID being available");
 
                 // Focus the blocking window
                 if (!flags.HasFlag(ShowWindowFlags.DoNotFocusBlockingWindow))

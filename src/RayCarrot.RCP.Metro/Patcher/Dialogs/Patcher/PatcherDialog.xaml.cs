@@ -41,7 +41,7 @@ public partial class PatcherDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Patcher"; // TODO-UPDATE: Localize
+        WindowInstance.Title = $"Patcher - {ViewModel.Game.GetGameInfo().DisplayName}"; // TODO-UPDATE: Localize
         WindowInstance.Icon = GenericIconKind.Window_Patcher;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
