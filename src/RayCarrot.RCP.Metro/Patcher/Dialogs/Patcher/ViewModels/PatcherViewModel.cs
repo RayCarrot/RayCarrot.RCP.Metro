@@ -316,6 +316,27 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         return true;
     }
 
+    private async Task<bool> VerifyPatchSecurityAsync(PatchFile patch)
+    {
+        // Check if the patch adds or replaces exe or dll files. Expand to check other file types too?
+        bool hasCodeFiles = patch.AddedFiles.Any(x =>
+            x.FilePath.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) ||
+            x.FilePath.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase));
+
+        // Have the user verify
+        if (hasCodeFiles)
+        {
+            Logger.Info("Patch with ID {0} contains one or more potentially harmful files", patch.Metadata.ID);
+
+            // TODO-UPDATE: Localize
+            return await Services.MessageUI.DisplayMessageAsync($"The patch {patch.Metadata.Name} adds or replaces executable files in the game. Only add this patch if you trust the author. Continue?", MessageType.Question, true);
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     #endregion
 
     #region Public Static Methods
@@ -443,6 +464,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                     continue;
                 }
+
+                // Verify the security
+                if (!await VerifyPatchSecurityAsync(patch))
+                    continue;
 
                 // Add the patch view model so we can work with it
                 AddPatchFromFile(_context, patch, patchFilePath);
@@ -659,10 +684,15 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         // Add any pending patch files
         if (_pendingPatchFile != null)
         {
-            // Add the patch file
-            AddPatchFromFile(_context, _pendingPatchFile.Value.PatchFile, _pendingPatchFile.Value.PatchFilePath);
+            // Verify the security
+            if (await VerifyPatchSecurityAsync(_pendingPatchFile.Value.PatchFile))
+            {
+                // Add the patch file
+                AddPatchFromFile(_context, _pendingPatchFile.Value.PatchFile, _pendingPatchFile.Value.PatchFilePath);
+                HasChanges = true;
+            }
+
             _pendingPatchFile = null;
-            HasChanges = true;
         }
 
         // Load external patches
