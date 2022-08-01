@@ -16,7 +16,7 @@ public class PatchFileLaunchHandler : FileLaunchHandler
             StringComparison.InvariantCultureIgnoreCase);
     }
 
-    public override async void Invoke(FileSystemPath filePath)
+    public override async void Invoke(FileSystemPath filePath, State state)
     {
         try
         {

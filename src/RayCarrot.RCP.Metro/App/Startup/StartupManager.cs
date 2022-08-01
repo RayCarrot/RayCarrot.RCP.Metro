@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -47,11 +46,6 @@ public class StartupManager
     #endregion
 
     #region Private Properties
-
-    private FileLaunchHandler[] FileLaunchHandlers => new FileLaunchHandler[]
-    {
-        new PatchFileLaunchHandler()
-    };
 
     private TimeSpan SplashScreenFadeoutTime => TimeSpan.FromMilliseconds(200);
     private SplashScreen? SplashScreen { get; set; }
@@ -165,7 +159,7 @@ public class StartupManager
         // Check if the app was opened from a file
         if (Args.FilePathArg != null)
             // Attempt to validate with an available file launch handler
-            return FileLaunchHandlers.FirstOrDefault(x => x.IsValid(Args.FilePathArg.Value));
+            return FileLaunchHandler.GetHandler(Args.FilePathArg.Value);
 
         return null;
     }
@@ -407,7 +401,10 @@ public class StartupManager
             Logger.Debug("Startup {0} ms: Optionally showed log viewer", sw.ElapsedMilliseconds);
 
             // Invoke the file launch handler if we have one
-            fileLaunchHandler?.Invoke(Args.FilePathArg!.Value);
+            fileLaunchHandler?.Invoke(Args.FilePathArg!.Value, FileLaunchHandler.State.Startup);
+
+            // Start receiving arguments from potentially new process
+            Args.StartReceiveArguments();
 
             // The following startup actions can run in the background after the app window has opened
             if (isFullStartup)

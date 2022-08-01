@@ -189,29 +189,45 @@ public partial class App : Application
         {
             if (!Mutex.WaitOne(0, false))
             {
-                // Get the current process
-                using Process currentProcess = Process.GetCurrentProcess();
-                string currentProcessName = currentProcess.ProcessName;
-                int currentProcessID = currentProcess.Id;
-                
-                // NOTE: This will only work if the processes were opened from the same file. Find better solution?
                 // Attempt to find the other running process
-                using Process? otherProcess = Process.GetProcessesByName(currentProcessName).
-                    FirstOrDefault(x => x.Id != currentProcessID);
+                using Process? otherProcess = TryGetOtherInstanceProcess();
+
+                bool showError = false;
 
                 if (otherProcess != null)
                 {
                     // Focus the process
-                    AutomationElement element = AutomationElement.FromHandle(otherProcess.MainWindowHandle);
-                    WindowPattern wPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
-                    wPattern.SetWindowVisualState(WindowVisualState.Normal);
+                    try
+                    {
+                        AutomationElement element = AutomationElement.FromHandle(otherProcess.MainWindowHandle);
+                        WindowPattern wPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
+                        wPattern.SetWindowVisualState(WindowVisualState.Normal);
+                    }
+                    catch
+                    {
+                        showError = true;
+                    }
+
+                    // If there are launch arguments we try to send those over to the running instance
+                    try
+                    {
+                        LaunchArguments args = ServiceProvider.GetRequiredService<LaunchArguments>();
+                        if (args.HasArgs)
+                            args.SendArguments();
+                    }
+                    catch
+                    {
+                        showError = true;
+                    }
                 }
                 else
                 {
-                    // Fall back to show a warning message if no process was found
+                    showError = true;
+                }
+
+                if (showError)
                     MessageBox.Show("An instance of the Rayman Control Panel is already running", "Error starting",
                         MessageBoxButton.OK, MessageBoxImage.Error);
-                }
 
                 return false;
             }
@@ -223,6 +239,25 @@ public partial class App : Application
         }
 
         return true;
+    }
+
+    private Process? TryGetOtherInstanceProcess()
+    {
+        try
+        {
+            using Process currentProcess = Process.GetCurrentProcess();
+            string currentProcessName = currentProcess.ProcessName;
+            int currentProcessID = currentProcess.Id;
+
+            // NOTE: This will only work if the processes were opened from the same file (or another file with the same name).
+            //       Find better solution?
+            // Attempt to find the other running process
+            return Process.GetProcessesByName(currentProcessName).FirstOrDefault(x => x.Id != currentProcessID);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private bool VerifyRuntime()
