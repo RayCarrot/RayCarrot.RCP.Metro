@@ -21,12 +21,18 @@ public static class ContextExtensions
 
         try
         {
-            return FileFactory.Read<T>(context, fileName, (_, o) => onPreSerialize?.Invoke(o));
-        }
-        finally
-        {
+            T data = FileFactory.Read<T>(context, fileName, (_, o) => onPreSerialize?.Invoke(o));
+
             if (removeFileWhenComplete)
                 context.RemoveFile(file);
+
+            return data;
+        }
+        catch
+        {
+            // Always remove the file from the context if there's an exception when reading it
+            context.RemoveFile(file);
+            throw;
         }
     }
 

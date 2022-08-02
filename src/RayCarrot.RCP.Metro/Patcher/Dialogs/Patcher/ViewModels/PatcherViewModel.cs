@@ -462,12 +462,17 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         $"The selected patch can only be applied to {metaData.Game.GetGameInfo().DisplayName}",
                         MessageType.Error);
 
+                    _context.RemoveFile(patchFilePath);
+
                     continue;
                 }
 
                 // Verify the security
                 if (!await VerifyPatchSecurityAsync(patch))
+                {
+                    _context.RemoveFile(patchFilePath);
                     continue;
+                }
 
                 // Add the patch view model so we can work with it
                 AddPatchFromFile(_context, patch, patchFilePath);
@@ -690,6 +695,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 // Add the patch file
                 AddPatchFromFile(_context, _pendingPatchFile.Value.PatchFile, _pendingPatchFile.Value.PatchFilePath);
                 HasChanges = true;
+            }
+            else
+            {
+                _context.RemoveFile(_pendingPatchFile.Value.PatchFilePath);
             }
 
             _pendingPatchFile = null;
