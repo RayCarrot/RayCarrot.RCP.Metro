@@ -114,11 +114,15 @@ public class LaunchArguments
                 // Create the server with the matching pipe name
                 using NamedPipeServerStream pipeServer = new(PipeName, PipeDirection.In);
 
+                Logger.Info("Start watching for recieved launch arguments from another instance");
+
                 // Wait for a connection
                 await pipeServer.WaitForConnectionAsync(token);
 
                 // Throw if cancelled
                 token.ThrowIfCancellationRequested();
+
+                Logger.Info("A connection has been established");
 
                 // Create a reader to read the arguments
                 using StreamReader reader = new(pipeServer);
@@ -135,6 +139,9 @@ public class LaunchArguments
                     lines.Add(line);
                 }
 
+                Logger.Info("Read {0} arguments", lines.Count);
+                Logger.Trace("Launch arguments: {0}", String.Join(", ", lines));
+
                 // Create a new launch arguments instance
                 LaunchArguments newArgs = new(lines.ToArray());
 
@@ -147,6 +154,8 @@ public class LaunchArguments
                     fileLaunchHandler?.Invoke(newArgs.FilePathArg.Value,
                         FileLaunchHandler.State.Running);
                 }
+
+                Logger.Info("Handled launch arguments");
             }
         }
         catch (OperationCanceledException ex)
