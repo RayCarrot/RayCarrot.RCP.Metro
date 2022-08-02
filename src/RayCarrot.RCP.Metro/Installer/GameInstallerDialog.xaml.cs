@@ -103,7 +103,7 @@ public partial class GameInstallerDialog : WindowContentControl, IDialogWindowCo
                 return;
 
             // Set the progress
-            win.SetTaskbarProgressValue(new Progress(e.Progress.TotalProgress.Percentage, 100, 0));
+            win.SetTaskbarProgressValue(new Progress(e.Progress.TotalProgress.Percentage_100, 0, 100));
 
             // Set the state
             switch (e.State)

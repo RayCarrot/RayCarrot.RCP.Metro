@@ -468,7 +468,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     patchFile.Metadata.TotalSize = totalSize;
 
                     // Pack the file
-                    patchFile.WriteAndPackResources(x => operation.SetProgress(new Progress(1 + x.Percentage / 100, 2)));
+                    patchFile.WriteAndPackResources(x => operation.SetProgress(new Progress(1 + x.Percentage_100 / 100, 2)));
                     
                     // Dispose temporary files
                     _tempDir?.Dispose();

@@ -260,6 +260,7 @@ public class Patcher
                         modification.ProcessFile(
                             fileChanges: fileChanges,
                             fileExists: true,
+                            // ReSharper disable once AccessToDisposedClosure
                             getCurrentFile: () => file.GetDecodedFileData(archiveData.Generator).Stream,
                             addCurrentFile: x =>
                             {
@@ -319,7 +320,7 @@ public class Patcher
                     archiveOutputFile.TempPath.Name, true);
 
                 manager.WriteArchive(archiveData.Generator, archive, archiveOutputStream, archiveFiles, progressCallback: 
-                    x => progressCallback?.Invoke(new Progress(x.Percentage * 0.5 + 50, 100))); // 50-100%
+                    x => progressCallback?.Invoke(new Progress(x.Percentage_100 * 0.5 + 50, 100))); // 50-100%
 
                 sw.Stop();
 
@@ -390,20 +391,23 @@ public class Patcher
         Dictionary<string, LocationModifications> locationModifications =
             GetFileModificationsPerLocation(game, libraryFile?.History, enabledPatchFiles);
 
-        int maxProgress = locationModifications.Count + 1;
-        int progressIndex = 0;
+        int totalFilesCount = locationModifications.Values.Sum(x => x.FileModifications.Count);
+        int libraryRepackProgressLength = totalFilesCount / 3;
+        Progress currentProgress = new(0, totalFilesCount + libraryRepackProgressLength);
 
-        progressCallback?.Invoke(new Progress(progressIndex, maxProgress));
+        progressCallback?.Invoke(currentProgress);
 
-        Action<Progress>? operationProgressCallback = progressCallback == null
+        Action<Progress>? getOperationProgressCallback(double length) => progressCallback == null
             ? null
-            : x => progressCallback?.Invoke(new Progress(progressIndex + x.Percentage / 100, maxProgress));
+            : x => progressCallback.Invoke(currentProgress.Add(x, length));
 
         bool success = true;
 
         // Modify every location
         foreach (string locationKey in locationModifications.Keys)
         {
+            int locationFilesCount = locationModifications[locationKey].FileModifications.Count;
+
             try
             {
                 // Physical
@@ -413,7 +417,7 @@ public class Patcher
                         fileChanges: fileChanges,
                         fileModifications: locationModifications[locationKey].FileModifications,
                         dirPath: gameDirectory,
-                        progressCallback: operationProgressCallback);
+                        progressCallback: getOperationProgressCallback(locationFilesCount));
                 }
                 // Archive
                 else
@@ -426,7 +430,7 @@ public class Patcher
                         fileModifications: locationModifications[locationKey].FileModifications,
                         archiveFilePath: gameDirectory + locationModifications[locationKey].Location,
                         manager: manager,
-                        progressCallback: operationProgressCallback);
+                        progressCallback: getOperationProgressCallback(locationFilesCount));
                 }
             }
             catch (Exception ex)
@@ -435,7 +439,7 @@ public class Patcher
                 success = false;
             }
 
-            progressIndex++;
+            currentProgress += locationFilesCount;
         }
 
         foreach (var archivedLocations in locationModifications.
@@ -445,7 +449,7 @@ public class Patcher
             await archivedLocations.Key!.OnRepackedArchivesAsync(archivedLocations.Select(x => gameDirectory + x.Value.Location).ToArray());
         }
 
-        progressCallback?.Invoke(new Progress(progressIndex, maxProgress));
+        progressCallback?.Invoke(currentProgress);
 
         // Create the library file if it didn't already exist
         if (libraryFile == null)
@@ -465,9 +469,9 @@ public class Patcher
         libraryFile.Patches = patches;
 
         // Write and pack the library file
-        libraryFile.WriteAndPackResources(operationProgressCallback);
+        libraryFile.WriteAndPackResources(getOperationProgressCallback(libraryRepackProgressLength));
 
-        progressCallback?.Invoke(new Progress(maxProgress, maxProgress));
+        progressCallback?.Invoke(currentProgress.Completed());
 
         return success;
     }

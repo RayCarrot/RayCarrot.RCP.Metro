@@ -125,7 +125,7 @@ public class GameInstaller : IStatusUpdated, IDisposable
             ItemProgress = itemProgress ?? new Progress(0),
 
             // Set the total progress
-            TotalProgress = new Progress((CurrentItem * 100) + (itemProgress?.Percentage ?? 0), TotalPercentage),
+            TotalProgress = new Progress((CurrentItem * 100) + (itemProgress?.Percentage_100 ?? 0), TotalPercentage),
 
             // Set the current item
             CurrentItem = CurrentObject

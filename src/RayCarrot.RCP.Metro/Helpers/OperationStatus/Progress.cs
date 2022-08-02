@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Contains progress for an ongoing operation
 /// </summary>
-[DebuggerDisplay("{" + nameof(Percentage) + "}%")]
+[DebuggerDisplay("{" + nameof(Percentage_100) + "}%")]
 public readonly struct Progress
 {
     #region Constructors
@@ -30,21 +30,21 @@ public readonly struct Progress
     public Progress(double current, double max)
     {
         Current = current;
-        Max = max;
         Min = 0;
+        Max = max;
     }
 
     /// <summary>
     /// Creates a new progress
     /// </summary>
     /// <param name="current">The current value</param>
-    /// <param name="max">The maximum value</param>
     /// <param name="min">The minimum value</param>
-    public Progress(double current, double max, double min)
+    /// <param name="max">The maximum value</param>
+    public Progress(double current, double min, double max)
     {
         Current = current;
-        Max = max;
         Min = min;
+        Max = max;
     }
 
     #endregion
@@ -67,9 +67,14 @@ public readonly struct Progress
     public double Min { get; }
 
     /// <summary>
-    /// The progress percentage of the operation
+    /// The progress percentage of the operation with a range of 0-100
     /// </summary>
-    public double Percentage => Current / (Max - Min) * 100; // TODO: Wouldn't 0-1 make more sense?
+    public double Percentage_100 => Percentage * 100;
+
+    /// <summary>
+    /// The progress percentage of the operation with a range of 0-1
+    /// </summary>
+    public double Percentage => Current / (Max - Min);
 
     #endregion
 
@@ -80,16 +85,31 @@ public readonly struct Progress
     /// </summary>
     /// <param name="progress">The progress to increment</param>
     /// <returns>The new progress</returns>
-    public static Progress operator ++(Progress progress)
-        => new Progress(progress.Current + 1, progress.Max, progress.Min);
+    public static Progress operator ++(Progress progress) => 
+        new Progress(progress.Current + 1, progress.Min, progress.Max);
 
     /// <summary>
     /// Decrements the current progress
     /// </summary>
     /// <param name="progress">The progress to decrement</param>
     /// <returns>The new progress</returns>
-    public static Progress operator --(Progress progress)
-        => new Progress(progress.Current - 1, progress.Max, progress.Min);
+    public static Progress operator --(Progress progress) => 
+        new Progress(progress.Current - 1, progress.Min, progress.Max);
+
+    public static Progress operator +(Progress progress, double value) =>
+        new Progress(progress.Current + value, progress.Min, progress.Max);
+
+    public static Progress operator -(Progress progress, double value) =>
+        new Progress(progress.Current - value, progress.Min, progress.Max);
+
+    #endregion
+
+    #region Public Methods
+
+    public Progress Add(Progress progress, double length) => 
+        new Progress(Current + progress.Percentage * length, Min, Max);
+
+    public Progress Completed() => new Progress(Max, Min, Max);
 
     #endregion
 }
