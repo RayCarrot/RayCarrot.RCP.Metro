@@ -120,6 +120,10 @@ public class StartupManager
 
     private void CheckLaunchArgs()
     {
+        Logger.Trace("Launch arguments:");
+        foreach (string arg in Args.Args)
+            Logger.Trace(arg);
+
         // Check for user level argument
         if (Args.HasArg("-ul", out string? ul))
         {
