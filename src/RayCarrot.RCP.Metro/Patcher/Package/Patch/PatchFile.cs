@@ -15,8 +15,8 @@ public class PatchFile : BinarySerializable, IPackageFile
     #region Constants
 
     private const string FileTypeID = "RCP_Metro.GamePatch";
-    private const string URIProtocol = "rcpgp";
-
+    
+    public const string URIProtocol = "rcpgp";
     public const string FileExtension = ".gp"; // Game Patch
     public const int LatestFormatVersion = 0;
 

@@ -145,14 +145,17 @@ public class LaunchArguments
                 // Create a new launch arguments instance
                 LaunchArguments newArgs = new(lines.ToArray());
 
-                // NOTE: Right now we're just looking at the file path that gets passed in,
-                // but we could expand this to check other arguments as well
+                // NOTE: Right now we're just looking at the file path or URI that gets
+                // passed in, but we could expand this to check other arguments as well
                 if (newArgs.FilePathArg != null)
                 {
-                    FileLaunchHandler? fileLaunchHandler =
-                        FileLaunchHandler.GetHandler(newArgs.FilePathArg.Value);
-                    fileLaunchHandler?.Invoke(newArgs.FilePathArg.Value,
-                        FileLaunchHandler.State.Running);
+                    FileLaunchHandler? fileLaunchHandler = FileLaunchHandler.GetHandler(newArgs.FilePathArg.Value);
+                    fileLaunchHandler?.Invoke(newArgs.FilePathArg.Value, LaunchArgHandler.State.Running);
+                }
+                if (newArgs.HasArgs)
+                {
+                    URILaunchHandler? uriLaunchHandler = URILaunchHandler.GetHandler(newArgs.Args[0]);
+                    uriLaunchHandler?.Invoke(newArgs.Args[0], LaunchArgHandler.State.Running);
                 }
 
                 Logger.Info("Handled launch arguments");

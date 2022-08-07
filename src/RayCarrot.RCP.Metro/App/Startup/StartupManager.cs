@@ -168,6 +168,15 @@ public class StartupManager
         return null;
     }
 
+    private URILaunchHandler? CheckURILaunch()
+    {
+        // Check if the app was opened from a URI
+        if (Args.HasArgs)
+            return URILaunchHandler.GetHandler(Args.Args[0]);
+
+        return null;
+    }
+
     private void InitWebProtocol()
     {
         try
@@ -382,11 +391,13 @@ public class StartupManager
 
             CheckLaunchArgs();
             FileLaunchHandler? fileLaunchHandler = CheckFileLaunch();
+            URILaunchHandler? uriLaunchHandler = CheckURILaunch();
             InitWebProtocol();
             Logger.Debug("Startup {0} ms: Checked launch arguments and initialized web protocol", sw.ElapsedMilliseconds);
 
-            // The file launch can optionally disable the full startup
-            if (fileLaunchHandler?.DisableFullStartup == true)
+            // The file or URI launch can optionally disable the full startup
+            if (fileLaunchHandler?.DisableFullStartup == true ||
+                uriLaunchHandler?.DisableFullStartup == true)
                 isFullStartup = false;
 
             if (isFullStartup)
@@ -404,8 +415,9 @@ public class StartupManager
             await ShowLogViewerAsync();
             Logger.Debug("Startup {0} ms: Optionally showed log viewer", sw.ElapsedMilliseconds);
 
-            // Invoke the file launch handler if we have one
-            fileLaunchHandler?.Invoke(Args.FilePathArg!.Value, FileLaunchHandler.State.Startup);
+            // Invoke the file or uri launch handler if we have one
+            fileLaunchHandler?.Invoke(Args.FilePathArg!.Value, LaunchArgHandler.State.Startup);
+            uriLaunchHandler?.Invoke(Args.Args[0], LaunchArgHandler.State.Startup);
 
             // Start receiving arguments from potentially new process
             Args.StartReceiveArguments();
