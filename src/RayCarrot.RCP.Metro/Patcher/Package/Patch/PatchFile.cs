@@ -15,6 +15,7 @@ public class PatchFile : BinarySerializable, IPackageFile
     #region Constants
 
     private const string FileTypeID = "RCP_Metro.GamePatch";
+    private const string URIProtocol = "rcpgp";
 
     public const string FileExtension = ".gp"; // Game Patch
     public const int LatestFormatVersion = 0;
@@ -99,6 +100,19 @@ public class PatchFile : BinarySerializable, IPackageFile
         }
     }
 
+    public static bool? IsAssociatedWithURIProtocol()
+    {
+        try
+        {
+            return WindowsHelpers.GetHasURIProtocolAssociation(URIProtocol);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Checking if the patch URI protocol association is set");
+            return null;
+        }
+    }
+
     public static void AssociateWithFileType(FileSystemPath programFilePath, bool enable)
     {
         WindowsHelpers.SetFileTypeAssociation(programFilePath, FileExtension, "Rayman Control Panel Game Patch", FileTypeID, enable);
@@ -107,6 +121,16 @@ public class PatchFile : BinarySerializable, IPackageFile
             Logger.Info("Set the file type association for patch files");
         else
             Logger.Info("Removed the file type association for patch files");
+    }
+
+    public static void AssociateWithURIProtocol(FileSystemPath programFilePath, bool enable)
+    {
+        WindowsHelpers.SetURIProtocolAssociation(programFilePath, URIProtocol, "Rayman Control Panel Game Patch Protocol", enable);
+
+        if (enable)
+            Logger.Info("Set the URI protocol association for patch files");
+        else
+            Logger.Info("Removed the URI protocol association for patch files");
     }
 
     #endregion

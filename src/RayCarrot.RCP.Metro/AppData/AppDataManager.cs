@@ -161,17 +161,31 @@ public class AppDataManager
             Data.App_ApplicationPath = assemblyPath;
             Logger.Info("The application path has been updated");
 
-            // If the file type association is set for patch files we need to update them
-            if (File.Exists(assemblyPath) && PatchFile.IsAssociatedWithFileType() == true)
+            if (File.Exists(assemblyPath))
             {
-                try
+                // If the file type association is set for patch files we need to update them
+                if (PatchFile.IsAssociatedWithFileType() == true)
                 {
-                    // Default to the file association being enabled
-                    PatchFile.AssociateWithFileType(assemblyPath, true);
+                    try
+                    {
+                        PatchFile.AssociateWithFileType(assemblyPath, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error(ex, "Setting patch file type association");
+                    }
                 }
-                catch (Exception ex)
+
+                if (PatchFile.IsAssociatedWithURIProtocol() == true)
                 {
-                    Logger.Error(ex, "Setting patch file type association");
+                    try
+                    {
+                        PatchFile.AssociateWithURIProtocol(assemblyPath, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error(ex, "Setting patch URI protocol association");
+                    }
                 }
             }
         }
@@ -408,12 +422,22 @@ public class AppDataManager
         {
             try
             {
-                // Default to the file association being enabled
+                // Default to the file type association being enabled
                 PatchFile.AssociateWithFileType(Data.App_ApplicationPath, true);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Setting patch file type association");
+            }
+
+            try
+            {
+                // Default to the URI protocol association being enabled
+                PatchFile.AssociateWithURIProtocol(Data.App_ApplicationPath, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Setting patch URI protocol association");
             }
         }
     }

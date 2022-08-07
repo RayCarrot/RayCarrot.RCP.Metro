@@ -282,9 +282,35 @@ public static class WindowsHelpers
             0x1000, IntPtr.Zero, IntPtr.Zero);
     }
 
+    public static void SetURIProtocolAssociation(FileSystemPath programFilePath, string uriProtocol, string name, bool enable)
+    {
+        if (enable)
+        {
+            using RegistryKey key = Registry.CurrentUser.CreateSubKey(@$"Software\Classes\{uriProtocol}")!;
+
+            key.SetValue(null, $"URL:{name}");
+            key.SetValue("URL Protocol", String.Empty);
+
+            using (RegistryKey iconKey = key.CreateSubKey("DefaultIcon")!)
+                iconKey.SetValue(null, $"{programFilePath.FullPath},1");
+
+            using (RegistryKey cmdKey = key.CreateSubKey(@"shell\open\command")!)
+                cmdKey.SetValue(null, $"\"{programFilePath.FullPath}\" \"%1\"");
+        }
+        else
+        {
+            Registry.CurrentUser.DeleteSubKeyTree(@$"Software\Classes\{uriProtocol}");
+        }
+    }
+
     public static string GetFileTypeAssociationID(string fileExtension)
     {
         return Registry.GetValue(@$"HKEY_CURRENT_USER\Software\Classes\{fileExtension}", null, null) as string;
+    }
+
+    public static bool GetHasURIProtocolAssociation(string uriProtocol)
+    {
+        return RegistryHelpers.ValueExists(@$"HKEY_CURRENT_USER\Software\Classes\{uriProtocol}", "URL Protocol");
     }
 
     [Flags]

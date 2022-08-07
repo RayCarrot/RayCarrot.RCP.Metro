@@ -535,8 +535,11 @@
                                       Command="{Binding Path=UpdatePatchFileTypeAssociationCommand, Mode=OneTime}" />
 
                             <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Open game patch (.gp) files in Rayman Control Panel from URLs"
-                                      IsChecked="{Binding Path=AssociatePatchURL}" />
+                            <CheckBox Content="Open game patch (.gp) files in Rayman Control Panel from URI protocol"
+                                      ToolTip="Enabling this allows for 1-click installation support from GameBanana"
+                                      IsEnabled="{Binding Path=CanAssociatePatchURIProtocol}"
+                                      IsChecked="{Binding Path=AssociatePatchURIProtocol}"
+                                      Command="{Binding Path=UpdatePatchURIProtocolAssociationCommand, Mode=OneTime}"/>
 
                         </StackPanel>
 

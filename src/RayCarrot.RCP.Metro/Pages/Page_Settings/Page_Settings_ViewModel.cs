@@ -42,6 +42,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
         ResetCommand = new AsyncRelayCommand(ResetAsync);
 
         UpdatePatchFileTypeAssociationCommand = new AsyncRelayCommand(UpdatePatchFileTypeAssociationAsync);
+        UpdatePatchURIProtocolAssociationCommand = new AsyncRelayCommand(UpdatePatchURIProtocolAssociationAsync);
 
         // Create properties
         AsyncLock = new AsyncLock();
@@ -89,6 +90,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
     public ICommand ResetCommand { get; }
 
     public ICommand UpdatePatchFileTypeAssociationCommand { get; }
+    public ICommand UpdatePatchURIProtocolAssociationCommand { get; }
 
     #endregion
 
@@ -147,8 +149,9 @@ public class Page_Settings_ViewModel : BasePageViewModel
     public ObservableCollection<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
 
     public bool CanAssociatePatchFileType { get; set; }
+    public bool CanAssociatePatchURIProtocol { get; set; }
     public bool AssociatePatchFileType { get; set; }
-    public bool AssociatePatchURL { get; set; }
+    public bool AssociatePatchURIProtocol { get; set; }
 
     #endregion
 
@@ -207,11 +210,14 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
             if (refreshPatchAssociations)
             {
-                // TODO-UPDATE: Try/catch
                 bool? isAssociatedWithFileType = PatchFile.IsAssociatedWithFileType();
+                bool? isAssociatedWithURIProtocol = PatchFile.IsAssociatedWithURIProtocol();
+
                 CanAssociatePatchFileType = isAssociatedWithFileType != null;
+                CanAssociatePatchURIProtocol = isAssociatedWithURIProtocol != null;
+
                 AssociatePatchFileType = isAssociatedWithFileType ?? false;
-                AssociatePatchURL = false; // TODO-UPDATE: Implement
+                AssociatePatchURIProtocol = isAssociatedWithURIProtocol ?? false;
             }
 
             try
@@ -370,7 +376,22 @@ public class Page_Settings_ViewModel : BasePageViewModel
             Logger.Error(ex, "Setting patch file type association");            
 
             // TODO-UPDATE: Localize
-            await MessageUI.DisplayExceptionMessageAsync(ex, "An error ocurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again.");
+            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again.");
+        }
+    }
+
+    public async Task UpdatePatchURIProtocolAssociationAsync()
+    {
+        try
+        {
+            PatchFile.AssociateWithURIProtocol(Data.App_ApplicationPath, AssociatePatchURIProtocol);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Setting patch uri protocol association");
+
+            // TODO-UPDATE: Localize
+            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the URI protocol association for patch files. Try running the Rayman Control Panel as admin and try again.");
         }
     }
 
