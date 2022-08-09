@@ -66,6 +66,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownAppAsync(false)));
         UpdateThemeCommand = new RelayCommand(UpdateTheme);
         ExportWebPatchesFilesCommand = new AsyncRelayCommand(ExportWebPatchesFilesAsync);
+        RunLoadOperationCommand = new AsyncRelayCommand(RunLoadOperationAsync);
     }
 
     #endregion
@@ -93,6 +94,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public ICommand ShutdownAppCommand { get; }
     public ICommand UpdateThemeCommand { get; }
     public ICommand ExportWebPatchesFilesCommand { get; }
+    public ICommand RunLoadOperationCommand { get; }
 
     #endregion
 
@@ -658,6 +660,24 @@ public class Page_Debug_ViewModel : BasePageViewModel
             Logger.Error(ex, "Generating web patches files");
 
             await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when generating the files");
+        }
+    }
+
+    public async Task RunLoadOperationAsync()
+    {
+        using (DisposableOperation operation = await App.LoadOperation.RunAsync("Debug load operation"))
+        {
+            await Task.Run(async () =>
+            {
+                const int max = 1000;
+                for (int i = 0; i < max; i++)
+                {
+                    operation.SetProgress(new Progress(i, max));
+                    await Task.Delay(10);
+                }
+
+                operation.SetProgress(new Progress(max, max));
+            });
         }
     }
 

@@ -45,6 +45,10 @@
                                 Command="{Binding Path=RefreshAllParallelAsyncCommand, Mode=OneTime}"
                                 IconKind="Refresh"/>
 
+            <local:MenuItemIcon Header="Run load operation"
+                                Command="{Binding Path=RunLoadOperationCommand, Mode=OneTime}"
+                                IconKind="CircleOutline"/>
+
             <local:MenuItemIcon Header="Collect garbage"
                                 Command="{Binding Path=GCCollectCommand, Mode=OneTime}"
                                 IconKind="Memory"/>
