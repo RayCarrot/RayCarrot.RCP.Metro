@@ -19,9 +19,17 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public abstract FileSystemPath TempPath { get; }
 
-        /// <summary>
-        /// Removes the temporary entry
-        /// </summary>
-        public abstract void Dispose();
+        ~TempFileSystemEntry() => Dispose(false);
+
+        protected abstract void Dispose(bool disposing);
+
+        public void Dispose()
+        {
+            // Dispose of unmanaged resources
+            Dispose(true);
+
+            // Suppress finalization
+            GC.SuppressFinalize(this);
+        }
     }
 }

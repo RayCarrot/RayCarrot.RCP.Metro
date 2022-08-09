@@ -66,10 +66,7 @@ public sealed class TempFile : TempFileSystemEntry
         return tempFile;
     }
 
-    /// <summary>
-    /// Removes the temporary file
-    /// </summary>
-    public override void Dispose()
+    protected override void Dispose(bool disposing)
     {
         try
         {

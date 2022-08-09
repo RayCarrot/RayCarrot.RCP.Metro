@@ -48,10 +48,7 @@ namespace RayCarrot.RCP.Metro
             return tempDir;
         }
 
-        /// <summary>
-        /// Removes the temporary directory
-        /// </summary>
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
             try
             {
