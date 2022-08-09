@@ -27,6 +27,12 @@ public partial class PatcherDialog : WindowContentControl
 
     #endregion
 
+    #region Private Fields
+
+    private bool _forceClose;
+
+    #endregion
+
     #region Public Properties
 
     public override bool IsResizable => true;
@@ -53,6 +59,9 @@ public partial class PatcherDialog : WindowContentControl
     {
         if (!await base.ClosingAsync())
             return false;
+
+        if (_forceClose)
+            return true;
 
         // Cancel the closing if it's loading
         if (ViewModel.LoadOperation.IsLoading)
@@ -142,6 +151,7 @@ public partial class PatcherDialog : WindowContentControl
         await ViewModel.ApplyAsync();
 
         // Close the dialog
+        _forceClose = true;
         WindowInstance.Close();
     }
 

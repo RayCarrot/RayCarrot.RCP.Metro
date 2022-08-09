@@ -29,6 +29,7 @@ public partial class PatchCreatorDialog : WindowContentControl
     #region Private Fields
 
     private readonly FileSystemPath? _patchToImportFrom;
+    private bool _forceClose;
 
     #endregion
 
@@ -58,6 +59,9 @@ public partial class PatchCreatorDialog : WindowContentControl
     {
         if (!await base.ClosingAsync())
             return false;
+
+        if (_forceClose)
+            return true;
 
         // Cancel the closing if it's loading
         if (ViewModel.LoadOperation.IsLoading)
@@ -114,7 +118,8 @@ public partial class PatchCreatorDialog : WindowContentControl
         
         if (!result)
             return;
-        
+
+        _forceClose = true;
         WindowInstance.Close();
     }
 
