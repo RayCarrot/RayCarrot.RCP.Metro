@@ -55,7 +55,16 @@ public partial class PatcherDialog : WindowContentControl
             return false;
 
         // Cancel the closing if it's loading
-        return !ViewModel.LoadOperation.IsLoading;
+        if (ViewModel.LoadOperation.IsLoading)
+            return false;
+
+        // Ask user if there are pending changes
+        if (ViewModel.HasChanges)
+            // TODO-UPDATE: Localize and use in other places
+            return await Services.MessageUI.DisplayMessageAsync("There are unsaved changed. Do you want to continue and discard them?",
+                "Confirm discarding changed", MessageType.Question, true);
+        else
+            return true;
     }
 
     #endregion

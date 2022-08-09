@@ -60,7 +60,13 @@ public partial class PatchCreatorDialog : WindowContentControl
             return false;
 
         // Cancel the closing if it's loading
-        return !ViewModel.LoadOperation.IsLoading;
+        if (ViewModel.LoadOperation.IsLoading)
+            return false;
+
+        // Ask user to confirm
+        // TODO-UPDATE: Localize and use in other places
+        return await Services.MessageUI.DisplayMessageAsync("There are unsaved changed. Do you want to continue and discard them?",
+            "Confirm discarding changed", MessageType.Question, true);
     }
 
     #endregion
