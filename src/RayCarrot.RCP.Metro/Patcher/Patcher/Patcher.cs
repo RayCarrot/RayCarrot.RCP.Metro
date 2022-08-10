@@ -177,6 +177,13 @@ public class Patcher
             PatchFilePath patchFilePath = modification.PatchFilePath;
             FileSystemPath physicalFilePath = dirPath + patchFilePath.FilePath;
 
+            // Make sure the file is inside of the directory. We want to disallow going up the tree using ..\
+            if (!Path.GetFullPath(physicalFilePath).StartsWith(dirPath))
+            {
+                Logger.Warn("File modification with path {0} is not valid", patchFilePath.FilePath);
+                continue;
+            }
+
             modification.ProcessFile(
                 fileChanges: fileChanges,
                 fileExists: physicalFilePath.FileExists,
@@ -390,6 +397,9 @@ public class Patcher
         // Get the file modifications for each location
         Dictionary<string, LocationModifications> locationModifications =
             GetFileModificationsPerLocation(game, libraryFile?.History, enabledPatchFiles);
+
+        // Get the full path for the game directory. Needed when we check to make sure the relative path is a child of this.
+        gameDirectory = Path.GetFullPath(gameDirectory);
 
         int totalFilesCount = locationModifications.Values.Sum(x => x.FileModifications.Count);
         int libraryRepackProgressLength = totalFilesCount / 3;
