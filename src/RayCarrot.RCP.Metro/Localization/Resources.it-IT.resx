@@ -3136,7 +3136,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>Tieni premuto o premi RB per aggiungere mosse finali alle tue combo</value>
   </data>
   <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
-    <value>Arrampicare sulle pareti</value>
+    <value>Arrampicata sulle pareti</value>
   </data>
   <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
     <value>Consente a Rayman di aggrapparsi a qualsiasi parete usando il suo gancio</value>
@@ -3157,7 +3157,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>Linea</value>
   </data>
   <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
-    <value>Illuminazione</value>
+    <value>Fulmine</value>
   </data>
   <data name="Mod_RRR_MemMod_GrappinGFX_2" xml:space="preserve">
     <value>Scintille</value>
@@ -3187,7 +3187,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>In modalità danza, tenendo premuto LB si avvierà un ritmo su cui Rayman potrà ballare</value>
   </data>
   <data name="Mod_RRR_MemMod_GroovyMoveset" xml:space="preserve">
-    <value>Danza: set di mosse fantastiche</value>
+    <value>Danza: set di mosse groove</value>
   </data>
   <data name="Mod_RRR_MemMod_GroovyMovesetInfo" xml:space="preserve">
     <value>Rayman usa diversi passi di danza</value>
@@ -3202,7 +3202,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>Disabilita le introduzioni dei minigiochi</value>
   </data>
   <data name="Mod_RRR_MemMod_DisableIntrosInfo" xml:space="preserve">
-    <value>I filmati introduttivi dei minigiochi cambiano lo stato del mondo e talvolta disattivano Rayman (ad esempio I conigli non fanno regali)</value>
+    <value>I filmati introduttivi dei minigiochi cambiano lo stato del mondo e talvolta disattivano Rayman (Es. I conigli non fanno regali)</value>
   </data>
   <data name="Mod_RRR_MemMod_DisableFootstepSound" xml:space="preserve">
     <value>Disabilita il suono dei passi</value>
@@ -3226,7 +3226,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>Rabbids</value>
   </data>
   <data name="Mod_RRR_MemMod_RabbidsDropItems" xml:space="preserve">
-    <value>I conigli rilasciano oggetti</value>
+    <value>I conigli lasciano cadere oggetti</value>
   </data>
   <data name="Mod_RRR_MemMod_RabbidsDropItemsInfo" xml:space="preserve">
     <value>I Rabbids lasciano i loro oggetti per essere usati da Rayman</value>
@@ -3244,13 +3244,13 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>Alcuni Rabbids ricevono uno dei 4 poteri prototipo. Scoprili giocando!</value>
   </data>
   <data name="Mod_RRR_MemMod_MountsHeader" xml:space="preserve">
-    <value>Monta</value>
+    <value>Cavalcabili</value>
   </data>
   <data name="Mod_RRR_MemMod_TameMounts" xml:space="preserve">
     <value>Addomesticare cavalcabili</value>
   </data>
   <data name="Mod_RRR_MemMod_TameMountsInfo" xml:space="preserve">
-    <value>I cavalcabili diventano controllabili quando le cavalchi per la prima volta</value>
+    <value>I cavalcabili diventano controllabili quando li cavalchi per la prima volta</value>
   </data>
   <data name="Mod_RRR_MemMod_BatsActLikeEagles" xml:space="preserve">
     <value>I pipistrelli si comportano come aquile</value>
@@ -3268,7 +3268,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>I rinoceronti diventano aggressivi</value>
   </data>
   <data name="Mod_RRR_MemMod_AggressiveRhinosInfo" xml:space="preserve">
-    <value>I rinoceronti delle corse ti attaccheranno. Preparati a morire (o usa il trucco immortale)!</value>
+    <value>I rinoceronti delle corse ti attaccheranno. Preparati a morire (o usa il trucco per diventare immortale)!</value>
   </data>
   <data name="Mod_RRR_MemMod_SpiderJump" xml:space="preserve">
     <value>I ragni robot possono saltare</value>
@@ -3289,19 +3289,19 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>Si possono trovare dischi volanti in giro, ma questo li rende più difficili da montare</value>
   </data>
   <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
-    <value>Cacce al coniglio</value>
+    <value>Caccia al coniglio</value>
   </data>
   <data name="Mod_RRR_MemMod_MissileLaunchersTarget" xml:space="preserve">
     <value>I lanciamissili prendono di mira Rayman</value>
   </data>
   <data name="Mod_RRR_MemMod_MissileLaunchersTargetInfo" xml:space="preserve">
-    <value>I missili prenderanno di mira Rayman, ma 1 colpo da loro ucciderà Rayman!</value>
+    <value>I missili prenderanno di mira Rayman, ma 1 loro colpo ucciderà Rayman!</value>
   </data>
   <data name="Mod_RRR_MemMod_DontDestroyBipods" xml:space="preserve">
     <value>Non distruggere i bipodi</value>
   </data>
   <data name="Mod_RRR_MemMod_DontDestroyBipodsInfo" xml:space="preserve">
-    <value>La maggior parte dei bipiedi collassa per impostazione predefinita quando non è in modalità FPS. Questo impedisce loro di essere distrutti.</value>
+    <value>La maggior parte dei bipodi collassa per impostazione predefinita quando non è in modalità FPS. Questo impedisce loro di essere distrutti.</value>
   </data>
   <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
     <value>Attiva tutti i trigger di attivazione</value>
@@ -3319,7 +3319,7 @@ Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value
     <value>Salta</value>
   </data>
   <data name="Mod_RRR_KeyAction_4" xml:space="preserve">
-    <value>Attacca</value>
+    <value>Attaccare</value>
   </data>
   <data name="Mod_RRR_KeyAction_6" xml:space="preserve">
     <value>Rampino</value>
@@ -4229,7 +4229,7 @@ Modificando l'origine dati qui puoi scegliere quale posizione viene utilizzata p
     <value>Importando i file</value>
   </data>
   <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
-    <value>I file {0} hanno lo stesso nome dei file esistenti. Vuoi sostituirli?
+    <value>I {0} file hanno lo stesso nome dei file esistenti. Vuoi sostituirli?
 
 Conflitti:
 {1}</value>

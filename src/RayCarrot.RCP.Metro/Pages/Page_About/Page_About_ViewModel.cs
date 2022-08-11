@@ -42,6 +42,7 @@ public class Page_About_ViewModel : BasePageViewModel
             new("ItzalDrake", new ResourceLocString(nameof(Resources.About_Credits_ItzalDrake))),
             new("Juanmv94", new ResourceLocString(nameof(Resources.About_Credits_Janmv94))),
             new("Mark", new ResourceLocString(nameof(Resources.About_Credits_432Hz))),
+            new("Marteaufou", "French (France) program translation"), // TODO-UPDATE: Localize
             new("Noserdog", new ResourceLocString(nameof(Resources.About_Credits_Noserdog))),
             new("PluMGMK", new ResourceLocString(nameof(Resources.About_Credits_PluMGMK))),
             new("RayActivity", new ResourceLocString(nameof(Resources.About_Credits_RayActivity))),
@@ -50,6 +51,7 @@ public class Page_About_ViewModel : BasePageViewModel
             new("Robin", new ResourceLocString(nameof(Resources.About_Credits_Robin))),
             new("Snagglebee", new ResourceLocString(nameof(Resources.About_Credits_Snagglebee))),
             new("XanderNT", new ResourceLocString(nameof(Resources.About_Credits_XanderNT))),
+            new("ZetaXO", "French (France) program translation"), // TODO-UPDATE: Localize
         };
 
         // Create commands

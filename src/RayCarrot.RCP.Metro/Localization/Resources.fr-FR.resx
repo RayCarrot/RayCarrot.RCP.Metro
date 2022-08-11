@@ -2591,7 +2591,7 @@ Message d'erreur : {1}</value>
     <value>Choisir un dossier</value>
   </data>
   <data name="Browse_SelectDrive" xml:space="preserve">
-    <value>Choisir un disque</value>
+    <value>Choisir un lecteur</value>
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Traduction du programme en russe (Russie)</value>
@@ -2606,10 +2606,10 @@ Message d'erreur : {1}</value>
     <value>Par défaut</value>
   </data>
   <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
-    <value>alphabétiquement (croissant)</value>
+    <value>Alphabétiquement (croissant)</value>
   </data>
   <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
-    <value>alphabétiquement (décroissant)</value>
+    <value>Alphabétiquement (décroissant)</value>
   </data>
   <data name="Archive_Search" xml:space="preserve">
     <value>Rechercher</value>
@@ -2621,7 +2621,7 @@ Message d'erreur : {1}</value>
     <value>Ajouter des fichiers</value>
   </data>
   <data name="Archive_AddFiles_Info" xml:space="preserve">
-    <value>Ajouter les fichiers sélectionnés au dossier</value>
+    <value>Ajoute les fichiers sélectionnés au dossier</value>
   </data>
   <data name="Archive_ExportConvert" xml:space="preserve">
     <value>Exporter &amp; convertir</value>
@@ -2657,7 +2657,7 @@ Message d'erreur : {1}</value>
     <value>Sauvegarder l'archive</value>
   </data>
   <data name="Archive_ExportDirFileConflict" xml:space="preserve">
-    <value>Le dossier sélectionné contient un fichier avec le même nom que {0}</value>
+    <value>Le dossier sélectionné contient déjà un fichier avec le nom {0}</value>
   </data>
   <data name="Archive_Export_Format_Original" xml:space="preserve">
     <value>Original</value>
@@ -2681,7 +2681,7 @@ Message d'erreur : {1}</value>
     <value>Dossier :</value>
   </data>
   <data name="Archive_FileInfo_Size" xml:space="preserve">
-    <value>Taille de fichier :</value>
+    <value>Taille du fichier :</value>
   </data>
   <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
     <value>Taille du fichier compressé :</value>
@@ -2705,7 +2705,7 @@ Message d'erreur : {1}</value>
     <value>Transparent :</value>
   </data>
   <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
-    <value>Mipmap :</value>
+    <value>Mipmaps :</value>
   </data>
   <data name="Archive_FileInfo_Format" xml:space="preserve">
     <value>Format :</value>
@@ -2795,7 +2795,7 @@ Message d'erreur : {1}</value>
     <value>Charger</value>
   </data>
   <data name="R1Passwords_LevUnlocked" xml:space="preserve">
-    <value>Débloquer</value>
+    <value>Débloqué</value>
   </data>
   <data name="R1Passwords_LevAllCages" xml:space="preserve">
     <value>Toutes les cages</value>
@@ -2825,7 +2825,7 @@ Message d'erreur : {1}</value>
     <value>Le mot de passe doit contenir 10 caractères</value>
   </data>
   <data name="R1Passwords_InvalidChar" xml:space="preserve">
-    <value>Caractère de mot de passe invalide {0}</value>
+    <value>Le caractère {0} du mot de passe est invalide</value>
   </data>
   <data name="R1Passwords_InvalidData" xml:space="preserve">
     <value>Les données du mot de passe sont invalides</value>
@@ -2855,7 +2855,7 @@ Message d'erreur : {1}</value>
     <value>Éditeur de fichiers binaire</value>
   </data>
   <data name="Archive_FileEditors" xml:space="preserve">
-    <value>Éditeur de fichiers</value>
+    <value>Éditeurs de fichiers</value>
   </data>
   <data name="Archive_FileEditorsExt" xml:space="preserve">
     <value>Extension de fichier</value>
@@ -2876,7 +2876,7 @@ Message d'erreur : {1}</value>
     <value>Mono</value>
   </data>
   <data name="Config_VolumeVoices" xml:space="preserve">
-    <value>Volume voix</value>
+    <value>Volume des voix</value>
   </data>
   <data name="Config_Background" xml:space="preserve">
     <value>Montrer l'arrière plan</value>
@@ -2975,7 +2975,7 @@ Message d'erreur : {1}</value>
     <value>Montrer le HUD</value>
   </data>
   <data name="Config_Action_R2Guide" xml:space="preserve">
-    <value>Le savoir du Monde</value>
+    <value>Le Savoir du Monde</value>
   </data>
   <data name="Config_Action_Confirm" xml:space="preserve">
     <value>Confirmer</value>
@@ -2984,7 +2984,7 @@ Message d'erreur : {1}</value>
     <value>Annuler</value>
   </data>
   <data name="ReadOnly" xml:space="preserve">
-    <value>Lecture uniquement</value>
+    <value>Lecture seule</value>
   </data>
   <data name="Archive_SetFileName" xml:space="preserve">
     <value>Spécifiez un nom de fichier</value>
@@ -3021,7 +3021,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Mods Mémoire</value>
   </data>
   <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
-    <value>Active les fonctionnalités du prototype retirées présentes dans le jeu en sélectionnant les mods que vous voulez et en les activant. Il est requis que le jeu soit démarré et ne fonctionne qu'avec les versions Steam et GOG. Les mods appliqués prendront uniquement effet pendant que le jeu est actif et seront remis à zéro quand le jeu sera fermé.</value>
+    <value>Active les fonctionnalités du prototype inutilisées dans le jeu en sélectionnant les mods que vous voulez et en les activant. Cela requiert que le jeu soit démarré et ne fonctionne qu'avec les versions Steam et GOG. Les mods appliqués prendront uniquement effet pendant que le jeu est actif et seront remis à zéro quand le jeu sera fermé.</value>
   </data>
   <data name="Mod_RRR_ButtonMappingHeader" xml:space="preserve">
     <value>Mappage du Clavier</value>
@@ -3057,7 +3057,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Retirer le BF patché</value>
   </data>
   <data name="Mod_RRR_BFPatchesHeader" xml:space="preserve">
-    <value>Patches</value>
+    <value>Patchs</value>
   </data>
   <data name="Mod_RRR_UpdateBFPatch" xml:space="preserve">
     <value>Mettre à jour le BF patché</value>
@@ -3075,10 +3075,10 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Activer les fonctionnalités prototype</value>
   </data>
   <data name="Mod_RRR_MemMod_EnableProtoFeaturesInfo" xml:space="preserve">
-    <value>Le comportement du prototype de Rayman est activé dans tous les niveaux</value>
+    <value>Le comportement prototype de Rayman est activé dans tous les niveaux</value>
   </data>
   <data name="Mod_RRR_MemMod_AddCamControls" xml:space="preserve">
-    <value>Ajouter les contrôles caméra</value>
+    <value>Ajouter des contrôles caméra</value>
   </data>
   <data name="Mod_RRR_MemMod_AddCamControlsInfo" xml:space="preserve">
     <value>Les contrôles de la caméra seront liés au stick droit</value>
@@ -3102,7 +3102,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Ajouter le bouton de boost</value>
   </data>
   <data name="Mod_RRR_MemMod_AddBoostButtonInfo" xml:space="preserve">
-    <value>Normalement réservé à un objet non présent dans le jeu, presser RT fera Rayman aller très vite et activera les attaques de vitesse</value>
+    <value>Normalement réservé à un objet non présent dans le jeu, presser RT fera courir très vite Rayman et activera les attaques de vitesse</value>
   </data>
   <data name="Mod_RRR_MemMod_AddFinishers" xml:space="preserve">
     <value>Ajouter les finishers</value>
@@ -3111,7 +3111,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Appuyez ou maintenez RB pour ajouter un finisher à vos combos</value>
   </data>
   <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
-    <value>Grimper les murs</value>
+    <value>Grimper sur les murs</value>
   </data>
   <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
     <value>Permet à Rayman de s'accrocher à n'importe quel mur en utilisant son grappin</value>
@@ -3120,7 +3120,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>S'accrocher aux points d'accroche</value>
   </data>
   <data name="Mod_RRR_MemMod_HangFromSpotsInfo" xml:space="preserve">
-    <value>Casse le comprotement du grappin mais active un système incomplet qui utilise le grappin comme une corde à laquelle s'accrocher et sauter</value>
+    <value>Casse le comprotement du grappin mais active un système incomplet qui utilise le grappin comme une corde à laquelle s'accrocher et de laquelle sauter</value>
   </data>
   <data name="Mod_RRR_MemMod_GrappinGFX" xml:space="preserve">
     <value>Changer les graphismes du grappin</value>
@@ -3147,7 +3147,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Pouvoirs améliorés</value>
   </data>
   <data name="Mod_RRR_MemMod_UpgradedPowersInfo" xml:space="preserve">
-    <value>Permet à Rayman d'utiliser l'hélicoptère pendant un plus long moment et, si Grimper les murs est activé, permet d'^^etre accroché aux murs indéfiniment</value>
+    <value>Permet à Rayman d'utiliser l'hélicoptère pendant un plus long moment et, si Grimper sur les murs est activé, permet de s'accrocher aux murs indéfiniment</value>
   </data>
   <data name="Mod_RRR_MemMod_Immortal" xml:space="preserve">
     <value>Immortel</value>
@@ -3186,10 +3186,10 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Si les mods BF ne sont pas activés, les bruits de pas de Rayman dans la plupart des endroits peuvent être énervants - utilisez cette option pour les éteindre</value>
   </data>
   <data name="Mod_RRR_MemMod_LessSlippery" xml:space="preserve">
-    <value>Rend Rayman moins glissant</value>
+    <value>Rendre Rayman moins glissant</value>
   </data>
   <data name="Mod_RRR_MemMod_LessSlipperyInfo" xml:space="preserve">
-    <value>Rayman glisse par défaut, cette option améliore légèrement cela</value>
+    <value>Rayman glisse beaucoup par défaut, cette option augmente la traction de Rayman</value>
   </data>
   <data name="Mod_RRR_MemMod_DrawHealthMana" xml:space="preserve">
     <value>Activer l'affichage de débug de la santé et du mana</value>
@@ -3231,7 +3231,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Les chauves-souris fonctionnent comme des aigles</value>
   </data>
   <data name="Mod_RRR_MemMod_BatsActLikeEaglesInfo" xml:space="preserve">
-    <value>Les chauves-souris deviennent énormes et agissent comme les aigles avec des animations différentes</value>
+    <value>Les chauves-souris deviennent énormes et agissent comme les aigles avec différentes animations</value>
   </data>
   <data name="Mod_RRR_MemMod_PigsActLikePlums" xml:space="preserve">
     <value>Les cochons agissent comme des prunes</value>
@@ -3291,7 +3291,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Attaque (finisher)</value>
   </data>
   <data name="Mod_RRR_KeyAction_12" xml:space="preserve">
-    <value>Mode vue</value>
+    <value>Mode vue subjective</value>
   </data>
   <data name="Mod_RRR_KeyAction_14" xml:space="preserve">
     <value>Roulade/Charge au sol</value>
@@ -3342,7 +3342,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Les robots araignée font des bruits d'araignée</value>
   </data>
   <data name="Mod_RRR_BFPatch_CustomHelicoTexture" xml:space="preserve">
-    <value>Ajouter une texture d'hélicopté personnalisée</value>
+    <value>Ajouter une texture d'hélicopter personnalisée</value>
   </data>
   <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
     <value>Ajouter de la fourrure aux Lapins Crétins</value>
@@ -3393,13 +3393,13 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Tout débloquer</value>
   </data>
   <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
-    <value>Un code de développeur. Tout ce qui est dans le mode score et dans la section bonus est débloqué quelque soit votre avancée dans le jeu</value>
+    <value>Un code de développeur. Tout ce qui est dans le mode score et dans la section bonus est débloqué quelle que soit votre avancée dans le jeu</value>
   </data>
   <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
     <value>Montrer des informations de debug</value>
   </data>
   <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
-    <value>Mode de dance : tourne</value>
+    <value>Mode danse : tourner</value>
   </data>
   <data name="ConfirmResetData" xml:space="preserve">
     <value>Êtes vous sûrs de vouloir réinitialiser les paramètres de l'application ? Cela ne peut pas être annulé.</value>
@@ -3447,7 +3447,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Installer {0}</value>
   </data>
   <data name="DriveSelection_RefreshError" xml:space="preserve">
-    <value>Une erreur est survenue en essayant de trouver les fichiers disponibles</value>
+    <value>Une erreur est survenue en essayant de trouver les lecteurs disponibles</value>
   </data>
   <data name="RRR_LevelName_0" xml:space="preserve">
     <value>Les lapins n'aiment pas être dérangés en vacances</value>
@@ -3948,7 +3948,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Score</value>
   </data>
   <data name="Progression_Continues" xml:space="preserve">
-    <value>Continus</value>
+    <value>Continues</value>
   </data>
   <data name="Progression_Lums" xml:space="preserve">
     <value>Lums</value>
@@ -3996,7 +3996,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Electoons</value>
   </data>
   <data name="Progression_ROLumMedals" xml:space="preserve">
-    <value>Médailes lums</value>
+    <value>Médailles Lums</value>
   </data>
   <data name="Progression_SaveEditWarning" xml:space="preserve">
     <value>Editer des fichiers de sauvegarde peut les corrompre si mal réalisé. Il est vivement recommandé de d'abord en faire une sauvegarde. Continuer?</value>
@@ -4014,7 +4014,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Dernière modification</value>
   </data>
   <data name="Progression_SelectEditProgram" xml:space="preserve">
-    <value>Sélectionnez un executable pour l'édition de fichiers de sauvegarde JSON</value>
+    <value>Sélectionnez un exécutable pour l'édition de fichiers de sauvegarde JSON</value>
   </data>
   <data name="Progression_SaveEditSuccess" xml:space="preserve">
     <value>Le fichier de sauvegarde a bien été modifié</value>
@@ -4035,7 +4035,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Source de données</value>
   </data>
   <data name="Progression_DataSourceInfo" xml:space="preserve">
-    <value>Pour les anciens programmes, Windows redirigera dans certains cas les fichiers de sauvegarde/configuration vers le VirtualStore si le programme n'est pas exécuté en tant qu'administrateur. Cela causera d'utiliser des fichier de sauvegarde/configuration différents en fonction qu'il soit exécuté en tant qu'administrateur ou non. En changant le source de données ici vous pouvez choisir quel répertoire est utilisé pour les backups et la vue de progressoin.</value>
+    <value>Pour les anciens programmes, Windows redirigera dans certains cas les fichiers de sauvegarde/configuration vers le VirtualStore si le programme n'est pas exécuté en tant qu'administrateur. Cela causera d'utiliser des fichier de sauvegarde/configuration différents en fonction qu'il soit exécuté en tant qu'administrateur ou non. En changant la source de données ici vous pouvez choisir quel répertoire est utilisé pour les backups et la vue de progression.</value>
   </data>
   <data name="Progression_DataSource_Auto" xml:space="preserve">
     <value>Auto</value>
@@ -4053,7 +4053,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Le répertoire du VirtualStore est toujours utilisé. Cela correspond au répertoire que le jeu utilise quand il n'est pas exécuté en tant qu'administrateur.</value>
   </data>
   <data name="Progression_BackupSlots" xml:space="preserve">
-    <value>Sauvegarde</value>
+    <value>Backup</value>
   </data>
   <data name="Settings_SerializationLog" xml:space="preserve">
     <value>Journal de sérialisation</value>
@@ -4113,7 +4113,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>DirectPlay ne peut être activé que sur Windows 8 et au-delà</value>
   </data>
   <data name="RFRU_SaveFixHeader" xml:space="preserve">
-    <value>Réparer le progrès de la sauvegarde</value>
+    <value>Réparer la progression de la sauvegarde</value>
   </data>
   <data name="RFRU_SaveFixAction" xml:space="preserve">
     <value>Réparer la sauvegarde</value>
@@ -4140,7 +4140,7 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
     <value>Syncroniser automatiquement les texture à la recompilation</value>
   </data>
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
-    <value>Si activé, les textures pour le jeu seront syncronisées automatiquement quand une archive .cnt est recompilée. C'est pratique pour les jeux pour lesquels une synchronisatoin est requise pour importer des textures à résolution plus élevée.</value>
+    <value>Si activé, les textures pour le jeu seront syncronisées automatiquement quand une archive .cnt est recompilée. Cette option est utile sur les jeux pour lesquels une synchronisatoin est requise pour importer des textures à résolution plus élevée.</value>
   </data>
   <data name="Archive_AddFiles_Status" xml:space="preserve">
     <value>Ajout de fichiers</value>
@@ -4155,7 +4155,7 @@ Conflits:
 {1}</value>
   </data>
   <data name="WaitForEditorToClose" xml:space="preserve">
-    <value>En attente de clôture de {0}</value>
+    <value>En attente de la clôture de {0}</value>
   </data>
   <data name="Bool_True" xml:space="preserve">
     <value>Oui</value>
@@ -4170,7 +4170,7 @@ Conflits:
     <value>Jeu</value>
   </data>
   <data name="Mod_Mem_EmuSelection" xml:space="preserve">
-    <value>Emulateur</value>
+    <value>Émulateur</value>
   </data>
   <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
     <value>Propriétés</value>
@@ -4185,11 +4185,11 @@ Conflits:
     <value>Journal</value>
   </data>
   <data name="Mod_RRR_Header" xml:space="preserve">
-    <value>Restoration du prototype
+    <value>Restoration du prototype de
 Rayman contre Les Lapins Crétins</value>
   </data>
   <data name="Mod_Mem_Header" xml:space="preserve">
-    <value>Mods de Mémoire</value>
+    <value>Mods Mémoire</value>
   </data>
   <data name="Mod_Mem_AttachError" xml:space="preserve">
     <value>Un erreur est survenue en s'attachant au processus</value>
@@ -4213,7 +4213,7 @@ Rayman contre Les Lapins Crétins</value>
     <value>Points de vie max</value>
   </data>
   <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
-    <value>Placer Ray</value>
+    <value>Placer Rayman</value>
   </data>
   <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
     <value>Permet de placer Rayman librement dans le niveau</value>
@@ -4234,7 +4234,7 @@ Rayman contre Les Lapins Crétins</value>
     <value>Poing</value>
   </data>
   <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
-    <value>S'Accrocher</value>
+    <value>S'accrocher</value>
   </data>
   <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
     <value>Hélico</value>
@@ -4246,7 +4246,7 @@ Rayman contre Les Lapins Crétins</value>
     <value>Courir</value>
   </data>
   <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
-    <value>Vitesse</value>
+    <value>Graine</value>
   </data>
   <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
     <value>Super-hélico</value>
@@ -4303,10 +4303,10 @@ Rayman contre Les Lapins Crétins</value>
     <value>Pouvoirs</value>
   </data>
   <data name="Mod_Mem_CamX" xml:space="preserve">
-    <value>X de la caméra</value>
+    <value>Axe X de la caméra</value>
   </data>
   <data name="Mod_Mem_CamY" xml:space="preserve">
-    <value>Y de la caméra</value>
+    <value>Axe Y de la caméra</value>
   </data>
   <data name="Mod_Mem_XPos" xml:space="preserve">
     <value>Position X</value>
@@ -4466,5 +4466,149 @@ Rayman contre Les Lapins Crétins</value>
   </data>
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
+    <value>Pour une manette d'Xbox 360, les contrôles sont mappés comme suit :
+A : Sauter/Maintenir dans les airs pour l'hélicoptère
+X : Attaquer
+Y : Utiliser le grappin
+LB : Activer ou désactiver la lumière/Maintenir pour contrôler le tempo de la danse si activé
+LT : Mode vue subjective si activé
+RB : Attaquer/Appuyer ou maintenir pour utiliser les finishers si activés
+RT : Esquive/Charge au sol/Rouler et sauter plusieurs fois pour accélérer si activé
+Croix directionnelle haut : Commence ou arrête le mode danse si activé
+En mode danse, appuyez sur ABXY ou utilisez le stick analogique gauche pour faire des mouvements de danse
+Stick analogique gauche : Déplacer Rayman
+Stick analogique droit : Contrôles caméra si activés
+Select : Mode noclip
+Start : Pause</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Ajouter le mode vue subjective</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
+    <value>Un mode de vue à la première personne est ajouté et mappé au bouton LT</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
+    <value>Chasses au lapin</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
+    <value>Activer tous les déclencheurs d'activation</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
+    <value>Force tous les déclencheurs d'activation à être réglés sur vrai constemment. Causera un immense chaos dans la plupart des niveaux et fera apparaître beaucoup plus d'ennemis (et de bébés Globox)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
+    <value>Activer les déclencheurs des volumes englobants</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
+    <value>Certains déclencheur d'apparition de lapin sont difficiles à atteindre. Ceci les déclenche, mais attention, cela cause des crashs dans beaucoup de niveaux!</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
+    <value>Démon Nurgle</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
+    <value>Activer la lampe torche (activer/désactiver avec LB)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
+    <value>Ajoute la lampe torche à Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
+    <value>Ajoute des objets de lapin inutilisés à Les lapins n'ont pas peur du noir</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Choisir la page de triche</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Afficher les fenêtres en tant que popups</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Activer ceci affichera les fenêtres, telles que la fenêtre d'options de jeu et les boîtes de dialogues, en tant que pop-us à l'intérieur de la fenêtre principale. Désactiver cette option les affichera en tant que fenêtres séparées.</value>
+  </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Trophées de vitesse</value>
+  </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>Quand vous créez un nouveau backup ou utilisez les fichiers de sauvegarde pour la visualisation de progression, le répertoire avec les fichiers les plus récents sera alors utilisé. Quand vous restaurez un backup, il sera restauré dans les deux répertoires.</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Activer la sérialisation fera que toutes les actions de sérialisation, telles que l'utilisation d'Archive Explorer ou regarder la progression du jeu, seront sérialisées dans le journal de sérialisation spécifié. Cela sert principalement pour du débogage mais peut aussi être utile pour voir les structures de données de certains formats.</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Préférences Unity Player/Sauvegardes The Lapins Crétins Big Bang</value>
+  </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>À cause d'un bug dans les premières versions du jeu, la progression de fichier de sauvegarde peut être désynchronisée, faisant que vous avez moins de Ptizêtres que vous n'en ayez récupéré.
+Cela peut rendre certains niveaux inaccessibles. Cet outil tentera de corriger cela.</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Compiler l'archive</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>En s'attachant à un processus de jeu en cours, il est possible de voir et modifier les valeurs du jeu en temps réel. Pour certains jeux, cela permet de réactiver des fonctions inutilisées.</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>Si activé, le jeu se mettra à jouer les deux démos enregistrées inutilisées quand le niveau charge. Cela peut être déclenché en perdant toutes ses vies et en choisssant Réessayer.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>Quand ceci est activé, le jeu chargera les menus multijoueur inutilisés au démarrage. Si le jeu a déjà démarré, il est possible d'y accéder en choisissant de quitter le jeu depuis le menu de pause.
+Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fonctionnalité n'a jamais été complètement implémentée. Le premier menu est la sélection de joueur et le second est la sélection du niveau. Comme ils n'ont jamais été implémentés, le seul moyen de les changer est d'utiliser les champs ci-dessous.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Temps limité</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Temps de la carte</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Index aléatoire</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Salle du conseil des Ptizêtres</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Pendant ce temps-là... Partie 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Barbe Tranchante reçoit de la visite...</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Introduction Cavernes de l'Écho</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Cinématique du ballon des Montagnes de Fer</value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="R3_LevelName_endgame" xml:space="preserve">
+    <value>Fin du jeu</value>
+  </data>
+  <data name="R3_LevelName_toudi_00" xml:space="preserve">
+    <value>2D Madness</value>
+  </data>
+  <data name="R3_LevelName_ten_map" xml:space="preserve">
+    <value>Racket Jump</value>
+  </data>
+  <data name="R3_LevelName_crush" xml:space="preserve">
+    <value>Crush</value>
+  </data>
+  <data name="R3_LevelName_raz_map" xml:space="preserve">
+    <value>Razoff Circus</value>
+  </data>
+  <data name="R3_LevelName_sentinel" xml:space="preserve">
+    <value>Sentinel</value>
+  </data>
+  <data name="R3_LevelName_snipe_00" xml:space="preserve">
+    <value>Missile Command</value>
+  </data>
+  <data name="R3_LevelName_ballmap" xml:space="preserve">
+    <value>Balloons</value>
+  </data>
+  <data name="R3_LevelName_ship_map" xml:space="preserve">
+    <value>Special Invaders</value>
+  </data>
+  <data name="R3_LevelName_commando" xml:space="preserve">
+    <value>Commando</value>
   </data>
 </root>
