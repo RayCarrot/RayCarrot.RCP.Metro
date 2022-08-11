@@ -88,7 +88,11 @@ public partial class PatcherDialog : WindowContentControl
         bool success = await ViewModel.InitializeAsync();
 
         if (!success)
+        {
+            // Close the dialog
+            _forceClose = true;
             WindowInstance.Close();
+        }
     }
 
     private void FileTableHeadersGrid_OnLoaded(object sender, RoutedEventArgs e)
@@ -148,11 +152,14 @@ public partial class PatcherDialog : WindowContentControl
 
     private async void ApplyButton_OnClick(object sender, RoutedEventArgs e)
     {
-        await ViewModel.ApplyAsync();
+        bool success = await ViewModel.ApplyAsync();
 
-        // Close the dialog
-        _forceClose = true;
-        WindowInstance.Close();
+        if (!success)
+        {
+            // Close the dialog
+            _forceClose = true;
+            WindowInstance.Close();
+        }
     }
 
     #endregion

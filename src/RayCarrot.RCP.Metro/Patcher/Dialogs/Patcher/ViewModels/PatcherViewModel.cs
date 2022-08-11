@@ -346,7 +346,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         // Create the context. Normally we do this in the constructor, but we need
         // to read the patch file first here, so we create it earlier
         RCPContext context = new(String.Empty);
-        PatcherViewModel? vm = null;
 
         try
         {
@@ -365,14 +364,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             // Create the view model
-            vm = new PatcherViewModel(patch.Metadata.Game, context, (patch, patchFilePath));
-
-            return vm;
+            return new PatcherViewModel(patch.Metadata.Game, context, (patch, patchFilePath));
         }
         catch
         {
             context.Dispose();
-            vm?.Dispose();
             throw;
         }
     }
@@ -680,6 +676,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> InitializeAsync()
     {
+        // Reset properties
+        _removedPatches.Clear();
+        HasChanges = false;
+        SelectedLocalPatch = null;
+        SelectedExternalPatch = null;
+        LibraryInfo = null;
+
         // Load patches
         bool success = await LoadPatchesAsync();
 
@@ -706,6 +709,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
         // Load external patches
         await LoadExternalPatchesAsync();
+
+        // Refresh displayed external patches
+        RefreshDisplayExternalPatches();
 
         return true;
     }
@@ -743,7 +749,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task LoadExternalPatchesAsync()
     {
-        if (!Services.Data.Patcher_LoadExternalPatches)
+        if (!Services.Data.Patcher_LoadExternalPatches || HasLoadedExternalPatches)
             return;
 
         IsLoadingExternalPatches = true;
@@ -815,7 +821,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         finally
         {
             IsLoadingExternalPatches = false;
-            RefreshDisplayExternalPatches();
         }
     }
 
@@ -852,7 +857,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         Logger.Info("Refreshed displayed external patches");
     }
 
-    public async Task ApplyAsync()
+    public async Task<bool> ApplyAsync()
     {
         // TODO-UPDATE: Localize
         using (DisposableOperation operation = await LoadOperation.RunAsync("Applying patches"))
@@ -873,8 +878,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     // Remove removed patches
                     foreach (string patch in _removedPatches.Where(x => LocalPatches.All(p => p.ID != x)))
                         Library.RemovePatch(patch);
-
-                    _removedPatches.Clear();
 
                     // Get the current patch data
                     PatchLibraryPatchEntry[] patches = LocalPatches.Select(x => new PatchLibraryPatchEntry()
@@ -907,11 +910,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex,
                     "An error occurred when applying the patches. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying patches.");
             }
-            finally
-            {
-                // At this point we have to clear the local patches since the files might have been moved around
-                ClearLocalPatches();
-            }
+
+            // No matter if it succeeds or fails we want to reset the state
+            return await InitializeAsync();
         }
     }
 
