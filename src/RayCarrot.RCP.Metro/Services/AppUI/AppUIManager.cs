@@ -266,16 +266,16 @@ public class AppUIManager
     }
 
     /// <summary>
-    /// Shows a new instance of the Patcher from a patch file path
+    /// Shows a new instance of the Patcher from patch file paths
     /// </summary>
-    /// <param name="patchFilePath">The patch file path</param>
+    /// <param name="patchFilePaths">The patch file paths</param>
     /// <returns>The task</returns>
-    public async Task ShowPatcherAsync(FileSystemPath patchFilePath)
+    public async Task ShowPatcherAsync(FileSystemPath[] patchFilePaths)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        PatcherViewModel? vm = await PatcherViewModel.FromFileAsync(patchFilePath);
+        PatcherViewModel? vm = await PatcherViewModel.FromFilesAsync(patchFilePaths);
 
         if (vm == null)
             return;

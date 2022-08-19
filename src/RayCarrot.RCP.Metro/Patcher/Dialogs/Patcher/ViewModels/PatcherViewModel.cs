@@ -33,9 +33,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         AddPatchCommand = new AsyncRelayCommand(AddPatchAsync);
     }
 
-    private PatcherViewModel(Games game, Context context, (PatchFile, FileSystemPath) pendingPatchFile) : this(game, context)
+    private PatcherViewModel(Games game, Context context, PendingPatch[] pendingPatchFiles) : this(game, context)
     {
-        _pendingPatchFile = pendingPatchFile;
+        _pendingPatchFiles = pendingPatchFiles;
     }
 
     public PatcherViewModel(Games game) : this(game, new RCPContext(String.Empty)) { }
@@ -56,7 +56,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #region Private Fields
 
-    private (PatchFile PatchFile, FileSystemPath PatchFilePath)? _pendingPatchFile;
+    private PendingPatch[]? _pendingPatchFiles;
 
     private readonly HashSet<string> _removedPatches = new();
     private readonly Context _context;
@@ -335,16 +335,19 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #region Public Static Methods
 
-    public static async Task<PatcherViewModel?> FromFileAsync(FileSystemPath patchFilePath)
+    public static async Task<PatcherViewModel?> FromFilesAsync(FileSystemPath[] patchFilePaths)
     {
+        if (patchFilePaths.Length == 0)
+            throw new ArgumentException("There has to be a least one patch file provided", nameof(patchFilePaths));
+
         // Create the context. Normally we do this in the constructor, but we need
         // to read the patch file first here, so we create it earlier
         RCPContext context = new(String.Empty);
 
         try
         {
-            // Read the patch file
-            PatchFile? patch = await ReadPatchFileAsync(context, patchFilePath);
+            // Read the first patch file. This will determine the game.
+            PatchFile? patch = await ReadPatchFileAsync(context, patchFilePaths[0]);
 
             // If the patch file could not be read then we return null
             if (patch == null)
@@ -358,7 +361,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             // Create the view model
-            return new PatcherViewModel(patch.Metadata.Game, context, (patch, patchFilePath));
+            PendingPatch[] pendingPatches = patchFilePaths.Select((x, i) => new PendingPatch(x, i == 0 ? patch : null)).ToArray();
+            return new PatcherViewModel(patch.Metadata.Game, context, pendingPatches);
         }
         catch
         {
@@ -672,21 +676,38 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             return false;
 
         // Add any pending patch files
-        if (_pendingPatchFile != null)
+        if (_pendingPatchFiles != null)
         {
-            // Verify the security
-            if (await VerifyPatchSecurityAsync(_pendingPatchFile.Value.PatchFile))
+            foreach (PendingPatch pendingPatch in _pendingPatchFiles)
             {
-                // Add the patch file
-                AddPatchFromFile(_context, _pendingPatchFile.Value.PatchFile, _pendingPatchFile.Value.PatchFilePath);
-                HasChanges = true;
-            }
-            else
-            {
-                _context.RemoveFile(_pendingPatchFile.Value.PatchFilePath);
+                FileSystemPath patchFilePath = pendingPatch.PatchFilePath;
+                PatchFile? patch = pendingPatch.PatchFile;
+
+                // Read the patch file if it hasn't already been read
+                if (patch == null)
+                {
+                    // Read the patch file
+                    patch = await ReadPatchFileAsync(_context, patchFilePath);
+
+                    // Skip if it's still null
+                    if (patch == null)
+                        continue;
+                }
+
+                // Verify the security
+                if (await VerifyPatchSecurityAsync(patch))
+                {
+                    // Add the patch file
+                    AddPatchFromFile(_context, patch, patchFilePath);
+                    HasChanges = true;
+                }
+                else
+                {
+                    _context.RemoveFile(patchFilePath);
+                }
             }
 
-            _pendingPatchFile = null;
+            _pendingPatchFiles = null;
         }
 
         // Load external patches
@@ -895,6 +916,12 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         LocalPatches.DisposeAll();
         DisplayedExternalPatches.DisposeAll();
     }
+
+    #endregion
+
+    #region Data Types
+
+    private record PendingPatch(FileSystemPath PatchFilePath, PatchFile? PatchFile);
 
     #endregion
 }

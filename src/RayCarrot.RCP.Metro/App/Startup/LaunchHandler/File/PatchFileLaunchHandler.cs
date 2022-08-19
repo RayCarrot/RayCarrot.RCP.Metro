@@ -21,7 +21,7 @@ public class PatchFileLaunchHandler : FileLaunchHandler
         try
         {
             // Show the Patcher
-            await Services.UI.ShowPatcherAsync(filePath);
+            await Services.UI.ShowPatcherAsync(new[] { filePath });
         }
         catch (Exception ex)
         {
