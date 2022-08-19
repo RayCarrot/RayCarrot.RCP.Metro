@@ -7594,6 +7594,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only create a patch for a game that you have added to the Rayman Control Panel.
+        /// </summary>
+        public static string PatchCreator_GameNotAddedError {
+            get {
+                return ResourceManager.GetString("PatchCreator_GameNotAddedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Importing from existing patch.
         /// </summary>
         public static string PatchCreator_ImportingPatch_Status {
@@ -7644,6 +7653,15 @@ namespace RayCarrot.RCP.Metro {
         public static string PatchCreator_RemoveThumbnailInfo {
             get {
                 return ResourceManager.GetString("PatchCreator_RemoveThumbnailInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a patch to import from.
+        /// </summary>
+        public static string PatchCreator_SelectImportPatch {
+            get {
+                return ResourceManager.GetString("PatchCreator_SelectImportPatch", resourceCulture);
             }
         }
         
@@ -7711,6 +7729,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Applying patches.
+        /// </summary>
+        public static string Patcher_Apply_Status {
+            get {
+                return ResourceManager.GetString("Patcher_Apply_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when applying the patches. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying patches..
+        /// </summary>
+        public static string Patcher_ApplyError {
+            get {
+                return ResourceManager.GetString("Patcher_ApplyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully applied all patches.
+        /// </summary>
+        public static string Patcher_ApplySuccess {
+            get {
+                return ResourceManager.GetString("Patcher_ApplySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished applying patches. Some files could not be modified..
+        /// </summary>
+        public static string Patcher_ApplySuccessWithErrors {
+            get {
+                return ResourceManager.GetString("Patcher_ApplySuccessWithErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again..
         /// </summary>
         public static string Patcher_AssociateFileTypeError {
@@ -7756,11 +7810,65 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporting patch.
+        /// </summary>
+        public static string Patcher_Export_Status {
+            get {
+                return ResourceManager.GetString("Patcher_Export_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when extracting the patch.
+        /// </summary>
+        public static string Patcher_ExportError {
+            get {
+                return ResourceManager.GetString("Patcher_ExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export patch.
         /// </summary>
         public static string Patcher_ExportPatch {
             get {
                 return ResourceManager.GetString("Patcher_ExportPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The patch was successfully exported.
+        /// </summary>
+        public static string Patcher_ExportSuccess {
+            get {
+                return ResourceManager.GetString("Patcher_ExportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracting patch contents.
+        /// </summary>
+        public static string Patcher_ExtractContents_Status {
+            get {
+                return ResourceManager.GetString("Patcher_ExtractContents_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when extracting the patch contents.
+        /// </summary>
+        public static string Patcher_ExtractContentsError {
+            get {
+                return ResourceManager.GetString("Patcher_ExtractContentsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The patch contents were successfully extracted.
+        /// </summary>
+        public static string Patcher_ExtractContentsSuccess {
+            get {
+                return ResourceManager.GetString("Patcher_ExtractContentsSuccess", resourceCulture);
             }
         }
         
@@ -7891,6 +7999,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading the patches.
+        /// </summary>
+        public static string Patcher_LoadError {
+            get {
+                return ResourceManager.GetString("Patcher_LoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading external patches.
+        /// </summary>
+        public static string Patcher_LoadExternalGenericError {
+            get {
+                return ResourceManager.GetString("Patcher_LoadExternalGenericError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External patches could not be loaded due to using a newer format. Please update the Rayman Control Panel to continue to be able to download external patches..
+        /// </summary>
+        public static string Patcher_LoadExternalNewerVersionError {
+            get {
+                return ResourceManager.GetString("Patcher_LoadExternalNewerVersionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string Patcher_Modifications_FileColumn {
@@ -7959,6 +8094,87 @@ namespace RayCarrot.RCP.Metro {
         public static string Patcher_PatchesInfo {
             get {
                 return ResourceManager.GetString("Patcher_PatchesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added files:.
+        /// </summary>
+        public static string Patcher_PatchInfo_AddedFiles {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_AddedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        public static string Patcher_PatchInfo_Author {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File path:.
+        /// </summary>
+        public static string Patcher_PatchInfo_FilePath {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_FilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format version:.
+        /// </summary>
+        public static string Patcher_PatchInfo_FormatVersion {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_FormatVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID:.
+        /// </summary>
+        public static string Patcher_PatchInfo_ID {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified:.
+        /// </summary>
+        public static string Patcher_PatchInfo_ModifiedDate {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_ModifiedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removed files:.
+        /// </summary>
+        public static string Patcher_PatchInfo_RemovedFiles {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_RemovedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size:.
+        /// </summary>
+        public static string Patcher_PatchInfo_Size {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string Patcher_PatchInfo_Version {
+            get {
+                return ResourceManager.GetString("Patcher_PatchInfo_Version", resourceCulture);
             }
         }
         
@@ -13889,6 +14105,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Format_GameMakerDSMapHeader {
             get {
                 return ResourceManager.GetString("Utilities_Format_GameMakerDSMapHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Patch (.gp).
+        /// </summary>
+        public static string Utilities_Format_GamePatchHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Format_GamePatchHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Patch Library (.gpl).
+        /// </summary>
+        public static string Utilities_Format_GamePatchLibraryHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Format_GamePatchLibraryHeader", resourceCulture);
             }
         }
         

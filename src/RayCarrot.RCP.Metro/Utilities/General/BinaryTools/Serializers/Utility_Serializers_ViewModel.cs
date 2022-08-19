@@ -171,7 +171,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<PatchFile>(
-                name: "Game Patch (.gp)", // TODO-UPDATE: Localize
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchHeader)),
                 fileExtension: new FileExtension(PatchFile.FileExtension),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
@@ -180,7 +180,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 }),
 
             new Serializers_TypeViewModel<PatchLibraryFile>(
-                name: "Game Patch Library (.gpl)", // TODO-UPDATE: Localize
+                name: new ResourceLocString(nameof(Resources.Utilities_Format_GamePatchLibraryHeader)),
                 fileExtension: new FileExtension(PatchLibraryFile.FileExtension),
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()

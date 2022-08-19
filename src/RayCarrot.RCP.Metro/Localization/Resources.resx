@@ -5016,4 +5016,82 @@ game</comment>
     <comment>Arguments:
 game</comment>
   </data>
+  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
+    <value>Extracting patch contents</value>
+  </data>
+  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
+    <value>The patch contents were successfully extracted</value>
+  </data>
+  <data name="Patcher_ExtractContentsError" xml:space="preserve">
+    <value>An error occurred when extracting the patch contents</value>
+  </data>
+  <data name="Patcher_Export_Status" xml:space="preserve">
+    <value>Exporting patch</value>
+  </data>
+  <data name="Patcher_ExportSuccess" xml:space="preserve">
+    <value>The patch was successfully exported</value>
+  </data>
+  <data name="Patcher_ExportError" xml:space="preserve">
+    <value>An error occurred when extracting the patch</value>
+  </data>
+  <data name="Patcher_LoadError" xml:space="preserve">
+    <value>An error occurred when loading the patches</value>
+  </data>
+  <data name="Patcher_LoadExternalNewerVersionError" xml:space="preserve">
+    <value>External patches could not be loaded due to using a newer format. Please update the Rayman Control Panel to continue to be able to download external patches.</value>
+  </data>
+  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
+    <value>An error occurred when loading external patches</value>
+  </data>
+  <data name="Patcher_Apply_Status" xml:space="preserve">
+    <value>Applying patches</value>
+  </data>
+  <data name="Patcher_ApplySuccess" xml:space="preserve">
+    <value>Successfully applied all patches</value>
+  </data>
+  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
+    <value>Finished applying patches. Some files could not be modified.</value>
+  </data>
+  <data name="Patcher_ApplyError" xml:space="preserve">
+    <value>An error occurred when applying the patches. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying patches.</value>
+  </data>
+  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
+    <value>Last modified:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+    <value>Format version:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
+    <value>File path:</value>
+  </data>
+  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+    <value>Added files:</value>
+  </data>
+  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+    <value>Removed files:</value>
+  </data>
+  <data name="PatchCreator_GameNotAddedError" xml:space="preserve">
+    <value>You can only create a patch for a game that you have added to the Rayman Control Panel</value>
+  </data>
+  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
+    <value>Select a patch to import from</value>
+  </data>
+  <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
+    <value>Game Patch (.gp)</value>
+  </data>
+  <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
+    <value>Game Patch Library (.gpl)</value>
+  </data>
 </root>

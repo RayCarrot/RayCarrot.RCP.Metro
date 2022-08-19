@@ -534,13 +534,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task ExtractPatchContentsAsync(LocalPatchViewModel patchViewModel)
     {
-        // TODO-UPDATE: Localize
-        using (DisposableOperation operation = await LoadOperation.RunAsync("Extracting patch contents"))
+        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.Patcher_ExtractContents_Status))
         {
             DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
             {
-                // TODO-UPDATE: Localize
-                Title = "Select destination",
+                Title = Resources.Browse_DestinationHeader,
             });
 
             if (result.CanceledByUser)
@@ -590,29 +588,25 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 Logger.Info("Extracted patch contents");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch contents were successfully extracted");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Patcher_ExtractContentsSuccess);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Extracting patch contents");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch contents");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ExtractContentsError);
             }
         }
     }
 
     public async Task ExportPatchAsync(LocalPatchViewModel patchViewModel)
     {
-        // TODO-UPDATE: Localize
-        using (await LoadOperation.RunAsync("Exporting patch"))
+        using (await LoadOperation.RunAsync(Resources.Patcher_Export_Status))
         {
-            // TODO-UPDATE: Localize
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
-                Title = "Save patch file",
-                Extensions = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
+                Title = Resources.PatchCreator_CreateSaveFileHeader,
+                Extensions = new FileFilterItem($"*{PatchFile.FileExtension}", Resources.Patcher_FileType).StringRepresentation,
             });
 
             if (browseResult.CanceledByUser)
@@ -627,15 +621,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                 Logger.Info("Exported patch");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patch was successfully exported");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Patcher_ExportSuccess);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Extracting patch");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ExportError);
             }
         }
     }
@@ -730,8 +722,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Loading patches");
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading the patches");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_LoadError);
 
             return false;
         }
@@ -759,10 +750,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     "Failed to load external patches due to the version number {0} being higher than the current one ({1})",
                     manifest.ManifestVersion, ExternalPatchesManifest.LatestVersion);
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync(
-                    "External patches could not be loaded due to using a newer format. Please update the Rayman Control Panel to continue being able to download external patches.",
-                    MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_LoadExternalNewerVersionError, MessageType.Error);
 
                 _externalPatches = null;
                 return;
@@ -802,8 +790,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Loading external patches");
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when loading external patches");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_LoadExternalGenericError);
 
             _externalGamePatchesURL = null;
             _externalPatches = null;
@@ -849,8 +836,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> ApplyAsync()
     {
-        // TODO-UPDATE: Localize
-        using (DisposableOperation operation = await LoadOperation.RunAsync("Applying patches"))
+        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.Patcher_Apply_Status))
         {
             Logger.Info("Applying patches");
 
@@ -885,20 +871,17 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
                     Logger.Info("Applied patches");
 
-                    // TODO-UPDATE: Localize
                     if (success)
-                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync("Successfully applied all patches");
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Patcher_ApplySuccess);
                     else
-                        await Services.MessageUI.DisplayMessageAsync("Finished applying patches. Some files could not be modified.", MessageType.Warning);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ApplySuccessWithErrors, MessageType.Warning);
                 });
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Applying patches");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex,
-                    "An error occurred when applying the patches. Not all changes were applied and some data might have been lost. Make sure to not have any files from the game open while applying patches.");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ApplyError);
             }
 
             // No matter if it succeeds or fails we want to reset the state

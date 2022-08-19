@@ -15,8 +15,8 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
         Games = new ObservableCollection<GameItem>(App.GetGames.Select(x => new GameItem(x, x.GetGameInfo().DisplayName)));
         SelectedGame = Games.First();
 
-        CreatePatchCommand = new AsyncRelayCommand(CreateArchivePatchAsync);
-        UpdatePatchCommand = new AsyncRelayCommand(UpdateArchivePatchAsync);
+        CreatePatchCommand = new AsyncRelayCommand(CreatePatchAsync);
+        UpdatePatchCommand = new AsyncRelayCommand(UpdatePatchAsync);
     }
 
     #endregion
@@ -37,11 +37,11 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     #region Public Methods
 
-    public async Task CreateArchivePatchAsync()
+    public async Task CreatePatchAsync()
     {
         if (!SelectedGame.Game.IsAdded())
         {
-            await Services.MessageUI.DisplayMessageAsync("You can only create a patch for a game that you have added to the Rayman Control Panel", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.PatchCreator_GameNotAddedError, MessageType.Error);
             return;
         }
 
@@ -49,19 +49,18 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
         await Services.UI.ShowPatchCreatorAsync(SelectedGame.Game, null);
     }
 
-    public async Task UpdateArchivePatchAsync()
+    public async Task UpdatePatchAsync()
     {
         if (!SelectedGame.Game.IsAdded())
         {
-            await Services.MessageUI.DisplayMessageAsync("You can only create a patch for a game that you have added to the Rayman Control Panel", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.PatchCreator_GameNotAddedError, MessageType.Error);
             return;
         }
 
-        // TODO-UPDATE: Localize
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            Title = "Select a patch to import from",
-            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
+            Title = Resources.PatchCreator_SelectImportPatch,
+            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", Resources.Patcher_FileType).StringRepresentation,
         });
 
         if (browseResult.CanceledByUser)
