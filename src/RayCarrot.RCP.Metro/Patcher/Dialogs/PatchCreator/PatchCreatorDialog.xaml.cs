@@ -47,7 +47,7 @@ public partial class PatchCreatorDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = "Patch Creator"; // TODO-UPDATE: Localize
+        WindowInstance.Title = Metro.Resources.PatchCreator_Title;
         WindowInstance.Icon = GenericIconKind.Window_PatchCreator;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
@@ -68,9 +68,8 @@ public partial class PatchCreatorDialog : WindowContentControl
             return false;
 
         // Ask user to confirm
-        // TODO-UPDATE: Localize and use in other places
-        return await Services.MessageUI.DisplayMessageAsync("There are unsaved changed. Do you want to continue and discard them?",
-            "Confirm discarding changed", MessageType.Question, true);
+        return await Services.MessageUI.DisplayMessageAsync(Metro.Resources.UnsavedChangesQuestion,
+            Metro.Resources.UnsavedChangesQuestionHeader, MessageType.Question, true);
     }
 
     #endregion

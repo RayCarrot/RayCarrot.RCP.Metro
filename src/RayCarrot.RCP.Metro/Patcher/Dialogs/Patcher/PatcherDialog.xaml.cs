@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -47,7 +48,7 @@ public partial class PatcherDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = $"Patcher - {ViewModel.Game.GetGameInfo().DisplayName}"; // TODO-UPDATE: Localize
+        WindowInstance.Title = String.Format(Metro.Resources.Patcher_DialogTitle, ViewModel.Game.GetGameInfo().DisplayName);
         WindowInstance.Icon = GenericIconKind.Window_Patcher;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;
@@ -69,9 +70,8 @@ public partial class PatcherDialog : WindowContentControl
 
         // Ask user if there are pending changes
         if (ViewModel.HasChanges)
-            // TODO-UPDATE: Localize and use in other places
-            return await Services.MessageUI.DisplayMessageAsync("There are unsaved changed. Do you want to continue and discard them?",
-                "Confirm discarding changed", MessageType.Question, true);
+            return await Services.MessageUI.DisplayMessageAsync(Metro.Resources.UnsavedChangesQuestion,
+                Metro.Resources.UnsavedChangesQuestionHeader, MessageType.Question, true);
         else
             return true;
     }

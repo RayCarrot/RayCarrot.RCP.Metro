@@ -27,8 +27,7 @@ public class PatchFileLaunchHandler : FileLaunchHandler
         {
             Logger.Error(ex, "Runing Patcher from file launch");
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred in the patcher and it had to close");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_CriticalError);
         }
     }
 }

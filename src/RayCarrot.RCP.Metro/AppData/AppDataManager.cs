@@ -42,7 +42,7 @@ public class AppDataManager
 
     private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
     {
-        // TODO-UPDATE: Eventually get rid of needing this
+        // TODO: Eventually get rid of needing this
         using (await DataChangedHandlerAsyncLock.LockAsync())
         {
             switch (e.PropertyName)

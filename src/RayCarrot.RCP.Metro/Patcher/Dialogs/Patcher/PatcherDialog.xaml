@@ -34,7 +34,6 @@
         </DataTemplate>
     </local:WindowContentControl.Resources>
 
-    <!-- TODO-UPDATE: Localize -->
     <local:LoaderContentControl IsLoading="{Binding Path=LoadOperation.IsLoading}"
                                 Text="{Binding Path=LoadOperation.LoadingMessage}"
                                 IsIndeterminate="{Binding Path=LoadOperation.HasProgress, Converter={local:InvertedBooleanConverter}}"
@@ -82,15 +81,13 @@
                         <TextBlock Grid.Column="0"
                                    Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                    VerticalAlignment="Center"
-                                   Text="Patches" />
+                                   Text="{Resx Patcher_PatchesHeader}" />
 
-                        <!-- TODO-UPDATE: Localize (and maybe rewrite) -->
                         <local:InfoIcon Grid.Column="1"
-                                        Text="Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won't go into effect until it's both added and enabled, allowing patches to be easily toggled on and off. It is not recommended manually changing game files which a patch modifies as it might result in some changes being lost." />
+                                        Text="{Resx Patcher_PatchesInfo}" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <Button Grid.Column="3"
-                                ToolTip="Add patch"
+                                ToolTip="{Resx Patcher_AddPatch}"
                                 Style="{StaticResource RCP.Styles.Button.Flat}"
                                 Command="{Binding Path=AddPatchCommand, Mode=OneTime}"
                                 VerticalAlignment="Center"
@@ -189,8 +186,7 @@
                                                     </Style>
                                                 </StackPanel.Style>
 
-                                                <!-- TODO-UPDATE: Localize -->
-                                                <Button ToolTip="Extract contents"
+                                                <Button ToolTip="{Resx Patcher_ExtractPatch}"
                                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                                         Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
                                                         VerticalAlignment="Center"
@@ -202,8 +198,7 @@
                                                         Height="16" />
                                                 </Button>
 
-                                                <!-- TODO-UPDATE: Localize -->
-                                                <Button ToolTip="Export patch"
+                                                <Button ToolTip="{Resx Patcher_ExportPatch}"
                                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                         VerticalAlignment="Center"
@@ -214,8 +209,7 @@
                                                         Height="16" />
                                                 </Button>
 
-                                                <!-- TODO-UPDATE: Localize -->
-                                                <Button ToolTip="Remove"
+                                                <Button ToolTip="{Resx Patcher_RemovePatch}"
                                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                                         Command="{Binding Path=RemoveCommand, Mode=OneTime}"
                                                         VerticalAlignment="Center"
@@ -270,9 +264,8 @@
 
                                             <!-- Download -->
 
-                                            <!-- TODO-UPDATE: Localize -->
                                             <Button Grid.Column="0"
-                                                    ToolTip="Download"
+                                                    ToolTip="{Resx Patcher_DownloadPatch}"
                                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                                     Command="{Binding Path=DownloadCommand, Mode=OneTime}"
                                                     VerticalAlignment="Center"
@@ -387,7 +380,7 @@
                         <TextBlock Grid.Row="0"
                                    Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                    Visibility="{Binding Path=LibraryInfo, Converter={local:InvertedObjectNullToVisibilityConverter}}"
-                                   Text="Patch Library"
+                                   Text="{Resx Patcher_LibraryHeader}"
                                    Margin="0 0 0 10" />
 
                         <ScrollViewer Grid.Row="1">
@@ -413,15 +406,13 @@
 
                 <!-- Header -->
 
-                <!-- TODO-UPDATE: Localize -->
                 <TextBlock Grid.Row="0"
                            Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                           Text="Modified files"
+                           Text="{Resx Patcher_ModificationsHeader}"
                            Margin="0 0 0 10"/>
 
-                <!-- TODO-UPDATE: Localize -->
                 <TextBlock Grid.Row="1"
-                           Text="Add and enable a patch to modify the game files"
+                           Text="{Resx Patcher_ModificationsEmpty}"
                            Visibility="{Binding Path=PatchedFiles.Count, Converter={local:InvertedIntToVisibilityConverter}}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
@@ -453,28 +444,24 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                   Text="File"
+                                   Text="{Resx Patcher_Modifications_FileColumn}"
                                    Margin="0 0 15 0" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Grid.Column="2"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                   Text="Location"
+                                   Text="{Resx Patcher_Modifications_LocationColumn}"
                                    Margin="0 0 15 0" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Grid.Column="3"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                   Text="Patch"
+                                   Text="{Resx Patcher_Modifications_PatchColumn}"
                                    Margin="0 0 15 0" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Grid.Column="4"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
-                                   Text="Overriden Patches"
+                                   Text="{Resx Patcher_Modifications_OverridesColumn}"
                                    Margin="0 0 15 0" />
 
                     </Grid>
@@ -576,8 +563,7 @@
                         Click="CancelButton_OnClick"
                         Margin="0 0 10 0" />
 
-                <!-- TODO-UPDATE: Localize -->
-                <Button Content="Apply"
+                <Button Content="{Resx Patcher_Apply}"
                         IsEnabled="{Binding Path=HasChanges}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         local:ButtonAssist.IconKind="ContentSaveOutline"

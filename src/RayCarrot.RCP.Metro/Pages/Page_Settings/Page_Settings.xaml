@@ -476,10 +476,9 @@
 
         <!-- Patcher -->
 
-        <!-- TODO-UPDATE: Localize -->
         <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_Patcher}"
                  local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Patcher}"
-                 Header="Patcher">
+                 Header="{Resx Patcher_Title}">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
@@ -494,8 +493,7 @@
                             <local:UnifiedMarginBehavior Margin="0 2" />
                         </i:Interaction.Behaviors>
 
-                        <!-- TODO-UPDATE: Localize -->
-                        <TextBlock Text="Patcher"
+                        <TextBlock Text="{Resx Patcher_Title}"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
@@ -503,9 +501,8 @@
                                 <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Show external patches"
-                                      ToolTip="If enabled then the patcher will show a list of external patches available for download"
+                            <CheckBox Content="{Resx Settings_PatcherShowExternal}"
+                                      ToolTip="{Resx Settings_PatcherShowExternalInfo}"
                                       IsChecked="{Binding Path=Data.Patcher_LoadExternalPatches}" />
 
                         </StackPanel>
@@ -519,8 +516,7 @@
                             <local:UnifiedMarginBehavior Margin="0 2" />
                         </i:Interaction.Behaviors>
 
-                        <!-- TODO-UPDATE: Localize -->
-                        <TextBlock Text="File Associations"
+                        <TextBlock Text="{Resx Settings_PatcherFileAssociationsHeader}"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
                         <StackPanel>
@@ -528,15 +524,13 @@
                                 <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                             </i:Interaction.Behaviors>
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Open game patch (.gp) files in Rayman Control Panel from File Explorer"
+                            <CheckBox Content="{Resx Settings_PatcherAssociatePatchFileType}"
                                       IsEnabled="{Binding Path=CanAssociatePatchFileType}"
                                       IsChecked="{Binding Path=AssociatePatchFileType}"
                                       Command="{Binding Path=UpdatePatchFileTypeAssociationCommand, Mode=OneTime}" />
 
-                            <!-- TODO-UPDATE: Localize -->
-                            <CheckBox Content="Open game patch (.gp) files in Rayman Control Panel from URI protocol"
-                                      ToolTip="Enabling this allows for 1-click installation support from GameBanana"
+                            <CheckBox Content="{Resx Settings_PatcherAssociatePatchURIProtocol}"
+                                      ToolTip="{Resx Settings_PatcherAssociatePatchURIProtocolInfo}"
                                       IsEnabled="{Binding Path=CanAssociatePatchURIProtocol}"
                                       IsChecked="{Binding Path=AssociatePatchURIProtocol}"
                                       Command="{Binding Path=UpdatePatchURIProtocolAssociationCommand, Mode=OneTime}"/>

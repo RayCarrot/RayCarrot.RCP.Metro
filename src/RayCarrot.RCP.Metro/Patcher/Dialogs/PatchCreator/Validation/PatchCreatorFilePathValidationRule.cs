@@ -11,19 +11,18 @@ public class PatchCreatorFilePathValidationRule : ValidationRule
 
     public AvailableFileLocationsWrapper? AvailableFileLocations { get; set; }
 
-    // TODO-UPDATE: Localize
     public override ValidationResult Validate(object value, CultureInfo cultureInfo)
     {
         if (value is not string str || str.IsNullOrWhiteSpace())
-            return new ValidationResult(false, "The path can not be empty");
+            return new ValidationResult(false, Resources.PatchCreator_PathEmptyError);
 
         if (str.Any(x => _invalidPathCharacters.Contains(x)))
-            return new ValidationResult(false, "The path can not contain invalid characters");
+            return new ValidationResult(false, Resources.PatchCreator_PathInvalidCharsError);
 
         string normalizedStr = str.ToLowerInvariant().Replace('/', '\\');
 
         if (AvailableFileLocations?.Value?.Any(x => x.Location.Replace('/', '\\').ToLowerInvariant() == normalizedStr) == true)
-            return new ValidationResult(false, "The path can not be the same as an archive file");
+            return new ValidationResult(false, Resources.PatchCreator_PathLocationCollisionError);
 
         return ValidationResult.ValidResult;
     }

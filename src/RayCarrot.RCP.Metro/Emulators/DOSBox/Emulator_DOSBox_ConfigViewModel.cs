@@ -39,6 +39,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
             AvailableWindowedResolutionValues.Add($"{height * ratio}x{height}");
         }
 
+        // TODO: Rewrite this to be clearer. Localize common options like "default" and update localized tooltips to reflect this. Also sue ObservableCollection.
         // NOTE: Below options are not localized
 
         // Set available DosBox outputs

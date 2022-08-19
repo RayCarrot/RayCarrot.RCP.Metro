@@ -4769,4 +4769,251 @@ partNumber</comment>
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
+  <data name="Patcher_CriticalError" xml:space="preserve">
+    <value>An error occurred in the patcher and it had to close</value>
+  </data>
+  <data name="UnsavedChangesQuestion" xml:space="preserve">
+    <value>There are unsaved changed. Do you want to continue and discard them?</value>
+  </data>
+  <data name="UnsavedChangesQuestionHeader" xml:space="preserve">
+    <value>Confirm discarding changed</value>
+  </data>
+  <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
+    <value>Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page.</value>
+  </data>
+  <data name="GameDisplay_Patcher" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="About_Credits_Marteaufou" xml:space="preserve">
+    <value>French (France) program translation</value>
+  </data>
+  <data name="About_Credits_ZetaXO" xml:space="preserve">
+    <value>French (France) program translation</value>
+  </data>
+  <data name="Patcher_Title" xml:space="preserve">
+    <value>Patcher</value>
+  </data>
+  <data name="Settings_PatcherShowExternal" xml:space="preserve">
+    <value>Show external patches</value>
+  </data>
+  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
+    <value>If enabled then the patcher will load and show a list of external patches available for download</value>
+  </data>
+  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
+    <value>File Associations</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
+    <value>Open game patch (.gp) files in Rayman Control Panel from File Explorer</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
+    <value>Open game patch (.gp) files in Rayman Control Panel from URI protocol</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
+    <value>Enabling this allows for 1-click installation support from GameBanana</value>
+  </data>
+  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
+    <value>An error occurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again.</value>
+  </data>
+  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
+    <value>An error occurred when setting the URI protocol association for patch files. Try running the Rayman Control Panel as admin and try again.</value>
+  </data>
+  <data name="PatchCreator_NameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PatchCreator_AuthorField" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="PatchCreator_DescriptionField" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="PatchCreator_VersionField" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Patcher_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Patcher_Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
+    <value>Select a thumbnail. The recommended size is 128x128.</value>
+  </data>
+  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
+    <value>Remove the thumbnail</value>
+  </data>
+  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
+    <value>The path of the file to add to the specified destination. If this is empty then any existing file at the destination will be removed instead.</value>
+  </data>
+  <data name="PatchCreator_AddFile" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
+    <value>Add from files</value>
+  </data>
+  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
+    <value>Add from folder</value>
+  </data>
+  <data name="PatchCreator_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="PatchCreator_Title" xml:space="preserve">
+    <value>Patch Creator</value>
+  </data>
+  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
+    <value>Importing from existing patch</value>
+  </data>
+  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
+    <value>The selected patch was made with a newer version of the Rayman Control Panel and can not be read</value>
+  </data>
+  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
+    <value>The selected patch could not be read</value>
+  </data>
+  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
+    <value>Select a thumbnail</value>
+  </data>
+  <data name="FileSelection_ImageFormat" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
+    <value>Select files to add</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
+    <value>Select folder to add</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
+    <value>An error occurred when adding the selected files</value>
+  </data>
+  <data name="PatchCreator_Create_Status" xml:space="preserve">
+    <value>Creating patch</value>
+  </data>
+  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
+    <value>Save patch file</value>
+  </data>
+  <data name="Patcher_FileType" xml:space="preserve">
+    <value>Game Patch</value>
+  </data>
+  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
+    <value>The patch was saved successfully</value>
+  </data>
+  <data name="PatchCreator_CreateError" xml:space="preserve">
+    <value>An error occurred when creating the patch</value>
+  </data>
+  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
+    <value>The path can not be empty</value>
+  </data>
+  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
+    <value>The path can not contain invalid characters</value>
+  </data>
+  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
+    <value>The path can not be the same as an archive file</value>
+  </data>
+  <data name="Patcher_PatchesHeader" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="Patcher_PatchesInfo" xml:space="preserve">
+    <value>Patches are modifications to the game files which can be applied to change or improve the game in various ways. The patch won't go into effect until it's enabled and applied, allowing patches to be easily toggled on and off. It is not recommended manually changing game files which a patch modifies as it might result in some changes being lost.</value>
+  </data>
+  <data name="Patcher_AddPatch" xml:space="preserve">
+    <value>Add patch</value>
+  </data>
+  <data name="Patcher_ExtractPatch" xml:space="preserve">
+    <value>Extract contents</value>
+    <comment>Extracting will extract the contents within the patch</comment>
+  </data>
+  <data name="Patcher_ExportPatch" xml:space="preserve">
+    <value>Export patch</value>
+    <comment>Exporting will export the patch itself</comment>
+  </data>
+  <data name="Patcher_RemovePatch" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Patcher_DownloadPatch" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Patcher_LibraryHeader" xml:space="preserve">
+    <value>Patch Library</value>
+  </data>
+  <data name="Patcher_ModificationsHeader" xml:space="preserve">
+    <value>Modified files</value>
+  </data>
+  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
+    <value>Add and enable a patch to modify the game files</value>
+  </data>
+  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
+    <value>Patch</value>
+  </data>
+  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
+    <value>Overriden Patches</value>
+  </data>
+  <data name="Patcher_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Patcher_DialogTitle" xml:space="preserve">
+    <value>Patcher - {0}</value>
+    <comment>Arguments:
+game</comment>
+  </data>
+  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
+    <value>Game:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
+    <value>Patches:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
+    <value>Applied patches:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
+    <value>Last modified:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
+    <value>Format version:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
+    <value>Directory:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
+    <value>Added files:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
+    <value>Replaced files:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
+    <value>Removed files:</value>
+  </data>
+  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
+    <value>The game patch library was made with a newer version of the Rayman Control Panel and can not be read</value>
+  </data>
+  <data name="Patcher_ReadLibraryGameMismatchError" xml:space="preserve">
+    <value>The game patch library was made with for {0}</value>
+    <comment>Arguments:
+game</comment>
+  </data>
+  <data name="Patcher_SecurityWarning" xml:space="preserve">
+    <value>The patch {0} adds or replaces sensitive files, such as executable files, in the game. Only add this patch if you trust the author. Continue?</value>
+    <comment>Arguments:
+patchName</comment>
+  </data>
+  <data name="Patcher_ReadPatchGameNotAddedError" xml:space="preserve">
+    <value>Can't open the patch {0} for {1} due to the game not having been added in the Rayman Control Panel</value>
+    <comment>Arguments:
+patchName
+game</comment>
+  </data>
+  <data name="Patcher_AddPatchHeader" xml:space="preserve">
+    <value>Select patches to add</value>
+  </data>
+  <data name="Patcher_ReadPatchGameMismatchError" xml:space="preserve">
+    <value>The selected patch can only be applied to {0}</value>
+    <comment>Arguments:
+game</comment>
+  </data>
 </root>

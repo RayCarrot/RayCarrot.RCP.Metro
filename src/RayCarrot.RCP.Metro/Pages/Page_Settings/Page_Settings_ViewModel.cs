@@ -375,8 +375,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
         {
             Logger.Error(ex, "Setting patch file type association");            
 
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the file type association for patch files. Try running the Rayman Control Panel as admin and try again.");
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_AssociateFileTypeError);
         }
     }
 
@@ -390,8 +389,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
         {
             Logger.Error(ex, "Setting patch uri protocol association");
 
-            // TODO-UPDATE: Localize
-            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when setting the URI protocol association for patch files. Try running the Rayman Control Panel as admin and try again.");
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_AssociateURIProtocolError);
         }
     }
 

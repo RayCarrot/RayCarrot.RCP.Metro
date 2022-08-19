@@ -261,8 +261,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             // Ask user the first time
             if (!data.Archive_CNT_SyncOnRepackRequested)
             {
-                // TODO-UPDATE: Localize
-                if (await Services.MessageUI.DisplayMessageAsync("Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page.", MessageType.Question, true))
+                if (await Services.MessageUI.DisplayMessageAsync(Resources.Archive_AutoSyncCPATextures, MessageType.Question, true))
                     data.Archive_CNT_SyncOnRepack = true;
 
                 data.Archive_CNT_SyncOnRepackRequested = true;

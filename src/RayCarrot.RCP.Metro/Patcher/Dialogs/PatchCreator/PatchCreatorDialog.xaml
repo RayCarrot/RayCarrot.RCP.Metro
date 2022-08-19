@@ -15,7 +15,6 @@
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
-    <!-- TODO-UPDATE: Localize -->
     <local:LoaderContentControl IsLoading="{Binding Path=LoadOperation.IsLoading}"
                                 Text="{Binding Path=LoadOperation.LoadingMessage}"
                                 IsIndeterminate="{Binding Path=LoadOperation.HasProgress, Converter={local:InvertedBooleanConverter}}"
@@ -55,7 +54,7 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="0"
                                    VerticalAlignment="Center" 
-                                   Text="Name" 
+                                   Text="{Resx PatchCreator_NameField}" 
                                    Margin="0 0 0 10"/>
                         <TextBox Grid.Column="2"
                                  Grid.Row="0"
@@ -66,7 +65,7 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="1"
                                    VerticalAlignment="Center" 
-                                   Text="Author"
+                                   Text="{Resx PatchCreator_AuthorField}"
                                    Margin="0 0 0 10" />
                         <TextBox Grid.Column="2"
                                  Grid.Row="1" 
@@ -77,7 +76,7 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="2"
                                    VerticalAlignment="Center" 
-                                   Text="Description"
+                                   Text="{Resx PatchCreator_DescriptionField}"
                                    Margin="0 0 0 10" />
                         <TextBox Grid.Column="2"
                                  Grid.Row="2" 
@@ -92,7 +91,7 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="3"
                                    VerticalAlignment="Center" 
-                                   Text="Version"
+                                   Text="{Resx PatchCreator_VersionField}"
                                    Margin="0 0 0 10" />
                         <StackPanel Orientation="Horizontal"
                                     Grid.Column="2"
@@ -108,7 +107,7 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="4"
                                    VerticalAlignment="Center" 
-                                   Text="ID"
+                                   Text="{Resx Patcher_ID}"
                                    local:UserLevelAssist.MinUserLevel="Technical"
                                    Margin="0 0 0 10" />
                         <TextBlock Grid.Column="2"
@@ -120,7 +119,7 @@
                         <TextBlock Grid.Column="0"
                                    Grid.Row="5"
                                    VerticalAlignment="Center" 
-                                   Text="Game"
+                                   Text="{Resx Patcher_Game}"
                                    local:UserLevelAssist.MinUserLevel="Technical"
                                    Margin="0 0 0 10" />
                         <TextBlock Grid.Column="2"
@@ -149,12 +148,12 @@
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                                 local:ButtonAssist.IconKind="FileImageOutline"
                                 Command="{Binding Path=BrowseThumbnailCommand, Mode=OneTime}"
-                                ToolTip="Select a thumbnail. The recommended size is 128x128."
+                                ToolTip="{Resx PatchCreator_AddThumbnailInfo}"
                                 Margin="0 0 4 0"/>
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                                 local:ButtonAssist.IconKind="CloseOutline"
                                 Command="{Binding Path=RemoveThumbnailCommand, Mode=OneTime}"
-                                ToolTip="Remove the thumbnail"
+                                ToolTip="{Resx PatchCreator_RemoveThumbnailInfo}"
                                 IsEnabled="{Binding Path=Thumbnail, Converter={local:IsNotNullConverter}}" />
                     </StackPanel>
 
@@ -224,7 +223,7 @@
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Source" />
-                                    <local:InfoIcon Text="The path of the file to add to the specified destination. If this is empty then any existing file at the destination will be removed instead." />
+                                    <local:InfoIcon Text="{Resx PatchCreator_SourcePathInfo}" />
                                 </StackPanel>
                             </DataGridTextColumn.Header>
                             <DataGridTextColumn.Binding>
@@ -288,19 +287,19 @@
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:ButtonAssist.IconKind="Plus"
                             Command="{Binding Path=AddFileCommand, Mode=OneTime}"
-                            ToolTip="Add"
+                            ToolTip="{Resx PatchCreator_AddFile}"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:ButtonAssist.IconKind="FilePlusOutline"
                             Command="{Binding Path=AddFromFilesCommand, Mode=OneTime}"
-                            ToolTip="Add from files"
+                            ToolTip="{Resx PatchCreator_AddFromFiles}"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:ButtonAssist.IconKind="FolderPlusOutline"
                             Command="{Binding Path=AddFromFolderCommand, Mode=OneTime}"
-                            ToolTip="Add from folder"
+                            ToolTip="{Resx PatchCreator_AddFromFolder}"
                             Margin="0 0 8 0"/>
 
                     <ComboBox MinWidth="250"
@@ -325,8 +324,7 @@
                         Click="CancelButton_OnClick"
                         Margin="0 0 10 0" />
 
-                <!-- TODO-UPDATE: Localize -->
-                <Button Content="Create"
+                <Button Content="{Resx PatchCreator_Create}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         local:ButtonAssist.IconKind="ContentSaveOutline"
                         Click="CreateButton_OnClick">

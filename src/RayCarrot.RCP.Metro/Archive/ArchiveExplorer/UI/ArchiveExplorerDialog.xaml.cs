@@ -70,9 +70,8 @@ public partial class ArchiveExplorerDialog : WindowContentControl
 
         // Ask user if there are pending changes
         if (ViewModel.Archives.Any(x => x.HasModifiedFiles))
-            // TODO-UPDATE: Localize and use in other places
-            return await Services.MessageUI.DisplayMessageAsync("There are unsaved changed. Do you want to continue and discard them?",
-                "Confirm discarding changed", MessageType.Question, true);
+            return await Services.MessageUI.DisplayMessageAsync(Metro.Resources.UnsavedChangesQuestion,
+                Metro.Resources.UnsavedChangesQuestionHeader, MessageType.Question, true);
         else
             return true;
     }

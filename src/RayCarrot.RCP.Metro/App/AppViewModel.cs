@@ -14,7 +14,7 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: There's a lot that shouldn't be in here, especially the methods. Break this apart into multiple services.
+// TODO: There's a lot that shouldn't be in here, especially the methods. Break this apart into multiple services.
 
 /// <summary>
 /// Handles common actions and events for this application

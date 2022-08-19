@@ -317,8 +317,7 @@ public abstract class GameInfo : BaseGameData
                 // Add patcher option
                 if (AllowPatching)
                 {
-                    // TODO-UPDATE: Localize
-                    actions.Add(new OverflowButtonItemViewModel("Patches", GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Patcher, GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
                     {
                         try
                         {
@@ -329,8 +328,7 @@ public abstract class GameInfo : BaseGameData
                         {
                             Logger.Error(ex, "Runing Patcher");
 
-                            // TODO-UPDATE: Localize
-                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred in the patcher and it had to close");
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_CriticalError);
                         }
                     }), UserLevel.Advanced));
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));

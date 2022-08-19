@@ -10,7 +10,7 @@ public class PatchedFileViewModel : BaseViewModel
     public PatchedFileViewModel(PatchFilePath filePath, PatchedFileModification modification, PatchMetadata patchMetadata)
     {
         FilePath = filePath;
-        LocationDisplayName = filePath.Location == String.Empty ? "Game" : filePath.Location; // TODO-UPDATE: Localize
+        LocationDisplayName = filePath.Location == String.Empty ? Resources.Patcher_PhysicalGameLocation : filePath.Location;
         Modification = modification;
         PatchMetadata = patchMetadata ?? throw new ArgumentNullException(nameof(patchMetadata));
         OverridenPatches = new ObservableCollection<PatchMetadata>();

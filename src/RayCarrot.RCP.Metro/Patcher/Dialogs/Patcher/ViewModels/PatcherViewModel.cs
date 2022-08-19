@@ -140,18 +140,14 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Warn(ex, "Adding patch");
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync(
-                "The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read",
-                MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ReadPatchNewerVersionError, MessageType.Error);
             return null;
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Adding patch");
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ReadPatchGenericError);
             return null;
         }
     }
@@ -264,18 +260,17 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
             else
             {
-                // TODO-UPDATE: Localize
                 LibraryInfo = new ObservableCollection<DuoGridItemViewModel>()
                 {
-                    new("Game:", libraryFile.Game.GetGameInfo().DisplayName),
-                    new("Patches:", libraryFile.Patches.Length.ToString()),
-                    new("Applied patches:", libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
-                    new("Last modified:", libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-                    new("Format version:", libraryFile.FormatVersion.ToString(), UserLevel.Debug),
-                    new("Directory:", Library.DirectoryPath.FullPath, UserLevel.Debug),
-                    new("Added files:", libraryFile.History.AddedFiles.Length.ToString()),
-                    new("Replaced files:", libraryFile.History.ReplacedFiles.Length.ToString()),
-                    new("Removed files:", libraryFile.History.RemovedFiles.Length.ToString()),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), libraryFile.Game.GetGameInfo().DisplayName),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Patches)), libraryFile.Patches.Length.ToString()),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AppliedPatches)), libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ModifiedDate)), libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_FormatVersion)), libraryFile.FormatVersion.ToString(), UserLevel.Debug),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Location)), Library.DirectoryPath.FullPath, UserLevel.Debug),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AddedFiles)), libraryFile.History.AddedFiles.Length.ToString()),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ReplacedFiles)), libraryFile.History.ReplacedFiles.Length.ToString()),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_RemovedFiles)), libraryFile.History.RemovedFiles.Length.ToString()),
                 };
                 Logger.Info("Read patch library file with format version {0}", libraryFile.FormatVersion);
             }
@@ -286,8 +281,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             LibraryInfo = null;
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The game patch library was made with a newer version of the Rayman Control Panel and can not be read", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ReadLibraryNewerVersionError, MessageType.Error);
 
             return false;
         }
@@ -297,8 +291,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, Game);
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync($"The game patch library was made with for {Game}", MessageType.Error);
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, Game),
+                MessageType.Error);
 
             return false;
         }
@@ -328,8 +322,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Info("Patch with ID {0} contains one or more potentially harmful files", patch.Metadata.ID);
 
-            // TODO-UPDATE: Localize
-            return await Services.MessageUI.DisplayMessageAsync($"The patch {patch.Metadata.Name} adds or replaces executable files in the game. Only add this patch if you trust the author. Continue?", MessageType.Question, true);
+            return await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_SecurityWarning, patch.Metadata.Name), 
+                MessageType.Question, true);
         }
         else
         {
@@ -358,8 +352,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             if (!patch.Metadata.Game.IsAdded())
             {
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync($"Can't open the patch {patch.Metadata.Name} for {patch.Metadata.Game.GetGameInfo().DisplayName} due to the game not having been added in the Rayman Control Panel", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameNotAddedError,
+                        patch.Metadata.Name, patch.Metadata.Game.GetGameInfo().DisplayName), MessageType.Error);
                 return null;
             }
 
@@ -415,11 +409,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     {
         FileBrowserResult result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            // TODO-UPDATE: Localize
-            Title = "Select patches to add",
+            Title = Resources.Patcher_AddPatchHeader,
             DefaultDirectory = default,
             DefaultName = null,
-            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
+            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", Resources.Patcher_FileType).StringRepresentation,
             MultiSelection = true
         });
 
@@ -453,10 +446,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     Logger.Warn("Failed to add patch due to the specified game {0} not matching the current one ({1})",
                         metaData.Game, Game);
 
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync(
-                        $"The selected patch can only be applied to {metaData.Game.GetGameInfo().DisplayName}",
-                        MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameMismatchError,
+                            metaData.Game.GetGameInfo().DisplayName), MessageType.Error);
 
                     _context.RemoveFile(patchFilePath);
 
@@ -537,8 +528,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             tempDir.Dispose();
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the patch");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ReadPatchGenericError);
         }
     }
 

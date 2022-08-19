@@ -22,8 +22,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         ID = PatchMetadata.GenerateID();
         AvailableLocations = new ObservableCollection<AvailableFileLocation>()
         {
-            // TODO-UPDATE: Localize
-            new("Game", String.Empty, String.Empty)
+            new(new ResourceLocString(nameof(Resources.Patcher_PhysicalGameLocation)), String.Empty, String.Empty)
         };
 
         GameInfo gameInfo = game.GetGameInfo();
@@ -121,8 +120,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> ImportFromPatchAsync(FileSystemPath patchFilePath)
     {
-        // TODO-UPDATE: Localize
-        using (DisposableOperation operation = await LoadOperation.RunAsync("Importing from existing patch"))
+        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.PatchCreator_ImportingPatch_Status))
         {
             Logger.Trace("Importing from patch at {0}", patchFilePath);
 
@@ -142,8 +140,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Warn(ex, "Importing patch to creator");
 
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync("The selected patch was made with a newer version of the Rayman Control Panel and can thus not be read", MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ReadPatchNewerVersionError, MessageType.Error);
 
                     return false;
                 }
@@ -226,8 +223,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             {
                 Logger.Error(ex, "Importing patch to creator");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The selected patch could not be read");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ReadPatchGenericError);
 
                 return false;
             }
@@ -236,16 +232,15 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task BrowseThumbnailAsync()
     {
-        // TODO-UPDATE: Localize
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
-            Title = "Select a thumbnail",
+            Title = Resources.PatchCreator_SelectThumbnailHeader,
             ExtensionFilter = new FileFilterItemCollection(new FileFilterItem[]
             {
                 new("*.png", String.Empty),
                 new("*.jpg", String.Empty),
                 new("*.jpeg", String.Empty),
-            }).CombineAll("Image").StringRepresentation,
+            }).CombineAll(Resources.FileSelection_ImageFormat).StringRepresentation,
         });
 
         if (browseResult.CanceledByUser)
@@ -275,10 +270,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task AddFromFilesAsync()
     {
-        // TODO-UPDATE: Localize
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
-            Title = "Select files to add",
+            Title = Resources.PatchCreator_AddFromFilesHeader,
             MultiSelection = true,
         });
 
@@ -302,10 +296,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task AddFromFolderAsync()
     {
-        // TODO-UPDATE: Localize
         DirectoryBrowserResult browseResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
         {
-            Title = "Select folder to add",
+            Title = Resources.PatchCreator_AddFromFolderHeader,
         });
 
         if (browseResult.CanceledByUser)
@@ -318,7 +311,6 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
         try
         {
-            // TODO-UPDATE: Localize
             foreach (FileSystemPath file in Directory.EnumerateFiles(browseResult.SelectedDirectory, "*", SearchOption.AllDirectories))
             {
                 AddFile(new FileViewModel(
@@ -332,25 +324,22 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         {
             Logger.Error(ex, "Adding files from folder");
 
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when adding the selected files");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.PatchCreator_AddFromFolderError);
         }
     }
 
     public async Task<bool> CreatePatchAsync()
     {
-        // TODO-UPDATE: Localize
-        using (DisposableOperation operation = await LoadOperation.RunAsync("Creating patch"))
+        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.PatchCreator_Create_Status))
         {
             PatchVersion version = new(Version_Major, Version_Minor, Version_Revision);
 
             Logger.Info("Creating the patch '{0}' with version {1} and ID {2}", Name, version, ID);
 
-            // TODO-UPDATE: Localize
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
-                Title = "Save patch file",
-                Extensions = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
+                Title = Resources.PatchCreator_CreateSaveFileHeader,
+                Extensions = new FileFilterItem($"*{PatchFile.FileExtension}", Resources.Patcher_FileType).StringRepresentation,
             });
 
             if (browseResult.CanceledByUser)
@@ -479,8 +468,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                 Logger.Info("Created patch");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("The patch was saved successfully", MessageType.Success);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.PatchCreator_CreateSuccess);
 
                 return true;
             }
@@ -488,8 +476,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             {
                 Logger.Error(ex, "Creating patch");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when creating the patch");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.PatchCreator_CreateError);
 
                 return false;
             }
@@ -520,7 +507,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         {
             SourceFilePath = sourceFilePath;
             FilePath = filePath;
-            LocationDisplayName = location == String.Empty ? "Game" : location; // TODO-UPDATE: Localize
+            LocationDisplayName = location == String.Empty 
+                ? new ResourceLocString(nameof(Resources.Patcher_PhysicalGameLocation)) 
+                : location;
             Location = location;
             LocationID = locationId;
             Checksum = checksum;
