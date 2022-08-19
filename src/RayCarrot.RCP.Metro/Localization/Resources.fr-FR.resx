@@ -3098,6 +3098,28 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
     <value>Rayman</value>
   </data>
+  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
+    <value>Pour une manette d'Xbox 360, les contrôles sont mappés comme suit :
+A : Sauter/Maintenir dans les airs pour l'hélicoptère
+X : Attaquer
+Y : Utiliser le grappin
+LB : Activer ou désactiver la lumière/Maintenir pour contrôler le tempo de la danse si activé
+LT : Mode vue subjective si activé
+RB : Attaquer/Appuyer ou maintenir pour utiliser les finishers si activés
+RT : Esquive/Charge au sol/Rouler et sauter plusieurs fois pour accélérer si activé
+Croix directionnelle haut : Commence ou arrête le mode danse si activé
+En mode danse, appuyez sur ABXY ou utilisez le stick analogique gauche pour faire des mouvements de danse
+Stick analogique gauche : Déplacer Rayman
+Stick analogique droit : Contrôles caméra si activés
+Select : Mode noclip
+Start : Pause</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Ajouter le mode vue subjective</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
+    <value>Un mode de vue à la première personne est ajouté et mappé au bouton LT</value>
+  </data>
   <data name="Mod_RRR_MemMod_AddBoostButton" xml:space="preserve">
     <value>Ajouter le bouton de boost</value>
   </data>
@@ -3263,6 +3285,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="Mod_RRR_MemMod_SaucersStartFlyingInfo" xml:space="preserve">
     <value>Les soucoupes volantes peuvent être vues en train de voler, mais cela les rend plus difficiles à monter</value>
   </data>
+  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
+    <value>Chasses au lapin</value>
+  </data>
   <data name="Mod_RRR_MemMod_MissileLaunchersTarget" xml:space="preserve">
     <value>Les lance-missiles ciblent Rayman</value>
   </data>
@@ -3274,6 +3299,18 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   </data>
   <data name="Mod_RRR_MemMod_DontDestroyBipodsInfo" xml:space="preserve">
     <value>La majorité des bipieds s'effondrent par défaut quand le mode FPS n'est pas actif. Cette option permet d'empêcher leur destruction.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
+    <value>Activer tous les déclencheurs d'activation</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
+    <value>Force tous les déclencheurs d'activation à être réglés sur vrai constemment. Causera un immense chaos dans la plupart des niveaux et fera apparaître beaucoup plus d'ennemis (et de bébés Globox)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
+    <value>Activer les déclencheurs des volumes englobants</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
+    <value>Certains déclencheur d'apparition de lapin sont difficiles à atteindre. Ceci les déclenche, mais attention, cela cause des crashs dans beaucoup de niveaux!</value>
   </data>
   <data name="Mod_RRR_KeyAction_0" xml:space="preserve">
     <value>Sauter</value>
@@ -3335,6 +3372,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid" xml:space="preserve">
     <value>Lapin Sam Fisher</value>
   </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
+    <value>Démon Nurgle</value>
+  </data>
   <data name="Mod_RRR_BFPatch_BatSoundLikeEagle" xml:space="preserve">
     <value>Les chauves-souris font des bruits d'aigle</value>
   </data>
@@ -3346,6 +3386,15 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   </data>
   <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
     <value>Ajouter de la fourrure aux Lapins Crétins</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
+    <value>Activer la lampe torche (activer/désactiver avec LB)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
+    <value>Ajoute la lampe torche à Les lapins aiment creuser des galeries</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
+    <value>Ajoute des objets de lapin inutilisés à Les lapins n'ont pas peur du noir</value>
   </data>
   <data name="Mod_RRR_MemMod_ApplySuccess" xml:space="preserve">
     <value>Patch mémoire appliqué avec succès</value>
@@ -3394,6 +3443,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   </data>
   <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
     <value>Un code de développeur. Tout ce qui est dans le mode score et dans la section bonus est débloqué quelle que soit votre avancée dans le jeu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Choisir la page de triche</value>
   </data>
   <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
     <value>Montrer des informations de debug</value>
@@ -3448,6 +3500,12 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   </data>
   <data name="DriveSelection_RefreshError" xml:space="preserve">
     <value>Une erreur est survenue en essayant de trouver les lecteurs disponibles</value>
+  </data>
+  <data name="Settings_UseChildWindows" xml:space="preserve">
+    <value>Afficher les fenêtres en tant que popups</value>
+  </data>
+  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
+    <value>Activer ceci affichera les fenêtres, telles que la fenêtre d'options de jeu et les boîtes de dialogues, en tant que pop-us à l'intérieur de la fenêtre principale. Désactiver cette option les affichera en tant que fenêtres séparées.</value>
   </data>
   <data name="RRR_LevelName_0" xml:space="preserve">
     <value>Les lapins n'aiment pas être dérangés en vacances</value>
@@ -3998,6 +4056,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="Progression_ROLumMedals" xml:space="preserve">
     <value>Médailles Lums</value>
   </data>
+  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
+    <value>Trophées de vitesse</value>
+  </data>
   <data name="Progression_SaveEditWarning" xml:space="preserve">
     <value>Editer des fichiers de sauvegarde peut les corrompre si mal réalisé. Il est vivement recommandé de d'abord en faire une sauvegarde. Continuer?</value>
   </data>
@@ -4040,6 +4101,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="Progression_DataSource_Auto" xml:space="preserve">
     <value>Auto</value>
   </data>
+  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
+    <value>Quand vous créez un nouveau backup ou utilisez les fichiers de sauvegarde pour la visualisation de progression, le répertoire avec les fichiers les plus récents sera alors utilisé. Quand vous restaurez un backup, il sera restauré dans les deux répertoires.</value>
+  </data>
   <data name="Progression_DataSource_Default" xml:space="preserve">
     <value>Par défaut</value>
   </data>
@@ -4057,6 +4121,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   </data>
   <data name="Settings_SerializationLog" xml:space="preserve">
     <value>Journal de sérialisation</value>
+  </data>
+  <data name="Settings_SerializationLogInfo" xml:space="preserve">
+    <value>Activer la sérialisation fera que toutes les actions de sérialisation, telles que l'utilisation d'Archive Explorer ou regarder la progression du jeu, seront sérialisées dans le journal de sérialisation spécifié. Cela sert principalement pour du débogage mais peut aussi être utile pour voir les structures de données de certains formats.</value>
   </data>
   <data name="IsEnabled" xml:space="preserve">
     <value>Est activé</value>
@@ -4084,6 +4151,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   </data>
   <data name="Utilities_Format_RFRSaveHeader" xml:space="preserve">
     <value>Fichiers de sauvegarde Rayman Fiesta Run (.dat)</value>
+  </data>
+  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
+    <value>Préférences Unity Player/Sauvegardes The Lapins Crétins Big Bang</value>
   </data>
   <data name="Utilities_Format_GameMakerDSMapHeader" xml:space="preserve">
     <value>Map Game Maker DS / Fichier de sauvegarde Rayman Redemption (.txt)</value>
@@ -4115,6 +4185,10 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="RFRU_SaveFixHeader" xml:space="preserve">
     <value>Réparer la progression de la sauvegarde</value>
   </data>
+  <data name="RFRU_SaveFixInfo" xml:space="preserve">
+    <value>À cause d'un bug dans les premières versions du jeu, la progression de fichier de sauvegarde peut être désynchronisée, faisant que vous avez moins de Ptizêtres que vous n'en ayez récupéré.
+Cela peut rendre certains niveaux inaccessibles. Cet outil tentera de corriger cela.</value>
+  </data>
   <data name="RFRU_SaveFixAction" xml:space="preserve">
     <value>Réparer la sauvegarde</value>
   </data>
@@ -4142,6 +4216,9 @@ Pour mettre à jour l'application manuellement, visitez {1} et téléchargez la 
   <data name="Settings_ArchiveCNTSyncOnRepackInfo" xml:space="preserve">
     <value>Si activé, les textures pour le jeu seront syncronisées automatiquement quand une archive .cnt est recompilée. Cette option est utile sur les jeux pour lesquels une synchronisatoin est requise pour importer des textures à résolution plus élevée.</value>
   </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Compiler l'archive</value>
+  </data>
   <data name="Archive_AddFiles_Status" xml:space="preserve">
     <value>Ajout de fichiers</value>
   </data>
@@ -4165,6 +4242,9 @@ Conflits:
   </data>
   <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
     <value>Processus du jeu</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>En s'attachant à un processus de jeu en cours, il est possible de voir et modifier les valeurs du jeu en temps réel. Pour certains jeux, cela permet de réactiver des fonctions inutilisées.</value>
   </data>
   <data name="Mod_Mem_GameSelection" xml:space="preserve">
     <value>Jeu</value>
@@ -4218,7 +4298,7 @@ Rayman contre Les Lapins Crétins</value>
   <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
     <value>Permet de placer Rayman librement dans le niveau</value>
   </data>
-  <data name="Mod_Mem_Map" xml:space="preserve">
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
     <value>Carte actuelle</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
@@ -4281,8 +4361,18 @@ Rayman contre Les Lapins Crétins</value>
   <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
     <value>Démarrer en mode démo</value>
   </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>Si activé, le jeu se mettra à jouer les deux démos enregistrées inutilisées quand le niveau charge. Cela peut être déclenché en perdant toutes ses vies et en choisssant Réessayer.</value>
+  </data>
   <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
     <value>Charger les menus de multijoueur</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>Quand ceci est activé, le jeu chargera les menus multijoueur inutilisés au démarrage. Si le jeu a déjà démarré, il est possible d'y accéder en choisissant de quitter le jeu depuis le menu de pause.
+Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fonctionnalité n'a jamais été complètement implémentée. Le premier menu est la sélection de joueur et le second est la sélection du niveau. Comme ils n'ont jamais été implémentés, le seul moyen de les changer est d'utiliser les champs ci-dessous.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Temps limité</value>
   </data>
   <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
     <value>Est joueur 2</value>
@@ -4326,6 +4416,12 @@ Rayman contre Les Lapins Crétins</value>
   <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
     <value>Objets actifs</value>
   </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Temps de la carte</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Index aléatoire</value>
+  </data>
   <data name="Mod_Mem_R1_Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
@@ -4367,6 +4463,24 @@ Rayman contre Les Lapins Crétins</value>
   </data>
   <data name="R2_LevelName_jail_20" xml:space="preserve">
     <value>Intro Partie 2</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Salle du conseil des Ptizêtres</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Pendant ce temps-là... Partie 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Barbe Tranchante reçoit de la visite...</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Introduction Cavernes de l'Écho</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Cinématique du ballon des Montagnes de Fer</value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>Fin</value>
   </data>
   <data name="Mod_Mem_CreditsLevel" xml:space="preserve">
     <value>Crédits</value>
@@ -4446,141 +4560,6 @@ Rayman contre Les Lapins Crétins</value>
   <data name="R3_LevelName_BonusTXT" xml:space="preserve">
     <value>Bonus</value>
   </data>
-  <data name="EmuSelection_None" xml:space="preserve">
-    <value>Aucun</value>
-  </data>
-  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
-    <value>Rayman 1 (PC - 1.21)</value>
-  </data>
-  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
-    <value>Rayman 1 (PS1 - US)</value>
-  </data>
-  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
-    <value>Rayman 2 (PS1 - Prototype)</value>
-  </data>
-  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
-    <value>Rayman Advance (GBA - EU)</value>
-  </data>
-  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
-    <value>Rayman 2 (PC)</value>
-  </data>
-  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
-    <value>Rayman 3 (PC)</value>
-  </data>
-  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
-    <value>Pour une manette d'Xbox 360, les contrôles sont mappés comme suit :
-A : Sauter/Maintenir dans les airs pour l'hélicoptère
-X : Attaquer
-Y : Utiliser le grappin
-LB : Activer ou désactiver la lumière/Maintenir pour contrôler le tempo de la danse si activé
-LT : Mode vue subjective si activé
-RB : Attaquer/Appuyer ou maintenir pour utiliser les finishers si activés
-RT : Esquive/Charge au sol/Rouler et sauter plusieurs fois pour accélérer si activé
-Croix directionnelle haut : Commence ou arrête le mode danse si activé
-En mode danse, appuyez sur ABXY ou utilisez le stick analogique gauche pour faire des mouvements de danse
-Stick analogique gauche : Déplacer Rayman
-Stick analogique droit : Contrôles caméra si activés
-Select : Mode noclip
-Start : Pause</value>
-  </data>
-  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
-    <value>Ajouter le mode vue subjective</value>
-  </data>
-  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
-    <value>Un mode de vue à la première personne est ajouté et mappé au bouton LT</value>
-  </data>
-  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
-    <value>Chasses au lapin</value>
-  </data>
-  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
-    <value>Activer tous les déclencheurs d'activation</value>
-  </data>
-  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
-    <value>Force tous les déclencheurs d'activation à être réglés sur vrai constemment. Causera un immense chaos dans la plupart des niveaux et fera apparaître beaucoup plus d'ennemis (et de bébés Globox)</value>
-  </data>
-  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
-    <value>Activer les déclencheurs des volumes englobants</value>
-  </data>
-  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
-    <value>Certains déclencheur d'apparition de lapin sont difficiles à atteindre. Ceci les déclenche, mais attention, cela cause des crashs dans beaucoup de niveaux!</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
-    <value>Démon Nurgle</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
-    <value>Activer la lampe torche (activer/désactiver avec LB)</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
-    <value>Ajoute la lampe torche à Les lapins aiment creuser des galeries</value>
-  </data>
-  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
-    <value>Ajoute des objets de lapin inutilisés à Les lapins n'ont pas peur du noir</value>
-  </data>
-  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
-    <value>Choisir la page de triche</value>
-  </data>
-  <data name="Settings_UseChildWindows" xml:space="preserve">
-    <value>Afficher les fenêtres en tant que popups</value>
-  </data>
-  <data name="Settings_UseChildWindowsInfo" xml:space="preserve">
-    <value>Activer ceci affichera les fenêtres, telles que la fenêtre d'options de jeu et les boîtes de dialogues, en tant que pop-us à l'intérieur de la fenêtre principale. Désactiver cette option les affichera en tant que fenêtres séparées.</value>
-  </data>
-  <data name="Progression_ROSpeedTrophies" xml:space="preserve">
-    <value>Trophées de vitesse</value>
-  </data>
-  <data name="Progression_DataSource_AutoInfo" xml:space="preserve">
-    <value>Quand vous créez un nouveau backup ou utilisez les fichiers de sauvegarde pour la visualisation de progression, le répertoire avec les fichiers les plus récents sera alors utilisé. Quand vous restaurez un backup, il sera restauré dans les deux répertoires.</value>
-  </data>
-  <data name="Settings_SerializationLogInfo" xml:space="preserve">
-    <value>Activer la sérialisation fera que toutes les actions de sérialisation, telles que l'utilisation d'Archive Explorer ou regarder la progression du jeu, seront sérialisées dans le journal de sérialisation spécifié. Cela sert principalement pour du débogage mais peut aussi être utile pour voir les structures de données de certains formats.</value>
-  </data>
-  <data name="Utilities_Format_UnityPlayerPrefsHeader" xml:space="preserve">
-    <value>Préférences Unity Player/Sauvegardes The Lapins Crétins Big Bang</value>
-  </data>
-  <data name="RFRU_SaveFixInfo" xml:space="preserve">
-    <value>À cause d'un bug dans les premières versions du jeu, la progression de fichier de sauvegarde peut être désynchronisée, faisant que vous avez moins de Ptizêtres que vous n'en ayez récupéré.
-Cela peut rendre certains niveaux inaccessibles. Cet outil tentera de corriger cela.</value>
-  </data>
-  <data name="Archive_CreateStatusPacking" xml:space="preserve">
-    <value>Compiler l'archive</value>
-  </data>
-  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
-    <value>En s'attachant à un processus de jeu en cours, il est possible de voir et modifier les valeurs du jeu en temps réel. Pour certains jeux, cela permet de réactiver des fonctions inutilisées.</value>
-  </data>
-  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
-    <value>Si activé, le jeu se mettra à jouer les deux démos enregistrées inutilisées quand le niveau charge. Cela peut être déclenché en perdant toutes ses vies et en choisssant Réessayer.</value>
-  </data>
-  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
-    <value>Quand ceci est activé, le jeu chargera les menus multijoueur inutilisés au démarrage. Si le jeu a déjà démarré, il est possible d'y accéder en choisissant de quitter le jeu depuis le menu de pause.
-Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fonctionnalité n'a jamais été complètement implémentée. Le premier menu est la sélection de joueur et le second est la sélection du niveau. Comme ils n'ont jamais été implémentés, le seul moyen de les changer est d'utiliser les champs ci-dessous.</value>
-  </data>
-  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
-    <value>Temps limité</value>
-  </data>
-  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
-    <value>Temps de la carte</value>
-  </data>
-  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
-    <value>Index aléatoire</value>
-  </data>
-  <data name="R2_LevelName_nego_10" xml:space="preserve">
-    <value>Salle du conseil des Ptizêtres</value>
-  </data>
-  <data name="R2_LevelName_batam_10" xml:space="preserve">
-    <value>Pendant ce temps-là... Partie 1</value>
-  </data>
-  <data name="R2_LevelName_batam_20" xml:space="preserve">
-    <value>Barbe Tranchante reçoit de la visite...</value>
-  </data>
-  <data name="R2_LevelName_bast_09" xml:space="preserve">
-    <value>Introduction Cavernes de l'Écho</value>
-  </data>
-  <data name="R2_LevelName_ball" xml:space="preserve">
-    <value>Cinématique du ballon des Montagnes de Fer</value>
-  </data>
-  <data name="R2_LevelName_end_10" xml:space="preserve">
-    <value>Fin</value>
-  </data>
   <data name="R3_LevelName_endgame" xml:space="preserve">
     <value>Fin du jeu</value>
   </data>
@@ -4610,5 +4589,29 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="R3_LevelName_commando" xml:space="preserve">
     <value>Commando</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Carte</value>
+  </data>
+  <data name="EmuSelection_None" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PC_1_21" xml:space="preserve">
+    <value>Rayman 1 (PC - 1.21)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_PS1_US" xml:space="preserve">
+    <value>Rayman 1 (PS1 - US)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PS1_Proto" xml:space="preserve">
+    <value>Rayman 2 (PS1 - Prototype)</value>
+  </data>
+  <data name="Mod_Mem_Game_R1_GBA_EU" xml:space="preserve">
+    <value>Rayman Advance (GBA - EU)</value>
+  </data>
+  <data name="Mod_Mem_Game_R2_PC" xml:space="preserve">
+    <value>Rayman 2 (PC)</value>
+  </data>
+  <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
+    <value>Rayman 3 (PC)</value>
   </data>
 </root>

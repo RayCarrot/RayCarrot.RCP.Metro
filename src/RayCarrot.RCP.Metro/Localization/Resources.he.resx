@@ -4300,7 +4300,7 @@ Start: הפסק</value>
   <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
     <value>מאפשר למקם את ריימן בחופשיות בשלב</value>
   </data>
-  <data name="Mod_Mem_Map" xml:space="preserve">
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
     <value>מפה נוכחית</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
@@ -4591,6 +4591,9 @@ Start: הפסק</value>
   </data>
   <data name="R3_LevelName_commando" xml:space="preserve">
     <value>קומנדו</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>מפה</value>
   </data>
   <data name="EmuSelection_None" xml:space="preserve">
     <value>כלום</value>

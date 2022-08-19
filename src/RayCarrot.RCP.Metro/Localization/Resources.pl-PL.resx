@@ -4331,7 +4331,7 @@ Konflikty:
   <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
     <value>Pozwala na dowolne rozmieszczenie Raymana na poziomie</value>
   </data>
-  <data name="Mod_Mem_Map" xml:space="preserve">
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
     <value>Aktualna mapa</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
@@ -4621,6 +4621,9 @@ Konflikty:
   </data>
   <data name="R3_LevelName_commando" xml:space="preserve">
     <value>Komandos</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Mapa</value>
   </data>
   <data name="EmuSelection_None" xml:space="preserve">
     <value>Brak</value>

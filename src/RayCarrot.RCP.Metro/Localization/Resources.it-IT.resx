@@ -4301,7 +4301,7 @@ Rayman Raving Rabbids</value>
   <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
     <value>Consente a Rayman di essere posizionato liberamente nel livello</value>
   </data>
-  <data name="Mod_Mem_Map" xml:space="preserve">
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
     <value>Mappa corrente</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
@@ -4592,6 +4592,9 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="R3_LevelName_commando" xml:space="preserve">
     <value>Commando</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Mappa</value>
   </data>
   <data name="EmuSelection_None" xml:space="preserve">
     <value>Nessuno</value>

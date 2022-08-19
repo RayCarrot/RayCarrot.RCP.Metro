@@ -250,7 +250,7 @@ public class Mod_Mem_CPAGame : Mod_Mem_Game<Mod_Mem_CPAMemoryData>
             editorFields: new EditorFieldViewModel[]
             {
                 new GroupedEditorDropDownFieldViewModel(
-                    header: new ResourceLocString(nameof(Resources.Mod_Mem_Map)),
+                    header: new ResourceLocString(nameof(Resources.Mod_Mem_CurrentMap)),
                     info: null,
                     getValueAction: () => AccessMemory(m => mapDropDowns.FindItemIndex(x => x.Data == m.CurrentMap)),
                     setValueAction: x => AccessMemory(m =>

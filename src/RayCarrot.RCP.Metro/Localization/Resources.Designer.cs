@@ -5441,6 +5441,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current map.
+        /// </summary>
+        public static string Mod_Mem_CurrentMap {
+            get {
+                return ResourceManager.GetString("Mod_Mem_CurrentMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cutscenes.
         /// </summary>
         public static string Mod_Mem_CutsceneLevelsCategory {
@@ -5603,7 +5612,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current map.
+        ///   Looks up a localized string similar to Map.
         /// </summary>
         public static string Mod_Mem_Map {
             get {

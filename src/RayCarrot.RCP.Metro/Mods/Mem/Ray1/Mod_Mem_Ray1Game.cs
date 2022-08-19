@@ -155,7 +155,7 @@ public class Mod_Mem_Ray1Game : Mod_Mem_Game<Mod_Mem_Ray1MemoryData>
                     .ToArray();
 
             yield return new EditorDropDownFieldViewModel(
-                header: new ResourceLocString(nameof(Resources.Mod_Mem_Map)),
+                header: new ResourceLocString(nameof(Resources.Mod_Mem_CurrentMap)),
                 info: null,
                 getValueAction: () => AccessMemory(m => m.NumLevel - 1),
                 setValueAction: x => AccessMemory(m =>

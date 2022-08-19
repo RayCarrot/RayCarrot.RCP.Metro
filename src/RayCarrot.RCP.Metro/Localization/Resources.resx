@@ -4452,7 +4452,7 @@ Prototype Restoration</value>
   <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
     <value>Allows Rayman to be placed freely in the level</value>
   </data>
-  <data name="Mod_Mem_Map" xml:space="preserve">
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
     <value>Current map</value>
   </data>
   <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
@@ -4747,6 +4747,9 @@ partNumber</comment>
   </data>
   <data name="R3_LevelName_commando" xml:space="preserve">
     <value>Commando</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Map</value>
   </data>
   <data name="EmuSelection_None" xml:space="preserve">
     <value>None</value>
