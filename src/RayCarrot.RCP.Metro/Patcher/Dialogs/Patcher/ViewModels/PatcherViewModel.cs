@@ -694,17 +694,29 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         continue;
                 }
 
-                // Verify the security
-                if (await VerifyPatchSecurityAsync(patch))
+                // Verify game
+                if (patch.Metadata.Game != Game)
                 {
-                    // Add the patch file
-                    AddPatchFromFile(_context, patch, patchFilePath);
-                    HasChanges = true;
+                    Logger.Warn("Failed to add pending patch due to the specified game {0} not matching the current one ({1})",
+                        patch.Metadata.Game, Game);
+
+                    // Do not show message to user as at least one game from the pending patches will be added
+
+                    _context.RemoveFile(patchFilePath);
+
+                    continue;
                 }
-                else
+
+                // Verify the security
+                if (!await VerifyPatchSecurityAsync(patch))
                 {
                     _context.RemoveFile(patchFilePath);
+                    continue;
                 }
+
+                // Add the patch file
+                AddPatchFromFile(_context, patch, patchFilePath);
+                HasChanges = true;
             }
 
             _pendingPatchFiles = null;
