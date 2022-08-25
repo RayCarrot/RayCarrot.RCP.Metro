@@ -432,7 +432,8 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource));
 
             // Determine if the program data source can be modified
-            CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || Data.Backup_GameDataSources.ContainsKey(BackupName);
+            CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || 
+                                         (Data.Backup_GameDataSources.TryGetValue(BackupName, out ProgramDataSource src) && src != ProgramDataSource.Auto);
 
             // Check if GOG cloud sync is in use
             CheckForGOGCloudSync();
