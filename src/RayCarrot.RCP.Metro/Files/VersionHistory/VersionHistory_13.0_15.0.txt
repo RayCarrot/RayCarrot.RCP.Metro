@@ -1,5 +1,5 @@
-﻿-----   Version 13.3.0 - August ??, 2022   -----
-• Added support for game patches which can be applied from local files or externally available ones
+﻿-----   Version 13.3.0 - August 28, 2022   -----
+• Added the game patcher, acting as a mod loader for file modifications, which can be applied from local patch files or externally available ones (more of which will be added independently of app updates)
 • Added support for Tonic Trouble and Tonic Trouble Special Edition
 • The program has now been translated to French (thanks Marteaufou and ZetaXO!)
 
