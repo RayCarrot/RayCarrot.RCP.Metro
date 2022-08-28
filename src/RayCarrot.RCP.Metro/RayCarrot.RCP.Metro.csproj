@@ -27,7 +27,7 @@
     <RootNamespace>RayCarrot.RCP.Metro</RootNamespace>
     <AssemblyName>RayCarrot.RCP.Metro</AssemblyName>
     <ApplicationIcon>Img\RCP_Metro.ico</ApplicationIcon>
-    <Version>13.3.0.3</Version>
+    <Version>13.3.1.0</Version>
     <Authors>RayCarrot</Authors>
     <Product>Rayman Control Panel</Product>
     <Description>Open source, unofficial Rayman management program with configuration tools and utilities</Description>
