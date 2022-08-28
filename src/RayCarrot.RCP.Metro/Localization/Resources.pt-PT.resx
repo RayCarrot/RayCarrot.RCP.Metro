@@ -4626,4 +4626,316 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
   </data>
+  <data name="Patcher_CriticalError" xml:space="preserve">
+    <value>Ocorreu um erro no corrector e teve de fechar</value>
+  </data>
+  <data name="UnsavedChangesQuestion" xml:space="preserve">
+    <value>Existem alterações por salvar. Queres continuar e descartá-las?</value>
+  </data>
+  <data name="UnsavedChangesQuestionHeader" xml:space="preserve">
+    <value>Confirmar descarte de alterações</value>
+  </data>
+  <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
+    <value>Queres sincronizar automáticamente as texturas de jogo quando o arquivo de textura é reempacotado? É requerida a sincronização para texturas de maior resolução para funcionarem nalguns níveis. Isto pode ser alterado a qualquer altura na página das definições.</value>
+  </data>
+  <data name="GameDisplay_Patcher" xml:space="preserve">
+    <value>Correcções</value>
+  </data>
+  <data name="About_Credits_Marteaufou" xml:space="preserve">
+    <value>Programa de tradução Francês (França)</value>
+  </data>
+  <data name="About_Credits_ZetaXO" xml:space="preserve">
+    <value>Programa de tradução Francês (França)</value>
+  </data>
+  <data name="Patcher_Title" xml:space="preserve">
+    <value>Corrector</value>
+  </data>
+  <data name="Settings_PatcherShowExternal" xml:space="preserve">
+    <value>Mostrar correcções externas</value>
+  </data>
+  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
+    <value>Se activado, o corrector irá carregar e mostrar uma lista de correcções externas disponíveis para download</value>
+  </data>
+  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
+    <value>Associações de Ficheiro</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
+    <value>Abrir ficheiros correctores de jogo (.gp) no Rayman Control Panel através do Explorador de Ficheiros</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
+    <value>Abrir ficheiros correctores de jogo (.gp) no Rayman Control Panel através do Protocolo URI</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
+    <value>Activar isto permite um suporte de instalação de 1-clique do GameBanana</value>
+  </data>
+  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
+    <value>Ocorreu um erro ao definir a associação do tipo de ficheiro para os ficheiros correctores. Experimenta executar o Rayman Control Panel como administrador e tenta novamente.</value>
+  </data>
+  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
+    <value>Ocorreu um erro ao definir a associação do Protocolo URI para os ficheiros correctores. Experimenta executar o Rayman Control Panel como administrador e tenta novamente.</value>
+  </data>
+  <data name="PatchCreator_NameField" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="PatchCreator_AuthorField" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="PatchCreator_DescriptionField" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="PatchCreator_VersionField" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="Patcher_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Patcher_Game" xml:space="preserve">
+    <value>Jogo</value>
+  </data>
+  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
+    <value>Selecciona uma miniatura. O tamanho recomendado é de 128x128.</value>
+  </data>
+  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
+    <value>Remover miniatura</value>
+  </data>
+  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
+    <value>O directório do ficheiro a acrescentar ao destino especificado. Se isto estiver vazio então qualquer ficheiro existente no destino será então removido.</value>
+  </data>
+  <data name="PatchCreator_AddFile" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
+    <value>Adicionar de ficheiros</value>
+  </data>
+  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
+    <value>Adicionar de pasta</value>
+  </data>
+  <data name="PatchCreator_Create" xml:space="preserve">
+    <value>Criar</value>
+  </data>
+  <data name="PatchCreator_Title" xml:space="preserve">
+    <value>Criador de Correctores</value>
+  </data>
+  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
+    <value>Jogo</value>
+  </data>
+  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
+    <value>Importar de corrector existente</value>
+  </data>
+  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
+    <value>O corrector seleccionado foi feito com uma nova versão do Rayman Control Panel e não pode ser lido</value>
+  </data>
+  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
+    <value>O corrector seleccionado não pode ser lido</value>
+  </data>
+  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
+    <value>Seleccionar uma miniatura</value>
+  </data>
+  <data name="FileSelection_ImageFormat" xml:space="preserve">
+    <value>Imagem</value>
+  </data>
+  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
+    <value>Seleccionar ficheiros para adicionar</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
+    <value>Seleccionar pasta para adicionar</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
+    <value>Ocorreu um erro ao adicionar os ficheiros seleccionados</value>
+  </data>
+  <data name="PatchCreator_Create_Status" xml:space="preserve">
+    <value>Criar corrector</value>
+  </data>
+  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
+    <value>Salvar ficheiro de correcção</value>
+  </data>
+  <data name="Patcher_FileType" xml:space="preserve">
+    <value>Corrector de Jogo</value>
+  </data>
+  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
+    <value>O corrector foi salva com sucesso</value>
+  </data>
+  <data name="PatchCreator_CreateError" xml:space="preserve">
+    <value>Ocorreu um erro ao criar o corrector</value>
+  </data>
+  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
+    <value>O directório não pode estar vazio</value>
+  </data>
+  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
+    <value>O directório não pode conter caracteres inválidos</value>
+  </data>
+  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
+    <value>O directório não pode ser o mesmo de um ficheiro de arquivo</value>
+  </data>
+  <data name="Patcher_PatchesHeader" xml:space="preserve">
+    <value>Correctores</value>
+  </data>
+  <data name="Patcher_PatchesInfo" xml:space="preserve">
+    <value>Os correctores são modificações aos ficheiros de jogo que podem ser aplicados para mudar ou melhorar o jogo em várias maneiras. O corrector não terá efeito até ser activado e aplicado, permitindo aos correctores serem fácilmente alternadas como "Ligado" ou "Desligado". Não é recomendado mudar manualmente os ficheiros de jogo em que um corrector os modifica pois poderá resultar na perda de algumas alterações.</value>
+  </data>
+  <data name="Patcher_AddPatch" xml:space="preserve">
+    <value>Adicionar corrector</value>
+  </data>
+  <data name="Patcher_ExtractPatch" xml:space="preserve">
+    <value>Extrair conteúdos</value>
+  </data>
+  <data name="Patcher_ExportPatch" xml:space="preserve">
+    <value>Exportar corrector</value>
+  </data>
+  <data name="Patcher_RemovePatch" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+  <data name="Patcher_DownloadPatch" xml:space="preserve">
+    <value>Descarregar</value>
+  </data>
+  <data name="Patcher_LibraryHeader" xml:space="preserve">
+    <value>Biblioteca de correctores</value>
+  </data>
+  <data name="Patcher_ModificationsHeader" xml:space="preserve">
+    <value>Ficheiros modificados</value>
+  </data>
+  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
+    <value>Adicionar e activar um corrector para modificar os ficheiros de jogo</value>
+  </data>
+  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
+    <value>Ficheiro</value>
+  </data>
+  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
+    <value>Localização</value>
+  </data>
+  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
+    <value>Corrector</value>
+  </data>
+  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
+    <value>Correctores anulados</value>
+  </data>
+  <data name="Patcher_Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="Patcher_DialogTitle" xml:space="preserve">
+    <value>Corrector - {0}</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
+    <value>Jogo:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
+    <value>Correctores:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
+    <value>Correctores aplicados:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
+    <value>Última modificação:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
+    <value>Versão do Formato:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
+    <value>Directório: </value>
+  </data>
+  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
+    <value>Ficheiros acrescentados:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
+    <value>Ficheiros substituídos:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
+    <value>Ficheiros removidos:</value>
+  </data>
+  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
+    <value>A biblioteca de correctores de jogo foi feita com uma nova versão do Rayman Control Panel e não pode ser lida.</value>
+  </data>
+  <data name="Patcher_ReadLibraryGameMismatchError" xml:space="preserve">
+    <value>A biblioteca de correctores de jogo foi feita para {0}</value>
+  </data>
+  <data name="Patcher_SecurityWarning" xml:space="preserve">
+    <value>O corrector {0} adiciona ou substitui ficheiros sensíveis, tais como ficheiros executáveis, no jogo. Adiciona esta correcção apenas se confiares no autor. Continuar?</value>
+  </data>
+  <data name="Patcher_ReadPatchGameNotAddedError" xml:space="preserve">
+    <value>Não se consegue abrir o corrector {0} pelo {1} devido ao jogo não ter sido adicionado no Rayman Control Panel</value>
+  </data>
+  <data name="Patcher_AddPatchHeader" xml:space="preserve">
+    <value>Seleccionar correctores a adicionar</value>
+  </data>
+  <data name="Patcher_ReadPatchGameMismatchError" xml:space="preserve">
+    <value>O corrector seleccionado só pode ser aplicado ao {0}</value>
+  </data>
+  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
+    <value>A extrair conteúdos do corrector</value>
+  </data>
+  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
+    <value>Os conteúdos do corrector foram extraídos com sucesso</value>
+  </data>
+  <data name="Patcher_ExtractContentsError" xml:space="preserve">
+    <value>Ocorreu um erro ao extrair os conteúdos do corrector</value>
+  </data>
+  <data name="Patcher_Export_Status" xml:space="preserve">
+    <value>Exportar corrector</value>
+  </data>
+  <data name="Patcher_ExportSuccess" xml:space="preserve">
+    <value>O actualizador foi exportado com sucesso</value>
+  </data>
+  <data name="Patcher_ExportError" xml:space="preserve">
+    <value>Ocorreu um erro ao extrair o corrector</value>
+  </data>
+  <data name="Patcher_LoadError" xml:space="preserve">
+    <value>Ocorreu um erro ao carregar os correctores</value>
+  </data>
+  <data name="Patcher_LoadExternalNewerVersionError" xml:space="preserve">
+    <value>Não puderam ser carregados correctores externos devido à utilização de um novo formato. Por favor actualiza o Rayman Control Panel para poderes descarregar os correctores externos.</value>
+  </data>
+  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
+    <value>Ocorreu um erro ao carregar os correctores externos</value>
+  </data>
+  <data name="Patcher_Apply_Status" xml:space="preserve">
+    <value>Aplicar correctores</value>
+  </data>
+  <data name="Patcher_ApplySuccess" xml:space="preserve">
+    <value>Aplicadores todos os correctores com sucesso</value>
+  </data>
+  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
+    <value>Concluída a aplicação de correctores. Alguns ficheiros não puderam ser modificados.</value>
+  </data>
+  <data name="Patcher_ApplyError" xml:space="preserve">
+    <value>Ocorreu um erro ao aplicar os correctores. Nem todas as alterações foram aplicadas e alguns dados poderão ter sido perdidos. Certifica-te que não tens nenhum ficheiro do jogo aberto enquanto aplicas correctores.</value>
+  </data>
+  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+    <value>Autor:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+    <value>Tamanho:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
+    <value>Última modificação:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+    <value>Versão do Formato:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
+    <value>Directório do Ficheiro:</value>
+  </data>
+  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+    <value>Ficheiros acrescentados:</value>
+  </data>
+  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+    <value>Ficheiros removidos:</value>
+  </data>
+  <data name="PatchCreator_GameNotAddedError" xml:space="preserve">
+    <value>Só poderás criar um corrector para um jogo que tenhas adicionado ao Rayman Control Panel</value>
+  </data>
+  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
+    <value>Seleccionar um corrector para importar de</value>
+  </data>
+  <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
+    <value>Corrector de Jogo (.gp)</value>
+  </data>
+  <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
+    <value>Biblioteca de Correctores de Jogo (.gpl)</value>
+  </data>
 </root>
