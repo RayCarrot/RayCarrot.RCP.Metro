@@ -13,6 +13,7 @@ Main features:
 - Disc installers to install select games from discs
 - General utilities, such as the Archive Explorer to modify archive files for texture mods
 - Mods, such as restoring prototype features in Rayman Raving Rabbids
+- Managing game patches, acting as a mod loader
 
 ## Archive Explorer
 ![Archive Explorer](img/example_archive_explorer.png)
