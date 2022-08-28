@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using NLog;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -13,6 +14,18 @@ public class PatchFileURILaunchHandler : URILaunchHandler
     public override bool DisableFullStartup => true;
 
     public override string BaseURI => PatchFile.URIProtocol;
+
+    // TODO: Move to some general helper class
+    private static string GetRedirectedUrl(string url)
+    {
+        HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+        webRequest.Method = "HEAD";
+        webRequest.AllowAutoRedirect = false;
+        webRequest.Timeout = 5000; // 5 seconds
+
+        using WebResponse webResponse = webRequest.GetResponse();
+        return webResponse.Headers["Location"];
+    }
 
     public override async void Invoke(string uri, State state)
     {
@@ -28,7 +41,18 @@ public class PatchFileURILaunchHandler : URILaunchHandler
 
         try
         {
-            string ext = Path.GetExtension(uri);
+            // For GameBanana the URL gets redirected to the actual download, so we want to get that URL instead
+            value = GetRedirectedUrl(value);
+        }
+        catch (Exception ex)
+        {
+            // Ignore exceptions here for now and attempt to continue
+            Logger.Warn(ex, "Get redirected URL");
+        }
+
+        try
+        {
+            string ext = Path.GetExtension(value);
             FileType fileType = FileType.Unknown;
 
             if (ext.Equals(".zip", StringComparison.OrdinalIgnoreCase))
