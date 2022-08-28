@@ -34,6 +34,11 @@ Each supported game has a configuration page where its settings can be changed. 
 
 Different mods are available throughout the app, such as restoring prototype features in Rayman Raving Rabbids.
 
+## Patches
+![Mods](img/example_patcher_r2.png)
+
+The game patcher tool acts as a mod loader allowing patches with file modifications to be applied to an installed game. These are distributed as .gp files and can be manually added, downloaded through the program or downloaded from [GameBanana](https://gamebanana.com/).
+
 ## Utilities
 ![Mods](img/example_utilities_origins.png)
 
