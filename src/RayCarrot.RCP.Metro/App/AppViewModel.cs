@@ -164,7 +164,7 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Indicates if the current version is a beta version
     /// </summary>
-    public bool IsBeta => true;
+    public bool IsBeta => false;
 
     /// <summary>
     /// The application games manager
@@ -230,7 +230,7 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     public static WindowsVersion WindowsVersion { get; } // TODO: Why is this static?
 
-    public static Version AppVersion => new(13, 3, 0, 2);
+    public static Version AppVersion => new(13, 3, 0, 3);
 
     #endregion
 
