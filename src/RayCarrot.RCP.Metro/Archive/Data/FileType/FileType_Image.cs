@@ -157,7 +157,7 @@ public class FileType_Image : IFileType
 
     protected MagickFormat GetMagickFormat(string ext)
     {
-        MagickFormatInfo? formatInfo = MagickFormatInfo.Create(ext);
+        IMagickFormatInfo? formatInfo = MagickFormatInfo.Create(ext);
 
         if (formatInfo == null)
             throw new Exception($"Invalid file extension {ext}");
