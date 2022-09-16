@@ -24,7 +24,7 @@ public class Utility_Converters_CPAGF_TypeViewModel : Utility_Converters_TypeVie
 
     public override void Convert(Context context, string inputFileName, FileSystemPath outputFilePath)
     {
-        GF? gf = ReadFile<GF>(context, context.GetSettings<OpenSpaceSettings>().GetEndian, inputFileName);
+        GF? gf = ReadFile<GF>(context, context.GetRequiredSettings<OpenSpaceSettings>().GetEndian, inputFileName);
 
         if (gf is null)
             return;
@@ -69,7 +69,7 @@ public class Utility_Converters_CPAGF_TypeViewModel : Utility_Converters_TypeVie
 
         // IDEA: If bmp is not in supported format, then convert it?
 
-        OpenSpaceSettings settings = context.GetSettings<OpenSpaceSettings>();
+        OpenSpaceSettings settings = context.GetRequiredSettings<OpenSpaceSettings>();
 
         // Import from the bitmap
         gf.ImportFromBitmap(settings, new RawBitmapData(bmp), Services.Data.Archive_GF_GenerateMipmaps);

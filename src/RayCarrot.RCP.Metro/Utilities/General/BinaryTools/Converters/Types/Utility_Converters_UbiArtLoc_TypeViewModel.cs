@@ -20,7 +20,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
 
     public override void Convert(Context context, string inputFileName, FileSystemPath outputFilePath)
     {
-        UbiArtSettings settings = context.GetSettings<UbiArtSettings>();
+        UbiArtSettings settings = context.GetRequiredSettings<UbiArtSettings>();
 
         if (settings.Game == Game.RaymanFiestaRun)
             defaultConvert<UbiArtObjKeyObjValuePair<String16, String16>, String16>();
@@ -52,7 +52,7 @@ public class Utility_Converters_UbiArtLoc_TypeViewModel : Utility_Converters_Typ
 
     public override void ConvertBack(Context context, FileSystemPath inputFilePath, string outputFileName, object state)
     {
-        UbiArtSettings settings = context.GetSettings<UbiArtSettings>();
+        UbiArtSettings settings = context.GetRequiredSettings<UbiArtSettings>();
 
         if (settings.Game == Game.RaymanFiestaRun)
             defaultConvert<UbiArtObjKeyObjValuePair<String16, String16>, String16>();

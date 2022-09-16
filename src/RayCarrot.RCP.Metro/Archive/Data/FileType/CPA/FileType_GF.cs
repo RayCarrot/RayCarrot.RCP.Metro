@@ -222,7 +222,7 @@ public class FileType_GF : IFileType
 
         byte oldRepeatByte = gf.RepeatByte;
 
-        OpenSpaceSettings settings = manager.Context!.GetSettings<OpenSpaceSettings>();
+        OpenSpaceSettings settings = manager.Context!.GetRequiredSettings<OpenSpaceSettings>();
 
         // Import the bitmap
         gf.ImportFromBitmap(settings, rawBitmapData, Services.Data.Archive_GF_GenerateMipmaps);

@@ -77,7 +77,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             };
         }).Where(x => x != null).OrderBy(x => x!.World).ThenBy(x => x!.Level))
         {
-            var settings = context.GetSettings<Ray1Settings>();
+            var settings = context.GetRequiredSettings<Ray1Settings>();
             settings.World = (World)save!.World;
             settings.Level = save.Level;
 

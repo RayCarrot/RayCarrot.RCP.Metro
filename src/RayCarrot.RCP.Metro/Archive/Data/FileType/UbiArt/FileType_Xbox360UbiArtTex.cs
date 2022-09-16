@@ -26,7 +26,7 @@ public class FileType_Xbox360UbiArtTex : FileType_BaseUbiArtTex
 
     public override bool IsOfType(ArchiveFileStream inputStream, IArchiveDataManager manager, TextureCooked? tex)
     {
-        UbiArtSettings settings = manager.Context!.GetSettings<UbiArtSettings>();
+        UbiArtSettings settings = manager.Context!.GetRequiredSettings<UbiArtSettings>();
 
         // TODO: Find better way to check this
         return settings.Platform == Platform.Xbox360;

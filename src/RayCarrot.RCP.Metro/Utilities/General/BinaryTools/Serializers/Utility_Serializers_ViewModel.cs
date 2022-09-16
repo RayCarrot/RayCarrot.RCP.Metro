@@ -45,7 +45,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<R2GeneralSaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
-                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
@@ -54,7 +54,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<R2ConfigFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R2ConfigHeader)),
                 fileExtension: new FileExtension(".cfg"),
-                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
@@ -63,7 +63,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<RMSaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RMSaveHeader)),
                 fileExtension: new FileExtension(".sav"),
-                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanM_PC),
@@ -73,7 +73,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<R3SaveFile>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_R3SaveHeader)),
                 fileExtension: new FileExtension(".sav"),
-                getEndianFunc: c => c.GetSettings<OpenSpaceSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman3_PC) { Encoder = new R3SaveEncoder() },
@@ -91,7 +91,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<Origins_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_ROSaveHeader)),
                 fileExtension: new FileExtension(""),
-                getEndianFunc: c => c.GetSettings<UbiArtSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanOrigins_PC)
@@ -103,7 +103,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             new Serializers_TypeViewModel<Legends_SaveData>(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_RLSaveHeader)),
                 fileExtension: new FileExtension(""),
-                getEndianFunc: c => c.GetSettings<UbiArtSettings>().GetEndian,
+                getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
                     new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanLegends_PC)

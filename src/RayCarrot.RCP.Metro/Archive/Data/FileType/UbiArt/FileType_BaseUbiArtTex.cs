@@ -54,7 +54,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
         if (FormatMagic != null)
         {
             // Use a reader
-            using Reader reader = new(inputStream.Stream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
+            using Reader reader = new(inputStream.Stream, manager.Context!.GetRequiredSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
 
             // Get the magic header
             uint magic = reader.ReadUInt32();
@@ -212,7 +212,7 @@ public abstract class FileType_BaseUbiArtTex : FileType_Image
     protected TextureCooked? ReadTEXHeader(ArchiveFileStream inputStream, IArchiveDataManager manager)
     {
         // Use a reader
-        using Reader reader = new(inputStream.Stream, manager.Context!.GetSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
+        using Reader reader = new(inputStream.Stream, manager.Context!.GetRequiredSettings<UbiArtSettings>().GetEndian == BinarySerializer.Endian.Little, true);
 
         // Check if it's in a TEX wrapper
         inputStream.Stream.Position = 4;
