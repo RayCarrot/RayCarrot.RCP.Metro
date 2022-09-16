@@ -22,6 +22,7 @@ public abstract class Mod_Mem_MemoryData
     }
 
     protected T Serialize<T>(T obj, string name)
+        where T : struct
     {
         SerializerObject? s = GetSerializerObject(name);
 
@@ -32,6 +33,7 @@ public abstract class Mod_Mem_MemoryData
     }
 
     protected T[]? SerializeArray<T>(T[]? obj, long count, string name)
+        where T : struct
     {
         SerializerObject? s = GetSerializerObject(name);
 
