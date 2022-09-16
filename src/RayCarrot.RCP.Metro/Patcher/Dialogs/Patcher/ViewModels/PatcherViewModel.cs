@@ -629,7 +629,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Extracting patch");
+                Logger.Error(ex, "Exported patch");
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ExportError);
             }
