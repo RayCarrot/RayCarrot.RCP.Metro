@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using BinarySerializer;
 using ControlzEx.Theming;
 using Newtonsoft.Json;
 using NLog;
@@ -66,6 +67,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownAppAsync(false)));
         UpdateThemeCommand = new RelayCommand(UpdateTheme);
         ExportWebPatchesFilesCommand = new AsyncRelayCommand(ExportWebPatchesFilesAsync);
+        ExtractPatchLibraryCommand = new AsyncRelayCommand(ExtractPatchLibraryAsync);
         RunLoadOperationCommand = new AsyncRelayCommand(RunLoadOperationAsync);
     }
 
@@ -94,6 +96,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public ICommand ShutdownAppCommand { get; }
     public ICommand UpdateThemeCommand { get; }
     public ICommand ExportWebPatchesFilesCommand { get; }
+    public ICommand ExtractPatchLibraryCommand { get; }
     public ICommand RunLoadOperationCommand { get; }
 
     #endregion
@@ -660,6 +663,77 @@ public class Page_Debug_ViewModel : BasePageViewModel
             Logger.Error(ex, "Generating web patches files");
 
             await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when generating the files");
+        }
+    }
+
+    public async Task ExtractPatchLibraryAsync()
+    {
+        FileBrowserResult inputResult = await BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+        {
+            Title = "Select patch library",
+            ExtensionFilter = new FileFilterItem($"*{PatchLibraryFile.FileExtension}", "Game Patch Library").StringRepresentation,
+        });
+
+        if (inputResult.CanceledByUser)
+            return;
+
+        DirectoryBrowserResult outputResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+        {
+            Title = "Select output folder",
+        });
+
+        if (outputResult.CanceledByUser)
+            return;
+
+        try
+        {
+            using RCPContext context = new(String.Empty);
+
+            // Read the file
+            PatchLibraryFile lib = context.ReadRequiredFileData<PatchLibraryFile>(inputResult.SelectedFile, removeFileWhenComplete: false);
+
+            // Extract removed files
+            for (int i = 0; i < lib.History.RemovedFileResources.Length; i++)
+                await extractResourcesAsync(
+                    context: context, 
+                    filePath: lib.History.RemovedFiles[i], 
+                    resource: lib.History.RemovedFileResources[i], 
+                    outputDir: outputResult.SelectedDirectory + "removed_files");
+
+            // Extract replaced files
+            for (int i = 0; i < lib.History.ReplacedFileResources.Length; i++)
+                await extractResourcesAsync(
+                    context: context, 
+                    filePath: lib.History.ReplacedFiles[i], 
+                    resource: lib.History.ReplacedFileResources[i], 
+                    outputDir: outputResult.SelectedDirectory + "replaced_files");
+
+            // Extract added files
+            File.WriteAllLines(outputResult.SelectedDirectory + "added_files.txt", lib.History.AddedFiles.Select(x => x.ToString()));
+
+            // Extract the patches list
+            JsonHelpers.SerializeToFile(lib.Patches, outputResult.SelectedDirectory + "patches.json");
+
+            static async Task extractResourcesAsync(
+                Context context, 
+                PatchFilePath filePath, 
+                PackagedResourceEntry resource, 
+                FileSystemPath outputDir)
+            {
+                FileSystemPath fileDest = outputDir + filePath.FullFilePath;
+                Directory.CreateDirectory(fileDest.Parent);
+
+                using FileStream dstStream = File.Create(fileDest);
+                using Stream srcStream = resource.ReadData(context, true);
+
+                await srcStream.CopyToAsync(dstStream);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Extracting patch library");
+
+            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when extracting the patch library");
         }
     }
 

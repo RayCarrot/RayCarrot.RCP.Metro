@@ -278,11 +278,11 @@
 
         </TabItem>
 
-        <!-- Web -->
+        <!-- Tools -->
 
-        <TabItem local:TabItemAssist.IconKind="Web"
+        <TabItem local:TabItemAssist.IconKind="Tools"
                  local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Debug}"
-                 Header="Web">
+                 Header="Tools">
 
             <ScrollViewer>
                 <StackPanel Margin="2 0">
@@ -298,11 +298,17 @@
                         <TextBlock Text="Patches"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
-                        <Button Content="Generate files" 
+                        <Button Content="Generate web files" 
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource RCP.Styles.Button.IconContent}"
+                                local:ButtonAssist.IconKind="DatabaseExportOutline"
+                                Command="{Binding Path=ExportWebPatchesFilesCommand, Mode=OneTime}"/>
+
+                        <Button Content="Extract library (.gpl)" 
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
                                 local:ButtonAssist.IconKind="FileExportOutline"
-                                Command="{Binding Path=ExportWebPatchesFilesCommand, Mode=OneTime}"/>
+                                Command="{Binding Path=ExtractPatchLibraryCommand, Mode=OneTime}"/>
 
                     </StackPanel>
 
