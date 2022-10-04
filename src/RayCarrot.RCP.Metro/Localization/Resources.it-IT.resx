@@ -4894,7 +4894,7 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
     <value>Autore:</value>
   </data>
   <data name="Patcher_PatchInfo_Size" xml:space="preserve">
-    <value>Dimenzione:</value>
+    <value>Dimensione:</value>
   </data>
   <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
     <value>Ultima modifica:</value>

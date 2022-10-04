@@ -2170,31 +2170,31 @@
     <value>Произошла ошибка при переупаковке архива</value>
   </data>
   <data name="Progression_R3_Level1Header" xml:space="preserve">
-    <value>The Fairy Council</value>
+    <value>Совет Фей (The Fairy Council)</value>
   </data>
   <data name="Progression_R3_Level2Header" xml:space="preserve">
-    <value>Clearleaf Forest</value>
+    <value>Лес Прозрачных Листьев (Clearleaf Forest)</value>
   </data>
   <data name="Progression_R3_Level3Header" xml:space="preserve">
-    <value>The Bog of Murk</value>
+    <value>Угрюмое Болото (The Bog of Murk)</value>
   </data>
   <data name="Progression_R3_Level4Header" xml:space="preserve">
-    <value>The Land of the Livid Dead</value>
+    <value>Край Зловещих Мертвецов (The Land of the Livid Dead)</value>
   </data>
   <data name="Progression_R3_Level5Header" xml:space="preserve">
-    <value>The Desert of the Knaaren</value>
+    <value>Пустыня Кнааров (The Desert of the Knaaren)</value>
   </data>
   <data name="Progression_R3_Level6Header" xml:space="preserve">
-    <value>The Longest Shortcut</value>
+    <value>Самый Длинный Короткий Путь (The Longest Shortcut)</value>
   </data>
   <data name="Progression_R3_Level7Header" xml:space="preserve">
-    <value>The Summit Beyond the Clouds</value>
+    <value>Заоблачная Вершина (The Summit Beyond the Clouds)</value>
   </data>
   <data name="Progression_R3_Level8Header" xml:space="preserve">
-    <value>Hoodlum Headquarters</value>
+    <value>Штаб Злумов (Hoodlum Headquarters)</value>
   </data>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
-    <value>The Tower of the Leptys</value>
+    <value>Башня Лептиса (The Tower of the Leptys)</value>
   </data>
   <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
     <value>Утилита PlayStation-версии саундтрека была обновлена. Перейдите к утилитам Rayman 1 и переустановите ее, чтобы продолжать использовать ее.</value>
@@ -2296,88 +2296,88 @@
     <value>Патч Рэй-Чемпиона отменен</value>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
-    <value>Давным-давно</value>
+    <value>Давным-давно (Once upon a Time)</value>
   </data>
   <data name="RL_LevelName_1_2" xml:space="preserve">
-    <value>Зловещий замок</value>
+    <value>Зловещий замок (Creepy Castle)</value>
   </data>
   <data name="RL_LevelName_1_3" xml:space="preserve">
-    <value>Волшебный лес</value>
+    <value>Волшебный лес (Enchanted Forest)</value>
   </data>
   <data name="RL_LevelName_1_4" xml:space="preserve">
-    <value>Веревочный курс</value>
+    <value>Веревочный курс (Ropes Course)</value>
   </data>
   <data name="RL_LevelName_1_5" xml:space="preserve">
-    <value>Зыбучие пески</value>
+    <value>Зыбучие пески (Quick Sand)</value>
   </data>
   <data name="RL_LevelName_1_6" xml:space="preserve">
-    <value>Как пристрелить дракона</value>
+    <value>Как пристрелить дракона (How to Shoot your Dragon)</value>
   </data>
   <data name="RL_LevelName_2_1" xml:space="preserve">
-    <value>Рэй и бобовое зернышко</value>
+    <value>Рэй и бобовое зернышко (Ray and the Beanstalk)</value>
   </data>
   <data name="RL_LevelName_2_2" xml:space="preserve">
-    <value>Ветра странных перемен</value>
+    <value>Ветра странных перемен (The Winds of Strange)</value>
   </data>
   <data name="RL_LevelName_2_3" xml:space="preserve">
-    <value>Замок в небесах</value>
+    <value>Замок в небесах (Castle in the Clouds)</value>
   </data>
   <data name="RL_LevelName_2_4" xml:space="preserve">
-    <value>Гонка в воздухе</value>
+    <value>Гонка в воздухе (Altitude Quickness)</value>
   </data>
   <data name="RL_LevelName_2_5" xml:space="preserve">
-    <value>Когда у жаб вырастают крылья</value>
+    <value>Когда у жаб вырастают крылья (When Toads Fly)</value>
   </data>
   <data name="RL_LevelName_3_1" xml:space="preserve">
-    <value>Какого кряка?</value>
+    <value>Какого кряка? (What the Duck?)</value>
   </data>
   <data name="RL_LevelName_3_2" xml:space="preserve">
-    <value>Испорченный до крайности</value>
+    <value>Испорченный до крайности (Spoiled Rotten)</value>
   </data>
   <data name="RL_LevelName_3_3" xml:space="preserve">
-    <value>Меня наполняет...</value>
+    <value>Меня наполняет... (I've Got a Filling)</value>
   </data>
   <data name="RL_LevelName_3_4" xml:space="preserve">
-    <value>Змеиный десерт</value>
+    <value>Змеиный десерт (Snakes on a Cake)</value>
   </data>
   <data name="RL_LevelName_3_5" xml:space="preserve">
-    <value>Прочь, злые мексиканцы!</value>
+    <value>Прочь, злые мексиканцы! (Lucha Libre Get Away)</value>
   </data>
   <data name="RL_LevelName_4_1" xml:space="preserve">
-    <value>Таинственный надувной остров</value>
+    <value>Таинственный надувной остров (The Mysterious Inflatable Island)</value>
   </data>
   <data name="RL_LevelName_4_2" xml:space="preserve">
-    <value>Смертельный свет</value>
+    <value>Смертельный свет (The Deadly Lights)</value>
   </data>
   <data name="RL_LevelName_4_3" xml:space="preserve">
-    <value>Глубинный особняк</value>
+    <value>Глубинный особняк (Mansion of the Deep)</value>
   </data>
   <data name="RL_LevelName_4_4" xml:space="preserve">
-    <value>Станция зачистки</value>
+    <value>Станция зачистки (Infiltration Station)</value>
   </data>
   <data name="RL_LevelName_4_5" xml:space="preserve">
-    <value>Засада на подъёмнике</value>
+    <value>Засада на подъёмнике (Elevator Ambush)</value>
   </data>
   <data name="RL_LevelName_4_6" xml:space="preserve">
-    <value>Всегда найдётся рыба побольше</value>
+    <value>Всегда найдётся рыба побольше (There's Always a Bigger Fish)</value>
   </data>
   <data name="RL_LevelName_5_1" xml:space="preserve">
-    <value>Поднять щиты... и опустить</value>
+    <value>Поднять щиты... и опустить (Shields Up... and Down)</value>
   </data>
   <data name="RL_LevelName_5_2" xml:space="preserve">
-    <value>Тёмная тварь: Возрождение</value>
+    <value>Тёмная тварь: Возрождение (The Dark Creatures Rise)</value>
   </data>
   <data name="RL_LevelName_5_3" xml:space="preserve">
-    <value>Идеальный лабиринт</value>
+    <value>Идеальный лабиринт (The Amazing Maze)</value>
   </data>
   <data name="RL_LevelName_5_4" xml:space="preserve">
-    <value>Геройская гонка с лавой</value>
+    <value>Геройская гонка с лавой (The Great Lava Pursuit)</value>
   </data>
   <data name="RL_LevelName_5_5" xml:space="preserve">
-    <value>Очень опасный рой</value>
+    <value>Очень опасный рой (Swarmed and Dangerous)</value>
   </data>
   <data name="RL_LevelName_5_6" xml:space="preserve">
-    <value>Ад на земле</value>
+    <value>Ад на земле (Hell Breaks Loose)</value>
   </data>
   <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
     <value>Файлы сохранения Rayman Legends</value>
@@ -3021,7 +3021,7 @@
     <value>Подробности</value>
   </data>
   <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
-    <value>Модификаторы памяти</value>
+    <value>Модификации памяти</value>
   </data>
   <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
     <value>Активация вырезанных прототипных возможностей в игре, путём выбора нужных вам модов и их применения. Для этого требуется, чтобы игра была запущена и являлась лишь GOG или Steam версией. Применённые моды будут действовать только во время работы игры и будут сброшены при её закрытии.</value>
@@ -3036,7 +3036,7 @@
     <value>Применить к запущенной игре</value>
   </data>
   <data name="Mod_RRR_BFModsHeader" xml:space="preserve">
-    <value>BF моды</value>
+    <value>BF модификации</value>
   </data>
   <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
     <value>Модифицированные .bf файлы. Они будут использоваться только при запуске игры через приведенную ниже опцию.</value>
@@ -3090,7 +3090,7 @@
     <value>Добавить Дуэль, утерянную мини-игру</value>
   </data>
   <data name="Mod_RRR_MemMod_AddDuelInfo" xml:space="preserve">
-    <value>"Bunnies don't milk cows part 2" заменена на "Bunnies are shooting all over the place". Играйте в режиме мультиплеера!</value>
+    <value>"Кролики не доят коров Часть 2 (Bunnies don't milk cows Part 2)" заменена на "Bunnies are shooting all over the place". Играйте в режиме мультиплеера!</value>
   </data>
   <data name="Mod_RRR_MemMod_AddPlaytestMenu" xml:space="preserve">
     <value>Активировать меню плейтеста</value>
@@ -3510,64 +3510,64 @@ Start: Пауза</value>
     <value>При включении этого параметра окна, такие как окно параметров игры или диалоговые окна сообщений, будут отображаться в виде всплывающих окон в главном окне. При его отключении они будут отображаться как отдельные окна.</value>
   </data>
   <data name="RRR_LevelName_0" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
   </data>
   <data name="RRR_LevelName_1" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
+    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
   </data>
   <data name="RRR_LevelName_2" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
+    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
   </data>
   <data name="RRR_LevelName_3" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
+    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
   </data>
   <data name="RRR_LevelName_4" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
+    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
   </data>
   <data name="RRR_LevelName_5" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
+    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
   </data>
   <data name="RRR_LevelName_6" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
+    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
   </data>
   <data name="RRR_LevelName_7" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
+    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
   </data>
   <data name="RRR_LevelName_8" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
+    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
   </data>
   <data name="RRR_LevelName_9" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
+    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
   </data>
   <data name="RRR_LevelName_10" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
   </data>
   <data name="RRR_LevelName_11" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
+    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
   </data>
   <data name="RRR_LevelName_12" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
+    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
   </data>
   <data name="RRR_LevelName_13" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
+    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
   </data>
   <data name="RRR_LevelName_14" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
+    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
   </data>
   <data name="RRR_LevelName_15" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
+    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
   </data>
   <data name="RRR_LevelName_16" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
+    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
   </data>
   <data name="RRR_LevelName_17" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
+    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
   </data>
   <data name="RRR_LevelName_18" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
+    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
   </data>
   <data name="RRR_LevelName_19" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
+    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
   </data>
   <data name="RRR_LevelName_20" xml:space="preserve">
     <value>Кролики не умеют прыгать (Bunnies can't jump)</value>
@@ -3612,7 +3612,7 @@ Start: Пауза</value>
     <value>Кролики недолюбливают боулинг (Bunnies don't understand bowling)</value>
   </data>
   <data name="RRR_LevelName_34" xml:space="preserve">
-    <value>Animal Farm</value>
+    <value>Скотный двор (Animal Farm)</value>
   </data>
   <data name="RRR_LevelName_35" xml:space="preserve">
     <value>У кроликов отличный музыкальный слух (Bunnies have a great ear for music)</value>
@@ -3630,16 +3630,16 @@ Start: Пауза</value>
     <value>Кролики помешаны. На рейве Часть 2 (Bunnies are raving mad Part 2)</value>
   </data>
   <data name="RRR_LevelName_40" xml:space="preserve">
-    <value>Bunnies like a good race</value>
+    <value>Кролики любят погонять (Bunnies like a good race)</value>
   </data>
   <data name="RRR_LevelName_41" xml:space="preserve">
-    <value>Race good a like Bunnies</value>
+    <value>Какой же кролик не любит быстрой езды? (Race good a like Bunnies)</value>
   </data>
   <data name="RRR_LevelName_42" xml:space="preserve">
-    <value>Bunnies like a good race on the beach</value>
+    <value>Кролики любят погонять по пляжу (Bunnies like a good race on the beach)</value>
   </data>
   <data name="RRR_LevelName_43" xml:space="preserve">
-    <value>Bunnies only fly downwards</value>
+    <value>Кролики умеют летать только вниз (Bunnies only fly downwards)</value>
   </data>
   <data name="RRR_LevelName_44" xml:space="preserve">
     <value>Кролики прекрасно танцуют (Bunnies are fantastic dancers)</value>
@@ -3663,13 +3663,13 @@ Start: Пауза</value>
     <value>Кролики не доят коров Часть 2 (Bunnies don't milk cows Part 2)</value>
   </data>
   <data name="RRR_LevelName_51" xml:space="preserve">
-    <value>Bunnies like a good cowboy race</value>
+    <value>Кролики обожают ковбойские скачки (Bunnies like a good cowboy race)</value>
   </data>
   <data name="RRR_LevelName_52" xml:space="preserve">
     <value>Кролики безжалостны по отношению к свиньям Часть 2 (Bunnies are heartless with pigs Part 2)</value>
   </data>
   <data name="RRR_LevelName_53" xml:space="preserve">
-    <value>Bunnies Psychology. Volume 1</value>
+    <value>Психология кроликов. Том 1 (Bunnies Psychology. Volume 1)</value>
   </data>
   <data name="RRR_LevelName_54" xml:space="preserve">
     <value>Кролики не любят летучих мышей Часть 2 (Bunnies don't like bats Part 2)</value>
@@ -3681,7 +3681,7 @@ Start: Пауза</value>
     <value>Кролики не летают Часть 2 (Bunnies can't fly Part 2)</value>
   </data>
   <data name="RRR_LevelName_57" xml:space="preserve">
-    <value>Bunnies Psychology. Volume 2</value>
+    <value>Психология кроликов. Том 2 (Bunnies Psychology. Volume 2)</value>
   </data>
   <data name="RRR_LevelName_58" xml:space="preserve">
     <value>Кролики не умеют стричь овец (Bunnies can't shear sheep)</value>
@@ -3714,7 +3714,7 @@ Start: Пауза</value>
     <value>Кролики блуждают в лабиринтах (Bunnies are a-mazing)</value>
   </data>
   <data name="RRR_LevelName_68" xml:space="preserve">
-    <value>The Dark Side</value>
+    <value>Тёмная сторона кроличьей силы (The Dark Side)</value>
   </data>
   <data name="RRR_LevelName_69" xml:space="preserve">
     <value>Кролики - прирожденные танцоры Часть 2 (Bunnies have natural rhythm Part 2)</value>
@@ -3723,7 +3723,7 @@ Start: Пауза</value>
     <value>Кролики боятся щекотки (Bunnies are ticklish)</value>
   </data>
   <data name="RRR_LevelName_71" xml:space="preserve">
-    <value>Bunnies Psychology. Volume 3</value>
+    <value>Психология кроликов. Том 3 (Bunnies Psychology. Volume 3)</value>
   </data>
   <data name="RRR_LevelName_72" xml:space="preserve">
     <value>Кролики не умеют играть в прятки (Bunnies are bad at peek-a-boo)</value>
@@ -3780,148 +3780,148 @@ Start: Пауза</value>
     <value>В глубине души кролики - рокеры Часть 2 (Deep down, Bunnies are rockers Part 2)</value>
   </data>
   <data name="RRR_LevelName_90" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
   </data>
   <data name="RRR_LevelName_91" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
+    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
   </data>
   <data name="RRR_LevelName_92" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
+    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
   </data>
   <data name="RRR_LevelName_93" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
+    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
   </data>
   <data name="RRR_LevelName_94" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
+    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
   </data>
   <data name="RRR_LevelName_95" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
+    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
   </data>
   <data name="RRR_LevelName_96" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
+    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
   </data>
   <data name="RRR_LevelName_97" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
+    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
   </data>
   <data name="RRR_LevelName_98" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
+    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
   </data>
   <data name="RRR_LevelName_99" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
+    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
   </data>
   <data name="RRR_LevelName_100" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
   </data>
   <data name="RRR_LevelName_101" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
+    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
   </data>
   <data name="RRR_LevelName_102" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
+    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
   </data>
   <data name="RRR_LevelName_103" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
+    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
   </data>
   <data name="RRR_LevelName_104" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
+    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
   </data>
   <data name="RRR_LevelName_105" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
+    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
   </data>
   <data name="RRR_LevelName_106" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
+    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
   </data>
   <data name="RRR_LevelName_107" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
+    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
   </data>
   <data name="RRR_LevelName_108" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
+    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
   </data>
   <data name="RRR_LevelName_109" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
+    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
   </data>
   <data name="RRR_LevelName_110" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
   </data>
   <data name="RRR_LevelName_111" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
+    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
   </data>
   <data name="RRR_LevelName_112" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
+    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
   </data>
   <data name="RRR_LevelName_113" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
+    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
   </data>
   <data name="RRR_LevelName_114" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
+    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
   </data>
   <data name="RRR_LevelName_115" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
+    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
   </data>
   <data name="RRR_LevelName_116" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
+    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
   </data>
   <data name="RRR_LevelName_117" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
+    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
   </data>
   <data name="RRR_LevelName_118" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
+    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
   </data>
   <data name="RRR_LevelName_119" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
+    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
   </data>
   <data name="RRR_LevelName_120" xml:space="preserve">
-    <value>Extreme experiences</value>
+    <value>Экстремальные испытания (Extreme experiences)</value>
   </data>
   <data name="RRR_LevelName_121" xml:space="preserve">
-    <value>The jogging Pants-tathlon</value>
+    <value>Беговое пяткоборье (The jogging Pants-tathlon)</value>
   </data>
   <data name="RRR_LevelName_122" xml:space="preserve">
-    <value>The Pants-tathlon in socks</value>
+    <value>Пяткоборье в носках (The Pants-tathlon in socks)</value>
   </data>
   <data name="RRR_LevelName_123" xml:space="preserve">
-    <value>The Pants-tathlon tracksuit</value>
+    <value>Пяткоборье в спортивных костюмах (The Pants-tathlon tracksuit)</value>
   </data>
   <data name="RRR_LevelName_124" xml:space="preserve">
-    <value>Pain-tathlon</value>
+    <value>Пятиболье (Pain-tathlon)</value>
   </data>
   <data name="RRR_LevelName_125" xml:space="preserve">
-    <value>Bunny Fair</value>
+    <value>Кроличья ярмарка (Bunny Fair)</value>
   </data>
   <data name="RRR_LevelName_126" xml:space="preserve">
-    <value>Rayman</value>
+    <value>Рэйман (Rayman)</value>
   </data>
   <data name="RRR_LevelName_127" xml:space="preserve">
-    <value>World Eclecticism Championship</value>
+    <value>Чемпионат мира по лёгкой эклектике (World Eclecticism Championship)</value>
   </data>
   <data name="RRR_LevelName_130" xml:space="preserve">
-    <value>Bunnies don't like being disturbed on holiday</value>
+    <value>Кролики не любят, когда их беспокоят в отпуске (Bunnies don't like being disturbed on holiday)</value>
   </data>
   <data name="RRR_LevelName_131" xml:space="preserve">
-    <value>Bunnies don't like being disturbed at night</value>
+    <value>Кролики не любят, когда их беспокоят по ночам (Bunnies don't like being disturbed at night)</value>
   </data>
   <data name="RRR_LevelName_132" xml:space="preserve">
-    <value>Bunnies helped tame the Wild West</value>
+    <value>Кролики помогали покорить Дикий Запад (Bunnies helped tame the Wild West)</value>
   </data>
   <data name="RRR_LevelName_133" xml:space="preserve">
-    <value>Bunnies have a soft spot for plungers</value>
+    <value>Кролики питают слабость к вантузам (Bunnies have a soft spot for plungers)</value>
   </data>
   <data name="RRR_LevelName_134" xml:space="preserve">
-    <value>Bunnies never struck gold</value>
+    <value>Кролики никогда не попадают в яблочко (Bunnies never struck gold)</value>
   </data>
   <data name="RRR_LevelName_135" xml:space="preserve">
-    <value>Bunnies think they're in a movie</value>
+    <value>Кролики думают, что они снимаются в кино (Bunnies think they're in a movie)</value>
   </data>
   <data name="RRR_LevelName_136" xml:space="preserve">
-    <value>Bunnies love digging tunnels</value>
+    <value>Кролики обожают рыть туннели (Bunnies love digging tunnels)</value>
   </data>
   <data name="RRR_LevelName_137" xml:space="preserve">
-    <value>Bunnies aren't scared of the dark</value>
+    <value>Кролики не боятся темноты (Bunnies aren't scared of the dark)</value>
   </data>
   <data name="RRR_LevelName_138" xml:space="preserve">
-    <value>Bunnies don't rest in peace</value>
+    <value>Кролики не желают покоиться с миром (Bunnies don't rest in peace)</value>
   </data>
   <data name="RRR_LevelName_139" xml:space="preserve">
-    <value>Bunnies sometimes recycle the scenery from other games</value>
+    <value>Кролики иногда используют декорации из других игр (Bunnies sometimes recycle the scenery from other games)</value>
   </data>
   <data name="RRR_LevelName_140" xml:space="preserve">
     <value>Bunnies are shooting all over the place</value>
@@ -4237,5 +4237,693 @@ Start: Пауза</value>
   </data>
   <data name="Mod_Mem_Game_R3_PC" xml:space="preserve">
     <value>Rayman 3 (PC)</value>
+  </data>
+  <data name="Archive_CreateStatusPacking" xml:space="preserve">
+    <value>Сборка архива</value>
+  </data>
+  <data name="Archive_AddFiles_Status" xml:space="preserve">
+    <value>Добавление файлов</value>
+  </data>
+  <data name="Archive_ImportDir_Status" xml:space="preserve">
+    <value>Импорт файлов</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictMultiple" xml:space="preserve">
+    <value>Названия {0} файлов соответствуют уже существующим. Вы хотите заменить их?
+
+Конфликты:
+{1}</value>
+  </data>
+  <data name="WaitForEditorToClose" xml:space="preserve">
+    <value>Ожидание закрытия {0}</value>
+  </data>
+  <data name="Bool_True" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Bool_False" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Mod_Mem_ProcessHeader" xml:space="preserve">
+    <value>Игровой процесс</value>
+  </data>
+  <data name="Mod_Mem_ProcessInfo" xml:space="preserve">
+    <value>Подключившись к запущенной игре, Вы сможете изменять и просматривать игровые значения в режиме реального времени. Для некоторых игр это позволит вам активировать вырезанные функции.</value>
+  </data>
+  <data name="Mod_Mem_GameSelection" xml:space="preserve">
+    <value>Игра</value>
+  </data>
+  <data name="Mod_Mem_EmuSelection" xml:space="preserve">
+    <value>Эмулятор</value>
+  </data>
+  <data name="Mod_Mem_EditorFieldsHeader" xml:space="preserve">
+    <value>Свойства</value>
+  </data>
+  <data name="Mod_Mem_InfoHeader" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="Mod_Mem_ActionsHeader" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="Mod_Mem_LogHeader" xml:space="preserve">
+    <value>Лог</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Восстановление прототипа Rayman Raving Rabbids</value>
+  </data>
+  <data name="Mod_Mem_Header" xml:space="preserve">
+    <value>Модификации памяти</value>
+  </data>
+  <data name="Mod_Mem_AttachError" xml:space="preserve">
+    <value>Произошла ошибка при подключении к игровому процессу</value>
+  </data>
+  <data name="Mod_Mem_TickError" xml:space="preserve">
+    <value>Произошла ошибка при обновлении игровых значений</value>
+  </data>
+  <data name="Links_Local_Temp" xml:space="preserve">
+    <value>Временные файлы</value>
+  </data>
+  <data name="ProcessAttacher_Attach" xml:space="preserve">
+    <value>Прикрепить</value>
+  </data>
+  <data name="ProcessAttacher_Detach" xml:space="preserve">
+    <value>Открепить</value>
+  </data>
+  <data name="Mod_Mem_HP" xml:space="preserve">
+    <value>Очки здоровья</value>
+  </data>
+  <data name="Mod_Mem_MaxHP" xml:space="preserve">
+    <value>Максимальные очки здоровья</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRay" xml:space="preserve">
+    <value>Поместить Рэя</value>
+  </data>
+  <data name="Mod_Mem_R1_PlaceRayInfo" xml:space="preserve">
+    <value>Позволяет Рэйману быть размещённым где угодно на уровне</value>
+  </data>
+  <data name="Mod_Mem_CurrentMap" xml:space="preserve">
+    <value>Текущая карта</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelect" xml:space="preserve">
+    <value>Выбор карты</value>
+  </data>
+  <data name="Mod_Mem_R1_MapSelectInfo" xml:space="preserve">
+    <value>Переключает выбор карты в игре на карте мира</value>
+  </data>
+  <data name="Mod_Mem_Lang" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPower" xml:space="preserve">
+    <value>Кулак</value>
+  </data>
+  <data name="Mod_Mem_R1_HangPower" xml:space="preserve">
+    <value>Зацеп за платформы</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoPower" xml:space="preserve">
+    <value>Полёт</value>
+  </data>
+  <data name="Mod_Mem_R1_GrabPower" xml:space="preserve">
+    <value>Зацеп за кольца</value>
+  </data>
+  <data name="Mod_Mem_R1_RunPower" xml:space="preserve">
+    <value>Бег</value>
+  </data>
+  <data name="Mod_Mem_R1_SeedPower" xml:space="preserve">
+    <value>Семена</value>
+  </data>
+  <data name="Mod_Mem_R1_SuperHelicoPower" xml:space="preserve">
+    <value>Супер-полёт</value>
+  </data>
+  <data name="Mod_Mem_R1_SquishedPower" xml:space="preserve">
+    <value>Уменьшение</value>
+  </data>
+  <data name="Mod_Mem_R1_FireflyPower" xml:space="preserve">
+    <value>Светлячок</value>
+  </data>
+  <data name="Mod_Mem_R1_ForcedRunPower" xml:space="preserve">
+    <value>Принудительный бег</value>
+  </data>
+  <data name="Mod_Mem_R1_ReversePower" xml:space="preserve">
+    <value>Инвертированное управление</value>
+  </data>
+  <data name="Mod_Mem_R1_FistPlatform" xml:space="preserve">
+    <value>Кулак-платформа</value>
+  </data>
+  <data name="Mod_Mem_Unk" xml:space="preserve">
+    <value>Неизвестный {0}</value>
+  </data>
+  <data name="Mod_Mem_R1_EngineText" xml:space="preserve">
+    <value>Показать информацию о движке</value>
+  </data>
+  <data name="Mod_Mem_R1_ObjText" xml:space="preserve">
+    <value>Показать информацию об объектах</value>
+  </data>
+  <data name="Mod_Mem_R1_DebugMode" xml:space="preserve">
+    <value>Режим отладки</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoMode" xml:space="preserve">
+    <value>Заупстить в режиме демо</value>
+  </data>
+  <data name="Mod_Mem_R1_DemoModeInfo" xml:space="preserve">
+    <value>При активации игра будет запускать две вырезанные записанные демо-версии при загрузке уровня. Они воспроизводятся при потери всех жизней и активации "Continue".</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenus" xml:space="preserve">
+    <value>Запустить меню мультиплеера</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMenusInfo" xml:space="preserve">
+    <value>При активации игра загрузит неиспользуемые многопользовательские меню при запуске. Если игра уже запущена, то к ним можно получить доступ, выйдя из игры в меню паузы.
+Сами многопользовательские меню не завершены из-за того, что эта функция не была полностью реализована. Первое меню - это выбор игрока, а второе - выбор уровня. Из-за того, что они не функционируют, единственный способ кастомизировать их - использовать поля ниже.</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerTimeout" xml:space="preserve">
+    <value>Лимит времени для уровня</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerP2" xml:space="preserve">
+    <value>Игрок 2</value>
+  </data>
+  <data name="Mod_Mem_R1_MultiplayerMap" xml:space="preserve">
+    <value>Выбранная карта</value>
+  </data>
+  <data name="Mod_Mem_GeneralCategory" xml:space="preserve">
+    <value>Основные</value>
+  </data>
+  <data name="Mod_Mem_DebugCategory" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Mod_Mem_MultiplayerCategory" xml:space="preserve">
+    <value>Мультиплеер</value>
+  </data>
+  <data name="Mod_Mem_PowersCategory" xml:space="preserve">
+    <value>Способности</value>
+  </data>
+  <data name="Mod_Mem_CamX" xml:space="preserve">
+    <value>Камера X</value>
+  </data>
+  <data name="Mod_Mem_CamY" xml:space="preserve">
+    <value>Камера Y</value>
+  </data>
+  <data name="Mod_Mem_XPos" xml:space="preserve">
+    <value>Позиция X</value>
+  </data>
+  <data name="Mod_Mem_YPos" xml:space="preserve">
+    <value>Позиция Y</value>
+  </data>
+  <data name="Mod_Mem_RayState" xml:space="preserve">
+    <value>Состояние Рэймана</value>
+  </data>
+  <data name="Mod_Mem_R1_HelicoTime" xml:space="preserve">
+    <value>Время полёта</value>
+  </data>
+  <data name="Mod_Mem_R1_FistCharge" xml:space="preserve">
+    <value>Заряд кулака</value>
+  </data>
+  <data name="Mod_Mem_R1_ActiveObjs" xml:space="preserve">
+    <value>Активные объекты</value>
+  </data>
+  <data name="Mod_Mem_R1_MapTime" xml:space="preserve">
+    <value>Время карты</value>
+  </data>
+  <data name="Mod_Mem_R1_RandIndex" xml:space="preserve">
+    <value>Случайный индекс</value>
+  </data>
+  <data name="Mod_Mem_R1_Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Mod_Mem_FinishLvlAction" xml:space="preserve">
+    <value>Завершить уровень</value>
+  </data>
+  <data name="Mod_Mem_UnlockAllLvlsAction" xml:space="preserve">
+    <value>Открыть все уровни</value>
+  </data>
+  <data name="Mod_Mem_AllCagesAction" xml:space="preserve">
+    <value>Все клетки</value>
+  </data>
+  <data name="Mod_Mem_R1_ExitLvlAction" xml:space="preserve">
+    <value>Вернуться на карту мира</value>
+  </data>
+  <data name="Mod_Mem_MenuLevelsCategory" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Mod_Mem_MenuLevel" xml:space="preserve">
+    <value>Главное меню</value>
+  </data>
+  <data name="R2_LevelName_mapmonde" xml:space="preserve">
+    <value>The Hall of Doors</value>
+  </data>
+  <data name="R2_LevelName_raycap" xml:space="preserve">
+    <value>Экран подсчёта очков</value>
+  </data>
+  <data name="Mod_Mem_BonusLevelsCategory" xml:space="preserve">
+    <value>Бонус</value>
+  </data>
+  <data name="R2_LevelName_bonux" xml:space="preserve">
+    <value>Бонусный этап</value>
+  </data>
+  <data name="Mod_Mem_CutsceneLevelsCategory" xml:space="preserve">
+    <value>Кат-сцены</value>
+  </data>
+  <data name="R2_LevelName_jail_10" xml:space="preserve">
+    <value>Интро Часть 1</value>
+  </data>
+  <data name="R2_LevelName_jail_20" xml:space="preserve">
+    <value>Интро Часть 2</value>
+  </data>
+  <data name="R2_LevelName_nego_10" xml:space="preserve">
+    <value>Council Chamber of the Teensies</value>
+  </data>
+  <data name="R2_LevelName_batam_10" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Part 1</value>
+  </data>
+  <data name="R2_LevelName_batam_20" xml:space="preserve">
+    <value>Meanwhile in the Prison Ship Part 2</value>
+  </data>
+  <data name="R2_LevelName_bast_09" xml:space="preserve">
+    <value>Интро Echoing Caves</value>
+  </data>
+  <data name="R2_LevelName_ball" xml:space="preserve">
+    <value>Кат-сцена на воздушном шаре в Iron Mountains </value>
+  </data>
+  <data name="R2_LevelName_end_10" xml:space="preserve">
+    <value>Концовка</value>
+  </data>
+  <data name="Mod_Mem_CreditsLevel" xml:space="preserve">
+    <value>Титры</value>
+  </data>
+  <data name="R2_LevelName_poloc_10" xml:space="preserve">
+    <value>Маска Полокуса Часть 1</value>
+  </data>
+  <data name="R2_LevelName_poloc_20" xml:space="preserve">
+    <value>Маска Полокуса Часть 2</value>
+  </data>
+  <data name="R2_LevelName_poloc_30" xml:space="preserve">
+    <value>Маска Полокуса Часть 3</value>
+  </data>
+  <data name="R2_LevelName_poloc_40" xml:space="preserve">
+    <value>Маска Полокуса Часть 4</value>
+  </data>
+  <data name="R2_LevelName_learn_10" xml:space="preserve">
+    <value>The Woods of Light</value>
+  </data>
+  <data name="R2_LevelName_bast" xml:space="preserve">
+    <value>The Fairy Glade</value>
+  </data>
+  <data name="R2_LevelName_ski" xml:space="preserve">
+    <value>The Marshes of Awakening</value>
+  </data>
+  <data name="R2_LevelName_chase" xml:space="preserve">
+    <value>The Bayou</value>
+  </data>
+  <data name="R2_LevelName_water" xml:space="preserve">
+    <value>The Sanctuary of Water and Ice</value>
+  </data>
+  <data name="R2_LevelName_rodeo" xml:space="preserve">
+    <value>The Menhir Hills</value>
+  </data>
+  <data name="R2_LevelName_vulca" xml:space="preserve">
+    <value>The Cave of Bad Dreams</value>
+  </data>
+  <data name="R2_LevelName_glob" xml:space="preserve">
+    <value>The Canopy</value>
+  </data>
+  <data name="R2_LevelName_whale" xml:space="preserve">
+    <value>Whale Bay</value>
+  </data>
+  <data name="R2_LevelName_plum" xml:space="preserve">
+    <value>The Sanctuary of Stone and Fire</value>
+  </data>
+  <data name="R2_LevelName_cask" xml:space="preserve">
+    <value>The Echoing Caves</value>
+  </data>
+  <data name="R2_LevelName_nave" xml:space="preserve">
+    <value>The Precipice</value>
+  </data>
+  <data name="R2_LevelName_seat" xml:space="preserve">
+    <value>The Top of the World</value>
+  </data>
+  <data name="R2_LevelName_earth" xml:space="preserve">
+    <value>The Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_helic" xml:space="preserve">
+    <value>Beneath the Sanctuary of Rock and Lava</value>
+  </data>
+  <data name="R2_LevelName_morb" xml:space="preserve">
+    <value>Tomb of the Ancients</value>
+  </data>
+  <data name="R2_LevelName_ile" xml:space="preserve">
+    <value>The Iron Mountains</value>
+  </data>
+  <data name="R2_LevelName_astro" xml:space="preserve">
+    <value>The Prison Ship</value>
+  </data>
+  <data name="R2_LevelName_rhop" xml:space="preserve">
+    <value>The Crow's Nest</value>
+  </data>
+  <data name="R3_LevelName_BonusTXT" xml:space="preserve">
+    <value>Бонус</value>
+  </data>
+  <data name="R3_LevelName_endgame" xml:space="preserve">
+    <value>Конец игры</value>
+  </data>
+  <data name="R3_LevelName_toudi_00" xml:space="preserve">
+    <value>2D Веселье (2D Madness)</value>
+  </data>
+  <data name="R3_LevelName_ten_map" xml:space="preserve">
+    <value>Ракетка (Racket Jump)</value>
+  </data>
+  <data name="R3_LevelName_crush" xml:space="preserve">
+    <value>Давка (Crush)</value>
+  </data>
+  <data name="R3_LevelName_raz_map" xml:space="preserve">
+    <value>Цирк Разоффа (Razoff Circus)</value>
+  </data>
+  <data name="R3_LevelName_sentinel" xml:space="preserve">
+    <value>Стражник (Sentinel)</value>
+  </data>
+  <data name="R3_LevelName_snipe_00" xml:space="preserve">
+    <value>Ракетная Атака (Missile Command)</value>
+  </data>
+  <data name="R3_LevelName_ballmap" xml:space="preserve">
+    <value>Шарики (Balloons)</value>
+  </data>
+  <data name="R3_LevelName_ship_map" xml:space="preserve">
+    <value>Вторжение (Special Invaders)</value>
+  </data>
+  <data name="R3_LevelName_commando" xml:space="preserve">
+    <value>Командос (Commando)</value>
+  </data>
+  <data name="Mod_Mem_Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="EmuSelection_None" xml:space="preserve">
+    <value>Пусто</value>
+  </data>
+  <data name="Patcher_CriticalError" xml:space="preserve">
+    <value>В патчере произошла ошибка, из-за чего он был закрыт</value>
+  </data>
+  <data name="UnsavedChangesQuestion" xml:space="preserve">
+    <value>Изменения не сохранены. Вы хотите продолжить и отменить их?</value>
+  </data>
+  <data name="UnsavedChangesQuestionHeader" xml:space="preserve">
+    <value>Отменить сохранения</value>
+  </data>
+  <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
+    <value>Вы хотите автоматически синхронизировать текстуры игры при переупаковке архива текстур? Синхронизация необходима для работы текстур с более высоким разрешением на некоторых уровнях. Этот пункт можно изменить в любое время на странице настроек.</value>
+  </data>
+  <data name="GameDisplay_Patcher" xml:space="preserve">
+    <value>Патчи</value>
+  </data>
+  <data name="About_Credits_Marteaufou" xml:space="preserve">
+    <value>Перевод программы на французский (Франция)</value>
+  </data>
+  <data name="About_Credits_ZetaXO" xml:space="preserve">
+    <value>Перевод программы на французский (Франция)</value>
+  </data>
+  <data name="Patcher_Title" xml:space="preserve">
+    <value>Патчер</value>
+  </data>
+  <data name="Settings_PatcherShowExternal" xml:space="preserve">
+    <value>Отобразить внешние патчи</value>
+  </data>
+  <data name="Settings_PatcherShowExternalInfo" xml:space="preserve">
+    <value>При активации патчер загрузится и отобразит список внешних патчей, доступных для загрузки</value>
+  </data>
+  <data name="Settings_PatcherFileAssociationsHeader" xml:space="preserve">
+    <value>Ассоциации файлов</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchFileType" xml:space="preserve">
+    <value>Открыть файлы игрового патча (.gp) в Rayman Control Panel через Проводник</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocol" xml:space="preserve">
+    <value>Открыть файлы игрового патча (.gp) в Rayman Control Panel через протокол URI</value>
+  </data>
+  <data name="Settings_PatcherAssociatePatchURIProtocolInfo" xml:space="preserve">
+    <value>Активация этого параметра позволяет устанавливать файлы в 1 клик с GameBanana</value>
+  </data>
+  <data name="Patcher_AssociateFileTypeError" xml:space="preserve">
+    <value>Произошла ошибка при настройке ассоциации типов файлов для файлов патча. Попробуйте запустить Rayman Control Panel от имени администратора и повторить попытку.</value>
+  </data>
+  <data name="Patcher_AssociateURIProtocolError" xml:space="preserve">
+    <value>Произошла ошибка при настройке ассоциации протокола URI для файлов патча. Попробуйте запустить Rayman Control Panel от имени администратора и повторить попытку.</value>
+  </data>
+  <data name="PatchCreator_NameField" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="PatchCreator_AuthorField" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="PatchCreator_DescriptionField" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="PatchCreator_VersionField" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="Patcher_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Patcher_Game" xml:space="preserve">
+    <value>Игра</value>
+  </data>
+  <data name="PatchCreator_AddThumbnailInfo" xml:space="preserve">
+    <value>Выберите обложку. Рекомендуемый размер - 128x128.</value>
+  </data>
+  <data name="PatchCreator_RemoveThumbnailInfo" xml:space="preserve">
+    <value>Убрать обложку</value>
+  </data>
+  <data name="PatchCreator_SourcePathInfo" xml:space="preserve">
+    <value>Путь к файлу для добавления в указанную папку назначения. Если это поле пустое, то тогда все существующие файлы в папке назначения будут удалены.</value>
+  </data>
+  <data name="PatchCreator_AddFile" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="PatchCreator_AddFromFiles" xml:space="preserve">
+    <value>Добавить из файлов</value>
+  </data>
+  <data name="PatchCreator_AddFromFolder" xml:space="preserve">
+    <value>Добавить из папки</value>
+  </data>
+  <data name="PatchCreator_Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="PatchCreator_Title" xml:space="preserve">
+    <value>Редактор Патчей</value>
+  </data>
+  <data name="Patcher_PhysicalGameLocation" xml:space="preserve">
+    <value>Игра</value>
+  </data>
+  <data name="PatchCreator_ImportingPatch_Status" xml:space="preserve">
+    <value>Импорт из существующего патча</value>
+  </data>
+  <data name="Patcher_ReadPatchNewerVersionError" xml:space="preserve">
+    <value>Выбранный патч был создан с помощью более новой версии Rayman Control Panel и не может быть прочитан</value>
+  </data>
+  <data name="Patcher_ReadPatchGenericError" xml:space="preserve">
+    <value>Выбранный патч не может быть прочитан</value>
+  </data>
+  <data name="PatchCreator_SelectThumbnailHeader" xml:space="preserve">
+    <value>Выберите обложку</value>
+  </data>
+  <data name="FileSelection_ImageFormat" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
+  <data name="PatchCreator_AddFromFilesHeader" xml:space="preserve">
+    <value>Выберите файлы для добавления</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderHeader" xml:space="preserve">
+    <value>Выберите папку для добавления</value>
+  </data>
+  <data name="PatchCreator_AddFromFolderError" xml:space="preserve">
+    <value>Произошла ошибка при добавлении выбранных файлов</value>
+  </data>
+  <data name="PatchCreator_Create_Status" xml:space="preserve">
+    <value>Создание патча</value>
+  </data>
+  <data name="PatchCreator_CreateSaveFileHeader" xml:space="preserve">
+    <value>Сохранить файл патча</value>
+  </data>
+  <data name="Patcher_FileType" xml:space="preserve">
+    <value>Игровой патч</value>
+  </data>
+  <data name="PatchCreator_CreateSuccess" xml:space="preserve">
+    <value>Патч был успешно сохранён</value>
+  </data>
+  <data name="PatchCreator_CreateError" xml:space="preserve">
+    <value>Произошла ошибка при создании патча</value>
+  </data>
+  <data name="PatchCreator_PathEmptyError" xml:space="preserve">
+    <value>Путь не может быть пустым</value>
+  </data>
+  <data name="PatchCreator_PathInvalidCharsError" xml:space="preserve">
+    <value>Путь не может содержать недопустимые символы</value>
+  </data>
+  <data name="PatchCreator_PathLocationCollisionError" xml:space="preserve">
+    <value>Путь не может быть тем же, что и файл архива</value>
+  </data>
+  <data name="Patcher_PatchesHeader" xml:space="preserve">
+    <value>Патчи</value>
+  </data>
+  <data name="Patcher_PatchesInfo" xml:space="preserve">
+    <value>Патчи - это модификации игровых файлов, которые могут быть применены для изменения или улучшения игры в различных аспектах. Патч не вступит в силу до тех пор, пока не будет включён и применён, позволяя с лёгкостью включать и отключать патчи. Не рекомендуется вручную изменять игровые файлы, которые модифицирует патч, так как это может привести к потере некоторых изменений.</value>
+  </data>
+  <data name="Patcher_AddPatch" xml:space="preserve">
+    <value>Добавить патч</value>
+  </data>
+  <data name="Patcher_ExtractPatch" xml:space="preserve">
+    <value>Извлечь содержимое</value>
+  </data>
+  <data name="Patcher_ExportPatch" xml:space="preserve">
+    <value>Экспорт патча</value>
+  </data>
+  <data name="Patcher_RemovePatch" xml:space="preserve">
+    <value>Убрать</value>
+  </data>
+  <data name="Patcher_DownloadPatch" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Patcher_LibraryHeader" xml:space="preserve">
+    <value>Библиотека патчей</value>
+  </data>
+  <data name="Patcher_ModificationsHeader" xml:space="preserve">
+    <value>Модифицированные файлы</value>
+  </data>
+  <data name="Patcher_ModificationsEmpty" xml:space="preserve">
+    <value>Добавьте и активируйте патч для изменения файлов игры</value>
+  </data>
+  <data name="Patcher_Modifications_FileColumn" xml:space="preserve">
+    <value>Файл </value>
+  </data>
+  <data name="Patcher_Modifications_LocationColumn" xml:space="preserve">
+    <value>Расположение</value>
+  </data>
+  <data name="Patcher_Modifications_PatchColumn" xml:space="preserve">
+    <value>Патч</value>
+  </data>
+  <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
+    <value>Перезаписанные патчи</value>
+  </data>
+  <data name="Patcher_Apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="Patcher_DialogTitle" xml:space="preserve">
+    <value>Патчер - {0}</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Game" xml:space="preserve">
+    <value>Игра:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Patches" xml:space="preserve">
+    <value>Патчи:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_AppliedPatches" xml:space="preserve">
+    <value>Применённые патчи:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ModifiedDate" xml:space="preserve">
+    <value>Последнее изменение:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_FormatVersion" xml:space="preserve">
+    <value>Версия формата:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
+    <value>Расположение:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
+    <value>Добавленные файлы:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_ReplacedFiles" xml:space="preserve">
+    <value>Заменённые файлы:</value>
+  </data>
+  <data name="Patcher_LibraryInfo_RemovedFiles" xml:space="preserve">
+    <value>Удалённые файлы:</value>
+  </data>
+  <data name="Patcher_ReadLibraryNewerVersionError" xml:space="preserve">
+    <value>Библиотека патчей игры была создана с помощью более новой версии Rayman Control Panel и не может быть прочитана</value>
+  </data>
+  <data name="Patcher_ReadLibraryGameMismatchError" xml:space="preserve">
+    <value>Библиотека патчей игры была создана для {0}</value>
+  </data>
+  <data name="Patcher_SecurityWarning" xml:space="preserve">
+    <value>Патч {0} добавляет или заменяет в игре такие важные файлы, как исполняемые файлы. Добавляйте этот патч только в том случае, если вы доверяете его автору. Продолжить?</value>
+  </data>
+  <data name="Patcher_ReadPatchGameNotAddedError" xml:space="preserve">
+    <value>Не удалось открыть патч {0} для {1} из-за того, что игра не была добавлена в Rayman Control Panel</value>
+  </data>
+  <data name="Patcher_AddPatchHeader" xml:space="preserve">
+    <value>Выберите патчи для добавления</value>
+  </data>
+  <data name="Patcher_ReadPatchGameMismatchError" xml:space="preserve">
+    <value>Выбранный патч может быть применен только к {0}</value>
+  </data>
+  <data name="Patcher_ExtractContents_Status" xml:space="preserve">
+    <value>Извлечение содержимого патча</value>
+  </data>
+  <data name="Patcher_ExtractContentsSuccess" xml:space="preserve">
+    <value>Содержимое патча было успешно извлечено</value>
+  </data>
+  <data name="Patcher_ExtractContentsError" xml:space="preserve">
+    <value>Произошла ошибка при извлечении содержимого патча</value>
+  </data>
+  <data name="Patcher_Export_Status" xml:space="preserve">
+    <value>Экспорт патча</value>
+  </data>
+  <data name="Patcher_ExportSuccess" xml:space="preserve">
+    <value>Патч был успешно экспортирован</value>
+  </data>
+  <data name="Patcher_ExportError" xml:space="preserve">
+    <value>При экспорте патча произошла ошибка</value>
+  </data>
+  <data name="Patcher_LoadError" xml:space="preserve">
+    <value>При загрузке патчей произошла ошибка</value>
+  </data>
+  <data name="Patcher_LoadExternalNewerVersionError" xml:space="preserve">
+    <value>Не удалось загрузить внешние патчи из-за использования более нового формата. Пожалуйста, обновите Rayman Control Panel, чтобы по-прежнему иметь возможность загружать внешние патчи.</value>
+  </data>
+  <data name="Patcher_LoadExternalGenericError" xml:space="preserve">
+    <value>Произошла ошибка при загрузке внешних патчей</value>
+  </data>
+  <data name="Patcher_Apply_Status" xml:space="preserve">
+    <value>Применение патчей</value>
+  </data>
+  <data name="Patcher_ApplySuccess" xml:space="preserve">
+    <value>Все патчи были успешно применены</value>
+  </data>
+  <data name="Patcher_ApplySuccessWithErrors" xml:space="preserve">
+    <value>Применение патчей завершено. Некоторые файлы не удалось модифицировать.</value>
+  </data>
+  <data name="Patcher_ApplyError" xml:space="preserve">
+    <value>Произошла ошибка при применении патчей. Не все изменения были применены, а некоторые данные, возможно, были утеряны. Убедитесь в том, что во время применения патчей не открыты какие-либо файлы игры.</value>
+  </data>
+  <data name="Patcher_PatchInfo_Author" xml:space="preserve">
+    <value>Автор:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Size" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ModifiedDate" xml:space="preserve">
+    <value>Последнее изменение:</value>
+  </data>
+  <data name="Patcher_PatchInfo_Version" xml:space="preserve">
+    <value>Версия:</value>
+  </data>
+  <data name="Patcher_PatchInfo_ID" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FormatVersion" xml:space="preserve">
+    <value>Версия формата:</value>
+  </data>
+  <data name="Patcher_PatchInfo_FilePath" xml:space="preserve">
+    <value>Путь к файлу:</value>
+  </data>
+  <data name="Patcher_PatchInfo_AddedFiles" xml:space="preserve">
+    <value>Добавленные файлы:</value>
+  </data>
+  <data name="Patcher_PatchInfo_RemovedFiles" xml:space="preserve">
+    <value>Удалённые файлы:</value>
+  </data>
+  <data name="PatchCreator_GameNotAddedError" xml:space="preserve">
+    <value>Вы можете создать патч только для той игры, которую вы добавили в Rayman Control Panel</value>
+  </data>
+  <data name="PatchCreator_SelectImportPatch" xml:space="preserve">
+    <value>Выберите патч для импорта из него</value>
+  </data>
+  <data name="Utilities_Format_GamePatchHeader" xml:space="preserve">
+    <value>Игровой патч (.gp)</value>
+  </data>
+  <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
+    <value>Библиотека игровых патчей (.gpl)</value>
   </data>
 </root>

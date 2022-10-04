@@ -7828,7 +7828,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when extracting the patch.
+        ///   Looks up a localized string similar to An error occurred when exporting the patch.
         /// </summary>
         public static string Patcher_ExportError {
             get {
@@ -8053,7 +8053,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overriden Patches.
+        ///   Looks up a localized string similar to Overridden Patches.
         /// </summary>
         public static string Patcher_Modifications_OverridesColumn {
             get {
@@ -13553,7 +13553,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are unsaved changed. Do you want to continue and discard them?.
+        ///   Looks up a localized string similar to There are unsaved changes. Do you want to continue and discard them?.
         /// </summary>
         public static string UnsavedChangesQuestion {
             get {
@@ -13562,7 +13562,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm discarding changed.
+        ///   Looks up a localized string similar to Confirm discarding changes.
         /// </summary>
         public static string UnsavedChangesQuestionHeader {
             get {

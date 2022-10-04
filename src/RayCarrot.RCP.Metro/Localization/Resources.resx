@@ -4776,10 +4776,10 @@ partNumber</comment>
     <value>An error occurred in the patcher and it had to close</value>
   </data>
   <data name="UnsavedChangesQuestion" xml:space="preserve">
-    <value>There are unsaved changed. Do you want to continue and discard them?</value>
+    <value>There are unsaved changes. Do you want to continue and discard them?</value>
   </data>
   <data name="UnsavedChangesQuestionHeader" xml:space="preserve">
-    <value>Confirm discarding changed</value>
+    <value>Confirm discarding changes</value>
   </data>
   <data name="Archive_AutoSyncCPATextures" xml:space="preserve">
     <value>Do you want to automatically synchronize the game textures when a texture archive is repacked? Synchronizing is required for higher resolution textures to work in some levels. This can be changed at any time in the settings page.</value>
@@ -4955,7 +4955,7 @@ partNumber</comment>
     <value>Patch</value>
   </data>
   <data name="Patcher_Modifications_OverridesColumn" xml:space="preserve">
-    <value>Overriden Patches</value>
+    <value>Overridden Patches</value>
   </data>
   <data name="Patcher_Apply" xml:space="preserve">
     <value>Apply</value>
@@ -5035,7 +5035,7 @@ game</comment>
     <value>The patch was successfully exported</value>
   </data>
   <data name="Patcher_ExportError" xml:space="preserve">
-    <value>An error occurred when extracting the patch</value>
+    <value>An error occurred when exporting the patch</value>
   </data>
   <data name="Patcher_LoadError" xml:space="preserve">
     <value>An error occurred when loading the patches</value>
