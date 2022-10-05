@@ -60,26 +60,7 @@ public class AppViewModel : BaseViewModel
             IsRunningAsAdmin = false;
         }
 
-        // NOTE: For some reason it's important to set the message BEFORE the loading bool. Otherwise the loading bar
-        //       width won't size correctly. This appears to be a bug in the MahApps.Metro library...
-        // TODO-UPDATE: Use bindable operation
-        LoadOperation = new Operation(
-            startAction: x =>
-            {
-                LoadingMessage = x;
-                IsLoading = true;
-            },
-            disposeAction: () =>
-            {
-                LoadingMessage = null;
-                IsLoading = false;
-            },
-            textUpdatedAction: x =>
-            {
-                IsLoading = false;
-                LoadingMessage = x;
-                IsLoading = true;
-            });
+        LoaderViewModel = new LoaderViewModel();
 
         // Create locks
         MoveBackupsAsyncLock = new AsyncLock();
@@ -207,19 +188,9 @@ public class AppViewModel : BaseViewModel
     public bool IsStartupRunning { get; set; }
 
     /// <summary>
-    /// The operation to use when running an async operation which needs to load
+    /// The view model to use when running an async operation which needs to load
     /// </summary>
-    public Operation LoadOperation { get; }
-
-    /// <summary>
-    /// The message associated with the current <see cref="LoadOperation"/>. If null then no load operation is running.
-    /// </summary>
-    public string? LoadingMessage { get; set; }
-
-    /// <summary>
-    /// Indicates if a <see cref="LoadOperation"/> is running, thus preventing the app from closing
-    /// </summary>
-    public bool IsLoading { get; set; }
+    public LoaderViewModel LoaderViewModel { get; }
 
     #endregion
 

@@ -65,7 +65,7 @@ public partial class PatcherDialog : WindowContentControl
             return true;
 
         // Cancel the closing if it's loading
-        if (ViewModel.LoadOperation.IsLoading)
+        if (ViewModel.LoaderViewModel.IsRunning)
             return false;
 
         // Ask user if there are pending changes

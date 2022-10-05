@@ -21,17 +21,17 @@ public class ArchiveViewModel : DirectoryViewModel
     /// </summary>
     /// <param name="filePath">The file path for the archive</param>
     /// <param name="manager">The archive data manager</param>
-    /// <param name="loadOperation">The operation to use when running an async operation which needs to load</param>
+    /// <param name="loaderViewModel">The view model to use when running an async operation which needs to load</param>
     /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
     /// <param name="isDuplicateName">Indicates if the name of the archive matches the name of another loaded archive</param>
-    public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel, bool isDuplicateName) : base(null, filePath.Name, null)
+    public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, LoaderViewModel loaderViewModel, ArchiveExplorerDialogViewModel explorerDialogViewModel, bool isDuplicateName) : base(null, filePath.Name, null)
     {
         Logger.Info("An archive view model is being created for {0}", filePath.Name);
 
         // Set properties
         FilePath = filePath;
         Manager = manager;
-        LoadOperation = loadOperation;
+        LoaderViewModel = loaderViewModel;
         ExplorerDialogViewModel = explorerDialogViewModel;
         IsDuplicateName = isDuplicateName;
         ThumbnailCache = new ThumbnailCache();
@@ -87,9 +87,9 @@ public class ArchiveViewModel : DirectoryViewModel
     public IDisposable? ArchiveFileGenerator { get; set; }
 
     /// <summary>
-    /// The operation to use when running an async operation which needs to load
+    /// The view model to use when running an async operation which needs to load
     /// </summary>
-    public Operation LoadOperation { get; }
+    public LoaderViewModel LoaderViewModel { get; }
 
     /// <summary>
     /// The archive file stream
@@ -247,7 +247,7 @@ public class ArchiveViewModel : DirectoryViewModel
         Logger.Info("The archive {0} is being repacked", DisplayName);
 
         // Run as a load operation
-        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName)))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -280,7 +280,8 @@ public class ArchiveViewModel : DirectoryViewModel
                                 files: this.GetAllChildren<DirectoryViewModel>(true).
                                     SelectMany(x => x.Files).
                                     Select(x => x.FileData),
-                                progressCallback: x => operation.SetProgress(x));
+                                // ReSharper disable once AccessToDisposedClosure
+                                progressCallback: x => state.SetProgress(x));
                         }
 
                         // Dispose the archive file stream

@@ -26,7 +26,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         DisplayedExternalPatches = new ObservableCollection<ExternalPatchViewModel>();
         PatchedFiles = new ObservableCollection<PatchedFileViewModel>();
 
-        LoadOperation = new BindableOperation();
+        LoaderViewModel = new LoaderViewModel();
 
         _context = context;
 
@@ -120,7 +120,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public ObservableCollection<PatchedFileViewModel> PatchedFiles { get; set; }
 
-    public BindableOperation LoadOperation { get; }
+    public LoaderViewModel LoaderViewModel { get; }
     public bool IsLoadingExternalPatches { get; set; }
     [MemberNotNullWhen(true, nameof(_externalPatches), nameof(_externalGamePatchesURL))]
     public bool HasLoadedExternalPatches => _externalPatches != null && _externalGamePatchesURL != null;
@@ -538,7 +538,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task ExtractPatchContentsAsync(LocalPatchViewModel patchViewModel)
     {
-        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.Patcher_ExtractContents_Status))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Patcher_ExtractContents_Status))
         {
             DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
             {
@@ -573,7 +573,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         PatchFilePath filePath = patchFile.AddedFiles[i];
                         PackagedResourceEntry resource = patchFile.AddedFileResources[i];
                         
-                        operation.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
+                        state.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
 
                         FileSystemPath fileDest = result.SelectedDirectory + "added_files" + filePath.FullFilePath;
                         Directory.CreateDirectory(fileDest.Parent);
@@ -584,7 +584,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         await srcStream.CopyToAsync(dstStream);
                     }
 
-                    operation.SetProgress(new Progress(patchFile.AddedFiles.Length, patchFile.AddedFiles.Length));
+                    state.SetProgress(new Progress(patchFile.AddedFiles.Length, patchFile.AddedFiles.Length));
                 }
 
                 // Extract removed files
@@ -605,7 +605,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task ExportPatchAsync(LocalPatchViewModel patchViewModel)
     {
-        using (await LoadOperation.RunAsync(Resources.Patcher_Export_Status))
+        using (await LoaderViewModel.RunAsync(Resources.Patcher_Export_Status))
         {
             SaveFileResult browseResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
@@ -869,7 +869,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> ApplyAsync()
     {
-        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.Patcher_Apply_Status))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Patcher_Apply_Status))
         {
             Logger.Info("Applying patches");
 
@@ -900,7 +900,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         library: Library,
                         gameDirectory: GameDirectory,
                         patches: patches,
-                        progressCallback: operation.SetProgress);
+                        progressCallback: state.SetProgress);
 
                     Logger.Info("Applied patches");
 

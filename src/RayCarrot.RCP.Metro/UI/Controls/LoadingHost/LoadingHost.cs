@@ -6,11 +6,11 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A <see cref="ContentControl"/> with support for loading
 /// </summary>
-public class LoaderContentControl : ContentControl
+public class LoadingHost : ContentControl
 {
-    static LoaderContentControl()
+    static LoadingHost()
     {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(LoaderContentControl), new FrameworkPropertyMetadata(typeof(LoaderContentControl)));
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(LoadingHost), new FrameworkPropertyMetadata(typeof(LoadingHost)));
     }
 
     public string Text
@@ -20,7 +20,7 @@ public class LoaderContentControl : ContentControl
     }
 
     public static readonly DependencyProperty TextProperty = 
-        DependencyProperty.Register(nameof(Text), typeof(string), typeof(LoaderContentControl), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Text), typeof(string), typeof(LoadingHost), new PropertyMetadata(null));
 
     public bool IsLoading
     {
@@ -29,7 +29,7 @@ public class LoaderContentControl : ContentControl
     }
 
     public static readonly DependencyProperty IsLoadingProperty = 
-        DependencyProperty.Register(nameof(IsLoading), typeof(bool), typeof(LoaderContentControl), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(IsLoading), typeof(bool), typeof(LoadingHost), new PropertyMetadata(false));
 
     public bool IsIndeterminate
     {
@@ -38,7 +38,7 @@ public class LoaderContentControl : ContentControl
     }
 
     public static readonly DependencyProperty IsIndeterminateProperty = 
-        DependencyProperty.Register(nameof(IsIndeterminate), typeof(bool), typeof(LoaderContentControl), new PropertyMetadata(true));
+        DependencyProperty.Register(nameof(IsIndeterminate), typeof(bool), typeof(LoadingHost), new PropertyMetadata(true));
 
     public double Value
     {
@@ -47,7 +47,7 @@ public class LoaderContentControl : ContentControl
     }
 
     public static readonly DependencyProperty ValueProperty = 
-        DependencyProperty.Register(nameof(Value), typeof(double), typeof(LoaderContentControl), new PropertyMetadata(0d));
+        DependencyProperty.Register(nameof(Value), typeof(double), typeof(LoadingHost), new PropertyMetadata(0d));
 
     public double Minimum
     {
@@ -56,7 +56,7 @@ public class LoaderContentControl : ContentControl
     }
 
     public static readonly DependencyProperty MinimumProperty = 
-        DependencyProperty.Register(nameof(Minimum), typeof(double), typeof(LoaderContentControl), new PropertyMetadata(0d));
+        DependencyProperty.Register(nameof(Minimum), typeof(double), typeof(LoadingHost), new PropertyMetadata(0d));
 
     public double Maximum
     {
@@ -65,5 +65,5 @@ public class LoaderContentControl : ContentControl
     }
 
     public static readonly DependencyProperty MaximumProperty = 
-        DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(LoaderContentControl), new PropertyMetadata(100d));
+        DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(LoadingHost), new PropertyMetadata(100d));
 }

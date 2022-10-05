@@ -65,7 +65,7 @@ public partial class ArchiveExplorerDialog : WindowContentControl
             return false;
 
         // Cancel the closing if an archive is running an operation
-        if (ViewModel.IsLoading)
+        if (ViewModel.LoaderViewModel.IsRunning)
             return false;
 
         // Ask user if there are pending changes
@@ -134,13 +134,10 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         // Refresh the sort
         RefreshSort();
 
-        // Create events
-        ViewModel.PropertyChanged += (_, ee) =>
-        {
-            // Disable the closing button when loading
-            if (ee.PropertyName == nameof(ArchiveExplorerDialogViewModel.IsLoading))
-                WindowInstance.CanClose = !ViewModel.IsLoading;
-        };
+        // TODO-UPDATE: Do this for other windows too? Right now it's only done here and in the creator which isn't very consistent.
+        // Disable the closing button when loading
+        ViewModel.LoaderViewModel.IsRunningChanged += (_, _) =>
+            WindowInstance.CanClose = !ViewModel.LoaderViewModel.IsRunning;
     }
 
     private void FileItem_ToolTipOpening(object sender, ToolTipEventArgs e)
@@ -179,13 +176,13 @@ public partial class ArchiveExplorerDialog : WindowContentControl
             return;
 
         // Run as a load operation
-        using (DisposableOperation operation = await dir.Archive.LoadOperation.RunAsync(Metro.Resources.Archive_AddFiles_Status))
+        using (LoadState state = await dir.Archive.LoaderViewModel.RunAsync(Metro.Resources.Archive_AddFiles_Status))
         {
             // Lock the access to the archive
             using (await dir.Archive.ArchiveLock.LockAsync())
             {
                 // Add the files
-                await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists), x => operation.SetProgress(x));
+                await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists), x => state.SetProgress(x));
             }
         }
     }

@@ -54,7 +54,7 @@ public partial class ArchiveCreatorDialog : WindowContentControl
             return false;
 
         // Cancel the closing if an archive is running an operation
-        return !ViewModel.IsLoading;
+        return !ViewModel.LoaderViewModel.IsRunning;
     }
 
     #endregion
@@ -66,12 +66,9 @@ public partial class ArchiveCreatorDialog : WindowContentControl
         // Make sure this won't get called again
         Loaded -= ArchiveExplorer_Loaded;
 
-        ViewModel.PropertyChanged += (_, ee) =>
-        {
-            // Disable the closing button when loading
-            if (ee.PropertyName == nameof(ArchiveExplorerDialogViewModel.IsLoading))
-                WindowInstance.CanClose = !ViewModel.IsLoading;
-        };
+        // Disable the closing button when loading
+        ViewModel.LoaderViewModel.IsRunningChanged += (_, _) => 
+            WindowInstance.CanClose = !ViewModel.LoaderViewModel.IsRunning;
     }
 
     private async void OKButton_ClickAsync(object sender, RoutedEventArgs e)

@@ -49,36 +49,11 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
             // Get the manager
             Manager = manager;
 
-            // TODO-UPDATE: Use bindable operation
-            // Create the load action
-            Operation load = new(
-                startAction: x =>
-                {
-                    LoadingMessage = x;
-                    IsLoading = true;
-                }, 
-                disposeAction: () =>
-                {
-                    HasProgress = false;
-                    LoadingMessage = null;
-                    IsLoading = false;
-                }, 
-                textUpdatedAction: x =>
-                {
-                    IsLoading = false;
-                    LoadingMessage = x;
-                    IsLoading = true;
-                },
-                progressUpdatedAction: x =>
-                {
-                    HasProgress = true;
-                    MinProgress = x.Min;
-                    MaxProgress = x.Max;
-                    CurrentProgress = x.Current;
-                });
+            // Create the load view model
+            LoaderViewModel = new LoaderViewModel();
 
             // Get the archives
-            Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this, filePaths.Any(f => f != x && f.Name == x.Name))).ToArray();
+            Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, LoaderViewModel, this, filePaths.Any(f => f != x && f.Name == x.Name))).ToArray();
 
             // Set the archive lock
             ArchiveLock = new AsyncLock();
@@ -175,20 +150,7 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     /// </summary>
     public bool CancelInitializeFiles { get; set; }
 
-    /// <summary>
-    /// The message associated with the current load operation. If null then no load operation is running.
-    /// </summary>
-    public string? LoadingMessage { get; set; }
-
-    /// <summary>
-    /// Indicates if a load operation is running, thus preventing the app from closing
-    /// </summary>
-    public bool IsLoading { get; set; }
-
-    public double CurrentProgress { get; set; }
-    public double MinProgress { get; set; }
-    public double MaxProgress { get; set; }
-    public bool HasProgress { get; set; }
+    public LoaderViewModel LoaderViewModel { get; }
 
     /// <summary>
     /// The directories

@@ -336,7 +336,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                 }
 
                 // Wait for the file to close...
-                using (await App.LoadOperation.RunAsync(String.Format(Resources.WaitForEditorToClose, programPath.RemoveFileExtension().Name)))
+                using (await App.LoaderViewModel.RunAsync(String.Format(Resources.WaitForEditorToClose, programPath.RemoveFileExtension().Name)))
                     await p.WaitForExitAsync();
             }
 

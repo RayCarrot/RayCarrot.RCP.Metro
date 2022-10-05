@@ -64,7 +64,7 @@ public partial class PatchCreatorDialog : WindowContentControl
             return true;
 
         // Cancel the closing if it's loading
-        if (ViewModel.LoadOperation.IsLoading)
+        if (ViewModel.LoaderViewModel.IsRunning)
             return false;
 
         // Ask user to confirm

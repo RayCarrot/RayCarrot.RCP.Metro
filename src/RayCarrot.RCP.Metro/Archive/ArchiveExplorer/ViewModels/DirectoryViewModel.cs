@@ -178,7 +178,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ExportAsync(bool forceNativeFormat, bool selectedFilesOnly = false)
     {
         // Run as a load operation
-        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName)))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -303,7 +303,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                                 }
 
                                 fileIndex++;
-                                operation.SetProgress(new Progress(fileIndex, filesCount));
+                                state.SetProgress(new Progress(fileIndex, filesCount));
                             }
                         }
                     }
@@ -329,7 +329,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ImportAsync()
     {
         // Run as a load operation
-        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(Resources.Archive_ImportDir_Status))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_ImportDir_Status))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -361,7 +361,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                             // Enumerate each file
                             foreach (FileViewModel file in dir.Files)
                             {
-                                operation.SetProgress(new Progress(fileIndex, filesCount));
+                                state.SetProgress(new Progress(fileIndex, filesCount));
                                 fileIndex++;
 
                                 // Get the file directory, relative to the selected directory
@@ -418,7 +418,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                             }
                         }
 
-                        operation.SetProgress(new Progress(fileIndex, filesCount));
+                        state.SetProgress(new Progress(fileIndex, filesCount));
                     }
                     catch (Exception ex)
                     {
@@ -443,7 +443,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
             return;
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -493,7 +493,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
         Logger.Trace("The archive directory {0} is being removed...", DisplayName);
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -533,7 +533,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
         Logger.Trace("Files are being added to {0}", FullPath);
 
         // Run as a load operation
-        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync(Resources.Archive_AddFiles_Status))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_AddFiles_Status))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -549,7 +549,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                     return;
 
                 // Add every file
-                await AddFilesAsync(result.SelectedFiles, x => operation.SetProgress(x));
+                await AddFilesAsync(result.SelectedFiles, x => state.SetProgress(x));
             }
         }
     }

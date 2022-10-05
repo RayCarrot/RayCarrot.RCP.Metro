@@ -15,12 +15,7 @@
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
-    <local:LoaderContentControl IsLoading="{Binding Path=LoadOperation.IsLoading}"
-                                Text="{Binding Path=LoadOperation.LoadingMessage}"
-                                IsIndeterminate="{Binding Path=LoadOperation.HasProgress, Converter={local:InvertedBooleanConverter}}"
-                                Minimum="{Binding Path=LoadOperation.MinProgress}"
-                                Maximum="{Binding Path=LoadOperation.MaxProgress}"
-                                Value="{Binding Path=LoadOperation.CurrentProgress}">
+    <local:LoadingHost local:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" MinHeight="250" />
@@ -340,6 +335,6 @@
             </StackPanel>
 
         </Grid>
-    </local:LoaderContentControl>
+    </local:LoadingHost>
 
 </local:WindowContentControl>

@@ -317,7 +317,7 @@ public partial class App : Application
             await await Dispatcher.InvokeAsync(async () =>
             {
                 // Don't close if loading
-                if (AppViewModel.IsLoading)
+                if (AppViewModel.LoaderViewModel.IsRunning)
                     return;
 
                 // Attempt to close all windows except the main one

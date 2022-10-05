@@ -400,7 +400,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         Logger.Trace("The archive file {0} is being exported as {1}", FileName, format?.FileExtensions ?? "original");
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, FileName)))
+        using (await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, FileName)))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -502,7 +502,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
             throw new Exception("The file type must be set before importing the file");
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -547,7 +547,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         Logger.Trace("The archive file {0} is being replaced...", FileName);
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -650,7 +650,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         Logger.Trace("The archive file {0} is being removed...", FileName);
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -698,7 +698,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         ext ??= FileExtension;
 
         // Run as a load operation
-        using (DisposableOperation operation = await Archive.LoadOperation.RunAsync())
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -828,12 +828,12 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                             return;
                         }
 
-                        operation.SetText(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name));
+                        state.SetStatus(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name));
 
                         // Wait for the file to close...
                         await p.WaitForExitAsync();
                      
-                        operation.SetText(String.Empty);
+                        state.SetStatus(String.Empty);
                     }
 
                     // If read-only we don't need to check if it has been modified
@@ -877,7 +877,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
             throw new Exception("The file type must be set before the file can be renamed");
 
         // Run as a load operation
-        using (await Archive.LoadOperation.RunAsync())
+        using (await Archive.LoaderViewModel.RunAsync())
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())

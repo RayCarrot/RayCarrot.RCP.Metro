@@ -42,7 +42,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
         SelectedLocation = AvailableLocations.First();
 
-        LoadOperation = new BindableOperation();
+        LoaderViewModel = new LoaderViewModel();
 
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
@@ -97,7 +97,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public bool IsImported { get; set; }
 
-    public BindableOperation LoadOperation { get; }
+    public LoaderViewModel LoaderViewModel { get; }
 
     #endregion
 
@@ -120,7 +120,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> ImportFromPatchAsync(FileSystemPath patchFilePath)
     {
-        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.PatchCreator_ImportingPatch_Status))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_ImportingPatch_Status))
         {
             Logger.Trace("Importing from patch at {0}", patchFilePath);
 
@@ -182,7 +182,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     PackagedResourceEntry resource = patchFile.AddedFileResources[i];
                     PackagedResourceChecksum checksum = patchFile.AddedFileChecksums[i];
 
-                    operation.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
+                    state.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
 
                     FileSystemPath tempFilePath = _tempDir.TempPath + filePath.FullFilePath;
 
@@ -201,7 +201,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         checksum: checksum));
                 }
 
-                operation.SetProgress(new Progress(patchFile.AddedFiles.Length, patchFile.AddedFiles.Length));
+                state.SetProgress(new Progress(patchFile.AddedFiles.Length, patchFile.AddedFiles.Length));
 
                 // Add removed files
                 foreach (PatchFilePath filePath in patchFile.RemovedFiles)
@@ -330,7 +330,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> CreatePatchAsync()
     {
-        using (DisposableOperation operation = await LoadOperation.RunAsync(Resources.PatchCreator_Create_Status))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_Create_Status))
         {
             PatchVersion version = new(Version_Major, Version_Minor, Version_Revision);
 
@@ -383,7 +383,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     // Add the file entries and calculate the checksums
                     foreach (FileViewModel file in Files)
                     {
-                        operation.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
+                        state.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
                         fileIndex++;
 
                         if (file.FilePath.IsNullOrWhiteSpace())
@@ -423,7 +423,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         }
                     }
 
-                    operation.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
+                    state.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
 
                     sw.Stop();
                     Logger.Debug("Calculated file checksums in {0} ms", sw.ElapsedMilliseconds);
@@ -457,7 +457,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     patchFile.Metadata.TotalSize = totalSize;
 
                     // Pack the file
-                    patchFile.WriteAndPackResources(x => operation.SetProgress(new Progress(1 + x.Percentage_100 / 100, 2)));
+                    // ReSharper disable once AccessToDisposedClosure
+                    patchFile.WriteAndPackResources(x => state.SetProgress(new Progress(1 + x.Percentage_100 / 100, 2)));
                     
                     // Dispose temporary files
                     _tempDir?.Dispose();

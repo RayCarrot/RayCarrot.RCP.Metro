@@ -22,6 +22,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
         // Set properties
         Title = Resources.Archive_CreateHeader;
         Manager = manager;
+        LoaderViewModel = new LoaderViewModel();
     }
 
     #endregion
@@ -45,10 +46,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     /// </summary>
     public IArchiveDataManager Manager { get; }
 
-    /// <summary>
-    /// Indicates if the creator tool is loading
-    /// </summary>
-    public bool IsLoading { get; set; }
+    public LoaderViewModel LoaderViewModel { get; }
 
     /// <summary>
     /// The selected input directory
@@ -70,11 +68,6 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     /// </summary>
     public FileSystemPath OutputFile { get; set; }
 
-    public double CurrentProgress { get; set; }
-    public double MinProgress { get; set; }
-    public double MaxProgress { get; set; }
-    public bool HasProgress { get; set; }
-
     #endregion
 
     #region Public Methods
@@ -85,98 +78,86 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     /// <returns>True if the archive was successfully created, otherwise false</returns>
     public async Task<bool> CreateArchiveAsync()
     {
-        if (IsLoading)
-            return false;
-
-        try
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Archive_CreateStatusPacking))
         {
-            IsLoading = true;
-
-            return await Task.Run(async () =>
+            try
             {
-                FileItem[]? archiveFiles = null;
-
-                try
+                return await Task.Run(async () =>
                 {
-                    // Make sure the input directory exists
-                    if (!InputDirectory.DirectoryExists)
-                    {
-                        await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
+                    FileItem[]? archiveFiles = null;
 
-                        return false;
+                    try
+                    {
+                        // Make sure the input directory exists
+                        if (!InputDirectory.DirectoryExists)
+                        {
+                            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
+
+                            return false;
+                        }
+
+                        // Create a new archive
+                        object archive = Manager.CreateArchive();
+
+                        FileSystemPath[] inputFiles = InputDirectory.
+                            GetDirectoryInfo().
+                            GetFiles("*", Manager.CanModifyDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly).
+                            Where(x => !x.Attributes.HasFlag(FileAttributes.System)).
+                            Select(x => new FileSystemPath(x.FullName)).
+                            ToArray();
+
+                        archiveFiles = inputFiles.Select(x =>
+                        {
+                            FileSystemPath relativePath = x - InputDirectory;
+                            string dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar, Manager.PathSeparatorCharacter);
+                            string file = relativePath.Name;
+
+                            object archiveEntry = Manager.GetNewFileEntry(archive, dir, file);
+
+                            FileItem fileItem = new(Manager, file, dir, archiveEntry);
+
+                            // IDEA: If not encoded there's no need to copy the stream, instead just use origin file
+
+                            // Open the file to be imported
+                            using FileStream inputStream = File.OpenRead(x);
+
+                            fileItem.SetPendingImport();
+
+                            // Encode the data to the pending import stream
+                            Manager.EncodeFile(inputStream, fileItem.PendingImport, archiveEntry);
+
+                            // If no data was encoded we copy over the decoded data
+                            if (fileItem.PendingImport.Length == 0)
+                                inputStream.CopyTo(fileItem.PendingImport);
+
+                            return fileItem;
+                        }).ToArray();
+
+                        // Open the output file
+                        using ArchiveFileStream outputStream = new(File.Open(OutputFile, FileMode.Create, FileAccess.Write), OutputFile.Name, true);
+
+                        // Write the archive
+                        // ReSharper disable once AccessToDisposedClosure
+                        Manager.WriteArchive(null, archive, outputStream, archiveFiles, x => state.SetProgress(x));
+                    }
+                    finally
+                    {
+                        archiveFiles?.DisposeAll();
                     }
 
-                    // Create a new archive
-                    object archive = Manager.CreateArchive();
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, archiveFiles.Length));
 
-                    FileSystemPath[] inputFiles = InputDirectory.
-                        GetDirectoryInfo().
-                        GetFiles("*", Manager.CanModifyDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly).
-                        Where(x => !x.Attributes.HasFlag(FileAttributes.System)).
-                        Select(x => new FileSystemPath(x.FullName)).
-                        ToArray();
+                    return true;
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Creating archive using manager {0}", Manager);
 
-                    archiveFiles = inputFiles.Select(x =>
-                    {
-                        FileSystemPath relativePath = x - InputDirectory;
-                        string dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar, Manager.PathSeparatorCharacter);
-                        string file = relativePath.Name;
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
 
-                        object archiveEntry = Manager.GetNewFileEntry(archive, dir, file);
-
-                        FileItem fileItem = new(Manager, file, dir, archiveEntry);
-
-                        // IDEA: If not encoded there's no need to copy the stream, instead just use origin file
-
-                        // Open the file to be imported
-                        using FileStream inputStream = File.OpenRead(x);
-
-                        fileItem.SetPendingImport();
-
-                        // Encode the data to the pending import stream
-                        Manager.EncodeFile(inputStream, fileItem.PendingImport, archiveEntry);
-
-                        // If no data was encoded we copy over the decoded data
-                        if (fileItem.PendingImport.Length == 0)
-                            inputStream.CopyTo(fileItem.PendingImport);
-
-                        return fileItem;
-                    }).ToArray();
-
-                    // Open the output file
-                    using ArchiveFileStream outputStream = new(File.Open(OutputFile, FileMode.Create, FileAccess.Write), OutputFile.Name, true);
-
-                    // Write the archive
-                    Manager.WriteArchive(null, archive, outputStream, archiveFiles, x =>
-                    {
-                        HasProgress = true;
-                        CurrentProgress = x.Current;
-                        MaxProgress = x.Max;
-                        MinProgress = x.Min;
-                    });
-                }
-                finally
-                {
-                    archiveFiles?.DisposeAll();
-                    HasProgress = false;
-                }
-
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, archiveFiles.Length));
-
-                return true;
-            });
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Creating archive using manager {0}", Manager);
-
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
-
-            return false;
-        }
-        finally
-        {
-            IsLoading = false;
+                return false;
+            }
         }
     }
 

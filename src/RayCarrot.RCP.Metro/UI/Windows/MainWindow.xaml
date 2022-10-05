@@ -12,7 +12,7 @@
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   Title="{Binding Path=AppTitle, Mode=OneTime}"
                   CloseWithEscape="False"
-                  IsCloseButtonEnabled="{Binding Path=App.IsLoading, Converter={local:InvertedBooleanConverter}}"
+                  IsCloseButtonEnabled="{Binding Path=App.LoaderViewModel.IsRunning, Converter={local:InvertedBooleanConverter}}"
                   Width="960" Height="720"
                   Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -33,8 +33,7 @@
             </mah:WindowCommands.ItemTemplate>
         </mah:WindowCommands>
     </local:BaseWindow.RightWindowCommands>
-    <local:LoaderContentControl IsLoading="{Binding Path=App.IsLoading}"
-                                Text="{Binding Path=App.LoadingMessage}">
+    <local:LoadingHost local:LoadingHostAssist.ViewModel="{Binding Path=App.LoaderViewModel, Mode=OneTime}">
         <Grid>
             <mah:MetroAnimatedTabControl x:Name="PageTabControl"
                                          ItemContainerStyle="{StaticResource RCP.Styles.TabItem.Large}"
@@ -233,5 +232,5 @@
                               Visibility="{Binding Path=App.IsStartupRunning, Converter={local:BooleanToVisibilityConverter}}" />
 
         </Grid>
-    </local:LoaderContentControl>
+    </local:LoadingHost>
 </local:BaseWindow>

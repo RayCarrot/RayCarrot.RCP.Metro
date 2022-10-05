@@ -14,8 +14,8 @@
                             MinWidth="400"
                             MaxWidth="500">
 
-    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}"
-                                Text="{Resx Archive_CreateStatusPacking}"
+    <local:LoadingHost IsLoading="{Binding Path=IsLoading}"
+                                Text="{Resx }"
                                 IsIndeterminate="{Binding Path=HasProgress, Converter={local:InvertedBooleanConverter}}"
                                 Minimum="{Binding Path=MinProgress}"
                                 Maximum="{Binding Path=MaxProgress}"
@@ -76,5 +76,5 @@
 
         </Grid>
 
-    </local:LoaderContentControl>
+    </local:LoadingHost>
 </local:WindowContentControl>

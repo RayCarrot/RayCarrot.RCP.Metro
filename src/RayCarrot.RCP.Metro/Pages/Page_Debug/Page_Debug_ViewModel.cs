@@ -739,18 +739,18 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
     public async Task RunLoadOperationAsync()
     {
-        using (DisposableOperation operation = await App.LoadOperation.RunAsync("Debug load operation"))
+        using (LoadState state = await App.LoaderViewModel.RunAsync("Debug load operation"))
         {
             await Task.Run(async () =>
             {
                 const int max = 1000;
                 for (int i = 0; i < max; i++)
                 {
-                    operation.SetProgress(new Progress(i, max));
+                    state.SetProgress(new Progress(i, max));
                     await Task.Delay(10);
                 }
 
-                operation.SetProgress(new Progress(max, max));
+                state.SetProgress(new Progress(max, max));
             });
         }
     }
