@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Nito.AsyncEx;
@@ -10,39 +9,36 @@ public class LoaderViewModel : BaseViewModel
 {
     public LoaderViewModel()
     {
-        CancellationTokenSource = new CancellationTokenSource();
         LoadLock = new AsyncLock();
 
         CancelCommand = new RelayCommand(Cancel);
     }
 
-    private LoadStateViewModel? _state;
+    private LoadStateViewModel? _stateViewModel;
 
     private AsyncLock LoadLock { get; }
-    private CancellationTokenSource CancellationTokenSource { get; }
 
     public ICommand CancelCommand { get; }
 
-    public LoadStateViewModel? State
+    public LoadStateViewModel? StateViewModel
     {
-        get => _state;
+        get => _stateViewModel;
         private set
         {
-            _state = value;
+            _stateViewModel = value;
             OnIsRunningChanged();
         }
     }
 
-    public bool IsRunning => State != null;
+    public bool IsRunning => StateViewModel != null;
 
-    public void Cancel()
-    {
-        CancellationTokenSource.Cancel();
-    }
+    public void Cancel() => StateViewModel?.Cancel();
 
-    public Task<LoadState> RunAsync() => RunAsync(null);
+    public Task<LoadState> RunAsync() => RunAsync(null, false);
 
-    public async Task<LoadState> RunAsync(string? status)
+    public Task<LoadState> RunAsync(string? status) => RunAsync(status, false);
+
+    public async Task<LoadState> RunAsync(string? status, bool canCancel)
     {
         // Await the lock and get the disposable
         IDisposable d = await LoadLock.LockAsync();
@@ -50,16 +46,17 @@ public class LoaderViewModel : BaseViewModel
         // TODO-UPDATE: If state is not null we can log warning since prev operation was not correctly disposed
 
         // Create a new state view model
-        State = new LoadStateViewModel()
+        StateViewModel = new LoadStateViewModel()
         {
-            Status = status
+            Status = status,
+            CanCancel = canCancel,
         };
 
         // Return the load state
-        return new LoadState(State, CancellationTokenSource.Token, () =>
+        return StateViewModel.CreateState(() =>
         {
             d.Dispose();
-            State = null;
+            StateViewModel = null;
         });
     }
 

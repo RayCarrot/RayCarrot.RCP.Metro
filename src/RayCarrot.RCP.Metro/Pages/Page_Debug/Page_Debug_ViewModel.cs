@@ -743,14 +743,24 @@ public class Page_Debug_ViewModel : BasePageViewModel
         {
             await Task.Run(async () =>
             {
-                const int max = 1000;
-                for (int i = 0; i < max; i++)
+                try
                 {
-                    state.SetProgress(new Progress(i, max));
-                    await Task.Delay(10);
-                }
+                    const int max = 800;
+                    for (int i = 0; i < max; i++)
+                    {
+                        state.SetProgress(new Progress(i, max));
+                        await Task.Delay(10, state.CancellationToken);
 
-                state.SetProgress(new Progress(max, max));
+                        if (i == max / 2)
+                            state.SetCanCancel(true);
+                    }
+
+                    state.SetProgress(new Progress(max, max));
+                }
+                catch (TaskCanceledException)
+                {
+                    // Ignore
+                }
             });
         }
     }

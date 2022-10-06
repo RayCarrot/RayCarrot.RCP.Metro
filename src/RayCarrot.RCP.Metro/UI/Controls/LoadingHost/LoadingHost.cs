@@ -1,16 +1,40 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A <see cref="ContentControl"/> with support for loading
 /// </summary>
+[TemplatePart(Name = nameof(PART_CancelButton), Type = typeof(ButtonBase))]
 public class LoadingHost : ContentControl
 {
     static LoadingHost()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(LoadingHost), new FrameworkPropertyMetadata(typeof(LoadingHost)));
+    }
+
+    private ButtonBase? PART_CancelButton;
+
+    public override void OnApplyTemplate()
+    {
+        if (PART_CancelButton != null)
+            PART_CancelButton.Click -= CancelButtonOnClick;
+
+        PART_CancelButton = GetTemplateChild(nameof(PART_CancelButton)) as Button;
+
+        if (PART_CancelButton != null)
+            PART_CancelButton.Click += CancelButtonOnClick;
+
+        base.OnApplyTemplate();
+    }
+
+    private void CancelButtonOnClick(object sender, RoutedEventArgs e)
+    {
+        if (CancelCommand != null && CancelCommand.CanExecute(CancelCommandParameter))
+            CancelCommand.Execute(CancelCommandParameter);
     }
 
     public string Text
@@ -66,4 +90,31 @@ public class LoadingHost : ContentControl
 
     public static readonly DependencyProperty MaximumProperty = 
         DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(LoadingHost), new PropertyMetadata(100d));
+
+    public bool CanCancel
+    {
+        get => (bool)GetValue(CanCancelProperty);
+        set => SetValue(CanCancelProperty, value);
+    }
+
+    public static readonly DependencyProperty CanCancelProperty = 
+        DependencyProperty.Register(nameof(CanCancel), typeof(bool), typeof(LoadingHost), new PropertyMetadata(false));
+
+    public ICommand? CancelCommand
+    {
+        get => (ICommand?)GetValue(CancelCommandProperty);
+        set => SetValue(CancelCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty CancelCommandProperty = 
+        DependencyProperty.Register(nameof(CancelCommand), typeof(ICommand), typeof(LoadingHost));
+
+    public object? CancelCommandParameter
+    {
+        get => GetValue(CancelCommandParameterProperty);
+        set => SetValue(CancelCommandParameterProperty, value);
+    }
+
+    public static readonly DependencyProperty CancelCommandParameterProperty = 
+        DependencyProperty.Register(nameof(CancelCommandParameter), typeof(object), typeof(LoadingHost));
 }

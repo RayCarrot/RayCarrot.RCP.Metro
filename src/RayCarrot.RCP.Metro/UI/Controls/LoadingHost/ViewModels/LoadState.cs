@@ -19,6 +19,7 @@ public class LoadState : IDisposable
 
     public void SetStatus(string? status) => ViewModel.Status = status;
     public void SetProgress(Progress progress) => ViewModel.SetProgress(progress);
+    public void SetCanCancel(bool canCanel) => ViewModel.CanCancel = canCanel;
 
     public void Dispose()
     {
