@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using BinarySerializer;
 
@@ -78,7 +79,14 @@ public interface IArchiveDataManager : IDisposable
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
     /// <param name="progressCallback">A progress callback action</param>
-    void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IEnumerable<FileItem> files, Action<Progress> progressCallback);
+    /// <param name="cancellationToken">The cancellation token for cancelling the archive writing</param>
+    void WriteArchive(
+        IDisposable? generator, 
+        object archive, 
+        ArchiveFileStream outputFileStream, 
+        IEnumerable<FileItem> files, 
+        Action<Progress> progressCallback, 
+        CancellationToken cancellationToken);
 
     /// <summary>
     /// Optional operations to perform after repacking archives

@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Nito.AsyncEx;
@@ -281,7 +282,8 @@ public class ArchiveViewModel : DirectoryViewModel
                                     SelectMany(x => x.Files).
                                     Select(x => x.FileData),
                                 // ReSharper disable once AccessToDisposedClosure
-                                progressCallback: x => state.SetProgress(x));
+                                progressCallback: x => state.SetProgress(x),
+                                cancellationToken: CancellationToken.None);
                         }
 
                         // Dispose the archive file stream

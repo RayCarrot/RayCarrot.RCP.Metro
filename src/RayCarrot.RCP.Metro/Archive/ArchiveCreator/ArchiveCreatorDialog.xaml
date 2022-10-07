@@ -14,12 +14,7 @@
                             MinWidth="400"
                             MaxWidth="500">
 
-    <local:LoadingHost IsLoading="{Binding Path=IsLoading}"
-                                Text="{Resx }"
-                                IsIndeterminate="{Binding Path=HasProgress, Converter={local:InvertedBooleanConverter}}"
-                                Minimum="{Binding Path=MinProgress}"
-                                Maximum="{Binding Path=MaxProgress}"
-                                Value="{Binding Path=CurrentProgress}">
+    <local:LoadingHost local:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />

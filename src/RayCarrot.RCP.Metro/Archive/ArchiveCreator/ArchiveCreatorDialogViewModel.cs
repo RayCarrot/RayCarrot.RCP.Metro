@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using NLog;
 
@@ -78,20 +79,23 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
     /// <returns>True if the archive was successfully created, otherwise false</returns>
     public async Task<bool> CreateArchiveAsync()
     {
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Archive_CreateStatusPacking))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Archive_CreateStatusPacking, canCancel: true))
         {
             try
             {
                 return await Task.Run(async () =>
                 {
-                    FileItem[]? archiveFiles = null;
+                    List<FileItem> archiveFiles = new();
+                    CancellationToken cancellationToken = state.CancellationToken;
+                    bool createdFile = false;
 
                     try
                     {
                         // Make sure the input directory exists
                         if (!InputDirectory.DirectoryExists)
                         {
-                            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
+                            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound,
+                                MessageType.Error);
 
                             return false;
                         }
@@ -99,17 +103,21 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                         // Create a new archive
                         object archive = Manager.CreateArchive();
 
-                        FileSystemPath[] inputFiles = InputDirectory.
-                            GetDirectoryInfo().
-                            GetFiles("*", Manager.CanModifyDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly).
-                            Where(x => !x.Attributes.HasFlag(FileAttributes.System)).
-                            Select(x => new FileSystemPath(x.FullName)).
-                            ToArray();
-
-                        archiveFiles = inputFiles.Select(x =>
+                        // Add each file
+                        SearchOption searchOption = Manager.CanModifyDirectories
+                            ? SearchOption.AllDirectories
+                            : SearchOption.TopDirectoryOnly;
+                        foreach (FileSystemPath inputFile in Directory.EnumerateFiles(InputDirectory, "*", searchOption))
                         {
-                            FileSystemPath relativePath = x - InputDirectory;
-                            string dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar, Manager.PathSeparatorCharacter);
+                            // Ignore system files
+                            if (inputFile.GetFileInfo().Attributes.HasFlag(FileAttributes.System))
+                                continue;
+
+                            cancellationToken.ThrowIfCancellationRequested();
+
+                            FileSystemPath relativePath = inputFile - InputDirectory;
+                            string dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar,
+                                Manager.PathSeparatorCharacter);
                             string file = relativePath.Name;
 
                             object archiveEntry = Manager.GetNewFileEntry(archive, dir, file);
@@ -119,7 +127,7 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                             // IDEA: If not encoded there's no need to copy the stream, instead just use origin file
 
                             // Open the file to be imported
-                            using FileStream inputStream = File.OpenRead(x);
+                            using FileStream inputStream = File.OpenRead(inputFile);
 
                             fileItem.SetPendingImport();
 
@@ -130,22 +138,43 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                             if (fileItem.PendingImport.Length == 0)
                                 inputStream.CopyTo(fileItem.PendingImport);
 
-                            return fileItem;
-                        }).ToArray();
+                            archiveFiles.Add(fileItem);
+                        }
 
+                        // TODO-UPDATE: Delete file in case of error
                         // Open the output file
-                        using ArchiveFileStream outputStream = new(File.Open(OutputFile, FileMode.Create, FileAccess.Write), OutputFile.Name, true);
+                        using ArchiveFileStream outputStream =
+                            new(File.Open(OutputFile, FileMode.Create, FileAccess.Write), OutputFile.Name, true);
+
+                        createdFile = true;
 
                         // Write the archive
                         // ReSharper disable once AccessToDisposedClosure
-                        Manager.WriteArchive(null, archive, outputStream, archiveFiles, x => state.SetProgress(x));
+                        Manager.WriteArchive(null, archive, outputStream, archiveFiles, x => state.SetProgress(x),
+                            cancellationToken);
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        Logger.Trace(ex, "Cancelled creating archive");
+
+                        try
+                        {
+                            if (createdFile)
+                                OutputFile.DeleteFile();
+                        }
+                        catch (Exception ex2)
+                        {
+                            Logger.Warn(ex2, "Deleting not fully written archive output file");
+                        }
+                        
+                        return false;
                     }
                     finally
                     {
-                        archiveFiles?.DisposeAll();
+                        archiveFiles.DisposeAll();
                     }
 
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, archiveFiles.Length));
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, archiveFiles.Count));
 
                     return true;
                 });

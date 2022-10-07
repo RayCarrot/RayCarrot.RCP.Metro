@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
@@ -138,7 +139,14 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
     /// <param name="progressCallback">A progress callback action</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IEnumerable<FileItem> files, Action<Progress> progressCallback)
+    /// <param name="cancellationToken">The cancellation token for cancelling the archive writing</param>
+    public void WriteArchive(
+        IDisposable? generator,
+        object archive,
+        ArchiveFileStream outputFileStream,
+        IEnumerable<FileItem> files,
+        Action<Progress> progressCallback,
+        CancellationToken cancellationToken)
     {
         Logger.Info("A CNT archive is being repacked...");
 
@@ -163,6 +171,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         foreach (var file in archiveFiles)
             // Set the directory index
             file.Entry.DirectoryIndex = file.FileItem.Directory == String.Empty ? -1 : data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
+
+        cancellationToken.ThrowIfCancellationRequested();
 
         BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, leaveOpen: true);
 
@@ -219,6 +229,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
             // Write the file contents
             foreach (CNT_File file in data.Files)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 // Get the file stream
                 using Stream fileStream = fileGenerator.GetFileStream(file);
 

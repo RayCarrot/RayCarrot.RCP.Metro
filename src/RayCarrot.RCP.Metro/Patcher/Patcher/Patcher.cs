@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using BinarySerializer;
 using NLog;
@@ -326,8 +327,13 @@ public class Patcher
                 using ArchiveFileStream archiveOutputStream = new(File.OpenWrite(archiveOutputFile.TempPath),
                     archiveOutputFile.TempPath.Name, true);
 
-                manager.WriteArchive(archiveData.Generator, archive, archiveOutputStream, archiveFiles, progressCallback: 
-                    x => progressCallback?.Invoke(new Progress(x.Percentage_100 * 0.5 + 50, 100))); // 50-100%
+                manager.WriteArchive(
+                    generator: archiveData.Generator, 
+                    archive: archive, 
+                    outputFileStream: archiveOutputStream, 
+                    files: archiveFiles, 
+                    progressCallback: x => progressCallback?.Invoke(new Progress(x.Percentage_100 * 0.5 + 50, 100)), // 50-100%
+                    cancellationToken: CancellationToken.None);
 
                 sw.Stop();
 

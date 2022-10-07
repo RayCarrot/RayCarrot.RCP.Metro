@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using ByteSizeLib;
+using System.Threading;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;
 
@@ -147,7 +148,14 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
     /// <param name="outputFileStream">The file output stream for the archive</param>
     /// <param name="files">The files to include</param>
     /// <param name="progressCallback">A progress callback action</param>
-    public void WriteArchive(IDisposable? generator, object archive, ArchiveFileStream outputFileStream, IEnumerable<FileItem> files, Action<Progress> progressCallback)
+    /// <param name="cancellationToken">The cancellation token for cancelling the archive writing</param>
+    public void WriteArchive(
+        IDisposable? generator,
+        object archive,
+        ArchiveFileStream outputFileStream,
+        IEnumerable<FileItem> files,
+        Action<Progress> progressCallback,
+        CancellationToken cancellationToken)
     {
         Logger.Info("An IPK archive is being repacked...");
 
@@ -211,6 +219,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             });
         }
 
+        cancellationToken.ThrowIfCancellationRequested();
+
         BinaryFile binaryFile = new StreamFile(Context, outputFileStream.Name, outputFileStream.Stream, leaveOpen: true);
 
         try
@@ -225,7 +235,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             data.BootHeader.BaseOffset = (uint)data.Size;
 
             // Write the files
-            WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader), progressCallback);
+            WriteArchiveContent(data, outputFileStream.Stream, fileGenerator, Config.ShouldCompress(data.BootHeader), progressCallback, cancellationToken);
 
             outputFileStream.Stream.Position = 0;
 
@@ -242,7 +252,7 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
 
     public Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths) => Task.CompletedTask;
 
-    private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock, Action<Progress> progressCallback)
+    private void WriteArchiveContent(BundleFile bundle, Stream stream, IFileGenerator<BundleFile_FileEntry> fileGenerator, bool compressBlock, Action<Progress> progressCallback, CancellationToken cancellationToken)
     {
         // Make sure we have a generator for each file
         if (fileGenerator.Count != bundle.FilePack.Files.Length)
@@ -268,6 +278,8 @@ public class UbiArtIPKArchiveDataManager : IArchiveDataManager
             // Write the file contents
             foreach (BundleFile_FileEntry file in bundle.FilePack.Files)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 // Get the file stream from the generator
                 using Stream fileStream = fileGenerator.GetFileStream(file);
 
