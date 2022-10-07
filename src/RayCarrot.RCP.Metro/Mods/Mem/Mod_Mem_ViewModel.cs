@@ -196,7 +196,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
             AttachedGame?.DetachContainer();
             AttachedGame = SelectedGame.Game;
             
-            Context = new RCPContext(String.Empty, log: new MemorySerializerLog()
+            Context = new RCPContext(String.Empty, logger: new MemorySerializerLogger()
             {
                 IsEnabled = false, // Start disabled as we only want to log individual ticks
             });
@@ -345,7 +345,7 @@ public class Mod_Mem_ViewModel : Mod_BaseViewModel, IDisposable
 
     private void RefreshFields()
     {
-        MemorySerializerLog? logger = Context?.SerializerLog as MemorySerializerLog;
+        MemorySerializerLogger? logger = Context?.SerializerLogger as MemorySerializerLogger;
 
         if (_logNextTick && logger != null)
             logger.IsEnabled = true;

@@ -256,9 +256,9 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             {
                 await Task.Run(() =>
                 {
-                    MemorySerializerLog log = new();
+                    MemorySerializerLogger log = new();
 
-                    using RCPContext context = new(fileResult.SelectedFiles.First().Parent, log: log);
+                    using RCPContext context = new(fileResult.SelectedFiles.First().Parent, logger: log);
                     SelectedType.SelectedMode.InitContext(context);
 
                     try

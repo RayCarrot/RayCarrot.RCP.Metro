@@ -9,19 +9,19 @@ namespace RayCarrot.RCP.Metro;
 
 public class RCPContext : Context
 {
-    public RCPContext(string basePath, RCPSerializerSettings? settings = null, ISerializerLog? log = null, bool noLog = false) 
+    public RCPContext(string basePath, RCPSerializerSettings? settings = null, ISerializerLogger? logger = null, bool noLog = false) 
         : base(
             basePath: basePath, 
             settings: settings ?? new RCPSerializerSettings(), 
-            serializerLog: noLog ? null : log ?? LogInstance, 
+            serializerLogger: noLog ? null : logger ?? LogInstance, 
             fileManager: new RCPFileManager(), 
-            systemLog: new RCPLogger())
+            systemLogger: new RCPLogger())
     { }
 
     // Use a static log instance so that multiple contexts can be open and log at the same time without conflicts
-    private static readonly RCPSerializerLog LogInstance = new();
+    private static readonly RCPSerializerLogger LogInstance = new();
 
-    public class RCPSerializerLog : ISerializerLog
+    public class RCPSerializerLogger : ISerializerLogger
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private static bool _hasBeenCreated;
@@ -73,11 +73,11 @@ public class RCPContext : Context
         public override PathSeparatorChar SeparatorCharacter => PathSeparatorChar.BackSlash;
     }
 
-    private class RCPLogger : ISystemLog
+    private class RCPLogger : ISystemLogger
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public void Log(LogLevel logLevel, object? log, params object[] args)
+        public void Log(LogLevel logLevel, object? log, params object?[] args)
         {
             NLog.LogLevel nlogLevel = logLevel switch
             {
