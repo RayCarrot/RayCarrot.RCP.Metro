@@ -538,7 +538,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public async Task ExtractPatchContentsAsync(LocalPatchViewModel patchViewModel)
     {
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Patcher_ExtractContents_Status))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.Patcher_ExtractContents_Status, canCancel: true))
         {
             DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
             {
@@ -570,9 +570,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     // Extract added files
                     for (int i = 0; i < patchFile.AddedFileResources.Length; i++)
                     {
+                        state.CancellationToken.ThrowIfCancellationRequested();
+
                         PatchFilePath filePath = patchFile.AddedFiles[i];
                         PackagedResourceEntry resource = patchFile.AddedFileResources[i];
-                        
+
                         state.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
 
                         FileSystemPath fileDest = result.SelectedDirectory + "added_files" + filePath.FullFilePath;
@@ -588,11 +590,16 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 }
 
                 // Extract removed files
-                File.WriteAllLines(result.SelectedDirectory + "removed_files.txt", patchFile.RemovedFiles.Select(x => x.ToString()));
+                File.WriteAllLines(result.SelectedDirectory + "removed_files.txt",
+                    patchFile.RemovedFiles.Select(x => x.ToString()));
 
                 Logger.Info("Extracted patch contents");
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Patcher_ExtractContentsSuccess);
+            }
+            catch (OperationCanceledException ex)
+            {
+                Logger.Trace(ex, "Cancelled extracting patch contents");
             }
             catch (Exception ex)
             {
