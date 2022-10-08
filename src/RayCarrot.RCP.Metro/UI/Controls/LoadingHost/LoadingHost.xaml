@@ -6,6 +6,8 @@
     <Style TargetType="{x:Type local:LoadingHost}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsTabStop" Value="False" />
+        <!-- Enable layout rounding for now to avoid graphical glitches with the progress bar - is there a better solution? -->
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
