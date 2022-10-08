@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 
@@ -33,7 +35,13 @@ public partial class ArchiveExplorerDialog : WindowContentControl
     }
 
     #endregion
-        
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Public Properties
 
     /// <summary>
@@ -176,13 +184,24 @@ public partial class ArchiveExplorerDialog : WindowContentControl
             return;
 
         // Run as a load operation
-        using (LoadState state = await dir.Archive.LoaderViewModel.RunAsync(Metro.Resources.Archive_AddFiles_Status))
+        using (LoadState state = await dir.Archive.LoaderViewModel.RunAsync(Metro.Resources.Archive_AddFiles_Status, canCancel: true))
         {
             // Lock the access to the archive
             using (await dir.Archive.ArchiveLock.LockAsync())
             {
-                // Add the files
-                await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists), x => state.SetProgress(x));
+                try
+                {
+                    // Add the files
+                    await dir.AddFilesAsync(
+                        files: files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists), 
+                        progressCallback: x => state.SetProgress(x), 
+                        cancellationToken: state.CancellationToken);
+                }
+                catch (OperationCanceledException ex)
+                {
+                    Logger.Trace(ex, "Cancelled adding files to archive");
+                }
+
             }
         }
     }

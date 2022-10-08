@@ -634,7 +634,8 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         HasPendingImport = true;
 
         inputStream.Position = 0;
-            
+        
+        // TODO-UPDATE: If you add a new file to the current dir then the thumb won't be loaded
         // Initialize the file
         InitializeFile(new ArchiveFileStream(inputStream, FileName, false), ThumbnailLoadMode.ReloadThumbnailIfLoaded);
 

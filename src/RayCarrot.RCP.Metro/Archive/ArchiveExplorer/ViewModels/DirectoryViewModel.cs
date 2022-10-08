@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -533,7 +534,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
         Logger.Trace("Files are being added to {0}", FullPath);
 
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_AddFiles_Status))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_AddFiles_Status, canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -548,13 +549,20 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                 if (result.CanceledByUser)
                     return;
 
-                // Add every file
-                await AddFilesAsync(result.SelectedFiles, x => state.SetProgress(x));
+                try
+                {
+                    // Add every file
+                    await AddFilesAsync(result.SelectedFiles, x => state.SetProgress(x), state.CancellationToken);
+                }
+                catch (OperationCanceledException ex)
+                {
+                    Logger.Trace(ex, "Cancelled adding files to archive");
+                }
             }
         }
     }
 
-    public async Task AddFilesAsync(IEnumerable<FileSystemPath> files, Action<Progress> progressCallback)
+    public async Task AddFilesAsync(IEnumerable<FileSystemPath> files, Action<Progress> progressCallback, CancellationToken cancellationToken)
     {
         // Get the manager
         IArchiveDataManager manager = Archive.Manager;
@@ -590,53 +598,60 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
             replaceConflicts = await Services.MessageUI.DisplayMessageAsync(message, Resources.Archive_AddFiles_ConflictHeader, MessageType.Warning, true);
         }
 
-        int fileIndex = 0;
-
-        // Add every file
-        foreach (var file in addFiles)
+        try
         {
-            string fileName = file.FilePath.Name;
-            string dir = FullPath;
-            FileViewModel? existingFile = file.ExistingFile;
+            int fileIndex = 0;
 
-            // Check if the file name conflicts with an existing file
-            if (existingFile != null && !replaceConflicts)
+            // Add every file
+            foreach (var file in addFiles)
             {
-                fileIndex++;
-                progressCallback(new Progress(fileIndex, addFiles.Length));
-                continue;
-            }
+                cancellationToken.ThrowIfCancellationRequested();
 
-            try
-            {
-                // Open the file as a stream
-                using FileStream fileStream = File.OpenRead(file.FilePath);
+                string fileName = file.FilePath.Name;
+                string dir = FullPath;
+                FileViewModel? existingFile = file.ExistingFile;
 
-                FileViewModel fileViewModel = existingFile ?? new FileViewModel(new FileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir, fileName)), this);
+                // Check if the file name conflicts with an existing file
+                if (existingFile != null && !replaceConflicts)
+                {
+                    fileIndex++;
+                    progressCallback(new Progress(fileIndex, addFiles.Length));
+                    continue;
+                }
 
-                // Replace the file with the import data
-                if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
-                    modifiedCount++;
+                try
+                {
+                    // Open the file as a stream
+                    using FileStream fileStream = File.OpenRead(file.FilePath);
 
-                // Add the file to the list if it was created
-                if (existingFile == null)
-                    Files.Add(fileViewModel);
+                    FileViewModel fileViewModel = existingFile ?? new FileViewModel(new FileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir, fileName)), this);
 
-                fileIndex++;
-                progressCallback(new Progress(fileIndex, addFiles.Length));
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Adding files to archive directory {0}", DisplayName);
+                    // Replace the file with the import data
+                    if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
+                        modifiedCount++;
 
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_AddFiles_Error, fileName));
+                    // Add the file to the list if it was created
+                    if (existingFile == null)
+                        Files.Add(fileViewModel);
 
-                return;
+                    fileIndex++;
+                    progressCallback(new Progress(fileIndex, addFiles.Length));
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Adding files to archive directory {0}", DisplayName);
+
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_AddFiles_Error, fileName));
+
+                    return;
+                }
             }
         }
-
-        Archive.AddModifiedFiles(modifiedCount);
-        Archive.ExplorerDialogViewModel.RefreshStatusBar();
+        finally
+        {
+            Archive.AddModifiedFiles(modifiedCount);
+            Archive.ExplorerDialogViewModel.RefreshStatusBar();
+        }
     }
 
     /// <summary>

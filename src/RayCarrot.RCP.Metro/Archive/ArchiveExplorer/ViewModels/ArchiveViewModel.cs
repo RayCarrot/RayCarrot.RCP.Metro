@@ -248,7 +248,7 @@ public class ArchiveViewModel : DirectoryViewModel
         Logger.Info("The archive {0} is being repacked", DisplayName);
 
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName)))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_RepackingStatus, DisplayName), canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -271,19 +271,19 @@ public class ArchiveViewModel : DirectoryViewModel
                         using TempFile tempOutputFile = new(false);
 
                         // Create the file and get the stream
-                        using (ArchiveFileStream outputStream = new(File.Create(tempOutputFile.TempPath), tempOutputFile.TempPath.Name, true))
+                        using (ArchiveFileStream outputStream = new(File.Create(tempOutputFile.TempPath),
+                                   tempOutputFile.TempPath.Name, true))
                         {
                             // Write to the stream
                             Manager.WriteArchive(
-                                generator: ArchiveFileGenerator, 
-                                archive: ArchiveData ?? throw new Exception("Archive data has not been loaded"), 
-                                outputFileStream: outputStream, 
-                                files: this.GetAllChildren<DirectoryViewModel>(true).
-                                    SelectMany(x => x.Files).
-                                    Select(x => x.FileData),
+                                generator: ArchiveFileGenerator,
+                                archive: ArchiveData ?? throw new Exception("Archive data has not been loaded"),
+                                outputFileStream: outputStream,
+                                files: this.GetAllChildren<DirectoryViewModel>(true).SelectMany(x => x.Files)
+                                    .Select(x => x.FileData),
                                 // ReSharper disable once AccessToDisposedClosure
                                 progressCallback: x => state.SetProgress(x),
-                                cancellationToken: CancellationToken.None);
+                                cancellationToken: state.CancellationToken);
                         }
 
                         // Dispose the archive file stream
@@ -294,11 +294,17 @@ public class ArchiveViewModel : DirectoryViewModel
                         // If the operation succeeded, replace the archive file with the temporary output
                         Services.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
+                        state.SetCanCancel(false);
+
                         // On repack
                         await Manager.OnRepackedArchivesAsync(new[] { FilePath });
 
                         // Re-open the file stream
                         OpenFile();
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        Logger.Trace(ex, "Cancelled repacking archive");
                     }
                     catch (Exception ex)
                     {
@@ -312,6 +318,7 @@ public class ArchiveViewModel : DirectoryViewModel
                     }
                 });
 
+                // TODO-UPDATE: DO we have to reload the archive? This will lose your changes!
                 // Reload the archive
                 LoadArchive();
 
