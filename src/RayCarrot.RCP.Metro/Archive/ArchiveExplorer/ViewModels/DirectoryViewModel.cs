@@ -179,7 +179,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ExportAsync(bool forceNativeFormat, bool selectedFilesOnly = false)
     {
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName)))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(String.Format(Resources.Archive_ExportingFileStatus, DisplayName), canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -237,6 +237,9 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                             // Save each file
                             foreach (FileViewModel file in item.Files.Where(x => !selectedFilesOnly || x.IsSelected))
                             {
+                                if (state.CancellationToken.IsCancellationRequested)
+                                    return;
+
                                 // Get the file stream
                                 using ArchiveFileStream fileStream = file.GetDecodedFileStream();
 
@@ -330,7 +333,7 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
     public async Task ImportAsync()
     {
         // Run as a load operation
-        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_ImportDir_Status))
+        using (LoadState state = await Archive.LoaderViewModel.RunAsync(Resources.Archive_ImportDir_Status, canCancel: true))
         {
             // Lock the access to the archive
             using (await Archive.ArchiveLock.LockAsync())
@@ -362,6 +365,9 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                             // Enumerate each file
                             foreach (FileViewModel file in dir.Files)
                             {
+                                if (state.CancellationToken.IsCancellationRequested)
+                                    return;
+
                                 state.SetProgress(new Progress(fileIndex, filesCount));
                                 fileIndex++;
 

@@ -820,7 +820,7 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                     }
 
                     // Open the file
-                    using (var p = await Services.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile.TempPath}\""))
+                    using (Process? p = await Services.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile.TempPath}\""))
                     {
                         // Ignore if the file wasn't opened
                         if (p == null)
@@ -830,11 +830,30 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                         }
 
                         state.SetStatus(String.Format(Resources.WaitForEditorToClose, programPath.Value.RemoveFileExtension().Name));
+                        state.SetCanCancel(true);
 
                         // Wait for the file to close...
-                        await p.WaitForExitAsync();
-                     
+                        try
+                        {
+                            await p.WaitForExitAsync(state.CancellationToken);
+                        }
+                        catch (OperationCanceledException ex)
+                        {
+                            Logger.Trace(ex, "Canceled editing archive file");
+
+                            try
+                            {
+                                // Attempt to close the process
+                                p.CloseMainWindow();
+                            }
+                            catch (Exception ex2)
+                            {
+                                Logger.Warn(ex2, "Closing archive file editor process after cancellation");
+                            }
+                        }
+
                         state.SetStatus(String.Empty);
+                        state.SetCanCancel(false);
                     }
 
                     // If read-only we don't need to check if it has been modified

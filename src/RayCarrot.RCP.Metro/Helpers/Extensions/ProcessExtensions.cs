@@ -30,7 +30,7 @@ public static class ProcessExtensions
     /// Waits asynchronously for the process to exit
     /// </summary>
     /// <param name="process">The process to wait for to exit</param>
-    /// <param name="cancellationToken">A cancellation token. If invoked, the task will return immediately as canceled.</param>
+    /// <param name="cancellationToken">A cancellation token</param>
     /// <returns>A Task representing waiting for the process to end</returns>
     public static Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
     {
@@ -45,8 +45,7 @@ public static class ProcessExtensions
         process.EnableRaisingEvents = true;
         process.Exited += (_, _) => tcs.TrySetResult(null);
 
-        if (cancellationToken == default)
-            cancellationToken.Register(() => tcs.SetCanceled());
+        cancellationToken.Register(() => tcs.SetCanceled());
 
         return process.HasExited ? Task.CompletedTask : tcs.Task;
     }
