@@ -8,7 +8,7 @@
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             mc:Ignorable="d"
-                            Height="160" Width="320">
+                            Height="160" Width="320" d:DataContext="{d:DesignInstance local:StringInputViewModel}">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,7 +22,7 @@
                    Margin="0 7 0 10" />
         
         <TextBox Grid.Row="1"
-                 Text="{Binding Path=StringInput}" />
+                 Text="{Binding Path=StringInput, UpdateSourceTrigger=PropertyChanged}" />
         
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
             <Button Content="{Resx Cancel}" Click="CancelButton_Click" IsCancel="True"/>
