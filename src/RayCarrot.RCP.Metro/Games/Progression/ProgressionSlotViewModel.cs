@@ -336,8 +336,27 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                 }
 
                 // Wait for the file to close...
-                using (await App.LoaderViewModel.RunAsync(String.Format(Resources.WaitForEditorToClose, programPath.RemoveFileExtension().Name)))
-                    await p.WaitForExitAsync();
+                using (LoadState state = await App.LoaderViewModel.RunAsync(String.Format(Resources.WaitForEditorToClose, programPath.RemoveFileExtension().Name), canCancel: true))
+                {
+                    try
+                    {
+                        await p.WaitForExitAsync(state.CancellationToken);
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        Logger.Trace(ex, "Cancelled editing progression slot");
+
+                        try
+                        {
+                            // Attempt to close the process
+                            p.CloseMainWindow();
+                        }
+                        catch (Exception ex2)
+                        {
+                            Logger.Warn(ex2, "Closing progression slot editor process after cancellation");
+                        }
+                    }
+                }
             }
 
             // Open the temp file
