@@ -98,7 +98,10 @@ public partial class PatchCreatorDialog : WindowContentControl
         bool success = await ViewModel.ImportFromPatchAsync(_patchToImportFrom.Value);
 
         if (!success)
+        {
+            _forceClose = true;
             WindowInstance.Close();
+        }
     }
 
     private void FilesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)

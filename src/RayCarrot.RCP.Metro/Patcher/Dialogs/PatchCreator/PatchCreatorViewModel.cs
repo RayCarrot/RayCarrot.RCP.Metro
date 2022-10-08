@@ -120,7 +120,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> ImportFromPatchAsync(FileSystemPath patchFilePath)
     {
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_ImportingPatch_Status))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_ImportingPatch_Status, canCancel: true))
         {
             Logger.Trace("Importing from patch at {0}", patchFilePath);
 
@@ -140,7 +140,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 {
                     Logger.Warn(ex, "Importing patch to creator");
 
-                    await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ReadPatchNewerVersionError, MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ReadPatchNewerVersionError,
+                        MessageType.Error);
 
                     return false;
                 }
@@ -178,6 +179,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 // Add added files and extract resources to temp
                 for (int i = 0; i < patchFile.AddedFiles.Length; i++)
                 {
+                    state.CancellationToken.ThrowIfCancellationRequested();
+
                     PatchFilePath filePath = patchFile.AddedFiles[i];
                     PackagedResourceEntry resource = patchFile.AddedFileResources[i];
                     PackagedResourceChecksum checksum = patchFile.AddedFileChecksums[i];
@@ -218,6 +221,12 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 Logger.Info("Imported patch {0} with format version {1}", metadata.Name, patchFile.FormatVersion);
 
                 return true;
+            }
+            catch (OperationCanceledException ex)
+            {
+                Logger.Trace(ex, "Cancelled importing patch to creator");
+
+                return false;
             }
             catch (Exception ex)
             {
@@ -330,7 +339,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public async Task<bool> CreatePatchAsync()
     {
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_Create_Status))
+        using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_Create_Status, canCancel: true))
         {
             PatchVersion version = new(Version_Major, Version_Minor, Version_Revision);
 
@@ -372,7 +381,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     // Initialize the file
                     patchFile.Init(binaryFile.StartPointer);
 
-                    List<(PatchFilePath FilePath, PackagedResourceChecksum Checksum, PackagedResourceEntry Resource)> addedFiles = new();
+                    List<(PatchFilePath FilePath, PackagedResourceChecksum Checksum, PackagedResourceEntry Resource)>
+                        addedFiles = new();
                     List<PatchFilePath> removedFiles = new();
                     long totalSize = 0;
 
@@ -383,6 +393,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     // Add the file entries and calculate the checksums
                     foreach (FileViewModel file in Files)
                     {
+                        state.CancellationToken.ThrowIfCancellationRequested();
                         state.SetProgress(new Progress((double)fileIndex / Files.Count, 2));
                         fileIndex++;
 
@@ -458,8 +469,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                     // Pack the file
                     // ReSharper disable once AccessToDisposedClosure
-                    patchFile.WriteAndPackResources(x => state.SetProgress(new Progress(1 + x.Percentage_100 / 100, 2)));
-                    
+                    patchFile.WriteAndPackResources(x => state.SetProgress(new Progress(1 + x.Percentage_100 / 100, 2)),
+                        state.CancellationToken);
+
                     // Dispose temporary files
                     _tempDir?.Dispose();
                     _tempDir = null;
@@ -472,6 +484,11 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.PatchCreator_CreateSuccess);
 
                 return true;
+            }
+            catch (OperationCanceledException ex)
+            {
+                Logger.Trace(ex, "Cancelled creating patch");
+                return false;
             }
             catch (Exception ex)
             {
@@ -489,6 +506,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         _tempDir?.Dispose();
         _tempDir = null;
 
+        // TODO-UPDATE: There's an issue with deleting the temp file here. Why? The image is being frozen.
         _tempThumbFile?.Dispose();
         _tempThumbFile = null;
     }

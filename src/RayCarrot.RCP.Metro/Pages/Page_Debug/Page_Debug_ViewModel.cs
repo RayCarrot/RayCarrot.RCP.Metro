@@ -757,7 +757,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                     state.SetProgress(new Progress(max, max));
                 }
-                catch (TaskCanceledException)
+                catch (OperationCanceledException)
                 {
                     // Ignore
                 }

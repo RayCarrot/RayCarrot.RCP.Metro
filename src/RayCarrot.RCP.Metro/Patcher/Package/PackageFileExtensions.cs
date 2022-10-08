@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Threading;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Patcher;
@@ -17,7 +18,8 @@ public static class PackageFileExtensions
     /// <typeparam name="T">The package file type</typeparam>
     /// <param name="package">The package file</param>
     /// <param name="progressCallback">An optional progress callback</param>
-    public static void WriteAndPackResources<T>(this T package, Action<Progress>? progressCallback = null)
+    /// <param name="cancellationToken">An optional cancellation token</param>
+    public static void WriteAndPackResources<T>(this T package, Action<Progress>? progressCallback = null, CancellationToken cancellationToken = default)
         where T : BinarySerializable, IPackageFile, new()
     {
         if (package.Offset == null)
@@ -59,6 +61,7 @@ public static class PackageFileExtensions
 
                 foreach (PackagedResourceEntry file in resources)
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
                     progressCallback?.Invoke(new Progress(resourceIndex, resources.Length));
                     resourceIndex++;
 
