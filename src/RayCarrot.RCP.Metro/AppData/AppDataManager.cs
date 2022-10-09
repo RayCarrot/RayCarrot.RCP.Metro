@@ -440,5 +440,18 @@ public class AppDataManager
                 Logger.Error(ex, "Setting patch URI protocol association");
             }
         }
+
+        if (lastVersion < new Version(13, 4, 0, 0))
+        {
+            try
+            {
+                // Delete old R2 DRM removal utility backup files since it's now a patch
+                Services.File.DeleteDirectory(AppFilePaths.UtilitiesBaseDir + "RemoveDRM");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Deleting old R2 DRM removal utility backup files");
+            }
+        }
     }
 }

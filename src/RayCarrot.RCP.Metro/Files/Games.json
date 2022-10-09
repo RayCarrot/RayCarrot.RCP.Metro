@@ -9,8 +9,7 @@
       "Utility_RaymanDesigner_CreateConfig"
     ],
     "Rayman2": [
-      "Utility_Rayman2_GameSyncTextureInfo",
-      "Utility_Rayman2_RemoveDRM"
+      "Utility_Rayman2_GameSyncTextureInfo"
     ],
     "RaymanM": [
       "Utility_RaymanM_GameSyncTextureInfo"

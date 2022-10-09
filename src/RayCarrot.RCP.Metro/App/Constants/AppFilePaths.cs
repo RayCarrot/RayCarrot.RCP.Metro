@@ -31,11 +31,6 @@ public static class AppFilePaths
     public static FileSystemPath R1TPLSDir => UtilitiesBaseDir + "TPLS";
 
     /// <summary>
-    /// The Rayman 2 DRM removal directory
-    /// </summary>
-    public static FileSystemPath R2RemoveDRMDir => UtilitiesBaseDir + "RemoveDRM";
-
-    /// <summary>
     /// The <see cref="AppUserData"/> file path
     /// </summary>
     public static FileSystemPath AppUserDataPath => UserDataBaseDir + "appuserdata.json";

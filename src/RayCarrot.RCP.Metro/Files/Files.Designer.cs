@@ -113,14 +113,15 @@ namespace RayCarrot.RCP.Metro {
         ///    ],
         ///    &quot;Rayman2&quot;: [
         ///      &quot;Utility_Rayman2_GameSyncTextureInfo&quot;,
-        ///      &quot;Utility_Rayman2_RemoveDRM&quot;,
-        ///      &quot;Utility_Rayman2_DiscPatch&quot;,
-        ///      &quot;Utility_Rayman2_Translation&quot;
+        ///      &quot;Utility_Rayman2_RemoveDRM&quot;
         ///    ],
         ///    &quot;RaymanM&quot;: [
         ///      &quot;Utility_RaymanM_GameSyncTextureInfo&quot;
         ///    ],
-        ///    &quot;Raym [rest of string was truncated]&quot;;.
+        ///    &quot;RaymanArena&quot;: [
+        ///      &quot;Utility_RaymanArena_GameSyncTextureInfo&quot;
+        ///    ],
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Games {
             get {
@@ -138,57 +139,6 @@ namespace RayCarrot.RCP.Metro {
         public static string License {
             get {
                 return ResourceManager.GetString("License", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;Bast_10.sna&quot;: [
-        ///    11665,
-        ///    12369
-        ///  ],
-        ///  &quot;Bast_20.sna&quot;: [
-        ///    17265,
-        ///    17969
-        ///  ],
-        ///  &quot;Boat02.sna&quot;: [
-        ///    9185,
-        ///    9877
-        ///  ],
-        ///  &quot;Cask_10.sna&quot;: [
-        ///    7849,
-        ///    8553
-        ///  ],
-        ///  &quot;Chase_10.sna&quot;: [
-        ///    28909,
-        ///    29613
-        ///  ],
-        ///  &quot;Earth_10.sna&quot;: [
-        ///    14453
-        ///  ],
-        ///  &quot;Earth_20.sna&quot;: [
-        ///    12553
-        ///  ],
-        ///  &quot;Earth_30.sna&quot;: [
-        ///    13965
-        ///  ],
-        ///  &quot;GLob_10.sna&quot;: [
-        ///    18745,
-        ///    19449
-        ///  ],
-        ///  &quot;GLob_20.sna&quot;: [
-        ///    27597,
-        ///    28301
-        ///  ],
-        ///  &quot;GLob_30.sna&quot;: [
-        ///    4437,
-        ///    5141
-        ///  ],
-        ///  &quot;Helic_ [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string R2_Sna_Drm_Offsets {
-            get {
-                return ResourceManager.GetString("R2_Sna_Drm_Offsets", resourceCulture);
             }
         }
         
@@ -368,12 +318,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 13.0.0 - January ??, 2022   -----
-        ///• Replaced the backup/restore and game specific progression pages with the new progression page
-        ///	• Added progression for Rayman M Demo, Rayman Fiesta Run, Rayman Raving Rabbids, Rabbids Big Bang and Rayman Redemption
-        ///	• If a backup was performed for a game it will now show the status, indicating if the backup is outdated
-        ///	• The progression data for backups can now be viewed and compared to the current data
-        ///	• If the save data has been redirected to Virt [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to -----   Version 13.4.0 - October ??, 2022   -----
+        ///• Updated the standard loading indicator and added support for canceling the current operation
+        ///
+        ///Other changes:
+        ///• Added a debug option to extract a patch library (.gpl) file
+        ///• Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters
+        ///• Bug fixes
+        ///
+        ///
+        ///-----   Version 13.3.1 - August 28, 2022   -----
+        ///• Fixed opening patch files through URI protocol when the specified URL redirects to the file download
+        ///
+        ///
+        ///- [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory_13_0_15_0 {
             get {
