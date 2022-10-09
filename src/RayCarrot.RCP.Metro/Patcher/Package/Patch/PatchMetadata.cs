@@ -8,6 +8,8 @@ public class PatchMetadata : BinarySerializable
 {
     #region Public Properties
 
+    public int Pre_FormatVersion { get; set; }
+
     public string ID { get; set; }
     public string GameName { get; set; }
     public Games Game
@@ -18,6 +20,7 @@ public class PatchMetadata : BinarySerializable
     public string Name { get; set; }
     public string Description { get; set; }
     public string Author { get; set; }
+    public string Website { get; set; }
     private int Version_Major { get; set; }
     private int Version_Minor { get; set; }
     private int Version_Revision { get; set; }
@@ -63,6 +66,12 @@ public class PatchMetadata : BinarySerializable
         Name = s.SerializeString(Name, name: nameof(Name));
         Description = s.SerializeString(Description, name: nameof(Description));
         Author = s.SerializeString(Author, name: nameof(Author));
+
+        if (Pre_FormatVersion >= 1)
+            Website = s.SerializeString(Website, name: nameof(Website));
+        else
+            Website = String.Empty;
+
         Version_Major = s.Serialize<int>(Version_Major, name: nameof(Version_Major));
         Version_Minor = s.Serialize<int>(Version_Minor, name: nameof(Version_Minor));
         Version_Revision = s.Serialize<int>(Version_Revision, name: nameof(Version_Revision));

@@ -340,8 +340,27 @@
 
                                 <!-- Info -->
 
-                                <local:DuoGrid Grid.Column="0"
-                                               ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" />
+                                <StackPanel Grid.Column="0">
+                                    
+                                    <local:DuoGrid ItemsSource="{Binding Path=PatchInfo, Mode=OneTime}" 
+                                                   Margin="0 0 0 10"/>
+
+                                    <StackPanel Orientation="Horizontal"
+                                                Visibility="{Binding Path=HasWebsite, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}">
+
+                                        <iconPacks:Material Kind="Link" />
+
+                                        <TextBlock Margin="5 0 0 0" >
+                                            <Hyperlink ToolTip="{Binding Path=Website, Mode=OneTime}" 
+                                                       Command="{Binding Path=OpenWebsiteCommand, Mode=OneTime}">
+                                                <!-- TODO-UPDATE: Localize -->
+                                                <Run Text="Website" />
+                                            </Hyperlink>
+                                        </TextBlock>
+
+                                    </StackPanel>
+
+                                </StackPanel>
 
                                 <!-- Thumbnail -->
 

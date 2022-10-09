@@ -13,6 +13,7 @@ public record ExternalPatchManifest(
     string? Name,
     string? Description,
     string? Author,
+    string? Website,
 
     long TotalSize,
     DateTime ModifiedDate,

@@ -18,7 +18,7 @@ public class PatchFile : BinarySerializable, IPackageFile
     
     public const string URIProtocol = "rcpgp";
     public const string FileExtension = ".gp"; // Game Patch
-    public const int LatestFormatVersion = 0;
+    public const int LatestFormatVersion = 1;
 
     #endregion
 
@@ -147,7 +147,7 @@ public class PatchFile : BinarySerializable, IPackageFile
             if (FormatVersion > LatestFormatVersion)
                 throw new UnsupportedFormatVersionException(this, $"The patch format version {FormatVersion} is higher than the latest supported version {LatestFormatVersion}");
 
-            Metadata = s.SerializeObject<PatchMetadata>(Metadata, name: nameof(Metadata));
+            Metadata = s.SerializeObject<PatchMetadata>(Metadata, x => x.Pre_FormatVersion = FormatVersion, name: nameof(Metadata));
 
             HasThumbnail = s.Serialize<bool>(HasThumbnail, name: nameof(HasThumbnail));
 

@@ -41,6 +41,7 @@ public class ExternalPatchViewModel : PatchViewModel
     public override string ID => ExternalManifest.ID;
     public override string Name => ExternalManifest.Name ?? String.Empty;
     public override string Description => ExternalManifest.Description ?? String.Empty;
+    public override string Website => ExternalManifest.Website ?? String.Empty;
     public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
 
     public ExternalPatchManifest ExternalManifest { get; }

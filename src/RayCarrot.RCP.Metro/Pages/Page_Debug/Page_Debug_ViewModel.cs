@@ -633,6 +633,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     Name: patch.Metadata.Name,
                     Description: patch.Metadata.Description,
                     Author: patch.Metadata.Author,
+                    Website: patch.Metadata.Website,
                     TotalSize: patch.Metadata.TotalSize,
                     ModifiedDate: patch.Metadata.ModifiedDate,
                     Version: patch.Metadata.Version,

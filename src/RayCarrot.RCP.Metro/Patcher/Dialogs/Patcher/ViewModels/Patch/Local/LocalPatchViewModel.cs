@@ -67,6 +67,7 @@ public abstract class LocalPatchViewModel : PatchViewModel
     public override string ID => Metadata.ID;
     public override string Name => Metadata.Name ?? String.Empty;
     public override string Description => Metadata.Description ?? String.Empty;
+    public override string Website => Metadata.Website ?? String.Empty;
     public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
 
     public PatchFile PatchFile { get; }

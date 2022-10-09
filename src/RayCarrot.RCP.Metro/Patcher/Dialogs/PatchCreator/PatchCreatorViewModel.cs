@@ -81,6 +81,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public string Name { get; set; } = String.Empty;
     public string Description { get; set; } = String.Empty;
     public string Author { get; set; } = String.Empty;
+    public string Website { get; set; } = String.Empty;
     public int Version_Major { get; set; } = 1;
     public int Version_Minor { get; set; }
     public int Version_Revision { get; set; }
@@ -152,6 +153,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 Name = metadata.Name;
                 Description = metadata.Description;
                 Author = metadata.Author;
+                Website = metadata.Website;
                 Version_Major = metadata.Version.Major;
                 Version_Minor = metadata.Version.Minor;
                 Version_Revision = metadata.Version.Revision;
@@ -373,6 +375,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                             Name = Name.IsNullOrWhiteSpace() ? "Unnamed patch" : Name,
                             Description = Description,
                             Author = Author,
+                            Website = Website,
                             Version = version,
                             ModifiedDate = DateTime.Now
                         },
