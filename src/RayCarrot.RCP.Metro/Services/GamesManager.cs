@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BinarySerializer;
 using NLog;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -93,6 +95,26 @@ public class GamesManager
                 if (appliedUtilities.Any() && !await MessageUI.DisplayMessageAsync(
                         $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}" +
                         $"{appliedUtilities.JoinItems(Environment.NewLine)}", 
+                        Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
+                    return;
+
+                // Get applied patches
+                using Context context = new RCPContext(String.Empty);
+                PatchLibrary library = new(game.GetInstallDir(throwIfNotFound: false), Services.File);
+                PatchLibraryFile? libraryFile = null;
+
+                try
+                {
+                    libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn(ex, "Reading patch library");
+                }
+
+                // TODO-UPDATE: Localize
+                // Warn about applied patches, if any
+                if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await MessageUI.DisplayMessageAsync(String.Format("There are {0} patches which have been applied to this game. Do you want to continue removing the game and keep the patches applied?", libraryFile.Patches.Count(x => x.IsEnabled)),
                         Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
                     return;
             }
