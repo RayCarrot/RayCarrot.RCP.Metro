@@ -200,51 +200,6 @@ public static class AppURLs
     public const string RD_ALMapperExe_URL = UtilityBaseUrl + "r1/raykit/al/MAPPER.EXE";
 
     /// <summary>
-    /// The Rayman 2 original fix.sna URL
-    /// </summary>
-    public const string R2_OriginalFixSna_URL = UtilityBaseUrl + "r2/translation_original/Fix.sna";
-
-    /// <summary>
-    /// The Rayman 2 original textures.cnt URL
-    /// </summary>
-    public const string R2_OriginalTexturesCnt_URL = UtilityBaseUrl + "r2/translation_original/Textures.cnt";
-
-    /// <summary>
-    /// The Rayman 2 Irish fix.sna URL
-    /// </summary>
-    public const string R2_IrishFixSna_URL = UtilityBaseUrl + "r2/translation_irish/Fix.sna";
-
-    /// <summary>
-    /// The Rayman 2 Swedish fix.sna URL
-    /// </summary>
-    public const string R2_SwedishFixSna_URL = UtilityBaseUrl + "r2/translation_swedish/Fix.sna";
-
-    /// <summary>
-    /// The Rayman 2 Swedish textures.cnt URL
-    /// </summary>
-    public const string R2_SwedishTexturesCnt_URL = UtilityBaseUrl + "r2/translation_swedish/Textures.cnt";
-
-    /// <summary>
-    /// The Rayman 2 Portuguese fix.sna URL
-    /// </summary>
-    public const string R2_PortugueseFixSna_URL = UtilityBaseUrl + "r2/translation_portuguese/Fix.sna";
-
-    /// <summary>
-    /// The Rayman 2 Portuguese textures.cnt URL
-    /// </summary>
-    public const string R2_PortugueseTexturesCnt_URL = UtilityBaseUrl + "r2/translation_portuguese/Textures.cnt";
-
-    /// <summary>
-    /// The Rayman 2 Slovak fix.sna URL
-    /// </summary>
-    public const string R2_SlovakFixSna_URL = UtilityBaseUrl + "r2/translation_slovak/Fix.sna";
-
-    /// <summary>
-    /// The Rayman 2 Slovak textures.cnt URL
-    /// </summary>
-    public const string R2_SlovakTexturesCnt_URL = UtilityBaseUrl + "r2/translation_slovak/Textures.cnt";
-
-    /// <summary>
     /// The Rayman Origins original videos URL
     /// </summary>
     public const string RO_OriginalVideos_URL = UtilityBaseUrl + "ro/OriginalVideos.zip";
