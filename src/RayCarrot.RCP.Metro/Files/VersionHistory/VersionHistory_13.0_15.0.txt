@@ -1,4 +1,13 @@
-﻿-----   Version 13.3.1 - August 28, 2022   -----
+﻿-----   Version 13.4.0 - October ??, 2022   -----
+• Updated the standard loading indicator and added support for canceling the current operation
+
+Other changes:
+• Added a debug option to extract a patch library (.gpl) file
+• Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters
+• Bug fixes
+
+
+-----   Version 13.3.1 - August 28, 2022   -----
 • Fixed opening patch files through URI protocol when the specified URL redirects to the file download
 
 
