@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -85,6 +86,8 @@ public static class JsonHelpers
     {
         // Create the web client
         using WebClient wc = new();
+
+        wc.Encoding = Encoding.UTF8;
 
         // Download the string
         string str = await wc.DownloadStringTaskAsync(url);
