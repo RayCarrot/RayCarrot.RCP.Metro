@@ -822,7 +822,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             _externalPatches = gameManifest.Patches.
-                Where(x => x.FormatVersion <= PatchFile.LatestFormatVersion).
+                Where(x => x.FormatVersion <= PatchFile.LatestFormatVersion && x.MinAppVersion <= Services.App.CurrentAppVersion).
                 Select(x => new ExternalPatchViewModel(this, x)).
                 ToArray();
         }

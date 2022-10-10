@@ -298,7 +298,15 @@
                         <TextBlock Text="Patches"
                                    Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}" />
 
+                        <Button Content="Generate web json"
+                                ToolTip="Generates a JSON file from the selected patch files. This JSON file is only used locally to generate the actual web files. The array in it allows the patch order and other properties to be modified."
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource RCP.Styles.Button.IconContent}"
+                                local:ButtonAssist.IconKind="CodeJson"
+                                Command="{Binding Path=ExportWebPatchesJSONCommand, Mode=OneTime}"/>
+
                         <Button Content="Generate web files" 
+                                ToolTip="Generates all the files to be hosted for external patches from a JSON file."
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
                                 local:ButtonAssist.IconKind="DatabaseExportOutline"

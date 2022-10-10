@@ -66,6 +66,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         RunInstallerCommand = new AsyncRelayCommand(RunInstallerAsync);
         ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownAppAsync(false)));
         UpdateThemeCommand = new RelayCommand(UpdateTheme);
+        ExportWebPatchesJSONCommand = new AsyncRelayCommand(ExportWebPatchesJSONAsync);
         ExportWebPatchesFilesCommand = new AsyncRelayCommand(ExportWebPatchesFilesAsync);
         ExtractPatchLibraryCommand = new AsyncRelayCommand(ExtractPatchLibraryAsync);
         RunLoadOperationCommand = new AsyncRelayCommand(RunLoadOperationAsync);
@@ -95,6 +96,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public ICommand RunInstallerCommand { get; }
     public ICommand ShutdownAppCommand { get; }
     public ICommand UpdateThemeCommand { get; }
+    public ICommand ExportWebPatchesJSONCommand { get; }
     public ICommand ExportWebPatchesFilesCommand { get; }
     public ICommand ExtractPatchLibraryCommand { get; }
     public ICommand RunLoadOperationCommand { get; }
@@ -573,15 +575,50 @@ public class Page_Debug_ViewModel : BasePageViewModel
         Metro.App.Current.SetTheme(Data.Theme_DarkMode, false, SelectedAccentColor);
     }
 
+    public async Task ExportWebPatchesJSONAsync()
+    {
+        try
+        {
+            DirectoryBrowserResult browseResult = await BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            {
+                Title = "Select patches directory"
+            });
+
+            if (browseResult.CanceledByUser)
+                return;
+
+            // Write out JSON manually to allow for nicer formatting
+            using StreamWriter writer = new(browseResult.SelectedDirectory + "external_patches.jsonc", false);
+
+            await writer.WriteLineAsync("[");
+
+            var files = Directory.EnumerateFiles(browseResult.SelectedDirectory, $"*{PatchFile.FileExtension}", SearchOption.AllDirectories);
+            foreach (FileSystemPath patchFilePath in files)
+            {
+                await writer.WriteLineAsync($"    {{ " +
+                                       $"\"{nameof(WebPatchEntry.FilePath)}\": \"{patchFilePath - browseResult.SelectedDirectory}\", " +
+                                       $"\"{nameof(WebPatchEntry.MinVersion)}\": \"{App.CurrentAppVersion.ToString(4)}\"" +
+                                       $" }},");
+            }
+
+            await writer.WriteLineAsync("]");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Generating web patches files");
+
+            await MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when generating the files");
+        }
+    }
+
     public async Task ExportWebPatchesFilesAsync()
     {
         try
         {
             FileBrowserResult inputResult = await BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
-                Title = "Select patches",
-                MultiSelection = true,
-                ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", "Game Patch").StringRepresentation,
+                Title = "Select patches JSON",
+                ExtensionFilter = new FileFilterItem($"*jsonc", "JSON").StringRepresentation,
             });
 
             if (inputResult.CanceledByUser)
@@ -595,14 +632,18 @@ public class Page_Debug_ViewModel : BasePageViewModel
             if (outputResult.CanceledByUser)
                 return;
 
+            WebPatchEntry[] patchEntries = JsonHelpers.DeserializeFromFile<WebPatchEntry[]>(inputResult.SelectedFile);
+
             List<(Games Game, ExternalPatchManifest Manifest)> patches = new();
             Dictionary<Games, string> gameManifestURLs = new();
 
             using RCPContext context = new(String.Empty);
 
             // Process each patch
-            foreach (FileSystemPath patchFilePath in inputResult.SelectedFiles)
+            foreach (WebPatchEntry patchEntry in patchEntries)
             {
+                FileSystemPath patchFilePath = inputResult.SelectedFile.Parent + patchEntry.FilePath;
+
                 // Read the file
                 PatchFile patch = context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
 
@@ -630,6 +671,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                 patches.Add((game, new ExternalPatchManifest(
                     ID: patch.Metadata.ID,
                     FormatVersion: patch.FormatVersion,
+                    MinAppVersion: patchEntry.MinVersion,
                     Name: patch.Metadata.Name,
                     Description: patch.Metadata.Description,
                     Author: patch.Metadata.Author,
@@ -765,6 +807,12 @@ public class Page_Debug_ViewModel : BasePageViewModel
             });
         }
     }
+
+    #endregion
+
+    #region Records
+
+    private record WebPatchEntry(string FilePath, Version MinVersion);
 
     #endregion
 
