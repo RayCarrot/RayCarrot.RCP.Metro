@@ -92,7 +92,7 @@
     <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="6.1.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
-    <PackageReference Include="MahApps.Metro.SimpleChildWindow" Version="2.0.0" />
+    <PackageReference Include="MahApps.Metro.SimpleChildWindow" Version="2.1.0" />
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
