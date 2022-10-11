@@ -126,25 +126,22 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
     public async Task ShowWindowAsync(IWindowControl windowContent, ShowWindowFlags flags = ShowWindowFlags.None, params string[] groupNames)
     {
-        var openWindowInstance = new OpenWindowInstance(new WeakReference<IWindowControl>(windowContent), groupNames);
+        OpenWindowInstance openWindowInstance = new(windowContent, groupNames);
 
         try
         {
-            // Remove instances which have been collected by the GC
-            OpenWindows.RemoveWhere(x => !x.Window.TryGetTarget(out _));
-
             Type contentType = windowContent.UIContent.GetType();
 
+            // Get first potentially blocking window
             IWindowControl blockingWindow = OpenWindows.
-                Select(x => x.Window.TryGetTarget(out IWindowControl w) ? new { Window = w, x.GroupNames } : null).
                 FirstOrDefault(x =>
                 {
                     // Check for duplicate types
-                    if (!flags.HasFlag(ShowWindowFlags.DuplicateTypesAllowed) && x?.Window.UIContent.GetType() == contentType)
+                    if (!flags.HasFlag(ShowWindowFlags.DuplicateTypesAllowed) && x.Window.UIContent.GetType() == contentType)
                         return true;
 
                     // Check for duplicate group names
-                    if (groupNames.Any() && x?.GroupNames.Any(groupNames.Contains) == true)
+                    if (groupNames.Any() && x.GroupNames.Any(groupNames.Contains))
                         return true;
 
                     return false;
@@ -164,13 +161,15 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
             OpenWindows.Add(openWindowInstance);
 
-            // Show the window
+            // Show the window and wait for it to close
             await ShowWindowAsync(windowContent, false, null);
         }
         finally
         {
+            // Remove the window from list of open windows
             OpenWindows.Remove(openWindowInstance);
 
+            // Dispose the content
             windowContent.Dispose();
         }
     }
@@ -179,7 +178,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
     #region Records
 
-    protected record OpenWindowInstance(WeakReference<IWindowControl> Window, string[] GroupNames);
+    protected record OpenWindowInstance(IWindowControl Window, string[] GroupNames);
 
     #endregion
 }
