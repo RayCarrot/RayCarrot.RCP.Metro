@@ -1,10 +1,21 @@
 ﻿-----   Version 13.4.0 - October ??, 2022   -----
 • Updated the standard loading indicator and added support for canceling the current operation
 • Replace several utilities with downloadable patches
-• Added an optional website field to game patches
+• Added an optional website field to patches
+
+Added patches since last update:
+• Ray2Fix (for Rayman 2 by spitfirex86)
+• Remove Pirate Head DRM (for Rayman 2 by Robin, RayCarrot)
+• AI Upscaled Texture Pack (for Rayman 2 by Granvillimus)
+• Irish (Gaeilge) Fan Translation (for Rayman 2 by PluMGMK)
+• Portuguese (Português) Fan Translation (for Rayman 2 by Haruka Tavares)
+• Swedish (Svenska) Fan Translation (for Rayman 2 by RayCarrot)
+• Arena Multiplayer Patch (for Rayman Arena by zZeck)
+• High Quality Videos (for Rayman Origins by RayCarrot)
 
 Other changes:
 • Removing a game will now show a warning message if there are patches applied
+• Dialogs now have rounded corners
 • Added a debug option to extract a patch library (.gpl) file and improved the process of generating web patch files
 • Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters
 • Bug fixes
