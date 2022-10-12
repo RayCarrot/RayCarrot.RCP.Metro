@@ -264,6 +264,16 @@ public class StartupManager
 
             // Update the last version
             Data.App_LastVersion = AppViewModel.CurrentAppVersion;
+
+            try
+            {
+                // Clear the temp folder
+                AppFilePaths.TempPath.DeleteDirectory();
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex, "Clearing app temp folder");
+            }
         }
         // Check if it's a lower version than previously recorded
         else if (Data.App_LastVersion > AppViewModel.CurrentAppVersion)
