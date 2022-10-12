@@ -62,6 +62,16 @@
 
         <Separator />
 
+        <!-- Copy file path -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <local:MenuItemIcon Header="Copy file path"
+                            Command="{x:Static local:CommonCommands.CopyToClipboardCommand}"
+                            CommandParameter="{Binding Path=FullFilePath, Mode=OneTime}"
+                            IconKind="ClipboardOutline" />
+
+        <Separator />
+
         <!-- Delete -->
 
         <local:MenuItemIcon Header="{Resx Archive_Delete}"
@@ -137,6 +147,17 @@
                             ToolTip="{Resx Archive_ImportConvert_Info}"
                             Command="{Binding Path=ImportCommand}"
                             IconKind="Import" />
+
+        <Separator Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}"/>
+
+        <!-- Copy directory path -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <local:MenuItemIcon Header="Copy directory path"
+                            Command="{x:Static local:CommonCommands.CopyToClipboardCommand}"
+                            CommandParameter="{Binding Path=FullPath, Mode=OneTime}"
+                            IconKind="ClipboardOutline"
+                            Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}" />
 
         <Separator />
 

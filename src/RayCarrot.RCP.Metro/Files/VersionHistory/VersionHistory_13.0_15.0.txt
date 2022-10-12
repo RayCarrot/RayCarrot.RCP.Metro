@@ -15,6 +15,7 @@ Added patches since last update:
 
 Other changes:
 • Multiple windows of the same type can now be open at the same time
+• Added a context menu option for copying file and directory paths in the Archive Explorer
 • When selecting an item in the Archive Explorer, such as from searching, it will now be scrolled into view
 • Progress now shows on the taskbar icon when loading
 • Removing a game will now show a warning message if there are patches applied
