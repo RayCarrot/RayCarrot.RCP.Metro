@@ -260,7 +260,7 @@ public class StartupManager
             CloseSplashScreen();
 
             // Show app news
-            await Services.DialogBaseManager.ShowWindowAsync(new AppNewsDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
+            await Services.UI.ShowAppNewsAsync();
 
             // Update the last version
             Data.App_LastVersion = AppViewModel.CurrentAppVersion;

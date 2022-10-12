@@ -20,14 +20,14 @@ public class Page_About_ViewModel : BasePageViewModel
     public Page_About_ViewModel(
         AppViewModel app, 
         AppUserData data, 
-        IDialogBaseManager dialogBaseManager, 
+        AppUIManager ui, 
         IMessageUIManager messageUi, 
         IFileManager file, 
         DeployableFilesManager deployableFiles) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
-        DialogBaseManager = dialogBaseManager ?? throw new ArgumentNullException(nameof(dialogBaseManager));
+        UI = ui ?? throw new ArgumentNullException(nameof(ui));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         File = file ?? throw new ArgumentNullException(nameof(file));
         DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
@@ -92,7 +92,7 @@ public class Page_About_ViewModel : BasePageViewModel
     #region Services
 
     private AppUserData Data { get; }
-    private IDialogBaseManager DialogBaseManager { get; }
+    private AppUIManager UI { get; }
     private IMessageUIManager MessageUI { get; }
     private IFileManager File { get; }
     private DeployableFilesManager DeployableFiles { get; }
@@ -119,7 +119,7 @@ public class Page_About_ViewModel : BasePageViewModel
     /// </summary>
     public async Task ShowVersionHistoryAsync()
     {
-        await DialogBaseManager.ShowWindowAsync(new AppNewsDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
+        await UI.ShowAppNewsAsync();
     }
 
     /// <summary>

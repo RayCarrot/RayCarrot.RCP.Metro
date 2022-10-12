@@ -74,18 +74,6 @@ public partial class PatchCreatorDialog : WindowContentControl
 
     #endregion
 
-    #region Public Methods
-
-    public override void Dispose()
-    {
-        base.Dispose();
-
-        DataContext = null;
-        ViewModel.Dispose();
-    }
-
-    #endregion
-
     #region Event Handlers
 
     private async void PatchCreatorUI_Loaded(object sender, RoutedEventArgs e)

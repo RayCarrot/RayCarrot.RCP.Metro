@@ -108,14 +108,6 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         }
     }
 
-    public override void Dispose()
-    {
-        base.Dispose();
-
-        DataContext = null;
-        ViewModel.Dispose();
-    }
-
     #endregion
 
     #region Event Handlers

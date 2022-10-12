@@ -337,8 +337,8 @@ public abstract class GameInfo : BaseGameData
                 // Add Game options
                 var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, GenericIconKind.GameDisplay_Config, new AsyncRelayCommand(async () =>
                 {
-                    Logger.Trace("The Game {0} options dialog is opening...", Game);
-                    await GameOptionsDialog.ShowAsync(Game);
+                    Logger.Trace("The game {0} options dialog is opening...", Game);
+                    await Services.UI.ShowGameOptionsAsync(Game);
                 }));
 
                 actions.Add(optionsAction);

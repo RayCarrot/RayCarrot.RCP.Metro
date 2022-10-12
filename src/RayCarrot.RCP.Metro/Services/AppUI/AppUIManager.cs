@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Patcher;
@@ -209,6 +210,41 @@ public class AppUIManager
 #nullable enable
 
     /// <summary>
+    /// Shows a new instance of the app news
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ShowAppNewsAsync()
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("An app news window was opened");
+
+        // Run on UI thread
+        // ReSharper disable once AccessToDisposedClosure
+        using AppNewsDialog ui = Application.Current.Dispatcher.Invoke(() => new AppNewsDialog());
+        await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
+    }
+
+    /// <summary>
+    /// Shows a new instance of the game options
+    /// </summary>
+    /// <param name="game">The game to show the options for</param>
+    /// <returns>The task</returns>
+    public async Task ShowGameOptionsAsync(Games game)
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("A game options window was opened");
+
+        // Run on UI thread
+        // ReSharper disable once AccessToDisposedClosure
+        using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(game));
+        await Dialog.ShowWindowAsync(ui, groupNames: game.GetGameInfo().DialogGroupNames.Append(game.ToString()).ToArray());
+    }
+
+    /// <summary>
     /// Shows a new instance of the Archive Explorer
     /// </summary>
     /// <param name="manager">The archive data manager</param>
@@ -219,10 +255,13 @@ public class AppUIManager
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
+        using ArchiveExplorerDialogViewModel vm = new(manager, filePaths);
+
         Logger.Trace("An Archive Explorer window was opened");
 
         // Run on UI thread
-        ArchiveExplorerDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerDialog(new ArchiveExplorerDialogViewModel(manager, filePaths)));
+        // ReSharper disable once AccessToDisposedClosure
+        using ArchiveExplorerDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerDialog(vm));
         await Dialog.ShowWindowAsync(ui);
     }
 
@@ -236,10 +275,12 @@ public class AppUIManager
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
+        ArchiveCreatorDialogViewModel vm = new(manager);
+
         Logger.Trace("An Archive Creator window was opened");
 
         // Run on UI thread
-        ArchiveCreatorDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorDialog(new ArchiveCreatorDialogViewModel(manager)));
+        using ArchiveCreatorDialog ui = Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorDialog(vm));
         await Dialog.ShowWindowAsync(ui);
     }
 
@@ -259,7 +300,7 @@ public class AppUIManager
         
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
-        PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
+        using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
         await Dialog.ShowWindowAsync(dialog, groupNames: game.ToString());
     }
 
@@ -273,7 +314,7 @@ public class AppUIManager
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        PatcherViewModel? vm = await PatcherViewModel.FromFilesAsync(patchFilePaths);
+        using PatcherViewModel? vm = await PatcherViewModel.FromFilesAsync(patchFilePaths);
 
         if (vm == null)
             return;
@@ -282,7 +323,7 @@ public class AppUIManager
 
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
-        PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
+        using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
         await Dialog.ShowWindowAsync(dialog, groupNames: vm.Game.ToString());
     }
 
@@ -297,11 +338,13 @@ public class AppUIManager
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
+        using PatchCreatorViewModel vm = new(game);
+
         Logger.Trace("A Patch Creator window was opened");
 
         // Run on UI thread
-        PatchCreatorDialog dialog = Application.Current.Dispatcher.Invoke(
-            () => new PatchCreatorDialog(new PatchCreatorViewModel(game), existingPatch));
+        // ReSharper disable once AccessToDisposedClosure
+        using PatchCreatorDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatchCreatorDialog(vm, existingPatch));
         await Dialog.ShowWindowAsync(dialog);
     }
 

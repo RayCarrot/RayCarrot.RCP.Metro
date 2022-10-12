@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -110,28 +109,6 @@ public partial class GameOptionsDialog : WindowContentControl
             page.Saved -= Page_Saved;
 
         ViewModel?.Dispose();
-    }
-
-    #endregion
-
-    #region Public Static Methods
-
-    /// <summary>
-    /// Shows a new instance of this <see cref="Window"/>
-    /// </summary>
-    /// <param name="game">The game to show the options for</param>
-    public static Task ShowAsync(Games game)
-    {
-        var groupNames = new List<string>
-        {
-            // The same game can only have one dialog opened at a time
-            game.ToString()
-        };
-
-        // Add game specific group names
-        groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
-
-        return Services.DialogBaseManager.ShowWindowAsync(new GameOptionsDialog(game), groupNames: groupNames.ToArray());
     }
 
     #endregion

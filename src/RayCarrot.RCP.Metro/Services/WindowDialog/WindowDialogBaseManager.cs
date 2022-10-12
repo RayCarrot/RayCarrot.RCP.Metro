@@ -168,9 +168,6 @@ public class WindowDialogBaseManager : IDialogBaseManager
         {
             // Remove the window from list of open windows
             OpenWindows.Remove(openWindowInstance);
-
-            // Dispose the content
-            windowContent.Dispose();
         }
     }
 
