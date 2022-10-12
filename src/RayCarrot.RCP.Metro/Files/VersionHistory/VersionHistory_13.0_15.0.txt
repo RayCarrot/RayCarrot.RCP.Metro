@@ -14,6 +14,7 @@ Added patches since last update:
 • High Quality Videos (for Rayman Origins by RayCarrot)
 
 Other changes:
+• Multiple windows of the same type can now be open at the same time
 • Removing a game will now show a warning message if there are patches applied
 • Dialogs now have rounded corners
 • Added a debug option to extract a patch library (.gpl) file and improved the process of generating web patch files

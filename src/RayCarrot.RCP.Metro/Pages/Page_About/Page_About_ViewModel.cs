@@ -119,7 +119,7 @@ public class Page_About_ViewModel : BasePageViewModel
     /// </summary>
     public async Task ShowVersionHistoryAsync()
     {
-        await DialogBaseManager.ShowWindowAsync(new AppNewsDialog());
+        await DialogBaseManager.ShowWindowAsync(new AppNewsDialog(), ShowWindowFlags.DuplicateTypesNotAllowed);
     }
 
     /// <summary>

@@ -137,7 +137,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
                 FirstOrDefault(x =>
                 {
                     // Check for duplicate types
-                    if (!flags.HasFlag(ShowWindowFlags.DuplicateTypesAllowed) && x.Window.UIContent.GetType() == contentType)
+                    if (flags.HasFlag(ShowWindowFlags.DuplicateTypesNotAllowed) && x.Window.UIContent.GetType() == contentType)
                         return true;
 
                     // Check for duplicate group names

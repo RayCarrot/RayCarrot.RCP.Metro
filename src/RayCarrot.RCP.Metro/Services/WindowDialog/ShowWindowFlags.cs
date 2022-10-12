@@ -15,9 +15,9 @@ public enum ShowWindowFlags
     None = 0,
 
     /// <summary>
-    /// Indicates that several windows using the same content type are allowed
+    /// Indicates that several windows using the same content type are not allowed
     /// </summary>
-    DuplicateTypesAllowed = 1 << 0,
+    DuplicateTypesNotAllowed = 1 << 0,
 
     /// <summary>
     /// Indicates that the blocking window preventing the current one from being shown should not be focused

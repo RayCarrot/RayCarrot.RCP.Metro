@@ -226,8 +226,6 @@ public class AppUIManager
         await Dialog.ShowWindowAsync(ui);
     }
 
-#nullable restore
-
     /// <summary>
     /// Shows a new instance of the Archive Creator
     /// </summary>
@@ -262,7 +260,7 @@ public class AppUIManager
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
-        await Dialog.ShowWindowAsync(dialog);
+        await Dialog.ShowWindowAsync(dialog, groupNames: game.ToString());
     }
 
     /// <summary>
@@ -285,7 +283,7 @@ public class AppUIManager
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
-        await Dialog.ShowWindowAsync(dialog);
+        await Dialog.ShowWindowAsync(dialog, groupNames: vm.Game.ToString());
     }
 
     /// <summary>

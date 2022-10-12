@@ -131,7 +131,7 @@ public partial class GameOptionsDialog : WindowContentControl
         // Add game specific group names
         groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
 
-        return Services.DialogBaseManager.ShowWindowAsync(new GameOptionsDialog(game), ShowWindowFlags.DuplicateTypesAllowed, groupNames.ToArray());
+        return Services.DialogBaseManager.ShowWindowAsync(new GameOptionsDialog(game), groupNames: groupNames.ToArray());
     }
 
     #endregion
