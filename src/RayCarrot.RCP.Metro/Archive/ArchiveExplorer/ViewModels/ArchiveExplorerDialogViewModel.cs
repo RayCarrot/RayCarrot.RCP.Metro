@@ -197,9 +197,9 @@ public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
             _selectedSearchEntry = value;
 
             // If an entry has been selected we navigate to it and then clear the value
-            if (SelectedSearchEntry != null)
+            if (value != null)
             {
-                NavigateToEntry(SelectedSearchEntry);
+                NavigateToEntry(value);
                 SelectedSearchEntry = null;
             }
         }

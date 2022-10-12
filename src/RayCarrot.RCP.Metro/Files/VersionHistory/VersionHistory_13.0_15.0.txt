@@ -15,12 +15,13 @@ Added patches since last update:
 
 Other changes:
 • Multiple windows of the same type can now be open at the same time
+• When selecting an item in the Archive Explorer, such as from searching, it will now be scrolled into view
 • Progress now shows on the taskbar icon when loading
 • Removing a game will now show a warning message if there are patches applied
 • Dialogs now have rounded corners
 • Added a debug option to extract a patch library (.gpl) file and improved the process of generating web patch files
 • The app's temp folder is now cleared after updating to a new version
-• Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters
+• Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters (this was an issue for Rayman 2 where the name for the file fee_Mèche_nz.gf would trunacte to fee_M)
 • Bug fixes
 
 

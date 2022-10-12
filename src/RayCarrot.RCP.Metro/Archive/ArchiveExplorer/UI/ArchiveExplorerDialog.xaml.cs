@@ -126,6 +126,11 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         e.Handled = true;
     }
 
+    private void DirTreeItem_OnSelected(object sender, RoutedEventArgs e)
+    {
+        (e.OriginalSource as TreeViewItem)?.BringIntoView();
+    }
+
     private void ArchiveExplorer_Loaded(object sender, RoutedEventArgs e)
     {
         // Make sure this won't get called again
@@ -146,7 +151,7 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         sender.CastTo<ListBoxItem>().GetBindingExpression(ToolTipProperty)?.UpdateTarget();
     }
 
-    private void ToolTipOpening_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    private void FileItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
         // Only allow double-clicking from the left mouse button
         if (e.LeftButton != MouseButtonState.Pressed)
@@ -155,6 +160,11 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         // Double-clicking calls the first view/edit action (opening the file in its native format)
         if (sender is FrameworkElement f && f.DataContext is FileViewModel file)
             file.EditActions.FirstOrDefault()?.MenuCommand.Execute(null);
+    }
+
+    private void FileItem_Selected(object sender, RoutedEventArgs e)
+    {
+        (e.OriginalSource as ListBoxItem)?.BringIntoView();
     }
 
     private void SortMenuItem_OnChecked(object sender, RoutedEventArgs e) => RefreshSort();
@@ -232,7 +242,7 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         ViewModel.RefreshStatusBar();
     }
 
-    private void FileContextMenu_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
+    private void FileItem_ContextMenuOpening(object sender, ContextMenuEventArgs e)
     {
         // Don't allow the context menu to open if not initialized
         if (((sender as FrameworkElement)?.DataContext as FileViewModel)?.IsInitialized != true)

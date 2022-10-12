@@ -180,6 +180,7 @@
                         <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
                         <Setter Property="ToolTip" Value="{Binding Path=DisplayDescription}" />
                         <EventSetter Event="Expanded" Handler="DirTreeItem_OnExpanded" />
+                        <EventSetter Event="Selected" Handler="DirTreeItem_OnSelected" />
                     </Style>
                 </TreeView.ItemContainerStyle>
 
@@ -249,8 +250,9 @@
                                 </Setter.Value>
                             </Setter>
                             <EventSetter Event="ToolTipOpening" Handler="FileItem_ToolTipOpening" />
-                            <EventSetter Event="MouseDoubleClick" Handler="ToolTipOpening_MouseDoubleClick" />
-                            <EventSetter Event="ContextMenuOpening" Handler="FileContextMenu_OnContextMenuOpening" />
+                            <EventSetter Event="MouseDoubleClick" Handler="FileItem_MouseDoubleClick" />
+                            <EventSetter Event="ContextMenuOpening" Handler="FileItem_ContextMenuOpening" />
+                            <EventSetter Event="Selected" Handler="FileItem_Selected" />
                             <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
 
                             <Style.Triggers>
