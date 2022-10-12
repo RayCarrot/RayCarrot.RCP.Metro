@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Threading;
+using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace RayCarrot.RCP.Metro;
+
+// TODO: Find better way of setting taskbar progress. Setting it from the view model like this isn't ideal.
 
 public class LoadStateViewModel : BaseViewModel
 {
@@ -27,7 +30,11 @@ public class LoadStateViewModel : BaseViewModel
             CancellationTokenSource.Cancel();
     }
 
-    public LoadState CreateState(Action disposeAction) => new(this, CancellationTokenSource.Token, disposeAction);
+    public LoadState CreateState(Action disposeAction) => new(this, CancellationTokenSource.Token, () =>
+    {
+        disposeAction();
+        App.Current.Dispatcher?.Invoke(() => App.Current.MainWindow?.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress));
+    });
 
     public void SetProgress(Progress progress)
     {
@@ -35,5 +42,7 @@ public class LoadStateViewModel : BaseViewModel
         CurrentProgress = progress.Current;
         MinProgress = progress.Min;
         MaxProgress = progress.Max;
+
+        App.Current.Dispatcher?.Invoke(() => App.Current.MainWindow?.SetTaskbarProgressValue(progress));
     }
 }

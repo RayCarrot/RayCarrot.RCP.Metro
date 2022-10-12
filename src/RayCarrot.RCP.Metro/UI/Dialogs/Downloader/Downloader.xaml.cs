@@ -100,7 +100,7 @@ public partial class Downloader : WindowContentControl, IDialogWindowControl<Dow
         Dispatcher?.Invoke(() =>
         {
             // Set the progress on the main window
-            Application.Current.MainWindow?.SetTaskbarProgressValue(new Progress(e.Value.Percentage_100, 0, 100));
+            Application.Current.MainWindow?.SetTaskbarProgressValue(e.Value);
         });
     }
 
