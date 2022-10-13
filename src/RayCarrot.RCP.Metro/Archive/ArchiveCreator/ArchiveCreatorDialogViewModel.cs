@@ -141,7 +141,6 @@ public class ArchiveCreatorDialogViewModel : UserInputViewModel
                             archiveFiles.Add(fileItem);
                         }
 
-                        // TODO-UPDATE: Delete file in case of error
                         // Open the output file
                         using ArchiveFileStream outputStream =
                             new(File.Open(OutputFile, FileMode.Create, FileAccess.Write), OutputFile.Name, true);

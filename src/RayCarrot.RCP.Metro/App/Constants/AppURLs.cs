@@ -2,8 +2,8 @@
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-UPDATE: Refactor this. Don't use constant strings, but rather turn into a service class in DI. This way we can easily
-//              change the URLs for testing, or even have local ones.
+// TODO: Refactor this. Don't use constant strings, but rather turn into a service class in DI. This way we can easily
+//       change the URLs for testing, or even have local ones.
 
 /// <summary>
 /// Commons URLs used in the Rayman Control Panel
