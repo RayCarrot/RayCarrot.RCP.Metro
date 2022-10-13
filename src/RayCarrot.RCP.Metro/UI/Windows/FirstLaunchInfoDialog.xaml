@@ -154,7 +154,6 @@
         <Button Grid.Row="2"
                 Content="{Resx Continue}"
                 IsDefault="True"
-                IsCancel="True"
                 Click="ButtonBase_OnClick"/>
 
     </Grid>

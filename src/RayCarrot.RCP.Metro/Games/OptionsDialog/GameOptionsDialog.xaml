@@ -133,7 +133,6 @@
                                     Content="{Resx Cancel}"
                                     local:ButtonAssist.IconKind="CloseOutline"
                                     Margin="0 0 10 0"
-                                    IsCancel="True"
                                     Click="CancelButton_OnClick" />
 
                             <Button Grid.Column="3"

@@ -59,7 +59,6 @@
 
                 <Button Grid.Column="1"
                         Content="{Resx Cancel}"
-                        IsCancel="True"
                         Click="CancelButton_Click"/>
 
                 <Button Grid.Column="3"

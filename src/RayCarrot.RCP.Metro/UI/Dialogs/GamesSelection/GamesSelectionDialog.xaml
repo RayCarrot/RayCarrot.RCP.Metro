@@ -33,7 +33,6 @@
                     HorizontalAlignment="Right">
 
             <Button Content="{Resx Cancel}"
-                    IsCancel="True"
                     Click="CancelButton_Click"/>
 
             <Button Content="{Resx Accept}"

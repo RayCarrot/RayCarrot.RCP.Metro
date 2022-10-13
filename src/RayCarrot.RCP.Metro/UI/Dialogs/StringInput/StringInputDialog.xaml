@@ -25,7 +25,7 @@
                  Text="{Binding Path=StringInput, UpdateSourceTrigger=PropertyChanged}" />
         
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <Button Content="{Resx Cancel}" Click="CancelButton_Click" IsCancel="True"/>
+            <Button Content="{Resx Cancel}" Click="CancelButton_Click" />
             <Button Content="{Resx Accept}" Margin="10 0" Click="OKButton_Click" IsDefault="True"/>
         </StackPanel>
     </Grid>

@@ -573,7 +573,6 @@
                 <Button Content="{Resx Cancel}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         local:ButtonAssist.IconKind="CloseOutline"
-                        IsCancel="True"
                         Click="CancelButton_OnClick"
                         Margin="0 0 10 0" />
 

@@ -81,8 +81,7 @@
         <Button Grid.Row="2"
                 Content="{Resx Continue}"
                 Click="ButtonBase_OnClick"
-                IsDefault="True"
-                IsCancel="True"/>
+                IsDefault="True"/>
 
     </Grid>
 </local:WindowContentControl>
