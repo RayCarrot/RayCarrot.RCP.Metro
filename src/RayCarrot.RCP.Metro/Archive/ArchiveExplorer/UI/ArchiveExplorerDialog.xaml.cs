@@ -139,7 +139,6 @@ public partial class ArchiveExplorerDialog : WindowContentControl
         // Refresh the sort
         RefreshSort();
 
-        // TODO-UPDATE: Do this for other windows too? Right now it's only done here and in the creator which isn't very consistent.
         // Disable the closing button when loading
         ViewModel.LoaderViewModel.IsRunningChanged += (_, _) =>
             WindowInstance.CanClose = !ViewModel.LoaderViewModel.IsRunning;

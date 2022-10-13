@@ -80,6 +80,10 @@ public partial class PatchCreatorDialog : WindowContentControl
     {
         Loaded -= PatchCreatorUI_Loaded;
 
+        // Disable the closing button when loading
+        ViewModel.LoaderViewModel.IsRunningChanged += (_, _) =>
+            WindowInstance.CanClose = !ViewModel.LoaderViewModel.IsRunning;
+
         if (_patchToImportFrom == null)
             return;
 

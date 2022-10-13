@@ -84,6 +84,10 @@ public partial class PatcherDialog : WindowContentControl
     {
         Loaded -= PatcherUI_OnLoaded;
 
+        // Disable the closing button when loading
+        ViewModel.LoaderViewModel.IsRunningChanged += (_, _) =>
+            WindowInstance.CanClose = !ViewModel.LoaderViewModel.IsRunning;
+
         // Initialize
         bool success = await ViewModel.InitializeAsync();
 

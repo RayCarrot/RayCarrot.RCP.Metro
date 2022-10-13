@@ -30,8 +30,8 @@ public class ChildWindowInstance : WindowInstance
     }
     public override bool CanClose
     {
-        get => Window.ShowCloseButton;
-        set => Window.ShowCloseButton = value;
+        get => ChildWindowAssist.GetIsCloseButtonEnabled(Window);
+        set => ChildWindowAssist.SetIsCloseButtonEnabled(Window, value);
     }
 
     public override GenericIconKind Icon

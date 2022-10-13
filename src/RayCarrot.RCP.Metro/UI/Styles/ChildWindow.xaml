@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:simpleChildWindow="http://metro.mahapps.com/winfx/xaml/simplechildwindow"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
     <Style TargetType="{x:Type local:RCPChildWindow}" BasedOn="{StaticResource {x:Type simpleChildWindow:ChildWindow}}">
         <Setter Property="Visibility" Value="{Binding Path=IsMinimized, RelativeSource={RelativeSource Self}, Converter={local:InvertedBooleanToVisibilityConverter}}" />
@@ -22,11 +21,12 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0"
+                        <TextBlock Grid.Column="0" 
+                                   Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
 
-                        <StackPanel Grid.Column="1" 
+                        <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
                                     DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:RCPChildWindow}}">
 
@@ -42,7 +42,7 @@
                                       VerticalAlignment="Center"
                                       RenderOptions.EdgeMode="Aliased"
                                       Stretch="Uniform"
-                                      Fill="{Binding Path=TitleForeground, Mode=OneWay}"
+                                      Fill="{DynamicResource MahApps.Brushes.IdealForeground}"
                                       SnapsToDevicePixels="True" />
                             </Button>
 
@@ -59,7 +59,7 @@
                                       VerticalAlignment="Center"
                                       RenderOptions.EdgeMode="Aliased"
                                       Stretch="Uniform"
-                                      Fill="{Binding Path=TitleForeground, Mode=OneWay}"
+                                      Fill="{DynamicResource MahApps.Brushes.IdealForeground}"
                                       SnapsToDevicePixels="True" />
                             </Button>
 
@@ -87,6 +87,20 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="CloseButtonStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.MetroWindow.Light}">
+                    <Setter Property="IsEnabled" Value="{Binding Path=(local:ChildWindowAssist.IsCloseButtonEnabled), 
+                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPChildWindow}}}" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!-- Hacky way to show that the close button has been disabled -->
+            <Trigger Property="local:ChildWindowAssist.IsCloseButtonEnabled" Value="False">
+                <Setter Property="TitleForeground" Value="{DynamicResource MahApps.Brushes.IdealForegroundDisabled}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
