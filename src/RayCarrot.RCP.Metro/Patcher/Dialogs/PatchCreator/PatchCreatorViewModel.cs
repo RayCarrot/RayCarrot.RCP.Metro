@@ -170,10 +170,16 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         await thumbStream.CopyToAsync(dstStream);
                     }
 
-                    Thumbnail = new BitmapImage(new Uri(_tempThumbFile.TempPath));
+                    BitmapImage thumb = new();
+                    thumb.BeginInit();
+                    thumb.CacheOption = BitmapCacheOption.OnLoad; // Required to allow the temp file to be deleted
+                    thumb.UriSource = new Uri(_tempThumbFile.TempPath);
+                    thumb.EndInit();
 
-                    if (Thumbnail.CanFreeze)
-                        Thumbnail.Freeze();
+                    if (thumb.CanFreeze)
+                        thumb.Freeze();
+
+                    Thumbnail = thumb;
                 }
 
                 _tempDir = new TempDirectory(true);
@@ -509,7 +515,6 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         _tempDir?.Dispose();
         _tempDir = null;
 
-        // TODO-UPDATE: There's an issue with deleting the temp file here. Why? The image is being frozen.
         _tempThumbFile?.Dispose();
         _tempThumbFile = null;
     }
