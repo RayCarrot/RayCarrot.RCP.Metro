@@ -672,9 +672,10 @@ public class AppViewModel : BaseViewModel
                 try
                 {
                     bool isBeta = result.IsBetaUpdate;
+
                     string message = String.Format(!isBeta 
                         ? Resources.Update_UpdateAvailable 
-                        : Resources.Update_BetaUpdateAvailable, result.DisplayNews);
+                        : Resources.Update_BetaUpdateAvailable, AppVersion, result.LatestVersion, result.DisplayNews);
 
                     if (await MessageUI.DisplayMessageAsync(message, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                     {

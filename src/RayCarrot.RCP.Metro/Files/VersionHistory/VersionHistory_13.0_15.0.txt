@@ -1,6 +1,6 @@
 ﻿-----   Version 13.4.0 - October ??, 2022   -----
 • Updated the standard loading indicator and added support for canceling the current operation
-• Replace several utilities with downloadable patches
+• Replace several utilities with downloadable patches and modified the credits to match
 • Added an optional website field to patches
 
 Added patches since last update:
@@ -20,6 +20,7 @@ Other changes:
 • Progress now shows on the taskbar icon when loading
 • Removing a game will now show a warning message if there are patches applied
 • Dialogs now have rounded corners and have the close button be disabled rather than hidden when not usable
+• The update dialog now shows the current and latest version numbers
 • Added a debug option to extract a patch library (.gpl) file and improved the process of generating web patch files
 • The app's temp folder is now cleared after updating to a new version
 • Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters (this was an issue for Rayman 2 where the name for the file fee_Mèche_nz.gf would trunacte to fee_M)

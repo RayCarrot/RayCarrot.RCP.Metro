@@ -561,12 +561,6 @@
   <data name="R1U_CompleteOSTRevert" xml:space="preserve">
     <value>Retourner à la bande son incomplète</value>
   </data>
-  <data name="R2U_TranslationsHeader" xml:space="preserve">
-    <value>Traductions Non Officielles</value>
-  </data>
-  <data name="R2U_TranslationsInfo" xml:space="preserve">
-    <value>Applique une traduction non officielle qui remplacera une langue en jeu par celle sélectionnée (Anglais dans la plupart des cas). Ces changements peuvent être annulés à tout moment en appliquant la version originale.</value>
-  </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Appliquer</value>
   </data>
@@ -1170,7 +1164,7 @@ Voulez vous réessayer ?</value>
     <value>Impossible de trouver le jeu</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Remerciements spéciaux à AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski et tous les fans de Rayman !</value>
+    <value>Remerciements spéciaux à AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski et tous les fans de Rayman !</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, utilitaires, pistes de musique par niveau, Archive Explorer, traductions de Rayman 2, BinarySerializer</value>
@@ -1261,51 +1255,6 @@ Voulez vous réessayer ?</value>
   </data>
   <data name="RDU_CreateConfig_Error" xml:space="preserve">
     <value>Le fichier n'a pas pu être créé</value>
-  </data>
-  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
-    <value>Irlandais (Gaeilge) - par PluMGMK</value>
-  </data>
-  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
-    <value>Suédois (Svenska) - par RayCarrot</value>
-  </data>
-  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
-    <value>Portugais (Português) - par Haruka Tavares</value>
-  </data>
-  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
-    <value>Slovaque (Slovenský) - par MixerX</value>
-  </data>
-  <data name="R2U_Translations_Original" xml:space="preserve">
-    <value>Original</value>
-  </data>
-  <data name="R2U_Translations_Irish" xml:space="preserve">
-    <value>Irlandais</value>
-  </data>
-  <data name="R2U_Translations_Swedish" xml:space="preserve">
-    <value>Suédois</value>
-  </data>
-  <data name="R2U_Translations_Portuguese" xml:space="preserve">
-    <value>Portugais</value>
-  </data>
-  <data name="R2U_Translations_Slovak" xml:space="preserve">
-    <value>Slovaque</value>
-  </data>
-  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
-    <value>Les fichiers requis n'ont pas pu être trouvés</value>
-  </data>
-  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
-    <value>Étant donné que les textures ont été modifiées par l'anciennne traduction, il est recommandé de les remplacer par la version originale.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
-    <value>Il est aussi recommandé de remplacer les textures du jeu par une version modifiée pour avoir la police complète ainsi que les caractères requis par cette traduction.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
-    <value>Confirmer le remplacement de textures</value>
-  </data>
-  <data name="R2U_Translations_Success" xml:space="preserve">
-    <value>Tous les fichiers ont été remplacés avec succès</value>
-  </data>
-  <data name="R2U_Translations_Error" xml:space="preserve">
-    <value>Une erreur est survenue en appliquant l'utilitaire de traduction de Rayman 2</value>
   </data>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Une erreur est survenue en lisant le backup pour {0}</value>
@@ -2202,27 +2151,6 @@ Message d'erreur : {1}</value>
   <data name="Utility_Revert" xml:space="preserve">
     <value>Revenir en arrière</value>
   </data>
-  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
-    <value>Le DRM a été retiré</value>
-  </data>
-  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
-    <value>Une erreur est survenue en retirant le DRM</value>
-  </data>
-  <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
-    <value>Le patch de retrait de DRM a été annulé</value>
-  </data>
-  <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
-    <value>Une erreur s'est produite durant l'inversion du patch de retrait de DRM</value>
-  </data>
-  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
-    <value>Retirer le DRM de la tête de pirate</value>
-  </data>
-  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
-    <value>Cet outil modifie les fichiers .sna pour retirer le DRM causant l'apparition de la tête de pirate dans les niveaux</value>
-  </data>
-  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
-    <value>Cet outil pourrait ne pas fonctionner sur toutes les versions du jeu. Il fonctionne sur la version GOG.</value>
-  </data>
   <data name="Utility_WIP" xml:space="preserve">
     <value>Cet outil est toujours en cours de développement et pourrait être instable ou avoir des fonctionnalités manquantes</value>
   </data>
@@ -2249,9 +2177,6 @@ Message d'erreur : {1}</value>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>Cette fonctionnalité n'a pas encore été implémentée</value>
-  </data>
-  <data name="About_Credits_Robin" xml:space="preserve">
-    <value>Retirer le DRM de Rayman 2</value>
   </data>
   <data name="Utilities_Decoder_Header" xml:space="preserve">
     <value>Décodeurs</value>

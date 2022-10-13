@@ -48,7 +48,6 @@ public class Page_About_ViewModel : BasePageViewModel
             new("RayActivity", new ResourceLocString(nameof(Resources.About_Credits_RayActivity))),
             new("Rayman Universe - Рэйман и его Вселенная", new ResourceLocString(nameof(Resources.About_Credits_RaymanUniverse))),
             new("RibShark", new ResourceLocString(nameof(Resources.About_Credits_RibShark))),
-            new("Robin", new ResourceLocString(nameof(Resources.About_Credits_Robin))),
             new("Snagglebee", new ResourceLocString(nameof(Resources.About_Credits_Snagglebee))),
             new("XanderNT", new ResourceLocString(nameof(Resources.About_Credits_XanderNT))),
             new("ZetaXO", new ResourceLocString(nameof(Resources.About_Credits_ZetaXO))),

@@ -562,12 +562,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="R1U_CompleteOSTRevert" xml:space="preserve">
     <value>Återställ den ursprungliga musiken</value>
   </data>
-  <data name="R2U_TranslationsHeader" xml:space="preserve">
-    <value>Inofficiella översättningar</value>
-  </data>
-  <data name="R2U_TranslationsInfo" xml:space="preserve">
-    <value>När en inofficiell översättning tillämpas kommer det att ersätta ett av språken i spelet med det valda språket. I de flesta fall kommer det att vara engelska som ersätts. Ändringarna kan när som helst återställas genom att tillämpa originalversionen.</value>
-  </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Tillämpa</value>
   </data>
@@ -1262,48 +1256,6 @@ Försök igen?"</value>
   </data>
   <data name="RDU_CreateConfig_Error" xml:space="preserve">
     <value>Filen kunde inte skapas</value>
-  </data>
-  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
-    <value>Irländska (Gaeilge) - av PluMGMK</value>
-  </data>
-  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
-    <value>Svenska (Svenska) - av RayCarrot</value>
-  </data>
-  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
-    <value>Portugisiska (Português) - av Haruka Tavares</value>
-  </data>
-  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
-    <value>Slovakiska (Slovenský) - av MixerX</value>
-  </data>
-  <data name="R2U_Translations_Original" xml:space="preserve">
-    <value>Original</value>
-  </data>
-  <data name="R2U_Translations_Irish" xml:space="preserve">
-    <value>Irländska</value>
-  </data>
-  <data name="R2U_Translations_Swedish" xml:space="preserve">
-    <value>Svenska</value>
-  </data>
-  <data name="R2U_Translations_Portuguese" xml:space="preserve">
-    <value>Portugisiska</value>
-  </data>
-  <data name="R2U_Translations_Slovak" xml:space="preserve">
-    <value>Slovakiska</value>
-  </data>
-  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
-    <value>Filerna för verktyget kunde inte hittas</value>
-  </data>
-  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
-    <value>Eftersom grafikfilen har ändrats av den tidigare översättningen rekommenderas det att den ersätts med den ursprungliga versionen.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
-    <value>Det är rekommenderat att ersätta grafikfilen med en modifierad version så att texten i spelet visas korrekt.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
-    <value>Bekräfta grafikfil-ersättningen</value>
-  </data>
-  <data name="R2U_Translations_Success" xml:space="preserve">
-    <value>Filerna har ersatts</value>
   </data>
   <data name="Download_OperationCanceling" xml:space="preserve">
     <value>Operationen håller redan på att avbrytas</value>

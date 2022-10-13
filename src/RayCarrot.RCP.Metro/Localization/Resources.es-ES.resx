@@ -566,12 +566,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="R1U_CompleteOSTRevert" xml:space="preserve">
     <value>Revertir de vuelta para la banda sonora incompleta</value>
   </data>
-  <data name="R2U_TranslationsHeader" xml:space="preserve">
-    <value>Traducciones no oficiales</value>
-  </data>
-  <data name="R2U_TranslationsInfo" xml:space="preserve">
-    <value>Aplicando una traduccion no oficial reemplaza uno de los  lenguajes en juego con el seleccionado, En la mayoria de casos sera el ingles. Los cambios pueden ser revertidos en cualquier momento aplicando la version original.</value>
-  </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>

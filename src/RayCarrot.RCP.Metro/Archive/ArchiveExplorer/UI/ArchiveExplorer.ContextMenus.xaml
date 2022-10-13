@@ -64,8 +64,7 @@
 
         <!-- Copy file path -->
 
-        <!-- TODO-UPDATE: Localize -->
-        <local:MenuItemIcon Header="Copy file path"
+        <local:MenuItemIcon Header="{Resx Archive_CopyFilePath}"
                             Command="{x:Static local:CommonCommands.CopyToClipboardCommand}"
                             CommandParameter="{Binding Path=FullFilePath, Mode=OneTime}"
                             IconKind="ClipboardOutline" />
@@ -152,8 +151,7 @@
 
         <!-- Copy directory path -->
 
-        <!-- TODO-UPDATE: Localize -->
-        <local:MenuItemIcon Header="Copy directory path"
+        <local:MenuItemIcon Header="{Resx Archive_CopyDirPath}"
                             Command="{x:Static local:CommonCommands.CopyToClipboardCommand}"
                             CommandParameter="{Binding Path=FullPath, Mode=OneTime}"
                             IconKind="ClipboardOutline"

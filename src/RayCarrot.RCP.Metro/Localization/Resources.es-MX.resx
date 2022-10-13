@@ -426,9 +426,6 @@
   <data name="R1U_CompleteOSTRevert" xml:space="preserve">
     <value>Revertir de vuelta para la banda sonora incompleta</value>
   </data>
-  <data name="R2U_TranslationsHeader" xml:space="preserve">
-    <value>Traducciones no-oficiales</value>
-  </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>
@@ -740,33 +737,6 @@ Notícias:
   </data>
   <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
     <value>Reemplazar archivo</value>
-  </data>
-  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
-    <value>Irlandés (Gaeilge) - por PluMGMK</value>
-  </data>
-  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
-    <value>Sueco (Svenska) - por RayCarrot</value>
-  </data>
-  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
-    <value>Portugués (Português) - por Haruka Tavares</value>
-  </data>
-  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
-    <value>Eslovaco (Slovenský) - por MixerX</value>
-  </data>
-  <data name="R2U_Translations_Original" xml:space="preserve">
-    <value>Original</value>
-  </data>
-  <data name="R2U_Translations_Irish" xml:space="preserve">
-    <value>Irlandés</value>
-  </data>
-  <data name="R2U_Translations_Swedish" xml:space="preserve">
-    <value>Sueco</value>
-  </data>
-  <data name="R2U_Translations_Portuguese" xml:space="preserve">
-    <value>Portugués</value>
-  </data>
-  <data name="R2U_Translations_Slovak" xml:space="preserve">
-    <value>Eslovaco</value>
   </data>
   <data name="AppNews_Title" xml:space="preserve">
     <value>Noticias de aplicación</value>

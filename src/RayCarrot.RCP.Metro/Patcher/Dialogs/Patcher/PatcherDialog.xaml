@@ -350,11 +350,10 @@
 
                                         <iconPacks:Material Kind="Link" />
 
-                                        <TextBlock Margin="5 0 0 0" >
+                                        <TextBlock Margin="5 0 0 0">
                                             <Hyperlink ToolTip="{Binding Path=Website, Mode=OneTime}" 
                                                        Command="{Binding Path=OpenWebsiteCommand, Mode=OneTime}">
-                                                <!-- TODO-UPDATE: Localize -->
-                                                <Run Text="Website" />
+                                                <Run Text="{Resx Patcher_PatchWebsiteLink}" />
                                             </Hyperlink>
                                         </TextBlock>
 

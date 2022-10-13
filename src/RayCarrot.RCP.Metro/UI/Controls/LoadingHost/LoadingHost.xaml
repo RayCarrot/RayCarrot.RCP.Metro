@@ -40,10 +40,9 @@
                                                             IsIndeterminate="{TemplateBinding IsIndeterminate}"
                                                             Margin="0 0 0 15" />
 
-                                    <!-- TODO-UPDATE: Localize -->
                                     <Button x:Name="PART_CancelButton"
                                             HorizontalAlignment="Center"
-                                            Content="Cancel"
+                                            Content="{Resx Cancel}"
                                             Visibility="{TemplateBinding CanCancel, Converter={local:BooleanToVisibilityConverter}}" />
 
                                 </StackPanel>

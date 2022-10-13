@@ -562,12 +562,6 @@ This is a growing project with more features planned on being added with future 
   <data name="R1U_CompleteOSTRevert" xml:space="preserve">
     <value>Revert back to incomplete soundtrack</value>
   </data>
-  <data name="R2U_TranslationsHeader" xml:space="preserve">
-    <value>Unofficial Translations</value>
-  </data>
-  <data name="R2U_TranslationsInfo" xml:space="preserve">
-    <value>Applying an unofficial translation will replace one of the in-game languages with the selected one. In most cases this will be the English one. The changes can at any time be reverted by applying the original version.</value>
-  </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
@@ -934,9 +928,14 @@ latestVersion</comment>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>A new update is available to download. Download now?
 
+Current version: {0}
+Latest version: {1}
+
 News: 
-{0}</value>
+{2}</value>
     <comment>Arguments:
+currentVersion
+latestVersion
 versionNews</comment>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
@@ -1235,10 +1234,10 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, BinarySerializer</value>
+    <value>Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1250,10 +1249,10 @@ gameDisplayName</comment>
     <value>General help with the utilities</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Per-level soundtrack utility, Rayman 2 translations</value>
+    <value>Per-level soundtrack utility</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Rayman 2 translations, Portuguese (Portugal) program translation</value>
+    <value>Portuguese (Portugal) program translation</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Video replacement failed</value>
@@ -1329,51 +1328,6 @@ totalFiles</comment>
   </data>
   <data name="RDU_CreateConfig_Error" xml:space="preserve">
     <value>File could not be created</value>
-  </data>
-  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
-    <value>Irish (Gaeilge) - by PluMGMK</value>
-  </data>
-  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
-    <value>Swedish (Svenska) - by RayCarrot</value>
-  </data>
-  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
-    <value>Portuguese (Português) - by Haruka Tavares</value>
-  </data>
-  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
-    <value>Slovak (Slovenský) - by MixerX</value>
-  </data>
-  <data name="R2U_Translations_Original" xml:space="preserve">
-    <value>Original</value>
-  </data>
-  <data name="R2U_Translations_Irish" xml:space="preserve">
-    <value>Irish</value>
-  </data>
-  <data name="R2U_Translations_Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="R2U_Translations_Portuguese" xml:space="preserve">
-    <value>Portuguese</value>
-  </data>
-  <data name="R2U_Translations_Slovak" xml:space="preserve">
-    <value>Slovak</value>
-  </data>
-  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
-    <value>The required files could not be found</value>
-  </data>
-  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
-    <value>Due to the textures file having been modified by the previous translation it is recommended to replace it with the original version.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
-    <value>It is additionally recommended to replace the game's textures file with a modified version to get the full font and characters required by this translation.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
-    <value>Confirm textures replacement</value>
-  </data>
-  <data name="R2U_Translations_Success" xml:space="preserve">
-    <value>All files have been successfully replaced</value>
-  </data>
-  <data name="R2U_Translations_Error" xml:space="preserve">
-    <value>An error occurred when applying the Rayman 2 translation utility</value>
   </data>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>An error occurred reading the backup for {0}</value>
@@ -1704,8 +1658,15 @@ downloadURL</comment>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>A new beta update is available to download. Download now?
 
+Current version: {0}
+Latest version: {1}
+
 News: 
-{0}</value>
+{2}</value>
+    <comment>Arguments:
+currentVersion
+latestVersion
+versionNews</comment>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Uninstall</value>
@@ -2326,27 +2287,6 @@ fileFormat</comment>
   <data name="Utility_Revert" xml:space="preserve">
     <value>Revert</value>
   </data>
-  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
-    <value>The DRM has been removed</value>
-  </data>
-  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
-    <value>An error occurred when removing the DRM</value>
-  </data>
-  <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
-    <value>The DRM removal patch has been reverted</value>
-  </data>
-  <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
-    <value>An error occurred when reverting the DRM removal patch</value>
-  </data>
-  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
-    <value>Remove Pirate Head DRM</value>
-  </data>
-  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
-    <value>This utility patches the .sna files to remove the DRM causing the pirate head to appear in levels</value>
-  </data>
-  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
-    <value>This utility may not work on all releases. It has been verified to work on the GOG version.</value>
-  </data>
   <data name="Utility_WIP" xml:space="preserve">
     <value>This utility is currently work in process and might be unstable or missing features</value>
   </data>
@@ -2376,9 +2316,6 @@ totalTextures</comment>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>This feature has not been implemented yet</value>
-  </data>
-  <data name="About_Credits_Robin" xml:space="preserve">
-    <value>Rayman 2 DRM removal</value>
   </data>
   <data name="Utilities_Decoder_Header" xml:space="preserve">
     <value>Decoders</value>
@@ -5096,5 +5033,28 @@ game</comment>
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>Game Patch Library (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Copy file path</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Copy directory path</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>There are {0} patches which have been applied to this game. Do you want to continue removing the game and keep the patches applied?</value>
+    <comment>Arguments:
+patchCount</comment>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>Create new patch</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>Update existing patch</value>
   </data>
 </root>

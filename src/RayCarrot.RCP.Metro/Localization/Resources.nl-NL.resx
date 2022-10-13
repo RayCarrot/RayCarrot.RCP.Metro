@@ -561,12 +561,6 @@
   <data name="R1U_CompleteOSTRevert" xml:space="preserve">
     <value>Keer terug naar de onvolledige soundtrack</value>
   </data>
-  <data name="R2U_TranslationsHeader" xml:space="preserve">
-    <value>Niet-officiële Vertalingen</value>
-  </data>
-  <data name="R2U_TranslationsInfo" xml:space="preserve">
-    <value>Het toepassen van niet-officiële vertalingen zorgt ervoor dat één van de in-game vertalingen vervangen wordt door de geselecteerde; in de meeste gevallen Engels. De wijzigingen kunnen op elk gewenst moment ongedaan worden gemaakt door de originele versie toe te passen.</value>
-  </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Toepassen</value>
   </data>
@@ -1170,7 +1164,7 @@ Opnieuw proberen?</value>
     <value>Niet in staat het spel te vinden</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>In het bijzonder dank aan AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski en alle andere Rayman fans!</value>
+    <value>In het bijzonder dank aan AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, BinarySerializer</value>
@@ -1261,51 +1255,6 @@ Opnieuw proberen?</value>
   </data>
   <data name="RDU_CreateConfig_Error" xml:space="preserve">
     <value>Bestand kon niet worden aangemaakt</value>
-  </data>
-  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
-    <value>Iers (Gaeilge) - door PluMGMK</value>
-  </data>
-  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
-    <value>Zweeds (Svenska) - door RayCarrot</value>
-  </data>
-  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
-    <value>Portugees (Português) - door Haruka Tavares</value>
-  </data>
-  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
-    <value>Slowaaks (Slovenský) - door MixerX</value>
-  </data>
-  <data name="R2U_Translations_Original" xml:space="preserve">
-    <value>Origineel</value>
-  </data>
-  <data name="R2U_Translations_Irish" xml:space="preserve">
-    <value>Iers</value>
-  </data>
-  <data name="R2U_Translations_Swedish" xml:space="preserve">
-    <value>Zweeds</value>
-  </data>
-  <data name="R2U_Translations_Portuguese" xml:space="preserve">
-    <value>Portugees</value>
-  </data>
-  <data name="R2U_Translations_Slovak" xml:space="preserve">
-    <value>Slowaaks</value>
-  </data>
-  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
-    <value>De vereiste bestanden konden niet worden gevonden</value>
-  </data>
-  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
-    <value>Vanwege aanpassingen in het bestand voor texturen door de vorige vertaling, is het aanbevolen het bestand te vervangen door de originele versie.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
-    <value>Het is eventueel aanbevolen om ook het bestand voor texturen van het spel te vervangen door een aangepaste versie, opdat het volledige lettertype met alle tekens verkregen wordt voor deze vertaling.</value>
-  </data>
-  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
-    <value>Bevestig vervanging texturen</value>
-  </data>
-  <data name="R2U_Translations_Success" xml:space="preserve">
-    <value>Alle bestanden zijn succesvol vervangen</value>
-  </data>
-  <data name="R2U_Translations_Error" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van het Rayman 2 hulpprogramma voor vertaling</value>
   </data>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het lezen van de back-up voor {0}</value>
@@ -2202,27 +2151,6 @@ Foutmelding: {1}</value>
   <data name="Utility_Revert" xml:space="preserve">
     <value>Terugkeren</value>
   </data>
-  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
-    <value>De DRM is verwijderd</value>
-  </data>
-  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het verwijderen van de DRM</value>
-  </data>
-  <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
-    <value>De patch voor DRM verwijdering wordt niet meer toegepast</value>
-  </data>
-  <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het ongedaan maken van de patch voor DRM verwijdering</value>
-  </data>
-  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
-    <value>Verwijder Pirate Head DRM</value>
-  </data>
-  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
-    <value>Dit hulpprogramma patcht de .sna bestanden voor het verwijderen van de DRM die ervoor zorgt dat er piratenhoofden verschijnen in de levels</value>
-  </data>
-  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
-    <value>Dit hulpprogramma werkt wellicht niet bij alle versies. Er is vastgesteld dat het in ieder geval effectief is in het geval van de GOG-versie.</value>
-  </data>
   <data name="Utility_WIP" xml:space="preserve">
     <value>Aan dit hulpprogramma wordt momenteel gewerkt; het werkt misschien niet naar behoren en er ontbreken bepaalde features</value>
   </data>
@@ -2249,9 +2177,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>Deze feature is nog niet geïmplementeerd</value>
-  </data>
-  <data name="About_Credits_Robin" xml:space="preserve">
-    <value>Rayman 2 DRM verwijdering</value>
   </data>
   <data name="Utilities_Decoder_Header" xml:space="preserve">
     <value>Decoders</value>

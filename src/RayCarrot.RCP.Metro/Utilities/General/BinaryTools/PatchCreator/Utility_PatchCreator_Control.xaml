@@ -29,14 +29,13 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO-UPDATE: Localize -->
             <Button Grid.Column="0"
                     Margin="0 0 10 0"
-                    Content="Create new patch"
+                    Content="{Resx PatchCreator_CreateNew}"
                     Command="{Binding Path=CreatePatchCommand, Mode=OneTime}" />
 
             <Button Grid.Column="1"
-                    Content="Update existing patch"
+                    Content="{Resx PatchCreator_UpdateExisting}"
                     Command="{Binding Path=UpdatePatchCommand, Mode=OneTime}" />
 
         </Grid>

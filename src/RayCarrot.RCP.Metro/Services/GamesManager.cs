@@ -112,10 +112,8 @@ public class GamesManager
                     Logger.Warn(ex, "Reading patch library");
                 }
 
-                // TODO-UPDATE: Localize
                 // Warn about applied patches, if any
-                if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await MessageUI.DisplayMessageAsync(String.Format("There are {0} patches which have been applied to this game. Do you want to continue removing the game and keep the patches applied?", libraryFile.Patches.Count(x => x.IsEnabled)),
-                        Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
+                if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, libraryFile.Patches.Count(x => x.IsEnabled)), MessageType.Warning, true))
                     return;
             }
 

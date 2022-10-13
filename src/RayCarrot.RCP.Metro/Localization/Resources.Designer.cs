@@ -124,7 +124,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 translations, Portuguese (Portugal) program translation.
+        ///   Looks up a localized string similar to Portuguese (Portugal) program translation.
         /// </summary>
         public static string About_Credits_HarukaTavares {
             get {
@@ -169,7 +169,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Per-level soundtrack utility, Rayman 2 translations.
+        ///   Looks up a localized string similar to Per-level soundtrack utility.
         /// </summary>
         public static string About_Credits_PluMGMK {
             get {
@@ -187,7 +187,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, BinarySerializer.
+        ///   Looks up a localized string similar to Rayman Control Panel, utilities, per-level soundtrack, Archive Explorer, BinarySerializer.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
@@ -210,15 +210,6 @@ namespace RayCarrot.RCP.Metro {
         public static string About_Credits_RibShark {
             get {
                 return ResourceManager.GetString("About_Credits_RibShark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 DRM removal.
-        /// </summary>
-        public static string About_Credits_Robin {
-            get {
-                return ResourceManager.GetString("About_Credits_Robin", resourceCulture);
             }
         }
         
@@ -278,7 +269,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -578,6 +569,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_BinaryEditor {
             get {
                 return ResourceManager.GetString("Archive_BinaryEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy directory path.
+        /// </summary>
+        public static string Archive_CopyDirPath {
+            get {
+                return ResourceManager.GetString("Archive_CopyDirPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy file path.
+        /// </summary>
+        public static string Archive_CopyFilePath {
+            get {
+                return ResourceManager.GetString("Archive_CopyFilePath", resourceCulture);
             }
         }
         
@@ -7576,6 +7585,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new patch.
+        /// </summary>
+        public static string PatchCreator_CreateNew {
+            get {
+                return ResourceManager.GetString("PatchCreator_CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save patch file.
         /// </summary>
         public static string PatchCreator_CreateSaveFileHeader {
@@ -7702,11 +7720,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update existing patch.
+        /// </summary>
+        public static string PatchCreator_UpdateExisting {
+            get {
+                return ResourceManager.GetString("PatchCreator_UpdateExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string PatchCreator_VersionField {
             get {
                 return ResourceManager.GetString("PatchCreator_VersionField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        public static string PatchCreator_WebsiteField {
+            get {
+                return ResourceManager.GetString("PatchCreator_WebsiteField", resourceCulture);
             }
         }
         
@@ -8184,6 +8220,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Patcher_PatchInfo_Version {
             get {
                 return ResourceManager.GetString("Patcher_PatchInfo_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        public static string Patcher_PatchWebsiteLink {
+            get {
+                return ResourceManager.GetString("Patcher_PatchWebsiteLink", resourceCulture);
             }
         }
         
@@ -9980,222 +10025,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when removing the DRM.
-        /// </summary>
-        public static string R2U_RemoveDRM_Error {
-            get {
-                return ResourceManager.GetString("R2U_RemoveDRM_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove Pirate Head DRM.
-        /// </summary>
-        public static string R2U_RemoveDRM_Header {
-            get {
-                return ResourceManager.GetString("R2U_RemoveDRM_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility patches the .sna files to remove the DRM causing the pirate head to appear in levels.
-        /// </summary>
-        public static string R2U_RemoveDRM_Info {
-            get {
-                return ResourceManager.GetString("R2U_RemoveDRM_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when reverting the DRM removal patch.
-        /// </summary>
-        public static string R2U_RemoveDRM_RevertError {
-            get {
-                return ResourceManager.GetString("R2U_RemoveDRM_RevertError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The DRM removal patch has been reverted.
-        /// </summary>
-        public static string R2U_RemoveDRM_RevertSuccess {
-            get {
-                return ResourceManager.GetString("R2U_RemoveDRM_RevertSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The DRM has been removed.
-        /// </summary>
-        public static string R2U_RemoveDRM_Success {
-            get {
-                return ResourceManager.GetString("R2U_RemoveDRM_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility may not work on all releases. It has been verified to work on the GOG version..
-        /// </summary>
-        public static string R2U_RemoveDRM_Warning {
-            get {
-                return ResourceManager.GetString("R2U_RemoveDRM_Warning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when applying the Rayman 2 translation utility.
-        /// </summary>
-        public static string R2U_Translations_Error {
-            get {
-                return ResourceManager.GetString("R2U_Translations_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The required files could not be found.
-        /// </summary>
-        public static string R2U_Translations_FilesNotFound {
-            get {
-                return ResourceManager.GetString("R2U_Translations_FilesNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Irish.
-        /// </summary>
-        public static string R2U_Translations_Irish {
-            get {
-                return ResourceManager.GetString("R2U_Translations_Irish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Irish (Gaeilge) - by PluMGMK.
-        /// </summary>
-        public static string R2U_Translations_IrishInfo {
-            get {
-                return ResourceManager.GetString("R2U_Translations_IrishInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Original.
-        /// </summary>
-        public static string R2U_Translations_Original {
-            get {
-                return ResourceManager.GetString("R2U_Translations_Original", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Portuguese.
-        /// </summary>
-        public static string R2U_Translations_Portuguese {
-            get {
-                return ResourceManager.GetString("R2U_Translations_Portuguese", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Portuguese (Português) - by Haruka Tavares.
-        /// </summary>
-        public static string R2U_Translations_PortugueseInfo {
-            get {
-                return ResourceManager.GetString("R2U_Translations_PortugueseInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to It is additionally recommended to replace the game&apos;s textures file with a modified version to get the full font and characters required by this translation..
-        /// </summary>
-        public static string R2U_Translations_ReplaceTextures {
-            get {
-                return ResourceManager.GetString("R2U_Translations_ReplaceTextures", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm textures replacement.
-        /// </summary>
-        public static string R2U_Translations_ReplaceTexturesHeader {
-            get {
-                return ResourceManager.GetString("R2U_Translations_ReplaceTexturesHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Due to the textures file having been modified by the previous translation it is recommended to replace it with the original version..
-        /// </summary>
-        public static string R2U_Translations_RevertTextures {
-            get {
-                return ResourceManager.GetString("R2U_Translations_RevertTextures", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Slovak.
-        /// </summary>
-        public static string R2U_Translations_Slovak {
-            get {
-                return ResourceManager.GetString("R2U_Translations_Slovak", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Slovak (Slovenský) - by MixerX.
-        /// </summary>
-        public static string R2U_Translations_SlovakInfo {
-            get {
-                return ResourceManager.GetString("R2U_Translations_SlovakInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All files have been successfully replaced.
-        /// </summary>
-        public static string R2U_Translations_Success {
-            get {
-                return ResourceManager.GetString("R2U_Translations_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Swedish.
-        /// </summary>
-        public static string R2U_Translations_Swedish {
-            get {
-                return ResourceManager.GetString("R2U_Translations_Swedish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Swedish (Svenska) - by RayCarrot.
-        /// </summary>
-        public static string R2U_Translations_SwedishInfo {
-            get {
-                return ResourceManager.GetString("R2U_Translations_SwedishInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unofficial Translations.
-        /// </summary>
-        public static string R2U_TranslationsHeader {
-            get {
-                return ResourceManager.GetString("R2U_TranslationsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Applying an unofficial translation will replace one of the in-game languages with the selected one. In most cases this will be the English one. The changes can at any time be reverted by applying the original version..
-        /// </summary>
-        public static string R2U_TranslationsInfo {
-            get {
-                return ResourceManager.GetString("R2U_TranslationsInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred when setting the Rayman 2 aspect ratio.
         /// </summary>
         public static string R2Widescreen_Error {
@@ -10507,6 +10336,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ReadOnly {
             get {
                 return ResourceManager.GetString("ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are {0} patches which have been applied to this game. Do you want to continue removing the game and keep the patches applied?.
+        /// </summary>
+        public static string RemoveGame_PatchWarning {
+            get {
+                return ResourceManager.GetString("RemoveGame_PatchWarning", resourceCulture);
             }
         }
         
@@ -13573,8 +13411,11 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to A new beta update is available to download. Download now?
         ///
+        ///Current version: {0}
+        ///Latest version: {1}
+        ///
         ///News: 
-        ///{0}.
+        ///{2}.
         /// </summary>
         public static string Update_BetaUpdateAvailable {
             get {
@@ -13694,8 +13535,11 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to A new update is available to download. Download now?
         ///
+        ///Current version: {0}
+        ///Latest version: {1}
+        ///
         ///News: 
-        ///{0}.
+        ///{2}.
         /// </summary>
         public static string Update_UpdateAvailable {
             get {
