@@ -261,6 +261,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
             // Begin refreshing gifs
             Task.Run(async () => await RefreshGifsAsync()).WithoutAwait("Refreshed installed GIFs");
 
+            // TODO: We shouldn't use the display name for things like the folder path
             // Get the game display name
             var displayName = Game.GetGameInfo().DisplayName;
 

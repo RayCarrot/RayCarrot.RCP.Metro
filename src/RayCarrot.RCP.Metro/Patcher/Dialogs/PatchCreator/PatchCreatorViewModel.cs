@@ -87,7 +87,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public int Version_Revision { get; set; }
     public string ID { get; set; }
     public Games Game { get; }
-    public string GameDisplayName { get; }
+    public string GameDisplayName { get; } // TODO: LocalizedString
     public BitmapSource? Thumbnail { get; set; }
 
     public ObservableCollection<FileViewModel> Files { get; } = new();

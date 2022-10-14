@@ -68,7 +68,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     public Games Game { get; }
     public string IconSource { get; }
     public bool IsDemo { get; }
-    public string DisplayName { get; }
+    public string DisplayName { get; } // TODO: LocalizedString
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }

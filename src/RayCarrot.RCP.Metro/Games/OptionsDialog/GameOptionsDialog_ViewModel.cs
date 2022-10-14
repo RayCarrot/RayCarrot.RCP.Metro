@@ -101,7 +101,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     /// <summary>
     /// The display name
     /// </summary>
-    public string DisplayName { get; }
+    public string DisplayName { get; } // TODO: LocalizedString
 
     /// <summary>
     /// The icons source
