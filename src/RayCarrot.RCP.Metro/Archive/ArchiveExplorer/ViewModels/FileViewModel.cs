@@ -614,8 +614,9 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
     /// Replaces the current file with the data from the stream
     /// </summary>
     /// <param name="inputStream">The decoded data stream</param>
+    /// <param name="forceLoadThumbnail">Forces the thumbnail to be loaded</param>
     /// <returns>True if the file should be added as a new modified file, otherwise false</returns>
-    public bool ReplaceFile(Stream inputStream)
+    public bool ReplaceFile(Stream inputStream, bool forceLoadThumbnail = false)
     {
         bool wasModified = HasPendingImport;
 
@@ -634,10 +635,12 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
         HasPendingImport = true;
 
         inputStream.Position = 0;
-        
-        // TODO-UPDATE: If you add a new file to the current dir then the thumb won't be loaded
+
         // Initialize the file
-        InitializeFile(new ArchiveFileStream(inputStream, FileName, false), ThumbnailLoadMode.ReloadThumbnailIfLoaded);
+        ThumbnailLoadMode thumbnailLoadMode = forceLoadThumbnail
+            ? ThumbnailLoadMode.ReloadThumbnail
+            : ThumbnailLoadMode.ReloadThumbnailIfLoaded;
+        InitializeFile(new ArchiveFileStream(inputStream, FileName, false), thumbnailLoadMode);
 
         return !wasModified;
     }

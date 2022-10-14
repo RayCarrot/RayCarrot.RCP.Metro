@@ -24,6 +24,7 @@ Other changes:
 • Added a debug option to extract a patch library (.gpl) file and improved the process of generating web patch files
 • The app's temp folder is now cleared after updating to a new version
 • Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters (this was an issue for Rayman 2 where the name for the file fee_Mèche_nz.gf would trunacte to fee_M)
+• Fixed a bug where adding a file in the Archive Explorer would not load its thumbnail
 • Bug fixes
 
 

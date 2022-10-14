@@ -633,7 +633,9 @@ public class DirectoryViewModel : HierarchicalViewModel<DirectoryViewModel>, IAr
                     FileViewModel fileViewModel = existingFile ?? new FileViewModel(new FileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData ?? throw new Exception("Archive data has not been loaded"), dir, fileName)), this);
 
                     // Replace the file with the import data
-                    if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
+                    if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream, 
+                            // Always load the thumbnail if adding a new file and this directory is selected
+                            forceLoadThumbnail: existingFile == null && IsSelected)))
                         modifiedCount++;
 
                     // Add the file to the list if it was created
