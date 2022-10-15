@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Nito.AsyncEx;
@@ -286,6 +285,8 @@ public class ArchiveViewModel : DirectoryViewModel
                                 cancellationToken: state.CancellationToken);
                         }
 
+                        state.SetCanCancel(false);
+
                         // Dispose the archive file stream
                         ArchiveFileStream.Dispose();
 
@@ -293,8 +294,6 @@ public class ArchiveViewModel : DirectoryViewModel
 
                         // If the operation succeeded, replace the archive file with the temporary output
                         Services.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
-
-                        state.SetCanCancel(false);
 
                         // On repack
                         await Manager.OnRepackedArchivesAsync(new[] { FilePath });
@@ -318,7 +317,10 @@ public class ArchiveViewModel : DirectoryViewModel
                     }
                 });
 
-                // TODO-UPDATE: DO we have to reload the archive? This will lose your changes!
+                // TODO: Ideally we won't reload the archive if the repacking was stopped due to an error or
+                //       canceled by the user. The problem preventing this from working right now is that
+                //       WriteArchive() will modify the archive object and the file entries. One solution
+                //       would be to clone them instead of modifying the existing ones.
                 // Reload the archive
                 LoadArchive();
 
