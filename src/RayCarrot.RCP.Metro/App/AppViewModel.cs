@@ -145,7 +145,7 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Indicates if the current version is a beta version
     /// </summary>
-    public bool IsBeta => true;
+    public bool IsBeta => false;
 
     /// <summary>
     /// The application games manager

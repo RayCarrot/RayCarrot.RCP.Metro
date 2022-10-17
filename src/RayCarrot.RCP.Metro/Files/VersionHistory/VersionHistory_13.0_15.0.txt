@@ -1,4 +1,4 @@
-﻿-----   Version 13.4.0 - October ??, 2022   -----
+﻿-----   Version 13.4.0 - October 17, 2022   -----
 • Replaced several utilities with downloadable patches and modified the credits to match
 • Added an optional website field to patches
 • Updated the standard loading indicator and added support for canceling the current operation
