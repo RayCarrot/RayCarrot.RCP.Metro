@@ -897,8 +897,11 @@
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>Une nouvelle mise à jour est disponible. Voulez vous la télécharger ?
 
+Version actuelle : {0}
+Dernière version : {1}
+
 Nouveautés :
-{0}</value>
+{2}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nouvelle version trouvée</value>
@@ -996,7 +999,7 @@ Voulez vous réessayer ?</value>
     <value>Le dossier spécifié n'existe pas</value>
   </data>
   <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
-    <value>Répertoire non trouvé</value>
+    <value>Dossier non trouvé</value>
   </data>
   <data name="Installer_ShortcutName" xml:space="preserve">
     <value>Démarrer {0}</value>
@@ -1167,7 +1170,7 @@ Voulez vous réessayer ?</value>
     <value>Remerciements spéciaux à AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski et tous les fans de Rayman !</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, utilitaires, pistes de musique par niveau, Archive Explorer, traductions de Rayman 2, BinarySerializer</value>
+    <value>Rayman Control Panel, utilitaires, pistes de musique par niveau, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patch manettes</value>
@@ -1179,10 +1182,10 @@ Voulez vous réessayer ?</value>
     <value>Aide générale des utilitaires</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Utilitaire des pistes sonores par niveau, traductions de Rayman 2</value>
+    <value>Utilitaire des pistes sonores par niveau</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Traductions de Rayman 2, programme de traduction portugaise (Portugal)</value>
+    <value>Programme de traduction portugaise (Portugal)</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Remplacement de la vidéo échoué</value>
@@ -1568,8 +1571,11 @@ Voulez vous réessayer ?</value>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>Une nouvelle mise à jour bêta est disponible. Télécharger maintenant ?
 
+Version actuelle : {0}
+Dernière version : {1}
+
 Nouveautés :
-{0}</value>
+{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Désinstaller</value>
@@ -2344,7 +2350,7 @@ Message d'erreur : {1}</value>
     <value>L'archive a été créée avec succès avec {0} fichier(s)</value>
   </data>
   <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
-    <value>Le répertoire d'entrée spécifié n'existe pas</value>
+    <value>Le dossier d'entrée spécifié n'existe pas</value>
   </data>
   <data name="Archive_CreateError" xml:space="preserve">
     <value>Une erreur est survenue lors de la création de l'archive</value>
@@ -2353,7 +2359,7 @@ Message d'erreur : {1}</value>
     <value>Créer Archive</value>
   </data>
   <data name="Archive_CreateInputDir" xml:space="preserve">
-    <value>Répertoire d'entrée</value>
+    <value>Dossier d'entrée</value>
   </data>
   <data name="Archive_CreateOutputFile" xml:space="preserve">
     <value>Fichier de sortie</value>
@@ -2398,7 +2404,7 @@ Message d'erreur : {1}</value>
     <value>Télécharger des fichiers :
 
 1. Pressez le bouton téléchargement pour télécharger manuellement les fichiers.
-2. Déplacez les fichiers vers le répertoire de destination. S'ils sont compressés, extrayez-les.
+2. Déplacez les fichiers vers le dossier de destination. S'ils sont compressés, extrayez-les.
 3. Cliquez sur 'Ok' pour continuer.</value>
   </data>
   <data name="Download_ManualHeader" xml:space="preserve">
@@ -3400,7 +3406,7 @@ Start : Pause</value>
     <value>Le fichier n'existe pas</value>
   </data>
   <data name="BrowseBox_ValidationError_DirExists" xml:space="preserve">
-    <value>Le répertoire n'existe pas</value>
+    <value>Le dossier n'existe pas</value>
   </data>
   <data name="ContextMenu_Cut" xml:space="preserve">
     <value>Couper</value>
@@ -4744,7 +4750,7 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
     <value>Version de format :</value>
   </data>
   <data name="Patcher_LibraryInfo_Location" xml:space="preserve">
-    <value>Répertoire :</value>
+    <value>Dossier :</value>
   </data>
   <data name="Patcher_LibraryInfo_AddedFiles" xml:space="preserve">
     <value>Fichiers ajoutés :</value>
@@ -4789,7 +4795,7 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
     <value>Le patch a été exporté avec succès</value>
   </data>
   <data name="Patcher_ExportError" xml:space="preserve">
-    <value>Une erreur est survenue lors de l'extraction du patch</value>
+    <value>Une erreur est survenue lors de l'export du patch</value>
   </data>
   <data name="Patcher_LoadError" xml:space="preserve">
     <value>Une erreur est survenue au chargement des patchs</value>
@@ -4850,5 +4856,26 @@ Les menus multijoueur eux-mêmes ne sont pas complets étant donné que cette fo
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>Bibliothèque de Patchs de Jeu (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Copier le chemin du fichier</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Copier le chemin du dossier</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Site Web</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Site Web</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>{0} patchs ont été appliqués à ce jeu. Confirmez-vous le retrait du jeu tout en gardant les patchs qui y ont été appliqués ?</value>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>Créer un nouveau chemin</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>Mettre le chemin existant à jour</value>
   </data>
 </root>

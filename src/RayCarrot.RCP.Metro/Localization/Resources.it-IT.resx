@@ -898,8 +898,11 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>È disponibile un nuovo aggiornamento per il download. Scaricare ora?
 
+Versione attuale: {0}
+Ultima versione: {1}
+
 Novità:
-{0}</value>
+{2}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nuova versione trovata</value>
@@ -1168,7 +1171,7 @@ Riprovare?</value>
     <value>Un ringraziamento speciale a AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski e a tutti gli altri fan di Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, utilità, colonna sonora Per-Livello, Archive Explorer, traduzioni Rayman 2, BinarySerializer</value>
+    <value>Rayman Control Panel, utilità, colonna sonora Per-Livello, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patch controller</value>
@@ -1180,10 +1183,10 @@ Riprovare?</value>
     <value>Aiuto generale con le utilità</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Colonna sonora Per-Livello, traduzioni di Rayman 2</value>
+    <value>Colonna sonora Per-Livello</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Traduzioni Rayman 2, traduzione del programma in Portoghese (Portogallo)</value>
+    <value>Traduzione del programma in Portoghese (Portogallo)</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Sostituzione video non riuscita</value>
@@ -1571,8 +1574,11 @@ Per iniziare, modifica le impostazioni che desideri di seguito e premi 'Continua
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>È disponibile un nuovo aggiornamento beta per il download. Scaricare ora?
 
+Versione attuale: {0}
+Ultima versione: {1}
+
 Novità:
-{0}</value>
+{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Disinstalla</value>
@@ -4792,7 +4798,7 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
     <value>La patch è stata esportata con successo</value>
   </data>
   <data name="Patcher_ExportError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'estrazione della patch</value>
+    <value>Si è verificato un errore durante l'esportazione della patch</value>
   </data>
   <data name="Patcher_LoadError" xml:space="preserve">
     <value>Si è verificato un errore durante il caricamento delle patch</value>
@@ -4853,5 +4859,26 @@ I menu multigiocatore stessi non sono completi poiché questa funzione non è ma
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>Libreria delle Patch di Gioco (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Copia il percorso del file</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Copia il percorso della directory</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Sito web</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Sito web</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>Ci sono {0} patch che sono state applicate a questo gioco. Vuoi continuare a rimuovere il gioco e mantenere le patch applicate?</value>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>Crea una nuova patch</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>Aggiorna la patch esistente</value>
   </data>
 </root>

@@ -896,10 +896,13 @@
     <value>Ошибка при получении данных об обновлении</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Новое обновление уже доступно для скачивания. Установить сейчас?
+    <value>Новое обновление уже доступно для скачивания. Установить его сейчас?
+
+Текущая версия: {0}
+Последняя версия: {1}
 
 Что нового:
-{0}</value>
+{2}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Обнаружена новая версия</value>
@@ -1168,7 +1171,7 @@
     <value>Отдельная благодарность AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski и всем другим фанатам Рэймана!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, утилиты, PlayStation-версия саундтрека, Archive Explorer, переводы Rayman 2, BinarySerializer</value>
+    <value>Rayman Control Panel, утилиты, PlayStation-версия саундтрека, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Патчи для контроллера</value>
@@ -1180,10 +1183,10 @@
     <value>Основная помощь с утилитами</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Утилита PlayStation-версии саундтрека, переводы Rayman 2</value>
+    <value>Утилита PlayStation-версии саундтрека</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Переводы Rayman 2, перевод программы на португальский (Португалия)</value>
+    <value>Перевод программы на португальский (Португалия)</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Не удалось заменить видео</value>
@@ -1569,10 +1572,13 @@
     <value>Ссылки</value>
   </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Новое бета-обновление доступно для загрузки. Скачать сейчас?
+    <value>Новое бета-обновление уже доступно для скачивания. Установить его сейчас?
+
+Текущая версия: {0}
+Последняя версия: {1}
 
 Что нового:
-{0}</value>
+{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Удалить</value>
@@ -4850,5 +4856,26 @@ Start: Пауза</value>
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>Библиотека игровых патчей (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Скопировать путь к файлу</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Скопировать путь к папке</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Веб-сайт</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Веб-сайт</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>{0} патчей были применены к этой игре. Вы хотите продолжить удаление игры и сохранить применённые патчи?</value>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>Создать новый патч</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>Обновить существующий патч</value>
   </data>
 </root>

@@ -897,8 +897,11 @@
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>Está disponível uma nova actualização para descarga. Descarregar agora?
 
+Versão actual: {0}
+Versão mais recente: {1}
+
 Notícias:
-{0}</value>
+{2}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nova versão encontrada</value>
@@ -1167,7 +1170,7 @@ Tentar novamente?</value>
     <value>Agradecimentos especiais ao AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski e a todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, Utilitários, Banda sonora-por nível, Archive Explorer, Traduções do Rayman 2, BinarySerializer</value>
+    <value>Rayman Control Panel, Utilitários, Banda sonora-por nível, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patches de comandos</value>
@@ -1179,10 +1182,10 @@ Tentar novamente?</value>
     <value>Ajuda geral com os utilitários</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Utilitário da banda sonora-por nível, Traduções do Rayman 2</value>
+    <value>Utilitário da banda sonora-por nível</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Traduções do Rayman 2, Programa de tradução Portuguesa (Portugal)</value>
+    <value>Programa de tradução Portuguesa (Portugal)</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>A substituição de vídeos falhou</value>
@@ -1568,8 +1571,11 @@ Tentar novamente?</value>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?
 
+Versão actual: {0}
+Versão mais recente: {1}
+
 Notícias:
-{0}</value>
+{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>
@@ -4798,7 +4804,7 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
     <value>O actualizador foi exportado com sucesso</value>
   </data>
   <data name="Patcher_ExportError" xml:space="preserve">
-    <value>Ocorreu um erro ao extrair o corrector</value>
+    <value>Ocorreu um erro ao exportar o corrector</value>
   </data>
   <data name="Patcher_LoadError" xml:space="preserve">
     <value>Ocorreu um erro ao carregar os correctores</value>
@@ -4859,5 +4865,26 @@ Os menus multijogador em si não estão completos devido a esta funcionalidade n
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>Biblioteca de Correctores de Jogo (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Copiar directório de ficheiro</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Copiar caminho do directório</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>Há {0} correcção(ões) em que foi/foram aplicada(s) neste jogo. Queres continuar a remover o jogo e manter as correcções aplicadas? </value>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>Criar correcção nova</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>Actualizar correcção existente</value>
   </data>
 </root>

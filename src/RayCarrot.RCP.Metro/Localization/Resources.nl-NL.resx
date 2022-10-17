@@ -897,8 +897,11 @@
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>Een nieuwe update is beschikbaar om te downloaden. Nu downloaden?
 
+Huidige versie: {0}
+Laatste versie: {1}
+
 Nieuws: 
-{0}</value>
+{2}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nieuwe versie gevonden</value>
@@ -1167,7 +1170,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, BinarySerializer</value>
+    <value>Rayman Control Panel, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1179,10 +1182,10 @@ Opnieuw proberen?</value>
     <value>Algemene ondersteuning bij de hulpprogramma's</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Per-level soundtrack hulpprogramma, Rayman 2 vertalingen</value>
+    <value>Per-level soundtrack hulpprogramma</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Rayman 2 vertalingen, Portugese (Portugal) programmavertaling</value>
+    <value>Portugese (Portugal) programmavertaling</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Vervangen video's mislukt</value>
@@ -1568,8 +1571,11 @@ Opnieuw proberen?</value>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?
 
+Huidige versie: {0}
+Laatste versie: {1}
+
 Nieuws: 
-{0}</value>
+{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Deïnstalleren</value>
@@ -4846,5 +4852,26 @@ Conflicten:
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>Spelpatch Bibliotheek (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Kopieer bestandspad</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Kopieer mappad</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>Er zijn {0} patches toegepast op dit spel. Wil je verdergaan met het deïnstalleren van het spel en de toegepaste patches behouden?</value>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>Creëer nieuwe patch</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>Update bestaande patch</value>
   </data>
 </root>

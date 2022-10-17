@@ -896,10 +896,13 @@
     <value>שגיאה בקבלת חדשות</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>ניתן להוריד עדכון חדש. מורידים עכשיו?
+    <value>עדכון חדש זמין להורדה. להוריד עכשיו?
+
+גרסה נוכחית: {0}
+הגרסה האחרונה: {1}
 
 מה חדש:
-{0} </value>
+{2}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>נמצאה גרסה חדשה</value>
@@ -1166,7 +1169,7 @@
     <value>תודה מיוחדת ל- AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski וכל שאר מעריצי Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, כלי עזר, פסקול פר רמה, Archive Explorer , תרגומי Rayman 2, BinarySerializer</value>
+    <value>Rayman Control Panel, כלי עזר, פסקול פר רמה, Archive Explorer ,BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>תיקוני בקר</value>
@@ -1178,10 +1181,10 @@
     <value>עזרה כללית עם כלי השירות</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>כלי לפסקול פר שלב,תרגומי Rayman 2 </value>
+    <value>כלי לפסקול פר שלב</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>תרגומי Rayman 2 , תרגום התוכנה לפורטוגזית (פורטוגל)</value>
+    <value>תרגום התוכנה לפורטוגזית (פורטוגל)</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>החלפת הסרטון נכשלה</value>
@@ -1569,8 +1572,11 @@
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>עדכון ביטא חדש זמין להורדה. להוריד עכשיו?
 
+גרסה נוכחית: {0}
+הגרסה האחרונה: {1}
+
 מה חדש:
-{0}</value>
+{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>הסר את ההתקנה</value>
@@ -4791,7 +4797,7 @@ Start: הפסק</value>
     <value>הטלאי יוצא בהצלחה</value>
   </data>
   <data name="Patcher_ExportError" xml:space="preserve">
-    <value>אירעה שגיאה בעת ייצוא הטלאי</value>
+    <value>אירעה שגיאה בעת ייצוא התיקון</value>
   </data>
   <data name="Patcher_LoadError" xml:space="preserve">
     <value>אירעה שגיאה בעת טעינת הטלאים</value>
@@ -4852,5 +4858,26 @@ Start: הפסק</value>
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>ספריית טלאי משחק (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>העתק את נתיב הקובץ</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>העתק את נתיב התיקיה</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>אתר</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>אתר</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>ישנם {0} תלאים שהוחלו על המשחק הזה. האם ברצונך להמשיך ולהסיר את המשחק ולהשאיר את התלאים מוחלים?</value>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>צור תלאי חדש</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>עדכן תלאי קיים</value>
   </data>
 </root>

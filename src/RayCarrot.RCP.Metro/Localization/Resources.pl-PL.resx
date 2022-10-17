@@ -900,10 +900,13 @@
     <value>Błąd uzyskiwania informacji</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Nowa aktualizacja jest dostępna do pobrania. Pobrać teraz?
+    <value>Nowa aktualizacja jest dostępna do pobrania. Pobrać teraz? 
+
+Aktualna wersja: {0}
+Najnowsza wersja: {1}
 
 Aktualności: 
-{0}</value>
+{2}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Znaleziono nową wersję</value>
@@ -1178,7 +1181,7 @@ Spróbować ponownie?</value>
     <value>Specjalne podziękowania dla AuToMaNiAk005, Miss-Cerasus, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Robin, Ryemanni, SilverSpade92, Steo, Szymski i wszystkich innych fanów Raymana!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer, Tłumaczenie gry Rayman 2, BinarySerializer</value>
+    <value>Rayman Control Panel, narzędzia, ścieżka dźwiękowa na poziom, Archive Explorer, BinarySerializer</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Łatki dla kontrolera</value>
@@ -1190,10 +1193,10 @@ Spróbować ponownie?</value>
     <value>Ogólna pomoc z narzędziami</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Narzędzie do ścieżki dźwiękowej na poziom, Tłumaczenie gry Rayman 2</value>
+    <value>Narzędzie do ścieżki dźwiękowej na poziom</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Tłumaczenie gry Rayman 2, tłumaczenie portugalskie (Portugalia) programu</value>
+    <value>Tłumaczenie portugalskie (Portugalia) programu</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Zastąpienie wideo nie powiodło się</value>
@@ -1583,8 +1586,11 @@ Spróbować ponownie?</value>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>Nowa aktualizacja beta jest dostępna do pobrania. Pobrać teraz?
 
+Aktualna wersja: {0}
+Najnowsza wersja: {1}
+
 Aktualności: 
-{0}</value>
+{2}</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Odinstaluj
@@ -4881,5 +4887,26 @@ Konflikty:
   </data>
   <data name="Utilities_Format_GamePatchLibraryHeader" xml:space="preserve">
     <value>Biblioteka łatki gry (.gpl)</value>
+  </data>
+  <data name="Archive_CopyFilePath" xml:space="preserve">
+    <value>Skopiuj ścieżkę pliku</value>
+  </data>
+  <data name="Archive_CopyDirPath" xml:space="preserve">
+    <value>Skopiuj ścieżkę folderu</value>
+  </data>
+  <data name="PatchCreator_WebsiteField" xml:space="preserve">
+    <value>Strona internetowa</value>
+  </data>
+  <data name="Patcher_PatchWebsiteLink" xml:space="preserve">
+    <value>Strona internetowa</value>
+  </data>
+  <data name="RemoveGame_PatchWarning" xml:space="preserve">
+    <value>Istnieje {0} łatek, które zostały zastosowane do tej gry. Czy chcesz kontynuować usuwanie gry i zachować zastosowane łatki?</value>
+  </data>
+  <data name="PatchCreator_CreateNew" xml:space="preserve">
+    <value>Utwórz nową łatkę</value>
+  </data>
+  <data name="PatchCreator_UpdateExisting" xml:space="preserve">
+    <value>Zaktualizuj istniejącą łatkę</value>
   </data>
 </root>
