@@ -9,6 +9,8 @@ using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Remove verification and make everything nullable
+
 /// <summary>
 /// The application user data
 /// </summary>

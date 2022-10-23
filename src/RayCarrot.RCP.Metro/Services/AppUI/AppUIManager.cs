@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using BinarySerializer.UbiArt;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Patcher;
@@ -229,9 +228,9 @@ public class AppUIManager
     /// <summary>
     /// Shows a new instance of the game options
     /// </summary>
-    /// <param name="game">The game to show the options for</param>
+    /// <param name="gameInstallation">The game installation to show the options for</param>
     /// <returns>The task</returns>
-    public async Task ShowGameOptionsAsync(Games game)
+    public async Task ShowGameOptionsAsync(GameInstallation gameInstallation)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
@@ -240,8 +239,8 @@ public class AppUIManager
 
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
-        using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(game));
-        await Dialog.ShowWindowAsync(ui, groupNames: game.GetGameInfo().DialogGroupNames.Append(game.ToString()).ToArray());
+        using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(gameInstallation));
+        await Dialog.ShowWindowAsync(ui, groupNames: gameInstallation.GameInfo.DialogGroupNames.Append(gameInstallation.ID).ToArray());
     }
 
     /// <summary>

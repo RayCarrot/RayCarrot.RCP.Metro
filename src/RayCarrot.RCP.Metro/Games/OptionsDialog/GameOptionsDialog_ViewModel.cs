@@ -19,8 +19,8 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game to show the options for</param>
-    public GameOptionsDialog_ViewModel(Games game)
+    /// <param name="gameInstallation">The game installation to show the options for</param>
+    public GameOptionsDialog_ViewModel(GameInstallation gameInstallation)
     {
         // Create the commands
         RemoveCommand = new AsyncRelayCommand(RemoveAsync);
@@ -28,10 +28,10 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
             
         // Get the info
-        GameInfo gameInfo = game.GetGameInfo();
+        GameInfo gameInfo = gameInstallation.GameInfo;
 
         // Set properties
-        Game = game;
+        GameInstallation = gameInstallation;
         DisplayName = gameInfo.DisplayName;
         IconSource = gameInfo.IconSource;
         IsDemo = gameInfo.IsDemo;
@@ -42,7 +42,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         List<GameOptionsDialog_BasePageViewModel> pages = new();
 
         // Add the options page
-        pages.Add(new GameOptionsDialog_OptionsPageViewModel(Game));
+        pages.Add(new GameOptionsDialog_OptionsPageViewModel(gameInstallation.Game));
 
         // Add the config page
         var configViewModel = gameInfo.ConfigPageViewModel;
@@ -58,7 +58,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             pages.Add(emuConfigViewModel);
 
         // Add the utilities page
-        UtilityViewModel[] utilities = App.GetUtilities(Game).Select(x => new UtilityViewModel(x)).ToArray();
+        UtilityViewModel[] utilities = App.GetUtilities(gameInstallation.Game).Select(x => new UtilityViewModel(x)).ToArray();
 
         if (utilities.Any())
             pages.Add(new GameOptionsDialog_UtilitiesPageViewModel(utilities));
@@ -89,9 +89,9 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     public GameOptionsDialog_BasePageViewModel SelectedPage { get; set; }
 
     /// <summary>
-    /// The game
+    /// The game installation
     /// </summary>
-    public Games Game { get; }
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// Indicates if the game can be uninstalled
@@ -151,10 +151,10 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             return;
 
         // Remove the game
-        await Services.Games.RemoveGameAsync(Game, false);
+        await Services.Games.RemoveGameAsync(GameInstallation, false);
 
         // Refresh
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
+        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.GameCollection));
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     /// <returns>The task</returns>
     public async Task UninstallAsync()
     {
-        Logger.Info("{0} is being uninstalled...", Game);
+        Logger.Info("{0} is being uninstalled...", GameInstallation.ID);
 
         // Have user confirm
         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
@@ -176,12 +176,12 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         try
         {
             // Delete the game directory
-            Services.File.DeleteDirectory(Game.GetInstallDir(false));
+            Services.File.DeleteDirectory(GameInstallation.InstallLocation);
 
             Logger.Info("The game install directory was removed");
 
             // Get additional uninstall directories
-            var dirs = Game.GetGameInfo().UninstallDirectories;
+            var dirs = GameInstallation.GameInfo.UninstallDirectories;
 
             if (dirs != null)
             {
@@ -193,7 +193,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             }
 
             // Get additional uninstall files
-            var files = Game.GetGameInfo().UninstallFiles;
+            var files = GameInstallation.GameInfo.UninstallFiles;
 
             if (files != null)
             {
@@ -206,17 +206,17 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Uninstalling game {0}", Game);
+            Logger.Error(ex, "Uninstalling game {0}", GameInstallation.ID);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.UninstallGameError, DisplayName), Resources.UninstallGameErrorHeader);
 
             return;
         }
 
         // Remove the game
-        await Services.Games.RemoveGameAsync(Game, true);
+        await Services.Games.RemoveGameAsync(GameInstallation, true);
 
         // Refresh
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
+        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.GameCollection));
 
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.UninstallGameSuccess, DisplayName), Resources.UninstallGameSuccessHeader);
     }
@@ -238,15 +238,15 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             if (result.CanceledByUser)
                 return;
 
-            var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, Game.GetGameInfo().DisplayName);
+            var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GameInfo.DisplayName);
 
-            Game.GetManager().CreateGameShortcut(shortcutName, result.SelectedDirectory);
+            GameInstallation.Game.GetManager().CreateGameShortcut(shortcutName, result.SelectedDirectory);
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Creating game shortcut {0}", Game);
+            Logger.Error(ex, "Creating game shortcut {0}", GameInstallation.ID);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
         }
     }

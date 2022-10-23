@@ -76,20 +76,20 @@ public class GamesManager
     /// <summary>
     /// Removes the specified game
     /// </summary>
-    /// <param name="game">The game to remove</param>
+    /// <param name="gameInstallation">The game installation to remove</param>
     /// <param name="forceRemove">Indicates if the game should be force removed</param>
     /// <returns>The task</returns>
-    public async Task RemoveGameAsync(Games game, bool forceRemove)
+    public async Task RemoveGameAsync(GameInstallation gameInstallation, bool forceRemove)
     {
         try
         {
             // Get the manager
-            GameManager manager = game.GetManager();
+            GameManager manager = gameInstallation.Game.GetManager();
 
             if (!forceRemove)
             {
                 // Get applied utilities
-                IList<string> appliedUtilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
+                IList<string> appliedUtilities = await gameInstallation.GameInfo.GetAppliedUtilitiesAsync();
 
                 // Warn about applied utilities, if any
                 if (appliedUtilities.Any() && !await MessageUI.DisplayMessageAsync(
@@ -100,7 +100,7 @@ public class GamesManager
 
                 // Get applied patches
                 using Context context = new RCPContext(String.Empty);
-                PatchLibrary library = new(game.GetInstallDir(throwIfNotFound: false), Services.File);
+                PatchLibrary library = new(gameInstallation.InstallLocation, Services.File);
                 PatchLibraryFile? libraryFile = null;
 
                 try
@@ -122,10 +122,10 @@ public class GamesManager
                 Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
 
             // Remove game from installed games if it was installed
-            Data.Game_InstalledGames.Remove(game);
+            Data.Game_InstalledGames.Remove(gameInstallation.Game);
 
             // Remove the game
-            Data.Game_Games.Remove(game);
+            Data.Game_Games.Remove(gameInstallation.Game);
 
             // Run post game removal
             await manager.PostGameRemovedAsync();

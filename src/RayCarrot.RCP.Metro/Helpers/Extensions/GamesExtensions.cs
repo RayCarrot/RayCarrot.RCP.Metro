@@ -210,4 +210,7 @@ public static class GamesExtensions
         var g = Services.App.GamesManager;
         return g.CreateCachedInstance<T>(g.GameInfos[game]);
     }
+
+    // TODO-14: Remove once no longer needed
+    public static GameInstallation GetInstallation(this Games game) => new(game, game.GetInstallDir());
 }

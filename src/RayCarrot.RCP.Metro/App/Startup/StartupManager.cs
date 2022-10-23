@@ -231,7 +231,7 @@ public class StartupManager
                 Resources.GameNotFoundHeader, MessageType.Error);
 
             // Remove the game from app data
-            await Services.Games.RemoveGameAsync(game, true);
+            await Services.Games.RemoveGameAsync(game.GetInstallation(), true);
 
             // Add to removed games
             removed.Add(game);

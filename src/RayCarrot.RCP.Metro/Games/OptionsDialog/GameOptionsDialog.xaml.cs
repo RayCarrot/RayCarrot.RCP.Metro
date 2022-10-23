@@ -17,14 +17,14 @@ public partial class GameOptionsDialog : WindowContentControl
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game to show the options for</param>
-    public GameOptionsDialog(Games game)
+    /// <param name="gameInstallation">The game installation to show the options for</param>
+    public GameOptionsDialog(GameInstallation gameInstallation)
     {
         // Set up UI
         InitializeComponent();
 
         // Create view model
-        ViewModel = new GameOptionsDialog_ViewModel(game);
+        ViewModel = new GameOptionsDialog_ViewModel(gameInstallation);
         DataContext = ViewModel;
 
         // Subscribe to events
@@ -133,7 +133,7 @@ public partial class GameOptionsDialog : WindowContentControl
 
     private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
     {
-        if (e.GameCollectionModified && e.ModifiedGames.Contains(ViewModel.Game))
+        if (e.GameCollectionModified && e.ModifiedGames.Contains(ViewModel.GameInstallation.Game))
         {
             ForceClose = true;
             WindowInstance.Close();
