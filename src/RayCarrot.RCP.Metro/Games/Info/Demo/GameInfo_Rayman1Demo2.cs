@@ -64,7 +64,8 @@ public sealed class GameInfo_Rayman1Demo2 : GameInfo
     /// <summary>
     /// The config page view model, if any is available
     /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_Rayman1_ViewModel(Game);
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_Rayman1_ViewModel(Game);
 
     /// <summary>
     /// The options UI, if any is available

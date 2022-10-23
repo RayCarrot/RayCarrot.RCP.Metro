@@ -38,7 +38,8 @@ public sealed class GameInfo_RaymanRavingRabbids : GameInfo
     /// <summary>
     /// The config page view model, if any is available
     /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanRavingRabbids_ViewModel(Game);
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_RaymanRavingRabbids_ViewModel(gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanRavingRabbids().Yield();
 

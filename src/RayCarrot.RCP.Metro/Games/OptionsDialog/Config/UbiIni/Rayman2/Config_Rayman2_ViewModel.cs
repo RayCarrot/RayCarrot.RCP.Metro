@@ -19,10 +19,7 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Config_Rayman2_ViewModel() : base(Games.Rayman2)
+    public Config_Rayman2_ViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     {
         // Set default properties
         IsHorizontalWidescreen = true;
@@ -278,10 +275,10 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
             return;
 
         // Check if the aspect ratio has been modified
-        if (await GetIsWidescreenHackAppliedAsync() == true)
+        if (await GetIsWidescreenHackAppliedAsync(GameInstallation) == true)
             WidescreenSupport = true;
 
-        if (GetCurrentDinput() == R2Dinput.Mapping)
+        if (GetCurrentDinput(GameInstallation) == R2Dinput.Mapping)
         {
             HashSet<Config_Rayman2_ButtonMappingItem> result;
 
@@ -290,7 +287,7 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
             try
             {
                 // Load current mapping
-                result = await Config_Rayman2_ButtonMappingManager.LoadCurrentMappingAsync(GetDinputPath());
+                result = await Config_Rayman2_ButtonMappingManager.LoadCurrentMappingAsync(GetDinputPath(GameInstallation));
             }
             catch (Exception ex)
             {
@@ -344,12 +341,12 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
     protected override async Task<bool> OnSetupAsync()
     {
         // Get the config path
-        ConfigPath = GetUbiIniPath();
+        ConfigPath = GetUbiIniPath(GameInstallation);
 
         Logger.Info("The ubi.ini path has been retrieved as {0}", ConfigPath);
 
         // Get the dinput type
-        var dt = CanModifyGame ? GetCurrentDinput() : R2Dinput.Unknown;
+        var dt = CanModifyGame ? GetCurrentDinput(GameInstallation) : R2Dinput.Unknown;
 
         Logger.Info("The dinput type has been retrieved as {0}", dt);
 
@@ -359,10 +356,10 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
         if (!ConfigPath.FileExists)
         {
             // Check if the game is the GOG version, in which case the file is located in the install directory
-            bool isGOG = (Games.Rayman2.GetInstallDir(false) + "goggame.sdb").FileExists;
+            bool isGOG = (GameInstallation.InstallLocation + "goggame.sdb").FileExists;
 
             // Get the new file path
-            var newFile = isGOG ? Games.Rayman2.GetInstallDir(false) + "ubi.ini" : AppFilePaths.UbiIniPath1;
+            var newFile = isGOG ? GameInstallation.InstallLocation + "ubi.ini" : AppFilePaths.UbiIniPath1;
 
             try
             {
@@ -399,8 +396,8 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
         try
         {
             // Get the current dinput type
-            var dt = GetCurrentDinput();
-            var path = GetDinputPath();
+            var dt = GetCurrentDinput(GameInstallation);
+            var path = GetDinputPath(GameInstallation);
 
             Logger.Info("The dinput type has been retrieved as {0}", dt);
 
@@ -473,7 +470,7 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
             Logger.Info("The Rayman 2 aspect ratio is being set...");
 
             // Get the file path
-            FileSystemPath path = Games.Rayman2.GetInstallDir(false) + Games.Rayman2.GetGameInfo().DefaultFileName;
+            FileSystemPath path = GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName;
 
             // Make sure the file exists
             if (!path.FileExists)
@@ -671,19 +668,21 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
     /// <summary>
     /// Gets the current dinput.dll path for Rayman 2
     /// </summary>
+    /// <param name="gameInstallation">The game installation to get the path for</param>
     /// <returns>The path</returns>
-    private static FileSystemPath GetDinputPath()
+    private static FileSystemPath GetDinputPath(GameInstallation gameInstallation)
     {
-        return Games.Rayman2.GetInstallDir(false) + "dinput.dll";
+        return gameInstallation.InstallLocation + "dinput.dll";
     }
 
     /// <summary>
     /// Gets the current config path for the ubi.ini file
     /// </summary>
+    /// <param name="gameInstallation">The game installation to get the path for</param>
     /// <returns>The path</returns>
-    private static FileSystemPath GetUbiIniPath()
+    private static FileSystemPath GetUbiIniPath(GameInstallation gameInstallation)
     {
-        var path1 = Games.Rayman2.GetInstallDir(false) + "ubi.ini";
+        var path1 = gameInstallation.InstallLocation + "ubi.ini";
 
         if (path1.FileExists)
             return path1;
@@ -703,10 +702,11 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
     /// <summary>
     /// Gets the current dinput file used for Rayman 2
     /// </summary>
+    /// <param name="gameInstallation">The game installation to get the file for</param>
     /// <returns>The current dinput file used</returns>
-    public static R2Dinput GetCurrentDinput()
+    public static R2Dinput GetCurrentDinput(GameInstallation gameInstallation)
     {
-        var path = GetDinputPath();
+        var path = GetDinputPath(gameInstallation);
 
         if (!path.FileExists)
             return R2Dinput.None;
@@ -733,13 +733,14 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
     /// <summary>
     /// Gets a value indicating if a widescreen patch has been applied
     /// </summary>
+    /// <param name="gameInstallation">The game installation to check</param>
     /// <returns>True if a widescreen patch has been applied, false if it has not. Null if an error occurred while checking.</returns>
-    public static async Task<bool?> GetIsWidescreenHackAppliedAsync()
+    public static async Task<bool?> GetIsWidescreenHackAppliedAsync(GameInstallation gameInstallation)
     {
         try
         {
             // Get the file path
-            FileSystemPath path = Games.Rayman2.GetInstallDir() + Games.Rayman2.GetGameInfo().DefaultFileName;
+            FileSystemPath path = gameInstallation.InstallLocation + gameInstallation.GameInfo.DefaultFileName;
 
             // Get the location
             var location = GetAspectRatioLocation(path);

@@ -13,17 +13,11 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Config_UbiArt_ViewModel(Games game)
+    public Config_UbiArt_ViewModel(GameInstallation gameInstallation, string registryKey)
     {
-        // Check the game
-        if (game != Games.RaymanOrigins && game != Games.RaymanLegends)
-            throw new ArgumentOutOfRangeException(nameof(game), game, $"{nameof(Config_UbiArt_ViewModel)} only supports Rayman Origins or Rayman Legends");
-
         // Get the game
-        Game = game;
+        GameInstallation = gameInstallation;
+        RegistryKey = registryKey;
     }
 
     #endregion
@@ -53,9 +47,14 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     #region Public Properties
 
     /// <summary>
-    /// The game
+    /// The game installation
     /// </summary>
-    public Games Game { get; }
+    public GameInstallation GameInstallation { get; }
+
+    /// <summary>
+    /// The registry key for the game
+    /// </summary>
+    public string RegistryKey { get; }
 
     /// <summary>
     /// True if the game should run in fullscreen,
@@ -83,7 +82,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     private RegistryKey? GetKey(bool writable)
     {
         // Get the key path
-        var keyPath = RegistryHelpers.CombinePaths(Game == Games.RaymanOrigins ? AppFilePaths.RaymanOriginsRegistryKey : AppFilePaths.RaymanLegendsRegistryKey, "Settings");
+        string keyPath = RegistryHelpers.CombinePaths(RegistryKey, "Settings");
 
         // Create the key if it doesn't exist and should be written to
         if (!RegistryHelpers.KeyExists(keyPath) && writable)
@@ -113,13 +112,14 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", Game);
+        Logger.Info("{0} config is being set up", GameInstallation.ID);
 
         using (RegistryKey? key = GetKey(false))
         {
-            Logger.Info(key != null
-                ? $"The key {key.Name} has been opened"
-                : $"The key for {Game} does not exist. Default values will be used.");
+            if (key != null)
+                Logger.Info("The key {0} has been opened", key.Name);
+            else
+                Logger.Info("The key for {0} does not exist. Default values will be used.", GameInstallation.ID);
 
             GraphicsMode.GetAvailableResolutions();
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(
@@ -144,7 +144,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", Game);
+        Logger.Info("{0} configuration is saving...", GameInstallation.ID);
 
         try
         {
@@ -160,14 +160,14 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
                 key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
             }
 
-            Logger.Info("{0} configuration has been saved", Game);
+            Logger.Info("{0} configuration has been saved", GameInstallation.ID);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} registry data", Game);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+            Logger.Error(ex, "Saving {0} registry data", GameInstallation.ID);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameInfo.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
     }

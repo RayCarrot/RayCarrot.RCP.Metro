@@ -89,7 +89,7 @@ public class GamesManager
             if (!forceRemove)
             {
                 // Get applied utilities
-                IList<string> appliedUtilities = await gameInstallation.GameInfo.GetAppliedUtilitiesAsync();
+                IList<string> appliedUtilities = await gameInstallation.GameInfo.GetAppliedUtilitiesAsync(gameInstallation);
 
                 // Warn about applied utilities, if any
                 if (appliedUtilities.Any() && !await MessageUI.DisplayMessageAsync(

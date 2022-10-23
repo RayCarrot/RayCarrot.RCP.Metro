@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Replace with MVVM messenger
+
 /// <summary>
 /// The event arguments for when a refresh is required
 /// </summary>

@@ -43,10 +43,8 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     /// </summary>
     public override FrameworkElement OptionsUI => new GameOptions_FiestaRun_Control();
 
-    /// <summary>
-    /// The config page view model, if any is available
-    /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanFiestaRun_ViewModel();
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_RaymanFiestaRun_ViewModel(gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels
     {

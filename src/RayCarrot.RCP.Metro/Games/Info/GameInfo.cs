@@ -83,12 +83,18 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public virtual FrameworkElement OptionsUI => null;
+    public virtual FrameworkElement OptionsUI => null; // TODO-14: Don't use UI elements like this - use vm + template instead!
+
+#nullable enable
 
     /// <summary>
-    /// The config page view model, if any is available
+    /// Gets the config page view model, if any is available
     /// </summary>
-    public virtual GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => null;
+    /// <param name="gameInstallation">The game installation to get the config page view model for</param>
+    /// <returns>The config page view model of null if none is available</returns>
+    public virtual GameOptionsDialog_ConfigPageViewModel? GetConfigPageViewModel(GameInstallation gameInstallation) => null;
+
+#nullable disable
 
     /// <summary>
     /// The progression game view models
@@ -187,10 +193,11 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// Gets the applied utilities for the specified game
     /// </summary>
+    /// <param name="gameInstallation">The game installation to get the utilities for</param>
     /// <returns>The applied utilities</returns>
-    public virtual Task<IList<string>> GetAppliedUtilitiesAsync()
+    public virtual Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
     {
-        return Task.FromResult<IList<string>>(Services.App.GetUtilities(Game).SelectMany(x => x.GetAppliedUtilities()).ToArray());
+        return Task.FromResult<IList<string>>(Services.App.GetUtilities(gameInstallation).SelectMany(x => x.GetAppliedUtilities()).ToArray());
     }
 
     #endregion

@@ -41,7 +41,8 @@ public sealed class GameInfo_Rayman3 : GameInfo
     /// <summary>
     /// The config page view model, if any is available
     /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_Rayman3_ViewModel();
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_Rayman3_ViewModel(gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_Rayman3().Yield();
 

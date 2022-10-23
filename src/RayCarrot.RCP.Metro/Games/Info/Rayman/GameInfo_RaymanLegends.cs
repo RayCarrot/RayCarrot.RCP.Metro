@@ -41,7 +41,8 @@ public sealed class GameInfo_RaymanLegends : GameInfo
     /// <summary>
     /// The config page view model, if any is available
     /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_UbiArt_ViewModel(Game);
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanLegendsRegistryKey);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanLegends().Yield();
 

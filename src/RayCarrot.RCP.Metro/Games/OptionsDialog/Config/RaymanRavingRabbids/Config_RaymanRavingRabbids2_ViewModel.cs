@@ -5,12 +5,11 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_ViewModel
+public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_BaseViewModel
 {
     #region Constructor
 
-    public Config_RaymanRavingRabbids2_ViewModel(Games game) : base(game)
-    { }
+    public Config_RaymanRavingRabbids2_ViewModel(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     #endregion
 
@@ -63,7 +62,7 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", Game);
+        Logger.Info("{0} config is being set up", GameInstallation.ID);
 
         GraphicsMode.MinGraphicsWidth = 800;
         GraphicsMode.MinGraphicsHeight = 600;
@@ -100,7 +99,7 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", Game);
+        Logger.Info("{0} configuration is saving...", GameInstallation.ID);
 
         try
         {
@@ -120,13 +119,13 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
             //    key.SetValue(Value_DefaultController, UseController ? 1 : 0);
             //});
 
-            Logger.Info("{0} configuration has been saved", Game);
+            Logger.Info("{0} configuration has been saved", GameInstallation.ID);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} registry data", Game);
+            Logger.Error(ex, "Saving {0} registry data", GameInstallation.ID);
 
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
             return false;

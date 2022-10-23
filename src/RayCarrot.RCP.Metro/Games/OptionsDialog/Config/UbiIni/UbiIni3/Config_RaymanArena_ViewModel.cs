@@ -11,10 +11,7 @@ public class Config_RaymanArena_ViewModel : Config_UbiIni3_BaseViewModel<UbiIniD
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Config_RaymanArena_ViewModel() : base(Games.RaymanArena)
+    public Config_RaymanArena_ViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     { }
 
     #endregion

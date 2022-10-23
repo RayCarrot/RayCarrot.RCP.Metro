@@ -11,7 +11,7 @@ public class Config_RaymanMDemo_ViewModel : Config_RaymanM_ViewModel
 {
     #region Constructor
 
-    public Config_RaymanMDemo_ViewModel() : base(Games.Demo_RaymanM) { }
+    public Config_RaymanMDemo_ViewModel(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     #endregion
 

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -8,10 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class Config_RaymanFiestaRun_ViewModel : Config_UbiArtRun_BaseViewModel
 {
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Config_RaymanFiestaRun_ViewModel() : base(Games.RaymanFiestaRun) 
+    public Config_RaymanFiestaRun_ViewModel(GameInstallation gameInstallation) : base(gameInstallation) 
     { }
 
     protected override Task OnGameInfoModified() => LoadPageAsync();

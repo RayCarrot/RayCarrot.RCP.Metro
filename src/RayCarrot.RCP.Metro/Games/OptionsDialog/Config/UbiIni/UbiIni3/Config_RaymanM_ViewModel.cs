@@ -14,8 +14,8 @@ public class Config_RaymanM_ViewModel : Config_UbiIni3_BaseViewModel<UbiIniData_
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game</param>
-    public Config_RaymanM_ViewModel(Games game = Games.RaymanM) : base(game)
+    /// <param name="gameInstallation">The game installation</param>
+    public Config_RaymanM_ViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     {
 
     }

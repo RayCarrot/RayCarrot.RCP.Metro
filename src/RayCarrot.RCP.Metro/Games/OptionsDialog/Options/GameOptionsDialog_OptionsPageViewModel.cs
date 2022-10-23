@@ -10,21 +10,18 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 {
     #region Constructor
 
-    public GameOptionsDialog_OptionsPageViewModel(Games game) 
+    public GameOptionsDialog_OptionsPageViewModel(GameInstallation gameInstallation) 
         : base(new ResourceLocString(nameof(Resources.GameOptions_Options)), GenericIconKind.GameOptions_General)
     {
-        // Get the info
-        var gameInfo = game.GetGameInfo();
-
         // Set properties
-        Game = game;
+        GameInstallation = gameInstallation;
         GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
-        OptionsContent = gameInfo.OptionsUI;
+        OptionsContent = gameInstallation.GameInfo.OptionsUI;
 
         LaunchModeChangedCommand = new AsyncRelayCommand(LaunchModeChangedAsync);
 
         // Check if the launch mode can be changed
-        CanChangeLaunchMode = Game.GetManager().SupportsGameLaunchMode;
+        CanChangeLaunchMode = gameInstallation.Game.GetManager().SupportsGameLaunchMode;
 
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(GameInfoItems, this);
@@ -47,9 +44,9 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
     #region Public Properties
 
     /// <summary>
-    /// The game
+    /// The game installation
     /// </summary>
-    public Games Game { get; }
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The game info items
@@ -71,7 +68,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
     /// <summary>
     /// The game data
     /// </summary>
-    public UserData_GameData GameData => Services.Data.Game_Games.TryGetValue(Game);
+    public UserData_GameData GameData => Services.Data.Game_Games.TryGetValue(GameInstallation.Game);
 
     /// <summary>
     /// The game's launch mode
@@ -105,7 +102,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
     protected void RefreshGameInfo()
     {
         GameInfoItems.Clear();
-        GameInfoItems.AddRange(Game.GetManager().GetGameInfoItems);
+        GameInfoItems.AddRange(GameInstallation.Game.GetManager().GetGameInfoItems);
     }
 
     protected override object GetPageUI() => new GameOptions_Control()
@@ -119,7 +116,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
     public async Task LaunchModeChangedAsync()
     {
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.LaunchInfo));
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.LaunchInfo));
     }
 
     public override void Dispose()

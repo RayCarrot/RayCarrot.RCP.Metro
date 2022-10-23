@@ -347,7 +347,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
             var info = game.GetGameInfo();
 
             if (info.IsAdded)
-                lines.AddRange(from utility in await info.GetAppliedUtilitiesAsync() select $"{utility} ({info.DisplayName})");
+                lines.AddRange(from utility in await info.GetAppliedUtilitiesAsync(game.GetInstallation()) select $"{utility} ({info.DisplayName})");
         }
 
         await MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);

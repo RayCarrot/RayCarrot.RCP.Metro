@@ -210,14 +210,14 @@ public class AppViewModel : BaseViewModel
     /// <summary>
     /// Gets new instances of utilities for a specific game
     /// </summary>
-    /// <param name="game">The game to get the utilities for</param>
+    /// <param name="gameInstallation">The game installation to get the utilities for</param>
     /// <returns>The utilities instances</returns>
-    public IEnumerable<Utility> GetUtilities(Games game)
+    public IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) // TODO-14: Move this to the GamesManager service
     {
-        var utilities = GamesManager.LocalUtilities.TryGetValue(game);
+        var utilities = GamesManager.LocalUtilities.TryGetValue(gameInstallation.Game);
 
         if (utilities == null)
-            return Array.Empty<Utility>(); 
+            return Enumerable.Empty<Utility>(); 
 
         return utilities.
             // Create a new instance of each utility

@@ -25,7 +25,7 @@ public class GameInstallation
     #region Public Properties
 
     public Games Game { get; }
-    public FileSystemPath InstallLocation { get; }
+    public FileSystemPath InstallLocation { get; } // TODO-14: Rename to GamePath?
     public Dictionary<string, string> AdditionalData { get; }
 
     // TODO-14: Eventually change this

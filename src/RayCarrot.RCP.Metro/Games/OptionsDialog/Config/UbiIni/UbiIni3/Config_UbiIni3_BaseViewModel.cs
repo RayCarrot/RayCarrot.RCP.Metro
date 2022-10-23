@@ -20,8 +20,8 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game</param>
-    protected Config_UbiIni3_BaseViewModel(Games game) : base(game)
+    /// <param name="gameInstallation">The game installation</param>
+    protected Config_UbiIni3_BaseViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     {
         // Set the available modem quality options
         ModemQualityOptions = new string[]
@@ -38,6 +38,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
 
     #region Logger
 
+    // ReSharper disable once StaticMemberInGenericType
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
@@ -369,7 +370,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         if (CanRemoveDiscCheck)
         {
             // Get the game file path
-            var gameFile = Game.GetInstallDir(false) + Game.GetGameInfo().DefaultFileName;
+            var gameFile = GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName;
 
             // Check if it exists
             if (gameFile.FileExists)
@@ -483,7 +484,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Saving {0} ubi.ini secondary data", Game);
+                Logger.Error(ex, "Saving {0} ubi.ini secondary data", GameInstallation.ID);
             }
         }
 
@@ -518,7 +519,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Saving {0} dinput hack data", Game);
+                Logger.Error(ex, "Saving {0} dinput hack data", GameInstallation.ID);
                 throw;
             }
 
@@ -526,7 +527,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
             {
                 try
                 {
-                    Patcher = new FilePatcher(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, Patches);
+                    Patcher = new FilePatcher(GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName, Patches);
 
                     FilePatcher.PatchState patchState = Patcher.GetPatchState();
 
@@ -545,7 +546,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, "Saving {0} disc check modification", Game);
+                    Logger.Error(ex, "Saving {0} disc check modification", GameInstallation.ID);
                     throw;
                 }
             }
@@ -588,7 +589,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Getting {0} dinput file size", Game);
+            Logger.Error(ex, "Getting {0} dinput file size", GameInstallation.ID);
             return DinputType.Unknown;
         }
     }
@@ -599,7 +600,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
     /// <returns>The path</returns>
     private FileSystemPath GetDinputPath()
     {
-        return Game.GetInstallDir(false) + "dinput8.dll";
+        return GameInstallation.InstallLocation + "dinput8.dll";
     }
 
     #endregion

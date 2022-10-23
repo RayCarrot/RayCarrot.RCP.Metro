@@ -31,3 +31,10 @@ public enum GameType
     /// </summary>
     EducationalDosBox,
 }
+
+// TODO-14: We want to change how this is handled. Some ideas:
+// 
+// 
+// GameType: Win32, Steam, Package, Emulated
+// 
+// GamePlatform: MS_DOS, Win32, Steam, Package, PS1, PS2 etc. (where each enum has a list of available manager types or something)

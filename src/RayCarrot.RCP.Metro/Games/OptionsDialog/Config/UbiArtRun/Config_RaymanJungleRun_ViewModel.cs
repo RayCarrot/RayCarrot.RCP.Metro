@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -10,10 +9,7 @@ public class Config_RaymanJungleRun_ViewModel : Config_UbiArtRun_BaseViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Config_RaymanJungleRun_ViewModel() : base(Games.RaymanJungleRun)
+    public Config_RaymanJungleRun_ViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     { }
 
     #endregion

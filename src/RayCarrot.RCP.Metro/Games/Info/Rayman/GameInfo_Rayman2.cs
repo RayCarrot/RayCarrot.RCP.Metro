@@ -42,7 +42,8 @@ public sealed class GameInfo_Rayman2 : GameInfo
     /// <summary>
     /// The config page view model, if any is available
     /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_Rayman2_ViewModel();
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_Rayman2_ViewModel(gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_Rayman2().Yield();
 
@@ -119,19 +120,17 @@ public sealed class GameInfo_Rayman2 : GameInfo
 
     #region Public Override Methods
 
-    /// <summary>
-    /// Gets the applied utilities for the specified game
-    /// </summary>
-    /// <returns>The applied utilities</returns>
-    public override async Task<IList<string>> GetAppliedUtilitiesAsync()
+    public override async Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
     {
+        // TODO-14: These are not utilities - these are game modifications caused by the config
+
         // Create the output
         var output = new List<string>();
 
-        if (await Config_Rayman2_ViewModel.GetIsWidescreenHackAppliedAsync() == true)
+        if (await Config_Rayman2_ViewModel.GetIsWidescreenHackAppliedAsync(gameInstallation) == true)
             output.Add(Resources.Config_WidescreenSupport);
 
-        var dinput = Config_Rayman2_ViewModel.GetCurrentDinput();
+        var dinput = Config_Rayman2_ViewModel.GetCurrentDinput(gameInstallation);
 
         if (dinput == Config_Rayman2_ViewModel.R2Dinput.Controller)
             output.Add(Resources.Config_UseController);
@@ -140,7 +139,7 @@ public sealed class GameInfo_Rayman2 : GameInfo
             output.Add(Resources.Config_ButtonMapping);
 
         // Get other utilities
-        output.AddRange(await base.GetAppliedUtilitiesAsync());
+        output.AddRange(await base.GetAppliedUtilitiesAsync(gameInstallation));
 
         return output;
     }

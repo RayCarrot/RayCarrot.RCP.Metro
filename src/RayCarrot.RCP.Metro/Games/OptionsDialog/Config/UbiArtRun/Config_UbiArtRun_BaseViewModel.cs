@@ -1,5 +1,4 @@
-﻿#nullable disable
-using NLog;
+﻿using NLog;
 using System;
 using System.IO;
 using System.Linq;
@@ -17,11 +16,11 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game</param>
-    protected Config_UbiArtRun_BaseViewModel(Games game)
+    /// <param name="gameInstallation">The game installation</param>
+    protected Config_UbiArtRun_BaseViewModel(GameInstallation gameInstallation)
     {
-        // Create properties
-        Game = game;
+        // Set properties
+        GameInstallation = gameInstallation;
     }
 
     #endregion
@@ -56,7 +55,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <summary>
     /// The game
     /// </summary>
-    protected Games Game { get; }
+    protected GameInstallation GameInstallation { get; }
 
     #endregion
 
@@ -108,7 +107,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <param name="fileName">The file name, relative to the current save data</param>
     /// <param name="length">The amount of bytes to read</param>
     /// <returns>The bytes or null if not found</returns>
-    protected virtual byte[] ReadMultiByteFile(FileSystemPath fileName, int length)
+    protected virtual byte[]? ReadMultiByteFile(FileSystemPath fileName, int length)
     {
         // Get the file path
         var filePath = SaveDir + fileName;
@@ -178,10 +177,10 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <returns>The task</returns>
     protected override async Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", Game);
+        Logger.Info("{0} config is being set up", GameInstallation.ID);
 
         // Get the save directory
-        SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
+        SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + GameInstallation.Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
 
         // Read game specific values
         await SetupGameAsync();
@@ -202,7 +201,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", Game);
+        Logger.Info("{0} configuration is saving...", GameInstallation.ID);
 
         try
         {
@@ -219,14 +218,14 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
                 SoundVolume
             });
 
-            Logger.Info("{0} configuration has been saved", Game);
+            Logger.Info("{0} configuration has been saved", GameInstallation.ID);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} config", Game);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+            Logger.Error(ex, "Saving {0} config", GameInstallation.ID);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameInfo.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
     }

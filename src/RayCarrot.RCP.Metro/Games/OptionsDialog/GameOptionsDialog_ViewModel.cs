@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Nito.AsyncEx;
+﻿using Nito.AsyncEx;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -42,30 +41,30 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         List<GameOptionsDialog_BasePageViewModel> pages = new();
 
         // Add the options page
-        pages.Add(new GameOptionsDialog_OptionsPageViewModel(gameInstallation.Game));
+        pages.Add(new GameOptionsDialog_OptionsPageViewModel(gameInstallation));
 
         // Add the config page
-        var configViewModel = gameInfo.ConfigPageViewModel;
+        GameOptionsDialog_ConfigPageViewModel? configViewModel = gameInfo.GetConfigPageViewModel(gameInstallation);
 
         if (configViewModel != null)
             pages.Add(configViewModel);
 
         // Add the emulator config page
         Emulator emu = gameInfo.Emulator;
-        GameOptionsDialog_EmulatorConfigPageViewModel emuConfigViewModel = emu?.GameConfigViewModel;
+        GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GameConfigViewModel;
 
         if (emuConfigViewModel != null)
             pages.Add(emuConfigViewModel);
 
         // Add the utilities page
-        UtilityViewModel[] utilities = App.GetUtilities(gameInstallation.Game).Select(x => new UtilityViewModel(x)).ToArray();
+        UtilityViewModel[] utilities = App.GetUtilities(gameInstallation).Select(x => new UtilityViewModel(x)).ToArray();
 
         if (utilities.Any())
             pages.Add(new GameOptionsDialog_UtilitiesPageViewModel(utilities));
 
         Pages = pages.ToArray();
 
-        SelectedPage = Pages.FirstOrDefault();
+        SelectedPage = Pages.First();
     }
 
     #endregion
@@ -259,7 +258,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         using (await PageLoadLock.LockAsync())
         {
             // Get the selected page
-            var page = SelectedPage;
+            GameOptionsDialog_BasePageViewModel page = SelectedPage;
 
             // Ignore if already loaded
             if (page.IsLoaded)
@@ -296,7 +295,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     public void Dispose()
     {
         // Dispose
-        Pages?.DisposeAll();
+        Pages.DisposeAll();
     }
 
     #endregion

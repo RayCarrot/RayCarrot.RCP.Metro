@@ -10,7 +10,7 @@
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              IsTabStop="False"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance local:Config_RaymanRavingRabbids_ViewModel}">
+             d:DataContext="{d:DesignInstance local:Config_RaymanRavingRabbids_BaseViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
             <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />

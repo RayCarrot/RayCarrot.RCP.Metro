@@ -41,10 +41,8 @@ public sealed class GameInfo_EducationalDos : GameInfo
     /// </summary>
     public override string DefaultFileName => Services.Data.Game_EducationalDosBoxGames?.FirstOrDefault()?.LaunchName;
 
-    /// <summary>
-    /// The config page view model, if any is available
-    /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanEduDos_ViewModel(Game);
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_RaymanEduDos_ViewModel(Game);
 
     /// <summary>
     /// The options UI, if any is available

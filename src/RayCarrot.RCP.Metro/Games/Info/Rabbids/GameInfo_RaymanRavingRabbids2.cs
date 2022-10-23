@@ -41,10 +41,8 @@ public sealed class GameInfo_RaymanRavingRabbids2 : GameInfo
     /// </summary>
     public override FrameworkElement OptionsUI => new GameOptions_RavingRabbids2_Control();
 
-    /// <summary>
-    /// The config page view model, if any is available
-    /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanRavingRabbids2_ViewModel(Game);
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_RaymanRavingRabbids2_ViewModel(gameInstallation);
 
     /// <summary>
     /// Gets the file links for the game
