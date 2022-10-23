@@ -52,11 +52,6 @@ public sealed class GameInfo_Rayman1 : GameInfo
     public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanPC_1_21", "r1/pc_121");
 
     /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
-
-    /// <summary>
     /// An optional emulator to use for the game
     /// </summary>
     public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.DosBox);

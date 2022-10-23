@@ -156,6 +156,9 @@ public class AppViewModel : BaseViewModel
     /// Gets a collection of the available <see cref="Games"/>
     /// </summary>
     public IEnumerable<Games> GetGames => Enum.GetValues(typeof(Games)).Cast<Games>();
+    
+    // TODO-14: Move to GamesManager
+    public IEnumerable<GameInstallation> GetInstalledGames => GetGames.Where(x => x.IsAdded()).Select(x => x.GetInstallation());
 
     /// <summary>
     /// Gets a collection of the available <see cref="Games"/> categorized

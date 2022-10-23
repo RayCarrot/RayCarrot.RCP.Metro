@@ -55,12 +55,12 @@ public sealed class GameInfo_Rayman2 : GameInfo
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
+    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
-        new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "GXSetup.exe"),
-        new GameFileLink(Resources.GameLink_R2nGlide, Game.GetInstallDir() + "nglide_config.exe"),
-        new GameFileLink(Resources.GameLink_R2dgVoodoo, Game.GetInstallDir() + "dgVoodooCpl.exe"),
-        new GameFileLink(Resources.GameLink_R2Fix, Game.GetInstallDir() + "R2FixCfg.exe"),
+        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "GXSetup.exe"),
+        new(Resources.GameLink_R2nGlide, gameInstallation.InstallLocation + "nglide_config.exe"),
+        new(Resources.GameLink_R2dgVoodoo, gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
+        new(Resources.GameLink_R2Fix, gameInstallation.InstallLocation + "R2FixCfg.exe"),
     };
 
     /// <summary>

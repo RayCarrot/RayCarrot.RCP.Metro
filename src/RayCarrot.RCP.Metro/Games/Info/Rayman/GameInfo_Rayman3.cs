@@ -54,9 +54,9 @@ public sealed class GameInfo_Rayman3 : GameInfo
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
+    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
-        new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "R3_Setup_DX8.exe")
+        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "R3_Setup_DX8.exe")
     };
 
     /// <summary>

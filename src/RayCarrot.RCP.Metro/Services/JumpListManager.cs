@@ -52,11 +52,9 @@ public class JumpListManager
                 }
 
                 // Create a jump list
-                new JumpList(AppViewModel.GetGames.
-                        // Add only games which have been added
-                        Where(x => GamesExtensions.IsAdded(x)).
+                new JumpList(AppViewModel.GetInstalledGames.
                         // Get the items for each game
-                        Select(x => x.GetManager().GetJumpListItems()).
+                        Select(x => x.Game.GetManager().GetJumpListItems()).
                         // Select into single collection
                         SelectMany(x => x).
                         // Keep only the included items

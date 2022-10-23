@@ -40,11 +40,6 @@ public sealed class GameInfo_RaymanJungleRun : GameInfo
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanJungleRun().Yield();
 
-    /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
-
     public override bool AllowPatching => false;
 
     #endregion

@@ -58,11 +58,6 @@ public sealed class GameInfo_RaymanByHisFans : GameInfo
     public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanByHisFansPC", "r1/pc_fan");
 
     /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
-
-    /// <summary>
     /// Indicates if the game has archives which can be opened
     /// </summary>
     public override bool HasArchives => true;

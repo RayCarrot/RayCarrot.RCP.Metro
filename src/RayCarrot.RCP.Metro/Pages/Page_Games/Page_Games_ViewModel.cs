@@ -159,7 +159,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 }
 
                 // Get the Game links
-                var links = gameInfo.GetGameFileLinks?.Where(x => x.Path.FileExists).ToArray();
+                var links = gameInfo.GetGameFileLinks(gameInstallation)?.Where(x => x.Path.FileExists).ToArray();
 
                 // Add links if there are any
                 if (links?.Any() ?? false)

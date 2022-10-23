@@ -41,10 +41,5 @@ public sealed class GameInfo_RabbidsGoHome : GameInfo
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RabbidsGoHome_ViewModel();
 
-    /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
-
     #endregion
 }

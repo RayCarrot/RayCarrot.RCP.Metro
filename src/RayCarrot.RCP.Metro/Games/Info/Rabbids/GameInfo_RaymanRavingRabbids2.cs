@@ -47,9 +47,10 @@ public sealed class GameInfo_RaymanRavingRabbids2 : GameInfo
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
+    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
-        new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "SettingsApplication.exe", Arguments: $"/{Services.Data.Game_RRR2LaunchMode.ToString().ToLower()}")
+        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "SettingsApplication.exe", 
+            Arguments: $"/{Services.Data.Game_RRR2LaunchMode.ToString().ToLower()}")
     };
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanRavingRabbids2().Yield();

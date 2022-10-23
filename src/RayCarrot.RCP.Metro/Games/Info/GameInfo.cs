@@ -10,6 +10,7 @@ using RayCarrot.RCP.Metro.Archive;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Clean up. Move code out of here. Rename to GameDescriptor? Move some things to modules/extensions.
+// TODO-14: Fix regions once refactoring is done as some properties are getting changed to methods.
 
 /// <summary>
 /// The base for Rayman Control Panel game data
@@ -104,7 +105,7 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
-    public virtual IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
+    public virtual IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => Enumerable.Empty<GameFileLink>();
 
     /// <summary>
     /// Optional RayMap URL

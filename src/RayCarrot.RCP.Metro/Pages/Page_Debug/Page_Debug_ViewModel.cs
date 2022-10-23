@@ -469,7 +469,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         AddLine("Dialog group names", info.DialogGroupNames.JoinItems(", "));
                             
                         if (info.IsAdded)
-                            AddLine("Game file links", JsonConvert.SerializeObject(info.GetGameFileLinks));
+                            AddLine("Game file links", JsonConvert.SerializeObject(info.GetGameFileLinks(game.GetInstallation())));
 
                         DataOutput += Environment.NewLine;
                         DataOutput += "------------------------------------------";

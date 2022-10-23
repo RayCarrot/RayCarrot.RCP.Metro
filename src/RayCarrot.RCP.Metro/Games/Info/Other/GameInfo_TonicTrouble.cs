@@ -49,9 +49,9 @@ public sealed class GameInfo_TonicTrouble : GameInfo
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
+    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
-        new GameFileLink(Resources.GameLink_R2dgVoodoo, Game.GetInstallDir() + "dgVoodooCpl.exe"),
+        new(Resources.GameLink_R2dgVoodoo, gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
     };
 
     /// <summary>

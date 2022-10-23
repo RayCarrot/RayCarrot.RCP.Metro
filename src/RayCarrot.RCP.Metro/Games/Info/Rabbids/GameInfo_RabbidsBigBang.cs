@@ -35,11 +35,6 @@ public sealed class GameInfo_RabbidsBigBang : GameInfo
     /// </summary>
     public override string DefaultFileName => "Template.exe";
 
-    /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
-    public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
-
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RabbidsBigBang().Yield();
 
     public override bool AllowPatching => false;

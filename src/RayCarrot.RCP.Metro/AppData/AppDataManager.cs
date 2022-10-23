@@ -297,9 +297,8 @@ public class AppDataManager
         if (lastVersion < new Version(6, 0, 0, 2))
         {
             // By default, add all games to the jump list collection
-            Data.App_JumpListItemIDCollection = AppViewModel.GetGames.
-                Where(x => GamesExtensions.IsAdded(x)).
-                Select(x => x.GetManager().GetJumpListItems().Select(y => y.ID)).
+            Data.App_JumpListItemIDCollection = AppViewModel.GetInstalledGames.
+                Select(x => x.Game.GetManager().GetJumpListItems().Select(y => y.ID)).
                 SelectMany(x => x).
                 ToList();
         }

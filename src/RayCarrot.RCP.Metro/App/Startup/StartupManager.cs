@@ -216,27 +216,23 @@ public class StartupManager
         HashSet<Games> removed = new();
 
         // Make sure every game is valid
-        foreach (Games game in AppViewModel.GetGames)
+        foreach (GameInstallation? gameInstallation in AppViewModel.GetInstalledGames)
         {
-            // Check if it has been added
-            if (!game.IsAdded())
-                continue;
-
             // Check if it's valid
-            if (await game.GetManager().IsValidAsync(game.GetInstallDir()))
+            if (await gameInstallation.Game.GetManager().IsValidAsync(gameInstallation.InstallLocation))
                 continue;
 
             // Show message
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetGameInfo().DisplayName), 
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, gameInstallation.GameInfo.DisplayName), 
                 Resources.GameNotFoundHeader, MessageType.Error);
 
             // Remove the game from app data
-            await Services.Games.RemoveGameAsync(game.GetInstallation(), true);
+            await Services.Games.RemoveGameAsync(gameInstallation, true);
 
             // Add to removed games
-            removed.Add(game);
+            removed.Add(gameInstallation.Game);
 
-            Logger.Info("The game {0} has been removed due to not being valid", game);
+            Logger.Info("The game {0} has been removed due to not being valid", gameInstallation.ID);
         }
 
         // Refresh if any games were removed
