@@ -43,12 +43,9 @@ public sealed class GameInfo_Rayman60Levels : GameInfo
     /// The config page view model, if any is available
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanByHisFans_ViewModel(Game);
+        new Config_RaymanByHisFans_ViewModel(gameInstallation);
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_Control(Game);
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_DOSBox_Control(Game);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_Rayman60Levels().Yield();
 

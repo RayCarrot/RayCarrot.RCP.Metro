@@ -259,7 +259,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                         try
                         {
                             // Show the Patcher
-                            await Services.UI.ShowPatcherAsync(game);
+                            await Services.UI.ShowPatcherAsync(gameInstallation);
                         }
                         catch (Exception ex)
                         {

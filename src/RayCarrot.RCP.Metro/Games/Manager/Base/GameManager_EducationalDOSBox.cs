@@ -113,49 +113,37 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
 
     #region Public Override Methods
 
-    /// <summary>
-    /// Gets the available jump list items for this game
-    /// </summary>
-    /// <returns>The items</returns>
-    public override IList<JumpListItemViewModel> GetJumpListItems()
+    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
     {
         if (Services.Data.Game_EducationalDosBoxGames == null)
-            return new JumpListItemViewModel[0];
+            return Enumerable.Empty<JumpListItemViewModel>();
 
         return Services.Data.Game_EducationalDosBoxGames.Select(x =>
         {
-            var launchInfo = Game.GetManager<GameManager_EducationalDOSBox>().GetLaunchInfo(x);
+            GameLaunchInfo launchInfo = gameInstallation.Game.GetManager<GameManager_EducationalDOSBox>().GetLaunchInfo(x);
 
             return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Path.Parent, launchInfo.Args, x.ID);
         }).ToArray();
     }
 
-    /// <summary>
-    /// Gets the launch info for the game
-    /// </summary>
-    /// <returns>The launch info</returns>
-    public override GameLaunchInfo GetLaunchInfo()
+    public override GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
     {
         // Get the default game
-        var defaultGame = Services.Data.Game_EducationalDosBoxGames.First();
+        UserData_EducationalDosBoxGameData defaultGame = Services.Data.Game_EducationalDosBoxGames.First();
 
         return GetLaunchInfo(defaultGame);
     }
 
-    /// <summary>
-    /// Gets called as soon as the game is added for the first time
-    /// </summary>
-    /// <returns>The task</returns>
-    public override Task PostGameAddAsync()
+    public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
         // Get the info
-        var info = GetNewEducationalDosBoxGameInfo(Game.GetInstallDir());
+        var info = GetNewEducationalDosBoxGameInfo(gameInstallation.InstallLocation);
 
         // Add the game to the list of educational games
         Services.Data.Game_EducationalDosBoxGames.Add(info);
 
         // Create config file
-        return base.PostGameAddAsync();
+        return base.PostGameAddAsync(gameInstallation);
     }
 
     /// <summary>

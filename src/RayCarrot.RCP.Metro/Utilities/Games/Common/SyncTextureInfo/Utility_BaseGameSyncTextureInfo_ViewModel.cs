@@ -19,13 +19,13 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game</param>
+    /// <param name="gameInstallation">The game installation</param>
     /// <param name="gameMode">The game mode</param>
     /// <param name="gameDataDirNames">The game data directory names</param>
-    public Utility_BaseGameSyncTextureInfo_ViewModel(Games game, CPAGameMode gameMode, string[] gameDataDirNames)
+    public Utility_BaseGameSyncTextureInfo_ViewModel(GameInstallation gameInstallation, CPAGameMode gameMode, string[] gameDataDirNames)
     {
         // Set properties
-        Game = game;
+        GameInstallation = gameInstallation;
         GameMode = gameMode;
         GameDataDirNames = gameDataDirNames;
 
@@ -50,9 +50,9 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
     #region Protected Abstract Properties
 
     /// <summary>
-    /// The game
+    /// The game installation
     /// </summary>
-    protected Games Game { get; }
+    protected GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The game mode
@@ -91,7 +91,7 @@ public class Utility_BaseGameSyncTextureInfo_ViewModel : Utility_BaseSyncTexture
             TextureInfoEditResult syncResult = await Task.Run(() =>
             {
                 // Get the game install directory
-                FileSystemPath installDir = Game.GetInstallDir();
+                FileSystemPath installDir = GameInstallation.InstallLocation;
 
                 // Get the settings
                 CPAGameModeInfoAttribute attr = GameMode.GetAttribute<CPAGameModeInfoAttribute>();

@@ -17,6 +17,8 @@ namespace RayCarrot.RCP.Metro;
     This is due to the WinRT references used only exist on modern versions of Windows.
      */
 
+// TODO-14: Rename to Package since it doesn't have to be installed from the store
+
 /// <summary>
 /// Base for a WinStore Rayman Control Panel game
 /// </summary>
@@ -57,43 +59,36 @@ public abstract class GameManager_WinStore : GameManager
         })),
     };
 
-    /// <summary>
-    /// Gets the info items for the game
-    /// </summary>
-    public override IList<DuoGridItemViewModel> GetGameInfoItems
+    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
     {
-        get
+        // Get the package
+        Package package = GetGamePackage();
+
+        DateTime installDate = package.InstalledDate.DateTime;
+
+        return base.GetGameInfoItems(gameInstallation).Concat(new[]
         {
-            // Get the package
-            var package = GetGamePackage();
-
-            DateTime installDate = package.InstalledDate.DateTime;
-
-            // Return new items
-            return new List<DuoGridItemViewModel>(base.GetGameInfoItems)
-            {
-                new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreDependencies)), 
-                    text: package.Dependencies.Select(x => x.Id.Name).JoinItems(", "), 
-                    minUserLevel: UserLevel.Technical),
-                new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreFullName)), 
-                    text: package.Id.FullName, 
-                    minUserLevel: UserLevel.Advanced),
-                new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreArchitecture)), 
-                    text: package.Id.Architecture.ToString(), 
-                    minUserLevel: UserLevel.Technical),
-                new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreVersion)), 
-                    text: $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}", 
-                    minUserLevel: UserLevel.Technical),
-                new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreInstallDate)), 
-                    text: new GeneratedLocString(() => installDate.ToString(CultureInfo.CurrentCulture)), 
-                    minUserLevel: UserLevel.Advanced),
-            };
-        }
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreDependencies)),
+                text: package.Dependencies.Select(x => x.Id.Name).JoinItems(", "),
+                minUserLevel: UserLevel.Technical),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreFullName)),
+                text: package.Id.FullName,
+                minUserLevel: UserLevel.Advanced),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreArchitecture)),
+                text: package.Id.Architecture.ToString(),
+                minUserLevel: UserLevel.Technical),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreVersion)),
+                text: $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}",
+                minUserLevel: UserLevel.Technical),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreInstallDate)),
+                text: new GeneratedLocString(() => installDate.ToString(CultureInfo.CurrentCulture)),
+                minUserLevel: UserLevel.Advanced),
+        });
     }
 
     /// <summary>
@@ -201,15 +196,18 @@ public abstract class GameManager_WinStore : GameManager
 
     #region Public Override Methods
 
-    /// <summary>
-    /// Gets the available jump list items for this game
-    /// </summary>
-    /// <returns>The items</returns>
-    public override IList<JumpListItemViewModel> GetJumpListItems()
+    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
     {
-        return new JumpListItemViewModel[]
+        return new[]
         {
-            new JumpListItemViewModel(Game.GetGameInfo().DisplayName, LegacyLaunchPath, LegacyLaunchPath, null, null, Game.ToString())
+            new JumpListItemViewModel(
+                name: gameInstallation.GameInfo.DisplayName, 
+                iconSource: LegacyLaunchPath, 
+                launchPath: LegacyLaunchPath, 
+                workingDirectory: null, 
+                launchArguments: null, 
+                // TODO-14: Use game ID instead
+                id: gameInstallation.Game.ToString())
         };
     }
 
@@ -301,6 +299,7 @@ public abstract class GameManager_WinStore : GameManager
     [MethodImpl(MethodImplOptions.NoInlining)]
     public Package GetGamePackage(string packageName = null)
     {
+        // TODO-14: Why are we enumerating all the packages to find it?
         return new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == (packageName ?? PackageName));
     }
 

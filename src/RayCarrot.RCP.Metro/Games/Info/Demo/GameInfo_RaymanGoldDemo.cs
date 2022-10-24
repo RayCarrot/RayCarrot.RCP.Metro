@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using System.Windows;
 using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
@@ -68,12 +67,7 @@ public sealed class GameInfo_RaymanGoldDemo : GameInfo
     /// The config page view model, if any is available
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanDesigner_ViewModel(Game);
-
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => null;
+        new Config_RaymanDesigner_ViewModel(gameInstallation);
 
     /// <summary>
     /// Indicates if the game has archives which can be opened

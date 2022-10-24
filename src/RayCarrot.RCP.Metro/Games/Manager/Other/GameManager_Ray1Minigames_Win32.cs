@@ -15,17 +15,13 @@ public sealed class GameManager_Ray1Minigames_Win32 : GameManager_Win32
     /// </summary>
     public override Games Game => Games.Ray1Minigames;
 
-    /// <summary>
-    /// Gets called as soon as the game is added for the first time
-    /// </summary>
-    /// <returns>The task</returns>
-    public override Task PostGameAddAsync()
+    public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
         // Default to run as admin
-        Services.Data.Game_Games[Game].LaunchMode = UserData_GameLaunchMode.AsAdmin;
+        Services.Data.Game_Games[gameInstallation.Game].LaunchMode = UserData_GameLaunchMode.AsAdmin;
 
         // Call base and return
-        return base.PostGameAddAsync();
+        return base.PostGameAddAsync(gameInstallation);
     }
 
     #endregion

@@ -16,7 +16,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
         // Set properties
         GameInstallation = gameInstallation;
         GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
-        OptionsContent = gameInstallation.GameInfo.OptionsUI;
+        OptionsContent = gameInstallation.GameInfo.GetOptionsUI(gameInstallation);
 
         LaunchModeChangedCommand = new AsyncRelayCommand(LaunchModeChangedAsync);
 
@@ -102,7 +102,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
     protected void RefreshGameInfo()
     {
         GameInfoItems.Clear();
-        GameInfoItems.AddRange(GameInstallation.Game.GetManager().GetGameInfoItems);
+        GameInfoItems.AddRange(GameInstallation.Game.GetManager().GetGameInfoItems(GameInstallation));
     }
 
     protected override object GetPageUI() => new GameOptions_Control()

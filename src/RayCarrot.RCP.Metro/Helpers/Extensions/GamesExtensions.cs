@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,11 +38,8 @@ public static class GamesExtensions
         // Create a string reader
         using var reader = new StringReader(file);
 
-        // Keep track of the current line
-        string line;
-
         // Enumerate each line
-        while ((line = reader.ReadLine()) != null)
+        while (reader.ReadLine() is { } line)
         {
             // Check if the item is optional, in which case it has a blank space before the path
             bool optional = line.StartsWith(" ");

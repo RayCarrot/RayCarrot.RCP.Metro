@@ -6,6 +6,8 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Fix regions once refactoring is done as some properties are getting changed to methods.
+
 /// <summary>
 /// The base for a Rayman Control Panel game manager
 /// </summary>
@@ -51,7 +53,9 @@ public abstract class GameManager : BaseGameData
     /// <summary>
     /// Gets the info items for the game
     /// </summary>
-    public virtual IList<DuoGridItemViewModel> GetGameInfoItems => new DuoGridItemViewModel[]
+    /// <param name="gameInstallation">The game installation to get the info items for</param>
+    /// <returns>The info items</returns>
+    public virtual IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) => new DuoGridItemViewModel[]
     {
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_GameType)), 
@@ -59,7 +63,7 @@ public abstract class GameManager : BaseGameData
             minUserLevel: UserLevel.Advanced),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)), 
-            text: Game.GetInstallDir().FullPath),
+            text: gameInstallation.InstallLocation.FullPath),
         //new DuoGridItemViewModel("Install size", GameData.InstallDirectory.GetSize().ToString())
     };
 
@@ -96,10 +100,11 @@ public abstract class GameManager : BaseGameData
     #region Public Virtual Methods
 
     /// <summary>
-    /// Gets called as soon as the game is added for the first time
+    /// Gets called as soon as the game is added
     /// </summary>
+    /// <param name="gameInstallation">The added game installation</param>
     /// <returns>The task</returns>
-    public virtual Task PostGameAddAsync() => Task.CompletedTask;
+    public virtual Task PostGameAddAsync(GameInstallation gameInstallation) => Task.CompletedTask;
 
     /// <summary>
     /// Gets called as soon as the game is removed
@@ -153,10 +158,11 @@ public abstract class GameManager : BaseGameData
     public abstract Task<FileSystemPath?> LocateAsync();
 
     /// <summary>
-    /// Gets the available jump list items for this game
+    /// Gets the available jump list items for the game installation
     /// </summary>
+    /// <param name="gameInstallation">The game installation to get the items for</param>
     /// <returns>The items</returns>
-    public abstract IList<JumpListItemViewModel> GetJumpListItems();
+    public abstract IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation);
 
     /// <summary>
     /// Creates a shortcut to launch the game from

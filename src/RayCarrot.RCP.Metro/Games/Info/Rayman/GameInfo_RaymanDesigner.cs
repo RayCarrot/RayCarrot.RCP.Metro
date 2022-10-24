@@ -40,12 +40,9 @@ public sealed class GameInfo_RaymanDesigner : GameInfo
     public override string DefaultFileName => "RAYKIT.bat";
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanDesigner_ViewModel(Game);
+        new Config_RaymanDesigner_ViewModel(gameInstallation);
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_Control(Game);
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_DOSBox_Control(Game);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanDesigner().Yield();
 

@@ -104,21 +104,14 @@ public abstract class GameManager_DOSBox : GameManager_Win32
 
     #region Public Override Methods
 
-    /// <summary>
-    /// Gets the launch info for the game
-    /// </summary>
-    /// <returns>The launch info</returns>
-    public override GameLaunchInfo GetLaunchInfo()
+    public override GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
     {
-        var options = Services.Data.Game_DosBoxGames[Game];
-        return new GameLaunchInfo(DOSBoxFilePath, GetDosBoxArguments(options.MountPath, Game.GetGameInfo().DefaultFileName));
+        UserData_DosBoxOptions options = Services.Data.Game_DosBoxGames[gameInstallation.Game];
+        string args = GetDosBoxArguments(options.MountPath, gameInstallation.GameInfo.DefaultFileName, gameInstallation.InstallLocation);
+        return new GameLaunchInfo(DOSBoxFilePath, args);
     }
 
-    /// <summary>
-    /// Gets called as soon as the game is added for the first time
-    /// </summary>
-    /// <returns>The task</returns>
-    public override Task PostGameAddAsync()
+    public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
         // Create config file
         new Emulator_DOSBox_AutoConfigManager(DosBoxConfigFile).Create();
@@ -133,7 +126,7 @@ public abstract class GameManager_DOSBox : GameManager_Win32
         if (RaymanForeverFolderName != null)
         {
             // Get the parent directory to the install directory
-            var foreverInstallDir = Game.GetInstallDir().Parent;
+            var foreverInstallDir = gameInstallation.InstallLocation.Parent;
 
             // Attempt to automatically locate the mount file (based on the Rayman Forever location)
             FileSystemPath[] mountFiles =
@@ -278,9 +271,9 @@ public abstract class GameManager_DOSBox : GameManager_Win32
     /// </summary>
     /// <param name="mountPath">The disc/file to mount</param>
     /// <param name="launchName">The launch name</param>
-    /// <param name="installDir">The game install directory or null for the default one</param>
+    /// <param name="installDir">The game install directory</param>
     /// <returns>The launch arguments</returns>
-    protected string GetDosBoxArguments(FileSystemPath mountPath, string launchName, FileSystemPath? installDir = null)
+    protected string GetDosBoxArguments(FileSystemPath mountPath, string launchName, FileSystemPath installDir)
     {
         // Create a string builder for the argument
         var str = new StringBuilder();
@@ -319,7 +312,7 @@ public abstract class GameManager_DOSBox : GameManager_Win32
         }
 
         // Mount the game install directory as the C drive
-        AddArg($"-c \"MOUNT C '{installDir ?? Game.GetInstallDir().FullPath}'\"");
+        AddArg($"-c \"MOUNT C '{installDir.FullPath}'\"");
 
         // Add commands to launch the game
         AddArg("-c C:");

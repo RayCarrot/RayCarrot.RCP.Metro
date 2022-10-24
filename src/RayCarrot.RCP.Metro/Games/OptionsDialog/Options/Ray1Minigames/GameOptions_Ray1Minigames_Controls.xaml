@@ -1,16 +1,15 @@
-﻿<local:VMUserControl x:Class="RayCarrot.RCP.Metro.GameOptions_Ray1Minigames_Controls"
-                     x:TypeArguments="local:GameOptions_Ray1Minigames_ViewModel"
-                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                     ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                     Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
-                     Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                     mc:Ignorable="d"
-                     d:DataContext="{d:DesignInstance local:GameOptions_Ray1Minigames_ViewModel}">
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.GameOptions_Ray1Minigames_Controls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:GameOptions_Ray1Minigames_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
             <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
@@ -32,4 +31,4 @@
         </WrapPanel>
 
     </StackPanel>
-</local:VMUserControl>
+</UserControl>

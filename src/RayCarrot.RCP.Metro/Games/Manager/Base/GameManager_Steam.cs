@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using NLog;
@@ -52,16 +53,14 @@ public abstract class GameManager_Steam : GameManager
         }))
     };
 
-    /// <summary>
-    /// Gets the info items for the game
-    /// </summary>
-    public override IList<DuoGridItemViewModel> GetGameInfoItems => new List<DuoGridItemViewModel>(base.GetGameInfoItems)
-    {
-        new DuoGridItemViewModel(
-            header: new ResourceLocString(nameof(Resources.GameInfo_SteamID)), 
-            text: SteamID, 
-            minUserLevel: UserLevel.Advanced)
-    };
+    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) =>
+        base.GetGameInfoItems(gameInstallation).Concat(new[]
+        {
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_SteamID)),
+                text: SteamID,
+                minUserLevel: UserLevel.Advanced)
+        });
 
     /// <summary>
     /// Gets the purchase links for the game
@@ -98,18 +97,18 @@ public abstract class GameManager_Steam : GameManager
 
     #region Protected Override Methods
 
-    /// <summary>
-    /// Gets the available jump list items for this game
-    /// </summary>
-    /// <returns>The items</returns>
-    public override IList<JumpListItemViewModel> GetJumpListItems()
+    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
     {
-        // Get the game info
-        var info = Game.GetGameInfo();
-
-        return new JumpListItemViewModel[]
+        return new[]
         {
-            new JumpListItemViewModel(info.DisplayName, Game.GetInstallDir() + info.DefaultFileName, LaunchURL, null, null, Game.ToString())
+            new JumpListItemViewModel(
+                name: gameInstallation.GameInfo.DisplayName,
+                iconSource: gameInstallation.InstallLocation + gameInstallation.GameInfo.DefaultFileName,
+                launchPath: LaunchURL, 
+                workingDirectory: null, 
+                launchArguments: null, 
+                // TODO-14: Use game ID instead
+                id: Game.ToString())
         };
     }
 

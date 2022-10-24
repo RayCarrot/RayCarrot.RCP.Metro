@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Nito.AsyncEx;
+﻿using Nito.AsyncEx;
 using NLog;
 using System;
 using System.Threading.Tasks;
@@ -13,16 +12,12 @@ public class GameOptions_Ray1Minigames_ViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public GameOptions_Ray1Minigames_ViewModel()
+    public GameOptions_Ray1Minigames_ViewModel(GameInstallation gameInstallation)
     {
         // Create properties
         AsyncLock = new AsyncLock();
 
-        // Get the .mms file path
-        InstallDir = Games.Ray1Minigames.GetInstallDir();
+        InstallDir = gameInstallation.InstallLocation;
 
         _selectedLanguage = GetCurrentLanguage() ?? Ray1MinigamesLanguage.French;
 

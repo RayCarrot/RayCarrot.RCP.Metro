@@ -66,11 +66,11 @@ public class GamesManager
         Logger.Info("The game {0} has been added", game);
 
         // Run post-add operations
-        await manager.PostGameAddAsync();
+        await manager.PostGameAddAsync(game.GetInstallation());
 
         // Add the game to the jump list
         if (game.GetGameInfo().AutoAddToJumpList)
-            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems().Select(x => x.ID));
+            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems(game.GetInstallation()).Select(x => x.ID));
     }
 
     /// <summary>
@@ -118,7 +118,7 @@ public class GamesManager
             }
 
             // Remove the game from the jump list
-            foreach (var item in manager.GetJumpListItems())
+            foreach (JumpListItemViewModel item in manager.GetJumpListItems(gameInstallation))
                 Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
 
             // Remove game from installed games if it was installed

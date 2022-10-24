@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using JetBrains.Annotations;
 using RayCarrot.RCP.Metro.Archive;
 
 namespace RayCarrot.RCP.Metro;
@@ -81,12 +82,14 @@ public abstract class GameInfo : BaseGameData
 
     #region Public Virtual Properties
 
+#nullable enable
+
     /// <summary>
     /// The options UI, if any is available
     /// </summary>
-    public virtual FrameworkElement OptionsUI => null; // TODO-14: Don't use UI elements like this - use vm + template instead!
-
-#nullable enable
+    /// <param name="gameInstallation">The game installation to get the options for</param>
+    /// <returns>The options UI or null if not available</returns>
+    public virtual FrameworkElement? GetOptionsUI(GameInstallation gameInstallation) => null; // TODO-14: Don't use UI elements like this - use vm + template instead!
 
     /// <summary>
     /// Gets the config page view model, if any is available

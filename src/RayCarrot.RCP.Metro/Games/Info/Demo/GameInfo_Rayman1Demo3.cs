@@ -61,11 +61,6 @@ public sealed class GameInfo_Rayman1Demo3 : GameInfo
     public override GameType DownloadType => GameType.DosBox;
 
     /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => null;
-
-    /// <summary>
     /// An optional emulator to use for the game
     /// </summary>
     public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.DosBox);

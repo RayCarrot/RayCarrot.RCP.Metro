@@ -36,10 +36,7 @@ public sealed class GameInfo_RaymanRavingRabbids2 : GameInfo
     /// </summary>
     public override string DefaultFileName => "Jade.exe";
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_RavingRabbids2_Control();
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_RavingRabbids2_Control();
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanRavingRabbids2_ViewModel(gameInstallation);

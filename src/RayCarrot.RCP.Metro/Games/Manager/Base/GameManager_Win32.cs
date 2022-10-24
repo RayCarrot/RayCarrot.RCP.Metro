@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NLog;
 
@@ -34,29 +35,22 @@ public abstract class GameManager_Win32 : GameManager
     /// </summary>
     public override bool SupportsGameLaunchMode => true;
 
-    /// <summary>
-    /// Gets the info items for the game
-    /// </summary>
-    public override IList<DuoGridItemViewModel> GetGameInfoItems
+    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
     {
-        get
-        {
-            // Get the launch info
-            var launchInfo = GetLaunchInfo();
+        // Get the launch info
+        GameLaunchInfo launchInfo = GetLaunchInfo(gameInstallation);
 
-            // Return the items
-            return new List<DuoGridItemViewModel>(base.GetGameInfoItems)
-            {
-                new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.GameInfo_LaunchPath)), 
-                    text: launchInfo.Path.FullPath, 
-                    minUserLevel: UserLevel.Technical),
-                new DuoGridItemViewModel(
-                    header: new ResourceLocString(nameof(Resources.GameInfo_LaunchArgs)), 
-                    text: launchInfo.Args, 
-                    minUserLevel: UserLevel.Technical)
-            };
-        }
+        return base.GetGameInfoItems(gameInstallation).Concat(new[]
+        {
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_LaunchPath)),
+                text: launchInfo.Path.FullPath,
+                minUserLevel: UserLevel.Technical),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_LaunchArgs)),
+                text: launchInfo.Args,
+                minUserLevel: UserLevel.Technical)
+        });
     }
 
     #endregion
@@ -67,7 +61,7 @@ public abstract class GameManager_Win32 : GameManager
     /// Gets the icon resource path for the game based on its launch information
     /// </summary>
     /// <returns>The icon resource path</returns>
-    protected virtual FileSystemPath IconResourcePath => GetLaunchInfo().Path;
+    protected virtual FileSystemPath IconResourcePath => GetLaunchInfo(Game.GetInstallation()).Path;
 
     #endregion
 
@@ -90,7 +84,7 @@ public abstract class GameManager_Win32 : GameManager
     protected override async Task<GameLaunchResult> LaunchAsync(bool forceRunAsAdmin)
     {
         // Get the launch info
-        GameLaunchInfo launchInfo = GetLaunchInfo();
+        GameLaunchInfo launchInfo = GetLaunchInfo(Game.GetInstallation());
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}", Game, launchInfo.Path, launchInfo.Args);
 
@@ -143,24 +137,27 @@ public abstract class GameManager_Win32 : GameManager
         return result.SelectedDirectory;
     }
 
-    /// <summary>
-    /// Gets the available jump list items for this game
-    /// </summary>
-    /// <returns>The items</returns>
-    public override IList<JumpListItemViewModel> GetJumpListItems()
+    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
     {
-        var launchInfo = GetLaunchInfo();
+        GameLaunchInfo launchInfo = GetLaunchInfo(gameInstallation);
 
         if (launchInfo.Path.FileExists)
         {
-            return new JumpListItemViewModel[]
+            return new[]
             {
-                new JumpListItemViewModel(Game.GetGameInfo().DisplayName, IconResourcePath, launchInfo.Path, launchInfo.Path.Parent, launchInfo.Args, Game.ToString())
+                new JumpListItemViewModel(
+                    name: gameInstallation.GameInfo.DisplayName, 
+                    iconSource: IconResourcePath, 
+                    launchPath: launchInfo.Path, 
+                    workingDirectory: launchInfo.Path.Parent, 
+                    launchArguments: launchInfo.Args, 
+                    // TODO-14: Use game ID instead
+                    id: gameInstallation.Game.ToString())
             };
         }
         else
         {
-            return new JumpListItemViewModel[0];
+            return Enumerable.Empty<JumpListItemViewModel>();
         }
     }
 
@@ -172,7 +169,7 @@ public abstract class GameManager_Win32 : GameManager
     public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
     {
         // Get the launch info
-        var launchInfo = GetLaunchInfo();
+        var launchInfo = GetLaunchInfo(Game.GetInstallation());
 
         // Create the shortcut
         Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
@@ -187,10 +184,11 @@ public abstract class GameManager_Win32 : GameManager
     /// <summary>
     /// Gets the launch info for the game
     /// </summary>
+    /// <param name="gameInstallation">The game installation to get the launch info for</param>
     /// <returns>The launch info</returns>
-    public virtual GameLaunchInfo GetLaunchInfo()
+    public virtual GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
     {
-        return new GameLaunchInfo(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, GetLaunchArgs);
+        return new GameLaunchInfo(gameInstallation.InstallLocation + gameInstallation.GameInfo.DefaultFileName, GetLaunchArgs);
     }
 
     #endregion

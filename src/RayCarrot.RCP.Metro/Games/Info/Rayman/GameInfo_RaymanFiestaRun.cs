@@ -38,10 +38,7 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     /// </summary>
     public override string DefaultFileName => GetFiestaRunFileName(Services.Data.Game_FiestaRunVersion);
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_FiestaRun_Control();
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_FiestaRun_Control();
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanFiestaRun_ViewModel(gameInstallation);

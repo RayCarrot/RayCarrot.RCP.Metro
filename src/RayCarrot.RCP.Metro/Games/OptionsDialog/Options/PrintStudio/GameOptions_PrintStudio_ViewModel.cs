@@ -14,16 +14,14 @@ public class GameOptions_PrintStudio_ViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public GameOptions_PrintStudio_ViewModel()
+    public GameOptions_PrintStudio_ViewModel(GameInstallation gameInstallation)
     {
         // Create properties
         AsyncLock = new AsyncLock();
+        GameInstallation = gameInstallation;
 
         // Get the .mms file path
-        MMSFilePath = Games.PrintStudio.GetInstallDir() + "Run.MMS";
+        MMSFilePath = gameInstallation.InstallLocation + "Run.MMS";
 
         var currentVersion = GetCurrentVersion();
 
@@ -53,6 +51,8 @@ public class GameOptions_PrintStudio_ViewModel : BaseRCPViewModel
     /// The .mms file path
     /// </summary>
     private FileSystemPath MMSFilePath { get; }
+
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The async lock for <see cref="UpdatePrintStudioVersionAsync"/>
@@ -177,7 +177,7 @@ public class GameOptions_PrintStudio_ViewModel : BaseRCPViewModel
                 });
 
                 // Get the install directory
-                var installDir = Games.PrintStudio.GetInstallDir();
+                FileSystemPath installDir = GameInstallation.InstallLocation;
 
                 // Move existing files to the calender data
                 Services.File.MoveFiles(new IOSearchPattern(installDir + @"Pictures\Common\calendars", SearchOption.TopDirectoryOnly, "Picture*"), installDir + "CalendarData" + GetVersionTag(previousVersion) + "Common", true);

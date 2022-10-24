@@ -65,12 +65,9 @@ public sealed class GameInfo_Rayman1Demo2 : GameInfo
     /// The config page view model, if any is available
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_Rayman1_ViewModel(Game);
+        new Config_Rayman1_ViewModel(gameInstallation);
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_Control(Game);
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_DOSBox_Control(Game);
 
     /// <summary>
     /// An optional emulator to use for the game

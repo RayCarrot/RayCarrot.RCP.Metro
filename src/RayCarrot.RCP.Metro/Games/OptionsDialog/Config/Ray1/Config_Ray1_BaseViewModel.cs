@@ -14,14 +14,14 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     #region Constructor
 
     /// <summary>
-    /// Default constructor for a specific game
+    /// Default constructor for a specific game installation
     /// </summary>
-    /// <param name="game">The DosBox game</param>
+    /// <param name="gameInstallation">The game installation</param>
     /// <param name="engineVersion">The Rayman 1 engine version</param>
     /// <param name="langMode">The language mode to use</param>
-    protected Config_Ray1_BaseViewModel(Games game, Ray1EngineVersion engineVersion, LanguageMode langMode)
+    protected Config_Ray1_BaseViewModel(GameInstallation gameInstallation, Ray1EngineVersion engineVersion, LanguageMode langMode)
     {
-        Game = game;
+        GameInstallation = gameInstallation;
         EngineVersion = engineVersion;
         LangMode = langMode;
         IsVoicesVolumeAvailable = EngineVersion is Ray1EngineVersion.PC_Edu or Ray1EngineVersion.PC_Kit or Ray1EngineVersion.PC_Fan;
@@ -105,9 +105,9 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     public override bool CanUseRecommended => true;
 
     /// <summary>
-    /// The DosBox game
+    /// The game installation
     /// </summary>
-    public Games Game { get; }
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The Rayman 1 engine version
@@ -448,13 +448,13 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", Game);
+        Logger.Info("{0} config is being set up", GameInstallation.ID);
 
         // Get the config file name
         ConfigFileName = GetConfigFileName();
 
         // Create the context to use
-        Context = new RCPContext(Game.GetInstallDir());
+        Context = new RCPContext(GameInstallation.InstallLocation);
         Context.AddSettings(new Ray1Settings(EngineVersion));
         Context.AddFile(new LinearFile(Context, ConfigFileName));
 
@@ -486,16 +486,13 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
         else if (LangMode == LanguageMode.Argument)
         {
-            // Get the game install directory
-            var installDir = Game.GetInstallDir();
-
             // Attempt to get the game language from the .bat file
-            var batchFile = installDir + Game.GetGameInfo().DefaultFileName;
+            var batchFile = GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName;
 
             if (batchFile.FullPath.EndsWith(".bat", StringComparison.InvariantCultureIgnoreCase) && batchFile.FileExists)
             {
                 // Check language availability
-                var pcmapDir = installDir + "pcmap";
+                var pcmapDir = GameInstallation.InstallLocation + "pcmap";
 
                 // IDEA: Read from VERSION file instead
                 IsEnglishAvailable = (pcmapDir + "usa").DirectoryExists;
@@ -576,11 +573,11 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} config is saving...", Game);
+        Logger.Info("{0} config is saving...", GameInstallation.ID);
 
         try
         {
-            if (Config == null)
+            if (Config == null || Context == null || ConfigFileName == null)
                 throw new Exception("Saving can not be done before the config has been loaded");
 
             // If game language is available, update it
@@ -589,7 +586,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
                 if (LangMode == LanguageMode.Config)
                     Config.Language = GameLanguage;
                 else if (LangMode == LanguageMode.Argument)
-                    await SetBatchFileLanguageAsync(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
+                    await SetBatchFileLanguageAsync(GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName, GameLanguage);
             }
 
             // Set button mapping
@@ -636,9 +633,9 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} configuration data", Game);
+            Logger.Error(ex, "Saving {0} configuration data", GameInstallation.ID);
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameInfo.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
     }
@@ -772,7 +769,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Getting {0} language from batch file", Game);
+            Logger.Error(ex, "Getting {0} language from batch file", GameInstallation.ID);
             return null;
         }
     }
@@ -782,9 +779,8 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// </summary>
     /// <param name="batchFile">The batch file to set the language in</param>
     /// <param name="language">The language</param>
-    /// <param name="game">The game to set the language for</param>
     /// <returns>The task</returns>
-    protected async Task SetBatchFileLanguageAsync(FileSystemPath batchFile, PC_Language language, Games game)
+    protected async Task SetBatchFileLanguageAsync(FileSystemPath batchFile, PC_Language language)
     {
         try
         {
@@ -803,12 +799,12 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
             File.WriteAllLines(batchFile, new string[]
             {
                 "@echo off",
-                $"{Path.GetFileNameWithoutExtension(game.GetManager<GameManager_DOSBox>().ExecutableName)} ver={lang}"
+                $"{Path.GetFileNameWithoutExtension(GameInstallation.Game.GetManager<GameManager_DOSBox>().ExecutableName)} ver={lang}"
             });
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Setting {0} language from batch file", Game);
+            Logger.Error(ex, "Setting {0} language from batch file", GameInstallation.ID);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader);
         }
     }

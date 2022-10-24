@@ -16,10 +16,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    private PatcherViewModel(Games game, Context context)
+    private PatcherViewModel(GameInstallation gameInstallation, Context context)
     {
-        Game = game;
-        GameDirectory = game.GetInstallDir();
+        GameInstallation = gameInstallation;
+        GameDirectory = gameInstallation.InstallLocation;
         Library = new PatchLibrary(GameDirectory, Services.File);
 
         LocalPatches = new ObservableCollection<LocalPatchViewModel>();
@@ -33,12 +33,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         AddPatchCommand = new AsyncRelayCommand(AddPatchAsync);
     }
 
-    private PatcherViewModel(Games game, Context context, PendingPatch[] pendingPatchFiles) : this(game, context)
+    private PatcherViewModel(GameInstallation gameInstallation, Context context, PendingPatch[] pendingPatchFiles) 
+        : this(gameInstallation, context)
     {
         _pendingPatchFiles = pendingPatchFiles;
     }
 
-    public PatcherViewModel(Games game) : this(game, new RCPContext(String.Empty)) { }
+    public PatcherViewModel(GameInstallation gameInstallation) : this(gameInstallation, new RCPContext(String.Empty)) { }
 
     #endregion
 
@@ -71,7 +72,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
-    public Games Game { get; }
+    public GameInstallation GameInstallation { get; }
     public FileSystemPath GameDirectory { get; }
     
     public PatchLibrary Library { get; }
@@ -287,11 +288,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         }
 
         // Verify game
-        if (libraryFile != null && libraryFile.Game != Game)
+        if (libraryFile != null && libraryFile.Game != GameInstallation.Game)
         {
-            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, Game);
+            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, GameInstallation.Game);
 
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, Game),
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameInfo.DisplayName),
                 MessageType.Error);
 
             return false;
@@ -362,7 +363,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             // Create the view model
             PendingPatch[] pendingPatches = patchFilePaths.Select((x, i) => new PendingPatch(x, i == 0 ? patch : null)).ToArray();
-            return new PatcherViewModel(patch.Metadata.Game, context, pendingPatches);
+            return new PatcherViewModel(patch.Metadata.Game.GetInstallation(), context, pendingPatches);
         }
         catch
         {
@@ -445,10 +446,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 PatchMetadata metaData = patch.Metadata;
 
                 // Verify game
-                if (metaData.Game != Game)
+                if (metaData.Game != GameInstallation.Game)
                 {
                     Logger.Warn("Failed to add patch due to the specified game {0} not matching the current one ({1})",
-                        metaData.Game, Game);
+                        metaData.Game, GameInstallation.Game);
 
                     await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameMismatchError,
                             metaData.Game.GetGameInfo().DisplayName), MessageType.Error);
@@ -702,10 +703,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 }
 
                 // Verify game
-                if (patch.Metadata.Game != Game)
+                if (patch.Metadata.Game != GameInstallation.Game)
                 {
                     Logger.Warn("Failed to add pending patch due to the specified game {0} not matching the current one ({1})",
-                        patch.Metadata.Game, Game);
+                        patch.Metadata.Game, GameInstallation.Game);
 
                     // Do not show message to user as at least one game from the pending patches will be added
 
@@ -748,13 +749,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             if (!success)
             {
-                Logger.Warn("Failed to load patch library for game {0}", Game);
+                Logger.Warn("Failed to load patch library for game {0}", GameInstallation.ID);
                 return false;
             }
 
             RefreshPatchedFiles();
 
-            Logger.Info("Loaded patch library for game {0}", Game);
+            Logger.Info("Loaded patch library for game {0}", GameInstallation.ID);
 
             return true;
         }
@@ -797,23 +798,23 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             // Make sure the game has external patches defined
-            if (manifest.Games?.ContainsKey(Game) != true)
+            if (manifest.Games?.ContainsKey(GameInstallation.Game) != true)
             {
-                Logger.Info("The game {0} has no external patches", Game);
+                Logger.Info("The game {0} has no external patches", GameInstallation.ID);
                 _externalGamePatchesURL = null;
                 _externalPatches = null;
                 return;
             }
 
-            Logger.Info("Loading external patches for game {0}", Game);
+            Logger.Info("Loading external patches for game {0}", GameInstallation.ID);
 
-            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[Game]);
+            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[GameInstallation.Game]);
 
             ExternalGamePatchesManifest gameManifest =
                 await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(_externalGamePatchesURL
                     .AbsoluteUri);
 
-            Logger.Info("Loaded {0} external patches for game {1}", gameManifest.Patches?.Length, Game);
+            Logger.Info("Loaded {0} external patches for game {1}", gameManifest.Patches?.Length, GameInstallation.ID);
 
             if (gameManifest.Patches == null)
             {
@@ -906,7 +907,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     }).ToArray();
 
                     bool success = await patcher.ApplyAsync(
-                        game: Game,
+                        game: GameInstallation.Game,
                         library: Library,
                         gameDirectory: GameDirectory,
                         patches: patches,

@@ -12,7 +12,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
 {
-    public Config_RaymanEduDos_ViewModel(Games game) : base(game, Ray1EngineVersion.PC_Edu, LanguageMode.None)
+    public Config_RaymanEduDos_ViewModel(GameInstallation gameInstallation) : 
+        base(gameInstallation, Ray1EngineVersion.PC_Edu, LanguageMode.None)
     {
         PageSelection = new ObservableCollection<string>();
         RefreshSelection();
@@ -41,12 +42,10 @@ public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
 
         Logger.Trace("Retrieving EDU config path for '{0} ({1})'", game.Name, game.LaunchMode);
 
-        var installDir = Game.GetInstallDir();
-
         // Get the primary name
-        using FileStream stream = File.OpenRead(installDir + "PCMAP" + "COMMON.DAT");
+        using FileStream stream = File.OpenRead(GameInstallation.InstallLocation + "PCMAP" + "COMMON.DAT");
         using Reader reader = new(stream);
-        string? primary = reader.ReadString(5, Encoding.UTF8);
+        string primary = reader.ReadString(5, Encoding.UTF8);
         
         string? secondary = game.LaunchMode;
 

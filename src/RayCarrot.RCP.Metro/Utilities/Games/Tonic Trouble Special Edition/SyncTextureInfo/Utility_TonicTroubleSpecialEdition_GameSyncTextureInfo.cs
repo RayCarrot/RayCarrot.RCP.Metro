@@ -8,7 +8,7 @@ public class Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo : Utility_Ba
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.TonicTroubleSpecialEdition, CPAGameMode.TonicTrouble_SE_PC, new string[]
+    public Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.TonicTroubleSpecialEdition.GetInstallation(), CPAGameMode.TonicTrouble_SE_PC, new string[]
     {
         "GameData"
     }))

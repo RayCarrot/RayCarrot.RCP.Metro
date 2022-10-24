@@ -37,12 +37,9 @@ public sealed class GameInfo_Rayman1 : GameInfo
     public override string DefaultFileName => "Rayman.exe";
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_Rayman1_ViewModel(Game);
+        new Config_Rayman1_ViewModel(gameInstallation);
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_DOSBox_Control(Game);
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_DOSBox_Control(Game);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_Rayman1().Yield();
 

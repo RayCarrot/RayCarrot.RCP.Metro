@@ -240,7 +240,9 @@ public class AppUIManager
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(gameInstallation));
-        await Dialog.ShowWindowAsync(ui, groupNames: gameInstallation.GameInfo.DialogGroupNames.Append(gameInstallation.ID).ToArray());
+        await Dialog.ShowWindowAsync(ui, groupNames: gameInstallation.GameInfo.DialogGroupNames.
+            // TODO-14: Use install location as group name?
+            Append(gameInstallation.ID).ToArray());
     }
 
     /// <summary>
@@ -284,23 +286,25 @@ public class AppUIManager
     }
 
     /// <summary>
-    /// Shows a new instance of the Patcher from a game
+    /// Shows a new instance of the Patcher from a game installation
     /// </summary>
-    /// <param name="game">The game</param>
+    /// <param name="gameInstallation">The game installation</param>
     /// <returns>The task</returns>
-    public async Task ShowPatcherAsync(Games game)
+    public async Task ShowPatcherAsync(GameInstallation gameInstallation)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        using PatcherViewModel vm = new(game);
+        using PatcherViewModel vm = new(gameInstallation);
         
         Logger.Trace("A Patcher window was opened");
         
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
-        await Dialog.ShowWindowAsync(dialog, groupNames: game.ToString());
+        await Dialog.ShowWindowAsync(dialog, 
+            // TODO-14: Use install location as group name?
+            groupNames: gameInstallation.ID);
     }
 
     /// <summary>
@@ -323,7 +327,9 @@ public class AppUIManager
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
-        await Dialog.ShowWindowAsync(dialog, groupNames: vm.Game.ToString());
+        await Dialog.ShowWindowAsync(dialog,
+            // TODO-14: Use install location as group name?
+            groupNames: vm.GameInstallation.ID);
     }
 
     /// <summary>

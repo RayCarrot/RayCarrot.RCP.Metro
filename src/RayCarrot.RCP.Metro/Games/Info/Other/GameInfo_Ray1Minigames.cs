@@ -55,10 +55,8 @@ public sealed class GameInfo_Ray1Minigames : GameInfo
         new Uri(AppURLs.Games_Ray1Minigames_Url),
     };
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_Ray1Minigames_Controls();
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
+        new GameOptions_Ray1Minigames_Controls(new GameOptions_Ray1Minigames_ViewModel(gameInstallation));
 
     #endregion
 }

@@ -54,7 +54,7 @@ public class JumpListManager
                 // Create a jump list
                 new JumpList(AppViewModel.GetInstalledGames.
                         // Get the items for each game
-                        Select(x => x.Game.GetManager().GetJumpListItems()).
+                        Select(x => x.Game.GetManager().GetJumpListItems(x)).
                         // Select into single collection
                         SelectMany(x => x).
                         // Keep only the included items
@@ -65,7 +65,7 @@ public class JumpListManager
                         Select(x => new JumpTask
                         {
                             Title = x.Name,
-                            Description = String.Format(Metro.Resources.JumpListItemDescription, x.Name),
+                            Description = String.Format(Resources.JumpListItemDescription, x.Name),
                             ApplicationPath = x.LaunchPath,
                             WorkingDirectory = x.WorkingDirectory,
                             Arguments = x.LaunchArguments,

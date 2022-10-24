@@ -20,20 +20,16 @@ public sealed class GameManager_Rayman1Demo2_DOSBox : GameManager_DOSBox
     /// </summary>
     public override string ExecutableName => "RAYMAN.EXE";
 
-    /// <summary>
-    /// Gets called as soon as the game is added for the first time
-    /// </summary>
-    /// <returns>The task</returns>
-    public override async Task PostGameAddAsync()
+    public override async Task PostGameAddAsync(GameInstallation gameInstallation)
     {
         // Run base
-        await base.PostGameAddAsync();
+        await base.PostGameAddAsync(gameInstallation);
 
         // Set the default mount path if available
-        var mountPath = Game.GetInstallDir() + "Disc" + "RAY1DEMO.cue";
+        var mountPath = gameInstallation.InstallLocation + "Disc" + "RAY1DEMO.cue";
 
         if (mountPath.FileExists)
-            Services.Data.Game_DosBoxGames[Game].MountPath = mountPath;
+            Services.Data.Game_DosBoxGames[gameInstallation.Game].MountPath = mountPath;
     }
 
     #endregion

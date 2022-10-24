@@ -56,10 +56,8 @@ public sealed class GameInfo_PrintStudio : GameInfo
         new Uri(AppURLs.Games_PrintStudio2_Url),
     };  
 
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    public override FrameworkElement OptionsUI => new GameOptions_PrintStudio_Control();
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
+        new GameOptions_PrintStudio_Control(new GameOptions_PrintStudio_ViewModel(gameInstallation));
 
     #endregion
 }

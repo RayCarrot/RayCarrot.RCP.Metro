@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using BinarySerializer;
+using ByteSizeLib;
 using ControlzEx.Theming;
 using Newtonsoft.Json;
 using NLog;
@@ -341,13 +342,10 @@ public class Page_Debug_ViewModel : BasePageViewModel
     {
         var lines = new List<string>();
 
-        foreach (Games game in App.GetGames)
+        foreach (GameInstallation gameInstallation in App.GetInstalledGames)
         {
-            // Get the game info
-            var info = game.GetGameInfo();
-
-            if (info.IsAdded)
-                lines.AddRange(from utility in await info.GetAppliedUtilitiesAsync(game.GetInstallation()) select $"{utility} ({info.DisplayName})");
+            lines.AddRange((await gameInstallation.GameInfo.GetAppliedUtilitiesAsync(gameInstallation)).
+                Select(utility => $"{utility} ({gameInstallation.GameInfo.DisplayName})"));
         }
 
         await MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
@@ -468,7 +466,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         AddLine("Has disc installer", info.CanBeInstalledFromDisc);
                         AddLine("Dialog group names", info.DialogGroupNames.JoinItems(", "));
                             
-                        if (info.IsAdded)
+                        if (game.IsAdded())
                             AddLine("Game file links", JsonConvert.SerializeObject(info.GetGameFileLinks(game.GetInstallation())));
 
                         DataOutput += Environment.NewLine;
@@ -486,28 +484,26 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     var totalTime = 0L;
 
                     // Enumerate each game
-                    foreach (var game in App.GetGames.Where(x => x.IsAdded()))
+                    foreach (GameInstallation installedGame in App.GetInstalledGames)
                     {
                         try
                         {
-                            var gameTimer = new Stopwatch();
-
-                            gameTimer.Start();
+                            Stopwatch gameTimer = Stopwatch.StartNew();
 
                             // Get the size
-                            var size = game.GetInstallDir().GetSize();
+                            ByteSize size = installedGame.InstallLocation.GetSize();
 
                             gameTimer.Stop();
 
                             totalTime += gameTimer.ElapsedMilliseconds;
 
                             // Output the size
-                            DataOutput += $"{game.GetGameInfo().DisplayName}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
+                            DataOutput += $"{installedGame.GameInfo.DisplayName}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
                         }
                         catch (Exception ex)
                         {
                             Logger.Error(ex, "Getting game install dir size");
-                            DataOutput += $"{game.GetGameInfo().DisplayName}: N/A{Environment.NewLine}";
+                            DataOutput += $"{installedGame.GameInfo.DisplayName}: N/A{Environment.NewLine}";
                         }
                     }
 
