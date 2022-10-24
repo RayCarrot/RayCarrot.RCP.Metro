@@ -18,11 +18,12 @@ namespace RayCarrot.RCP.Metro;
 
 public class AppDataManager
 {
-    public AppDataManager(AppUserData data, LaunchArguments args, AppViewModel app)
+    public AppDataManager(AppUserData data, LaunchArguments args, AppViewModel app, GamesManager gamesManager)
     {
-        Data = data;
-        Args = args;
-        AppViewModel = app;
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        Args = args ?? throw new ArgumentNullException(nameof(args));
+        AppViewModel = app ?? throw new ArgumentNullException(nameof(app));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
 
         DataChangedHandlerAsyncLock = new AsyncLock();
     }
@@ -34,6 +35,7 @@ public class AppDataManager
     private AppUserData Data { get; }
     private LaunchArguments Args { get; }
     private AppViewModel AppViewModel { get; }
+    private GamesManager GamesManager { get; }
 
     private AsyncLock DataChangedHandlerAsyncLock { get; }
     
@@ -240,7 +242,8 @@ public class AppDataManager
             Data.Game_FiestaRunVersion = UserData_FiestaRunEdition.Default;
 
             // Due to the fiesta run version system being changed the game has to be removed and then re-added
-            Data.Game_Games.Remove(Games.RaymanFiestaRun);
+            // TODO-14: Restore this once we implement the app data migration
+            // Data.Game_Games.Remove(Games.RaymanFiestaRun);
 
             // If a Fiesta Run backup exists the name needs to change to the new standard
             FileSystemPath fiestaBackupDir = Data.Backup_BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
@@ -297,7 +300,7 @@ public class AppDataManager
         if (lastVersion < new Version(6, 0, 0, 2))
         {
             // By default, add all games to the jump list collection
-            Data.App_JumpListItemIDCollection = AppViewModel.GetInstalledGames.
+            Data.App_JumpListItemIDCollection = GamesManager.EnumerateInstalledGames().
                 Select(x => x.Game.GetManager().GetJumpListItems(x).Select(y => y.ID)).
                 SelectMany(x => x).
                 ToList();

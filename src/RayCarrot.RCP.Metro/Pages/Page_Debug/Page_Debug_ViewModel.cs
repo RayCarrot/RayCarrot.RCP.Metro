@@ -40,7 +40,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
         IMessageUIManager messageUi, 
         IDialogBaseManager dialogBaseManager, 
         LoggerManager loggerManager, 
-        AppDataManager appDataManager) : base(app)
+        AppDataManager appDataManager, 
+        GamesManager gamesManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
@@ -51,6 +52,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         DialogBaseManager = dialogBaseManager ?? throw new ArgumentNullException(nameof(dialogBaseManager));
         LoggerManager = loggerManager ?? throw new ArgumentNullException(nameof(loggerManager));
         AppDataManager = appDataManager ?? throw new ArgumentNullException(nameof(appDataManager));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
 
         // Create commands
         ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
@@ -112,14 +114,15 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
     #region Services
 
-    public AppUserData Data { get; }
-    public AppUIManager UI { get; }
-    public IFileManager FileManager { get; }
-    public IBrowseUIManager BrowseUI { get; }
-    public IMessageUIManager MessageUI { get; }
-    public IDialogBaseManager DialogBaseManager { get; }
-    public LoggerManager LoggerManager { get; }
-    public AppDataManager AppDataManager { get; }
+    private AppUserData Data { get; }
+    private AppUIManager UI { get; }
+    private IFileManager FileManager { get; }
+    private IBrowseUIManager BrowseUI { get; }
+    private IMessageUIManager MessageUI { get; }
+    private IDialogBaseManager DialogBaseManager { get; }
+    private LoggerManager LoggerManager { get; }
+    private AppDataManager AppDataManager { get; }
+    private GamesManager GamesManager { get; }
 
     #endregion
 
@@ -342,7 +345,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     {
         var lines = new List<string>();
 
-        foreach (GameInstallation gameInstallation in App.GetInstalledGames)
+        foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
         {
             lines.AddRange((await gameInstallation.GameInfo.GetAppliedUtilitiesAsync(gameInstallation)).
                 Select(utility => $"{utility} ({gameInstallation.GameInfo.DisplayName})"));
@@ -484,7 +487,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     var totalTime = 0L;
 
                     // Enumerate each game
-                    foreach (GameInstallation installedGame in App.GetInstalledGames)
+                    foreach (GameInstallation installedGame in GamesManager.EnumerateInstalledGames())
                     {
                         try
                         {

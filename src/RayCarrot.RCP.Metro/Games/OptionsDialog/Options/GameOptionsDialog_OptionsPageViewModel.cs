@@ -66,17 +66,12 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
     public bool HasOptionsOrCanChangeLaunchMode => CanChangeLaunchMode || OptionsContent != null;
 
     /// <summary>
-    /// The game data
-    /// </summary>
-    public UserData_GameData GameData => Services.Data.Game_Games.TryGetValue(GameInstallation.Game);
-
-    /// <summary>
     /// The game's launch mode
     /// </summary>
     public UserData_GameLaunchMode LaunchMode
     {
-        get => GameData.LaunchMode;
-        set => GameData.LaunchMode = value;
+        get => GameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+        set => GameInstallation.SetValue(GameDataKey.Win32LaunchMode, value);
     }
 
     #endregion

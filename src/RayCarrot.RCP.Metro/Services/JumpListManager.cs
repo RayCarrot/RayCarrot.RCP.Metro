@@ -11,16 +11,18 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class JumpListManager
 {
-    public JumpListManager(AppViewModel appViewModel, AppUserData data)
+    public JumpListManager(AppViewModel appViewModel, AppUserData data, GamesManager gamesManager)
     {
-        AppViewModel = appViewModel;
-        Data = data;
+        AppViewModel = appViewModel ?? throw new ArgumentNullException(nameof(appViewModel));
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private AppViewModel AppViewModel { get; }
     private AppUserData Data { get; }
+    private GamesManager GamesManager { get; }
 
     public void Initialize()
     {
@@ -52,7 +54,7 @@ public class JumpListManager
                 }
 
                 // Create a jump list
-                new JumpList(AppViewModel.GetInstalledGames.
+                new JumpList(GamesManager.EnumerateInstalledGames().
                         // Get the items for each game
                         Select(x => x.Game.GetManager().GetJumpListItems(x)).
                         // Select into single collection

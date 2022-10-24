@@ -1,5 +1,6 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
+
+// TODO-14: Serialize as string rather than int
 
 /// <summary>
 /// The game types supported by the Rayman Control Panel

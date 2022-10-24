@@ -53,7 +53,8 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
             Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
 
             // Launch the game
-            var process = await Services.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
+            var launchMode = Game.GetInstallation().GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+            var process = await Services.File.LaunchFileAsync(launchInfo.Path, launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
             Logger.Info("The educational game {0} has been launched", x.Name);
 
@@ -289,14 +290,12 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
     /// </summary>
     public void RefreshDefault()
     {
-        // Get the current launch mode
-        var launchMode = Games.EducationalDos.GetLaunchMode();
-
+        // TODO-14: Fix this
         // Reset the game data with new install directory
-        Services.Data.Game_Games[Games.EducationalDos] = new UserData_GameData(GameType.EducationalDosBox, Services.Data.Game_EducationalDosBoxGames.First().InstallDir)
-        {
-            LaunchMode = launchMode
-        };
+        var gameInstallation = Games.EducationalDos.GetInstallation();
+        Services.Data.Game_GameInstallations.Remove(gameInstallation);
+        // TODO-14: Copy over additional data as well for things like launch mode
+        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Game, gameInstallation.GameType, Services.Data.Game_EducationalDosBoxGames.First().InstallDir));
 
         Logger.Info("The default educational game has been refreshed");
     }

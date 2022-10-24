@@ -10,6 +10,8 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class GamesExtensions
 {
+    // TODO-14: Remove most of these
+
     /// <summary>
     /// Determines if the specified game has been added to the program
     /// </summary>
@@ -17,7 +19,7 @@ public static class GamesExtensions
     /// <returns>True if the game has been added, otherwise false</returns>
     public static bool IsAdded(this Games game)
     {
-        return Services.Data.Game_Games.ContainsKey(game);
+        return Services.Data.Game_GameInstallations.Any(x => x.Game == game);
     }
 
     /// <summary>
@@ -64,11 +66,11 @@ public static class GamesExtensions
     /// <returns>The install directory or an empty path if not found or if it doesn't exist</returns>
     public static FileSystemPath GetInstallDir(this Games game, bool throwIfNotFound = true)
     {
-        // Get the game data
-        var data = Services.Data.Game_Games.TryGetValue(game);
+        // Get the game installation
+        GameInstallation? gameInstallation = Services.Data.Game_GameInstallations.FirstOrDefault(x => x.Game == game);
 
         // Make sure it's not null
-        if (data == null)
+        if (gameInstallation == null)
         {
             if (throwIfNotFound)
                 throw new Exception($"The data for the requested game '{game}' could not be found");
@@ -76,11 +78,8 @@ public static class GamesExtensions
                 return FileSystemPath.EmptyPath;
         }
 
-        // Get the path
-        var installDir = data.InstallDirectory;
-
         // Return the path
-        return installDir;
+        return gameInstallation.InstallLocation;
     }
 
     /// <summary>
@@ -88,36 +87,7 @@ public static class GamesExtensions
     /// </summary>
     /// <param name="game">The game to get the installed game type for</param>
     /// <returns>The game type</returns>
-    public static GameType GetGameType(this Games game)
-    {
-        // Get the game data
-        var data = Services.Data.Game_Games.TryGetValue(game);
-
-        // Make sure it's not null
-        if (data == null)
-            throw new Exception($"The data for the requested game '{game}' could not be found");
-
-        // Return the type
-        return data.GameType;
-    }
-
-    /// <summary>
-    /// Gets the saved launch mode for the game
-    /// </summary>
-    /// <param name="game">The game to get the saved launch mode type for</param>
-    /// <returns>The saved launch mode</returns>
-    public static UserData_GameLaunchMode GetLaunchMode(this Games game)
-    {
-        // Get the game data
-        var data = Services.Data.Game_Games.TryGetValue(game);
-
-        // Make sure it's not null
-        if (data == null)
-            throw new Exception($"The data for the requested game '{game}' could not be found");
-
-        // Return the type
-        return data.LaunchMode;
-    }
+    public static GameType GetGameType(this Games game) => game.GetInstallation().GameType;
 
     /// <summary>
     /// Gets the game manager for the specified game with the current type
@@ -208,5 +178,5 @@ public static class GamesExtensions
     }
 
     // TODO-14: Remove once no longer needed
-    public static GameInstallation GetInstallation(this Games game) => new(game, game.GetInstallDir());
+    public static GameInstallation GetInstallation(this Games game) => Services.Data.Game_GameInstallations.First(x => x.Game == game);
 }

@@ -29,7 +29,7 @@ public class GamesManager
     #region Services
 
     private AppUserData Data { get; }
-    private IMessageUIManager MessageUI { get; }
+    private IMessageUIManager MessageUI { get; } // TODO-14: Remove need for this
 
     #endregion
 
@@ -41,11 +41,12 @@ public class GamesManager
     /// <param name="game">The game to add</param>
     /// <param name="type">The game type</param>
     /// <param name="installDirectory">The game install directory</param>
-    /// <returns>The task</returns>
-    public async Task AddGameAsync(Games game, GameType type, FileSystemPath installDirectory)
+    /// <returns>The game installation</returns>
+    public async Task<GameInstallation?> AddGameAsync(Games game, GameType type, FileSystemPath installDirectory)
     {
         Logger.Info("The game {0} is being added of type {1}...", game, type);
 
+        // TODO-14: Remove this check
         // Make sure the game hasn't already been added
         if (game.IsAdded())
         {
@@ -54,23 +55,28 @@ public class GamesManager
             await MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), 
                 Resources.AddGame_DuplicateHeader, MessageType.Error);
 
-            return;
+            return null;
         }
 
+        // Create an installation
+        GameInstallation gameInstallation = new(game, type, installDirectory);
+
         // Get the manager
-        GameManager manager = game.GetManager(type);
+        GameManager manager = gameInstallation.Game.GetManager(type);
 
         // Add the game
-        Data.Game_Games.Add(game, new UserData_GameData(type, installDirectory));
+        Data.Game_GameInstallations.Add(gameInstallation);
 
-        Logger.Info("The game {0} has been added", game);
+        Logger.Info("The game {0} has been added", gameInstallation.ID);
 
         // Run post-add operations
-        await manager.PostGameAddAsync(game.GetInstallation());
+        await manager.PostGameAddAsync(gameInstallation);
 
         // Add the game to the jump list
-        if (game.GetGameInfo().AutoAddToJumpList)
-            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems(game.GetInstallation()).Select(x => x.ID));
+        if (gameInstallation.GameInfo.AutoAddToJumpList)
+            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems(gameInstallation).Select(x => x.ID));
+
+        return gameInstallation;
     }
 
     /// <summary>
@@ -86,6 +92,7 @@ public class GamesManager
             // Get the manager
             GameManager manager = gameInstallation.Game.GetManager();
 
+            // TODO-14: Move this out of here
             if (!forceRemove)
             {
                 // Get applied utilities
@@ -125,7 +132,7 @@ public class GamesManager
             Data.Game_InstalledGames.Remove(gameInstallation.Game);
 
             // Remove the game
-            Data.Game_Games.Remove(gameInstallation.Game);
+            Data.Game_GameInstallations.Remove(gameInstallation);
 
             // Run post game removal
             await manager.PostGameRemovedAsync();
@@ -136,6 +143,12 @@ public class GamesManager
             throw;
         }
     }
+
+    /// <summary>
+    /// Enumerates the installed games
+    /// </summary>
+    /// <returns>The game installations</returns>
+    public IEnumerable<GameInstallation> EnumerateInstalledGames() => Data.Game_GameInstallations;
 
     #endregion
 }

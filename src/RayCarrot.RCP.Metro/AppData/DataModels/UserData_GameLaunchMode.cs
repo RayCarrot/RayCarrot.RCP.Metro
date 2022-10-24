@@ -1,5 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Serialize as string rather than int
+
 /// <summary>
 /// The different game launch modes
 /// </summary>

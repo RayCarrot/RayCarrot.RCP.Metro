@@ -18,7 +18,7 @@ public sealed class GameManager_Ray1Minigames_Win32 : GameManager_Win32
     public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
         // Default to run as admin
-        Services.Data.Game_Games[gameInstallation.Game].LaunchMode = UserData_GameLaunchMode.AsAdmin;
+        gameInstallation.SetValue(GameDataKey.Win32LaunchMode, UserData_GameLaunchMode.AsAdmin);
 
         // Call base and return
         return base.PostGameAddAsync(gameInstallation);

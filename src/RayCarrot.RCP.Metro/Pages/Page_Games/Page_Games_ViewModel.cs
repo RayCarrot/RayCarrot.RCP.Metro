@@ -151,7 +151,8 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 var manager = game.GetManager(game.GetGameType());
 
                 // Add launch options if set to do so
-                if (game.GetLaunchMode() == UserData_GameLaunchMode.AsAdminOption)
+                var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+                if (launchMode == UserData_GameLaunchMode.AsAdminOption)
                 {
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await game.GetManager().LaunchGameAsync(true))));
 

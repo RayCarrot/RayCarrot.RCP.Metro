@@ -52,7 +52,7 @@ public class AppUserData : BaseViewModel
         Theme_SyncTheme = false;
 
         // Game
-        Game_Games = new Dictionary<Games, UserData_GameData>();
+        Game_GameInstallations = new List<GameInstallation>();
         Game_DosBoxGames = new Dictionary<Games, UserData_DosBoxOptions>();
         Game_AutoLocateGames = true;
         Game_ShowNotInstalledGames = true;
@@ -119,7 +119,7 @@ public class AppUserData : BaseViewModel
         App_JumpListItemIDCollection ??= new List<string>();
             
         // Game
-        Game_Games ??= new Dictionary<Games, UserData_GameData>();
+        Game_GameInstallations ??= new List<GameInstallation>();
         Game_DosBoxGames ??= new Dictionary<Games, UserData_DosBoxOptions>();
         Game_InstalledGames ??= new HashSet<Games>();
 
@@ -264,9 +264,11 @@ public class AppUserData : BaseViewModel
     #region Game
 
     /// <summary>
-    /// The saved games
+    /// The installed games
     /// </summary>
-    public Dictionary<Games, UserData_GameData> Game_Games { get; set; }
+    public List<GameInstallation> Game_GameInstallations { get; set; }
+
+    // TODO-14: Remove most of the below games properties in favor of new AdditionalData system
 
     /// <summary>
     /// The DosBox games options
@@ -515,7 +517,8 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private bool GetBetaUpdates { set => Update_GetBetaUpdates = value; }
     [JsonProperty] private bool DisableDowngradeWarning { set => Update_DisableDowngradeWarning = value; }
     [JsonProperty] private bool IsUpdateAvailable { set => Update_IsUpdateAvailable = value; }
-    [JsonProperty] private Dictionary<Games, UserData_GameData> Games { set => Game_Games = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private Dictionary<Games, UserData_GameData> Games { set => Game_Games = value; }
     [JsonProperty] private Dictionary<Games, UserData_DosBoxOptions> DosBoxGames { set => Game_DosBoxGames = value; }
     [JsonProperty] private bool IsFirstLaunch { set => App_IsFirstLaunch = value; }
     [JsonProperty] private string DosBoxPath { set => Emu_DOSBox_Path = value; }

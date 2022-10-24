@@ -89,7 +89,8 @@ public abstract class GameManager_Win32 : GameManager
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}", Game, launchInfo.Path, launchInfo.Args);
 
         // Launch the game
-        var process = await Services.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
+        var launchMode = Game.GetInstallation().GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+        var process = await Services.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
         Logger.Info("The game {0} has been launched", Game);
 

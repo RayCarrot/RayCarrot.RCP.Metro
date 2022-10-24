@@ -18,12 +18,14 @@ public class Page_Progression_ViewModel : BasePageViewModel
         AppViewModel app, 
         AppUserData data, 
         IMessageUIManager messageUi, 
-        AppUIManager ui) : base(app)
+        AppUIManager ui, 
+        GamesManager gamesManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
 
         // Create properties
         GameItems = new ObservableCollection<ProgressionGameViewModel>();
@@ -62,9 +64,10 @@ public class Page_Progression_ViewModel : BasePageViewModel
 
     #region Services
 
-    public AppUserData Data { get; }
-    public IMessageUIManager MessageUI { get; }
-    public AppUIManager UI { get; }
+    private AppUserData Data { get; }
+    private IMessageUIManager MessageUI { get; }
+    private AppUIManager UI { get; }
+    private GamesManager GamesManager { get; }
 
     #endregion
 
@@ -101,7 +104,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
                 GameItems.Clear();
 
                 // Add the game items
-                foreach (GameInstallation gameInstallation in App.GetInstalledGames)
+                foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
                     GameItems.AddRange(gameInstallation.GameInfo.GetProgressionGameViewModels);
 
                 // TODO: Use Task.WhenAll and run in parallel?

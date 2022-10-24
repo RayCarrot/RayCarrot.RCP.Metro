@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using NLog;
@@ -121,18 +122,21 @@ public class GameOptions_FiestaRun_ViewModel : BaseRCPViewModel
                 // Update the version
                 Data.Game_FiestaRunVersion = SelectedFiestaRunVersion;
 
-                // Get the new game data
-                UserData_GameData gameData = new UserData_GameData(GameType.WinStore, SelectedFiestaRunVersion switch
+                // Update the install location
+                FileSystemPath installLocation = SelectedFiestaRunVersion switch
                 {
                     UserData_FiestaRunEdition.Default => DefaultInstallDir,
                     UserData_FiestaRunEdition.Preload => PreloadInstallDir,
                     UserData_FiestaRunEdition.Win10 => Win10InstallDir,
                     _ => throw new ArgumentOutOfRangeException(nameof(SelectedFiestaRunVersion),
                         SelectedFiestaRunVersion, null)
-                });
+                };
 
-                // Update the game data
-                Services.Data.Game_Games[Games.RaymanFiestaRun] = gameData;
+                // TODO-14: Fix this
+                var gameInstallation = Games.RaymanFiestaRun.GetInstallation();
+                Services.Data.Game_GameInstallations.Remove(gameInstallation);
+                // TODO-14: Copy over additional data as well
+                Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Game, gameInstallation.GameType, installLocation));
 
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, RefreshFlags.GameInfo));
             }

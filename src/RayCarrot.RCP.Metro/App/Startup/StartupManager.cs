@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -26,7 +27,8 @@ public class StartupManager
         AppUserData data, 
         AppViewModel appViewModel, 
         JumpListManager jumpListManager, 
-        DeployableFilesManager deployableFilesManager)
+        DeployableFilesManager deployableFilesManager, 
+        GamesManager gamesManager)
     {
         Args = args ?? throw new ArgumentNullException(nameof(args));
         LoggerManager = loggerManager ?? throw new ArgumentNullException(nameof(loggerManager));
@@ -35,6 +37,7 @@ public class StartupManager
         AppViewModel = appViewModel ?? throw new ArgumentNullException(nameof(appViewModel));
         JumpListManager = jumpListManager ?? throw new ArgumentNullException(nameof(jumpListManager));
         DeployableFilesManager = deployableFilesManager ?? throw new ArgumentNullException(nameof(deployableFilesManager));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
     }
 
     #endregion
@@ -58,6 +61,7 @@ public class StartupManager
     private AppViewModel AppViewModel { get; }
     private JumpListManager JumpListManager { get; }
     private DeployableFilesManager DeployableFilesManager { get; }
+    private GamesManager GamesManager { get; }
 
     #endregion
 
@@ -215,8 +219,11 @@ public class StartupManager
         // Keep track of removed games
         HashSet<Games> removed = new();
 
+        // TODO-14: Rather than ToArray we should keep track of games to remove and
+        //          then remove those while only showing a single message to the user.
+        
         // Make sure every game is valid
-        foreach (GameInstallation? gameInstallation in AppViewModel.GetInstalledGames)
+        foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames().ToArray())
         {
             // Check if it's valid
             if (await gameInstallation.Game.GetManager().IsValidAsync(gameInstallation.InstallLocation))
