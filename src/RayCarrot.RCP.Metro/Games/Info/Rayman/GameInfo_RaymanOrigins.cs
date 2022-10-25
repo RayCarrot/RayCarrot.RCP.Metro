@@ -44,7 +44,8 @@ public sealed class GameInfo_RaymanOrigins : GameInfo
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanOriginsRegistryKey);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanOrigins().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_RaymanOrigins(gameInstallation).Yield();
 
     /// <summary>
     /// Indicates if the game has archives which can be opened

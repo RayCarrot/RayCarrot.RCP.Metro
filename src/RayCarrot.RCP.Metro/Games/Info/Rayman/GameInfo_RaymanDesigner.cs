@@ -44,7 +44,8 @@ public sealed class GameInfo_RaymanDesigner : GameInfo
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_DOSBox_Control(Game);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanDesigner().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_RaymanDesigner(gameInstallation).Yield();
 
     /// <summary>
     /// Optional RayMap URL

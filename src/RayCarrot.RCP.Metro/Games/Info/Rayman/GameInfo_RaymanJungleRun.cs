@@ -38,7 +38,8 @@ public sealed class GameInfo_RaymanJungleRun : GameInfo
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanJungleRun_ViewModel(gameInstallation);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanJungleRun().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_RaymanJungleRun(gameInstallation).Yield();
 
     public override bool AllowPatching => false;
 

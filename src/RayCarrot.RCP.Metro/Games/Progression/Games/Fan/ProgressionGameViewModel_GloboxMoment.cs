@@ -5,10 +5,10 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_GloboxMoment : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_GloboxMoment() : base(Games.GloboxMoment) { }
+    public ProgressionGameViewModel_GloboxMoment(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Environment.SpecialFolder.ApplicationData.GetFolderPath() + "MMFApplications", SearchOption.TopDirectoryOnly, "globoxmoment.ini", "0", 0),
+        new(Environment.SpecialFolder.ApplicationData.GetFolderPath() + "MMFApplications", SearchOption.TopDirectoryOnly, "globoxmoment.ini", "0", 0),
     };
 }

@@ -7,32 +7,32 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RabbidsBigBang() : base(Games.RabbidsBigBang) { }
+    public ProgressionGameViewModel_RabbidsBigBang(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_WinStore>().FullPackageName);
+    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(GameInstallation.Game.GetManager<GameManager_WinStore>().FullPackageName);
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        string packageName = Game.GetManager<GameManager_WinStore>().FullPackageName;
+        string packageName = GameInstallation.Game.GetManager<GameManager_WinStore>().FullPackageName;
 
         FileSystemPath saveFile = fileSystem.GetFile(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
                                                      "Packages" + packageName + "LocalState" + "playerprefs.dat");
 
         using RCPContext context = new(saveFile.Parent);
 
-        Logger.Info("{0} save is being loaded...", Game);
+        Logger.Info("{0} save is being loaded...", GameInstallation.ID);
 
         Unity_PlayerPrefs? saveData = await context.ReadFileDataAsync<Unity_PlayerPrefs>(saveFile.Name, removeFileWhenComplete: false);
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", Game);
+            Logger.Info("{0} save was not found", GameInstallation.ID);
             yield break;
         }
 
-        Logger.Info("{0} save has been deserialized", Game);
+        Logger.Info("{0} save has been deserialized", GameInstallation.ID);
 
         const int maxScore = 12 * 45 * 3;
 
@@ -61,6 +61,6 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         yield return new SerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
 
-        Logger.Info("{0} save has been loaded", Game);
+        Logger.Info("{0} save has been loaded", GameInstallation.ID);
     }
 }

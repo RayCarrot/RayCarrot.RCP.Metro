@@ -10,13 +10,13 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanLegends() : base(Games.RaymanLegends) { }
+    public ProgressionGameViewModel_RaymanLegends(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends", SearchOption.AllDirectories, "*", "0", 0)
+        new(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends", SearchOption.AllDirectories, "*", "0", 0)
     };
 
     /// <summary>
@@ -67,7 +67,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
         foreach (FileSystemPath saveFile in saveDir.GetFiles())
         {
-            Logger.Info("{0} slot {1} is being loaded...", Game, saveFile.Parent.Name);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveFile.Parent.Name);
 
             string saveFileName = saveFile - saveDir.DirPath;
 
@@ -76,7 +76,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
             if (saveFileData == null)
             {
-                Logger.Info("{0} slot was not found", Game);
+                Logger.Info("{0} slot was not found", GameInstallation.ID);
                 continue;
             }
 
@@ -156,7 +156,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                 //ExportedType = typeof(Legends_SaveData.RO2_PersistentGameData_Universe)
             };
 
-            Logger.Info("{0} slot has been loaded", Game);
+            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanRedemption() : base(Games.RaymanRedemption) { }
+    public ProgressionGameViewModel_RaymanRedemption(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -68,17 +68,17 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
         {
             string fileName = $"rayrede{saveIndex + 1}.txt";
 
-            Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveIndex);
 
             GameMaker_DSMap? saveData = await context.ReadFileDataAsync<GameMaker_DSMap>(fileName, new GameMaker_HexStringEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", Game);
+                Logger.Info("{0} slot was not found", GameInstallation.ID);
                 continue;
             }
 
-            Logger.Info("{0} slot has been deserialized", Game);
+            Logger.Info("{0} slot has been deserialized", GameInstallation.ID);
 
             string saveName = saveData.GetValue("savename0").StringValue + 
                               saveData.GetValue("savename1").StringValue + 
@@ -212,7 +212,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             yield return new SerializableProgressionSlotViewModel<GameMaker_DSMap>(this, $"{saveName} ({gameModeStr})", saveIndex, percentage, dataItems, context, saveData, fileName);
 
-            Logger.Info("{0} slot has been loaded", Game);
+            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
         }
     }
 }

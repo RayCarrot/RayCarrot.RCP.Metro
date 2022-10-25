@@ -44,7 +44,8 @@ public sealed class GameInfo_RaymanLegends : GameInfo
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanLegendsRegistryKey);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanLegends().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_RaymanLegends(gameInstallation).Yield();
 
     /// <summary>
     /// Indicates if the game has archives which can be opened

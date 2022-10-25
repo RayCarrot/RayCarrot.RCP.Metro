@@ -35,7 +35,8 @@ public sealed class GameInfo_RabbidsBigBang : GameInfo
     /// </summary>
     public override string DefaultFileName => "Template.exe";
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RabbidsBigBang().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_RabbidsBigBang(gameInstallation).Yield();
 
     public override bool AllowPatching => false;
 

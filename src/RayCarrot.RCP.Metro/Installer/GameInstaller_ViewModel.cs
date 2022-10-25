@@ -1,5 +1,7 @@
 ﻿#nullable disable
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -180,6 +182,45 @@ public class GameInstaller_ViewModel : UserInputViewModel
 
     #endregion
 
+    #region Private Methods
+
+    /// <summary>
+    /// Gets the installer items for the game
+    /// </summary>
+    /// <param name="outputPath">The output path for the installation</param>
+    /// <returns>The installer items</returns>
+    private List<GameInstaller_Item> GetInstallerItems(FileSystemPath outputPath)
+    {
+        // Create the result
+        List<GameInstaller_Item> result = new();
+
+        // Attempt to get the text file containing the items
+        if (InstallerGames.ResourceManager.GetObject($"{Game}") is not string file)
+            throw new Exception("Installer item not found");
+
+        // Create a string reader
+        using StringReader reader = new(file);
+
+        // Enumerate each line
+        while (reader.ReadLine() is { } line)
+        {
+            // Check if the item is optional, in which case it has a blank space before the path
+            bool optional = line.StartsWith(" ");
+
+            // Remove the blank space if optional
+            if (optional)
+                line = line.Substring(1);
+
+            // Add the item
+            result.Add(new GameInstaller_Item(line, outputPath + line, optional));
+        }
+
+        // Return the items
+        return result;
+    }
+
+    #endregion
+
     #region Public Methods
 
     /// <summary>
@@ -269,7 +310,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
             FileSystemPath output = InstallDir + displayName;
 
             // Create the installer
-            using var installer = new GameInstaller(new GameInstaller_Data(Game.GetInstallerItems(output), output, CancellationTokenSource.Token));
+            using var installer = new GameInstaller(new GameInstaller_Data(GetInstallerItems(output), output, CancellationTokenSource.Token));
 
             // Subscribe to when the status is updated
             installer.StatusUpdated += Installer_StatusUpdated;

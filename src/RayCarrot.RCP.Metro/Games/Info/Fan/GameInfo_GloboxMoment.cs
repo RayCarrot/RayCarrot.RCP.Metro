@@ -49,7 +49,8 @@ public sealed class GameInfo_GloboxMoment : GameInfo
         Environment.SpecialFolder.ApplicationData.GetFolderPath() + "MMFApplications" + "globoxmoment.ini"
     };
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_GloboxMoment().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_GloboxMoment(gameInstallation).Yield();
 
     #endregion
 }

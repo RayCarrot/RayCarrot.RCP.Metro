@@ -148,7 +148,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 GameInstallation gameInstallation = game.GetInstallation();
 
                 // Get the manager
-                var manager = game.GetManager(game.GetGameType());
+                var manager = game.GetManager();
 
                 // Add launch options if set to do so
                 var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);

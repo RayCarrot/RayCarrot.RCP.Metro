@@ -38,8 +38,8 @@ public sealed class GameInfo_TonicTrouble : GameInfo
     /// </summary>
     public override string DefaultFileName => "TonicTrouble.exe";
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => 
-        new ProgressionGameViewModel_TonicTrouble(Games.TonicTrouble).Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_TonicTrouble(gameInstallation).Yield();
 
     /// <summary>
     /// Optional RayMap URL

@@ -8,14 +8,14 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_Rayman1() : base(Games.Rayman1) { }
+    public ProgressionGameViewModel_Rayman1(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
-        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
+        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
+        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
@@ -33,17 +33,17 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
         {
             string fileName = $"RAYMAN{saveIndex + 1}.SAV";
 
-            Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveIndex);
 
             PC_SaveFile? saveData = await context.ReadFileDataAsync<PC_SaveFile>(fileName, new PC_SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", Game);
+                Logger.Info("{0} slot was not found", GameInstallation.ID);
                 continue;
             }
 
-            Logger.Info("{0} slot has been deserialized", Game);
+            Logger.Info("{0} slot has been deserialized", GameInstallation.ID);
 
             // Get total amount of cages
             int cages = saveData.Wi_Save_Zone.Sum(x => x.Cages);
@@ -79,7 +79,7 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
                 serializable: saveData, 
                 fileName: fileName);
 
-            Logger.Info("{0} slot has been loaded", Game);
+            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
         }
     }
 }

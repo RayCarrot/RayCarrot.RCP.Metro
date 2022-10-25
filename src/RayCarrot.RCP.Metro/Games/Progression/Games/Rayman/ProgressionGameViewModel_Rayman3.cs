@@ -8,13 +8,13 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_Rayman3() : base(Games.Rayman3) { }
+    public ProgressionGameViewModel_Rayman3(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Game.GetInstallDir() + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
+        new(GameInstallation.InstallLocation + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
@@ -32,13 +32,13 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
         {
             string fileName = filePath.Name;
 
-            Logger.Info("{0} slot {1} is being loaded...", Game, fileName);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, fileName);
 
             R3SaveFile? saveData = await context.ReadFileDataAsync<R3SaveFile>(fileName, new R3SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", Game);
+                Logger.Info("{0} slot was not found", GameInstallation.ID);
                 continue;
             }
 
@@ -82,7 +82,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
             yield return new SerializableProgressionSlotViewModel<R3SaveFile>(this, $"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
 
-            Logger.Info("{0} slot has been loaded", Game);
+            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
 
             index++;
         }

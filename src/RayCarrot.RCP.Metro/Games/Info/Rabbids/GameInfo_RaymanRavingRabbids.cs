@@ -41,7 +41,8 @@ public sealed class GameInfo_RaymanRavingRabbids : GameInfo
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanRavingRabbids_ViewModel(gameInstallation);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanRavingRabbids().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_RaymanRavingRabbids(gameInstallation).Yield();
 
     /// <summary>
     /// Gets the file links for the game

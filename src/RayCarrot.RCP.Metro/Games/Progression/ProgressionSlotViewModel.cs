@@ -160,7 +160,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
     #region Public Methods
 
-    public virtual async Task RefreshInfoItemsAsync(Games game)
+    public virtual async Task RefreshInfoItemsAsync(GameInstallation gameInstallation)
     {
         try
         {
@@ -191,7 +191,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Error refreshing info items for {0}", game);
+            Logger.Error(ex, "Error refreshing info items for {0}", gameInstallation.ID);
         }
     }
 
@@ -272,7 +272,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         if (!await ConfirmSaveEditingAsync())
             return;
 
-        Logger.Trace("Progression slot for {0} is being opened for editing...", Game.Game);
+        Logger.Trace("Progression slot for {0} is being opened for editing...", Game.GameInstallation.ID);
 
         try
         {

@@ -105,7 +105,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
 
                 // Add the game items
                 foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
-                    GameItems.AddRange(gameInstallation.GameInfo.GetProgressionGameViewModels);
+                    GameItems.AddRange(gameInstallation.GameInfo.GetProgressionGameViewModels(gameInstallation));
 
                 // TODO: Use Task.WhenAll and run in parallel?
 

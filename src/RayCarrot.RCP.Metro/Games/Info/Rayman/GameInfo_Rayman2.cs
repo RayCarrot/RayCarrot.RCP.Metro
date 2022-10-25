@@ -45,7 +45,8 @@ public sealed class GameInfo_Rayman2 : GameInfo
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_Rayman2_ViewModel(gameInstallation);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_Rayman2().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
+        new ProgressionGameViewModel_Rayman2(gameInstallation).Yield();
 
     /// <summary>
     /// Optional RayMap URL

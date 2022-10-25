@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanRavingRabbids() : base(Games.RaymanRavingRabbids) { }
+    public ProgressionGameViewModel_RaymanRavingRabbids(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -598,14 +598,14 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
+        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveFile = fileSystem.GetFile(InstallDir + "Rayman4.sav");
 
-        Logger.Info("{0} save is being loaded...", Game);
+        Logger.Info("{0} save is being loaded...", GameInstallation.ID);
 
         using RCPContext context = new(saveFile.Parent);
 
@@ -613,7 +613,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", Game);
+            Logger.Info("{0} save was not found", GameInstallation.ID);
             yield break;
         }
 
@@ -755,7 +755,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             SlotGroup = 1,
         };
 
-        Logger.Info("{0} save has been loaded", Game);
+        Logger.Info("{0} save has been loaded", GameInstallation.ID);
     }
 
     private class World

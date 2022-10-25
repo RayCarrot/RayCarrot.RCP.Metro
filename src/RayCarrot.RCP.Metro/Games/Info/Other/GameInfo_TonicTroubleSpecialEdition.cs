@@ -38,8 +38,8 @@ public sealed class GameInfo_TonicTroubleSpecialEdition : GameInfo
     /// </summary>
     public override string DefaultFileName => "MaiD3Dvr.exe";
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => 
-        new ProgressionGameViewModel_TonicTrouble(Games.TonicTroubleSpecialEdition).Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_TonicTrouble(gameInstallation).Yield();
 
     /// <summary>
     /// Optional RayMap URL

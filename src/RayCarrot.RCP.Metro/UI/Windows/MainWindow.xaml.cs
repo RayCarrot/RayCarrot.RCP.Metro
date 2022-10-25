@@ -61,7 +61,7 @@ public partial class MainWindow : BaseWindow
 
         try
         {
-            ProgressionPageTab.IsEnabled = Data.Game_InstalledGames?.Any() ?? false;
+            ProgressionPageTab.IsEnabled = Data.Game_GameInstallations?.Any() ?? false;
         }
         catch (Exception ex)
         {

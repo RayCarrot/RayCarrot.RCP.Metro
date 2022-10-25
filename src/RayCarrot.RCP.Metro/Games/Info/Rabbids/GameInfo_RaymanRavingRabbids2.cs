@@ -50,7 +50,8 @@ public sealed class GameInfo_RaymanRavingRabbids2 : GameInfo
             Arguments: $"/{Services.Data.Game_RRR2LaunchMode.ToString().ToLower()}")
     };
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => new ProgressionGameViewModel_RaymanRavingRabbids2().Yield();
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        new ProgressionGameViewModel_RaymanRavingRabbids2(gameInstallation).Yield();
 
     #endregion
 }

@@ -46,14 +46,11 @@ public sealed class GameInfo_EducationalDos : GameInfo
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_EducationalDos_Control();
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation)
     {
-        get
-        {
-            return Services.Data.Game_EducationalDosBoxGames.
-                Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).
-                Select(x => new ProgressionGameViewModel_EducationalDos(x));
-        }
+        return Services.Data.Game_EducationalDosBoxGames.
+            Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).
+            Select(x => new ProgressionGameViewModel_EducationalDos(gameInstallation, x));
     }
 
     /// <summary>

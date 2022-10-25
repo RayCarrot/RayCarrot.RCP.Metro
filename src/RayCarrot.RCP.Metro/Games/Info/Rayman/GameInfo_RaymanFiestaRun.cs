@@ -43,17 +43,14 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanFiestaRun_ViewModel(gameInstallation);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation)
     {
-        get
-        {
-            var manager = Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore);
+        var manager = Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore);
 
-            // Get every installed version
-            IEnumerable<UserData_FiestaRunEdition> versions = EnumHelpers.GetValues<UserData_FiestaRunEdition>().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);
+        // Get every installed version
+        IEnumerable<UserData_FiestaRunEdition> versions = EnumHelpers.GetValues<UserData_FiestaRunEdition>().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);
 
-            return versions.Select(x => new ProgressionGameViewModel_RaymanFiestaRun(x, $"{Games.RaymanFiestaRun.GetGameInfo().DisplayName} {manager.GetFiestaRunEditionDisplayName(x)}"));
-        }
+        return versions.Select(x => new ProgressionGameViewModel_RaymanFiestaRun(gameInstallation, x, $"{Games.RaymanFiestaRun.GetGameInfo().DisplayName} {manager.GetFiestaRunEditionDisplayName(x)}"));
     }
 
     public override bool AllowPatching => false;

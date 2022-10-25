@@ -11,20 +11,20 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: The progression system has to be updated to work with multiple game installations. For simplicity they should share the
+//          same backup if the game itself is identical (i.e. Steam and Win32 are the same release, but PS1 is not!).
+
 public abstract class ProgressionGameViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    protected ProgressionGameViewModel(Games game, string? displayName = null)
+    protected ProgressionGameViewModel(GameInstallation gameInstallation, string? displayName = null)
     {
-        // Get the info
-        GameInfo gameInfo = game.GetGameInfo();
-
-        Game = game;
-        IconSource = gameInfo.IconSource;
-        IsDemo = gameInfo.IsDemo;
-        DisplayName = displayName ?? gameInfo.DisplayName;
-        InstallDir = game.GetInstallDir(false);
+        GameInstallation = gameInstallation;
+        IconSource = gameInstallation.GameInfo.IconSource;
+        IsDemo = gameInstallation.GameInfo.IsDemo;
+        DisplayName = displayName ?? gameInstallation.GameInfo.DisplayName;
+        InstallDir = gameInstallation.InstallLocation;
 
         BackupInfoItems = new ObservableCollection<DuoGridItemViewModel>();
         AsyncLock = new AsyncLock();
@@ -65,7 +65,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     protected FileSystemPath InstallDir { get; }
     protected AsyncLock AsyncLock { get; }
 
-    public Games Game { get; }
+    public GameInstallation GameInstallation { get; }
     public string IconSource { get; }
     public bool IsDemo { get; }
     public string DisplayName { get; } // TODO: LocalizedString
@@ -73,7 +73,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }
 
-    protected virtual string BackupName => Game.GetGameInfo().BackupName;
+    protected virtual string BackupName => GameInstallation.GameInfo.BackupName;
     protected abstract GameBackups_Directory[] BackupDirectories { get; }
     public BackupStatus CurrentBackupStatus { get; set; }
     public bool IsGOGCloudSyncUsed { get; set; }
@@ -104,12 +104,13 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     private void CheckForGOGCloudSync()
     {
+        // TODO-14: This should not be handled here and definitely not by checking if the type is DOSBox
         // If the type is DOSBox, check if GOG cloud sync is being used
-        if (Game.GetGameType() == GameType.DosBox)
+        if (GameInstallation.GameType == GameType.DosBox)
         {
             try
             {
-                FileSystemPath cloudSyncDir = Game.GetInstallDir(false).Parent + "cloud_saves";
+                FileSystemPath cloudSyncDir = GameInstallation.InstallLocation.Parent + "cloud_saves";
                 IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.EnumerateFileSystemEntries(cloudSyncDir).Any();
             }
             catch (Exception ex)
@@ -216,7 +217,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Failed to load backup progression for {0} ({1})", Game, DisplayName);
+            Logger.Error(ex, "Failed to load backup progression for {0} ({1})", GameInstallation.ID, DisplayName);
 
             BackupSlots.Clear();
         }
@@ -402,7 +403,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Failed to load progression for {0} ({1})", Game, DisplayName);
+                Logger.Error(ex, "Failed to load progression for {0} ({1})", GameInstallation.ID, DisplayName);
 
                 Slots.Clear();
                 PrimarySlot = null;
@@ -420,7 +421,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     {
         using (await AsyncLock.LockAsync())
         {
-            Logger.Trace($"Loading backup for {Game}");
+            Logger.Trace($"Loading backup for {GameInstallation.ID}");
 
             // Set the status to syncing while the data is being loaded
             CurrentBackupStatus = BackupStatus.Syncing;
@@ -464,7 +465,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     public async Task LoadSlotInfoItemsAsync()
     {
         foreach (ProgressionSlotViewModel slot in Slots)
-            await slot.RefreshInfoItemsAsync(Game);
+            await slot.RefreshInfoItemsAsync(GameInstallation);
     }
 
     public async Task<bool> BackupAsync(bool fromBatchOperation = false)
@@ -483,7 +484,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             {
                 IsPerformingBackupRestore = true;
 
-                Logger.Trace($"Performing backup on {Game}");
+                Logger.Trace($"Performing backup on {GameInstallation.ID}");
 
                 // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
                 if (IsGOGCloudSyncUsed && !fromBatchOperation)
@@ -546,7 +547,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             {
                 IsPerformingBackupRestore = true;
 
-                Logger.Trace($"Performing restore on {Game}");
+                Logger.Trace($"Performing restore on {GameInstallation.ID}");
 
                 // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
                 if (IsGOGCloudSyncUsed)

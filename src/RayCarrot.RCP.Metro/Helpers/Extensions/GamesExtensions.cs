@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
@@ -20,42 +19,6 @@ public static class GamesExtensions
     public static bool IsAdded(this Games game)
     {
         return Services.Data.Game_GameInstallations.Any(x => x.Game == game);
-    }
-
-    /// <summary>
-    /// Gets the installer items for the specified game
-    /// </summary>
-    /// <param name="game">The game to get the installer items for</param>
-    /// <param name="outputPath">The output path for the installation</param>
-    /// <returns>The installer items</returns>
-    public static List<GameInstaller_Item> GetInstallerItems(this Games game, FileSystemPath outputPath)
-    {
-        // Create the result
-        var result = new List<GameInstaller_Item>();
-
-        // Attempt to get the text file containing the items
-        if (InstallerGames.ResourceManager.GetObject($"{game}") is not string file)
-            throw new Exception("Installer item not found");
-
-        // Create a string reader
-        using var reader = new StringReader(file);
-
-        // Enumerate each line
-        while (reader.ReadLine() is { } line)
-        {
-            // Check if the item is optional, in which case it has a blank space before the path
-            bool optional = line.StartsWith(" ");
-
-            // Remove the blank space if optional
-            if (optional)
-                line = line.Substring(1);
-
-            // Add the item
-            result.Add(new GameInstaller_Item(line, outputPath + line, optional));
-        }
-
-        // Return the items
-        return result;
     }
 
     /// <summary>
@@ -94,11 +57,7 @@ public static class GamesExtensions
     /// </summary>
     /// <param name="game">The game to get the manager for</param>
     /// <returns>The manager</returns>
-    public static GameManager GetManager(this Games game)
-    {
-        var g = Services.App.GamesManager;
-        return g.CreateCachedInstance<GameManager>(g.GameManagers[game][game.GetGameType()]);
-    }
+    public static GameManager GetManager(this Games game) => GetManager(game, game.GetGameType());
 
     /// <summary>
     /// Gets the available game managers for the specified game

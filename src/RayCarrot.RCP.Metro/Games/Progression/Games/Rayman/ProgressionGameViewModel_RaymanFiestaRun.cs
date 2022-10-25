@@ -10,7 +10,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanFiestaRun(UserData_FiestaRunEdition edition, string displayName) : base(Games.RaymanFiestaRun, displayName)
+    public ProgressionGameViewModel_RaymanFiestaRun(GameInstallation gameInstallation, UserData_FiestaRunEdition edition, string displayName) 
+        : base(gameInstallation, displayName)
     {
         Edition = edition;
     }
@@ -20,7 +21,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
     public UserData_FiestaRunEdition Edition { get; }
 
     protected override string BackupName => $"Rayman Fiesta Run ({Edition})";
-    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition));
+    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(GameInstallation.Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition));
 
     private static int GetLevelIdFromIndex(int idx)
     {
@@ -46,7 +47,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
     {
         FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                  "Packages" +
-                                 Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition) +
+                                 GameInstallation.Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition) +
                                  "LocalState";
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
 
@@ -54,10 +55,10 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
             yield break;
 
         using RCPContext context = new(saveDir.DirPath);
-        UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC);
+        UbiArtSettings settings = new(Game.RaymanFiestaRun, Platform.PC);
         context.AddSettings(settings);
 
-        Logger.Info("{0} slot is being loaded...", Game);
+        Logger.Info("{0} slot is being loaded...", GameInstallation.ID);
 
         // Get the file path
         string fileName = Edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat";
@@ -67,11 +68,11 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 
         if (saveData == null)
         {
-            Logger.Info("{0} slot was not found", Game);
+            Logger.Info("{0} slot was not found", GameInstallation.ID);
             yield break;
         }
 
-        Logger.Info("{0} slot has been deserialized", Game);
+        Logger.Info("{0} slot has been deserialized", GameInstallation.ID);
 
         int crowns = saveData.LevelInfos_Land1.Count(x => x.HasCrown);
         int maxCrowns = 72;
@@ -121,6 +122,6 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 
         yield return new SerializableProgressionSlotViewModel<FiestaRun_SaveData>(this, null, 0, crowns, maxCrowns, progressItems, context, saveData, fileName);
 
-        Logger.Info("{0} slot has been loaded", Game);
+        Logger.Info("{0} slot has been loaded", GameInstallation.ID);
     }
 }

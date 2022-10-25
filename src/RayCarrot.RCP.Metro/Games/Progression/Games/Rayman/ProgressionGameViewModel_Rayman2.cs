@@ -10,14 +10,14 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_Rayman2() : base(Games.Rayman2) { }
+    public ProgressionGameViewModel_Rayman2(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Game.GetInstallDir() + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
+        new(GameInstallation.InstallLocation + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
+        new(GameInstallation.InstallLocation + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
@@ -50,13 +50,13 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         {
             string slotFilePath = $@"Slot{saveSlot.SlotIndex}\General.sav";
 
-            Logger.Info("{0} slot {1} is being loaded...", Game, saveSlot.SlotIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveSlot.SlotIndex);
 
             R2GeneralSaveFile? saveData= await context.ReadFileDataAsync<R2GeneralSaveFile>(slotFilePath, new R2SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", Game);
+                Logger.Info("{0} slot was not found", GameInstallation.ID);
                 continue;
             }
 
@@ -116,7 +116,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 
             yield return new SerializableProgressionSlotViewModel<R2GeneralSaveFile>(this, name, saveSlot.SlotIndex, parsedPercentage, progressItems, context, saveData, slotFilePath);
 
-            Logger.Info("{0} slot has been loaded", Game);
+            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
         }
     }
 }

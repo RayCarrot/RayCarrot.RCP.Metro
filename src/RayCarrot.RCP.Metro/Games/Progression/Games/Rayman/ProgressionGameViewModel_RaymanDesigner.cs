@@ -9,27 +9,29 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
 {
-    protected ProgressionGameViewModel_RaymanDesigner(Games game) : base(game) { }
-    public ProgressionGameViewModel_RaymanDesigner() : base(Games.RaymanDesigner) { }
+    public ProgressionGameViewModel_RaymanDesigner(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    protected virtual int LevelsCount => 24;
+    protected virtual Ray1EngineVersion EngineVersion => Ray1EngineVersion.PC_Kit;
+
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
+        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
+        new(GameInstallation.InstallLocation + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
         //
         // Note:
         // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
         // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
         // correct mapper directories within each world directory
         //
-        new GameBackups_Directory(Game.GetInstallDir() + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
-        new GameBackups_Directory(Game.GetInstallDir() + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
+        new(GameInstallation.InstallLocation + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
+        new(GameInstallation.InstallLocation + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
+        new(GameInstallation.InstallLocation + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
+        new(GameInstallation.InstallLocation + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
+        new(GameInstallation.InstallLocation + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
+        new(GameInstallation.InstallLocation + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
@@ -47,10 +49,10 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         if (dir == null)
             yield break;
 
-        Logger.Info("{0} saves from {1} are being loaded...", Game, saveDir.Name);
+        Logger.Info("{0} saves from {1} are being loaded...", GameInstallation.ID, saveDir.Name);
 
         using RCPContext context = new(dir.DirPath);
-        context.AddSettings(new Ray1Settings(Game == Games.RaymanDesigner ? Ray1EngineVersion.PC_Kit : Ray1EngineVersion.PC_Fan));
+        context.AddSettings(new Ray1Settings(EngineVersion));
 
         // Find every .sct file
         foreach (var save in dir.GetFiles().Select(sct =>
@@ -85,7 +87,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", Game);
+                Logger.Info("{0} slot was not found", GameInstallation.ID);
                 continue;
             }
 
@@ -109,14 +111,6 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
                 text: $"{time:mm\\:ss\\.fff}"));
         }
 
-        int levelsCount = Game switch
-        {
-            Games.RaymanDesigner => 24,
-            Games.RaymanByHisFans => 40,
-            Games.Rayman60Levels => 60,
-            _ => -1
-        };
-
         int levelsFinished = progressItems.Count;
 
         if (levelsFinished > 0)
@@ -127,12 +121,12 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
                 icon: ProgressionIcon.R1_Flag,
                 header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
                 value: levelsFinished,
-                max: levelsCount));
+                max: LevelsCount));
 
-            yield return new RaymanDesignerProgressionSlotViewModel(this, null, 0, levelsFinished, levelsCount, progressItems, levelTimes, saveDir);
+            yield return new RaymanDesignerProgressionSlotViewModel(this, null, 0, levelsFinished, LevelsCount, progressItems, levelTimes, saveDir);
         }
 
-        Logger.Info("{0} slot has been loaded", Game);
+        Logger.Info("{0} slot has been loaded", GameInstallation.ID);
     }
 
     private class RaymanDesignerProgressionSlotViewModel : ProgressionSlotViewModel

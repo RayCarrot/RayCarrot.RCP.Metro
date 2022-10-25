@@ -9,13 +9,18 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanMArena(Games game) : base(game) { }
+    public ProgressionGameViewModel_RaymanMArena(GameInstallation gameInstallation, bool isRaymanMDemo) : base(gameInstallation)
+    {
+        IsRaymanMDemo = isRaymanMDemo;
+    }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    private bool IsRaymanMDemo { get; }
+
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Game.GetInstallDir() + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
+        new(GameInstallation.InstallLocation + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
@@ -28,7 +33,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
         FileSystemPath saveFileName = "raymanm.sav";
 
-        Logger.Info("{0} save file {1} is being loaded...", Game, saveFileName);
+        Logger.Info("{0} save file {1} is being loaded...", GameInstallation.ID, saveFileName);
 
         using RCPContext context = new(saveDir.DirPath);
 
@@ -37,7 +42,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", Game);
+            Logger.Info("{0} save was not found", GameInstallation.ID);
             yield break;
         }
 
@@ -80,8 +85,8 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
             // Get completed challenges
             int raceCompleted = 0;
             int battleCompleted = 0;
-            int maxRace = Game == Games.Demo_RaymanM ? 15 : 38;
-            int maxBattle = Game == Games.Demo_RaymanM ? 15 : 13 * 3;
+            int maxRace = IsRaymanMDemo ? 15 : 38;
+            int maxBattle = IsRaymanMDemo ? 15 : 13 * 3;
 
             void AddRaceCompleted(IEnumerable<int> values, int count) => 
                 raceCompleted += values.Skip(count * slotIndex).Take(12).Count(x => x == 2);
@@ -151,7 +156,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
             yield return new SerializableProgressionSlotViewModel<RMSaveFile>(this, name.TrimEnd(), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
 
-            Logger.Info("{0} slot has been loaded", Game);
+            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
         }
     }
 }

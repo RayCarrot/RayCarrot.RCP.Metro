@@ -11,13 +11,13 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanOrigins() : base(Games.RaymanOrigins) { }
+    public ProgressionGameViewModel_RaymanOrigins(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new GameBackups_Directory(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins", SearchOption.AllDirectories, "*", "0", 0)
+        new(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins", SearchOption.AllDirectories, "*", "0", 0)
     };
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
@@ -38,21 +38,21 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
         }
 
         using RCPContext context = new(saveDir.DirPath);
-        UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PC);
+        UbiArtSettings settings = new(Game.RaymanOrigins, Platform.PC);
         context.AddSettings(settings);
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
             string fileName = $"Savegame_{saveIndex}";
 
-            Logger.Info("{0} slot {1} is being loaded...", Game, saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveIndex);
 
             // Deserialize the data
             Origins_SaveData? saveFileData = await context.ReadFileDataAsync<Origins_SaveData>(fileName, endian: Endian.Big, removeFileWhenComplete: false);
 
             if (saveFileData == null)
             {
-                Logger.Info("{0} slot was not found", Game);
+                Logger.Info("{0} slot was not found", GameInstallation.ID);
                 continue;
             }
 
@@ -159,7 +159,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
                 CanImport = false, // TODO: Allow importing. Current issue is the game fails to load modified saves - checksum in header?
             };
 
-            Logger.Info("{0} slot has been loaded", Game);
+            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
         }
     }
 

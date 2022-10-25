@@ -103,7 +103,8 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// The progression game view models
     /// </summary>
-    public virtual IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels => Enumerable.Empty<ProgressionGameViewModel>();
+    public virtual IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
+        Enumerable.Empty<ProgressionGameViewModel>();
 
     /// <summary>
     /// Gets the file links for the game
