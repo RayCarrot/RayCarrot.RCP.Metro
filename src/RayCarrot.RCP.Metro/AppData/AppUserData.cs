@@ -10,6 +10,7 @@ using PropertyChanged;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Remove verification and make everything nullable
+// TODO-14: Migrate old Games_Games and Game_InstalledGames properties to new Game_GameInstallations collection
 
 /// <summary>
 /// The application user data
@@ -60,7 +61,6 @@ public class AppUserData : BaseViewModel
         Game_EducationalDosBoxGames = null;
         Game_RRR2LaunchMode = UserData_RRR2LaunchMode.AllGames;
         Game_RabbidsGoHomeLaunchData = null;
-        Game_InstalledGames = new HashSet<Games>();
         Game_ShownRabbidsActivityCenterLaunchMessage = false;
 
         // Emulator
@@ -121,7 +121,6 @@ public class AppUserData : BaseViewModel
         // Game
         Game_GameInstallations ??= new List<GameInstallation>();
         Game_DosBoxGames ??= new Dictionary<Games, UserData_DosBoxOptions>();
-        Game_InstalledGames ??= new HashSet<Games>();
 
         // Mod
         Mod_RRR_ToggleStates ??= new Dictionary<string, UserData_Mod_RRR_ToggleState>();
@@ -304,11 +303,6 @@ public class AppUserData : BaseViewModel
     /// The launch data for Rabbids Go Home
     /// </summary>
     public UserData_RabbidsGoHomeLaunchData Game_RabbidsGoHomeLaunchData { get; set; }
-
-    /// <summary>
-    /// The games which have been installed through the Rayman Control Panel
-    /// </summary>
-    public HashSet<Games> Game_InstalledGames { get; set; }
 
     /// <summary>
     /// Indicates if the launch message for Rayman Raving Rabbids Activity Center has been shown
@@ -537,7 +531,8 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private UserData_RRR2LaunchMode RRR2LaunchMode { set => Game_RRR2LaunchMode = value; }
     [JsonProperty] private UserData_RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { set => Game_RabbidsGoHomeLaunchData = value; }
     [JsonProperty] private List<string> JumpListItemIDCollection { set => App_JumpListItemIDCollection = value; }
-    [JsonProperty] private HashSet<Games> InstalledGames { set => Game_InstalledGames = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private HashSet<Games> InstalledGames { set => Game_InstalledGames = value; }
     [JsonProperty] private bool CategorizeGames { set => UI_CategorizeGames = value; }
     [JsonProperty] private bool ShownRabbidsActivityCenterLaunchMessage { set => Game_ShownRabbidsActivityCenterLaunchMessage = value; }
     [JsonProperty] private FileSystemPath BinarySerializationFileLogPath { set => Binary_BinarySerializationFileLogPath = value; }

@@ -34,7 +34,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         DisplayName = gameInfo.DisplayName;
         IconSource = gameInfo.IconSource;
         IsDemo = gameInfo.IsDemo;
-        CanUninstall = gameInfo.CanBeUninstalled;
+        CanUninstall = gameInstallation.IsRCPInstalled;
         PageLoadLock = new AsyncLock();
 
         // Create the page collection

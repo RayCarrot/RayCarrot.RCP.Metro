@@ -41,8 +41,9 @@ public class GamesManager
     /// <param name="game">The game to add</param>
     /// <param name="type">The game type</param>
     /// <param name="installDirectory">The game install directory</param>
+    /// <param name="isRCPInstalled">Indicates if the game was installed through the Rayman Control Panel</param>
     /// <returns>The game installation</returns>
-    public async Task<GameInstallation?> AddGameAsync(Games game, GameType type, FileSystemPath installDirectory)
+    public async Task<GameInstallation?> AddGameAsync(Games game, GameType type, FileSystemPath installDirectory, bool isRCPInstalled)
     {
         Logger.Info("The game {0} is being added of type {1}...", game, type);
 
@@ -59,7 +60,7 @@ public class GamesManager
         }
 
         // Create an installation
-        GameInstallation gameInstallation = new(game, type, installDirectory);
+        GameInstallation gameInstallation = new(game, type, installDirectory, isRCPInstalled);
 
         // Get the manager
         GameManager manager = gameInstallation.Game.GetManager(type);
@@ -127,9 +128,6 @@ public class GamesManager
             // Remove the game from the jump list
             foreach (JumpListItemViewModel item in manager.GetJumpListItems(gameInstallation))
                 Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
-
-            // Remove game from installed games if it was installed
-            Data.Game_InstalledGames.Remove(gameInstallation.Game);
 
             // Remove the game
             Data.Game_GameInstallations.Remove(gameInstallation);

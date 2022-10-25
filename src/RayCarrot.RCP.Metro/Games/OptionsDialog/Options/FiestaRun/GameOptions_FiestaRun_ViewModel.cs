@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using NLog;
@@ -136,7 +135,7 @@ public class GameOptions_FiestaRun_ViewModel : BaseRCPViewModel
                 var gameInstallation = Games.RaymanFiestaRun.GetInstallation();
                 Services.Data.Game_GameInstallations.Remove(gameInstallation);
                 // TODO-14: Copy over additional data as well
-                Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Game, gameInstallation.GameType, installLocation));
+                Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Game, gameInstallation.GameType, installLocation, gameInstallation.IsRCPInstalled));
 
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, RefreshFlags.GameInfo));
             }

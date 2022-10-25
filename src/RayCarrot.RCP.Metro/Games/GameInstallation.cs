@@ -10,16 +10,17 @@ public class GameInstallation
 {
     #region Constructors
 
-    public GameInstallation(Games game, GameType gameType, FileSystemPath installLocation) 
-        : this(game, gameType, installLocation, new Dictionary<string, object>()) 
+    public GameInstallation(Games game, GameType gameType, FileSystemPath installLocation, bool isRCPInstalled) 
+        : this(game, gameType, installLocation, isRCPInstalled, new Dictionary<string, object>()) 
     { }
 
     [JsonConstructor]
-    private GameInstallation(Games game, GameType gameType, FileSystemPath installLocation, Dictionary<string, object>? additionalData)
+    private GameInstallation(Games game, GameType gameType, FileSystemPath installLocation, bool isRCPInstalled, Dictionary<string, object>? additionalData)
     {
         Game = game;
         GameType = gameType;
         InstallLocation = installLocation;
+        IsRCPInstalled = isRCPInstalled;
         _additionalData = additionalData ?? new Dictionary<string, object>();
 
         GameInfo = Game.GetGameInfo();
@@ -45,6 +46,12 @@ public class GameInstallation
 
     [JsonProperty(PropertyName = "InstallLocation")]
     public FileSystemPath InstallLocation { get; } // TODO-14: Rename to GamePath?
+
+    /// <summary>
+    /// Indicates if the game was installed through the Rayman Control Panel
+    /// </summary>
+    [JsonProperty(PropertyName = "IsRCPInstalled")]
+    public bool IsRCPInstalled { get; } // TODO-14: Have this be additional data? Have an object for info on how it was installed? Not all games can be installed through RCP, so not all games need this by default.
 
     // TODO-14: Eventually change this
     public GameInfo GameInfo { get; }

@@ -324,10 +324,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
             if (result == GameInstaller_Result.Successful)
             {
                 // Add the game
-                await Services.Games.AddGameAsync(Game, GameType.Win32, output);
-
-                // Add game to installed games
-                Services.Data.Game_InstalledGames.Add(Game);
+                await Services.Games.AddGameAsync(Game, GameType.Win32, output, true);
 
                 // Refresh
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));

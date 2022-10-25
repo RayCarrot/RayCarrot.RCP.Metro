@@ -1,17 +1,14 @@
 ﻿#nullable disable
-using NLog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using JetBrains.Annotations;
 using RayCarrot.RCP.Metro.Archive;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Clean up. Move code out of here. Rename to GameDescriptor? Move some things to modules/extensions.
+// TODO-14: Clean up. Move code out of here. Rename to GameDescriptor? Move some things to modules/extensions. Use this instead of enum.
 // TODO-14: Fix regions once refactoring is done as some properties are getting changed to methods.
 
 /// <summary>
@@ -19,12 +16,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class GameInfo
 {
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
     #region Protected Constants
 
     /// <summary>
@@ -40,11 +31,6 @@ public abstract class GameInfo
     /// The icon source for the game
     /// </summary>
     public string IconSource => $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{IconName}.png";
-
-    /// <summary>
-    /// Indicates if the game can be uninstalled
-    /// </summary>
-    public bool CanBeUninstalled => Services.Data.Game_InstalledGames.Contains(Game);
 
     #endregion
 
@@ -218,125 +204,16 @@ public abstract class GameInfo
 
     #endregion
 
-    #region Public methods
-
-    /// <summary>
-    /// Gets a type for the game, or null if the operation was canceled
-    /// </summary>
-    /// <returns>The type or null if the operation was canceled</returns>
-    public async Task<GameTypeSelectionResult> GetGameTypeAsync()
-    {
-        // Get the available types
-        var types = Services.App.GamesManager.GameManagers[Game].Keys.ToArray();
-
-        // If only one type, return that
-        if (types.Length == 1)
-            return new GameTypeSelectionResult()
-            {
-                CanceledByUser = false,
-                SelectedType = types.First()
-            };
-
-        // Create the view model
-        var vm = new GameTypeSelectionViewModel()
-        {
-            Title = Resources.App_SelectGameTypeHeader
-        };
-
-        // Enumerate the available types
-        foreach (var type in types)
-        {
-            if (type == GameType.Win32)
-                vm.AllowWin32 = true;
-            else if (type == GameType.Steam)
-                vm.AllowSteam = true;
-            else if (type == GameType.WinStore)
-                vm.AllowWinStore = true;
-            else if (type == GameType.DosBox)
-                vm.AllowDosBox = true;
-            else if (type == GameType.EducationalDosBox)
-                vm.AllowEducationalDosBox = true;
-            else
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
-        }
-
-        // Create and show the dialog and return the result
-        return await Services.UI.SelectGameTypeAsync(vm);
-    }
-
-    /// <summary>
-    /// Allows the user to locate the game and add it
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task LocateGameAsync()
-    {
-        try
-        {
-            Logger.Trace("The game {0} is being located...", Game);
-
-            var typeResult = await GetGameTypeAsync();
-
-            if (typeResult.CanceledByUser)
-                return;
-
-            Logger.Info("The game {0} type has been detected as {1}", Game, typeResult.SelectedType);
-
-            await Game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Locating game");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
-        }
-    }
-
-    /// <summary>
-    /// Allows the user to download the game and add it
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task DownloadGameAsync()
-    {
-        try
-        {
-            Logger.Trace("The game {0} is being downloaded...", Game);
-
-            // Get the game directory
-            var gameDir = AppFilePaths.GamesBaseDir + Game.ToString();
-
-            // Download the game
-            var downloaded = await Services.App.DownloadAsync(DownloadURLs, true, gameDir, true);
-
-            if (!downloaded)
-                return;
-
-            // Add the game
-            await Services.Games.AddGameAsync(Game, DownloadType, gameDir);
-
-            // Add game to installed games
-            Services.Data.Game_InstalledGames.Add(Game);
-
-            // Refresh
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
-
-            Logger.Trace("The game {0} has been downloaded", Game);
-
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, DisplayName), Resources.GameInstall_SuccessHeader);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Downloading game");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, DisplayName), Resources.GameInstall_ErrorHeader);
-        }
-    }
-
-    #endregion
-
     #region Data Types
 
     /// <summary>
     /// A game file link which can be accessed from the game
     /// </summary>
-    public record GameFileLink(string Header, FileSystemPath Path, GenericIconKind Icon = GenericIconKind.None, string Arguments = null);
+    public record GameFileLink(
+        string Header, 
+        FileSystemPath Path, 
+        GenericIconKind Icon = GenericIconKind.None, 
+        string Arguments = null);
 
     #endregion
 }

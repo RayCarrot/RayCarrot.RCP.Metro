@@ -22,11 +22,15 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         AppViewModel app, 
         AppUserData data, 
         IMessageUIManager messageUi,
-        IAppInstanceData instanceData) : base(app)
+        IAppInstanceData instanceData, 
+        AppUIManager ui, 
+        IFileManager file) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+        UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        File = file ?? throw new ArgumentNullException(nameof(file));
 
         // Get categorized games
         var games = App.GetCategorizedGames;
@@ -99,8 +103,10 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
     #region Services
 
-    public AppUserData Data { get; }
-    public IMessageUIManager MessageUI { get; }
+    private AppUserData Data { get; }
+    private IMessageUIManager MessageUI { get; }
+    private AppUIManager UI { get; }
+    private IFileManager File { get; }
 
     #endregion
 
@@ -128,6 +134,112 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     #endregion
 
     #region Private Methods
+
+    /// <summary>
+    /// Gets a type for the game, or null if the operation was canceled
+    /// </summary>
+    /// <returns>The type or null if the operation was canceled</returns>
+    private async Task<GameTypeSelectionResult> GetGameTypeAsync(Games game)
+    {
+        // Get the available types
+        GameType[] types = Services.App.GamesManager.GameManagers[game].Keys.ToArray();
+
+        // If only one type, return that
+        if (types.Length == 1)
+            return new GameTypeSelectionResult()
+            {
+                CanceledByUser = false,
+                SelectedType = types.First()
+            };
+
+        // Create the view model
+        var vm = new GameTypeSelectionViewModel()
+        {
+            Title = Resources.App_SelectGameTypeHeader
+        };
+
+        // Enumerate the available types
+        foreach (var type in types)
+        {
+            if (type == GameType.Win32)
+                vm.AllowWin32 = true;
+            else if (type == GameType.Steam)
+                vm.AllowSteam = true;
+            else if (type == GameType.WinStore)
+                vm.AllowWinStore = true;
+            else if (type == GameType.DosBox)
+                vm.AllowDosBox = true;
+            else if (type == GameType.EducationalDosBox)
+                vm.AllowEducationalDosBox = true;
+            else
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+
+        // Create and show the dialog and return the result
+        return await UI.SelectGameTypeAsync(vm);
+    }
+
+    /// <summary>
+    /// Allows the user to locate the game and add it
+    /// </summary>
+    /// <returns>The task</returns>
+    private async Task LocateGameAsync(Games game)
+    {
+        try
+        {
+            Logger.Trace("The game {0} is being located...", game);
+
+            var typeResult = await GetGameTypeAsync(game);
+
+            if (typeResult.CanceledByUser)
+                return;
+
+            Logger.Info("The game {0} type has been detected as {1}", game, typeResult.SelectedType);
+
+            await game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Locating game");
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
+        }
+    }
+
+    /// <summary>
+    /// Allows the user to download the game and add it
+    /// </summary>
+    /// <returns>The task</returns>
+    private async Task DownloadGameAsync(GameInfo gameInfo)
+    {
+        try
+        {
+            Logger.Trace("The game {0} is being downloaded...", gameInfo.Game);
+
+            // Get the game directory
+            var gameDir = AppFilePaths.GamesBaseDir + gameInfo.Game.ToString();
+
+            // Download the game
+            var downloaded = await Services.App.DownloadAsync(gameInfo.DownloadURLs, true, gameDir, true);
+
+            if (!downloaded)
+                return;
+
+            // Add the game
+            await Services.Games.AddGameAsync(gameInfo.Game, gameInfo.DownloadType, gameDir, true);
+
+            // Refresh
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInfo.Game, RefreshFlags.GameCollection));
+
+            Logger.Trace("The game {0} has been downloaded", gameInfo.Game);
+
+            await MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, gameInfo.DisplayName), Resources.GameInstall_SuccessHeader);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Downloading game");
+            await MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, gameInfo.DisplayName), Resources.GameInstall_ErrorHeader);
+        }
+    }
 
     /// <summary>
     /// Gets a display view model for the game
@@ -172,7 +284,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
+                            var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
 
                             if (x.Icon != GenericIconKind.None)
                                 return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -205,7 +317,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 // Add RayMap link
                 if (gameInfo.RayMapURL != null)
                 {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(gameInfo.RayMapURL))?.Dispose())));
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await File.LaunchFileAsync(gameInfo.RayMapURL))?.Dispose())));
                     actions.Add(new OverflowButtonItemViewModel());
                 }
 
@@ -219,7 +331,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                         try
                         {
                             // Show the archive explorer
-                            await Services.UI.ShowArchiveExplorerAsync(
+                            await UI.ShowArchiveExplorerAsync(
                                 manager: archiveDataManager,
                                 filePaths: gameInfo.GetArchiveFilePaths(gameInstallation.InstallLocation).
                                     Where(x => x.FileExists).
@@ -229,7 +341,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                         {
                             Logger.Error(ex, "Running Archive Explorer");
 
-                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
+                            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
                         }
                     }), UserLevel.Advanced));
                 }
@@ -245,7 +357,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                         instDir += gameInfo.DefaultFileName;
 
                     // Open the location
-                    await Services.File.OpenExplorerLocationAsync(instDir);
+                    await File.OpenExplorerLocationAsync(instDir);
 
                     Logger.Trace("The Game {0} install location was opened", gameInstallation.ID);
                 }), UserLevel.Advanced));
@@ -260,13 +372,13 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                         try
                         {
                             // Show the Patcher
-                            await Services.UI.ShowPatcherAsync(gameInstallation);
+                            await UI.ShowPatcherAsync(gameInstallation);
                         }
                         catch (Exception ex)
                         {
                             Logger.Error(ex, "Runing Patcher");
 
-                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_CriticalError);
+                            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_CriticalError);
                         }
                     }), UserLevel.Advanced));
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
@@ -276,7 +388,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, GenericIconKind.GameDisplay_Config, new AsyncRelayCommand(async () =>
                 {
                     Logger.Trace("The game {0} options dialog is opening...", gameInstallation.ID);
-                    await Services.UI.ShowGameOptionsAsync(gameInstallation);
+                    await UI.ShowGameOptionsAsync(gameInstallation);
                 }));
 
                 actions.Add(optionsAction);
@@ -298,7 +410,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
                 if (gameInfo.CanBeDownloaded)
                 {
-                    downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, GenericIconKind.GameDisplay_Download, new AsyncRelayCommand(async () => await gameInfo.DownloadGameAsync()));
+                    downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, GenericIconKind.GameDisplay_Download, new AsyncRelayCommand(async () => await DownloadGameAsync(gameInfo)));
 
                     if (gameInfo.CanBeLocated)
                     {
@@ -322,7 +434,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                         string path = x.Path;
 
                         // Create the command
-                        var command = new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(path))?.Dispose());
+                        var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path))?.Dispose());
 
                         // Return the item
                         return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -349,7 +461,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
                 // Create the main action
                 var mainAction = gameInfo.CanBeLocated
-                    ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await gameInfo.LocateGameAsync()))
+                    ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(game)))
                     : downloadItem;
 
                 // Return the view model
