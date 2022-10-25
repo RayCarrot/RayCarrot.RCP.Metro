@@ -214,7 +214,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 {
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, GenericIconKind.GameDisplay_Archive, new AsyncRelayCommand(async () =>
                     {
-                        using IArchiveDataManager archiveDataManager = gameInfo.GetArchiveDataManager;
+                        using IArchiveDataManager archiveDataManager = gameInfo.GetArchiveDataManager(gameInstallation);
 
                         try
                         {

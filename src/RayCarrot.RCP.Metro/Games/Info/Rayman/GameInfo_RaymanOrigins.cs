@@ -55,7 +55,8 @@ public sealed class GameInfo_RaymanOrigins : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -64,6 +65,17 @@ public sealed class GameInfo_RaymanOrigins : GameInfo
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
     {
         installDir + "GameData" + "bundle_PC.ipk",
+    };
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_RaymanOrigins_HQVideos(gameInstallation),
+        new Utility_RaymanOrigins_DebugCommands(gameInstallation),
+        new Utility_RaymanOrigins_Update(gameInstallation),
     };
 
     #endregion

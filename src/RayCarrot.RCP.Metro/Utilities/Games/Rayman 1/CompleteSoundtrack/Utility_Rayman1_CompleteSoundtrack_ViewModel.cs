@@ -17,13 +17,13 @@ public class Utility_Rayman1_CompleteSoundtrack_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_Rayman1_CompleteSoundtrack_ViewModel()
+    public Utility_Rayman1_CompleteSoundtrack_ViewModel(GameInstallation gameInstallation)
     {
         // Create the commands
         ReplaceSoundtrackCommand = new AsyncRelayCommand(ReplaceSoundtrackAsync);
 
         // Attempt to find the Rayman Forever music directory
-        var dir = Games.Rayman1.GetInstallDir(false).Parent + "Music";
+        var dir = gameInstallation.InstallLocation.Parent + "Music";
 
         // Set to music path if found
         MusicDir = dir.DirectoryExists && (dir + "rayman02.ogg").FileExists ? dir : FileSystemPath.EmptyPath;

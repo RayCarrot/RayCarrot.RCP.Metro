@@ -30,7 +30,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         GameDisplayName = gameInfo.DisplayName;
 
         FileSystemPath installDir = game.GetInstallDir();
-        string? archiveID = game.GetGameInfo().GetArchiveDataManager?.ID;
+        string? archiveID = game.GetGameInfo().GetArchiveDataManager(null)?.ID;
         IEnumerable<AvailableFileLocation>? archiveLocations = archiveID == null ? null : gameInfo.
             GetArchiveFilePaths(installDir)?.
             Where(x => x.FileExists).

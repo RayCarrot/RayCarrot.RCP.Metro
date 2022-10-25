@@ -8,9 +8,14 @@ public class Utility_Rayman2_GameSyncTextureInfo : Utility_BaseGameSyncTextureIn
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_Rayman2_GameSyncTextureInfo() : base(new Utility_BaseGameSyncTextureInfo_ViewModel(Games.Rayman2.GetInstallation(), CPAGameMode.Rayman2_PC, new string[]
+    public Utility_Rayman2_GameSyncTextureInfo(GameInstallation gameInstallation) 
+        : base(new Utility_BaseGameSyncTextureInfo_ViewModel(gameInstallation, CPAGameMode.Rayman2_PC, new string[]
+        {
+            "Data"
+        }))
     {
-        "Data"
-    }))
-    { }
+        GameInstallation = gameInstallation;
+    }
+
+    public GameInstallation GameInstallation { get; }
 }

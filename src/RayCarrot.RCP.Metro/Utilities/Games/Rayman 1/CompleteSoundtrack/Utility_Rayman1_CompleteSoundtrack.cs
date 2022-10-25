@@ -7,6 +7,14 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class Utility_Rayman1_CompleteSoundtrack : Utility<Utility_Rayman1_CompleteSoundtrack_Control, Utility_Rayman1_CompleteSoundtrack_ViewModel>
 {
+    public Utility_Rayman1_CompleteSoundtrack(GameInstallation gameInstallation) 
+        : base(new Utility_Rayman1_CompleteSoundtrack_ViewModel(gameInstallation))
+    {
+        GameInstallation = gameInstallation;
+    }
+
+    public GameInstallation GameInstallation { get; }
+
     public override string DisplayHeader => Resources.R1U_CompleteOSTHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_Rayman1_CompleteSoundtrack;
     public override string InfoText => Resources.R1U_CompleteOSTInfo;

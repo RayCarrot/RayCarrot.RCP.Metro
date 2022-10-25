@@ -18,13 +18,14 @@ public class Utility_RaymanDesigner_ReplaceFiles_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanDesigner_ReplaceFiles_ViewModel()
+    public Utility_RaymanDesigner_ReplaceFiles_ViewModel(GameInstallation gameInstallation)
     {
+        // Set properties
+        GameInstallation = gameInstallation;
+        MapperLanguage = RaymanDesignerMapperLanguage.English;
+
         // Create commands
         ReplaceRayKitCommand = new AsyncRelayCommand(ReplaceRayKitAsync);
-
-        // Default properties
-        MapperLanguage = RaymanDesignerMapperLanguage.English;
     }
 
     #endregion
@@ -41,6 +42,17 @@ public class Utility_RaymanDesigner_ReplaceFiles_ViewModel : BaseRCPViewModel
 
     #endregion
 
+    #region Public Properties
+
+    public GameInstallation GameInstallation { get; }
+
+    /// <summary>
+    /// The selected Mapper language
+    /// </summary>
+    public RaymanDesignerMapperLanguage MapperLanguage { get; set; }
+
+    #endregion
+
     #region Public Methods
 
     /// <summary>
@@ -54,16 +66,16 @@ public class Utility_RaymanDesigner_ReplaceFiles_ViewModel : BaseRCPViewModel
         // Find the files to be replaced
         var files = new Tuple<string, Uri>[]
         {
-            new Tuple<string, Uri>("CLIENT.EXE", new Uri(AppURLs.RD_ClientExe_URL)),
-            new Tuple<string, Uri>("RAYRUN.EXE", new Uri(AppURLs.RD_RayrunExe_URL)),
-            new Tuple<string, Uri>("STARTUP.EXE", new Uri(AppURLs.RD_StartupExe_URL)),
-            new Tuple<string, Uri>("MAPPER.EXE", new Uri(
+            new("CLIENT.EXE", new Uri(AppURLs.RD_ClientExe_URL)),
+            new("RAYRUN.EXE", new Uri(AppURLs.RD_RayrunExe_URL)),
+            new("STARTUP.EXE", new Uri(AppURLs.RD_StartupExe_URL)),
+            new("MAPPER.EXE", new Uri(
                 MapperLanguage == RaymanDesignerMapperLanguage.English ? AppURLs.RD_USMapperExe_URL :
                 MapperLanguage == RaymanDesignerMapperLanguage.French ? AppURLs.RD_FRMapperExe_URL : AppURLs.RD_ALMapperExe_URL)),
         };
 
         // Get the game install dir
-        var installDir = Games.RaymanDesigner.GetInstallDir();
+        var installDir = GameInstallation.InstallLocation;
 
         // Find the directories to search
         var dirs = new FileSystemPath[]
@@ -117,15 +129,6 @@ public class Utility_RaymanDesigner_ReplaceFiles_ViewModel : BaseRCPViewModel
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_ReplaceFiles_Error);
         }
     }
-
-    #endregion
-
-    #region Public Properties
-
-    /// <summary>
-    /// The selected Mapper language
-    /// </summary>
-    public RaymanDesignerMapperLanguage MapperLanguage { get; set; }
 
     #endregion
 

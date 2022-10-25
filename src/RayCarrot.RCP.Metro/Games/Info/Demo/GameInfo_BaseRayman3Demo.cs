@@ -69,7 +69,8 @@ public abstract class GameInfo_BaseRayman3Demo : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC), Game);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC), gameInstallation);
 
     /// <summary>
     /// Gets the archive file paths for the game

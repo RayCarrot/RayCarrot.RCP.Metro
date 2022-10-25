@@ -1,45 +1,4 @@
 {
-  "LocalUtilities": {
-    "Rayman1": [
-      "Utility_Rayman1_TPLS",
-      "Utility_Rayman1_CompleteSoundtrack"
-    ],
-    "RaymanDesigner": [
-      "Utility_RaymanDesigner_ReplaceFiles",
-      "Utility_RaymanDesigner_CreateConfig"
-    ],
-    "Rayman2": [
-      "Utility_Rayman2_GameSyncTextureInfo"
-    ],
-    "RaymanM": [
-      "Utility_RaymanM_GameSyncTextureInfo"
-    ],
-    "RaymanArena": [
-      "Utility_RaymanArena_GameSyncTextureInfo"
-    ],
-    "Rayman3": [
-      "Utility_Rayman3_GameSyncTextureInfo",
-      "Utility_Rayman3_DirectPlay"
-    ],
-    "RaymanOrigins": [
-      "Utility_RaymanOrigins_HQVideos",
-      "Utility_RaymanOrigins_DebugCommands",
-      "Utility_RaymanOrigins_Update"
-    ],
-    "RaymanLegends": [
-      "Utility_RaymanLegends_UbiRay",
-      "Utility_RaymanLegends_DebugCommands"
-    ],
-    "RaymanFiestaRun": [
-      "Utility_RaymanFiestaRun_SaveFix"
-    ],
-    "TonicTrouble": [
-      "Utility_TonicTrouble_GameSyncTextureInfo"
-    ],
-    "TonicTroubleSpecialEdition": [
-      "Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo"
-    ]
-  },
   "GameManagers": {
     "Rayman1": {
       "DosBox": "GameManager_Rayman1_DOSBox"

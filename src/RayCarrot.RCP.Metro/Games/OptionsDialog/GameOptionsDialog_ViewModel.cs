@@ -57,7 +57,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             pages.Add(emuConfigViewModel);
 
         // Add the utilities page
-        UtilityViewModel[] utilities = App.GetUtilities(gameInstallation).Select(x => new UtilityViewModel(x)).ToArray();
+        UtilityViewModel[] utilities = gameInfo.GetUtilities(gameInstallation).Select(x => new UtilityViewModel(x)).ToArray();
 
         if (utilities.Any())
             pages.Add(new GameOptionsDialog_UtilitiesPageViewModel(utilities));

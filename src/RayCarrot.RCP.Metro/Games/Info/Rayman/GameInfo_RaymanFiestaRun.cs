@@ -57,6 +57,15 @@ public sealed class GameInfo_RaymanFiestaRun : GameInfo
 
     #endregion
 
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_RaymanFiestaRun_SaveFix(gameInstallation),
+    };
+
+    #endregion
+
     #region Public Methods
 
     /// <summary>

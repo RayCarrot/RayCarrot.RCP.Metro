@@ -21,7 +21,7 @@ public class Utility_RaymanOrigins_DebugCommands_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanOrigins_DebugCommands_ViewModel()
+    public Utility_RaymanOrigins_DebugCommands_ViewModel(GameInstallation gameInstallation)
     {
         // Create properties
         UpdateDebugCommandsAsyncLock = new AsyncLock();
@@ -31,7 +31,7 @@ public class Utility_RaymanOrigins_DebugCommands_ViewModel : BaseRCPViewModel
         UpdateDebugCommandsCommand = new AsyncRelayCommand(UpdateDebugCommandsAsync);
 
         // Get the Rayman Origins install directory
-        var instDir = Games.RaymanOrigins.GetInstallDir();
+        var instDir = gameInstallation.InstallLocation;
 
         DebugCommandFilePath = GetDebugCommandFilePath(instDir);
 

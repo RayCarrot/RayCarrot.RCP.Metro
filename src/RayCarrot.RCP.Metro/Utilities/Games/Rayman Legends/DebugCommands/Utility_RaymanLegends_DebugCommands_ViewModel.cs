@@ -17,7 +17,7 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanLegends_DebugCommands_ViewModel()
+    public Utility_RaymanLegends_DebugCommands_ViewModel(GameInstallation gameInstallation)
     {
         // Create properties
         DebugCommands = new Dictionary<string, string>();
@@ -27,10 +27,10 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
         LaunchGameCommand = new AsyncRelayCommand(LaunchGameAsync);
 
         // Get the Rayman Origins install directory
-        var instDir = Games.RaymanLegends.GetInstallDir(false);
+        var instDir = gameInstallation.InstallLocation;
 
         GameFilePath = instDir.DirectoryExists
-            ? instDir + Games.RaymanLegends.GetGameInfo().DefaultFileName
+            ? instDir + gameInstallation.GameInfo.DefaultFileName
             : FileSystemPath.EmptyPath;
     }
 

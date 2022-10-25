@@ -21,14 +21,14 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanLegends_UbiRay_ViewModel()
+    public Utility_RaymanLegends_UbiRay_ViewModel(GameInstallation gameInstallation)
     {
         // Create commands
         ApplyCommand = new AsyncRelayCommand(ApplyAsync);
         RevertCommand = new AsyncRelayCommand(RevertAsync);
 
         // Set properties
-        IPKFilePath = Games.RaymanLegends.GetInstallDir() + "Bundle_PC.ipk";
+        IPKFilePath = gameInstallation.InstallLocation + "Bundle_PC.ipk";
 
         try
         {

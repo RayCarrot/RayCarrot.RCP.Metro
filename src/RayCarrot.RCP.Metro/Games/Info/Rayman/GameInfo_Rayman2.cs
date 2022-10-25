@@ -105,7 +105,8 @@ public sealed class GameInfo_Rayman2 : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC), Game);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2, Platform.PC), gameInstallation);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -120,6 +121,11 @@ public sealed class GameInfo_Rayman2 : GameInfo
     #endregion
 
     #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_Rayman2_GameSyncTextureInfo(gameInstallation),
+    };
 
     public override async Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
     {

@@ -22,11 +22,11 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// Default constructor
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
-    /// <param name="game">The game or null if one is not specified</param>
-    public CPACntArchiveDataManager(OpenSpaceSettings settings, Games? game)
+    /// <param name="gameInstallation">The game installation or null if one is not specified</param>
+    public CPACntArchiveDataManager(OpenSpaceSettings settings, GameInstallation? gameInstallation)
     {
         Settings = settings;
-        Game = game;
+        GameInstallation = gameInstallation;
 
         Context = new RCPContext(String.Empty, new RCPSerializerSettings()
         {
@@ -45,7 +45,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
     #region Public Properties
 
-    public Games? Game { get; }
+    public GameInstallation? GameInstallation { get; }
 
     public string ID => "CPA_CNT";
 
@@ -262,7 +262,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths)
     {
         // If we don't have a game then we can't auto-sync the textures
-        if (Game == null)
+        if (GameInstallation == null)
             return;
 
         AppUserData data = Services.Data;
@@ -286,14 +286,14 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         data.Archive_CNT_SyncOnRepackRequested = true;
 
         // TODO: Find a better solution than first creating the utilities to then get the view models
-        Utility_BaseGameSyncTextureInfo_ViewModel? syncVm = Game switch
+        Utility_BaseGameSyncTextureInfo_ViewModel? syncVm = GameInstallation.Game switch
         {
-            Games.Rayman2 => new Utility_Rayman2_GameSyncTextureInfo().ViewModel,
-            Games.RaymanM => new Utility_RaymanM_GameSyncTextureInfo().ViewModel,
-            Games.RaymanArena => new Utility_RaymanArena_GameSyncTextureInfo().ViewModel,
-            Games.Rayman3 => new Utility_Rayman3_GameSyncTextureInfo().ViewModel,
-            Games.TonicTrouble => new Utility_TonicTrouble_GameSyncTextureInfo().ViewModel,
-            Games.TonicTroubleSpecialEdition => new Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo().ViewModel,
+            Games.Rayman2 => new Utility_Rayman2_GameSyncTextureInfo(GameInstallation).ViewModel,
+            Games.RaymanM => new Utility_RaymanM_GameSyncTextureInfo(GameInstallation).ViewModel,
+            Games.RaymanArena => new Utility_RaymanArena_GameSyncTextureInfo(GameInstallation).ViewModel,
+            Games.Rayman3 => new Utility_Rayman3_GameSyncTextureInfo(GameInstallation).ViewModel,
+            Games.TonicTrouble => new Utility_TonicTrouble_GameSyncTextureInfo(GameInstallation).ViewModel,
+            Games.TonicTroubleSpecialEdition => new Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo(GameInstallation).ViewModel,
             _ => null
         };
 

@@ -101,7 +101,8 @@ public sealed class GameInfo_RaymanM : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanM, Platform.PC), Game);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanM, Platform.PC), gameInstallation);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -115,6 +116,15 @@ public sealed class GameInfo_RaymanM : GameInfo
         installDir + "MenuBin" + "vignette.cnt",
         installDir + "TribeBin" + "tex32.cnt",
         installDir + "TribeBin" + "vignette.cnt",
+    };
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_RaymanM_GameSyncTextureInfo(gameInstallation),
     };
 
     #endregion

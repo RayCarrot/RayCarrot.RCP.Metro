@@ -7,6 +7,8 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO: Maybe shouldn't be Rayman 3 specific since it's more of a general thing?
+
 /// <summary>
 /// View model for the Rayman 3 Direct Play utility
 /// </summary>

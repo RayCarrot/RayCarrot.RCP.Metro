@@ -98,7 +98,8 @@ public sealed class GameInfo_RaymanArena : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanArena, Platform.PC), Game);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanArena, Platform.PC), gameInstallation);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -117,6 +118,15 @@ public sealed class GameInfo_RaymanArena : GameInfo
         installDir + "TribeBin" + "tex32.cnt",
         installDir + "TribeBin" + "vignette.cnt",
         installDir + "TribeBin" + "Sound.cnt",
+    };
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_RaymanArena_GameSyncTextureInfo(gameInstallation),
     };
 
     #endregion

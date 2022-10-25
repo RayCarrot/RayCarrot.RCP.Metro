@@ -76,7 +76,8 @@ public sealed class GameInfo_Rayman3 : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC), Game);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman3, Platform.PC), gameInstallation);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -87,6 +88,16 @@ public sealed class GameInfo_Rayman3 : GameInfo
         installDir + "Gamedatabin" + "tex32_1.cnt",
         installDir + "Gamedatabin" + "tex32_2.cnt",
         installDir + "Gamedatabin" + "vignette.cnt",
+    };
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_Rayman3_GameSyncTextureInfo(gameInstallation),
+        new Utility_Rayman3_DirectPlay(gameInstallation),
     };
 
     #endregion

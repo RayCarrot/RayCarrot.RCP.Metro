@@ -5,6 +5,14 @@
 /// </summary>
 public class Utility_RaymanLegends_DebugCommands : Utility<Utility_RaymanLegends_DebugCommands_Control, Utility_RaymanLegends_DebugCommands_ViewModel>
 {
+    public Utility_RaymanLegends_DebugCommands(GameInstallation gameInstallation) 
+        : base(new Utility_RaymanLegends_DebugCommands_ViewModel(gameInstallation))
+    {
+        GameInstallation = gameInstallation;
+    }
+
+    public GameInstallation GameInstallation { get; }
+
     public override string DisplayHeader => Resources.ROU_DebugCommandsHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanLegends_DebugCommands;
     public override string InfoText => Resources.ROU_DebugCommandsInfo;

@@ -55,7 +55,8 @@ public sealed class GameInfo_RaymanLegends : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -65,6 +66,16 @@ public sealed class GameInfo_RaymanLegends : GameInfo
     {
         installDir + "Bundle_PC.ipk",
         installDir + "persistentLoading_PC.ipk",
+    };
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_RaymanLegends_UbiRay(gameInstallation),
+        new Utility_RaymanLegends_DebugCommands(gameInstallation),
     };
 
     #endregion

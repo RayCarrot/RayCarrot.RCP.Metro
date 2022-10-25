@@ -17,7 +17,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    public Utility_RaymanFiestaRun_SaveFix_ViewModel()
+    public Utility_RaymanFiestaRun_SaveFix_ViewModel(GameInstallation gameInstallation)
     {
         Editions = new ObservableCollection<EditionViewModel>();
 
@@ -25,7 +25,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
         {
             FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                      "Packages" +
-                                     Games.RaymanFiestaRun.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(edition) +
+                                     gameInstallation.Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(edition) +
                                      "LocalState";
             FileSystemPath saveFile = saveDir + (edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat");
 

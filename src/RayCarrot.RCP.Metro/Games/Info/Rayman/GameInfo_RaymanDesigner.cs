@@ -68,7 +68,8 @@ public sealed class GameInfo_RaymanDesigner : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -80,6 +81,16 @@ public sealed class GameInfo_RaymanDesigner : GameInfo
     /// An optional emulator to use for the game
     /// </summary>
     public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.DosBox);
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_RaymanDesigner_ReplaceFiles(gameInstallation),
+        new Utility_RaymanDesigner_CreateConfig(gameInstallation),
+    };
 
     #endregion
 }

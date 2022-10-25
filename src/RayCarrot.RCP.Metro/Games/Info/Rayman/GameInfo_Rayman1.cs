@@ -55,4 +55,14 @@ public sealed class GameInfo_Rayman1 : GameInfo
     public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.DosBox);
 
     #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_Rayman1_TPLS(gameInstallation),
+        new Utility_Rayman1_CompleteSoundtrack(gameInstallation),
+    };
+
+    #endregion
 }

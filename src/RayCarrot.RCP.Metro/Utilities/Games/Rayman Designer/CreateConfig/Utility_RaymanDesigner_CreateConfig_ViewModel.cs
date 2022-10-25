@@ -17,8 +17,11 @@ public class Utility_RaymanDesigner_CreateConfig_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanDesigner_CreateConfig_ViewModel()
+    public Utility_RaymanDesigner_CreateConfig_ViewModel(GameInstallation gameInstallation)
     {
+        // Set properties
+        GameInstallation = gameInstallation;
+
         // Create commands
         CreateConfigCommand = new AsyncRelayCommand(CreateConfigAsync);
     }
@@ -39,10 +42,12 @@ public class Utility_RaymanDesigner_CreateConfig_ViewModel : BaseRCPViewModel
 
     #region Public Properties
 
+    public GameInstallation GameInstallation { get; }
+
     /// <summary>
     /// The path to the config file
     /// </summary>
-    public FileSystemPath ConfigPath => Games.RaymanDesigner.GetInstallDir() + "Ubisoft" + "ubi.ini";
+    public FileSystemPath ConfigPath => GameInstallation.InstallLocation + "Ubisoft" + "ubi.ini";
 
     #endregion
 

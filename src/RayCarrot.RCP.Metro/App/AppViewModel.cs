@@ -208,23 +208,6 @@ public class AppViewModel : BaseViewModel
     #region Public Methods
 
     /// <summary>
-    /// Gets new instances of utilities for a specific game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the utilities for</param>
-    /// <returns>The utilities instances</returns>
-    public IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) // TODO-14: Move this to the GamesManager service
-    {
-        var utilities = GamesManager.LocalUtilities.TryGetValue(gameInstallation.Game);
-
-        if (utilities == null)
-            return Enumerable.Empty<Utility>(); 
-
-        return utilities.
-            // Create a new instance of each utility
-            Select(x => x.CreateInstance<Utility>());
-    }
-
-    /// <summary>
     /// Fires the <see cref="RefreshRequired"/> event
     /// </summary>
     /// <returns>The task</returns>
@@ -712,6 +695,7 @@ public class AppViewModel : BaseViewModel
 
     #region Classes
 
+    // TODO-14: Remove or move to GamesManager service
     /// <summary>
     /// The application game manager
     /// </summary>
@@ -720,21 +704,14 @@ public class AppViewModel : BaseViewModel
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="localUtilities">The available local utilities</param>
         /// <param name="gameManagers">The available game managers</param>
         /// <param name="gameInfos">The available game infos</param>
-        public AppGamesManager(Dictionary<Games, Type[]> localUtilities, Dictionary<Games, Dictionary<GameType, Type>> gameManagers, Dictionary<Games, Type> gameInfos)
+        public AppGamesManager(Dictionary<Games, Dictionary<GameType, Type>> gameManagers, Dictionary<Games, Type> gameInfos)
         {
-            LocalUtilities = localUtilities;
             GameManagers = gameManagers;
             GameInfos = gameInfos;
             InstanceCache = new Dictionary<Type, object>();
         }
-
-        /// <summary>
-        /// The available local utilities
-        /// </summary>
-        public Dictionary<Games, Type[]> LocalUtilities { get; }
 
         /// <summary>
         /// The available game managers

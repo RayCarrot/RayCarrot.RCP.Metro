@@ -66,7 +66,8 @@ public sealed class GameInfo_EducationalDos : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));
 
     /// <summary>
     /// Gets the archive file paths for the game

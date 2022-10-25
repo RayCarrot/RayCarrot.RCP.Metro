@@ -17,13 +17,13 @@ public class Utility_RaymanOrigins_HQVideos_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Utility_RaymanOrigins_HQVideos_ViewModel()
+    public Utility_RaymanOrigins_HQVideos_ViewModel(GameInstallation gameInstallation)
     {
         // Create the commands
         ReplaceVideosCommand = new AsyncRelayCommand(ReplaceVideosAsync);
 
         // Attempt to find the Rayman Origins video directory
-        var dir = Games.RaymanOrigins.GetInstallDir(false) + "GameData";
+        var dir = gameInstallation.InstallLocation + "GameData";
 
         // Set to music path if found
         VideoDir = dir.DirectoryExists && (dir + "intro.bik").FileExists ? dir : FileSystemPath.EmptyPath;

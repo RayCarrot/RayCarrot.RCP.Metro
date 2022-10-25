@@ -7,6 +7,14 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class Utility_RaymanOrigins_HQVideos : Utility<Utility_RaymanOrigins_HQVideos_Control, Utility_RaymanOrigins_HQVideos_ViewModel>
 {
+    public Utility_RaymanOrigins_HQVideos(GameInstallation gameInstallation) 
+        : base(new Utility_RaymanOrigins_HQVideos_ViewModel(gameInstallation))
+    {
+        GameInstallation = gameInstallation;
+    }
+
+    public GameInstallation GameInstallation { get; }
+
     public override string DisplayHeader => Resources.ROU_HQVideosHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanOrigins_HQVideos;
     public override string InfoText => Resources.ROU_HQVideosInfo;

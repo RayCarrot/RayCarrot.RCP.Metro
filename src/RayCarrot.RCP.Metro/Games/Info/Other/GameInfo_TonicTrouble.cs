@@ -62,7 +62,8 @@ public sealed class GameInfo_TonicTrouble : GameInfo
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager => new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.TonicTrouble, Platform.PC), Game);
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.TonicTrouble, Platform.PC), gameInstallation);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -72,6 +73,15 @@ public sealed class GameInfo_TonicTrouble : GameInfo
     {
         installDir + "gamedata" + "Textures.cnt",
         installDir + "gamedata" + "Vignette.cnt",
+    };
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_TonicTrouble_GameSyncTextureInfo(gameInstallation),
     };
 
     #endregion

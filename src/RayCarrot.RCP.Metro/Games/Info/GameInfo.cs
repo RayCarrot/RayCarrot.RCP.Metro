@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -174,7 +175,10 @@ public abstract class GameInfo : BaseGameData
     /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
-    public virtual IArchiveDataManager GetArchiveDataManager => null;
+    public virtual IArchiveDataManager GetArchiveDataManager(
+#nullable enable
+        GameInstallation? gameInstallation) => null;
+#nullable disable
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -202,8 +206,10 @@ public abstract class GameInfo : BaseGameData
     /// <returns>The applied utilities</returns>
     public virtual Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
     {
-        return Task.FromResult<IList<string>>(Services.App.GetUtilities(gameInstallation).SelectMany(x => x.GetAppliedUtilities()).ToArray());
+        return Task.FromResult<IList<string>>(GetUtilities(gameInstallation).SelectMany(x => x.GetAppliedUtilities()).ToArray());
     }
+
+    public virtual IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => Enumerable.Empty<Utility>();
 
     #endregion
 
