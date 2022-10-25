@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The base for Rayman Control Panel game data
 /// </summary>
-public abstract class GameInfo : BaseGameData
+public abstract class GameInfo
 {
     #region Logger
 
@@ -49,6 +49,11 @@ public abstract class GameInfo : BaseGameData
     #endregion
 
     #region Public Abstract Properties
+
+    /// <summary>
+    /// The game
+    /// </summary>
+    public abstract Games Game { get; }
 
     /// <summary>
     /// The game display name
