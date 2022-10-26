@@ -13,10 +13,10 @@ public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game</param>
-    public GameOptions_DOSBox_ViewModel(Games game)
+    /// <param name="gameInstallation">The game installation</param>
+    public GameOptions_DOSBox_ViewModel(GameInstallation gameInstallation)
     {
-        Game = game;
+        GameInstallation = gameInstallation;
     }
 
     #endregion
@@ -24,9 +24,9 @@ public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
     #region Public Properties
 
     /// <summary>
-    /// The game
+    /// The game installation
     /// </summary>
-    public Games Game { get; }
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The allowed drive types when browsing for a mount path
@@ -41,16 +41,16 @@ public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
     /// </summary>
     public FileSystemPath MountPath
     {
-        get => Data.Game_DosBoxGames[Game].MountPath;
+        get => Data.Game_DosBoxGames[GameInstallation.Game].MountPath;
         set
         {
-            Data.Game_DosBoxGames[Game].MountPath = value;
+            Data.Game_DosBoxGames[GameInstallation.Game].MountPath = value;
 
             // TODO: Find better solution to this. Ideally we would invoke the refresh from an event caused by the UI, but
             // currently the BrowseBox does not have any event for when the path is changed. Doing this rather than discarding the task
             // from the async refresh will ensure that any exceptions are handled correctly as the async void will take care of that.
             Invoke();
-            async void Invoke() => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameInfo));
+            async void Invoke() => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.GameInfo));
         }
     }
 

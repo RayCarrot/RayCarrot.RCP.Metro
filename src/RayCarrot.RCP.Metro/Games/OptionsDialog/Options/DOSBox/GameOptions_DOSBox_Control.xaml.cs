@@ -8,11 +8,11 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public partial class GameOptions_DOSBox_Control : UserControl
 {
-    public GameOptions_DOSBox_Control(Games game)
+    public GameOptions_DOSBox_Control(GameInstallation gameInstallation)
     {
         InitializeComponent();
 
-        ViewModel = new GameOptions_DOSBox_ViewModel(game);
+        ViewModel = new GameOptions_DOSBox_ViewModel(gameInstallation);
         DataContext = ViewModel;
     }
 

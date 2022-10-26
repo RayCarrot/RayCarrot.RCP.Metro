@@ -14,12 +14,10 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// Default constructor for a specific game
     /// </summary>
-    /// <param name="game">The DosBox game</param>
-    /// <param name="gameType">The type of game</param>
-    public Emulator_DOSBox_ConfigViewModel(Games game, GameType gameType) : base(new ResourceLocString(nameof(Resources.GameType_DosBox)))
+    /// <param name="gameInstallation">The game installation</param>
+    public Emulator_DOSBox_ConfigViewModel(GameInstallation gameInstallation) : base(new ResourceLocString(nameof(Resources.GameType_DosBox)))
     {
-        Game = game;
-        GameType = gameType;
+        GameInstallation = gameInstallation;
 
         // Set up the available resolution values
         AvailableFullscreenResolutionValues = new ObservableCollection<string>();
@@ -161,14 +159,9 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     #region Public Properties
 
     /// <summary>
-    /// The DosBox game
+    /// The game installation
     /// </summary>
-    public Games Game { get; }
-
-    /// <summary>
-    /// The type of game
-    /// </summary>
-    public GameType GameType { get; }
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The available resolution values to use for fullscreen
@@ -376,10 +369,10 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("DOSBox emulator game config for {0} is being set up", Game);
+        Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.ID);
 
         // Get the config manager
-        var configManager = new Emulator_DOSBox_AutoConfigManager(Game.GetManager<GameManager_DOSBox>(GameType).DosBoxConfigFile);
+        var configManager = new Emulator_DOSBox_AutoConfigManager(GameInstallation.Game.GetManager<GameManager_DOSBox>(GameInstallation.GameType).DosBoxConfigFile);
 
         // Create the file
         configManager.Create();
@@ -401,7 +394,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
 
         CustomCommands = configData.CustomLines.JoinItems(Environment.NewLine);
 
-        Logger.Info("DOSBox emulator game config for {0} has been loaded", Game);
+        Logger.Info("DOSBox emulator game config for {0} has been loaded", GameInstallation.ID);
 
         UnsavedChanges = false;
 
@@ -419,12 +412,12 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("DOSBox emulator game config for {0} is saving...", Game);
+        Logger.Info("DOSBox emulator game config for {0} is saving...", GameInstallation.ID);
 
         try
         {
             // Get the config manager
-            var configManager = new Emulator_DOSBox_AutoConfigManager(Game.GetManager<GameManager_DOSBox>(GameType).DosBoxConfigFile);
+            var configManager = new Emulator_DOSBox_AutoConfigManager(GameInstallation.Game.GetManager<GameManager_DOSBox>(GameInstallation.GameType).DosBoxConfigFile);
 
             // Create config data
             var configData = new Emulator_DOSBox_AutoConfigData();
@@ -473,7 +466,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
             // Write to the config file
             configManager.WriteFile(configData);
 
-            Logger.Info("DOSBox emulator game config for {0} has been saved", Game);
+            Logger.Info("DOSBox emulator game config for {0} has been saved", GameInstallation.ID);
 
             return true;
 

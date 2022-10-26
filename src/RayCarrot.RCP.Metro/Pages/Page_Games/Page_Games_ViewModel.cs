@@ -213,7 +213,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     {
         try
         {
-            Logger.Trace("The game {0} is being downloaded...", gameDescriptor.Game);
+            Logger.Trace("The game {0} is being downloaded...", gameDescriptor.Id);
 
             // Get the game directory
             var gameDir = AppFilePaths.GamesBaseDir + gameDescriptor.Game.ToString();
@@ -230,7 +230,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             // Refresh
             await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameDescriptor.Game, RefreshFlags.GameCollection));
 
-            Logger.Trace("The game {0} has been downloaded", gameDescriptor.Game);
+            Logger.Trace("The game {0} has been downloaded", gameDescriptor.Id);
 
             await MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, gameDescriptor.DisplayName), Resources.GameInstall_SuccessHeader);
         }

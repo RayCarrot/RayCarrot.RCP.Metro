@@ -78,7 +78,7 @@ public sealed class GameDescriptor_EducationalDos : GameDescriptor
     /// <summary>
     /// An optional emulator to use for the game
     /// </summary>
-    public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.EducationalDosBox);
+    public override Emulator Emulator => new Emulator_DOSBox();
 
     // Don't allow patching for now since this game actually contains multiple games and the
     // patching system doesn't support that right now.

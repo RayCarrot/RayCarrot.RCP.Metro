@@ -10,9 +10,11 @@ public abstract class Emulator
     /// The display name of the emulator
     /// </summary>
     public abstract LocalizedString DisplayName { get; }
-        
+
     /// <summary>
-    /// The emulator's game configuration view model
+    /// Gets the emulator's game configuration view model
     /// </summary>
-    public abstract GameOptionsDialog_EmulatorConfigPageViewModel GameConfigViewModel { get; }
+    /// <param name="gameInstallation">The game installation to get the view model for</param>
+    /// <returns>The view model</returns>
+    public abstract GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation);
 }

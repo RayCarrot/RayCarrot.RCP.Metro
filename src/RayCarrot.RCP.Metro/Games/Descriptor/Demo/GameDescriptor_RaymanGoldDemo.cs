@@ -89,7 +89,7 @@ public sealed class GameDescriptor_RaymanGoldDemo : GameDescriptor
     /// <summary>
     /// An optional emulator to use for the game
     /// </summary>
-    public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.DosBox);
+    public override Emulator Emulator => new Emulator_DOSBox();
 
     #endregion
 }

@@ -42,6 +42,8 @@ public abstract class GameDescriptor
     /// </summary>
     public abstract Games Game { get; }
 
+    public string Id => $"{Game}";
+
     /// <summary>
     /// The game display name
     /// </summary>
@@ -50,7 +52,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// The game backup name
     /// </summary>
-    public virtual string BackupName => throw new InvalidOperationException($"The game {Game} has no backup name associated with it");
+    public virtual string BackupName => throw new InvalidOperationException($"The game {Id} has no backup name associated with it");
 
     /// <summary>
     /// Gets the default file name for launching the game, if available

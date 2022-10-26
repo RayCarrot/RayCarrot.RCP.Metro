@@ -51,7 +51,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
 
         // Add the emulator config page
         Emulator emu = gameDescriptor.Emulator;
-        GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GameConfigViewModel;
+        GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GetGameConfigViewModel(gameInstallation);
 
         if (emuConfigViewModel != null)
             pages.Add(emuConfigViewModel);

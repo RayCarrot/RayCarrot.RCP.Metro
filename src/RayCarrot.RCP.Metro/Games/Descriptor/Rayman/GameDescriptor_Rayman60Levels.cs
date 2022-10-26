@@ -45,7 +45,8 @@ public sealed class GameDescriptor_Rayman60Levels : GameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanByHisFans_ViewModel(gameInstallation);
 
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_DOSBox_Control(Game);
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
+        new GameOptions_DOSBox_Control(gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
         new ProgressionGameViewModel_Rayman60Levels(gameInstallation).Yield();
@@ -75,7 +76,7 @@ public sealed class GameDescriptor_Rayman60Levels : GameDescriptor
     /// <summary>
     /// An optional emulator to use for the game
     /// </summary>
-    public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.DosBox);
+    public override Emulator Emulator => new Emulator_DOSBox();
 
     #endregion
 }

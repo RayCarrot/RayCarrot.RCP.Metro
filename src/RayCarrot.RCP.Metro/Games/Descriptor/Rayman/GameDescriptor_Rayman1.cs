@@ -39,7 +39,8 @@ public sealed class GameDescriptor_Rayman1 : GameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_Rayman1_ViewModel(gameInstallation);
 
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_DOSBox_Control(Game);
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
+        new GameOptions_DOSBox_Control(gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
         new ProgressionGameViewModel_Rayman1(gameInstallation).Yield();
@@ -52,7 +53,7 @@ public sealed class GameDescriptor_Rayman1 : GameDescriptor
     /// <summary>
     /// An optional emulator to use for the game
     /// </summary>
-    public override Emulator Emulator => new Emulator_DOSBox(Game, GameType.DosBox);
+    public override Emulator Emulator => new Emulator_DOSBox();
 
     #endregion
 
