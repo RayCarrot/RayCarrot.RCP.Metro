@@ -31,7 +31,7 @@ public static class Entry
         serviceCollection.AddSingleton<AppDataManager>();
         serviceCollection.AddTransient<StartupManager>();
         serviceCollection.AddTransient<LicenseManager>();
-        serviceCollection.AddTransient<GamesManager>();
+        serviceCollection.AddSingleton<GamesManager>();
         serviceCollection.AddSingleton<AppViewModel>();
         serviceCollection.AddSingleton<AppUserData>();
         serviceCollection.AddSingleton<IAppInstanceData, AppInstanceData>();

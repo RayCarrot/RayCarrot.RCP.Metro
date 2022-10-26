@@ -46,18 +46,11 @@ public static class GamesExtensions
     }
 
     /// <summary>
-    /// Gets the installed game type for the game
-    /// </summary>
-    /// <param name="game">The game to get the installed game type for</param>
-    /// <returns>The game type</returns>
-    public static GameType GetGameType(this Games game) => game.GetInstallation().GameType;
-
-    /// <summary>
     /// Gets the game manager for the specified game with the current type
     /// </summary>
     /// <param name="game">The game to get the manager for</param>
     /// <returns>The manager</returns>
-    public static GameManager GetManager(this Games game) => GetManager(game, game.GetGameType());
+    public static GameManager GetManager(this Games game) => GetManager(game, game.GetInstallation().GameType);
 
     /// <summary>
     /// Gets the available game managers for the specified game
@@ -132,8 +125,8 @@ public static class GamesExtensions
     public static T GetGameDescriptor<T>(this Games game)
         where T : GameDescriptor
     {
-        var g = Services.App.GamesManager;
-        return g.CreateCachedInstance<T>(g.GameDescriptors[game]);
+        var g = Services.Games;
+        return (T)g.EnumerateGameDescriptors().First(x => x.Game == game);
     }
 
     // TODO-14: Remove once no longer needed

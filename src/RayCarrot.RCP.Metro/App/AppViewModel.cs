@@ -148,21 +148,6 @@ public class AppViewModel : BaseViewModel
     public AppGamesManager GamesManager { get; }
 
     /// <summary>
-    /// Gets a collection of the available <see cref="Games"/>
-    /// </summary>
-    public IEnumerable<Games> GetGames => Enum.GetValues(typeof(Games)).Cast<Games>();
-    
-    /// <summary>
-    /// Gets a collection of the available <see cref="Games"/> categorized
-    /// </summary>
-    public Dictionary<GameCategory, Games[]> GetCategorizedGames =>
-        GetGames
-            // Group the games by the category
-            .GroupBy(x => x.GetGameDescriptor().Category).
-            // Create a dictionary
-            ToDictionary(x => x.Key, y => y.ToArray());
-
-    /// <summary>
     /// Indicates if the game finder is currently running
     /// </summary>
     public bool IsGameFinderRunning { get; set; }
@@ -257,7 +242,7 @@ public class AppViewModel : BaseViewModel
     /// Checks for installed games
     /// </summary>
     /// <returns>True if new games were found, otherwise false</returns>
-    public async Task<bool> RunGameFinderAsync()
+    public async Task<bool> RunGameFinderAsync() // TODO-14: Move out of here
     {
         if (IsGameFinderRunning)
             return false;
@@ -270,7 +255,7 @@ public class AppViewModel : BaseViewModel
         try
         {
             // Get all games which have not been added
-            Games[] games = GetGames.Where(x => !x.IsAdded()).ToArray();
+            Games[] games = Services.Games.EnumerateGameDescriptors().Select(x => x.Game).Where(x => !x.IsAdded()).ToArray();
 
             Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
 
@@ -892,58 +877,6 @@ public class AppViewModel : BaseViewModel
                     [GameType.Win32] = typeof(GameManager_GloboxMoment_Win32)
                 }
             };
-            GameDescriptors = new Dictionary<Games, Type>()
-            {
-                [Games.Rayman1] = typeof(GameDescriptor_Rayman1),
-                [Games.RaymanDesigner] = typeof(GameDescriptor_RaymanDesigner),
-                [Games.RaymanByHisFans] = typeof(GameDescriptor_RaymanByHisFans),
-                [Games.Rayman60Levels] = typeof(GameDescriptor_Rayman60Levels),
-                [Games.Rayman2] = typeof(GameDescriptor_Rayman2),
-                [Games.RaymanM] = typeof(GameDescriptor_RaymanM),
-                [Games.RaymanArena] = typeof(GameDescriptor_RaymanArena),
-                [Games.Rayman3] = typeof(GameDescriptor_Rayman3),
-                [Games.RaymanOrigins] = typeof(GameDescriptor_RaymanOrigins),
-                [Games.RaymanLegends] = typeof(GameDescriptor_RaymanLegends),
-                [Games.RaymanJungleRun] = typeof(GameDescriptor_RaymanJungleRun),
-                [Games.RaymanFiestaRun] = typeof(GameDescriptor_RaymanFiestaRun),
-
-                [Games.RaymanRavingRabbids] = typeof(GameDescriptor_RaymanRavingRabbids),
-                [Games.RaymanRavingRabbids2] = typeof(GameDescriptor_RaymanRavingRabbids2),
-                [Games.RabbidsGoHome] = typeof(GameDescriptor_RabbidsGoHome),
-                [Games.RabbidsBigBang] = typeof(GameDescriptor_RabbidsBigBang),
-                [Games.RabbidsCoding] = typeof(GameDescriptor_RabbidsCoding),
-
-                [Games.Demo_Rayman1_1] = typeof(GameDescriptor_Rayman1Demo1),
-                [Games.Demo_Rayman1_2] = typeof(GameDescriptor_Rayman1Demo2),
-                [Games.Demo_Rayman1_3] = typeof(GameDescriptor_Rayman1Demo3),
-                [Games.Demo_RaymanGold] = typeof(GameDescriptor_RaymanGoldDemo),
-                [Games.Demo_Rayman2_1] = typeof(GameDescriptor_Rayman2Demo1),
-                [Games.Demo_Rayman2_2] = typeof(GameDescriptor_Rayman2Demo2),
-                [Games.Demo_RaymanM] = typeof(GameDescriptor_RaymanMDemo),
-                [Games.Demo_Rayman3_1] = typeof(GameDescriptor_Rayman3Demo1),
-                [Games.Demo_Rayman3_2] = typeof(GameDescriptor_Rayman3Demo2),
-                [Games.Demo_Rayman3_3] = typeof(GameDescriptor_Rayman3Demo3),
-                [Games.Demo_Rayman3_4] = typeof(GameDescriptor_Rayman3Demo4),
-                [Games.Demo_Rayman3_5] = typeof(GameDescriptor_Rayman3Demo5),
-                [Games.Demo_RaymanRavingRabbids] = typeof(GameDescriptor_RaymanRavingRabbidsDemo),
-
-                [Games.Ray1Minigames] = typeof(GameDescriptor_Ray1Minigames),
-                [Games.EducationalDos] = typeof(GameDescriptor_EducationalDos),
-                [Games.TonicTrouble] = typeof(GameDescriptor_TonicTrouble),
-                [Games.TonicTroubleSpecialEdition] = typeof(GameDescriptor_TonicTroubleSpecialEdition),
-                [Games.RaymanDictées] = typeof(GameDescriptor_RaymanDictées),
-                [Games.RaymanPremiersClics] = typeof(GameDescriptor_RaymanPremiersClics),
-                [Games.PrintStudio] = typeof(GameDescriptor_PrintStudio),
-                [Games.RaymanActivityCenter] = typeof(GameDescriptor_RaymanActivityCenter),
-                [Games.RaymanRavingRabbidsActivityCenter] = typeof(GameDescriptor_RaymanRavingRabbidsActivityCenter),
-
-                [Games.TheDarkMagiciansReignofTerror] = typeof(GameDescriptor_TheDarkMagiciansReignofTerror),
-                [Games.RaymanRedemption] = typeof(GameDescriptor_RaymanRedemption),
-                [Games.RaymanRedesigner] = typeof(GameDescriptor_RaymanRedesigner),
-                [Games.RaymanBowling2] = typeof(GameDescriptor_RaymanBowling2),
-                [Games.RaymanGardenPLUS] = typeof(GameDescriptor_RaymanGardenPLUS),
-                [Games.GloboxMoment] = typeof(GameDescriptor_GloboxMoment),
-            };
             InstanceCache = new Dictionary<Type, object>();
         }
 
@@ -951,11 +884,6 @@ public class AppViewModel : BaseViewModel
         /// The available game managers
         /// </summary>
         public Dictionary<Games, Dictionary<GameType, Type>> GameManagers { get; }
-
-        /// <summary>
-        /// The available game infos
-        /// </summary>
-        public Dictionary<Games, Type> GameDescriptors { get; }
 
         /// <summary>
         /// Creates a new instance of the specified type or gets an existing one from cache

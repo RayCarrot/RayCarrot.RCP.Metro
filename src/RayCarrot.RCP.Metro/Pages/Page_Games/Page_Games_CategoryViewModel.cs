@@ -1,8 +1,6 @@
 ﻿#nullable disable
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 
@@ -18,13 +16,13 @@ public class Page_Games_CategoryViewModel : BaseRCPViewModel, IDisposable
     /// <summary>
     /// Constructor for a category which is visible
     /// </summary>
-    /// <param name="games">The games in this category</param>
+    /// <param name="gameDescriptors">The games in this category</param>
     /// <param name="displayName">The display name</param>
     /// <param name="icon">The category icon</param>
-    public Page_Games_CategoryViewModel(IEnumerable<Games> games, LocalizedString displayName, GenericIconKind icon)
+    public Page_Games_CategoryViewModel(GameDescriptor[] gameDescriptors, LocalizedString displayName, GenericIconKind icon)
     {
         // Set properties
-        Games = games.ToArray();
+        GameDescriptors = gameDescriptors;
         DisplayName = displayName;
         Icon = icon;
         IsMaster = false;
@@ -41,11 +39,11 @@ public class Page_Games_CategoryViewModel : BaseRCPViewModel, IDisposable
     /// <summary>
     /// Constructor for a master category
     /// </summary>
-    /// <param name="games">The games in this category</param>
-    public Page_Games_CategoryViewModel(IEnumerable<Games> games)
+    /// <param name="gameDescriptors">The games in this category</param>
+    public Page_Games_CategoryViewModel(GameDescriptor[] gameDescriptors)
     {
         // Set properties
-        Games = games.ToArray();
+        GameDescriptors = gameDescriptors;
         DisplayName = "(master)";
         IsMaster = true;
 
@@ -75,7 +73,7 @@ public class Page_Games_CategoryViewModel : BaseRCPViewModel, IDisposable
     /// <summary>
     /// The games in this category
     /// </summary>
-    public Games[] Games { get; }
+    public GameDescriptor[] GameDescriptors { get; }
 
     /// <summary>
     /// The category display name

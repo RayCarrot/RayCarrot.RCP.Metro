@@ -24,16 +24,22 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         IMessageUIManager messageUi,
         IAppInstanceData instanceData, 
         AppUIManager ui, 
-        IFileManager file) : base(app)
+        IFileManager file, 
+        GamesManager gamesManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         File = file ?? throw new ArgumentNullException(nameof(file));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
 
         // Get categorized games
-        var games = App.GetCategorizedGames;
+        var groupedGames = gamesManager.EnumerateGameDescriptors()
+            // Group the games by the category
+            .GroupBy(x => x.Category).
+            // Create a dictionary
+            ToDictionary(x => x.Key, y => y.ToArray());
             
         // Create properties
         RefreshingGames = false;
@@ -42,14 +48,14 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         GameCategories = new ObservableCollection<Page_Games_CategoryViewModel>()
         {
             // Create the master category
-            new Page_Games_CategoryViewModel(App.GetGames), 
+            new Page_Games_CategoryViewModel(gamesManager.EnumerateGameDescriptors().ToArray()), 
                 
             // Create the categories
-            new Page_Games_CategoryViewModel(games[GameCategory.Rayman], new ResourceLocString(nameof(Resources.GamesPage_Category_Rayman)), GenericIconKind.Games_Rayman), 
-            new Page_Games_CategoryViewModel(games[GameCategory.Rabbids], new ResourceLocString(nameof(Resources.GamesPage_Category_Rabbids)), GenericIconKind.Games_Rabbids), 
-            new Page_Games_CategoryViewModel(games[GameCategory.Demo], new ResourceLocString(nameof(Resources.GamesPage_Category_Demos)), GenericIconKind.Games_Demos),
-            new Page_Games_CategoryViewModel(games[GameCategory.Other], new ResourceLocString(nameof(Resources.GamesPage_Category_Other)), GenericIconKind.Games_Other), 
-            new Page_Games_CategoryViewModel(games[GameCategory.Fan], new ResourceLocString(nameof(Resources.GamesPage_Category_Fan)), GenericIconKind.Games_FanGames),
+            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Rayman], new ResourceLocString(nameof(Resources.GamesPage_Category_Rayman)), GenericIconKind.Games_Rayman), 
+            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Rabbids], new ResourceLocString(nameof(Resources.GamesPage_Category_Rabbids)), GenericIconKind.Games_Rabbids), 
+            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Demo], new ResourceLocString(nameof(Resources.GamesPage_Category_Demos)), GenericIconKind.Games_Demos),
+            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Other], new ResourceLocString(nameof(Resources.GamesPage_Category_Other)), GenericIconKind.Games_Other), 
+            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Fan], new ResourceLocString(nameof(Resources.GamesPage_Category_Fan)), GenericIconKind.Games_FanGames),
         };
 
         // Create commands
@@ -61,7 +67,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         {
             if (e.LaunchInfoModified && e.ModifiedGames.Any())
                 foreach (Games game in e.ModifiedGames)
-                    await RefreshGameAsync(game);
+                    await RefreshGameAsync(game.GetGameDescriptor());
 
             else if (e.LaunchInfoModified || e.GameCollectionModified)
                 await RefreshAsync();
@@ -107,6 +113,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     private IMessageUIManager MessageUI { get; }
     private AppUIManager UI { get; }
     private IFileManager File { get; }
+    private GamesManager GamesManager { get; }
 
     #endregion
 
@@ -225,7 +232,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 return;
 
             // Add the game
-            await Services.Games.AddGameAsync(gameDescriptor.Game, gameDescriptor.DownloadType, gameDir, true);
+            await GamesManager.AddGameAsync(gameDescriptor.Game, gameDescriptor.DownloadType, gameDir, true);
 
             // Refresh
             await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameDescriptor.Game, RefreshFlags.GameCollection));
@@ -244,13 +251,13 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     /// <summary>
     /// Gets a display view model for the game
     /// </summary>
-    /// <param name="game">The game to get the view model for</param>
+    /// <param name="gameDescriptor">The game descriptor to get the view model for</param>
     /// <returns>A new display view model</returns>
-    private Page_Games_GameViewModel GetDisplayViewModel(Games game)
+    private Page_Games_GameViewModel GetDisplayViewModel(GameDescriptor gameDescriptor)
     {
         try
         {
-            GameDescriptor gameDescriptor = game.GetGameDescriptor();
+            Games game = gameDescriptor.Game;
 
             if (game.IsAdded())
             {
@@ -488,36 +495,36 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     /// Refreshes the added game
     /// </summary>
     /// <returns>The task</returns>
-    public async Task RefreshGameAsync(Games game)
+    public async Task RefreshGameAsync(GameDescriptor gameDescriptor)
     {
-        Logger.Info("The displayed game {0} is being refreshed...", game);
+        Logger.Info("The displayed game {0} is being refreshed...", gameDescriptor.Id);
 
         using (await AsyncLock.LockAsync())
         {
             try
             {
                 // Make sure the game has been added
-                if (!game.IsAdded())
+                if (!gameDescriptor.Game.IsAdded())
                     throw new Exception("Only added games can be refreshed individually");
 
                 // Get the display view model
-                Page_Games_GameViewModel displayVM = GetDisplayViewModel(game);
+                Page_Games_GameViewModel displayVM = GetDisplayViewModel(gameDescriptor);
 
                 // Refresh the game in every category it's available in
-                foreach (var category in GameCategories.Where(x => x.Games.Contains(game)))
+                foreach (var category in GameCategories.Where(x => x.GameDescriptors.Contains(gameDescriptor)))
                 {
-                    Logger.Trace("The displayed game {0} in {1} is being refreshed...", game, category.DisplayName);
+                    Logger.Trace("The displayed game {0} in {1} is being refreshed...", gameDescriptor.Id, category.DisplayName);
 
                     // Get the collection containing the game
-                    var collection = category.InstalledGames.Any(x => x.Game == game) ? category.InstalledGames : category.NotInstalledGames;
+                    var collection = category.InstalledGames.Any(x => x.Game == gameDescriptor.Game) ? category.InstalledGames : category.NotInstalledGames;
 
                     // Get the game index
-                    var index = collection.FindItemIndex(x => x.Game == game);
+                    var index = collection.FindItemIndex(x => x.Game == gameDescriptor.Game);
 
                     // Make sure we got a valid index
                     if (index == -1)
                     {
-                        Logger.Warn("The displayed game {0} in {1} could not be refreshed due to not existing in either game collection", game, category.DisplayName);
+                        Logger.Warn("The displayed game {0} in {1} could not be refreshed due to not existing in either game collection", gameDescriptor.Id, category.DisplayName);
 
                         return;
                     }
@@ -525,17 +532,17 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     // Refresh the game
                     collection[index] = displayVM;
 
-                    Logger.Trace("The displayed game {0} in {1} has been refreshed", game, category.DisplayName);
+                    Logger.Trace("The displayed game {0} in {1} has been refreshed", gameDescriptor.Id, category.DisplayName);
                 }
             }
             catch (Exception ex)
             {
-                Logger.Fatal(ex, "Refreshing game {0}", game);
+                Logger.Fatal(ex, "Refreshing game {0}", gameDescriptor.Id);
                 throw;
             }
         }
 
-        Logger.Info("The displayed game {0} has been refreshed", game);
+        Logger.Info("The displayed game {0} has been refreshed", gameDescriptor.Id);
     }
 
     /// <summary>
@@ -551,7 +558,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 RefreshingGames = true;
 
                 // Cache the game view models
-                var displayVMCache = new Dictionary<Games, Page_Games_GameViewModel>();
+                var displayVMCache = new Dictionary<GameDescriptor, Page_Games_GameViewModel>();
 
                 Logger.Info("All displayed games are being refreshed...");
 
@@ -570,15 +577,15 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                         category.AnyNotInstalledGames = false;
 
                         // Enumerate each game
-                        foreach (Games game in category.Games)
+                        foreach (GameDescriptor gameDescriptor in category.GameDescriptors)
                         {
                             // If cached, reuse the view model, otherwise create new and add to cache
-                            Page_Games_GameViewModel displayVM = displayVMCache.ContainsKey(game)
-                                ? displayVMCache[game]
-                                : displayVMCache[game] = GetDisplayViewModel(game);
+                            Page_Games_GameViewModel displayVM = displayVMCache.ContainsKey(gameDescriptor)
+                                ? displayVMCache[gameDescriptor]
+                                : displayVMCache[gameDescriptor] = GetDisplayViewModel(gameDescriptor);
 
                             // Check if it has been added
-                            if (game.IsAdded())
+                            if (gameDescriptor.Game.IsAdded())
                             {
                                 // Add the game to the collection
                                category.InstalledGames.Add(displayVM);

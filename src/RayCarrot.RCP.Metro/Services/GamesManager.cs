@@ -16,6 +16,59 @@ public class GamesManager
     {
         Data = data ?? throw new ArgumentNullException(nameof(data));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+
+        GameDescriptors = new GameDescriptor[]
+        {
+            new GameDescriptor_Rayman1(),
+            new GameDescriptor_RaymanDesigner(),
+            new GameDescriptor_RaymanByHisFans(),
+            new GameDescriptor_Rayman60Levels(),
+            new GameDescriptor_Rayman2(),
+            new GameDescriptor_RaymanM(),
+            new GameDescriptor_RaymanArena(),
+            new GameDescriptor_Rayman3(),
+            new GameDescriptor_RaymanOrigins(),
+            new GameDescriptor_RaymanLegends(),
+            new GameDescriptor_RaymanJungleRun(),
+            new GameDescriptor_RaymanFiestaRun(),
+
+            new GameDescriptor_RaymanRavingRabbids(),
+            new GameDescriptor_RaymanRavingRabbids2(),
+            new GameDescriptor_RabbidsGoHome(),
+            new GameDescriptor_RabbidsBigBang(),
+            new GameDescriptor_RabbidsCoding(),
+
+            new GameDescriptor_Rayman1Demo1(),
+            new GameDescriptor_Rayman1Demo2(),
+            new GameDescriptor_Rayman1Demo3(),
+            new GameDescriptor_RaymanGoldDemo(),
+            new GameDescriptor_Rayman2Demo1(),
+            new GameDescriptor_Rayman2Demo2(),
+            new GameDescriptor_RaymanMDemo(),
+            new GameDescriptor_Rayman3Demo1(),
+            new GameDescriptor_Rayman3Demo2(),
+            new GameDescriptor_Rayman3Demo3(),
+            new GameDescriptor_Rayman3Demo4(),
+            new GameDescriptor_Rayman3Demo5(),
+            new GameDescriptor_RaymanRavingRabbidsDemo(),
+
+            new GameDescriptor_Ray1Minigames(),
+            new GameDescriptor_EducationalDos(),
+            new GameDescriptor_TonicTrouble(),
+            new GameDescriptor_TonicTroubleSpecialEdition(),
+            new GameDescriptor_RaymanDictées(),
+            new GameDescriptor_RaymanPremiersClics(),
+            new GameDescriptor_PrintStudio(),
+            new GameDescriptor_RaymanActivityCenter(),
+            new GameDescriptor_RaymanRavingRabbidsActivityCenter(),
+
+            new GameDescriptor_TheDarkMagiciansReignofTerror(),
+            new GameDescriptor_RaymanRedemption(),
+            new GameDescriptor_RaymanRedesigner(),
+            new GameDescriptor_RaymanBowling2(),
+            new GameDescriptor_RaymanGardenPLUS(),
+            new GameDescriptor_GloboxMoment(),
+        }.ToDictionary(x => x.Id);
     }
 
     #endregion
@@ -30,6 +83,15 @@ public class GamesManager
 
     private AppUserData Data { get; }
     private IMessageUIManager MessageUI { get; } // TODO-14: Remove need for this
+
+    #endregion
+
+    #region Private Properties
+
+    /// <summary>
+    /// The available game infos
+    /// </summary>
+    private Dictionary<string, GameDescriptor> GameDescriptors { get; }
 
     #endregion
 
@@ -147,6 +209,18 @@ public class GamesManager
     /// </summary>
     /// <returns>The game installations</returns>
     public IEnumerable<GameInstallation> EnumerateInstalledGames() => Data.Game_GameInstallations;
+
+    /// <summary>
+    /// Enumerates the available game descriptors
+    /// </summary>
+    /// <returns>The game descriptors</returns>
+    public IEnumerable<GameDescriptor> EnumerateGameDescriptors() => GameDescriptors.Values;
+
+    public GameDescriptor GetGameDescriptor(string id)
+    {
+        // TODO-14: Add check and throw if not found?
+        return GameDescriptors[id];
+    }
 
     #endregion
 }

@@ -188,7 +188,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     protected override Task InitializeAsync()
     {
         // Set properties
-        AvailableInstallers = App.GetGames.Where(x => x.GetGameDescriptor().CanBeInstalledFromDisc).ToObservableCollection();
+        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.CanBeInstalledFromDisc).Select(x => x.Game).ToObservableCollection();
         SelectedInstaller = AvailableInstallers.First();
         SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
 
@@ -459,18 +459,16 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     // Helper method for adding a new line of text
                     void AddLine(string header, object content) => DataOutput += $"{header}: {content}{Environment.NewLine}";
 
-                    foreach (Games game in App.GetGames)
+                    foreach (GameDescriptor gameDescriptor in GamesManager.EnumerateGameDescriptors())
                     {
-                        var info = game.GetGameDescriptor();
-
-                        AddLine("Display name", info.DisplayName);
-                        AddLine("Default file name", info.DefaultFileName);
-                        AddLine("Icon source", info.IconSource);
-                        AddLine("Has disc installer", info.CanBeInstalledFromDisc);
-                        AddLine("Dialog group names", info.DialogGroupNames.JoinItems(", "));
+                        AddLine("Display name", gameDescriptor.DisplayName);
+                        AddLine("Default file name", gameDescriptor.DefaultFileName);
+                        AddLine("Icon source", gameDescriptor.IconSource);
+                        AddLine("Has disc installer", gameDescriptor.CanBeInstalledFromDisc);
+                        AddLine("Dialog group names", gameDescriptor.DialogGroupNames.JoinItems(", "));
                             
-                        if (game.IsAdded())
-                            AddLine("Game file links", JsonConvert.SerializeObject(info.GetGameFileLinks(game.GetInstallation())));
+                        if (gameDescriptor.Game.IsAdded())
+                            AddLine("Game file links", JsonConvert.SerializeObject(gameDescriptor.GetGameFileLinks(gameDescriptor.Game.GetInstallation())));
 
                         DataOutput += Environment.NewLine;
                         DataOutput += "------------------------------------------";
