@@ -239,7 +239,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
 
             var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GameDescriptor.DisplayName);
 
-            GameInstallation.Game.GetManager().CreateGameShortcut(shortcutName, result.SelectedDirectory);
+            GameInstallation.GameManager.CreateGameShortcut(shortcutName, result.SelectedDirectory);
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
         }

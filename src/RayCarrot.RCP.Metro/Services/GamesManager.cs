@@ -125,7 +125,7 @@ public class GamesManager
         GameInstallation gameInstallation = new(game, type, installDirectory, isRCPInstalled);
 
         // Get the manager
-        GameManager manager = gameInstallation.Game.GetManager(type);
+        GameManager manager = gameInstallation.GameManager;
 
         // Add the game
         Data.Game_GameInstallations.Add(gameInstallation);
@@ -153,7 +153,7 @@ public class GamesManager
         try
         {
             // Get the manager
-            GameManager manager = gameInstallation.Game.GetManager();
+            GameManager manager = gameInstallation.GameManager;
 
             // TODO-14: Move this out of here
             if (!forceRemove)

@@ -301,7 +301,7 @@ public class AppDataManager
         {
             // By default, add all games to the jump list collection
             Data.App_JumpListItemIDCollection = GamesManager.EnumerateInstalledGames().
-                Select(x => x.Game.GetManager().GetJumpListItems(x).Select(y => y.ID)).
+                Select(x => x.GameManager.GetJumpListItems(x).Select(y => y.ID)).
                 SelectMany(x => x).
                 ToList();
         }

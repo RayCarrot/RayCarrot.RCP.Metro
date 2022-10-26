@@ -21,7 +21,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
         LaunchModeChangedCommand = new AsyncRelayCommand(LaunchModeChangedAsync);
 
         // Check if the launch mode can be changed
-        CanChangeLaunchMode = gameInstallation.Game.GetManager().SupportsGameLaunchMode;
+        CanChangeLaunchMode = gameInstallation.GameManager.SupportsGameLaunchMode;
 
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(GameInfoItems, this);
@@ -97,7 +97,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
     protected void RefreshGameInfo()
     {
         GameInfoItems.Clear();
-        GameInfoItems.AddRange(GameInstallation.Game.GetManager().GetGameInfoItems(GameInstallation));
+        GameInfoItems.AddRange(GameInstallation.GameManager.GetGameInfoItems(GameInstallation));
     }
 
     protected override object GetPageUI() => new GameOptions_Control()

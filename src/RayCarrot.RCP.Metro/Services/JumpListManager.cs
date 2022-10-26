@@ -56,7 +56,7 @@ public class JumpListManager
                 // Create a jump list
                 new JumpList(GamesManager.EnumerateInstalledGames().
                         // Get the items for each game
-                        Select(x => x.Game.GetManager().GetJumpListItems(x)).
+                        Select(x => x.GameManager.GetJumpListItems(x)).
                         // Select into single collection
                         SelectMany(x => x).
                         // Keep only the included items
