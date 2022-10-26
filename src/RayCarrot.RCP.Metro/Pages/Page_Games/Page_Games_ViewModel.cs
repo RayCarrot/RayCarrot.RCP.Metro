@@ -66,8 +66,8 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         App.RefreshRequired += async (_, e) =>
         {
             if (e.LaunchInfoModified && e.ModifiedGames.Any())
-                foreach (Games game in e.ModifiedGames)
-                    await RefreshGameAsync(game.GetGameDescriptor());
+                foreach (GameInstallation gameInstallation in e.ModifiedGames)
+                    await RefreshGameAsync(gameInstallation.GameDescriptor);
 
             else if (e.LaunchInfoModified || e.GameCollectionModified)
                 await RefreshAsync();
@@ -146,10 +146,10 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     /// Gets a type for the game, or null if the operation was canceled
     /// </summary>
     /// <returns>The type or null if the operation was canceled</returns>
-    private async Task<GameTypeSelectionResult> GetGameTypeAsync(Games game)
+    private async Task<GameTypeSelectionResult> GetGameTypeAsync(GameDescriptor gameDescriptor)
     {
         // Get the available types
-        GameType[] types = Services.App.GamesManager.GameManagers[game].Keys.ToArray();
+        GameType[] types = Services.App.GamesManager.GameManagers[gameDescriptor.Game].Keys.ToArray();
 
         // If only one type, return that
         if (types.Length == 1)
@@ -190,20 +190,20 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     /// Allows the user to locate the game and add it
     /// </summary>
     /// <returns>The task</returns>
-    private async Task LocateGameAsync(Games game)
+    private async Task LocateGameAsync(GameDescriptor gameDescriptor)
     {
         try
         {
-            Logger.Trace("The game {0} is being located...", game);
+            Logger.Trace("The game {0} is being located...", gameDescriptor.Id);
 
-            var typeResult = await GetGameTypeAsync(game);
+            var typeResult = await GetGameTypeAsync(gameDescriptor);
 
             if (typeResult.CanceledByUser)
                 return;
 
-            Logger.Info("The game {0} type has been detected as {1}", game, typeResult.SelectedType);
+            Logger.Info("The game {0} type has been detected as {1}", gameDescriptor.Id, typeResult.SelectedType);
 
-            await game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
+            await gameDescriptor.Game.GetManager(typeResult.SelectedType).LocateAddGameAsync(gameDescriptor);
         }
         catch (Exception ex)
         {
@@ -232,10 +232,10 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 return;
 
             // Add the game
-            await GamesManager.AddGameAsync(gameDescriptor.Game, gameDescriptor.DownloadType, gameDir, true);
+            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, gameDescriptor.DownloadType, gameDir, true);
 
             // Refresh
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameDescriptor.Game, RefreshFlags.GameCollection));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
 
             Logger.Trace("The game {0} has been downloaded", gameDescriptor.Id);
 
@@ -468,7 +468,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
                 // Create the main action
                 var mainAction = gameDescriptor.CanBeLocated
-                    ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(game)))
+                    ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(gameDescriptor)))
                     : downloadItem;
 
                 // Return the view model

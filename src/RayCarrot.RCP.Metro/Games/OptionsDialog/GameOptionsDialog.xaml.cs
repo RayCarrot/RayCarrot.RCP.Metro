@@ -133,7 +133,7 @@ public partial class GameOptionsDialog : WindowContentControl
 
     private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
     {
-        if (e.GameCollectionModified && e.ModifiedGames.Contains(ViewModel.GameInstallation.Game))
+        if (e.GameCollectionModified && e.ModifiedGames.Contains(ViewModel.GameInstallation))
         {
             ForceClose = true;
             WindowInstance.Close();

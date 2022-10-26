@@ -447,10 +447,10 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         return;
 
                     // Run and get the result
-                    var result = await new GameFinder(selectionResult.SelectedGames, null).FindGamesAsync();
+                    var result = await new GameFinder(selectionResult.SelectedGames.Select(x => x.GetGameDescriptor()), null).FindGamesAsync();
                         
                     // Output the found games
-                    DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.Game} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);
+                    DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.Id} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);
                         
                     break;
 

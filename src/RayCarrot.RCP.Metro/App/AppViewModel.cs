@@ -250,12 +250,12 @@ public class AppViewModel : BaseViewModel
         IsGameFinderRunning = true;
 
         // Keep track of found games which have been added
-        var addedGames = new List<Games>();
+        var addedGames = new List<GameInstallation>();
 
         try
         {
             // Get all games which have not been added
-            Games[] games = Services.Games.EnumerateGameDescriptors().Select(x => x.Game).Where(x => !x.IsAdded()).ToArray();
+            GameDescriptor[] games = Services.Games.EnumerateGameDescriptors().Where(x => !x.Game.IsAdded()).ToArray();
 
             Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
 
@@ -298,7 +298,7 @@ public class AppViewModel : BaseViewModel
 
                 // If a game, add to list
                 if (foundItem is GameFinder_GameResult game)
-                    addedGames.Add(game.Game);
+                    addedGames.Add(game.GameInstallation);
             }
 
             // Show message if new games were found
@@ -307,7 +307,7 @@ public class AppViewModel : BaseViewModel
                 // Split into found games and items and sort
                 IEnumerable<string> gameFinderResults = foundItems.
                     OfType<GameFinder_GameResult>().
-                    OrderBy(x => x.Game).
+                    OrderBy(x => x.GameDescriptor).
                     Select(x => x.DisplayName);
                 
                 IEnumerable<string> finderResults = foundItems.

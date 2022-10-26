@@ -104,7 +104,7 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
         {
             // Reset the game data with new install directory
             RefreshDefault();
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, RefreshFlags.JumpList));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), RefreshFlags.JumpList));
         }
 
         return true;

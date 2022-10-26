@@ -161,7 +161,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
     {
         Data.Utility_TPLSData.IsEnabled = IsEnabled;
 
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, RefreshFlags.GameInfo));
+        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1.GetInstallation(), RefreshFlags.GameInfo));
     }
 
     #endregion

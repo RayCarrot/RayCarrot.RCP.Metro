@@ -100,29 +100,29 @@ public class GamesManager
     /// <summary>
     /// Adds a new game to the app data
     /// </summary>
-    /// <param name="game">The game to add</param>
+    /// <param name="gameDescriptor">The game descriptor for the game to add</param>
     /// <param name="type">The game type</param>
     /// <param name="installDirectory">The game install directory</param>
     /// <param name="isRCPInstalled">Indicates if the game was installed through the Rayman Control Panel</param>
     /// <returns>The game installation</returns>
-    public async Task<GameInstallation?> AddGameAsync(Games game, GameType type, FileSystemPath installDirectory, bool isRCPInstalled)
+    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, GameType type, FileSystemPath installDirectory, bool isRCPInstalled)
     {
-        Logger.Info("The game {0} is being added of type {1}...", game, type);
+        Logger.Info("The game {0} is being added of type {1}...", gameDescriptor.Id, type);
 
-        // TODO-14: Remove this check
+        // TODO-14: Remove this
         // Make sure the game hasn't already been added
-        if (game.IsAdded())
+        if (gameDescriptor.Game.IsAdded())
         {
-            Logger.Warn("The game {0} has already been added", game);
+            Logger.Warn("The game {0} has already been added", gameDescriptor.Id);
 
-            await MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), 
+            await MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, gameDescriptor.DisplayName), 
                 Resources.AddGame_DuplicateHeader, MessageType.Error);
 
             return null;
         }
 
         // Create an installation
-        GameInstallation gameInstallation = new(game, type, installDirectory, isRCPInstalled);
+        GameInstallation gameInstallation = new(gameDescriptor.Game, type, installDirectory, isRCPInstalled);
 
         // Get the manager
         GameManager manager = gameInstallation.GameManager;

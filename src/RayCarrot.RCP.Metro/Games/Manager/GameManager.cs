@@ -208,7 +208,7 @@ public abstract class GameManager
     /// Locates and adds the game
     /// </summary>
     /// <returns>The task</returns>
-    public async Task LocateAddGameAsync()
+    public async Task LocateAddGameAsync(GameDescriptor gameDescriptor)
     {
         // Locate the game and get the path
         var path = await LocateAsync();
@@ -217,10 +217,10 @@ public abstract class GameManager
             return;
 
         // Add the game
-        await Services.Games.AddGameAsync(Game, Type, path.Value, false);
+        GameInstallation gameInstallation = await Services.Games.AddGameAsync(gameDescriptor, Type, path.Value, false);
 
         // Refresh
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
+        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
 
         Logger.Info("The game {0} has been added", Game);
     }

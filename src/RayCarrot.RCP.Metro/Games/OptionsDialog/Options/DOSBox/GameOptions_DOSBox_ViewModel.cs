@@ -50,7 +50,7 @@ public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
             // currently the BrowseBox does not have any event for when the path is changed. Doing this rather than discarding the task
             // from the async refresh will ensure that any exceptions are handled correctly as the async void will take care of that.
             Invoke();
-            async void Invoke() => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.GameInfo));
+            async void Invoke() => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.GameInfo));
         }
     }
 

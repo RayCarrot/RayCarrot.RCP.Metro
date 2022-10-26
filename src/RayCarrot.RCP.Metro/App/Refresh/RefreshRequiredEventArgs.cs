@@ -18,9 +18,9 @@ public class RefreshRequiredEventArgs : EventArgs
     /// </summary>
     /// <param name="modifiedGame">The game which has been modified</param>
     /// <param name="flags">The refresh flags indicating what has been modified</param>
-    public RefreshRequiredEventArgs(Games modifiedGame, RefreshFlags flags)
+    public RefreshRequiredEventArgs(GameInstallation modifiedGame, RefreshFlags flags)
     {
-        ModifiedGames = new Games[]
+        ModifiedGames = new GameInstallation[]
         {
             modifiedGame
         };
@@ -32,9 +32,9 @@ public class RefreshRequiredEventArgs : EventArgs
     /// </summary>
     /// <param name="modifiedGames">The games which have been modified</param>
     /// <param name="flags">The refresh flags indicating what has been modified</param>
-    public RefreshRequiredEventArgs(IEnumerable<Games>? modifiedGames, RefreshFlags flags)
+    public RefreshRequiredEventArgs(IEnumerable<GameInstallation>? modifiedGames, RefreshFlags flags)
     {
-        ModifiedGames = modifiedGames?.ToArray() ?? Array.Empty<Games>();
+        ModifiedGames = modifiedGames?.ToArray() ?? Array.Empty<GameInstallation>();
         Flags = flags;
     }
 
@@ -42,7 +42,11 @@ public class RefreshRequiredEventArgs : EventArgs
     /// Default constructor for no modified games
     /// </summary>
     /// <param name="flags">The refresh flags indicating what has been modified</param>
-    public RefreshRequiredEventArgs(RefreshFlags flags) : this(null, flags) { }
+    public RefreshRequiredEventArgs(RefreshFlags flags)
+    {
+        ModifiedGames = Array.Empty<GameInstallation>();
+        Flags = flags;
+    }
 
     #endregion
 
@@ -51,7 +55,7 @@ public class RefreshRequiredEventArgs : EventArgs
     /// <summary>
     /// The games which have been modified
     /// </summary>
-    public IList<Games> ModifiedGames { get; }
+    public IList<GameInstallation> ModifiedGames { get; }
 
     /// <summary>
     /// The refresh flags indicating what has been modified

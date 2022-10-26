@@ -8,6 +8,7 @@ using IniParser;
 using Microsoft.Win32;
 using NLog;
 using RayCarrot.RCP.Metro.Ini;
+using Path = System.IO.Path;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,10 +24,10 @@ public class GameFinder
     /// </summary>
     /// <param name="games">The games to search for</param>
     /// <param name="finderItems">Other finder items to search for</param>
-    public GameFinder(IEnumerable<Games> games, IEnumerable<GameFinder_GenericItem> finderItems)
+    public GameFinder(IEnumerable<GameDescriptor> games, IEnumerable<GameFinder_GenericItem> finderItems)
     {
         // Set properties
-        GamesToFind = new HashSet<Games>(games);
+        GamesToFind = new HashSet<GameDescriptor>(games);
         FinderItems = finderItems?.ToArray() ?? new GameFinder_GenericItem[0];
         FoundFinderItems = new List<GameFinder_GenericItem>();
         Results = new List<GameFinder_BaseResult>();
@@ -36,7 +37,7 @@ public class GameFinder
 
         // Get the game finder items
         GameFinderItems = GamesToFind.
-            SelectMany(x => x.GetManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.Type, y.GameFinderItem))).
+            SelectMany(x => x.Game.GetManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.Type, y.GameFinderItem))).
             ToArray();
 
         Logger.Trace("{0} game finders were found", GameFinderItems.Length);
@@ -66,7 +67,7 @@ public class GameFinder
         try
         {
             // Split finders into groups
-            var ubiIniGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.Game) && x.FinderItem.UbiIniSectionName != null).ToArray();
+            var ubiIniGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.GameDescriptor) && x.FinderItem.UbiIniSectionName != null).ToArray();
 
             // Search the ubi.ini file
             if (ubiIniGameFinders.Any() && GamesToFind.Any())
@@ -98,9 +99,9 @@ public class GameFinder
             }
 
             // Split finders into groups
-            var regUninstallGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.Game) && x.FinderItem.PossibleWin32Names?.Any() == true).ToList();
+            var regUninstallGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.GameDescriptor) && x.FinderItem.PossibleWin32Names?.Any() == true).ToList();
             var regUninstallFinders = FinderItems.Where(x => !FoundFinderItems.Contains(x) && x.PossibleWin32Names?.Any() == true).ToList();
-            var steamGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.Game) && x.FinderItem.SteamID != null).ToList();
+            var steamGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.GameDescriptor) && x.FinderItem.SteamID != null).ToList();
 
             // Search Registry uninstall programs
             if ((regUninstallGameFinders.Any() || steamGameFinders.Any() || regUninstallFinders.Any()) && GamesToFind.Any())
@@ -122,7 +123,7 @@ public class GameFinder
             }
 
             // Split finders into groups
-            var programShortcutGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.Game) && x.FinderItem.ShortcutName != null).ToList();
+            var programShortcutGameFinders = GameFinderItems.Where(x => !FoundGames.Contains(x.GameDescriptor) && x.FinderItem.ShortcutName != null).ToList();
             var programShortcutFinders = FinderItems.Where(x => !FoundFinderItems.Contains(x) && x.ShortcutName != null).ToList();
 
             // Search Win32 shortcuts
@@ -145,7 +146,7 @@ public class GameFinder
             }
 
             // Run custom game finders
-            foreach (var game in GameFinderItems.Where(x => !FoundGames.Contains(x.Game) && x.FinderItem.CustomFinderAction != null))
+            foreach (var game in GameFinderItems.Where(x => !FoundGames.Contains(x.GameDescriptor) && x.FinderItem.CustomFinderAction != null))
             {
                 // Run the custom action and get the result
                 var result = game.FinderItem.CustomFinderAction();
@@ -206,12 +207,12 @@ public class GameFinder
     /// <summary>
     /// The list of games which are left to be found
     /// </summary>
-    protected HashSet<Games> GamesToFind { get; }
+    protected HashSet<GameDescriptor> GamesToFind { get; }
 
     /// <summary>
     /// Gets the games which have been found
     /// </summary>
-    protected IEnumerable<Games> FoundGames => Results.OfType<GameFinder_GameResult>().Select(x => x.Game);
+    protected IEnumerable<GameDescriptor> FoundGames => Results.OfType<GameFinder_GameResult>().Select(x => x.GameDescriptor);
 
     /// <summary>
     /// The list of game finder results
@@ -548,19 +549,19 @@ public class GameFinder
     /// <returns>True if the game item was added, otherwise false</returns>
     protected virtual async Task<bool> AddGameAsync(GameFinderItemContainer game, FileSystemPath installDir, object parameter = null)
     {
-        Logger.Info("An install directory was found for {0}", game.Game);
+        Logger.Info("An install directory was found for {0}", game.GameDescriptor.Id);
 
         // Make sure the game hasn't already been found
-        if (FoundGames.Contains(game.Game))
+        if (FoundGames.Contains(game.GameDescriptor))
         {
-            Logger.Warn("{0} could not be added. The game has already been found.", game.Game);
+            Logger.Warn("{0} could not be added. The game has already been found.", game.GameDescriptor.Id);
             return false;
         }
 
         // Make sure the install directory exists
         if (!installDir.DirectoryExists)
         {
-            Logger.Warn("{0} could not be added. The install directory does not exist.", game.Game);
+            Logger.Warn("{0} could not be added. The install directory does not exist.", game.GameDescriptor.Id);
             return false;
         }
 
@@ -571,7 +572,7 @@ public class GameFinder
 
             if (result == null)
             {
-                Logger.Info("{0} could not be added. The optional verification returned null.", game.Game);
+                Logger.Info("{0} could not be added. The optional verification returned null.", game.GameDescriptor.Id);
                 return false;
             }
 
@@ -579,19 +580,19 @@ public class GameFinder
         }
 
         // Make sure that the game is valid
-        if (!await game.Game.GetManager(game.GameType).IsValidAsync(installDir, parameter))
+        if (!await game.GameDescriptor.Game.GetManager(game.GameType).IsValidAsync(installDir, parameter))
         {
-            Logger.Info("{0} could not be added. The game default file was not found.", game.Game);
+            Logger.Info("{0} could not be added. The game default file was not found.", game.GameDescriptor.Id);
             return false;
         }
 
         // Add the game to found games
-        Results.Add(new GameFinder_GameResult(game.Game, installDir, game.GameType, game.FinderItem.FoundAction, parameter));
+        Results.Add(new GameFinder_GameResult(game.GameDescriptor, installDir, game.GameType, game.FinderItem.FoundAction, parameter));
 
         // Remove from games to find
-        GamesToFind.Remove(game.Game);
+        GamesToFind.Remove(game.GameDescriptor);
 
-        Logger.Info("The game {0} was found", game.Game);
+        Logger.Info("The game {0} was found", game.GameDescriptor.Id);
 
         return true;
     }
@@ -691,12 +692,12 @@ public class GameFinder
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="game">The game to find</param>
+        /// <param name="gameDescriptor">The game to find</param>
         /// <param name="gameType">The game type</param>
         /// <param name="finderItem">The game finder item</param>
-        public GameFinderItemContainer(Games game, GameType gameType, GameFinder_GameItem finderItem)
+        public GameFinderItemContainer(GameDescriptor gameDescriptor, GameType gameType, GameFinder_GameItem finderItem)
         {
-            Game = game;
+            GameDescriptor = gameDescriptor;
             GameType = gameType;
             FinderItem = finderItem;
         }
@@ -708,7 +709,7 @@ public class GameFinder
         /// <summary>
         /// The game to find
         /// </summary>
-        public Games Game { get; }
+        public GameDescriptor GameDescriptor { get; }
 
         /// <summary>
         /// The game type

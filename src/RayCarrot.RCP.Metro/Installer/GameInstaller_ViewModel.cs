@@ -324,10 +324,10 @@ public class GameInstaller_ViewModel : UserInputViewModel
             if (result == GameInstaller_Result.Successful)
             {
                 // Add the game
-                await Services.Games.AddGameAsync(Game, GameType.Win32, output, true);
+                GameInstallation gameInstallation = await Services.Games.AddGameAsync(Game.GetGameDescriptor(), GameType.Win32, output, true);
 
                 // Refresh
-                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, RefreshFlags.GameCollection));
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
 
                 if (CreateDesktopShortcut)
                     await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, displayName));

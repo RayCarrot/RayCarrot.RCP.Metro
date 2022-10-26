@@ -137,7 +137,7 @@ public class GameOptions_FiestaRun_ViewModel : BaseRCPViewModel
                 // TODO-14: Copy over additional data as well
                 Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Game, gameInstallation.GameType, installLocation, gameInstallation.IsRCPInstalled));
 
-                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, RefreshFlags.GameInfo));
+                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun.GetInstallation(), RefreshFlags.GameInfo));
             }
             catch (Exception ex)
             {

@@ -86,7 +86,7 @@ public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
         Logger.Info("A new educational game has been added with the name {0}", newItem.Name);
 
         // Refresh
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), 
             RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
 
         // Edit the game
@@ -116,7 +116,7 @@ public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
         Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>().RefreshDefault();
 
         // Refresh
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), 
             RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
 
         Logger.Info("The educational game options have saved");

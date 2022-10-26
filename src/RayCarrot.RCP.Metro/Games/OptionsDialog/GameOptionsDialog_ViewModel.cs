@@ -153,7 +153,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         await Services.Games.RemoveGameAsync(GameInstallation, false);
 
         // Refresh
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.GameCollection));
+        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.GameCollection));
     }
 
     /// <summary>
@@ -215,7 +215,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         await Services.Games.RemoveGameAsync(GameInstallation, true);
 
         // Refresh
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.GameCollection));
+        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.GameCollection));
 
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.UninstallGameSuccess, DisplayName), Resources.UninstallGameSuccessHeader);
     }

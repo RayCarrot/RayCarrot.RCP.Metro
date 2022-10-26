@@ -203,7 +203,7 @@ public class Config_RabbidsGoHome_ViewModel : GameOptionsDialog_ConfigPageViewMo
             null;
 
         // Refresh
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, RefreshFlags.GameInfo));
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome.GetInstallation(), RefreshFlags.GameInfo));
 
         Logger.Info("Rabbids Go Home configuration has been saved");
 

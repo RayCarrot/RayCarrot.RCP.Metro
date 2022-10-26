@@ -111,7 +111,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
     public async Task LaunchModeChangedAsync()
     {
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation.Game, RefreshFlags.LaunchInfo));
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.LaunchInfo));
     }
 
     public override void Dispose()

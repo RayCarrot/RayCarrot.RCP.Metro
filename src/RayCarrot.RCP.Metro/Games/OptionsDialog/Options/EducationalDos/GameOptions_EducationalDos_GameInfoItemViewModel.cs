@@ -109,7 +109,7 @@ public class GameOptions_EducationalDos_GameInfoItemViewModel : BaseRCPViewModel
         Logger.Info("The educational game {0} has been edited", GameData.Name);
 
         // Refresh
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), 
             RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
     }
 
@@ -170,7 +170,7 @@ public class GameOptions_EducationalDos_GameInfoItemViewModel : BaseRCPViewModel
         }
 
         // Refresh
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, 
+        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), 
             RefreshFlags.LaunchInfo | RefreshFlags.Backups | RefreshFlags.GameInfo));
     }
 

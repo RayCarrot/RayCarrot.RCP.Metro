@@ -217,7 +217,7 @@ public class StartupManager
     private async Task ValidateGamesAsync()
     {
         // Keep track of removed games
-        HashSet<Games> removed = new();
+        HashSet<GameInstallation> removed = new();
 
         // TODO-14: Rather than ToArray we should keep track of games to remove and
         //          then remove those while only showing a single message to the user.
@@ -237,7 +237,7 @@ public class StartupManager
             await Services.Games.RemoveGameAsync(gameInstallation, true);
 
             // Add to removed games
-            removed.Add(gameInstallation.Game);
+            removed.Add(gameInstallation);
 
             Logger.Info("The game {0} has been removed due to not being valid", gameInstallation.Id);
         }

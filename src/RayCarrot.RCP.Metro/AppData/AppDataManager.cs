@@ -101,7 +101,7 @@ public class AppDataManager
                     break;
 
                 case nameof(AppUserData.Game_RRR2LaunchMode):
-                    await AppViewModel.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
+                    await AppViewModel.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2.GetInstallation(), RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
                     break;
 
                 case nameof(AppUserData.Emu_DOSBox_Path):
