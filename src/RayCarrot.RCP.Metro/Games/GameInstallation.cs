@@ -10,20 +10,20 @@ public class GameInstallation
 {
     #region Constructors
 
-    public GameInstallation(Games game, GameType gameType, FileSystemPath installLocation, bool isRCPInstalled) 
-        : this(game, gameType, installLocation, isRCPInstalled, new Dictionary<string, object>()) 
+    public GameInstallation(string id, GameType gameType, FileSystemPath installLocation, bool isRCPInstalled) 
+        : this(id, gameType, installLocation, isRCPInstalled, new Dictionary<string, object>()) 
     { }
 
     [JsonConstructor]
-    private GameInstallation(Games game, GameType gameType, FileSystemPath installLocation, bool isRCPInstalled, Dictionary<string, object>? additionalData)
+    private GameInstallation(string id, GameType gameType, FileSystemPath installLocation, bool isRCPInstalled, Dictionary<string, object>? additionalData)
     {
-        Game = game;
+        Id = id;
         GameType = gameType;
         InstallLocation = installLocation;
         IsRCPInstalled = isRCPInstalled;
         _additionalData = additionalData ?? new Dictionary<string, object>();
 
-        GameDescriptor = Game.GetGameDescriptor();
+        GameDescriptor = Services.Games.GetGameDescriptor(id);
     }
 
     #endregion
@@ -38,8 +38,8 @@ public class GameInstallation
 
     #region Public Properties
 
-    [JsonProperty(PropertyName = "Game")]
-    public Games Game { get; }
+    [JsonProperty(PropertyName = "Id")]
+    public string Id { get; }
 
     [JsonProperty(PropertyName = "Type")]
     public GameType GameType { get; } // TODO-14: Remove/replace this with new type system
@@ -55,8 +55,7 @@ public class GameInstallation
 
     public GameDescriptor GameDescriptor { get; }
     public GameManager GameManager => Game.GetManager(GameType); // TODO-14: Remove once we migrate to new platform system
-
-    public string Id => GameDescriptor.Id;
+    public Games Game => GameDescriptor.Game; // TODO-14: Remove once no longer needed
 
     #endregion
 

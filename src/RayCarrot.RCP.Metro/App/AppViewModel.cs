@@ -307,7 +307,7 @@ public class AppViewModel : BaseViewModel
                 // Split into found games and items and sort
                 IEnumerable<string> gameFinderResults = foundItems.
                     OfType<GameFinder_GameResult>().
-                    OrderBy(x => x.GameDescriptor).
+                    OrderBy(x => x.DisplayName). // TODO-14: Fix order once we have new enums
                     Select(x => x.DisplayName);
                 
                 IEnumerable<string> finderResults = foundItems.
@@ -317,7 +317,7 @@ public class AppViewModel : BaseViewModel
 
                 await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
-                Logger.Info("The game finder found the following games {0}", foundItems.JoinItems(", ", x => x.ToString()));
+                Logger.Info("The game finder found the following items {0}", foundItems.JoinItems(", ", x => x.DisplayName));
 
                 return true;
             }

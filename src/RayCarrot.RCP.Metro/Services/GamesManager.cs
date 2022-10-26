@@ -122,7 +122,7 @@ public class GamesManager
         }
 
         // Create an installation
-        GameInstallation gameInstallation = new(gameDescriptor.Game, type, installDirectory, isRCPInstalled);
+        GameInstallation gameInstallation = new(gameDescriptor.Id, type, installDirectory, isRCPInstalled);
 
         // Get the manager
         GameManager manager = gameInstallation.GameManager;

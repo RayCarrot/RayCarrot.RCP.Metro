@@ -295,7 +295,7 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
         var gameInstallation = Games.EducationalDos.GetInstallation();
         Services.Data.Game_GameInstallations.Remove(gameInstallation);
         // TODO-14: Copy over additional data as well for things like launch mode
-        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Game, gameInstallation.GameType, Services.Data.Game_EducationalDosBoxGames.First().InstallDir, gameInstallation.IsRCPInstalled));
+        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Id, gameInstallation.GameType, Services.Data.Game_EducationalDosBoxGames.First().InstallDir, gameInstallation.IsRCPInstalled));
 
         Logger.Info("The default educational game has been refreshed");
     }

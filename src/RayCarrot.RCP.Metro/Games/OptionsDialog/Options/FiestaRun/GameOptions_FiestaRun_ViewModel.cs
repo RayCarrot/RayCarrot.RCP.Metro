@@ -135,7 +135,7 @@ public class GameOptions_FiestaRun_ViewModel : BaseRCPViewModel
                 var gameInstallation = Games.RaymanFiestaRun.GetInstallation();
                 Services.Data.Game_GameInstallations.Remove(gameInstallation);
                 // TODO-14: Copy over additional data as well
-                Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Game, gameInstallation.GameType, installLocation, gameInstallation.IsRCPInstalled));
+                Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Id, gameInstallation.GameType, installLocation, gameInstallation.IsRCPInstalled));
 
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun.GetInstallation(), RefreshFlags.GameInfo));
             }
