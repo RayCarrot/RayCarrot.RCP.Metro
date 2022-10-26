@@ -130,7 +130,7 @@ public class GamesManager
         // Add the game
         Data.Game_GameInstallations.Add(gameInstallation);
 
-        Logger.Info("The game {0} has been added", gameInstallation.ID);
+        Logger.Info("The game {0} has been added", gameInstallation.Id);
 
         // Run post-add operations
         await manager.PostGameAddAsync(gameInstallation);

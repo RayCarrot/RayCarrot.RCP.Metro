@@ -33,7 +33,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
         FileSystemPath saveFileName = "raymanm.sav";
 
-        Logger.Info("{0} save file {1} is being loaded...", GameInstallation.ID, saveFileName);
+        Logger.Info("{0} save file {1} is being loaded...", GameInstallation.Id, saveFileName);
 
         using RCPContext context = new(saveDir.DirPath);
 
@@ -42,7 +42,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", GameInstallation.ID);
+            Logger.Info("{0} save was not found", GameInstallation.Id);
             yield break;
         }
 
@@ -156,7 +156,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
             yield return new SerializableProgressionSlotViewModel<RMSaveFile>(this, name.TrimEnd(), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
+            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }
     }
 }

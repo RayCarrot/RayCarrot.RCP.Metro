@@ -605,7 +605,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
     {
         FileSystemPath saveFile = fileSystem.GetFile(InstallDir + "Rayman4.sav");
 
-        Logger.Info("{0} save is being loaded...", GameInstallation.ID);
+        Logger.Info("{0} save is being loaded...", GameInstallation.Id);
 
         using RCPContext context = new(saveFile.Parent);
 
@@ -613,7 +613,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", GameInstallation.ID);
+            Logger.Info("{0} save was not found", GameInstallation.Id);
             yield break;
         }
 
@@ -755,7 +755,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             SlotGroup = 1,
         };
 
-        Logger.Info("{0} save has been loaded", GameInstallation.ID);
+        Logger.Info("{0} save has been loaded", GameInstallation.Id);
     }
 
     private class World

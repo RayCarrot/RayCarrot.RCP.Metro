@@ -217,7 +217,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Failed to load backup progression for {0} ({1})", GameInstallation.ID, DisplayName);
+            Logger.Error(ex, "Failed to load backup progression for {0} ({1})", GameInstallation.Id, DisplayName);
 
             BackupSlots.Clear();
         }
@@ -403,7 +403,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Failed to load progression for {0} ({1})", GameInstallation.ID, DisplayName);
+                Logger.Error(ex, "Failed to load progression for {0} ({1})", GameInstallation.Id, DisplayName);
 
                 Slots.Clear();
                 PrimarySlot = null;
@@ -421,7 +421,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     {
         using (await AsyncLock.LockAsync())
         {
-            Logger.Trace($"Loading backup for {GameInstallation.ID}");
+            Logger.Trace($"Loading backup for {GameInstallation.Id}");
 
             // Set the status to syncing while the data is being loaded
             CurrentBackupStatus = BackupStatus.Syncing;
@@ -484,7 +484,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             {
                 IsPerformingBackupRestore = true;
 
-                Logger.Trace($"Performing backup on {GameInstallation.ID}");
+                Logger.Trace($"Performing backup on {GameInstallation.Id}");
 
                 // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
                 if (IsGOGCloudSyncUsed && !fromBatchOperation)
@@ -547,7 +547,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             {
                 IsPerformingBackupRestore = true;
 
-                Logger.Trace($"Performing restore on {GameInstallation.ID}");
+                Logger.Trace($"Performing restore on {GameInstallation.Id}");
 
                 // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
                 if (IsGOGCloudSyncUsed)

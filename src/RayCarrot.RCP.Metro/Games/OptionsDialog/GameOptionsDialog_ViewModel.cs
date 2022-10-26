@@ -162,7 +162,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     /// <returns>The task</returns>
     public async Task UninstallAsync()
     {
-        Logger.Info("{0} is being uninstalled...", GameInstallation.ID);
+        Logger.Info("{0} is being uninstalled...", GameInstallation.Id);
 
         // Have user confirm
         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
@@ -205,7 +205,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Uninstalling game {0}", GameInstallation.ID);
+            Logger.Error(ex, "Uninstalling game {0}", GameInstallation.Id);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.UninstallGameError, DisplayName), Resources.UninstallGameErrorHeader);
 
             return;
@@ -245,7 +245,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Creating game shortcut {0}", GameInstallation.ID);
+            Logger.Error(ex, "Creating game shortcut {0}", GameInstallation.Id);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
         }
     }

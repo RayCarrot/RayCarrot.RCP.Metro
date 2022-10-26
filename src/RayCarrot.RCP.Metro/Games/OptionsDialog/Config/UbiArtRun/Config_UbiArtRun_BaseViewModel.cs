@@ -177,7 +177,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <returns>The task</returns>
     protected override async Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", GameInstallation.ID);
+        Logger.Info("{0} config is being set up", GameInstallation.Id);
 
         // Get the save directory
         SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + GameInstallation.Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
@@ -201,7 +201,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", GameInstallation.ID);
+        Logger.Info("{0} configuration is saving...", GameInstallation.Id);
 
         try
         {
@@ -218,13 +218,13 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
                 SoundVolume
             });
 
-            Logger.Info("{0} configuration has been saved", GameInstallation.ID);
+            Logger.Info("{0} configuration has been saved", GameInstallation.Id);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} config", GameInstallation.ID);
+            Logger.Error(ex, "Saving {0} config", GameInstallation.Id);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }

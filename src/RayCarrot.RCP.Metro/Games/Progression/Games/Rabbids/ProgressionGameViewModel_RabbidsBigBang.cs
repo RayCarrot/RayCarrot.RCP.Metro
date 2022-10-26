@@ -22,17 +22,17 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         using RCPContext context = new(saveFile.Parent);
 
-        Logger.Info("{0} save is being loaded...", GameInstallation.ID);
+        Logger.Info("{0} save is being loaded...", GameInstallation.Id);
 
         Unity_PlayerPrefs? saveData = await context.ReadFileDataAsync<Unity_PlayerPrefs>(saveFile.Name, removeFileWhenComplete: false);
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", GameInstallation.ID);
+            Logger.Info("{0} save was not found", GameInstallation.Id);
             yield break;
         }
 
-        Logger.Info("{0} save has been deserialized", GameInstallation.ID);
+        Logger.Info("{0} save has been deserialized", GameInstallation.Id);
 
         const int maxScore = 12 * 45 * 3;
 
@@ -61,6 +61,6 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
         yield return new SerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
 
-        Logger.Info("{0} save has been loaded", GameInstallation.ID);
+        Logger.Info("{0} save has been loaded", GameInstallation.Id);
     }
 }

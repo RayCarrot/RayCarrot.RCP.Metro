@@ -369,7 +369,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.ID);
+        Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.Id);
 
         // Get the config manager
         var configManager = new Emulator_DOSBox_AutoConfigManager(GameInstallation.Game.GetManager<GameManager_DOSBox>(GameInstallation.GameType).DosBoxConfigFile);
@@ -394,7 +394,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
 
         CustomCommands = configData.CustomLines.JoinItems(Environment.NewLine);
 
-        Logger.Info("DOSBox emulator game config for {0} has been loaded", GameInstallation.ID);
+        Logger.Info("DOSBox emulator game config for {0} has been loaded", GameInstallation.Id);
 
         UnsavedChanges = false;
 
@@ -412,7 +412,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("DOSBox emulator game config for {0} is saving...", GameInstallation.ID);
+        Logger.Info("DOSBox emulator game config for {0} is saving...", GameInstallation.Id);
 
         try
         {
@@ -466,7 +466,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
             // Write to the config file
             configManager.WriteFile(configData);
 
-            Logger.Info("DOSBox emulator game config for {0} has been saved", GameInstallation.ID);
+            Logger.Info("DOSBox emulator game config for {0} has been saved", GameInstallation.Id);
 
             return true;
 

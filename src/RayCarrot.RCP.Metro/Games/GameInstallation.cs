@@ -55,8 +55,7 @@ public class GameInstallation
 
     public GameDescriptor GameDescriptor { get; }
 
-    // TODO-14: Eventually we might want to get rid of the Games enum, so use this ID as much as possible for now
-    public string ID => Game.ToString();
+    public string Id => GameDescriptor.Id;
 
     #endregion
 

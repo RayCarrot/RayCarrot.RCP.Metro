@@ -749,13 +749,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             if (!success)
             {
-                Logger.Warn("Failed to load patch library for game {0}", GameInstallation.ID);
+                Logger.Warn("Failed to load patch library for game {0}", GameInstallation.Id);
                 return false;
             }
 
             RefreshPatchedFiles();
 
-            Logger.Info("Loaded patch library for game {0}", GameInstallation.ID);
+            Logger.Info("Loaded patch library for game {0}", GameInstallation.Id);
 
             return true;
         }
@@ -800,13 +800,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             // Make sure the game has external patches defined
             if (manifest.Games?.ContainsKey(GameInstallation.Game) != true)
             {
-                Logger.Info("The game {0} has no external patches", GameInstallation.ID);
+                Logger.Info("The game {0} has no external patches", GameInstallation.Id);
                 _externalGamePatchesURL = null;
                 _externalPatches = null;
                 return;
             }
 
-            Logger.Info("Loading external patches for game {0}", GameInstallation.ID);
+            Logger.Info("Loading external patches for game {0}", GameInstallation.Id);
 
             _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[GameInstallation.Game]);
 
@@ -814,7 +814,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(_externalGamePatchesURL
                     .AbsoluteUri);
 
-            Logger.Info("Loaded {0} external patches for game {1}", gameManifest.Patches?.Length, GameInstallation.ID);
+            Logger.Info("Loaded {0} external patches for game {1}", gameManifest.Patches?.Length, GameInstallation.Id);
 
             if (gameManifest.Patches == null)
             {

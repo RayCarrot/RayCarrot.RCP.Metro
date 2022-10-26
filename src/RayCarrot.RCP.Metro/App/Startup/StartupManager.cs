@@ -239,7 +239,7 @@ public class StartupManager
             // Add to removed games
             removed.Add(gameInstallation.Game);
 
-            Logger.Info("The game {0} has been removed due to not being valid", gameInstallation.ID);
+            Logger.Info("The game {0} has been removed due to not being valid", gameInstallation.Id);
         }
 
         // Refresh if any games were removed

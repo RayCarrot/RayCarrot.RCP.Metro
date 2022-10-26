@@ -45,14 +45,14 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
         {
             string fileName = $"Savegame_{saveIndex}";
 
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, saveIndex);
 
             // Deserialize the data
             Origins_SaveData? saveFileData = await context.ReadFileDataAsync<Origins_SaveData>(fileName, endian: Endian.Big, removeFileWhenComplete: false);
 
             if (saveFileData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.ID);
+                Logger.Info("{0} slot was not found", GameInstallation.Id);
                 continue;
             }
 
@@ -159,7 +159,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
                 CanImport = false, // TODO: Allow importing. Current issue is the game fails to load modified saves - checksum in header?
             };
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
+            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }
     }
 

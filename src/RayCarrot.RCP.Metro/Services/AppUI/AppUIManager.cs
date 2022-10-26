@@ -242,7 +242,7 @@ public class AppUIManager
         using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(gameInstallation));
         await Dialog.ShowWindowAsync(ui, groupNames: gameInstallation.GameDescriptor.DialogGroupNames.
             // TODO-14: Use install location as group name?
-            Append(gameInstallation.ID).ToArray());
+            Append(gameInstallation.Id).ToArray());
     }
 
     /// <summary>
@@ -304,7 +304,7 @@ public class AppUIManager
         using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
         await Dialog.ShowWindowAsync(dialog, 
             // TODO-14: Use install location as group name?
-            groupNames: gameInstallation.ID);
+            groupNames: gameInstallation.Id);
     }
 
     /// <summary>
@@ -329,7 +329,7 @@ public class AppUIManager
         using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
         await Dialog.ShowWindowAsync(dialog,
             // TODO-14: Use install location as group name?
-            groupNames: vm.GameInstallation.ID);
+            groupNames: vm.GameInstallation.Id);
     }
 
     /// <summary>

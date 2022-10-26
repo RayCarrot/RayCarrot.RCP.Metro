@@ -32,13 +32,13 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
         {
             string fileName = filePath.Name;
 
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, fileName);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, fileName);
 
             R3SaveFile? saveData = await context.ReadFileDataAsync<R3SaveFile>(fileName, new R3SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.ID);
+                Logger.Info("{0} slot was not found", GameInstallation.Id);
                 continue;
             }
 
@@ -82,7 +82,7 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
 
             yield return new SerializableProgressionSlotViewModel<R3SaveFile>(this, $"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
+            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
 
             index++;
         }

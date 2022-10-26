@@ -62,7 +62,7 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", GameInstallation.ID);
+        Logger.Info("{0} config is being set up", GameInstallation.Id);
 
         GraphicsMode.MinGraphicsWidth = 800;
         GraphicsMode.MinGraphicsHeight = 600;
@@ -99,7 +99,7 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", GameInstallation.ID);
+        Logger.Info("{0} configuration is saving...", GameInstallation.Id);
 
         try
         {
@@ -119,13 +119,13 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
             //    key.SetValue(Value_DefaultController, UseController ? 1 : 0);
             //});
 
-            Logger.Info("{0} configuration has been saved", GameInstallation.ID);
+            Logger.Info("{0} configuration has been saved", GameInstallation.Id);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} registry data", GameInstallation.ID);
+            Logger.Error(ex, "Saving {0} registry data", GameInstallation.Id);
 
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
             return false;

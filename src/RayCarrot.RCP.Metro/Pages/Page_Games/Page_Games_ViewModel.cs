@@ -366,7 +366,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     // Open the location
                     await File.OpenExplorerLocationAsync(instDir);
 
-                    Logger.Trace("The Game {0} install location was opened", gameInstallation.ID);
+                    Logger.Trace("The Game {0} install location was opened", gameInstallation.Id);
                 }), UserLevel.Advanced));
 
                 actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
@@ -394,7 +394,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 // Add Game options
                 var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, GenericIconKind.GameDisplay_Config, new AsyncRelayCommand(async () =>
                 {
-                    Logger.Trace("The game {0} options dialog is opening...", gameInstallation.ID);
+                    Logger.Trace("The game {0} options dialog is opening...", gameInstallation.Id);
                     await UI.ShowGameOptionsAsync(gameInstallation);
                 }));
 

@@ -50,13 +50,13 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
         {
             string slotFilePath = $@"Slot{saveSlot.SlotIndex}\General.sav";
 
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveSlot.SlotIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, saveSlot.SlotIndex);
 
             R2GeneralSaveFile? saveData= await context.ReadFileDataAsync<R2GeneralSaveFile>(slotFilePath, new R2SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.ID);
+                Logger.Info("{0} slot was not found", GameInstallation.Id);
                 continue;
             }
 
@@ -116,7 +116,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
 
             yield return new SerializableProgressionSlotViewModel<R2GeneralSaveFile>(this, name, saveSlot.SlotIndex, parsedPercentage, progressItems, context, saveData, slotFilePath);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
+            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }
     }
 }

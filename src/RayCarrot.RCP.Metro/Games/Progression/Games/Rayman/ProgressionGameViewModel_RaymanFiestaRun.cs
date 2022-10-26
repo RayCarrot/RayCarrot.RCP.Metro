@@ -58,7 +58,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC);
         context.AddSettings(settings);
 
-        Logger.Info("{0} slot is being loaded...", GameInstallation.ID);
+        Logger.Info("{0} slot is being loaded...", GameInstallation.Id);
 
         // Get the file path
         string fileName = Edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat";
@@ -68,11 +68,11 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 
         if (saveData == null)
         {
-            Logger.Info("{0} slot was not found", GameInstallation.ID);
+            Logger.Info("{0} slot was not found", GameInstallation.Id);
             yield break;
         }
 
-        Logger.Info("{0} slot has been deserialized", GameInstallation.ID);
+        Logger.Info("{0} slot has been deserialized", GameInstallation.Id);
 
         int crowns = saveData.LevelInfos_Land1.Count(x => x.HasCrown);
         int maxCrowns = 72;
@@ -122,6 +122,6 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 
         yield return new SerializableProgressionSlotViewModel<FiestaRun_SaveData>(this, null, 0, crowns, maxCrowns, progressItems, context, saveData, fileName);
 
-        Logger.Info("{0} slot has been loaded", GameInstallation.ID);
+        Logger.Info("{0} slot has been loaded", GameInstallation.Id);
     }
 }

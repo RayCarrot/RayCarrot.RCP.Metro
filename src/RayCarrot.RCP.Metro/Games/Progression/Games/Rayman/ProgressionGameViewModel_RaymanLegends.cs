@@ -67,7 +67,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
         foreach (FileSystemPath saveFile in saveDir.GetFiles())
         {
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.ID, saveFile.Parent.Name);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, saveFile.Parent.Name);
 
             string saveFileName = saveFile - saveDir.DirPath;
 
@@ -76,7 +76,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
             if (saveFileData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.ID);
+                Logger.Info("{0} slot was not found", GameInstallation.Id);
                 continue;
             }
 
@@ -156,7 +156,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                 //ExportedType = typeof(Legends_SaveData.RO2_PersistentGameData_Universe)
             };
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.ID);
+            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }
     }
 }

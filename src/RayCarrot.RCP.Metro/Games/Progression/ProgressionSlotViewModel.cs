@@ -191,7 +191,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Error refreshing info items for {0}", gameInstallation.ID);
+            Logger.Error(ex, "Error refreshing info items for {0}", gameInstallation.Id);
         }
     }
 
@@ -272,7 +272,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         if (!await ConfirmSaveEditingAsync())
             return;
 
-        Logger.Trace("Progression slot for {0} is being opened for editing...", Game.GameInstallation.ID);
+        Logger.Trace("Progression slot for {0} is being opened for editing...", Game.GameInstallation.Id);
 
         try
         {

@@ -484,7 +484,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Saving {0} ubi.ini secondary data", GameInstallation.ID);
+                Logger.Error(ex, "Saving {0} ubi.ini secondary data", GameInstallation.Id);
             }
         }
 
@@ -519,7 +519,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Saving {0} dinput hack data", GameInstallation.ID);
+                Logger.Error(ex, "Saving {0} dinput hack data", GameInstallation.Id);
                 throw;
             }
 
@@ -546,7 +546,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(ex, "Saving {0} disc check modification", GameInstallation.ID);
+                    Logger.Error(ex, "Saving {0} disc check modification", GameInstallation.Id);
                     throw;
                 }
             }
@@ -589,7 +589,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Getting {0} dinput file size", GameInstallation.ID);
+            Logger.Error(ex, "Getting {0} dinput file size", GameInstallation.Id);
             return DinputType.Unknown;
         }
     }
