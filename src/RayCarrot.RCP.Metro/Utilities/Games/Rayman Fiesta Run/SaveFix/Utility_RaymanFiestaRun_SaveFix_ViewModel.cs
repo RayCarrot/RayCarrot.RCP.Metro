@@ -80,7 +80,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
             try
             {
                 using RCPContext context = new(SaveFilePath.Parent);
-                context.AddSettings(new UbiArtSettings(Game.RaymanFiestaRun, Platform.PC));
+                context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
 
                 FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name);
 
@@ -111,7 +111,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
             try
             {
                 using RCPContext context = new(SaveFilePath.Parent);
-                context.AddSettings(new UbiArtSettings(Game.RaymanFiestaRun, Platform.PC));
+                context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
 
                 FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name, removeFileWhenComplete: false);
 

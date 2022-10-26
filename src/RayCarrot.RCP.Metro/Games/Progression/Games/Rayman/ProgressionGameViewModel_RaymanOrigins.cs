@@ -38,7 +38,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
         }
 
         using RCPContext context = new(saveDir.DirPath);
-        UbiArtSettings settings = new(Game.RaymanOrigins, Platform.PC);
+        UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PC);
         context.AddSettings(settings);
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)

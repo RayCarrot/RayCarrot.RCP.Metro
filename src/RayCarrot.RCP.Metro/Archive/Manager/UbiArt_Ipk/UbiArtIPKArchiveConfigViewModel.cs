@@ -87,7 +87,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
         // Set default properties based on settings
         switch (Settings.Game)
         {
-            case Game.RaymanOrigins:
+            case BinarySerializer.UbiArt.Game.RaymanOrigins:
 
                 switch (Settings.Platform)
                 {
@@ -152,7 +152,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case Game.RaymanLegends:
+            case BinarySerializer.UbiArt.Game.RaymanLegends:
 
                 switch (Settings.Platform)
                 {
@@ -217,7 +217,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case Game.RaymanAdventures:
+            case BinarySerializer.UbiArt.Game.RaymanAdventures:
 
                 switch (Settings.Platform)
                 {
@@ -251,7 +251,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case Game.RaymanMini:
+            case BinarySerializer.UbiArt.Game.RaymanMini:
 
                 switch (Settings.Platform)
                 {
@@ -273,7 +273,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case Game.JustDance2017:
+            case BinarySerializer.UbiArt.Game.JustDance2017:
 
                 switch (Settings.Platform)
                 {
@@ -295,7 +295,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case Game.ValiantHearts:
+            case BinarySerializer.UbiArt.Game.ValiantHearts:
 
                 switch (Settings.Platform)
                 {
@@ -318,7 +318,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case Game.ChildOfLight:
+            case BinarySerializer.UbiArt.Game.ChildOfLight:
 
                 switch (Settings.Platform)
                 {
@@ -353,7 +353,7 @@ public class UbiArtIPKArchiveConfigViewModel : BaseViewModel
 
                 break;
 
-            case Game.GravityFalls:
+            case BinarySerializer.UbiArt.Game.GravityFalls:
 
                 switch (Settings.Platform)
                 {

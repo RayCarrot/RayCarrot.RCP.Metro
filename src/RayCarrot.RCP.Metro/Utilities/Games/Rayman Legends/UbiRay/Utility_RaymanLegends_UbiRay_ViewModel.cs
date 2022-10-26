@@ -121,7 +121,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
     {
         // Deserialize the IPK file
         using RCPContext context = new(String.Empty);
-        UbiArtSettings settings = new(Game.RaymanLegends, Platform.PC);
+        UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC);
         context.AddSettings(settings);
         BundleFile ipk = context.ReadStreamData<BundleFile>(ipkStream, name: name, endian: settings.GetEndian, leaveOpen: true);
 
