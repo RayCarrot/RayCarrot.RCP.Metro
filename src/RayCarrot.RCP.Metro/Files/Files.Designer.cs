@@ -318,10 +318,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 13.4.2 - November 27, 2022   -----
-        ///• When editing a file in the Archive Explorer it will now always ask for the program to use the first time rather than automatically using the system default
-        ///• Fixed a bug where removing a game would fail if the folder could not be written to due to the check for patches attempting to create the patches library folder (this now only gets created when patches are applied)
-        ///• Fixed a bug where the game finder wouldn&apos;t correctly save the DOSBox path if found [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to -----   Version 13.4.1 - October 28, 2022   -----
+        ///• Fixed a bug where changing the links style in the settings page would cause the app to crash
+        ///• Fixed a bug where there would be graphical artifacts in the progression page for certain graphics cards
+        ///
+        ///
+        ///-----   Version 13.4.0 - October 17, 2022   -----
+        ///• Replaced several utilities with downloadable patches and modified the credits to match
+        ///• Added an optional website field to patches
+        ///• Updated the standard loading indicator and added support for canc [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory_13_0_15_0 {
             get {
