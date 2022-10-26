@@ -370,7 +370,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
         if (CanRemoveDiscCheck)
         {
             // Get the game file path
-            var gameFile = GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName;
+            var gameFile = GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName;
 
             // Check if it exists
             if (gameFile.FileExists)
@@ -527,7 +527,7 @@ public abstract class Config_UbiIni3_BaseViewModel<Handler, Language> : Config_U
             {
                 try
                 {
-                    Patcher = new FilePatcher(GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName, Patches);
+                    Patcher = new FilePatcher(GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName, Patches);
 
                     FilePatcher.PatchState patchState = Patcher.GetPatchState();
 

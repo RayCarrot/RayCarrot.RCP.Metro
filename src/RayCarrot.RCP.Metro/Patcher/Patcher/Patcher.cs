@@ -54,7 +54,7 @@ public class Patcher
                         // NOTE: In the future we'll want to use the location ID to get the corresponding
                         //       manager. This makes it so we can have one game support multiple archive
                         //       formats. But for now it doesn't matter, so we just get the default one.
-                        archiveDataManagers.Add(patchFilePath.LocationID, game.GetGameInfo().GetArchiveDataManager(game.GetInstallation()));
+                        archiveDataManagers.Add(patchFilePath.LocationID, game.GetGameDescriptor().GetArchiveDataManager(game.GetInstallation()));
                     }
 
                     manager = archiveDataManagers[patchFilePath.LocationID];

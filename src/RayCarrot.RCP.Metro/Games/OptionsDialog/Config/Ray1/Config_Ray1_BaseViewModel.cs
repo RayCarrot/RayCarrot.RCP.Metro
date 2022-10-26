@@ -487,7 +487,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         else if (LangMode == LanguageMode.Argument)
         {
             // Attempt to get the game language from the .bat file
-            var batchFile = GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName;
+            var batchFile = GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName;
 
             if (batchFile.FullPath.EndsWith(".bat", StringComparison.InvariantCultureIgnoreCase) && batchFile.FileExists)
             {
@@ -586,7 +586,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
                 if (LangMode == LanguageMode.Config)
                     Config.Language = GameLanguage;
                 else if (LangMode == LanguageMode.Argument)
-                    await SetBatchFileLanguageAsync(GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName, GameLanguage);
+                    await SetBatchFileLanguageAsync(GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName, GameLanguage);
             }
 
             // Set button mapping
@@ -635,7 +635,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         {
             Logger.Error(ex, "Saving {0} configuration data", GameInstallation.ID);
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameInfo.DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
     }

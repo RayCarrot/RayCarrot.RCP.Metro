@@ -470,7 +470,7 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
             Logger.Info("The Rayman 2 aspect ratio is being set...");
 
             // Get the file path
-            FileSystemPath path = GameInstallation.InstallLocation + GameInstallation.GameInfo.DefaultFileName;
+            FileSystemPath path = GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName;
 
             // Make sure the file exists
             if (!path.FileExists)
@@ -740,7 +740,7 @@ public class Config_Rayman2_ViewModel : Config_UbiIni_BaseViewModel<UbiIniData_R
         try
         {
             // Get the file path
-            FileSystemPath path = gameInstallation.InstallLocation + gameInstallation.GameInfo.DefaultFileName;
+            FileSystemPath path = gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName;
 
             // Get the location
             var location = GetAspectRatioLocation(path);

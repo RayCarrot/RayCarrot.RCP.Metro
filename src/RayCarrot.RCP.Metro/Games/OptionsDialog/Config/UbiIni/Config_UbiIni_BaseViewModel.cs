@@ -126,7 +126,7 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
         catch (Exception ex)
         {
             Logger.Error(ex, "Saving ubi.ini data");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameInfo.DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
 

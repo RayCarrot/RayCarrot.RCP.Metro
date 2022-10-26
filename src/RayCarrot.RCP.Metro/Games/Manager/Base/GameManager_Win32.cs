@@ -147,7 +147,7 @@ public abstract class GameManager_Win32 : GameManager
             return new[]
             {
                 new JumpListItemViewModel(
-                    name: gameInstallation.GameInfo.DisplayName, 
+                    name: gameInstallation.GameDescriptor.DisplayName, 
                     iconSource: IconResourcePath, 
                     launchPath: launchInfo.Path, 
                     workingDirectory: launchInfo.Path.Parent, 
@@ -189,7 +189,7 @@ public abstract class GameManager_Win32 : GameManager
     /// <returns>The launch info</returns>
     public virtual GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
     {
-        return new GameLaunchInfo(gameInstallation.InstallLocation + gameInstallation.GameInfo.DefaultFileName, GetLaunchArgs);
+        return new GameLaunchInfo(gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName, GetLaunchArgs);
     }
 
     #endregion

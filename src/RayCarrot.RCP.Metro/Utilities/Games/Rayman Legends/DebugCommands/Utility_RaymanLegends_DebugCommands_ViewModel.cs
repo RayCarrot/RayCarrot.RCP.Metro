@@ -30,7 +30,7 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
         var instDir = gameInstallation.InstallLocation;
 
         GameFilePath = instDir.DirectoryExists
-            ? instDir + gameInstallation.GameInfo.DefaultFileName
+            ? instDir + gameInstallation.GameDescriptor.DefaultFileName
             : FileSystemPath.EmptyPath;
     }
 

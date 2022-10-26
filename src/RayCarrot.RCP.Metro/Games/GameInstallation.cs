@@ -23,7 +23,7 @@ public class GameInstallation
         IsRCPInstalled = isRCPInstalled;
         _additionalData = additionalData ?? new Dictionary<string, object>();
 
-        GameInfo = Game.GetGameInfo();
+        GameDescriptor = Game.GetGameDescriptor();
     }
 
     #endregion
@@ -53,8 +53,7 @@ public class GameInstallation
     [JsonProperty(PropertyName = "IsRCPInstalled")]
     public bool IsRCPInstalled { get; } // TODO-14: Have this be additional data? Have an object for info on how it was installed? Not all games can be installed through RCP, so not all games need this by default.
 
-    // TODO-14: Eventually change this
-    public GameInfo GameInfo { get; }
+    public GameDescriptor GameDescriptor { get; }
 
     // TODO-14: Eventually we might want to get rid of the Games enum, so use this ID as much as possible for now
     public string ID => Game.ToString();

@@ -263,7 +263,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 LibraryInfo = new ObservableCollection<DuoGridItemViewModel>()
                 {
-                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), libraryFile.Game.GetGameInfo().DisplayName),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), libraryFile.Game.GetGameDescriptor().DisplayName),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Patches)), libraryFile.Patches.Length.ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AppliedPatches)), libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ModifiedDate)), libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
@@ -292,7 +292,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, GameInstallation.Game);
 
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameInfo.DisplayName),
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameDescriptor.DisplayName),
                 MessageType.Error);
 
             return false;
@@ -357,7 +357,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             if (!patch.Metadata.Game.IsAdded())
             {
                 await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameNotAddedError,
-                        patch.Metadata.Name, patch.Metadata.Game.GetGameInfo().DisplayName), MessageType.Error);
+                        patch.Metadata.Name, patch.Metadata.Game.GetGameDescriptor().DisplayName), MessageType.Error);
                 return null;
             }
 
@@ -452,7 +452,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                         metaData.Game, GameInstallation.Game);
 
                     await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameMismatchError,
-                            metaData.Game.GetGameInfo().DisplayName), MessageType.Error);
+                            metaData.Game.GetGameDescriptor().DisplayName), MessageType.Error);
 
                     _context.RemoveFile(patchFilePath);
 

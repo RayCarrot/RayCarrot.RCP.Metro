@@ -21,9 +21,9 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     protected ProgressionGameViewModel(GameInstallation gameInstallation, string? displayName = null)
     {
         GameInstallation = gameInstallation;
-        IconSource = gameInstallation.GameInfo.IconSource;
-        IsDemo = gameInstallation.GameInfo.IsDemo;
-        DisplayName = displayName ?? gameInstallation.GameInfo.DisplayName;
+        IconSource = gameInstallation.GameDescriptor.IconSource;
+        IsDemo = gameInstallation.GameDescriptor.IsDemo;
+        DisplayName = displayName ?? gameInstallation.GameDescriptor.DisplayName;
         InstallDir = gameInstallation.InstallLocation;
 
         BackupInfoItems = new ObservableCollection<DuoGridItemViewModel>();
@@ -73,7 +73,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }
 
-    protected virtual string BackupName => GameInstallation.GameInfo.BackupName;
+    protected virtual string BackupName => GameInstallation.GameDescriptor.BackupName;
     protected abstract GameBackups_Directory[] BackupDirectories { get; }
     public BackupStatus CurrentBackupStatus { get; set; }
     public bool IsGOGCloudSyncUsed { get; set; }

@@ -225,7 +225,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
         catch (Exception ex)
         {
             Logger.Error(ex, "Saving {0} config", GameInstallation.ID);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameInfo.DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
     }

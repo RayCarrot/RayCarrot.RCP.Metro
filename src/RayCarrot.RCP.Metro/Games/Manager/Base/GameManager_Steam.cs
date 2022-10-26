@@ -102,8 +102,8 @@ public abstract class GameManager_Steam : GameManager
         return new[]
         {
             new JumpListItemViewModel(
-                name: gameInstallation.GameInfo.DisplayName,
-                iconSource: gameInstallation.InstallLocation + gameInstallation.GameInfo.DefaultFileName,
+                name: gameInstallation.GameDescriptor.DisplayName,
+                iconSource: gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName,
                 launchPath: LaunchURL, 
                 workingDirectory: null, 
                 launchArguments: null, 

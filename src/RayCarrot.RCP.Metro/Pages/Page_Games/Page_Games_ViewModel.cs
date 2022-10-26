@@ -209,35 +209,35 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     /// Allows the user to download the game and add it
     /// </summary>
     /// <returns>The task</returns>
-    private async Task DownloadGameAsync(GameInfo gameInfo)
+    private async Task DownloadGameAsync(GameDescriptor gameDescriptor)
     {
         try
         {
-            Logger.Trace("The game {0} is being downloaded...", gameInfo.Game);
+            Logger.Trace("The game {0} is being downloaded...", gameDescriptor.Game);
 
             // Get the game directory
-            var gameDir = AppFilePaths.GamesBaseDir + gameInfo.Game.ToString();
+            var gameDir = AppFilePaths.GamesBaseDir + gameDescriptor.Game.ToString();
 
             // Download the game
-            var downloaded = await Services.App.DownloadAsync(gameInfo.DownloadURLs, true, gameDir, true);
+            var downloaded = await Services.App.DownloadAsync(gameDescriptor.DownloadURLs, true, gameDir, true);
 
             if (!downloaded)
                 return;
 
             // Add the game
-            await Services.Games.AddGameAsync(gameInfo.Game, gameInfo.DownloadType, gameDir, true);
+            await Services.Games.AddGameAsync(gameDescriptor.Game, gameDescriptor.DownloadType, gameDir, true);
 
             // Refresh
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInfo.Game, RefreshFlags.GameCollection));
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameDescriptor.Game, RefreshFlags.GameCollection));
 
-            Logger.Trace("The game {0} has been downloaded", gameInfo.Game);
+            Logger.Trace("The game {0} has been downloaded", gameDescriptor.Game);
 
-            await MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, gameInfo.DisplayName), Resources.GameInstall_SuccessHeader);
+            await MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, gameDescriptor.DisplayName), Resources.GameInstall_SuccessHeader);
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Downloading game");
-            await MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, gameInfo.DisplayName), Resources.GameInstall_ErrorHeader);
+            await MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, gameDescriptor.DisplayName), Resources.GameInstall_ErrorHeader);
         }
     }
 
@@ -250,7 +250,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     {
         try
         {
-            GameInfo gameInfo = game.GetGameInfo();
+            GameDescriptor gameDescriptor = game.GetGameDescriptor();
 
             if (game.IsAdded())
             {
@@ -272,7 +272,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 }
 
                 // Get the Game links
-                var links = gameInfo.GetGameFileLinks(gameInstallation)?.Where(x => x.Path.FileExists).ToArray();
+                var links = gameDescriptor.GetGameFileLinks(gameInstallation)?.Where(x => x.Path.FileExists).ToArray();
 
                 // Add links if there are any
                 if (links?.Any() ?? false)
@@ -315,25 +315,25 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 }
 
                 // Add RayMap link
-                if (gameInfo.RayMapURL != null)
+                if (gameDescriptor.RayMapURL != null)
                 {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await File.LaunchFileAsync(gameInfo.RayMapURL))?.Dispose())));
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await File.LaunchFileAsync(gameDescriptor.RayMapURL))?.Dispose())));
                     actions.Add(new OverflowButtonItemViewModel());
                 }
 
                 // Add open archive
-                if (gameInfo.HasArchives)
+                if (gameDescriptor.HasArchives)
                 {
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, GenericIconKind.GameDisplay_Archive, new AsyncRelayCommand(async () =>
                     {
-                        using IArchiveDataManager archiveDataManager = gameInfo.GetArchiveDataManager(gameInstallation);
+                        using IArchiveDataManager archiveDataManager = gameDescriptor.GetArchiveDataManager(gameInstallation);
 
                         try
                         {
                             // Show the archive explorer
                             await UI.ShowArchiveExplorerAsync(
                                 manager: archiveDataManager,
-                                filePaths: gameInfo.GetArchiveFilePaths(gameInstallation.InstallLocation).
+                                filePaths: gameDescriptor.GetArchiveFilePaths(gameInstallation.InstallLocation).
                                     Where(x => x.FileExists).
                                     ToArray());
                         }
@@ -353,8 +353,8 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     FileSystemPath instDir = gameInstallation.InstallLocation;
 
                     // Select the file in Explorer if it exists
-                    if ((instDir + gameInfo.DefaultFileName).FileExists)
-                        instDir += gameInfo.DefaultFileName;
+                    if ((instDir + gameDescriptor.DefaultFileName).FileExists)
+                        instDir += gameDescriptor.DefaultFileName;
 
                     // Open the location
                     await File.OpenExplorerLocationAsync(instDir);
@@ -365,7 +365,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
 
                 // Add patcher option
-                if (gameInfo.AllowPatching)
+                if (gameDescriptor.AllowPatching)
                 {
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Patcher, GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
                     {
@@ -395,9 +395,9 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
                 return new Page_Games_GameViewModel(
                     game: game,
-                    displayName: gameInfo.DisplayName,
-                    iconSource: gameInfo.IconSource,
-                    isDemo: gameInfo.IsDemo,
+                    displayName: gameDescriptor.DisplayName,
+                    iconSource: gameDescriptor.IconSource,
+                    isDemo: gameDescriptor.IsDemo,
                     mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await game.GetManager().LaunchGameAsync(false))),
                     secondaryAction: optionsAction,
                     launchActions: actions);
@@ -408,11 +408,11 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
                 OverflowButtonItemViewModel? downloadItem = null;
 
-                if (gameInfo.CanBeDownloaded)
+                if (gameDescriptor.CanBeDownloaded)
                 {
-                    downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, GenericIconKind.GameDisplay_Download, new AsyncRelayCommand(async () => await DownloadGameAsync(gameInfo)));
+                    downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, GenericIconKind.GameDisplay_Download, new AsyncRelayCommand(async () => await DownloadGameAsync(gameDescriptor)));
 
-                    if (gameInfo.CanBeLocated)
+                    if (gameDescriptor.CanBeLocated)
                     {
                         actions.Add(downloadItem);
                         actions.Add(new OverflowButtonItemViewModel());
@@ -441,7 +441,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     }));
 
                 // Add disc installer options for specific Games
-                if (gameInfo.CanBeInstalledFromDisc)
+                if (gameDescriptor.CanBeInstalledFromDisc)
                 {
                     // Add separator if there are previous actions
                     if (actions.Any())
@@ -460,12 +460,12 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     actions.RemoveAt(actions.Count - 1);
 
                 // Create the main action
-                var mainAction = gameInfo.CanBeLocated
+                var mainAction = gameDescriptor.CanBeLocated
                     ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(game)))
                     : downloadItem;
 
                 // Return the view model
-                return new Page_Games_GameViewModel(game, gameInfo.DisplayName, gameInfo.IconSource, gameInfo.IsDemo, mainAction, null, actions);
+                return new Page_Games_GameViewModel(game, gameDescriptor.DisplayName, gameDescriptor.IconSource, gameDescriptor.IsDemo, mainAction, null, actions);
             }
         }
         catch (Exception ex)

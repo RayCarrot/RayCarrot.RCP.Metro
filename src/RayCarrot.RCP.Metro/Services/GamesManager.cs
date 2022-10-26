@@ -74,7 +74,7 @@ public class GamesManager
         await manager.PostGameAddAsync(gameInstallation);
 
         // Add the game to the jump list
-        if (gameInstallation.GameInfo.AutoAddToJumpList)
+        if (gameInstallation.GameDescriptor.AutoAddToJumpList)
             Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems(gameInstallation).Select(x => x.ID));
 
         return gameInstallation;
@@ -97,7 +97,7 @@ public class GamesManager
             if (!forceRemove)
             {
                 // Get applied utilities
-                IList<string> appliedUtilities = await gameInstallation.GameInfo.GetAppliedUtilitiesAsync(gameInstallation);
+                IList<string> appliedUtilities = await gameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(gameInstallation);
 
                 // Warn about applied utilities, if any
                 if (appliedUtilities.Any() && !await MessageUI.DisplayMessageAsync(

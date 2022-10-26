@@ -16,7 +16,7 @@ public sealed class GameManager_RaymanByHisFans_DOSBox : GameManager_DOSBox
     public override Games Game => Games.RaymanByHisFans;
 
     /// <summary>
-    /// The executable name for the game. This is independent of the <see cref="GameInfo.DefaultFileName"/> which is used to launch the game.
+    /// The executable name for the game. This is independent of the <see cref="GameDescriptor.DefaultFileName"/> which is used to launch the game.
     /// </summary>
     public override string ExecutableName => "RAYFAN.EXE";
 

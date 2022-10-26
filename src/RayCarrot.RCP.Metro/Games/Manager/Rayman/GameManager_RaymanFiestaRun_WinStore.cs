@@ -151,7 +151,7 @@ public sealed class GameManager_RaymanFiestaRun_WinStore : GameManager_WinStore
         if (!SupportsWinStoreApps)
             return Task.FromResult(false);
 
-        if (!((installDir + Game.GetGameInfo<GameInfo_RaymanFiestaRun>().GetFiestaRunFileName(parameter as UserData_FiestaRunEdition? ?? Services.Data.Game_FiestaRunVersion)).FileExists))
+        if (!((installDir + Game.GetGameDescriptor<GameDescriptor_RaymanFiestaRun>().GetFiestaRunFileName(parameter as UserData_FiestaRunEdition? ?? Services.Data.Game_FiestaRunVersion)).FileExists))
             return Task.FromResult(false);
 
         return Task.FromResult(true);

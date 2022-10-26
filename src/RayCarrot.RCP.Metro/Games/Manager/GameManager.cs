@@ -97,7 +97,7 @@ public abstract class GameManager
     protected virtual Task<bool> IsDirectoryValidAsync(FileSystemPath installDir, object parameter = null)
     {
         // Make sure the default file exists in the install directory
-        return Task.FromResult((installDir + Game.GetGameInfo().DefaultFileName).FileExists);
+        return Task.FromResult((installDir + Game.GetGameDescriptor().DefaultFileName).FileExists);
     }
 
     #endregion

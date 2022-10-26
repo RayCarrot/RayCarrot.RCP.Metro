@@ -27,13 +27,13 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
             
         // Get the info
-        GameInfo gameInfo = gameInstallation.GameInfo;
+        GameDescriptor gameDescriptor = gameInstallation.GameDescriptor;
 
         // Set properties
         GameInstallation = gameInstallation;
-        DisplayName = gameInfo.DisplayName;
-        IconSource = gameInfo.IconSource;
-        IsDemo = gameInfo.IsDemo;
+        DisplayName = gameDescriptor.DisplayName;
+        IconSource = gameDescriptor.IconSource;
+        IsDemo = gameDescriptor.IsDemo;
         CanUninstall = gameInstallation.IsRCPInstalled;
         PageLoadLock = new AsyncLock();
 
@@ -44,20 +44,20 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         pages.Add(new GameOptionsDialog_OptionsPageViewModel(gameInstallation));
 
         // Add the config page
-        GameOptionsDialog_ConfigPageViewModel? configViewModel = gameInfo.GetConfigPageViewModel(gameInstallation);
+        GameOptionsDialog_ConfigPageViewModel? configViewModel = gameDescriptor.GetConfigPageViewModel(gameInstallation);
 
         if (configViewModel != null)
             pages.Add(configViewModel);
 
         // Add the emulator config page
-        Emulator emu = gameInfo.Emulator;
+        Emulator emu = gameDescriptor.Emulator;
         GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GameConfigViewModel;
 
         if (emuConfigViewModel != null)
             pages.Add(emuConfigViewModel);
 
         // Add the utilities page
-        UtilityViewModel[] utilities = gameInfo.GetUtilities(gameInstallation).Select(x => new UtilityViewModel(x)).ToArray();
+        UtilityViewModel[] utilities = gameDescriptor.GetUtilities(gameInstallation).Select(x => new UtilityViewModel(x)).ToArray();
 
         if (utilities.Any())
             pages.Add(new GameOptionsDialog_UtilitiesPageViewModel(utilities));
@@ -180,7 +180,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             Logger.Info("The game install directory was removed");
 
             // Get additional uninstall directories
-            var dirs = GameInstallation.GameInfo.UninstallDirectories;
+            var dirs = GameInstallation.GameDescriptor.UninstallDirectories;
 
             if (dirs != null)
             {
@@ -192,7 +192,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             }
 
             // Get additional uninstall files
-            var files = GameInstallation.GameInfo.UninstallFiles;
+            var files = GameInstallation.GameDescriptor.UninstallFiles;
 
             if (files != null)
             {
@@ -237,7 +237,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             if (result.CanceledByUser)
                 return;
 
-            var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GameInfo.DisplayName);
+            var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GameDescriptor.DisplayName);
 
             GameInstallation.Game.GetManager().CreateGameShortcut(shortcutName, result.SelectedDirectory);
 

@@ -17,7 +17,7 @@ public class GameFinder_GameResult : GameFinder_BaseResult
     /// <param name="gameType">The game type</param>
     /// <param name="handledAction">An optional action to add when the item gets handled</param>
     /// <param name="handledParameter">Optional parameter for the <see cref="GameFinder_BaseResult.HandledAction"/></param>
-    public GameFinder_GameResult(Games game, FileSystemPath installLocation, GameType gameType, Action<FileSystemPath, object> handledAction = null, object handledParameter = null) : base(installLocation, handledAction, handledParameter, game.GetGameInfo().DisplayName)
+    public GameFinder_GameResult(Games game, FileSystemPath installLocation, GameType gameType, Action<FileSystemPath, object> handledAction = null, object handledParameter = null) : base(installLocation, handledAction, handledParameter, game.GetGameDescriptor().DisplayName)
     {
         Game = game;
         GameType = gameType;

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ByteSizeLib;
-using Newtonsoft.Json;
 using Nito.AsyncEx;
 using NLog;
 
@@ -71,12 +70,8 @@ public class AppViewModel : BaseViewModel
         RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
         RequestRestartAsAdminCommand = new AsyncRelayCommand(RequestRestartAsAdminAsync);
 
-        // Read the game manager configuration
-        var gameConfig = Files.Games;
-
         // Set up the games manager
-        GamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter())
-                       ?? throw new InvalidOperationException("Deserialized game manager is null");
+        GamesManager = new AppGamesManager();
     }
 
     #endregion
@@ -163,7 +158,7 @@ public class AppViewModel : BaseViewModel
     public Dictionary<GameCategory, Games[]> GetCategorizedGames =>
         GetGames
             // Group the games by the category
-            .GroupBy(x => x.GetGameInfo().Category).
+            .GroupBy(x => x.GetGameDescriptor().Category).
             // Create a dictionary
             ToDictionary(x => x.Key, y => y.ToArray());
 
@@ -695,7 +690,7 @@ public class AppViewModel : BaseViewModel
 
     #region Classes
 
-    // TODO-14: Remove or move to GamesManager service
+    // TODO-14: Replace this with GamesManager service. Code here is just for legacy support while refactoring.
     /// <summary>
     /// The application game manager
     /// </summary>
@@ -704,12 +699,251 @@ public class AppViewModel : BaseViewModel
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="gameManagers">The available game managers</param>
-        /// <param name="gameInfos">The available game infos</param>
-        public AppGamesManager(Dictionary<Games, Dictionary<GameType, Type>> gameManagers, Dictionary<Games, Type> gameInfos)
+        public AppGamesManager()
         {
-            GameManagers = gameManagers;
-            GameInfos = gameInfos;
+            GameManagers = new Dictionary<Games, Dictionary<GameType, Type>>()
+            {
+                [Games.Rayman1] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_Rayman1_DOSBox)
+                },
+                [Games.RaymanDesigner] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_RaymanDesigner_DOSBox)
+                },
+                [Games.RaymanByHisFans] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_RaymanByHisFans_DOSBox)
+                },
+                [Games.Rayman60Levels] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_Rayman60Levels_DOSBox)
+                },
+                [Games.Rayman2] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman2_Win32),
+                    [GameType.Steam] = typeof(GameManager_Rayman2_Steam)
+                },
+                [Games.RaymanM] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanM_Win32)
+                },
+                [Games.RaymanArena] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanArena_Win32)
+                },
+                [Games.Rayman3] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman3_Win32)
+                },
+                [Games.RaymanOrigins] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanOrigins_Win32),
+                    [GameType.Steam] = typeof(GameManager_RaymanOrigins_Steam)
+                },
+                [Games.RaymanLegends] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanLegends_Win32),
+                    [GameType.Steam] = typeof(GameManager_RaymanLegends_Steam)
+                },
+                [Games.RaymanJungleRun] = new()
+                {
+                    [GameType.WinStore] = typeof(GameManager_RaymanJungleRun_WinStore)
+                },
+                [Games.RaymanFiestaRun] = new()
+                {
+                    [GameType.WinStore] = typeof(GameManager_RaymanFiestaRun_WinStore)
+                },
+
+                [Games.RaymanRavingRabbids] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanRavingRabbids_Win32),
+                    [GameType.Steam] = typeof(GameManager_RaymanRavingRabbids_Steam)
+                },
+                [Games.RaymanRavingRabbids2] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanRavingRabbids2_Win32)
+                },
+                [Games.RabbidsGoHome] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RabbidsGoHome_Win32)
+                },
+                [Games.RabbidsBigBang] = new()
+                {
+                    [GameType.WinStore] = typeof(GameManager_RabbidsBigBang_WinStore)
+                },
+                [Games.RabbidsCoding] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RabbidsCoding_Win32)
+                },
+
+                [Games.Demo_Rayman1_1] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_Rayman1Demo1_DOSBox)
+                },
+                [Games.Demo_Rayman1_2] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_Rayman1Demo2_DOSBox)
+                },
+                [Games.Demo_Rayman1_3] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_Rayman1Demo3_DOSBox)
+                },
+                [Games.Demo_RaymanGold] = new()
+                {
+                    [GameType.DosBox] = typeof(GameManager_RaymanGoldDemo_DOSBox)
+                },
+                [Games.Demo_Rayman2_1] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman2Demo1_Win32)
+                },
+                [Games.Demo_Rayman2_2] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman2Demo2_Win32)
+                },
+                [Games.Demo_RaymanM] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanMDemo_Win32)
+                },
+                [Games.Demo_Rayman3_1] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman3Demo1_Win32)
+                },
+                [Games.Demo_Rayman3_2] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman3Demo2_Win32)
+                },
+                [Games.Demo_Rayman3_3] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman3Demo3_Win32)
+                },
+                [Games.Demo_Rayman3_4] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman3Demo4_Win32)
+                },
+                [Games.Demo_Rayman3_5] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Rayman3Demo5_Win32)
+                },
+                [Games.Demo_RaymanRavingRabbids] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanRavingRabbidsDemo_Win32)
+                },
+
+                [Games.Ray1Minigames] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_Ray1Minigames_Win32)
+                },
+                [Games.EducationalDos] = new()
+                {
+                    [GameType.EducationalDosBox] = typeof(GameManager_EducationalDos_EducationalDOSBox)
+                },
+                [Games.TonicTrouble] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_TonicTrouble_Win32)
+                },
+                [Games.TonicTroubleSpecialEdition] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_TonicTroubleSpecialEdition_Win32)
+                },
+                [Games.RaymanDictées] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanDictées_Win32)
+    },
+                [Games.RaymanPremiersClics] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanPremiersClics_Win32)
+                },
+                [Games.PrintStudio] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_PrintStudio_Win32)
+                },
+                [Games.RaymanActivityCenter] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanActivityCenter_Win32)
+                },
+                [Games.RaymanRavingRabbidsActivityCenter] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanRavingRabbidsActivityCenter_Win32)
+                },
+
+                [Games.TheDarkMagiciansReignofTerror] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_TheDarkMagiciansReignofTerror_Win32)
+                },
+                [Games.RaymanRedemption] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanRedemption_Win32)
+                },
+                [Games.RaymanRedesigner] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanRedesigner_Win32)
+                },
+                [Games.RaymanBowling2] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanBowling2_Win32)
+                },
+                [Games.RaymanGardenPLUS] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_RaymanGardenPLUS_Win32)
+                },
+                [Games.GloboxMoment] = new()
+                {
+                    [GameType.Win32] = typeof(GameManager_GloboxMoment_Win32)
+                }
+            };
+            GameDescriptors = new Dictionary<Games, Type>()
+            {
+                [Games.Rayman1] = typeof(GameDescriptor_Rayman1),
+                [Games.RaymanDesigner] = typeof(GameDescriptor_RaymanDesigner),
+                [Games.RaymanByHisFans] = typeof(GameDescriptor_RaymanByHisFans),
+                [Games.Rayman60Levels] = typeof(GameDescriptor_Rayman60Levels),
+                [Games.Rayman2] = typeof(GameDescriptor_Rayman2),
+                [Games.RaymanM] = typeof(GameDescriptor_RaymanM),
+                [Games.RaymanArena] = typeof(GameDescriptor_RaymanArena),
+                [Games.Rayman3] = typeof(GameDescriptor_Rayman3),
+                [Games.RaymanOrigins] = typeof(GameDescriptor_RaymanOrigins),
+                [Games.RaymanLegends] = typeof(GameDescriptor_RaymanLegends),
+                [Games.RaymanJungleRun] = typeof(GameDescriptor_RaymanJungleRun),
+                [Games.RaymanFiestaRun] = typeof(GameDescriptor_RaymanFiestaRun),
+
+                [Games.RaymanRavingRabbids] = typeof(GameDescriptor_RaymanRavingRabbids),
+                [Games.RaymanRavingRabbids2] = typeof(GameDescriptor_RaymanRavingRabbids2),
+                [Games.RabbidsGoHome] = typeof(GameDescriptor_RabbidsGoHome),
+                [Games.RabbidsBigBang] = typeof(GameDescriptor_RabbidsBigBang),
+                [Games.RabbidsCoding] = typeof(GameDescriptor_RabbidsCoding),
+
+                [Games.Demo_Rayman1_1] = typeof(GameDescriptor_Rayman1Demo1),
+                [Games.Demo_Rayman1_2] = typeof(GameDescriptor_Rayman1Demo2),
+                [Games.Demo_Rayman1_3] = typeof(GameDescriptor_Rayman1Demo3),
+                [Games.Demo_RaymanGold] = typeof(GameDescriptor_RaymanGoldDemo),
+                [Games.Demo_Rayman2_1] = typeof(GameDescriptor_Rayman2Demo1),
+                [Games.Demo_Rayman2_2] = typeof(GameDescriptor_Rayman2Demo2),
+                [Games.Demo_RaymanM] = typeof(GameDescriptor_RaymanMDemo),
+                [Games.Demo_Rayman3_1] = typeof(GameDescriptor_Rayman3Demo1),
+                [Games.Demo_Rayman3_2] = typeof(GameDescriptor_Rayman3Demo2),
+                [Games.Demo_Rayman3_3] = typeof(GameDescriptor_Rayman3Demo3),
+                [Games.Demo_Rayman3_4] = typeof(GameDescriptor_Rayman3Demo4),
+                [Games.Demo_Rayman3_5] = typeof(GameDescriptor_Rayman3Demo5),
+                [Games.Demo_RaymanRavingRabbids] = typeof(GameDescriptor_RaymanRavingRabbidsDemo),
+
+                [Games.Ray1Minigames] = typeof(GameDescriptor_Ray1Minigames),
+                [Games.EducationalDos] = typeof(GameDescriptor_EducationalDos),
+                [Games.TonicTrouble] = typeof(GameDescriptor_TonicTrouble),
+                [Games.TonicTroubleSpecialEdition] = typeof(GameDescriptor_TonicTroubleSpecialEdition),
+                [Games.RaymanDictées] = typeof(GameDescriptor_RaymanDictées),
+                [Games.RaymanPremiersClics] = typeof(GameDescriptor_RaymanPremiersClics),
+                [Games.PrintStudio] = typeof(GameDescriptor_PrintStudio),
+                [Games.RaymanActivityCenter] = typeof(GameDescriptor_RaymanActivityCenter),
+                [Games.RaymanRavingRabbidsActivityCenter] = typeof(GameDescriptor_RaymanRavingRabbidsActivityCenter),
+
+                [Games.TheDarkMagiciansReignofTerror] = typeof(GameDescriptor_TheDarkMagiciansReignofTerror),
+                [Games.RaymanRedemption] = typeof(GameDescriptor_RaymanRedemption),
+                [Games.RaymanRedesigner] = typeof(GameDescriptor_RaymanRedesigner),
+                [Games.RaymanBowling2] = typeof(GameDescriptor_RaymanBowling2),
+                [Games.RaymanGardenPLUS] = typeof(GameDescriptor_RaymanGardenPLUS),
+                [Games.GloboxMoment] = typeof(GameDescriptor_GloboxMoment),
+            };
             InstanceCache = new Dictionary<Type, object>();
         }
 
@@ -721,7 +955,7 @@ public class AppViewModel : BaseViewModel
         /// <summary>
         /// The available game infos
         /// </summary>
-        public Dictionary<Games, Type> GameInfos { get; }
+        public Dictionary<Games, Type> GameDescriptors { get; }
 
         /// <summary>
         /// Creates a new instance of the specified type or gets an existing one from cache

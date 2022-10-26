@@ -166,7 +166,7 @@ public abstract class GameManager_WinStore : GameManager
         catch (Exception ex)
         {
             Logger.Error(ex, "Launching Windows Store application");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, Game.GetGameInfo().DisplayName));
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, Game.GetGameDescriptor().DisplayName));
 
             return new GameLaunchResult(null, false);
         }
@@ -201,7 +201,7 @@ public abstract class GameManager_WinStore : GameManager
         return new[]
         {
             new JumpListItemViewModel(
-                name: gameInstallation.GameInfo.DisplayName, 
+                name: gameInstallation.GameDescriptor.DisplayName, 
                 iconSource: LegacyLaunchPath, 
                 launchPath: LegacyLaunchPath, 
                 workingDirectory: null, 

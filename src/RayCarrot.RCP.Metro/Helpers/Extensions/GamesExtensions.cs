@@ -122,18 +122,18 @@ public static class GamesExtensions
     /// </summary>
     /// <param name="game">The game to get the info for</param>
     /// <returns>The info</returns>
-    public static GameInfo GetGameInfo(this Games game) => GetGameInfo<GameInfo>(game);
+    public static GameDescriptor GetGameDescriptor(this Games game) => GetGameDescriptor<GameDescriptor>(game);
 
     /// <summary>
     /// Gets the game info for the specified game
     /// </summary>
     /// <param name="game">The game to get the info for</param>
     /// <returns>The info</returns>
-    public static T GetGameInfo<T>(this Games game)
-        where T : GameInfo
+    public static T GetGameDescriptor<T>(this Games game)
+        where T : GameDescriptor
     {
         var g = Services.App.GamesManager;
-        return g.CreateCachedInstance<T>(g.GameInfos[game]);
+        return g.CreateCachedInstance<T>(g.GameDescriptors[game]);
     }
 
     // TODO-14: Remove once no longer needed

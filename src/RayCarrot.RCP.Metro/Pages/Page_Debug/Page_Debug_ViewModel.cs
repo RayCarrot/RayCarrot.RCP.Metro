@@ -188,7 +188,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     protected override Task InitializeAsync()
     {
         // Set properties
-        AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToObservableCollection();
+        AvailableInstallers = App.GetGames.Where(x => x.GetGameDescriptor().CanBeInstalledFromDisc).ToObservableCollection();
         SelectedInstaller = AvailableInstallers.First();
         SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
 
@@ -347,8 +347,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
         foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
         {
-            lines.AddRange((await gameInstallation.GameInfo.GetAppliedUtilitiesAsync(gameInstallation)).
-                Select(utility => $"{utility} ({gameInstallation.GameInfo.DisplayName})"));
+            lines.AddRange((await gameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(gameInstallation)).
+                Select(utility => $"{utility} ({gameInstallation.GameDescriptor.DisplayName})"));
         }
 
         await MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
@@ -454,14 +454,14 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         
                     break;
 
-                case DebugDataOutputType.GameInfo:
+                case DebugDataOutputType.GameDescriptor:
 
                     // Helper method for adding a new line of text
                     void AddLine(string header, object content) => DataOutput += $"{header}: {content}{Environment.NewLine}";
 
                     foreach (Games game in App.GetGames)
                     {
-                        var info = game.GetGameInfo();
+                        var info = game.GetGameDescriptor();
 
                         AddLine("Display name", info.DisplayName);
                         AddLine("Default file name", info.DefaultFileName);
@@ -501,12 +501,12 @@ public class Page_Debug_ViewModel : BasePageViewModel
                             totalTime += gameTimer.ElapsedMilliseconds;
 
                             // Output the size
-                            DataOutput += $"{installedGame.GameInfo.DisplayName}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
+                            DataOutput += $"{installedGame.GameDescriptor.DisplayName}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
                         }
                         catch (Exception ex)
                         {
                             Logger.Error(ex, "Getting game install dir size");
-                            DataOutput += $"{installedGame.GameInfo.DisplayName}: N/A{Environment.NewLine}";
+                            DataOutput += $"{installedGame.GameDescriptor.DisplayName}: N/A{Environment.NewLine}";
                         }
                     }
 
@@ -896,9 +896,9 @@ public class Page_Debug_ViewModel : BasePageViewModel
         GameFinder,
 
         /// <summary>
-        /// Display the info available for each game
+        /// Display the descriptor info available for each game
         /// </summary>
-        GameInfo,
+        GameDescriptor,
 
         /// <summary>
         /// Displays the install sizes for each game

@@ -32,14 +32,14 @@ public class GameInstaller_ViewModel : UserInputViewModel
         Game = game;
 
         // Set title
-        Title = String.Format(Resources.Installer_Title, game.GetGameInfo().DisplayName);
+        Title = String.Format(Resources.Installer_Title, game.GetGameDescriptor().DisplayName);
 
         // Create cancellation token source
         CancellationTokenSource = new CancellationTokenSource();
 
         // Get images
         GameLogoSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameLogos/{game}_Logo.png";
-        Gifs = game.GetGameInfo().InstallerGifs;
+        Gifs = game.GetGameDescriptor().InstallerGifs;
 
         // Default the install directory
         InstallDir = Environment.SpecialFolder.ProgramFiles.GetFolderPath();
@@ -304,7 +304,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
 
             // TODO: We shouldn't use the display name for things like the folder path
             // Get the game display name
-            var displayName = Game.GetGameInfo().DisplayName;
+            var displayName = Game.GetGameDescriptor().DisplayName;
 
             // Get the output path
             FileSystemPath output = InstallDir + displayName;

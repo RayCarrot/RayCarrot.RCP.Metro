@@ -16,7 +16,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
         // Set properties
         GameInstallation = gameInstallation;
         GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
-        OptionsContent = gameInstallation.GameInfo.GetOptionsUI(gameInstallation);
+        OptionsContent = gameInstallation.GameDescriptor.GetOptionsUI(gameInstallation);
 
         LaunchModeChangedCommand = new AsyncRelayCommand(LaunchModeChangedAsync);
 

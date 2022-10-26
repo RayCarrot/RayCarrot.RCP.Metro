@@ -240,7 +240,7 @@ public class AppUIManager
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(gameInstallation));
-        await Dialog.ShowWindowAsync(ui, groupNames: gameInstallation.GameInfo.DialogGroupNames.
+        await Dialog.ShowWindowAsync(ui, groupNames: gameInstallation.GameDescriptor.DialogGroupNames.
             // TODO-14: Use install location as group name?
             Append(gameInstallation.ID).ToArray());
     }

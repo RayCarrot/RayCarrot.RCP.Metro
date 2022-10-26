@@ -101,35 +101,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;LocalUtilities&quot;: {
-        ///    &quot;Rayman1&quot;: [
-        ///      &quot;Utility_Rayman1_TPLS&quot;,
-        ///      &quot;Utility_Rayman1_CompleteSoundtrack&quot;
-        ///    ],
-        ///    &quot;RaymanDesigner&quot;: [
-        ///      &quot;Utility_RaymanDesigner_ReplaceFiles&quot;,
-        ///      &quot;Utility_RaymanDesigner_CreateConfig&quot;
-        ///    ],
-        ///    &quot;Rayman2&quot;: [
-        ///      &quot;Utility_Rayman2_GameSyncTextureInfo&quot;
-        ///    ],
-        ///    &quot;RaymanM&quot;: [
-        ///      &quot;Utility_RaymanM_GameSyncTextureInfo&quot;
-        ///    ],
-        ///    &quot;RaymanArena&quot;: [
-        ///      &quot;Utility_RaymanArena_GameSyncTextureInfo&quot;
-        ///    ],
-        ///    &quot;Rayman3&quot;: [
-        ///      &quot;Utility_Rayman3 [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Games {
-            get {
-                return ResourceManager.GetString("Games", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copyright (c) 2021 RayCarrot
         ///
         ///Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

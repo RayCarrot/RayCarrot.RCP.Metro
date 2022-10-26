@@ -86,7 +86,7 @@ public abstract class GameManager_DOSBox : GameManager_Win32
     #region Public Abstract Properties
 
     /// <summary>
-    /// The executable name for the game. This is independent of the <see cref="GameInfo.DefaultFileName"/> which is used to launch the game.
+    /// The executable name for the game. This is independent of the <see cref="GameDescriptor.DefaultFileName"/> which is used to launch the game.
     /// </summary>
     public abstract string ExecutableName { get; }
 
@@ -107,7 +107,7 @@ public abstract class GameManager_DOSBox : GameManager_Win32
     public override GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
     {
         UserData_DosBoxOptions options = Services.Data.Game_DosBoxGames[gameInstallation.Game];
-        string args = GetDosBoxArguments(options.MountPath, gameInstallation.GameInfo.DefaultFileName, gameInstallation.InstallLocation);
+        string args = GetDosBoxArguments(options.MountPath, gameInstallation.GameDescriptor.DefaultFileName, gameInstallation.InstallLocation);
         return new GameLaunchInfo(DOSBoxFilePath, args);
     }
 
@@ -228,7 +228,7 @@ public abstract class GameManager_DOSBox : GameManager_Win32
         }
 
         // Create the .bat file
-        File.WriteAllLines(result.SelectedDirectory + Game.GetGameInfo().DefaultFileName, new string[]
+        File.WriteAllLines(result.SelectedDirectory + Game.GetGameDescriptor().DefaultFileName, new string[]
         {
             "@echo off",
             $"{Path.GetFileNameWithoutExtension(ExecutableName)} ver=usa"

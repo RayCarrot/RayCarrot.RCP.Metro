@@ -25,13 +25,13 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             new(new ResourceLocString(nameof(Resources.Patcher_PhysicalGameLocation)), String.Empty, String.Empty)
         };
 
-        GameInfo gameInfo = game.GetGameInfo();
+        GameDescriptor gameDescriptor = game.GetGameDescriptor();
 
-        GameDisplayName = gameInfo.DisplayName;
+        GameDisplayName = gameDescriptor.DisplayName;
 
         FileSystemPath installDir = game.GetInstallDir();
-        string? archiveID = game.GetGameInfo().GetArchiveDataManager(null)?.ID;
-        IEnumerable<AvailableFileLocation>? archiveLocations = archiveID == null ? null : gameInfo.
+        string? archiveID = game.GetGameDescriptor().GetArchiveDataManager(null)?.ID;
+        IEnumerable<AvailableFileLocation>? archiveLocations = archiveID == null ? null : gameDescriptor.
             GetArchiveFilePaths(installDir)?.
             Where(x => x.FileExists).
             Select(x => x - installDir).

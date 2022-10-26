@@ -34,7 +34,7 @@ public class GamesSelectionViewModel : UserInputViewModel
         public GamesItem(Games game)
         {
             Game = game;
-            DisplayName = game.GetGameInfo().DisplayName;
+            DisplayName = game.GetGameDescriptor().DisplayName;
         }
 
         /// <summary>

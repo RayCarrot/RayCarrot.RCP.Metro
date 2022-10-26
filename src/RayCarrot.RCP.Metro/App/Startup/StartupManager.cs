@@ -230,7 +230,7 @@ public class StartupManager
                 continue;
 
             // Show message
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, gameInstallation.GameInfo.DisplayName), 
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, gameInstallation.GameDescriptor.DisplayName), 
                 Resources.GameNotFoundHeader, MessageType.Error);
 
             // Remove the game from app data
