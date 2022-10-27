@@ -21,8 +21,8 @@ public class Page_About_ViewModel : BasePageViewModel
         AppViewModel app, 
         AppUserData data, 
         AppUIManager ui, 
-        IMessageUIManager messageUi, 
-        IFileManager file, 
+        IMessageUIManager messageUi,
+        FileManager file, 
         DeployableFilesManager deployableFiles) : base(app)
     {
         // Set services
@@ -93,7 +93,7 @@ public class Page_About_ViewModel : BasePageViewModel
     private AppUserData Data { get; }
     private AppUIManager UI { get; }
     private IMessageUIManager MessageUI { get; }
-    private IFileManager File { get; }
+    private FileManager File { get; }
     private DeployableFilesManager DeployableFiles { get; }
 
     #endregion

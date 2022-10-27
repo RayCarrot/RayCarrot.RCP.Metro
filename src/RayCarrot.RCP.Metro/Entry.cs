@@ -35,7 +35,7 @@ public static class Entry
         serviceCollection.AddSingleton<AppViewModel>();
         serviceCollection.AddSingleton<AppUserData>();
         serviceCollection.AddSingleton<IAppInstanceData, AppInstanceData>();
-        serviceCollection.AddTransient<IFileManager, RCPFileManager>();
+        serviceCollection.AddTransient<FileManager>();
         serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
         serviceCollection.AddTransient<GameBackups_Manager>();
         serviceCollection.AddSingleton<DeployableFilesManager>();

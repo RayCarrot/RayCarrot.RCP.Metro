@@ -59,7 +59,7 @@ public static class Services
     /// <summary>
     /// The file manager
     /// </summary>
-    public static IFileManager File => GetService<IFileManager>();
+    public static FileManager File => GetService<FileManager>();
 
     /// <summary>
     /// The games manager

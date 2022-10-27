@@ -12,7 +12,7 @@ public class PatchLibrary
 {
     #region Constructor
 
-    public PatchLibrary(FileSystemPath gameDir, IFileManager fileManager)
+    public PatchLibrary(FileSystemPath gameDir, FileManager fileManager)
     {
         DirectoryPath = gameDir + ".patches";
         FileManager = fileManager;
@@ -31,7 +31,7 @@ public class PatchLibrary
 
     #region Services
 
-    private IFileManager FileManager { get; }
+    private FileManager FileManager { get; }
 
     #endregion
 

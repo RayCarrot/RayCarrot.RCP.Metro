@@ -11,9 +11,9 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The default file manager for the Rayman Control Panel
 /// </summary>
-public class RCPFileManager : IFileManager
+public class FileManager
 {
-    public RCPFileManager(IMessageUIManager message)
+    public FileManager(IMessageUIManager message)
     {
         Message = message ?? throw new ArgumentNullException(nameof(message));
     }

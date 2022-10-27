@@ -436,7 +436,7 @@ public class DownloaderViewModel : UserInputViewModel
     /// <summary>
     /// The file manager to use
     /// </summary>
-    protected IFileManager FileManager { get; }
+    protected FileManager FileManager { get; }
 
     /// <summary>
     /// The current step in the operation

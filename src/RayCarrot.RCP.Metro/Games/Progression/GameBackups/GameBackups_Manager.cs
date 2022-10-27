@@ -31,7 +31,7 @@ public class GameBackups_Manager
 
     #region Constructor
 
-    public GameBackups_Manager(IFileManager fileManager, IMessageUIManager messageUiManager, AppViewModel app, AppUserData data)
+    public GameBackups_Manager(FileManager fileManager, IMessageUIManager messageUiManager, AppViewModel app, AppUserData data)
     {
         File = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
         Message = messageUiManager ?? throw new ArgumentNullException(nameof(messageUiManager));
@@ -52,7 +52,7 @@ public class GameBackups_Manager
 
     #region Private Properties
 
-    private IFileManager File { get; }
+    private FileManager File { get; }
     private IMessageUIManager Message { get; }
     private AppViewModel App { get; }
     private AppUserData Data { get; }

@@ -46,7 +46,7 @@ public class GameInstaller : IStatusUpdated, IDisposable
     /// <summary>
     /// The file manager
     /// </summary>
-    protected IFileManager FileManager { get; }
+    protected FileManager FileManager { get; }
 
     /// <summary>
     /// The data for this installation

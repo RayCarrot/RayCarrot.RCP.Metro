@@ -34,8 +34,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public Page_Debug_ViewModel(
         AppViewModel app, 
         AppUserData data, 
-        AppUIManager ui, 
-        IFileManager fileManager, 
+        AppUIManager ui,
+        FileManager fileManager, 
         IBrowseUIManager browseUi, 
         IMessageUIManager messageUi, 
         IDialogBaseManager dialogBaseManager, 
@@ -116,7 +116,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
     private AppUserData Data { get; }
     private AppUIManager UI { get; }
-    private IFileManager FileManager { get; }
+    private FileManager FileManager { get; }
     private IBrowseUIManager BrowseUI { get; }
     private IMessageUIManager MessageUI { get; }
     private IDialogBaseManager DialogBaseManager { get; }

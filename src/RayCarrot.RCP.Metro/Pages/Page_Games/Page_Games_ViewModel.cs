@@ -23,8 +23,8 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         AppUserData data, 
         IMessageUIManager messageUi,
         IAppInstanceData instanceData, 
-        AppUIManager ui, 
-        IFileManager file, 
+        AppUIManager ui,
+        FileManager file, 
         GamesManager gamesManager) : base(app)
     {
         // Set services
@@ -112,7 +112,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     private AppUserData Data { get; }
     private IMessageUIManager MessageUI { get; }
     private AppUIManager UI { get; }
-    private IFileManager File { get; }
+    private FileManager File { get; }
     private GamesManager GamesManager { get; }
 
     #endregion

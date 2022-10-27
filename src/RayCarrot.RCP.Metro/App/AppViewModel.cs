@@ -35,7 +35,7 @@ public class AppViewModel : BaseViewModel
     public AppViewModel(
         IUpdaterManager updater, 
         IMessageUIManager message,
-        IFileManager file,
+        FileManager file,
         AppUIManager ui,
         DeployableFilesManager deployableFiles,
         AppUserData data)
@@ -105,7 +105,7 @@ public class AppViewModel : BaseViewModel
 
     private IUpdaterManager Updater { get; }
     private IMessageUIManager MessageUI { get; }
-    private IFileManager File { get; }
+    private FileManager File { get; }
     private AppUIManager UI { get; }
     private DeployableFilesManager DeployableFiles { get; }
     private AppUserData Data { get; }

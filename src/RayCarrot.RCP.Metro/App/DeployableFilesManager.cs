@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class DeployableFilesManager
 {
-    public DeployableFilesManager(IFileManager file)
+    public DeployableFilesManager(FileManager file)
     {
         File = file;
     }
@@ -22,7 +22,7 @@ public class DeployableFilesManager
         [DeployableFile.Uninstaller] = (AppFilePaths.UninstallFilePath, () => Files.Uninstaller),
     };
 
-    public IFileManager File { get; }
+    public FileManager File { get; }
 
     public FileSystemPath GetFilePath(DeployableFile file) => _files[file].FilePath;
 

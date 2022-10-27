@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class UpdaterManager : IUpdaterManager
 {
-    protected UpdaterManager(IMessageUIManager message, IFileManager file, DeployableFilesManager deployableFiles, AppUserData data, IAppInstanceData instanceData)
+    protected UpdaterManager(IMessageUIManager message, FileManager file, DeployableFilesManager deployableFiles, AppUserData data, IAppInstanceData instanceData)
     {
         Message = message ?? throw new ArgumentNullException(nameof(message));
         File = file ?? throw new ArgumentNullException(nameof(file));
@@ -25,7 +25,7 @@ public abstract class UpdaterManager : IUpdaterManager
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected IMessageUIManager Message { get; }
-    protected IFileManager File { get; }
+    protected FileManager File { get; }
     protected DeployableFilesManager DeployableFiles { get; }
     protected AppUserData Data { get; }
     protected IAppInstanceData InstanceData { get; }
