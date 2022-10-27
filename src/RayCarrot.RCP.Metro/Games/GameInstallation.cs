@@ -10,19 +10,17 @@ public class GameInstallation
 {
     #region Constructors
 
-    public GameInstallation(string id, FileSystemPath installLocation, bool isRCPInstalled) 
-        : this(id, installLocation, isRCPInstalled, new Dictionary<string, object>()) 
+    public GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation, bool isRCPInstalled) 
+        : this(gameDescriptor, installLocation, isRCPInstalled, new Dictionary<string, object>()) 
     { }
 
     [JsonConstructor]
-    private GameInstallation(string id, FileSystemPath installLocation, bool isRCPInstalled, Dictionary<string, object>? additionalData)
+    private GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation, bool isRCPInstalled, Dictionary<string, object>? additionalData)
     {
-        Id = id;
+        GameDescriptor = gameDescriptor;
         InstallLocation = installLocation;
         IsRCPInstalled = isRCPInstalled;
         _additionalData = additionalData ?? new Dictionary<string, object>();
-
-        GameDescriptor = Services.Games.GetGameDescriptor(id);
     }
 
     #endregion
@@ -38,7 +36,8 @@ public class GameInstallation
     #region Public Properties
 
     [JsonProperty(PropertyName = "Id")]
-    public string Id { get; }
+    [JsonConverter(typeof(StringGameDescriptorConverter))]
+    public GameDescriptor GameDescriptor { get; }
 
     [JsonProperty(PropertyName = "InstallLocation")]
     public FileSystemPath InstallLocation { get; } // TODO-14: Rename to GamePath?
@@ -49,7 +48,7 @@ public class GameInstallation
     [JsonProperty(PropertyName = "IsRCPInstalled")]
     public bool IsRCPInstalled { get; } // TODO-14: Have this be additional data? Have an object for info on how it was installed? Not all games can be installed through RCP, so not all games need this by default.
 
-    public GameDescriptor GameDescriptor { get; }
+    public string Id => GameDescriptor.Id;
     public PlatformManager PlatformManager => GameDescriptor.PlatformManager;
 
     public GameManager GameManager => GameDescriptor.GetLegacyManager(); // TODO-14: Remove once we migrate to new platform system
