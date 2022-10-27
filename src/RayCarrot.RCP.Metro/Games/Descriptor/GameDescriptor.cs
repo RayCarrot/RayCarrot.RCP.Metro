@@ -37,17 +37,22 @@ public abstract class GameDescriptor
 
     #region Public Abstract Properties
 
+    public abstract string Id { get; }
+    public abstract Game Game { get; }
+    public abstract GamePlatform Platform { get; }
+    public abstract PlatformManager PlatformManager { get; }
+
     /// <summary>
     /// The game
     /// </summary>
-    public abstract Games Game { get; }
-
-    public string Id => $"{Game}";
+    public abstract Games LegacyGame { get; } // TODO-14: Remove
 
     /// <summary>
     /// The game display name
     /// </summary>
     public abstract string DisplayName { get; } // TODO-14: Localize & split up into short and long name
+    //public abstract LocalizedString ShortDisplayName { get; }
+    //public abstract LocalizedString LongDisplayName { get; }
 
     /// <summary>
     /// The game backup name
@@ -71,7 +76,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// The file name (without extensions) for the icon
     /// </summary>
-    protected virtual string IconName => $"{Game}";
+    protected virtual string IconName => $"{LegacyGame}";
 
     #endregion
 

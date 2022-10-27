@@ -37,7 +37,7 @@ public class GameFinder
 
         // Get the game finder items
         GameFinderItems = GamesToFind.
-            SelectMany(x => x.Game.GetManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.Type, y.GameFinderItem))).
+            SelectMany(x => x.LegacyGame.GetManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.Type, y.GameFinderItem))).
             ToArray();
 
         Logger.Trace("{0} game finders were found", GameFinderItems.Length);
@@ -580,7 +580,7 @@ public class GameFinder
         }
 
         // Make sure that the game is valid
-        if (!await game.GameDescriptor.Game.GetManager(game.GameType).IsValidAsync(installDir, parameter))
+        if (!await game.GameDescriptor.LegacyGame.GetManager(game.GameType).IsValidAsync(installDir, parameter))
         {
             Logger.Info("{0} could not be added. The game default file was not found.", game.GameDescriptor.Id);
             return false;

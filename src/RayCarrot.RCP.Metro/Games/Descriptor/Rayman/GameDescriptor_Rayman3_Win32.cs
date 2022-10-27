@@ -7,37 +7,39 @@ using RayCarrot.RCP.Metro.Archive.CPA;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman 3 Demo base game info
+/// The Rayman 3 game descriptor
 /// </summary>
-public abstract class GameDescriptor_BaseRayman3Demo : Win32GameDescriptor
+public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
 {
-    #region Protected Override Properties
-
-    protected override string IconName => $"Rayman3Demo";
-
-    #endregion
-
     #region Public Override Properties
+
+    public override string Id => "Rayman3_Win32";
+    public override Game Game => Game.Rayman3;
+
+    /// <summary>
+    /// The game
+    /// </summary>
+    public override Games LegacyGame => Games.Rayman3;
 
     /// <summary>
     /// The category for the game
     /// </summary>
-    public override GameCategory Category => GameCategory.Demo;
+    public override GameCategory Category => GameCategory.Rayman;
+
+    /// <summary>
+    /// The game display name
+    /// </summary>
+    public override string DisplayName => "Rayman 3";
+
+    /// <summary>
+    /// The game backup name
+    /// </summary>
+    public override string BackupName => "Rayman 3";
 
     /// <summary>
     /// Gets the launch name for the game
     /// </summary>
-    public override string DefaultFileName => "MainP5Pvf.exe";
-
-    /// <summary>
-    /// Indicates if the game is a demo
-    /// </summary>
-    public override bool IsDemo => true;
-
-    /// <summary>
-    /// Indicates if the game can be downloaded
-    /// </summary>
-    public override bool CanBeDownloaded => true;
+    public override string DefaultFileName => "Rayman3.exe";
 
     /// <summary>
     /// The config page view model, if any is available
@@ -45,12 +47,20 @@ public abstract class GameDescriptor_BaseRayman3Demo : Win32GameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_Rayman3_ViewModel(gameInstallation);
 
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
+        new ProgressionGameViewModel_Rayman3(gameInstallation).Yield();
+
+    /// <summary>
+    /// Optional RayMap URL
+    /// </summary>
+    public override string RayMapURL => AppURLs.GetRayMapGameURL("r3_pc", "r3_pc");
+
     /// <summary>
     /// Gets the file links for the game
     /// </summary>
     public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
-        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "R3_Setup_DX8D.exe")
+        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "R3_Setup_DX8.exe")
     };
 
     /// <summary>
@@ -78,9 +88,19 @@ public abstract class GameDescriptor_BaseRayman3Demo : Win32GameDescriptor
     /// <param name="installDir">The game's install directory</param>
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
     {
-        //installDir + "Gamedatabin" + "tex16.cnt",
-        installDir + "Gamedatabin" + "tex32.cnt",
+        installDir + "Gamedatabin" + "tex32_1.cnt",
+        installDir + "Gamedatabin" + "tex32_2.cnt",
         installDir + "Gamedatabin" + "vignette.cnt",
+    };
+
+    #endregion
+
+    #region Public Override Methods
+
+    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
+    {
+        new Utility_Rayman3_GameSyncTextureInfo(gameInstallation),
+        new Utility_Rayman3_DirectPlay(gameInstallation),
     };
 
     #endregion

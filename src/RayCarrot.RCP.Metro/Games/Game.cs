@@ -1,16 +1,10 @@
-﻿#nullable disable
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
-namespace RayCarrot.RCP.Metro;
-
-// TODO-14: Remove when possible
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The games supported by the Rayman Control Panel
+/// Defines a game. This does not identify a unique <see cref="GameDescriptor"/> as multiple ones may be
+/// for the same game! This enum is mostly used to group the descriptors.
 /// </summary>
-[JsonConverter(typeof(StringEnumConverter))]
-public enum Games
+public enum Game
 {
     #region Rayman
 
@@ -40,14 +34,9 @@ public enum Games
     Rayman2,
 
     /// <summary>
-    /// Rayman M
+    /// Rayman M/Arena
     /// </summary>
-    RaymanM,
-
-    /// <summary>
-    /// Rayman Arena
-    /// </summary>
-    RaymanArena,
+    RaymanMArena,
 
     /// <summary>
     /// Rayman 3
@@ -102,29 +91,6 @@ public enum Games
     /// Rabbids Coding
     /// </summary>
     RabbidsCoding,
-
-    #endregion
-
-    #region Demos
-
-    Demo_Rayman1_3,
-    Demo_Rayman1_1,
-    Demo_Rayman1_2,
-
-    Demo_RaymanGold,
-
-    Demo_Rayman2_1,
-    Demo_Rayman2_2,
-
-    Demo_RaymanM,
-
-    Demo_Rayman3_1,
-    Demo_Rayman3_2,
-    Demo_Rayman3_3,
-    Demo_Rayman3_5,
-    Demo_Rayman3_4,
-
-    Demo_RaymanRavingRabbids,
 
     #endregion
 

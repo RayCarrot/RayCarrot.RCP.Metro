@@ -149,7 +149,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     private async Task<GameTypeSelectionResult> GetGameTypeAsync(GameDescriptor gameDescriptor)
     {
         // Get the available types
-        GameType[] types = Services.App.GamesManager.GameManagers[gameDescriptor.Game].Keys.ToArray();
+        GameType[] types = Services.App.GamesManager.GameManagers[gameDescriptor.LegacyGame].Keys.ToArray();
 
         // If only one type, return that
         if (types.Length == 1)
@@ -203,7 +203,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
             Logger.Info("The game {0} type has been detected as {1}", gameDescriptor.Id, typeResult.SelectedType);
 
-            await gameDescriptor.Game.GetManager(typeResult.SelectedType).LocateAddGameAsync(gameDescriptor);
+            await gameDescriptor.LegacyGame.GetManager(typeResult.SelectedType).LocateAddGameAsync(gameDescriptor);
         }
         catch (Exception ex)
         {
@@ -223,7 +223,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             Logger.Trace("The game {0} is being downloaded...", gameDescriptor.Id);
 
             // Get the game directory
-            var gameDir = AppFilePaths.GamesBaseDir + gameDescriptor.Game.ToString();
+            var gameDir = AppFilePaths.GamesBaseDir + gameDescriptor.LegacyGame.ToString();
 
             // Download the game
             var downloaded = await Services.App.DownloadAsync(gameDescriptor.DownloadURLs, true, gameDir, true);
@@ -257,7 +257,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     {
         try
         {
-            Games game = gameDescriptor.Game;
+            Games game = gameDescriptor.LegacyGame;
 
             if (game.IsAdded())
             {
@@ -504,7 +504,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             try
             {
                 // Make sure the game has been added
-                if (!gameDescriptor.Game.IsAdded())
+                if (!gameDescriptor.LegacyGame.IsAdded())
                     throw new Exception("Only added games can be refreshed individually");
 
                 // Get the display view model
@@ -516,10 +516,10 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     Logger.Trace("The displayed game {0} in {1} is being refreshed...", gameDescriptor.Id, category.DisplayName);
 
                     // Get the collection containing the game
-                    var collection = category.InstalledGames.Any(x => x.Game == gameDescriptor.Game) ? category.InstalledGames : category.NotInstalledGames;
+                    var collection = category.InstalledGames.Any(x => x.Game == gameDescriptor.LegacyGame) ? category.InstalledGames : category.NotInstalledGames;
 
                     // Get the game index
-                    var index = collection.FindItemIndex(x => x.Game == gameDescriptor.Game);
+                    var index = collection.FindItemIndex(x => x.Game == gameDescriptor.LegacyGame);
 
                     // Make sure we got a valid index
                     if (index == -1)
@@ -585,7 +585,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                                 : displayVMCache[gameDescriptor] = GetDisplayViewModel(gameDescriptor);
 
                             // Check if it has been added
-                            if (gameDescriptor.Game.IsAdded())
+                            if (gameDescriptor.LegacyGame.IsAdded())
                             {
                                 // Add the game to the collection
                                category.InstalledGames.Add(displayVM);

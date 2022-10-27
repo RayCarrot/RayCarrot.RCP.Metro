@@ -14,7 +14,7 @@ public class GamesSelectionViewModel : UserInputViewModel
     public GamesSelectionViewModel()
     {
         Title = "Select games";
-        Games = Services.Games.EnumerateGameDescriptors().Select(x => new GamesItem(x.Game)).ToArray();
+        Games = Services.Games.EnumerateGameDescriptors().Select(x => new GamesItem(x.LegacyGame)).ToArray();
     }
 
     /// <summary>

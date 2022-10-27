@@ -126,7 +126,7 @@ public static class GamesExtensions
         where T : GameDescriptor
     {
         var g = Services.Games;
-        return (T)g.EnumerateGameDescriptors().First(x => x.Game == game);
+        return (T)g.EnumerateGameDescriptors().First(x => x.LegacyGame == game);
     }
 
     // TODO-14: Remove once no longer needed

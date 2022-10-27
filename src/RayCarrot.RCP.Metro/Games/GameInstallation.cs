@@ -54,8 +54,10 @@ public class GameInstallation
     public bool IsRCPInstalled { get; } // TODO-14: Have this be additional data? Have an object for info on how it was installed? Not all games can be installed through RCP, so not all games need this by default.
 
     public GameDescriptor GameDescriptor { get; }
+    public PlatformManager PlatformManager => GameDescriptor.PlatformManager;
+
     public GameManager GameManager => Game.GetManager(GameType); // TODO-14: Remove once we migrate to new platform system
-    public Games Game => GameDescriptor.Game; // TODO-14: Remove once no longer needed
+    public Games Game => GameDescriptor.LegacyGame; // TODO-14: Remove once no longer needed
 
     #endregion
 

@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 2 Demo base game info
 /// </summary>
-public abstract class GameDescriptor_BaseRayman2Demo : GameDescriptor
+public abstract class GameDescriptor_BaseRayman2Demo : Win32GameDescriptor
 {
     #region Protected Override Properties
 
@@ -47,7 +47,7 @@ public abstract class GameDescriptor_BaseRayman2Demo : GameDescriptor
     /// Gets the archive data manager for the game
     /// </summary>
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
-        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2Demo, Platform.PC), gameInstallation);
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2Demo, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
 
     /// <summary>
     /// Gets the archive file paths for the game

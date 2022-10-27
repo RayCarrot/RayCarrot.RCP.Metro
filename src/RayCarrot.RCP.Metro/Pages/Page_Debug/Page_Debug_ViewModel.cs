@@ -188,7 +188,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     protected override Task InitializeAsync()
     {
         // Set properties
-        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.CanBeInstalledFromDisc).Select(x => x.Game).ToObservableCollection();
+        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.CanBeInstalledFromDisc).Select(x => x.LegacyGame).ToObservableCollection();
         SelectedInstaller = AvailableInstallers.First();
         SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
 
@@ -467,8 +467,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         AddLine("Has disc installer", gameDescriptor.CanBeInstalledFromDisc);
                         AddLine("Dialog group names", gameDescriptor.DialogGroupNames.JoinItems(", "));
                             
-                        if (gameDescriptor.Game.IsAdded())
-                            AddLine("Game file links", JsonConvert.SerializeObject(gameDescriptor.GetGameFileLinks(gameDescriptor.Game.GetInstallation())));
+                        if (gameDescriptor.LegacyGame.IsAdded())
+                            AddLine("Game file links", JsonConvert.SerializeObject(gameDescriptor.GetGameFileLinks(gameDescriptor.LegacyGame.GetInstallation())));
 
                         DataOutput += Environment.NewLine;
                         DataOutput += "------------------------------------------";
