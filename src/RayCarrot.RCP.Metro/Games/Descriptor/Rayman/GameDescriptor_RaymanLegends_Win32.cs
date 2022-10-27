@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanLegends_Win32";
     public override Game Game => Game.RaymanLegends;
@@ -69,6 +69,14 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     {
         installDir + "Bundle_PC.ipk",
         installDir + "persistentLoading_PC.ipk",
+    };
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
     };
 
     #endregion

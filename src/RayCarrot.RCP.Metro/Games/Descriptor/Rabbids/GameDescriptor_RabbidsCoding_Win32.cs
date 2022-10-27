@@ -1,11 +1,13 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System.Collections.Generic;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rabbids Coding game descriptor
 /// </summary>
 public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RabbidsCoding_Win32";
     public override Game Game => Game.RabbidsCoding;
@@ -34,6 +36,14 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
     /// Gets the launch name for the game
     /// </summary>
     public override string DefaultFileName => "Rabbids Coding.exe";
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_DownloadUplay, "https://register.ubisoft.com/rabbids-coding/")
+    };
 
     #endregion
 }

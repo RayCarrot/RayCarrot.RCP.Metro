@@ -44,17 +44,9 @@ public abstract class GameManager_WinStore : GameManager
         new OverflowButtonItemViewModel(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
         {
             // NOTE: We could use Launcher.LaunchURI here, but since we're targeting Windows 7 it is good to use as few of the WinRT APIs as possible to avoid any runtime errors. Launching a file as a process will work with URLs as well, although less information will be given in case of error (such as if no application is installed to handle the URI).
-            (await Services.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();
+            (await Services.File.LaunchFileAsync(MicrosoftStoreHelpers.GetStorePageURI(StoreID)))?.Dispose();
         })),
     };
-
-    /// <summary>
-    /// Gets the purchase links for the game
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => SupportsWinStoreApps ? new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI())
-    } : new GamePurchaseLink[0];
 
     /// <summary>
     /// Gets the game finder item for this game
@@ -268,19 +260,6 @@ public abstract class GameManager_WinStore : GameManager
     public async Task LaunchFirstPackageEntryAsync()
     {
         await (await GetGamePackage().GetAppListEntriesAsync()).First().LaunchAsync();
-    }
-
-    /// <summary>
-    /// Gets the URI to use when opening the game in the Store
-    /// </summary>
-    /// <param name="storeID">The Store ID for the item to open or null if current one should be used</param>
-    /// <returns>The URI</returns>
-    public string GetStorePageURI(string storeID = null)
-    {
-        // Documentation on the store URI scheme:
-        // https://docs.microsoft.com/en-us/windows/uwp/launch-resume/launch-store-app
-
-        return $"ms-windows-store://pdp/?ProductId={storeID ?? StoreID}";
     }
 
     #endregion

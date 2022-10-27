@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackageGameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RabbidsBigBang_WindowsPackage";
     public override Game Game => Game.RabbidsBigBang;
@@ -45,10 +45,16 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
 
     #endregion
 
-    #region Platform Properties
+    #region Platform
 
     public override string PackageName => "UbisoftEntertainment.RabbidsBigBang";
     public override string FullPackageName => "UbisoftEntertainment.RabbidsBigBang_dbgk1hhpxymar";
+
+    #endregion
+
+    #region Other
+
+    private const string MicrosoftStoreID = "9WZDNCRFJCS3";
 
     #endregion
 }

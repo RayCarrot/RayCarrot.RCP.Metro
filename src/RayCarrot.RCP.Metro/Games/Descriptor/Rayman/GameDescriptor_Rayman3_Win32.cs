@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "Rayman3_Win32";
     public override Game Game => Game.Rayman3;
@@ -91,6 +91,15 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         installDir + "Gamedatabin" + "tex32_1.cnt",
         installDir + "Gamedatabin" + "tex32_2.cnt",
         installDir + "Gamedatabin" + "vignette.cnt",
+    };
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
+        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
     };
 
     #endregion

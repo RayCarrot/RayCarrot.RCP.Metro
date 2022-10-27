@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using static RayCarrot.RCP.Metro.GameManager;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -54,6 +55,14 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
         new ProgressionGameViewModel_GloboxMoment(gameInstallation).Yield();
+
+    /// <summary>
+    /// Gets the purchase links for the game for this type
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/globoxmoment/428585", GenericIconKind.GameDisplay_Web),
+    };
 
     #endregion
 }

@@ -36,11 +36,6 @@ public abstract class GameManager
     #region Public Virtual Properties
 
     /// <summary>
-    /// Gets the purchase links for the game for this type
-    /// </summary>
-    public virtual IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0]; // TODO-14: Remove next and replace in descr
-
-    /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
     public virtual IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[0];
@@ -206,11 +201,6 @@ public abstract class GameManager
     /// The result from launching a game
     /// </summary>
     protected record GameLaunchResult(Process GameProcess, bool SuccessfulLaunch);
-
-    /// <summary>
-    /// A game purchase link which can be accessed from the game
-    /// </summary>
-    public record GamePurchaseLink(string Header, string Path, GenericIconKind Icon = GenericIconKind.GameDisplay_Purchase);
 
     #endregion
 }

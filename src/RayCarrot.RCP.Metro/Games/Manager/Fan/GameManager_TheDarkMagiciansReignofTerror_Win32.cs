@@ -23,14 +23,6 @@ public sealed class GameManager_TheDarkMagiciansReignofTerror_Win32 : GameManage
     public override Games Game => Games.TheDarkMagiciansReignofTerror;
 
     /// <summary>
-    /// Gets the purchase links for the game for this type
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701", GenericIconKind.GameDisplay_Web), 
-    };
-
-    /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
     public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]

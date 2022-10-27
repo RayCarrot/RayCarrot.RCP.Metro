@@ -43,14 +43,6 @@ public abstract class GameManager_Steam : GameManager
     };
 
     /// <summary>
-    /// Gets the purchase links for the game
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_Steam, $"https://store.steampowered.com/app/" + SteamID),
-    };
-
-    /// <summary>
     /// Gets the game finder item for this game
     /// </summary>
     public override GameFinder_GameItem GameFinderItem => new GameFinder_GameItem(SteamID);

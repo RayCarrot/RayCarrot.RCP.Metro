@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "TheDarkMagiciansReignofTerror_Win32";
     public override Game Game => Game.TheDarkMagiciansReignofTerror;
@@ -54,6 +54,14 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
         new ProgressionGameViewModel_TheDarkMagiciansReignofTerror(gameInstallation).Yield();
+
+    /// <summary>
+    /// Gets the purchase links for the game for this type
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701", GenericIconKind.GameDisplay_Web),
+    };
 
     #endregion
 }

@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanDesigner_MSDOS";
     public override Game Game => Game.RaymanDesigner;
@@ -85,6 +85,15 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
     /// An optional emulator to use for the game
     /// </summary>
     public override Emulator Emulator => new Emulator_DOSBox();
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
+        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
+    };
 
     #endregion
 

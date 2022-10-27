@@ -23,14 +23,6 @@ public sealed class GameManager_RaymanBowling2_Win32 : GameManager_Win32
     public override Games Game => Games.RaymanBowling2;
 
     /// <summary>
-    /// Gets the purchase links for the game for this type
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/rayman_bowling_2/532563", GenericIconKind.GameDisplay_Web), 
-    };
-
-    /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
     public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]

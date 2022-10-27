@@ -1,4 +1,6 @@
 ﻿#nullable disable
+using System.Collections.Generic;
+
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
@@ -6,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanGardenPLUS_Win32";
     public override Game Game => Game.RaymanGardenPLUS;
@@ -35,6 +37,14 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     /// Gets the launch name for the game
     /// </summary>
     public override string DefaultFileName => "rayman-garden-plus.exe";
+
+    /// <summary>
+    /// Gets the purchase links for the game for this type
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/RaymanGardenPlus/622289", GenericIconKind.GameDisplay_Web),
+    };
 
     #endregion
 }

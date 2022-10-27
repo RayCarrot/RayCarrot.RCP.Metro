@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.RCP.Metro.Archive;
-using static RayCarrot.RCP.Metro.GameManager;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -237,6 +236,14 @@ public abstract class GameDescriptor
         FileSystemPath Path, 
         GenericIconKind Icon = GenericIconKind.None, 
         string Arguments = null);
+
+    /// <summary>
+    /// A game purchase link which can be accessed from the game
+    /// </summary>
+    public record GamePurchaseLink(
+        string Header,
+        string Path, 
+        GenericIconKind Icon = GenericIconKind.GameDisplay_Purchase);
 
     #endregion
 }

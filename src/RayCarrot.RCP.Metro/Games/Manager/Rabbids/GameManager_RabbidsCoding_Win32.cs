@@ -24,13 +24,5 @@ public sealed class GameManager_RabbidsCoding_Win32 : GameManager_Win32
         "Rabbids Coding",
     });
 
-    /// <summary>
-    /// Gets the purchase links for the game
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_DownloadUplay, "https://register.ubisoft.com/rabbids-coding/")
-    };
-
     #endregion
 }

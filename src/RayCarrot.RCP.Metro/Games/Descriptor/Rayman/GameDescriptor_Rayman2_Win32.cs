@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "Rayman2_Win32";
     public override Game Game => Game.Rayman2;
@@ -119,6 +119,15 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
     {
         installDir + "Data" + "Textures.cnt",
         installDir + "Data" + "Vignette.cnt",
+    };
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
+        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
     };
 
     #endregion

@@ -23,14 +23,6 @@ public sealed class GameManager_RaymanGardenPLUS_Win32 : GameManager_Win32
     public override Games Game => Games.RaymanGardenPLUS;
 
     /// <summary>
-    /// Gets the purchase links for the game for this type
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/RaymanGardenPlus/622289", GenericIconKind.GameDisplay_Web), 
-    };
-
-    /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
     public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]

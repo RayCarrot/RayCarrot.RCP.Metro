@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using System.Collections.Generic;
+using static RayCarrot.RCP.Metro.GameManager;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -8,7 +9,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanBowling2_Win32";
     public override Game Game => Game.RaymanBowling2;
@@ -45,6 +46,14 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
         new ProgressionGameViewModel_RaymanBowling2(gameInstallation).Yield();
+
+    /// <summary>
+    /// Gets the purchase links for the game for this type
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/rayman_bowling_2/532563", GenericIconKind.GameDisplay_Web),
+    };
 
     #endregion
 }

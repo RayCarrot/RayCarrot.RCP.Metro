@@ -25,14 +25,5 @@ public sealed class GameManager_RaymanRavingRabbids_Win32 : GameManager_Win32
         "RRR",
     });
 
-    /// <summary>
-    /// Gets the purchase links for the game
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_raving_rabbids"),
-        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
-    };
-
     #endregion
 }

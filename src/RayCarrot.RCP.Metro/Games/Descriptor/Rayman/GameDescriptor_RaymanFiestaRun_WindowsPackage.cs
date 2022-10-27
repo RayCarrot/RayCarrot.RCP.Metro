@@ -62,7 +62,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
 
     #endregion
 
-    #region Platform Properties
+    #region Platform
 
     public override string PackageName => "Ubisoft.RaymanFiestaRun";
     public override string FullPackageName => "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
@@ -96,6 +96,12 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
             _ => throw new ArgumentOutOfRangeException()
         };
     }
+
+    #endregion
+
+    #region Other
+
+    private const string MicrosoftStoreID = "9wzdncrdds0c";
 
     #endregion
 }

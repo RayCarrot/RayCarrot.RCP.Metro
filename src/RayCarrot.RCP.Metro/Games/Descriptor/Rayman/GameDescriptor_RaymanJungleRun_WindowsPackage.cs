@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPackageGameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanJungleRun_WindowsPackage";
     public override Game Game => Game.RaymanJungleRun;
@@ -48,10 +48,16 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
 
     #endregion
 
-    #region Platform Properties
+    #region Platform
 
     public override string PackageName => "UbisoftEntertainment.RaymanJungleRun";
     public override string FullPackageName => "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
+
+    #endregion
+
+    #region Other
+
+    private const string MicrosoftStoreID = "9WZDNCRFJ13P";
 
     #endregion
 }

@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using NLog;
@@ -39,15 +38,6 @@ public sealed class GameManager_RaymanFiestaRun_WinStore : GameManager_WinStore
     /// Gets store ID for the game
     /// </summary>
     public override string StoreID => GetStoreID(Services.Data.Game_FiestaRunVersion);
-
-    /// <summary>
-    /// Gets the purchase links for the game
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => SupportsWinStoreApps ? new GamePurchaseLink[]
-    {
-        // Only get the Preload edition URI as the other editions have been delisted.
-        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI(GetStoreID(UserData_FiestaRunEdition.Preload)))
-    } : new GamePurchaseLink[0];
 
     /// <summary>
     /// Gets the game finder item for this game

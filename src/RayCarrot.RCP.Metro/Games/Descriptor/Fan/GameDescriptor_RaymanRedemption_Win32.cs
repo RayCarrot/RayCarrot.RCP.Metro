@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanRedemption_Win32";
     public override Game Game => Game.RaymanRedemption;
@@ -45,6 +45,14 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
         new ProgressionGameViewModel_RaymanRedemption(gameInstallation).Yield();
+
+    /// <summary>
+    /// Gets the purchase links for the game for this type
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/raymanredemption/340532", GenericIconKind.GameDisplay_Web),
+    };
 
     #endregion
 }

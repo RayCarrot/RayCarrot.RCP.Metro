@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using System.Collections.Generic;
+using static RayCarrot.RCP.Metro.GameManager;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -53,6 +54,15 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
         new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "SettingsApplication.exe")
+    };
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_raving_rabbids"),
+        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
     };
 
     #endregion

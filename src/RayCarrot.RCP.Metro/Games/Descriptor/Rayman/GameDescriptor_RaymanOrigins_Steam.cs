@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanOrigins_Steam";
     public override Game Game => Game.RaymanOrigins;
@@ -68,6 +68,14 @@ public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
     {
         installDir + "GameData" + "bundle_PC.ipk",
+    };
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_Steam, SteamHelpers.GetStorePageURl(SteamID)),
     };
 
     #endregion

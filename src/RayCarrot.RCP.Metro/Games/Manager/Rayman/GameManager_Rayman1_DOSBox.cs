@@ -26,15 +26,6 @@ public sealed class GameManager_Rayman1_DOSBox : GameManager_DOSBox
     public override string RaymanForeverFolderName => "Rayman";
 
     /// <summary>
-    /// Gets the purchase links for the game
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
-        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
-    };
-
-    /// <summary>
     /// The DOSBox file path
     /// </summary>
     public override FileSystemPath DOSBoxFilePath => Services.Data.Utility_TPLSData?.IsEnabled != true ? base.DOSBoxFilePath : Services.Data.Utility_TPLSData.DOSBoxFilePath;

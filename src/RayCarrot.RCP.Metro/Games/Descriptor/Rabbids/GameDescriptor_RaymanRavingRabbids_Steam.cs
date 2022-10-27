@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanRavingRabbids_Steam";
     public override Game Game => Game.RaymanRavingRabbids;
@@ -53,6 +53,14 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
     public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
         new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "SettingsApplication.exe")
+    };
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_Steam, SteamHelpers.GetStorePageURl(SteamID)),
     };
 
     #endregion

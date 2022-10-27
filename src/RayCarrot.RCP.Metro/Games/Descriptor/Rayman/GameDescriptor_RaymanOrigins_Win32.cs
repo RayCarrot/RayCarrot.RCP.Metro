@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Descriptor
 
     public override string Id => "RaymanOrigins_Win32";
     public override Game Game => Game.RaymanOrigins;
@@ -68,6 +68,15 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
     {
         installDir + "GameData" + "bundle_PC.ipk",
+    };
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    {
+        new(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_origins"),
+        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
     };
 
     #endregion

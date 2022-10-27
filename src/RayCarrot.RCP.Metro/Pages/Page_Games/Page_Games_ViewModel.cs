@@ -373,15 +373,8 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     }
                 }
 
-                // Get the purchase links
-                var links = gameDescriptor.
-                    // Get all available managers
-                    GetLegacyManagers().
-                    // Get the purchase links
-                    SelectMany(x => x.GetGamePurchaseLinks);
-
-                // Add links
-                actions.AddRange(links.
+                // Add purchase links
+                actions.AddRange(gameDescriptor.GetGamePurchaseLinks().
                     Select(x =>
                     {
                         // Get the path

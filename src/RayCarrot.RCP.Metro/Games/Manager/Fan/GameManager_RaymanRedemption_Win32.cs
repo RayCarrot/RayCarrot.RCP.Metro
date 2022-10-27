@@ -23,14 +23,6 @@ public sealed class GameManager_RaymanRedemption_Win32 : GameManager_Win32
     public override Games Game => Games.RaymanRedemption;
 
     /// <summary>
-    /// Gets the purchase links for the game for this type
-    /// </summary>
-    public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-    {
-        new GamePurchaseLink(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/raymanredemption/340532", GenericIconKind.GameDisplay_Web), 
-    };
-
-    /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
     public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
