@@ -62,11 +62,6 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MSDOSGameDes
     };
 
     /// <summary>
-    /// The type of game if it can be downloaded
-    /// </summary>
-    public override GameType DownloadType => GameType.DosBox;
-
-    /// <summary>
     /// The config page view model, if any is available
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 

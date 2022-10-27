@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.RCP.Metro.Archive;
+using static RayCarrot.RCP.Metro.GameManager;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -142,11 +143,6 @@ public abstract class GameDescriptor
     public virtual IList<Uri> DownloadURLs => null;
 
     /// <summary>
-    /// The type of game if it can be downloaded
-    /// </summary>
-    public virtual GameType DownloadType => GameType.Win32;
-
-    /// <summary>
     /// Indicates if the game can be installed from a disc in this program
     /// </summary>
     public virtual bool CanBeInstalledFromDisc => false;
@@ -209,6 +205,25 @@ public abstract class GameDescriptor
     }
 
     public virtual IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => Enumerable.Empty<Utility>();
+
+    /// <summary>
+    /// Gets the purchase links for the game
+    /// </summary>
+    public virtual IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => Enumerable.Empty<GamePurchaseLink>();
+
+    #endregion
+
+    #region Public Methods
+
+    // TODO-14: Use this for all public APIs
+    public void VerifyGameInstallation(GameInstallation gameInstallation)
+    {
+        if (gameInstallation == null) 
+            throw new ArgumentNullException(nameof(gameInstallation));
+        
+        if (gameInstallation.Id != Id)
+            throw new Exception($"The provided game installation ID {gameInstallation.Id} does not match {Id}");
+    }
 
     #endregion
 

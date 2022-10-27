@@ -37,7 +37,7 @@ public class GameFinder
 
         // Get the game finder items
         GameFinderItems = GamesToFind.
-            SelectMany(x => x.LegacyGame.GetManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.Type, y.GameFinderItem))).
+            SelectMany(x => x.GetLegacyManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.GameFinderItem))).
             ToArray();
 
         Logger.Trace("{0} game finders were found", GameFinderItems.Length);
@@ -580,14 +580,14 @@ public class GameFinder
         }
 
         // Make sure that the game is valid
-        if (!await game.GameDescriptor.LegacyGame.GetManager(game.GameType).IsValidAsync(installDir, parameter))
+        if (!await game.GameDescriptor.GetLegacyManager().IsValidAsync(installDir, parameter))
         {
             Logger.Info("{0} could not be added. The game default file was not found.", game.GameDescriptor.Id);
             return false;
         }
 
         // Add the game to found games
-        Results.Add(new GameFinder_GameResult(game.GameDescriptor, installDir, game.GameType, game.FinderItem.FoundAction, parameter));
+        Results.Add(new GameFinder_GameResult(game.GameDescriptor, installDir, game.FinderItem.FoundAction, parameter));
 
         // Remove from games to find
         GamesToFind.Remove(game.GameDescriptor);
@@ -693,12 +693,10 @@ public class GameFinder
         /// Default constructor
         /// </summary>
         /// <param name="gameDescriptor">The game to find</param>
-        /// <param name="gameType">The game type</param>
         /// <param name="finderItem">The game finder item</param>
-        public GameFinderItemContainer(GameDescriptor gameDescriptor, GameType gameType, GameFinder_GameItem finderItem)
+        public GameFinderItemContainer(GameDescriptor gameDescriptor, GameFinder_GameItem finderItem)
         {
             GameDescriptor = gameDescriptor;
-            GameType = gameType;
             FinderItem = finderItem;
         }
 
@@ -710,11 +708,6 @@ public class GameFinder
         /// The game to find
         /// </summary>
         public GameDescriptor GameDescriptor { get; }
-
-        /// <summary>
-        /// The game type
-        /// </summary>
-        public GameType GameType { get; }
 
         /// <summary>
         /// The game finder item

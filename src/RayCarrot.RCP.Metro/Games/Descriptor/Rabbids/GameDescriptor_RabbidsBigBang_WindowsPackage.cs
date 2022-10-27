@@ -44,4 +44,11 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override bool AllowPatching => false;
 
     #endregion
+
+    #region Platform Properties
+
+    public override string PackageName => "UbisoftEntertainment.RabbidsBigBang";
+    public override string FullPackageName => "UbisoftEntertainment.RabbidsBigBang_dbgk1hhpxymar";
+
+    #endregion
 }

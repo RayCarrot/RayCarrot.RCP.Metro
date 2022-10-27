@@ -10,11 +10,11 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 2 game descriptor
 /// </summary>
-public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
+public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
 {
     #region Public Override Properties
 
-    public override string Id => "Rayman2_Win32";
+    public override string Id => "Rayman2_Steam";
     public override Game Game => Game.Rayman2;
 
     /// <summary>
@@ -120,6 +120,12 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         installDir + "Data" + "Textures.cnt",
         installDir + "Data" + "Vignette.cnt",
     };
+
+    #endregion
+
+    #region Platform Properties
+
+    public override string SteamID => "15060";
 
     #endregion
 

@@ -25,7 +25,7 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
         {
             FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                      "Packages" +
-                                     gameInstallation.Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(edition) +
+                                     gameInstallation.GameDescriptor.GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>().GetFiestaRunFullPackageName(edition) +
                                      "LocalState";
             FileSystemPath saveFile = saveDir + (edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat");
 

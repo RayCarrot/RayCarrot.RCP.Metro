@@ -143,50 +143,6 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     #region Private Methods
 
     /// <summary>
-    /// Gets a type for the game, or null if the operation was canceled
-    /// </summary>
-    /// <returns>The type or null if the operation was canceled</returns>
-    private async Task<GameTypeSelectionResult> GetGameTypeAsync(GameDescriptor gameDescriptor)
-    {
-        // Get the available types
-        GameType[] types = Services.App.GamesManager.GameManagers[gameDescriptor.LegacyGame].Keys.ToArray();
-
-        // If only one type, return that
-        if (types.Length == 1)
-            return new GameTypeSelectionResult()
-            {
-                CanceledByUser = false,
-                SelectedType = types.First()
-            };
-
-        // Create the view model
-        var vm = new GameTypeSelectionViewModel()
-        {
-            Title = Resources.App_SelectGameTypeHeader
-        };
-
-        // Enumerate the available types
-        foreach (var type in types)
-        {
-            if (type == GameType.Win32)
-                vm.AllowWin32 = true;
-            else if (type == GameType.Steam)
-                vm.AllowSteam = true;
-            else if (type == GameType.WinStore)
-                vm.AllowWinStore = true;
-            else if (type == GameType.DosBox)
-                vm.AllowDosBox = true;
-            else if (type == GameType.EducationalDosBox)
-                vm.AllowEducationalDosBox = true;
-            else
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
-        }
-
-        // Create and show the dialog and return the result
-        return await UI.SelectGameTypeAsync(vm);
-    }
-
-    /// <summary>
     /// Allows the user to locate the game and add it
     /// </summary>
     /// <returns>The task</returns>
@@ -194,16 +150,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     {
         try
         {
-            Logger.Trace("The game {0} is being located...", gameDescriptor.Id);
-
-            var typeResult = await GetGameTypeAsync(gameDescriptor);
-
-            if (typeResult.CanceledByUser)
-                return;
-
-            Logger.Info("The game {0} type has been detected as {1}", gameDescriptor.Id, typeResult.SelectedType);
-
-            await gameDescriptor.LegacyGame.GetManager(typeResult.SelectedType).LocateAddGameAsync(gameDescriptor);
+            await gameDescriptor.GetLegacyManager().LocateAddGameAsync(gameDescriptor);
         }
         catch (Exception ex)
         {
@@ -232,7 +179,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 return;
 
             // Add the game
-            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, gameDescriptor.DownloadType, gameDir, true);
+            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, gameDir, true);
 
             // Refresh
             await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
@@ -267,13 +214,13 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 GameInstallation gameInstallation = game.GetInstallation();
 
                 // Get the manager
-                var manager = game.GetManager();
+                var manager = gameDescriptor.GetLegacyManager();
 
                 // Add launch options if set to do so
                 var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
                 if (launchMode == UserData_GameLaunchMode.AsAdminOption)
                 {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await game.GetManager().LaunchGameAsync(true))));
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await gameDescriptor.GetLegacyManager().LaunchGameAsync(true))));
 
                     actions.Add(new OverflowButtonItemViewModel());
                 }
@@ -405,7 +352,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     displayName: gameDescriptor.DisplayName,
                     iconSource: gameDescriptor.IconSource,
                     isDemo: gameDescriptor.IsDemo,
-                    mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await game.GetManager().LaunchGameAsync(false))),
+                    mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await gameDescriptor.GetLegacyManager().LaunchGameAsync(false))),
                     secondaryAction: optionsAction,
                     launchActions: actions);
             }
@@ -427,9 +374,9 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 }
 
                 // Get the purchase links
-                var links = game.
+                var links = gameDescriptor.
                     // Get all available managers
-                    GetManagers().
+                    GetLegacyManagers().
                     // Get the purchase links
                     SelectMany(x => x.GetGamePurchaseLinks);
 

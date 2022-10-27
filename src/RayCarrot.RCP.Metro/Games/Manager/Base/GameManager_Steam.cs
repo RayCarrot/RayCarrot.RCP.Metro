@@ -1,7 +1,6 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using NLog;
@@ -20,16 +19,6 @@ public abstract class GameManager_Steam : GameManager
     #endregion
 
     #region Public Override Properties
-
-    /// <summary>
-    /// The game type
-    /// </summary>
-    public override GameType Type => GameType.Steam;
-
-    /// <summary>
-    /// The display name for the game type
-    /// </summary>
-    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_Steam));
 
     /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
@@ -52,15 +41,6 @@ public abstract class GameManager_Steam : GameManager
             Logger.Trace("The game {0} Steam community page was opened", Game);
         }))
     };
-
-    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) =>
-        base.GetGameInfoItems(gameInstallation).Concat(new[]
-        {
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_SteamID)),
-                text: SteamID,
-                minUserLevel: UserLevel.Advanced)
-        });
 
     /// <summary>
     /// Gets the purchase links for the game

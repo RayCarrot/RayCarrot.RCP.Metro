@@ -324,7 +324,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
             if (result == GameInstaller_Result.Successful)
             {
                 // Add the game
-                GameInstallation gameInstallation = await Services.Games.AddGameAsync(Game.GetGameDescriptor(), GameType.Win32, output, true);
+                GameInstallation gameInstallation = await Services.Games.AddGameAsync(Game.GetGameDescriptor(), output, true);
 
                 // Refresh
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
@@ -340,7 +340,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 {
                     try
                     {
-                        Game.GetManager().CreateGameShortcut(shortcutName, dir);
+                        Game.GetGameDescriptor().GetLegacyManager().CreateGameShortcut(shortcutName, dir);
                     }
                     catch (Exception ex)
                     {

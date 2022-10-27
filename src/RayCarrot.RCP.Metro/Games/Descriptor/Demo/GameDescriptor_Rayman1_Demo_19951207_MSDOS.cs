@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 1 Demo (1995/12/07) game descriptor
 /// </summary>
-public sealed class GameDescriptor_Rayman1_Demo19951207_MSDOS : MSDOSGameDescriptor
+public sealed class GameDescriptor_Rayman1_Demo_19951207_MSDOS : MSDOSGameDescriptor
 {
     #region Protected Override Properties
 
@@ -57,11 +57,6 @@ public sealed class GameDescriptor_Rayman1_Demo19951207_MSDOS : MSDOSGameDescrip
     {
         new Uri(AppURLs.Games_R1Demo1_Url),
     };
-
-    /// <summary>
-    /// The type of game if it can be downloaded
-    /// </summary>
-    public override GameType DownloadType => GameType.DosBox;
 
     /// <summary>
     /// An optional emulator to use for the game

@@ -180,7 +180,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
         Logger.Info("{0} config is being set up", GameInstallation.Id);
 
         // Get the save directory
-        SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + GameInstallation.Game.GetManager<GameManager_WinStore>().FullPackageName + "LocalState";
+        SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + GameInstallation.GameDescriptor.GetLegacyManager<GameManager_WinStore>().FullPackageName + "LocalState";
 
         // Read game specific values
         await SetupGameAsync();

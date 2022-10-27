@@ -19,11 +19,12 @@ public class GamesManager
 
         GameDescriptors = new GameDescriptor[]
         {
-            new GameDescriptor_Rayman1(),
+            new GameDescriptor_Rayman1_MSDOS(),
             new GameDescriptor_RaymanDesigner_MSDOS(),
             new GameDescriptor_RaymanByHisFans_MSDOS(),
             new GameDescriptor_Rayman60Levels_MSDOS(),
             new GameDescriptor_Rayman2_Win32(),
+            new GameDescriptor_Rayman2_Steam(),
             new GameDescriptor_RaymanM_Win32(),
             new GameDescriptor_RaymanArena_Win32(),
             new GameDescriptor_Rayman3_Win32(),
@@ -38,7 +39,7 @@ public class GamesManager
             new GameDescriptor_RabbidsBigBang_WindowsPackage(),
             new GameDescriptor_RabbidsCoding_Win32(),
 
-            new GameDescriptor_Rayman1_Demo19951207_MSDOS(),
+            new GameDescriptor_Rayman1_Demo_19951207_MSDOS(),
             new GameDescriptor_Rayman1_Demo_19960215_MSDOS(),
             new GameDescriptor_Rayman1_Demo_19951204_MSDOS(),
             new GameDescriptor_RaymanGold_Demo_19970930_MSDOS(),
@@ -105,9 +106,9 @@ public class GamesManager
     /// <param name="installDirectory">The game install directory</param>
     /// <param name="isRCPInstalled">Indicates if the game was installed through the Rayman Control Panel</param>
     /// <returns>The game installation</returns>
-    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, GameType type, FileSystemPath installDirectory, bool isRCPInstalled)
+    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory, bool isRCPInstalled)
     {
-        Logger.Info("The game {0} is being added of type {1}...", gameDescriptor.Id, type);
+        Logger.Info("The game {0} is being added", gameDescriptor.Id);
 
         // TODO-14: Remove this
         // Make sure the game hasn't already been added
@@ -122,7 +123,7 @@ public class GamesManager
         }
 
         // Create an installation
-        GameInstallation gameInstallation = new(gameDescriptor.Id, type, installDirectory, isRCPInstalled);
+        GameInstallation gameInstallation = new(gameDescriptor.Id, installDirectory, isRCPInstalled);
 
         // Get the manager
         GameManager manager = gameInstallation.GameManager;

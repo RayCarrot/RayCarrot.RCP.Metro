@@ -217,18 +217,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     });
                     break;
 
-                case DebugDialogType.GameTypeSelection:
-                    await UI.SelectGameTypeAsync(new GameTypeSelectionViewModel()
-                    {
-                        Title = "Debug",
-                        AllowSteam = true,
-                        AllowWin32 = true,
-                        AllowDosBox = true,
-                        AllowWinStore = true,
-                        AllowEducationalDosBox = true,
-                    });
-                    break;
-
                 case DebugDialogType.Message:
                     await MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
                     break;
@@ -450,7 +438,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     var result = await new GameFinder(selectionResult.SelectedGames.Select(x => x.GetGameDescriptor()), null).FindGamesAsync();
                         
                     // Output the found games
-                    DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.Id} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);
+                    DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.Id} - {x.InstallLocation}").JoinItems(Environment.NewLine);
                         
                     break;
 
@@ -821,11 +809,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public enum DebugDialogType
     {
         GameSelection,
-
-        /// <summary>
-        /// A game type selection dialog
-        /// </summary>
-        GameTypeSelection,
 
         /// <summary>
         /// A message dialog

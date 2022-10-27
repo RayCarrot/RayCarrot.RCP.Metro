@@ -66,8 +66,6 @@ public class AppUIManager
 
     public Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel) => ShowDialogAsync(() => new GamesSelectionDialog(gamesSelectionViewModel));
 
-    public Task<GameTypeSelectionResult> SelectGameTypeAsync(GameTypeSelectionViewModel gameTypeSelectionViewModel) => ShowDialogAsync(() => new GameTypeSelectionDialog(gameTypeSelectionViewModel));
-
     public Task<EducationalDosGameEditResult> EditEducationalDosGameAsync(EducationalDosGameEditViewModel viewModel) => ShowDialogAsync(() => new EducationalDosGameEditDialog(viewModel));
 
     public Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel) => ShowDialogAsync(() => new JumpListEditDialog(viewModel));

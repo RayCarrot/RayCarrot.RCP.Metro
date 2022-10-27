@@ -97,7 +97,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
     protected void RefreshGameInfo()
     {
         GameInfoItems.Clear();
-        GameInfoItems.AddRange(GameInstallation.GameManager.GetGameInfoItems(GameInstallation));
+        GameInfoItems.AddRange(GameInstallation.PlatformManager.GetGameInfoItems(GameInstallation));
     }
 
     protected override object GetPageUI() => new GameOptions_Control()

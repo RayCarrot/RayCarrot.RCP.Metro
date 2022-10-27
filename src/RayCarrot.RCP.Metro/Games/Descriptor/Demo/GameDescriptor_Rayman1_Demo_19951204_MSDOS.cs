@@ -59,11 +59,6 @@ public sealed class GameDescriptor_Rayman1_Demo_19951204_MSDOS : MSDOSGameDescri
     };
 
     /// <summary>
-    /// The type of game if it can be downloaded
-    /// </summary>
-    public override GameType DownloadType => GameType.DosBox;
-
-    /// <summary>
     /// An optional emulator to use for the game
     /// </summary>
     public override Emulator Emulator => new Emulator_DOSBox();

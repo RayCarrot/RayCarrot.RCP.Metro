@@ -21,7 +21,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
     public UserData_FiestaRunEdition Edition { get; }
 
     protected override string BackupName => $"Rayman Fiesta Run ({Edition})";
-    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(GameInstallation.Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition));
+    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(GameInstallation.GameDescriptor.GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>().GetFiestaRunFullPackageName(Edition));
 
     private static int GetLevelIdFromIndex(int idx)
     {
@@ -47,7 +47,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
     {
         FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                  "Packages" +
-                                 GameInstallation.Game.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore).GetFiestaRunFullPackageName(Edition) +
+                                 GameInstallation.GameDescriptor.GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>().GetFiestaRunFullPackageName(Edition) +
                                  "LocalState";
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
 

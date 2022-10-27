@@ -41,7 +41,7 @@ public enum GenericIconKind
     Window_EducationalDosGameEdit,
     Window_FileExtensionSelection,
     Window_GamesSelection,
-    Window_GameTypeSelection,
+    Window_GameTypeSelection, // TODO-14: Remove this
     Window_JumpListEdit,
     Window_DialogMessage,
     Window_StringInput,

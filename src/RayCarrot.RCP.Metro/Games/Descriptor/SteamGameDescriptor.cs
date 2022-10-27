@@ -10,5 +10,5 @@ public abstract class SteamGameDescriptor : GameDescriptor
     public override GamePlatform Platform => GamePlatform.Steam;
     public override PlatformManager PlatformManager => _platformManager ??= new SteamPlatformManager(this);
 
-    // TODO-14: Add abstract properties
+    public abstract string SteamID { get; }
 }

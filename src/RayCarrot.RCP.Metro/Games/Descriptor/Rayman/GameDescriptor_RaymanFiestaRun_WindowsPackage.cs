@@ -6,6 +6,8 @@ using System.Windows;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Make a descriptor for each edition
+
 /// <summary>
 /// The Rayman Fiesta Run game descriptor
 /// </summary>
@@ -48,7 +50,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation)
     {
-        var manager = LegacyGame.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore);
+        var manager = this.GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>();
 
         // Get every installed version
         IEnumerable<UserData_FiestaRunEdition> versions = EnumHelpers.GetValues<UserData_FiestaRunEdition>().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);
@@ -57,6 +59,13 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     }
 
     public override bool AllowPatching => false;
+
+    #endregion
+
+    #region Platform Properties
+
+    public override string PackageName => "Ubisoft.RaymanFiestaRun";
+    public override string FullPackageName => "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
 
     #endregion
 

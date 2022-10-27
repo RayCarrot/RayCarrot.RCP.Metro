@@ -47,4 +47,11 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override bool AllowPatching => false;
 
     #endregion
+
+    #region Platform Properties
+
+    public override string PackageName => "UbisoftEntertainment.RaymanJungleRun";
+    public override string FullPackageName => "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
+
+    #endregion
 }

@@ -21,37 +21,9 @@ public abstract class GameManager_Win32 : GameManager
     #region Public Override Properties
 
     /// <summary>
-    /// The game type
-    /// </summary>
-    public override GameType Type => GameType.Win32;
-
-    /// <summary>
-    /// The display name for the game type
-    /// </summary>
-    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_Desktop));
-
-    /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
     /// </summary>
     public override bool SupportsGameLaunchMode => true;
-
-    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
-    {
-        // Get the launch info
-        GameLaunchInfo launchInfo = GetLaunchInfo(gameInstallation);
-
-        return base.GetGameInfoItems(gameInstallation).Concat(new[]
-        {
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_LaunchPath)),
-                text: launchInfo.Path.FullPath,
-                minUserLevel: UserLevel.Technical),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_LaunchArgs)),
-                text: launchInfo.Args,
-                minUserLevel: UserLevel.Technical)
-        });
-    }
 
     #endregion
 

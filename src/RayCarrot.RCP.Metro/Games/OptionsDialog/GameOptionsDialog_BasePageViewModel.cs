@@ -159,9 +159,7 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
         using (await AsyncLock.LockAsync())
         {
             // Create the page if it doesn't exist
-            if (PageContent == null)
-                // TODO-14: For some reason this breaks when Fiesta Run changes version even though it didn't before - why?
-                PageContent = GetPageUI();
+            PageContent ??= RCP.Metro.App.Current.Dispatcher.Invoke(GetPageUI);
 
             // Load the page
             await Task.Run(LoadAsync);

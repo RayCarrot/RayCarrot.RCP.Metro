@@ -23,16 +23,6 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
     #region Public Override Properties
 
     /// <summary>
-    /// The game type
-    /// </summary>
-    public override GameType Type => GameType.EducationalDosBox;
-
-    /// <summary>
-    /// The display name for the game type
-    /// </summary>
-    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_EducationalDosBox));
-
-    /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
     public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => Services.Data.Game_EducationalDosBoxGames.
@@ -121,7 +111,7 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
 
         return Services.Data.Game_EducationalDosBoxGames.Select(x =>
         {
-            GameLaunchInfo launchInfo = gameInstallation.Game.GetManager<GameManager_EducationalDOSBox>().GetLaunchInfo(x);
+            GameLaunchInfo launchInfo = gameInstallation.GameDescriptor.GetLegacyManager<GameManager_EducationalDOSBox>().GetLaunchInfo(x);
 
             return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Path.Parent, launchInfo.Args, x.ID);
         }).ToArray();
@@ -295,7 +285,7 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
         var gameInstallation = Games.EducationalDos.GetInstallation();
         Services.Data.Game_GameInstallations.Remove(gameInstallation);
         // TODO-14: Copy over additional data as well for things like launch mode
-        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Id, gameInstallation.GameType, Services.Data.Game_EducationalDosBoxGames.First().InstallDir, gameInstallation.IsRCPInstalled));
+        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Id, Services.Data.Game_EducationalDosBoxGames.First().InstallDir, gameInstallation.IsRCPInstalled));
 
         Logger.Info("The default educational game has been refreshed");
     }

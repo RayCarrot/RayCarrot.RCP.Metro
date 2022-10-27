@@ -22,7 +22,7 @@ public class GameOptions_FiestaRun_ViewModel : BaseRCPViewModel
         AsyncLock = new AsyncLock();
 
         // Get the manager
-        var manager = Games.RaymanFiestaRun.GetManager<GameManager_RaymanFiestaRun_WinStore>(GameType.WinStore);
+        var manager = Games.RaymanFiestaRun.GetGameDescriptor().GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>();
 
         // Get the install directories for each version
         DefaultInstallDir = manager.GetPackageInstallDirectory(manager.GetFiestaRunPackageName(UserData_FiestaRunEdition.Default));
@@ -135,7 +135,7 @@ public class GameOptions_FiestaRun_ViewModel : BaseRCPViewModel
                 var gameInstallation = Games.RaymanFiestaRun.GetInstallation();
                 Services.Data.Game_GameInstallations.Remove(gameInstallation);
                 // TODO-14: Copy over additional data as well
-                Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Id, gameInstallation.GameType, installLocation, gameInstallation.IsRCPInstalled));
+                Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.Id, installLocation, gameInstallation.IsRCPInstalled));
 
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun.GetInstallation(), RefreshFlags.GameInfo));
             }

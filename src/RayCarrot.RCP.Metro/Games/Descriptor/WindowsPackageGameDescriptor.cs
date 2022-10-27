@@ -10,7 +10,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     public override GamePlatform Platform => GamePlatform.WindowsPackage;
     public override PlatformManager PlatformManager => _platformManager ??= new WindowsPackagePlatformManager(this);
 
-    // TODO-14: Add abstract properties
-    //public abstract string PackageName { get; }
-    //public abstract string FullPackageName { get; }
+    public abstract string PackageName { get; }
+    public abstract string FullPackageName { get; }
 }

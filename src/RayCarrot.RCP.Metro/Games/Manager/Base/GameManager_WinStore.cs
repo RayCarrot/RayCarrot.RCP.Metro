@@ -1,14 +1,13 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using NLog;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 /*
@@ -33,16 +32,6 @@ public abstract class GameManager_WinStore : GameManager
     #region Public Override Properties
 
     /// <summary>
-    /// The game type
-    /// </summary>
-    public override GameType Type => GameType.WinStore;
-
-    /// <summary>
-    /// The display name for the game type
-    /// </summary>
-    public override LocalizedString GameTypeDisplayName => new ResourceLocString(nameof(Resources.GameType_WinStore));
-
-    /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
     /// </summary>
     public override bool SupportsGameLaunchMode => false;
@@ -58,38 +47,6 @@ public abstract class GameManager_WinStore : GameManager
             (await Services.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();
         })),
     };
-
-    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
-    {
-        // Get the package
-        Package package = GetGamePackage();
-
-        DateTime installDate = package.InstalledDate.DateTime;
-
-        return base.GetGameInfoItems(gameInstallation).Concat(new[]
-        {
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreDependencies)),
-                text: package.Dependencies.Select(x => x.Id.Name).JoinItems(", "),
-                minUserLevel: UserLevel.Technical),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreFullName)),
-                text: package.Id.FullName,
-                minUserLevel: UserLevel.Advanced),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreArchitecture)),
-                text: package.Id.Architecture.ToString(),
-                minUserLevel: UserLevel.Technical),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreVersion)),
-                text: $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}",
-                minUserLevel: UserLevel.Technical),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreInstallDate)),
-                text: new GeneratedLocString(() => installDate.ToString(CultureInfo.CurrentCulture)),
-                minUserLevel: UserLevel.Advanced),
-        });
-    }
 
     /// <summary>
     /// Gets the purchase links for the game

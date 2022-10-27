@@ -27,16 +27,6 @@ public abstract class GameManager
     public abstract Games Game { get; }
 
     /// <summary>
-    /// The game type
-    /// </summary>
-    public abstract GameType Type { get; }
-
-    /// <summary>
-    /// The display name for the game type
-    /// </summary>
-    public abstract LocalizedString GameTypeDisplayName { get; }
-
-    /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
     /// </summary>
     public abstract bool SupportsGameLaunchMode { get; }
@@ -48,29 +38,12 @@ public abstract class GameManager
     /// <summary>
     /// Gets the purchase links for the game for this type
     /// </summary>
-    public virtual IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0];
+    public virtual IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0]; // TODO-14: Remove next and replace in descr
 
     /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
     public virtual IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[0];
-
-    /// <summary>
-    /// Gets the info items for the game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the info items for</param>
-    /// <returns>The info items</returns>
-    public virtual IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) => new DuoGridItemViewModel[]
-    {
-        new DuoGridItemViewModel(
-            header: new ResourceLocString(nameof(Resources.GameInfo_GameType)), 
-            text: GameTypeDisplayName, 
-            minUserLevel: UserLevel.Advanced),
-        new DuoGridItemViewModel(
-            header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)), 
-            text: gameInstallation.InstallLocation.FullPath),
-        //new DuoGridItemViewModel("Install size", GameData.InstallDirectory.GetSize().ToString())
-    };
 
     /// <summary>
     /// Gets the game finder item for this game
@@ -217,7 +190,7 @@ public abstract class GameManager
             return;
 
         // Add the game
-        GameInstallation gameInstallation = await Services.Games.AddGameAsync(gameDescriptor, Type, path.Value, false);
+        GameInstallation gameInstallation = await Services.Games.AddGameAsync(gameDescriptor, path.Value, false);
 
         // Refresh
         await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));

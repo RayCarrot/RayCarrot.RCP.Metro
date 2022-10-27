@@ -165,7 +165,7 @@ public class GameOptions_EducationalDos_GameInfoItemViewModel : BaseRCPViewModel
         // Refresh the default if this game was the default
         if (isDefault)
         {
-            Games.EducationalDos.GetManager<GameManager_EducationalDOSBox>().RefreshDefault();
+            Games.EducationalDos.GetGameDescriptor().GetLegacyManager<GameManager_EducationalDOSBox>().RefreshDefault();
             Logger.Info("The educational game was the default and it has now been refreshed");
         }
 
