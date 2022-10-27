@@ -213,9 +213,6 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 // Get the installation
                 GameInstallation gameInstallation = game.GetInstallation();
 
-                // Get the manager
-                var manager = gameDescriptor.GetLegacyManager();
-
                 // Add launch options if set to do so
                 var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
                 if (launchMode == UserData_GameLaunchMode.AsAdminOption)
@@ -257,16 +254,12 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     actions.Add(new OverflowButtonItemViewModel());
                 }
 
-                // Get additional items
-                var additionalItems = manager.GetAdditionalOverflowButtonItems;
+                // Add additional items
+                int count = actions.Count;
+                actions.AddRange(gameDescriptor.GetAdditionalOverflowButtonItems());
 
-                // Add the items if there are any
-                if (additionalItems.Any())
-                {
-                    actions.AddRange(additionalItems);
-
+                if (actions.Count != count)
                     actions.Add(new OverflowButtonItemViewModel());
-                }
 
                 // Add RayMap link
                 if (gameDescriptor.RayMapURL != null)

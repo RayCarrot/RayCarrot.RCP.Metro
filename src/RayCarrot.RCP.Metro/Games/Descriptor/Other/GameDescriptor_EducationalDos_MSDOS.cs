@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using BinarySerializer.Ray1;
+using NLog;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
+using static RayCarrot.RCP.Metro.GameManager_Win32;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -14,6 +17,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 {
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Public Overrides
 
     public override string Id => "EducationalDos_MSDOS";
@@ -86,6 +95,38 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     // Don't allow patching for now since this game actually contains multiple games and the
     // patching system doesn't support that right now.
     public override bool AllowPatching => false;
+
+    /// <summary>
+    /// Gets the additional overflow button items for the game
+    /// </summary>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => 
+        Services.Data.Game_EducationalDosBoxGames.Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.WPFApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
+        {
+            Logger.Trace("The educational game {0} is being launched...", x.Name);
+
+            // Verify that the game can launch
+            if (!await this.GetLegacyManager<GameManager_EducationalDos_EducationalDOSBox>().VerifyCanLaunchAsync(x))
+            {
+                Logger.Info("The educational game {0} could not be launched", x.Name);
+                return;
+            }
+
+            // Get the launch info
+            GameLaunchInfo launchInfo = this.GetLegacyManager<GameManager_EducationalDos_EducationalDOSBox>().GetLaunchInfo(x);
+
+            Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
+
+            // Launch the game
+            var launchMode = LegacyGame.GetInstallation().GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+            var process = await Services.File.LaunchFileAsync(launchInfo.Path, launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
+
+            Logger.Info("The educational game {0} has been launched", x.Name);
+
+            if (process != null)
+                // Run any post launch operations on the process
+                await this.GetLegacyManager<GameManager_EducationalDos_EducationalDOSBox>().PostLaunchAsync(process);
+
+        }))).ToArray();
 
     #endregion
 }

@@ -26,23 +26,6 @@ public abstract class GameManager_Steam : GameManager
     public override bool SupportsGameLaunchMode => false;
 
     /// <summary>
-    /// Gets the additional overflow button items for the game
-    /// </summary>
-    public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
-    {
-        new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, GenericIconKind.GameDisplay_Steam, new AsyncRelayCommand(async () =>
-        {
-            (await Services.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
-            Logger.Trace("The game {0} Steam store page was opened", Game);
-        })),
-        new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, GenericIconKind.GameDisplay_Steam, new AsyncRelayCommand(async () =>
-        {
-            (await Services.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
-            Logger.Trace("The game {0} Steam community page was opened", Game);
-        }))
-    };
-
-    /// <summary>
     /// Gets the game finder item for this game
     /// </summary>
     public override GameFinder_GameItem GameFinderItem => new GameFinder_GameItem(SteamID);

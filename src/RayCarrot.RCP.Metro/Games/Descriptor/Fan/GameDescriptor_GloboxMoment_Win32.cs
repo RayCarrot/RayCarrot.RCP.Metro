@@ -1,7 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
-using static RayCarrot.RCP.Metro.GameManager;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -10,6 +10,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 {
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Public Override Properties
 
     public override string Id => "GloboxMoment_Win32";
@@ -62,6 +68,18 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
     {
         new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/globoxmoment/428585", GenericIconKind.GameDisplay_Web),
+    };
+
+    /// <summary>
+    /// Gets the additional overflow button items for the game
+    /// </summary>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
+    {
+        new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
+        {
+            (await Services.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
+            Logger.Trace("The game {0} GameJolt page was opened", Game);
+        })),
     };
 
     #endregion

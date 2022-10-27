@@ -22,17 +22,5 @@ public sealed class GameManager_RaymanGardenPLUS_Win32 : GameManager_Win32
     /// </summary>
     public override Games Game => Games.RaymanGardenPLUS;
 
-    /// <summary>
-    /// Gets the additional overflow button items for the game
-    /// </summary>
-    public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
-    {
-        new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
-        {
-            (await Services.File.LaunchFileAsync("https://gamejolt.com/games/RaymanGardenPlus/622289"))?.Dispose();
-            Logger.Trace("The game {0} GameJolt page was opened", Game);
-        })),
-    };
-
     #endregion
 }

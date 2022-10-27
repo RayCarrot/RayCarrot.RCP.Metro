@@ -6,4 +6,9 @@ public static class SteamHelpers
     {
         return $"https://store.steampowered.com/app/{steamID}";
     }
+
+    public static string GetCommunityPageURl(string steamID)
+    {
+        return $"https://steamcommunity.com/app/{steamID}";
+    }
 }

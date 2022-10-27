@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -17,42 +16,6 @@ public abstract class GameManager_EducationalDOSBox : GameManager_DOSBox
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
-    #region Public Override Properties
-
-    /// <summary>
-    /// Gets the additional overflow button items for the game
-    /// </summary>
-    public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => Services.Data.Game_EducationalDosBoxGames.
-        Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.WPFApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
-        {
-            Logger.Trace("The educational game {0} is being launched...", x.Name);
-
-            // Verify that the game can launch
-            if (!await VerifyCanLaunchAsync(x))
-            {
-                Logger.Info("The educational game {0} could not be launched", x.Name);
-                return;
-            }
-
-            // Get the launch info
-            GameLaunchInfo launchInfo = GetLaunchInfo(x);
-
-            Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
-
-            // Launch the game
-            var launchMode = Game.GetInstallation().GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-            var process = await Services.File.LaunchFileAsync(launchInfo.Path, launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
-
-            Logger.Info("The educational game {0} has been launched", x.Name);
-
-            if (process != null)
-                // Run any post launch operations on the process
-                await PostLaunchAsync(process);
-
-        }))).ToArray();
 
     #endregion
 

@@ -36,11 +36,6 @@ public abstract class GameManager
     #region Public Virtual Properties
 
     /// <summary>
-    /// Gets the additional overflow button items for the game
-    /// </summary>
-    public virtual IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[0];
-
-    /// <summary>
     /// Gets the game finder item for this game
     /// </summary>
     public virtual GameFinder_GameItem GameFinderItem => null;

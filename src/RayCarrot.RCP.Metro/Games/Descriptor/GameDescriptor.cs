@@ -210,6 +210,12 @@ public abstract class GameDescriptor
     /// </summary>
     public virtual IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => Enumerable.Empty<GamePurchaseLink>();
 
+    /// <summary>
+    /// Gets the additional overflow button items for the game
+    /// </summary>
+    public virtual IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => 
+        Enumerable.Empty<OverflowButtonItemViewModel>();
+
     #endregion
 
     #region Public Methods

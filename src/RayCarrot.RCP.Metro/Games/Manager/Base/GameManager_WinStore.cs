@@ -37,18 +37,6 @@ public abstract class GameManager_WinStore : GameManager
     public override bool SupportsGameLaunchMode => false;
 
     /// <summary>
-    /// Gets the additional overflow button items for the game
-    /// </summary>
-    public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
-    {
-        new OverflowButtonItemViewModel(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
-        {
-            // NOTE: We could use Launcher.LaunchURI here, but since we're targeting Windows 7 it is good to use as few of the WinRT APIs as possible to avoid any runtime errors. Launching a file as a process will work with URLs as well, although less information will be given in case of error (such as if no application is installed to handle the URI).
-            (await Services.File.LaunchFileAsync(MicrosoftStoreHelpers.GetStorePageURI(StoreID)))?.Dispose();
-        })),
-    };
-
-    /// <summary>
     /// Gets the game finder item for this game
     /// </summary>
     public override GameFinder_GameItem GameFinderItem => new GameFinder_GameItem(() =>
