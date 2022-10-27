@@ -6,8 +6,6 @@ using RayCarrot.RCP.Metro.Archive.UbiArt;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Create a Steam variant
-
 /// <summary>
 /// The Rayman Origins game descriptor
 /// </summary>

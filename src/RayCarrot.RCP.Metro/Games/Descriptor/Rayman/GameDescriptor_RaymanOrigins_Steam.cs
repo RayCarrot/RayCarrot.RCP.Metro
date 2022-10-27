@@ -7,19 +7,19 @@ using RayCarrot.RCP.Metro.Archive.UbiArt;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman Legends game descriptor
+/// The Rayman Origins game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
+public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
 {
     #region Public Override Properties
 
-    public override string Id => "RaymanLegends_Win32";
-    public override Game Game => Game.RaymanLegends;
+    public override string Id => "RaymanOrigins_Steam";
+    public override Game Game => Game.RaymanOrigins;
 
     /// <summary>
     /// The game
     /// </summary>
-    public override Games LegacyGame => Games.RaymanLegends;
+    public override Games LegacyGame => Games.RaymanOrigins;
 
     /// <summary>
     /// The category for the game
@@ -29,26 +29,26 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     /// <summary>
     /// The game display name
     /// </summary>
-    public override string DisplayName => "Rayman Legends";
+    public override string DisplayName => "Rayman Origins";
 
     /// <summary>
     /// The game backup name
     /// </summary>
-    public override string BackupName => "Rayman Legends";
+    public override string BackupName => "Rayman Origins";
 
     /// <summary>
     /// Gets the launch name for the game
     /// </summary>
-    public override string DefaultFileName => "Rayman Legends.exe";
+    public override string DefaultFileName => "Rayman Origins.exe";
 
     /// <summary>
     /// The config page view model, if any is available
     /// </summary>
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanLegendsRegistryKey);
+        new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanOriginsRegistryKey);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
-        new ProgressionGameViewModel_RaymanLegends(gameInstallation).Yield();
+        new ProgressionGameViewModel_RaymanOrigins(gameInstallation).Yield();
 
     /// <summary>
     /// Indicates if the game has archives which can be opened
@@ -59,7 +59,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     /// Gets the archive data manager for the game
     /// </summary>
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
-        new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanLegends, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
+        new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 
     /// <summary>
     /// Gets the archive file paths for the game
@@ -67,9 +67,14 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     /// <param name="installDir">The game's install directory</param>
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
     {
-        installDir + "Bundle_PC.ipk",
-        installDir + "persistentLoading_PC.ipk",
+        installDir + "GameData" + "bundle_PC.ipk",
     };
+
+    #endregion
+
+    #region Platform Properties
+
+    public override string SteamID => "15060";
 
     #endregion
 
@@ -77,8 +82,9 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
-        new Utility_RaymanLegends_UbiRay(gameInstallation),
-        new Utility_RaymanLegends_DebugCommands(gameInstallation),
+        new Utility_RaymanOrigins_HQVideos(gameInstallation),
+        new Utility_RaymanOrigins_DebugCommands(gameInstallation),
+        new Utility_RaymanOrigins_Update(gameInstallation),
     };
 
     #endregion

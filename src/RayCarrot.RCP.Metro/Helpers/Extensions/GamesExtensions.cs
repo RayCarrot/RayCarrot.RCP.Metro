@@ -62,13 +62,13 @@ public static class GamesExtensions
             GameDescriptor_RaymanArena_Win32 => new GameManager_RaymanArena_Win32(),
             GameDescriptor_Rayman3_Win32 => new GameManager_Rayman3_Win32(),
             GameDescriptor_RaymanOrigins_Win32 => new GameManager_RaymanOrigins_Win32(),
-            // GameManager_RaymanOrigins_Steam
+            GameDescriptor_RaymanOrigins_Steam => new GameManager_RaymanOrigins_Steam(),
             GameDescriptor_RaymanLegends_Win32 => new GameManager_RaymanLegends_Win32(),
-            // GameManager_RaymanLegends_Steam
+            GameDescriptor_RaymanLegends_Steam => new GameManager_RaymanLegends_Steam(),
             GameDescriptor_RaymanJungleRun_WindowsPackage => new GameManager_RaymanJungleRun_WinStore(),
             GameDescriptor_RaymanFiestaRun_WindowsPackage => new GameManager_RaymanFiestaRun_WinStore(),
             GameDescriptor_RaymanRavingRabbids_Win32 => new GameManager_RaymanRavingRabbids_Win32(),
-            // GameManager_RaymanRavingRabbids_Steam
+            GameDescriptor_RaymanRavingRabbids_Steam => new GameManager_RaymanRavingRabbids_Steam(),
             GameDescriptor_RaymanRavingRabbids2_Win32 => new GameManager_RaymanRavingRabbids2_Win32(),
             GameDescriptor_RabbidsGoHome_Win32 => new GameManager_RabbidsGoHome_Win32(),
             GameDescriptor_RabbidsBigBang_WindowsPackage => new GameManager_RabbidsBigBang_WinStore(),

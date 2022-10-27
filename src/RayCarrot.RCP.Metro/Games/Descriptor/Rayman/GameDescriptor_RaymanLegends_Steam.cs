@@ -9,11 +9,11 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Legends game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
+public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
 {
     #region Public Override Properties
 
-    public override string Id => "RaymanLegends_Win32";
+    public override string Id => "RaymanLegends_Steam";
     public override Game Game => Game.RaymanLegends;
 
     /// <summary>
@@ -70,6 +70,12 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         installDir + "Bundle_PC.ipk",
         installDir + "persistentLoading_PC.ipk",
     };
+
+    #endregion
+
+    #region Platform Properties
+
+    public override string SteamID => "242550";
 
     #endregion
 

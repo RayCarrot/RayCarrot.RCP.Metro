@@ -6,11 +6,11 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Raving Rabbids game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescriptor
+public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescriptor
 {
     #region Public Override Properties
 
-    public override string Id => "RaymanRavingRabbids_Win32";
+    public override string Id => "RaymanRavingRabbids_Steam";
     public override Game Game => Game.RaymanRavingRabbids;
 
     /// <summary>
@@ -54,6 +54,12 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     {
         new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "SettingsApplication.exe")
     };
+
+    #endregion
+
+    #region Platform Properties
+
+    public override string SteamID => "15080";
 
     #endregion
 }
