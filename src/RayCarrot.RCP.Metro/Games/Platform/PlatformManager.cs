@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Is there a point to keeping this separate from GameDescriptor? Perhaps merge them?
+
 public abstract class PlatformManager
 {
     protected PlatformManager(GameDescriptor gameDescriptor)

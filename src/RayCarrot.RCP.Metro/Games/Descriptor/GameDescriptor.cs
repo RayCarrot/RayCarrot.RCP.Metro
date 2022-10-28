@@ -11,6 +11,7 @@ namespace RayCarrot.RCP.Metro;
 // TODO-14: Clean up. Move code out of here. Rename to GameDescriptor? Move some things to modules/extensions. Use this instead of enum.
 // TODO-14: Fix regions once refactoring is done as some properties are getting changed to methods.
 // TODO-14: Rename some classes, such as demos, and remove any base classes. Everything should inherit from this directly and be sealed.
+// TODO-14: Enable nullable
 
 /// <summary>
 /// The base for Rayman Control Panel game data
@@ -22,7 +23,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// The group name to use for a dialog which requires reading/writing to a ubi.ini file
     /// </summary>
-    protected const string UbiIniFileGroupName = "ubini-config";
+    protected const string UbiIniFileGroupName = "ubini-config"; // TODO-14: Remove from here
 
     #endregion
 
@@ -62,7 +63,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// Gets the default file name for launching the game, if available
     /// </summary>
-    public abstract string DefaultFileName { get; }
+    public abstract string DefaultFileName { get; } // TODO-14: Remove from here - not all games have an exe!
 
     /// <summary>
     /// The category for the game
@@ -99,6 +100,8 @@ public abstract class GameDescriptor
     public virtual GameOptionsDialog_ConfigPageViewModel? GetConfigPageViewModel(GameInstallation gameInstallation) => null;
 
 #nullable disable
+
+    // TODO-14: Change some of these to methods
 
     /// <summary>
     /// The progression game view models
@@ -216,6 +219,8 @@ public abstract class GameDescriptor
     public virtual IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => 
         Enumerable.Empty<OverflowButtonItemViewModel>();
 
+#nullable enable
+
     #endregion
 
     #region Public Methods
@@ -241,7 +246,7 @@ public abstract class GameDescriptor
         string Header, 
         FileSystemPath Path, 
         GenericIconKind Icon = GenericIconKind.None, 
-        string Arguments = null);
+        string? Arguments = null);
 
     /// <summary>
     /// A game purchase link which can be accessed from the game

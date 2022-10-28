@@ -5,11 +5,19 @@
 /// </summary>
 public abstract class WindowsPackageGameDescriptor : GameDescriptor
 {
+    #region Descriptor
+
     private WindowsPackagePlatformManager? _platformManager;
 
     public override GamePlatform Platform => GamePlatform.WindowsPackage;
     public override PlatformManager PlatformManager => _platformManager ??= new WindowsPackagePlatformManager(this);
 
+    #endregion
+
+    #region Platform
+
     public abstract string PackageName { get; }
     public abstract string FullPackageName { get; }
+
+    #endregion
 }
