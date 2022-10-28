@@ -8,13 +8,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Card}">
-                    <ControlTemplate.Resources>
+                    <!--<ControlTemplate.Resources>
                         <local:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
-                    </ControlTemplate.Resources>
+                    </ControlTemplate.Resources>-->
                     <Grid Background="Transparent">
                         <AdornerDecorator
                             CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
-                            <AdornerDecorator.OpacityMask>
+                            <!-- NOTE: Removed for now since this causes graphical artifacts when display scale is
+                                       not 100% on certain graphics cards. Other solutions seem to be to enable
+                                       layout rounding, but it's not always possible. You can also force rendering
+                                       to be handled from software rather than hardware, but then it's too slow -->
+                            <!--<AdornerDecorator.OpacityMask>
                                 <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" />
                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" />
@@ -23,7 +27,7 @@
                                     <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                              Path="(local:ShadowAssist.ShadowEdges)" />
                                 </MultiBinding>
-                            </AdornerDecorator.OpacityMask>
+                            </AdornerDecorator.OpacityMask>-->
                             <Border
                                 Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={local:ShadowConverter}}"
                                 CornerRadius="{TemplateBinding UniformCornerRadius}">
