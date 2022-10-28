@@ -72,7 +72,7 @@ public class AppDataManager
 
                 case nameof(AppUserData.UI_LinkItemStyle):
                     static string GetStyleSource(UserData_LinkItemStyle linkItemStye) => 
-                        $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Styles.LinkItem.{linkItemStye}.xaml";
+                        $"{AppViewModel.WPFApplicationBasePath}/UI/Styles/LinkItem.{linkItemStye}.xaml";
 
                     // Get previous source
                     string oldSource = GetStyleSource(PreviousLinkItemStyle);
