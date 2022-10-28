@@ -64,7 +64,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
 
     #region Services
 
-    private AppUserData Data { get; }
+    public AppUserData Data { get; } // Need to keep public for now due to binding
     private IMessageUIManager MessageUI { get; }
     private AppUIManager UI { get; }
     private GamesManager GamesManager { get; }
