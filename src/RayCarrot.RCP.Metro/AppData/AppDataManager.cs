@@ -239,7 +239,6 @@ public class AppDataManager
         if (lastVersion < new Version(5, 0, 0, 0))
         {
             Data.Backup_CompressBackups = true;
-            Data.Game_FiestaRunVersion = UserData_FiestaRunEdition.Default;
 
             // Due to the fiesta run version system being changed the game has to be removed and then re-added
             // TODO-14: Restore this once we implement the app data migration
@@ -261,10 +260,11 @@ public class AppDataManager
 
                     if (isWin10 != null)
                     {
+                        // TODO-14: Fix this migration
                         // Set the current edition
-                        Data.Game_FiestaRunVersion = isWin10.Value
-                            ? UserData_FiestaRunEdition.Win10
-                            : UserData_FiestaRunEdition.Default;
+                        //Data.Game_FiestaRunVersion = isWin10.Value
+                        //    ? UserData_FiestaRunEdition.Win10
+                        //    : UserData_FiestaRunEdition.Default;
 
                         Services.File.MoveDirectory(fiestaBackupDir, Data.Backup_BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameDescriptor().BackupName, true, true);
                     }
@@ -301,7 +301,7 @@ public class AppDataManager
         {
             // By default, add all games to the jump list collection
             Data.App_JumpListItemIDCollection = GamesManager.EnumerateInstalledGames().
-                Select(x => x.GameManager.GetJumpListItems(x).Select(y => y.ID)).
+                Select(x => x.GameDescriptor.GetJumpListItems(x).Select(y => y.ID)).
                 SelectMany(x => x).
                 ToList();
         }

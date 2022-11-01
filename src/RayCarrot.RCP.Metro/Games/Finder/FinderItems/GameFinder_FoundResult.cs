@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The result for the <see cref="GameFinder_BaseItem.CustomFinderAction"/>
@@ -10,20 +9,13 @@ public class GameFinder_FoundResult
     /// Default constructor
     /// </summary>
     /// <param name="installDir">The install directory</param>
-    /// <param name="parameter">Optional parameter when the item is handled</param>
-    public GameFinder_FoundResult(FileSystemPath installDir, object parameter)
+    public GameFinder_FoundResult(FileSystemPath installDir)
     {
         InstallDir = installDir;
-        Parameter = parameter;
     }
 
     /// <summary>
     /// The install directory
     /// </summary>
     public FileSystemPath InstallDir { get; }
-
-    /// <summary>
-    /// Optional parameter when the item is handled
-    /// </summary>
-    public object Parameter { get; }
 }

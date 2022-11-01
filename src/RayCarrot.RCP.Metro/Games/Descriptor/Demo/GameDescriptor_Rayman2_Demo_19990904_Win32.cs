@@ -1,35 +1,51 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BinarySerializer.OpenSpace;
+using RayCarrot.RCP.Metro.Archive.CPA;
+using RayCarrot.RCP.Metro.Archive;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman 2 Demo (1999/09/04) game descriptor
+/// The Rayman 2 Demo 1999/09/04 (Win32) game descriptor
 /// </summary>
-public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : GameDescriptor_BaseRayman2Demo
+public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Protected Properties
+
+    protected override string IconName => "Rayman2Demo";
+
+    #endregion
+
+    #region Public Properties
 
     public override string Id => "Rayman2_Demo_19990904_Win32";
     public override Game Game => Game.Rayman2;
-
-    /// <summary>
-    /// The game
-    /// </summary>
+    public override GameCategory Category => GameCategory.Demo;
+    public override bool IsDemo => true;
     public override Games LegacyGame => Games.Demo_Rayman2_2;
 
-    /// <summary>
-    /// The game display name
-    /// </summary>
     public override string DisplayName => "Rayman 2 Demo (1999/09/04)";
+    public override string DefaultFileName => "Rayman2Demo.exe";
 
-    /// <summary>
-    /// The download URLs for the game if it can be downloaded. All sources must be compressed.
-    /// </summary>
+    public override bool CanBeDownloaded => true;
     public override IList<Uri> DownloadURLs => new Uri[]
     {
-        new Uri(AppURLs.Games_R2Demo2_Url),
+        new(AppURLs.Games_R2Demo2_Url),
+    };
+
+    public override bool HasArchives => true;
+
+    #endregion
+
+    #region Public Methods
+
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2Demo, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
+
+    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    {
+        installDir + "BinData" + "Textures.cnt",
     };
 
     #endregion

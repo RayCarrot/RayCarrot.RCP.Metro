@@ -1,67 +1,38 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman 1 Demo (1995/12/07) game descriptor
+/// The Rayman 1 Demo 1995/12/07 (MS-DOS) game descriptor
 /// </summary>
 public sealed class GameDescriptor_Rayman1_Demo_19951207_MSDOS : MSDOSGameDescriptor
 {
-    #region Protected Override Properties
+    #region Protected Properties
 
-    public override string Id => "Rayman1_Demo19951207_MSDOS";
-    public override Game Game => Game.Rayman1;
-
-    protected override string IconName => $"Rayman1Demo";
+    protected override string IconName => "Rayman1Demo";
 
     #endregion
 
-    #region Public Override Properties
+    #region Public Properties
 
-    /// <summary>
-    /// The game
-    /// </summary>
+    public override string Id => "Rayman1_Demo19951207_MSDOS";
+    public override Game Game => Game.Rayman1;
+    public override GameCategory Category => GameCategory.Demo;
+    public override bool IsDemo => true;
     public override Games LegacyGame => Games.Demo_Rayman1_1;
 
-    /// <summary>
-    /// The category for the game
-    /// </summary>
-    public override GameCategory Category => GameCategory.Demo;
-
-    /// <summary>
-    /// The game display name
-    /// </summary>
     public override string DisplayName => "Rayman 1 Demo (1995/12/07)";
-
-    /// <summary>
-    /// Gets the launch name for the game
-    /// </summary>
     public override string DefaultFileName => "RAYMAN.EXE";
 
-    /// <summary>
-    /// Indicates if the game is a demo
-    /// </summary>
-    public override bool IsDemo => true;
-
-    /// <summary>
-    /// Indicates if the game can be downloaded
-    /// </summary>
     public override bool CanBeDownloaded => true;
-
-    /// <summary>
-    /// The download URLs for the game if it can be downloaded. All sources must be compressed.
-    /// </summary>
     public override IList<Uri> DownloadURLs => new Uri[]
     {
-        new Uri(AppURLs.Games_R1Demo1_Url),
+        new(AppURLs.Games_R1Demo1_Url),
     };
 
-    /// <summary>
-    /// An optional emulator to use for the game
-    /// </summary>
-    public override Emulator Emulator => new Emulator_DOSBox();
+    public override bool RequiresMounting => false;
+    public override string ExecutableName => "RAYMAN.EXE";
 
     #endregion
 }

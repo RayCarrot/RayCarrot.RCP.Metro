@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
@@ -7,7 +6,7 @@ using RayCarrot.RCP.Metro.Archive.CPA;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Tonic Trouble game descriptor
+/// The Tonic Trouble (Win32) game descriptor
 /// </summary>
 public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 {
@@ -15,77 +14,53 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 
     public override string Id => "TonicTrouble_Win32";
     public override Game Game => Game.TonicTrouble;
-
-    /// <summary>
-    /// The game
-    /// </summary>
+    public override GameCategory Category => GameCategory.Other;
     public override Games LegacyGame => Games.TonicTrouble;
 
-    /// <summary>
-    /// The category for the game
-    /// </summary>
-    public override GameCategory Category => GameCategory.Other;
-
-    /// <summary>
-    /// The game display name
-    /// </summary>
     public override string DisplayName => "Tonic Trouble";
-
-    /// <summary>
-    /// The game backup name
-    /// </summary>
     public override string BackupName => "Tonic Trouble";
-
-    /// <summary>
-    /// Gets the launch name for the game
-    /// </summary>
     public override string DefaultFileName => "TonicTrouble.exe";
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
-        new ProgressionGameViewModel_TonicTrouble(gameInstallation).Yield();
-
-    /// <summary>
-    /// Optional RayMap URL
-    /// </summary>
     public override string RayMapURL => AppURLs.GetRayMapGameURL("tt_pc", "tt_pc");
 
-    /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
+    public override bool HasArchives => true;
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override string GetLaunchArgs(GameInstallation gameInstallation) => "-cdrom:";
+
+    #endregion
+
+    #region Public Methods
+
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
+        new ProgressionGameViewModel_TonicTrouble(gameInstallation).Yield();
+
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
+        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.TonicTrouble, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
+
     public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
         new(Resources.GameLink_R2dgVoodoo, gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
     };
 
-    /// <summary>
-    /// Indicates if the game has archives which can be opened
-    /// </summary>
-    public override bool HasArchives => true;
-
-    /// <summary>
-    /// Gets the archive data manager for the game
-    /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
-        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.TonicTrouble, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
-
-    /// <summary>
-    /// Gets the archive file paths for the game
-    /// </summary>
-    /// <param name="installDir">The game's install directory</param>
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
+    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
     {
         installDir + "gamedata" + "Textures.cnt",
         installDir + "gamedata" + "Vignette.cnt",
     };
 
-    #endregion
-
-    #region Public Override Methods
-
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
         new Utility_TonicTrouble_GameSyncTextureInfo(gameInstallation),
     };
+
+    public override GameFinder_GameItem GetGameFinderItem() => new("TONICT", "Tonic Trouble", new[]
+    {
+        "Tonic Trouble",
+    });
 
     #endregion
 }

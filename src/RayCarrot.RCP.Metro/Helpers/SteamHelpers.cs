@@ -2,13 +2,18 @@
 
 public static class SteamHelpers
 {
-    public static string GetStorePageURl(string steamID)
+    public static string GetStorePageURL(string steamId)
     {
-        return $"https://store.steampowered.com/app/{steamID}";
+        return $"https://store.steampowered.com/app/{steamId}";
     }
 
-    public static string GetCommunityPageURl(string steamID)
+    public static string GetCommunityPageURL(string steamId)
     {
-        return $"https://steamcommunity.com/app/{steamID}";
+        return $"https://steamcommunity.com/app/{steamId}";
+    }
+
+    public static string GetGameLaunchURI(string steamId)
+    {
+        return $@"steam://rungameid/{steamId}";
     }
 }

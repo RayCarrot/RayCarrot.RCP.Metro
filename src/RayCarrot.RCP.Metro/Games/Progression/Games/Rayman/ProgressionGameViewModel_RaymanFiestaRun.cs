@@ -10,18 +10,16 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanFiestaRun(GameInstallation gameInstallation, UserData_FiestaRunEdition edition, string displayName) 
-        : base(gameInstallation, displayName)
+    public ProgressionGameViewModel_RaymanFiestaRun(GameInstallation gameInstallation, int slotIndex) : base(gameInstallation)
     {
-        Edition = edition;
+        SlotIndex = slotIndex;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public UserData_FiestaRunEdition Edition { get; }
+    private int SlotIndex { get; }
 
-    protected override string BackupName => $"Rayman Fiesta Run ({Edition})";
-    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(GameInstallation.GameDescriptor.GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>().GetFiestaRunFullPackageName(Edition));
+    protected override GameBackups_Directory[] BackupDirectories => WindowsPackageGameDescriptor.GetWinStoreBackupDirs(GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName);
 
     private static int GetLevelIdFromIndex(int idx)
     {
@@ -43,11 +41,12 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         }
         return v2;
     }
+
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                  "Packages" +
-                                 GameInstallation.GameDescriptor.GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>().GetFiestaRunFullPackageName(Edition) +
+                                 GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
                                  "LocalState";
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
 
@@ -61,7 +60,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         Logger.Info("{0} slot is being loaded...", GameInstallation.Id);
 
         // Get the file path
-        string fileName = Edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat";
+        string fileName = $"slot{SlotIndex}.dat";
 
         // Deserialize the data
         FiestaRun_SaveData? saveData = await context.ReadFileDataAsync<FiestaRun_SaveData>(fileName, endian: Endian.Little, removeFileWhenComplete: false);
@@ -86,22 +85,22 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
         }
 
         progressItems.Add(new ProgressionDataViewModel(
-            isPrimaryItem: true, 
-            icon: ProgressionIcon.RFR_Crown, 
-            header: new ResourceLocString(nameof(Resources.Progression_RFRCrowns)), 
-            value: crowns, 
+            isPrimaryItem: true,
+            icon: ProgressionIcon.RFR_Crown,
+            header: new ResourceLocString(nameof(Resources.Progression_RFRCrowns)),
+            value: crowns,
             max: maxCrowns));
 
         if (saveData.Version >= 2)
             progressItems.Add(new ProgressionDataViewModel(
-                isPrimaryItem: true, 
-                icon: ProgressionIcon.RFR_Nightmare, 
-                header: new ResourceLocString(nameof(Resources.Progression_RFRNightmareMode)), 
-                value: GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100), 
+                isPrimaryItem: true,
+                icon: ProgressionIcon.RFR_Nightmare,
+                header: new ResourceLocString(nameof(Resources.Progression_RFRNightmareMode)),
+                value: GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100),
                 max: 36));
 
         progressItems.Add(new ProgressionDataViewModel(
-            isPrimaryItem: false, 
+            isPrimaryItem: false,
             icon: ProgressionIcon.RL_Lum,
             header: new ResourceLocString(nameof(Resources.Progression_Lums)),
             value: (int)saveData.LumsGlobalCounter));

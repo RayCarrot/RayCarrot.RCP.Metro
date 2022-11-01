@@ -288,9 +288,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         }
 
         // Verify game
-        if (libraryFile != null && libraryFile.Game != GameInstallation.Game)
+        if (libraryFile != null && libraryFile.Game != GameInstallation.LegacyGame)
         {
-            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, GameInstallation.Game);
+            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, GameInstallation.LegacyGame);
 
             await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameDescriptor.DisplayName),
                 MessageType.Error);
@@ -446,10 +446,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 PatchMetadata metaData = patch.Metadata;
 
                 // Verify game
-                if (metaData.Game != GameInstallation.Game)
+                if (metaData.Game != GameInstallation.LegacyGame)
                 {
                     Logger.Warn("Failed to add patch due to the specified game {0} not matching the current one ({1})",
-                        metaData.Game, GameInstallation.Game);
+                        metaData.Game, GameInstallation.LegacyGame);
 
                     await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameMismatchError,
                             metaData.Game.GetGameDescriptor().DisplayName), MessageType.Error);
@@ -703,10 +703,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 }
 
                 // Verify game
-                if (patch.Metadata.Game != GameInstallation.Game)
+                if (patch.Metadata.Game != GameInstallation.LegacyGame)
                 {
                     Logger.Warn("Failed to add pending patch due to the specified game {0} not matching the current one ({1})",
-                        patch.Metadata.Game, GameInstallation.Game);
+                        patch.Metadata.Game, GameInstallation.LegacyGame);
 
                     // Do not show message to user as at least one game from the pending patches will be added
 
@@ -798,7 +798,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             // Make sure the game has external patches defined
-            if (manifest.Games?.ContainsKey(GameInstallation.Game) != true)
+            if (manifest.Games?.ContainsKey(GameInstallation.LegacyGame) != true)
             {
                 Logger.Info("The game {0} has no external patches", GameInstallation.Id);
                 _externalGamePatchesURL = null;
@@ -808,7 +808,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             Logger.Info("Loading external patches for game {0}", GameInstallation.Id);
 
-            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[GameInstallation.Game]);
+            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[GameInstallation.LegacyGame]);
 
             ExternalGamePatchesManifest gameManifest =
                 await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(_externalGamePatchesURL
@@ -907,7 +907,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     }).ToArray();
 
                     bool success = await patcher.ApplyAsync(
-                        game: GameInstallation.Game,
+                        game: GameInstallation.LegacyGame,
                         library: Library,
                         gameDirectory: GameDirectory,
                         patches: patches,

@@ -11,11 +11,11 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(GameInstallation.GameDescriptor.GetLegacyManager<GameManager_WinStore>().FullPackageName);
+    protected override GameBackups_Directory[] BackupDirectories => WindowsPackageGameDescriptor.GetWinStoreBackupDirs(GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName);
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        string packageName = GameInstallation.GameDescriptor.GetLegacyManager<GameManager_WinStore>().FullPackageName;
+        string packageName = GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName;
 
         FileSystemPath saveFile = fileSystem.GetFile(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
                                                      "Packages" + packageName + "LocalState" + "playerprefs.dat");

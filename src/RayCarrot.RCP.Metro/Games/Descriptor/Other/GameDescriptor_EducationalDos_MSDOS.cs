@@ -1,19 +1,21 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using BinarySerializer.Ray1;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
-using static RayCarrot.RCP.Metro.GameManager_Win32;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Change this to not allow multiple games in one
+
 /// <summary>
-/// The Educational Dos game descriptor
+/// The Educational Dos (MS-DOS) game descriptor
 /// </summary>
 public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 {
@@ -23,110 +25,292 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
     #endregion
 
-    #region Public Overrides
+    #region Public Properties
 
     public override string Id => "EducationalDos_MSDOS";
     public override Game Game => Game.EducationalDos;
-
-    /// <summary>
-    /// The game
-    /// </summary>
+    public override GameCategory Category => GameCategory.Other;
     public override Games LegacyGame => Games.EducationalDos;
 
-    /// <summary>
-    /// The category for the game
-    /// </summary>
-    public override GameCategory Category => GameCategory.Other;
-
-    /// <summary>
-    /// The game display name
-    /// </summary>
     public override string DisplayName => "Educational Games";
-
-    /// <summary>
-    /// The game backup name
-    /// </summary>
     public override string BackupName => throw new Exception("A generic backup name can not be obtained for an educational DOS game due to it being a collection of multiple games");
+    public override string DefaultFileName => Services.Data.Game_EducationalDosBoxGames?.FirstOrDefault()?.LaunchName ?? String.Empty;
+
+    public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
+
+    public override bool AllowPatching => false;
+    public override bool HasArchives => true;
+
+    public override string ExecutableName => Services.Data.Game_EducationalDosBoxGames.First().LaunchName;
+
+    #endregion
+
+    #region Private Methods
 
     /// <summary>
-    /// Gets the launch name for the game
+    /// Gets the launch info for the game
     /// </summary>
-    public override string DefaultFileName => Services.Data.Game_EducationalDosBoxGames?.FirstOrDefault()?.LaunchName;
+    /// <param name="game">The game</param>
+    /// <returns>The launch info</returns>
+    private GameLaunchInfo GetLaunchInfo(UserData_EducationalDosBoxGameData game)
+    {
+        return new GameLaunchInfo(
+            Path: Services.Data.Emu_DOSBox_Path, 
+            Args: GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDir));
+    }
+
+    /// <summary>
+    /// Verifies if the game can launch
+    /// </summary>
+    /// <param name="game">The game</param>
+    /// <returns>True if the game can launch, otherwise false</returns>
+    private async Task<bool> VerifyCanLaunchAsync(UserData_EducationalDosBoxGameData game)
+    {
+        // Make sure the DosBox executable exists
+        if (!File.Exists(Services.Data.Emu_DOSBox_Path))
+        {
+            await Services.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
+            return false;
+        }
+
+        // Make sure the mount path exists, unless the game is Rayman 1 and TPLS is enabled
+        if (!game.MountPath.Exists)
+        {
+            await Services.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
+            return false;
+        }
+
+        return true;
+    }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
+    {
+        // Get the default game
+        UserData_EducationalDosBoxGameData defaultGame = Services.Data.Game_EducationalDosBoxGames.First();
+
+        return GetLaunchInfo(defaultGame);
+    }
+
+    protected override Task<bool> VerifyCanLaunchAsync(GameInstallation gameInstallation)
+    {
+        return VerifyCanLaunchAsync(Services.Data.Game_EducationalDosBoxGames.First());
+    }
+
+    protected override async Task<bool> IsGameLocationValidAsync(FileSystemPath installLocation)
+    {
+        if (Services.Data.Game_EducationalDosBoxGames == null)
+            return false;
+
+        UserData_EducationalDosBoxGameData[] toRemove = Services.Data.Game_EducationalDosBoxGames.
+            Where(game => !IsGameDirValid(game.InstallDir) || game.LaunchName.IsNullOrWhiteSpace()).
+            ToArray();
+
+        // Remove invalid games
+        foreach (var game in toRemove)
+            Services.Data.Game_EducationalDosBoxGames.Remove(game);
+
+        // Notify user
+        foreach (var game in toRemove)
+        {
+            Services.Data.App_JumpListItemIDCollection.RemoveWhere(x => x == game.ID);
+
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
+        }
+
+        // Make sure there is at least one game
+        if (Services.Data.Game_EducationalDosBoxGames?.Any() != true)
+            return false;
+
+        // If any games were removed, refresh the default game and jump list
+        if (toRemove.Any())
+        {
+            // Reset the game data with new install directory
+            RefreshDefault();
+            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), RefreshFlags.JumpList));
+        }
+
+        return true;
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Get new info for a new educational DOSBox game
+    /// </summary>
+    /// <param name="installDir">The install directory</param>
+    /// <returns>The info</returns>
+    public UserData_EducationalDosBoxGameData GetNewEducationalDosBoxGameInfo(FileSystemPath installDir)
+    {
+        // Find the launch name
+        FileSystemPath launchName = Directory.EnumerateFiles(installDir, "*.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
+
+        // Create the collection if it doesn't exist
+        Services.Data.Game_EducationalDosBoxGames ??= new List<UserData_EducationalDosBoxGameData>();
+
+        // Create the game data
+        UserData_EducationalDosBoxGameData info = new(installDir, launchName.Name)
+        {
+            Name = installDir.Name
+        };
+
+        return info;
+    }
+
+    /// <summary>
+    /// Indicates if the specified game directory is valid for an educational game
+    /// </summary>
+    /// <param name="dir">The directory to check</param>
+    /// <returns>True if it's valid, false if not</returns>
+    public bool IsGameDirValid(FileSystemPath dir)
+    {
+        try
+        {
+            FileSystemPath engineDir = dir + "PCMAP";
+
+            return engineDir.DirectoryExists && Directory.EnumerateDirectories(engineDir).Any();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Checking if educational game directory is valid");
+
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Refreshes the default game
+    /// </summary>
+    public void RefreshDefault()
+    {
+        // TODO-14: Fix this
+        // Reset the game data with new install directory
+        GameInstallation gameInstallation = Games.EducationalDos.GetInstallation();
+        Services.Data.Game_GameInstallations.Remove(gameInstallation);
+        // TODO-14: Copy over additional data as well for things like launch mode
+        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.GameDescriptor, Services.Data.Game_EducationalDosBoxGames.First().InstallDir, gameInstallation.IsRCPInstalled));
+
+        Logger.Info("The default educational game has been refreshed");
+    }
+
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
+        new GameOptions_EducationalDos_Control();
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanEduDos_ViewModel(gameInstallation);
 
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => new GameOptions_EducationalDos_Control();
-
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation)
-    {
-        return Services.Data.Game_EducationalDosBoxGames.
+    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
+        Services.Data.Game_EducationalDosBoxGames.
             Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).
             Select(x => new ProgressionGameViewModel_EducationalDos(gameInstallation, x));
-    }
 
-    /// <summary>
-    /// Optional RayMap URL
-    /// </summary>
-    public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
-
-    /// <summary>
-    /// Indicates if the game has archives which can be opened
-    /// </summary>
-    public override bool HasArchives => true;
-
-    /// <summary>
-    /// Gets the archive data manager for the game
-    /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));
 
-    /// <summary>
-    /// Gets the archive file paths for the game
-    /// </summary>
-    /// <param name="installDir">The game's install directory</param>
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
+    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => 
+        Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
 
-    /// <summary>
-    /// An optional emulator to use for the game
-    /// </summary>
-    public override Emulator Emulator => new Emulator_DOSBox();
-
-    // Don't allow patching for now since this game actually contains multiple games and the
-    // patching system doesn't support that right now.
-    public override bool AllowPatching => false;
-
-    /// <summary>
-    /// Gets the additional overflow button items for the game
-    /// </summary>
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => 
-        Services.Data.Game_EducationalDosBoxGames.Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.WPFApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
-        {
-            Logger.Trace("The educational game {0} is being launched...", x.Name);
-
-            // Verify that the game can launch
-            if (!await this.GetLegacyManager<GameManager_EducationalDos_EducationalDOSBox>().VerifyCanLaunchAsync(x))
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() =>
+        Services.Data.Game_EducationalDosBoxGames.Select(x => new OverflowButtonItemViewModel(
+            header: x.Name, 
+            iconSource: new BitmapImage(new Uri($@"{AppViewModel.WPFApplicationBasePath}img\GameIcons\EducationalDos.png")), 
+            command: new AsyncRelayCommand(async () => 
             {
-                Logger.Info("The educational game {0} could not be launched", x.Name);
-                return;
-            }
+                Logger.Trace("The educational game {0} is being launched...", x.Name);
 
-            // Get the launch info
-            GameLaunchInfo launchInfo = this.GetLegacyManager<GameManager_EducationalDos_EducationalDOSBox>().GetLaunchInfo(x);
+                // TODO-14: Fix
+                // Verify that the game can launch
+                //if (!await this.GetLegacyManager<GameManager_EducationalDos_EducationalDOSBox>().VerifyCanLaunchAsync(x))
+                //{
+                //    Logger.Info("The educational game {0} could not be launched", x.Name);
+                //    return;
+                //}
 
-            Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
+                // Get the launch info
+                GameLaunchInfo launchInfo = GetLaunchInfo(x);
 
-            // Launch the game
-            var launchMode = LegacyGame.GetInstallation().GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-            var process = await Services.File.LaunchFileAsync(launchInfo.Path, launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
+                Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
 
-            Logger.Info("The educational game {0} has been launched", x.Name);
+                // Launch the game
+                var launchMode = LegacyGame.GetInstallation().GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+                var process = await Services.File.LaunchFileAsync(launchInfo.Path, launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
-            if (process != null)
-                // Run any post launch operations on the process
-                await this.GetLegacyManager<GameManager_EducationalDos_EducationalDOSBox>().PostLaunchAsync(process);
+                Logger.Info("The educational game {0} has been launched", x.Name);
 
-        }))).ToArray();
+                if (process != null)
+                    // Run any post launch operations on the process
+                    await PostLaunchAsync(process);
+
+            }))).ToArray();
+
+    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
+    {
+        if (Services.Data.Game_EducationalDosBoxGames == null)
+            return Enumerable.Empty<JumpListItemViewModel>();
+
+        return Services.Data.Game_EducationalDosBoxGames.Select(x =>
+        {
+            GameLaunchInfo launchInfo = GetLaunchInfo(x);
+
+            return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Path.Parent, launchInfo.Args, x.ID);
+        }).ToArray();
+    }
+
+    public override async Task<FileSystemPath?> LocateAsync()
+    {
+        // Have user browse for directory
+        DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+        {
+            Title = Resources.LocateGame_BrowserHeader,
+            DefaultDirectory = Environment.SpecialFolder.ProgramFilesX86.GetFolderPath(),
+            MultiSelection = false
+        });
+
+        // Make sure the user did not cancel
+        if (result.CanceledByUser)
+            return null;
+
+        // Make sure the selected directory exists
+        if (!result.SelectedDirectory.DirectoryExists)
+            return null;
+
+        // Check if the location if valid
+        if (!IsGameDirValid(result.SelectedDirectory))
+        {
+            Logger.Info("The selected install directory for {0} is not valid", Id);
+
+            await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
+            return null;
+        }
+
+        // Return the valid directory
+        return result.SelectedDirectory;
+    }
+
+    public override Task PostGameAddAsync(GameInstallation gameInstallation)
+    {
+        // Get the info
+        UserData_EducationalDosBoxGameData info = GetNewEducationalDosBoxGameInfo(gameInstallation.InstallLocation);
+
+        // Add the game to the list of educational games
+        Services.Data.Game_EducationalDosBoxGames.Add(info);
+
+        // Create config file
+        return base.PostGameAddAsync(gameInstallation);
+    }
+
+    public override Task PostGameRemovedAsync(GameInstallation gameInstallation)
+    {
+        // Remove game specific data
+        Services.Data.Game_EducationalDosBoxGames = null;
+
+        return base.PostGameRemovedAsync(gameInstallation);
+    }
 
     #endregion
 }

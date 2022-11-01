@@ -41,10 +41,10 @@ public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
     /// </summary>
     public FileSystemPath MountPath
     {
-        get => Data.Game_DosBoxGames[GameInstallation.Game].MountPath;
+        get => Data.Game_DosBoxGames[GameInstallation.LegacyGame].MountPath;
         set
         {
-            Data.Game_DosBoxGames[GameInstallation.Game].MountPath = value;
+            Data.Game_DosBoxGames[GameInstallation.LegacyGame].MountPath = value;
 
             // TODO: Find better solution to this. Ideally we would invoke the refresh from an event caused by the UI, but
             // currently the BrowseBox does not have any event for when the path is changed. Doing this rather than discarding the task

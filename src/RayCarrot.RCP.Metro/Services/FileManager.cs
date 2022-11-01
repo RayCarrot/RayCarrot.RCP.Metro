@@ -85,24 +85,24 @@ public class FileManager
     /// <summary>
     /// Creates a file shortcut
     /// </summary>
-    public void CreateFileShortcut(FileSystemPath ShortcutName, FileSystemPath DestinationDirectory, FileSystemPath TargetFile, string arguments = null)
+    public void CreateFileShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory, FileSystemPath targetFile, string arguments = null)
     {
         try
         {
             // Make sure the file extension is correct or else Windows won't treat it as a shortcut
-            ShortcutName = ShortcutName.ChangeFileExtension(new FileExtension(".lnk"));
+            shortcutName = shortcutName.ChangeFileExtension(new FileExtension(".lnk"));
 
             // Delete if a shortcut with the same name already exists
-            DeleteFile(DestinationDirectory + ShortcutName);
+            DeleteFile(destinationDirectory + shortcutName);
 
             // Create the shortcut
-            WindowsHelpers.CreateFileShortcut(ShortcutName, DestinationDirectory, TargetFile, arguments);
+            WindowsHelpers.CreateFileShortcut(shortcutName, destinationDirectory, targetFile, arguments);
 
-            Logger.Info("The shortcut {0} was created", ShortcutName);
+            Logger.Info("The shortcut {0} was created", shortcutName);
         }
         catch (Exception ex)
         {
-            Logger.Warn(ex, "Creating shortcut {0}", DestinationDirectory);
+            Logger.Warn(ex, "Creating shortcut {0}", destinationDirectory);
 
             throw;
         }

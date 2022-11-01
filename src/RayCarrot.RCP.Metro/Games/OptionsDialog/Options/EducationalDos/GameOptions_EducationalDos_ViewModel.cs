@@ -60,16 +60,16 @@ public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
         Logger.Info("A new educational game is being added...");
 
         // Get the manager
-        var manager = Games.EducationalDos.GetGameDescriptor().GetLegacyManager<GameManager_EducationalDOSBox>();
+        var manager = Games.EducationalDos.GetGameDescriptor<GameDescriptor_EducationalDos_MSDOS>();
 
         // Locate the new game
-        var path = await Games.EducationalDos.GetGameDescriptor().GetLegacyManager().LocateAsync();
+        FileSystemPath? path = await Games.EducationalDos.GetGameDescriptor().LocateAsync();
 
         if (path == null)
             return;
 
         // Get the game info
-        var newItem = manager.GetNewEducationalDosBoxGameInfo(path.Value);
+        UserData_EducationalDosBoxGameData newItem = manager.GetNewEducationalDosBoxGameInfo(path.Value);
 
         // Add the game to the list of educational games
         Data.Game_EducationalDosBoxGames.Add(newItem);
@@ -113,7 +113,7 @@ public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
         }));
 
         // Refresh the default game
-        Games.EducationalDos.GetGameDescriptor().GetLegacyManager<GameManager_EducationalDOSBox>().RefreshDefault();
+        Games.EducationalDos.GetGameDescriptor<GameDescriptor_EducationalDos_MSDOS>().RefreshDefault();
 
         // Refresh
         await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), 

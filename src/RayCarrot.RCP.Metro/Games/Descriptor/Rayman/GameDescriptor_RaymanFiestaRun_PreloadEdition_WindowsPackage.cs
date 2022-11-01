@@ -3,29 +3,29 @@
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman Fiesta Run (Windows Package) game descriptor
+/// The Rayman Fiesta Run Preload Edition (Windows Package) game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPackageGameDescriptor
+public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage : WindowsPackageGameDescriptor
 {
     #region Private Constant Fields
 
-    private const string MicrosoftStoreID = "9wzdncrdds0c";
+    private const string MicrosoftStoreID = "9wzdncrdcw9b";
 
     #endregion
 
     #region Public Properties
 
-    public override string Id => "RaymanFiestaRun_WindowsPackage";
+    public override string Id => "RaymanFiestaRunPreloadEdition_WindowsPackage";
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
     public override Games LegacyGame => Games.RaymanFiestaRun;
 
-    public override string DisplayName => "Rayman Fiesta Run";
-    public override string BackupName => "Rayman Fiesta Run (Default)";
-    public override string DefaultFileName => "RFR_WinRT.exe";
+    public override string DisplayName => "Rayman Fiesta Run Preload Edition";
+    public override string BackupName => "Rayman Fiesta Run (Preload)";
+    public override string DefaultFileName => "RFR_WinRT_OEM.exe";
 
-    public override string PackageName => "Ubisoft.RaymanFiestaRun";
-    public override string FullPackageName => "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
+    public override string PackageName => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition";
+    public override string FullPackageName => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition_dbgk1hhpxymar";
 
     #endregion
 

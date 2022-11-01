@@ -150,7 +150,19 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     {
         try
         {
-            await gameDescriptor.GetLegacyManager().LocateAddGameAsync(gameDescriptor);
+            // Locate the game and get the path
+            FileSystemPath? path = await gameDescriptor.LocateAsync();
+
+            if (path == null)
+                return;
+
+            // Add the game
+            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, path.Value, false);
+
+            // Refresh
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
+
+            Logger.Info("The game {0} has been added", gameInstallation.Id);
         }
         catch (Exception ex)
         {
@@ -217,7 +229,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
                 if (launchMode == UserData_GameLaunchMode.AsAdminOption)
                 {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await gameDescriptor.GetLegacyManager().LaunchGameAsync(true))));
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, true))));
 
                     actions.Add(new OverflowButtonItemViewModel());
                 }
@@ -345,7 +357,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     displayName: gameDescriptor.DisplayName,
                     iconSource: gameDescriptor.IconSource,
                     isDemo: gameDescriptor.IsDemo,
-                    mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await gameDescriptor.GetLegacyManager().LaunchGameAsync(false))),
+                    mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, false))),
                     secondaryAction: optionsAction,
                     launchActions: actions);
             }

@@ -37,7 +37,8 @@ public class GameFinder
 
         // Get the game finder items
         GameFinderItems = GamesToFind.
-            SelectMany(x => x.GetLegacyManagers().Where(z => z.GameFinderItem != null).Select(y => new GameFinderItemContainer(x, y.GameFinderItem))).
+            Select(x => new GameFinderItemContainer(x, x.GetGameFinderItem())).
+            Where(x => x.FinderItem != null).
             ToArray();
 
         Logger.Trace("{0} game finders were found", GameFinderItems.Length);
@@ -156,7 +157,7 @@ public class GameFinder
                     continue;
 
                 // Add the game
-                await AddGameAsync(game, result.InstallDir, result.Parameter);
+                await AddGameAsync(game, result.InstallDir);
             }
 
             // Run custom finders
@@ -170,7 +171,7 @@ public class GameFinder
                     continue;
 
                 // Add the game
-                AddItem(item, result.InstallDir, result.Parameter);
+                AddItem(item, result.InstallDir);
             }
 
             Logger.Info("The game finder found {0} games", Results.Count);
@@ -545,9 +546,8 @@ public class GameFinder
     /// </summary>
     /// <param name="game">The game item to add</param>
     /// <param name="installDir">The found install directory</param>
-    /// <param name="parameter">Optional parameter</param>
     /// <returns>True if the game item was added, otherwise false</returns>
-    protected virtual async Task<bool> AddGameAsync(GameFinderItemContainer game, FileSystemPath installDir, object parameter = null)
+    protected virtual async Task<bool> AddGameAsync(GameFinderItemContainer game, FileSystemPath installDir)
     {
         Logger.Info("An install directory was found for {0}", game.GameDescriptor.Id);
 
@@ -580,14 +580,14 @@ public class GameFinder
         }
 
         // Make sure that the game is valid
-        if (!await game.GameDescriptor.GetLegacyManager().IsValidAsync(installDir, parameter))
+        if (!await game.GameDescriptor.IsValidAsync(installDir))
         {
             Logger.Info("{0} could not be added. The game default file was not found.", game.GameDescriptor.Id);
             return false;
         }
 
         // Add the game to found games
-        Results.Add(new GameFinder_GameResult(game.GameDescriptor, installDir, game.FinderItem.FoundAction, parameter));
+        Results.Add(new GameFinder_GameResult(game.GameDescriptor, installDir, game.FinderItem.FoundAction));
 
         // Remove from games to find
         GamesToFind.Remove(game.GameDescriptor);

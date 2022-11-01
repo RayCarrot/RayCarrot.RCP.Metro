@@ -799,7 +799,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
             File.WriteAllLines(batchFile, new string[]
             {
                 "@echo off",
-                $"{Path.GetFileNameWithoutExtension(GameInstallation.GameDescriptor.GetLegacyManager<GameManager_DOSBox>().ExecutableName)} ver={lang}"
+                $"{Path.GetFileNameWithoutExtension(GameInstallation.GetGameDescriptor<MSDOSGameDescriptor>().ExecutableName)} ver={lang}"
             });
         }
         catch (Exception ex)

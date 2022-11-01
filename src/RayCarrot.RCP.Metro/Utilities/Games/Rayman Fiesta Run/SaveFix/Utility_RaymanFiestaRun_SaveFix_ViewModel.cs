@@ -21,17 +21,18 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
     {
         Editions = new ObservableCollection<EditionViewModel>();
 
-        foreach (UserData_FiestaRunEdition edition in EnumHelpers.GetValues<UserData_FiestaRunEdition>())
-        {
-            FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-                                     "Packages" +
-                                     gameInstallation.GameDescriptor.GetLegacyManager<GameManager_RaymanFiestaRun_WinStore>().GetFiestaRunFullPackageName(edition) +
-                                     "LocalState";
-            FileSystemPath saveFile = saveDir + (edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat");
+        // TODO-14: Fix
+        //foreach (UserData_FiestaRunEdition edition in EnumHelpers.GetValues<UserData_FiestaRunEdition>())
+        //{
+        //    FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+        //                             "Packages" +
+        //                             gameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().GetFiestaRunFullPackageName(edition) +
+        //                             "LocalState";
+        //    FileSystemPath saveFile = saveDir + (edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat");
 
-            if (saveFile.FileExists)
-                Editions.Add(new EditionViewModel(edition, saveFile));
-        }
+        //    if (saveFile.FileExists)
+        //        Editions.Add(new EditionViewModel(edition, saveFile));
+        //}
 
         SelectedEdition = Editions.FirstOrDefault();
     }
@@ -49,16 +50,16 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
 
     public class EditionViewModel : BaseViewModel
     {
-        public EditionViewModel(UserData_FiestaRunEdition edition, FileSystemPath saveFilePath)
+        public EditionViewModel(FileSystemPath saveFilePath)
         {
-            Edition = edition;
-            DisplayName = edition switch
-            {
-                UserData_FiestaRunEdition.Default => new ResourceLocString(nameof(Resources.FiestaRunVersion_Default)),
-                UserData_FiestaRunEdition.Preload => new ResourceLocString(nameof(Resources.FiestaRunVersion_Preload)),
-                UserData_FiestaRunEdition.Win10 => new ResourceLocString(nameof(Resources.FiestaRunVersion_Win10)),
-                _ => throw new ArgumentOutOfRangeException(nameof(edition), edition, null)
-            };
+            // TODO-14: Fix
+            //DisplayName = edition switch
+            //{
+            //    UserData_FiestaRunEdition.Default => new ResourceLocString(nameof(Resources.FiestaRunVersion_Default)),
+            //    UserData_FiestaRunEdition.Preload => new ResourceLocString(nameof(Resources.FiestaRunVersion_Preload)),
+            //    UserData_FiestaRunEdition.Win10 => new ResourceLocString(nameof(Resources.FiestaRunVersion_Win10)),
+            //    _ => throw new ArgumentOutOfRangeException(nameof(edition), edition, null)
+            //};
             SaveFilePath = saveFilePath;
 
             RequiresFixing = CheckIfSaveRequiresFix();
@@ -70,7 +71,6 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
 
         public ICommand FixCommand { get; }
 
-        public UserData_FiestaRunEdition Edition { get; }
         public LocalizedString DisplayName { get; }
         public FileSystemPath SaveFilePath { get; }
         public bool RequiresFixing { get; set; }

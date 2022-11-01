@@ -372,7 +372,9 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.Id);
 
         // Get the config manager
-        var configManager = new Emulator_DOSBox_AutoConfigManager(GameInstallation.GameDescriptor.GetLegacyManager<GameManager_DOSBox>().DosBoxConfigFile);
+        var configManager = new Emulator_DOSBox_AutoConfigManager(
+            // TODO-14: Fix
+            ((MSDOSGameDescriptor)GameInstallation.GameDescriptor).DosBoxConfigFile);
 
         // Create the file
         configManager.Create();
@@ -417,7 +419,9 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         try
         {
             // Get the config manager
-            var configManager = new Emulator_DOSBox_AutoConfigManager(GameInstallation.GameDescriptor.GetLegacyManager<GameManager_DOSBox>().DosBoxConfigFile);
+            var configManager = new Emulator_DOSBox_AutoConfigManager(
+                // TODO-14: Fix
+                ((MSDOSGameDescriptor)GameInstallation.GameDescriptor).DosBoxConfigFile);
 
             // Create config data
             var configData = new Emulator_DOSBox_AutoConfigData();

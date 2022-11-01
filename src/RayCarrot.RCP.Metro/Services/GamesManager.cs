@@ -34,6 +34,8 @@ public class GamesManager
             new GameDescriptor_RaymanLegends_Steam(),
             new GameDescriptor_RaymanJungleRun_WindowsPackage(),
             new GameDescriptor_RaymanFiestaRun_WindowsPackage(),
+            new GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage(),
+            new GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPackage(),
 
             new GameDescriptor_RaymanRavingRabbids_Win32(),
             new GameDescriptor_RaymanRavingRabbids_Steam(),
@@ -56,13 +58,13 @@ public class GamesManager
             new GameDescriptor_Rayman3_Demo_20030108_Win32(),
             new GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32(),
 
-            new GameDescriptor_Ray1Minigames_Win32(),
+            new GameDescriptor_Rayman1Minigames_Win32(),
             new GameDescriptor_EducationalDos_MSDOS(),
             new GameDescriptor_TonicTrouble_Win32(),
             new GameDescriptor_TonicTroubleSpecialEdition_Win32(),
             new GameDescriptor_RaymanDictées_Win32(),
             new GameDescriptor_RaymanPremiersClics_Win32(),
-            new GameDescriptor_PrintStudio_Win32(),
+            new GameDescriptor_Rayman3PrintStudio_Win32(),
             new GameDescriptor_RaymanActivityCenter_Win32(),
             new GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32(),
 
@@ -128,20 +130,17 @@ public class GamesManager
         // Create an installation
         GameInstallation gameInstallation = new(gameDescriptor, installDirectory, isRCPInstalled);
 
-        // Get the manager
-        GameManager manager = gameInstallation.GameManager;
-
         // Add the game
         Data.Game_GameInstallations.Add(gameInstallation);
 
         Logger.Info("The game {0} has been added", gameInstallation.Id);
 
         // Run post-add operations
-        await manager.PostGameAddAsync(gameInstallation);
+        await gameDescriptor.PostGameAddAsync(gameInstallation);
 
         // Add the game to the jump list
-        if (gameInstallation.GameDescriptor.AutoAddToJumpList)
-            Data.App_JumpListItemIDCollection.AddRange(manager.GetJumpListItems(gameInstallation).Select(x => x.ID));
+        if (gameDescriptor.AutoAddToJumpList)
+            Data.App_JumpListItemIDCollection.AddRange(gameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.ID));
 
         return gameInstallation;
     }
@@ -156,9 +155,6 @@ public class GamesManager
     {
         try
         {
-            // Get the manager
-            GameManager manager = gameInstallation.GameManager;
-
             // TODO-14: Move this out of here
             if (!forceRemove)
             {
@@ -192,14 +188,14 @@ public class GamesManager
             }
 
             // Remove the game from the jump list
-            foreach (JumpListItemViewModel item in manager.GetJumpListItems(gameInstallation))
+            foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
                 Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
 
             // Remove the game
             Data.Game_GameInstallations.Remove(gameInstallation);
 
             // Run post game removal
-            await manager.PostGameRemovedAsync();
+            await gameInstallation.GameDescriptor.PostGameRemovedAsync(gameInstallation);
         }
         catch (Exception ex)
         {

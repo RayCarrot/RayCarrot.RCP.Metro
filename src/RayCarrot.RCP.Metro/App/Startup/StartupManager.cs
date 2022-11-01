@@ -226,7 +226,7 @@ public class StartupManager
         foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames().ToArray())
         {
             // Check if it's valid
-            if (await gameInstallation.GameManager.IsValidAsync(gameInstallation.InstallLocation))
+            if (await gameInstallation.GameDescriptor.IsValidAsync(gameInstallation.InstallLocation))
                 continue;
 
             // Show message

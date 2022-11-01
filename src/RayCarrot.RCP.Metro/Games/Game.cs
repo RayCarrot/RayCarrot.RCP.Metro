@@ -99,7 +99,7 @@ public enum Game
     /// <summary>
     /// Rayman 1 minigames
     /// </summary>
-    Ray1Minigames,
+    Rayman1Minigames,
 
     /// <summary>
     /// Educational DOS Rayman games
@@ -129,7 +129,7 @@ public enum Game
     /// <summary>
     /// Rayman 3 Print Studio
     /// </summary>
-    PrintStudio,
+    Rayman3PrintStudio,
 
     /// <summary>
     /// Rayman Activity Center

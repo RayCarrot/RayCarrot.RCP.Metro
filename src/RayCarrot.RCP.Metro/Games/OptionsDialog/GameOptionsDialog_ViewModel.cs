@@ -179,29 +179,17 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
 
             Logger.Info("The game install directory was removed");
 
-            // Get additional uninstall directories
-            var dirs = GameInstallation.GameDescriptor.UninstallDirectories;
+            // Delete additional directories
+            foreach (FileSystemPath dir in GameInstallation.GameDescriptor.UninstallDirectories)
+                Services.File.DeleteDirectory(dir);
 
-            if (dirs != null)
-            {
-                // Delete additional directories
-                foreach (var dir in dirs)
-                    Services.File.DeleteDirectory(dir);
+            Logger.Info("The game additional directories were removed");
 
-                Logger.Info("The game additional directories were removed");
-            }
+            // Delete additional files
+            foreach (FileSystemPath file in GameInstallation.GameDescriptor.UninstallFiles)
+                Services.File.DeleteFile(file);
 
-            // Get additional uninstall files
-            var files = GameInstallation.GameDescriptor.UninstallFiles;
-
-            if (files != null)
-            {
-                // Delete additional files
-                foreach (var file in files)
-                    Services.File.DeleteFile(file);
-
-                Logger.Info("The game additional files were removed");
-            }
+            Logger.Info("The game additional files were removed");
         }
         catch (Exception ex)
         {
@@ -239,7 +227,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
 
             var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GameDescriptor.DisplayName);
 
-            GameInstallation.GameManager.CreateGameShortcut(shortcutName, result.SelectedDirectory);
+            GameInstallation.GameDescriptor.CreateGameShortcut(GameInstallation, shortcutName, result.SelectedDirectory);
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
         }

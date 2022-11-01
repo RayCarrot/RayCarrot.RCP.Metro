@@ -13,13 +13,13 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => GameManager_WinStore.GetWinStoreBackupDirs(GameInstallation.GameDescriptor.GetLegacyManager<GameManager_WinStore>().FullPackageName);
+    protected override GameBackups_Directory[] BackupDirectories => WindowsPackageGameDescriptor.GetWinStoreBackupDirs(GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName);
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
                                  "Packages" +
-                                 GameInstallation.GameDescriptor.GetLegacyManager<GameManager_WinStore>().FullPackageName + 
+                                 GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName + 
                                  "LocalState";
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
 

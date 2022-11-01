@@ -286,7 +286,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
         data.Archive_CNT_SyncOnRepackRequested = true;
 
         // TODO: Find a better solution than first creating the utilities to then get the view models
-        Utility_BaseGameSyncTextureInfo_ViewModel? syncVm = GameInstallation.Game switch
+        Utility_BaseGameSyncTextureInfo_ViewModel? syncVm = GameInstallation.LegacyGame switch
         {
             Games.Rayman2 => new Utility_Rayman2_GameSyncTextureInfo(GameInstallation).ViewModel,
             Games.RaymanM => new Utility_RaymanM_GameSyncTextureInfo(GameInstallation).ViewModel,

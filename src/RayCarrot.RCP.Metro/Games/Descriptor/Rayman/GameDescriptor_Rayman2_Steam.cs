@@ -1,5 +1,5 @@
-﻿#nullable disable
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
@@ -8,57 +8,39 @@ using RayCarrot.RCP.Metro.Archive.CPA;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman 2 game descriptor
+/// The Rayman 2 (Steam) game descriptor
 /// </summary>
 public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
 {
-    #region Public Override Properties
+    #region Public Properties
 
     public override string Id => "Rayman2_Steam";
     public override Game Game => Game.Rayman2;
-
-    /// <summary>
-    /// The game
-    /// </summary>
+    public override GameCategory Category => GameCategory.Rayman;
     public override Games LegacyGame => Games.Rayman2;
 
-    /// <summary>
-    /// The category for the game
-    /// </summary>
-    public override GameCategory Category => GameCategory.Rayman;
-
-    /// <summary>
-    /// The game display name
-    /// </summary>
     public override string DisplayName => "Rayman 2";
-
-    /// <summary>
-    /// The game backup name
-    /// </summary>
     public override string BackupName => "Rayman 2";
-
-    /// <summary>
-    /// Gets the launch name for the game
-    /// </summary>
     public override string DefaultFileName => "Rayman2.exe";
 
-    /// <summary>
-    /// The config page view model, if any is available
-    /// </summary>
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+    public override string RayMapURL => AppURLs.GetRayMapGameURL("r2_pc", "r2_pc");
+
+    public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
+
+    public override bool HasArchives => true;
+
+    public override string SteamID => "15060";
+
+    #endregion
+
+    #region Public Methods
+
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_Rayman2_ViewModel(gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
         new ProgressionGameViewModel_Rayman2(gameInstallation).Yield();
 
-    /// <summary>
-    /// Optional RayMap URL
-    /// </summary>
-    public override string RayMapURL => AppURLs.GetRayMapGameURL("r2_pc", "r2_pc");
-
-    /// <summary>
-    /// Gets the file links for the game
-    /// </summary>
     public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {
         new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "GXSetup.exe"),
@@ -67,69 +49,18 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
         new(Resources.GameLink_R2Fix, gameInstallation.InstallLocation + "R2FixCfg.exe"),
     };
 
-    /// <summary>
-    /// The group names to use for the options, config and utility dialog
-    /// </summary>
-    public override IEnumerable<string> DialogGroupNames => new string[]
-    {
-        UbiIniFileGroupName
-    };
-
-    /// <summary>
-    /// Indicates if the game can be installed from a disc in this program
-    /// </summary>
-    public override bool CanBeInstalledFromDisc => true;
-
-    /// <summary>
-    /// The .gif files to use during the game installation if installing from a disc
-    /// </summary>
-    public override string[] InstallerGifs
-    {
-        get
-        {
-            var basePath = $"{AppViewModel.WPFApplicationBasePath}Installer/InstallerGifs/";
-
-            return new string[]
-            {
-                basePath + "ASTRO.gif",
-                basePath + "CASK.gif",
-                basePath + "CHASE.gif",
-                basePath + "GLOB.gif",
-                basePath + "RODEO.gif",
-            };
-        }
-    }
-
-    /// <summary>
-    /// Indicates if the game has archives which can be opened
-    /// </summary>
-    public override bool HasArchives => true;
-
-    /// <summary>
-    /// Gets the archive data manager for the game
-    /// </summary>
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation gameInstallation) => 
+    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
 
-    /// <summary>
-    /// Gets the archive file paths for the game
-    /// </summary>
-    /// <param name="installDir">The game's install directory</param>
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
+    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
     {
         installDir + "Data" + "Textures.cnt",
         installDir + "Data" + "Vignette.cnt",
     };
 
-    #endregion
-
-    #region Platform Properties
-
-    public override string SteamID => "15060";
-
-    #endregion
-
-    #region Public Override Methods
+    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() =>
+        // No longer available for purchase
+        Enumerable.Empty<GamePurchaseLink>();
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {

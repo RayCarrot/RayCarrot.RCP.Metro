@@ -57,7 +57,6 @@ public class AppUserData : BaseViewModel
         Game_DosBoxGames = new Dictionary<Games, UserData_DosBoxOptions>();
         Game_AutoLocateGames = true;
         Game_ShowNotInstalledGames = true;
-        Game_FiestaRunVersion = UserData_FiestaRunEdition.Default;
         Game_EducationalDosBoxGames = null;
         Game_RRR2LaunchMode = UserData_RRR2LaunchMode.AllGames;
         Game_RabbidsGoHomeLaunchData = null;
@@ -283,11 +282,6 @@ public class AppUserData : BaseViewModel
     /// Indicates if not installed games should be shown
     /// </summary>
     public bool Game_ShowNotInstalledGames { get; set; }
-
-    /// <summary>
-    /// Indicates the current version of Rayman Fiesta Run
-    /// </summary>
-    public UserData_FiestaRunEdition Game_FiestaRunVersion { get; set; }
 
     /// <summary>
     /// The saved educational DOSBox games
@@ -526,7 +520,8 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private UserData_LinkItemStyle LinkItemStyle { set => UI_LinkItemStyle = value; }
     [JsonProperty] private HorizontalAlignment LinkListHorizontalAlignment { set => UI_LinkListHorizontalAlignment = value; }
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }
-    [JsonProperty] private UserData_FiestaRunEdition FiestaRunVersion { set => Game_FiestaRunVersion = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private UserData_FiestaRunEdition FiestaRunVersion { set => Game_FiestaRunVersion = value; }
     [JsonProperty] private List<UserData_EducationalDosBoxGameData> EducationalDosBoxGames { set => Game_EducationalDosBoxGames = value; }
     [JsonProperty] private UserData_RRR2LaunchMode RRR2LaunchMode { set => Game_RRR2LaunchMode = value; }
     [JsonProperty] private UserData_RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { set => Game_RabbidsGoHomeLaunchData = value; }

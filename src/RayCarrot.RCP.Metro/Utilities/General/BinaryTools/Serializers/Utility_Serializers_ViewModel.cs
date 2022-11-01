@@ -122,7 +122,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     {
                         GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                               "Packages" +
-                                              Games.RaymanJungleRun.GetGameDescriptor().GetLegacyManager<GameManager_WinStore>().FullPackageName +
+                                              Games.RaymanJungleRun.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
                                               "LocalState"
                     },
                 }),
@@ -137,7 +137,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     {
                         GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                               "Packages" +
-                                              Games.RaymanFiestaRun.GetGameDescriptor().GetLegacyManager<GameManager_WinStore>().FullPackageName +
+                                              Games.RaymanFiestaRun.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
                                               "LocalState"
                     },
                 }),
@@ -152,7 +152,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     {
                         GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
                                               "Packages" + 
-                                              Games.RabbidsBigBang.GetGameDescriptor().GetLegacyManager<GameManager_WinStore>().FullPackageName + 
+                                              Games.RabbidsBigBang.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName + 
                                               "LocalState"
                     },
                 }),
