@@ -48,14 +48,14 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         GameCategories = new ObservableCollection<Page_Games_CategoryViewModel>()
         {
             // Create the master category
-            new Page_Games_CategoryViewModel(gamesManager.EnumerateGameDescriptors().ToArray()), 
+            new(gamesManager.EnumerateGameDescriptors().ToArray()), 
                 
             // Create the categories
-            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Rayman], new ResourceLocString(nameof(Resources.GamesPage_Category_Rayman)), GenericIconKind.Games_Rayman), 
-            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Rabbids], new ResourceLocString(nameof(Resources.GamesPage_Category_Rabbids)), GenericIconKind.Games_Rabbids), 
-            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Demo], new ResourceLocString(nameof(Resources.GamesPage_Category_Demos)), GenericIconKind.Games_Demos),
-            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Other], new ResourceLocString(nameof(Resources.GamesPage_Category_Other)), GenericIconKind.Games_Other), 
-            new Page_Games_CategoryViewModel(groupedGames[GameCategory.Fan], new ResourceLocString(nameof(Resources.GamesPage_Category_Fan)), GenericIconKind.Games_FanGames),
+            new(groupedGames[GameCategory.Rayman], new ResourceLocString(nameof(Resources.GamesPage_Category_Rayman)), GenericIconKind.Games_Rayman), 
+            new(groupedGames[GameCategory.Rabbids], new ResourceLocString(nameof(Resources.GamesPage_Category_Rabbids)), GenericIconKind.Games_Rabbids), 
+            new(groupedGames[GameCategory.Demo], new ResourceLocString(nameof(Resources.GamesPage_Category_Demos)), GenericIconKind.Games_Demos),
+            new(groupedGames[GameCategory.Other], new ResourceLocString(nameof(Resources.GamesPage_Category_Other)), GenericIconKind.Games_Other), 
+            new(groupedGames[GameCategory.Fan], new ResourceLocString(nameof(Resources.GamesPage_Category_Fan)), GenericIconKind.Games_FanGames),
         };
 
         // Create commands
@@ -207,224 +207,206 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         }
     }
 
-    /// <summary>
-    /// Gets a display view model for the game
-    /// </summary>
-    /// <param name="gameDescriptor">The game descriptor to get the view model for</param>
-    /// <returns>A new display view model</returns>
-    private Page_Games_GameViewModel GetDisplayViewModel(GameDescriptor gameDescriptor)
+    private Page_Games_GameViewModel GetNotInstalledGameViewModel(GameDescriptor gameDescriptor)
     {
-        try
+        var actions = new List<OverflowButtonItemViewModel>();
+
+        OverflowButtonItemViewModel? downloadItem = null;
+
+        if (gameDescriptor.CanBeDownloaded)
         {
-            Games game = gameDescriptor.LegacyGame;
+            downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, GenericIconKind.GameDisplay_Download, new AsyncRelayCommand(async () => await DownloadGameAsync(gameDescriptor)));
 
-            if (game.IsAdded())
+            if (gameDescriptor.CanBeLocated)
             {
-                var actions = new List<OverflowButtonItemViewModel>();
+                actions.Add(downloadItem);
+                actions.Add(new OverflowButtonItemViewModel());
+            }
+        }
 
-                // Get the installation
-                GameInstallation gameInstallation = game.GetInstallation();
+        // Add purchase links
+        actions.AddRange(gameDescriptor.GetGamePurchaseLinks().
+            Select(x =>
+            {
+                // Get the path
+                string path = x.Path;
 
-                // Add launch options if set to do so
-                var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-                if (launchMode == UserData_GameLaunchMode.AsAdminOption)
+                // Create the command
+                var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path))?.Dispose());
+
+                // Return the item
+                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+            }));
+
+        // Add disc installer options for specific Games
+        if (gameDescriptor.CanBeInstalledFromDisc)
+        {
+            // Add separator if there are previous actions
+            if (actions.Any())
+                actions.Add(new OverflowButtonItemViewModel());
+
+            // Add disc installer action
+            actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new AsyncRelayCommand(async () =>
+            {
+                // Show and run the installer
+                await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(gameDescriptor.LegacyGame));
+            })));
+        }
+
+        // If the last option is a separator, remove it
+        if (actions.LastOrDefault()?.IsSeparator == true)
+            actions.RemoveAt(actions.Count - 1);
+
+        // Create the main action
+        var mainAction = gameDescriptor.CanBeLocated
+            ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(gameDescriptor)))
+            : downloadItem;
+
+        // Return the view model
+        return new Page_Games_GameViewModel(gameDescriptor, gameDescriptor.DisplayName, gameDescriptor.IconSource, gameDescriptor.IsDemo, mainAction, null, actions);
+    }
+
+    private Page_Games_GameViewModel GetInstalledGameViewModel(GameInstallation gameInstallation)
+    {
+        GameDescriptor gameDescriptor = gameInstallation.GameDescriptor;
+
+        var actions = new List<OverflowButtonItemViewModel>();
+
+        // Add launch options if set to do so
+        var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+        if (launchMode == UserData_GameLaunchMode.AsAdminOption)
+        {
+            actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, true))));
+
+            actions.Add(new OverflowButtonItemViewModel());
+        }
+
+        // Get the Game links
+        var links = gameDescriptor.GetGameFileLinks(gameInstallation)?.Where(x => x.Path.FileExists).ToArray();
+
+        // Add links if there are any
+        if (links?.Any() ?? false)
+        {
+            actions.AddRange(links.
+                Select(x =>
                 {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, GenericIconKind.GameDisplay_Admin, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, true))));
+                    // Get the path
+                    string path = x.Path;
 
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
+                    // Create the command
+                    var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
 
-                // Get the Game links
-                var links = gameDescriptor.GetGameFileLinks(gameInstallation)?.Where(x => x.Path.FileExists).ToArray();
+                    if (x.Icon != GenericIconKind.None)
+                        return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
 
-                // Add links if there are any
-                if (links?.Any() ?? false)
-                {
-                    actions.AddRange(links.
-                        Select(x =>
-                        {
-                            // Get the path
-                            string path = x.Path;
-
-                            // Create the command
-                            var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
-
-                            if (x.Icon != GenericIconKind.None)
-                                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-
-                            try
-                            {
-                                return new OverflowButtonItemViewModel(x.Header, WindowsHelpers.GetIconOrThumbnail(x.Path, ShellThumbnailSize.Small).ToImageSource(), command);
-                            }
-                            catch (Exception ex)
-                            {
-                                Logger.Error(ex, "Getting file icon for overflow button item");
-                                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                            }
-                        }));
-
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
-
-                // Add additional items
-                int count = actions.Count;
-                actions.AddRange(gameDescriptor.GetAdditionalOverflowButtonItems());
-
-                if (actions.Count != count)
-                    actions.Add(new OverflowButtonItemViewModel());
-
-                // Add RayMap link
-                if (gameDescriptor.RayMapURL != null)
-                {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await File.LaunchFileAsync(gameDescriptor.RayMapURL))?.Dispose())));
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
-
-                // Add open archive
-                if (gameDescriptor.HasArchives)
-                {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, GenericIconKind.GameDisplay_Archive, new AsyncRelayCommand(async () =>
+                    try
                     {
-                        using IArchiveDataManager archiveDataManager = gameDescriptor.GetArchiveDataManager(gameInstallation);
-
-                        try
-                        {
-                            // Show the archive explorer
-                            await UI.ShowArchiveExplorerAsync(
-                                manager: archiveDataManager,
-                                filePaths: gameDescriptor.GetArchiveFilePaths(gameInstallation.InstallLocation).
-                                    Where(x => x.FileExists).
-                                    ToArray());
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Error(ex, "Running Archive Explorer");
-
-                            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
-                        }
-                    }), UserLevel.Advanced));
-                }
-
-                // Add open location
-                actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () =>
-                {
-                    // Get the install directory
-                    FileSystemPath instDir = gameInstallation.InstallLocation;
-
-                    // Select the file in Explorer if it exists
-                    if ((instDir + gameDescriptor.DefaultFileName).FileExists)
-                        instDir += gameDescriptor.DefaultFileName;
-
-                    // Open the location
-                    await File.OpenExplorerLocationAsync(instDir);
-
-                    Logger.Trace("The Game {0} install location was opened", gameInstallation.Id);
-                }), UserLevel.Advanced));
-
-                actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
-
-                // Add patcher option
-                if (gameDescriptor.AllowPatching)
-                {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Patcher, GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
+                        return new OverflowButtonItemViewModel(x.Header, WindowsHelpers.GetIconOrThumbnail(x.Path, ShellThumbnailSize.Small).ToImageSource(), command);
+                    }
+                    catch (Exception ex)
                     {
-                        try
-                        {
-                            // Show the Patcher
-                            await UI.ShowPatcherAsync(gameInstallation);
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Error(ex, "Runing Patcher");
-
-                            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_CriticalError);
-                        }
-                    }), UserLevel.Advanced));
-                    actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
-                }
-
-                // Add Game options
-                var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, GenericIconKind.GameDisplay_Config, new AsyncRelayCommand(async () =>
-                {
-                    Logger.Trace("The game {0} options dialog is opening...", gameInstallation.Id);
-                    await UI.ShowGameOptionsAsync(gameInstallation);
+                        Logger.Error(ex, "Getting file icon for overflow button item");
+                        return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+                    }
                 }));
 
-                actions.Add(optionsAction);
-
-                return new Page_Games_GameViewModel(
-                    game: game,
-                    displayName: gameDescriptor.DisplayName,
-                    iconSource: gameDescriptor.IconSource,
-                    isDemo: gameDescriptor.IsDemo,
-                    mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, false))),
-                    secondaryAction: optionsAction,
-                    launchActions: actions);
-            }
-            else
-            {
-                var actions = new List<OverflowButtonItemViewModel>();
-
-                OverflowButtonItemViewModel? downloadItem = null;
-
-                if (gameDescriptor.CanBeDownloaded)
-                {
-                    downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, GenericIconKind.GameDisplay_Download, new AsyncRelayCommand(async () => await DownloadGameAsync(gameDescriptor)));
-
-                    if (gameDescriptor.CanBeLocated)
-                    {
-                        actions.Add(downloadItem);
-                        actions.Add(new OverflowButtonItemViewModel());
-                    }
-                }
-
-                // Add purchase links
-                actions.AddRange(gameDescriptor.GetGamePurchaseLinks().
-                    Select(x =>
-                    {
-                        // Get the path
-                        string path = x.Path;
-
-                        // Create the command
-                        var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path))?.Dispose());
-
-                        // Return the item
-                        return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                    }));
-
-                // Add disc installer options for specific Games
-                if (gameDescriptor.CanBeInstalledFromDisc)
-                {
-                    // Add separator if there are previous actions
-                    if (actions.Any())
-                        actions.Add(new OverflowButtonItemViewModel());
-
-                    // Add disc installer action
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new AsyncRelayCommand(async () =>
-                    {
-                        // Show and run the installer
-                        await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(game));
-                    })));
-                }
-
-                // If the last option is a separator, remove it
-                if (actions.LastOrDefault()?.IsSeparator == true)
-                    actions.RemoveAt(actions.Count - 1);
-
-                // Create the main action
-                var mainAction = gameDescriptor.CanBeLocated
-                    ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(gameDescriptor)))
-                    : downloadItem;
-
-                // Return the view model
-                return new Page_Games_GameViewModel(game, gameDescriptor.DisplayName, gameDescriptor.IconSource, gameDescriptor.IsDemo, mainAction, null, actions);
-            }
+            actions.Add(new OverflowButtonItemViewModel());
         }
-        catch (Exception ex)
+
+        // Add additional items
+        int count = actions.Count;
+        actions.AddRange(gameDescriptor.GetAdditionalOverflowButtonItems());
+
+        if (actions.Count != count)
+            actions.Add(new OverflowButtonItemViewModel());
+
+        // Add RayMap link
+        if (gameDescriptor.RayMapURL != null)
         {
-            Logger.Fatal(ex, "Getting game display view model");
-            throw;
+            actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await File.LaunchFileAsync(gameDescriptor.RayMapURL))?.Dispose())));
+            actions.Add(new OverflowButtonItemViewModel());
         }
+
+        // Add open archive
+        if (gameDescriptor.HasArchives)
+        {
+            actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, GenericIconKind.GameDisplay_Archive, new AsyncRelayCommand(async () =>
+            {
+                using IArchiveDataManager archiveDataManager = gameDescriptor.GetArchiveDataManager(gameInstallation);
+
+                try
+                {
+                    // Show the archive explorer
+                    await UI.ShowArchiveExplorerAsync(
+                        manager: archiveDataManager,
+                        filePaths: gameDescriptor.GetArchiveFilePaths(gameInstallation.InstallLocation).
+                            Where(x => x.FileExists).
+                            ToArray());
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Running Archive Explorer");
+
+                    await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
+                }
+            }), UserLevel.Advanced));
+        }
+
+        // Add open location
+        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () =>
+        {
+            // Get the install directory
+            FileSystemPath instDir = gameInstallation.InstallLocation;
+
+            // Select the file in Explorer if it exists
+            if ((instDir + gameDescriptor.DefaultFileName).FileExists)
+                instDir += gameDescriptor.DefaultFileName;
+
+            // Open the location
+            await File.OpenExplorerLocationAsync(instDir);
+
+            Logger.Trace("The Game {0} install location was opened", gameInstallation.Id);
+        }), UserLevel.Advanced));
+
+        actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
+
+        // Add patcher option
+        if (gameDescriptor.AllowPatching)
+        {
+            actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Patcher, GenericIconKind.GameDisplay_Patcher, new AsyncRelayCommand(async () =>
+            {
+                try
+                {
+                    // Show the Patcher
+                    await UI.ShowPatcherAsync(gameInstallation);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Runing Patcher");
+
+                    await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_CriticalError);
+                }
+            }), UserLevel.Advanced));
+            actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
+        }
+
+        // Add Game options
+        var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, GenericIconKind.GameDisplay_Config, new AsyncRelayCommand(async () =>
+        {
+            Logger.Trace("The game {0} options dialog is opening...", gameInstallation.Id);
+            await UI.ShowGameOptionsAsync(gameInstallation);
+        }));
+
+        actions.Add(optionsAction);
+
+        return new Page_Games_GameViewModel(
+            gameDescriptor: gameDescriptor,
+            displayName: gameDescriptor.DisplayName,
+            iconSource: gameDescriptor.IconSource,
+            isDemo: gameDescriptor.IsDemo,
+            mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, false))),
+            secondaryAction: optionsAction,
+            launchActions: actions);
     }
 
     #endregion
@@ -449,11 +431,13 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             try
             {
                 // Make sure the game has been added
-                if (!gameDescriptor.LegacyGame.IsAdded())
+                if (!gameDescriptor.IsAdded())
                     throw new Exception("Only added games can be refreshed individually");
 
                 // Get the display view model
-                Page_Games_GameViewModel displayVM = GetDisplayViewModel(gameDescriptor);
+                Page_Games_GameViewModel displayVM = gameDescriptor.IsAdded() 
+                    ? GetInstalledGameViewModel(gameDescriptor.GetInstallation()) 
+                    : GetNotInstalledGameViewModel(gameDescriptor);
 
                 // Refresh the game in every category it's available in
                 foreach (var category in GameCategories.Where(x => x.GameDescriptors.Contains(gameDescriptor)))
@@ -461,10 +445,10 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     Logger.Trace("The displayed game {0} in {1} is being refreshed...", gameDescriptor.Id, category.DisplayName);
 
                     // Get the collection containing the game
-                    var collection = category.InstalledGames.Any(x => x.Game == gameDescriptor.LegacyGame) ? category.InstalledGames : category.NotInstalledGames;
+                    var collection = category.InstalledGames.Any(x => x.GameDescriptor == gameDescriptor) ? category.InstalledGames : category.NotInstalledGames;
 
                     // Get the game index
-                    var index = collection.FindItemIndex(x => x.Game == gameDescriptor.LegacyGame);
+                    var index = collection.FindItemIndex(x => x.GameDescriptor == gameDescriptor);
 
                     // Make sure we got a valid index
                     if (index == -1)
@@ -527,10 +511,12 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                             // If cached, reuse the view model, otherwise create new and add to cache
                             Page_Games_GameViewModel displayVM = displayVMCache.ContainsKey(gameDescriptor)
                                 ? displayVMCache[gameDescriptor]
-                                : displayVMCache[gameDescriptor] = GetDisplayViewModel(gameDescriptor);
+                                : displayVMCache[gameDescriptor] = gameDescriptor.IsAdded()
+                                    ? GetInstalledGameViewModel(gameDescriptor.GetInstallation())
+                                    : GetNotInstalledGameViewModel(gameDescriptor);
 
                             // Check if it has been added
-                            if (gameDescriptor.LegacyGame.IsAdded())
+                            if (gameDescriptor.IsAdded())
                             {
                                 // Add the game to the collection
                                category.InstalledGames.Add(displayVM);

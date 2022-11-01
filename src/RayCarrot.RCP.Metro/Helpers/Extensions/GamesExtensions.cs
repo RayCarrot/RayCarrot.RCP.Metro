@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public static class GamesExtensions
 {
-    // TODO-14: Remove most of these
+    // TODO-14: Remove all of these
 
     /// <summary>
     /// Determines if the specified game has been added to the program
@@ -19,6 +19,9 @@ public static class GamesExtensions
     {
         return Services.Data.Game_GameInstallations.Any(x => x.LegacyGame == game);
     }
+
+    public static bool IsAdded(this GameDescriptor gameDescriptor) =>
+        Services.Data.Game_GameInstallations.Any(x => x.GameDescriptor == gameDescriptor);
 
     /// <summary>
     /// Gets the install directory for the game or an empty path if not found or if it doesn't exist
@@ -64,5 +67,8 @@ public static class GamesExtensions
     }
 
     // TODO-14: Remove once no longer needed
-    public static GameInstallation GetInstallation(this Games game) => Services.Data.Game_GameInstallations.First(x => x.LegacyGame == game);
+    public static GameInstallation GetInstallation(this Games game) => 
+        Services.Data.Game_GameInstallations.First(x => x.LegacyGame == game);
+    public static GameInstallation GetInstallation(this GameDescriptor gameDescriptor) => 
+        Services.Data.Game_GameInstallations.First(x => x.GameDescriptor == gameDescriptor);
 }

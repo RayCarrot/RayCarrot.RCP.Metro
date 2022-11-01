@@ -11,16 +11,16 @@ public class Page_Games_GameViewModel : BaseRCPViewModel
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="game">The game</param>
+    /// <param name="gameDescriptor">The game descriptor</param>
     /// <param name="displayName">The display name</param>
     /// <param name="iconSource">The icon source</param>
     /// <param name="isDemo">Indicates if the game is a demo</param>
     /// <param name="mainAction">The main action</param>
     /// <param name="secondaryAction">The secondary action</param>
     /// <param name="launchActions">The launch actions</param>
-    public Page_Games_GameViewModel(Games game, string displayName, string iconSource, bool isDemo, ActionItemViewModel mainAction, ActionItemViewModel? secondaryAction, IEnumerable<OverflowButtonItemViewModel>? launchActions)
+    public Page_Games_GameViewModel(GameDescriptor gameDescriptor, string displayName, string iconSource, bool isDemo, ActionItemViewModel mainAction, ActionItemViewModel? secondaryAction, IEnumerable<OverflowButtonItemViewModel>? launchActions)
     {
-        Game = game;
+        GameDescriptor = gameDescriptor;
         DisplayName = displayName;
         IconSource = iconSource;
         IsDemo = isDemo;
@@ -32,7 +32,7 @@ public class Page_Games_GameViewModel : BaseRCPViewModel
     /// <summary>
     /// The game
     /// </summary>
-    public Games Game { get; }
+    public GameDescriptor GameDescriptor { get; }
 
     /// <summary>
     /// The main action

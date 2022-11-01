@@ -107,7 +107,6 @@ public class GamesManager
     /// Adds a new game to the app data
     /// </summary>
     /// <param name="gameDescriptor">The game descriptor for the game to add</param>
-    /// <param name="type">The game type</param>
     /// <param name="installDirectory">The game install directory</param>
     /// <param name="isRCPInstalled">Indicates if the game was installed through the Rayman Control Panel</param>
     /// <returns>The game installation</returns>
@@ -117,15 +116,15 @@ public class GamesManager
 
         // TODO-14: Remove this
         // Make sure the game hasn't already been added
-        if (gameDescriptor.LegacyGame.IsAdded())
-        {
-            Logger.Warn("The game {0} has already been added", gameDescriptor.Id);
+        //if (gameDescriptor.LegacyGame.IsAdded())
+        //{
+        //    Logger.Warn("The game {0} has already been added", gameDescriptor.Id);
 
-            await MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, gameDescriptor.DisplayName), 
-                Resources.AddGame_DuplicateHeader, MessageType.Error);
+        //    await MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, gameDescriptor.DisplayName), 
+        //        Resources.AddGame_DuplicateHeader, MessageType.Error);
 
-            return null;
-        }
+        //    return null;
+        //}
 
         // Create an installation
         GameInstallation gameInstallation = new(gameDescriptor, installDirectory, isRCPInstalled);
@@ -204,6 +203,7 @@ public class GamesManager
         }
     }
 
+    // TODO-14: Should we sort these?
     /// <summary>
     /// Enumerates the installed games
     /// </summary>
