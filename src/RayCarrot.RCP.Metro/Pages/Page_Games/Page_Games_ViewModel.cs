@@ -239,7 +239,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             }));
 
         // Add disc installer options for specific Games
-        if (gameDescriptor.CanBeInstalledFromDisc)
+        if (gameDescriptor.HasGameInstaller)
         {
             // Add separator if there are previous actions
             if (actions.Any())

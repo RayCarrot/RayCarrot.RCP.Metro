@@ -30,24 +30,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         UbiIniFileGroupName
     };
 
-    public override bool CanBeInstalledFromDisc => true;
-    public override string[] InstallerGifs
-    {
-        get
-        {
-            var basePath = $"{AppViewModel.WPFApplicationBasePath}Installer/InstallerGifs/";
-
-            return new string[]
-            {
-                basePath + "ASTRO.gif",
-                basePath + "CASK.gif",
-                basePath + "CHASE.gif",
-                basePath + "GLOB.gif",
-                basePath + "RODEO.gif",
-            };
-        }
-    }
-
+    public override bool HasGameInstaller => true;
     public override bool HasArchives => true;
 
     #endregion
@@ -120,6 +103,11 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         "Rayman: 2 - The Great Escape",
         "GOG.com Rayman 2",
     });
+
+    public override GameInstallerInfo GetGameInstallerData() => new(
+        discFilesListFileName: "Rayman2",
+        gameLogoFileName: "Rayman2_Logo.png",
+        gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", });
 
     #endregion
 }

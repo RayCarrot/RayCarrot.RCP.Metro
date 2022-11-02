@@ -119,16 +119,10 @@ public abstract class GameDescriptor
     /// </summary>
     public virtual IList<Uri>? DownloadURLs => null;
 
-    // TODO-14: Normalize disc installer data under single class/record
     /// <summary>
     /// Indicates if the game can be installed from a disc in this program
     /// </summary>
-    public virtual bool CanBeInstalledFromDisc => false;
-
-    /// <summary>
-    /// The .gif files to use during the game installation if installing from a disc
-    /// </summary>
-    public virtual string[]? InstallerGifs => null;
+    public virtual bool HasGameInstaller => false;
 
     /// <summary>
     /// Indicates if the game should automatically be added to the jump list once added
@@ -367,6 +361,12 @@ public abstract class GameDescriptor
     /// </summary>
     /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install location.</returns>
     public abstract Task<FileSystemPath?> LocateAsync();
+
+    /// <summary>
+    /// Gets the game installer info if available
+    /// </summary>
+    /// <returns>The game installer info or null if not available</returns>
+    public virtual GameInstallerInfo? GetGameInstallerData() => null;
 
     /// <summary>
     /// Indicates if the game is valid

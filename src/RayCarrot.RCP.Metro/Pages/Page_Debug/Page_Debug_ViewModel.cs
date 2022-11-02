@@ -187,7 +187,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     protected override Task InitializeAsync()
     {
         // Set properties
-        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.CanBeInstalledFromDisc).ToObservableCollection();
+        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.HasGameInstaller).ToObservableCollection();
         SelectedInstaller = AvailableInstallers.First();
         SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
 
@@ -439,7 +439,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         AddLine("Display name", gameDescriptor.DisplayName);
                         AddLine("Default file name", gameDescriptor.DefaultFileName);
                         AddLine("Icon source", gameDescriptor.IconSource);
-                        AddLine("Has disc installer", gameDescriptor.CanBeInstalledFromDisc);
+                        AddLine("Has disc installer", gameDescriptor.HasGameInstaller);
                         AddLine("Dialog group names", gameDescriptor.DialogGroupNames.JoinItems(", "));
                         
                         DataOutput += Environment.NewLine;

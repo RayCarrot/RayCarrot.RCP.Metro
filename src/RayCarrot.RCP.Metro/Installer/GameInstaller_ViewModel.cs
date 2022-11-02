@@ -1,7 +1,7 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -26,6 +26,8 @@ public class GameInstaller_ViewModel : UserInputViewModel
 
         // Set game
         GameDescriptor = gameDescriptor;
+        Info = gameDescriptor.GetGameInstallerData() ?? 
+               throw new InvalidOperationException("The game installer can't be used on a game where the game installer info is not provided");
 
         // Set title
         Title = String.Format(Resources.Installer_Title, gameDescriptor.DisplayName);
@@ -34,8 +36,8 @@ public class GameInstaller_ViewModel : UserInputViewModel
         CancellationTokenSource = new CancellationTokenSource();
 
         // Get images
-        GameLogoSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameLogos/{gameDescriptor.LegacyGame}_Logo.png";
-        Gifs = gameDescriptor.InstallerGifs;
+        GameLogoSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameLogos/{Info.GameLogoFileName}";
+        Gifs = Info.GifFileNames.Select(x => $"{AppViewModel.WPFApplicationBasePath}Installer/InstallerGifs/{x}").ToArray();
 
         // Default the install directory
         InstallDir = Environment.SpecialFolder.ProgramFiles.GetFolderPath();
@@ -64,6 +66,11 @@ public class GameInstaller_ViewModel : UserInputViewModel
     /// The game to install
     /// </summary>
     public GameDescriptor GameDescriptor { get; }
+
+    /// <summary>
+    /// The info for the installer
+    /// </summary>
+    public GameInstallerInfo Info { get; }
 
     /// <summary>
     /// The cancellation token source for the installation
@@ -152,7 +159,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
     /// <summary>
     /// The current item info
     /// </summary>
-    public string CurrentItemInfo { get; set; }
+    public string? CurrentItemInfo { get; set; }
 
     #endregion
 
@@ -161,12 +168,12 @@ public class GameInstaller_ViewModel : UserInputViewModel
     /// <summary>
     /// Occurs when the installation status is updated
     /// </summary>
-    public event StatusUpdateEventHandler StatusUpdated;
+    public event StatusUpdateEventHandler? StatusUpdated;
 
     /// <summary>
     /// Occurs when the installation is complete or canceled
     /// </summary>
-    public event EventHandler InstallationComplete;
+    public event EventHandler? InstallationComplete;
 
     #endregion
 
@@ -191,7 +198,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
         List<GameInstaller_Item> result = new();
 
         // Attempt to get the text file containing the items
-        if (InstallerGames.ResourceManager.GetObject($"{GameDescriptor.LegacyGame}") is not string file)
+        if (InstallerGames.ResourceManager.GetObject($"{Info.DiscFilesListFileName}") is not string file)
             throw new Exception("Installer item not found");
 
         // Create a string reader

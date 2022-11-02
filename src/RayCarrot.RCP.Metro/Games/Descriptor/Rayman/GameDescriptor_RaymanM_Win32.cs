@@ -26,24 +26,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
-    public override bool CanBeInstalledFromDisc => true;
-    public override string[] InstallerGifs
-    {
-        get
-        {
-            const string basePath = $"{AppViewModel.WPFApplicationBasePath}Installer/InstallerGifs/";
-
-            return new[]
-            {
-                basePath + "ASTRO.gif",
-                basePath + "CASK.gif",
-                basePath + "CHASE.gif",
-                basePath + "GLOB.gif",
-                basePath + "RODEO.gif",
-            };
-        }
-    }
-
+    public override bool HasGameInstaller => true;
     public override bool HasArchives => true;
 
     #endregion
@@ -84,6 +67,11 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
         "Rayman M",
         "Rayman: M",
     });
+
+    public override GameInstallerInfo GetGameInstallerData() => new(
+        discFilesListFileName: "RaymanM",
+        gameLogoFileName: "RaymanM_Logo.png",
+        gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", });
 
     #endregion
 }
