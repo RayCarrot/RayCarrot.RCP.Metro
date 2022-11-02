@@ -519,12 +519,13 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     public override Task InitializeAsync()
     {
         // Set the default directory to that of the game, if it's been added
-        GameDirectoryPath = Games.RaymanRavingRabbids.GetInstallDir(false);
+        GameInstallation gameInstallation = Services.Games.FindGameInstallation(GameSearch.Create(Game.RaymanRavingRabbids, GamePlatformFlag.PC));
+        GameDirectoryPath = gameInstallation?.InstallLocation ?? FileSystemPath.EmptyPath;
 
         // Restore saved button mapping
         foreach (var buttonItem in Data.Mod_RRR_KeyboardButtonMapping)
         {
-            var matchingItem = ButtonMappingItems.FirstOrDefault(x => x.KeyObj == buttonItem.Key);
+            ButtonMappingKeyItemViewModel<int> matchingItem = ButtonMappingItems.FirstOrDefault(x => x.KeyObj == buttonItem.Key);
 
             if (matchingItem != null)
                 matchingItem.NewKey = buttonItem.Value;

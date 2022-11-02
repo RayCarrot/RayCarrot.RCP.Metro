@@ -248,8 +248,9 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             // Add disc installer action
             actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new AsyncRelayCommand(async () =>
             {
+                // TODO-14: This should we called from the UI manager - same in debug page
                 // Show and run the installer
-                await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(gameDescriptor.LegacyGame));
+                await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(gameDescriptor));
             })));
         }
 

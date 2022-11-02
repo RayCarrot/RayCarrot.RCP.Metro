@@ -16,13 +16,13 @@ public partial class GameInstallerDialog : WindowContentControl, IDialogWindowCo
     /// <summary>
     /// Default constructor
     /// </summary>
-    public GameInstallerDialog(Games game)
+    public GameInstallerDialog(GameDescriptor gameDescriptor)
     {
         // Initialize components
         InitializeComponent();
 
         // Create the view model
-        DataContext = new GameInstaller_ViewModel(game);
+        DataContext = new GameInstaller_ViewModel(gameDescriptor);
 
         ViewModel.InstallationComplete += VM_InstallationComplete;
 

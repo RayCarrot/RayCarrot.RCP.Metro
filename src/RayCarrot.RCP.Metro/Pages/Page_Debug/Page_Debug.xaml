@@ -215,7 +215,8 @@
 
                             <ComboBox Grid.Column="0" 
                                       ItemsSource="{Binding Path=AvailableInstallers}"
-                                      SelectedItem="{Binding Path=SelectedInstaller}"/>
+                                      SelectedItem="{Binding Path=SelectedInstaller}"
+                                      DisplayMemberPath="Id" />
 
                             <Button Grid.Column="2" 
                                     Content="Run installer"

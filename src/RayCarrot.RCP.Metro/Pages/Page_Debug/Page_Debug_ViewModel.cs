@@ -15,7 +15,6 @@ using System.Windows.Media;
 using BinarySerializer;
 using ByteSizeLib;
 using ControlzEx.Theming;
-using Newtonsoft.Json;
 using NLog;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -150,12 +149,12 @@ public class Page_Debug_ViewModel : BasePageViewModel
     /// <summary>
     /// The available game installers
     /// </summary>
-    public ObservableCollection<Games>? AvailableInstallers { get; set; }
+    public ObservableCollection<GameDescriptor>? AvailableInstallers { get; set; }
 
     /// <summary>
     /// The selected game installer
     /// </summary>
-    public Games SelectedInstaller { get; set; }
+    public GameDescriptor? SelectedInstaller { get; set; }
 
     public Color SelectedAccentColor { get; set; }
 
@@ -188,7 +187,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     protected override Task InitializeAsync()
     {
         // Set properties
-        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.CanBeInstalledFromDisc).Select(x => x.LegacyGame).ToObservableCollection();
+        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.CanBeInstalledFromDisc).ToObservableCollection();
         SelectedInstaller = AvailableInstallers.First();
         SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
 
@@ -210,13 +209,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
         {
             switch (SelectedDialog)
             {
-                case DebugDialogType.GameSelection:
-                    await UI.SelectGamesAsync(new GamesSelectionViewModel()
-                    {
-                        Title = "Debug",
-                    });
-                    break;
-
                 case DebugDialogType.Message:
                     await MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
                     break;
@@ -428,20 +420,15 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     break;
 
                 case DebugDataOutputType.GameFinder:
-                    // Select the games to find
-                    var selectionResult = await UI.SelectGamesAsync(new GamesSelectionViewModel());
-
-                    if (selectionResult.CanceledByUser)
-                        return;
-
                     // Run and get the result
-                    var result = await new GameFinder(selectionResult.SelectedGames.Select(x => x.GetGameDescriptor()), null).FindGamesAsync();
+                    var result = await new GameFinder(GamesManager.EnumerateGameDescriptors(), null).FindGamesAsync();
                         
                     // Output the found games
                     DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.Id} - {x.InstallLocation}").JoinItems(Environment.NewLine);
                         
                     break;
 
+                // TODO-14: Replace with data grid view in UI
                 case DebugDataOutputType.GameDescriptor:
 
                     // Helper method for adding a new line of text
@@ -454,10 +441,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         AddLine("Icon source", gameDescriptor.IconSource);
                         AddLine("Has disc installer", gameDescriptor.CanBeInstalledFromDisc);
                         AddLine("Dialog group names", gameDescriptor.DialogGroupNames.JoinItems(", "));
-                            
-                        if (gameDescriptor.LegacyGame.IsAdded())
-                            AddLine("Game file links", JsonConvert.SerializeObject(gameDescriptor.GetGameFileLinks(gameDescriptor.LegacyGame.GetInstallation())));
-
+                        
                         DataOutput += Environment.NewLine;
                         DataOutput += "------------------------------------------";
                         DataOutput += Environment.NewLine;
@@ -808,8 +792,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
     /// </summary>
     public enum DebugDialogType
     {
-        GameSelection,
-
         /// <summary>
         /// A message dialog
         /// </summary>

@@ -1,29 +1,29 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// Defines the platform a game is for. The <see cref="PlatformManager"/> is then responsible for managing it.
+/// Defines the platform a game is for
 /// </summary>
 public enum GamePlatform
 {
     /// <summary>
     /// MS-DOS
     /// </summary>
-    MSDOS,
+    MSDOS = GamePlatformFlag.Plat_MSDOS | GamePlatformFlag.PC,
 
     /// <summary>
     /// Win32
     /// </summary>
-    Win32,
+    Win32 = GamePlatformFlag.Plat_Win32 | GamePlatformFlag.PC,
 
     /// <summary>
     /// Steam
     /// </summary>
-    Steam,
+    Steam = GamePlatformFlag.Plat_Steam | GamePlatformFlag.PC,
 
     /// <summary>
     /// Windows package (.appx/.msix)
     /// </summary>
-    WindowsPackage,
+    WindowsPackage = GamePlatformFlag.Plat_WindowsPackage | GamePlatformFlag.PC,
 
     // TODO: Add console platforms such as PS1, GBA etc.
 }

@@ -27,13 +27,15 @@ public class Page_Settings_ViewModel : BasePageViewModel
         AppUserData data, 
         IAppInstanceData instanceData, 
         IMessageUIManager messageUi, 
-        AppUIManager ui) : base(app)
+        AppUIManager ui, 
+        GamesManager gamesManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         InstanceData = instanceData ?? throw new ArgumentNullException(nameof(instanceData));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
 
         // Create commands
         ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
@@ -109,6 +111,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
     public IAppInstanceData InstanceData { get; }
     public IMessageUIManager MessageUI { get; }
     public AppUIManager UI { get; }
+    public GamesManager GamesManager { get; }
 
     #endregion
 
@@ -230,13 +233,15 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
                 LocalLinkItems.Clear();
 
+                GameInstallation? r2GameInstallation = GamesManager.FindGameInstallation(GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC));
+
                 // Config files
                 LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
                 {
                     new(AppFilePaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
                     new(AppFilePaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni, UserLevel.Advanced),
-                    new(Games.Rayman2.IsAdded()
-                        ? Games.Rayman2.GetInstallDir() + "ubi.ini"
+                    new(r2GameInstallation != null
+                        ? r2GameInstallation.InstallLocation + "ubi.ini"
                         : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
                     new(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
                 });

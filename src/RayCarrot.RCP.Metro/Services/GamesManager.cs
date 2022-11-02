@@ -211,13 +211,37 @@ public class GamesManager
     public IEnumerable<GameInstallation> EnumerateInstalledGames() => Data.Game_GameInstallations;
 
     /// <summary>
+    /// Finds a game installation based on the provided search predicate
+    /// </summary>
+    /// <param name="gameSearchPredicate">The predicate to use when finding the game installation</param>
+    /// <returns>The first matching game installation or null if none was found</returns>
+    public GameInstallation? FindGameInstallation(GameSearch.Predicate gameSearchPredicate) =>
+        EnumerateInstalledGames().FirstOrDefault(x => gameSearchPredicate(x.GameDescriptor));
+
+    /// <summary>
+    /// Finds a game installation based on the provided search predicates
+    /// </summary>
+    /// <param name="gameSearchPredicates">The predicates to use when finding the game installation. A game is valid if at least one matches.</param>
+    /// <returns>The first matching game installation or null if none was found</returns>
+    public GameInstallation? FindGameInstallation(params GameSearch.Predicate[] gameSearchPredicates) =>
+        FindGameInstallation(GameSearch.Create(gameSearchPredicates));
+
+    /// <summary>
     /// Enumerates the available game descriptors
     /// </summary>
     /// <returns>The game descriptors</returns>
     public IEnumerable<GameDescriptor> EnumerateGameDescriptors() => GameDescriptors.Values;
 
+    /// <summary>
+    /// Gets a game descriptor from the id
+    /// </summary>
+    /// <param name="id">The game descriptor id</param>
+    /// <returns>The matching game descriptor</returns>
     public GameDescriptor GetGameDescriptor(string id)
     {
+        if (id == null) 
+            throw new ArgumentNullException(nameof(id));
+        
         // TODO-14: Add check and throw if not found?
         return GameDescriptors[id];
     }

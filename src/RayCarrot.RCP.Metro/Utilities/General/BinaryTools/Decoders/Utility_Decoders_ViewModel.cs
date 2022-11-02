@@ -25,41 +25,46 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
                 encoder: new PC_SaveEncoder(), 
                 getFileFilter: () => new FileFilterItemCollection()
                 {
-                    new FileFilterItem("*.sav", "SAV"),
-                    new FileFilterItem("*.cfg", "CFG"),
+                    new("*.sav", "SAV"),
+                    new("*.cfg", "CFG"),
                 }.CombineAll("SAV").ToString(),
-                game: Games.Rayman1),
+                gameSearchPredicates: new[]
+                {
+                    GameSearch.Create(Game.Rayman1, GamePlatformFlag.PC),
+                    GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC),
+                }),
 
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_TTSnaHeader)), 
                 encoder: new TTSNADataEncoder(),
                 getFileFilter: () => new FileFilterItemCollection()
                 {
-                    new FileFilterItem("*.sna", "SNA"),
-                    new FileFilterItem("*.dsb", "DSB"),
-                }.CombineAll("Tonic Trouble").ToString()),
+                    new("*.sna", "SNA"),
+                    new("*.dsb", "DSB"),
+                }.CombineAll("Tonic Trouble").ToString(),
+                gameSearchPredicates: GameSearch.Create(Game.TonicTrouble, GamePlatformFlag.PC)),
 
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R2SnaHeader)), 
                 encoder: new R2SNADataEncoder(),
                 getFileFilter: () => new FileFilterItemCollection()
                 {
-                    new FileFilterItem("*.sna", "SNA"),
-                    new FileFilterItem("*.dsb", "DSB"),
+                    new("*.sna", "SNA"),
+                    new("*.dsb", "DSB"),
                 }.CombineAll("Rayman 2").ToString(),
-                game: Games.Rayman2),
+                gameSearchPredicates: GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC)),
 
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R3SaveHeader)), 
                 encoder: new R3SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
-                game: Games.Rayman3),
+                gameSearchPredicates: GameSearch.Create(Game.Rayman3, GamePlatformFlag.PC)),
 
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_RRRSaveHeader)), 
                 encoder: new RRR_SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
-                game: Games.RaymanRavingRabbids),
+                gameSearchPredicates: GameSearch.Create(Game.RaymanRavingRabbids, GamePlatformFlag.PC)),
         };
         SelectedType = Types.First();
 
@@ -143,7 +148,7 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
             Title = Resources.Utilities_Decoder_DecodeFileSelectionHeader,
-            DefaultDirectory = SelectedType.Game?.GetInstallDir(false).FullPath,
+            DefaultDirectory = Services.Games.FindGameInstallation(SelectedType.GameSearchPredicates)?.InstallLocation.FullPath,
             ExtensionFilter = SelectedType.GetFileFilter(),
             MultiSelection = true
         });
@@ -187,7 +192,7 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
             Title = Resources.Utilities_Decoder_EncodeFileSelectionHeader,
-            DefaultDirectory = SelectedType.Game?.GetInstallDir(false).FullPath,
+            DefaultDirectory = Services.Games.FindGameInstallation(SelectedType.GameSearchPredicates)?.InstallLocation.FullPath,
             ExtensionFilter = SelectedType.GetFileFilter(),
             MultiSelection = true
         });

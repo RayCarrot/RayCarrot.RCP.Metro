@@ -16,30 +16,26 @@ public class GameInstaller_ViewModel : UserInputViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    /// <param name="game"></param>
-    public GameInstaller_ViewModel(Games game)
+    public GameInstaller_ViewModel(GameDescriptor gameDescriptor)
     {
-        Logger.Info("An installation has been requested for the game {0}", game);
+        Logger.Info("An installation has been requested for the game {0}", gameDescriptor.Id);
 
         // Create the commands
         InstallCommand = new AsyncRelayCommand(InstallAsync);
         CancelCommand = new AsyncRelayCommand(AttemptCancelAsync);
 
         // Set game
-        Game = game;
+        GameDescriptor = gameDescriptor;
 
         // Set title
-        Title = String.Format(Resources.Installer_Title, game.GetGameDescriptor().DisplayName);
+        Title = String.Format(Resources.Installer_Title, gameDescriptor.DisplayName);
 
         // Create cancellation token source
         CancellationTokenSource = new CancellationTokenSource();
 
         // Get images
-        GameLogoSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameLogos/{game}_Logo.png";
-        Gifs = game.GetGameDescriptor().InstallerGifs;
+        GameLogoSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameLogos/{gameDescriptor.LegacyGame}_Logo.png";
+        Gifs = gameDescriptor.InstallerGifs;
 
         // Default the install directory
         InstallDir = Environment.SpecialFolder.ProgramFiles.GetFolderPath();
@@ -67,7 +63,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
     /// <summary>
     /// The game to install
     /// </summary>
-    public Games Game { get; }
+    public GameDescriptor GameDescriptor { get; }
 
     /// <summary>
     /// The cancellation token source for the installation
@@ -195,7 +191,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
         List<GameInstaller_Item> result = new();
 
         // Attempt to get the text file containing the items
-        if (InstallerGames.ResourceManager.GetObject($"{Game}") is not string file)
+        if (InstallerGames.ResourceManager.GetObject($"{GameDescriptor.LegacyGame}") is not string file)
             throw new Exception("Installer item not found");
 
         // Create a string reader
@@ -302,9 +298,9 @@ public class GameInstaller_ViewModel : UserInputViewModel
             // Begin refreshing gifs
             Task.Run(async () => await RefreshGifsAsync()).WithoutAwait("Refreshed installed GIFs");
 
-            // TODO: We shouldn't use the display name for things like the folder path
+            // TODO-14: We shouldn't use the display name for things like the folder path
             // Get the game display name
-            var displayName = Game.GetGameDescriptor().DisplayName;
+            var displayName = GameDescriptor.DisplayName;
 
             // Get the output path
             FileSystemPath output = InstallDir + displayName;
@@ -324,7 +320,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
             if (result == GameInstaller_Result.Successful)
             {
                 // Add the game
-                GameInstallation gameInstallation = await Services.Games.AddGameAsync(Game.GetGameDescriptor(), output, true);
+                GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, output, true);
 
                 // Refresh
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
@@ -340,11 +336,11 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 {
                     try
                     {
-                        Game.GetGameDescriptor().CreateGameShortcut(gameInstallation, shortcutName, dir);
+                        GameDescriptor.CreateGameShortcut(gameInstallation, shortcutName, dir);
                     }
                     catch (Exception ex)
                     {
-                        Logger.Error(ex, "Creating game shortcut for {0} from installer", Game);
+                        Logger.Error(ex, "Creating game shortcut for {0} from installer", GameDescriptor.Id);
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
                     }
                 }
