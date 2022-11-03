@@ -26,7 +26,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.Rayman1_PC) { Encoder = new PC_SaveEncoder() },
+                    new(Ray1GameMode.Rayman1_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<PC_ConfigFile>(
@@ -35,11 +35,11 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.Rayman1_PC),
-                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.RaymanEducational_PC),
-                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.RaymanDesigner_PC),
-                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.RaymanByHisFans_PC),
-                    new Utility_SerializableTypeModeViewModel(Ray1GameMode.Rayman60Levels_PC),
+                    new(Ray1GameMode.Rayman1_PC),
+                    new(Ray1GameMode.RaymanEducational_PC),
+                    new(Ray1GameMode.RaymanDesigner_PC),
+                    new(Ray1GameMode.RaymanByHisFans_PC),
+                    new(Ray1GameMode.Rayman60Levels_PC),
                 }),
 
             new Serializers_TypeViewModel<R2GeneralSaveFile>(
@@ -48,7 +48,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
+                    new(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<R2ConfigFile>(
@@ -57,7 +57,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
+                    new(CPAGameMode.Rayman2_PC) { Encoder = new PC_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<RMSaveFile>(
@@ -66,8 +66,8 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanM_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanArena_PC),
+                    new(CPAGameMode.RaymanM_PC),
+                    new(CPAGameMode.RaymanArena_PC),
                 }),
 
             new Serializers_TypeViewModel<R3SaveFile>(
@@ -76,7 +76,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<OpenSpaceSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman3_PC) { Encoder = new R3SaveEncoder() },
+                    new(CPAGameMode.Rayman3_PC) { Encoder = new R3SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<RRR_SaveFile>(
@@ -85,7 +85,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel("Rayman Raving Rabbids (PC)", Games.RaymanRavingRabbids) { Encoder = new RRR_SaveEncoder() },
+                    new(JadeGameMode.RaymanRavingRabbids_PC) { Encoder = new RRR_SaveEncoder() },
                 }),
 
             new Serializers_TypeViewModel<Origins_SaveData>(
@@ -94,9 +94,9 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanOrigins_PC)
+                    new(UbiArtGameMode.RaymanOrigins_PC)
                     {
-                        GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins"
+                        GetDefaultDir = _ => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins"
                     },
                 }),
 
@@ -106,9 +106,9 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => c.GetRequiredSettings<UbiArtSettings>().GetEndian,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanLegends_PC)
+                    new(UbiArtGameMode.RaymanLegends_PC)
                     {
-                        GetDefaultDir = () => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends"
+                        GetDefaultDir = _ => Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends"
                     },
                 }),
 
@@ -118,9 +118,9 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanJungleRun_PC, "Rayman Jungle Run (PC/Android/iOS)")
+                    new(UbiArtGameMode.RaymanJungleRun_PC, "Rayman Jungle Run (PC/Android/iOS)")
                     {
-                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+                        GetDefaultDir = _ => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
                                               "Packages" +
                                               Games.RaymanJungleRun.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
                                               "LocalState"
@@ -133,12 +133,12 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanFiestaRun_PC, "Rayman Fiesta Run (PC/Android/iOS)")
+                    new(UbiArtGameMode.RaymanFiestaRun_PC, "Rayman Fiesta Run (PC/Android/iOS)")
                     {
-                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-                                              "Packages" +
-                                              Games.RaymanFiestaRun.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
-                                              "LocalState"
+                        GetDefaultDir = _ => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+                                             "Packages" +
+                                             Games.RaymanFiestaRun.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
+                                             "LocalState"
                     },
                 }),
 
@@ -148,12 +148,12 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel("Unity")
+                    new("Unity")
                     {
-                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
-                                              "Packages" + 
-                                              Games.RabbidsBigBang.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName + 
-                                              "LocalState"
+                        GetDefaultDir = _ => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
+                                             "Packages" + 
+                                             Games.RabbidsBigBang.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName + 
+                                             "LocalState"
                     },
                 }),
 
@@ -163,10 +163,10 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel("Game Maker")
+                    new("Game Maker")
                     {
                         Encoder = new GameMaker_HexStringEncoder(),
-                        GetDefaultDir = () => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption"
+                        GetDefaultDir = _ => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption"
                     },
                 }),
 
@@ -176,7 +176,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel("Rayman Control Panel"),
+                    new("Rayman Control Panel"),
                 }),
 
             new Serializers_TypeViewModel<PatchLibraryFile>(
@@ -185,7 +185,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 getEndianFunc: c => Endian.Little,
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel("Rayman Control Panel"),
+                    new("Rayman Control Panel"),
                 }),
         };
 
@@ -234,17 +234,13 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             IsLoading = true;
 
             // Attempt to get a default directory
-            FileSystemPath? defaultDir = SelectedType.SelectedMode.GetDefaultDir();
-
-            // Make sure the directory exists
-            if (defaultDir?.DirectoryExists != true)
-                defaultDir = null;
+            FileSystemPath defaultDir = SelectedType.SelectedMode.GetDefaultDir(Services.Games);
 
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_Serializers_FileSelectionHeader,
-                DefaultDirectory = defaultDir?.FullPath,
+                DefaultDirectory = defaultDir,
                 ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
                 MultiSelection = true
             });
@@ -296,17 +292,13 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
             IsLoading = true;
 
             // Attempt to get a default directory
-            FileSystemPath? defaultDir = SelectedType.SelectedMode.GetDefaultDir();
-
-            // Make sure the directory exists
-            if (defaultDir?.DirectoryExists != true)
-                defaultDir = null;
+            FileSystemPath defaultDir = SelectedType.SelectedMode.GetDefaultDir(Services.Games);
 
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_Serializers_FileSelectionHeader,
-                DefaultDirectory = defaultDir?.FullPath,
+                DefaultDirectory = defaultDir,
                 ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
                 MultiSelection = true
             });

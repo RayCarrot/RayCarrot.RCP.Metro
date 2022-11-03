@@ -6,13 +6,15 @@ namespace RayCarrot.RCP.Metro;
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class CPAGameModeInfoAttribute : GameModeBaseAttribute
 {
-    public CPAGameModeInfoAttribute(string displayName, EngineVersion engineVersion, Platform platform) : base(displayName, null)
+    public CPAGameModeInfoAttribute(string displayName, EngineVersion engineVersion, Platform platform) 
+        : base(displayName)
     {
         EngineVersion = engineVersion;
         Platform = platform;
     }
 
-    public CPAGameModeInfoAttribute(string displayName, EngineVersion engineVersion, Platform platform, Games game) : base(displayName, game)
+    public CPAGameModeInfoAttribute(string displayName, EngineVersion engineVersion, Platform platform, params Type[] descriptorTypes) 
+        : base(displayName, descriptorTypes)
     {
         EngineVersion = engineVersion;
         Platform = platform;
@@ -22,5 +24,5 @@ public sealed class CPAGameModeInfoAttribute : GameModeBaseAttribute
     public Platform Platform { get; }
 
     public override object GetSettingsObject() => GetSettings();
-    public OpenSpaceSettings GetSettings() => new OpenSpaceSettings(EngineVersion, Platform);
+    public OpenSpaceSettings GetSettings() => new(EngineVersion, Platform);
 }

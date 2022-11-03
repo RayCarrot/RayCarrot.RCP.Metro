@@ -76,7 +76,7 @@ public class Utility_SyncTextureInfo_ViewModel : Utility_BaseSyncTextureInfoView
         DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
         {
             Title = Resources.Utilities_SyncTextureInfo_SelectDirHeader,
-            DefaultDirectory = attr.Game?.GetInstallDir(false) ?? FileSystemPath.EmptyPath
+            DefaultDirectory = attr.FindGameInstallation(Services.Games)?.InstallLocation ?? FileSystemPath.EmptyPath
         });
 
         if (result.CanceledByUser)

@@ -19,31 +19,31 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_GFHeader)),
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_Demo1_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_Demo2_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman2_iOS),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanM_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.RaymanArena_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Rayman3_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.TonicTrouble_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.TonicTrouble_SE_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.DonaldDuck_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.PlaymobilHype_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.PlaymobilLaura_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.PlaymobilAlex_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.Dinosaur_PC),
-                    new Utility_SerializableTypeModeViewModel(CPAGameMode.LargoWinch_PC),
+                    new(CPAGameMode.Rayman2_PC),
+                    new(CPAGameMode.Rayman2_Demo1_PC),
+                    new(CPAGameMode.Rayman2_Demo2_PC),
+                    new(CPAGameMode.Rayman2_iOS),
+                    new(CPAGameMode.RaymanM_PC),
+                    new(CPAGameMode.RaymanArena_PC),
+                    new(CPAGameMode.Rayman3_PC),
+                    new(CPAGameMode.TonicTrouble_PC),
+                    new(CPAGameMode.TonicTrouble_SE_PC),
+                    new(CPAGameMode.DonaldDuck_PC),
+                    new(CPAGameMode.PlaymobilHype_PC),
+                    new(CPAGameMode.PlaymobilLaura_PC),
+                    new(CPAGameMode.PlaymobilAlex_PC),
+                    new(CPAGameMode.Dinosaur_PC),
+                    new(CPAGameMode.LargoWinch_PC),
                 }),
 
             new Utility_Converters_UbiArtLoc_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Converter_LOCHeader)),
                 modes: new ObservableCollection<Utility_SerializableTypeModeViewModel>()
                 {
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanOrigins_PC, "Rayman Origins"),
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanOrigins_3DS),
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanLegends_PC, "Rayman Legends"),
-                    new Utility_SerializableTypeModeViewModel(UbiArtGameMode.RaymanFiestaRun_PC, "Rayman Fiesta Run"),
+                    new(UbiArtGameMode.RaymanOrigins_PC, "Rayman Origins"),
+                    new(UbiArtGameMode.RaymanOrigins_3DS),
+                    new(UbiArtGameMode.RaymanLegends_PC, "Rayman Legends"),
+                    new(UbiArtGameMode.RaymanFiestaRun_PC, "Rayman Fiesta Run"),
                 }),
         };
         SelectedType = Types.First();
@@ -88,17 +88,13 @@ public class Utility_Converters_ViewModel : BaseRCPViewModel, IDisposable
             IsLoading = true;
 
             // Attempt to get a default directory
-            FileSystemPath? defaultDir = SelectedType.SelectedMode.GetDefaultDir();
-
-            // Make sure the directory exists
-            if (defaultDir?.DirectoryExists != true)
-                defaultDir = null;
+            FileSystemPath defaultDir = SelectedType.SelectedMode.GetDefaultDir(Services.Games);
 
             // Allow the user to select the files
             FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_Converter_FileSelectionHeader,
-                DefaultDirectory = defaultDir?.FullPath,
+                DefaultDirectory = defaultDir,
                 ExtensionFilter = SelectedType.SourceFileExtension.GetFileFilterItem.ToString(),
                 MultiSelection = true
             });

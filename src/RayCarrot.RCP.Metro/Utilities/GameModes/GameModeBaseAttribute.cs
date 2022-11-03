@@ -1,10 +1,7 @@
 ﻿using System;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
-
-// TODO-14: How do we make this system work with the new game descriptor id system? We could make the id an enum, but that would
-//          easily lead to a lot of the same issues we had before. Another option is to have the game descriptors themselves
-//          define their mode somehow. Yet another options is "params Type[] descriptorTypes", but that also sucks.
 
 [AttributeUsage(AttributeTargets.Field)]
 public abstract class GameModeBaseAttribute : Attribute
@@ -13,11 +10,14 @@ public abstract class GameModeBaseAttribute : Attribute
     /// Default constructor
     /// </summary>
     /// <param name="displayName">The game mode display name</param>
-    /// <param name="game">The associated game</param>
-    protected GameModeBaseAttribute(string displayName, Games? game)
+    /// <param name="descriptorTypes">The types of the associated game descriptors</param>
+    protected GameModeBaseAttribute(string displayName, params Type[] descriptorTypes)
     {
         DisplayName = displayName;
-        Game = game;
+        DescriptorTypes = descriptorTypes;
+
+        if (descriptorTypes.Any(x => !x.IsSubclassOf(typeof(GameDescriptor))))
+            throw new ArgumentException($"The provided types have to derive from {nameof(GameDescriptor)}", nameof(descriptorTypes));
     }
 
     /// <summary>
@@ -26,9 +26,12 @@ public abstract class GameModeBaseAttribute : Attribute
     public string DisplayName { get; }
 
     /// <summary>
-    /// The associated game
+    /// The types of the associated game descriptors
     /// </summary>
-    public Games? Game { get; }
+    public Type[] DescriptorTypes { get; }
 
     public abstract object? GetSettingsObject();
+
+    public GameInstallation? FindGameInstallation(GamesManager gamesManager) =>
+        gamesManager.FindGameInstallation(x => DescriptorTypes.Contains(x.GetType()));
 }

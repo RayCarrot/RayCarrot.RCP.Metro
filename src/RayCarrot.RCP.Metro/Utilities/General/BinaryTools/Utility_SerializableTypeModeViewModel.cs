@@ -5,24 +5,22 @@ namespace RayCarrot.RCP.Metro;
 
 public class Utility_SerializableTypeModeViewModel : BaseViewModel
 {
-    public Utility_SerializableTypeModeViewModel(string displayName, Games? game = null) : this(null, displayName, game) { }
+    public Utility_SerializableTypeModeViewModel(string displayName) : this(null, displayName) { }
 
-    public Utility_SerializableTypeModeViewModel(Enum? gameMode, string? displayName = null, Games? game = null)
+    public Utility_SerializableTypeModeViewModel(Enum? gameMode, string? displayName = null)
     {
         GameModeBaseAttribute? attr = gameMode?.GetAttribute<GameModeBaseAttribute>();
 
         GameMode = gameMode;
         DisplayName = displayName ?? attr?.DisplayName ?? "NULL";
-        Game = game ?? attr?.Game;
-        GetDefaultDir = () => Game?.GetInstallDir(false);
+        GetDefaultDir = g => attr?.FindGameInstallation(g)?.InstallLocation ?? FileSystemPath.EmptyPath;
     }
 
     protected Enum? GameMode { get; }
 
     public string DisplayName { get; }
-    public Games? Game { get; }
     public IStreamEncoder? Encoder { get; init; }
-    public Func<FileSystemPath?> GetDefaultDir { get; init; }
+    public Func<GamesManager, FileSystemPath> GetDefaultDir { get; init; }
 
     public object? GetSettings() => GameMode?.GetAttribute<GameModeBaseAttribute>()?.GetSettingsObject();
 

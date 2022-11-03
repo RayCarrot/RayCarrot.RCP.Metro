@@ -110,11 +110,13 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
     public async Task OpenArchiveExplorerAsync()
     {
+        GameInstallation? gameInstallation = SelectedType.Modes.SelectedValue.GetAttribute<GameModeBaseAttribute>()?.FindGameInstallation(Services.Games);
+
         // Allow the user to select the files
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
             Title = Resources.Utilities_ArchiveExplorer_FileSelectionHeader,
-            DefaultDirectory = SelectedType.Modes.SelectedValue.GetAttribute<GameModeBaseAttribute>()?.Game?.GetInstallDir(false).FullPath,
+            DefaultDirectory = gameInstallation?.InstallLocation ?? FileSystemPath.EmptyPath,
             ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
             MultiSelection = true,
         });
