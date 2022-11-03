@@ -5,8 +5,8 @@
 /// </summary>
 public class Utility_RaymanFiestaRun_SaveFix : Utility<Utility_RaymanFiestaRun_SaveFix_Control, Utility_RaymanFiestaRun_SaveFix_ViewModel>
 {
-    public Utility_RaymanFiestaRun_SaveFix(GameInstallation gameInstallation) 
-        : base(new Utility_RaymanFiestaRun_SaveFix_ViewModel(gameInstallation))
+    public Utility_RaymanFiestaRun_SaveFix(GameInstallation gameInstallation, int slotIndex) 
+        : base(new Utility_RaymanFiestaRun_SaveFix_ViewModel(gameInstallation, slotIndex))
     {
         GameInstallation = gameInstallation;
     }
@@ -16,5 +16,5 @@ public class Utility_RaymanFiestaRun_SaveFix : Utility<Utility_RaymanFiestaRun_S
     public override string DisplayHeader => Resources.RFRU_SaveFixHeader;
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanFiestaRun_SaveFix;
     public override string InfoText => Resources.RFRU_SaveFixInfo;
-    public override bool IsAvailable => ViewModel.Editions.Any();
+    public override bool IsAvailable => ViewModel.SaveFilePath.FileExists;
 }

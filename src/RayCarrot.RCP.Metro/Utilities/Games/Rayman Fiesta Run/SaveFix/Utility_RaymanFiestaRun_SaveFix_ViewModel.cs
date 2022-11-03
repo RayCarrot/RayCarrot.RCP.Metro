@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -17,130 +16,109 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    public Utility_RaymanFiestaRun_SaveFix_ViewModel(GameInstallation gameInstallation)
+    // NOTE: This utility is really only needed in the Preload edition as that's the only one on the older version which has this
+    //       issue, but it doesn't hurt to have it be available for all editions just in case.
+    public Utility_RaymanFiestaRun_SaveFix_ViewModel(GameInstallation gameInstallation, int slotIndex)
     {
-        Editions = new ObservableCollection<EditionViewModel>();
+        FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
+                                 "Packages" +
+                                 gameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
+                                 "LocalState";
+        SaveFilePath = saveDir + $"slot{slotIndex}.dat";
 
-        // TODO-14: Fix
-        //foreach (UserData_FiestaRunEdition edition in EnumHelpers.GetValues<UserData_FiestaRunEdition>())
-        //{
-        //    FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-        //                             "Packages" +
-        //                             gameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().GetFiestaRunFullPackageName(edition) +
-        //                             "LocalState";
-        //    FileSystemPath saveFile = saveDir + (edition == UserData_FiestaRunEdition.Win10 ? "slot0.dat" : "slot1.dat");
+        RequiresFixing = CheckIfSaveRequiresFix();
 
-        //    if (saveFile.FileExists)
-        //        Editions.Add(new EditionViewModel(edition, saveFile));
-        //}
-
-        SelectedEdition = Editions.FirstOrDefault();
+        FixCommand = new AsyncRelayCommand(FixAsync);
     }
+
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Commands
+
+    public ICommand FixCommand { get; }
 
     #endregion
 
     #region Public Properties
 
-    public ObservableCollection<EditionViewModel> Editions { get; }
-    public EditionViewModel? SelectedEdition { get; set; }
+    public FileSystemPath SaveFilePath { get; }
+    public bool RequiresFixing { get; set; }
 
     #endregion
 
-    #region Classes
+    #region Public Methods
 
-    public class EditionViewModel : BaseViewModel
+    public bool CheckIfSaveRequiresFix()
     {
-        public EditionViewModel(FileSystemPath saveFilePath)
+        try
         {
-            // TODO-14: Fix
-            //DisplayName = edition switch
-            //{
-            //    UserData_FiestaRunEdition.Default => new ResourceLocString(nameof(Resources.FiestaRunVersion_Default)),
-            //    UserData_FiestaRunEdition.Preload => new ResourceLocString(nameof(Resources.FiestaRunVersion_Preload)),
-            //    UserData_FiestaRunEdition.Win10 => new ResourceLocString(nameof(Resources.FiestaRunVersion_Win10)),
-            //    _ => throw new ArgumentOutOfRangeException(nameof(edition), edition, null)
-            //};
-            SaveFilePath = saveFilePath;
+            using RCPContext context = new(SaveFilePath.Parent);
+            context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
 
-            RequiresFixing = CheckIfSaveRequiresFix();
+            FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name);
 
-            FixCommand = new AsyncRelayCommand(FixAsync);
+            if (save == null)
+                throw new Exception("Failed to load save data");
+
+            IEnumerable<FiestaRun_SaveDataLevel> levels = save.LevelInfos_Land1;
+
+            if (save.LevelInfos_Land2 != null)
+                levels = levels.Concat(save.LevelInfos_Land2);
+
+            return levels.Any(lvl => lvl.HasCrown && lvl.Electoons < 4);
         }
-
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public ICommand FixCommand { get; }
-
-        public LocalizedString DisplayName { get; }
-        public FileSystemPath SaveFilePath { get; }
-        public bool RequiresFixing { get; set; }
-
-        public bool CheckIfSaveRequiresFix()
+        catch (Exception ex)
         {
-            try
-            {
-                using RCPContext context = new(SaveFilePath.Parent);
-                context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
+            Logger.Error(ex, "Checking Fiesta Run save");
 
-                FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name);
-
-                if (save == null)
-                    throw new Exception("Failed to load save data");
-
-                IEnumerable<FiestaRun_SaveDataLevel> levels = save.LevelInfos_Land1;
-
-                if (save.LevelInfos_Land2 != null)
-                    levels = levels.Concat(save.LevelInfos_Land2);
-
-                return levels.Any(lvl => lvl.HasCrown && lvl.Electoons < 4);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Checking Fiesta Run save");
-
-                // Return false if there was an error since we can't fix it then anyway
-                return false;
-            }
+            // Return false if there was an error since we can't fix it then anyway
+            return false;
         }
+    }
 
-        public async Task FixAsync()
+    public async Task FixAsync()
+    {
+        if (!RequiresFixing)
+            return;
+
+        try
         {
-            if (!RequiresFixing)
-                return;
+            using RCPContext context = new(SaveFilePath.Parent);
+            context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
 
-            try
+            FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name, removeFileWhenComplete: false);
+
+            if (save == null)
+                throw new Exception("Failed to load save data");
+
+            IEnumerable<FiestaRun_SaveDataLevel> levels = save.LevelInfos_Land1;
+
+            if (save.LevelInfos_Land2 != null)
+                levels = levels.Concat(save.LevelInfos_Land2);
+
+            foreach (FiestaRun_SaveDataLevel lvl in levels)
             {
-                using RCPContext context = new(SaveFilePath.Parent);
-                context.AddSettings(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC));
-
-                FiestaRun_SaveData? save = context.ReadFileData<FiestaRun_SaveData>(SaveFilePath.Name, removeFileWhenComplete: false);
-
-                if (save == null)
-                    throw new Exception("Failed to load save data");
-
-                IEnumerable<FiestaRun_SaveDataLevel> levels = save.LevelInfos_Land1;
-
-                if (save.LevelInfos_Land2 != null)
-                    levels = levels.Concat(save.LevelInfos_Land2);
-
-                foreach (FiestaRun_SaveDataLevel lvl in levels)
-                {
-                    if (lvl.HasCrown && lvl.Electoons < 4)
-                        lvl.Electoons = 4;
-                }
-
-                FileFactory.Write(context, SaveFilePath.Name, save);
-
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RFRU_SaveFixSuccess);
-
-                RequiresFixing = false;
+                if (lvl.HasCrown && lvl.Electoons < 4)
+                    lvl.Electoons = 4;
             }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Fixing Fiesta Run save");
 
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RFRU_SaveFixError);
-            }
+            FileFactory.Write(context, SaveFilePath.Name, save);
+
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RFRU_SaveFixSuccess);
+
+            RequiresFixing = false;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Fixing Fiesta Run save");
+
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RFRU_SaveFixError);
         }
     }
 

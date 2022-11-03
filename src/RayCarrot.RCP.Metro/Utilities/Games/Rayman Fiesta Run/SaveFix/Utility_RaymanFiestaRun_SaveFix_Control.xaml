@@ -13,13 +13,7 @@
             <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
         </Interactions:Interaction.Behaviors>
 
-        <ComboBox HorizontalAlignment="Left"
-                  ItemsSource="{Binding Path=Editions, Mode=OneTime}"
-                  DisplayMemberPath="DisplayName.Value" 
-                  SelectedItem="{Binding Path=SelectedEdition}"/>
-
-        <StackPanel Orientation="Horizontal"
-                    DataContext="{Binding Path=SelectedEdition}">
+        <StackPanel Orientation="Horizontal">
 
             <Button Content="{Resx RFRU_SaveFixAction}"
                     Command="{Binding Path=FixCommand, Mode=OneTime}"

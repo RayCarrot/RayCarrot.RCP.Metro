@@ -39,7 +39,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
-        new Utility_RaymanFiestaRun_SaveFix(gameInstallation),
+        new Utility_RaymanFiestaRun_SaveFix(gameInstallation, 1),
     };
 
     public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
