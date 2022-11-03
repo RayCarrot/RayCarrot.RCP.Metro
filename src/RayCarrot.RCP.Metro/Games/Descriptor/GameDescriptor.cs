@@ -10,6 +10,9 @@ using RayCarrot.RCP.Metro.Archive;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Move some things to optional modules/extensions/components, such as installer, archive, progression etc.
+// TODO-14: Move descriptors to folders based on platform?
+// TODO-14: Minimize the amount of methods here which do things by moving to manager classes. The descriptor should really only
+//          be for providing data about the game.
 
 /// <summary>
 /// A game descriptor, providing data for a game

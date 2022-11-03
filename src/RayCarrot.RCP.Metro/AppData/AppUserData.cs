@@ -10,7 +10,8 @@ using PropertyChanged;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Remove verification and make everything nullable
-// TODO-14: Migrate old Games_Games and Game_InstalledGames properties to new Game_GameInstallations collection
+// TODO-14: Migrate old Games_Games and Game_InstalledGames properties to new Game_GameInstallations collection - do this
+//          by serializing as JObject first and then checking the version before parsing as AppuserData
 
 /// <summary>
 /// The application user data
