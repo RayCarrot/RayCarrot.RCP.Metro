@@ -26,7 +26,10 @@ public class Patcher
 
     private string NormalizePath(string path) => path.ToLowerInvariant().Replace('\\', '/');
 
-    private Dictionary<string, LocationModifications> GetFileModificationsPerLocation(Games game, PatchLibraryHistory? patchHistory, IEnumerable<PatchFile> enabledPatches)
+    private Dictionary<string, LocationModifications> GetFileModificationsPerLocation(
+        GameInstallation gameInstallation, 
+        PatchLibraryHistory? patchHistory, 
+        IEnumerable<PatchFile> enabledPatches)
     {
         Dictionary<string, LocationModifications> locationModifications = new();
         Dictionary<string, IArchiveDataManager> archiveDataManagers = new();
@@ -54,7 +57,7 @@ public class Patcher
                         // NOTE: In the future we'll want to use the location ID to get the corresponding
                         //       manager. This makes it so we can have one game support multiple archive
                         //       formats. But for now it doesn't matter, so we just get the default one.
-                        archiveDataManagers.Add(patchFilePath.LocationID, game.GetGameDescriptor().GetArchiveDataManager(game.GetInstallation()));
+                        archiveDataManagers.Add(patchFilePath.LocationID, gameInstallation.GameDescriptor.GetArchiveDataManager(gameInstallation));
                     }
 
                     manager = archiveDataManagers[patchFilePath.LocationID];
@@ -378,7 +381,7 @@ public class Patcher
     #region Public Methods
 
     public async Task<bool> ApplyAsync(
-        Games game,
+        GameInstallation gameInstallation,
         PatchLibrary library,
         FileSystemPath gameDirectory,
         PatchLibraryPatchEntry[] patches,
@@ -402,7 +405,7 @@ public class Patcher
 
         // Get the file modifications for each location
         Dictionary<string, LocationModifications> locationModifications =
-            GetFileModificationsPerLocation(game, libraryFile?.History, enabledPatchFiles);
+            GetFileModificationsPerLocation(gameInstallation, libraryFile?.History, enabledPatchFiles);
 
         // Get the full path for the game directory. Needed when we check to make sure the relative path is a child of this.
         gameDirectory = Path.GetFullPath(gameDirectory);
@@ -480,7 +483,7 @@ public class Patcher
 
         // Update the library file
         libraryFile.FormatVersion = PatchLibraryFile.LatestFormatVersion;
-        libraryFile.Game = game;
+        libraryFile.GameId = gameInstallation.Id;
         libraryFile.History = history;
         libraryFile.Patches = patches;
 

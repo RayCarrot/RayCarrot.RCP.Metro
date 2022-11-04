@@ -77,10 +77,21 @@ public abstract class GameDescriptor
     /// </summary>
     public virtual Games? LegacyGame => null; // TODO-14: Minimize references to this
 
+    // TODO-14: Clean up how names are handled, split up like this?
+    // GameDescriptorDisplayName: Unique name for the descriptor. For a specific game edition, for example "Rayman 2 (Steam)"
+    // GameDisplayName: Normal game name, for example "Rayman 2"
+    // FullGameDisplayName: Full game name, for example "Rayman 2: The Great Escape"
+
     /// <summary>
     /// The game display name
     /// </summary>
     public abstract string DisplayName { get; } // TODO-14: Localize & split up into short and long name
+
+    /// <summary>
+    /// A unique display name for this game descriptor
+    /// </summary>
+    public virtual string GameDescriptorName => $"{DisplayName} ({Platform})"; // TODO-14: Implement this, localized, for each game and use where needed
+
     //public abstract LocalizedString ShortDisplayName { get; }
     //public abstract LocalizedString LongDisplayName { get; }
 

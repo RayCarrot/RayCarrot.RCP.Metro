@@ -263,7 +263,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 LibraryInfo = new ObservableCollection<DuoGridItemViewModel>()
                 {
-                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), libraryFile.Game.GetGameDescriptor().DisplayName),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), GameInstallation.GameDescriptor.GameDescriptorName),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Patches)), libraryFile.Patches.Length.ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AppliedPatches)), libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ModifiedDate)), libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
@@ -288,12 +288,11 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         }
 
         // Verify game
-        if (libraryFile != null && libraryFile.Game != GameInstallation.LegacyGame)
+        if (libraryFile != null && !libraryFile.IsGameValid(GameInstallation.GameDescriptor))
         {
-            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, GameInstallation.LegacyGame);
+            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.GameId, GameInstallation.Id);
 
-            // TODO-14: Have this show a full platform name, such as "Rayman 2 (Steam)"
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameDescriptor.DisplayName),
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameDescriptor.GameDescriptorName),
                 MessageType.Error);
 
             return false;
@@ -908,7 +907,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     }).ToArray();
 
                     bool success = await patcher.ApplyAsync(
-                        game: GameInstallation.LegacyGame.Value,
+                        gameInstallation: GameInstallation,
                         library: Library,
                         gameDirectory: GameDirectory,
                         patches: patches,
