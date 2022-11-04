@@ -16,7 +16,7 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
     public override string Id => "Rayman60Levels_MSDOS";
     public override Game Game => Game.Rayman60Levels;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games LegacyGame => Games.Rayman60Levels;
+    public override Games? LegacyGame => Games.Rayman60Levels;
 
     public override string DisplayName => "Rayman 60 Levels";
     public override string BackupName => "Rayman 60 Levels";

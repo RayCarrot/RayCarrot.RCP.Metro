@@ -16,7 +16,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override string Id => "RaymanArena_Win32";
     public override Game Game => Game.RaymanMArena;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games LegacyGame => Games.RaymanArena;
+    public override Games? LegacyGame => Games.RaymanArena;
 
     public override string DisplayName => "Rayman Arena";
     public override string BackupName => "Rayman Arena";

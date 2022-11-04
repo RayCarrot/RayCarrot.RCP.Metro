@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
     public override string Id => "RaymanRavingRabbids_Steam";
     public override Game Game => Game.RaymanRavingRabbids;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override Games LegacyGame => Games.RaymanRavingRabbids;
+    public override Games? LegacyGame => Games.RaymanRavingRabbids;
 
     public override string DisplayName => "Rayman Raving Rabbids";
     public override string BackupName => "Rayman Raving Rabbids";

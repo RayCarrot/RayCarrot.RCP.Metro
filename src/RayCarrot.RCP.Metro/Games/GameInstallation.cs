@@ -50,7 +50,7 @@ public class GameInstallation
 
     public string Id => GameDescriptor.Id;
 
-    public Games LegacyGame => GameDescriptor.LegacyGame; // TODO-14: Remove once no longer needed
+    public Games? LegacyGame => GameDescriptor.LegacyGame; // TODO-14: Remove once no longer needed
 
     public T GetGameDescriptor<T>() where T : GameDescriptor => (T)GameDescriptor; // TODO-14: Remove the need for this
 

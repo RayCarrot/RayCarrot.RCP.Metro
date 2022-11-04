@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
     public override string Id => "RaymanRavingRabbidsActivityCenter_Win32";
     public override Game Game => Game.RaymanRavingRabbidsActivityCenter;
     public override GameCategory Category => GameCategory.Other;
-    public override Games LegacyGame => Games.RaymanRavingRabbidsActivityCenter;
+    public override Games? LegacyGame => Games.RaymanRavingRabbidsActivityCenter;
 
     public override string DisplayName => "Rayman Raving Rabbids Activity Center";
     public override string DefaultFileName => "Rayman.exe";

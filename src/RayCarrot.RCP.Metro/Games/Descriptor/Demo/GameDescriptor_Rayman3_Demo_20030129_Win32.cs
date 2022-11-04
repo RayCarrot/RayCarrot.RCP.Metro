@@ -23,7 +23,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20030129_Win32 : Win32GameDescri
     public override Game Game => Game.Rayman3;
     public override GameCategory Category => GameCategory.Demo;
     public override bool IsDemo => true;
-    public override Games LegacyGame => Games.Demo_Rayman3_4;
+    public override Games? LegacyGame => Games.Demo_Rayman3_4;
 
     public override string DisplayName => "Rayman 3 Demo (2003/01/29)";
     public override string DefaultFileName => "MainP5Pvf.exe";

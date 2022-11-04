@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     public override string Id => "RaymanBowling2_Win32";
     public override Game Game => Game.RaymanBowling2;
     public override GameCategory Category => GameCategory.Fan;
-    public override Games LegacyGame => Games.RaymanBowling2;
+    public override Games? LegacyGame => Games.RaymanBowling2;
 
     public override string DisplayName => "Rayman Bowling 2";
     public override string BackupName => "Rayman Bowling 2";
@@ -30,13 +30,14 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
         new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/rayman_bowling_2/532563", GenericIconKind.GameDisplay_Web),
     };
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
-    {
-        new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
+        new OverflowButtonItemViewModel[]
         {
-            (await Services.File.LaunchFileAsync("https://gamejolt.com/games/rayman_bowling_2/532563"))?.Dispose();
-        })),
-    };
+            new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
+            {
+                (await Services.File.LaunchFileAsync("https://gamejolt.com/games/rayman_bowling_2/532563"))?.Dispose();
+            })),
+        };
 
     #endregion
 }

@@ -13,7 +13,7 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override string Id => "GloboxMoment_Win32";
     public override Game Game => Game.GloboxMoment;
     public override GameCategory Category => GameCategory.Fan;
-    public override Games LegacyGame => Games.GloboxMoment;
+    public override Games? LegacyGame => Games.GloboxMoment;
 
     public override string DisplayName => "Globox Moment";
     public override string BackupName => "Globox Moment";
@@ -37,13 +37,14 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
         new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/globoxmoment/428585", GenericIconKind.GameDisplay_Web),
     };
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
-    {
-        new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
+        new OverflowButtonItemViewModel[]
         {
-            (await Services.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
-        })),
-    };
+            new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
+            {
+                (await Services.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
+            })),
+        };
 
     #endregion
 }

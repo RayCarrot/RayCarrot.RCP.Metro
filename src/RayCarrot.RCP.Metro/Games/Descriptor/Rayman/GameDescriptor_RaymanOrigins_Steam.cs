@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
     public override string Id => "RaymanOrigins_Steam";
     public override Game Game => Game.RaymanOrigins;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games LegacyGame => Games.RaymanOrigins;
+    public override Games? LegacyGame => Games.RaymanOrigins;
 
     public override string DisplayName => "Rayman Origins";
     public override string BackupName => "Rayman Origins";

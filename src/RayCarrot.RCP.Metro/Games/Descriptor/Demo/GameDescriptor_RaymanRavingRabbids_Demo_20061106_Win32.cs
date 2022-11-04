@@ -20,7 +20,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
     public override Game Game => Game.RaymanRavingRabbids;
     public override GameCategory Category => GameCategory.Demo;
     public override bool IsDemo => true;
-    public override Games LegacyGame => Games.Demo_RaymanRavingRabbids;
+    public override Games? LegacyGame => Games.Demo_RaymanRavingRabbids;
 
     public override string DisplayName => "Rayman Raving Rabbids Demo (2006/11/06)";
     public override string DefaultFileName => "Jade_enr.exe";

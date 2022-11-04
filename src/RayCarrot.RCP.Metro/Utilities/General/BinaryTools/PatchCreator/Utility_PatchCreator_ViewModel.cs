@@ -12,7 +12,9 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     public Utility_PatchCreator_ViewModel()
     {
-        Games = new ObservableCollection<GameItem>(Services.Games.EnumerateGameDescriptors().Select(x => new GameItem(x.LegacyGame, x.DisplayName)));
+        Games = new ObservableCollection<GameItem>(Services.Games.EnumerateGameDescriptors().
+            Where(x => x.LegacyGame != null).
+            Select(x => new GameItem(x.LegacyGame!.Value, x.DisplayName)));
         SelectedGame = Games.First();
 
         CreatePatchCommand = new AsyncRelayCommand(CreatePatchAsync);

@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override string Id => "RaymanJungleRun_WindowsPackage";
     public override Game Game => Game.RaymanJungleRun;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games LegacyGame => Games.RaymanJungleRun;
+    public override Games? LegacyGame => Games.RaymanJungleRun;
 
     public override string DisplayName => "Rayman Jungle Run";
     public override string BackupName => "Rayman Jungle Run";
@@ -37,13 +37,14 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
         new ProgressionGameViewModel_RaymanJungleRun(gameInstallation).Yield();
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
-    {
-        new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
+        new OverflowButtonItemViewModel[]
         {
-            await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
-        })),
-    };
+            new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
+            {
+                await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
+            })),
+        };
 
     #endregion
 }

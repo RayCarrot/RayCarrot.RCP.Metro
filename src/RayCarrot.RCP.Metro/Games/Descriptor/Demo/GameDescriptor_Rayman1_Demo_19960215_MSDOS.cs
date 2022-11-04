@@ -22,7 +22,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MSDOSGameDescri
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Demo;
     public override bool IsDemo => true;
-    public override Games LegacyGame => Games.Demo_Rayman1_2;
+    public override Games? LegacyGame => Games.Demo_Rayman1_2;
 
     public override string DisplayName => "Rayman 1 Demo (1996/02/15)";
     public override string DefaultFileName => "RAYMAN.EXE";

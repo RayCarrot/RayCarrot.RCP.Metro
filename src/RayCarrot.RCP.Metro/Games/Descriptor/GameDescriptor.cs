@@ -39,7 +39,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// The file name (without extensions) for the icon
     /// </summary>
-    protected virtual string IconName => $"{LegacyGame}";
+    protected virtual string IconName => $"{LegacyGame}"; // TODO-14: Use enum for this or define file name string for each game
 
     #endregion
 
@@ -72,7 +72,10 @@ public abstract class GameDescriptor
     /// </summary>
     public virtual bool IsDemo => false;
 
-    public abstract Games LegacyGame { get; } // TODO-14: Remove
+    /// <summary>
+    /// The legacy games enum value
+    /// </summary>
+    public virtual Games? LegacyGame => null; // TODO-14: Minimize references to this
 
     /// <summary>
     /// The game display name
@@ -286,7 +289,8 @@ public abstract class GameDescriptor
     /// <summary>
     /// Gets the additional overflow button items for the game
     /// </summary>
-    public virtual IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => 
+    /// <param name="gameInstallation">The game installation to get the items for</param>
+    public virtual IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
         Enumerable.Empty<OverflowButtonItemViewModel>();
 
     /// <summary>

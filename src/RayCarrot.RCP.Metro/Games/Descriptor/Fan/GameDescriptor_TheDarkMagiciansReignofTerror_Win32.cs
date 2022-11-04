@@ -13,7 +13,7 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     public override string Id => "TheDarkMagiciansReignofTerror_Win32";
     public override Game Game => Game.TheDarkMagiciansReignofTerror;
     public override GameCategory Category => GameCategory.Fan;
-    public override Games LegacyGame => Games.TheDarkMagiciansReignofTerror;
+    public override Games? LegacyGame => Games.TheDarkMagiciansReignofTerror;
 
     public override string DisplayName => "Rayman: The Dark Magician's Reign of Terror";
     public override string BackupName => "Rayman The Dark Magicians Reign of Terror";
@@ -37,13 +37,14 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
         new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701", GenericIconKind.GameDisplay_Web),
     };
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
-    {
-        new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
+        new OverflowButtonItemViewModel[]
         {
-            (await Services.File.LaunchFileAsync("https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701"))?.Dispose();
-        })),
-    };
+            new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
+            {
+                (await Services.File.LaunchFileAsync("https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701"))?.Dispose();
+            })),
+        };
 
     #endregion
 }

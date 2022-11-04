@@ -55,7 +55,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
         new(Resources.GameDisplay_Steam, SteamHelpers.GetStorePageURL(SteamID)),
     };
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => new OverflowButtonItemViewModel[]
     {
         new(Resources.GameDisplay_OpenSteamStore, GenericIconKind.GameDisplay_Steam, new AsyncRelayCommand(async () =>
         {
@@ -96,7 +96,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
             workingDirectory: null,
             launchArguments: null, 
             // TODO-14: Use game ID instead
-            id: LegacyGame.ToString())
+            id: gameInstallation.LegacyGame.ToString())
     };
 
     public override async Task<FileSystemPath?> LocateAsync()

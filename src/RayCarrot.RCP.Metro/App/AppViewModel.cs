@@ -246,8 +246,11 @@ public class AppViewModel : BaseViewModel
 
         try
         {
+            // TODO-14: Change how the game finder works
             // Get all games which have not been added
-            GameDescriptor[] games = Services.Games.EnumerateGameDescriptors().Where(x => !x.LegacyGame.IsAdded()).ToArray();
+            GameDescriptor[] games = Services.Games.EnumerateGameDescriptors().
+                Where(x => Services.Games.EnumerateInstalledGames().All(g => g.GameDescriptor != x)).
+                ToArray();
 
             Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
 

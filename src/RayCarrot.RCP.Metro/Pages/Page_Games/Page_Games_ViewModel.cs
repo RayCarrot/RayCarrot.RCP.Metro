@@ -181,6 +181,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         {
             Logger.Trace("The game {0} is being downloaded...", gameDescriptor.Id);
 
+            // TODO-14: Change this. Use id? Make sure to not download multiple times then.
             // Get the game directory
             var gameDir = AppFilePaths.GamesBaseDir + gameDescriptor.LegacyGame.ToString();
 
@@ -316,7 +317,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
         // Add additional items
         int count = actions.Count;
-        actions.AddRange(gameDescriptor.GetAdditionalOverflowButtonItems());
+        actions.AddRange(gameDescriptor.GetAdditionalOverflowButtonItems(gameInstallation));
 
         if (actions.Count != count)
             actions.Add(new OverflowButtonItemViewModel());

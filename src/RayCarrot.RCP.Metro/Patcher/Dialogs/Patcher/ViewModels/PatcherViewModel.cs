@@ -292,6 +292,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.Game, GameInstallation.LegacyGame);
 
+            // TODO-14: Have this show a full platform name, such as "Rayman 2 (Steam)"
             await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameDescriptor.DisplayName),
                 MessageType.Error);
 
@@ -798,7 +799,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             // Make sure the game has external patches defined
-            if (manifest.Games?.ContainsKey(GameInstallation.LegacyGame) != true)
+            if (manifest.Games?.ContainsKey(GameInstallation.LegacyGame.Value) != true)
             {
                 Logger.Info("The game {0} has no external patches", GameInstallation.Id);
                 _externalGamePatchesURL = null;
@@ -808,7 +809,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             Logger.Info("Loading external patches for game {0}", GameInstallation.Id);
 
-            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[GameInstallation.LegacyGame]);
+            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[GameInstallation.LegacyGame.Value]);
 
             ExternalGamePatchesManifest gameManifest =
                 await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(_externalGamePatchesURL
@@ -907,7 +908,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                     }).ToArray();
 
                     bool success = await patcher.ApplyAsync(
-                        game: GameInstallation.LegacyGame,
+                        game: GameInstallation.LegacyGame.Value,
                         library: Library,
                         gameDirectory: GameDirectory,
                         patches: patches,

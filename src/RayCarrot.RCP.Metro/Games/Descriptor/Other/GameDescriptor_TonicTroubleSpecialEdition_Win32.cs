@@ -15,7 +15,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override string Id => "TonicTroubleSpecialEdition_Win32";
     public override Game Game => Game.TonicTroubleSpecialEdition;
     public override GameCategory Category => GameCategory.Other;
-    public override Games LegacyGame => Games.TonicTroubleSpecialEdition;
+    public override Games? LegacyGame => Games.TonicTroubleSpecialEdition;
 
     public override string DisplayName => "Tonic Trouble Special Edition";
     public override string BackupName => "Tonic Trouble Special Edition";

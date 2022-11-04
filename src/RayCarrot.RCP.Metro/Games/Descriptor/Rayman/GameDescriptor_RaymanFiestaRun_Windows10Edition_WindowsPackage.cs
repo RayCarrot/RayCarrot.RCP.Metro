@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     public override string Id => "RaymanFiestaRunWindows10Edition_WindowsPackage";
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games LegacyGame => Games.RaymanFiestaRun;
+    public override Games? LegacyGame => Games.RaymanFiestaRun;
 
     public override string DisplayName => "Rayman Fiesta Run Windows 10 Edition";
     public override string BackupName => "Rayman Fiesta Run (Win10)";
@@ -42,13 +42,14 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
         new Utility_RaymanFiestaRun_SaveFix(gameInstallation, 0),
     };
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
-    {
-        new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
+        new OverflowButtonItemViewModel[]
         {
-            await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
-        })),
-    };
+            new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
+            {
+                await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
+            })),
+        };
 
     #endregion
 }

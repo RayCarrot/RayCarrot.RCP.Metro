@@ -23,7 +23,7 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     public override Game Game => Game.RaymanMArena;
     public override GameCategory Category => GameCategory.Demo;
     public override bool IsDemo => true;
-    public override Games LegacyGame => Games.Demo_RaymanM;
+    public override Games? LegacyGame => Games.Demo_RaymanM;
 
     public override string DisplayName => "Rayman M Demo (2002/06/27)";
     public override string BackupName => "Rayman M Demo";

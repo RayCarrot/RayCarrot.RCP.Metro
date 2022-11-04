@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override string Id => "RabbidsBigBang_WindowsPackage";
     public override Game Game => Game.RabbidsBigBang;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override Games LegacyGame => Games.RabbidsBigBang;
+    public override Games? LegacyGame => Games.RabbidsBigBang;
 
     public override string DisplayName => "Rabbids Big Bang";
     public override string BackupName => "Rabbids Big Bang";
@@ -34,13 +34,14 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
         new ProgressionGameViewModel_RabbidsBigBang(gameInstallation).Yield();
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[]
-    {
-        new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
+        new OverflowButtonItemViewModel[]
         {
-            await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
-        })),
-    };
+            new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
+            {
+                await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
+            })),
+        };
 
     #endregion
 }

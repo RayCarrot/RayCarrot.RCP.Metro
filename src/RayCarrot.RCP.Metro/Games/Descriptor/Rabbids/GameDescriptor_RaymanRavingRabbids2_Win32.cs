@@ -13,7 +13,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override string Id => "RaymanRavingRabbids2_Win32";
     public override Game Game => Game.RaymanRavingRabbids2;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override Games LegacyGame => Games.RaymanRavingRabbids2;
+    public override Games? LegacyGame => Games.RaymanRavingRabbids2;
 
     public override string DisplayName => "Rayman Raving Rabbids 2";
     public override string BackupName => "Rayman Raving Rabbids 2";

@@ -30,7 +30,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     public override string Id => "EducationalDos_MSDOS";
     public override Game Game => Game.EducationalDos;
     public override GameCategory Category => GameCategory.Other;
-    public override Games LegacyGame => Games.EducationalDos;
+    public override Games? LegacyGame => Games.EducationalDos;
 
     public override string DisplayName => "Educational Games";
     public override string BackupName => throw new Exception("A generic backup name can not be obtained for an educational DOS game due to it being a collection of multiple games");
@@ -215,7 +215,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => 
         Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems() =>
+    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) =>
         Services.Data.Game_EducationalDosBoxGames.Select(x => new OverflowButtonItemViewModel(
             header: x.Name, 
             iconSource: new BitmapImage(new Uri($@"{AppViewModel.WPFApplicationBasePath}img\GameIcons\EducationalDos.png")), 
@@ -237,7 +237,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
                 Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
 
                 // Launch the game
-                var launchMode = LegacyGame.GetInstallation().GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+                var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
                 var process = await Services.File.LaunchFileAsync(launchInfo.Path, launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
 
                 Logger.Info("The educational game {0} has been launched", x.Name);
