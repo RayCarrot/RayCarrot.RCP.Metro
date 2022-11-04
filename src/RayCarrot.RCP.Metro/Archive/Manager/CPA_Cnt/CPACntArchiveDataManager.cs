@@ -23,10 +23,12 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
     /// <param name="gameInstallation">The game installation or null if one is not specified</param>
-    public CPACntArchiveDataManager(OpenSpaceSettings settings, GameInstallation? gameInstallation)
+    /// <param name="cpaTextureSyncData">Optional CPA texture sync data for when repacking</param>
+    public CPACntArchiveDataManager(OpenSpaceSettings settings, GameInstallation? gameInstallation, CPATextureSyncData? cpaTextureSyncData)
     {
         Settings = settings;
         GameInstallation = gameInstallation;
+        CPATextureSyncData = cpaTextureSyncData;
 
         Context = new RCPContext(String.Empty, new RCPSerializerSettings()
         {
@@ -40,6 +42,15 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Private Properties
+
+    /// <summary>
+    /// Optional CPA texture sync data for when repacking
+    /// </summary>
+    private CPATextureSyncData? CPATextureSyncData { get; }
 
     #endregion
 
@@ -261,8 +272,8 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
     public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths)
     {
-        // If we don't have a game then we can't auto-sync the textures
-        if (GameInstallation == null)
+        // Make sure the texture sync can be performed
+        if (GameInstallation == null || CPATextureSyncData == null)
             return;
 
         AppUserData data = Services.Data;
@@ -285,20 +296,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
         data.Archive_CNT_SyncOnRepackRequested = true;
 
-        // TODO: Find a better solution than first creating the utilities to then get the view models
-        Utility_BaseGameSyncTextureInfo_ViewModel? syncVm = GameInstallation.LegacyGame switch
-        {
-            Games.Rayman2 => new Utility_Rayman2_GameSyncTextureInfo(GameInstallation).ViewModel,
-            Games.RaymanM => new Utility_RaymanM_GameSyncTextureInfo(GameInstallation).ViewModel,
-            Games.RaymanArena => new Utility_RaymanArena_GameSyncTextureInfo(GameInstallation).ViewModel,
-            Games.Rayman3 => new Utility_Rayman3_GameSyncTextureInfo(GameInstallation).ViewModel,
-            Games.TonicTrouble => new Utility_TonicTrouble_GameSyncTextureInfo(GameInstallation).ViewModel,
-            Games.TonicTroubleSpecialEdition => new Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo(GameInstallation).ViewModel,
-            _ => null
-        };
-
-        if (syncVm == null)
-            return;
+        Utility_CPATextureSync_ViewModel syncVm = new(GameInstallation, CPATextureSyncData);
 
         await syncVm.SyncTextureInfoAsync(archiveFilePaths);
     }

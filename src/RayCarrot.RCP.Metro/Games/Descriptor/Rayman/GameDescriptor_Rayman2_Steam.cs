@@ -50,7 +50,10 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman2, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
+        new CPACntArchiveDataManager(
+            settings: new OpenSpaceSettings(EngineVersion.Rayman2, BinarySerializer.OpenSpace.Platform.PC), 
+            gameInstallation: gameInstallation,
+            cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC));
 
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
     {
@@ -64,7 +67,7 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
-        new Utility_Rayman2_GameSyncTextureInfo(gameInstallation),
+        new Utility_CPATextureSync(gameInstallation, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC)),
     };
 
     public override async Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)

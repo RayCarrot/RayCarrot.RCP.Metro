@@ -1,15 +1,16 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The base game sync texture info utility
+/// The CPA texture sync utility
 /// </summary>
-public abstract class Utility_BaseGameSyncTextureInfo : Utility<Utility_BaseGameSyncTextureInfo_Control, Utility_BaseGameSyncTextureInfo_ViewModel>
+public class Utility_CPATextureSync : Utility<Utility_CPATextureSync_Control, Utility_CPATextureSync_ViewModel>
 {
-    protected Utility_BaseGameSyncTextureInfo(Utility_BaseGameSyncTextureInfo_ViewModel viewModel) : base(viewModel)
+    public Utility_CPATextureSync(GameInstallation gameInstallation, CPATextureSyncData data) 
+        : base(new Utility_CPATextureSync_ViewModel(gameInstallation, data))
     {
-        viewModel.PropertyChanged += (_, e) =>
+        ViewModel.PropertyChanged += (_, e) =>
         {
-            if (e.PropertyName == nameof(viewModel.IsLoading))
+            if (e.PropertyName == nameof(ViewModel.IsLoading))
                 OnIsLoadingChanged();
         };
     }

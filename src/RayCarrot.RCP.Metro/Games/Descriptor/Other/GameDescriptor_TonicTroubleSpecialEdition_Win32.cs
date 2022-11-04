@@ -44,7 +44,10 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.TonicTroubleSpecialEdition, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
+        new CPACntArchiveDataManager(
+            settings: new OpenSpaceSettings(EngineVersion.TonicTroubleSpecialEdition, BinarySerializer.OpenSpace.Platform.PC), 
+            gameInstallation: gameInstallation, 
+            cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC));
 
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
     {
@@ -54,7 +57,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
-        new Utility_TonicTroubleSpecialEdition_GameSyncTextureInfo(gameInstallation),
+        new Utility_CPATextureSync(gameInstallation, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC)),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new("TONICT", "Tonic Trouble", new[]

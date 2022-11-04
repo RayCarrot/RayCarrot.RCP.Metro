@@ -4,31 +4,80 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-/// <summary>
-/// Base view model for synchronizing texture info
-/// </summary>
-public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
+// TODO-14: Maybe we need to have a general utility as well for other games like Donald Duck - unless we also add those to RCP?
+
+public class Utility_CPATextureSync_ViewModel : BaseViewModel
 {
+    #region Constructor
+
+    /// <summary>
+    /// Default constructor
+    /// </summary>
+    /// <param name="gameInstallation">The game installation</param>
+    /// <param name="data">The game texture sync data</param>
+    public Utility_CPATextureSync_ViewModel(GameInstallation gameInstallation, CPATextureSyncData data)
+    {
+        // Set properties
+        GameInstallation = gameInstallation;
+        Data = data;
+
+        // Create commands
+        SyncTextureInfoCommand = new AsyncRelayCommand(() => SyncTextureInfoAsync());
+    }
+
+    #endregion
+
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
-    #region Protected Methods
+    #region Commands
+
+    public ICommand SyncTextureInfoCommand { get; }
+
+    #endregion
+
+    #region Private Properties
+
+    /// <summary>
+    /// The game installation
+    /// </summary>
+    private GameInstallation GameInstallation { get; }
+
+    /// <summary>
+    /// The game texture sync data
+    /// </summary>
+    private CPATextureSyncData Data { get; }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// Indicates if the utility is loading
+    /// </summary>
+    public bool IsLoading { get; set; }
+
+    #endregion
+
+    #region Private Methods
 
     /// <summary>
     /// Gets the file extension for the level data files
     /// </summary>
     /// <param name="gameSettings">The settings</param>
     /// <returns>The file extension</returns>
-    protected string GetLevelFileExtension(OpenSpaceSettings gameSettings)
+    private string GetLevelFileExtension(OpenSpaceSettings gameSettings)
     {
         return gameSettings.MajorEngineVersion switch
         {
@@ -40,58 +89,13 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
     }
 
     /// <summary>
-    /// Gets the file names for the .cnt files. If a game has more than one version, such as 16-bit and 32-bit textures, the highest quality ones are chosen.
-    /// </summary>
-    /// <param name="gameSettings">The settings</param>
-    /// <returns>The file names</returns>
-    protected string[] GetCntFileNames(OpenSpaceSettings gameSettings)
-    {
-        // TODO: Rather than hard-coding this here we can get it from the game info? Or pass in?
-        return gameSettings.EngineVersion switch
-        {
-            EngineVersion.TonicTroubleSpecialEdition => new string[]
-            {
-                "TEXTURES.CNT",
-                "VIGNETTE.CNT",
-            },
-            EngineVersion.TonicTrouble => new string[]
-            {
-                "Textures.cnt",
-                "Vignette.cnt",
-            },
-            EngineVersion.Rayman2 => new string[]
-            {
-                "Textures.cnt",
-                "Vignette.cnt",
-            },
-            EngineVersion.RaymanM => new string[]
-            {
-                "tex32.cnt",
-                "vignette.cnt",
-            },
-            EngineVersion.RaymanArena => new string[]
-            {
-                "tex32.cnt",
-                "vignette.cnt",
-            },
-            EngineVersion.Rayman3 => new string[]
-            {
-                "tex32_1.cnt",
-                "tex32_2.cnt",
-                "vignette.cnt",
-            },
-            _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
-        };
-    }
-
-    /// <summary>
     /// Edits all found texture info objects in CPA data files (.sna, .lvl etc.) to have their resolution match the .gf textures
     /// </summary>
     /// <param name="gameSettings">The CPA game settings to use</param>
     /// <param name="files">The files to edit</param>
     /// <param name="cntFiles">The .cnt file paths</param>
     /// <returns>The result</returns>
-    protected TextureInfoEditResult EditTextureInfo(OpenSpaceSettings gameSettings, IEnumerable<FileSystemPath> files, IEnumerable<FileSystemPath> cntFiles)
+    private TextureInfoEditResult EditTextureInfo(OpenSpaceSettings gameSettings, IEnumerable<FileSystemPath> files, IEnumerable<FileSystemPath> cntFiles)
     {
         // The offset for the size from the name
         int sizeOffset = gameSettings.MajorEngineVersion switch
@@ -125,35 +129,35 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
             gfFiles.AddRange(cntData.Files.
                 Where(x => x.FileName.EndsWith(".gf", StringComparison.InvariantCultureIgnoreCase)).
                 Select(x =>
-            {
-                int width = 0;
-                int height = 0;
-                uint mipmaps = 0;
-
-                // Read the GF header
-                cntData.ReadFile(x, s =>
                 {
-                    // Skip the format
-                    if (gameSettings.EngineVersion != EngineVersion.TonicTroubleSpecialEdition)
-                        s.Serialize<uint>(default, "Format");
+                    int width = 0;
+                    int height = 0;
+                    uint mipmaps = 0;
 
-                    // Read the size
-                    width = s.Serialize<int>(default, name: "Width");
-                    height = s.Serialize<int>(default, name: "Height");
-
-                    if (gameSettings.MajorEngineVersion == MajorEngineVersion.Rayman3)
+                    // Read the GF header
+                    cntData.ReadFile(x, s =>
                     {
-                        // Skip the channel count...
-                        s.Serialize<byte>(default, "Channels");
+                        // Skip the format
+                        if (gameSettings.EngineVersion != EngineVersion.TonicTroubleSpecialEdition)
+                            s.Serialize<uint>(default, "Format");
 
-                        // Read mipmap count
-                        mipmaps = s.Serialize<byte>(default, "MipmapsCount");
-                    }
-                }, logIfNotFullyRead: false);
+                        // Read the size
+                        width = s.Serialize<int>(default, name: "Width");
+                        height = s.Serialize<int>(default, name: "Height");
 
-                // Return the GF data
-                return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width, mipmaps);
-            }));
+                        if (gameSettings.MajorEngineVersion == MajorEngineVersion.Rayman3)
+                        {
+                            // Skip the channel count...
+                            s.Serialize<byte>(default, "Channels");
+
+                            // Read mipmap count
+                            mipmaps = s.Serialize<byte>(default, "MipmapsCount");
+                        }
+                    }, logIfNotFullyRead: false);
+
+                    // Return the GF data
+                    return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width, mipmaps);
+                }));
         }
 
         // Make sure we have any GF files
@@ -176,7 +180,7 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
         };
 
         // Most games just use .tga, but Tonic Trouble uses the other ones too
-        byte[][] fileExtensions = 
+        byte[][] fileExtensions =
         {
             new byte[] { 0x2E, 0x74, 0x67, 0x61 }, // .tga
             new byte[] { 0x2E, 0x54, 0x47, 0x41 }, // .TGA
@@ -324,13 +328,78 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
 
     #endregion
 
-    #region Protected Classes
+    #region Public Methods
+
+    /// <summary>
+    /// Synchronizes the texture info for the selected game data directory
+    /// </summary>
+    /// <param name="cntFiles">The .cnt file paths, or null if they should be automatically found</param>
+    /// <returns>The task</returns>
+    public async Task SyncTextureInfoAsync(IEnumerable<FileSystemPath>? cntFiles = null)
+    {
+        try
+        {
+            IsLoading = true;
+
+            TextureInfoEditResult syncResult = await Task.Run(() =>
+            {
+                // Get the game install directory
+                FileSystemPath installDir = GameInstallation.InstallLocation;
+
+                // Get the settings
+                CPAGameModeInfoAttribute attr = Data.GameMode.GetAttribute<CPAGameModeInfoAttribute>();
+                OpenSpaceSettings gameSettings = attr.GetSettings();
+
+                // Get the file extension for the level data files
+                string fileExt = GetLevelFileExtension(gameSettings);
+
+                // Get the level data files
+                IEnumerable<FileSystemPath> dataFiles = Data.Items.Select(x => x.Name).
+                    Select(x => Directory.GetFiles(installDir + x, $"*{fileExt}", SearchOption.AllDirectories).
+                        Select(y => new FileSystemPath(y))).
+                    SelectMany(x => x);
+
+                if (cntFiles == null)
+                {
+                    // Get the full paths and only keep the ones which exist
+                    cntFiles = Data.Items.
+                        Select(dataItem => dataItem.Archives.
+                            Select(cnt => installDir + dataItem.Name + cnt).
+                            Where(cntPath => cntPath.FileExists)).
+                        SelectMany(x => x);
+                }
+                else
+                {
+                    // TODO: Should we verify that the provided file paths are part of what's defined in the data?
+                }
+
+                // Sync the texture info
+                return EditTextureInfo(gameSettings, dataFiles, cntFiles);
+            });
+
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Syncing texture info");
+
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    #endregion
+
+    #region Data Types
 
     /// <summary>
     /// Data for a .gf file, containing its size and path
     /// </summary>
     [DebuggerDisplay("{FullPathWithoutExtension} - {Width}x{Height}")]
-    protected class GFFileSizeData
+    private class GFFileSizeData
     {
         /// <summary>
         /// Default constructor
@@ -371,29 +440,9 @@ public abstract class Utility_BaseSyncTextureInfoViewModel : BaseRCPViewModel
     /// <summary>
     /// The result for editing the texture info
     /// </summary>
-    protected class TextureInfoEditResult
-    {
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="totalTextures">The total found textures infos across all maps</param>
-        /// <param name="editedTextures">The number of edited texture infos across all maps</param>
-        public TextureInfoEditResult(int totalTextures, int editedTextures)
-        {
-            TotalTextures = totalTextures;
-            EditedTextures = editedTextures;
-        }
-
-        /// <summary>
-        /// The total found textures infos across all maps
-        /// </summary>
-        public int TotalTextures { get; }
-
-        /// <summary>
-        /// The number of edited texture infos across all maps
-        /// </summary>
-        public int EditedTextures { get; }
-    }
+    /// <param name="TotalTextures">The total found textures infos across all maps</param>
+    /// <param name="EditedTextures">The number of edited texture infos across all maps</param>
+    private record TextureInfoEditResult(int TotalTextures, int EditedTextures);
 
     #endregion
 }

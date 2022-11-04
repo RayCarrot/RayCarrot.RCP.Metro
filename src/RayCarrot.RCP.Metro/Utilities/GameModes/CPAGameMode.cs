@@ -39,7 +39,7 @@ public enum CPAGameMode
         typeof(GameDescriptor_RaymanM_Win32))]
     RaymanM_PC,
 
-    [CPAGameModeInfo("Rayman Arena (PC)", EngineVersion.RaymanArena, Platform.PC, 
+    [CPAGameModeInfo("Rayman Arena (PC)", EngineVersion.RaymanM, Platform.PC, 
         typeof(GameDescriptor_RaymanArena_Win32))]
     RaymanArena_PC,
 

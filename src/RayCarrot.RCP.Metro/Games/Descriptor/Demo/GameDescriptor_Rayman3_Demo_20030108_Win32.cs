@@ -51,7 +51,10 @@ public sealed class GameDescriptor_Rayman3_Demo_20030108_Win32 : Win32GameDescri
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.Rayman3, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
+        new CPACntArchiveDataManager(
+            settings: new OpenSpaceSettings(EngineVersion.Rayman3, BinarySerializer.OpenSpace.Platform.PC), 
+            gameInstallation: gameInstallation,
+            cpaTextureSyncData: null);
 
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
     {

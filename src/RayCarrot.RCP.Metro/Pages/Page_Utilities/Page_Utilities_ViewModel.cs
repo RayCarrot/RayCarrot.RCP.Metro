@@ -35,7 +35,7 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
     protected override Task InitializeAsync()
     {
         // Create view models
-        BinaryToolViewModels.AddRange(new UtilityViewModel[]
+        BinaryToolViewModels.AddRange(new[]
         {
             new UtilityViewModel(new Utility_Archives()),
             new UtilityViewModel(new Utility_PatchCreator()),
@@ -43,12 +43,11 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
             new UtilityViewModel(new Utility_Converters()),
             new UtilityViewModel(new Utility_Decoders()),
         });
-        OtherViewModels.AddRange(new UtilityViewModel[]
+        OtherViewModels.AddRange(new[]
         {
-            new UtilityViewModel(new Utility_SyncTextureInfo()),
             new UtilityViewModel(new Utility_R1PasswordGenerator()),
         });
-        ExternalToolViewModels.AddRange(new UtilityViewModel[]
+        ExternalToolViewModels.AddRange(new[]
         {
             new UtilityViewModel(new Utility_Ray1Editor()),
         });

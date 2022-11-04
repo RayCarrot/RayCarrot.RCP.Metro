@@ -45,7 +45,10 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
-        new CPACntArchiveDataManager(new OpenSpaceSettings(EngineVersion.RaymanM, BinarySerializer.OpenSpace.Platform.PC), gameInstallation);
+        new CPACntArchiveDataManager(
+            settings: new OpenSpaceSettings(EngineVersion.RaymanM, BinarySerializer.OpenSpace.Platform.PC), 
+            gameInstallation: gameInstallation,
+            cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.RaymanM_PC));
 
     public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
     {
@@ -59,7 +62,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
-        new Utility_RaymanM_GameSyncTextureInfo(gameInstallation),
+        new Utility_CPATextureSync(gameInstallation, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanM_PC)),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(UbiIniData_RaymanM.SectionName, "Rayman M", new[]

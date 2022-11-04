@@ -6,6 +6,8 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: This utility should only work on a single installation
+
 /// <summary>
 /// View model for the Rayman 1 TPLS utility
 /// </summary>
