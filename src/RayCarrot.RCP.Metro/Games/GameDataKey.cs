@@ -4,4 +4,5 @@
 public static class GameDataKey
 {
     public const string Win32LaunchMode = "Win32LaunchMode";
+    public const string DOSBoxMountPath = "DOSBoxMountPath";
 }

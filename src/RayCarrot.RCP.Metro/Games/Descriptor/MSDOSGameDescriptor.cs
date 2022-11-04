@@ -25,13 +25,13 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
 
     public override GamePlatform Platform => GamePlatform.MSDOS;
     public override bool SupportsGameLaunchMode => true;
-    public override Emulator Emulator => new Emulator_DOSBox(); // TODO-14: Make this lazy
+    public override Emulator Emulator => new Emulator_DOSBox(); // TODO-14: Make this lazy if it's a property, otherwise method
 
     /// <summary>
     /// Gets the DosBox configuration file path for the auto config file
     /// </summary>
     /// <returns>The file path</returns>
-    public FileSystemPath DosBoxConfigFile => AppFilePaths.UserDataBaseDir + "DosBox" + (LegacyGame + ".ini");
+    public FileSystemPath DosBoxConfigFile => AppFilePaths.UserDataBaseDir + "DosBox" + (LegacyGame + ".ini"); // TODO-14: Should be per installation
 
     /// <summary>
     /// Indicates if the game requires a disc to be mounted in order to play
@@ -74,7 +74,8 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
         }
 
         // Make sure the mount path exists
-        if (RequiresMounting && !Services.Data.Game_DosBoxGames[LegacyGame].MountPath.Exists)
+        FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
+        if (RequiresMounting && !mountPath.Exists)
         {
             await Services.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
             return false;
@@ -85,8 +86,8 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
 
     protected override GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
     {
-        UserData_DosBoxOptions options = Services.Data.Game_DosBoxGames[gameInstallation.LegacyGame];
-        string args = GetDosBoxArguments(options.MountPath, gameInstallation.GameDescriptor.DefaultFileName, gameInstallation.InstallLocation);
+        FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
+        string args = GetDosBoxArguments(mountPath, gameInstallation.GameDescriptor.DefaultFileName, gameInstallation.InstallLocation);
         return new GameLaunchInfo(DOSBoxFilePath, args);
     }
 
@@ -161,15 +162,8 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
 
     public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
-        // TODO-14: Fix
         // Create config file
-        //new Emulator_DOSBox_AutoConfigManager(DosBoxConfigFile).Create();
-
-        // Create the options
-        var options = new UserData_DosBoxOptions();
-
-        if (!Services.Data.Game_DosBoxGames.ContainsKey(gameInstallation.LegacyGame))
-            Services.Data.Game_DosBoxGames.Add(gameInstallation.LegacyGame, options);
+        new Emulator_DOSBox_AutoConfigManager(DosBoxConfigFile).Create();
 
         // If the game was included in Rayman Forever...
         if (RaymanForeverFolderName != null)
@@ -190,7 +184,7 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
 
             if (mountPath.FileExists)
             {
-                options.MountPath = mountPath;
+                gameInstallation.SetValue(GameDataKey.DOSBoxMountPath, mountPath);
                 Logger.Info("The mount path for {0} was automatically found", Id);
             }
 
@@ -218,21 +212,14 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
 
     public override Task PostGameRemovedAsync(GameInstallation gameInstallation)
     {
-        // If there is DosBox options saved, remove those as well
-        if (Services.Data.Game_DosBoxGames.ContainsKey(gameInstallation.LegacyGame))
+        try
         {
-            Services.Data.Game_DosBoxGames.Remove(gameInstallation.LegacyGame);
-
-            try
-            {
-                // TODO-14: Fix
-                // Remove the config file
-                //Services.File.DeleteFile(DosBoxConfigFile);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Removing DosBox auto config file");
-            }
+            // Remove the config file
+            Services.File.DeleteFile(DosBoxConfigFile);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Removing DosBox auto config file");
         }
 
         return Task.CompletedTask;

@@ -31,20 +31,17 @@ public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
     /// <summary>
     /// The allowed drive types when browsing for a mount path
     /// </summary>
-    public DriveType[] MountPathAllowedDriveTypes => new DriveType[]
-    {
-        DriveType.CDRom
-    };
+    public DriveType[] MountPathAllowedDriveTypes => new[] { DriveType.CDRom };
 
     /// <summary>
     /// The file or directory to mount
     /// </summary>
     public FileSystemPath MountPath
     {
-        get => Data.Game_DosBoxGames[GameInstallation.LegacyGame].MountPath;
+        get => GameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
         set
         {
-            Data.Game_DosBoxGames[GameInstallation.LegacyGame].MountPath = value;
+            GameInstallation.SetValue(GameDataKey.DOSBoxMountPath, value);
 
             // TODO: Find better solution to this. Ideally we would invoke the refresh from an event caused by the UI, but
             // currently the BrowseBox does not have any event for when the path is changed. Doing this rather than discarding the task

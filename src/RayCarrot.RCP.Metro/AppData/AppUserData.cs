@@ -10,7 +10,7 @@ using PropertyChanged;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Remove verification and make everything nullable
-// TODO-14: Migrate old Games_Games and Game_InstalledGames properties to new Game_GameInstallations collection - do this
+// TODO-14: Migrate old Games_Games and Game_InstalledGames (and more) properties to new Game_GameInstallations collection - do this
 //          by serializing as JObject first and then checking the version before parsing as AppuserData
 
 /// <summary>
@@ -55,7 +55,6 @@ public class AppUserData : BaseViewModel
 
         // Game
         Game_GameInstallations = new List<GameInstallation>();
-        Game_DosBoxGames = new Dictionary<Games, UserData_DosBoxOptions>();
         Game_AutoLocateGames = true;
         Game_ShowNotInstalledGames = true;
         Game_EducationalDosBoxGames = null;
@@ -120,7 +119,6 @@ public class AppUserData : BaseViewModel
             
         // Game
         Game_GameInstallations ??= new List<GameInstallation>();
-        Game_DosBoxGames ??= new Dictionary<Games, UserData_DosBoxOptions>();
 
         // Mod
         Mod_RRR_ToggleStates ??= new Dictionary<string, UserData_Mod_RRR_ToggleState>();
@@ -268,11 +266,6 @@ public class AppUserData : BaseViewModel
     public List<GameInstallation> Game_GameInstallations { get; set; }
 
     // TODO-14: Remove most of the below games properties in favor of new AdditionalData system
-
-    /// <summary>
-    /// The DosBox games options
-    /// </summary>
-    public Dictionary<Games, UserData_DosBoxOptions> Game_DosBoxGames { get; set; }
 
     /// <summary>
     /// Indicates if games should be automatically located on startup
@@ -508,7 +501,8 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private bool IsUpdateAvailable { set => Update_IsUpdateAvailable = value; }
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private Dictionary<Games, UserData_GameData> Games { set => Game_Games = value; }
-    [JsonProperty] private Dictionary<Games, UserData_DosBoxOptions> DosBoxGames { set => Game_DosBoxGames = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private Dictionary<Games, UserData_DosBoxOptions> DosBoxGames { set => Game_DosBoxGames = value; }
     [JsonProperty] private bool IsFirstLaunch { set => App_IsFirstLaunch = value; }
     [JsonProperty] private string DosBoxPath { set => Emu_DOSBox_Path = value; }
     [JsonProperty] private string DosBoxConfig { set => Emu_DOSBox_ConfigPath = value; }

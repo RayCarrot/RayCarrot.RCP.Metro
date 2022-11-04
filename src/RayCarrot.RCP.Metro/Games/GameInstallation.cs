@@ -97,6 +97,8 @@ public class GameInstallation
 
         if (typeof(T).IsEnum)
             return (T)Convert.ChangeType(obj, Enum.GetUnderlyingType(typeof(T)));
+        else if (typeof(T) == typeof(FileSystemPath)) // Ugly hack - perhaps we should make FileSystemPath convertible?
+            return (T)(object)new FileSystemPath((string)obj);
         else
             return (T)Convert.ChangeType(obj, typeof(T));
     }

@@ -54,7 +54,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MSDOSGameDescri
         FileSystemPath mountPath = gameInstallation.InstallLocation + "Disc" + "RAY1DEMO.cue";
 
         if (mountPath.FileExists)
-            Services.Data.Game_DosBoxGames[gameInstallation.LegacyGame].MountPath = mountPath;
+            gameInstallation.SetValue(GameDataKey.DOSBoxMountPath, mountPath);
     }
 
     #endregion
