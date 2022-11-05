@@ -1,7 +1,7 @@
-﻿#nullable disable
-using NLog;
+﻿using NLog;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -27,9 +27,9 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         const int minHeight = 200;
         double maxHeight = SystemParameters.PrimaryScreenHeight;
 
-        AvailableFullscreenResolutionValues.Add($"Original");
-        AvailableFullscreenResolutionValues.Add($"Desktop");
-        AvailableWindowedResolutionValues.Add($"Original");
+        AvailableFullscreenResolutionValues.Add("Original");
+        AvailableFullscreenResolutionValues.Add("Desktop");
+        AvailableWindowedResolutionValues.Add("Original");
 
         for (int height = minHeight; height <= maxHeight; height += minHeight)
         {
@@ -41,7 +41,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         // NOTE: Below options are not localized
 
         // Set available DosBox outputs
-        AvailableDosBoxOutputs = new string[]
+        AvailableDosBoxOutputs = new[]
         {
             "default",
             "surface",
@@ -52,7 +52,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         };
 
         // Set available DosBox scalers
-        AvailableDosBoxScalers = new string[]
+        AvailableDosBoxScalers = new[]
         {
             "default",
             "none",
@@ -76,7 +76,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         };
 
         // Set available DosBox core modes
-        AvailableDosBoxCoreModes = new string[]
+        AvailableDosBoxCoreModes = new[]
         {
             "default",
             "normal",
@@ -86,7 +86,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         };
 
         // Set available DosBox cycle modes
-        AvailableDosBoxCycleModes = new string[]
+        AvailableDosBoxCycleModes = new[]
         {
             "default",
             "auto",
@@ -105,53 +105,32 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     #region Private Fields
 
     private bool? _fullscreenEnabled;
-
     private bool? _fullDoubleEnabled;
-
     private bool? _aspectCorrectionEnabled;
-
     private double? _memorySize;
-
     private double? _frameskip;
-
-    private string _selectedOutput;
-
-    private string _fullscreenResolution;
-
-    private string _windowedResolution;
-
-    private string _selectedScaler;
-
-    private string _selectedCoreMode;
-
-    private string _selectedCycles;
-
-    private string _customCommands;
+    private string? _selectedOutput;
+    private string? _fullscreenResolution;
+    private string? _windowedResolution;
+    private string? _selectedScaler;
+    private string? _selectedCoreMode;
+    private string? _selectedCycles;
+    private string? _customCommands;
 
     #endregion
 
     #region Private Constants
 
     public const string FullScreenKey = "fullscreen";
-
     public const string FullDoubleKey = "fulldouble";
-
     public const string AspectCorrectionKey = "aspect";
-
     public const string MemorySizeKey = "memsize";
-
     public const string FrameskipKey = "frameskip";
-
     public const string OutputKey = "output";
-
     public const string FullscreenResolutionKey = "fullresolution";
-
     public const string WindowedResolutionKey = "windowresolution";
-
     public const string ScalerKey = "scaler";
-
     public const string CoreKey = "core";
-
     public const string CyclesKey = "cycles";
 
     #endregion
@@ -261,7 +240,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The selected output to use
     /// </summary>
-    public string SelectedOutput
+    public string? SelectedOutput
     {
         get => _selectedOutput;
         set
@@ -274,7 +253,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The selected fullscreen resolution
     /// </summary>
-    public string FullscreenResolution
+    public string? FullscreenResolution
     {
         get => _fullscreenResolution;
         set
@@ -287,7 +266,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The selected fullscreen resolution
     /// </summary>
-    public string WindowedResolution
+    public string? WindowedResolution
     {
         get => _windowedResolution;
         set
@@ -300,7 +279,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The selected scaler to use
     /// </summary>
-    public string SelectedScaler
+    public string? SelectedScaler
     {
         get => _selectedScaler;
         set
@@ -313,7 +292,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The selected core mode to use
     /// </summary>
-    public string SelectedCoreMode
+    public string? SelectedCoreMode
     {
         get => _selectedCoreMode;
         set
@@ -326,7 +305,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The selected cycles to use
     /// </summary>
-    public string SelectedCycles
+    public string? SelectedCycles
     {
         get => _selectedCycles;
         set
@@ -339,7 +318,8 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The custom DosBox commands to use
     /// </summary>
-    public string CustomCommands
+    [DisallowNull]
+    public string? CustomCommands
     {
         get => _customCommands;
         set
@@ -403,9 +383,12 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         return Task.CompletedTask;
 
         // Helper methods for getting properties
-        bool? GetBool(string propName) => Boolean.TryParse(configData.Configuration.TryGetValue(propName), out bool output) ? (bool?)output : null;
-        string GetString(string propName, string defaultValue = null) => configData.Configuration.TryGetValue(propName) ?? defaultValue;
-        double? GetDouble(string propName) => Double.TryParse(configData.Configuration.TryGetValue(propName), out double output) ? (double?)output : null;
+        bool? GetBool(string propName) =>
+            Boolean.TryParse(configData.Configuration.TryGetValue(propName), out bool output) ? output : null;
+        string? GetString(string propName, string? defaultValue = null) => 
+            configData.Configuration.TryGetValue(propName) ?? defaultValue;
+        double? GetDouble(string propName) => 
+            Double.TryParse(configData.Configuration.TryGetValue(propName), out double output) ? output : null;
     }
 
     /// <summary>
@@ -427,7 +410,8 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
             var configData = new Emulator_DOSBox_AutoConfigData();
 
             // Add custom commands
-            configData.CustomLines.AddRange(CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
+            if (CustomCommands != null)
+                configData.CustomLines.AddRange(CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
 
             // Add commands
             SetProp(FullScreenKey, FullscreenEnabled);
@@ -475,7 +459,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
             return true;
 
             // Helper methods for setting properties
-            void SetProp(string propName, object value, bool ignoreDefault = false)
+            void SetProp(string propName, object? value, bool ignoreDefault = false)
             {
                 if ((value != null && (!ignoreDefault || !value.ToString().Equals("default", StringComparison.CurrentCultureIgnoreCase))))
                     configData.Configuration[propName] = value.ToString();

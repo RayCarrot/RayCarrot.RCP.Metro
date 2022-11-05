@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -18,7 +17,13 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// <param name="possibleWin32Names">The possible names of the game to search for. This is not case sensitive, but most match entire string.</param>
     /// <param name="verifyInstallDirectory">Optional method for verifying the found install directory</param>
     /// <param name="foundAction">An optional action to add when the item gets found</param>
-    public GameFinder_GameItem(string ubiIniSectionName, string shortcutName, string[] possibleWin32Names, Func<FileSystemPath, FileSystemPath?> verifyInstallDirectory = null, Action<FileSystemPath, object> foundAction = null) : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, null)
+    public GameFinder_GameItem(
+        string ubiIniSectionName, 
+        string? shortcutName, 
+        string[]? possibleWin32Names, 
+        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null, 
+        Action<FileSystemPath, object?>? foundAction = null) 
+        : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, null)
     {
         UbiIniSectionName = ubiIniSectionName;
     }
@@ -29,7 +34,11 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// <param name="steamID">The Steam ID to search for</param>
     /// <param name="verifyInstallDirectory">Optional method for verifying the found install directory</param>
     /// <param name="foundAction">An optional action to add when the item gets found</param>
-    public GameFinder_GameItem(string steamID, Func<FileSystemPath, FileSystemPath?> verifyInstallDirectory = null, Action<FileSystemPath, object> foundAction = null) : base(null, null, verifyInstallDirectory, foundAction, null)
+    public GameFinder_GameItem(
+        string steamID, 
+        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null, 
+        Action<FileSystemPath, object?>? foundAction = null) 
+        : base(null, null, verifyInstallDirectory, foundAction, null)
     {
         SteamID = steamID;
     }
@@ -39,7 +48,10 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// </summary>
     /// <param name="customFinderAction">Custom game finder action which return the game install directory if found</param>
     /// <param name="foundAction">An optional action to add when the item gets found</param>
-    public GameFinder_GameItem(Func<GameFinder_FoundResult> customFinderAction, Action<FileSystemPath, object> foundAction = null) : base(null, null, null, foundAction, customFinderAction)
+    public GameFinder_GameItem(
+        Func<GameFinder_FoundResult> customFinderAction, 
+        Action<FileSystemPath, object?>? foundAction = null) 
+        : base(null, null, null, foundAction, customFinderAction)
     {
 
     }
@@ -51,12 +63,12 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// <summary>
     /// The section name for the ubi.ini file, if it is to be searched
     /// </summary>
-    public string UbiIniSectionName { get; }
+    public string? UbiIniSectionName { get; }
 
     /// <summary>
     /// The Steam ID to search for
     /// </summary>
-    public string SteamID { get; }
+    public string? SteamID { get; }
 
     #endregion
 }

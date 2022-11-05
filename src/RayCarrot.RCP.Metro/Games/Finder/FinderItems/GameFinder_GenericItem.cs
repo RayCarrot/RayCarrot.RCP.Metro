@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -17,7 +16,14 @@ public class GameFinder_GenericItem : GameFinder_BaseItem
     /// <param name="foundAction">The action to run once the item has been found</param>
     /// <param name="displayName">The item display name</param>
     /// <param name="customFinderAction">Custom game finder action which returns the game install directory if found</param>
-    public GameFinder_GenericItem(string[] possibleWin32Names, string shortcutName, Func<FileSystemPath, FileSystemPath?> verifyInstallDirectory, Action<FileSystemPath, object> foundAction, string displayName, Func<GameFinder_FoundResult> customFinderAction = null) : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, customFinderAction)
+    public GameFinder_GenericItem(
+        string[]? possibleWin32Names, 
+        string? shortcutName, 
+        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory, 
+        Action<FileSystemPath, object?>? foundAction, 
+        string displayName, 
+        Func<GameFinder_FoundResult?>? customFinderAction = null) 
+        : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, customFinderAction)
     {
         DisplayName = displayName;
     }

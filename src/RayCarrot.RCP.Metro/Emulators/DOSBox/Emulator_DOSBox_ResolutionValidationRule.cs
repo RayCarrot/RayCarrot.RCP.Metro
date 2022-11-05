@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Controls;
 
@@ -7,10 +6,12 @@ namespace RayCarrot.RCP.Metro;
 
 public class Emulator_DOSBox_ResolutionValidationRule : ValidationRule
 {
-    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+    public override ValidationResult Validate(object? value, CultureInfo cultureInfo)
     {
-        if (!(value is string s))
-            return new ValidationResult(false, value == null ? Resources.DosBoxResolutionValidation_NullOrEmpty : Resources.DosBoxResolutionValidation_InvalidFormat);
+        if (value is not string s)
+            return new ValidationResult(false, value == null 
+                ? Resources.DosBoxResolutionValidation_NullOrEmpty 
+                : Resources.DosBoxResolutionValidation_InvalidFormat);
 
         if (s.Equals("original", StringComparison.CurrentCultureIgnoreCase) || s.Equals("desktop", StringComparison.CurrentCultureIgnoreCase))
             return ValidationResult.ValidResult;

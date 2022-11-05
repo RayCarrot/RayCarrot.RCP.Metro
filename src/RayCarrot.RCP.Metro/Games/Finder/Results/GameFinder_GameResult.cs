@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
@@ -19,8 +18,8 @@ public class GameFinder_GameResult : GameFinder_BaseResult
     public GameFinder_GameResult(
         GameDescriptor gameDescriptor, 
         FileSystemPath installLocation, 
-        Action<FileSystemPath, object> handledAction = null, 
-        object handledParameter = null) 
+        Action<FileSystemPath, object?>? handledAction = null, 
+        object? handledParameter = null) 
         : base(installLocation, handledAction, handledParameter, gameDescriptor.DisplayName)
     {
         GameDescriptor = gameDescriptor;
@@ -31,19 +30,12 @@ public class GameFinder_GameResult : GameFinder_BaseResult
     /// </summary>
     public GameDescriptor GameDescriptor { get; }
 
-    // TODO-14: Find nicer solution to this
-    public GameInstallation GameInstallation { get; private set; }
-
-    /// <summary>
-    /// Adds the found game and calls the optional <see cref="GameFinder_BaseResult.HandledAction"/>
-    /// </summary>
-    /// <returns>The task</returns>
-    public override async Task HandleItemAsync()
+    public override async Task<GameInstallation?> HandleItemAsync()
     {
         // Call optional found action
         HandledAction?.Invoke(InstallLocation, HandledParameter);
 
         // Add the game
-        GameInstallation = await Services.Games.AddGameAsync(GameDescriptor, InstallLocation);
+        return await Services.Games.AddGameAsync(GameDescriptor, InstallLocation);
     }
 }

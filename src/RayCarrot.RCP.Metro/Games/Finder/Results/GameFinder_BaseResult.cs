@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
@@ -16,7 +15,11 @@ public abstract class GameFinder_BaseResult
     /// <param name="handledAction">An optional action to add when the item gets handled</param>
     /// <param name="handledParameter">Optional parameter for the <see cref="HandledAction"/></param>
     /// <param name="displayName">The found item display name</param>
-    protected GameFinder_BaseResult(FileSystemPath installLocation, Action<FileSystemPath, object> handledAction, object handledParameter, string displayName)
+    protected GameFinder_BaseResult(
+        FileSystemPath installLocation, 
+        Action<FileSystemPath, object?>? handledAction, 
+        object? handledParameter, 
+        string displayName)
     {
         InstallLocation = installLocation;
         HandledAction = handledAction;
@@ -32,12 +35,12 @@ public abstract class GameFinder_BaseResult
     /// <summary>
     /// Optional parameter for the <see cref="HandledAction"/>
     /// </summary>
-    public object HandledParameter { get; }
+    public object? HandledParameter { get; }
 
     /// <summary>
     /// An optional action to add when the item gets handled
     /// </summary>
-    public Action<FileSystemPath, object> HandledAction { get; }
+    public Action<FileSystemPath, object?>? HandledAction { get; }
 
     /// <summary>
     /// The found item display name
@@ -47,6 +50,6 @@ public abstract class GameFinder_BaseResult
     /// <summary>
     /// Handles the found item
     /// </summary>
-    /// <returns>The task</returns>
-    public abstract Task HandleItemAsync();
+    /// <returns>The game installation if one was added</returns>
+    public abstract Task<GameInstallation?> HandleItemAsync();
 }

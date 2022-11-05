@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Defines an emulator used to launch a game
@@ -16,5 +15,5 @@ public abstract class Emulator
     /// </summary>
     /// <param name="gameInstallation">The game installation to get the view model for</param>
     /// <returns>The view model</returns>
-    public abstract GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation);
+    public abstract GameOptionsDialog_EmulatorConfigPageViewModel? GetGameConfigViewModel(GameInstallation gameInstallation);
 }

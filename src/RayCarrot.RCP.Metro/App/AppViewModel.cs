@@ -266,7 +266,7 @@ public class AppViewModel : BaseViewModel
                     "Dos Box"
                 };
 
-                void foundAction(FileSystemPath installDir, object parameter)
+                void foundAction(FileSystemPath installDir, object? parameter)
                 {
                     if (System.IO.File.Exists(Data.Emu_DOSBox_Path))
                     {
@@ -286,14 +286,14 @@ public class AppViewModel : BaseViewModel
             IReadOnlyList<GameFinder_BaseResult> foundItems = await new GameFinder(games, finderItems).FindGamesAsync();
 
             // Add the found items
-            foreach (var foundItem in foundItems)
+            foreach (GameFinder_BaseResult foundItem in foundItems)
             {
                 // Handle the item
-                await foundItem.HandleItemAsync();
+                GameInstallation? gameInstallation = await foundItem.HandleItemAsync();
 
                 // If a game, add to list
-                if (foundItem is GameFinder_GameResult game)
-                    addedGames.Add(game.GameInstallation);
+                if (gameInstallation != null)
+                    addedGames.Add(gameInstallation);
             }
 
             // Show message if new games were found

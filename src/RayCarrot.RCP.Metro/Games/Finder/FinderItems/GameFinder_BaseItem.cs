@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -18,7 +17,12 @@ public abstract class GameFinder_BaseItem
     /// <param name="verifyInstallDirectory">Optional method for verifying the found install directory</param>
     /// <param name="foundAction">An optional action to add when the item gets found</param>
     /// <param name="customFinderAction">Custom game finder action which returns the game install directory if found</param>
-    protected GameFinder_BaseItem(string[] possibleWin32Names, string shortcutName, Func<FileSystemPath, FileSystemPath?> verifyInstallDirectory, Action<FileSystemPath, object> foundAction, Func<GameFinder_FoundResult> customFinderAction)
+    protected GameFinder_BaseItem(
+        string[]? possibleWin32Names, 
+        string? shortcutName, 
+        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory, 
+        Action<FileSystemPath, object?>? foundAction, 
+        Func<GameFinder_FoundResult?>? customFinderAction)
     {
         PossibleWin32Names = possibleWin32Names;
         ShortcutName = shortcutName;
@@ -34,27 +38,27 @@ public abstract class GameFinder_BaseItem
     /// <summary>
     /// The possible names of the game to search for. This is not case sensitive, but most match entire string.
     /// </summary>
-    public string[] PossibleWin32Names { get; }
+    public string[]? PossibleWin32Names { get; }
 
     /// <summary>
     /// The shortcut name when searching shortcuts
     /// </summary>
-    public string ShortcutName { get; }
+    public string? ShortcutName { get; }
 
     /// <summary>
     /// Optional method for verifying the found install directory
     /// </summary>
-    public Func<FileSystemPath, FileSystemPath?> VerifyInstallDirectory { get; }
+    public Func<FileSystemPath, FileSystemPath?>? VerifyInstallDirectory { get; }
 
     /// <summary>
     /// An optional action to add when the item gets found
     /// </summary>
-    public Action<FileSystemPath, object> FoundAction { get; }
+    public Action<FileSystemPath, object?>? FoundAction { get; }
 
     /// <summary>
     /// Custom game finder action which returns the game install directory if found
     /// </summary>
-    public Func<GameFinder_FoundResult> CustomFinderAction { get; }
+    public Func<GameFinder_FoundResult?>? CustomFinderAction { get; }
 
     #endregion
 }
