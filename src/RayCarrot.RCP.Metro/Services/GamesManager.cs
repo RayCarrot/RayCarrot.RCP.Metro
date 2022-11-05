@@ -111,7 +111,7 @@ public class GamesManager
     /// <param name="installDirectory">The game install directory</param>
     /// <param name="isRCPInstalled">Indicates if the game was installed through the Rayman Control Panel</param>
     /// <returns>The game installation</returns>
-    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory, bool isRCPInstalled)
+    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory)
     {
         Logger.Info("The game {0} is being added", gameDescriptor.Id);
 
@@ -128,7 +128,7 @@ public class GamesManager
         //}
 
         // Create an installation
-        GameInstallation gameInstallation = new(gameDescriptor, installDirectory, isRCPInstalled);
+        GameInstallation gameInstallation = new(gameDescriptor, installDirectory);
 
         // Add the game
         Data.Game_GameInstallations.Add(gameInstallation);

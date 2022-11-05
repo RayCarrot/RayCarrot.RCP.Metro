@@ -327,7 +327,11 @@ public class GameInstaller_ViewModel : UserInputViewModel
             if (result == GameInstaller_Result.Successful)
             {
                 // Add the game
-                GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, output, true);
+                GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, output);
+                
+                // Set the install info
+                UserData_RCPGameInstallInfo installInfo = new(output, UserData_RCPGameInstallInfo.RCPInstallMode.DiscInstall);
+                gameInstallation.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
 
                 // Refresh
                 await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));

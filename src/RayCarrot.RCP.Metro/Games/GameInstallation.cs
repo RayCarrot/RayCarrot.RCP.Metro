@@ -5,21 +5,22 @@ using Newtonsoft.Json.Linq;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Add properties like install size, add date etc.
+
 [JsonObject(MemberSerialization.OptIn)]
 public class GameInstallation
 {
     #region Constructors
 
-    public GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation, bool isRCPInstalled) 
-        : this(gameDescriptor, installLocation, isRCPInstalled, new Dictionary<string, object>()) 
+    public GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation) 
+        : this(gameDescriptor, installLocation, new Dictionary<string, object>()) 
     { }
 
     [JsonConstructor]
-    private GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation, bool isRCPInstalled, Dictionary<string, object>? additionalData)
+    private GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation, Dictionary<string, object>? additionalData)
     {
         GameDescriptor = gameDescriptor;
         InstallLocation = installLocation;
-        IsRCPInstalled = isRCPInstalled;
         _additionalData = additionalData ?? new Dictionary<string, object>();
     }
 
@@ -41,12 +42,6 @@ public class GameInstallation
 
     [JsonProperty(PropertyName = "InstallLocation")]
     public FileSystemPath InstallLocation { get; } // TODO-14: Rename to GamePath?
-
-    /// <summary>
-    /// Indicates if the game was installed through the Rayman Control Panel
-    /// </summary>
-    [JsonProperty(PropertyName = "IsRCPInstalled")]
-    public bool IsRCPInstalled { get; } // TODO-14: Have this be additional data? Have an object for info on how it was installed? Not all games can be installed through RCP, so not all games need this by default.
 
     public string Id => GameDescriptor.Id;
 

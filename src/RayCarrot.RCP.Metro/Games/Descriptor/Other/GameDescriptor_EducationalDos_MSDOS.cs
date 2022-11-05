@@ -184,7 +184,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
         GameInstallation gameInstallation = Games.EducationalDos.GetInstallation();
         Services.Data.Game_GameInstallations.Remove(gameInstallation);
         // TODO-14: Copy over additional data as well for things like launch mode
-        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.GameDescriptor, Services.Data.Game_EducationalDosBoxGames.First().InstallDir, gameInstallation.IsRCPInstalled));
+        Services.Data.Game_GameInstallations.Add(new GameInstallation(gameInstallation.GameDescriptor, Services.Data.Game_EducationalDosBoxGames.First().InstallDir));
 
         Logger.Info("The default educational game has been refreshed");
     }

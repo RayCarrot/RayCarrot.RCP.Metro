@@ -44,6 +44,6 @@ public class GameFinder_GameResult : GameFinder_BaseResult
         HandledAction?.Invoke(InstallLocation, HandledParameter);
 
         // Add the game
-        GameInstallation = await Services.Games.AddGameAsync(GameDescriptor, InstallLocation, false);
+        GameInstallation = await Services.Games.AddGameAsync(GameDescriptor, InstallLocation);
     }
 }

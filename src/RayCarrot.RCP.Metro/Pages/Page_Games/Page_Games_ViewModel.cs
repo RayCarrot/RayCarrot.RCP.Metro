@@ -157,7 +157,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 return;
 
             // Add the game
-            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, path.Value, false);
+            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, path.Value);
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
@@ -192,7 +192,11 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 return;
 
             // Add the game
-            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, gameDir, true);
+            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, gameDir);
+
+            // Set the install info
+            UserData_RCPGameInstallInfo installInfo = new(gameDir, UserData_RCPGameInstallInfo.RCPInstallMode.Download);
+            gameInstallation.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
 
             // Refresh
             await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
