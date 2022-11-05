@@ -44,7 +44,7 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MSDOSGameDes
     #region Public Methods
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_RaymanDesigner_ViewModel(gameInstallation);
+        new Config_RaymanDesigner_ViewModel(this, gameInstallation);
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));

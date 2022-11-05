@@ -37,7 +37,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MSDOSGameDescriptor
         new GameOptions_DOSBox_Control(gameInstallation);
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanByHisFans_ViewModel(gameInstallation);
+        new Config_RaymanByHisFans_ViewModel(this, gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
         new ProgressionGameViewModel_RaymanByHisFans(gameInstallation).Yield();

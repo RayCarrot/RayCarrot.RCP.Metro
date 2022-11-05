@@ -12,8 +12,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
 {
-    public Config_RaymanEduDos_ViewModel(GameInstallation gameInstallation) : 
-        base(gameInstallation, Ray1EngineVersion.PC_Edu, LanguageMode.None)
+    public Config_RaymanEduDos_ViewModel(MSDOSGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
+        base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Edu, LanguageMode.None)
     {
         PageSelection = new ObservableCollection<string>();
         RefreshSelection();

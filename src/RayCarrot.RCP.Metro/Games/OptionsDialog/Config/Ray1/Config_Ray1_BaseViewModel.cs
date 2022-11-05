@@ -16,11 +16,13 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <summary>
     /// Default constructor for a specific game installation
     /// </summary>
+    /// <param name="gameDescriptor">The game descriptor</param>
     /// <param name="gameInstallation">The game installation</param>
     /// <param name="engineVersion">The Rayman 1 engine version</param>
     /// <param name="langMode">The language mode to use</param>
-    protected Config_Ray1_BaseViewModel(GameInstallation gameInstallation, Ray1EngineVersion engineVersion, LanguageMode langMode)
+    protected Config_Ray1_BaseViewModel(MSDOSGameDescriptor gameDescriptor, GameInstallation gameInstallation, Ray1EngineVersion engineVersion, LanguageMode langMode)
     {
+        GameDescriptor = gameDescriptor;
         GameInstallation = gameInstallation;
         EngineVersion = engineVersion;
         LangMode = langMode;
@@ -103,6 +105,11 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// Indicates if the option to use recommended options in the page is available
     /// </summary>
     public override bool CanUseRecommended => true;
+
+    /// <summary>
+    /// The game descriptor
+    /// </summary>
+    public MSDOSGameDescriptor GameDescriptor { get; }
 
     /// <summary>
     /// The game installation
@@ -487,7 +494,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         else if (LangMode == LanguageMode.Argument)
         {
             // Attempt to get the game language from the .bat file
-            var batchFile = GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName;
+            var batchFile = GameInstallation.InstallLocation + GameDescriptor.DefaultFileName;
 
             if (batchFile.FullPath.EndsWith(".bat", StringComparison.InvariantCultureIgnoreCase) && batchFile.FileExists)
             {
@@ -586,7 +593,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
                 if (LangMode == LanguageMode.Config)
                     Config.Language = GameLanguage;
                 else if (LangMode == LanguageMode.Argument)
-                    await SetBatchFileLanguageAsync(GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName, GameLanguage);
+                    await SetBatchFileLanguageAsync(GameInstallation.InstallLocation + GameDescriptor.DefaultFileName, GameLanguage);
             }
 
             // Set button mapping
@@ -635,7 +642,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         {
             Logger.Error(ex, "Saving {0} configuration data", GameInstallation.Id);
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
     }
@@ -796,10 +803,10 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
             Services.File.DeleteFile(batchFile);
 
             // Create the .bat file
-            File.WriteAllLines(batchFile, new string[]
+            File.WriteAllLines(batchFile, new[]
             {
                 "@echo off",
-                $"{Path.GetFileNameWithoutExtension(GameInstallation.GetGameDescriptor<MSDOSGameDescriptor>().ExecutableName)} ver={lang}"
+                $"{Path.GetFileNameWithoutExtension(GameDescriptor.ExecutableName)} ver={lang}"
             });
         }
         catch (Exception ex)

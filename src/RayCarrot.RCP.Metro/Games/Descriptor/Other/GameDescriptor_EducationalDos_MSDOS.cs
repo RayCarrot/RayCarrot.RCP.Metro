@@ -193,7 +193,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
         new GameOptions_EducationalDos_Control();
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanEduDos_ViewModel(gameInstallation);
+        new Config_RaymanEduDos_ViewModel(this, gameInstallation);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
         Services.Data.Game_EducationalDosBoxGames.
