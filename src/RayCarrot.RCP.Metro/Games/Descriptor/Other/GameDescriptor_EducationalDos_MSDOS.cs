@@ -48,16 +48,12 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     #region Private Methods
 
     /// <summary>
-    /// Gets the launch info for the game
+    /// Gets the launch args for the game
     /// </summary>
     /// <param name="game">The game</param>
     /// <returns>The launch info</returns>
-    private GameLaunchInfo GetLaunchInfo(UserData_EducationalDosBoxGameData game)
-    {
-        return new GameLaunchInfo(
-            Path: Services.Data.Emu_DOSBox_Path, 
-            Args: GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDir));
-    }
+    private string GetLaunchArgs(UserData_EducationalDosBoxGameData game) =>
+        GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDir);
 
     /// <summary>
     /// Verifies if the game can launch
@@ -87,13 +83,8 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
     #region Protected Methods
 
-    protected override GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
-    {
-        // Get the default game
-        UserData_EducationalDosBoxGameData defaultGame = Services.Data.Game_EducationalDosBoxGames.First();
-
-        return GetLaunchInfo(defaultGame);
-    }
+    protected override string GetLaunchArgs(GameInstallation gameInstallation) => 
+        GetLaunchArgs(Services.Data.Game_EducationalDosBoxGames.First());
 
     protected override Task<bool> VerifyCanLaunchAsync(GameInstallation gameInstallation)
     {
@@ -237,13 +228,14 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
                 //}
 
                 // Get the launch info
-                GameLaunchInfo launchInfo = GetLaunchInfo(x);
+                FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
+                string launchArgs = GetLaunchArgs(x);
 
-                Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchInfo.Path, launchInfo.Args);
+                Logger.Trace("The educational game {0} launch info has been retrieved as Path = {1}, Args = {2}", x.Name, launchPath, launchArgs);
 
                 // Launch the game
                 var launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-                var process = await Services.File.LaunchFileAsync(launchInfo.Path, launchMode == UserData_GameLaunchMode.AsAdmin, launchInfo.Args);
+                var process = await Services.File.LaunchFileAsync(launchPath, launchMode == UserData_GameLaunchMode.AsAdmin, launchArgs);
 
                 Logger.Info("The educational game {0} has been launched", x.Name);
 
@@ -260,9 +252,11 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
         return Services.Data.Game_EducationalDosBoxGames.Select(x =>
         {
-            GameLaunchInfo launchInfo = GetLaunchInfo(x);
+            // Get the launch info
+            FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
+            string launchArgs = GetLaunchArgs(x);
 
-            return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Path.Parent, launchInfo.Args, x.ID);
+            return new JumpListItemViewModel(x.Name, launchPath, launchPath, launchPath.Parent, launchArgs, x.ID);
         }).ToArray();
     }
 

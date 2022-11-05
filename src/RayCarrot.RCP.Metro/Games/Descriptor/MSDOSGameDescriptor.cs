@@ -84,11 +84,12 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
         return true;
     }
 
-    protected override GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation)
+    protected override FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation) => DOSBoxFilePath;
+
+    protected override string GetLaunchArgs(GameInstallation gameInstallation)
     {
         FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
-        string args = GetDosBoxArguments(mountPath, gameInstallation.GameDescriptor.DefaultFileName, gameInstallation.InstallLocation);
-        return new GameLaunchInfo(DOSBoxFilePath, args);
+        return GetDosBoxArguments(mountPath, DefaultFileName, gameInstallation.InstallLocation);
     }
 
     /// <summary>

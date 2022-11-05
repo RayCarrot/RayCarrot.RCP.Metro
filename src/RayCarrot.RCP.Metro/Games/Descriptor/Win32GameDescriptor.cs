@@ -30,15 +30,16 @@ public abstract class Win32GameDescriptor : GameDescriptor
     protected override async Task<GameLaunchResult> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
     {
         // Get the launch info
-        GameLaunchInfo launchInfo = GetLaunchInfo(gameInstallation);
+        FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
+        string? launchArgs = GetLaunchArgs(gameInstallation);
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
-            Id, launchInfo.Path, launchInfo.Args);
+            Id, launchPath, launchArgs);
 
         // Launch the game
         UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
         bool asAdmin = forceRunAsAdmin || launchMode == UserData_GameLaunchMode.AsAdmin;
-        Process? process = await Services.File.LaunchFileAsync(launchInfo.Path, asAdmin, launchInfo.Args);
+        Process? process = await Services.File.LaunchFileAsync(launchPath, asAdmin, launchArgs);
 
         Logger.Info("The game {0} has been launched", Id);
 
@@ -46,15 +47,12 @@ public abstract class Win32GameDescriptor : GameDescriptor
     }
 
     /// <summary>
-    /// Gets the launch info for the game
+    /// Gets the launch file path for the game
     /// </summary>
-    /// <param name="gameInstallation">The game installation to get the launch info for</param>
-    /// <returns>The launch info</returns>
-    protected virtual GameLaunchInfo GetLaunchInfo(GameInstallation gameInstallation) // TODO-14: Don't override this. Instead GetPath and GetArgs.
-    {
-        string? launchArgs = GetLaunchArgs(gameInstallation);
-        return new GameLaunchInfo(gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName, launchArgs);
-    }
+    /// <param name="gameInstallation">The game installation to get the launch file path for</param>
+    /// <returns>The launch file path</returns>
+    protected virtual FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation) =>
+        gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName;
 
     /// <summary>
     /// Gets the launch arguments for the game
@@ -66,7 +64,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
     /// </summary>
     /// <param name="gameInstallation">The game installation to get the icon for</param>
     /// <returns>The icon resource path</returns>
-    protected virtual FileSystemPath GetIconResourcePath(GameInstallation gameInstallation) => GetLaunchInfo(gameInstallation).Path;
+    protected virtual FileSystemPath GetIconResourcePath(GameInstallation gameInstallation) => GetLaunchFilePath(gameInstallation);
 
     #endregion
 
@@ -75,17 +73,18 @@ public abstract class Win32GameDescriptor : GameDescriptor
     public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
     {
         // Get the launch info
-        GameLaunchInfo launchInfo = GetLaunchInfo(gameInstallation);
+        FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
+        string? launchArgs = GetLaunchArgs(gameInstallation);
 
         return base.GetGameInfoItems(gameInstallation).Concat(new[]
         {
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.GameInfo_LaunchPath)),
-                text: launchInfo.Path.FullPath,
+                text: launchPath.FullPath,
                 minUserLevel: UserLevel.Technical),
             new DuoGridItemViewModel(
                 header: new ResourceLocString(nameof(Resources.GameInfo_LaunchArgs)),
-                text: launchInfo.Args,
+                text: launchArgs,
                 minUserLevel: UserLevel.Technical)
         });
     }
@@ -93,19 +92,22 @@ public abstract class Win32GameDescriptor : GameDescriptor
     public override void CreateGameShortcut(GameInstallation gameInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory)
     {
         // Get the launch info
-        GameLaunchInfo launchInfo = GetLaunchInfo(gameInstallation);
+        FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
+        string? launchArgs = GetLaunchArgs(gameInstallation);
 
         // Create the shortcut
-        Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
+        Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchPath, launchArgs);
 
         Logger.Trace("A shortcut was created for {0} under {1}", Id, destinationDirectory);
     }
 
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
     {
-        GameLaunchInfo launchInfo = GetLaunchInfo(gameInstallation);
+        // Get the launch info
+        FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
+        string? launchArgs = GetLaunchArgs(gameInstallation);
 
-        if (!launchInfo.Path.FileExists)
+        if (!launchPath.FileExists)
             return Enumerable.Empty<JumpListItemViewModel>();
 
         return new[]
@@ -113,9 +115,9 @@ public abstract class Win32GameDescriptor : GameDescriptor
             new JumpListItemViewModel(
                 name: gameInstallation.GameDescriptor.DisplayName,
                 iconSource: GetIconResourcePath(gameInstallation),
-                launchPath: launchInfo.Path,
-                workingDirectory: launchInfo.Path.Parent,
-                launchArguments: launchInfo.Args,
+                launchPath: launchPath,
+                workingDirectory: launchPath.Parent,
+                launchArguments: launchArgs,
                 // TODO-14: Use game ID instead
                 id: gameInstallation.LegacyGame.ToString())
         };
@@ -153,15 +155,6 @@ public abstract class Win32GameDescriptor : GameDescriptor
         // Return the valid directory
         return result.SelectedDirectory;
     }
-
-    #endregion
-
-    #region Data Types
-
-    /// <summary>
-    /// Contains general launch information for a game
-    /// </summary>
-    protected record GameLaunchInfo(FileSystemPath Path, string? Args);
 
     #endregion
 }
