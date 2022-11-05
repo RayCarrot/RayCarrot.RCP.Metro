@@ -158,7 +158,9 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
             "Rayman Forever",
         },
         // Navigate to the sub-directory
-        x => x + RaymanForeverFolderName);
+        x => x.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase) 
+            ? x.Parent + RaymanForeverFolderName 
+            : x + RaymanForeverFolderName);
 
     public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
