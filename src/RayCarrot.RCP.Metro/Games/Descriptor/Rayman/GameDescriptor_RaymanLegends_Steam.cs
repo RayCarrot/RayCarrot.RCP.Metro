@@ -38,10 +38,10 @@ public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanLegends, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "Bundle_PC.ipk",
-        installDir + "persistentLoading_PC.ipk",
+        "Bundle_PC.ipk",
+        "persistentLoading_PC.ipk",
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

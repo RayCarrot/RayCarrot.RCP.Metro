@@ -13,8 +13,8 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
     public Utility_PatchCreator_ViewModel()
     {
         Games = new ObservableCollection<GameItem>(Services.Games.EnumerateGameDescriptors().
-            Where(x => x.LegacyGame != null).
-            Select(x => new GameItem(x.LegacyGame!.Value, x.DisplayName)));
+            Where(x => x.AllowPatching).
+            Select(x => new GameItem(x, x.GameDescriptorName)));
         SelectedGame = Games.First();
 
         CreatePatchCommand = new AsyncRelayCommand(CreatePatchAsync);
@@ -41,24 +41,13 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     public async Task CreatePatchAsync()
     {
-        if (!SelectedGame.Game.IsAdded())
-        {
-            await Services.MessageUI.DisplayMessageAsync(Resources.PatchCreator_GameNotAddedError, MessageType.Error);
-            return;
-        }
-
         // Show the Patch Creator
-        await Services.UI.ShowPatchCreatorAsync(SelectedGame.Game, null);
+        GameDescriptor[] gameDescriptors = { SelectedGame.GameDescriptor }; // TODO-14: Allow multi-selection
+        await Services.UI.ShowPatchCreatorAsync(gameDescriptors, null);
     }
 
     public async Task UpdatePatchAsync()
     {
-        if (!SelectedGame.Game.IsAdded())
-        {
-            await Services.MessageUI.DisplayMessageAsync(Resources.PatchCreator_GameNotAddedError, MessageType.Error);
-            return;
-        }
-
         FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
         {
             Title = Resources.PatchCreator_SelectImportPatch,
@@ -69,14 +58,15 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
             return;
 
         // Show the Patch Creator
-        await Services.UI.ShowPatchCreatorAsync(SelectedGame.Game, browseResult.SelectedFile);
+        GameDescriptor[] gameDescriptors = { SelectedGame.GameDescriptor }; // TODO-14: Allow multi-selection
+        await Services.UI.ShowPatchCreatorAsync(gameDescriptors, browseResult.SelectedFile);
     }
 
     #endregion
 
     #region Data Types
 
-    public record GameItem(Games Game,
+    public record GameItem(GameDescriptor GameDescriptor,
         // TODO: LocalizedString
         string DisplayName);
 

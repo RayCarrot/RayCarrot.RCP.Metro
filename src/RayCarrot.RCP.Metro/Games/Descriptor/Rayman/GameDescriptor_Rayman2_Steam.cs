@@ -55,10 +55,10 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
             gameInstallation: gameInstallation,
             cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC));
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "Data" + "Textures.cnt",
-        installDir + "Data" + "Vignette.cnt",
+        @"Data\Textures.cnt",
+        @"Data\Vignette.cnt",
     };
 
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() =>

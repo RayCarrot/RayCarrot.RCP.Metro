@@ -8,6 +8,7 @@ using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Make this thread-safe
 public class GamesManager
 {
     #region Constructor

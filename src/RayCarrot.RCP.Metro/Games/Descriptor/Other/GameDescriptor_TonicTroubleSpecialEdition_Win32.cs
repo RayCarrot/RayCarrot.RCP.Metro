@@ -49,10 +49,10 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
             gameInstallation: gameInstallation, 
             cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC));
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "GameData" + "Textures.cnt",
-        installDir + "GameData" + "Vignette.cnt",
+        @"GameData\Textures.cnt",
+        @"GameData\Vignette.cnt",
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

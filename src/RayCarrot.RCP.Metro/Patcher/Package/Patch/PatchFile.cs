@@ -18,7 +18,7 @@ public class PatchFile : BinarySerializable, IPackageFile
     
     public const string URIProtocol = "rcpgp";
     public const string FileExtension = ".gp"; // Game Patch
-    public const int LatestFormatVersion = 1;
+    public const int LatestFormatVersion = 2;
 
     #endregion
 

@@ -52,11 +52,11 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
             gameInstallation: gameInstallation, 
             cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC));
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "Gamedatabin" + "tex32_1.cnt",
-        installDir + "Gamedatabin" + "tex32_2.cnt",
-        installDir + "Gamedatabin" + "vignette.cnt",
+        @"Gamedatabin\tex32_1.cnt",
+        @"Gamedatabin\tex32_2.cnt",
+        @"Gamedatabin\vignette.cnt",
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

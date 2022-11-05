@@ -354,16 +354,26 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             if (patch == null)
                 return null;
 
-            if (!patch.Metadata.Game.IsAdded())
+            // Get all the installations for the matching game descriptors
+            GameDescriptor[] gameDescriptors = patch.Metadata.GetGameDescriptors(Services.Games).ToArray();
+            GameInstallation[] gameInstallations = Services.Games.EnumerateInstalledGames().
+                Where(x => gameDescriptors.Contains(x.GameDescriptor)).
+                ToArray();
+
+            if (!gameInstallations.Any())
             {
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameNotAddedError,
-                        patch.Metadata.Name, patch.Metadata.Game.GetGameDescriptor().DisplayName), MessageType.Error);
+                // TODO-14: Update error message
+                //await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameNotAddedError,
+                //        patch.Metadata.Name, patch.Metadata.Game.GetGameDescriptor().DisplayName), MessageType.Error);
                 return null;
             }
 
+            // TODO-14: Have user choose an installation
+            GameInstallation gameInstallation = gameInstallations.First();
+
             // Create the view model
             PendingPatch[] pendingPatches = patchFilePaths.Select((x, i) => new PendingPatch(x, i == 0 ? patch : null)).ToArray();
-            return new PatcherViewModel(patch.Metadata.Game.GetInstallation(), context, pendingPatches);
+            return new PatcherViewModel(gameInstallation, context, pendingPatches);
         }
         catch
         {
@@ -446,13 +456,13 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 PatchMetadata metaData = patch.Metadata;
 
                 // Verify game
-                if (metaData.Game != GameInstallation.LegacyGame)
+                if (!metaData.IsGameValid(GameInstallation.GameDescriptor))
                 {
-                    Logger.Warn("Failed to add patch due to the specified game {0} not matching the current one ({1})",
-                        metaData.Game, GameInstallation.LegacyGame);
+                    Logger.Warn("Failed to add patch due to the current game {0} not being supported", GameInstallation.Id);
 
-                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameMismatchError,
-                            metaData.Game.GetGameDescriptor().DisplayName), MessageType.Error);
+                    // TODO-14: Update error message
+                    //await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadPatchGameMismatchError,
+                    //        metaData.Game.GetGameDescriptor().DisplayName), MessageType.Error);
 
                     _context.RemoveFile(patchFilePath);
 
@@ -703,10 +713,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 }
 
                 // Verify game
-                if (patch.Metadata.Game != GameInstallation.LegacyGame)
+                if (!patch.Metadata.IsGameValid(GameInstallation.GameDescriptor))
                 {
-                    Logger.Warn("Failed to add pending patch due to the specified game {0} not matching the current one ({1})",
-                        patch.Metadata.Game, GameInstallation.LegacyGame);
+                    Logger.Warn("Failed to add pending patch due to the current game {0} not being supported", GameInstallation.Id);
 
                     // Do not show message to user as at least one game from the pending patches will be added
 

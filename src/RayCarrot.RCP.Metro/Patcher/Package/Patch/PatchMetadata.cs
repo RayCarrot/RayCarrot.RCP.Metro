@@ -1,5 +1,7 @@
 ﻿#nullable disable
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Patcher;
@@ -11,12 +13,10 @@ public class PatchMetadata : BinarySerializable
     public int Pre_FormatVersion { get; set; }
 
     public string ID { get; set; }
-    public string GameName { get; set; }
-    public Games Game
-    {
-        get => (Games)Enum.Parse(typeof(Games), GameName);
-        set => GameName = value.ToString();
-    }
+
+    private string LegacyGameName { get; set; }
+    public string[] GameIds { get; set; }
+
     public string Name { get; set; }
     public string Description { get; set; }
     public string Author { get; set; }
@@ -57,11 +57,42 @@ public class PatchMetadata : BinarySerializable
 
     #region Public Methods
 
+    /// <summary>
+    /// Checks if the game descriptor is a valid game for this patch library
+    /// </summary>
+    /// <param name="gameDescriptor"></param>
+    /// <returns></returns>
+    public bool IsGameValid(GameDescriptor gameDescriptor)
+    {
+        if (Pre_FormatVersion >= 2)
+            return GameIds.Any(x => x == gameDescriptor.Id);
+        else
+            return gameDescriptor.LegacyGame.ToString() == LegacyGameName;
+    }
+
+    public IEnumerable<GameDescriptor> GetGameDescriptors(GamesManager gamesManager)
+    {
+        if (Pre_FormatVersion >= 2)
+            return GameIds.Select(x => gamesManager.GetGameDescriptor(x));
+        else
+            return gamesManager.EnumerateGameDescriptors().Where(x => x.LegacyGame.ToString() == LegacyGameName);
+    }
+
     public override void SerializeImpl(SerializerObject s)
     {
         ID = s.SerializeString(ID, name: nameof(ID));
 
-        GameName = s.SerializeString(GameName, name: nameof(GameName));
+        // Starting with version 14.0 of RCP games are now identified by the descriptor id
+        // and a patch can be made for multiple games
+        if (Pre_FormatVersion >= 2)
+        {
+            GameIds = s.SerializeArraySize<string, int>(GameIds, name: nameof(GameIds));
+            GameIds = s.SerializeStringArray(GameIds, GameIds.Length, name: nameof(GameIds));
+        }
+        else
+        {
+            LegacyGameName = s.SerializeString(LegacyGameName, name: nameof(LegacyGameName));
+        }
 
         Name = s.SerializeString(Name, name: nameof(Name));
         Description = s.SerializeString(Description, name: nameof(Description));

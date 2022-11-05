@@ -50,19 +50,19 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
             gameInstallation: gameInstallation, 
             cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.RaymanArena_PC));
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "MenuBin" + "tex32.cnt",
-        installDir + "MenuBin" + "vignette.cnt",
-        installDir + "MenuBin" + "Sound.cnt",
+        @"MenuBin\tex32.cnt",
+        @"MenuBin\vignette.cnt",
+        @"MenuBin\Sound.cnt",
 
-        installDir + "FishBin" + "tex32.cnt",
-        installDir + "FishBin" + "vignette.cnt",
-        installDir + "FishBin" + "Sound.cnt",
+        @"FishBin\tex32.cnt",
+        @"FishBin\vignette.cnt",
+        @"FishBin\Sound.cnt",
 
-        installDir + "TribeBin" + "tex32.cnt",
-        installDir + "TribeBin" + "vignette.cnt",
-        installDir + "TribeBin" + "Sound.cnt",
+        @"TribeBin\tex32.cnt",
+        @"TribeBin\vignette.cnt",
+        @"TribeBin\Sound.cnt",
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

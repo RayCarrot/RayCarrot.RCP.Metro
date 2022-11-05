@@ -60,14 +60,14 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
             gameInstallation: gameInstallation,
             cpaTextureSyncData: null);
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "FishBin" + "tex32.cnt",
-        installDir + "FishBin" + "vignette.cnt",
-        installDir + "MenuBin" + "tex32.cnt",
-        installDir + "MenuBin" + "vignette.cnt",
-        installDir + "TribeBin" + "tex32.cnt",
-        installDir + "TribeBin" + "vignette.cnt",
+        @"FishBin\tex32.cnt",
+        @"FishBin\vignette.cnt",
+        @"MenuBin\tex32.cnt",
+        @"MenuBin\vignette.cnt",
+        @"TribeBin\tex32.cnt",
+        @"TribeBin\vignette.cnt",
     };
 
     #endregion

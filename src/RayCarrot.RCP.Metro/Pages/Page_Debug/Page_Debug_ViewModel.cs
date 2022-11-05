@@ -616,7 +616,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
                 // Read the file
                 PatchFile patch = context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
 
-                Games game = patch.Metadata.Game;
+                // TODO-14: Update this
+                Games game = patch.Metadata.GetGameDescriptors(GamesManager).First().LegacyGame.Value;
                 string? thumbURL = null;
 
                 // Extract thumbnail, if one exists

@@ -270,10 +270,10 @@ public abstract class GameDescriptor
     public virtual IArchiveDataManager? GetArchiveDataManager(GameInstallation? gameInstallation) => null;
 
     /// <summary>
-    /// Gets the archive file paths for the game
+    /// Gets the relative archive file paths for the game
     /// </summary>
-    /// <param name="installDir">The game's install directory</param>
-    public virtual FileSystemPath[]? GetArchiveFilePaths(FileSystemPath installDir) => null;
+    /// <param name="gameInstallation">The game installation, if available. This should only be used if absolutely needed.</param>
+    public virtual IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => Enumerable.Empty<string>();
 
     /// <summary>
     /// Gets the utilities for this game

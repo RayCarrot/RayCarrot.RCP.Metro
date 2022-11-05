@@ -378,26 +378,6 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
     #endregion
 
-    #region Static Helpers
-
-    public static FileSystemPath[] GetArchiveFiles(FileSystemPath gameDir)
-    {
-        string[] nonArchiveDatFiles = 
-        {
-            "ALLFIX.DAT",
-            "BIGRAY.DAT",
-            "CONCLU.DAT",
-            "INTRO.DAT",
-        };
-
-        return Directory.GetFiles(gameDir, "*.dat", SearchOption.AllDirectories).
-            Where(x => !nonArchiveDatFiles.Any(f => Path.GetFileName(x).Equals(f, StringComparison.OrdinalIgnoreCase))).
-            Select(x => new FileSystemPath(x)).
-            ToArray();
-    }
-
-    #endregion
-
     #region Classes
 
     /// <summary>

@@ -16,29 +16,36 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public PatchCreatorViewModel(Games game)
+    public PatchCreatorViewModel(GameDescriptor[] gameDescriptors)
     {
-        Game = game;
+        GameDescriptors = gameDescriptors;
         ID = PatchMetadata.GenerateID();
         AvailableLocations = new ObservableCollection<AvailableFileLocation>()
         {
             new(new ResourceLocString(nameof(Resources.Patcher_PhysicalGameLocation)), String.Empty, String.Empty)
         };
 
-        GameDescriptor gameDescriptor = game.GetGameDescriptor();
+        // TODO-14: Fix
+        //GameDisplayName = gameDescriptor.DisplayName;
 
-        GameDisplayName = gameDescriptor.DisplayName;
+        foreach (GameDescriptor gameDescriptor in gameDescriptors)
+        {
+            string? archiveID = gameDescriptor.GetArchiveDataManager(null)?.ID;
 
-        FileSystemPath installDir = game.GetInstallDir();
-        string? archiveID = game.GetGameDescriptor().GetArchiveDataManager(null)?.ID;
-        IEnumerable<AvailableFileLocation>? archiveLocations = archiveID == null ? null : gameDescriptor.
-            GetArchiveFilePaths(installDir)?.
-            Where(x => x.FileExists).
-            Select(x => x - installDir).
-            Select(x => new AvailableFileLocation(x.FullPath, x.FullPath, archiveID));
+            if (archiveID == null)
+                continue;
 
-        if (archiveLocations != null)
-            AvailableLocations.AddRange(archiveLocations);
+            foreach (string archivePath in gameDescriptor.GetArchiveFilePaths(null))
+            {
+                AvailableFileLocation? existingLocation = AvailableLocations.
+                    FirstOrDefault(x => x.Location == archivePath && x.LocationID == archiveID);
+
+                if (existingLocation != null)
+                    existingLocation.GameDescriptors.Add(gameDescriptor);
+                else
+                    AvailableLocations.Add(new AvailableFileLocation(archivePath, archivePath, archiveID));
+            }
+        }
 
         SelectedLocation = AvailableLocations.First();
 
@@ -86,7 +93,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public int Version_Minor { get; set; }
     public int Version_Revision { get; set; }
     public string ID { get; set; }
-    public Games Game { get; }
+    public GameDescriptor[] GameDescriptors { get; }
     public string GameDisplayName { get; } // TODO: LocalizedString
     public BitmapSource? Thumbnail { get; set; }
 
@@ -377,7 +384,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         Metadata = new PatchMetadata
                         {
                             ID = ID,
-                            Game = Game,
+                            GameIds = GameDescriptors.Select(x => x.Id).ToArray(),
                             Name = Name.IsNullOrWhiteSpace() ? "Unnamed patch" : Name,
                             Description = Description,
                             Author = Author,
@@ -557,7 +564,12 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         public PatchFilePath PatchFilePath => new(Location, LocationID, FilePath);
     }
 
-    public record AvailableFileLocation(LocalizedString DisplayName, string Location, string LocationID);
+    public record AvailableFileLocation(LocalizedString DisplayName, string Location, string LocationID)
+    {
+        public List<GameDescriptor> GameDescriptors { get; } = new();
+        // TODO-14: Bind to and show in UI
+        public string GameDescriptorsDisplayString => String.Join(", ", GameDescriptors.Select(x => x.GameDescriptorName));
+    }
 
     #endregion
 }

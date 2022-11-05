@@ -46,9 +46,9 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
             gameInstallation: gameInstallation,
             cpaTextureSyncData: null);
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "BinData" + "Textures.cnt",
+        @"BinData\Textures.cnt",
     };
 
     #endregion

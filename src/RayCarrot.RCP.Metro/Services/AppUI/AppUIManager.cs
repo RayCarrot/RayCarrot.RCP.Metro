@@ -331,15 +331,15 @@ public class AppUIManager
     /// <summary>
     /// Shows a new instance of the Patch Creator
     /// </summary>
-    /// <param name="game">The game</param>
+    /// <param name="gameDescriptors">The game descriptors the patch should be made for</param>
     /// <param name="existingPatch">Optionally an existing patch to update</param>
     /// <returns>The task</returns>
-    public async Task ShowPatchCreatorAsync(Games game, FileSystemPath? existingPatch)
+    public async Task ShowPatchCreatorAsync(GameDescriptor[] gameDescriptors, FileSystemPath? existingPatch)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        using PatchCreatorViewModel vm = new(game);
+        using PatchCreatorViewModel vm = new(gameDescriptors);
 
         Logger.Trace("A Patch Creator window was opened");
 

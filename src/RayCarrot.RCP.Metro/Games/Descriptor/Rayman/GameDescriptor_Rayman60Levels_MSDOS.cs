@@ -44,8 +44,22 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Fan));
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => 
-        Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
+    {
+        @"PCMAP\COMMON.DAT",
+        @"PCMAP\SNDD8B.DAT",
+        @"PCMAP\SNDH8B.DAT",
+        @"PCMAP\VIGNET.DAT",
+
+        @"PCMAP\AL\SNDSMP.DAT",
+        @"PCMAP\AL\SPECIAL.DAT",
+
+        @"PCMAP\FR\SNDSMP.DAT",
+        @"PCMAP\FR\SPECIAL.DAT",
+
+        @"PCMAP\USA\SNDSMP.DAT",
+        @"PCMAP\USA\SPECIAL.DAT",
+    };
 
     #endregion
 }

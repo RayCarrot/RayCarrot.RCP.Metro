@@ -49,10 +49,10 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
         new(Resources.GameLink_R2dgVoodoo, gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
     };
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        installDir + "gamedata" + "Textures.cnt",
-        installDir + "gamedata" + "Vignette.cnt",
+        @"gamedata\Textures.cnt",
+        @"gamedata\Vignette.cnt",
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

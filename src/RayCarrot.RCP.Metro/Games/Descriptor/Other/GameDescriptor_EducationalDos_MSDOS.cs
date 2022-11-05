@@ -212,8 +212,13 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => 
-        Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
+    // TODO-14: Based on the selected mode also include SNDSMP.DAT, SPECIAL.DAT and VIGNET.DAT
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
+    {
+        @"PCMAP\COMMON.DAT",
+        @"PCMAP\SNDD8B.DAT",
+        @"PCMAP\SNDH8B.DAT",
+    };
 
     public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) =>
         Services.Data.Game_EducationalDosBoxGames.Select(x => new OverflowButtonItemViewModel(

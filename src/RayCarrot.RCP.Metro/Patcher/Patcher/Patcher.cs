@@ -46,6 +46,7 @@ public class Patcher
             string locationKey = NormalizePath(patchFilePath.Location);
             string filePathKey = NormalizePath(patchFilePath.FilePath);
 
+            // TODO-14: Update this to support multiple game descriptor matches
             if (!locationModifications.ContainsKey(locationKey))
             {
                 IArchiveDataManager? manager = null;

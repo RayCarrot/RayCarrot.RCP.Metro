@@ -341,7 +341,8 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                     // Show the archive explorer
                     await UI.ShowArchiveExplorerAsync(
                         manager: archiveDataManager,
-                        filePaths: gameDescriptor.GetArchiveFilePaths(gameInstallation.InstallLocation).
+                        filePaths: gameDescriptor.GetArchiveFilePaths(gameInstallation).
+                            Select(x => gameInstallation.InstallLocation + x).
                             Where(x => x.FileExists).
                             ToArray());
                 }

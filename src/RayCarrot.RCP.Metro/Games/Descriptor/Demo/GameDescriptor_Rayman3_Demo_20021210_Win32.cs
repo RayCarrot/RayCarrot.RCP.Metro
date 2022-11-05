@@ -56,11 +56,11 @@ public sealed class GameDescriptor_Rayman3_Demo_20021210_Win32 : Win32GameDescri
             gameInstallation: gameInstallation,
             cpaTextureSyncData: null);
 
-    public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new[]
+    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        //installDir + "Gamedatabin" + "tex16.cnt", // TODO-14: Why is this commented out?
-        installDir + "Gamedatabin" + "tex32.cnt",
-        installDir + "Gamedatabin" + "vignette.cnt",
+        //@"Gamedatabin\tex16.cnt", // TODO-14: Why is this commented out?
+        @"Gamedatabin\tex32.cnt",
+        @"Gamedatabin\vignette.cnt",
     };
 
     #endregion
