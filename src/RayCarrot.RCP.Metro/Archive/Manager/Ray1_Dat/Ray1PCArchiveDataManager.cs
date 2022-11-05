@@ -273,7 +273,7 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
         Logger.Info("The files are being retrieved for an R1 PC archive");
 
-        string fileExt = fileName.StartsWith("VIGNET", StringComparison.OrdinalIgnoreCase) || fileName.StartsWith("WldDesc", StringComparison.OrdinalIgnoreCase) ? ".pcx" : ".dat";
+        string fileExt = fileName.StartsWith("VIGNET", StringComparison.OrdinalIgnoreCase) ? ".pcx" : ".dat";
 
         // Return the data
         return new ArchiveData(new ArchiveDirectory[]
