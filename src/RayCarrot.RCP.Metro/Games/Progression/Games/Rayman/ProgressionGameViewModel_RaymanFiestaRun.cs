@@ -10,16 +10,19 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanFiestaRun(GameInstallation gameInstallation, int slotIndex) : base(gameInstallation)
+    public ProgressionGameViewModel_RaymanFiestaRun(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, int slotIndex) 
+        : base(gameInstallation)
     {
+        GameDescriptor = gameDescriptor;
         SlotIndex = slotIndex;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private int SlotIndex { get; }
+    private WindowsPackageGameDescriptor GameDescriptor { get; }
 
-    protected override GameBackups_Directory[] BackupDirectories => WindowsPackageGameDescriptor.GetWinStoreBackupDirs(GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName);
+    protected override GameBackups_Directory[] BackupDirectories => GameDescriptor.GetBackupDirectories();
 
     private static int GetLevelIdFromIndex(int idx)
     {
@@ -44,10 +47,7 @@ public class ProgressionGameViewModel_RaymanFiestaRun : ProgressionGameViewModel
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-                                 "Packages" +
-                                 GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
-                                 "LocalState";
+        FileSystemPath dirPath = GameDescriptor.GetLocalAppDataDirectory();
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
 
         if (saveDir is null)

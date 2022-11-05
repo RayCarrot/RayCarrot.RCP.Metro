@@ -32,7 +32,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     #region Public Methods
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
-        new ProgressionGameViewModel_RabbidsBigBang(gameInstallation).Yield();
+        new ProgressionGameViewModel_RabbidsBigBang(this, gameInstallation).Yield();
 
     public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
         new OverflowButtonItemViewModel[]

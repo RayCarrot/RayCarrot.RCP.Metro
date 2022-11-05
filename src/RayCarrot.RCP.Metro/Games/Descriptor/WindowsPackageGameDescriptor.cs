@@ -118,25 +118,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
 
     #endregion
 
-    #region Public Static Methods
-
-    // TODO-14: Move this out of here, or at least don't have it be static
-    /// <summary>
-    /// Gets the backup directories for a Windows Store game
-    /// </summary>
-    /// <param name="fullPackageName">The full package name</param>
-    /// <returns>The backup directories</returns>
-    public static GameBackups_Directory[] GetWinStoreBackupDirs(string fullPackageName)
-    {
-        return new GameBackups_Directory[]
-        {
-            new(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + fullPackageName, SearchOption.AllDirectories, "*", "0", 0),
-            new(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + fullPackageName + "LocalState", SearchOption.TopDirectoryOnly, "*", "0", 1)
-        };
-    }
-
-    #endregion
-
     #region Public Methods
 
     public override GameFinder_GameItem GetGameFinderItem() => new(() =>
@@ -252,6 +233,15 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
 
         return installDir;
     }
+
+    public GameBackups_Directory[] GetBackupDirectories() => new GameBackups_Directory[]
+    {
+        new(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + FullPackageName, SearchOption.AllDirectories, "*", "0", 0),
+        new(GetLocalAppDataDirectory(), SearchOption.TopDirectoryOnly, "*", "0", 1)
+    };
+
+    public FileSystemPath GetLocalAppDataDirectory() => 
+        Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + FullPackageName + "LocalState";
 
     #endregion
 }

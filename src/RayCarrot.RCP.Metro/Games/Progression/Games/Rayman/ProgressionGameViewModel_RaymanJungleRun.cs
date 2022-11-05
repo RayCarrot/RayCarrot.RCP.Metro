@@ -9,18 +9,20 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RaymanJungleRun(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public ProgressionGameViewModel_RaymanJungleRun(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
+        : base(gameInstallation)
+    {
+        GameDescriptor = gameDescriptor;
+    }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => WindowsPackageGameDescriptor.GetWinStoreBackupDirs(GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName);
+    private WindowsPackageGameDescriptor GameDescriptor { get; }
+    protected override GameBackups_Directory[] BackupDirectories => GameDescriptor.GetBackupDirectories();
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        FileSystemPath dirPath = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
-                                 "Packages" +
-                                 GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName + 
-                                 "LocalState";
+        FileSystemPath dirPath = GameDescriptor.GetLocalAppDataDirectory();
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
 
         if (saveDir is null)

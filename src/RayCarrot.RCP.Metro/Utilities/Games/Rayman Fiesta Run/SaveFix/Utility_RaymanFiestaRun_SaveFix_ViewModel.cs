@@ -18,12 +18,9 @@ public class Utility_RaymanFiestaRun_SaveFix_ViewModel : BaseRCPViewModel
 
     // NOTE: This utility is really only needed in the Preload edition as that's the only one on the older version which has this
     //       issue, but it doesn't hurt to have it be available for all editions just in case.
-    public Utility_RaymanFiestaRun_SaveFix_ViewModel(GameInstallation gameInstallation, int slotIndex)
+    public Utility_RaymanFiestaRun_SaveFix_ViewModel(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, int slotIndex)
     {
-        FileSystemPath saveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-                                 "Packages" +
-                                 gameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
-                                 "LocalState";
+        FileSystemPath saveDir = gameDescriptor.GetLocalAppDataDirectory();
         SaveFilePath = saveDir + $"slot{slotIndex}.dat";
 
         RequiresFixing = CheckIfSaveRequiresFix();

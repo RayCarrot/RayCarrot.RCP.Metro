@@ -5,8 +5,8 @@
 /// </summary>
 public class Utility_RaymanFiestaRun_SaveFix : Utility<Utility_RaymanFiestaRun_SaveFix_Control, Utility_RaymanFiestaRun_SaveFix_ViewModel>
 {
-    public Utility_RaymanFiestaRun_SaveFix(GameInstallation gameInstallation, int slotIndex) 
-        : base(new Utility_RaymanFiestaRun_SaveFix_ViewModel(gameInstallation, slotIndex))
+    public Utility_RaymanFiestaRun_SaveFix(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, int slotIndex) 
+        : base(new Utility_RaymanFiestaRun_SaveFix_ViewModel(gameDescriptor, gameInstallation, slotIndex))
     {
         GameInstallation = gameInstallation;
     }

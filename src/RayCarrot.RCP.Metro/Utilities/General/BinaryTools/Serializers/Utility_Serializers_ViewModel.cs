@@ -120,10 +120,16 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 {
                     new(UbiArtGameMode.RaymanJungleRun_PC, "Rayman Jungle Run (PC/Android/iOS)")
                     {
-                        GetDefaultDir = _ => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-                                              "Packages" +
-                                              Games.RaymanJungleRun.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
-                                              "LocalState"
+                        GetDefaultDir = g =>
+                        {
+                            var gameSearch = GameSearch.Create(Game.RaymanJungleRun, GamePlatformFlag.Plat_WindowsPackage);
+                            GameDescriptor? gameDescriptor = g.FindGameInstallation(gameSearch)?.GameDescriptor;
+
+                            if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
+                                return winDescr.GetLocalAppDataDirectory();
+                            else
+                                return FileSystemPath.EmptyPath;
+                        }
                     },
                 }),
 
@@ -135,10 +141,16 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 {
                     new(UbiArtGameMode.RaymanFiestaRun_PC, "Rayman Fiesta Run (PC/Android/iOS)")
                     {
-                        GetDefaultDir = _ => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() +
-                                             "Packages" +
-                                             Games.RaymanFiestaRun.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName +
-                                             "LocalState"
+                        GetDefaultDir = g =>
+                        {
+                            var gameSearch = GameSearch.Create(Game.RaymanFiestaRun, GamePlatformFlag.Plat_WindowsPackage);
+                            GameDescriptor? gameDescriptor = g.FindGameInstallation(gameSearch)?.GameDescriptor;
+
+                            if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
+                                return winDescr.GetLocalAppDataDirectory();
+                            else
+                                return FileSystemPath.EmptyPath;
+                        }
                     },
                 }),
 
@@ -150,10 +162,16 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                 {
                     new("Unity")
                     {
-                        GetDefaultDir = _ => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
-                                             "Packages" + 
-                                             Games.RabbidsBigBang.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName + 
-                                             "LocalState"
+                        GetDefaultDir = g =>
+                        {
+                            var gameSearch = GameSearch.Create(Game.RabbidsBigBang, GamePlatformFlag.Plat_WindowsPackage);
+                            GameDescriptor? gameDescriptor = g.FindGameInstallation(gameSearch)?.GameDescriptor;
+
+                            if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
+                                return winDescr.GetLocalAppDataDirectory();
+                            else
+                                return FileSystemPath.EmptyPath;
+                        }
                     },
                 }),
 

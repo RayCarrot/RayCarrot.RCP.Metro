@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class Config_RaymanFiestaRun_ViewModel : Config_UbiArtRun_BaseViewModel
 {
-    public Config_RaymanFiestaRun_ViewModel(GameInstallation gameInstallation) : base(gameInstallation) 
+    public Config_RaymanFiestaRun_ViewModel(WindowsPackageGameDescriptor gameDescriptor) : base(gameDescriptor) 
     { }
 
     protected override Task OnGameInfoModified() => LoadPageAsync();

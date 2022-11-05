@@ -7,18 +7,21 @@ namespace RayCarrot.RCP.Metro;
 
 public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 {
-    public ProgressionGameViewModel_RabbidsBigBang(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public ProgressionGameViewModel_RabbidsBigBang(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
+        : base(gameInstallation)
+    {
+        GameDescriptor = gameDescriptor;
+    }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => WindowsPackageGameDescriptor.GetWinStoreBackupDirs(GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName);
+    private WindowsPackageGameDescriptor GameDescriptor { get; }
+
+    protected override GameBackups_Directory[] BackupDirectories => GameDescriptor.GetBackupDirectories();
 
     protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
-        string packageName = GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName;
-
-        FileSystemPath saveFile = fileSystem.GetFile(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + 
-                                                     "Packages" + packageName + "LocalState" + "playerprefs.dat");
+        FileSystemPath saveFile = fileSystem.GetFile(GameDescriptor.GetLocalAppDataDirectory() + "playerprefs.dat");
 
         using RCPContext context = new(saveFile.Parent);
 

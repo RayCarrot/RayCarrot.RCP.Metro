@@ -9,7 +9,7 @@ public class Config_RaymanJungleRun_ViewModel : Config_UbiArtRun_BaseViewModel
 {
     #region Constructor
 
-    public Config_RaymanJungleRun_ViewModel(GameInstallation gameInstallation) : base(gameInstallation)
+    public Config_RaymanJungleRun_ViewModel(WindowsPackageGameDescriptor gameDescriptor) : base(gameDescriptor)
     { }
 
     #endregion

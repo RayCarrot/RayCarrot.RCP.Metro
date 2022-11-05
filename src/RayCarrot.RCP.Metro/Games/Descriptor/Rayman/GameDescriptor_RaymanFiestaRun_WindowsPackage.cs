@@ -32,14 +32,14 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     #region Public Methods
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanFiestaRun_ViewModel(gameInstallation);
+        new Config_RaymanFiestaRun_ViewModel(this);
 
     public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) => 
-        new ProgressionGameViewModel_RaymanFiestaRun(gameInstallation, 1).Yield();
+        new ProgressionGameViewModel_RaymanFiestaRun(this, gameInstallation, 1).Yield();
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
-        new Utility_RaymanFiestaRun_SaveFix(gameInstallation, 1),
+        new Utility_RaymanFiestaRun_SaveFix(this, gameInstallation, 1),
     };
 
     public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 

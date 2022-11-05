@@ -16,11 +16,11 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <summary>
     /// Default constructor
     /// </summary>
-    /// <param name="gameInstallation">The game installation</param>
-    protected Config_UbiArtRun_BaseViewModel(GameInstallation gameInstallation)
+    /// <param name="gameDescriptor">The game descriptor</param>
+    protected Config_UbiArtRun_BaseViewModel(WindowsPackageGameDescriptor gameDescriptor)
     {
         // Set properties
-        GameInstallation = gameInstallation;
+        GameDescriptor = gameDescriptor;
     }
 
     #endregion
@@ -45,17 +45,17 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
 
     #endregion
 
-    #region Protected Properties
+    #region Private Properties
 
     /// <summary>
     /// The save directory
     /// </summary>
-    protected FileSystemPath SaveDir { get; set; }
+    private FileSystemPath SaveDir { get; set; }
 
     /// <summary>
-    /// The game
+    /// The game descriptor
     /// </summary>
-    protected GameInstallation GameInstallation { get; }
+    private WindowsPackageGameDescriptor GameDescriptor { get; }
 
     #endregion
 
@@ -177,10 +177,10 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <returns>The task</returns>
     protected override async Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", GameInstallation.Id);
+        Logger.Info("{0} config is being set up", GameDescriptor.Id);
 
         // Get the save directory
-        SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + GameInstallation.GetGameDescriptor<WindowsPackageGameDescriptor>().FullPackageName + "LocalState";
+        SaveDir = GameDescriptor.GetLocalAppDataDirectory();
 
         // Read game specific values
         await SetupGameAsync();
@@ -201,7 +201,7 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", GameInstallation.Id);
+        Logger.Info("{0} configuration is saving...", GameDescriptor.Id);
 
         try
         {
@@ -218,14 +218,14 @@ public abstract class Config_UbiArtRun_BaseViewModel : GameOptionsDialog_ConfigP
                 SoundVolume
             });
 
-            Logger.Info("{0} configuration has been saved", GameInstallation.Id);
+            Logger.Info("{0} configuration has been saved", GameDescriptor.Id);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} config", GameInstallation.Id);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
+            Logger.Error(ex, "Saving {0} config", GameDescriptor.Id);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }
     }
