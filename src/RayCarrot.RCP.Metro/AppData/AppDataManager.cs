@@ -100,10 +100,6 @@ public class AppDataManager
 
                     break;
 
-                case nameof(AppUserData.Game_RRR2LaunchMode):
-                    await AppViewModel.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2.GetInstallation(), RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
-                    break;
-
                 case nameof(AppUserData.Emu_DOSBox_Path):
                 case nameof(AppUserData.Emu_DOSBox_ConfigPath):
                     await AppViewModel.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
@@ -293,7 +289,6 @@ public class AppDataManager
         if (lastVersion < new Version(6, 0, 0, 0))
         {
             Data.Game_EducationalDosBoxGames = null;
-            Data.Game_RRR2LaunchMode = UserData_RRR2LaunchMode.AllGames;
             Data.Game_RabbidsGoHomeLaunchData = null;
         }
 

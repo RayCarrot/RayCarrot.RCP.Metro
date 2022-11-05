@@ -8,7 +8,8 @@
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             mc:Ignorable="d">
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:GameOptions_RavingRabbids2_ViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
             <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
@@ -23,7 +24,7 @@
 
         </StackPanel>
 
-        <ComboBox SelectedIndex="{Binding Source={x:Static local:Services.Data}, Path=Game_RRR2LaunchMode, Converter={local:EnumToIntConverter}}"
+        <ComboBox SelectedIndex="{Binding Path=LaunchMode, Converter={local:EnumToIntConverter}}"
                   HorizontalAlignment="Left">
 
             <TextBlock Text="{Resx RR2Options_GameMode_All}" />

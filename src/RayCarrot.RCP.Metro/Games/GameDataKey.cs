@@ -5,4 +5,5 @@ public static class GameDataKey
 {
     public const string Win32LaunchMode = "Win32LaunchMode";
     public const string DOSBoxMountPath = "DOSBoxMountPath";
+    public const string RRR2LaunchMode = "RRR2LaunchMode";
 }

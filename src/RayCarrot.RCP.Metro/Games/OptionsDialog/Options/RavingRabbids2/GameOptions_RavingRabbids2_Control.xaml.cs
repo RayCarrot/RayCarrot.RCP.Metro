@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -8,8 +7,9 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public partial class GameOptions_RavingRabbids2_Control : UserControl
 {
-    public GameOptions_RavingRabbids2_Control()
+    public GameOptions_RavingRabbids2_Control(GameOptions_RavingRabbids2_ViewModel viewModel)
     {
         InitializeComponent();
+        DataContext = viewModel;
     }
 }

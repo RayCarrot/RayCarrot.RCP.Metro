@@ -58,7 +58,6 @@ public class AppUserData : BaseViewModel
         Game_AutoLocateGames = true;
         Game_ShowNotInstalledGames = true;
         Game_EducationalDosBoxGames = null;
-        Game_RRR2LaunchMode = UserData_RRR2LaunchMode.AllGames;
         Game_RabbidsGoHomeLaunchData = null;
         Game_ShownRabbidsActivityCenterLaunchMessage = false;
 
@@ -281,11 +280,6 @@ public class AppUserData : BaseViewModel
     /// The saved educational DOSBox games
     /// </summary>
     public List<UserData_EducationalDosBoxGameData> Game_EducationalDosBoxGames { get; set; }
-
-    /// <summary>
-    /// The launch mode to use for Rayman Raving Rabbids 2
-    /// </summary>
-    public UserData_RRR2LaunchMode Game_RRR2LaunchMode { get; set; }
 
     /// <summary>
     /// The launch data for Rabbids Go Home
@@ -518,7 +512,8 @@ public class AppUserData : BaseViewModel
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private UserData_FiestaRunEdition FiestaRunVersion { set => Game_FiestaRunVersion = value; }
     [JsonProperty] private List<UserData_EducationalDosBoxGameData> EducationalDosBoxGames { set => Game_EducationalDosBoxGames = value; }
-    [JsonProperty] private UserData_RRR2LaunchMode RRR2LaunchMode { set => Game_RRR2LaunchMode = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private UserData_RRR2LaunchMode RRR2LaunchMode { set => Game_RRR2LaunchMode = value; }
     [JsonProperty] private UserData_RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { set => Game_RabbidsGoHomeLaunchData = value; }
     [JsonProperty] private List<string> JumpListItemIDCollection { set => App_JumpListItemIDCollection = value; }
     // TODO-14: Restore this once we implement the app data migration

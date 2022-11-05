@@ -39,15 +39,13 @@ public class Config_RaymanRavingRabbids2_ViewModel : Config_RaymanRavingRabbids_
     protected override string GetGUID()
     {
         // The game hard-codes this based on the what the game mode is specified as in the launch arguments
-        return Services.Data.Game_RRR2LaunchMode switch
+        return GameInstallation.GetValue(GameDataKey.RRR2LaunchMode, UserData_RRR2LaunchMode.AllGames) switch
         {
-            UserData_RRR2LaunchMode.AllGames => "{B864EBC6-9DB8-4A5E-9F08-B0CE286785EC}",
             UserData_RRR2LaunchMode.Orange => "{1D769438-429C-4309-931D-A643DF9C57D9}",
             UserData_RRR2LaunchMode.Red => "{D3AF3B47-FF38-4296-8456-759D6C165934}",
             UserData_RRR2LaunchMode.Green => "{9F61B3F4-B5B6-4049-84CB-2A7CFA6BBCA4}",
             UserData_RRR2LaunchMode.Blue => "{B1519A9F-864D-47FF-B69F-65F47CA911B0}",
-            _ => throw new ArgumentOutOfRangeException(nameof(Services.Data.Game_RRR2LaunchMode),
-                Services.Data.Game_RRR2LaunchMode, null)
+            UserData_RRR2LaunchMode.AllGames or _ => "{B864EBC6-9DB8-4A5E-9F08-B0CE286785EC}",
         };
     }
 
