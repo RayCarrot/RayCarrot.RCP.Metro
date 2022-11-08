@@ -9,19 +9,6 @@
         <StackPanel Orientation="Horizontal" />
     </ItemsPanelTemplate>
 
-    <Style x:Key="Separator.Bold" x:Shared="False" TargetType="{x:Type Separator}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Separator}">
-                    <Border Height="1" 
-                            SnapsToDevicePixels="true" 
-                            BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}" 
-                            BorderThickness="0 0 0 1"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <!-- Progression Data Item (Horizontal) -->
 
     <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Horizontal" DataType="{x:Type local:ProgressionDataViewModel}">
@@ -360,7 +347,7 @@
                                Margin="0 0 0 8"
                                ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
 
-                <Separator Style="{StaticResource Separator.Bold}"
+                <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
                            Margin="0 0 0 8"
                            Visibility="{Binding Path=HasInfoItems, Converter={local:BooleanToVisibilityConverter}}"/>
 
@@ -428,7 +415,7 @@
                             </local:RadioButtonExtended>
                         </WrapPanel>
 
-                        <Separator Style="{StaticResource Separator.Bold}"
+                        <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
                                    Margin="0 0 0 8">
                             <Separator.Visibility>
                                 <MultiBinding>
@@ -452,7 +439,7 @@
                         <ItemsControl ItemsSource="{Binding Path=Slots, Mode=OneTime}"
                                       ItemTemplate="{StaticResource DataTemplate.ProgressionSlot}" />
 
-                        <Separator Style="{StaticResource Separator.Bold}"
+                        <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
                                    Margin="0 0 0 8">
                             <Separator.Visibility>
                                 <MultiBinding>
@@ -495,7 +482,7 @@
                                            Visibility="{Binding Path=HasBackupInfoItems, Converter={local:BooleanToVisibilityConverter}}"
                                            Margin="0 0 0 8" />
 
-                            <Separator Style="{StaticResource Separator.Bold}"
+                            <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
                                        Visibility="{Binding Path=HasBackupSlots, Converter={local:BooleanToVisibilityConverter}}"
                                        Margin="0 0 0 8"/>
 
