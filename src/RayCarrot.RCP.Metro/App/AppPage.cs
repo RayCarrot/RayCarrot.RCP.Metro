@@ -12,6 +12,8 @@ public enum AppPage
     /// </summary>
     Games,
 
+    GamesNew,
+
     /// <summary>
     /// The progression page
     /// </summary>

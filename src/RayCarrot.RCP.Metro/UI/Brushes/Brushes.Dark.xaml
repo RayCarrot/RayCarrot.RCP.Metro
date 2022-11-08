@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="RCP.Brushes.Card.Background" Color="#353535" />
+    <SolidColorBrush x:Key="RCP.Brushes.Card.Background">#353535</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover">#292929</SolidColorBrush>
 
 </ResourceDictionary>

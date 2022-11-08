@@ -39,6 +39,7 @@ public abstract class BasePageViewModel : BaseViewModel
         }
     }
 
+    // TODO: Replace with MVVM messenger
     protected virtual Task NavigatedToAsync() => Task.CompletedTask;
     protected virtual Task InitializeAsync() => Task.CompletedTask;
 }
