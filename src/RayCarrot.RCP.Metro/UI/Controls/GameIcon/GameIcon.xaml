@@ -25,9 +25,23 @@
                                 </Setter>
 
                                 <Style.Triggers>
-                                    <!-- Small size (64) -->
+                                    <!-- Large size (96) -->
                                     <DataTrigger Binding="{Binding Path=IconSize, RelativeSource={RelativeSource TemplatedParent}}" 
-                                                 Value="Small">
+                                                 Value="Large">
+                                        <Setter Property="Width" Value="96" />
+                                        <Setter Property="Height" Value="96" />
+                                        <Setter Property="Clip">
+                                            <Setter.Value>
+                                                <RectangleGeometry RadiusX="12"
+                                                                   RadiusY="12"
+                                                                   Rect="0 0 96 96" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+
+                                    <!-- Medium size (64) -->
+                                    <DataTrigger Binding="{Binding Path=IconSize, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                 Value="Medium">
                                         <Setter Property="Width" Value="64" />
                                         <Setter Property="Height" Value="64" />
                                         <Setter Property="Clip">
@@ -35,6 +49,20 @@
                                                 <RectangleGeometry RadiusX="8"
                                                                    RadiusY="8"
                                                                    Rect="0 0 64 64" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+
+                                    <!-- Small size (48) -->
+                                    <DataTrigger Binding="{Binding Path=IconSize, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                 Value="Small">
+                                        <Setter Property="Width" Value="48" />
+                                        <Setter Property="Height" Value="48" />
+                                        <Setter Property="Clip">
+                                            <Setter.Value>
+                                                <RectangleGeometry RadiusX="6"
+                                                                   RadiusY="6"
+                                                                   Rect="0 0 48 48" />
                                             </Setter.Value>
                                         </Setter>
                                     </DataTrigger>

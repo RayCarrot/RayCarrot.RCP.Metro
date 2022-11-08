@@ -35,7 +35,7 @@
             <!-- Image -->
 
             <local:GameIcon Grid.Column="0"
-                            IconSize="Small"
+                            IconSize="Medium"
                             IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
                             Source="{Binding Path=IconSource, Mode=OneTime}" />
 

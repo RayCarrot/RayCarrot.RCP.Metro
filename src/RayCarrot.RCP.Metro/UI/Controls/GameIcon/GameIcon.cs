@@ -22,7 +22,7 @@ public class GameIcon : Control
     }
 
     public static readonly DependencyProperty IconSizeProperty = DependencyProperty.Register(
-        nameof(IconSize), typeof(GameIconSize), typeof(GameIcon), new PropertyMetadata(GameIconSize.Default));
+        nameof(IconSize), typeof(GameIconSize), typeof(GameIcon), new PropertyMetadata(GameIconSize.Largest));
 
     public bool IsDemo
     {
@@ -38,10 +38,20 @@ public class GameIcon : Control
         /// <summary>
         /// 128x128
         /// </summary>
-        Default,
+        Largest,
+
+        /// <summary>
+        /// 96x96
+        /// </summary>
+        Large,
 
         /// <summary>
         /// 64x64
+        /// </summary>
+        Medium,
+
+        /// <summary>
+        /// 48x48
         /// </summary>
         Small,
 
