@@ -23,6 +23,8 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman 2";
     public override string DefaultFileName => "Rayman2.exe";
 
+    public override GameBanner Banner => GameBanner.Rayman2;
+
     public override string RayMapURL => AppURLs.GetRayMapGameURL("r2_pc", "r2_pc");
 
     public override IEnumerable<string> DialogGroupNames => new string[]

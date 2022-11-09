@@ -58,6 +58,7 @@
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Padding" Value="8"/>
+        <Setter Property="ClipContent" Value="True"/>
         <Setter Property="UniformCornerRadius" Value="{StaticResource CornerRadiusDouble.Large}"/>
     </Style>
 

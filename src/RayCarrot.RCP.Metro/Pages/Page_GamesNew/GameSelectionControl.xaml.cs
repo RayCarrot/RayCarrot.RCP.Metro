@@ -5,11 +5,11 @@ using System.Windows.Input;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Interaction logic for GamesPanelControl.xaml
+    /// Interaction logic for GameSelectionControl.xaml
     /// </summary>
-    public partial class GamesPanelControl : UserControl
+    public partial class GameSelectionControl : UserControl
     {
-        public GamesPanelControl()
+        public GameSelectionControl()
         {
             InitializeComponent();
         }

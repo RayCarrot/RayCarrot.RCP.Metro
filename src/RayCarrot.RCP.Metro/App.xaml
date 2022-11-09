@@ -31,6 +31,7 @@
                 <ResourceDictionary Source="UI/Styles/RadioButton.xaml" />
                 <ResourceDictionary Source="UI/Styles/TabControl.xaml" />
                 <ResourceDictionary Source="UI/Styles/MenuItem.xaml" />
+                <ResourceDictionary Source="UI/Styles/ListBoxItem.xaml" />
                 <ResourceDictionary Source="UI/Styles/Button.xaml" />
                 <ResourceDictionary Source="UI/Styles/NumericUpDown.xaml" />
                 <ResourceDictionary Source="UI/Styles/AutoCompleteTextBox.xaml" />

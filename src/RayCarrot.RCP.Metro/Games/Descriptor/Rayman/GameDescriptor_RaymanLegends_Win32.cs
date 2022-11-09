@@ -21,6 +21,8 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman Legends";
     public override string DefaultFileName => "Rayman Legends.exe";
 
+    public override GameBanner Banner => GameBanner.RaymanLegends;
+
     public override bool HasArchives => true;
 
     #endregion

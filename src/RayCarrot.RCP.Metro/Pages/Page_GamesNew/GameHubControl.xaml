@@ -1,0 +1,268 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.GameHubControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignWidth="900" d:DesignHeight="600"
+             d:DataContext="{d:DesignInstance local:InstalledGameViewModel}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
+    <Grid x:Name="RootGrid">
+
+        <!-- Game banner image -->
+        <Image x:Name="GameBannerImage" 
+               Source="{Binding Path=GameBannerImageSource, Mode=OneTime}" 
+               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GameBanners/Rayman 2.png" 
+               Stretch="Uniform" 
+               StretchDirection="UpOnly" 
+               HorizontalAlignment="Stretch" 
+               VerticalAlignment="Top">
+            <Image.OpacityMask>
+                <!-- Add a fade for the image under the hub border so the bottom edge of the image isn't as apparent -->
+                <LinearGradientBrush StartPoint="0,300" 
+                                     EndPoint="{Binding Path=ActualHeight, ElementName=GameBannerImage, Converter={local:DoubleToPointYConverter}}" 
+                                     MappingMode="Absolute">
+                    <GradientStop Offset="0.50" Color="Black" />
+                    <GradientStop Offset="1.00" Color="Transparent" />
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+
+        <!-- Game hub -->
+        <ScrollViewer Padding="0" 
+                      ScrollChanged="RootScrollViewer_OnScrollChanged">
+            <ScrollViewer.Resources>
+                <!-- Override MahApps.Metro scroll bar style so the background isn't transparent -->
+                <Style x:Key="MahApps.Styles.RepeatButton.ScrollBarLarge" TargetType="{x:Type RepeatButton}">
+                    <Setter Property="Background" Value="{StaticResource RCP.Brushes.Card.Background}" />
+                    <Setter Property="Focusable" Value="False" />
+                    <Setter Property="Interval" Value="50" />
+                    <Setter Property="IsTabStop" Value="False" />
+                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                <Rectangle Width="{TemplateBinding Width}"
+                                           Height="{TemplateBinding Height}"
+                                           Fill="{TemplateBinding Background}" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ScrollViewer.Resources>
+
+            <!-- Has an offset of 300 so the banner image is shown and also allows scrolling over it -->
+            <Grid Margin="0 300 0 0">
+
+                <!-- A separate border for the background so that it can be transparent (the opacity) -->
+                <Border Background="{DynamicResource RCP.Brushes.Card.Background}"
+                        Opacity="0.9"
+                        CornerRadius="{StaticResource CornerRadius.Large}" />
+
+                <!-- The hub contents, with a minimum height for initial scrolling -->
+                <Grid Margin="25 0"
+                      MinHeight="{Binding ElementName=RootGrid, Path=ActualHeight}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Top bar -->
+                    <Grid Grid.Row="0"
+                          Margin="0 0 0 15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Game icon -->
+                        <Border Grid.Column="0" 
+                                Margin="0 -64 0 0">
+                            <local:GameIcon x:Name="GameIcon"
+                                            Source="{Binding Path=IconSource, Mode=OneTime}"
+                                            d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GameIcons/Rayman2.png"
+                                            IsDemo="{Binding Path=IsDemo, Mode=OneTime}" 
+                                            IconSize="Largest" />
+                        </Border>
+
+                        <!-- Actions -->
+                        <Grid x:Name="TopBarActionsGrid" 
+                              Grid.Column="1"
+                              VerticalAlignment="Center">
+
+                            <!-- Play -->
+                            <Button Margin="8 0 0 0"
+                                    Style="{StaticResource RCP.Styles.Button.IconCircle}"
+                                    local:ButtonAssist.IconKind="Play"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top" />
+
+                        </Grid>
+
+                    </Grid>
+
+                    <!-- Panels -->
+                    <!-- TODO-UPDATE: These are just mockups right now - implement the actual controls -->
+                    <StackPanel Grid.Row="1">
+
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type local:Card}" BasedOn="{StaticResource {x:Type local:Card}}">
+                                <Setter Property="Background" Value="{DynamicResource RCP.Brushes.Card.SecondaryBackground}" />
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <Grid Margin="0 0 0 15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <local:Card Grid.Column="0" Height="120">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0"
+                                                Orientation="Horizontal"
+                                                Margin="0 0 0 4">
+                                        <iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Patcher}"
+                                                                    VerticalAlignment="Center"
+                                                                    Foreground="{StaticResource RCP.Brushes.Patcher}"
+                                                                    Margin="0 0 8 0"/>
+                                        <TextBlock Text="Patcher"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"/>
+                                    </StackPanel>
+
+                                    <Separator Grid.Row="1" 
+                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                               Margin="0 0 0 4" />
+
+                                    <StackPanel Grid.Row="2" VerticalAlignment="Center">
+                                        <TextBlock Text="2 patches applied"
+                                                   Margin="0 0 0 8"/>
+                                        <Button VerticalAlignment="Bottom"  
+                                                HorizontalAlignment="Left"
+                                                BorderThickness="0"
+                                                FontSize="12"
+                                                Padding="10 0"
+                                                Background="#d84315"
+                                                Content="Open" />
+                                    </StackPanel>
+
+                                </Grid>
+                            </local:Card>
+
+                            <local:Card Grid.Column="2" Height="120">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0"
+                                                Orientation="Horizontal"
+                                                Margin="0 0 0 4">
+                                        <iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
+                                                                    VerticalAlignment="Center"
+                                                                    Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+                                                                    Margin="0 0 8 0"/>
+                                        <TextBlock Text="Archive Explorer"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"/>
+                                    </StackPanel>
+
+                                    <Separator Grid.Row="1"
+                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                               Margin="0 0 0 4" />
+
+
+                                </Grid>
+                            </local:Card>
+
+                        </Grid>
+
+                        <Grid Margin="0 0 0 15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <local:Card Grid.Column="0" Height="120">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0"
+                                                Orientation="Horizontal"
+                                                Margin="0 0 0 4">
+                                        <iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Progression}"
+                                                                    VerticalAlignment="Center"
+                                                                    Foreground="{StaticResource RCP.Brushes.Progression}"
+                                                                    Margin="0 0 8 0"/>
+                                        <TextBlock Text="Progression"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"/>
+                                    </StackPanel>
+
+                                    <Separator Grid.Row="1"
+                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                               Margin="0 0 0 4" />
+
+                                    <Grid Grid.Row="2">
+
+
+                                    </Grid>
+
+                                </Grid>
+                            </local:Card>
+
+                            <local:Card Grid.Column="2" Height="120">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0"
+                                                Orientation="Horizontal"
+                                                Margin="0 0 0 4">
+                                        <iconPacks:PackIconMaterial Kind="Link"
+                                                                    VerticalAlignment="Center"
+                                                                    Foreground="{StaticResource RCP.Brushes.Info}"
+                                                                    Margin="0 0 8 0"/>
+                                        <TextBlock Text="Links"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"/>
+                                    </StackPanel>
+
+                                    <Separator Grid.Row="1"
+                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                               Margin="0 0 0 4" />
+
+
+                                </Grid>
+                            </local:Card>
+
+                        </Grid>
+
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

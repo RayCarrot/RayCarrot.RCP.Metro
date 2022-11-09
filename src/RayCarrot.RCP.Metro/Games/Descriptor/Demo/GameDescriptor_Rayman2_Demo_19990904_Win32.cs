@@ -28,6 +28,8 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
     public override string DisplayName => "Rayman 2 Demo (1999/09/04)";
     public override string DefaultFileName => "Rayman2Demo.exe";
 
+    public override GameBanner Banner => GameBanner.Rayman2;
+
     public override bool CanBeDownloaded => true;
     public override IList<Uri> DownloadURLs => new Uri[]
     {

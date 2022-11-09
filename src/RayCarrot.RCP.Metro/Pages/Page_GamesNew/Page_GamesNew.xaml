@@ -6,12 +6,13 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                 IsTabStop="False"
                 mc:Ignorable="d"
-                d:DesignHeight="450" d:DesignWidth="800"
+                d:DesignHeight="600" d:DesignWidth="900"
                 d:DataContext="{d:DesignInstance local:Page_GamesNew_ViewModel}">
 
     <Control.InputBindings>
@@ -32,20 +33,20 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="15" />
                     <ColumnDefinition Width="2.5*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Games panel -->
-                <local:Card Margin="0 0 15 0">
-                    <local:GamesPanelControl />
+                <!-- Game selection -->
+                <local:Card Grid.Column="0">
+                    <local:GameSelectionControl />
                 </local:Card>
 
-                <!-- Selected game panel -->
-                <local:Card Grid.Column="1" 
-                            DataContext="{Binding Path=SelectedInstalledGame}" Padding="0">
-                    <ScrollViewer Padding="0">
-
-                    </ScrollViewer>
+                <!-- Selected game hub -->
+                <local:Card x:Name="SelectedGameCard" 
+                            Grid.Column="2"
+                            Padding="0">
+                    <local:GameHubControl DataContext="{Binding Path=SelectedInstalledGame}" />
                 </local:Card>
 
             </Grid>

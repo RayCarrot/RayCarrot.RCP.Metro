@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="RCP.Brushes.Card.Background">#353535</SolidColorBrush>
-    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover">#292929</SolidColorBrush>
+    <!-- Normal theme background is #252525 -->
+    <SolidColorBrush x:Key="RCP.Brushes.Card.Background">#303030</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover">#393939</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatSelected">#404040</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Card.SecondaryBackground">#404040</SolidColorBrush>
 
 </ResourceDictionary>

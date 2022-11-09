@@ -39,7 +39,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// The file name (without extensions) for the icon
     /// </summary>
-    protected virtual string IconName => $"{LegacyGame}"; // TODO-14: Use enum for this or define file name string for each game
+    protected virtual string IconName => $"{LegacyGame}"; // TODO-14: Use enum for this like with banner
 
     #endregion
 
@@ -110,6 +110,11 @@ public abstract class GameDescriptor
     /// The icon source for the game
     /// </summary>
     public string IconSource => $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{IconName}.png";
+
+    /// <summary>
+    /// The game banner image
+    /// </summary>
+    public virtual GameBanner Banner => GameBanner.Default;
 
     /// <summary>
     /// An optional RayMap URL

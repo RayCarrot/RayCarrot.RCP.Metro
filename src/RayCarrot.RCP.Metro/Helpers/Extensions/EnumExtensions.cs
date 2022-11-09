@@ -94,13 +94,15 @@ public static class EnumExtensions
         return EnumHelpers.GetValues<T>();
     }
 
+#nullable enable
+
     /// <summary>
     /// Gets the first attribute of specified type for the enum value
     /// </summary>
     /// <typeparam name="T">The type of attribute to retrieve</typeparam>
     /// <param name="value">The enum value to get the attribute for</param>
     /// <returns>The attribute instance</returns>
-    public static T GetAttribute<T>(this Enum value) 
+    public static T? GetAttribute<T>(this Enum value) 
         where T : Attribute
     {
         if (value == null)
