@@ -11,6 +11,7 @@ public enum GenericIconKind
     Games_Other,
     Games_FanGames,
 
+    // TODO-UPDATE: Rename and re-reorganize for new ui
     GameDisplay_Play,
     GameDisplay_Admin,
     GameDisplay_Map,
@@ -24,6 +25,9 @@ public enum GenericIconKind
     GameDisplay_Steam,
     GameDisplay_Microsoft,
     GameDisplay_Purchase,
+
+    GamePanel_Progression,
+    GamePanel_Links,
 
     GameOptions_General,
     GameOptions_Config,

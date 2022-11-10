@@ -14,6 +14,8 @@ public class GameGroupViewModel : BaseViewModel
         DisplayName = InstalledGames.First().DisplayName;
     }
 
+    private InstalledGameViewModel? _selectedInstalledGame;
+
     public string IconSource { get; }
     public string DisplayName { get; }
     public ObservableCollection<InstalledGameViewModel> InstalledGames { get; }
@@ -24,7 +26,19 @@ public class GameGroupViewModel : BaseViewModel
         set => SelectedInstalledGame = value ? InstalledGames.First() : null;
     }
 
-    public InstalledGameViewModel? SelectedInstalledGame { get; set; }
+    public InstalledGameViewModel? SelectedInstalledGame
+    {
+        get => _selectedInstalledGame;
+        set
+        {
+            _selectedInstalledGame = value;
+
+            if (value != null)
+                Invoke();
+
+            async void Invoke() => await value.LoadAsync();
+        }
+    }
 
     public bool MatchesFilter(string filter)
     {

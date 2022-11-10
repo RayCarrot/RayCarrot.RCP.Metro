@@ -5,11 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignWidth="900" d:DesignHeight="600"
              d:DataContext="{d:DesignInstance local:InstalledGameViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
     <Grid x:Name="RootGrid">
+        <!-- Panel templates (move elsewhere?) -->
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type local:PatcherGamePanelViewModel}">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Path=InfoText.Value}"
+                               Margin="0 0 0 8"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ArchiveGamePanelViewModel}">
+                <StackPanel VerticalAlignment="Center">
+
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ProgressionGamePanelViewModel}">
+                <StackPanel VerticalAlignment="Center">
+
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:LinksGamePanelViewModel}">
+                <StackPanel VerticalAlignment="Center">
+
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
 
         <!-- Game banner image -->
         <Image x:Name="GameBannerImage" 
@@ -104,161 +129,60 @@
                     </Grid>
 
                     <!-- Panels -->
-                    <!-- TODO-UPDATE: These are just mockups right now - implement the actual controls -->
-                    <StackPanel Grid.Row="1">
+                    <ItemsControl Grid.Row="1" 
+                                  ItemsSource="{Binding Path=GamePanels, Mode=OneTime}"
+                                  d:ItemsSource="{d:SampleData ItemCount=4}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid VerticalAlignment="Top" 
+                                             SizeChanged="GamePanelsUniformGrid_OnSizeChanged" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!-- Panel -->
+                                <local:Card Height="120" 
+                                            Margin="8" 
+                                            Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
 
-                        <StackPanel.Resources>
-                            <Style TargetType="{x:Type local:Card}" BasedOn="{StaticResource {x:Type local:Card}}">
-                                <Setter Property="Background" Value="{DynamicResource RCP.Brushes.Card.SecondaryBackground}" />
-                            </Style>
-                        </StackPanel.Resources>
+                                        <!-- Header -->
+                                        <StackPanel Grid.Row="0"
+                                                    Orientation="Horizontal"
+                                                    Margin="0 0 0 4">
+                                            <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                                                        Foreground="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                                                        VerticalAlignment="Center"
+                                                                        Margin="0 0 8 0"/>
+                                            <TextBlock Text="{Binding Path=Header.Value}"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14" />
+                                        </StackPanel>
 
-                        <Grid Margin="0 0 0 15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="15" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                        <Separator Grid.Row="1" 
+                                                   Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                                   Margin="0 0 0 4" />
 
-                            <local:Card Grid.Column="0" Height="120">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
+                                        <!-- Loading indicator -->
+                                        <mah:ProgressRing Grid.Row="2"
+                                                          Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}" />
 
-                                    <StackPanel Grid.Row="0"
-                                                Orientation="Horizontal"
-                                                Margin="0 0 0 4">
-                                        <iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Patcher}"
-                                                                    VerticalAlignment="Center"
-                                                                    Foreground="{StaticResource RCP.Brushes.Patcher}"
-                                                                    Margin="0 0 8 0"/>
-                                        <TextBlock Text="Patcher"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="14"/>
-                                    </StackPanel>
-
-                                    <Separator Grid.Row="1" 
-                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                               Margin="0 0 0 4" />
-
-                                    <StackPanel Grid.Row="2" VerticalAlignment="Center">
-                                        <TextBlock Text="2 patches applied"
-                                                   Margin="0 0 0 8"/>
-                                        <Button VerticalAlignment="Bottom"  
-                                                HorizontalAlignment="Left"
-                                                BorderThickness="0"
-                                                FontSize="12"
-                                                Padding="10 0"
-                                                Background="#d84315"
-                                                Content="Open" />
-                                    </StackPanel>
-
-                                </Grid>
-                            </local:Card>
-
-                            <local:Card Grid.Column="2" Height="120">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Grid.Row="0"
-                                                Orientation="Horizontal"
-                                                Margin="0 0 0 4">
-                                        <iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
-                                                                    VerticalAlignment="Center"
-                                                                    Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
-                                                                    Margin="0 0 8 0"/>
-                                        <TextBlock Text="Archive Explorer"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="14"/>
-                                    </StackPanel>
-
-                                    <Separator Grid.Row="1"
-                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                               Margin="0 0 0 4" />
-
-
-                                </Grid>
-                            </local:Card>
-
-                        </Grid>
-
-                        <Grid Margin="0 0 0 15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="15" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <local:Card Grid.Column="0" Height="120">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Grid.Row="0"
-                                                Orientation="Horizontal"
-                                                Margin="0 0 0 4">
-                                        <iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Progression}"
-                                                                    VerticalAlignment="Center"
-                                                                    Foreground="{StaticResource RCP.Brushes.Progression}"
-                                                                    Margin="0 0 8 0"/>
-                                        <TextBlock Text="Progression"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="14"/>
-                                    </StackPanel>
-
-                                    <Separator Grid.Row="1"
-                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                               Margin="0 0 0 4" />
-
-                                    <Grid Grid.Row="2">
-
+                                        <!-- Content -->
+                                        <ContentPresenter Grid.Row="2" 
+                                                          Content="{Binding Mode=OneTime}"
+                                                          Visibility="{Binding Path=IsLoading, Converter={local:InvertedBooleanToVisibilityConverter}}" />
 
                                     </Grid>
+                                </local:Card>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-                                </Grid>
-                            </local:Card>
-
-                            <local:Card Grid.Column="2" Height="120">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Grid.Row="0"
-                                                Orientation="Horizontal"
-                                                Margin="0 0 0 4">
-                                        <iconPacks:PackIconMaterial Kind="Link"
-                                                                    VerticalAlignment="Center"
-                                                                    Foreground="{StaticResource RCP.Brushes.Info}"
-                                                                    Margin="0 0 8 0"/>
-                                        <TextBlock Text="Links"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="14"/>
-                                    </StackPanel>
-
-                                    <Separator Grid.Row="1"
-                                               Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                               Margin="0 0 0 4" />
-
-
-                                </Grid>
-                            </local:Card>
-
-                        </Grid>
-
-                    </StackPanel>
                 </Grid>
 
             </Grid>

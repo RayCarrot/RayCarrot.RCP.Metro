@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -35,6 +36,16 @@ namespace RayCarrot.RCP.Metro
             Thickness selectedGameTopBarActionsGridMargin = TopBarActionsGrid.Margin;
             selectedGameTopBarActionsGridMargin.Top = iconScrollFactor * topOffset;
             TopBarActionsGrid.Margin = selectedGameTopBarActionsGridMargin;
+        }
+
+        private void GamePanelsUniformGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (sender is not UniformGrid grid)
+                return;
+
+            const int minPanelWidth = 300;
+
+            grid.Columns = (int)(grid.ActualWidth / minPanelWidth).Clamp(1, grid.Children.Count);
         }
     }
 }

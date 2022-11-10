@@ -36,6 +36,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Edit">PencilOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Program">ApplicationOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.News">TooltipTextOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Link">Link</iconPacks:PackIconMaterialKind>
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.EditJumpList">PencilBoxOutline</iconPacks:PackIconMaterialKind>
     
@@ -132,6 +133,13 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Purchase" 
                        IconKind="{StaticResource RCP.Icons.Purchase}" 
                        IconColor="{x:Null}" />
+
+    <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Progression" 
+                       IconKind="{StaticResource RCP.Icons.Progression}" 
+                       IconColor="{StaticResource RCP.Brushes.Progression}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Links" 
+                       IconKind="{StaticResource RCP.Icons.Link}" 
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_General" 
                        IconKind="{StaticResource RCP.Icons.Settings}" 
