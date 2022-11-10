@@ -4,14 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
         mc:Ignorable="d"
         Style="{StaticResource RCP.Styles.Button.Flat}"
+        local:ButtonAssist.IconKind="DotsVertical"
+        local:ButtonAssist.IconSize="16"
         Click="OverflowMenu_OnClick"
-        ContextMenuOpening="OverflowMenu_OnContextMenuOpening"
-        Width="22"
-        Height="22">
-    <iconPacks:PackIconMaterial Kind="DotsVertical"
-                                Background="Transparent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"/>
-</Button>
+        ContextMenuOpening="OverflowMenu_OnContextMenuOpening" />

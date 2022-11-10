@@ -191,12 +191,8 @@
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         ToolTip="{Resx Backup_Backup}"
                         Command="{Binding Path=BackupCommand, Mode=OneTime}"
-                        Margin="0 0 10 0">
-                    <iconpacks:PackIconMaterial Background="Transparent"
-                                                Kind="FolderUploadOutline"
-                                                Width="20"
-                                                Height="20" />
-                </Button>
+                        local:ButtonAssist.IconKind="FolderUploadOutline"
+                        Margin="0 0 4 0" />
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         ToolTip="{Resx Backup_Restore}"
                         Command="{Binding Path=RestoreCommand, Mode=OneTime}"
@@ -291,45 +287,30 @@
                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_Export}"
                         Visibility="{Binding Path=CanExport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
-                        Margin="0 0 10 0">
-                    <iconpacks:PackIconMaterial Background="Transparent"
-                                                Kind="FileExportOutline"
-                                                Width="20"
-                                                Height="20" />
-                </Button>
+                        local:ButtonAssist.IconKind="FileExportOutline"
+                        Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=ImportCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_Import}"
                         Visibility="{Binding Path=CanImport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
-                        Margin="0 0 10 0">
-                    <iconpacks:PackIconMaterial Background="Transparent"
-                                                Kind="FileImportOutline"
-                                                Width="20"
-                                                Height="20" />
-                </Button>
+                        local:ButtonAssist.IconKind="FileImportOutline"
+                        Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=EditCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_EditSlot}"
                         Visibility="{Binding Path=CanImport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
-                        Margin="0 0 10 0">
-                    <iconpacks:PackIconMaterial Background="Transparent"
-                                                Kind="FileDocumentEditOutline"
-                                                Width="20"
-                                                Height="20" />
-                </Button>
+                        local:ButtonAssist.IconKind="FileDocumentEditOutline"
+                        Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
                         ToolTip="{Resx GameDisplay_OpenLocation}"
                         Visibility="{Binding Path=CanOpenLocation, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
-                        Margin="0 0 10 0">
-                    <iconpacks:PackIconMaterial Background="Transparent"
-                                                Kind="FolderOutline"
-                                                Width="20"
-                                                Height="20" />
-                </Button>
+                        local:ButtonAssist.IconKind="FolderOutline"
+                        Margin="0 0 4 0" />
+
             </StackPanel>
 
         </Grid>

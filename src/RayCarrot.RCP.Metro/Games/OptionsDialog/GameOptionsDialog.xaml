@@ -50,7 +50,8 @@
 
             <!-- Overflow menu -->
 
-            <local:OverflowMenu Grid.Column="2"
+            <local:OverflowMenu Grid.Column="2" 
+                                VerticalAlignment="Center"
                                 Margin="7">
                 <local:OverflowMenu.ContextMenu>
                     <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">

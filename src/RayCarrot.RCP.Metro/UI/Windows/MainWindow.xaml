@@ -80,6 +80,7 @@
                                                       KeyboardNavigation.TabIndex="1" />
 
                                             <local:OverflowMenu Grid.Column="2"
+                                                                VerticalAlignment="Center"
                                                                 InheritDataContext="False"
                                                                 DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:BasePage.OverflowMenu)}"
                                                                 Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"

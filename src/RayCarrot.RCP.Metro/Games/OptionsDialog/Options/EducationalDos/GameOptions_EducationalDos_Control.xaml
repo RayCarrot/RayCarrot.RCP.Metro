@@ -81,36 +81,27 @@
                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                     Command="{Binding Path=EditGameCommand}"
                                     VerticalAlignment="Center"
-                                    Margin="15 0 10 0">
-                                <iconPacks:PackIconMaterial Background="Transparent"
-                                                            Kind="PencilOutline"
-                                                            Width="16"
-                                                            Height="16" />
-                            </Button>
+                                    local:ButtonAssist.IconKind="PencilOutline"
+                                    local:ButtonAssist.IconSize="16"
+                                    Margin="9 0 4 0" />
 
                             <Button Grid.Column="3"
                                     ToolTip="{Resx GameDisplay_OpenLocation}"
                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                     Command="{Binding Path=OpenLocationCommand}"
                                     VerticalAlignment="Center"
-                                    Margin="15 0 10 0">
-                                <iconPacks:PackIconMaterial Background="Transparent"
-                                                            Kind="FolderOutline"
-                                                            Width="16"
-                                                            Height="16" />
-                            </Button>
+                                    local:ButtonAssist.IconKind="FolderOutline"
+                                    local:ButtonAssist.IconSize="16"
+                                    Margin="0 0 4 0" />
 
                             <Button Grid.Column="4"
                                     ToolTip="{Resx EducationalOptions_Remove}"
                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                     Command="{Binding Path=RemoveGameCommand}"
                                     VerticalAlignment="Center"
-                                    Margin="15 0 10 0">
-                                <iconPacks:PackIconMaterial Background="Transparent"
-                                                            Kind="DeleteOutline"
-                                                            Width="16"
-                                                            Height="16" />
-                            </Button>
+                                    local:ButtonAssist.IconKind="DeleteOutline"
+                                    local:ButtonAssist.IconSize="16"
+                                    Margin="0 0 4 0" />
 
                         </Grid>
                     </Grid>

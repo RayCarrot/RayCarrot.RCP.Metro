@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
@@ -21,35 +21,76 @@
     <!-- Default Button -->
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="metro:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
     </Style>
 
     <!-- Flat Button -->
 
+    <!-- TODO-UPDATE: Update other button styles to use icons like this one -->
     <Style x:Key="RCP.Styles.Button.Flat" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Default}" />
+        <Setter Property="local:ButtonAssist.IconKind" Value="None" />
+        <Setter Property="local:ButtonAssist.IconSize" Value="20" />
+        <Setter Property="local:ButtonAssist.IconBrush" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <ContentControl Background="{TemplateBinding Background}"
-                                    Foreground="{TemplateBinding Foreground}"
+                    <mah:ClipBorder x:Name="RootBorder"
+                                    Margin="0"
+                                    Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                    Content="{TemplateBinding Content}"
-                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+                                    CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid Margin="{TemplateBinding Padding}"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <iconpacks:PackIconMaterial Grid.Column="0" 
+                                                        Kind="{TemplateBinding local:ButtonAssist.IconKind}"
+                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                        Visibility="{TemplateBinding local:ButtonAssist.IconKind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter=None}"
+                                                        Width="{TemplateBinding local:ButtonAssist.IconSize}"
+                                                        Height="{TemplateBinding local:ButtonAssist.IconSize}"
+                                                        Foreground="{TemplateBinding local:ButtonAssist.IconBrush}" />
+
+                            <mah:ContentControlEx x:Name="PART_ContentPresenter"
+                                                  Grid.Column="1"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.ContentCharacterCasing)}"
+                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                  RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}" />
+                        </Grid>
+                    </mah:ClipBorder>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="RootBorder" 
+                                    Property="Background" 
+                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.16}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="RootBorder" 
+                                    Property="Background" 
+                                    Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.32}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.38" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <!-- Icon Circle Button -->
