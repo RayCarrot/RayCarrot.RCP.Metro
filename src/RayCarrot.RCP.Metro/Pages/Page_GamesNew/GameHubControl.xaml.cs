@@ -47,5 +47,11 @@ namespace RayCarrot.RCP.Metro
 
             grid.Columns = (int)(grid.ActualWidth / minPanelWidth).Clamp(1, grid.Children.Count);
         }
+
+        private void DropDownButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Toggle the state of the popup
+            DropDownPopup.IsOpen ^= true;
+        }
     }
 }

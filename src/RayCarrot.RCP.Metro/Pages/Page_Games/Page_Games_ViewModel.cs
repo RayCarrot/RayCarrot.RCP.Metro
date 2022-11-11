@@ -265,7 +265,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
 
         // Create the main action
         var mainAction = gameDescriptor.CanBeLocated
-            ? new ActionItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(gameDescriptor)))
+            ? new OverflowButtonItemViewModel(Resources.GameDisplay_Locate, GenericIconKind.GameDisplay_Location, new AsyncRelayCommand(async () => await LocateGameAsync(gameDescriptor)))
             : downloadItem;
 
         // Return the view model
@@ -411,7 +411,7 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             displayName: gameDescriptor.DisplayName,
             iconSource: gameDescriptor.IconSource,
             isDemo: gameDescriptor.IsDemo,
-            mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, false))),
+            mainAction: new OverflowButtonItemViewModel(Resources.GameDisplay_Launch, GenericIconKind.GameDisplay_Play, new AsyncRelayCommand(async () => await gameDescriptor.LaunchGameAsync(gameInstallation, false))),
             secondaryAction: optionsAction,
             launchActions: actions);
     }

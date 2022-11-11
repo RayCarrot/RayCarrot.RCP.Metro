@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// View model for an item in a <see cref="OverflowButton"/>
 /// </summary>
-public class OverflowButtonItemViewModel : ActionItemViewModel
+public class OverflowButtonItemViewModel : CommandItemViewModel
 {
     #region Constructors
 
@@ -15,7 +15,7 @@ public class OverflowButtonItemViewModel : ActionItemViewModel
     /// Constructor for a separator
     /// </summary>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public OverflowButtonItemViewModel(UserLevel minUserLevel = UserLevel.Normal) : base(null, null, null, minUserLevel)
+    public OverflowButtonItemViewModel(UserLevel minUserLevel = UserLevel.Normal) : base(null, null, minUserLevel)
     {
         IsSeparator = true;
     }
@@ -27,8 +27,9 @@ public class OverflowButtonItemViewModel : ActionItemViewModel
     /// <param name="iconKind">The item icon kind</param>
     /// <param name="command">The item command</param>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public OverflowButtonItemViewModel(string header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, iconKind, command, minUserLevel)
+    public OverflowButtonItemViewModel(string header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, command, minUserLevel)
     {
+        IconKind = iconKind;
     }
 
     /// <summary>
@@ -38,8 +39,9 @@ public class OverflowButtonItemViewModel : ActionItemViewModel
     /// <param name="iconSource">The icon source</param>
     /// <param name="command">The item command</param>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public OverflowButtonItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, iconSource, command, minUserLevel)
+    public OverflowButtonItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, command, minUserLevel)
     {
+        IconSource = iconSource;
     }
 
     #endregion
@@ -50,6 +52,9 @@ public class OverflowButtonItemViewModel : ActionItemViewModel
     /// Indicates if the item is a separator
     /// </summary>
     public bool IsSeparator { get; }
+
+    public GenericIconKind IconKind { get; }
+    public ImageSource IconSource { get; }
 
     #endregion
 }
