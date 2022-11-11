@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using BinarySerializer;
 using NLog;
 using RayCarrot.RCP.Metro.Patcher;
@@ -9,9 +10,24 @@ namespace RayCarrot.RCP.Metro;
 
 public class PatcherGamePanelViewModel : GamePanelViewModel
 {
+    #region Constructor
+
+    public PatcherGamePanelViewModel(GameInstallation gameInstallation) : base(gameInstallation)
+    {
+        OpenPatcherCommand = new AsyncRelayCommand(OpenPatcherAsync);
+    }
+
+    #endregion
+
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Commands
+
+    public ICommand OpenPatcherCommand { get; }
 
     #endregion
 
@@ -26,11 +42,11 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
 
     #region Protected Methods
 
-    protected override async Task LoadAsyncImpl(GameInstallation gameInstallation)
+    protected override async Task LoadAsyncImpl()
     {
         // Get applied patches
         using Context context = new RCPContext(String.Empty);
-        PatchLibrary library = new(gameInstallation.InstallLocation, Services.File);
+        PatchLibrary library = new(GameInstallation.InstallLocation, Services.File);
         PatchLibraryFile? libraryFile = null;
 
         try
@@ -46,6 +62,12 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
         // TODO-UPDATE: Localize
         InfoText = $"{libraryFile?.Patches.Count(x => x.IsEnabled) ?? 0} patches applied";
     }
+
+    #endregion
+
+    #region Public Methods
+
+    public Task OpenPatcherAsync() => Services.UI.ShowPatcherAsync(GameInstallation);
 
     #endregion
 }

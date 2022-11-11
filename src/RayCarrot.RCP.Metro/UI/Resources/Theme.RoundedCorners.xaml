@@ -5,6 +5,9 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:simpleChildWindow="http://metro.mahapps.com/winfx/xaml/simplechildwindow">
 
+    <!-- TODO-UPDATE: Rather than treat this as a theme we should move this into style resources for the controls
+                      and normalize it. Also use names like RCP.Style and such -->
+    
     <!-- Default control styles using rounded corners. The border thickness is also increased to help with the effect. -->
 
     <CornerRadius x:Key="CornerRadius.Default">3</CornerRadius>

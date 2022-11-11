@@ -10,32 +10,8 @@
              d:DesignWidth="900" d:DesignHeight="600"
              d:DataContext="{d:DesignInstance local:InstalledGameViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
+    <!-- TODO-UPDATE: Localize -->
     <Grid x:Name="RootGrid">
-        <!-- Panel templates (move elsewhere?) -->
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type local:PatcherGamePanelViewModel}">
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Path=InfoText.Value}"
-                               Margin="0 0 0 8"/>
-                </StackPanel>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type local:ArchiveGamePanelViewModel}">
-                <StackPanel VerticalAlignment="Center">
-
-                </StackPanel>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type local:ProgressionGamePanelViewModel}">
-                <StackPanel VerticalAlignment="Center">
-
-                </StackPanel>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type local:LinksGamePanelViewModel}">
-                <StackPanel VerticalAlignment="Center">
-
-                </StackPanel>
-            </DataTemplate>
-        </Grid.Resources>
-
         <!-- Game banner image -->
         <Image x:Name="GameBannerImage" 
                Source="{Binding Path=GameBannerImageSource, Mode=OneTime}" 
@@ -116,13 +92,45 @@
                         <Grid x:Name="TopBarActionsGrid" 
                               Grid.Column="1"
                               VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
                             <!-- Play -->
-                            <Button Margin="8 0 0 0"
-                                    Style="{StaticResource RCP.Styles.Button.IconCircle}"
-                                    local:ButtonAssist.IconKind="Play"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top" />
+                            <mah:ClipBorder Grid.Column="0"
+                                            Margin="15 0 4 0"
+                                            CornerRadius="{StaticResource CornerRadius.Default}"
+                                            HorizontalAlignment="Left"
+                                            Background="{DynamicResource RCP.Brushes.FlatButton.Play}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Play -->
+                                    <Button Grid.Column="0"
+                                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                                            mah:ControlsHelper.CornerRadius="0"
+                                            local:ButtonAssist.IconKind="Play"
+                                            FontSize="14"
+                                            Content="Play"
+                                            Padding="6 6 12 6" />
+
+                                    <!-- Drop-down -->
+                                    <Button Grid.Column="1"
+                                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                                            mah:ControlsHelper.CornerRadius="0"
+                                            local:ButtonAssist.IconKind="ChevronDown"
+                                            local:ButtonAssist.IconSize="12" />
+                                </Grid>
+                            </mah:ClipBorder>
+
+                            <!-- Options -->
+                            <Button Grid.Column="1"
+                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                    local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Settings}" />
 
                         </Grid>
 
@@ -130,14 +138,32 @@
 
                     <!-- Panels -->
                     <ItemsControl Grid.Row="1" 
+                                  Margin="-8 0"
                                   ItemsSource="{Binding Path=GamePanels, Mode=OneTime}"
                                   d:ItemsSource="{d:SampleData ItemCount=4}">
+                        <!-- Panel templates -->
+                        <ItemsControl.Resources>
+                            <DataTemplate DataType="{x:Type local:PatcherGamePanelViewModel}">
+                                <local:PatcherGamePanelControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type local:ArchiveGamePanelViewModel}">
+                                <local:ArchiveGamePanelControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type local:ProgressionGamePanelViewModel}">
+                                <local:ProgressionGamePanelControl />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type local:LinksGamePanelViewModel}">
+                                <local:LinksGamePanelControl />
+                            </DataTemplate>
+                        </ItemsControl.Resources>
+
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid VerticalAlignment="Top" 
                                              SizeChanged="GamePanelsUniformGrid_OnSizeChanged" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
+
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <!-- Panel -->
@@ -156,10 +182,13 @@
                                                     Orientation="Horizontal"
                                                     Margin="0 0 0 4">
                                             <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                                                        d:Kind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
                                                                         Foreground="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                                                        d:Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
                                                                         VerticalAlignment="Center"
                                                                         Margin="0 0 8 0"/>
                                             <TextBlock Text="{Binding Path=Header.Value}"
+                                                       d:Text="Archive Explorer"
                                                        VerticalAlignment="Center"
                                                        FontSize="14" />
                                         </StackPanel>

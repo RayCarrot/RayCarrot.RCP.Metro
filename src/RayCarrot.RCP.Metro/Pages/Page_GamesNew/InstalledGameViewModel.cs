@@ -46,17 +46,18 @@ public class InstalledGameViewModel : BaseViewModel
         GameDescriptor gameDescriptor = GameInstallation.GameDescriptor;
 
         if (gameDescriptor.AllowPatching)
-            GamePanels.Add(new PatcherGamePanelViewModel());
+            GamePanels.Add(new PatcherGamePanelViewModel(GameInstallation));
         
         if (gameDescriptor.HasArchives)
-            GamePanels.Add(new ArchiveGamePanelViewModel());
+            GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation));
 
-        GamePanels.Add(new ProgressionGamePanelViewModel());
-        GamePanels.Add(new LinksGamePanelViewModel());
+        // TODO-UPDATE: Have these be conditional as well
+        GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation));
+        GamePanels.Add(new LinksGamePanelViewModel(GameInstallation));
     }
 
     public Task LoadAsync()
     {
-        return Task.WhenAll(GamePanels.Select(x => x.LoadAsync(GameInstallation)));
+        return Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
     }
 }

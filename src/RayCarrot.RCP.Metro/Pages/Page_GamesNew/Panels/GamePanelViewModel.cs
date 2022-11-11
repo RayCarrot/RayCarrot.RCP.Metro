@@ -4,6 +4,15 @@ namespace RayCarrot.RCP.Metro;
 
 public abstract class GamePanelViewModel : BaseViewModel
 {
+    #region Constructor
+
+    protected GamePanelViewModel(GameInstallation gameInstallation)
+    {
+        GameInstallation = gameInstallation;
+    }
+
+    #endregion
+
     #region Private Fields
 
     private bool _hasLoaded;
@@ -11,6 +20,8 @@ public abstract class GamePanelViewModel : BaseViewModel
     #endregion
 
     #region Public Properties
+
+    public GameInstallation GameInstallation { get; }
 
     public abstract GenericIconKind Icon { get; }
     public abstract LocalizedString Header { get; }
@@ -21,13 +32,13 @@ public abstract class GamePanelViewModel : BaseViewModel
 
     #region Protected Methods
 
-    protected abstract Task LoadAsyncImpl(GameInstallation gameInstallation);
+    protected abstract Task LoadAsyncImpl();
 
     #endregion
 
     #region Public Methods
 
-    public async Task LoadAsync(GameInstallation gameInstallation)
+    public async Task LoadAsync()
     {
         if (IsLoading || _hasLoaded)
             return;
@@ -36,7 +47,7 @@ public abstract class GamePanelViewModel : BaseViewModel
         {
             IsLoading = true;
 
-            await LoadAsyncImpl(gameInstallation);
+            await LoadAsyncImpl();
 
             _hasLoaded = true;
         }
