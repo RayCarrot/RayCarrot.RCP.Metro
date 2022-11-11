@@ -46,22 +46,25 @@
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                        <Grid Margin="{TemplateBinding Padding}"
+                        <Border x:Name="OpacityBorder" Background="Transparent">
+                            <Grid Margin="{TemplateBinding Padding}"
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <iconpacks:PackIconMaterial Grid.Column="0" 
+                                <iconpacks:PackIconMaterial x:Name="Icon"
+                                                        Grid.Column="0" 
                                                         Kind="{TemplateBinding local:ButtonAssist.IconKind}"
                                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         Visibility="{TemplateBinding local:ButtonAssist.IconKind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter=None}"
                                                         Width="{TemplateBinding local:ButtonAssist.IconSize}"
                                                         Height="{TemplateBinding local:ButtonAssist.IconSize}"
-                                                        Foreground="{TemplateBinding local:ButtonAssist.IconBrush}" />
+                                                        Foreground="{TemplateBinding local:ButtonAssist.IconBrush}"
+                                                        Margin="0 0 4 0" />
 
-                            <mah:ContentControlEx x:Name="PART_ContentPresenter"
+                                <mah:ContentControlEx x:Name="PART_ContentPresenter"
                                                   Grid.Column="1"
                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -71,21 +74,25 @@
                                                   ContentTemplate="{TemplateBinding ContentTemplate}"
                                                   ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                                   RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}" />
-                        </Grid>
+                            </Grid>
+                        </Border>
                     </mah:ClipBorder>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="RootBorder" 
+                            <Setter TargetName="OpacityBorder" 
                                     Property="Background" 
                                     Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.16}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="RootBorder" 
+                            <Setter TargetName="OpacityBorder" 
                                     Property="Background" 
                                     Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={local:BrushToBrushWithOpacityConverter}, ConverterParameter=0.32}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" Value="0.38" />
+                        </Trigger>
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter TargetName="Icon" Property="Margin" Value="0" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
