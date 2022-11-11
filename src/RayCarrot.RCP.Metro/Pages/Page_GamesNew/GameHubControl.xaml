@@ -118,6 +118,7 @@
                                                 local:ButtonAssist.IconKind="Play"
                                                 FontSize="14"
                                                 Content="Play"
+                                                Command="{Binding Path=LaunchCommand, Mode=OneTime}"
                                                 Padding="6 6 12 6" />
 
                                         <!-- Drop-down -->
@@ -193,7 +194,8 @@
                             <!-- Options -->
                             <Button Grid.Column="1"
                                     Style="{StaticResource RCP.Styles.Button.Flat}"
-                                    local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Settings}" />
+                                    local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Settings}"
+                                    Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}" />
 
                         </Grid>
 

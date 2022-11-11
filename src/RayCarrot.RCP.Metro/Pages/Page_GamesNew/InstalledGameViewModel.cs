@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MahApps.Metro.IconPacks;
 using NLog;
 
@@ -9,6 +10,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class InstalledGameViewModel : BaseViewModel
 {
+    #region Constructor
+
     public InstalledGameViewModel(GameInstallation gameInstallation)
     {
         GameInstallation = gameInstallation;
@@ -33,9 +36,28 @@ public class InstalledGameViewModel : BaseViewModel
 
         AdditionalLaunchActions = new ObservableCollection<ActionItemViewModel>();
         AddAdditionalLaunchActions();
+
+        // Create commands
+        LaunchCommand = new AsyncRelayCommand(LaunchAsync);
+        OpenOptionsCommand = new AsyncRelayCommand(OpenOptionsAsync);
     }
 
+    #endregion
+
+    #region Logger
+
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Commands
+
+    public ICommand LaunchCommand { get; }
+    public ICommand OpenOptionsCommand { get; }
+
+    #endregion
+
+    #region Public Properties
 
     public GameInstallation GameInstallation { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
@@ -48,6 +70,10 @@ public class InstalledGameViewModel : BaseViewModel
 
     public ObservableCollection<GamePanelViewModel> GamePanels { get; }
     public ObservableCollection<ActionItemViewModel> AdditionalLaunchActions { get; }
+
+    #endregion
+
+    #region Private Methods
 
     private void AddGamePanels()
     {
@@ -141,8 +167,17 @@ public class InstalledGameViewModel : BaseViewModel
             })));
     }
 
+    #endregion
+
+    #region Public Methods
+
     public Task LoadAsync()
     {
         return Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
     }
+
+    public Task LaunchAsync() => GameDescriptor.LaunchGameAsync(GameInstallation, false);
+    public Task OpenOptionsAsync() => Services.UI.ShowGameOptionsAsync(GameInstallation);
+
+    #endregion
 }
