@@ -59,27 +59,20 @@
     <!-- Progression Slot Percentage -->
 
     <DataTemplate x:Key="DataTemplate.SlotPercentage" DataType="{x:Type local:GameProgressionSlotViewModel}">
-        <Grid>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="0"
-                        Orientation="Horizontal"
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
                         TextElement.FontSize="22"
                         TextElement.FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        Margin="0 0 0 8">
 
                 <TextBlock Text="{Binding Path=Percentage, StringFormat=0.##, Mode=OneTime}" />
                 <TextBlock Text=" %" />
 
             </StackPanel>
 
-            <metro:MetroProgressBar Grid.Row="1"
-                                    Foreground="{Binding Path=ProgressBrush, Mode=OneTime}"
+            <metro:MetroProgressBar Foreground="{Binding Path=ProgressBrush, Mode=OneTime}"
                                     Minimum="0"
                                     Maximum="100"
                                     Width="80"
@@ -87,7 +80,7 @@
                                     Value="{Binding Path=Percentage, Mode=OneTime}" />
 
 
-        </Grid>
+        </StackPanel>
     </DataTemplate>
 
     <!-- Progression Game Header -->
