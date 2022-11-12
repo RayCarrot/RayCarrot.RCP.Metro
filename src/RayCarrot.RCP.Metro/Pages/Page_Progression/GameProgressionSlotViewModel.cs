@@ -70,7 +70,7 @@ public class GameProgressionSlotViewModel : BaseRCPViewModel
     {
         get
         {
-            // TODO-UPDATE: Move to resource dictionary and do in xaml instead
+            // TODO-UPDATE: Move to resource dictionary and do in xaml instead (same for progression panel)
             if (Slot.Is100Percent)
                 return new SolidColorBrush(Color.FromRgb(76, 175, 80));
             else if (Percentage >= 50)
