@@ -9,18 +9,18 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
+public class GameProgressionManager_RaymanOrigins : GameProgressionManager
 {
-    public ProgressionGameViewModel_RaymanOrigins(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanOrigins(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins", SearchOption.AllDirectories, "*", "0", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "My games" + "Rayman origins" + "Savegame", SearchOption.TopDirectoryOnly, "*"));
@@ -108,7 +108,7 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             }
 
             // Create the collection with items for each time trial level + general information
-            List<ProgressionDataViewModel> progressItems = new();
+            List<GameProgressionDataItem> progressItems = new();
 
             // Get the number of Electoons
             int electoons =
@@ -126,37 +126,46 @@ public class ProgressionGameViewModel_RaymanOrigins : ProgressionGameViewModel
             int teeth = saveData.Levels.Select(x => x.Value.Object.ISDs.Select(y => y.Value.Object.TakenTooth.Length)).SelectMany(x => x).Sum();
 
             // Add general progress info
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_Electoon,
                 header: new ResourceLocString(nameof(Resources.Progression_Electoons)),
                 value: electoons, 
                 max: 246));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_RedTooth, 
                 header: new ResourceLocString(nameof(Resources.Progression_Teeth)),
                 value: teeth, 
                 max: 10));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_Medal, 
                 header: new ResourceLocString(nameof(Resources.Progression_ROLumMedals)),
                 value: lumAttack3, 
                 max: 51));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_Trophy,
                 header: new ResourceLocString(nameof(Resources.Progression_ROSpeedTrophies)),
                 value: timeAttack2, 
                 max: 31));
 
-            yield return new SerializableProgressionSlotViewModel<Origins_SaveData>(this, null, saveIndex, electoons + teeth + lumAttack3 + timeAttack2, 246 + 10 + 51 + 31, progressItems, context, saveFileData, fileName)
+            yield return new SerializableGameProgressionSlot<Origins_SaveData>(
+                name: null, 
+                index: saveIndex, 
+                collectiblesCount: electoons + teeth + lumAttack3 + timeAttack2, 
+                totalCollectiblesCount: 246 + 10 + 51 + 31, 
+                dataItems: progressItems, 
+                context: context, 
+                serializable: saveFileData, 
+                fileName: fileName,
+                canImport: false)
             {
+                // TODO: Allow importing. Current issue is the game fails to load modified saves - checksum in header?
                 //GetExportObject = x => x.SaveData,
                 //SetImportObject = (x, o) => x.SaveData = (Origins_SaveData.Ray_PersistentGameData_Universe)o,
                 //ExportedType = typeof(Origins_SaveData.Ray_PersistentGameData_Universe),
-                CanImport = false, // TODO: Allow importing. Current issue is the game fails to load modified saves - checksum in header?
             };
 
             Logger.Info("{0} slot has been loaded", GameInstallation.Id);

@@ -7,9 +7,9 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
+public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
 {
-    public ProgressionGameViewModel_RaymanJungleRun(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
+    public GameProgressionManager_RaymanJungleRun(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
         : base(gameInstallation)
     {
         GameDescriptor = gameDescriptor;
@@ -18,9 +18,9 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private WindowsPackageGameDescriptor GameDescriptor { get; }
-    protected override GameBackups_Directory[] BackupDirectories => GameDescriptor.GetBackupDirectories();
+    public override GameBackups_Directory[] BackupDirectories => GameDescriptor.GetBackupDirectories();
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath dirPath = GameDescriptor.GetLocalAppDataDirectory();
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(dirPath, SearchOption.TopDirectoryOnly, "*.dat"));
@@ -51,7 +51,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             Logger.Info("{0} slot has been deserialized", GameInstallation.Id);
 
             // Create the collection with items for each time trial level + general information
-            List<ProgressionDataViewModel> progressItems = new();
+            List<GameProgressionDataItem> progressItems = new();
 
             // Default number of worlds to 5 as it is no longer possible to download the additional 2 ones on PC
             int numWorlds = 5;
@@ -107,7 +107,7 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
                 }
 
                 // Add the item
-                progressItems.Add(new ProgressionDataViewModel(
+                progressItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.RO_Clock, 
                     header: $"{worldNum}-{lvlNum}", 
@@ -118,20 +118,20 @@ public class ProgressionGameViewModel_RaymanJungleRun : ProgressionGameViewModel
             int maxTeeth = numWorlds * 10;
 
             // Add general progress info first
-            progressItems.Insert(0, new ProgressionDataViewModel(
+            progressItems.Insert(0, new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_Lum,
                 header: new ResourceLocString(nameof(Resources.Progression_Lums)),
                 value: lums, 
                 max: maxLums));
-            progressItems.Insert(1, new ProgressionDataViewModel(
+            progressItems.Insert(1, new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RO_RedTooth,
                 header: new ResourceLocString(nameof(Resources.Progression_Teeth)),
                 value: teeth, 
                 max: maxTeeth));
 
-            yield return new SerializableProgressionSlotViewModel<JungleRun_SaveData>(this, null, saveIndex, lums + teeth, maxLums + maxTeeth, progressItems, context, saveData, fileName);
+            yield return new SerializableGameProgressionSlot<JungleRun_SaveData>(null, saveIndex, lums + teeth, maxLums + maxTeeth, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }

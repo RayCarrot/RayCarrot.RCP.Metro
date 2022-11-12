@@ -3,14 +3,14 @@ using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanByHisFans : ProgressionGameViewModel_RaymanDesigner
+public class GameProgressionManager_RaymanByHisFans : GameProgressionManager_RaymanDesigner
 {
-    public ProgressionGameViewModel_RaymanByHisFans(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanByHisFans(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     protected override int LevelsCount => 40;
     protected override Ray1EngineVersion EngineVersion => Ray1EngineVersion.PC_Fan;
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         // NOTE: Due to a mistake where the .sct files were not included in previous backups we need to keep this version for legacy support
         new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),

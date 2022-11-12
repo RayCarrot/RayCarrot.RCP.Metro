@@ -6,9 +6,9 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewModel
+public class GameProgressionManager_RaymanRedemption : GameProgressionManager
 {
-    public ProgressionGameViewModel_RaymanRedemption(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanRedemption(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -41,12 +41,12 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
         "True Boss Rush",
     };
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new GameBackups_Directory(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "RaymanRedemption", SearchOption.AllDirectories, "*", "0", 0),
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath localAppData = Environment.SpecialFolder.LocalApplicationData.GetFolderPath();
         FileSystemPath? saveDir = fileSystem.GetDirectory(new IOSearchPattern(localAppData + "RaymanRedemption", SearchOption.TopDirectoryOnly, "*.txt"))?.DirPath;
@@ -123,7 +123,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             // Get the magician level times
             string[] magicianLevelNames = GetMagicianLevelNames;
-            IEnumerable<ProgressionDataViewModel> magicianBonusDataItems = Enumerable.Range(0, 24).Select(i => new
+            IEnumerable<GameProgressionDataItem> magicianBonusDataItems = Enumerable.Range(0, 24).Select(i => new
             {
                 Index = i,
                 TimeValue = saveData.GetValue($"magicianTime{i}").NumberValue,
@@ -131,7 +131,7 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
             {
                 var icon = (ProgressionIcon)Enum.Parse(typeof(ProgressionIcon), $"Redemption_Magician{x.Index}");
                 var time = TimeSpan.FromSeconds(x.TimeValue / 60);
-                return new ProgressionDataViewModel(
+                return new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: icon, 
                     header: magicianLevelNames[x.Index], 
@@ -155,62 +155,64 @@ public class ProgressionGameViewModel_RaymanRedemption : ProgressionGameViewMode
 
             double percentage = Math.Floor(totalProgress / (double)352 * 100);
 
-            var dataItems = new ProgressionDataViewModel[]
+            var dataItems = new List<GameProgressionDataItem>()
             {
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R1_LevelExit, 
                     header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)), 
                     value: levelsCompleted, max: maxLevelsCompleted),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R1_Cage,
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: maxCages),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.Redemption_Token, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionTokens)),
                     value: tokens, 
                     max: maxTokens),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.Redemption_Present, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionPresents)),
                     value: presents, 
                     max: maxPresents),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.Redemption_RaymanSkin, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionRaySkins)),
                     value: raymanSkins, 
                     max: maxRaymanSkins),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.Redemption_BzzitSkin, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionBzzitSkins)),
                     value: bzzitSkins, 
                     max: maxBzzitSkins),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.Redemption_CheckpointSkin, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionCheckpointSkins)),
                     value: checkpointSkins, 
                     max: maxCheckpointSkins),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Ting, 
                     header: new ResourceLocString(nameof(Resources.Progression_Tings)),
                     value: tings),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Life, 
                     header: new ResourceLocString(nameof(Resources.Progression_Lives)),
                     text: lives),
-            }.Concat(magicianBonusDataItems);
+            };
 
-            yield return new SerializableProgressionSlotViewModel<GameMaker_DSMap>(this, $"{saveName} ({gameModeStr})", saveIndex, percentage, dataItems, context, saveData, fileName);
+            dataItems.AddRange(magicianBonusDataItems);
+
+            yield return new SerializableGameProgressionSlot<GameMaker_DSMap>($"{saveName} ({gameModeStr})", saveIndex, percentage, dataItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }

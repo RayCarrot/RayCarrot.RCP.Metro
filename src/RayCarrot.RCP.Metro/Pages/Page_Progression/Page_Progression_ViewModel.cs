@@ -28,7 +28,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
 
         // Create properties
-        GameItems = new ObservableCollection<ProgressionGameViewModel>();
+        GameItems = new ObservableCollection<GameProgressionViewModel>();
         AsyncLock = new AsyncLock();
 
         // Create commands
@@ -74,7 +74,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
     #region Public Properties
 
     public override AppPage Page => AppPage.Progression;
-    public ObservableCollection<ProgressionGameViewModel> GameItems { get; }
+    public ObservableCollection<GameProgressionViewModel> GameItems { get; }
 
     #endregion
 
@@ -105,20 +105,25 @@ public class Page_Progression_ViewModel : BasePageViewModel
 
                 // Add the game items
                 foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
-                    GameItems.AddRange(gameInstallation.GameDescriptor.GetProgressionGameViewModels(gameInstallation));
+                {
+                    var progressionManager = gameInstallation.GameDescriptor.GetGameProgressionManager(gameInstallation);
+
+                    if (progressionManager != null)
+                        GameItems.Add(new GameProgressionViewModel(progressionManager));
+                }
 
                 // TODO: Use Task.WhenAll and run in parallel?
 
                 // Load the game items
-                foreach (ProgressionGameViewModel game in GameItems)
+                foreach (GameProgressionViewModel game in GameItems)
                     await game.LoadProgressAsync();
 
                 // Load backups
-                foreach (ProgressionGameViewModel game in GameItems)
+                foreach (GameProgressionViewModel game in GameItems)
                     await game.LoadBackupAsync();
 
                 // Load slot infos
-                foreach (ProgressionGameViewModel game in GameItems)
+                foreach (GameProgressionViewModel game in GameItems)
                     await game.LoadSlotInfoItemsAsync();
 
                 Logger.Info("Refreshed progression game items");
@@ -151,7 +156,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
             int completed = 0;
 
             // Perform each backup
-            foreach (ProgressionGameViewModel game in GameItems)
+            foreach (GameProgressionViewModel game in GameItems)
             {
                 if (await game.BackupAsync(true))
                     completed++;

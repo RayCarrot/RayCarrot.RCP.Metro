@@ -7,9 +7,9 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewModel
+public class GameProgressionManager_RaymanRavingRabbids : GameProgressionManager
 {
-    public ProgressionGameViewModel_RaymanRavingRabbids(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanRavingRabbids(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -596,12 +596,12 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         return (int)(scaledScore * 1000);
     }
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveFile = fileSystem.GetFile(InstallDir + "Rayman4.sav");
 
@@ -643,15 +643,15 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
                     completedMinigames++;
             }
 
-            ProgressionDataViewModel[] dataItems =
+            GameProgressionDataItem[] dataItems =
             {
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.RRR_Plunger, 
                     header: new ResourceLocString(nameof(Resources.Progression_RRRDays)), 
                     value: slot.SlotDesc.Progress_Days, 
                     max: 15),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.RRR_Trophy, 
                     header: new ResourceLocString(nameof(Resources.Progression_RRRMinigamesCompleted)), 
@@ -661,7 +661,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
 
             int storySlotIndex = saveIndex;
 
-            yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, slot.SlotDesc.Name, saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, context, saveData, saveFile.Name)
+            yield return new SerializableGameProgressionSlot<RRR_SaveFile>(slot.SlotDesc.Name, saveIndex, slot.SlotDesc.Progress_Percentage, dataItems, context, saveData, saveFile.Name)
             {
                 GetExportObject = x => x.StorySlots[storySlotIndex],
                 SetImportObject = (x, o) => x.StorySlots[storySlotIndex] = (RRR_SaveSlot)o,
@@ -672,7 +672,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         float[] maxScores = GetMinigameMaxScores;
         int[] types = GetMinigameTypes;
 
-        List<ProgressionDataViewModel> scoreDataItems = new();
+        List<GameProgressionDataItem> scoreDataItems = new();
 
         int totalScore = 0;
         const int maxScore = 183000;
@@ -724,14 +724,14 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             string name = char0 + char1 + char2;
 
             if (score != 0 && (types[mgID] & 0x100) == 0 && mgID != 64)
-                scoreDataItems.Add(new ProgressionDataViewModel(
+                scoreDataItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.RRR_Star, 
                     header: new GeneratedLocString(() => String.Format(Resources.Progression_RRRPoints, Resources.ResourceManager.GetString($"RRR_LevelName_{mgID}"))), 
                     value: score, 
                     max: 1000));
 
-            scoreDataItems.Add(new ProgressionDataViewModel(
+            scoreDataItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RRR_Trophy, 
                 header: new GeneratedLocString(() => String.Format(Resources.Progression_RRRScore, Resources.ResourceManager.GetString($"RRR_LevelName_{mgID}"))), 
@@ -739,7 +739,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
         }
 
         // Add total score
-        scoreDataItems.Insert(0, new ProgressionDataViewModel(
+        scoreDataItems.Insert(0, new GameProgressionDataItem(
             isPrimaryItem: true, 
             icon: ProgressionIcon.RRR_Star, 
             header: new ResourceLocString(nameof(Resources.Progression_RRRTotalPoints)), 
@@ -747,7 +747,7 @@ public class ProgressionGameViewModel_RaymanRavingRabbids : ProgressionGameViewM
             max: maxScore));
 
         // Add score slot
-        yield return new SerializableProgressionSlotViewModel<RRR_SaveFile>(this, new ResourceLocString(nameof(Resources.Progression_RRRScoreSlot)), 3, totalScore, maxScore, scoreDataItems, context, saveData, saveFile.Name)
+        yield return new SerializableGameProgressionSlot<RRR_SaveFile>(new ResourceLocString(nameof(Resources.Progression_RRRScoreSlot)), 3, totalScore, maxScore, scoreDataItems, context, saveData, saveFile.Name)
         {
             GetExportObject = x => x.ScoreSlot,
             SetImportObject = (x, o) => x.ScoreSlot = (RRR_SaveSlot)o,

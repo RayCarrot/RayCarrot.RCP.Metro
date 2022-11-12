@@ -4,30 +4,50 @@ using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro;
 
-public class SerializableProgressionSlotViewModel<FileObj> : ProgressionSlotViewModel
+public class SerializableGameProgressionSlot<FileObj> : GameProgressionSlot
     where FileObj : BinarySerializable, new()
 {
-    public SerializableProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, int collectiblesCount, int totalCollectiblesCount, IEnumerable<ProgressionDataViewModel> dataItems, Context context, FileObj serializable, string fileName) : base(game, name, index, collectiblesCount, totalCollectiblesCount, dataItems)
+    public SerializableGameProgressionSlot(
+        LocalizedString? name, 
+        int index, 
+        int collectiblesCount, 
+        int totalCollectiblesCount, 
+        IReadOnlyList<GameProgressionDataItem> dataItems, 
+        Context context, 
+        FileObj serializable, 
+        string fileName,
+        bool canExport = true,
+        bool canImport = true) 
+        : base(name, index, collectiblesCount, totalCollectiblesCount, context.GetAbsoluteFilePath(fileName), dataItems)
     {
         Context = context;
         Serializable = serializable;
         FileName = fileName;
-        FilePath = Context.GetAbsoluteFilePath(fileName);
-
-        CanExport = true;
-        CanImport = true;
+        CanExport = canExport;
+        CanImport = canImport;
     }
 
-    public SerializableProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, double percentage, IEnumerable<ProgressionDataViewModel> dataItems, Context context, FileObj serializable, string fileName) : base(game, name, index, percentage, dataItems)
+    public SerializableGameProgressionSlot(
+        LocalizedString? name, 
+        int index, 
+        double percentage, 
+        IReadOnlyList<GameProgressionDataItem> dataItems, 
+        Context context, 
+        FileObj serializable, 
+        string fileName,
+        bool canExport = true,
+        bool canImport = true) 
+        : base(name, index, percentage, context.GetAbsoluteFilePath(fileName), dataItems)
     {
         Context = context;
         Serializable = serializable;
         FileName = fileName;
-        FilePath = Context.GetAbsoluteFilePath(fileName);
-
-        CanExport = true;
-        CanImport = true;
+        CanExport = canExport;
+        CanImport = canImport;
     }
+
+    public override bool CanExport { get; }
+    public override bool CanImport { get; }
 
     public Context Context { get; }
     public FileObj Serializable { get; }
@@ -37,7 +57,7 @@ public class SerializableProgressionSlotViewModel<FileObj> : ProgressionSlotView
     public Action<FileObj, object>? SetImportObject { get; init; }
     public Type? ExportedType { get; init; }
 
-    protected override void ExportSlot(FileSystemPath filePath)
+    public override void ExportSlot(FileSystemPath filePath)
     {
         bool customObj = GetExportObject is not null && ExportedType is not null;
         object obj = customObj ? GetExportObject!(Serializable) : Serializable;
@@ -46,7 +66,7 @@ public class SerializableProgressionSlotViewModel<FileObj> : ProgressionSlotView
         JsonHelpers.SerializeToFile(obj, filePath);
     }
 
-    protected override void ImportSlot(FileSystemPath filePath)
+    public override void ImportSlot(FileSystemPath filePath)
     {
         bool customObj = SetImportObject is not null && ExportedType is not null;
 

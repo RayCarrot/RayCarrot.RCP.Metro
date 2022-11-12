@@ -25,8 +25,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanRavingRabbids_ViewModel(gameInstallation);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        new ProgressionGameViewModel_RaymanRavingRabbids(gameInstallation).Yield();
+    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanRavingRabbids(gameInstallation);
 
     public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {

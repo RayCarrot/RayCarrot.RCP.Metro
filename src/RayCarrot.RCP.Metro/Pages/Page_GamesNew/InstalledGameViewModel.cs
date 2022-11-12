@@ -77,14 +77,21 @@ public class InstalledGameViewModel : BaseViewModel
 
     private void AddGamePanels()
     {
+        // Patcher
         if (GameDescriptor.AllowPatching)
             GamePanels.Add(new PatcherGamePanelViewModel(GameInstallation));
         
+        // Archive Explorer
         if (GameDescriptor.HasArchives)
             GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation));
 
-        // TODO-UPDATE: Have these be conditional as well
-        GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation));
+        // Progression
+        GameProgressionManager? progressionManager = GameDescriptor.GetGameProgressionManager(GameInstallation);
+        if (progressionManager != null)
+            GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation, progressionManager));
+        
+        // Links
+        // TODO-UPDATE: Have this be conditional as well
         GamePanels.Add(new LinksGamePanelViewModel(GameInstallation));
     }
 

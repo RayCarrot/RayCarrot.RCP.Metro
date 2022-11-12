@@ -11,7 +11,7 @@
 
     <!-- Progression Data Item (Horizontal) -->
 
-    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Horizontal" DataType="{x:Type local:ProgressionDataViewModel}">
+    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Horizontal" DataType="{x:Type local:GameProgressionDataItem}">
         <StackPanel Orientation="Horizontal">
             <Image Source="{Binding Path=IconImageSource, Mode=OneTime}"
                    VerticalAlignment="Center"
@@ -28,7 +28,7 @@
 
     <!-- Progression Data Item (Vertical) -->
 
-    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Vertical" DataType="{x:Type local:ProgressionDataViewModel}">
+    <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Vertical" DataType="{x:Type local:GameProgressionDataItem}">
         <Grid Margin="0 0 0 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -58,7 +58,7 @@
 
     <!-- Progression Slot Percentage -->
 
-    <DataTemplate x:Key="DataTemplate.SlotPercentage" DataType="{x:Type local:ProgressionSlotViewModel}">
+    <DataTemplate x:Key="DataTemplate.SlotPercentage" DataType="{x:Type local:GameProgressionSlotViewModel}">
         <Grid>
 
             <Grid.RowDefinitions>
@@ -92,7 +92,7 @@
 
     <!-- Progression Game Header -->
 
-    <DataTemplate x:Key="DataTemplate.ProgressionGameHeader" DataType="{x:Type local:ProgressionGameViewModel}">
+    <DataTemplate x:Key="DataTemplate.ProgressionGameHeader" DataType="{x:Type local:GameProgressionViewModel}">
         <Grid Margin="15 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -242,7 +242,7 @@
 
     <!-- Progression Slot Header -->
 
-    <DataTemplate x:Key="DataTemplate.ProgressionSlotHeader" DataType="{x:Type local:ProgressionSlotViewModel}">
+    <DataTemplate x:Key="DataTemplate.ProgressionSlotHeader" DataType="{x:Type local:GameProgressionSlotViewModel}">
         <Grid Margin="15 4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -286,21 +286,21 @@
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_Export}"
-                        Visibility="{Binding Path=CanExport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                        Visibility="{Binding Path=CanExport, Converter={local:BooleanToVisibilityConverter}}"
                         local:ButtonAssist.IconKind="FileExportOutline"
                         Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=ImportCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_Import}"
-                        Visibility="{Binding Path=CanImport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                        Visibility="{Binding Path=CanImport, Converter={local:BooleanToVisibilityConverter}}"
                         local:ButtonAssist.IconKind="FileImportOutline"
                         Margin="0 0 4 0" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=EditCommand, Mode=OneTime}"
                         ToolTip="{Resx Progression_EditSlot}"
-                        Visibility="{Binding Path=CanImport, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                        Visibility="{Binding Path=CanImport, Converter={local:BooleanToVisibilityConverter}}"
                         local:ButtonAssist.IconKind="FileDocumentEditOutline"
                         Margin="0 0 4 0" />
 
@@ -318,7 +318,7 @@
 
     <!-- Progression Slot -->
 
-    <DataTemplate x:Key="DataTemplate.ProgressionSlot" DataType="{x:Type local:ProgressionSlotViewModel}">
+    <DataTemplate x:Key="DataTemplate.ProgressionSlot" DataType="{x:Type local:GameProgressionSlotViewModel}">
         <Expander Margin="0 0 0 8"
                   Header="{Binding}"
                   HeaderTemplate="{StaticResource DataTemplate.ProgressionSlotHeader}">
@@ -342,7 +342,7 @@
 
     <!-- Progression Game -->
 
-    <DataTemplate x:Key="DataTemplate.ProgressionGame" DataType="{x:Type local:ProgressionGameViewModel}">
+    <DataTemplate x:Key="DataTemplate.ProgressionGame" DataType="{x:Type local:GameProgressionViewModel}">
         <local:Card Margin="8" Padding="0">
             <Expander Header="{Binding}"
                       HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"

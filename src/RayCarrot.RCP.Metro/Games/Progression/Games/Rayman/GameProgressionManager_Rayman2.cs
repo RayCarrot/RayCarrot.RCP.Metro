@@ -8,19 +8,19 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
+public class GameProgressionManager_Rayman2 : GameProgressionManager
 {
-    public ProgressionGameViewModel_Rayman2(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_Rayman2(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(GameInstallation.InstallLocation + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
         new(GameInstallation.InstallLocation + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         R2ConfigFile? config;
 
@@ -78,15 +78,15 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
             int walkOfLifeTime = saveData.GlobalArray[12] * 10;
             int walkOfPowerTime = saveData.GlobalArray[11] * 10;
 
-            List<ProgressionDataViewModel> progressItems = new()
+            List<GameProgressionDataItem> progressItems = new()
             {
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R2_Lum, 
                     header: new ResourceLocString(nameof(Resources.Progression_Lums)),
                     value: lums, 
                     max: 1000),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R2_Cage, 
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
@@ -95,14 +95,14 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
             };
 
             if (walkOfLifeTime > 120)
-                progressItems.Add(new ProgressionDataViewModel(
+                progressItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R2_Clock, 
                     header: new ResourceLocString(nameof(Resources.R2_BonusLevelName_1)), 
                     text: $"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\.ff}"));
 
             if (walkOfPowerTime > 120)
-                progressItems.Add(new ProgressionDataViewModel(
+                progressItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R2_Clock,
                     header: new ResourceLocString(nameof(Resources.R2_BonusLevelName_2)),
@@ -114,7 +114,7 @@ public class ProgressionGameViewModel_Rayman2 : ProgressionGameViewModel
             string percentage = saveSlot.SlotDisplayName.Substring(separatorIndex + 1);
             double parsedPercentage = Double.TryParse(percentage, NumberStyles.Any, CultureInfo.InvariantCulture, out double p) ? p : 0;
 
-            yield return new SerializableProgressionSlotViewModel<R2GeneralSaveFile>(this, name, saveSlot.SlotIndex, parsedPercentage, progressItems, context, saveData, slotFilePath);
+            yield return new SerializableGameProgressionSlot<R2GeneralSaveFile>(name, saveSlot.SlotIndex, parsedPercentage, progressItems, context, saveData, slotFilePath);
 
             Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }

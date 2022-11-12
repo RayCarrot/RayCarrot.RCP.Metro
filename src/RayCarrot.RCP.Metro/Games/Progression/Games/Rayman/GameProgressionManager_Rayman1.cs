@@ -6,19 +6,19 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
+public class GameProgressionManager_Rayman1 : GameProgressionManager
 {
-    public ProgressionGameViewModel_Rayman1(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_Rayman1(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
         new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath? installDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir, SearchOption.TopDirectoryOnly, "*.SAV"))?.DirPath;
 
@@ -48,28 +48,27 @@ public class ProgressionGameViewModel_Rayman1 : ProgressionGameViewModel
             // Get total amount of cages
             int cages = saveData.Wi_Save_Zone.Sum(x => x.Cages);
 
-            ProgressionDataViewModel[] dataItems =
+            GameProgressionDataItem[] dataItems =
             {
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R1_Cage, 
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: 102),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Continue, 
                     header: new ResourceLocString(nameof(Resources.Progression_Continues)),
                     value: saveData.ContinuesCount),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R1_Life, 
                     header: new ResourceLocString(nameof(Resources.Progression_Lives)),
                     value: saveData.StatusBar.LivesCount),
             };
 
-            yield return new SerializableProgressionSlotViewModel<PC_SaveFile>(
-                game: this, 
+            yield return new SerializableGameProgressionSlot<PC_SaveFile>(
                 name: saveData.SaveName.ToUpper(), 
                 index: saveIndex, 
                 collectiblesCount: cages, 

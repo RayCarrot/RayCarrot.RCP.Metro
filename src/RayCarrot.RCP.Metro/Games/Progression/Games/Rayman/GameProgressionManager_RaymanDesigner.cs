@@ -7,16 +7,16 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
+public class GameProgressionManager_RaymanDesigner : GameProgressionManager
 {
-    public ProgressionGameViewModel_RaymanDesigner(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanDesigner(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     protected virtual int LevelsCount => 24;
     protected virtual Ray1EngineVersion EngineVersion => Ray1EngineVersion.PC_Kit;
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
         new(GameInstallation.InstallLocation + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
@@ -34,14 +34,14 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         new(GameInstallation.InstallLocation + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveDir = InstallDir + "PCMAP";
 
         string[] shortWorldNames = { "", "JUN", "MUS", "MON", "IMA", "CAV", "CAK" };
         string[] longWorldNames = { "", "Jungle", "Music", "Mountain", "Image", "Cave", "Cake" };
 
-        List<ProgressionDataViewModel> progressItems = new();
+        List<GameProgressionDataItem> progressItems = new();
         Dictionary<string, int> levelTimes = new();
 
         IOSearchPattern? dir = fileSystem.GetDirectory(new IOSearchPattern(saveDir, SearchOption.TopDirectoryOnly, "*.sct"));
@@ -104,7 +104,7 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
             // Get the time
             TimeSpan time = TimeSpan.FromMilliseconds(1000d / 60 * value);
 
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.R1_Flag, 
                 header: $"{longWorldNames[save.World]} {save.Level}", 
@@ -116,38 +116,47 @@ public class ProgressionGameViewModel_RaymanDesigner : ProgressionGameViewModel
         if (levelsFinished > 0)
         {
             // Add levels completed
-            progressItems.Insert(0, new ProgressionDataViewModel(
+            progressItems.Insert(0, new GameProgressionDataItem(
                 isPrimaryItem: true,
                 icon: ProgressionIcon.R1_Flag,
                 header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
                 value: levelsFinished,
                 max: LevelsCount));
 
-            yield return new RaymanDesignerProgressionSlotViewModel(this, null, 0, levelsFinished, LevelsCount, progressItems, levelTimes, saveDir);
+            yield return new RaymanDesignerProgressionSlotViewModel(null, 0, levelsFinished, LevelsCount, progressItems, levelTimes, saveDir);
         }
 
         Logger.Info("{0} slot has been loaded", GameInstallation.Id);
     }
 
-    private class RaymanDesignerProgressionSlotViewModel : ProgressionSlotViewModel
+    private class RaymanDesignerProgressionSlotViewModel : GameProgressionSlot
     {
-        public RaymanDesignerProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, int collectiblesCount, int totalCollectiblesCount, IEnumerable<ProgressionDataViewModel> dataItems, Dictionary<string, int> levelTimes, FileSystemPath saveDir) : base(game, name, index, collectiblesCount, totalCollectiblesCount, dataItems)
+        public RaymanDesignerProgressionSlotViewModel(
+            LocalizedString? name, 
+            int index, 
+            int collectiblesCount, 
+            int totalCollectiblesCount, 
+            IReadOnlyList<GameProgressionDataItem> dataItems, 
+            Dictionary<string, int> levelTimes, 
+            FileSystemPath saveDir) 
+            : base(name, index, collectiblesCount, totalCollectiblesCount, FileSystemPath.EmptyPath, dataItems)
         {
             LevelTimes = levelTimes;
             SaveDir = saveDir;
-            CanExport = true;
-            CanImport = false;
         }
 
-        public Dictionary<string, int> LevelTimes { get; }
-        public FileSystemPath SaveDir { get; }
+        public override bool CanExport => true;
+        public override bool CanImport => false;
 
-        protected override void ExportSlot(FileSystemPath filePath)
+        private Dictionary<string, int> LevelTimes { get; }
+        private FileSystemPath SaveDir { get; }
+
+        public override void ExportSlot(FileSystemPath filePath)
         {
             JsonHelpers.SerializeToFile(LevelTimes, filePath);
         }
 
-        protected override void ImportSlot(FileSystemPath filePath)
+        public override void ImportSlot(FileSystemPath filePath)
         {
             // Read the JSON file
             Dictionary<string, int> lvlTimes = JsonHelpers.DeserializeFromFile<Dictionary<string, int>>(filePath);

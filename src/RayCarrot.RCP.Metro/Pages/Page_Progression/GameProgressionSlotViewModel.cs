@@ -12,39 +12,20 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionSlotViewModel : BaseRCPViewModel
+public class GameProgressionSlotViewModel : BaseRCPViewModel
 {
     #region Constructors
 
-    public ProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, int collectiblesCount, int totalCollectiblesCount, IEnumerable<ProgressionDataViewModel> dataItems)
+    public GameProgressionSlotViewModel(GameProgressionViewModel game, GameProgressionSlot slot, bool canOpenLocation = true)
     {
         Game = game;
-        Name = name ?? new ResourceLocString(nameof(Resources.Progression_GenericSlot), index + 1);
-        Index = index;
-        CollectiblesCount = collectiblesCount;
-        TotalCollectiblesCount = totalCollectiblesCount;
-        Percentage = collectiblesCount / (double)totalCollectiblesCount * 100;
-        DataItems = new ObservableCollection<ProgressionDataViewModel>(dataItems);
-        PrimaryDataItems = new ObservableCollection<ProgressionDataViewModel>(DataItems.Where(x => x.IsPrimaryItem));
-        Is100Percent = CollectiblesCount == TotalCollectiblesCount;
-
-        ExportCommand = new AsyncRelayCommand(ExportAsync);
-        ImportCommand = new AsyncRelayCommand(ImportAsync);
-        EditCommand = new AsyncRelayCommand(EditAsync);
-        OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
-    }
-
-    public ProgressionSlotViewModel(ProgressionGameViewModel game, LocalizedString? name, int index, double percentage, IEnumerable<ProgressionDataViewModel> dataItems)
-    {
-        Game = game;
-        Name = name ?? new ResourceLocString(Resources.Progression_GenericSlot, index + 1);
-        Index = index;
-        CollectiblesCount = null;
-        TotalCollectiblesCount = null;
-        Percentage = percentage;
-        DataItems = new ObservableCollection<ProgressionDataViewModel>(dataItems);
-        PrimaryDataItems = new ObservableCollection<ProgressionDataViewModel>(DataItems.Where(x => x.IsPrimaryItem));
-        Is100Percent = percentage >= 100;
+        Slot = slot;
+        DataItems = new ObservableCollection<GameProgressionDataItem>(slot.DataItems);
+        PrimaryDataItems = new ObservableCollection<GameProgressionDataItem>(slot.DataItems.Where(x => x.IsPrimaryItem));
+        FilePath = slot.FilePath;
+        CanOpenLocation = canOpenLocation && FilePath.FileExists;
+        CanExport = slot.CanExport;
+        CanImport = slot.CanImport;
 
         ExportCommand = new AsyncRelayCommand(ExportAsync);
         ImportCommand = new AsyncRelayCommand(ImportAsync);
@@ -75,41 +56,22 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
     #endregion
 
-    #region Private Fields
-
-    private readonly FileSystemPath _filePath;
-
-    #endregion
-
     #region Public Properties
 
-    public ProgressionGameViewModel Game { get; }
-    public LocalizedString Name { get; }
-    public int Index { get; }
-    public int? CollectiblesCount { get; }
-    public int? TotalCollectiblesCount { get; }
-    public double Percentage { get; }
-    public bool Is100Percent { get; }
-
-    public int SlotGroup { get; init; }
-
-    public FileSystemPath FilePath
-    {
-        get => _filePath;
-        init
-        {
-            _filePath = value;
-            CanOpenLocation = value.FileExists;
-        }
-    }
-
-    public bool CanOpenLocation { get; set; }
+    public GameProgressionSlot Slot { get; }
+    public GameProgressionViewModel Game { get; }
+    public LocalizedString Name => Slot.Name;
+    public double Percentage => Slot.Percentage;
+    
+    public FileSystemPath FilePath { get; }
+    public bool CanOpenLocation { get; }
 
     public Brush ProgressBrush
     {
         get
         {
-            if (Is100Percent)
+            // TODO-UPDATE: Move to resource dictionary and do in xaml instead
+            if (Slot.Is100Percent)
                 return new SolidColorBrush(Color.FromRgb(76, 175, 80));
             else if (Percentage >= 50)
                 return new SolidColorBrush(Color.FromRgb(255, 238, 88));
@@ -121,8 +83,8 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; } = new();
     public bool HasInfoItems { get; set; }
 
-    public ObservableCollection<ProgressionDataViewModel> PrimaryDataItems { get; }
-    public ObservableCollection<ProgressionDataViewModel> DataItems { get; }
+    public ObservableCollection<GameProgressionDataItem> PrimaryDataItems { get; }
+    public ObservableCollection<GameProgressionDataItem> DataItems { get; }
 
     public bool CanExport { get; set; }
     public bool CanImport { get; set; }
@@ -131,7 +93,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
     #region Private Methods
 
-    protected async Task<bool> ConfirmSaveEditingAsync()
+    private async Task<bool> ConfirmSaveEditingAsync()
     {
         // Always return true if the warning has already been shown
         if (Data.Progression_ShownEditSaveWarning) 
@@ -146,15 +108,6 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
 
         return true;
     }
-
-    #endregion
-
-    #region Protected Methods
-
-    protected Task LoadInfoItemsAsync() => Task.CompletedTask;
-
-    protected virtual void ExportSlot(FileSystemPath filePath) => throw new NotSupportedException("This slot does not support exporting slots");
-    protected virtual void ImportSlot(FileSystemPath filePath) => throw new NotSupportedException("This slot does not support importing slots");
 
     #endregion
 
@@ -186,8 +139,6 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
             {
                 HasInfoItems = false;
             }
-
-            await LoadInfoItemsAsync();
         }
         catch (Exception ex)
         {
@@ -213,7 +164,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         try
         {
             // Export
-            ExportSlot(outputResult.SelectedFileLocation);
+            Slot.ExportSlot(outputResult.SelectedFileLocation);
 
             Logger.Info("Progression data has been exported");
 
@@ -247,7 +198,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
         try
         {
             // Import
-            ImportSlot(inputResult.SelectedFile);
+            Slot.ImportSlot(inputResult.SelectedFile);
 
             Logger.Info("Progression data has been imported");
         }
@@ -282,7 +233,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
             using HashAlgorithm sha1 = HashAlgorithm.Create();
 
             // Export the slot to the temp file
-            ExportSlot(tempFile.TempPath);
+            Slot.ExportSlot(tempFile.TempPath);
 
             IEnumerable<byte> originalHash;
 
@@ -373,7 +324,7 @@ public class ProgressionSlotViewModel : BaseRCPViewModel
                 Logger.Trace("The file was modified");
 
                 // Import the modified data
-                ImportSlot(tempFile.TempPath);
+                Slot.ImportSlot(tempFile.TempPath);
 
                 // Reload data
                 await Game.LoadProgressAsync();

@@ -195,10 +195,11 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanEduDos_ViewModel(this, gameInstallation);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        Services.Data.Game_EducationalDosBoxGames.
-            Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).
-            Select(x => new ProgressionGameViewModel_EducationalDos(gameInstallation, x));
+    // TODO-14: Fix
+    //public override GameProgressionManager? GetGameProgressionManager(GameInstallation gameInstallation) =>
+    //    Services.Data.Game_EducationalDosBoxGames.
+    //        Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).
+    //        Select(x => new ProgressionGameViewModel_EducationalDos(gameInstallation, x));
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));

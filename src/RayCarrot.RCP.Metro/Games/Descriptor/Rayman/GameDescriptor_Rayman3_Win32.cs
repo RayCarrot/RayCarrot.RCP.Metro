@@ -38,8 +38,8 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_Rayman3_ViewModel(gameInstallation);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        new ProgressionGameViewModel_Rayman3(gameInstallation).Yield();
+    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
+        new GameProgressionManager_Rayman3(gameInstallation);
 
     public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
     {

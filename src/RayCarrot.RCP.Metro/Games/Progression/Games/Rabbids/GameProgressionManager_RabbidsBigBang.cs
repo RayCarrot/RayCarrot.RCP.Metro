@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
+public class GameProgressionManager_RabbidsBigBang : GameProgressionManager
 {
-    public ProgressionGameViewModel_RabbidsBigBang(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
+    public GameProgressionManager_RabbidsBigBang(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
         : base(gameInstallation)
     {
         GameDescriptor = gameDescriptor;
@@ -17,9 +16,9 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
 
     private WindowsPackageGameDescriptor GameDescriptor { get; }
 
-    protected override GameBackups_Directory[] BackupDirectories => GameDescriptor.GetBackupDirectories();
+    public override GameBackups_Directory[] BackupDirectories => GameDescriptor.GetBackupDirectories();
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         FileSystemPath saveFile = fileSystem.GetFile(GameDescriptor.GetLocalAppDataDirectory() + "playerprefs.dat");
 
@@ -52,9 +51,9 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
             }
         }
 
-        ProgressionDataViewModel[] progressItems =
+        GameProgressionDataItem[] progressItems =
         {
-            new ProgressionDataViewModel(
+            new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RabbidsBigBang_Score, 
                 header: new ResourceLocString(nameof(Resources.Progression_RabbidsBigBangStars)), 
@@ -62,7 +61,7 @@ public class ProgressionGameViewModel_RabbidsBigBang : ProgressionGameViewModel
                 max: maxScore),
         };
 
-        yield return new SerializableProgressionSlotViewModel<Unity_PlayerPrefs>(this, null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
+        yield return new SerializableGameProgressionSlot<Unity_PlayerPrefs>(null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
 
         Logger.Info("{0} save has been loaded", GameInstallation.Id);
     }

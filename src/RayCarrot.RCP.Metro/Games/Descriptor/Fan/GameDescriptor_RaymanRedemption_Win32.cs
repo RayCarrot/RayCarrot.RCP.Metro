@@ -22,8 +22,8 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        new ProgressionGameViewModel_RaymanRedemption(gameInstallation).Yield();
+    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanRedemption(gameInstallation);
 
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
     {

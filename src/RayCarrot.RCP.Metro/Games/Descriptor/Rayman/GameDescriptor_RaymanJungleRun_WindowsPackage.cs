@@ -34,8 +34,8 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanJungleRun_ViewModel(this);
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        new ProgressionGameViewModel_RaymanJungleRun(this, gameInstallation).Yield();
+    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
+        new GameProgressionManager_RaymanJungleRun(this, gameInstallation);
 
     public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
         new OverflowButtonItemViewModel[]

@@ -22,8 +22,8 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        new ProgressionGameViewModel_RaymanBowling2(gameInstallation).Yield();
+    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanBowling2(gameInstallation);
 
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
     {

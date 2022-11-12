@@ -6,18 +6,18 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
+public class GameProgressionManager_Rayman3 : GameProgressionManager
 {
-    public ProgressionGameViewModel_Rayman3(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_Rayman3(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(GameInstallation.InstallLocation + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         IOSearchPattern? dir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*.sav"));
 
@@ -49,38 +49,38 @@ public class ProgressionGameViewModel_Rayman3 : ProgressionGameViewModel
             int stamps = stampScores.Where((stampScore, i) => stampScore < saveData.Levels[i].Score).Count();
 
             // Create the collection with items for each level + general information
-            ProgressionDataViewModel[] progressItems = 
+            GameProgressionDataItem[] progressItems = 
             {
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R3_Cage,
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: saveData.TotalCages, 
                     max: 60),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: true, 
                     icon: ProgressionIcon.R3_Stamp, 
                     header: new ResourceLocString(nameof(Resources.Progression_R3Stamps)),
                     value: stamps, 
                     max: stampScores.Length),
-                new ProgressionDataViewModel(
+                new GameProgressionDataItem(
                     isPrimaryItem: false, 
                     icon: ProgressionIcon.R3_Score, 
                     header: new ResourceLocString(nameof(Resources.Progression_TotalScore)),
                     value: saveData.TotalScore),
                 
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level3Header)), saveData.Levels[2].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level4Header)), saveData.Levels[3].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level5Header)), saveData.Levels[4].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level6Header)), saveData.Levels[5].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level7Header)), saveData.Levels[6].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level8Header)), saveData.Levels[7].Score),
-                new ProgressionDataViewModel(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level3Header)), saveData.Levels[2].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level4Header)), saveData.Levels[3].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level5Header)), saveData.Levels[4].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level6Header)), saveData.Levels[5].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level7Header)), saveData.Levels[6].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level8Header)), saveData.Levels[7].Score),
+                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
             };
 
-            yield return new SerializableProgressionSlotViewModel<R3SaveFile>(this, $"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
+            yield return new SerializableGameProgressionSlot<R3SaveFile>($"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
 
             Logger.Info("{0} slot has been loaded", GameInstallation.Id);
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.Compression;
@@ -14,22 +13,18 @@ namespace RayCarrot.RCP.Metro;
 // TODO-14: The progression system has to be updated to work with multiple game installations. For simplicity they should share the
 //          same backup if the game itself is identical (i.e. Steam and Win32 are the same release, but PS1 is not!).
 
-public abstract class ProgressionGameViewModel : BaseRCPViewModel
+// TODO-14: Rename to GameProgressionViewModel
+public class GameProgressionViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    protected ProgressionGameViewModel(GameInstallation gameInstallation, string? displayName = null)
+    public GameProgressionViewModel(GameProgressionManager progressionManager)
     {
-        GameInstallation = gameInstallation;
-        IconSource = gameInstallation.GameDescriptor.IconSource;
-        IsDemo = gameInstallation.GameDescriptor.IsDemo;
-        DisplayName = displayName ?? gameInstallation.GameDescriptor.DisplayName;
-        InstallDir = gameInstallation.InstallLocation;
-
+        ProgressionManager = progressionManager;
         BackupInfoItems = new ObservableCollection<DuoGridItemViewModel>();
         AsyncLock = new AsyncLock();
-        Slots = new ObservableCollection<ProgressionSlotViewModel>();
-        BackupSlots = new ObservableCollection<ProgressionSlotViewModel>();
+        Slots = new ObservableCollection<GameProgressionSlotViewModel>();
+        BackupSlots = new ObservableCollection<GameProgressionSlotViewModel>();
 
         UpdateProgramDataSourceCommand = new AsyncRelayCommand(UpdateProgramDataSourceAsync);
         LoadBackupViewCommand = new AsyncRelayCommand(LoadBackupViewAsync);
@@ -60,21 +55,25 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     #endregion
 
-    #region Properties
+    #region Private Properties
 
-    protected FileSystemPath InstallDir { get; }
-    protected AsyncLock AsyncLock { get; }
+    private AsyncLock AsyncLock { get; }
+    private string BackupName => GameDescriptor.BackupName;
 
-    public GameInstallation GameInstallation { get; }
-    public string IconSource { get; }
-    public bool IsDemo { get; }
-    public string DisplayName { get; } // TODO: LocalizedString
+    #endregion
+
+    #region Public Properties
+
+    public GameProgressionManager ProgressionManager { get; }
+    public GameInstallation GameInstallation => ProgressionManager.GameInstallation;
+    public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
+    public string IconSource => GameDescriptor.IconSource;
+    public bool IsDemo => GameDescriptor.IsDemo;
+    public string DisplayName => GameDescriptor.DisplayName; // TODO: LocalizedString
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }
 
-    protected virtual string BackupName => GameInstallation.GameDescriptor.BackupName;
-    protected abstract GameBackups_Directory[] BackupDirectories { get; }
     public BackupStatus CurrentBackupStatus { get; set; }
     public bool IsGOGCloudSyncUsed { get; set; }
     public GameBackups_BackupInfo? BackupInfo { get; set; }
@@ -92,11 +91,11 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         set => Data.Backup_GameDataSources[BackupName] = value;
     }
 
-    public ObservableCollection<ProgressionSlotViewModel> Slots { get; }
-    public ObservableCollection<ProgressionSlotViewModel> BackupSlots { get; }
+    public ObservableCollection<GameProgressionSlotViewModel> Slots { get; }
+    public ObservableCollection<GameProgressionSlotViewModel> BackupSlots { get; }
     public bool HasSlots { get; set; }
     public bool HasBackupSlots { get; set; }
-    public ProgressionSlotViewModel? PrimarySlot { get; private set; }
+    public GameProgressionSlotViewModel? PrimarySlot { get; private set; }
 
     #endregion
 
@@ -106,7 +105,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
     {
         // TODO-14: This should not be handled here and definitely not by checking if the platform is MSDOS
         // If the type is DOSBox, check if GOG cloud sync is being used
-        if (GameInstallation.GameDescriptor.Platform == GamePlatform.MSDOS)
+        if (GameDescriptor.Platform == GamePlatform.MSDOS)
         {
             try
             {
@@ -202,17 +201,19 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         {
             BackupSlots.Clear();
 
-            using BackupFileSystemWrapper backupFileSystemWrapper = new(BackupInfo!);
+            using GameProgressionManager.BackupFileSystemWrapper backupFileSystemWrapper = new(BackupInfo!);
 
             await backupFileSystemWrapper.InitAsync();
 
-            await foreach (ProgressionSlotViewModel slot in LoadSlotsAsync(backupFileSystemWrapper))
+            await foreach (GameProgressionSlot slot in ProgressionManager.LoadSlotsAsync(backupFileSystemWrapper))
             {
-                BackupSlots.Add(slot);
-
                 // Don't allow importing or opening the save location for backup slots. Exporting is still allowed.
-                slot.CanImport = false;
-                slot.CanOpenLocation = false;
+                GameProgressionSlotViewModel slotViewModel = new(this, slot, canOpenLocation: false)
+                {
+                    CanImport = false
+                };
+
+                BackupSlots.Add(slotViewModel);
             }
         }
         catch (Exception ex)
@@ -327,35 +328,6 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     #endregion
 
-    #region Protected Methods
-
-    protected virtual IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem) => AsyncEnumerable.Empty<ProgressionSlotViewModel>();
-
-    protected virtual ProgressionSlotViewModel? GetPrimarySlot()
-    {
-        // Get the slot with the highest percentage from each group
-        ProgressionSlotViewModel[] slots = Slots.
-            GroupBy(x => x.SlotGroup).
-            Select(g => g.OrderBy(x => x.Percentage).LastOrDefault()).
-            ToArray();
-
-        if (!slots.Any())
-            return null;
-
-        double totalPercentage = 0;
-        List<ProgressionDataViewModel> dataItems = new();
-
-        foreach (ProgressionSlotViewModel slot in slots)
-        {
-            totalPercentage += slot.Percentage / slots.Length;
-            dataItems.AddRange(slot.DataItems);
-        }
-
-        return new ProgressionSlotViewModel(this, null, -1, totalPercentage, dataItems);
-    }
-
-    #endregion
-
     #region Public Methods
 
     public async Task UpdateProgramDataSourceAsync()
@@ -388,18 +360,19 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
             try
             {
-                PhysicalFileSystemWrapper fileWrapper = new(ProgramDataSource);
+                GameProgressionManager.PhysicalFileSystemWrapper fileWrapper = new(ProgramDataSource);
                 await fileWrapper.InitAsync();
 
                 // Save in temporary array. We could add to the Slots collection after each one has been asynchronously loaded
                 // thus having them appear as they load in the UI, however this causes the UI to flash when refreshing an
                 // already expanded game since the slots will all be removed and then re-added immediately after
-                ProgressionSlotViewModel[] slots = await LoadSlotsAsync(fileWrapper).ToArrayAsync();
+                GameProgressionSlot[] slots = await ProgressionManager.LoadSlotsAsync(fileWrapper).ToArrayAsync();
 
                 Slots.Clear();
-                Slots.AddRange(slots);
+                Slots.AddRange(slots.Select(x => new GameProgressionSlotViewModel(this, x)));
 
-                PrimarySlot = GetPrimarySlot();
+                GameProgressionSlot? primarySlot = GameProgressionManager.CreatePrimarySlot(Slots.Select(x => x.Slot));
+                PrimarySlot = primarySlot == null ? null : new GameProgressionSlotViewModel(this, primarySlot);
             }
             catch (Exception ex)
             {
@@ -427,7 +400,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
             CurrentBackupStatus = BackupStatus.Syncing;
 
             // Create backup info if null
-            BackupInfo ??= new GameBackups_BackupInfo(BackupName, BackupDirectories, DisplayName);
+            BackupInfo ??= new GameBackups_BackupInfo(BackupName, ProgressionManager.BackupDirectories, DisplayName);
 
             // Refresh backup info
             await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource));
@@ -464,7 +437,7 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
 
     public async Task LoadSlotInfoItemsAsync()
     {
-        foreach (ProgressionSlotViewModel slot in Slots)
+        foreach (GameProgressionSlotViewModel slot in Slots)
             await slot.RefreshInfoItemsAsync(GameInstallation);
     }
 
@@ -600,136 +573,6 @@ public abstract class ProgressionGameViewModel : BaseRCPViewModel
         UpToDate,
         Outdated,
         Syncing,
-    }
-
-    #endregion
-
-    #region Classes
-
-    protected abstract class FileSystemWrapper
-    {
-        public virtual Task InitAsync() => Task.CompletedTask;
-
-        public abstract FileSystemPath GetFile(FileSystemPath filePath);
-        public abstract IOSearchPattern? GetDirectory(IOSearchPattern searchPattern);
-    }
-
-    protected class PhysicalFileSystemWrapper : FileSystemWrapper
-    {
-        public PhysicalFileSystemWrapper(ProgramDataSource dataSource)
-        {
-            DataSource = dataSource;
-        }
-
-        public ProgramDataSource DataSource { get; }
-
-        public override FileSystemPath GetFile(FileSystemPath filePath)
-        {
-            string fileName = filePath.Name;
-            ProgressionDirectory dir = new(filePath.Parent, SearchOption.TopDirectoryOnly, fileName);
-            return Path.Combine(dir.GetReadSearchPattern(DataSource).DirPath, fileName);
-        }
-
-        public override IOSearchPattern? GetDirectory(IOSearchPattern searchPattern)
-        {
-            // Convert the search pattern using the current data source
-            searchPattern = new ProgressionDirectory(searchPattern).
-                GetReadSearchPattern(DataSource);
-
-            return searchPattern.DirPath.DirectoryExists 
-                ? searchPattern 
-                : null;
-        }
-    }
-
-    protected class BackupFileSystemWrapper : FileSystemWrapper, IDisposable
-    {
-        public BackupFileSystemWrapper(GameBackups_BackupInfo backupInfo)
-        {
-            Backup = backupInfo.GetPrimaryBackup;
-            RestoreDirectories = backupInfo.RestoreDirectories ?? throw new Exception($"Restore directories must be set");
-
-            if (Backup == null)
-                return;
-
-            if (Backup.IsCompressed)
-            {
-                TempExtractDir = new TempDirectory(true);
-                BackupDir = TempExtractDir.TempPath;
-            }
-            else
-            {
-                BackupDir = Backup.Path;
-            }
-        }
-
-        public GameBackups_ExistingBackup? Backup { get; }
-        public BackupSearchPattern[] RestoreDirectories { get; }
-        public FileSystemPath BackupDir { get; }
-        public TempDirectory? TempExtractDir { get; }
-
-        public override async Task InitAsync()
-        {
-            if (Backup is null || TempExtractDir is null)
-                return;
-
-            await Task.Run(() =>
-            {
-                using ZipArchive zip = new(File.OpenRead(Backup.Path));
-                zip.ExtractToDirectory(TempExtractDir.TempPath);
-            });
-        }
-
-        public override FileSystemPath GetFile(FileSystemPath filePath)
-        {
-            if (Backup == null)
-                return FileSystemPath.EmptyPath;
-
-            foreach (BackupSearchPattern dir in RestoreDirectories)
-            {
-                if (!filePath.FullPath.StartsWith(dir.SearchPattern.DirPath))
-                    continue;
-                
-                FileSystemPath backupPath = BackupDir + dir.ID + (filePath - dir.SearchPattern.DirPath);
-
-                if (backupPath.FileExists)
-                    return backupPath;
-            }
-
-            return FileSystemPath.EmptyPath;
-        }
-
-        public override IOSearchPattern? GetDirectory(IOSearchPattern searchPattern)
-        {
-            if (Backup == null)
-                return null;
-
-            FileSystemPath backupDir = FileSystemPath.EmptyPath;
-
-            foreach (BackupSearchPattern dir in RestoreDirectories)
-            {
-                if (!searchPattern.DirPath.ContainsPath(dir.SearchPattern.DirPath))
-                    continue;
-
-                FileSystemPath backupPath = BackupDir + dir.ID + (searchPattern.DirPath - dir.SearchPattern.DirPath);
-
-                if (backupPath.DirectoryExists)
-                {
-                    backupDir = backupPath;
-                    break;
-                }
-            }
-
-            if (!backupDir.DirectoryExists)
-                return null;
-
-            return new IOSearchPattern(backupDir, searchPattern.SearchOption, searchPattern.SearchPattern);
-        }
-
-        public void Dispose()
-        {
-            TempExtractDir?.Dispose();
-        }
     }
 
     #endregion

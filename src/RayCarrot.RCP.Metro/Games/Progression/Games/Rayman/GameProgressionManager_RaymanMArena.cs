@@ -7,9 +7,9 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
+public class GameProgressionManager_RaymanMArena : GameProgressionManager
 {
-    public ProgressionGameViewModel_RaymanMArena(GameInstallation gameInstallation, bool isRaymanMDemo) : base(gameInstallation)
+    public GameProgressionManager_RaymanMArena(GameInstallation gameInstallation, bool isRaymanMDemo) : base(gameInstallation)
     {
         IsRaymanMDemo = isRaymanMDemo;
     }
@@ -18,12 +18,12 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
     private bool IsRaymanMDemo { get; }
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(GameInstallation.InstallLocation + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         // Get the save data directory
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(InstallDir + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*.sav"));
@@ -73,7 +73,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 continue;
 
             // Create the collection with items
-            List<ProgressionDataViewModel> progressItems = new();
+            List<GameProgressionDataItem> progressItems = new();
 
             // NOTE:
             // The race level modes get a bit confusing in the bonus league. There are 12 normal races and the bonus league
@@ -106,13 +106,13 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
             AddBattleCompleted(GetValues("sg_battlelevels_mode3"));
 
             // Add completed challenges
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RM_Race,
                 header: new ResourceLocString(nameof(Resources.Progression_RMRacesCompleted)),
                 value: raceCompleted, 
                 max: maxRace));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RM_Battle,
                 header: new ResourceLocString(nameof(Resources.Progression_RMBattlesCompleted)),
@@ -133,7 +133,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
 
                     // Only add if it has valid data
                     if ((isTime && value > 0) || (!isTime && value != -22))
-                        progressItems.Add(new ProgressionDataViewModel(
+                        progressItems.Add(new GameProgressionDataItem(
                             isPrimaryItem: false,
                             // Get the level icon
                             icon: Enum.Parse(typeof(ProgressionIcon), $"RM_R{raceIndex}").CastTo<ProgressionIcon>(),
@@ -154,7 +154,7 @@ public class ProgressionGameViewModel_RaymanMArena : ProgressionGameViewModel
                 AddRaceItem("sg_racelevels_bestnumber_lums", () => Resources.Progression_RM_Lums, false);
             }
 
-            yield return new SerializableProgressionSlotViewModel<RMSaveFile>(this, name.TrimEnd(), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
+            yield return new SerializableGameProgressionSlot<RMSaveFile>(name.TrimEnd(), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
 
             Logger.Info("{0} slot has been loaded", GameInstallation.Id);
         }

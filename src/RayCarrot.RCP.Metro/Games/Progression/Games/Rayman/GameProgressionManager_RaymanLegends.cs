@@ -8,13 +8,13 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
+public class GameProgressionManager_RaymanLegends : GameProgressionManager
 {
-    public ProgressionGameViewModel_RaymanLegends(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanLegends(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    protected override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
+    public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
         new(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends", SearchOption.AllDirectories, "*", "0", 0)
     };
@@ -54,7 +54,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
         { 3600674311, "5-6" }
     };
 
-    protected override async IAsyncEnumerable<ProgressionSlotViewModel> LoadSlotsAsync(FileSystemWrapper fileSystem)
+    public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)
     {
         IOSearchPattern? saveDir = fileSystem.GetDirectory(new IOSearchPattern(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends", SearchOption.AllDirectories, "RaymanSave_0"));
 
@@ -85,19 +85,19 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
             Logger.Info("Slot has been deserialized");
 
             // Create the collection with items for each time trial level + general information
-            List<ProgressionDataViewModel> progressItems = new();
+            List<GameProgressionDataItem> progressItems = new();
 
             // Get the total amount of freed teensies
             int teensies = saveData.Levels.Select(x => x.Value.Object.FreedPrisoners.Length).Sum() + saveData.LuckyTicketRewardList.Count(x => x.Type == 5);
 
             // Add general progress info
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: ProgressionIcon.RL_Teensy, 
                 header: new ResourceLocString(nameof(Resources.Progression_Teensies)), 
                 value: teensies, 
                 max: 700));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RL_Lum,
                 header: new ResourceLocString(nameof(Resources.Progression_Lums)),
@@ -105,7 +105,7 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
 
             // Add rank
             var rankIcon = (ProgressionIcon)Enum.Parse(typeof(ProgressionIcon), $"RL_Rank{saveData.Profile.StatusIcon}");
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: rankIcon,
                 header: new ResourceLocString(nameof(Resources.Progression_Rank)),
@@ -113,22 +113,22 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                 max: 11));
 
             // Add cups
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RL_Bronze,
                 header: new ResourceLocString(nameof(Resources.Progression_RLBronzeCups)),
                 value: (int)saveData.Profile.BronzeMedals));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RL_Silver,
                 header: new ResourceLocString(nameof(Resources.Progression_RLSilverCups)),
                 value: (int)saveData.Profile.SilverMedals));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RL_Gold,
                 header: new ResourceLocString(nameof(Resources.Progression_RLGoldCups)),
                 value: (int)saveData.Profile.GoldMedals));
-            progressItems.Add(new ProgressionDataViewModel(
+            progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
                 icon: ProgressionIcon.RL_Diamond,
                 header: new ResourceLocString(nameof(Resources.Progression_RLDiamondCups)),
@@ -143,13 +143,13 @@ public class ProgressionGameViewModel_RaymanLegends : ProgressionGameViewModel
                 Where(x => x.BestTime > 0).
                 Select(x => (lvlIds[x.Id.ID], x.BestTime)).
                 OrderBy(x => x.Item1).
-                Select(x => new ProgressionDataViewModel(
+                Select(x => new GameProgressionDataItem(
                     isPrimaryItem: false,
                     icon: Enum.Parse(typeof(ProgressionIcon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIcon>(),
                     header: new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"),
                     text: $"{TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}")));
 
-            yield return new SerializableProgressionSlotViewModel<Legends_SaveData>(this, saveData.Profile.Name, 0, teensies, 700, progressItems, context, saveFileData, saveFileName)
+            yield return new SerializableGameProgressionSlot<Legends_SaveData>(saveData.Profile.Name, 0, teensies, 700, progressItems, context, saveFileData, saveFileName)
             {
                 //GetExportObject = x => x.SaveData,
                 //SetImportObject = (x, o) => x.SaveData = (Legends_SaveData.RO2_PersistentGameData_Universe)o,

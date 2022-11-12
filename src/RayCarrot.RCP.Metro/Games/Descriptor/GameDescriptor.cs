@@ -81,6 +81,9 @@ public abstract class GameDescriptor
     // GameDescriptorDisplayName: Unique name for the descriptor. For a specific game edition, for example "Rayman 2 (Steam)"
     // GameDisplayName: Normal game name, for example "Rayman 2"
     // FullGameDisplayName: Full game name, for example "Rayman 2: The Great Escape"
+    // 
+    // User can also define their own names. For example you might have multiple installations of Rayman 1 and they
+    // can then be named differently.
 
     /// <summary>
     /// The game display name
@@ -257,12 +260,10 @@ public abstract class GameDescriptor
     /// <returns>The config page view model of null if none is available</returns>
     public virtual GameOptionsDialog_ConfigPageViewModel? GetConfigPageViewModel(GameInstallation gameInstallation) => null;
 
-    // TODO-14: Only return single item
     /// <summary>
-    /// The progression game view models
+    /// Gets the game progression manager, if available
     /// </summary>
-    public virtual IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        Enumerable.Empty<ProgressionGameViewModel>();
+    public virtual GameProgressionManager? GetGameProgressionManager(GameInstallation gameInstallation) => null;
 
     /// <summary>
     /// Gets the file links for the game

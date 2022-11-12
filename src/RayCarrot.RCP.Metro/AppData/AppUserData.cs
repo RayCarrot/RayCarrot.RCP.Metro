@@ -374,7 +374,7 @@ public class AppUserData : BaseViewModel
     /// <summary>
     /// The data sources to use for game backups and progression
     /// </summary>
-    public Dictionary<string, ProgramDataSource> Backup_GameDataSources { get; set; }
+    public Dictionary<string, ProgramDataSource> Backup_GameDataSources { get; set; } // TODO-14: Handle per installation?
 
     #endregion
 

@@ -35,8 +35,8 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        new ProgressionGameViewModel_TonicTrouble(gameInstallation).Yield();
+    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
+        new GameProgressionManager_TonicTrouble(gameInstallation);
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new CPACntArchiveDataManager(

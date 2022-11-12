@@ -29,8 +29,8 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<ProgressionGameViewModel> GetProgressionGameViewModels(GameInstallation gameInstallation) =>
-        new ProgressionGameViewModel_GloboxMoment(gameInstallation).Yield();
+    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
+        new GameProgressionManager_GloboxMoment(gameInstallation);
 
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
     {
