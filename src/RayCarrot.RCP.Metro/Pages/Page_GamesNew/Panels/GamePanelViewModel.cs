@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -9,6 +10,8 @@ public abstract class GamePanelViewModel : BaseViewModel
     protected GamePanelViewModel(GameInstallation gameInstallation)
     {
         GameInstallation = gameInstallation;
+
+        RefreshCommand = new AsyncRelayCommand(RefreshAsync);
     }
 
     #endregion
@@ -19,12 +22,20 @@ public abstract class GamePanelViewModel : BaseViewModel
 
     #endregion
 
+    #region Commands
+
+    public ICommand RefreshCommand { get; }
+
+    #endregion
+
     #region Public Properties
 
     public GameInstallation GameInstallation { get; }
+    public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
 
     public abstract GenericIconKind Icon { get; }
     public abstract LocalizedString Header { get; }
+    public virtual bool CanRefresh => false;
 
     public bool IsLoading { get; private set; }
 
@@ -37,6 +48,15 @@ public abstract class GamePanelViewModel : BaseViewModel
     #endregion
 
     #region Public Methods
+
+    public async Task RefreshAsync()
+    {
+        if (!_hasLoaded)
+            return;
+
+        _hasLoaded = false;
+        await LoadAsync();
+    }
 
     public async Task LoadAsync()
     {

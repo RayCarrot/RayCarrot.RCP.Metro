@@ -195,7 +195,8 @@
                             <Button Grid.Column="1"
                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                     local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Settings}"
-                                    Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}" />
+                                    Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}"
+                                    ToolTip="Options" />
 
                         </Grid>
 
@@ -232,7 +233,8 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <!-- Panel -->
-                                <local:Card Height="120" 
+                                <local:Card x:Name="PanelCard"
+                                            Height="120" 
                                             Margin="8" 
                                             Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
                                     <Grid>
@@ -243,20 +245,38 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Header -->
-                                        <StackPanel Grid.Row="0"
-                                                    Orientation="Horizontal"
-                                                    Margin="0 0 0 4">
-                                            <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                        <Grid Grid.Row="0"
+                                              Margin="0 0 0 4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <iconPacks:PackIconMaterial Grid.Column="0"
+                                                                        Kind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
                                                                         d:Kind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
                                                                         Foreground="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
                                                                         d:Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
                                                                         VerticalAlignment="Center"
                                                                         Margin="0 0 8 0"/>
-                                            <TextBlock Text="{Binding Path=Header.Value}"
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Path=Header.Value}"
                                                        d:Text="Archive Explorer"
                                                        VerticalAlignment="Center"
                                                        FontSize="14" />
-                                        </StackPanel>
+
+                                            <Button x:Name="PanelRefreshButton"
+                                                    Grid.Column="2"
+                                                    Visibility="{Binding Path=CanRefresh, Converter={local:BooleanToVisibilityConverter}}"
+                                                    Opacity="0"
+                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                    ToolTip="Refresh"
+                                                    Command="{Binding Path=RefreshCommand, Mode=OneTime}"
+                                                    local:ButtonAssist.IconKind="Refresh"
+                                                    local:ButtonAssist.IconSize="16" />
+
+                                        </Grid>
 
                                         <Separator Grid.Row="1" 
                                                    Style="{StaticResource RCP.Styles.Separator.Bold}"
@@ -272,6 +292,34 @@
                                                           Visibility="{Binding Path=IsLoading, Converter={local:InvertedBooleanToVisibilityConverter}}" />
 
                                     </Grid>
+
+                                    <local:Card.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation 
+                                                            Storyboard.TargetName="PanelRefreshButton"
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            To="1" Duration="0:0:0.2"   />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation 
+                                                            Storyboard.TargetName="PanelRefreshButton"
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            To="0" Duration="0:0:0.2"   />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </local:Card.Triggers>
+
                                 </local:Card>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

@@ -8,6 +8,7 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
 
     public override GenericIconKind Icon => GenericIconKind.GamePanel_Progression;
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.Progression_Header));
+    public override bool CanRefresh => true;
     
     protected override Task LoadAsyncImpl()
     {
