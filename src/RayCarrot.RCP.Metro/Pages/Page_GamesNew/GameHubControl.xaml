@@ -282,9 +282,9 @@
                                                    Style="{StaticResource RCP.Styles.Separator.Bold}"
                                                    Margin="0 0 0 4" />
 
-                                        <!-- Loading indicator -->
-                                        <mah:ProgressRing Grid.Row="2"
-                                                          Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}" />
+                                        <!-- Removed due to not looking good with most panels loading very fast -->
+                                        <!--<mah:ProgressRing Grid.Row="2"
+                                                          Visibility="{Binding Path=IsLoading, Converter={local:BooleanToVisibilityConverter}}" />-->
 
                                         <!-- Content -->
                                         <ContentPresenter Grid.Row="2" 
