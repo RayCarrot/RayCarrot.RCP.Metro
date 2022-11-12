@@ -1,12 +1,9 @@
 ﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.Page_GamesNew"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -19,53 +16,23 @@
         <KeyBinding Key="F5" Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}" />
     </Control.InputBindings>
 
-    <!-- TODO-UPDATE: Localize -->
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="2.5*" />
+        </Grid.ColumnDefinitions>
 
-    <mah:MetroAnimatedTabControl x:Name="GamesTabControl"
-                                 Margin="15"
-                                 FocusVisualStyle="{x:Null}">
+        <!-- Game selection -->
+        <local:Card Grid.Column="0">
+            <local:GameSelectionControl />
+        </local:Card>
 
-        <!-- Games -->
-        <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Games}"
-                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Games}"
-                 Header="Games">
+        <!-- Selected game hub -->
+        <local:Card Grid.Column="2"
+                    Padding="0">
+            <local:GameHubControl DataContext="{Binding Path=SelectedInstalledGame}" />
+        </local:Card>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="15" />
-                    <ColumnDefinition Width="2.5*" />
-                </Grid.ColumnDefinitions>
-
-                <!-- Game selection -->
-                <local:Card Grid.Column="0">
-                    <local:GameSelectionControl />
-                </local:Card>
-
-                <!-- Selected game hub -->
-                <local:Card x:Name="SelectedGameCard" 
-                            Grid.Column="2"
-                            Padding="0">
-                    <local:GameHubControl DataContext="{Binding Path=SelectedInstalledGame}" />
-                </local:Card>
-
-            </Grid>
-
-        </TabItem>
-
-        <!-- Progression -->
-
-        <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Progression}"
-                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Progression}"
-                 Header="Progression">
-
-            <!-- TODO-UPDATE: Move progression page here -->
-
-        </TabItem>
-    </mah:MetroAnimatedTabControl>
-
-    <i:Interaction.Behaviors>
-        <local:SubTabControlBehavior ChildTabControl="{Binding ElementName=GamesTabControl}" />
-    </i:Interaction.Behaviors>
-
+    </Grid>
 </local:BasePage>
