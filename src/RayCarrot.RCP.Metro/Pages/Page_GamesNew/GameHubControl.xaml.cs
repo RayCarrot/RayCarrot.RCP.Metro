@@ -23,6 +23,10 @@ public partial class GameHubControl : UserControl
         // Scroll banner image by a 1/3 of the scroll speed for a nice parallax effect
         GameBannerImage.Margin = new Thickness(0, -(sv.VerticalOffset / 3), 0, sv.VerticalOffset / 3);
 
+        // Scroll background border. The reason we have it outside of the normal
+        // scroll viewer is so that it can appear behind the scroll bar thumb
+        BackgroundBorder.Margin = new Thickness(0, -sv.VerticalOffset, 0, sv.VerticalOffset);
+
         const int topOffset = 25;
         double imgHeight = GameIcon.ActualHeight;
         double imgHalfHeight = imgHeight / 2;
