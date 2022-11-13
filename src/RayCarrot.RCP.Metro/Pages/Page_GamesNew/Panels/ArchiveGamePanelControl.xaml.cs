@@ -37,16 +37,14 @@ public partial class ArchiveGamePanelControl : UserControl
 
             void onTransitionCompleted(object _sender, RoutedEventArgs _e)
             {
-                FullPathsPopup.IsOpen = true;
+                OpenPopup();
                 transitionControl.TransitionCompleted -= onTransitionCompleted;
             }
 
             return;
         }
 
-        // Open on mouse over only if list is trimmed
-        if (DataContext is ArchiveGamePanelViewModel { IsTrimmed: true })
-            FullPathsPopup.IsOpen = true;
+        OpenPopup();
     }
 
     private void TrimmedPathsItemsControl_OnMouseLeave(object sender, MouseEventArgs e)
@@ -59,5 +57,12 @@ public partial class ArchiveGamePanelControl : UserControl
     private void PopupCard_OnMouseLeave(object sender, MouseEventArgs e)
     {
         FullPathsPopup.IsOpen = false;
+    }
+
+    private void OpenPopup()
+    {
+        // Open only if list is trimmed
+        if (DataContext is ArchiveGamePanelViewModel { IsTrimmed: true })
+            FullPathsPopup.IsOpen = true;
     }
 }
