@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.PlayButtonControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:controlzex="urn:controlzex"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:InstalledGameViewModel}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             Loaded="PlayButtonControl_OnLoaded">
+    <!-- TODO-UPDATE: Localize -->
+    <Grid>
+        <mah:ClipBorder x:Name="PlayButtonBorder"
+                        CornerRadius="{StaticResource CornerRadius.Default}"
+                        Background="{DynamicResource RCP.Brushes.FlatButton.Play}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Play -->
+                <Button Grid.Column="0"
+                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                        mah:ControlsHelper.CornerRadius="0"
+                        local:ButtonAssist.IconKind="Play"
+                        FontSize="14"
+                        Content="Play"
+                        Command="{Binding Path=LaunchCommand, Mode=OneTime}"
+                        Click="Button_OnClick"
+                        Padding="6 6 12 6" />
+
+                <!-- Drop-down -->
+                <Button Grid.Column="1"
+                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                        mah:ControlsHelper.CornerRadius="0"
+                        local:ButtonAssist.IconKind="ChevronDown"
+                        local:ButtonAssist.IconSize="12"
+                        Click="DropDownButton_OnClick" />
+            </Grid>
+        </mah:ClipBorder>
+
+        <controlzex:PopupEx x:Name="DropDownPopup"
+                            Opened="DropDownPopup_OnOpened"
+                            Closed="DropDownPopup_OnClosed"
+                            AllowsTransparency="True"
+                            Focusable="False"
+                            PlacementTarget="{Binding ElementName=PlayButtonBorder}"
+                            PopupAnimation="Fade"
+                            StaysOpen="True">
+            <local:Card MinWidth="{Binding Path=ActualWidth, ElementName=PlayButtonBorder}"
+                        UniformCornerRadius="{StaticResource CornerRadiusDouble.Default}"
+                        Margin="5"
+                        Padding="0"
+                        Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding Path=AdditionalLaunchActions, Mode=OneTime}">
+                        <ItemsControl.Resources>
+                            <DataTemplate DataType="{x:Type local:SeparatorItemViewModel}">
+                                <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                           local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}" />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type local:IconCommandItemViewModel}">
+                                <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                                        mah:ControlsHelper.CornerRadius="0"
+                                        local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                        local:ButtonAssist.IconSize="16"
+                                        local:ButtonAssist.IconBrush="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                        HorizontalContentAlignment="Left"
+                                        Content="{Binding Path=Header.Value}"
+                                        Command="{Binding Path=Command, Mode=OneTime}"
+                                        Click="Button_OnClick"
+                                        local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}" />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type local:ImageCommandItemViewModel}">
+                                <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                                        mah:ControlsHelper.CornerRadius="0"
+                                        HorizontalContentAlignment="Left"
+                                        Command="{Binding Path=Command, Mode=OneTime}"
+                                        Click="Button_OnClick"
+                                        local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0" 
+                                               Margin="0 0 4 0"
+                                               Source="{Binding Path=ImageSource, Mode=OneTime}"
+                                               MaxWidth="16"
+                                               MaxHeight="16" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Path=Header.Value}" />
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.Resources>
+                    </ItemsControl>
+                </StackPanel>
+            </local:Card>
+        </controlzex:PopupEx>
+
+    </Grid>
+</UserControl>

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -38,12 +37,6 @@ public partial class GameHubControl : UserControl
         Thickness selectedGameTopBarActionsGridMargin = TopBarActionsGrid.Margin;
         selectedGameTopBarActionsGridMargin.Top = iconScrollFactor * topOffset;
         TopBarActionsGrid.Margin = selectedGameTopBarActionsGridMargin;
-    }
-
-    private void DropDownButton_OnClick(object sender, RoutedEventArgs e)
-    {
-        // Toggle the state of the popup
-        DropDownPopup.IsOpen ^= true;
     }
 
     private void GamePanelsUniformGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
