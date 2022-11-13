@@ -4,24 +4,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:controlzex="urn:controlzex"
              mc:Ignorable="d" 
-             d:DesignWidth="200" d:DesignHeight="120"
+             d:DesignWidth="200" d:DesignHeight="135"
              d:DataContext="{d:DesignInstance local:ArchiveGamePanelViewModel}"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
-             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             Loaded="ArchiveGamePanelControl_OnLoaded">
     <!-- TODO-UPDATE: Localize -->
     <Grid>
+        <!-- Center paths (row 1) -->
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!-- Hacky solution for positioning the popup -->
+        <Grid x:Name="PopupPositionGrid" 
+              Grid.Row="1"
+              VerticalAlignment="Top" />
+
+        <!-- Trimmed paths -->
+        <ItemsControl Grid.Row="1" 
+                      MouseEnter="TrimmedPathsItemsControl_OnMouseEnter"
+                      MouseLeave="TrimmedPathsItemsControl_OnMouseLeave"
+                      ItemsSource="{Binding Path=TrimmedArchiveFilePaths}" />
+
         <!-- Open -->
-        <Button Grid.Row="1"
+        <Button Grid.Row="3"
                 Style="{StaticResource RCP.Styles.Button.Flat}" 
                 HorizontalAlignment="Left"
                 Background="{DynamicResource RCP.Brushes.FlatButton.ArchiveExplorer}"
                 Content="Open"
-                Margin="0 0 0 8" />
+                Command="{Binding Path=OpenArchiveExplorerCommand, Mode=OneTime}" />
+
+        <!-- TODO-UPDATE: Fix closing popup on loose focus and scroll -->
+        <controlzex:PopupEx x:Name="FullPathsPopup" 
+                            Grid.Row="0"
+                            Placement="Relative" 
+                            VerticalOffset="-4" 
+                            HorizontalOffset="-4"
+                            AllowsTransparency="True"
+                            Focusable="False"
+                            PlacementTarget="{Binding ElementName=PopupPositionGrid}"
+                            PopupAnimation="Fade"
+                            StaysOpen="True">
+            <local:Card x:Name="PopupCard"
+                        Width="{Binding Path=ActualWidth, ElementName=PopupPositionGrid, Converter={local:DoubleAdditionConverter}, ConverterParameter=8}"
+                        Margin="5"
+                        Padding="4"
+                        Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+                        MouseLeave="PopupCard_OnMouseLeave">
+                <ItemsControl ItemsSource="{Binding Path=ArchiveFilePaths}" />
+            </local:Card>
+        </controlzex:PopupEx>
+
     </Grid>
 </UserControl>

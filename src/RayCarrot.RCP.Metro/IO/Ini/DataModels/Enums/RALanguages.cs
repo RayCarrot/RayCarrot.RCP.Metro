@@ -1,12 +1,11 @@
-﻿namespace RayCarrot.RCP.Metro.Ini
+﻿namespace RayCarrot.RCP.Metro.Ini;
+
+/// <summary>
+/// The commonly available Rayman Arena languages
+/// </summary>
+public enum RALanguages
 {
-    /// <summary>
-    /// The commonly available Rayman Arena languages
-    /// </summary>
-    public enum RALanguages
-    {
-        English,
-        French,
-        Spanish
-    }
+    English,
+    French,
+    Spanish
 }

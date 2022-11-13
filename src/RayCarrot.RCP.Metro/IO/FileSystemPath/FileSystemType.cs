@@ -1,28 +1,27 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// A type of file system entry
+/// </summary>
+public enum FileSystemType
 {
     /// <summary>
-    /// A type of file system entry
+    /// A file
     /// </summary>
-    public enum FileSystemType
-    {
-        /// <summary>
-        /// A file
-        /// </summary>
-        File,
+    File,
 
-        /// <summary>
-        /// A directory
-        /// </summary>
-        Directory,
+    /// <summary>
+    /// A directory
+    /// </summary>
+    Directory,
 
-        /// <summary>
-        /// A relative path
-        /// </summary>
-        Relative,
+    /// <summary>
+    /// A relative path
+    /// </summary>
+    Relative,
 
-        /// <summary>
-        /// An unknown entry
-        /// </summary>
-        Unknown
-    }
+    /// <summary>
+    /// An unknown entry
+    /// </summary>
+    Unknown
 }

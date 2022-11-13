@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
-             d:DesignWidth="200" d:DesignHeight="120"
+             d:DesignWidth="200" d:DesignHeight="135"
              d:DataContext="{d:DesignInstance local:ProgressionGamePanelViewModel}"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">

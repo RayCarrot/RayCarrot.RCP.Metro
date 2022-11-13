@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              mc:Ignorable="d" 
-             d:DesignWidth="200" d:DesignHeight="120"
+             d:DesignWidth="200" d:DesignHeight="135"
              d:DataContext="{d:DesignInstance local:LinksGamePanelViewModel}"
              d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">

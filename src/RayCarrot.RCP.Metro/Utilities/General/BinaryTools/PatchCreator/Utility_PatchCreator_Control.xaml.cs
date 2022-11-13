@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Interaction logic for Utility_PatchCreator_Control.xaml
+/// </summary>
+public partial class Utility_PatchCreator_Control : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Utility_PatchCreator_Control.xaml
-    /// </summary>
-    public partial class Utility_PatchCreator_Control : UserControl
+    public Utility_PatchCreator_Control()
     {
-        public Utility_PatchCreator_Control()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

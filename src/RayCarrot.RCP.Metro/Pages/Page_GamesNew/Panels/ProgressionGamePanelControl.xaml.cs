@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Interaction logic for ProgressionGamePanelControl.xaml
+/// </summary>
+public partial class ProgressionGamePanelControl : UserControl
 {
-    /// <summary>
-    /// Interaction logic for ProgressionGamePanelControl.xaml
-    /// </summary>
-    public partial class ProgressionGamePanelControl : UserControl
+    public ProgressionGamePanelControl()
     {
-        public ProgressionGamePanelControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

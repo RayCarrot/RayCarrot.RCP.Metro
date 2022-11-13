@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+/// <summary>
+/// Interaction logic for ProcessAttacher.xaml
+/// </summary>
+public partial class ProcessAttacher : UserControl
 {
-    /// <summary>
-    /// Interaction logic for ProcessAttacher.xaml
-    /// </summary>
-    public partial class ProcessAttacher : UserControl
+    public ProcessAttacher()
     {
-        public ProcessAttacher()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -234,7 +234,7 @@
                             <DataTemplate>
                                 <!-- Panel -->
                                 <local:Card x:Name="PanelCard"
-                                            Height="120" 
+                                            Height="135" 
                                             Margin="8" 
                                             Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
                                     <Grid>
@@ -289,7 +289,8 @@
                                         <!-- Content -->
                                         <ContentPresenter Grid.Row="2" 
                                                           Content="{Binding Mode=OneTime}"
-                                                          Visibility="{Binding Path=IsLoading, Converter={local:InvertedBooleanToVisibilityConverter}}" />
+                                                          Visibility="{Binding Path=IsLoading, Converter={local:InvertedBooleanToVisibilityConverter}}" 
+                                                          Margin="2 0 2 2" />
 
                                     </Grid>
 
