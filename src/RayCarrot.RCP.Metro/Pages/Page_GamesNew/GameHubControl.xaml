@@ -218,14 +218,12 @@
                             <DataTemplate DataType="{x:Type local:ProgressionGamePanelViewModel}">
                                 <local:ProgressionGamePanelControl />
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type local:LinksGamePanelViewModel}">
-                                <local:LinksGamePanelControl />
-                            </DataTemplate>
                         </ItemsControl.Resources>
 
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid VerticalAlignment="Top" 
+                                             DataContextChanged="GamePanelsUniformGrid_OnDataContextChanged"
                                              SizeChanged="GamePanelsUniformGrid_OnSizeChanged" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>

@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -38,19 +40,27 @@ public partial class GameHubControl : UserControl
         TopBarActionsGrid.Margin = selectedGameTopBarActionsGridMargin;
     }
 
-    private void GamePanelsUniformGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        if (sender is not UniformGrid grid)
-            return;
-
-        const int minPanelWidth = 300;
-
-        grid.Columns = (int)(grid.ActualWidth / minPanelWidth).Clamp(1, grid.Children.Count);
-    }
-
     private void DropDownButton_OnClick(object sender, RoutedEventArgs e)
     {
         // Toggle the state of the popup
         DropDownPopup.IsOpen ^= true;
+    }
+
+    private void GamePanelsUniformGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (sender is UniformGrid grid) 
+            UpdateGamePanelsUniformGrid(grid);
+    }
+
+    private void GamePanelsUniformGrid_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        if (sender is UniformGrid grid)
+            UpdateGamePanelsUniformGrid(grid);
+    }
+
+    private static void UpdateGamePanelsUniformGrid(UniformGrid grid)
+    {
+        const int minPanelWidth = 300;
+        grid.Columns = (int)(grid.ActualWidth / minPanelWidth).Clamp(2, Math.Max(2, grid.Children.Count));
     }
 }

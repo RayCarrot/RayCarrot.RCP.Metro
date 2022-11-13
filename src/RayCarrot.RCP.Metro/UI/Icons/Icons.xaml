@@ -137,9 +137,6 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Progression" 
                        IconKind="{StaticResource RCP.Icons.Progression}" 
                        IconColor="{StaticResource RCP.Brushes.Progression}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Links" 
-                       IconKind="{StaticResource RCP.Icons.Link}" 
-                       IconColor="{StaticResource RCP.Brushes.Info}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_General" 
                        IconKind="{StaticResource RCP.Icons.Settings}" 

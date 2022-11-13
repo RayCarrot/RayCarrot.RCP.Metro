@@ -89,10 +89,6 @@ public class InstalledGameViewModel : BaseViewModel
         GameProgressionManager? progressionManager = GameDescriptor.GetGameProgressionManager(GameInstallation);
         if (progressionManager != null)
             GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation, progressionManager));
-        
-        // Links
-        // TODO-UPDATE: Have this be conditional as well
-        GamePanels.Add(new LinksGamePanelViewModel(GameInstallation));
     }
 
     private void AddAdditionalLaunchActions()
