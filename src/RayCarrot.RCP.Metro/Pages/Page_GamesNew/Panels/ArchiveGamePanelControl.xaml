@@ -57,7 +57,8 @@
                         Padding="4"
                         Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
                         MouseLeave="PopupCard_OnMouseLeave">
-                <ItemsControl ItemsSource="{Binding Path=ArchiveFilePaths}" />
+                <ItemsControl ItemsSource="{Binding Path=ArchiveFilePaths}"
+                              RenderOptions.ClearTypeHint="Enabled" />
             </local:Card>
         </controlzex:PopupEx>
 
