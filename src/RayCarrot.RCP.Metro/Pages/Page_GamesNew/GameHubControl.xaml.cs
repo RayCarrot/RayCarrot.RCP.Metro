@@ -41,6 +41,9 @@ public partial class GameHubControl : UserControl
         Thickness selectedGameTopBarActionsGridMargin = TopBarActionsGrid.Margin;
         selectedGameTopBarActionsGridMargin.Top = iconScrollFactor * topOffset;
         TopBarActionsGrid.Margin = selectedGameTopBarActionsGridMargin;
+
+        TopBarActionsGrid.Height = 64 + (iconScrollFactor * 64); // Height goes from 64 to 128
+        GameTitleTextBlock.FontSize = 18 + (iconScrollFactor * 18); // Font size goes from 18 to 36
     }
 
     private void GamePanelsUniformGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
