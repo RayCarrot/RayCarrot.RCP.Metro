@@ -94,6 +94,9 @@
                         <Trigger Property="Content" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Margin" Value="0" />
                         </Trigger>
+                        <Trigger Property="local:ButtonAssist.IconBrush" Value="{x:Null}">
+                            <Setter TargetName="Icon" Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
