@@ -266,9 +266,18 @@ public abstract class GameDescriptor
     public virtual GameProgressionManager? GetGameProgressionManager(GameInstallation gameInstallation) => null;
 
     /// <summary>
-    /// Gets the file links for the game
+    /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.
     /// </summary>
-    public virtual IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => Enumerable.Empty<GameFileLink>();
+    /// <param name="gameInstallation">The game installation to get the uri links for</param>
+    /// <returns>The uri links</returns>
+    public virtual IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => Enumerable.Empty<GameUriLink>();
+
+    /// <summary>
+    /// Gets the external uri links for the game. These are usually websites related to the game, such as the store page.
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to get the uri links for</param>
+    /// <returns>The uri links</returns>
+    public virtual IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => Enumerable.Empty<GameUriLink>();
 
     /// <summary>
     /// Gets the archive data manager for the game
@@ -302,13 +311,6 @@ public abstract class GameDescriptor
     /// Gets the purchase links for the game
     /// </summary>
     public virtual IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => Enumerable.Empty<GamePurchaseLink>();
-
-    /// <summary>
-    /// Gets the additional overflow button items for the game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the items for</param>
-    public virtual IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
-        Enumerable.Empty<OverflowButtonItemViewModel>();
 
     /// <summary>
     /// Gets the game finder item for this game
@@ -424,11 +426,15 @@ public abstract class GameDescriptor
     #region Data Types
 
     /// <summary>
-    /// A game file link which can be accessed from the game
+    /// A game uri link for local and external locations
     /// </summary>
-    public record GameFileLink(
-        string Header, 
-        FileSystemPath Path, 
+    /// <param name="Header">The link header</param>
+    /// <param name="Uri">The link uri</param>
+    /// <param name="Icon">An optional icon</param>
+    /// <param name="Arguments">Optional arguments if it's a local file</param>
+    public record GameUriLink(
+        LocalizedString Header, 
+        string Uri, 
         GenericIconKind Icon = GenericIconKind.None, 
         string? Arguments = null);
 

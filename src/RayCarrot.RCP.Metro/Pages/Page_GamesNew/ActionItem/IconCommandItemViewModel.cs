@@ -10,11 +10,17 @@ public class IconCommandItemViewModel : CommandItemViewModel
     /// Creates a new command item using a <see cref="GenericIcon"/>
     /// </summary>
     /// <param name="header">The item header</param>
+    /// <param name="description">The item description or info</param>
     /// <param name="iconKind">The item icon kind</param>
     /// <param name="command">The item command</param>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public IconCommandItemViewModel(LocalizedString header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) 
-        : base(header, command, minUserLevel)
+    public IconCommandItemViewModel(
+        LocalizedString header, 
+        LocalizedString? description, 
+        GenericIconKind iconKind, 
+        ICommand command, 
+        UserLevel minUserLevel = UserLevel.Normal) 
+        : base(header, description, command, minUserLevel)
     {
         IconKind = iconKind;
     }

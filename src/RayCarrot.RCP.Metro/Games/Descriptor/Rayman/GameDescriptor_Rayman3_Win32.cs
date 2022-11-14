@@ -41,9 +41,9 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_Rayman3(gameInstallation);
 
-    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
+    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
-        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "R3_Setup_DX8.exe")
+        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "R3_Setup_DX8.exe")
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 

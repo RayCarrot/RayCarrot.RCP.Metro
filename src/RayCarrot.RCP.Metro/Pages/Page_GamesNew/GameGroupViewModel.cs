@@ -7,11 +7,11 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameGroupViewModel : BaseViewModel
 {
-    public GameGroupViewModel(string iconSource, IEnumerable<InstalledGameViewModel> installedGames)
+    public GameGroupViewModel(string iconSource, string displayName, IEnumerable<GameInstallation> gameInstallations)
     {
         IconSource = iconSource;
-        InstalledGames = new ObservableCollection<InstalledGameViewModel>(installedGames);
-        DisplayName = InstalledGames.First().DisplayName;
+        DisplayName = displayName;
+        InstalledGames = new ObservableCollection<InstalledGameViewModel>(gameInstallations.Select(x => new InstalledGameViewModel(x)));
     }
 
     private InstalledGameViewModel? _selectedInstalledGame;

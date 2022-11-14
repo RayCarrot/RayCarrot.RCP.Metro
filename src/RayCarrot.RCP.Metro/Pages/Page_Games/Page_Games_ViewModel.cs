@@ -287,44 +287,44 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             actions.Add(new OverflowButtonItemViewModel());
         }
 
-        // Get the Game links
-        var links = gameDescriptor.GetGameFileLinks(gameInstallation)?.Where(x => x.Path.FileExists).ToArray();
+        //// Get the Game links
+        //var links = gameDescriptor.GetGameFileLinks(gameInstallation)?.Where(x => x.Path.FileExists).ToArray();
 
-        // Add links if there are any
-        if (links?.Any() ?? false)
-        {
-            actions.AddRange(links.
-                Select(x =>
-                {
-                    // Get the path
-                    string path = x.Path;
+        //// Add links if there are any
+        //if (links?.Any() ?? false)
+        //{
+        //    actions.AddRange(links.
+        //        Select(x =>
+        //        {
+        //            // Get the path
+        //            string path = x.Path;
 
-                    // Create the command
-                    var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
+        //            // Create the command
+        //            var command = new AsyncRelayCommand(async () => (await File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
 
-                    if (x.Icon != GenericIconKind.None)
-                        return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+        //            if (x.Icon != GenericIconKind.None)
+        //                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
 
-                    try
-                    {
-                        return new OverflowButtonItemViewModel(x.Header, WindowsHelpers.GetIconOrThumbnail(x.Path, ShellThumbnailSize.Small).ToImageSource(), command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error(ex, "Getting file icon for overflow button item");
-                        return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                    }
-                }));
+        //            try
+        //            {
+        //                return new OverflowButtonItemViewModel(x.Header, WindowsHelpers.GetIconOrThumbnail(x.Path, ShellThumbnailSize.Small).ToImageSource(), command);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Logger.Error(ex, "Getting file icon for overflow button item");
+        //                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+        //            }
+        //        }));
 
-            actions.Add(new OverflowButtonItemViewModel());
-        }
+        //    actions.Add(new OverflowButtonItemViewModel());
+        //}
 
-        // Add additional items
-        int count = actions.Count;
-        actions.AddRange(gameDescriptor.GetAdditionalOverflowButtonItems(gameInstallation));
+        //// Add additional items
+        //int count = actions.Count;
+        //actions.AddRange(gameDescriptor.GetGameLinks(gameInstallation));
 
-        if (actions.Count != count)
-            actions.Add(new OverflowButtonItemViewModel());
+        //if (actions.Count != count)
+        //    actions.Add(new OverflowButtonItemViewModel());
 
         // Add RayMap link
         if (gameDescriptor.RayMapURL != null)

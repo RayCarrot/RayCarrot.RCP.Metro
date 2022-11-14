@@ -45,9 +45,9 @@ public sealed class GameDescriptor_Rayman3_Demo_20021021_Win32 : Win32GameDescri
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_Rayman3_ViewModel(gameInstallation);
 
-    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
+    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
-        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "R3_Setup_DX8D.exe")
+        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "R3_Setup_DX8D.exe")
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>

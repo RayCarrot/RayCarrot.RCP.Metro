@@ -30,9 +30,9 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_RaymanRavingRabbids(gameInstallation);
 
-    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
+    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
-        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "SettingsApplication.exe")
+        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "SettingsApplication.exe")
     };
 
     #endregion

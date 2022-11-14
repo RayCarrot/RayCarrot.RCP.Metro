@@ -32,19 +32,18 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
         new GameProgressionManager_GloboxMoment(gameInstallation);
 
+    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenGameJoltPage)),
+            Uri: "https://gamejolt.com/games/globoxmoment/428585",
+            Icon: GenericIconKind.GameDisplay_Web)
+    };
+
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
     {
         new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/globoxmoment/428585", GenericIconKind.GameDisplay_Web),
     };
-
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
-        new OverflowButtonItemViewModel[]
-        {
-            new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
-            {
-                (await Services.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
-            })),
-        };
 
     #endregion
 }

@@ -15,7 +15,7 @@ public class OverflowButtonItemViewModel : CommandItemViewModel
     /// Constructor for a separator
     /// </summary>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public OverflowButtonItemViewModel(UserLevel minUserLevel = UserLevel.Normal) : base(null, null, minUserLevel)
+    public OverflowButtonItemViewModel(UserLevel minUserLevel = UserLevel.Normal) : base(null, null, null, minUserLevel)
     {
         IsSeparator = true;
     }
@@ -27,7 +27,7 @@ public class OverflowButtonItemViewModel : CommandItemViewModel
     /// <param name="iconKind">The item icon kind</param>
     /// <param name="command">The item command</param>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public OverflowButtonItemViewModel(string header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, command, minUserLevel)
+    public OverflowButtonItemViewModel(string header, GenericIconKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, null, command, minUserLevel)
     {
         IconKind = iconKind;
     }
@@ -39,7 +39,7 @@ public class OverflowButtonItemViewModel : CommandItemViewModel
     /// <param name="iconSource">The icon source</param>
     /// <param name="command">The item command</param>
     /// <param name="minUserLevel">The minimum user level for the action</param>
-    public OverflowButtonItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, command, minUserLevel)
+    public OverflowButtonItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, null, command, minUserLevel)
     {
         IconSource = iconSource;
     }

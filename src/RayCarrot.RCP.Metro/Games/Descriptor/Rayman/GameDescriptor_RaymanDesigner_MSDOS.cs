@@ -42,9 +42,9 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_RaymanDesigner(gameInstallation);
 
-    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
+    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
-        new(Resources.GameLink_RDMapper, gameInstallation.InstallLocation + "MAPPER.EXE")
+        new(new ResourceLocString(nameof(Resources.GameLink_RDMapper)), gameInstallation.InstallLocation + "MAPPER.EXE")
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 

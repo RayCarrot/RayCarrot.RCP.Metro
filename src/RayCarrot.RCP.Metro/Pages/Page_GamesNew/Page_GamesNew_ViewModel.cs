@@ -122,7 +122,8 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
                         string iconSource = gameInstallations.First().GameDescriptor.IconSource;
                         category.GameGroups.Add(new GameGroupViewModel(
                             iconSource: iconSource, 
-                            installedGames: gameInstallations.Select(x => new InstalledGameViewModel(x))));
+                            displayName: gameInstallations.First().GameDescriptor.DisplayName,
+                            gameInstallations: gameInstallations));
                     }
                 }
 

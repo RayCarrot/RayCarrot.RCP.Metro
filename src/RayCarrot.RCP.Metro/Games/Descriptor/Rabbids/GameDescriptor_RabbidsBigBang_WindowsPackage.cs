@@ -34,14 +34,13 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_RabbidsBigBang(this, gameInstallation);
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
-        new OverflowButtonItemViewModel[]
-        {
-            new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
-            {
-                await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
-            })),
-        };
+    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInWinStore)),
+            Uri: MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID),
+            Icon: GenericIconKind.GameDisplay_Microsoft)
+    };
 
     #endregion
 }

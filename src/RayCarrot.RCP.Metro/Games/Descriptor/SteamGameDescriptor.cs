@@ -50,23 +50,21 @@ public abstract class SteamGameDescriptor : GameDescriptor
 
     #region Public Methods
 
+    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenSteamStore)),
+            Uri: SteamHelpers.GetStorePageURL(SteamID),
+            Icon: GenericIconKind.GameDisplay_Steam),
+        new GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenSteamCommunity)),
+            Uri: SteamHelpers.GetCommunityPageURL(SteamID),
+            Icon: GenericIconKind.GameDisplay_Steam)
+    };
+
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
     {
         new(Resources.GameDisplay_Steam, SteamHelpers.GetStorePageURL(SteamID)),
-    };
-
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => new OverflowButtonItemViewModel[]
-    {
-        new(Resources.GameDisplay_OpenSteamStore, GenericIconKind.GameDisplay_Steam, new AsyncRelayCommand(async () =>
-        {
-            (await Services.File.LaunchFileAsync(SteamHelpers.GetStorePageURL(SteamID)))?.Dispose();
-            Logger.Trace("The game {0} Steam store page was opened", Id);
-        })),
-        new(Resources.GameDisplay_OpenSteamCommunity, GenericIconKind.GameDisplay_Steam, new AsyncRelayCommand(async () =>
-        {
-            (await Services.File.LaunchFileAsync(SteamHelpers.GetCommunityPageURL(SteamID)))?.Dispose();
-            Logger.Trace("The game {0} Steam community page was opened", Id);
-        }))
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(SteamID);

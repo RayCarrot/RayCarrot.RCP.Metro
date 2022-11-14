@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -31,10 +32,11 @@ public class InstalledGameViewModel : BaseViewModel
         string bannerFileName = gameInstallation.GameDescriptor.Banner.GetAttribute<ImageFileAttribute>()?.FileName ?? "Default.png";
         GameBannerImageSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameBanners/{bannerFileName}";
 
+        // TODO-UPDATE: Reload all of these when the game info changes since paths etc. might be different
         GamePanels = new ObservableCollection<GamePanelViewModel>();
         AddGamePanels();
 
-        AdditionalLaunchActions = new ObservableCollection<ActionItemViewModel>();
+        AdditionalLaunchActions = new ObservableActionItemsCollection();
         AddAdditionalLaunchActions();
 
         // Create commands
@@ -69,7 +71,7 @@ public class InstalledGameViewModel : BaseViewModel
     public string GameBannerImageSource { get; }
 
     public ObservableCollection<GamePanelViewModel> GamePanels { get; }
-    public ObservableCollection<ActionItemViewModel> AdditionalLaunchActions { get; }
+    public ObservableActionItemsCollection AdditionalLaunchActions { get; }
 
     #endregion
 
@@ -98,61 +100,82 @@ public class InstalledGameViewModel : BaseViewModel
         UserData_GameLaunchMode launchMode = GameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
 
         if (launchMode == UserData_GameLaunchMode.AsAdminOption)
-        {
-            AdditionalLaunchActions.Add(new IconCommandItemViewModel(
+            AdditionalLaunchActions.AddGroup(new IconCommandItemViewModel(
                 header: Resources.GameDisplay_RunAsAdmin, 
+                description: null,
                 iconKind: GenericIconKind.GameDisplay_Admin, 
                 command: new AsyncRelayCommand(async () => await GameDescriptor.LaunchGameAsync(GameInstallation, true))));
 
-            AdditionalLaunchActions.Add(new SeparatorItemViewModel());
-        }
+        // Add local uri links
+        AdditionalLaunchActions.AddGroup(GameDescriptor.GetLocalUriLinks(GameInstallation).
+            Where(x => File.Exists(x.Uri)).
+            Select<GameDescriptor.GameUriLink, ActionItemViewModel>(x =>
+            {
+                // Get the path
+                string path = x.Uri;
 
-        // Get the Game links
-        var links = GameDescriptor.GetGameFileLinks(GameInstallation).Where(x => x.Path.FileExists).ToArray();
+                // Create the command
+                AsyncRelayCommand command = new(async () =>
+                    (await Services.File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
 
-        // Add links if there are any
-        if (links.Any())
-        {
-            AdditionalLaunchActions.AddRange(links.
-                Select<GameDescriptor.GameFileLink, ActionItemViewModel>(x =>
+                if (x.Icon != GenericIconKind.None)
+                    return new IconCommandItemViewModel(
+                        header: x.Header,
+                        description: path,
+                        iconKind: x.Icon,
+                        command: command);
+
+                try
                 {
-                    // Get the path
-                    string path = x.Path;
+                    return new ImageCommandItemViewModel(
+                        header: x.Header,
+                        description: path,
+                        imageSource: WindowsHelpers.GetIconOrThumbnail(path, ShellThumbnailSize.Small).ToImageSource(),
+                        command: command);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Getting file icon for drop-down action item");
 
-                    // Create the command
-                    AsyncRelayCommand command = new(async () => 
-                        (await Services.File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
+                    return new IconCommandItemViewModel(
+                        header: x.Header,
+                        description: path,
+                        iconKind: GenericIconKind.None,
+                        command: command);
+                }
 
-                    if (x.Icon != GenericIconKind.None)
-                        return new IconCommandItemViewModel(
-                            header: x.Header, 
-                            iconKind: x.Icon, 
-                            command: command);
+            }));
 
-                    try
-                    {
-                        return new ImageCommandItemViewModel(
-                            header: x.Header, 
-                            imageSource: WindowsHelpers.GetIconOrThumbnail(x.Path, ShellThumbnailSize.Small).ToImageSource(), 
-                            command: command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error(ex, "Getting file icon for drop-down action item");
+        // Add external uri links
+        AdditionalLaunchActions.AddGroup(GameDescriptor.GetExternalUriLinks(GameInstallation).
+            Select(x =>
+            {
+                // Get the path
+                string path = x.Uri;
 
-                        return new IconCommandItemViewModel(
-                            header: x.Header,
-                            iconKind: GenericIconKind.None,
-                            command: command);
-                    }
-                }));
+                // Create the command
+                AsyncRelayCommand command = new(async () =>
+                    (await Services.File.LaunchFileAsync(path, arguments: x.Arguments))?.Dispose());
 
-            AdditionalLaunchActions.Add(new SeparatorItemViewModel());
-        }
+                return new IconCommandItemViewModel(
+                    header: x.Header,
+                    description: path,
+                    iconKind: x.Icon,
+                    command: command);
+            }));
 
-        // Add open location
+        // Add RayMap link
+        if (GameDescriptor.RayMapURL != null)
+            AdditionalLaunchActions.AddGroup(new IconCommandItemViewModel(
+                header: Resources.GameDisplay_Raymap, 
+                description: GameDescriptor.RayMapURL,
+                iconKind: GenericIconKind.GameDisplay_Map, 
+                command: new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(GameDescriptor.RayMapURL))?.Dispose())));
+
+        // Add open location (don't add as a group since it's the last item)
         AdditionalLaunchActions.Add(new IconCommandItemViewModel(
             header: Resources.GameDisplay_OpenLocation, 
+            description: GameInstallation.InstallLocation.FullPath,
             iconKind: GenericIconKind.GameDisplay_Location, 
             command: new AsyncRelayCommand(async () =>
             {

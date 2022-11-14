@@ -45,12 +45,12 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
         new GameProgressionManager_Rayman2(gameInstallation);
 
-    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation) => new GameFileLink[]
+    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
-        new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "GXSetup.exe"),
-        new(Resources.GameLink_R2nGlide, gameInstallation.InstallLocation + "nglide_config.exe"),
-        new(Resources.GameLink_R2dgVoodoo, gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
-        new(Resources.GameLink_R2Fix, gameInstallation.InstallLocation + "R2FixCfg.exe"),
+        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "GXSetup.exe"),
+        new(new ResourceLocString(nameof(Resources.GameLink_R2nGlide)), gameInstallation.InstallLocation + "nglide_config.exe"),
+        new(new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
+        new(new ResourceLocString(nameof(Resources.GameLink_R2Fix)), gameInstallation.InstallLocation + "R2FixCfg.exe"),
     };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>

@@ -69,6 +69,7 @@
                                         local:ButtonAssist.IconSize="16"
                                         local:ButtonAssist.IconBrush="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
                                         HorizontalContentAlignment="Left"
+                                        ToolTip="{Binding Path=Description.Value}"
                                         Command="{Binding Path=Command, Mode=OneTime}"
                                         Click="Button_OnClick"
                                         local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
@@ -80,6 +81,7 @@
                                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
                                         mah:ControlsHelper.CornerRadius="0"
                                         HorizontalContentAlignment="Left"
+                                        ToolTip="{Binding Path=Description.Value}"
                                         Command="{Binding Path=Command, Mode=OneTime}"
                                         Click="Button_OnClick"
                                         local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">

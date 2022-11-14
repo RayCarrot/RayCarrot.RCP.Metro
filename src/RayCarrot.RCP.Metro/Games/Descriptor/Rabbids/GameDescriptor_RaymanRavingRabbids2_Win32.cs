@@ -42,13 +42,13 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_RaymanRavingRabbids2(gameInstallation);
 
-    public override IEnumerable<GameFileLink> GetGameFileLinks(GameInstallation gameInstallation)
+    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation)
     {
         UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2LaunchMode, UserData_RRR2LaunchMode.AllGames);
 
-        return new GameFileLink[]
+        return new GameUriLink[]
         {
-            new(Resources.GameLink_Setup, gameInstallation.InstallLocation + "SettingsApplication.exe",
+            new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "SettingsApplication.exe",
                 Arguments: $"/{launchMode.ToString().ToLower()}")
         };
     }

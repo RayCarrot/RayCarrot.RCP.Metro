@@ -37,19 +37,18 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_RaymanFiestaRun(this, gameInstallation, 1);
 
+    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInWinStore)),
+            Uri: MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID),
+            Icon: GenericIconKind.GameDisplay_Microsoft)
+    };
+
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {
         new Utility_RaymanFiestaRun_SaveFix(this, gameInstallation, 1),
     };
-
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
-        new OverflowButtonItemViewModel[]
-        {
-            new(Resources.GameDisplay_OpenInWinStore, GenericIconKind.GameDisplay_Microsoft, new AsyncRelayCommand(async () =>
-            {
-                await Services.File.LaunchURIAsync(MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID));
-            })),
-        };
 
     #endregion
 }

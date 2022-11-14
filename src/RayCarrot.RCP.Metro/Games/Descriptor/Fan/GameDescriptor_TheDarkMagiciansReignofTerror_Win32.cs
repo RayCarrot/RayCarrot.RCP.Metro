@@ -32,19 +32,18 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
         new GameProgressionManager_TheDarkMagiciansReignofTerror(gameInstallation);
 
+    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenGameJoltPage)),
+            Uri: "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701",
+            Icon: GenericIconKind.GameDisplay_Web)
+    };
+
     public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
     {
         new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701", GenericIconKind.GameDisplay_Web),
     };
-
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) => 
-        new OverflowButtonItemViewModel[]
-        {
-            new(Resources.GameDisplay_OpenGameJoltPage, GenericIconKind.GameDisplay_Web, new AsyncRelayCommand(async () =>
-            {
-                (await Services.File.LaunchFileAsync("https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701"))?.Dispose();
-            })),
-        };
 
     #endregion
 }

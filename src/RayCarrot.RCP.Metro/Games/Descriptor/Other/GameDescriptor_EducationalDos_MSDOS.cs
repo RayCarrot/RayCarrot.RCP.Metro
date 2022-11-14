@@ -212,10 +212,12 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
         @"PCMAP\SNDH8B.DAT",
     };
 
-    public override IEnumerable<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems(GameInstallation gameInstallation) =>
-        Services.Data.Game_EducationalDosBoxGames.Select(x => new OverflowButtonItemViewModel(
+    // TODO-14: Fix
+    /*
+    public override IEnumerable<ActionItemViewModel> GetGameLinks(GameInstallation gameInstallation) =>
+        Services.Data.Game_EducationalDosBoxGames.Select(x => new ImageCommandItemViewModel(
             header: x.Name, 
-            iconSource: new BitmapImage(new Uri($@"{AppViewModel.WPFApplicationBasePath}img\GameIcons\EducationalDos.png")), 
+            imageSource: new BitmapImage(new Uri($@"{AppViewModel.WPFApplicationBasePath}img\GameIcons\EducationalDos.png")), 
             command: new AsyncRelayCommand(async () => 
             {
                 Logger.Trace("The educational game {0} is being launched...", x.Name);
@@ -244,7 +246,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
                     // Run any post launch operations on the process
                     await PostLaunchAsync(process);
 
-            }))).ToArray();
+            }))).ToArray();*/
 
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
     {
