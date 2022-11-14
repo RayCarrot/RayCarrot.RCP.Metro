@@ -32,7 +32,7 @@
 
         <!-- A separate border for the background so that it can be transparent (the opacity)
              and appear behind the scroll viewer thumb -->
-        <Border Margin="0 300 0 0">
+        <Border Margin="0 300 0 -300">
             <Border x:Name="BackgroundBorder"
                     Background="{DynamicResource RCP.Brushes.Card.Background}"
                     Opacity="0.9"
