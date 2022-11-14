@@ -102,7 +102,7 @@
                        IconColor="{StaticResource RCP.Brushes.Technical}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Map" 
                        IconKind="{StaticResource RCP.Icons.Map}" 
-                       IconColor="{StaticResource RCP.Brushes.Mods}" />
+                       IconColor="{StaticResource RCP.Brushes.Games}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Archive" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
