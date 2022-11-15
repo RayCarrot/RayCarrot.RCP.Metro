@@ -25,8 +25,6 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
 
     public override GameBanner Banner => GameBanner.Rayman2;
 
-    public override string RayMapURL => AppURLs.GetRayMapGameURL("r2_pc", "r2_pc");
-
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
     public override bool HasArchives => true;
@@ -50,6 +48,8 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
         new(new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
         new(new ResourceLocString(nameof(Resources.GameLink_R2Fix)), gameInstallation.InstallLocation + "R2FixCfg.exe"),
     };
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "r2_pc", "r2_pc");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new CPACntArchiveDataManager(

@@ -120,11 +120,6 @@ public abstract class GameDescriptor
     public virtual GameBanner Banner => GameBanner.Default;
 
     /// <summary>
-    /// An optional RayMap URL
-    /// </summary>
-    public virtual string? RayMapURL => null;
-
-    /// <summary>
     /// The group names to use for the options, config and utility dialog
     /// </summary>
     public virtual IEnumerable<string> DialogGroupNames => Enumerable.Empty<string>(); // TODO-14: Change this
@@ -278,6 +273,12 @@ public abstract class GameDescriptor
     /// <param name="gameInstallation">The game installation to get the uri links for</param>
     /// <returns>The uri links</returns>
     public virtual IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => Enumerable.Empty<GameUriLink>();
+
+    /// <summary>
+    /// Gets optional RayMap map viewer information
+    /// </summary>
+    /// <returns>The info or null if not available</returns>
+    public virtual RayMapInfo? GetRayMapInfo() => null; // TODO-UPDATE: Add for demos
 
     /// <summary>
     /// Gets the archive data manager for the game
@@ -437,6 +438,22 @@ public abstract class GameDescriptor
         string Uri, 
         GenericIconKind Icon = GenericIconKind.None, 
         string? Arguments = null);
+
+    public record RayMapInfo(
+        RayMapViewer Viewer,
+        string Mode,
+        string Folder,
+        string? Vol = null)
+    {
+        public string GetURL() => Viewer switch
+        {
+            RayMapViewer.RayMap => AppURLs.GetRayMapGameURL(Mode, Folder),
+            RayMapViewer.Ray1Map => AppURLs.GetRay1MapGameURL(Mode, Folder, Vol),
+            _ => throw new ArgumentOutOfRangeException(nameof(Viewer), Viewer, null)
+        };
+    }
+
+    public enum RayMapViewer { RayMap, Ray1Map }
 
     /// <summary>
     /// A game purchase link which can be accessed from the game

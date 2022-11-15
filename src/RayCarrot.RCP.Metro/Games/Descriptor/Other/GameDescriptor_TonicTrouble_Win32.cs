@@ -21,8 +21,6 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     public override string BackupName => "Tonic Trouble";
     public override string DefaultFileName => "TonicTrouble.exe";
 
-    public override string RayMapURL => AppURLs.GetRayMapGameURL("tt_pc", "tt_pc");
-
     public override bool HasArchives => true;
 
     #endregion
@@ -48,6 +46,8 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     {
         new(new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
     };
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "tt_pc", "tt_pc");
 
     public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {

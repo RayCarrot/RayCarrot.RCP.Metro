@@ -19,8 +19,6 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman 1";
     public override string DefaultFileName => "Rayman.exe";
 
-    public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanPC_1_21", "r1/pc_121");
-
     public override string ExecutableName => "RAYMAN.EXE";
     public override string RaymanForeverFolderName => "Rayman";
 
@@ -43,6 +41,8 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
 
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
         new GameProgressionManager_Rayman1(gameInstallation);
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121");
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
     {

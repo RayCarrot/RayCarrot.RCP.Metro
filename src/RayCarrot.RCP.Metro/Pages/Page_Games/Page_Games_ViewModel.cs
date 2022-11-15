@@ -326,12 +326,12 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         //if (actions.Count != count)
         //    actions.Add(new OverflowButtonItemViewModel());
 
-        // Add RayMap link
-        if (gameDescriptor.RayMapURL != null)
-        {
-            actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await File.LaunchFileAsync(gameDescriptor.RayMapURL))?.Dispose())));
-            actions.Add(new OverflowButtonItemViewModel());
-        }
+        //// Add RayMap link
+        //if (gameDescriptor.RayMapURL != null)
+        //{
+        //    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, GenericIconKind.GameDisplay_Map, new AsyncRelayCommand(async () => (await File.LaunchFileAsync(gameDescriptor.RayMapURL))?.Dispose())));
+        //    actions.Add(new OverflowButtonItemViewModel());
+        //}
 
         // Add open archive
         if (gameDescriptor.HasArchives)

@@ -22,8 +22,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman 3";
     public override string DefaultFileName => "Rayman3.exe";
 
-    public override string RayMapURL => AppURLs.GetRayMapGameURL("r3_pc", "r3_pc");
-
     public override IEnumerable<string> DialogGroupNames => new string[]
     {
         UbiIniFileGroupName
@@ -45,6 +43,8 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     {
         new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "R3_Setup_DX8.exe")
     };
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "r3_pc", "r3_pc");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new CPACntArchiveDataManager(

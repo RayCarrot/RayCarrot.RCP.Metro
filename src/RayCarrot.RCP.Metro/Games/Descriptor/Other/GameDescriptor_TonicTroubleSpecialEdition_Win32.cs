@@ -21,8 +21,6 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override string BackupName => "Tonic Trouble Special Edition";
     public override string DefaultFileName => "MaiD3Dvr.exe";
 
-    public override string RayMapURL => AppURLs.GetRayMapGameURL("ttse_pc", "ttse_pc");
-
     public override bool HasArchives => true;
 
     #endregion
@@ -42,6 +40,8 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     {
         new(new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
     };
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "ttse_pc", "ttse_pc");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new CPACntArchiveDataManager(

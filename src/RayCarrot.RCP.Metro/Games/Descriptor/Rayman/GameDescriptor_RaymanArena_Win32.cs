@@ -22,8 +22,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman Arena";
     public override string DefaultFileName => "R_Arena.exe";
 
-    public override string RayMapURL => AppURLs.GetRayMapGameURL("ra_pc", "ra_pc");
-
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
     public override bool HasGameInstaller => true;
@@ -43,6 +41,8 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     {
         new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "RM_Setup_DX8.exe")
     };
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "ra_pc", "ra_pc");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new CPACntArchiveDataManager(

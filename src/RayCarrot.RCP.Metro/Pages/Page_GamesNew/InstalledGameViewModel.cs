@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 using MahApps.Metro.IconPacks;
 using NLog;
 
@@ -165,12 +166,16 @@ public class InstalledGameViewModel : BaseViewModel
             }));
 
         // Add RayMap link
-        if (GameDescriptor.RayMapURL != null)
-            AdditionalLaunchActions.AddGroup(new IconCommandItemViewModel(
+        GameDescriptor.RayMapInfo? rayMapInfo = GameDescriptor.GetRayMapInfo();
+        if (rayMapInfo != null)
+        {
+            string url = rayMapInfo.GetURL();
+            AdditionalLaunchActions.AddGroup(new ImageCommandItemViewModel(
                 header: Resources.GameDisplay_Raymap, 
-                description: GameDescriptor.RayMapURL,
-                iconKind: GenericIconKind.GameDisplay_Map, 
-                command: new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(GameDescriptor.RayMapURL))?.Dispose())));
+                description: url,
+                imageSource: (ImageSource)new ImageSourceConverter().ConvertFrom($"{AppViewModel.WPFApplicationBasePath}Img/RayMap/{rayMapInfo.Viewer}.png")!, 
+                command: new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(url))?.Dispose())));
+        }
 
         // Add open location (don't add as a group since it's the last item)
         AdditionalLaunchActions.Add(new IconCommandItemViewModel(

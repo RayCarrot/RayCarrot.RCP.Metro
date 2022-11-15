@@ -22,8 +22,6 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman by his Fans";
     public override string DefaultFileName => "rayfan.bat";
 
-    public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanByHisFansPC", "r1/pc_fan");
-
     public override bool HasArchives => true;
 
     public override string ExecutableName => "RAYFAN.EXE";
@@ -38,6 +36,8 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MSDOSGameDescriptor
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanByHisFans_ViewModel(this, gameInstallation);
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanByHisFansPC", "r1/pc_fan");
 
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_RaymanByHisFans(gameInstallation);

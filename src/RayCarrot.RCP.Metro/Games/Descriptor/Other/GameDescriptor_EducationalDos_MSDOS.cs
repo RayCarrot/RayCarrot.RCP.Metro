@@ -36,8 +36,6 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     public override string BackupName => throw new Exception("A generic backup name can not be obtained for an educational DOS game due to it being a collection of multiple games");
     public override string DefaultFileName => Services.Data.Game_EducationalDosBoxGames?.FirstOrDefault()?.LaunchName ?? String.Empty;
 
-    public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
-
     public override bool AllowPatching => false;
     public override bool HasArchives => true;
 
@@ -194,6 +192,9 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanEduDos_ViewModel(this, gameInstallation);
+
+    // TODO-14: Use current volume?
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
 
     // TODO-14: Fix
     //public override GameProgressionManager? GetGameProgressionManager(GameInstallation gameInstallation) =>

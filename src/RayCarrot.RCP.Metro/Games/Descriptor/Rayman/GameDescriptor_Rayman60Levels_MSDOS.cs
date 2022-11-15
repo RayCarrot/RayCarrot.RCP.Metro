@@ -22,8 +22,6 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman 60 Levels";
     public override string DefaultFileName => "Rayman.bat";
 
-    public override string RayMapURL => AppURLs.GetRay1MapGameURL("Rayman60LevelsPC", "r1/pc_60n");
-
     public override bool HasArchives => true;
 
     public override string ExecutableName => "RAYPLUS.EXE";
@@ -40,6 +38,8 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
 
     public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
         new GameProgressionManager_Rayman60Levels(gameInstallation);
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "Rayman60LevelsPC", "r1/pc_60n");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Fan));

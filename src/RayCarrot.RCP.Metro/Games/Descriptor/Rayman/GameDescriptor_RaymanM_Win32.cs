@@ -22,8 +22,6 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman M";
     public override string DefaultFileName => "RaymanM.exe";
 
-    public override string RayMapURL => AppURLs.GetRayMapGameURL("rm_pc", "rm_pc");
-
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
     public override bool HasGameInstaller => true;
@@ -43,6 +41,8 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
     {
         new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "RM_Setup_DX8.exe")
     };
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "rm_pc", "rm_pc");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new CPACntArchiveDataManager(

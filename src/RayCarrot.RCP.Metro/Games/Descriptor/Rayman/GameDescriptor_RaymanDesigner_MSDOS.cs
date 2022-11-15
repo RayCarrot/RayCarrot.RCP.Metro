@@ -22,8 +22,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman Designer";
     public override string DefaultFileName => "RAYKIT.bat";
 
-    public override string RayMapURL => AppURLs.GetRay1MapGameURL("RaymanDesignerPC", "r1/pc_kit");
-
     public override bool HasArchives => true;
 
     public override string ExecutableName => "RAYKIT.EXE";
@@ -46,6 +44,8 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
     {
         new(new ResourceLocString(nameof(Resources.GameLink_RDMapper)), gameInstallation.InstallLocation + "MAPPER.EXE")
     };
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanDesignerPC", "r1/pc_kit");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));
