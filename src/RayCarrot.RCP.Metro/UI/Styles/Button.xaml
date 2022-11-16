@@ -48,7 +48,9 @@
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                         <Border x:Name="OpacityBorder" Background="Transparent">
                             <Grid Margin="{TemplateBinding Padding}"
-                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -66,9 +68,9 @@
 
                                 <mah:ContentControlEx x:Name="PART_ContentPresenter"
                                                   Grid.Column="1"
-                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                   Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                   ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.ContentCharacterCasing)}"
                                                   ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                   ContentTemplate="{TemplateBinding ContentTemplate}"
