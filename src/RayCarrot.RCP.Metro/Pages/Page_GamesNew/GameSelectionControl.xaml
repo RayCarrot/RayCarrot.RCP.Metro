@@ -138,10 +138,12 @@
                                                             </Grid.ColumnDefinitions>
 
                                                             <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                                        Kind="{Binding Path=IconKind, Mode=OneTime}" />
+                                                                                        Kind="{Binding Path=IconKind, Mode=OneTime}"
+                                                                                        d:Kind="MicrosoftWindows"/>
 
                                                             <TextBlock Grid.Column="1"
                                                                        Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                                                       d:Text="Rayman 2"
                                                                        TextWrapping="Wrap"
                                                                        Margin="8 0 0 0"/>
 

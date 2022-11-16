@@ -81,14 +81,31 @@
                             </Grid.RowDefinitions>
 
                             <!-- Title -->
-                            <Viewbox StretchDirection="DownOnly"
-                                     HorizontalAlignment="Left">
-                                <TextBlock x:Name="GameTitleTextBlock"
-                                           Text="{Binding Path=DisplayName, Mode=OneTime}"
-                                           d:Text="Rayman 2"
-                                           VerticalAlignment="Center" 
-                                           FontSize="18" />
-                            </Viewbox>
+                            <Grid HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- TODO-UPDATE: Add tooltip -->
+                                <iconPacks:PackIconMaterial Grid.Column="0" 
+                                                            VerticalAlignment="Center"
+                                                            Width="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={local:DoubleAdditionConverter}, ConverterParameter=-4}" 
+                                                            Height="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={local:DoubleAdditionConverter}, ConverterParameter=-4}"
+                                                            Kind="{Binding Path=IconKind, Mode=OneTime}"
+                                                            d:Kind="MicrosoftWindows"/>
+
+                                <Viewbox Grid.Column="1"
+                                         StretchDirection="DownOnly">
+                                    <TextBlock x:Name="GameTitleTextBlock"
+                                               Margin="8 0 0 0"
+                                               Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                               d:Text="Rayman 2"
+                                               VerticalAlignment="Center" 
+                                               FontSize="18" />
+                                </Viewbox>
+
+                            </Grid>
 
                             <!-- Actions -->
                             <Grid Grid.Row="1">
