@@ -20,7 +20,7 @@ public class GameFinder_GenericItem : GameFinder_BaseItem
         string[]? possibleWin32Names, 
         string? shortcutName, 
         Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory, 
-        Action<FileSystemPath, object?>? foundAction, 
+        Action<FileSystemPath>? foundAction, 
         string displayName, 
         Func<GameFinder_FoundResult?>? customFinderAction = null) 
         : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, customFinderAction)

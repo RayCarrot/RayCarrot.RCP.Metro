@@ -465,9 +465,8 @@ public class GameFinder
     /// </summary>
     /// <param name="item">The item to add</param>
     /// <param name="installDir">The found install directory</param>
-    /// <param name="parameter">Optional parameter</param>
     /// <returns>True if the item was added, otherwise false</returns>
-    private bool AddItem(GameFinder_GenericItem item, FileSystemPath installDir, object? parameter = null)
+    private bool AddItem(GameFinder_GenericItem item, FileSystemPath installDir)
     {
         Logger.Info("An install directory was found for a finder item");
 
@@ -494,7 +493,7 @@ public class GameFinder
 
         // Add the item
         FoundFinderItems.Add(item);
-        Results.Add(new GameFinder_GenericResult(installDir, item.FoundAction, parameter, item.DisplayName));
+        Results.Add(new GameFinder_GenericResult(installDir, item.FoundAction, item.DisplayName));
 
         Logger.Info("A finder item was found");
 

@@ -22,7 +22,7 @@ public class GameFinder_GameItem : GameFinder_BaseItem
         string? shortcutName, 
         string[]? possibleWin32Names, 
         Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null, 
-        Action<FileSystemPath, object?>? foundAction = null) 
+        Action<FileSystemPath>? foundAction = null) 
         : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, null)
     {
         UbiIniSectionName = ubiIniSectionName;
@@ -37,7 +37,7 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     public GameFinder_GameItem(
         string steamID, 
         Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null, 
-        Action<FileSystemPath, object?>? foundAction = null) 
+        Action<FileSystemPath>? foundAction = null) 
         : base(null, null, verifyInstallDirectory, foundAction, null)
     {
         SteamID = steamID;
@@ -50,7 +50,7 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// <param name="foundAction">An optional action to add when the item gets found</param>
     public GameFinder_GameItem(
         Func<GameFinder_FoundResult> customFinderAction, 
-        Action<FileSystemPath, object?>? foundAction = null) 
+        Action<FileSystemPath>? foundAction = null) 
         : base(null, null, null, foundAction, customFinderAction)
     {
 

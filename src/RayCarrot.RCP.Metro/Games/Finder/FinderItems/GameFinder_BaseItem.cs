@@ -21,7 +21,7 @@ public abstract class GameFinder_BaseItem
         string[]? possibleWin32Names, 
         string? shortcutName, 
         Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory, 
-        Action<FileSystemPath, object?>? foundAction, 
+        Action<FileSystemPath>? foundAction, 
         Func<GameFinder_FoundResult?>? customFinderAction)
     {
         PossibleWin32Names = possibleWin32Names;
@@ -53,7 +53,7 @@ public abstract class GameFinder_BaseItem
     /// <summary>
     /// An optional action to add when the item gets found
     /// </summary>
-    public Action<FileSystemPath, object?>? FoundAction { get; }
+    public Action<FileSystemPath>? FoundAction { get; }
 
     /// <summary>
     /// Custom game finder action which returns the game install directory if found

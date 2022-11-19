@@ -266,7 +266,7 @@ public class AppViewModel : BaseViewModel
                     "Dos Box"
                 };
 
-                void foundAction(FileSystemPath installDir, object? parameter)
+                void foundAction(FileSystemPath installDir)
                 {
                     if (System.IO.File.Exists(Data.Emu_DOSBox_Path))
                     {

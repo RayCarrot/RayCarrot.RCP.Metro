@@ -13,17 +13,14 @@ public abstract class GameFinder_BaseResult
     /// </summary>
     /// <param name="installLocation">The install location</param>
     /// <param name="handledAction">An optional action to add when the item gets handled</param>
-    /// <param name="handledParameter">Optional parameter for the <see cref="HandledAction"/></param>
     /// <param name="displayName">The found item display name</param>
     protected GameFinder_BaseResult(
         FileSystemPath installLocation, 
-        Action<FileSystemPath, object?>? handledAction, 
-        object? handledParameter, 
+        Action<FileSystemPath>? handledAction, 
         string displayName)
     {
         InstallLocation = installLocation;
         HandledAction = handledAction;
-        HandledParameter = handledParameter;
         DisplayName = displayName;
     }
 
@@ -33,14 +30,9 @@ public abstract class GameFinder_BaseResult
     public FileSystemPath InstallLocation { get; }
 
     /// <summary>
-    /// Optional parameter for the <see cref="HandledAction"/>
-    /// </summary>
-    public object? HandledParameter { get; }
-
-    /// <summary>
     /// An optional action to add when the item gets handled
     /// </summary>
-    public Action<FileSystemPath, object?>? HandledAction { get; }
+    public Action<FileSystemPath>? HandledAction { get; }
 
     /// <summary>
     /// The found item display name
