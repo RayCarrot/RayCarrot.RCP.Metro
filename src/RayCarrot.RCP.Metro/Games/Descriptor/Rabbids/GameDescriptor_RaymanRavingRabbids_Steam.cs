@@ -18,6 +18,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
     public override string BackupName => "Rayman Raving Rabbids";
     public override string DefaultFileName => "CheckApplication.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;
+
     public override string SteamID => "15080";
 
     #endregion

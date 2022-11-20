@@ -20,6 +20,8 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
     public override string DisplayName => "Rayman 1 Minigames";
     public override string DefaultFileName => "RayGames.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.Rayman1Minigames;
+
     public override bool CanBeLocated => false;
     public override bool CanBeDownloaded => true;
     public override IList<Uri> DownloadURLs => new Uri[]

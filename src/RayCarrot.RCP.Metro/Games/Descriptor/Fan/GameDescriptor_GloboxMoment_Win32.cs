@@ -19,6 +19,8 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override string BackupName => "Globox Moment";
     public override string DefaultFileName => "Globox Moment.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.GloboxMoment;
+
     // TODO-14: Should we be removing this?
     public override IEnumerable<FileSystemPath> UninstallFiles => new[]
     {

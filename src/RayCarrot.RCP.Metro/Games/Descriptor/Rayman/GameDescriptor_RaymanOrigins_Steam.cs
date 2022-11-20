@@ -21,6 +21,8 @@ public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
     public override string BackupName => "Rayman Origins";
     public override string DefaultFileName => "Rayman Origins.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanOrigins;
+
     public override bool HasArchives => true;
 
     public override string SteamID => "207490";

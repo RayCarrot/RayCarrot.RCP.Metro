@@ -24,6 +24,8 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
     public override string BackupName => "Rayman Fiesta Run (Preload)";
     public override string DefaultFileName => "RFR_WinRT_OEM.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanFiestaRun;
+
     public override string PackageName => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition";
     public override string FullPackageName => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition_dbgk1hhpxymar";
 

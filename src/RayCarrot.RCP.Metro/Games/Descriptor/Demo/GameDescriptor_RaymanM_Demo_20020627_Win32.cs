@@ -11,12 +11,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescriptor
 {
-    #region Protected Properties
-
-    protected override string IconName => "RaymanMDemo";
-
-    #endregion
-
     #region Public Properties
 
     public override string Id => "RaymanM_Demo_20020627_Win32";
@@ -28,6 +22,8 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     public override string DisplayName => "Rayman M Demo (2002/06/27)";
     public override string BackupName => "Rayman M Demo";
     public override string DefaultFileName => "RaymanM.exe";
+
+    public override GameIconAsset Icon => GameIconAsset.RaymanM_Demo;
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 

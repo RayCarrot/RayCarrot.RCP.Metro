@@ -18,6 +18,8 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman Redemption";
     public override string DefaultFileName => "Rayman Redemption.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanRedemption;
+
     #endregion
 
     #region Public Methods

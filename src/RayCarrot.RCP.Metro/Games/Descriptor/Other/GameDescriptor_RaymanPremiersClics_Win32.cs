@@ -15,5 +15,7 @@ public sealed class GameDescriptor_RaymanPremiersClics_Win32 : Win32GameDescript
     public override string DisplayName => "Rayman Premiers Clics";
     public override string DefaultFileName => "RAYMAN.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanPremiersClics;
+
     #endregion
 }

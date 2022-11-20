@@ -21,6 +21,8 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override string BackupName => "Tonic Trouble Special Edition";
     public override string DefaultFileName => "MaiD3Dvr.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.TonicTroubleSpecialEdition;
+
     public override bool HasArchives => true;
 
     #endregion

@@ -22,6 +22,8 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman M";
     public override string DefaultFileName => "RaymanM.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanM;
+
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
     public override bool HasGameInstaller => true;

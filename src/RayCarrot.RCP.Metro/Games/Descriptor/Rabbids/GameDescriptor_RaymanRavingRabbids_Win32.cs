@@ -18,6 +18,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override string BackupName => "Rayman Raving Rabbids";
     public override string DefaultFileName => "CheckApplication.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;
+
     #endregion
 
     #region Public Methods

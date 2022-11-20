@@ -34,15 +34,6 @@ public abstract class GameDescriptor
 
     #endregion
 
-    #region Protected Properties
-
-    /// <summary>
-    /// The file name (without extensions) for the icon
-    /// </summary>
-    protected virtual string IconName => $"{LegacyGame}"; // TODO-14: Use enum for this like with banner
-
-    #endregion
-
     #region Public Properties
 
     /// <summary>
@@ -109,15 +100,21 @@ public abstract class GameDescriptor
     /// </summary>
     public abstract string DefaultFileName { get; } // TODO-14: Remove from here - not all games have an exe!
 
+    // TODO-14: Remove from here and normalize
     /// <summary>
-    /// The icon source for the game
+    /// The icon source for the game icon asset
     /// </summary>
-    public string IconSource => $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{IconName}.png";
+    public string IconSource => $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{Icon.GetAttribute<ImageFileAttribute>()!.FileName}";
 
     /// <summary>
-    /// The game banner image
+    /// The game icon asset
     /// </summary>
-    public virtual GameBanner Banner => GameBanner.Default;
+    public abstract GameIconAsset Icon { get; }
+
+    /// <summary>
+    /// The game banner asset
+    /// </summary>
+    public virtual GameBannerAsset Banner => GameBannerAsset.Default;
 
     /// <summary>
     /// The group names to use for the options, config and utility dialog

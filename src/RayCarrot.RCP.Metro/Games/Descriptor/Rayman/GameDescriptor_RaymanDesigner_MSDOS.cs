@@ -22,6 +22,8 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman Designer";
     public override string DefaultFileName => "RAYKIT.bat";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanDesigner;
+
     public override bool HasArchives => true;
 
     public override string ExecutableName => "RAYKIT.EXE";

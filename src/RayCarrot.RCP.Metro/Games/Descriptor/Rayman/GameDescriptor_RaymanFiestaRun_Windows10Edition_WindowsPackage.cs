@@ -24,6 +24,8 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     public override string BackupName => "Rayman Fiesta Run (Win10)";
     public override string DefaultFileName => "RFRXAML.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanFiestaRun;
+
     public override string PackageName => "Ubisoft.RaymanFiestaRunWindows10Edition";
     public override string FullPackageName => "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw";
 

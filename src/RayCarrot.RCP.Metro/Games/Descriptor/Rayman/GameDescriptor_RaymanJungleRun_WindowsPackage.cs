@@ -24,6 +24,8 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override string BackupName => "Rayman Jungle Run";
     public override string DefaultFileName => "RO1Mobile.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanJungleRun;
+
     public override string PackageName => "UbisoftEntertainment.RaymanJungleRun";
     public override string FullPackageName => "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
 

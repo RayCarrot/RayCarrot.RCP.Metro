@@ -15,5 +15,7 @@ public sealed class GameDescriptor_RaymanActivityCenter_Win32 : Win32GameDescrip
     public override string DisplayName => "Rayman Activity Center";
     public override string DefaultFileName => "Rayman.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanActivityCenter;
+
     #endregion
 }

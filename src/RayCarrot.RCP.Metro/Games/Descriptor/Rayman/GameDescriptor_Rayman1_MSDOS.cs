@@ -19,6 +19,8 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman 1";
     public override string DefaultFileName => "Rayman.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.Rayman1;
+
     public override string ExecutableName => "RAYMAN.EXE";
     public override string RaymanForeverFolderName => "Rayman";
 

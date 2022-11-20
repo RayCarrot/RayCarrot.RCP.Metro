@@ -8,12 +8,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win32GameDescriptor
 {
-    #region Protected Properties
-
-    protected override string IconName => $"{Games.RaymanRavingRabbids}";
-
-    #endregion
-
     #region Public Properties
 
     public override string Id => "RaymanRavingRabbids_Demo_20061106_Win32";
@@ -24,6 +18,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
 
     public override string DisplayName => "Rayman Raving Rabbids Demo (2006/11/06)";
     public override string DefaultFileName => "Jade_enr.exe";
+
+    public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;
 
     public override bool CanBeDownloaded => true;
     public override IList<Uri> DownloadURLs => new Uri[]

@@ -24,6 +24,8 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override string BackupName => "Rabbids Big Bang";
     public override string DefaultFileName => "Template.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RabbidsBigBang;
+
     public override string PackageName => "UbisoftEntertainment.RabbidsBigBang";
     public override string FullPackageName => "UbisoftEntertainment.RabbidsBigBang_dbgk1hhpxymar";
 

@@ -1,7 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Add more banner images
-public enum GameBanner
+public enum GameBannerAsset
 {
     [ImageFile("Default.png")] 
     Default,

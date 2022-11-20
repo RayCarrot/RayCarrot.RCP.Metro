@@ -15,5 +15,7 @@ public sealed class GameDescriptor_RaymanDictées_Win32 : Win32GameDescriptor
     public override string DisplayName => "Rayman Dictées";
     public override string DefaultFileName => "Dictee.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanDictées;
+
     #endregion
 }

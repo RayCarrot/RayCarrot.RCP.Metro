@@ -19,6 +19,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override string BackupName => "Rayman Raving Rabbids 2";
     public override string DefaultFileName => "Jade.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids2;
+
     #endregion
 
     #region Protected Methods

@@ -18,6 +18,8 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman Bowling 2";
     public override string DefaultFileName => "Rayman Bowling 2.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanBowling2;
+
     #endregion
 
     #region Public Methods

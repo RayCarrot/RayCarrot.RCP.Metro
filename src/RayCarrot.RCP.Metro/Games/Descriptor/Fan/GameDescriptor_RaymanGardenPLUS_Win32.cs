@@ -19,6 +19,8 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
 
     public override string DefaultFileName => "rayman-garden-plus.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanGardenPLUS;
+
     #endregion
 
     #region Public Methods

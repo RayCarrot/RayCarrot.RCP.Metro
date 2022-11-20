@@ -23,7 +23,8 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
     public override string BackupName => "Rayman 2";
     public override string DefaultFileName => "Rayman2.exe";
 
-    public override GameBanner Banner => GameBanner.Rayman2;
+    public override GameIconAsset Icon => GameIconAsset.Rayman2;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman2;
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 

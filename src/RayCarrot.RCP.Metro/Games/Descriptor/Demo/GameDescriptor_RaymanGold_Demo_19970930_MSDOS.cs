@@ -11,12 +11,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MSDOSGameDescriptor
 {
-    #region Protected Properties
-
-    protected override string IconName => "RaymanGoldDemo";
-
-    #endregion
-
     #region Public Properties
 
     public override string Id => "RaymanGold_Demo_19970930_MSDOS";
@@ -27,6 +21,8 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MSDOSGameDes
 
     public override string DisplayName => "Rayman Gold Demo (1997/09/30)";
     public override string DefaultFileName => "Rayman.bat";
+
+    public override GameIconAsset Icon => GameIconAsset.RaymanGold_Demo;
 
     public override bool CanBeDownloaded => true;
     public override IList<Uri> DownloadURLs => new Uri[]

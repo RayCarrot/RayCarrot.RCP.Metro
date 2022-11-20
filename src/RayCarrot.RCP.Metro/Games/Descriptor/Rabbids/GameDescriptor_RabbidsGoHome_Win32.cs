@@ -18,6 +18,8 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     public override string BackupName => "Rabbids Go Home";
     public override string DefaultFileName => Services.Data.Game_RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RabbidsGoHome;
+
     #endregion
 
     #region Protected Methods

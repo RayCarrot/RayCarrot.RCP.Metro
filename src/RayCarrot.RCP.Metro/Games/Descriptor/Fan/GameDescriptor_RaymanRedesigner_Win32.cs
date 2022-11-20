@@ -17,6 +17,8 @@ public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
     public override string DisplayName => "Rayman ReDesigner";
     public override string DefaultFileName => "Rayman ReDesigner.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanRedesigner;
+
     #endregion
 
     #region Public Methods

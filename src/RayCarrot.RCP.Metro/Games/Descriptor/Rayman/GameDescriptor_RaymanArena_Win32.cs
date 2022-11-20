@@ -22,6 +22,8 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override string BackupName => "Rayman Arena";
     public override string DefaultFileName => "R_Arena.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanArena;
+
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
     public override bool HasGameInstaller => true;

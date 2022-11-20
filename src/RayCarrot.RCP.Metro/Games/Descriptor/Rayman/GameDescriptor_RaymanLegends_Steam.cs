@@ -21,7 +21,8 @@ public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
     public override string BackupName => "Rayman Legends";
     public override string DefaultFileName => "Rayman Legends.exe";
 
-    public override GameBanner Banner => GameBanner.RaymanLegends;
+    public override GameIconAsset Icon => GameIconAsset.RaymanLegends;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanLegends;
 
     public override bool HasArchives => true;
 

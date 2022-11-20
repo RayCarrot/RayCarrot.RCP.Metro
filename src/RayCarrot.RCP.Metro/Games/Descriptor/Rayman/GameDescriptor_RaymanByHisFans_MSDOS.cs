@@ -22,6 +22,8 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman by his Fans";
     public override string DefaultFileName => "rayfan.bat";
 
+    public override GameIconAsset Icon => GameIconAsset.RaymanByHisFans;
+
     public override bool HasArchives => true;
 
     public override string ExecutableName => "RAYFAN.EXE";

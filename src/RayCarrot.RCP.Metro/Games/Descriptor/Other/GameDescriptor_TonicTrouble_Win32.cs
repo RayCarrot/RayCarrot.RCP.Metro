@@ -21,6 +21,8 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     public override string BackupName => "Tonic Trouble";
     public override string DefaultFileName => "TonicTrouble.exe";
 
+    public override GameIconAsset Icon => GameIconAsset.TonicTrouble;
+
     public override bool HasArchives => true;
 
     #endregion

@@ -22,6 +22,8 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
     public override string BackupName => "Rayman 60 Levels";
     public override string DefaultFileName => "Rayman.bat";
 
+    public override GameIconAsset Icon => GameIconAsset.Rayman60Levels;
+
     public override bool HasArchives => true;
 
     public override string ExecutableName => "RAYPLUS.EXE";

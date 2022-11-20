@@ -36,6 +36,8 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
     public override string BackupName => throw new Exception("A generic backup name can not be obtained for an educational DOS game due to it being a collection of multiple games");
     public override string DefaultFileName => Services.Data.Game_EducationalDosBoxGames?.FirstOrDefault()?.LaunchName ?? String.Empty;
 
+    public override GameIconAsset Icon => GameIconAsset.EducationalDos;
+
     public override bool AllowPatching => false;
     public override bool HasArchives => true;
 
