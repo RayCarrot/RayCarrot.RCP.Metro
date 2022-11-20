@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameGroupViewModel : BaseViewModel
+public class InstalledGameGroupViewModel : BaseViewModel
 {
-    public GameGroupViewModel(string iconSource, string displayName, IEnumerable<GameInstallation> gameInstallations)
+    public InstalledGameGroupViewModel(string iconSource, LocalizedString displayName, IEnumerable<GameInstallation> gameInstallations)
     {
         IconSource = iconSource;
         DisplayName = displayName;
@@ -17,7 +17,7 @@ public class GameGroupViewModel : BaseViewModel
     private InstalledGameViewModel? _selectedInstalledGame;
 
     public string IconSource { get; }
-    public string DisplayName { get; }
+    public LocalizedString DisplayName { get; }
     public ObservableCollection<InstalledGameViewModel> InstalledGames { get; }
 
     public bool IsSelected
@@ -42,6 +42,6 @@ public class GameGroupViewModel : BaseViewModel
 
     public bool MatchesFilter(string filter)
     {
-        return DisplayName.IndexOf(filter, StringComparison.InvariantCultureIgnoreCase) != -1;
+        return DisplayName.Value.IndexOf(filter, StringComparison.InvariantCultureIgnoreCase) != -1;
     }
 }

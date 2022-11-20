@@ -2,6 +2,8 @@
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-UPDATE: Add attribute to use on enum type which defines the folder the assets are stored in
+
 /// <summary>
 /// Defines the image file name associated with the field
 /// </summary>

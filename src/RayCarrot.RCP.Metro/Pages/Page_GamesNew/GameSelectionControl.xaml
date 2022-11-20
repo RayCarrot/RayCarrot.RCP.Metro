@@ -1,11 +1,10 @@
 ﻿<UserControl x:Class="RayCarrot.RCP.Metro.GameSelectionControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="300" 
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
@@ -48,7 +47,7 @@
             <ItemsControl ItemsSource="{Binding Path=FilteredGameCategories, Mode=OneTime}"
                           d:ItemsSource="{d:SampleData ItemCount=2}">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type local:GameCategoryViewModel}">
+                    <DataTemplate DataType="{x:Type local:InstalledGameCategoryViewModel}">
                         <Expander metro:HeaderedControlHelper.HeaderMargin="0"
                                   Padding="2 4"
                                   Margin="0 4"
@@ -69,7 +68,7 @@
 
                                     <TextBlock Grid.Column="1" 
                                                FontSize="14"
-                                               Text="{Binding Path=DisplayName, Mode=OneTime}" 
+                                               Text="{Binding Path=DisplayName.Value}" 
                                                Margin="0 0 4 0" />
 
                                     <Separator Grid.Column="2"
@@ -90,7 +89,7 @@
                                     </Style>
                                 </ListBox.ItemContainerStyle>
                                 <ListBox.ItemTemplate>
-                                    <DataTemplate DataType="{x:Type local:GameGroupViewModel}">
+                                    <DataTemplate DataType="{x:Type local:InstalledGameGroupViewModel}">
                                         <StackPanel>
                                             <!-- Game title -->
                                             <Grid Margin="4 8">
@@ -109,7 +108,7 @@
                                                            TextWrapping="Wrap"
                                                            VerticalAlignment="Center"
                                                            FontSize="14"
-                                                           Text="{Binding Path=DisplayName, Mode=OneTime}" />
+                                                           Text="{Binding Path=DisplayName.Value}" />
 
                                             </Grid>
 
@@ -137,13 +136,17 @@
                                                                 <ColumnDefinition Width="*" />
                                                             </Grid.ColumnDefinitions>
 
-                                                            <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                                        Kind="{Binding Path=IconKind, Mode=OneTime}"
-                                                                                        d:Kind="MicrosoftWindows"/>
+                                                            <Image Grid.Column="0"
+                                                                   Source="{Binding Path=PlatformIconSource, Mode=OneTime}" 
+                                                                   VerticalAlignment="Center"
+                                                                   Width="20"
+                                                                   Margin="0 2"
+                                                                   ToolTip="{Binding Path=PlatformDisplayName.Value}" />
 
                                                             <TextBlock Grid.Column="1"
-                                                                       Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                                                       Text="{Binding Path=DisplayName.Value}"
                                                                        d:Text="Rayman 2"
+                                                                       VerticalAlignment="Center"
                                                                        TextWrapping="Wrap"
                                                                        Margin="8 0 0 0"/>
 
@@ -187,6 +190,7 @@
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal">
 
+                <!-- TODO-UPDATE: Implement -->
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         ToolTip="Find games"
                         Margin="0 0 4 0"

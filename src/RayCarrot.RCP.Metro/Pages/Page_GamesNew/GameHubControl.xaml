@@ -87,19 +87,20 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <!-- TODO-UPDATE: Add tooltip -->
-                                <iconPacks:PackIconMaterial Grid.Column="0" 
-                                                            VerticalAlignment="Center"
-                                                            Width="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={local:DoubleAdditionConverter}, ConverterParameter=-4}" 
-                                                            Height="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={local:DoubleAdditionConverter}, ConverterParameter=-4}"
-                                                            Kind="{Binding Path=IconKind, Mode=OneTime}"
-                                                            d:Kind="MicrosoftWindows"/>
+                                <Image Grid.Column="0"
+                                       Source="{Binding Path=PlatformIconSource, Mode=OneTime}" 
+                                       d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GamePlatformIcons/Win32.png"
+                                       Width="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={local:DoubleAdditionConverter}, ConverterParameter=-4}" 
+                                       Height="{Binding Path=ActualHeight, ElementName=GameTitleTextBlock, Converter={local:DoubleAdditionConverter}, ConverterParameter=-4}"
+                                       VerticalAlignment="Center"
+                                       Margin="0 2"
+                                       ToolTip="{Binding Path=PlatformDisplayName.Value}" />
 
                                 <Viewbox Grid.Column="1"
                                          StretchDirection="DownOnly">
                                     <TextBlock x:Name="GameTitleTextBlock"
                                                Margin="8 0 0 0"
-                                               Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                               Text="{Binding Path=DisplayName.Value}"
                                                d:Text="Rayman 2"
                                                VerticalAlignment="Center" 
                                                FontSize="18" />

@@ -27,9 +27,9 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
         // Set properties
         AsyncLock = new AsyncLock();
 
-        GameCategories = new ObservableCollection<GameCategoryViewModel>();
+        GameCategories = new ObservableCollection<InstalledGameCategoryViewModel>();
         var source = CollectionViewSource.GetDefaultView(GameCategories);
-        source.Filter = p => !((GameCategoryViewModel)p).FilteredGameGroups.IsEmpty;
+        source.Filter = p => !((InstalledGameCategoryViewModel)p).FilteredGameGroups.IsEmpty;
         FilteredGameCategories = source;
 
         // Create commands
@@ -82,10 +82,16 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
         }
     }
 
-    public ObservableCollection<GameCategoryViewModel> GameCategories { get; }
+    public ObservableCollection<InstalledGameCategoryViewModel> GameCategories { get; }
     public ICollectionView FilteredGameCategories { get; }
 
     public InstalledGameViewModel? SelectedInstalledGame { get; set; }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override Task InitializeAsync() => RefreshAsync();
 
     #endregion
 
@@ -93,13 +99,11 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
 
     public void UpdateFilteredCollections()
     {
-        foreach (GameCategoryViewModel gameCategory in GameCategories)
+        foreach (InstalledGameCategoryViewModel gameCategory in GameCategories)
             gameCategory.UpdateFilteredCollections();
 
         FilteredGameCategories.Refresh();
     }
-
-    protected override Task InitializeAsync() => RefreshAsync();
 
     public async Task RefreshAsync()
     {
@@ -107,22 +111,32 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
         {
             try
             {
+                // Clear the categories
                 GameCategories.Clear();
 
-                foreach (var categorizedGames in GamesManager.EnumerateInstalledGames().GroupBy(x => x.GameDescriptor.Category))
+                // Enumerate every category of installed games
+                foreach (var categorizedGames in GamesManager.EnumerateInstalledGames().
+                             OrderBy(x => x.GameDescriptor.Category). // TODO-14: Normalize games sorting
+                             GroupBy(x => x.GameDescriptor.Category))
                 {
-                    var category = new GameCategoryViewModel(categorizedGames.Key.ToString(), () => GameFilter);
+                    // Create a view model
+                    GameCategoryInfoAttribute categoryInfo = categorizedGames.Key.GetInfo();
+                    InstalledGameCategoryViewModel category = new(categoryInfo.DisplayName, () => GameFilter);
                     GameCategories.Add(category);
 
+                    // Enumerate every group of installed games
                     foreach (var gameInstallations in categorizedGames.
-                                 OrderBy(x => x.GameDescriptor.Game).
+                                 OrderBy(x => x.GameDescriptor.Game). // TODO-14: Normalize games sorting
                                  GroupBy(x => x.GameDescriptor.Game))
                     {
-                        // TODO-UPDATE: Get most common icon?
-                        string iconSource = gameInstallations.First().GameDescriptor.IconSource;
-                        category.GameGroups.Add(new GameGroupViewModel(
-                            iconSource: iconSource, 
-                            displayName: gameInstallations.First().GameDescriptor.DisplayName,
+                        // Get the game info
+                        GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
+
+                        // Add the group of game installations
+                        category.GameGroups.Add(new InstalledGameGroupViewModel(
+                            // TODO-UPDATE: Normalize
+                            iconSource: $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{gameInfo.GameIcon.GetAttribute<ImageFileAttribute>()!.FileName}",
+                            displayName: gameInfo.DisplayName,
                             gameInstallations: gameInstallations));
                     }
                 }

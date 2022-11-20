@@ -36,9 +36,9 @@ public partial class GameSelectionControl : UserControl
             
         ViewModel.SelectedInstalledGame = vm;
 
-        foreach (GameCategoryViewModel gameCategoryViewModel in ViewModel.GameCategories)
+        foreach (InstalledGameCategoryViewModel gameCategoryViewModel in ViewModel.GameCategories)
         {
-            foreach (GameGroupViewModel gameGroupViewModel in gameCategoryViewModel.GameGroups)
+            foreach (InstalledGameGroupViewModel gameGroupViewModel in gameCategoryViewModel.GameGroups)
             {
                 gameGroupViewModel.SelectedInstalledGame = null;
             }

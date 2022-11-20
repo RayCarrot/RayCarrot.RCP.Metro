@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
-using MahApps.Metro.IconPacks;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -16,20 +15,16 @@ public class InstalledGameViewModel : BaseViewModel
 
     public InstalledGameViewModel(GameInstallation gameInstallation)
     {
+        // Set properties
         GameInstallation = gameInstallation;
         DisplayName = gameInstallation.GameDescriptor.DisplayName;
 
-        // TODO-UPDATE: Don't do this here
-        IconKind = gameInstallation.GameDescriptor.Platform switch
-        {
-            GamePlatform.MSDOS => PackIconMaterialKind.DesktopClassic,
-            GamePlatform.Win32 => PackIconMaterialKind.MicrosoftWindows,
-            GamePlatform.Steam => PackIconMaterialKind.Steam,
-            GamePlatform.WindowsPackage => PackIconMaterialKind.Package,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-
         // TODO-14: Don't hard-code WPF paths like this as they're hard to find when reorganizing solution
+        // Get and set platform info
+        GamePlatformInfoAttribute platformInfo = gameInstallation.GameDescriptor.Platform.GetInfo();
+        PlatformDisplayName = platformInfo.DisplayName;
+        PlatformIconSource = $"{AppViewModel.WPFApplicationBasePath}Img/GamePlatformIcons/{platformInfo.Icon.GetAttribute<ImageFileAttribute>()!.FileName}";
+
         string bannerFileName = gameInstallation.GameDescriptor.Banner.GetAttribute<ImageFileAttribute>()?.FileName ?? "Default.png";
         GameBannerImageSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameBanners/{bannerFileName}";
 
@@ -64,8 +59,10 @@ public class InstalledGameViewModel : BaseViewModel
 
     public GameInstallation GameInstallation { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
-    public string DisplayName { get; }
-    public PackIconMaterialKind IconKind { get; } // TODO-UPDATE: Use GenericIconKind
+    public LocalizedString DisplayName { get; }
+
+    public LocalizedString PlatformDisplayName { get; }
+    public string PlatformIconSource { get; }
 
     public string IconSource => GameDescriptor.IconSource;
     public bool IsDemo => GameDescriptor.IsDemo;

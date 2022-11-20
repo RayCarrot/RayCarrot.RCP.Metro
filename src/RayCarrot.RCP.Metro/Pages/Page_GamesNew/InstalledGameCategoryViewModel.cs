@@ -5,20 +5,20 @@ using System.Windows.Data;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameCategoryViewModel : BaseViewModel
+public class InstalledGameCategoryViewModel : BaseViewModel
 {
-    public GameCategoryViewModel(string displayName, Func<string> getGameFilter)
+    public InstalledGameCategoryViewModel(LocalizedString displayName, Func<string> getGameFilter)
     {
         DisplayName = displayName;
-        GameGroups = new ObservableCollection<GameGroupViewModel>();
+        GameGroups = new ObservableCollection<InstalledGameGroupViewModel>();
         var source = CollectionViewSource.GetDefaultView(GameGroups);
-        source.Filter = p => ((GameGroupViewModel)p).MatchesFilter(getGameFilter());
+        source.Filter = p => ((InstalledGameGroupViewModel)p).MatchesFilter(getGameFilter());
         FilteredGameGroups = source;
     }
 
-    public string DisplayName { get; }
+    public LocalizedString DisplayName { get; }
     public bool IsExpanded { get; set; } = true;
-    public ObservableCollection<GameGroupViewModel> GameGroups { get; }
+    public ObservableCollection<InstalledGameGroupViewModel> GameGroups { get; }
     public ICollectionView FilteredGameGroups { get; }
 
     public void UpdateFilteredCollections()
