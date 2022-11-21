@@ -31,16 +31,22 @@ public partial class GameSelectionControl : UserControl
 
     private void GameGroupListBoxItem_OnSelected(object sender, RoutedEventArgs e)
     {
-        if (sender is not ListBoxItem { DataContext: InstalledGameViewModel vm }) 
+        if (sender is not ListBoxItem { DataContext: InstalledGameViewModel vm } item)
             return;
-            
+
+        // Scroll the item into view
+        item.BringIntoView();
+
+        // Select the item in the main view model
         ViewModel.SelectedInstalledGame = vm;
 
+        // Deselect other games
         foreach (InstalledGameCategoryViewModel gameCategoryViewModel in ViewModel.GameCategories)
         {
             foreach (InstalledGameGroupViewModel gameGroupViewModel in gameCategoryViewModel.GameGroups)
             {
-                gameGroupViewModel.SelectedInstalledGame = null;
+                if (gameGroupViewModel.SelectedInstalledGame != vm)
+                    gameGroupViewModel.SelectedInstalledGame = null;
             }
         }
     }
