@@ -98,6 +98,7 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
 
+                                                <!-- TODO-UPDATE: This should be demo for demo category -->
                                                 <local:GameIcon Grid.Column="0"
                                                                 IconSize="Small"
                                                                 Source="{Binding Path=IconSource, Mode=OneTime}"
@@ -197,6 +198,7 @@
                         local:ButtonAssist.IconKind="Magnify" />
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding Path=AddGamesCommand, Mode=OneTime}"
                         ToolTip="Add game"
                         local:ButtonAssist.IconKind="PlusBoxOutline" />
 

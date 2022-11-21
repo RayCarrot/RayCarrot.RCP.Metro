@@ -161,6 +161,7 @@ public class GamesManager
                 // Get applied utilities
                 IList<string> appliedUtilities = await gameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(gameInstallation);
 
+                // TODO-UPDATE: This crashes for packaged apps since it tries to create the patch folder
                 // Warn about applied utilities, if any
                 if (appliedUtilities.Any() && !await MessageUI.DisplayMessageAsync(
                         $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}" +

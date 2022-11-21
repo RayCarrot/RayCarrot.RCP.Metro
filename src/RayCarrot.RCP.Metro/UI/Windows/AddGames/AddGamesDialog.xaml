@@ -1,0 +1,150 @@
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.AddGamesDialog"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                            xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            d:DesignWidth="800" d:DesignHeight="600"
+                            mc:Ignorable="d"
+                            d:DataContext="{d:DesignInstance local:AddGamesViewModel}">
+
+    <!-- TODO-UPDATE: Localize -->
+
+    <!-- Game categories -->
+    <mah:MetroAnimatedTabControl FocusVisualStyle="{x:Null}"
+                                 Margin="10"
+                                 ItemsSource="{Binding Path=GameCategories, Mode=OneTime}"
+                                 d:ItemsSource="{d:SampleData ItemCount=3}">
+        <mah:MetroAnimatedTabControl.ItemContainerStyle>
+            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                <Setter Property="Header" Value="{Binding Path=DisplayName.Value}" />
+                <Setter Property="local:TabItemAssist.IconKind" Value="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}" />
+                <Setter Property="local:TabItemAssist.IconForeground" Value="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}" />
+            </Style>
+        </mah:MetroAnimatedTabControl.ItemContainerStyle>
+
+        <mah:MetroAnimatedTabControl.ContentTemplate>
+            <DataTemplate DataType="{x:Type local:GameCategoryViewModel}">
+                <!-- Game groups -->
+                <ItemsControl ItemsSource="{Binding Path=GameGroups, Mode=OneTime}"
+                              d:ItemsSource="{d:SampleData ItemCount=3}"
+                              Style="{StaticResource RCP.Styles.ItemsControl.Virtualized}"
+                              VirtualizingPanel.ScrollUnit="Pixel">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:Card Margin="8">
+                                <StackPanel>
+                                 
+                                    <!-- Game group title -->
+                                    <Grid Margin="0 0 0 8" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- TODO-UPDATE: This should be demo for demo category -->
+                                        <local:GameIcon Grid.Column="0"
+                                                        IconSize="Small"
+                                                        Source="{Binding Path=IconSource, Mode=OneTime}"
+                                                        d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GameIcons/Rayman2.png"
+                                                        IsDemo="False"
+                                                        Margin="0 0 8 0" />
+
+                                        <TextBlock Grid.Column="1" 
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14"
+                                                   Text="{Binding Path=DisplayName.Value}" />
+
+                                    </Grid>
+
+                                    <ItemsControl ItemsSource="{Binding Path=Games, Mode=OneTime}"
+                                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+
+                                                    <Separator Visibility="{Binding RelativeSource={RelativeSource PreviousData}, Converter={local:InvertedObjectNullToVisibilityConverter}}" />
+
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <!-- Platform icon -->
+                                                        <Image Grid.Column="0"
+                                                               Source="{Binding Path=PlatformIconSource, Mode=OneTime}" 
+                                                               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GamePlatformIcons/Win32.png"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Margin="0 2"
+                                                               ToolTip="{Binding Path=PlatformDisplayName.Value}" />
+
+                                                        <!-- Game title -->
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{Binding Path=DisplayName.Value}"
+                                                                   TextWrapping="Wrap"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="8 0 0 0"/>
+
+                                                        <!-- Actions -->
+                                                        <StackPanel Grid.Column="2"
+                                                                    IsEnabled="{Binding Path=IsAvailable}"
+                                                                    Orientation="Horizontal">
+
+                                                            <!-- TODO-UPDATE: Implement -->
+                                                            <!-- Download -->
+                                                            <Button Margin="4 0 0 0"
+                                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                                    Content="Download"
+                                                                    local:ButtonAssist.IconKind="CloudDownloadOutline"
+                                                                    Visibility="{Binding Path=GameDescriptor.CanBeDownloaded, Converter={local:BooleanToVisibilityConverter}}" />
+
+                                                            <!-- TODO-UPDATE: Implement -->
+                                                            <!-- Install from disc -->
+                                                            <Button Margin="4 0 0 0"
+                                                                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                                                                    Content="Install"
+                                                                    local:ButtonAssist.IconKind="Disc"
+                                                                    Visibility="{Binding Path=GameDescriptor.HasGameInstaller, Converter={local:BooleanToVisibilityConverter}}" />
+
+                                                            <!-- Locate -->
+                                                            <Button Margin="4 0 0 0"
+                                                                    Style="{StaticResource RCP.Styles.Button.Flat}" 
+                                                                    Content="{Resx GameDisplay_Locate}"
+                                                                    local:ButtonAssist.IconKind="FolderOutline"
+                                                                    Visibility="{Binding Path=CanLocate, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
+                                                                    Command="{Binding Path=LocateCommand, Mode=OneTime}" />
+
+                                                            <!-- Overflow -->
+                                                            <local:OverflowMenu Margin="4 0 0 0">
+                                                                <!-- TODO-UPDATE: Add purchase options -->
+                                                            </local:OverflowMenu>
+
+                                                        </StackPanel>
+
+                                                    </Grid>
+
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </local:Card>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DataTemplate>
+        </mah:MetroAnimatedTabControl.ContentTemplate>
+
+    </mah:MetroAnimatedTabControl>
+
+</local:WindowContentControl>

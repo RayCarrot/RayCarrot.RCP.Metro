@@ -19,10 +19,12 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
 
     public Page_GamesNew_ViewModel(
         AppViewModel app, 
-        GamesManager gamesManager) : base(app)
+        GamesManager gamesManager, 
+        AppUIManager ui) : base(app)
     {
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
+        UI = ui ?? throw new ArgumentNullException(nameof(ui));
 
         // Set properties
         AsyncLock = new AsyncLock();
@@ -34,6 +36,7 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
 
         // Create commands
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
+        AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
     }
 
     #endregion
@@ -47,6 +50,7 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
     #region Commands
 
     public ICommand RefreshGamesCommand { get; }
+    public ICommand AddGamesCommand { get; }
 
     #endregion
 
@@ -65,6 +69,7 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
     #region Services
 
     private GamesManager GamesManager { get; }
+    private AppUIManager UI { get; }
 
     #endregion
 
@@ -154,6 +159,11 @@ public class Page_GamesNew_ViewModel : BasePageViewModel
                 UpdateFilteredCollections();
             }
         }
+    }
+
+    public Task AddGamesAsync()
+    {
+        return UI.ShowAddGamesAsync();
     }
 
     #endregion

@@ -99,6 +99,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
 
     public override async Task<FileSystemPath?> LocateAsync()
     {
+        // TODO-14: Allow user to select install dir if not auto found in Registry
         FileSystemPath installDir;
 
         try

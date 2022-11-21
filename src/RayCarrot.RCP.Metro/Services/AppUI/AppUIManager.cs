@@ -349,5 +349,22 @@ public class AppUIManager
         await Dialog.ShowWindowAsync(dialog);
     }
 
+    /// <summary>
+    /// Shows a new instance of the add games dialog
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ShowAddGamesAsync()
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("An add games window was opened");
+
+        // Run on UI thread
+        // ReSharper disable once AccessToDisposedClosure
+        using AddGamesDialog dialog = Application.Current.Dispatcher.Invoke(() => new AddGamesDialog());
+        await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.DuplicateTypesNotAllowed);
+    }
+
     #endregion
 }
