@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Shell;
+using CommunityToolkit.Mvvm.Messaging;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -9,31 +9,25 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Manager for the application jump-list
 /// </summary>
-public class JumpListManager
+public class JumpListManager : IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
 {
-    public JumpListManager(AppViewModel appViewModel, AppUserData data, GamesManager gamesManager)
+    public JumpListManager(AppUserData data, GamesManager gamesManager, IMessenger messenger)
     {
-        AppViewModel = appViewModel ?? throw new ArgumentNullException(nameof(appViewModel));
+        // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
+
+        // Register for messages
+        messenger.RegisterAll(this);
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    private AppViewModel AppViewModel { get; }
     private AppUserData Data { get; }
     private GamesManager GamesManager { get; }
 
     public void Initialize()
     {
-        // Subscribe to when to refresh the jump list
-        AppViewModel.RefreshRequired += (_, e) =>
-        {
-            if (e.GameCollectionModified || e.GameInfoModified || e.JumpListModified)
-                Refresh();
-
-            return Task.CompletedTask;
-        };
         Services.InstanceData.CultureChanged += (_, _) => Refresh();
     }
 
@@ -84,4 +78,8 @@ public class JumpListManager
             }
         });
     }
+
+    public void Receive(AddedGamesMessage message) => Refresh();
+    public void Receive(RemovedGamesMessage message) => Refresh();
+    public void Receive(ModifiedGamesMessage message) => Refresh();
 }

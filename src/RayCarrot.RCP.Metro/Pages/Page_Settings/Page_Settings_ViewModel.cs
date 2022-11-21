@@ -28,7 +28,8 @@ public class Page_Settings_ViewModel : BasePageViewModel
         IAppInstanceData instanceData, 
         IMessageUIManager messageUi, 
         AppUIManager ui, 
-        GamesManager gamesManager) : base(app)
+        GamesManager gamesManager, 
+        JumpListManager jumpListManager) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
@@ -36,6 +37,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
+        JumpListManager = jumpListManager ?? throw new ArgumentNullException(nameof(jumpListManager));
 
         // Create commands
         ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
@@ -112,6 +114,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
     public IMessageUIManager MessageUI { get; }
     public AppUIManager UI { get; }
     public GamesManager GamesManager { get; }
+    private JumpListManager JumpListManager { get; }
 
     #endregion
 
@@ -188,8 +191,9 @@ public class Page_Settings_ViewModel : BasePageViewModel
         // Update the jump list items collection
         Data.App_JumpListItemIDCollection = result.IncludedItems.Select(x => x.ID).ToList();
 
+        // TODO: Perhaps find cleaner way of doing this?
         // Refresh
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.JumpList));
+        JumpListManager.Refresh();
     }
 
     /// <summary>

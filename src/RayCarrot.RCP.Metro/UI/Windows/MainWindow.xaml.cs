@@ -1,30 +1,31 @@
-﻿#nullable disable
-using NLog;
-using System;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using CommunityToolkit.Mvvm.Messaging;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The main application window
 /// </summary>
-public partial class MainWindow : BaseWindow
+public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
 {
     #region Constructor
 
-    public MainWindow(AppViewModel app, AppUserData data, MainWindowViewModel viewModel)
+    public MainWindow(AppViewModel app, AppUserData data, MainWindowViewModel viewModel, IMessenger messenger)
     {
         InitializeComponent();
 
         // Set properties
-        App = app;
-        Data = data;
-        DataContext = ViewModel = viewModel;
+        App = app ?? throw new ArgumentNullException(nameof(app));
+        Data = data ?? throw new ArgumentNullException(nameof(data));
+        DataContext = ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+
+        // Register for messages
+        messenger.RegisterAll(this);
 
         // Subscribe to events
-        App.RefreshRequired += AppGameRefreshRequiredAsync;
         Loaded += MainWindow_Loaded;
     }
 
@@ -97,18 +98,12 @@ public partial class MainWindow : BaseWindow
                 Max(x => (x.IsMaximized ? x.MinContentHeight : x.ActualContentHeight) + x.Padding.Top + x.Padding.Bottom + 80);
     }
 
+    public void Receive(AddedGamesMessage message) => RefreshProgressionPageEnabled();
+    public void Receive(RemovedGamesMessage message) => RefreshProgressionPageEnabled();
+
     #endregion
 
     #region Event Handlers
-
-    private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
-    {
-        // Disable the progression page tab when there are no games
-        if (e.GameCollectionModified)
-            RefreshProgressionPageEnabled();
-
-        return Task.CompletedTask;
-    }
 
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {

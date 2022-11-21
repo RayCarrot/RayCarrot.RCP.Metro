@@ -63,15 +63,15 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
 
         // Refresh on app refresh
-        App.RefreshRequired += async (_, e) =>
-        {
-            if (e.LaunchInfoModified && e.ModifiedGames.Any())
-                foreach (GameInstallation gameInstallation in e.ModifiedGames)
-                    await RefreshGameAsync(gameInstallation.GameDescriptor);
+        //App.RefreshRequired += async (_, e) =>
+        //{
+        //    if (e.LaunchInfoModified && e.ModifiedGames.Any())
+        //        foreach (GameInstallation gameInstallation in e.ModifiedGames)
+        //            await RefreshGameAsync(gameInstallation.GameDescriptor);
 
-            else if (e.LaunchInfoModified || e.GameCollectionModified)
-                await RefreshAsync();
-        };
+        //    else if (e.LaunchInfoModified || e.GameCollectionModified)
+        //        await RefreshAsync();
+        //};
 
         // Refresh category visibility
         RefreshCategorizedVisibility();
@@ -157,12 +157,9 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
                 return;
 
             // Add the game
-            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, path.Value);
+            await GamesManager.AddGameAsync(gameDescriptor, path.Value);
 
-            // Refresh
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
-
-            Logger.Info("The game {0} has been added", gameInstallation.Id);
+            Logger.Info("The game {0} has been added", gameDescriptor.Id);
         }
         catch (Exception ex)
         {
@@ -197,9 +194,6 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             // Set the install info
             UserData_RCPGameInstallInfo installInfo = new(gameDir, UserData_RCPGameInstallInfo.RCPInstallMode.Download);
             gameInstallation.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
-
-            // Refresh
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
 
             Logger.Trace("The game {0} has been downloaded", gameDescriptor.Id);
 

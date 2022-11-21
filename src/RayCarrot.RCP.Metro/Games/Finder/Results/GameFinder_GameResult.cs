@@ -33,6 +33,7 @@ public class GameFinder_GameResult : GameFinder_BaseResult
         // Call optional found action
         HandledAction?.Invoke(InstallLocation);
 
+        // TODO-UPDATE: We want to be able to call AddGamesAsync to avoid multiple refreshes
         // Add the game
         return await Services.Games.AddGameAsync(GameDescriptor, InstallLocation);
     }

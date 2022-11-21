@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -18,7 +19,7 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
         GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
         OptionsContent = gameInstallation.GameDescriptor.GetOptionsUI(gameInstallation);
 
-        LaunchModeChangedCommand = new AsyncRelayCommand(LaunchModeChangedAsync);
+        LaunchModeChangedCommand = new RelayCommand(LaunchModeChanged);
 
         // Check if the launch mode can be changed
         CanChangeLaunchMode = gameInstallation.GameDescriptor.SupportsGameLaunchMode;
@@ -28,9 +29,6 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
         // Refresh the game info
         RefreshGameInfo();
-
-        // Refresh the game data on certain events
-        App.RefreshRequired += App_RefreshRequiredAsync;
     }
 
     #endregion
@@ -76,20 +74,14 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
     #endregion
 
-    #region Event Handlers
-
-    private Task App_RefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
-    {
-        if (e.GameInfoModified)
-            // Refresh the game info
-            RefreshGameInfo();
-
-        return Task.CompletedTask;
-    }
-
-    #endregion
 
     #region Protected Methods
+
+    protected override Task OnGameInfoModifiedAsync()
+    {
+        RefreshGameInfo();
+        return Task.CompletedTask;
+    }
 
     /// <summary>
     /// Refreshes the game info
@@ -109,18 +101,15 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
     #region Public Methods
 
-    public async Task LaunchModeChangedAsync()
+    public void LaunchModeChanged()
     {
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.LaunchInfo));
+        Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
     }
 
     public override void Dispose()
     {
         // Dispose base
         base.Dispose();
-
-        // Unsubscribe events
-        App.RefreshRequired -= App_RefreshRequiredAsync;
 
         // Disable collection synchronization
         BindingOperations.DisableCollectionSynchronization(GameInfoItems);

@@ -121,7 +121,10 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
         {
             // Reset the game data with new install directory
             RefreshDefault();
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), RefreshFlags.JumpList));
+
+            // TODO-14: Fix
+            //await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos.GetInstallation(), 
+            //RefreshFlags.JumpList));
         }
 
         return true;

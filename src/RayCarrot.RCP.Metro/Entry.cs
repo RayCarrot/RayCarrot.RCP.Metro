@@ -1,4 +1,5 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace RayCarrot.RCP.Metro;
@@ -39,6 +40,7 @@ public static class Entry
         serviceCollection.AddTransient<IUpdaterManager, RCPUpdaterManager>();
         serviceCollection.AddTransient<GameBackups_Manager>();
         serviceCollection.AddSingleton<DeployableFilesManager>();
+        serviceCollection.AddSingleton<IMessenger, WeakReferenceMessenger>();
 
         // Add the main window
         serviceCollection.AddSingleton<MainWindow>();

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -18,12 +19,13 @@ namespace RayCarrot.RCP.Metro;
 
 public class AppDataManager
 {
-    public AppDataManager(AppUserData data, LaunchArguments args, AppViewModel app, GamesManager gamesManager)
+    public AppDataManager(AppUserData data, LaunchArguments args, AppViewModel app, GamesManager gamesManager, IMessenger messenger)
     {
         Data = data ?? throw new ArgumentNullException(nameof(data));
         Args = args ?? throw new ArgumentNullException(nameof(args));
         AppViewModel = app ?? throw new ArgumentNullException(nameof(app));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
+        Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         DataChangedHandlerAsyncLock = new AsyncLock();
     }
@@ -36,6 +38,7 @@ public class AppDataManager
     private LaunchArguments Args { get; }
     private AppViewModel AppViewModel { get; }
     private GamesManager GamesManager { get; }
+    private IMessenger Messenger { get; }
 
     private AsyncLock DataChangedHandlerAsyncLock { get; }
     
@@ -55,8 +58,8 @@ public class AppDataManager
                     break;
 
                 case nameof(AppUserData.Backup_BackupLocation):
-
-                    await AppViewModel.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
+                    // TODO-UPDATE: Avoid this being sent twice if the user moves backups
+                    Messenger.Send<BackupLocationChangedMessage>();
 
                     if (!PreviousBackupLocation.DirectoryExists)
                     {
@@ -102,7 +105,10 @@ public class AppDataManager
 
                 case nameof(AppUserData.Emu_DOSBox_Path):
                 case nameof(AppUserData.Emu_DOSBox_ConfigPath):
-                    await AppViewModel.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.GameInfo));
+                    // TODO-14: Handle this much better
+                    Messenger.Send(new ModifiedGamesMessage(GamesManager.EnumerateInstalledGames().
+                        Where(x => x.GameDescriptor.Emulator is Emulator_DOSBox).
+                        ToArray()));
                     break;
             }
         }

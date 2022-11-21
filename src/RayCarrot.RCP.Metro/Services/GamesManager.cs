@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BinarySerializer;
+using CommunityToolkit.Mvvm.Messaging;
 using NLog;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -13,10 +14,11 @@ public class GamesManager
 {
     #region Constructor
 
-    public GamesManager(AppUserData data, IMessageUIManager messageUi)
+    public GamesManager(AppUserData data, IMessageUIManager messageUi, IMessenger messenger)
     {
         Data = data ?? throw new ArgumentNullException(nameof(data));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+        Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         GameDescriptors = new GameDescriptor[]
         {
@@ -90,6 +92,7 @@ public class GamesManager
 
     private AppUserData Data { get; }
     private IMessageUIManager MessageUI { get; } // TODO-14: Remove need for this
+    private IMessenger Messenger { get; }
 
     #endregion
 
@@ -109,7 +112,6 @@ public class GamesManager
     /// </summary>
     /// <param name="gameDescriptor">The game descriptor for the game to add</param>
     /// <param name="installDirectory">The game install directory</param>
-    /// <param name="isRCPInstalled">Indicates if the game was installed through the Rayman Control Panel</param>
     /// <returns>The game installation</returns>
     public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory)
     {
@@ -142,7 +144,22 @@ public class GamesManager
         if (gameDescriptor.AutoAddToJumpList)
             Data.App_JumpListItemIDCollection.AddRange(gameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.ID));
 
+        Messenger.Send(new AddedGamesMessage(gameInstallation));
+
         return gameInstallation;
+    }
+
+    public async Task<IList<GameInstallation>> AddGamesAsync(IEnumerable<(GameDescriptor gameDescriptor, FileSystemPath installDirectory)> games)
+    {
+        List<GameInstallation> gameInstallations = new();
+
+        // TODO-UPDATE: This will send message for each - fix
+        foreach (var game in games)
+            gameInstallations.Add(await AddGameAsync(game.gameDescriptor, game.installDirectory));
+
+        Messenger.Send(new AddedGamesMessage(gameInstallations));
+
+        return gameInstallations;
     }
 
     /// <summary>
@@ -151,43 +168,10 @@ public class GamesManager
     /// <param name="gameInstallation">The game installation to remove</param>
     /// <param name="forceRemove">Indicates if the game should be force removed</param>
     /// <returns>The task</returns>
-    public async Task RemoveGameAsync(GameInstallation gameInstallation, bool forceRemove)
+    public async Task RemoveGameAsync(GameInstallation gameInstallation)
     {
         try
         {
-            // TODO-14: Move this out of here
-            if (!forceRemove)
-            {
-                // Get applied utilities
-                IList<string> appliedUtilities = await gameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(gameInstallation);
-
-                // TODO-UPDATE: This crashes for packaged apps since it tries to create the patch folder
-                // Warn about applied utilities, if any
-                if (appliedUtilities.Any() && !await MessageUI.DisplayMessageAsync(
-                        $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}" +
-                        $"{appliedUtilities.JoinItems(Environment.NewLine)}", 
-                        Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
-                    return;
-
-                // Get applied patches
-                using Context context = new RCPContext(String.Empty);
-                PatchLibrary library = new(gameInstallation.InstallLocation, Services.File);
-                PatchLibraryFile? libraryFile = null;
-
-                try
-                {
-                    libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn(ex, "Reading patch library");
-                }
-
-                // Warn about applied patches, if any
-                if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, libraryFile.Patches.Count(x => x.IsEnabled)), MessageType.Warning, true))
-                    return;
-            }
-
             // Remove the game from the jump list
             foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
                 Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
@@ -197,12 +181,23 @@ public class GamesManager
 
             // Run post game removal
             await gameInstallation.GameDescriptor.PostGameRemovedAsync(gameInstallation);
+
+            Messenger.Send(new RemovedGamesMessage(gameInstallation));
         }
         catch (Exception ex)
         {
             Logger.Fatal(ex, "Removing game");
             throw;
         }
+    }
+
+    public async Task RemoveGamesAsync(IList<GameInstallation> gameInstallations)
+    {
+        // TODO-UPDATE: This will send message for each - fix
+        foreach (GameInstallation gameInstallation in gameInstallations)
+            await RemoveGameAsync(gameInstallation);
+
+        Messenger.Send(new RemovedGamesMessage(gameInstallations));
     }
 
     // TODO-14: Should we sort these?

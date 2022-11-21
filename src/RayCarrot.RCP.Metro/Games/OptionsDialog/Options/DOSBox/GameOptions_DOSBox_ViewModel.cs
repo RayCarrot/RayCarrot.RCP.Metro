@@ -1,12 +1,12 @@
-﻿#nullable disable
-using System.IO;
+﻿using System.IO;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the DOSBox games options
 /// </summary>
-public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
+public class GameOptions_DOSBox_ViewModel : BaseViewModel
 {
     #region Constructor
 
@@ -42,12 +42,7 @@ public class GameOptions_DOSBox_ViewModel : BaseRCPViewModel
         set
         {
             GameInstallation.SetValue(GameDataKey.DOSBoxMountPath, value);
-
-            // TODO: Find better solution to this. Ideally we would invoke the refresh from an event caused by the UI, but
-            // currently the BrowseBox does not have any event for when the path is changed. Doing this rather than discarding the task
-            // from the async refresh will ensure that any exceptions are handled correctly as the async void will take care of that.
-            Invoke();
-            async void Invoke() => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.GameInfo));
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
         }
     }
 

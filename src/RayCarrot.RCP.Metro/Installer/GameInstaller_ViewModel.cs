@@ -333,9 +333,6 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 UserData_RCPGameInstallInfo installInfo = new(output, UserData_RCPGameInstallInfo.RCPInstallMode.DiscInstall);
                 gameInstallation.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
 
-                // Refresh
-                await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
-
                 if (CreateDesktopShortcut)
                     await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, displayName));
 

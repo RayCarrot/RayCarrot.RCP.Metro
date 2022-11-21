@@ -76,14 +76,12 @@ public class GameViewModel : BaseViewModel
                 return;
 
             // Add the game
-            GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, path.Value);
+            await Services.Games.AddGameAsync(GameDescriptor, path.Value);
 
-            // TODO-UPDATE: Select game once added
             // Refresh
             Refresh();
-            await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(gameInstallation, RefreshFlags.GameCollection));
 
-            Logger.Info("The game {0} has been added", gameInstallation.Id);
+            Logger.Info("The game {0} has been added", GameDescriptor.Id);
 
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(

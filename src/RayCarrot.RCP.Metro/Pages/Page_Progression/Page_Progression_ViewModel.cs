@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Nito.AsyncEx;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Page_Progression_ViewModel : BasePageViewModel
+public class Page_Progression_ViewModel : BasePageViewModel, 
+    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<BackupLocationChangedMessage>
 {
     #region Constructor
 
@@ -19,13 +21,15 @@ public class Page_Progression_ViewModel : BasePageViewModel
         AppUserData data, 
         IMessageUIManager messageUi, 
         AppUIManager ui, 
-        GamesManager gamesManager) : base(app)
+        GamesManager gamesManager, 
+        IMessenger messenger) : base(app)
     {
         // Set services
         Data = data ?? throw new ArgumentNullException(nameof(data));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
+        Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         // Create properties
         GameItems = new ObservableCollection<GameProgressionViewModel>();
@@ -68,6 +72,7 @@ public class Page_Progression_ViewModel : BasePageViewModel
     private IMessageUIManager MessageUI { get; }
     private AppUIManager UI { get; }
     private GamesManager GamesManager { get; }
+    private IMessenger Messenger { get; }
 
     #endregion
 
@@ -78,19 +83,22 @@ public class Page_Progression_ViewModel : BasePageViewModel
 
     #endregion
 
-    #region Public Methods
+    #region Protected Methods
 
     protected override Task InitializeAsync()
     {
-        // Refresh on app refresh
-        App.RefreshRequired += async (_, e) =>
-        {
-            if (e.BackupsModified || e.GameCollectionModified)
-                await Task.Run(async () => await RefreshAsync());
-        };
+        Messenger.RegisterAll(this);
 
         return RefreshAsync();
     }
+
+    #endregion
+
+    #region Public Methods
+
+    public async void Receive(AddedGamesMessage message) => await Task.Run(async () => await RefreshAsync());
+    public async void Receive(RemovedGamesMessage message) => await Task.Run(async () => await RefreshAsync());
+    public async void Receive(BackupLocationChangedMessage message) => await Task.Run(async () => await RefreshAsync());
 
     public async Task RefreshAsync()
     {

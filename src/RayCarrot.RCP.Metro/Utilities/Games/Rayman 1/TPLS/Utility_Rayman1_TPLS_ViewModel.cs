@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
@@ -23,7 +24,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
         // Create the commands
         InstallTPLSCommand = new AsyncRelayCommand(InstallTPLSAsync);
         UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
-        EnableToggledCommand = new AsyncRelayCommand(EnableToggledAsync);
+        EnableToggledCommand = new RelayCommand(EnableToggled);
 
         // Check if TPLS is installed under the default location
         if (!AppFilePaths.R1TPLSDir.DirectoryExists)
@@ -159,11 +160,10 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
         }
     }
 
-    public async Task EnableToggledAsync()
+    public void EnableToggled()
     {
         Data.Utility_TPLSData.IsEnabled = IsEnabled;
-
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1.GetInstallation(), RefreshFlags.GameInfo));
+        Services.Messenger.Send(new ModifiedGamesMessage(Games.Rayman1.GetInstallation()));
     }
 
     #endregion

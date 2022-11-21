@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BinarySerializer;
+using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -149,11 +151,37 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(CanUninstall ? Resources.RemoveInstalledGameQuestion : Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader,  MessageType.Question, true))
             return;
 
-        // Remove the game
-        await Services.Games.RemoveGameAsync(GameInstallation, false);
+        // Get applied utilities
+        IList<string> appliedUtilities = await GameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(GameInstallation);
 
-        // Refresh
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.GameCollection));
+        // TODO-UPDATE: This crashes for packaged apps since it tries to create the patch folder
+        // Warn about applied utilities, if any
+        if (appliedUtilities.Any() && !await Services.MessageUI.DisplayMessageAsync(
+                $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}" +
+                $"{appliedUtilities.JoinItems(Environment.NewLine)}",
+                Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
+            return;
+
+        // Get applied patches
+        using Context context = new RCPContext(String.Empty);
+        PatchLibrary library = new(GameInstallation.InstallLocation, Services.File);
+        PatchLibraryFile? libraryFile = null;
+
+        try
+        {
+            libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath);
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Reading patch library");
+        }
+
+        // Warn about applied patches, if any
+        if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, libraryFile.Patches.Count(x => x.IsEnabled)), MessageType.Warning, true))
+            return;
+
+        // Remove the game
+        await Services.Games.RemoveGameAsync(GameInstallation);
     }
 
     /// <summary>
@@ -200,10 +228,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         }
 
         // Remove the game
-        await Services.Games.RemoveGameAsync(GameInstallation, true);
-
-        // Refresh
-        await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.GameCollection));
+        await Services.Games.RemoveGameAsync(GameInstallation);
 
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.UninstallGameSuccess, DisplayName), Resources.UninstallGameSuccessHeader);
     }

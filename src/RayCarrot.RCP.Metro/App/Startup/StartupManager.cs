@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -217,13 +216,12 @@ public class StartupManager
     private async Task ValidateGamesAsync()
     {
         // Keep track of removed games
-        HashSet<GameInstallation> removed = new();
+        List<GameInstallation> removed = new();
 
-        // TODO-14: Rather than ToArray we should keep track of games to remove and
-        //          then remove those while only showing a single message to the user.
+        // TODO-14: Only show single message to user
         
         // Make sure every game is valid
-        foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames().ToArray())
+        foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
         {
             // Check if it's valid
             if (await gameInstallation.GameDescriptor.IsValidAsync(gameInstallation.InstallLocation))
@@ -233,18 +231,14 @@ public class StartupManager
             await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, gameInstallation.GameDescriptor.DisplayName), 
                 Resources.GameNotFoundHeader, MessageType.Error);
 
-            // Remove the game from app data
-            await Services.Games.RemoveGameAsync(gameInstallation, true);
-
             // Add to removed games
             removed.Add(gameInstallation);
 
-            Logger.Info("The game {0} has been removed due to not being valid", gameInstallation.Id);
+            Logger.Info("The game {0} is being removed due to not being valid", gameInstallation.Id);
         }
 
-        // Refresh if any games were removed
-        if (removed.Any())
-            await AppViewModel.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, RefreshFlags.GameCollection));
+        // Remove the games
+        await Services.Games.RemoveGamesAsync(removed);
     }
 
     private async Task PostUpdateAsync()

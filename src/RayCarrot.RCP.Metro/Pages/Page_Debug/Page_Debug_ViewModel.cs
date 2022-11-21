@@ -59,9 +59,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
         ShowWelcomeWindowCommand = new RelayCommand(ShowWelcomeWindow);
         ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
         RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
-        RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
-        RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
-        RefreshAllParallelAsyncCommand = new AsyncRelayCommand(RefreshAllParallelTaskAsync);
         GCCollectCommand = new RelayCommand(GCCollect);
         ThrowUnhandledExceptionCommand = new RelayCommand(ThrowUnhandledException);
         ThrowUnhandledExceptionAsyncCommand = new AsyncRelayCommand(ThrowUnhandledAsyncException);
@@ -89,9 +86,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
     public ICommand ShowWelcomeWindowCommand { get; }
     public ICommand ShowInstalledUtilitiesCommand { get; }
     public ICommand RefreshDataOutputCommand { get; }
-    public ICommand RefreshAllCommand { get; }
-    public ICommand RefreshAllAsyncCommand { get; }
-    public ICommand RefreshAllParallelAsyncCommand { get; }
     public ICommand GCCollectCommand { get; }
     public ICommand ThrowUnhandledExceptionCommand { get; }
     public ICommand ThrowUnhandledExceptionAsyncCommand { get; }
@@ -492,31 +486,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
         {
             Logger.Error(ex, "Updating debug data output");
         }
-    }
-
-    /// <summary>
-    /// Refreshes everything in the app
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task RefreshAllAsync()
-    {
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All));
-    }
-
-    /// <summary>
-    /// Refreshes everything in the app on a new thread
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task RefreshAllTaskAsync()
-    {
-        await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All)));
-    }
-
-    public async Task RefreshAllParallelTaskAsync()
-    {
-        await Task.WhenAll(Enumerable.Range(0, 50).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
-        await Task.WhenAll(Enumerable.Range(0, 20).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
-        await Task.WhenAll(Enumerable.Range(0, 5).Select(async _ => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.All))));
     }
 
     public void GCCollect() => GC.Collect();

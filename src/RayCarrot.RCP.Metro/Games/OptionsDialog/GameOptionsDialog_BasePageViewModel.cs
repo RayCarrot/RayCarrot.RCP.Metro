@@ -4,11 +4,12 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, IDisposable
+public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, IDisposable, IRecipient<ModifiedGamesMessage>
 {
     #region Constructor
 
@@ -29,8 +30,8 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
         UseRecommendedCommand = new RelayCommand(UseRecommended);
         PageSelectionIndexChangedCommand = new AsyncRelayCommand(PageSelectionIndexChangedAsync);
 
-        // Subscribe to events
-        App.RefreshRequired += App_RefreshRequiredAsync;
+        // Register for messages
+        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -122,23 +123,13 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
 
     #endregion
 
-    #region Event Handlers
-
-    private async Task App_RefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
-    {
-        if (e.GameInfoModified)
-            await OnGameInfoModified();
-    }
-
-    #endregion
-
     #region Protected Methods
 
     protected abstract object GetPageUI();
 
     protected virtual Task LoadAsync() => Task.CompletedTask;
     protected virtual Task<bool> SaveAsync() => Task.FromResult(false);
-    protected virtual Task OnGameInfoModified() => Task.CompletedTask;
+    protected virtual Task OnGameInfoModifiedAsync() => Task.CompletedTask;
     protected virtual void UseRecommended() { }
 
     protected void ResetSelectedPageSelectionIndex()
@@ -151,6 +142,12 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
     #endregion
 
     #region Public Methods
+
+    public async void Receive(ModifiedGamesMessage message)
+    {
+        // TODO-14: Check for same game? Otherwise this will be invoked for all games...
+        await OnGameInfoModifiedAsync();
+    }
 
     public virtual Task PageSelectionIndexChangedAsync() => Task.CompletedTask;
 
@@ -195,8 +192,8 @@ public abstract class GameOptionsDialog_BasePageViewModel : BaseRCPViewModel, ID
         PageContent = null;
         UnsavedChanges = false;
 
-        // Unsubscribe events
-        App.RefreshRequired -= App_RefreshRequiredAsync;
+        // Unregister for messages
+        Services.Messenger.UnregisterAll(this);
     }
 
     #endregion

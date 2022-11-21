@@ -58,7 +58,7 @@ public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
         return LoadPageAsync();
     }
 
-    protected override Task OnGameInfoModified()
+    protected override Task OnGameInfoModifiedAsync()
     {
         // Refresh the selection
         RefreshSelection();

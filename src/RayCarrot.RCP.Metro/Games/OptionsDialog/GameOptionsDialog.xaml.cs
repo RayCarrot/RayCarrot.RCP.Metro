@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Interaction logic for GameOptionsDialog.xaml
 /// </summary>
-public partial class GameOptionsDialog : WindowContentControl
+public partial class GameOptionsDialog : WindowContentControl, IRecipient<RemovedGamesMessage>
 {
     #region Constructor
 
@@ -99,11 +100,21 @@ public partial class GameOptionsDialog : WindowContentControl
 
     #region Public Methods
 
+    public void Receive(RemovedGamesMessage message)
+    {
+        if (message.GameInstallations.Contains(ViewModel.GameInstallation))
+        {
+            ForceClose = true;
+            WindowInstance.Close();
+        }
+    }
+
     public override void Dispose()
     {
         base.Dispose();
 
-        Services.App.RefreshRequired -= AppGameRefreshRequiredAsync;
+        // We don't have to unregister since it's a weak reference, but it's better to do so anyway when we can
+        Services.Messenger.UnregisterAll(this);
 
         foreach (var page in ViewModel.Pages)
             page.Saved -= Page_Saved;
@@ -119,7 +130,7 @@ public partial class GameOptionsDialog : WindowContentControl
     {
         Loaded -= GameOptions_OnLoadedAsync;
 
-        Services.App.RefreshRequired += AppGameRefreshRequiredAsync;
+        Services.Messenger.RegisterAll(this);
 
         foreach (var page in ViewModel.Pages)
             page.Saved += Page_Saved;
@@ -129,19 +140,6 @@ public partial class GameOptionsDialog : WindowContentControl
     {
         if (Services.Data.App_CloseConfigOnSave)
             WindowInstance.Close();
-    }
-
-    private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
-    {
-        if (e.GameCollectionModified && e.ModifiedGames.Contains(ViewModel.GameInstallation))
-        {
-            ForceClose = true;
-            WindowInstance.Close();
-
-            return Task.CompletedTask;
-        }
-
-        return Task.CompletedTask;
     }
 
     private async void PagesTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => await ViewModel.LoadCurrentPageAsync();

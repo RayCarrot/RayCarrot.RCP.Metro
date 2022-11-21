@@ -33,18 +33,6 @@
                                 Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
                                 IconKind="Security"/>
 
-            <local:MenuItemIcon Header="Refresh all"
-                                Command="{Binding Path=RefreshAllCommand, Mode=OneTime}"
-                                IconKind="Refresh"/>
-
-            <local:MenuItemIcon Header="Refresh all async"
-                                Command="{Binding Path=RefreshAllAsyncCommand, Mode=OneTime}"
-                                IconKind="Refresh"/>
-
-            <local:MenuItemIcon Header="Refresh all parallel async"
-                                Command="{Binding Path=RefreshAllParallelAsyncCommand, Mode=OneTime}"
-                                IconKind="Refresh"/>
-
             <local:MenuItemIcon Header="Run load operation"
                                 Command="{Binding Path=RunLoadOperationCommand, Mode=OneTime}"
                                 IconKind="CircleOutline"/>

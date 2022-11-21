@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ByteSizeLib;
+using CommunityToolkit.Mvvm.Messaging;
 using Nito.AsyncEx;
 using NLog;
 
@@ -38,7 +39,8 @@ public class AppViewModel : BaseViewModel
         FileManager file,
         AppUIManager ui,
         DeployableFilesManager deployableFiles,
-        AppUserData data)
+        AppUserData data, 
+        IMessenger messenger)
     {
         // Set properties
         Updater = updater ?? throw new ArgumentNullException(nameof(updater));
@@ -47,6 +49,7 @@ public class AppViewModel : BaseViewModel
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
         Data = data ?? throw new ArgumentNullException(nameof(data));
+        Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         // Check if the application is running as administrator
         try
@@ -64,7 +67,6 @@ public class AppViewModel : BaseViewModel
         // Create locks
         MoveBackupsAsyncLock = new AsyncLock();
         AdminWorkerAsyncLock = new AsyncLock();
-        OnRefreshRequiredAsyncLock = new AsyncLock();
 
         // Create commands
         RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
@@ -101,7 +103,7 @@ public class AppViewModel : BaseViewModel
 
     #endregion
 
-    #region Private Properties
+    #region Services
 
     private IUpdaterManager Updater { get; }
     private IMessageUIManager MessageUI { get; }
@@ -109,6 +111,11 @@ public class AppViewModel : BaseViewModel
     private AppUIManager UI { get; }
     private DeployableFilesManager DeployableFiles { get; }
     private AppUserData Data { get; }
+    private IMessenger Messenger { get; }
+
+    #endregion
+
+    #region Private Properties
 
     /// <summary>
     /// An async lock for the <see cref="MoveBackupsAsync"/> method
@@ -119,11 +126,6 @@ public class AppViewModel : BaseViewModel
     /// An async lock for the <see cref="RunAdminWorkerAsync"/> method
     /// </summary>
     private AsyncLock AdminWorkerAsyncLock { get; }
-
-    /// <summary>
-    /// An async lock for the <see cref="OnRefreshRequiredAsync"/> method
-    /// </summary>
-    private AsyncLock OnRefreshRequiredAsyncLock { get; }
 
     #endregion
 
@@ -180,22 +182,6 @@ public class AppViewModel : BaseViewModel
     #region Public Methods
 
     /// <summary>
-    /// Fires the <see cref="RefreshRequired"/> event
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task OnRefreshRequiredAsync(RefreshRequiredEventArgs eventArgs)
-    {
-        // Lock the refresh
-        using (await OnRefreshRequiredAsyncLock.LockAsync())
-        {
-            Logger.Debug("A refresh is being requested");
-
-            // Await the refresh event
-            await RefreshRequired.RaiseAsync(this, eventArgs);
-        }
-    }
-
-    /// <summary>
     /// Enables write access to the primary ubi.ini file
     /// </summary>
     /// <returns>The task</returns>
@@ -241,9 +227,6 @@ public class AppViewModel : BaseViewModel
 
         IsGameFinderRunning = true;
 
-        // Keep track of found games which have been added
-        var addedGames = new List<GameInstallation>();
-
         try
         {
             // TODO-14: Change how the game finder works
@@ -288,12 +271,7 @@ public class AppViewModel : BaseViewModel
             // Add the found items
             foreach (GameFinder_BaseResult foundItem in foundItems)
             {
-                // Handle the item
-                GameInstallation? gameInstallation = await foundItem.HandleItemAsync();
-
-                // If a game, add to list
-                if (gameInstallation != null)
-                    addedGames.Add(gameInstallation);
+                await foundItem.HandleItemAsync();
             }
 
             // Show message if new games were found
@@ -325,10 +303,6 @@ public class AppViewModel : BaseViewModel
         }
         finally
         {
-            // Refresh if any games were added
-            if (addedGames.Any())
-                await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(addedGames, RefreshFlags.GameCollection));
-
             IsGameFinderRunning = false;
         }
 
@@ -488,7 +462,7 @@ public class AppViewModel : BaseViewModel
                 Logger.Info("Old backups have been moved");
 
                 // Refresh backups
-                await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(RefreshFlags.Backups));
+                Messenger.Send<BackupLocationChangedMessage>();
 
                 await MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
             }
@@ -656,15 +630,6 @@ public class AppViewModel : BaseViewModel
             CheckingForUpdates = false;
         }
     }
-
-    #endregion
-
-    #region Events
-
-    /// <summary>
-    /// Occurs when a refresh is required for the app
-    /// </summary>
-    public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired = (_, _) => Task.CompletedTask;
 
     #endregion
 }

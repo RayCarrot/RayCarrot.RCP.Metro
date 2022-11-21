@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -203,7 +204,7 @@ public class Config_RabbidsGoHome_ViewModel : GameOptionsDialog_ConfigPageViewMo
             null;
 
         // Refresh
-        await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome.GetInstallation(), RefreshFlags.GameInfo));
+        Services.Messenger.Send(new ModifiedGamesMessage(Games.RabbidsGoHome.GetInstallation()));
 
         Logger.Info("Rabbids Go Home configuration has been saved");
 

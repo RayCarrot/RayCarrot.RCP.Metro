@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using CommunityToolkit.Mvvm.Messaging;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the Rayman Raving Rabbids 2 options
@@ -29,10 +31,7 @@ public class GameOptions_RavingRabbids2_ViewModel : BaseRCPViewModel
         set
         {
             GameInstallation.SetValue(GameDataKey.RRR2LaunchMode, value);
-            
-            // TODO-14: Clean up
-            Invoke();
-            async void Invoke() => await Services.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(GameInstallation, RefreshFlags.GameInfo | RefreshFlags.LaunchInfo));
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
         }
     }
 
