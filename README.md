@@ -73,6 +73,7 @@ The Rayman Control Panel uses these main dependencies:
 
 ### Other
 - [ByteSize](https://github.com/omar/ByteSize)
+- [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)
 - [Costura.Fody](https://github.com/Fody/Costura)
 - [DotNetZip](https://github.com/haf/DotNetZip.Semverd)
 - [NLog](https://github.com/NLog/NLog)
