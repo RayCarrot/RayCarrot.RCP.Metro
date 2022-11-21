@@ -14,7 +14,7 @@ public enum GamePlatform
     /// <summary>
     /// Win32
     /// </summary>
-    [GamePlatformInfo("Windows (Win32)", GamePlatformIconAsset.Win32)]
+    [GamePlatformInfo("Desktop (Win32)", GamePlatformIconAsset.Win32)]
     Win32 = GamePlatformFlag.Plat_Win32 | GamePlatformFlag.PC,
 
     /// <summary>
@@ -26,7 +26,7 @@ public enum GamePlatform
     /// <summary>
     /// Windows package (.appx/.msix)
     /// </summary>
-    [GamePlatformInfo("Windows Package (.appx/.msix)", GamePlatformIconAsset.WindowsPackage)]
+    [GamePlatformInfo("Windows package (.appx/.msix)", GamePlatformIconAsset.WindowsPackage)]
     WindowsPackage = GamePlatformFlag.Plat_WindowsPackage | GamePlatformFlag.PC,
 
     // TODO: Add console platforms such as PS1, GBA etc.
