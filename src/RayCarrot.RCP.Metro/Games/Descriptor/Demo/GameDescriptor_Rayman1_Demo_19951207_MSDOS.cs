@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,14 +22,20 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MSDOS : MSDOSGameDescri
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
 
-    public override bool CanBeDownloaded => true;
-    public override IList<Uri> DownloadURLs => new Uri[]
-    {
-        new(AppURLs.Games_R1Demo1_Url),
-    };
-
     public override bool RequiresMounting => false;
     public override string ExecutableName => "RAYMAN.EXE";
+
+    #endregion
+
+    #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new DownloadGameAddAction(this, new Uri[]
+        {
+            new(AppURLs.Games_R1Demo1_Url),
+        })
+    });
 
     #endregion
 }

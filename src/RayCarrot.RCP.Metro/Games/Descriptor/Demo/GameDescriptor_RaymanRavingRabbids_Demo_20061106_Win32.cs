@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,12 +22,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;
 
-    public override bool CanBeDownloaded => true;
-    public override IList<Uri> DownloadURLs => new Uri[]
-    {
-        new(AppURLs.Games_RRRDemo_Url),
-    };
-
     #endregion
 
     #region Protected Methods
@@ -36,6 +31,14 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new DownloadGameAddAction(this, new Uri[]
+        {
+            new(AppURLs.Games_RRRDemo_Url),
+        })
+    });
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanRavingRabbidsDemo_ViewModel(gameInstallation);

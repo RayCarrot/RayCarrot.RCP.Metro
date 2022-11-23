@@ -96,6 +96,9 @@ public class AppUIManager
 
     public Task<DownloaderResult> DownloadAsync(DownloaderViewModel viewModel) => ShowDialogAsync(() => new Downloader(viewModel));
 
+    public Task<GameInstallerResult> InstallGameAsync(GameDescriptor gameDescriptor, GameInstallerInfo info) => 
+        ShowDialogAsync(() => new GameInstallerDialog(gameDescriptor, info));
+
     /// <summary>
     /// Displays a message to the user
     /// </summary>

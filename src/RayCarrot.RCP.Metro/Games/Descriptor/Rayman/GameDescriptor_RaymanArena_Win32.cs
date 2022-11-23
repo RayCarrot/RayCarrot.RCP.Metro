@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
@@ -26,12 +27,19 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
-    public override bool HasGameInstaller => true;
     public override bool HasArchives => true;
 
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new DiscInstallGameAddAction(this, new GameInstallerInfo(
+            discFilesListFileName: "RaymanArena",
+            gameLogoFileName: "RaymanArena_Logo.png",
+            gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", }))
+    });
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanArena_ViewModel(gameInstallation);
@@ -77,11 +85,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         "Rayman Arena",
         "Rayman: Arena",
     });
-
-    public override GameInstallerInfo GetGameInstallerData() => new(
-        discFilesListFileName: "RaymanArena",
-        gameLogoFileName: "RaymanArena_Logo.png",
-        gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", });
 
     #endregion
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
@@ -27,17 +28,19 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
-    public override bool CanBeDownloaded => true;
-    public override IList<Uri> DownloadURLs => new Uri[]
-    {
-        new(AppURLs.Games_RMDemo_Url),
-    };
-
     public override bool HasArchives => true;
 
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new DownloadGameAddAction(this, new Uri[]
+        {
+            new(AppURLs.Games_RMDemo_Url),
+        })
+    });
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanMDemo_ViewModel(gameInstallation);

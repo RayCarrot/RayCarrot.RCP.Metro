@@ -30,6 +30,7 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Map">MapMarkerOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.File">FileOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FolderSearch">FolderSearchOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.CloudDownload">CloudDownloadOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Disc">Disc</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Purchase">BriefcaseOutline</iconPacks:PackIconMaterialKind>
@@ -137,6 +138,19 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Progression" 
                        IconKind="{StaticResource RCP.Icons.Progression}" 
                        IconColor="{StaticResource RCP.Brushes.Progression}" />
+
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_Locate" 
+                       IconKind="{StaticResource RCP.Icons.Folder}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_Find" 
+                       IconKind="{StaticResource RCP.Icons.FolderSearch}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_DiscInstall" 
+                       IconKind="{StaticResource RCP.Icons.Disc}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_Download" 
+                       IconKind="{StaticResource RCP.Icons.CloudDownload}" 
+                       IconColor="{x:Null}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_General" 
                        IconKind="{StaticResource RCP.Icons.Settings}" 

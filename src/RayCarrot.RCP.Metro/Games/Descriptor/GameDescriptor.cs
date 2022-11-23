@@ -122,26 +122,6 @@ public abstract class GameDescriptor
     public virtual IEnumerable<string> DialogGroupNames => Enumerable.Empty<string>(); // TODO-14: Change this
 
     /// <summary>
-    /// Indicates if the game can be located. If set to false the game is required to be downloadable.
-    /// </summary>
-    public virtual bool CanBeLocated => true;
-
-    /// <summary>
-    /// Indicates if the game can be downloaded
-    /// </summary>
-    public virtual bool CanBeDownloaded => false;
-
-    /// <summary>
-    /// The download URLs for the game if it can be downloaded. All sources must be compressed.
-    /// </summary>
-    public virtual IList<Uri>? DownloadURLs => null;
-
-    /// <summary>
-    /// Indicates if the game can be installed from a disc in this program
-    /// </summary>
-    public virtual bool HasGameInstaller => false;
-
-    /// <summary>
     /// Indicates if the game should automatically be added to the jump list once added
     /// </summary>
     public virtual bool AutoAddToJumpList => !IsDemo;
@@ -237,6 +217,8 @@ public abstract class GameDescriptor
     #endregion
 
     #region Public Methods
+
+    public abstract IEnumerable<GameAddAction> GetAddActions();
 
     /// <summary>
     /// The options UI, if any is available
@@ -379,18 +361,6 @@ public abstract class GameDescriptor
     /// <param name="gameInstallation">The game installation to get the items for</param>
     /// <returns>The items</returns>
     public abstract IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation);
-
-    /// <summary>
-    /// Locates the game
-    /// </summary>
-    /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install location.</returns>
-    public abstract Task<FileSystemPath?> LocateAsync();
-
-    /// <summary>
-    /// Gets the game installer info if available
-    /// </summary>
-    /// <returns>The game installer info or null if not available</returns>
-    public virtual GameInstallerInfo? GetGameInstallerData() => null;
 
     /// <summary>
     /// Indicates if the game is valid

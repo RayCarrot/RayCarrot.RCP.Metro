@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
@@ -31,12 +32,19 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         UbiIniFileGroupName
     };
 
-    public override bool HasGameInstaller => true;
     public override bool HasArchives => true;
 
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new DiscInstallGameAddAction(this, new GameInstallerInfo(
+            discFilesListFileName: "Rayman2",
+            gameLogoFileName: "Rayman2_Logo.png",
+            gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", }))
+    });
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_Rayman2_ViewModel(gameInstallation);
@@ -109,11 +117,6 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         "Rayman: 2 - The Great Escape",
         "GOG.com Rayman 2",
     });
-
-    public override GameInstallerInfo GetGameInstallerData() => new(
-        discFilesListFileName: "Rayman2",
-        gameLogoFileName: "Rayman2_Logo.png",
-        gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", });
 
     #endregion
 }

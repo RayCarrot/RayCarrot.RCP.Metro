@@ -22,16 +22,18 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbidsActivityCenter;
 
-    public override bool CanBeLocated => false;
-    public override bool CanBeDownloaded => true;
-    public override IList<Uri> DownloadURLs => new Uri[]
-    {
-        new(AppURLs.Games_RavingRabbidsActivityCenter_Url)
-    };
-
     #endregion
 
     #region Protected Methods
+
+    // Can only be downloaded
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new DownloadGameAddAction(this, new Uri[]
+        {
+            new(AppURLs.Games_RavingRabbidsActivityCenter_Url),
+        })
+    };
 
     protected override async Task PostLaunchAsync(Process? process)
     {

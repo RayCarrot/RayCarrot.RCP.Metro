@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameViewModel : BaseViewModel
+public class GameViewModel : BaseViewModel, IRecipient<RemovedGamesMessage>
 {
     #region Constructor
 
@@ -13,17 +16,18 @@ public class GameViewModel : BaseViewModel
     {
         GameDescriptor = gameDescriptor;
         DisplayName = gameDescriptor.DisplayName;
+        AddActions = new ObservableCollection<GameAddActionViewModel>(gameDescriptor.GetAddActions().
+            // Reverse the order so the common actions are aligned in the ui
+            Reverse().Select(x => new GameAddActionViewModel(x)));
 
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameDescriptor.Platform.GetInfo();
         PlatformDisplayName = platformInfo.DisplayName;
         PlatformIconSource = $"{AppViewModel.WPFApplicationBasePath}Img/GamePlatformIcons/{platformInfo.Icon.GetAttribute<ImageFileAttribute>()!.FileName}";
 
-        // Create commands
-        LocateCommand = new AsyncRelayCommand(LocateAsync);
+        AddGameCommand = new AsyncRelayCommand(x => AddGameAsync(((GameAddActionViewModel)x!).AddAction));
 
-        // Refresh
-        Refresh();
+        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -36,7 +40,7 @@ public class GameViewModel : BaseViewModel
 
     #region Commands
 
-    public ICommand LocateCommand { get; }
+    public ICommand AddGameCommand { get; }
 
     #endregion
 
@@ -44,12 +48,10 @@ public class GameViewModel : BaseViewModel
 
     public GameDescriptor GameDescriptor { get; }
     public LocalizedString DisplayName { get; }
+    public ObservableCollection<GameAddActionViewModel> AddActions { get; }
 
     public LocalizedString PlatformDisplayName { get; }
     public string PlatformIconSource { get; }
-
-    public bool IsAvailable { get; private set; }
-    public bool CanLocate => GameDescriptor.CanBeLocated;
 
     #endregion
 
@@ -57,41 +59,55 @@ public class GameViewModel : BaseViewModel
 
     private void Refresh()
     {
-        // TODO-UPDATE: Some games need to be disabled. Downloadable games can only be downloaded once, packaged apps can only be installed once and are not available on Windows 7
-        IsAvailable = true;
+        // Re-evaluate if each action is available
+        foreach (GameAddActionViewModel addAction in AddActions)
+            addAction.OnPropertyChanged(nameof(GameAddActionViewModel.IsAvailable));
     }
 
     #endregion
 
     #region Public Methods
 
-    public async Task LocateAsync()
+    public async Task AddGameAsync(GameAddAction addAction)
     {
         try
         {
-            // Locate the game and get the path
-            FileSystemPath? path = await GameDescriptor.LocateAsync();
+            // Call the add action
+            GameInstallation? gameInstallation = await addAction.AddGameAsync();
 
-            if (path == null)
+            // Return if it failed
+            if (gameInstallation == null)
                 return;
-
-            // Add the game
-            await Services.Games.AddGameAsync(GameDescriptor, path.Value);
 
             // Refresh
             Refresh();
-
-            Logger.Info("The game {0} has been added", GameDescriptor.Id);
-
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(
-                $"The game {GameDescriptor.DisplayName} was successfully added");
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Locating game");
+            Logger.Error(ex, "Adding game from add action");
+            // TODO-UPDATE: Rewrite this?
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
         }
+    }
+
+    public void Receive(RemovedGamesMessage message) => Refresh();
+
+    #endregion
+
+    #region Classes
+
+    public class GameAddActionViewModel : BaseViewModel
+    {
+        public GameAddActionViewModel(GameAddAction addAction)
+        {
+            AddAction = addAction;
+        }
+
+        public GameAddAction AddAction { get; }
+
+        public LocalizedString Header => AddAction.Header;
+        public GenericIconKind Icon => AddAction.Icon;
+        public bool IsAvailable => AddAction.IsAvailable;
     }
 
     #endregion

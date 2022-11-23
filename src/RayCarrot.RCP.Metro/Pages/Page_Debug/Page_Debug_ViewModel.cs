@@ -181,7 +181,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     protected override Task InitializeAsync()
     {
         // Set properties
-        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.HasGameInstaller).ToObservableCollection();
+        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.GetAddActions().OfType<DiscInstallGameAddAction>().Any()).ToObservableCollection();
         SelectedInstaller = AvailableInstallers.First();
         SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
 
@@ -433,7 +433,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         AddLine("Display name", gameDescriptor.DisplayName);
                         AddLine("Default file name", gameDescriptor.DefaultFileName);
                         AddLine("Icon source", gameDescriptor.IconSource);
-                        AddLine("Has disc installer", gameDescriptor.HasGameInstaller);
                         AddLine("Dialog group names", gameDescriptor.DialogGroupNames.JoinItems(", "));
                         
                         DataOutput += Environment.NewLine;
@@ -505,7 +504,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
     /// </summary>
     public async Task RunInstallerAsync()
     {
-        await DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(SelectedInstaller));
+        if (SelectedInstaller != null)
+            await UI.InstallGameAsync(SelectedInstaller, SelectedInstaller.GetAddActions().OfType<DiscInstallGameAddAction>().First().InstallerInfo);
     }
 
     public void UpdateTheme()

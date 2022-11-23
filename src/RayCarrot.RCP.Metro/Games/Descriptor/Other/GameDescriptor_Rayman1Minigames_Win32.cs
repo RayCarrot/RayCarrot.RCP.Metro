@@ -22,16 +22,18 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1Minigames;
 
-    public override bool CanBeLocated => false;
-    public override bool CanBeDownloaded => true;
-    public override IList<Uri> DownloadURLs => new Uri[]
-    {
-        new(AppURLs.Games_Ray1Minigames_Url),
-    };
-
     #endregion
 
     #region Public Methods
+
+    // Can only be downloaded
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new DownloadGameAddAction(this, new Uri[]
+        {
+            new(AppURLs.Games_Ray1Minigames_Url),
+        })
+    };
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_Ray1Minigames_Controls(new GameOptions_Ray1Minigames_ViewModel(gameInstallation));

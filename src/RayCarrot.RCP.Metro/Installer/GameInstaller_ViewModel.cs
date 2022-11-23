@@ -16,7 +16,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
 {
     #region Constructor
 
-    public GameInstaller_ViewModel(GameDescriptor gameDescriptor)
+    public GameInstaller_ViewModel(GameDescriptor gameDescriptor, GameInstallerInfo info)
     {
         Logger.Info("An installation has been requested for the game {0}", gameDescriptor.Id);
 
@@ -26,8 +26,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
 
         // Set game
         GameDescriptor = gameDescriptor;
-        Info = gameDescriptor.GetGameInstallerData() ?? 
-               throw new InvalidOperationException("The game installer can't be used on a game where the game installer info is not provided");
+        Info = info;
 
         // Set title
         Title = String.Format(Resources.Installer_Title, gameDescriptor.DisplayName);
@@ -160,6 +159,11 @@ public class GameInstaller_ViewModel : UserInputViewModel
     /// The current item info
     /// </summary>
     public string? CurrentItemInfo { get; set; }
+
+    /// <summary>
+    /// The installed game. Gets set once the installation finishes.
+    /// </summary>
+    public GameInstallation? InstalledGame { get; private set; }
 
     #endregion
 
@@ -328,7 +332,8 @@ public class GameInstaller_ViewModel : UserInputViewModel
             {
                 // Add the game
                 GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, output);
-                
+                InstalledGame = gameInstallation;
+
                 // Set the install info
                 UserData_RCPGameInstallInfo installInfo = new(output, UserData_RCPGameInstallInfo.RCPInstallMode.DiscInstall);
                 gameInstallation.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);

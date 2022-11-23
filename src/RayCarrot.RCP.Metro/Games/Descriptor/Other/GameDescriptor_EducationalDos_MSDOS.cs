@@ -269,6 +269,8 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
         }).ToArray();
     }
 
+    // TODO-14: Fix
+    /*
     public override async Task<FileSystemPath?> LocateAsync()
     {
         // Have user browse for directory
@@ -298,7 +300,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
         // Return the valid directory
         return result.SelectedDirectory;
-    }
+    }*/
 
     public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {

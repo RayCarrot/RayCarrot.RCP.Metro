@@ -28,11 +28,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     #region Private Properties
 
     /// <summary>
-    /// Indicates if th Windows runtime is supported on the current system
-    /// </summary>
-    private static bool SupportsWinRT => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
-
-    /// <summary>
     /// Gets the legacy launch path to use for launching the game. This method of launching should only be used when no
     /// other method is available. If the package is not found this method will launch a new Windows Explorer window
     /// instead. The entry point is defaulted to "!APP" and may not always be correct.
@@ -42,6 +37,11 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     #endregion
 
     #region Public Properties
+
+    /// <summary>
+    /// Indicates if th Windows runtime is supported on the current system
+    /// </summary>
+    public static bool SupportsWinRT => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
 
     public override GamePlatform Platform => GamePlatform.WindowsPackage;
     public override bool SupportsGameLaunchMode => false;
@@ -61,15 +61,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     private Package? GetPackage()
     {
         return new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == PackageName);
-    }
-
-    /// <summary>
-    /// Gets the package install directory
-    /// </summary>
-    /// <returns>The package install directory</returns>
-    private string? GetPackageInstallDirectory()
-    {
-        return GetPackage()?.InstalledLocation.Path;
     }
 
     #endregion
@@ -119,6 +110,11 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new FindWindowsPackageGameAddActions(this)
+    };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(() =>
     {
@@ -186,52 +182,13 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         };
     }
 
-    public override async Task<FileSystemPath?> LocateAsync()
+    /// <summary>
+    /// Gets the package install directory
+    /// </summary>
+    /// <returns>The package install directory</returns>
+    public string? GetPackageInstallDirectory()
     {
-        // Make sure version is at least Windows 8
-        if (!SupportsWinRT)
-        {
-            await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
-
-            return null;
-        }
-
-        FileSystemPath installDir;
-
-        try
-        {
-            // Get the install directory
-            string? dir = GetPackageInstallDirectory();
-
-            // Make sure we got a valid directory
-            if (dir == null)
-            {
-                Logger.Info("The {0} was not found under Windows Store packages", Id);
-
-                return null;
-            }
-
-            installDir = dir;
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting Windows Store game install directory");
-
-            await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
-
-            return null;
-        }
-
-        if (!await IsValidAsync(installDir))
-        {
-            Logger.Info("The {0} install directory was not valid", Id);
-
-            await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
-
-            return null;
-        }
-
-        return installDir;
+        return GetPackage()?.InstalledLocation.Path;
     }
 
     public GameBackups_Directory[] GetBackupDirectories() => new GameBackups_Directory[]

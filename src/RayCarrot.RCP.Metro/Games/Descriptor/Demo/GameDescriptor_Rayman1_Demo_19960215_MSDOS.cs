@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -23,17 +24,19 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MSDOSGameDescri
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
 
-    public override bool CanBeDownloaded => true;
-    public override IList<Uri> DownloadURLs => new Uri[]
-    {
-        new(AppURLs.Games_R1Demo2_Url),
-    };
-
     public override string ExecutableName => "RAYMAN.EXE";
 
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new DownloadGameAddAction(this, new Uri[]
+        {
+            new(AppURLs.Games_R1Demo2_Url),
+        })
+    });
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);

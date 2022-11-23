@@ -20,6 +20,7 @@ public class GamesManager
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
+        // TODO-14: Remove Windows Package apps if OS is older than 8?
         GameDescriptors = new GameDescriptor[]
         {
             new GameDescriptor_Rayman1_MSDOS(),
@@ -206,6 +207,13 @@ public class GamesManager
     /// </summary>
     /// <returns>The game installations</returns>
     public IEnumerable<GameInstallation> EnumerateInstalledGames() => Data.Game_GameInstallations;
+
+    /// <summary>
+    /// Enumerates the installed games which have the specified id
+    /// </summary>
+    /// <param name="id">The id to check for</param>
+    /// <returns>The installed games which have the id</returns>
+    public IEnumerable<GameInstallation> EnumerateInstalledGames(string id) => Data.Game_GameInstallations.Where(x => x.Id == id);
 
     /// <summary>
     /// Finds a game installation based on the provided search predicate

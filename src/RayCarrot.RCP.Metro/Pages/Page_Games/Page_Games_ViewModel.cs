@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Nito.AsyncEx;
-using NLog;
-using RayCarrot.RCP.Metro.Archive;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the games page
 /// </summary>
-public class Page_Games_ViewModel : BasePageViewModel, IDisposable
+public class Page_Games_ViewModel : BasePageViewModel
 {
+    public Page_Games_ViewModel(AppViewModel app) : base(app) { }
+
+    /*
     #region Constructor
 
     public Page_Games_ViewModel(
@@ -118,9 +110,9 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     #endregion
 
     #region Public Properties
-
+    */
     public override AppPage Page => AppPage.Games;
-
+    /*
     /// <summary>
     /// The selected game category index
     /// </summary>
@@ -168,44 +160,6 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
         }
     }
 
-    /// <summary>
-    /// Allows the user to download the game and add it
-    /// </summary>
-    /// <returns>The task</returns>
-    private async Task DownloadGameAsync(GameDescriptor gameDescriptor)
-    {
-        try
-        {
-            Logger.Trace("The game {0} is being downloaded...", gameDescriptor.Id);
-
-            // TODO-14: Change this. Use id? Make sure to not download multiple times then.
-            // Get the game directory
-            var gameDir = AppFilePaths.GamesBaseDir + gameDescriptor.LegacyGame.ToString();
-
-            // Download the game
-            var downloaded = await Services.App.DownloadAsync(gameDescriptor.DownloadURLs, true, gameDir, true);
-
-            if (!downloaded)
-                return;
-
-            // Add the game
-            GameInstallation gameInstallation = await GamesManager.AddGameAsync(gameDescriptor, gameDir);
-
-            // Set the install info
-            UserData_RCPGameInstallInfo installInfo = new(gameDir, UserData_RCPGameInstallInfo.RCPInstallMode.Download);
-            gameInstallation.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
-
-            Logger.Trace("The game {0} has been downloaded", gameDescriptor.Id);
-
-            await MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, gameDescriptor.DisplayName), Resources.GameInstall_SuccessHeader);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Downloading game");
-            await MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, gameDescriptor.DisplayName), Resources.GameInstall_ErrorHeader);
-        }
-    }
-
     private Page_Games_GameViewModel GetNotInstalledGameViewModel(GameDescriptor gameDescriptor)
     {
         var actions = new List<OverflowButtonItemViewModel>();
@@ -247,7 +201,6 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
             // Add disc installer action
             actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, GenericIconKind.GameDisplay_DiscInstall, new AsyncRelayCommand(async () =>
             {
-                // TODO-14: This should we called from the UI manager - same in debug page
                 // Show and run the installer
                 await Services.DialogBaseManager.ShowDialogWindowAsync(new GameInstallerDialog(gameDescriptor));
             })));
@@ -620,4 +573,5 @@ public class Page_Games_ViewModel : BasePageViewModel, IDisposable
     }
 
     #endregion
+    */
 }

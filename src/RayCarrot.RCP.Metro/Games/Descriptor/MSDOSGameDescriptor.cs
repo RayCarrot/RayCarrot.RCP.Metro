@@ -11,7 +11,9 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A game descriptor for a MS-DOS program
 /// </summary>
-public abstract class MSDOSGameDescriptor : Win32GameDescriptor
+public abstract class MSDOSGameDescriptor :
+    // TODO-14: Inherit directly from GameDescriptor instead?
+    Win32GameDescriptor
 {
     // TODO-14: Most of this should be removed in favor of the new emulator system
 
@@ -154,6 +156,11 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
 
     #region Public Methods
 
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateMSDOSGameAddAction(this),
+    };
+
     public override GameFinder_GameItem? GetGameFinderItem() => RaymanForeverFolderName == null ? null : new GameFinder_GameItem(null, "Rayman Forever", new[]
         {
             "Rayman Forever",
@@ -226,49 +233,6 @@ public abstract class MSDOSGameDescriptor : Win32GameDescriptor
         }
 
         return Task.CompletedTask;
-    }
-
-    public override async Task<FileSystemPath?> LocateAsync()
-    {
-        // Have user browse for directory
-        var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-        {
-            Title = Resources.LocateGame_BrowserHeader,
-            DefaultDirectory = Environment.SpecialFolder.ProgramFilesX86.GetFolderPath(),
-            MultiSelection = false
-        });
-
-        // Make sure the user did not cancel
-        if (result.CanceledByUser)
-            return null;
-
-        // Make sure the selected directory exists
-        if (!result.SelectedDirectory.DirectoryExists)
-            return null;
-
-        // Make sure the directory is valid
-        if (await IsValidAsync(result.SelectedDirectory))
-            return result.SelectedDirectory;
-
-        // If the executable does not exist the location is not valid
-        if (!(result.SelectedDirectory + ExecutableName).FileExists)
-        {
-            Logger.Info("The selected install directory for {0} is not valid", Id);
-
-            await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
-            return null;
-        }
-
-        // Create the .bat file
-        File.WriteAllLines(result.SelectedDirectory + DefaultFileName, new string[]
-        {
-            "@echo off",
-            $"{Path.GetFileNameWithoutExtension(ExecutableName)} ver=usa"
-        });
-
-        Logger.Info("A batch file was created for {0}", Id);
-
-        return result.SelectedDirectory;
     }
 
     #endregion

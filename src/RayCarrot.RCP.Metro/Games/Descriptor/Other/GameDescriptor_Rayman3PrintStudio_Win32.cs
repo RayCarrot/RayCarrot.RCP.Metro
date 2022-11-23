@@ -21,17 +21,19 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3PrintStudio;
 
-    public override bool CanBeLocated => false;
-    public override bool CanBeDownloaded => true;
-    public override IList<Uri> DownloadURLs => new Uri[]
-    {
-        new(AppURLs.Games_PrintStudio1_Url),
-        new(AppURLs.Games_PrintStudio2_Url),
-    };
-
     #endregion
 
     #region Public Methods
+
+    // Can only be downloaded
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new DownloadGameAddAction(this, new Uri[]
+        {
+            new(AppURLs.Games_PrintStudio1_Url),
+            new(AppURLs.Games_PrintStudio2_Url),
+        })
+    };
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
         new GameOptions_PrintStudio_Control(new GameOptions_PrintStudio_ViewModel(gameInstallation));

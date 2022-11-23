@@ -98,7 +98,6 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
 
     public void Dispose()
     {
-        GamesPage.Dispose();
         UtilitiesPage.Dispose();
         ModsPage.Dispose();
     }

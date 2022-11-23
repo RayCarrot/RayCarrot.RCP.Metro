@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,6 +69,11 @@ public abstract class Win32GameDescriptor : GameDescriptor
 
     #region Public Methods
 
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateGameAddAction(this),
+    };
+
     public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
     {
         // Get the launch info
@@ -121,39 +125,6 @@ public abstract class Win32GameDescriptor : GameDescriptor
                 // TODO-14: Use game ID instead
                 id: gameInstallation.LegacyGame.ToString())
         };
-    }
-
-    public override async Task<FileSystemPath?> LocateAsync()
-    {
-        // Have user browse for directory
-        DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-        {
-            Title = Resources.LocateGame_BrowserHeader,
-            DefaultDirectory = Environment.SpecialFolder.ProgramFilesX86.GetFolderPath(),
-            MultiSelection = false
-        });
-
-        // Make sure the user did not cancel
-        if (result.CanceledByUser)
-            return null;
-
-        // Make sure the selected directory exists
-        if (!result.SelectedDirectory.DirectoryExists)
-            return null;
-
-        // Make sure the directory is valid
-        if (!await IsValidAsync(result.SelectedDirectory))
-        {
-            Logger.Info("The selected install directory for {0} is not valid", Id);
-
-            await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation,
-                Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
-
-            return null;
-        }
-
-        // Return the valid directory
-        return result.SelectedDirectory;
     }
 
     #endregion

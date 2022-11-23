@@ -9,20 +9,20 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Interaction logic for GameInstaller.xaml
 /// </summary>
-public partial class GameInstallerDialog : WindowContentControl, IDialogWindowControl<GameInstaller_ViewModel, UserInputResult>
+public partial class GameInstallerDialog : WindowContentControl, IDialogWindowControl<GameInstaller_ViewModel, GameInstallerResult>
 {
     #region Constructor
 
     /// <summary>
     /// Default constructor
     /// </summary>
-    public GameInstallerDialog(GameDescriptor gameDescriptor)
+    public GameInstallerDialog(GameDescriptor gameDescriptor, GameInstallerInfo info)
     {
         // Initialize components
         InitializeComponent();
 
         // Create the view model
-        DataContext = new GameInstaller_ViewModel(gameDescriptor);
+        DataContext = new GameInstaller_ViewModel(gameDescriptor, info);
 
         ViewModel.InstallationComplete += VM_InstallationComplete;
 
@@ -81,10 +81,11 @@ public partial class GameInstallerDialog : WindowContentControl, IDialogWindowCo
 
     #region Public Methods
 
-    public UserInputResult GetResult()
+    public GameInstallerResult GetResult()
     {
-        return new UserInputResult()
+        return new GameInstallerResult()
         {
+            GameInstallation = ViewModel.InstalledGame,
             // TODO: Set if canceled
         };
     }

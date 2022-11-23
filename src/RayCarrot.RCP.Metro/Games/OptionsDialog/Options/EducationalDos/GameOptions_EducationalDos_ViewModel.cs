@@ -57,6 +57,8 @@ public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
     /// <returns>The task</returns>
     public async Task AddGameAsync()
     {
+        // TODO-14: Fix
+        /*
         Logger.Info("A new educational game is being added...");
 
         // Get the manager
@@ -92,6 +94,7 @@ public class GameOptions_EducationalDos_ViewModel : BaseRCPViewModel
 
         // Edit the game
         await vm.EditGameAsync();
+        */
     }
 
     /// <summary>
