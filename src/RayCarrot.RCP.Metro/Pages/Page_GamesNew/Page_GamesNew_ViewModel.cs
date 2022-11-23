@@ -28,6 +28,7 @@ public class Page_GamesNew_ViewModel : BasePageViewModel,
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         // Set properties
         AsyncLock = new AsyncLock();
@@ -40,9 +41,6 @@ public class Page_GamesNew_ViewModel : BasePageViewModel,
         // Create commands
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
-
-        // Register for messages
-        messenger.RegisterAll(this);
     }
 
     #endregion
@@ -76,6 +74,7 @@ public class Page_GamesNew_ViewModel : BasePageViewModel,
 
     private GamesManager GamesManager { get; }
     private AppUIManager UI { get; }
+    private IMessenger Messenger { get; }
 
     #endregion
 
@@ -102,7 +101,13 @@ public class Page_GamesNew_ViewModel : BasePageViewModel,
 
     #region Protected Methods
 
-    protected override Task InitializeAsync() => RefreshAsync();
+    protected override async Task InitializeAsync()
+    {
+        await RefreshAsync();
+
+        // Register for messages
+        Messenger.RegisterAll(this);
+    }
 
     #endregion
 
@@ -122,64 +127,67 @@ public class Page_GamesNew_ViewModel : BasePageViewModel,
     {
         using (await AsyncLock.LockAsync())
         {
-            try
+            Metro.App.Current.Dispatcher.Invoke(() =>
             {
-                // Clear the categories
-                GameCategories.Clear();
-
-                SelectedInstalledGame = null;
-
-                // Enumerate every category of installed games
-                foreach (var categorizedGames in GamesManager.EnumerateInstalledGames().
-                             OrderBy(x => x.GameDescriptor.Category). // TODO-14: Normalize games sorting
-                             GroupBy(x => x.GameDescriptor.Category))
+                try
                 {
-                    // Create a view model
-                    GameCategoryInfoAttribute categoryInfo = categorizedGames.Key.GetInfo();
-                    InstalledGameCategoryViewModel category = new(categoryInfo.DisplayName, () => GameFilter);
-                    GameCategories.Add(category);
+                    // Clear the categories
+                    GameCategories.Clear();
 
-                    // Enumerate every group of installed games
-                    foreach (var gameInstallations in categorizedGames.
-                                 OrderBy(x => x.GameDescriptor.Game). // TODO-14: Normalize games sorting
-                                 GroupBy(x => x.GameDescriptor.Game))
+                    SelectedInstalledGame = null;
+
+                    // Enumerate every category of installed games
+                    foreach (var categorizedGames in GamesManager.EnumerateInstalledGames().
+                                 OrderBy(x => x.GameDescriptor.Category). // TODO-14: Normalize games sorting
+                                 GroupBy(x => x.GameDescriptor.Category))
                     {
-                        // Get the game info
-                        GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
+                        // Create a view model
+                        GameCategoryInfoAttribute categoryInfo = categorizedGames.Key.GetInfo();
+                        InstalledGameCategoryViewModel category = new(categoryInfo.DisplayName, () => GameFilter);
+                        GameCategories.Add(category);
 
-                        InstalledGameGroupViewModel group = new(
-                            // TODO-UPDATE: Normalize
-                            iconSource: $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{gameInfo.GameIcon.GetAttribute<ImageFileAttribute>()!.FileName}",
-                            displayName: gameInfo.DisplayName,
-                            gameInstallations: gameInstallations);
-
-                        // Add the group of game installations
-                        category.GameGroups.Add(group);
-
-                        if (selectedGameInstallation != null)
+                        // Enumerate every group of installed games
+                        foreach (var gameInstallations in categorizedGames.
+                                     OrderBy(x => x.GameDescriptor.Game). // TODO-14: Normalize games sorting
+                                     GroupBy(x => x.GameDescriptor.Game))
                         {
-                            InstalledGameViewModel? selectedInstalledGame = group.InstalledGames.
-                                FirstOrDefault(x => x.GameInstallation == selectedGameInstallation);
+                            // Get the game info
+                            GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
 
-                            if (selectedInstalledGame != null)
+                            InstalledGameGroupViewModel group = new(
+                                // TODO-UPDATE: Normalize
+                                iconSource: $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{gameInfo.GameIcon.GetAttribute<ImageFileAttribute>()!.FileName}",
+                                displayName: gameInfo.DisplayName,
+                                gameInstallations: gameInstallations);
+
+                            // Add the group of game installations
+                            category.GameGroups.Add(group);
+
+                            if (selectedGameInstallation != null)
                             {
-                                group.SelectedInstalledGame = selectedInstalledGame;
-                                selectedGameInstallation = null;
+                                InstalledGameViewModel? selectedInstalledGame = group.InstalledGames.
+                                    FirstOrDefault(x => x.GameInstallation == selectedGameInstallation);
+
+                                if (selectedInstalledGame != null)
+                                {
+                                    group.SelectedInstalledGame = selectedInstalledGame;
+                                    selectedGameInstallation = null;
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // TODO-UPDATE: Handle exception
-                Logger.Fatal(ex, "Refreshing games");
-                throw;
-            }
-            finally
-            {
-                UpdateFilteredCollections();
-            }
+                catch (Exception ex)
+                {
+                    // TODO-UPDATE: Handle exception
+                    Logger.Fatal(ex, "Refreshing games");
+                    throw;
+                }
+                finally
+                {
+                    UpdateFilteredCollections();
+                }
+            });
         }
     }
 
