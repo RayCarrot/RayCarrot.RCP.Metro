@@ -64,7 +64,7 @@
                                                         Width="{TemplateBinding local:ButtonAssist.IconSize}"
                                                         Height="{TemplateBinding local:ButtonAssist.IconSize}"
                                                         Foreground="{TemplateBinding local:ButtonAssist.IconBrush}"
-                                                        Margin="0 0 4 0" />
+                                                        Margin="0 0 6 0" />
 
                                 <mah:ContentControlEx x:Name="PART_ContentPresenter"
                                                   Grid.Column="1"
