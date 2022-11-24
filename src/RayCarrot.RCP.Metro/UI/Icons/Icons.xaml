@@ -25,9 +25,7 @@
     
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameOptions_Config">WrenchOutline</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Play">PlayOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Admin">Security</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Map">MapMarkerOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.File">FileOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FolderSearch">FolderSearchOutline</iconPacks:PackIconMaterialKind>
@@ -95,15 +93,9 @@
                        IconKind="{StaticResource RCP.Icons.Games}" 
                        IconColor="{StaticResource RCP.Brushes.OtherGames}" />
 
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Play" 
-                       IconKind="{StaticResource RCP.Icons.Play}" 
-                       IconColor="{x:Null}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Admin" 
                        IconKind="{StaticResource RCP.Icons.Admin}" 
                        IconColor="{StaticResource RCP.Brushes.Technical}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Map" 
-                       IconKind="{StaticResource RCP.Icons.Map}" 
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Archive" 
                        IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
                        IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
@@ -113,15 +105,6 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Location" 
                        IconKind="{StaticResource RCP.Icons.Folder}" 
                        IconColor="{StaticResource RCP.Brushes.Info}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Config" 
-                       IconKind="{StaticResource RCP.Icons.Settings}" 
-                       IconColor="{StaticResource RCP.Brushes.Settings}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Download" 
-                       IconKind="{StaticResource RCP.Icons.CloudDownload}" 
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_DiscInstall" 
-                       IconKind="{StaticResource RCP.Icons.Disc}" 
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Web" 
                        IconKind="{StaticResource RCP.Icons.Web}" 
                        IconColor="{x:Null}" />

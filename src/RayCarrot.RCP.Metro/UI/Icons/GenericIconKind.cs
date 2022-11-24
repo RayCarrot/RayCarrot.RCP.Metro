@@ -12,15 +12,10 @@ public enum GenericIconKind
     Games_FanGames,
 
     // TODO-UPDATE: Rename and re-reorganize for new ui
-    GameDisplay_Play,
     GameDisplay_Admin,
-    GameDisplay_Map,
     GameDisplay_Archive,
     GameDisplay_Patcher,
     GameDisplay_Location,
-    GameDisplay_Config,
-    GameDisplay_Download,
-    GameDisplay_DiscInstall,
     GameDisplay_Web,
     GameDisplay_Steam,
     GameDisplay_Microsoft,

@@ -46,7 +46,6 @@ public class AppUserData : BaseViewModel
         UI_EnableAnimations = true;
         UI_LinkItemStyle = UserData_LinkItemStyle.List;
         UI_LinkListHorizontalAlignment = HorizontalAlignment.Left;
-        UI_CategorizeGames = true;
         UI_UseChildWindows = true;
 
         // Theme
@@ -56,7 +55,6 @@ public class AppUserData : BaseViewModel
         // Game
         Game_GameInstallations = new List<GameInstallation>();
         Game_AutoLocateGames = true;
-        Game_ShowNotInstalledGames = true;
         Game_EducationalDosBoxGames = null;
         Game_RabbidsGoHomeLaunchData = null;
         Game_ShownRabbidsActivityCenterLaunchMessage = false;
@@ -232,11 +230,6 @@ public class AppUserData : BaseViewModel
     public HorizontalAlignment UI_LinkListHorizontalAlignment { get; set; }
 
     /// <summary>
-    /// Indicates if the games should be categorized
-    /// </summary>
-    public bool UI_CategorizeGames { get; set; }
-
-    /// <summary>
     /// Indicates if dialogs should be shown as child windows whenever possible
     /// </summary>
     public bool UI_UseChildWindows { get; set; }
@@ -270,11 +263,6 @@ public class AppUserData : BaseViewModel
     /// Indicates if games should be automatically located on startup
     /// </summary>
     public bool Game_AutoLocateGames { get; set; }
-
-    /// <summary>
-    /// Indicates if not installed games should be shown
-    /// </summary>
-    public bool Game_ShowNotInstalledGames { get; set; }
 
     /// <summary>
     /// The saved educational DOSBox games
@@ -501,7 +489,6 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private string DosBoxPath { set => Emu_DOSBox_Path = value; }
     [JsonProperty] private string DosBoxConfig { set => Emu_DOSBox_ConfigPath = value; }
     [JsonProperty] private bool AutoLocateGames { set => Game_AutoLocateGames = value; }
-    [JsonProperty] private bool ShowNotInstalledGames { set => Game_ShowNotInstalledGames = value; }
     [JsonProperty] private bool CloseAppOnGameLaunch { set => App_CloseAppOnGameLaunch = value; }
     [JsonProperty] private bool CloseConfigOnSave { set => App_CloseConfigOnSave = value; }
     [JsonProperty] private FileSystemPath BackupLocation { set => Backup_BackupLocation = value; }
@@ -518,7 +505,6 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private List<string> JumpListItemIDCollection { set => App_JumpListItemIDCollection = value; }
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private HashSet<Games> InstalledGames { set => Game_InstalledGames = value; }
-    [JsonProperty] private bool CategorizeGames { set => UI_CategorizeGames = value; }
     [JsonProperty] private bool ShownRabbidsActivityCenterLaunchMessage { set => Game_ShownRabbidsActivityCenterLaunchMessage = value; }
     [JsonProperty] private FileSystemPath BinarySerializationFileLogPath { set => Binary_BinarySerializationFileLogPath = value; }
     [JsonProperty] private bool HandleDownloadsManually { set => App_HandleDownloadsManually = value; }

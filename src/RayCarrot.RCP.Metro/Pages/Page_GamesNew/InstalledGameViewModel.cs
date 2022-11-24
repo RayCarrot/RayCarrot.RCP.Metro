@@ -93,7 +93,8 @@ public class InstalledGameViewModel : BaseViewModel
 
     private void AddAdditionalLaunchActions()
     {
-        // TODO-UPDATE: Always show this option if available (Win32, but not for Steam, packaged etc.)
+        // TODO-UPDATE: Always show this option if available (Win32, but not for Steam, packaged etc.). Keep setting in options
+        //              dialog for if should always run as admin by default.
         // Add run as admin option
         UserData_GameLaunchMode launchMode = GameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
 

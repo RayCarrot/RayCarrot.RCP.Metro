@@ -14,7 +14,7 @@ public class LocateMSDOSGameAddAction : GameAddAction
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public override LocalizedString Header => "Locate"; // TODO-UPDATE: Localize
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.GameDisplay_Locate));
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Locate;
     public override bool IsAvailable => true;
 

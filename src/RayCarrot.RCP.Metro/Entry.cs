@@ -47,7 +47,6 @@ public static class Entry
         serviceCollection.AddSingleton<MainWindowViewModel>();
 
         // Add the pages
-        serviceCollection.AddSingleton<Page_Games_ViewModel>();
         serviceCollection.AddSingleton<Page_GamesNew_ViewModel>();
         serviceCollection.AddSingleton<Page_Progression_ViewModel>();
         serviceCollection.AddSingleton<Page_Utilities_ViewModel>();

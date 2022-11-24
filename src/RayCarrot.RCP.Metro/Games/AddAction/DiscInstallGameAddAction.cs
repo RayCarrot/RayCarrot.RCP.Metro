@@ -10,7 +10,7 @@ public class DiscInstallGameAddAction : GameAddAction
         InstallerInfo = installerInfo;
     }
 
-    public override LocalizedString Header => "Install from disc"; // TODO-UPDATE: Localize
+    public override LocalizedString Header => new ResourceLocString(nameof(Resources.GameDisplay_DiscInstall));
     public override GenericIconKind Icon => GenericIconKind.GameAdd_DiscInstall;
     public override bool IsAvailable => true;
 

@@ -315,9 +315,6 @@ public class AppDataManager
                 Data.App_UserLevel = UserLevel.Advanced;
         }
 
-        if (lastVersion < new Version(7, 1, 1, 0))
-            Data.UI_CategorizeGames = true;
-
         if (lastVersion < new Version(7, 2, 0, 0))
             Data.Game_ShownRabbidsActivityCenterLaunchMessage = false;
 

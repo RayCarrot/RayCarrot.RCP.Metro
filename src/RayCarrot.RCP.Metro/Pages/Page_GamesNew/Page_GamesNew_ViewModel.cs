@@ -80,7 +80,7 @@ public class Page_GamesNew_ViewModel : BasePageViewModel,
 
     #region Public Properties
 
-    public override AppPage Page => AppPage.GamesNew;
+    public override AppPage Page => AppPage.Games;
 
     public string GameFilter
     {

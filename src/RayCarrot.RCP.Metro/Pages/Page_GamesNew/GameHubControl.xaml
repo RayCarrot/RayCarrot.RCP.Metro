@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignWidth="900" d:DesignHeight="600"
              d:DataContext="{d:DesignInstance local:InstalledGameViewModel}"
-             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
     <!-- TODO-UPDATE: Localize -->
     <Grid x:Name="RootGrid">
         <!-- Game banner image -->
@@ -125,7 +126,7 @@
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                         local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Settings}"
                                         Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}"
-                                        ToolTip="Options" />
+                                        ToolTip="{Resx GameDisplay_Options}" />
 
                             </Grid>
 
