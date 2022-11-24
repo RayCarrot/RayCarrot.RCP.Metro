@@ -14,7 +14,7 @@ public partial class GameSelectionControl : UserControl
         InitializeComponent();
     }
 
-    public Page_GamesNew_ViewModel ViewModel => (Page_GamesNew_ViewModel)DataContext;
+    public Page_Games_ViewModel ViewModel => (Page_Games_ViewModel)DataContext;
 
     private void GamesListBox_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
     {

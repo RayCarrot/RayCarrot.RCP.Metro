@@ -7,7 +7,7 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
 {
     public MainWindowViewModel(
         AppViewModel app,
-        Page_GamesNew_ViewModel gamesPageNew, 
+        Page_Games_ViewModel gamesPage, 
         Page_Progression_ViewModel progressionPage, 
         Page_Utilities_ViewModel utilitiesPage, 
         Page_Mods_ViewModel modsPage, 
@@ -16,7 +16,7 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
         Page_Debug_ViewModel debugPage)
     {
         App = app ?? throw new ArgumentNullException(nameof(app));
-        GamesPageNew = gamesPageNew ?? throw new ArgumentNullException(nameof(gamesPageNew));
+        GamesPage = gamesPage ?? throw new ArgumentNullException(nameof(gamesPage));
         ProgressionPage = progressionPage ?? throw new ArgumentNullException(nameof(progressionPage));
         UtilitiesPage = utilitiesPage ?? throw new ArgumentNullException(nameof(utilitiesPage));
         ModsPage = modsPage ?? throw new ArgumentNullException(nameof(modsPage));
@@ -34,7 +34,7 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
     private AppPage _selectedPage = AppPage.None;
 
     public AppViewModel App { get; } // TODO: Remove this from here
-    public Page_GamesNew_ViewModel GamesPageNew { get; }
+    public Page_Games_ViewModel GamesPage { get; }
     public Page_Progression_ViewModel ProgressionPage { get; }
     public Page_Utilities_ViewModel UtilitiesPage { get; }
     public Page_Mods_ViewModel ModsPage { get; }
@@ -73,7 +73,7 @@ public class MainWindowViewModel : BaseViewModel, IDisposable
     {
         BasePageViewModel vm = e.NewValue switch
         {
-            AppPage.Games => GamesPageNew,
+            AppPage.Games => GamesPage,
             AppPage.Progression => ProgressionPage,
             AppPage.Utilities => UtilitiesPage,
             AppPage.Mods => ModsPage,

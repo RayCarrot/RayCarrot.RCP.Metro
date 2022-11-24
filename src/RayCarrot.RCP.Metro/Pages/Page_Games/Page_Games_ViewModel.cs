@@ -14,12 +14,12 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// View model for the games page
 /// </summary>
-public class Page_GamesNew_ViewModel : BasePageViewModel, 
+public class Page_Games_ViewModel : BasePageViewModel, 
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
 {
     #region Constructor
 
-    public Page_GamesNew_ViewModel(
+    public Page_Games_ViewModel(
         AppViewModel app, 
         GamesManager gamesManager, 
         AppUIManager ui, 

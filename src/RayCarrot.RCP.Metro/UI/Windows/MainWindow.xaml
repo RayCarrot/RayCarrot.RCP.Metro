@@ -164,7 +164,7 @@
                          local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Games}"
                          local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Games}"
                          IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter=Games}">
-                    <local:Page_GamesNew DataContext="{Binding Path=GamesPageNew, Mode=OneTime}" />
+                    <local:Page_Games DataContext="{Binding Path=GamesPage, Mode=OneTime}" />
                 </TabItem>
 
                 <!-- Progression -->
