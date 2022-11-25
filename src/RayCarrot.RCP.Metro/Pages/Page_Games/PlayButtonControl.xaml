@@ -6,12 +6,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:controlzex="urn:controlzex"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance local:InstalledGameViewModel}"
-             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             Loaded="PlayButtonControl_OnLoaded">
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
     <!-- TODO-UPDATE: Localize -->
-    <Grid>
+    <Grid x:Name="RootGrid">
         <mah:ClipBorder x:Name="PlayButtonBorder"
                         CornerRadius="{StaticResource CornerRadius.Default}"
                         Background="{DynamicResource RCP.Brushes.FlatButton.Play}">
@@ -43,69 +43,67 @@
         </mah:ClipBorder>
 
         <controlzex:PopupEx x:Name="DropDownPopup"
-                            Opened="DropDownPopup_OnOpened"
-                            Closed="DropDownPopup_OnClosed"
-                            AllowsTransparency="True"
-                            Focusable="False"
                             PlacementTarget="{Binding ElementName=PlayButtonBorder}"
-                            PopupAnimation="Fade"
-                            StaysOpen="True">
+                            PopupAnimation="Fade">
+            <b:Interaction.Behaviors>
+                <local:DefaultPopupBehavior ParentElement="{Binding ElementName=RootGrid, Mode=OneTime}" />
+            </b:Interaction.Behaviors>
+            
             <local:Card MinWidth="{Binding Path=ActualWidth, ElementName=PlayButtonBorder}"
                         UniformCornerRadius="{StaticResource CornerRadiusDouble.Default}"
                         Margin="5"
                         Padding="0"
-                        Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
-                <StackPanel>
-                    <ItemsControl ItemsSource="{Binding Path=AdditionalLaunchActions, Mode=OneTime}">
-                        <ItemsControl.Resources>
-                            <DataTemplate DataType="{x:Type local:SeparatorItemViewModel}">
-                                <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                           local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}" />
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type local:IconCommandItemViewModel}">
-                                <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
-                                        mah:ControlsHelper.CornerRadius="0"
-                                        local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                        local:ButtonAssist.IconSize="16"
-                                        local:ButtonAssist.IconBrush="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
-                                        HorizontalContentAlignment="Left"
-                                        ToolTip="{Binding Path=Description.Value}"
-                                        Command="{Binding Path=Command, Mode=OneTime}"
-                                        Click="Button_OnClick"
-                                        local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
-                                    <TextBlock RenderOptions.ClearTypeHint="Enabled"
+                        Background="{DynamicResource RCP.Brushes.Card.Background}">
+                <ItemsControl ItemsSource="{Binding Path=AdditionalLaunchActions, Mode=OneTime}">
+                    <ItemsControl.Resources>
+                        <DataTemplate DataType="{x:Type local:SeparatorItemViewModel}">
+                            <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                                       local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}"
+                                       Margin="4 2"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:IconCommandItemViewModel}">
+                            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                                    mah:ControlsHelper.CornerRadius="0"
+                                    local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                    local:ButtonAssist.IconSize="16"
+                                    local:ButtonAssist.IconBrush="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                    HorizontalContentAlignment="Left"
+                                    ToolTip="{Binding Path=Description.Value}"
+                                    Command="{Binding Path=Command, Mode=OneTime}"
+                                    Click="Button_OnClick"
+                                    local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
+                                <TextBlock RenderOptions.ClearTypeHint="Enabled"
+                                           Text="{Binding Path=Header.Value}" />
+                            </Button>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:ImageCommandItemViewModel}">
+                            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                                    mah:ControlsHelper.CornerRadius="0"
+                                    HorizontalContentAlignment="Left"
+                                    ToolTip="{Binding Path=Description.Value}"
+                                    Command="{Binding Path=Command, Mode=OneTime}"
+                                    Click="Button_OnClick"
+                                    local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" 
+                                           Margin="0 0 4 0"
+                                           Source="{Binding Path=ImageSource, Mode=OneTime}"
+                                           MaxWidth="16"
+                                           MaxHeight="16" />
+
+                                    <TextBlock Grid.Column="1"
+                                               RenderOptions.ClearTypeHint="Enabled"
                                                Text="{Binding Path=Header.Value}" />
-                                </Button>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type local:ImageCommandItemViewModel}">
-                                <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
-                                        mah:ControlsHelper.CornerRadius="0"
-                                        HorizontalContentAlignment="Left"
-                                        ToolTip="{Binding Path=Description.Value}"
-                                        Command="{Binding Path=Command, Mode=OneTime}"
-                                        Click="Button_OnClick"
-                                        local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Image Grid.Column="0" 
-                                               Margin="0 0 4 0"
-                                               Source="{Binding Path=ImageSource, Mode=OneTime}"
-                                               MaxWidth="16"
-                                               MaxHeight="16" />
-
-                                        <TextBlock Grid.Column="1"
-                                                   RenderOptions.ClearTypeHint="Enabled"
-                                                   Text="{Binding Path=Header.Value}" />
-                                    </Grid>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.Resources>
-                    </ItemsControl>
-                </StackPanel>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.Resources>
+                </ItemsControl>
             </local:Card>
         </controlzex:PopupEx>
 

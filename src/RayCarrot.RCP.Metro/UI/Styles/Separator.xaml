@@ -7,7 +7,7 @@
                 <ControlTemplate TargetType="{x:Type Separator}">
                     <Border Height="1" 
                             SnapsToDevicePixels="true" 
-                            BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}" 
+                            BorderBrush="{DynamicResource MahApps.Brushes.Separator}" 
                             BorderThickness="0 0 0 1"/>
                 </ControlTemplate>
             </Setter.Value>
