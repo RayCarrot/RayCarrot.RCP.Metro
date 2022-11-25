@@ -168,7 +168,7 @@
         </ScrollViewer>
 
         <!-- Actions -->
-        <Grid Grid.Row="2" Margin="2 0">
+        <Grid x:Name="ActionsGrid" Grid.Row="2" Margin="2 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -192,10 +192,18 @@
                         Orientation="Horizontal">
 
                 <!-- TODO-UPDATE: Implement -->
-                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                        ToolTip="Find games"
-                        Margin="0 0 4 0"
-                        local:ButtonAssist.IconKind="Magnify" />
+                <Grid Margin="0 0 4 0">
+                    <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                            Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
+                            Visibility="{Binding Path=IsGameFinderRunning, Converter={local:InvertedBooleanToVisibilityConverter}}"
+                            ToolTip="Find games"
+                            local:ButtonAssist.IconKind="Magnify" />
+
+                    <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
+                                        Height="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
+                                        Visibility="{Binding Path=IsGameFinderRunning, Converter={local:BooleanToVisibilityConverter}}" />
+
+                </Grid>
 
                 <Button Style="{StaticResource RCP.Styles.Button.Flat}"
                         Command="{Binding Path=AddGamesCommand, Mode=OneTime}"

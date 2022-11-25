@@ -91,7 +91,7 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
         return VerifyCanLaunchAsync(Services.Data.Game_EducationalDosBoxGames.First());
     }
 
-    protected override async Task<bool> IsGameLocationValidAsync(FileSystemPath installLocation)
+    protected override bool IsGameLocationValid(FileSystemPath installLocation)
     {
         if (Services.Data.Game_EducationalDosBoxGames == null)
             return false;
@@ -109,7 +109,8 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
         {
             Services.Data.App_JumpListItemIDCollection.RemoveWhere(x => x == game.ID);
 
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
+            // TODO-14: Fix
+            //await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
         }
 
         // Make sure there is at least one game

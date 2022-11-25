@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -20,14 +21,18 @@ public class Page_Games_ViewModel : BasePageViewModel,
     #region Constructor
 
     public Page_Games_ViewModel(
-        AppViewModel app, 
+        AppViewModel app,
+        AppUserData data,
         GamesManager gamesManager, 
-        AppUIManager ui, 
+        AppUIManager ui,
+        IMessageUIManager messageUi,
         IMessenger messenger) : base(app)
     {
         // Set services
+        Data = data ?? throw new ArgumentNullException(nameof(data));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         // Set properties
@@ -40,6 +45,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
         // Create commands
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
+        FindGamesCommand = new AsyncRelayCommand(() => FindGamesAsync(false));
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
     }
 
@@ -54,6 +60,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
     #region Commands
 
     public ICommand RefreshGamesCommand { get; }
+    public ICommand FindGamesCommand { get; }
     public ICommand AddGamesCommand { get; }
 
     #endregion
@@ -72,8 +79,10 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
     #region Services
 
+    private AppUserData Data { get; }
     private GamesManager GamesManager { get; }
     private AppUIManager UI { get; }
+    private IMessageUIManager MessageUI { get; }
     private IMessenger Messenger { get; }
 
     #endregion
@@ -96,6 +105,8 @@ public class Page_Games_ViewModel : BasePageViewModel,
     public ICollectionView FilteredGameCategories { get; }
 
     public InstalledGameViewModel? SelectedInstalledGame { get; set; }
+
+    public bool IsGameFinderRunning { get; private set; }
 
     #endregion
 
@@ -188,6 +199,95 @@ public class Page_Games_ViewModel : BasePageViewModel,
                     UpdateFilteredCollections();
                 }
             });
+        }
+    }
+
+    public async Task FindGamesAsync(bool runInBackground)
+    {
+        if (IsGameFinderRunning)
+            return;
+
+        IsGameFinderRunning = true;
+
+        try
+        {
+            // TODO-14: Change how the game finder works
+            // Get all games which have not been added
+            GameDescriptor[] games = Services.Games.EnumerateGameDescriptors().
+                Where(x => Services.Games.EnumerateInstalledGames().All(g => g.GameDescriptor != x)).
+                ToArray();
+
+            Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
+
+            // Get additional finder items
+            List<GameFinder_GenericItem> finderItems = new(1);
+
+            // Create DOSBox finder item if it doesn't exist
+            if (!System.IO.File.Exists(Data.Emu_DOSBox_Path))
+            {
+                string[] names =
+                {
+                    "DosBox",
+                    "Dos Box"
+                };
+
+                void foundAction(FileSystemPath installDir)
+                {
+                    if (System.IO.File.Exists(Data.Emu_DOSBox_Path))
+                    {
+                        Logger.Warn("The DosBox executable was not added from the game finder due to already having been added");
+                        return;
+                    }
+
+                    Logger.Info("The DosBox executable was found from the game finder");
+
+                    Data.Emu_DOSBox_Path = installDir + "DOSBox.exe";
+                }
+
+                finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : (FileSystemPath?)null, foundAction, "DOSBox"));
+            }
+
+            // Run the game finder and get the result
+            GameFinder finder = new(games, finderItems);
+            IReadOnlyList<GameFinder_BaseResult> foundItems = await Task.Run(finder.FindGames);
+
+            // Add the found items
+            foreach (GameFinder_BaseResult foundItem in foundItems)
+                await foundItem.HandleItemAsync();
+
+            // Check if new games were found
+            if (foundItems.Count > 0)
+            {
+                // Split into found games and items and sort
+                IEnumerable<string> gameFinderResults = foundItems.
+                    OfType<GameFinder_GameResult>().
+                    OrderBy(x => x.DisplayName). // TODO-14: Fix order once we have new enums
+                    Select(x => x.DisplayName);
+
+                IEnumerable<string> finderResults = foundItems.
+                    OfType<GameFinder_GenericResult>().
+                    OrderBy(x => x.DisplayName).
+                    Select(x => x.DisplayName);
+
+                await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+
+                Logger.Info("The game finder found the following items {0}", foundItems.JoinItems(", ", x => x.DisplayName));
+            }
+            else if (!runInBackground)
+            {
+                await MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader,
+                    MessageType.Information);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Game finder");
+
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
+        }
+        finally
+        {
+            IsGameFinderRunning = false;
         }
     }
 

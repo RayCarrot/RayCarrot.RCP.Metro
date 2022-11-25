@@ -415,7 +415,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                 case DebugDataOutputType.GameFinder:
                     // Run and get the result
-                    var result = await new GameFinder(GamesManager.EnumerateGameDescriptors(), null).FindGamesAsync();
+                    var result = new GameFinder(GamesManager.EnumerateGameDescriptors(), null).FindGames();
                         
                     // Output the found games
                     DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.Id} - {x.InstallLocation}").JoinItems(Environment.NewLine);

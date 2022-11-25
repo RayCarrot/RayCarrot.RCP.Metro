@@ -57,7 +57,7 @@ public class FindSteamGameAddAction : GameAddAction
         }
 
         // Make sure the game is valid
-        if (!await GameDescriptor.IsValidAsync(installDir))
+        if (!GameDescriptor.IsValid(installDir))
         {
             Logger.Info("The {0} install directory was not valid", GameDescriptor.Id);
 

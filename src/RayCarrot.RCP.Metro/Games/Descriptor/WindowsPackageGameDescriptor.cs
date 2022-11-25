@@ -94,17 +94,14 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         }
     }
 
-    protected override async Task<bool> IsGameLocationValidAsync(FileSystemPath installLocation)
+    protected override bool IsGameLocationValid(FileSystemPath installLocation)
     {
         // Make sure version is at least Windows 8
         if (!SupportsWinRT)
             return false;
 
         // Make sure the default game file is found
-        if (!await base.IsGameLocationValidAsync(installLocation))
-            return false;
-
-        return true;
+        return base.IsGameLocationValid(installLocation);
     }
 
     #endregion

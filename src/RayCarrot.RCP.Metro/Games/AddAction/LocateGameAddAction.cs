@@ -41,7 +41,7 @@ public class LocateGameAddAction : GameAddAction
             return null;
 
         // Make sure the directory is valid
-        if (!await GameDescriptor.IsValidAsync(result.SelectedDirectory))
+        if (!GameDescriptor.IsValid(result.SelectedDirectory))
         {
             Logger.Info("The selected install directory for {0} is not valid", GameDescriptor.Id);
 

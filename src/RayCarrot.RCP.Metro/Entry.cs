@@ -25,6 +25,7 @@ public static class Entry
 
     private static void ConfigureServices(IServiceCollection serviceCollection, string[] args)
     {
+        // TODO-UPDATE: Have most (all?) of these be singletons?
         // Add app related services
         serviceCollection.AddSingleton(new LaunchArguments(args));
         serviceCollection.AddSingleton<JumpListManager>();

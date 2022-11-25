@@ -128,7 +128,13 @@ public partial class App : Application
         StartupManager startupManager = ServiceProvider.GetRequiredService<StartupManager>();
         await startupManager.RunAsync(
             isFullStartup: true,
-            createWindow: ServiceProvider.GetRequiredService<MainWindow>);
+            createWindow: ServiceProvider.GetRequiredService<MainWindow>,
+            additionalFullStartup: async () =>
+            {
+                // Find installed games if set to do so on startup
+                if (Data.Game_AutoLocateGames)
+                    await ServiceProvider.GetRequiredService<MainWindow>().ViewModel.GamesPage.FindGamesAsync(true);
+            });
     }
 
     private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

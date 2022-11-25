@@ -142,11 +142,6 @@ public class AppViewModel : BaseViewModel
     public bool IsBeta => false;
 
     /// <summary>
-    /// Indicates if the game finder is currently running
-    /// </summary>
-    public bool IsGameFinderRunning { get; set; }
-
-    /// <summary>
     /// A flag indicating if an update check is in progress
     /// </summary>
     public bool CheckingForUpdates { get; set; }
@@ -214,99 +209,6 @@ public class AppViewModel : BaseViewModel
             Logger.Error(ex, "Changing ubi.ini file permissions");
             await MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
         }
-    }
-
-    /// <summary>
-    /// Checks for installed games
-    /// </summary>
-    /// <returns>True if new games were found, otherwise false</returns>
-    public async Task<bool> RunGameFinderAsync() // TODO-14: Move out of here
-    {
-        if (IsGameFinderRunning)
-            return false;
-
-        IsGameFinderRunning = true;
-
-        try
-        {
-            // TODO-14: Change how the game finder works
-            // Get all games which have not been added
-            GameDescriptor[] games = Services.Games.EnumerateGameDescriptors().
-                Where(x => Services.Games.EnumerateInstalledGames().All(g => g.GameDescriptor != x)).
-                ToArray();
-
-            Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
-
-            // Get additional finder items
-            List<GameFinder_GenericItem> finderItems = new(1);
-
-            // Create DOSBox finder item if it doesn't exist
-            if (!System.IO.File.Exists(Data.Emu_DOSBox_Path))
-            {
-                string[] names = 
-                {
-                    "DosBox",
-                    "Dos Box"
-                };
-
-                void foundAction(FileSystemPath installDir)
-                {
-                    if (System.IO.File.Exists(Data.Emu_DOSBox_Path))
-                    {
-                        Logger.Warn("The DosBox executable was not added from the game finder due to already having been added");
-                        return;
-                    }
-
-                    Logger.Info("The DosBox executable was found from the game finder");
-
-                    Data.Emu_DOSBox_Path = installDir + "DOSBox.exe";
-                }
-
-                finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : (FileSystemPath?)null, foundAction, "DOSBox"));
-            }
-
-            // Run the game finder and get the result
-            IReadOnlyList<GameFinder_BaseResult> foundItems = await new GameFinder(games, finderItems).FindGamesAsync();
-
-            // Add the found items
-            foreach (GameFinder_BaseResult foundItem in foundItems)
-            {
-                await foundItem.HandleItemAsync();
-            }
-
-            // Show message if new games were found
-            if (foundItems.Count > 0)
-            {
-                // Split into found games and items and sort
-                IEnumerable<string> gameFinderResults = foundItems.
-                    OfType<GameFinder_GameResult>().
-                    OrderBy(x => x.DisplayName). // TODO-14: Fix order once we have new enums
-                    Select(x => x.DisplayName);
-                
-                IEnumerable<string> finderResults = foundItems.
-                    OfType<GameFinder_GenericResult>().
-                    OrderBy(x => x.DisplayName).
-                    Select(x => x.DisplayName);
-
-                await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
-
-                Logger.Info("The game finder found the following items {0}", foundItems.JoinItems(", ", x => x.DisplayName));
-
-                return true;
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Game finder");
-
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
-        }
-        finally
-        {
-            IsGameFinderRunning = false;
-        }
-
-        return false;
     }
 
     /// <summary>

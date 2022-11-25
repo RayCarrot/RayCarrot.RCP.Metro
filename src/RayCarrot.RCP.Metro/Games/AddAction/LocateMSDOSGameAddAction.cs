@@ -41,7 +41,7 @@ public class LocateMSDOSGameAddAction : GameAddAction
         // TODO-14: This is Rayman specific - not MSDOS specific!
 
         // Make sure the directory is valid
-        if (await GameDescriptor.IsValidAsync(result.SelectedDirectory))
+        if (GameDescriptor.IsValid(result.SelectedDirectory))
             return await Services.Games.AddGameAsync(GameDescriptor, result.SelectedDirectory);
 
         // If the executable does not exist the location is not valid

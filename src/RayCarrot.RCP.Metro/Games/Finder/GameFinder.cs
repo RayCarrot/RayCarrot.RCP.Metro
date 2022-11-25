@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using IniParser;
 using Microsoft.Win32;
 using NLog;
@@ -98,8 +97,7 @@ public class GameFinder
     /// <param name="shortcuts">The shortcut paths</param>
     /// <param name="programShortcutGameFinders">The shortcut game finders</param>
     /// <param name="programShortcutFinders">The shortcut finders</param>
-    /// <returns>The task</returns>
-    private async Task SearchWin32ShortcutsAsync(IEnumerable<string> shortcuts, List<GameFinderItemContainer> programShortcutGameFinders, List<GameFinder_GenericItem> programShortcutFinders)
+    private void SearchWin32Shortcuts(IEnumerable<string> shortcuts, List<GameFinderItemContainer> programShortcutGameFinders, List<GameFinder_GenericItem> programShortcutFinders)
     {
         // Enumerate each program
         foreach (var shortcut in shortcuts)
@@ -152,7 +150,7 @@ public class GameFinder
                 }
 
                 // Add the game
-                var added = await AddGameAsync(gameMatch, targetDir);
+                bool added = AddGame(gameMatch, targetDir);
 
                 // Remove if added
                 if (added)
@@ -172,8 +170,7 @@ public class GameFinder
     /// <param name="regUninstallGameFinders">The Registry uninstall game finders</param>
     /// <param name="steamGameFinders">The Steam game finders</param>
     /// <param name="regUninstallFinders">The Registry uninstall finders</param>
-    /// <returns>The task</returns>
-    private async Task SearchRegistryUninstallAsync(IEnumerable<InstalledProgram> installedPrograms, List<GameFinderItemContainer> regUninstallGameFinders, List<GameFinderItemContainer> steamGameFinders, List<GameFinder_GenericItem> regUninstallFinders)
+    private void SearchRegistryUninstall(IEnumerable<InstalledProgram> installedPrograms, List<GameFinderItemContainer> regUninstallGameFinders, List<GameFinderItemContainer> steamGameFinders, List<GameFinder_GenericItem> regUninstallFinders)
     {
         // Enumerate each program
         foreach (InstalledProgram program in installedPrograms)
@@ -210,7 +207,7 @@ public class GameFinder
                     Replace("/", @"\");
 
                 // Add the game
-                var added = await AddGameAsync(gameMatch, location);
+                bool added = AddGame(gameMatch, location);
 
                 // Remove if added
                 if (added)
@@ -233,8 +230,7 @@ public class GameFinder
     /// </summary>
     /// <param name="iniInstallDirData">A dictionary of the sections and their the install location value</param>
     /// <param name="finders">The game finders for this operation</param>
-    /// <returns>The task</returns>
-    private async Task SearchIniDataAsync(IDictionary<string, string?> iniInstallDirData, GameFinderItemContainer[] finders)
+    private void SearchIniData(IDictionary<string, string?> iniInstallDirData, GameFinderItemContainer[] finders)
     {
         Logger.Info("The ini sections are being searched...");
 
@@ -249,7 +245,7 @@ public class GameFinder
                 continue;
 
             // Add the game
-            await AddGameAsync(game, location);
+            AddGame(game, location);
         }
     }
 
@@ -410,7 +406,7 @@ public class GameFinder
     /// <param name="game">The game item to add</param>
     /// <param name="installDir">The found install directory</param>
     /// <returns>True if the game item was added, otherwise false</returns>
-    private async Task<bool> AddGameAsync(GameFinderItemContainer game, FileSystemPath installDir)
+    private bool AddGame(GameFinderItemContainer game, FileSystemPath installDir)
     {
         Logger.Info("An install directory was found for {0}", game.GameDescriptor.Id);
 
@@ -443,7 +439,7 @@ public class GameFinder
         }
 
         // Make sure that the game is valid
-        if (!await game.GameDescriptor.IsValidAsync(installDir))
+        if (!game.GameDescriptor.IsValid(installDir))
         {
             Logger.Info("{0} could not be added. The game default file was not found.", game.GameDescriptor.Id);
             return false;
@@ -508,7 +504,7 @@ public class GameFinder
     /// Attempts to find the specified games, returning the found games and their install locations. This method can only be called once per class instance.
     /// </summary>
     /// <returns>The found games and their install locations</returns>
-    public async Task<IReadOnlyList<GameFinder_BaseResult>> FindGamesAsync()
+    public IReadOnlyList<GameFinder_BaseResult> FindGames()
     {
         if (HasRun)
             throw new Exception("The FindGames method can only be called once per instance");
@@ -544,7 +540,7 @@ public class GameFinder
 
                 // If we retrieved ini data, search it
                 if (iniLocations != null)
-                    await SearchIniDataAsync(iniLocations, ubiIniGameFinders);
+                    SearchIniData(iniLocations, ubiIniGameFinders);
                 else
                     Logger.Info("The ubi.ini file data was null");
             }
@@ -565,7 +561,7 @@ public class GameFinder
                     var installedPrograms = EnumerateRegistryUninstallPrograms();
 
                     // Search installed programs
-                    await SearchRegistryUninstallAsync(installedPrograms, regUninstallGameFinders, steamGameFinders, regUninstallFinders);
+                    SearchRegistryUninstall(installedPrograms, regUninstallGameFinders, steamGameFinders, regUninstallFinders);
                 }
                 catch (Exception ex)
                 {
@@ -588,7 +584,7 @@ public class GameFinder
                     var shortcuts = EnumerateProgramShortcuts();
 
                     // Search the shortcuts
-                    await SearchWin32ShortcutsAsync(shortcuts, programShortcutGameFinders, programShortcutFinders);
+                    SearchWin32Shortcuts(shortcuts, programShortcutGameFinders, programShortcutFinders);
                 }
                 catch (Exception ex)
                 {
@@ -610,7 +606,7 @@ public class GameFinder
                     continue;
 
                 // Add the game
-                await AddGameAsync(game, result.InstallDir);
+                AddGame(game, result.InstallDir);
             }
 
             // Run custom finders

@@ -57,7 +57,7 @@ public class FindWindowsPackageGameAddActions : GameAddAction
             return null;
         }
 
-        if (!await GameDescriptor.IsValidAsync(installDir))
+        if (!GameDescriptor.IsValid(installDir))
         {
             Logger.Info("The {0} install directory was not valid", GameDescriptor.Id);
 

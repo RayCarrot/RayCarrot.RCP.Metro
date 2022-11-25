@@ -224,7 +224,7 @@ public class StartupManager
         foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
         {
             // Check if it's valid
-            if (await gameInstallation.GameDescriptor.IsValidAsync(gameInstallation.InstallLocation))
+            if (gameInstallation.GameDescriptor.IsValid(gameInstallation.InstallLocation))
                 continue;
 
             // Show message
@@ -349,15 +349,6 @@ public class StartupManager
         }
     }
 
-    private Task RunGameFinderAsync()
-    {
-        // Check for installed games
-        if (Data.Game_AutoLocateGames)
-            return Task.Run(AppViewModel.RunGameFinderAsync);
-        else
-            return Task.CompletedTask;
-    }
-
     private Task CheckForUpdatesAsync()
     {
         // Check for updates
@@ -371,7 +362,7 @@ public class StartupManager
 
     #region Public Methods
 
-    public async Task RunAsync<AppWindow>(bool isFullStartup, Func<AppWindow> createWindow)
+    public async Task RunAsync<AppWindow>(bool isFullStartup, Func<AppWindow> createWindow, Func<Task> additionalFullStartup)
         where AppWindow : Window
     {
         try
@@ -436,13 +427,14 @@ public class StartupManager
                 await CleanDeployedFilesAsync();
                 Logger.Debug("Startup {0} ms: Cleaned deployed files", sw.ElapsedMilliseconds);
 
-                // Run the following actions in parallel
+                // Check for updates and run additional startup
                 await Task.WhenAll(new[]
                 {
-                    RunGameFinderAsync(),
                     CheckForUpdatesAsync(),
+                    additionalFullStartup(),
                 });
-                Logger.Debug("Startup {0} ms: Ran game finder and checked for updates", sw.ElapsedMilliseconds);
+
+                Logger.Debug("Startup {0} ms: Checked for updates and ran additional startup", sw.ElapsedMilliseconds);
             }
 
             sw.Stop();

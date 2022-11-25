@@ -208,10 +208,10 @@ public abstract class GameDescriptor
     /// </summary>
     /// <param name="installLocation">The game install location</param>
     /// <returns>True if the game directory is valid, otherwise false</returns>
-    protected virtual Task<bool> IsGameLocationValidAsync(FileSystemPath installLocation)
+    protected virtual bool IsGameLocationValid(FileSystemPath installLocation)
     {
         // Make sure the default file exists in the install directory
-        return Task.FromResult((installLocation + DefaultFileName).FileExists);
+        return (installLocation + DefaultFileName).FileExists;
     }
 
     #endregion
@@ -367,13 +367,7 @@ public abstract class GameDescriptor
     /// </summary>
     /// <param name="installDir">The game install directory, if any</param>
     /// <returns>True if the game is valid, otherwise false</returns>
-    public Task<bool> IsValidAsync(FileSystemPath installDir)
-    {
-        if (Services.Data.App_DisableGameValidation)
-            return Task.FromResult(true);
-
-        return IsGameLocationValidAsync(installDir);
-    }
+    public bool IsValid(FileSystemPath installDir) => Services.Data.App_DisableGameValidation || IsGameLocationValid(installDir);
 
     /// <summary>
     /// Gets called as soon as the game is added
