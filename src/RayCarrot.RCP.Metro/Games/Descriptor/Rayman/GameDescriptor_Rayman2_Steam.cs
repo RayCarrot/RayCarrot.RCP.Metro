@@ -64,7 +64,7 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
         @"Data\Vignette.cnt",
     };
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() =>
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() =>
         // No longer available for purchase
         Enumerable.Empty<GamePurchaseLink>();
 

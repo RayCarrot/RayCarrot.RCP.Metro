@@ -24,9 +24,9 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(Resources.GameDisplay_DownloadUplay, "https://register.ubisoft.com/rabbids-coding/")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_DownloadUplay)), "https://register.ubisoft.com/rabbids-coding/")
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rabbids Coding", new[]

@@ -7,7 +7,7 @@ public class AddGamesViewModel : BaseViewModel
 {
     public AddGamesViewModel()
     {
-        GameCategories = new ObservableCollection<GameCategoryViewModel>();
+        GameCategories = new ObservableCollection<AddGamesGameCategoryViewModel>();
 
         // Enumerate every category of games
         foreach (var categorizedGames in Services.Games.EnumerateGameDescriptors().
@@ -16,7 +16,7 @@ public class AddGamesViewModel : BaseViewModel
         {
             // Create a view model
             GameCategoryInfoAttribute categoryInfo = categorizedGames.Key.GetInfo();
-            GameCategoryViewModel category = new(categoryInfo.DisplayName, categoryInfo.Icon);
+            AddGamesGameCategoryViewModel category = new(categoryInfo.DisplayName, categoryInfo.Icon);
             GameCategories.Add(category);
 
             // Enumerate every group of games
@@ -28,7 +28,7 @@ public class AddGamesViewModel : BaseViewModel
                 GameInfoAttribute gameInfo = gameDescriptors.Key.GetInfo();
 
                 // Add the group of games
-                category.GameGroups.Add(new GameGroupViewModel(
+                category.GameGroups.Add(new AddGamesGameGroupViewModel(
                     // TODO-UPDATE: Normalize
                     iconSource: $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{gameInfo.GameIcon.GetAttribute<ImageFileAttribute>()!.FileName}",
                     displayName: gameInfo.DisplayName,
@@ -37,5 +37,5 @@ public class AddGamesViewModel : BaseViewModel
         }
     }
 
-    public ObservableCollection<GameCategoryViewModel> GameCategories { get; }
+    public ObservableCollection<AddGamesGameCategoryViewModel> GameCategories { get; }
 }

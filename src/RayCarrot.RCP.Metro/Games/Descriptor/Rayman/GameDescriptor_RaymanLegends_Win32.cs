@@ -45,9 +45,9 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         @"persistentLoading_PC.ipk",
     };
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

@@ -33,9 +33,9 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
             Icon: GenericIconKind.GameDisplay_Web)
     };
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/RaymanGardenPlus/622289", GenericIconKind.GameDisplay_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/RaymanGardenPlus/622289", GenericIconKind.GameDisplay_Web),
     };
 
     #endregion

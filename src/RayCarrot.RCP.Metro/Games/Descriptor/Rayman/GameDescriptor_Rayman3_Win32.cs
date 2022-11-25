@@ -67,10 +67,10 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         new Utility_Rayman3_DirectPlay(gameInstallation),
     };
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
-        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(UbiIniData_Rayman3.SectionName, "Rayman 3", new[]

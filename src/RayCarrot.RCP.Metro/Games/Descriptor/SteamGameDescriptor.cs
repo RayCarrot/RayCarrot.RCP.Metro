@@ -66,9 +66,9 @@ public abstract class SteamGameDescriptor : GameDescriptor
             Icon: GenericIconKind.GameDisplay_Steam)
     };
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(Resources.GameDisplay_Steam, SteamHelpers.GetStorePageURL(SteamID)),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamID)),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(SteamID);

@@ -290,7 +290,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// Gets the purchase links for the game
     /// </summary>
-    public virtual IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => Enumerable.Empty<GamePurchaseLink>();
+    public virtual IEnumerable<GamePurchaseLink> GetPurchaseLinks() => Enumerable.Empty<GamePurchaseLink>();
 
     /// <summary>
     /// Gets the game finder item for this game
@@ -420,7 +420,7 @@ public abstract class GameDescriptor
     /// A game purchase link which can be accessed from the game
     /// </summary>
     public record GamePurchaseLink(
-        string Header,
+        LocalizedString Header,
         string Path, 
         GenericIconKind Icon = GenericIconKind.GameDisplay_Purchase);
 

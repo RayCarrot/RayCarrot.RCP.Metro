@@ -43,10 +43,10 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         @"GameData\bundle_PC.ipk",
     };
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_origins"),
-        new(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_origins"),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

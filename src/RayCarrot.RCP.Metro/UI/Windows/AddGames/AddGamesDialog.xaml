@@ -28,7 +28,7 @@
         </mah:MetroAnimatedTabControl.ItemContainerStyle>
 
         <mah:MetroAnimatedTabControl.ContentTemplate>
-            <DataTemplate DataType="{x:Type local:GameCategoryViewModel}">
+            <DataTemplate DataType="{x:Type local:AddGamesGameCategoryViewModel}">
                 <!-- Game groups -->
                 <ItemsControl ItemsSource="{Binding Path=GameGroups, Mode=OneTime}"
                               d:ItemsSource="{d:SampleData ItemCount=3}"
@@ -71,58 +71,7 @@
                                                     <Separator Visibility="{Binding RelativeSource={RelativeSource PreviousData}, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                                                                Margin="0 4" />
 
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto" />
-                                                            <ColumnDefinition Width="*" />
-                                                            <ColumnDefinition Width="Auto" />
-                                                            <ColumnDefinition Width="Auto" />
-                                                        </Grid.ColumnDefinitions>
-
-                                                        <!-- Platform icon -->
-                                                        <Image Grid.Column="0"
-                                                               Source="{Binding Path=PlatformIconSource, Mode=OneTime}" 
-                                                               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GamePlatformIcons/Win32.png"
-                                                               VerticalAlignment="Center"
-                                                               Width="20"
-                                                               Margin="0 2"
-                                                               ToolTip="{Binding Path=PlatformDisplayName.Value}" />
-
-                                                        <!-- Game title -->
-                                                        <TextBlock Grid.Column="1"
-                                                                   Text="{Binding Path=DisplayName.Value}"
-                                                                   TextWrapping="Wrap"
-                                                                   VerticalAlignment="Center"
-                                                                   Margin="8 0 0 0"/>
-
-                                                        <!-- Add actions -->
-                                                        <ItemsControl Grid.Column="2"
-                                                                      ItemsSource="{Binding Path=AddActions, Mode=OneTime}">
-                                                            <ItemsControl.ItemsPanel>
-                                                                <ItemsPanelTemplate>
-                                                                    <StackPanel Orientation="Horizontal" />
-                                                                </ItemsPanelTemplate>
-                                                            </ItemsControl.ItemsPanel>
-
-                                                            <ItemsControl.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <Button Margin="4 0 0 0"
-                                                                            Style="{StaticResource RCP.Styles.Button.Flat}"
-                                                                            Content="{Binding Path=Header.Value}"
-                                                                            local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                                                            IsEnabled="{Binding Path=IsAvailable}"
-                                                                            Command="{Binding Path=DataContext.AddGameCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Mode=OneTime}"
-                                                                            CommandParameter="{Binding Mode=OneTime}" />
-                                                                </DataTemplate>
-                                                            </ItemsControl.ItemTemplate>
-                                                        </ItemsControl>
-
-                                                        <!-- Overflow -->
-                                                        <local:OverflowMenu Grid.Column="3" Margin="4 0 0 0">
-                                                            <!-- TODO-UPDATE: Add purchase options -->
-                                                        </local:OverflowMenu>
-
-                                                    </Grid>
+                                                    <local:AddGamesGameControl />
 
                                                 </StackPanel>
                                             </DataTemplate>

@@ -35,9 +35,9 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
             Icon: GenericIconKind.GameDisplay_Web)
     };
 
-    public override IEnumerable<GamePurchaseLink> GetGamePurchaseLinks() => new GamePurchaseLink[]
+    public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(Resources.GameDisplay_GameJolt, "https://gamejolt.com/games/raymanredemption/340532", GenericIconKind.GameDisplay_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/raymanredemption/340532", GenericIconKind.GameDisplay_Web),
     };
 
     #endregion

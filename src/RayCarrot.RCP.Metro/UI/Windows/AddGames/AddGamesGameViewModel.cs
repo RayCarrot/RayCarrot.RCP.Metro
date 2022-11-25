@@ -8,17 +8,19 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameViewModel : BaseViewModel, IRecipient<RemovedGamesMessage>
+public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessage>
 {
     #region Constructor
 
-    public GameViewModel(GameDescriptor gameDescriptor)
+    public AddGamesGameViewModel(GameDescriptor gameDescriptor)
     {
         GameDescriptor = gameDescriptor;
         DisplayName = gameDescriptor.DisplayName;
         AddActions = new ObservableCollection<GameAddActionViewModel>(gameDescriptor.GetAddActions().
             // Reverse the order so the common actions are aligned in the ui
             Reverse().Select(x => new GameAddActionViewModel(x)));
+        PurchaseLinks = new ObservableCollection<GamePurchaseLinkViewModel>(gameDescriptor.GetPurchaseLinks().
+            Select(x => new GamePurchaseLinkViewModel(x.Header, x.Path, x.Icon)));
 
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameDescriptor.Platform.GetInfo();
@@ -49,6 +51,8 @@ public class GameViewModel : BaseViewModel, IRecipient<RemovedGamesMessage>
     public GameDescriptor GameDescriptor { get; }
     public LocalizedString DisplayName { get; }
     public ObservableCollection<GameAddActionViewModel> AddActions { get; }
+    public ObservableCollection<GamePurchaseLinkViewModel> PurchaseLinks { get; }
+    public bool HasPurchaseLinks => PurchaseLinks.Any();
 
     public LocalizedString PlatformDisplayName { get; }
     public string PlatformIconSource { get; }
@@ -108,6 +112,26 @@ public class GameViewModel : BaseViewModel, IRecipient<RemovedGamesMessage>
         public LocalizedString Header => AddAction.Header;
         public GenericIconKind Icon => AddAction.Icon;
         public bool IsAvailable => AddAction.IsAvailable;
+    }
+
+    public class GamePurchaseLinkViewModel : BaseViewModel
+    {
+        public GamePurchaseLinkViewModel(LocalizedString header, string path, GenericIconKind icon)
+        {
+            Header = header;
+            Path = path;
+            Icon = icon;
+
+            OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
+        }
+
+        public ICommand OpenLinkCommand { get; }
+
+        public LocalizedString Header { get; }
+        public string Path { get; }
+        public GenericIconKind Icon { get; }
+
+        public Task OpenLinkAsync() => Services.File.LaunchFileAsync(Path);
     }
 
     #endregion

@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.AddGamesGameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:controlzex="urn:controlzex"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignWidth="400" 
+             d:DataContext="{d:DesignInstance local:AddGamesGameViewModel}">
+    <Grid x:Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Platform icon -->
+        <Image Grid.Column="0"
+               Source="{Binding Path=PlatformIconSource, Mode=OneTime}" 
+               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GamePlatformIcons/Win32.png"
+               VerticalAlignment="Center"
+               Width="20"
+               Margin="0 2"
+               ToolTip="{Binding Path=PlatformDisplayName.Value}" />
+
+        <!-- Game title -->
+        <TextBlock Grid.Column="1"
+                   Text="{Binding Path=DisplayName.Value}"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center"
+                   Margin="8 0 0 0"/>
+
+        <!-- Add actions -->
+        <ItemsControl Grid.Column="2"
+                      ItemsSource="{Binding Path=AddActions, Mode=OneTime}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Margin="4 0 0 0"
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            Content="{Binding Path=Header.Value}"
+                            local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                            IsEnabled="{Binding Path=IsAvailable}"
+                            Command="{Binding Path=DataContext.AddGameCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Mode=OneTime}"
+                            CommandParameter="{Binding Mode=OneTime}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Purchase links -->
+        <Grid x:Name="PurchaseLinksGrid"
+              Grid.Column="3" 
+              IsEnabled="{Binding Path=HasPurchaseLinks, Mode=OneTime}"
+              Margin="4 0 0 0">
+
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                    local:ButtonAssist.IconKind="DotsVertical"
+                    local:ButtonAssist.IconSize="16"
+                    Click="Button_OnClick" />
+
+            <controlzex:PopupEx x:Name="PurchaseLinksPopup"
+                                PlacementTarget="{Binding ElementName=PurchaseLinksGrid}"
+                                Placement="Bottom" Opened="PurchaseLinksPopup_OnOpened"
+                                HorizontalOffset="{Binding Path=ActualWidth, ElementName=PopupCard}"
+                                PopupAnimation="Fade">
+                <b:Interaction.Behaviors>
+                    <local:DefaultPopupBehavior ParentElement="{Binding ElementName=PurchaseLinksGrid, Mode=OneTime}" />
+                </b:Interaction.Behaviors>
+
+                <local:Card x:Name="PopupCard" 
+                            UniformCornerRadius="{StaticResource CornerRadiusDouble.Default}"
+                            Margin="5"
+                            Padding="0"
+                            Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+                    <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                                        mah:ControlsHelper.CornerRadius="0"
+                                        local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                        local:ButtonAssist.IconSize="16"
+                                        local:ButtonAssist.IconBrush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                        HorizontalContentAlignment="Left"
+                                        Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
+                                        Click="Button_OnClick"
+                                        ToolTip="{Binding Path=Path, Mode=OneTime}">
+                                    <TextBlock RenderOptions.ClearTypeHint="Enabled"
+                                               Text="{Binding Path=Header.Value}" />
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </local:Card>
+
+            </controlzex:PopupEx>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
