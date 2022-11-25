@@ -9,6 +9,8 @@ using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO: Rewrite this
+
 /// <summary>
 /// The game finder, used to find installed games
 /// </summary>
@@ -446,7 +448,7 @@ public class GameFinder
         }
 
         // Add the game to found games
-        Results.Add(new GameFinder_GameResult(game.GameDescriptor, installDir, game.FinderItem.FoundAction));
+        Results.Add(new GameFinder_GameResult(game.GameDescriptor, installDir));
 
         // Remove from games to find
         GamesToFind.Remove(game.GameDescriptor);

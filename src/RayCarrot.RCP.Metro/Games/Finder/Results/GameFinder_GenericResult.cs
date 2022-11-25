@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,17 +14,16 @@ public class GameFinder_GenericResult : GameFinder_BaseResult
     /// <param name="handledAction">An optional action to add when the item gets handled</param>
     /// <param name="displayName">The found item display name</param>
     public GameFinder_GenericResult(
-        FileSystemPath installLocation, 
-        Action<FileSystemPath>? handledAction, 
-        string displayName) 
-        : base(installLocation, handledAction, displayName)
-    { }
-
-    public override Task<GameInstallation?> HandleItemAsync()
+        FileSystemPath installLocation,
+        Action<FileSystemPath>? handledAction,
+        string displayName)
+        : base(installLocation, displayName)
     {
-        // Call optional found action
-        HandledAction?.Invoke(InstallLocation);
-
-        return Task.FromResult<GameInstallation?>(null);
+        HandledAction = handledAction;
     }
+
+    /// <summary>
+    /// An optional action to add when the item gets handled
+    /// </summary>
+    public Action<FileSystemPath>? HandledAction { get; }
 }

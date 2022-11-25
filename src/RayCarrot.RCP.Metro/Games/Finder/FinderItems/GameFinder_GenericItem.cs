@@ -23,10 +23,16 @@ public class GameFinder_GenericItem : GameFinder_BaseItem
         Action<FileSystemPath>? foundAction, 
         string displayName, 
         Func<GameFinder_FoundResult?>? customFinderAction = null) 
-        : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, customFinderAction)
+        : base(possibleWin32Names, shortcutName, verifyInstallDirectory, customFinderAction)
     {
+        FoundAction = foundAction;
         DisplayName = displayName;
     }
+
+    /// <summary>
+    /// An optional action to add when the item gets found
+    /// </summary>
+    public Action<FileSystemPath>? FoundAction { get; }
 
     /// <summary>
     /// The item display name

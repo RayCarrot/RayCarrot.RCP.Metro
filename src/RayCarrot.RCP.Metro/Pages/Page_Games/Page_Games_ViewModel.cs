@@ -209,6 +209,8 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
         IsGameFinderRunning = true;
 
+        IReadOnlyList<GameFinder_BaseResult> foundItems;
+
         try
         {
             // TODO-14: Change how the game finder works
@@ -249,45 +251,50 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
             // Run the game finder and get the result
             GameFinder finder = new(games, finderItems);
-            IReadOnlyList<GameFinder_BaseResult> foundItems = await Task.Run(finder.FindGames);
+            foundItems = await Task.Run(finder.FindGames);
 
-            // Add the found items
-            foreach (GameFinder_BaseResult foundItem in foundItems)
-                await foundItem.HandleItemAsync();
+            // Handle the generic results
+            foreach (GameFinder_GenericResult genericResult in foundItems.OfType<GameFinder_GenericResult>())
+                genericResult.HandledAction?.Invoke(genericResult.InstallLocation);
 
-            // Check if new games were found
-            if (foundItems.Count > 0)
-            {
-                // Split into found games and items and sort
-                IEnumerable<string> gameFinderResults = foundItems.
-                    OfType<GameFinder_GameResult>().
-                    OrderBy(x => x.DisplayName). // TODO-14: Fix order once we have new enums
-                    Select(x => x.DisplayName);
-
-                IEnumerable<string> finderResults = foundItems.
-                    OfType<GameFinder_GenericResult>().
-                    OrderBy(x => x.DisplayName).
-                    Select(x => x.DisplayName);
-
-                await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
-
-                Logger.Info("The game finder found the following items {0}", foundItems.JoinItems(", ", x => x.DisplayName));
-            }
-            else if (!runInBackground)
-            {
-                await MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader,
-                    MessageType.Information);
-            }
+            // Handle the game results by adding the found games
+            if (foundItems.OfType<GameFinder_GameResult>().Any())
+                await GamesManager.AddGamesAsync(foundItems.OfType<GameFinder_GameResult>().
+                    Select(x => (x.GameDescriptor, x.InstallLocation)));
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Game finder");
-
             await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
+            return;
         }
         finally
         {
             IsGameFinderRunning = false;
+        }
+
+        // Check if new games were found
+        if (foundItems.Count > 0)
+        {
+            // Split into found games and items and sort
+            IEnumerable<string> gameFinderResults = foundItems.
+                OfType<GameFinder_GameResult>().
+                OrderBy(x => x.GameDescriptor.Game).
+                Select(x => x.DisplayName);
+
+            IEnumerable<string> finderResults = foundItems.
+                OfType<GameFinder_GenericResult>().
+                OrderBy(x => x.DisplayName).
+                Select(x => x.DisplayName);
+
+            await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+
+            Logger.Info("The game finder found the following items {0}", foundItems.JoinItems(", ", x => x.DisplayName));
+        }
+        else if (!runInBackground)
+        {
+            await MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader,
+                MessageType.Information);
         }
     }
 

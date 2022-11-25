@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A finder item result base
@@ -12,15 +9,12 @@ public abstract class GameFinder_BaseResult
     /// Default constructor
     /// </summary>
     /// <param name="installLocation">The install location</param>
-    /// <param name="handledAction">An optional action to add when the item gets handled</param>
     /// <param name="displayName">The found item display name</param>
     protected GameFinder_BaseResult(
         FileSystemPath installLocation, 
-        Action<FileSystemPath>? handledAction, 
         string displayName)
     {
         InstallLocation = installLocation;
-        HandledAction = handledAction;
         DisplayName = displayName;
     }
 
@@ -30,18 +24,7 @@ public abstract class GameFinder_BaseResult
     public FileSystemPath InstallLocation { get; }
 
     /// <summary>
-    /// An optional action to add when the item gets handled
-    /// </summary>
-    public Action<FileSystemPath>? HandledAction { get; }
-
-    /// <summary>
     /// The found item display name
     /// </summary>
     public string DisplayName { get; }
-
-    /// <summary>
-    /// Handles the found item
-    /// </summary>
-    /// <returns>The game installation if one was added</returns>
-    public abstract Task<GameInstallation?> HandleItemAsync();
 }

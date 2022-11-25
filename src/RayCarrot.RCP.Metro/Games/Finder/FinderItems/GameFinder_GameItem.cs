@@ -16,14 +16,12 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// <param name="shortcutName">The shortcut name when searching shortcuts</param>
     /// <param name="possibleWin32Names">The possible names of the game to search for. This is not case sensitive, but most match entire string.</param>
     /// <param name="verifyInstallDirectory">Optional method for verifying the found install directory</param>
-    /// <param name="foundAction">An optional action to add when the item gets found</param>
     public GameFinder_GameItem(
         string ubiIniSectionName, 
         string? shortcutName, 
         string[]? possibleWin32Names, 
-        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null, 
-        Action<FileSystemPath>? foundAction = null) 
-        : base(possibleWin32Names, shortcutName, verifyInstallDirectory, foundAction, null)
+        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null) 
+        : base(possibleWin32Names, shortcutName, verifyInstallDirectory, null)
     {
         UbiIniSectionName = ubiIniSectionName;
     }
@@ -33,12 +31,10 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// </summary>
     /// <param name="steamID">The Steam ID to search for</param>
     /// <param name="verifyInstallDirectory">Optional method for verifying the found install directory</param>
-    /// <param name="foundAction">An optional action to add when the item gets found</param>
     public GameFinder_GameItem(
         string steamID, 
-        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null, 
-        Action<FileSystemPath>? foundAction = null) 
-        : base(null, null, verifyInstallDirectory, foundAction, null)
+        Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null) 
+        : base(null, null, verifyInstallDirectory, null)
     {
         SteamID = steamID;
     }
@@ -47,11 +43,9 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// Constructor for a game finder with a custom finder action
     /// </summary>
     /// <param name="customFinderAction">Custom game finder action which return the game install directory if found</param>
-    /// <param name="foundAction">An optional action to add when the item gets found</param>
     public GameFinder_GameItem(
-        Func<GameFinder_FoundResult> customFinderAction, 
-        Action<FileSystemPath>? foundAction = null) 
-        : base(null, null, null, foundAction, customFinderAction)
+        Func<GameFinder_FoundResult> customFinderAction) 
+        : base(null, null, null, customFinderAction)
     {
 
     }

@@ -15,19 +15,16 @@ public abstract class GameFinder_BaseItem
     /// <param name="possibleWin32Names">The possible names of the game to search for. This is not case sensitive, but most match entire string.</param>
     /// <param name="shortcutName">The shortcut name when searching shortcuts</param>
     /// <param name="verifyInstallDirectory">Optional method for verifying the found install directory</param>
-    /// <param name="foundAction">An optional action to add when the item gets found</param>
     /// <param name="customFinderAction">Custom game finder action which returns the game install directory if found</param>
     protected GameFinder_BaseItem(
         string[]? possibleWin32Names, 
         string? shortcutName, 
         Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory, 
-        Action<FileSystemPath>? foundAction, 
         Func<GameFinder_FoundResult?>? customFinderAction)
     {
         PossibleWin32Names = possibleWin32Names;
         ShortcutName = shortcutName;
         VerifyInstallDirectory = verifyInstallDirectory;
-        FoundAction = foundAction;
         CustomFinderAction = customFinderAction;
     }
 
@@ -49,11 +46,6 @@ public abstract class GameFinder_BaseItem
     /// Optional method for verifying the found install directory
     /// </summary>
     public Func<FileSystemPath, FileSystemPath?>? VerifyInstallDirectory { get; }
-
-    /// <summary>
-    /// An optional action to add when the item gets found
-    /// </summary>
-    public Action<FileSystemPath>? FoundAction { get; }
 
     /// <summary>
     /// Custom game finder action which returns the game install directory if found

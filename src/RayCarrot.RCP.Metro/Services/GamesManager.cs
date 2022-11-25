@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BinarySerializer;
 using CommunityToolkit.Mvvm.Messaging;
 using NLog;
-using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -106,15 +104,9 @@ public class GamesManager
 
     #endregion
 
-    #region Public Methods
+    #region Private Methods
 
-    /// <summary>
-    /// Adds a new game to the app data
-    /// </summary>
-    /// <param name="gameDescriptor">The game descriptor for the game to add</param>
-    /// <param name="installDirectory">The game install directory</param>
-    /// <returns>The game installation</returns>
-    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory)
+    private async Task<GameInstallation> AddGameImplAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory)
     {
         Logger.Info("The game {0} is being added", gameDescriptor.Id);
 
@@ -144,6 +136,44 @@ public class GamesManager
         // Add the game to the jump list
         if (gameDescriptor.AutoAddToJumpList)
             Data.App_JumpListItemIDCollection.AddRange(gameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.ID));
+        
+        return gameInstallation;
+    }
+
+    private async Task RemoveGameImplAsync(GameInstallation gameInstallation)
+    {
+        try
+        {
+            // Remove the game from the jump list
+            foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
+                Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
+
+            // Remove the game
+            Data.Game_GameInstallations.Remove(gameInstallation);
+
+            // Run post game removal
+            await gameInstallation.GameDescriptor.PostGameRemovedAsync(gameInstallation);
+        }
+        catch (Exception ex)
+        {
+            Logger.Fatal(ex, "Removing game");
+            throw;
+        }
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Adds a new game to the app data
+    /// </summary>
+    /// <param name="gameDescriptor">The game descriptor for the game to add</param>
+    /// <param name="installDirectory">The game install directory</param>
+    /// <returns>The game installation</returns>
+    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory)
+    {
+        GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installDirectory);
 
         Messenger.Send(new AddedGamesMessage(gameInstallation));
 
@@ -154,9 +184,8 @@ public class GamesManager
     {
         List<GameInstallation> gameInstallations = new();
 
-        // TODO-UPDATE: This will send message for each - fix
         foreach (var game in games)
-            gameInstallations.Add(await AddGameAsync(game.gameDescriptor, game.installDirectory));
+            gameInstallations.Add(await AddGameImplAsync(game.gameDescriptor, game.installDirectory));
 
         Messenger.Send(new AddedGamesMessage(gameInstallations));
 
@@ -171,32 +200,14 @@ public class GamesManager
     /// <returns>The task</returns>
     public async Task RemoveGameAsync(GameInstallation gameInstallation)
     {
-        try
-        {
-            // Remove the game from the jump list
-            foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
-                Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
-
-            // Remove the game
-            Data.Game_GameInstallations.Remove(gameInstallation);
-
-            // Run post game removal
-            await gameInstallation.GameDescriptor.PostGameRemovedAsync(gameInstallation);
-
-            Messenger.Send(new RemovedGamesMessage(gameInstallation));
-        }
-        catch (Exception ex)
-        {
-            Logger.Fatal(ex, "Removing game");
-            throw;
-        }
+        await RemoveGameImplAsync(gameInstallation);
+        Messenger.Send(new RemovedGamesMessage(gameInstallation));
     }
 
     public async Task RemoveGamesAsync(IList<GameInstallation> gameInstallations)
     {
-        // TODO-UPDATE: This will send message for each - fix
         foreach (GameInstallation gameInstallation in gameInstallations)
-            await RemoveGameAsync(gameInstallation);
+            await RemoveGameImplAsync(gameInstallation);
 
         Messenger.Send(new RemovedGamesMessage(gameInstallations));
     }
