@@ -55,8 +55,7 @@
                     <ItemsControl.Resources>
                         <DataTemplate DataType="{x:Type local:SeparatorItemViewModel}">
                             <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                       local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}"
-                                       Margin="4 2"/>
+                                       local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}"/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:IconCommandItemViewModel}">
                             <Button Style="{StaticResource RCP.Styles.Button.Flat}"  

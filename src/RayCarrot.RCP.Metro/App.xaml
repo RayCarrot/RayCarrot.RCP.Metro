@@ -46,6 +46,7 @@
                 <ResourceDictionary Source="UI/Controls/DuoGrid/DuoGrid.xaml" />
                 <ResourceDictionary Source="UI/Controls/GameIcon/GameIcon.xaml" />
                 <ResourceDictionary Source="UI/Controls/LoadingHost/LoadingHost.xaml" />
+                <ResourceDictionary Source="UI/Controls/PopupCard/PopupCard.xaml" />
 
                 <ResourceDictionary Source="UI/EditorFields/EditorFields.xaml" />
 

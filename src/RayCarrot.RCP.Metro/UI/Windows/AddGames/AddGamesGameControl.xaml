@@ -57,50 +57,27 @@
         </ItemsControl>
 
         <!-- Purchase links -->
-        <Grid x:Name="PurchaseLinksGrid"
-              Grid.Column="3" 
-              IsEnabled="{Binding Path=HasPurchaseLinks, Mode=OneTime}"
-              Margin="4 0 0 0">
-
-            <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                    local:ButtonAssist.IconKind="DotsVertical"
-                    local:ButtonAssist.IconSize="16"
-                    Click="Button_OnClick" />
-
-            <controlzex:PopupEx x:Name="PurchaseLinksPopup"
-                                PlacementTarget="{Binding ElementName=PurchaseLinksGrid}"
-                                Placement="Bottom" Opened="PurchaseLinksPopup_OnOpened"
-                                HorizontalOffset="{Binding Path=ActualWidth, ElementName=PopupCard}"
-                                PopupAnimation="Fade">
-                <b:Interaction.Behaviors>
-                    <local:DefaultPopupBehavior ParentElement="{Binding ElementName=PurchaseLinksGrid, Mode=OneTime}" />
-                </b:Interaction.Behaviors>
-
-                <local:Card x:Name="PopupCard" 
-                            Style="{StaticResource RCP.Styles.Card.Popup}">
-                    <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
-                                        mah:ControlsHelper.CornerRadius="0"
-                                        local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                        local:ButtonAssist.IconSize="16"
-                                        local:ButtonAssist.IconBrush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
-                                        HorizontalContentAlignment="Left"
-                                        Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
-                                        Click="Button_OnClick"
-                                        ToolTip="{Binding Path=Path, Mode=OneTime}">
-                                    <TextBlock RenderOptions.ClearTypeHint="Enabled"
-                                               Text="{Binding Path=Header.Value}" />
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </local:Card>
-
-            </controlzex:PopupEx>
-
-        </Grid>
+        <local:PopupCard Grid.Column="3"
+                         IsEnabled="{Binding Path=HasPurchaseLinks, Mode=OneTime}"
+                         Margin="4 0 0 0">
+            <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
+                                mah:ControlsHelper.CornerRadius="0"
+                                local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                local:ButtonAssist.IconSize="16"
+                                local:ButtonAssist.IconBrush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                HorizontalContentAlignment="Left"
+                                Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
+                                ToolTip="{Binding Path=Path, Mode=OneTime}">
+                            <TextBlock RenderOptions.ClearTypeHint="Enabled"
+                                       Text="{Binding Path=Header.Value}" />
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </local:PopupCard>
 
     </Grid>
 </UserControl>
