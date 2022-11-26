@@ -77,10 +77,7 @@
                 </b:Interaction.Behaviors>
 
                 <local:Card x:Name="PopupCard" 
-                            UniformCornerRadius="{StaticResource CornerRadiusDouble.Default}"
-                            Margin="5"
-                            Padding="0"
-                            Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+                            Style="{StaticResource RCP.Styles.Card.Popup}">
                     <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

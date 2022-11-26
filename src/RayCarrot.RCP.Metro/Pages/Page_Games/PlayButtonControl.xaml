@@ -48,12 +48,9 @@
             <b:Interaction.Behaviors>
                 <local:DefaultPopupBehavior ParentElement="{Binding ElementName=RootGrid, Mode=OneTime}" />
             </b:Interaction.Behaviors>
-            
+
             <local:Card MinWidth="{Binding Path=ActualWidth, ElementName=PlayButtonBorder}"
-                        UniformCornerRadius="{StaticResource CornerRadiusDouble.Default}"
-                        Margin="5"
-                        Padding="0"
-                        Background="{DynamicResource RCP.Brushes.Card.Background}">
+                        Style="{StaticResource RCP.Styles.Card.Popup}">
                 <ItemsControl ItemsSource="{Binding Path=AdditionalLaunchActions, Mode=OneTime}">
                     <ItemsControl.Resources>
                         <DataTemplate DataType="{x:Type local:SeparatorItemViewModel}">

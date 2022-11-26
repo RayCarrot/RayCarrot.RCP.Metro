@@ -7,6 +7,7 @@
 
     <!-- Normal theme background is #252525 -->
     <SolidColorBrush x:Key="RCP.Brushes.Card.Background">#303030</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Popup.Background">#393939</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover">#393939</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatSelected">#404040</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.Card.SecondaryBackground">#404040</SolidColorBrush>
