@@ -5,80 +5,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:controlzex="urn:controlzex"
-             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance local:InstalledGameViewModel}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
     <!-- TODO-UPDATE: Localize -->
-    <Grid x:Name="RootGrid">
-        <mah:ClipBorder x:Name="PlayButtonBorder"
-                        CornerRadius="{StaticResource CornerRadius.Default}"
-                        Background="{DynamicResource RCP.Brushes.FlatButton.Play}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+    <mah:ClipBorder x:Name="PlayButtonBorder"
+                    CornerRadius="{StaticResource CornerRadius.Default}"
+                    Background="{DynamicResource RCP.Brushes.FlatButton.Play}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-                <!-- Play -->
-                <Button Grid.Column="0"
-                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                        mah:ControlsHelper.CornerRadius="0"
-                        local:ButtonAssist.IconKind="Play"
-                        FontSize="14"
-                        Content="Play"
-                        Command="{Binding Path=LaunchCommand, Mode=OneTime}"
-                        Click="Button_OnClick"
-                        Padding="6 6 12 6" />
+            <!-- Play -->
+            <Button Grid.Column="0"
+                    Style="{StaticResource RCP.Styles.Button.Flat}"
+                    mah:ControlsHelper.CornerRadius="0"
+                    local:ButtonAssist.IconKind="Play"
+                    FontSize="14"
+                    Content="Play"
+                    Command="{Binding Path=LaunchCommand, Mode=OneTime}"
+                    Padding="6 6 12 6" />
 
-                <!-- Drop-down -->
-                <Button Grid.Column="1"
-                        Style="{StaticResource RCP.Styles.Button.Flat}"
-                        mah:ControlsHelper.CornerRadius="0"
-                        local:ButtonAssist.IconKind="ChevronDown"
-                        local:ButtonAssist.IconSize="12"
-                        Click="DropDownButton_OnClick" />
-            </Grid>
-        </mah:ClipBorder>
+            <!-- Drop-down -->
+            <local:PopupCard Grid.Column="1"
+                             PopupParentElement="{Binding ElementName=PlayButtonBorder, Mode=OneTime}"
+                             OpenDirection="Right">
+                <local:PopupCard.PopupButtonStyle>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                        <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
+                        <Setter Property="local:ButtonAssist.IconKind" Value="ChevronDown" />
+                        <Setter Property="local:ButtonAssist.IconSize" Value="12" />
+                    </Style>
+                </local:PopupCard.PopupButtonStyle>
 
-        <controlzex:PopupEx x:Name="DropDownPopup"
-                            PlacementTarget="{Binding ElementName=PlayButtonBorder}"
-                            PopupAnimation="Fade">
-            <b:Interaction.Behaviors>
-                <local:DefaultPopupBehavior ParentElement="{Binding ElementName=RootGrid, Mode=OneTime}" />
-            </b:Interaction.Behaviors>
-
-            <local:Card MinWidth="{Binding Path=ActualWidth, ElementName=PlayButtonBorder}"
-                        Style="{StaticResource RCP.Styles.Card.Popup}">
-                <ItemsControl ItemsSource="{Binding Path=AdditionalLaunchActions, Mode=OneTime}">
+                <ItemsControl ItemsSource="{Binding Path=AdditionalLaunchActions, Mode=OneTime}"
+                              MinWidth="{Binding Path=ActualWidth, ElementName=PlayButtonBorder}">
                     <ItemsControl.Resources>
                         <DataTemplate DataType="{x:Type local:SeparatorItemViewModel}">
-                            <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
-                                       local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}"/>
+                            <Separator local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}" />
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:IconCommandItemViewModel}">
-                            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
-                                    mah:ControlsHelper.CornerRadius="0"
-                                    local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                    local:ButtonAssist.IconSize="16"
+                            <Button local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
                                     local:ButtonAssist.IconBrush="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
-                                    HorizontalContentAlignment="Left"
                                     ToolTip="{Binding Path=Description.Value}"
                                     Command="{Binding Path=Command, Mode=OneTime}"
-                                    Click="Button_OnClick"
                                     local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
                                 <TextBlock RenderOptions.ClearTypeHint="Enabled"
                                            Text="{Binding Path=Header.Value}" />
                             </Button>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:ImageCommandItemViewModel}">
-                            <Button Style="{StaticResource RCP.Styles.Button.Flat}"  
-                                    mah:ControlsHelper.CornerRadius="0"
-                                    HorizontalContentAlignment="Left"
-                                    ToolTip="{Binding Path=Description.Value}"
+                            <Button ToolTip="{Binding Path=Description.Value}"
                                     Command="{Binding Path=Command, Mode=OneTime}"
-                                    Click="Button_OnClick"
                                     local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -100,8 +80,8 @@
                         </DataTemplate>
                     </ItemsControl.Resources>
                 </ItemsControl>
-            </local:Card>
-        </controlzex:PopupEx>
 
-    </Grid>
+            </local:PopupCard>
+        </Grid>
+    </mah:ClipBorder>
 </UserControl>

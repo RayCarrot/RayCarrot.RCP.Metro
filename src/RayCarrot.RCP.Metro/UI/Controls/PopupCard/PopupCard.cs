@@ -24,6 +24,33 @@ public class PopupCard : ContentControl
     private ButtonBase? PART_PopupButton;
     private Popup? PART_Popup;
 
+    public Style PopupButtonStyle
+    {
+        get => (Style)GetValue(PopupButtonStyleProperty);
+        set => SetValue(PopupButtonStyleProperty, value);
+    }
+
+    public static readonly DependencyProperty PopupButtonStyleProperty =
+        DependencyProperty.Register(nameof(PopupButtonStyle), typeof(Style), typeof(PopupCard));
+
+    public FrameworkElement PopupParentElement
+    {
+        get => (FrameworkElement)GetValue(PopupParentElementProperty);
+        set => SetValue(PopupParentElementProperty, value);
+    }
+
+    public static readonly DependencyProperty PopupParentElementProperty =
+        DependencyProperty.Register(nameof(PopupParentElement), typeof(FrameworkElement), typeof(PopupCard));
+
+    public PopupOpenDirection OpenDirection
+    {
+        get => (PopupOpenDirection)GetValue(OpenDirectionProperty);
+        set => SetValue(OpenDirectionProperty, value);
+    }
+
+    public static readonly DependencyProperty OpenDirectionProperty =
+        DependencyProperty.Register(nameof(OpenDirection), typeof(PopupOpenDirection), typeof(PopupCard));
+
     public override void OnApplyTemplate()
     {
         if (PART_PopupButton != null)
@@ -54,9 +81,14 @@ public class PopupCard : ContentControl
         if (PART_Popup == null || PART_PopupButton == null)
             return;
 
-        // Position the popup to the left
-        if (PART_Popup.Child is FrameworkElement popupChild)
-            PART_Popup.HorizontalOffset = -popupChild.ActualWidth + PART_PopupButton.ActualWidth;
+        // Position the popup according to the specified direction
+        if (PART_Popup.Child is FrameworkElement popupChild && 
+            PART_Popup.PlacementTarget is FrameworkElement target)
+        {
+            PART_Popup.HorizontalOffset = OpenDirection == PopupOpenDirection.Left 
+                ? - popupChild.ActualWidth + target.ActualWidth 
+                : 0;
+        }
     }
 
     private void PopupButton_OnClick(object sender, RoutedEventArgs e)
@@ -65,4 +97,6 @@ public class PopupCard : ContentControl
         if (PART_Popup != null)
             PART_Popup.IsOpen ^= true;
     }
+
+    public enum PopupOpenDirection { Left, Right }
 }

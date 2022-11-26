@@ -2,29 +2,50 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:controlzex="urn:controlzex">
+                    xmlns:controlzex="urn:controlzex"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
 
     <Style TargetType="{x:Type local:PopupCard}">
+        <Style.Resources>
+            <!-- Define default button and separator styles within the popup -->
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
+                <Setter Property="local:ButtonAssist.IconSize" Value="16" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+            </Style>
+            <Style TargetType="{x:Type Separator}" BasedOn="{StaticResource RCP.Styles.Separator.Bold}">
+                <Setter Property="Margin" Value="2" />
+            </Style>
+        </Style.Resources>
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="PopupParentElement" Value="{Binding RelativeSource={RelativeSource Self}}" />
+        <Setter Property="OpenDirection" Value="Left" />
+        <Setter Property="PopupButtonStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
+                    <Setter Property="local:ButtonAssist.IconKind" Value="DotsVertical" />
+                    <Setter Property="local:ButtonAssist.IconSize" Value="16" />
+                </Style>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PopupCard}">
-                    <Grid x:Name="RootGrid">
+                    <Grid>
                         <!-- Popup button -->
                         <Button x:Name="PART_PopupButton"
-                                Style="{StaticResource RCP.Styles.Button.Flat}"
-                                local:ButtonAssist.IconKind="DotsVertical"
-                                local:ButtonAssist.IconSize="16" />
+                                Style="{TemplateBinding PopupButtonStyle}" />
 
                         <!-- Popup -->
                         <controlzex:PopupEx x:Name="PART_Popup"
-                                            PlacementTarget="{Binding ElementName=PART_PopupButton}"
+                                            PlacementTarget="{TemplateBinding PopupParentElement}"
                                             Placement="Bottom" 
                                             PopupAnimation="Fade">
                             <b:Interaction.Behaviors>
-                                <local:DefaultPopupBehavior ParentElement="{Binding ElementName=RootGrid, Mode=OneTime}" />
+                                <!-- Can't use a normal template binding here -->
+                                <local:DefaultPopupBehavior ParentElement="{Binding Path=PopupParentElement, RelativeSource={RelativeSource TemplatedParent}}" />
                             </b:Interaction.Behaviors>
 
                             <local:Card Style="{StaticResource RCP.Styles.Card.Popup}">
