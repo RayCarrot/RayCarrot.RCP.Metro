@@ -883,7 +883,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             try
             {
                 await Task.Run(async () =>
-                {
+                { 
+                    // Make sure the library is set up before we modify it
+                    Library.Setup();
+
                     // Create a patcher
                     Patcher patcher = new(); // TODO: Use DI?
 

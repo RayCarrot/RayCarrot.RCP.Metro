@@ -17,11 +17,6 @@ public class PatchLibrary
         DirectoryPath = gameDir + ".patches";
         FileManager = fileManager;
         LibraryFilePath = DirectoryPath + LibraryFileName;
-
-        DirectoryInfo dirInfo = new(DirectoryPath);
-
-        dirInfo.Create();
-        dirInfo.Attributes |= FileAttributes.Hidden;
     }
 
     #endregion
@@ -41,6 +36,16 @@ public class PatchLibrary
     #endregion
 
     #region Public Methods
+
+    /// <summary>
+    /// Ensures the library is set up correctly. Call this before modifying the library.
+    /// </summary>
+    public void Setup()
+    {
+        DirectoryInfo dirInfo = new(DirectoryPath);
+        dirInfo.Create();
+        dirInfo.Attributes |= FileAttributes.Hidden;
+    }
 
     public string GetPatchFileName(string patchID) => $"{patchID}{PatchFile.FileExtension}";
     public FileSystemPath GetPatchFilePath(string patchID) => DirectoryPath + GetPatchFileName(patchID);
