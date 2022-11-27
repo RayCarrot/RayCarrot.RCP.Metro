@@ -321,7 +321,7 @@ public class AppViewModel : BaseViewModel
                     Data.Emu_DOSBox_Path = installDir + "DOSBox.exe";
                 }
 
-                finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : null, foundAction, "DOSBox"));
+                finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : (FileSystemPath?)null, foundAction, "DOSBox"));
             }
 
             // Run the game finder and get the result
