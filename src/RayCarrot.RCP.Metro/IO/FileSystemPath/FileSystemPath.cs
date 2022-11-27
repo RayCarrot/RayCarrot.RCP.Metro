@@ -11,6 +11,11 @@ namespace RayCarrot.RCP.Metro;
 // TODO: Move to separate library? This was originally a part of the RayCarrot.IO library but was moved into RCP with version 13.0
 // TODO: Use Path.DirectorySeparatorChar
 // TODO: Clean up and improve performance. Remove IsRelative bool.
+
+// TODO: Perhaps remove this? The idea is interesting and it makes writing IO code a lot quicker, but it also has its issues. For
+//       one it has some limitations in terms of unit testing since we can't replace the service responsible for the IO operations.
+//       Another issue is the implicit string conversion which can easily cause bugs, especially when using null and FileSystemPath?.
+
 /// <summary>
 /// A path on a file system
 /// </summary>
