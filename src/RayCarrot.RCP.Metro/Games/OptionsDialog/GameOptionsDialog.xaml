@@ -29,7 +29,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <!-- Image -->
@@ -47,27 +46,6 @@
                        VerticalAlignment="Center"
                        TextTrimming="WordEllipsis"
                        Margin="20 0 0 0" />
-
-            <!-- Overflow menu -->
-
-            <local:OverflowMenu Grid.Column="2" 
-                                VerticalAlignment="Center"
-                                Margin="7">
-                <local:OverflowMenu.ContextMenu>
-                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
-                        <local:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
-                                            Command="{Binding Path=ShortcutCommand}"
-                                            IconKind="Link"/>
-                        <local:MenuItemIcon Header="{Resx GameOptions_Remove}"
-                                            Command="{Binding Path=RemoveCommand}"
-                                            IconKind="DeleteOutline"/>
-                        <local:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
-                                            Visibility="{Binding Path=CanUninstall, Converter={local:BooleanToVisibilityConverter}}"
-                                            Command="{Binding Path=UninstallCommand}"
-                                            IconKind="DeleteForeverOutline"/>
-                    </ContextMenu>
-                </local:OverflowMenu.ContextMenu>
-            </local:OverflowMenu>
 
         </Grid>
 

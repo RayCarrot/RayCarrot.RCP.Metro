@@ -14,7 +14,7 @@ public class UserData_RCPGameInstallInfo
         InstallMode = installMode;
     }
 
-    // TODO-14: Add more properties like Registry key (if we add that eventually), install date, size etc.?
+    // TODO-14: Add more properties like Registry key (if we add that eventually), install date, size etc.? Show this as debug info somewhere
 
     public FileSystemPath InstallDir { get; }
     public RCPInstallMode InstallMode { get; }

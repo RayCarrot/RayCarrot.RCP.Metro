@@ -331,12 +331,12 @@ public class GameInstaller_ViewModel : UserInputViewModel
             if (result == GameInstaller_Result.Successful)
             {
                 // Add the game
-                GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, output);
-                InstalledGame = gameInstallation;
-
-                // Set the install info
-                UserData_RCPGameInstallInfo installInfo = new(output, UserData_RCPGameInstallInfo.RCPInstallMode.DiscInstall);
-                gameInstallation.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
+                InstalledGame = await Services.Games.AddGameAsync(GameDescriptor, output, x =>
+                {
+                    // Set the install info
+                    UserData_RCPGameInstallInfo installInfo = new(output, UserData_RCPGameInstallInfo.RCPInstallMode.DiscInstall);
+                    x.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
+                });
 
                 if (CreateDesktopShortcut)
                     await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, displayName));
@@ -349,7 +349,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 {
                     try
                     {
-                        GameDescriptor.CreateGameShortcut(gameInstallation, shortcutName, dir);
+                        GameDescriptor.CreateGameShortcut(InstalledGame, shortcutName, dir);
                     }
                     catch (Exception ex)
                     {

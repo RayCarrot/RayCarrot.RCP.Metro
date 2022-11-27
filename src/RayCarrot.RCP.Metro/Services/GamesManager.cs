@@ -106,7 +106,10 @@ public class GamesManager
 
     #region Private Methods
 
-    private async Task<GameInstallation> AddGameImplAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory)
+    private async Task<GameInstallation> AddGameImplAsync(
+        GameDescriptor gameDescriptor, 
+        FileSystemPath installDirectory,
+        Action<GameInstallation>? configureInstallation = null)
     {
         Logger.Info("The game {0} is being added", gameDescriptor.Id);
 
@@ -136,6 +139,9 @@ public class GamesManager
         // Add the game to the jump list
         if (gameDescriptor.AutoAddToJumpList)
             Data.App_JumpListItemIDCollection.AddRange(gameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.ID));
+
+        // Configure
+        configureInstallation?.Invoke(gameInstallation);
         
         return gameInstallation;
     }
@@ -171,9 +177,12 @@ public class GamesManager
     /// <param name="gameDescriptor">The game descriptor for the game to add</param>
     /// <param name="installDirectory">The game install directory</param>
     /// <returns>The game installation</returns>
-    public async Task<GameInstallation> AddGameAsync(GameDescriptor gameDescriptor, FileSystemPath installDirectory)
+    public async Task<GameInstallation> AddGameAsync(
+        GameDescriptor gameDescriptor, 
+        FileSystemPath installDirectory, 
+        Action<GameInstallation>? configureInstallation = null)
     {
-        GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installDirectory);
+        GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installDirectory, configureInstallation);
 
         Messenger.Send(new AddedGamesMessage(gameInstallation));
 

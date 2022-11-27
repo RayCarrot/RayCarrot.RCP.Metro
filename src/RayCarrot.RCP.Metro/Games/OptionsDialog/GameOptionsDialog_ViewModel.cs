@@ -1,12 +1,9 @@
-﻿using Nito.AsyncEx;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using BinarySerializer;
-using RayCarrot.RCP.Metro.Patcher;
+using Nito.AsyncEx;
+using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,11 +20,6 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     /// <param name="gameInstallation">The game installation to show the options for</param>
     public GameOptionsDialog_ViewModel(GameInstallation gameInstallation)
     {
-        // Create the commands
-        RemoveCommand = new AsyncRelayCommand(RemoveAsync);
-        UninstallCommand = new AsyncRelayCommand(UninstallAsync);
-        ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
-            
         // Get the info
         GameDescriptor gameDescriptor = gameInstallation.GameDescriptor;
 
@@ -36,7 +28,6 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         DisplayName = gameDescriptor.DisplayName;
         IconSource = gameDescriptor.IconSource;
         IsDemo = gameDescriptor.IsDemo;
-        CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallInfo>(GameDataKey.RCPGameInstallInfo) != null;
         PageLoadLock = new AsyncLock();
 
         // Create the page collection
@@ -52,7 +43,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
             pages.Add(configViewModel);
 
         // Add the emulator config page
-        Emulator emu = gameDescriptor.Emulator;
+        Emulator? emu = gameDescriptor.Emulator;
         GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GetGameConfigViewModel(gameInstallation);
 
         if (emuConfigViewModel != null)
@@ -95,11 +86,6 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     public GameInstallation GameInstallation { get; }
 
     /// <summary>
-    /// Indicates if the game can be uninstalled
-    /// </summary>
-    public bool CanUninstall { get; }
-
-    /// <summary>
     /// The display name
     /// </summary>
     public string DisplayName { get; } // TODO: LocalizedString
@@ -120,148 +106,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
 
     #endregion
 
-    #region Commands
-
-    /// <summary>
-    /// The command for removing the game from the program
-    /// </summary>
-    public ICommand RemoveCommand { get; }
-
-    /// <summary>
-    /// The command for uninstalling the game
-    /// </summary>
-    public ICommand UninstallCommand { get; }
-
-    /// <summary>
-    /// The command for creating a shortcut to launch the game
-    /// </summary>
-    public ICommand ShortcutCommand { get; }
-
-    #endregion
-
     #region Public Methods
-
-    /// <summary>
-    /// Removes the game from the program
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task RemoveAsync()
-    {
-        // Ask the user
-        if (!await Services.MessageUI.DisplayMessageAsync(String.Format(CanUninstall ? Resources.RemoveInstalledGameQuestion : Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader,  MessageType.Question, true))
-            return;
-
-        // Get applied utilities
-        IList<string> appliedUtilities = await GameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(GameInstallation);
-
-        // TODO-UPDATE: This crashes for packaged apps since it tries to create the patch folder
-        // Warn about applied utilities, if any
-        if (appliedUtilities.Any() && !await Services.MessageUI.DisplayMessageAsync(
-                $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}" +
-                $"{appliedUtilities.JoinItems(Environment.NewLine)}",
-                Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
-            return;
-
-        // Get applied patches
-        using Context context = new RCPContext(String.Empty);
-        PatchLibrary library = new(GameInstallation.InstallLocation, Services.File);
-        PatchLibraryFile? libraryFile = null;
-
-        try
-        {
-            libraryFile = context.ReadFileData<PatchLibraryFile>(library.LibraryFilePath);
-        }
-        catch (Exception ex)
-        {
-            Logger.Warn(ex, "Reading patch library");
-        }
-
-        // Warn about applied patches, if any
-        if (libraryFile?.Patches.Any(x => x.IsEnabled) == true && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGame_PatchWarning, libraryFile.Patches.Count(x => x.IsEnabled)), MessageType.Warning, true))
-            return;
-
-        // Remove the game
-        await Services.Games.RemoveGameAsync(GameInstallation);
-    }
-
-    /// <summary>
-    /// Uninstalls the game
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task UninstallAsync()
-    {
-        Logger.Info("{0} is being uninstalled...", GameInstallation.Id);
-
-        // Have user confirm
-        if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
-        {
-            Logger.Info("The uninstallation was canceled");
-
-            return;
-        }
-
-        try
-        {
-            // Delete the game directory
-            Services.File.DeleteDirectory(GameInstallation.InstallLocation);
-
-            Logger.Info("The game install directory was removed");
-
-            // Delete additional directories
-            foreach (FileSystemPath dir in GameInstallation.GameDescriptor.UninstallDirectories)
-                Services.File.DeleteDirectory(dir);
-
-            Logger.Info("The game additional directories were removed");
-
-            // Delete additional files
-            foreach (FileSystemPath file in GameInstallation.GameDescriptor.UninstallFiles)
-                Services.File.DeleteFile(file);
-
-            Logger.Info("The game additional files were removed");
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Uninstalling game {0}", GameInstallation.Id);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.UninstallGameError, DisplayName), Resources.UninstallGameErrorHeader);
-
-            return;
-        }
-
-        // Remove the game
-        await Services.Games.RemoveGameAsync(GameInstallation);
-
-        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.UninstallGameSuccess, DisplayName), Resources.UninstallGameSuccessHeader);
-    }
-
-    /// <summary>
-    /// Creates a shortcut to launch the game
-    /// </summary>
-    /// <returns>The task</returns>
-    public async Task CreateShortcutAsync()
-    {
-        try
-        {
-            var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            {
-                DefaultDirectory = Environment.SpecialFolder.Desktop.GetFolderPath(),
-                Title = Resources.GameShortcut_BrowseHeader
-            });
-
-            if (result.CanceledByUser)
-                return;
-
-            var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GameDescriptor.DisplayName);
-
-            GameInstallation.GameDescriptor.CreateGameShortcut(GameInstallation, shortcutName, result.SelectedDirectory);
-
-            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Creating game shortcut {0}", GameInstallation.Id);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
-        }
-    }
 
     /// <summary>
     /// Loads the current page

@@ -114,6 +114,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Play -->
@@ -126,7 +127,34 @@
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                         local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Settings}"
                                         Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}"
-                                        ToolTip="{Resx GameDisplay_Options}" />
+                                        ToolTip="{Resx GameDisplay_Options}"
+                                        Margin="0 0 4 0"/>
+
+                                <local:PopupCard Grid.Column="2">
+                                    <StackPanel>
+                                        <!-- TODO-UPDATE: Add rename game option -->
+                                        <Button Command="{Binding Path=CreateShortcutCommand, Mode=OneTime}"
+                                                local:ButtonAssist.IconKind="Link"
+                                                local:ButtonAssist.IconBrush="{StaticResource RCP.Brushes.Info}">
+                                            <TextBlock Text="{Resx GameOptions_CreateShortcut}"
+                                                       RenderOptions.ClearTypeHint="Enabled"/>
+                                        </Button>
+                                        <Separator />
+                                        <Button Command="{Binding Path=RemoveCommand, Mode=OneTime}"
+                                                local:ButtonAssist.IconKind="DeleteOutline"
+                                                local:ButtonAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}">
+                                            <TextBlock Text="{Resx GameOptions_Remove}"
+                                                       RenderOptions.ClearTypeHint="Enabled"/>
+                                        </Button>
+                                        <Button Visibility="{Binding Path=CanUninstall, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}"
+                                                Command="{Binding Path=UninstallCommand, Mode=OneTime}"
+                                                local:ButtonAssist.IconKind="DeleteForeverOutline"
+                                                local:ButtonAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}">
+                                            <TextBlock Text="{Resx GameOptions_Uninstall}"
+                                                       RenderOptions.ClearTypeHint="Enabled"/>
+                                        </Button>
+                                    </StackPanel>
+                                </local:PopupCard>
 
                             </Grid>
 
