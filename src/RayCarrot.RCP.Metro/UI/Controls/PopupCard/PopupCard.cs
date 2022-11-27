@@ -72,7 +72,9 @@ public class PopupCard : ContentControl
     private void Button_OnClick(object sender, RoutedEventArgs e)
     {
         // ReSharper disable once PossibleUnintendedReferenceComparison
-        if (PART_Popup != null && e.OriginalSource != PART_PopupButton)
+        if (PART_Popup != null && 
+            // Only close for a Button and not other controls like RadioButton etc.
+            e.OriginalSource is Button && e.OriginalSource != PART_PopupButton)
             PART_Popup.IsOpen = false;
     }
 

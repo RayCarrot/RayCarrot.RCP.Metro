@@ -113,47 +113,50 @@
 
                 </editors:AutoCompleteTextBox>
 
-                <!-- Overflow menu -->
+                <!-- Popup -->
 
-                <local:OverflowMenu Grid.Column="2"
-                                    InheritDataContext="False"
-                                    Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}">
-                    <local:OverflowMenu.ContextMenu>
-                        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                     DataContext="{x:Static local:Services.Data}">
-                            <local:MenuItemIcon Header="{Resx Archive_Sort}"
-                                                IconKind="Sort" >
+                <local:PopupCard Grid.Column="2"
+                                 Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityConverter}}">
+                    <StackPanel DataContext="{x:Static local:Services.Data}">
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}" 
-                                                    Header="{Resx Archive_Sort_Default}"
-                                                    IsCheckable="True"
-                                                    Checked="SortMenuItem_OnChecked"/>
+                        <!-- Sort -->
+                        <StackPanel Margin="6">
+                            <TextBlock Text="{Resx Archive_Sort}"
+                                       RenderOptions.ClearTypeHint="Enabled"
+                                       Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                                       Margin="0 0 0 4" />
+                            <RadioButton IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}"
+                                         Checked="SortMenuItem_OnChecked"
+                                         Margin="0 0 0 4">
+                                <TextBlock Text="{Resx Archive_Sort_Default}"
+                                           RenderOptions.ClearTypeHint="Enabled" />
+                            </RadioButton>
+                            <RadioButton IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}"
+                                         Checked="SortMenuItem_OnChecked"
+                                         Margin="0 0 0 4">
+                                <TextBlock Text="{Resx Archive_Sort_AlphabeticallyAscending}"
+                                           RenderOptions.ClearTypeHint="Enabled" />
+                            </RadioButton>
+                            <RadioButton IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}"
+                                         Checked="SortMenuItem_OnChecked">
+                                <TextBlock Text="{Resx Archive_Sort_AlphabeticalDescending}"
+                                           RenderOptions.ClearTypeHint="Enabled" />
+                            </RadioButton>
+                        </StackPanel>
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}" 
-                                                    Header="{Resx Archive_Sort_AlphabeticallyAscending}"
-                                                    IsCheckable="True"
-                                                    Checked="SortMenuItem_OnChecked" />
+                        <!-- Debug options -->
+                        <Separator local:UserLevelAssist.MinUserLevel="Debug"/>
 
-                                <local:MenuItemIcon IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}" 
-                                                    Header="{Resx Archive_Sort_AlphabeticalDescending}"
-                                                    IsCheckable="True"
-                                                    Checked="SortMenuItem_OnChecked" />
+                        <Button local:ButtonAssist.IconKind="FolderSyncOutline"
+                                local:UserLevelAssist.MinUserLevel="Debug"
+                                Click="ForceRepackMenuItem_OnClick">
 
-                            </local:MenuItemIcon>
+                            <TextBlock Text="Force repack"
+                                       RenderOptions.ClearTypeHint="Enabled" />
 
-                            <Separator local:UserLevelAssist.MinUserLevel="Debug"/>
-
-                            <local:MenuItemIcon Header="{Resx DebugPageHeader}"
-                                                IconKind="CodeBraces"
-                                                local:UserLevelAssist.MinUserLevel="Debug">
-
-                                <local:MenuItemIcon Header="Force repack"
-                                                    Click="ForceRepackMenuItem_OnClick"/>
-
-                            </local:MenuItemIcon>
-                        </ContextMenu>
-                    </local:OverflowMenu.ContextMenu>
-                </local:OverflowMenu>
+                        </Button>
+                    </StackPanel>
+                </local:PopupCard>
 
             </Grid>
 
