@@ -747,47 +747,22 @@ public class FileViewModel : BaseViewModel, IDisposable, IArchiveFileSystemEntry
                     // If not opening as binary we check for programs associated with the file extension
                     if (!asBinary)
                     {
-                        var extPrograms = Services.Data.Archive_AssociatedPrograms;
+                        Dictionary<string, FileSystemPath> extPrograms = Services.Data.Archive_AssociatedPrograms;
 
                         // Start by checking if the user has specified a default program
                         if (extPrograms.ContainsKey(ext.FileExtensions))
                         {
-                            var exe = extPrograms[ext.FileExtensions];
+                            FileSystemPath exe = extPrograms[ext.FileExtensions];
 
                             if (exe.FileExists)
                                 programPath = exe;
                             else
                                 Services.Data.Archive_RemoveAssociatedProgram(ext);
                         }
-
-                        // If not we try and get the registered default program
-                        if (programPath == null)
-                        {
-                            var exe = WindowsHelpers.FindExecutableForFile(tempFile.TempPath, out uint? errorCode);
-
-                            if (errorCode != null)
-                            {
-                                if (errorCode == 2)
-                                    Logger.Warn("Executable was not found due to file not existing");
-                                else if (errorCode == 3)
-                                    Logger.Warn("Executable was not found due to the path being invalid");
-                                else if (errorCode == 5)
-                                    Logger.Warn("Executable was not found due to that the file could not be accessed");
-                                else if (errorCode == 8)
-                                    Logger.Warn("Executable was not found due to the system being out of memory");
-                                else if (errorCode == 31)
-                                    Logger.Warn("Executable was not found due to there not being an association for the specified file type with an executable file");
-                                else
-                                    Logger.Warn("Executable was not found due to an unknown error");
-                            }
-
-                            if (exe != null)
-                                programPath = exe;
-                        }
                     }
                     else
                     {
-                        var binaryEditor = Services.Data.Archive_BinaryEditorExe;
+                        FileSystemPath binaryEditor = Services.Data.Archive_BinaryEditorExe;
 
                         if (binaryEditor.FileExists)
                             programPath = binaryEditor;
