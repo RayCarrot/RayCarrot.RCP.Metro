@@ -122,39 +122,28 @@
                         <!-- Sort -->
                         <StackPanel Margin="6">
                             <TextBlock Text="{Resx Archive_Sort}"
-                                       RenderOptions.ClearTypeHint="Enabled"
                                        Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                        Margin="0 0 0 4" />
-                            <RadioButton IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}"
+                            <RadioButton Content="{Resx Archive_Sort_Default}"
+                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}"
                                          Checked="SortMenuItem_OnChecked"
-                                         Margin="0 0 0 4">
-                                <TextBlock Text="{Resx Archive_Sort_Default}"
-                                           RenderOptions.ClearTypeHint="Enabled" />
-                            </RadioButton>
-                            <RadioButton IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}"
+                                         Margin="0 0 0 4" />
+                            <RadioButton Content="{Resx Archive_Sort_AlphabeticallyAscending}"
+                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}"
                                          Checked="SortMenuItem_OnChecked"
-                                         Margin="0 0 0 4">
-                                <TextBlock Text="{Resx Archive_Sort_AlphabeticallyAscending}"
-                                           RenderOptions.ClearTypeHint="Enabled" />
-                            </RadioButton>
-                            <RadioButton IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}"
-                                         Checked="SortMenuItem_OnChecked">
-                                <TextBlock Text="{Resx Archive_Sort_AlphabeticalDescending}"
-                                           RenderOptions.ClearTypeHint="Enabled" />
-                            </RadioButton>
+                                         Margin="0 0 0 4" />
+                            <RadioButton Content="{Resx Archive_Sort_AlphabeticalDescending}"
+                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}"
+                                         Checked="SortMenuItem_OnChecked" />
                         </StackPanel>
 
                         <!-- Debug options -->
                         <Separator local:UserLevelAssist.MinUserLevel="Debug"/>
 
-                        <Button local:ButtonAssist.IconKind="FolderSyncOutline"
+                        <Button Content="Force repack"
+                                local:ButtonAssist.IconKind="FolderSyncOutline"
                                 local:UserLevelAssist.MinUserLevel="Debug"
-                                Click="ForceRepackMenuItem_OnClick">
-
-                            <TextBlock Text="Force repack"
-                                       RenderOptions.ClearTypeHint="Enabled" />
-
-                        </Button>
+                                Click="ForceRepackMenuItem_OnClick" />
                     </StackPanel>
                 </local:PopupCard>
 

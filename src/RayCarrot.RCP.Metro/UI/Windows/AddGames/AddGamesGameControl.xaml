@@ -63,13 +63,11 @@
             <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                        <Button Content="{Binding Path=Header.Value}"
+                                local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
                                 local:ButtonAssist.IconBrush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
                                 Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
-                                ToolTip="{Binding Path=Path, Mode=OneTime}">
-                            <TextBlock RenderOptions.ClearTypeHint="Enabled"
-                                       Text="{Binding Path=Header.Value}" />
-                        </Button>
+                                ToolTip="{Binding Path=Path, Mode=OneTime}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

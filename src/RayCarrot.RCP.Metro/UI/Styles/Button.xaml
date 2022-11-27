@@ -66,8 +66,10 @@
                                                         Foreground="{TemplateBinding local:ButtonAssist.IconBrush}"
                                                         Margin="0 0 6 0" />
 
+                                <!-- Enable clear type so text looks good in popups -->
                                 <mah:ContentControlEx x:Name="PART_ContentPresenter"
                                                   Grid.Column="1"
+                                                  RenderOptions.ClearTypeHint="Enabled"
                                                   Content="{TemplateBinding Content}"
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

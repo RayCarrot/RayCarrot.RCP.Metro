@@ -49,7 +49,8 @@
                             </b:Interaction.Behaviors>
 
                             <local:Card Style="{StaticResource RCP.Styles.Card.Popup}">
-                                <ContentPresenter />
+                                <!-- Enable clear type so text looks good in popups -->
+                                <ContentPresenter RenderOptions.ClearTypeHint="Enabled" />
                             </local:Card>
                         </controlzex:PopupEx>
                     </Grid>
