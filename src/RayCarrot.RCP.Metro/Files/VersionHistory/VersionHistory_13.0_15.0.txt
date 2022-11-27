@@ -1,4 +1,14 @@
-﻿-----   Version 13.4.1 - October 28, 2022   -----
+﻿-----   Version 13.4.2 - November 27, 2022   -----
+• When editing a file in the Archive Explorer it will now always ask for the program to use the first time rather than automatically using the system default
+• Fixed a bug where removing a game would fail if the folder could not be written to due to the check for patches attempting to create the patches library folder (this now only gets created when patches are applied)
+• Fixed a bug where the game finder wouldn't correctly save the DOSBox path if found, resulting in it showing it as found each time
+
+Updated patches since last update:
+• Tonic Trouble (Retail) HD Texture Pack (for Tonic Trouble by Garo)
+• Tonic Trouble Special Edition HD Texture Pack (for Tonic Trouble Special Edition by Garo)
+
+
+-----   Version 13.4.1 - October 28, 2022   -----
 • Fixed a bug where changing the links style in the settings page would cause the app to crash
 • Fixed a bug where there would be graphical artifacts in the progression page for certain graphics cards
 
