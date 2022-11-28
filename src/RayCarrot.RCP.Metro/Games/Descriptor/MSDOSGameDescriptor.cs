@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A game descriptor for a MS-DOS program
 /// </summary>
-public abstract class MSDOSGameDescriptor :
-    // TODO-14: Inherit directly from GameDescriptor instead?
-    Win32GameDescriptor
+public abstract class MSDOSGameDescriptor : GameDescriptor
 {
     // TODO-14: Most of this should be removed in favor of the new emulator system
 
@@ -59,8 +58,6 @@ public abstract class MSDOSGameDescriptor :
 
     #region Protected Methods
 
-    protected override FileSystemPath GetIconResourcePath(GameInstallation gameInstallation) => DOSBoxFilePath;
-
     protected override async Task<bool> VerifyCanLaunchAsync(GameInstallation gameInstallation)
     {
         // Make sure the DosBox executable exists
@@ -81,9 +78,26 @@ public abstract class MSDOSGameDescriptor :
         return true;
     }
 
-    protected override FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation) => DOSBoxFilePath;
+    protected override async Task<GameLaunchResult> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    {
+        // Get the launch info
+        FileSystemPath launchPath = DOSBoxFilePath;
+        string launchArgs = GetLaunchArgs(gameInstallation);
 
-    protected override string GetLaunchArgs(GameInstallation gameInstallation)
+        Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
+            Id, launchPath, launchArgs);
+
+        // Launch the game
+        UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+        bool asAdmin = forceRunAsAdmin || launchMode == UserData_GameLaunchMode.AsAdmin;
+        Process? process = await Services.File.LaunchFileAsync(launchPath, asAdmin, launchArgs);
+
+        Logger.Info("The game {0} has been launched", Id);
+
+        return new GameLaunchResult(process, process != null);
+    }
+
+    protected string GetLaunchArgs(GameInstallation gameInstallation)
     {
         FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
         return GetDosBoxArguments(mountPath, DefaultFileName, gameInstallation.InstallLocation);
@@ -150,6 +164,64 @@ public abstract class MSDOSGameDescriptor :
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateGameAddAction(this),
+    };
+
+    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
+    {
+        // Get the launch info
+        FileSystemPath launchPath = DOSBoxFilePath;
+        string launchArgs = GetLaunchArgs(gameInstallation);
+
+        return base.GetGameInfoItems(gameInstallation).Concat(new[]
+        {
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_LaunchPath)),
+                text: launchPath.FullPath,
+                minUserLevel: UserLevel.Technical),
+            new DuoGridItemViewModel(
+                header: new ResourceLocString(nameof(Resources.GameInfo_LaunchArgs)),
+                text: launchArgs,
+                minUserLevel: UserLevel.Technical)
+        });
+    }
+
+    public override void CreateGameShortcut(GameInstallation gameInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory)
+    {
+        // Get the launch info
+        FileSystemPath launchPath = DOSBoxFilePath;
+        string launchArgs = GetLaunchArgs(gameInstallation);
+
+        // Create the shortcut
+        Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchPath, launchArgs);
+
+        Logger.Trace("A shortcut was created for {0} under {1}", Id, destinationDirectory);
+    }
+
+    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
+    {
+        // Get the launch info
+        FileSystemPath launchPath = DOSBoxFilePath;
+        string launchArgs = GetLaunchArgs(gameInstallation);
+
+        if (!launchPath.FileExists)
+            return Enumerable.Empty<JumpListItemViewModel>();
+
+        return new[]
+        {
+            new JumpListItemViewModel(
+                name: gameInstallation.GameDescriptor.DisplayName,
+                iconSource: DOSBoxFilePath,
+                launchPath: launchPath,
+                workingDirectory: launchPath.Parent,
+                launchArguments: launchArgs,
+                // TODO-14: Use game ID instead
+                id: gameInstallation.LegacyGame.ToString())
+        };
+    }
 
     public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {

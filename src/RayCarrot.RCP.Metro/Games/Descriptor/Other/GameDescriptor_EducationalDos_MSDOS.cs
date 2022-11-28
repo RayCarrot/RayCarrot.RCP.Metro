@@ -83,8 +83,9 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
     #region Protected Methods
 
-    protected override string GetLaunchArgs(GameInstallation gameInstallation) => 
-        GetLaunchArgs(Services.Data.Game_EducationalDosBoxGames.First());
+    // TODO-14: Fix
+    //protected override string GetLaunchArgs(GameInstallation gameInstallation) => 
+    //    GetLaunchArgs(Services.Data.Game_EducationalDosBoxGames.First());
 
     protected override Task<bool> VerifyCanLaunchAsync(GameInstallation gameInstallation)
     {
@@ -260,20 +261,21 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
             }))).ToArray();*/
 
-    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
-    {
-        if (Services.Data.Game_EducationalDosBoxGames == null)
-            return Enumerable.Empty<JumpListItemViewModel>();
+    // TODO-14: Fix
+    //public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
+    //{
+    //    if (Services.Data.Game_EducationalDosBoxGames == null)
+    //        return Enumerable.Empty<JumpListItemViewModel>();
 
-        return Services.Data.Game_EducationalDosBoxGames.Select(x =>
-        {
-            // Get the launch info
-            FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
-            string launchArgs = GetLaunchArgs(x);
+    //    return Services.Data.Game_EducationalDosBoxGames.Select(x =>
+    //    {
+    //        // Get the launch info
+    //        FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
+    //        string launchArgs = GetLaunchArgs(x);
 
-            return new JumpListItemViewModel(x.Name, launchPath, launchPath, launchPath.Parent, launchArgs, x.ID);
-        }).ToArray();
-    }
+    //        return new JumpListItemViewModel(x.Name, launchPath, launchPath, launchPath.Parent, launchArgs, x.ID);
+    //    }).ToArray();
+    //}
 
     // TODO-14: Fix
     /*
