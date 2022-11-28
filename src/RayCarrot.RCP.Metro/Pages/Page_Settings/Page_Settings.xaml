@@ -14,57 +14,74 @@
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:Page_Settings_ViewModel}">
 
-    <local:BasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+    <local:BasePage.PopupMenu>
+        <StackPanel ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
-            <local:MenuItemIcon Header="{Resx Settings_EditJumpList}"
-                                ToolTip="{Resx Settings_EditJumpListInfo}"
-                                Command="{Binding Path=EditJumpListCommand}"
-                                IconKind="PencilBoxOutline" />
+            <!-- Edit jump list -->
+            <Button Content="{Resx Settings_EditJumpList}"
+                    ToolTip="{Resx Settings_EditJumpListInfo}"
+                    Command="{Binding Path=EditJumpListCommand}"
+                    local:ButtonAssist.IconKind="PencilBoxOutline" />
 
             <Separator />
 
-            <MenuItem Header="{Resx LinksPage_LinkStyleHeader}">
+            <!-- Link options -->
+            <StackPanel Margin="6">
+                <!-- Link style -->
+                <TextBlock Text="{Resx LinksPage_LinkStyleHeader}"
+                           Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Margin="0 0 0 4" />
+                <RadioButton Content="{Resx LinksPage_LinkStyle_List}"
+                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}" 
+                             Margin="0 0 0 4" />
+                <RadioButton Content="{Resx LinksPage_LinkStyle_Group}"
+                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=Group}"
+                             Margin="0 0 0 6" />
 
-                <MenuItem IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}" 
-                          Header="{Resx LinksPage_LinkStyle_List}"
-                          IsCheckable="True"/>
+                <!-- Link alignment -->
+                <StackPanel IsEnabled="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}">
+                    <TextBlock Text="{Resx LinksPage_LinkAlignmentStyleHeader}"
+                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               Margin="0 0 0 4" />
+                    <RadioButton Content="{Resx LinksPage_LinkAlignmentStyle_Left}"
+                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Left}" 
+                                 Margin="0 0 0 4" />
+                    <RadioButton Content="{Resx LinksPage_LinkAlignmentStyle_Stretch}"
+                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Stretch}" />
+                </StackPanel>
 
-                <MenuItem IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=Group}"
-                          Header="{Resx LinksPage_LinkStyle_Group}"
-                          IsCheckable="True"/>
-
-            </MenuItem>
-
-            <MenuItem Header="{Resx LinksPage_LinkAlignmentStyleHeader}"
-                      IsEnabled="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}">
-
-                <MenuItem IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Left}" 
-                          Header="{Resx LinksPage_LinkAlignmentStyle_Left}"
-                          IsCheckable="True"/>
-
-                <MenuItem IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Stretch}"
-                          Header="{Resx LinksPage_LinkAlignmentStyle_Stretch}"
-                          IsCheckable="True"/>
-
-            </MenuItem>
+            </StackPanel>
 
             <Separator local:UserLevelAssist.MinUserLevel="Advanced"/>
 
-            <local:MenuItemIcon Header="{Resx Page_Refresh}"
-                                IconKind="Refresh"
-                                InputGestureText="F5"
-                                Command="{Binding Path=RefreshCommand}"
-                                local:UserLevelAssist.MinUserLevel="Advanced"/>
+            <Button local:ButtonAssist.IconKind="Refresh"
+                    Command="{Binding Path=RefreshCommand}"
+                    HorizontalContentAlignment="Stretch"
+                    local:UserLevelAssist.MinUserLevel="Advanced">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Resx Page_Refresh}" />
+                    
+                    <TextBlock Grid.Column="1"
+                               Text="F5"
+                               Margin="0 0 8 0" />
+
+                </Grid>
+            </Button>
 
             <Separator />
 
-            <local:MenuItemIcon Header="{Resx Settings_ResetAppData}"
-                                IconKind="Restore"
-                                Command="{Binding Path=ResetCommand, Mode=OneTime}"/>
+            <Button Content="{Resx Settings_ResetAppData}"
+                    local:ButtonAssist.IconKind="Restore"
+                    Command="{Binding Path=ResetCommand, Mode=OneTime}"/>
 
-        </ContextMenu>
-    </local:BasePage.OverflowMenu>
+        </StackPanel>
+    </local:BasePage.PopupMenu>
 
     <Control.InputBindings>
         <KeyBinding Key="F5" Command="{Binding Path=RefreshCommand, Mode=OneTime}" />

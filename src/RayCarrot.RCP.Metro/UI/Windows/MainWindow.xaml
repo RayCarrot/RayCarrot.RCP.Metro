@@ -79,13 +79,14 @@
                                                       IsItemsHost="true"
                                                       KeyboardNavigation.TabIndex="1" />
 
-                                            <local:OverflowMenu Grid.Column="2"
-                                                                VerticalAlignment="Center"
-                                                                InheritDataContext="False"
-                                                                DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:BasePage.OverflowMenu)}"
-                                                                Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
-                                                                ContextMenu="{Binding}"
-                                                                Margin="10"/>
+                                            <local:PopupCard Grid.Column="2"
+                                                             VerticalAlignment="Center"
+                                                             DataContext="{Binding Path=SelectedItem.(ContentControl.Content).(local:BasePage.PopupMenu), RelativeSource={RelativeSource TemplatedParent}}"
+                                                             Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
+                                                             Margin="10">
+                                                <ContentPresenter Content="{Binding}"
+                                                                  MinWidth="200" />
+                                            </local:PopupCard>
 
                                         </Grid>
 

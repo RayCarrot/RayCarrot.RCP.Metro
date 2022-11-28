@@ -13,12 +13,11 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
 {
     #region Constructor
 
-    public MainWindow(AppViewModel app, AppUserData data, MainWindowViewModel viewModel, IMessenger messenger)
+    public MainWindow(AppUserData data, MainWindowViewModel viewModel, IMessenger messenger)
     {
         InitializeComponent();
 
         // Set properties
-        App = app ?? throw new ArgumentNullException(nameof(app));
         Data = data ?? throw new ArgumentNullException(nameof(data));
         DataContext = ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 
@@ -39,7 +38,6 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
 
     #region Private Properties
 
-    private AppViewModel App { get; }
     private AppUserData Data { get; }
 
     #endregion
@@ -110,19 +108,19 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
         // Refresh if the progression page should be enabled
         RefreshProgressionPageEnabled();
 
-        // Set the data context for each overflow item
+        // TODO: Find better way of defining the page popups where the data context and other things inherit correctly
+        // Set the data context for each popup menu item
         foreach (BasePage page in PageTabControl.Items.
                      // Get all tab items
                      OfType<System.Windows.Controls.TabItem>().
                      // Get the content of the tab items
                      Select(x => x.Content).
                      // Only get base pages
-                     OfType<BasePage>().
-                     // Make sure there is an overflow menu
-                     Where(x => x.OverflowMenu != null))
+                     OfType<BasePage>())
         {
             // Set the data context
-            page.OverflowMenu!.DataContext = page.DataContext;
+            if (page.PopupMenu is FrameworkElement f)
+                f.DataContext = page.DataContext;
         }
     }
 

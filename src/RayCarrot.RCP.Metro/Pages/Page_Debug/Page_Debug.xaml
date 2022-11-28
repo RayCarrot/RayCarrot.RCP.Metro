@@ -14,47 +14,47 @@
                 d:DesignHeight="450" d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:Page_Debug_ViewModel}">
 
-    <local:BasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+    <local:BasePage.PopupMenu>
+        <StackPanel ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
-            <local:MenuItemIcon Header="Show Applied Utilities"
-                                Command="{Binding Path=ShowInstalledUtilitiesCommand, Mode=OneTime}"
-                                IconKind="BriefcaseOutline"/>
+            <Button Content="Show Applied Utilities"
+                    Command="{Binding Path=ShowInstalledUtilitiesCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="BriefcaseOutline"/>
 
-            <local:MenuItemIcon Header="Show Log"
-                                Command="{Binding Path=ShowLogCommand, Mode=OneTime}"
-                                IconKind="Text"/>
+            <Button Content="Show Log"
+                    Command="{Binding Path=ShowLogCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="Text"/>
 
-            <local:MenuItemIcon Header="Show Welcome Window"
-                                Command="{Binding Path=ShowWelcomeWindowCommand, Mode=OneTime}"
-                                IconKind="InformationOutline"/>
+            <Button Content="Show Welcome Window"
+                    Command="{Binding Path=ShowWelcomeWindowCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="InformationOutline"/>
 
-            <local:MenuItemIcon Header="Restart as administrator"
-                                Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
-                                IconKind="Security"/>
+            <Button Content="Restart as administrator"
+                    Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="Security"/>
 
-            <local:MenuItemIcon Header="Run load operation"
-                                Command="{Binding Path=RunLoadOperationCommand, Mode=OneTime}"
-                                IconKind="CircleOutline"/>
+            <Button Content="Run load operation"
+                    Command="{Binding Path=RunLoadOperationCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="CircleOutline"/>
 
-            <local:MenuItemIcon Header="Collect garbage"
-                                Command="{Binding Path=GCCollectCommand, Mode=OneTime}"
-                                IconKind="Memory"/>
+            <Button Content="Collect garbage"
+                    Command="{Binding Path=GCCollectCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="Memory"/>
 
-            <local:MenuItemIcon Header="Throw unhandled exception"
-                                Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
-                                IconKind="Exclamation"/>
+            <Button Content="Throw unhandled exception"
+                    Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="Exclamation"/>
 
-            <local:MenuItemIcon Header="Throw unhandled exception async"
-                                Command="{Binding Path=ThrowUnhandledExceptionAsyncCommand, Mode=OneTime}"
-                                IconKind="Exclamation"/>
+            <Button Content="Throw unhandled exception async"
+                    Command="{Binding Path=ThrowUnhandledExceptionAsyncCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="Exclamation"/>
 
-            <local:MenuItemIcon Header="Shutdown app"
-                                Command="{Binding Path=ShutdownAppCommand, Mode=OneTime}"
-                                IconKind="CloseOutline"/>
+            <Button Content="Shutdown app"
+                    Command="{Binding Path=ShutdownAppCommand, Mode=OneTime}"
+                    local:ButtonAssist.IconKind="CloseOutline"/>
 
-        </ContextMenu>
-    </local:BasePage.OverflowMenu>
+        </StackPanel>
+    </local:BasePage.PopupMenu>
 
     <metro:MetroAnimatedTabControl x:Name="DebugTabControl"
                                    Margin="15"

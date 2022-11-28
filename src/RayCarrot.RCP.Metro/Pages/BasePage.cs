@@ -10,5 +10,5 @@ public class BasePage : UserControl
     /// <summary>
     /// The overflow menu
     /// </summary>
-    public ContextMenu? OverflowMenu { get; set; }
+    public object? PopupMenu { get; set; }
 }

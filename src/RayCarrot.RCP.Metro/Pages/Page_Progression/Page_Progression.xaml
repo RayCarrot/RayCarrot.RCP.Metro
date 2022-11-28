@@ -5,6 +5,7 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                 Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -12,33 +13,48 @@
                 mc:Ignorable="d"
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:Page_Progression_ViewModel}">
-    <local:BasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+    <local:BasePage.PopupMenu>
+        <StackPanel ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
-            <MenuItem Header="{Resx Backup_Compress}"
-                      ToolTip="{Resx Backup_CompressInfo}"
-                      IsChecked="{Binding Path=Data.Backup_CompressBackups}"
-                      IsCheckable="True" />
-
-            <Separator />
-
-            <local:MenuItemIcon Header="{Resx Backup_BackupAll}"
-                                IconKind="FolderUploadOutline"
-                                Command="{Binding Path=BackupAllCommand, Mode=OneTime}" />
-
-            <local:MenuItemIcon Header="{Resx Page_Refresh}"
-                                IconKind="Refresh"
-                                InputGestureText="F5"
-                                Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
+            <mah:ToggleSwitch Content="{Resx Backup_Compress}"
+                              ToolTip="{Resx Backup_CompressInfo}"
+                              IsOn="{Binding Path=Data.Backup_CompressBackups}"
+                              Margin="6"
+                              Background="{DynamicResource RCP.Brushes.Card.Popup}"/>
 
             <Separator />
 
-            <local:MenuItemIcon Header="{Resx Progression_ChangeEditProgram}"
-                                IconKind="ApplicationOutline"
-                                Command="{Binding Path=ChangeSaveEditProgramCommand, Mode=OneTime}" />
+            <Button Content="{Resx Backup_BackupAll}"
+                    local:ButtonAssist.IconKind="FolderUploadOutline"
+                    Command="{Binding Path=BackupAllCommand, Mode=OneTime}" />
 
-        </ContextMenu>
-    </local:BasePage.OverflowMenu>
+            <Button local:ButtonAssist.IconKind="Refresh"
+                    Command="{Binding Path=RefreshCommand, Mode=OneTime}" 
+                    HorizontalContentAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Resx Page_Refresh}" />
+
+                    <TextBlock Grid.Column="1"
+                               Text="F5"
+                               Margin="0 0 8 0" />
+
+                </Grid>
+            </Button>
+
+            <Separator />
+
+            <Button Content="{Resx Progression_ChangeEditProgram}"
+                    local:ButtonAssist.IconKind="ApplicationOutline"
+                    Command="{Binding Path=ChangeSaveEditProgramCommand, Mode=OneTime}" />
+
+        </StackPanel>
+    </local:BasePage.PopupMenu>
 
     <Control.Resources>
         <ResourceDictionary Source="Progression.DataTemplates.xaml" />
