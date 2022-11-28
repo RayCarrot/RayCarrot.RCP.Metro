@@ -5,9 +5,9 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class LocateMSDOSGameAddAction : GameAddAction
+public class LocateRayman1MSDOSGameAddAction : GameAddAction
 {
-    public LocateMSDOSGameAddAction(MSDOSGameDescriptor gameDescriptor)
+    public LocateRayman1MSDOSGameAddAction(MSDOSGameDescriptor gameDescriptor)
     {
         GameDescriptor = gameDescriptor;
     }
@@ -38,12 +38,10 @@ public class LocateMSDOSGameAddAction : GameAddAction
         if (!result.SelectedDirectory.DirectoryExists)
             return null;
 
-        // TODO-14: This is Rayman specific - not MSDOS specific!
-
         // Make sure the directory is valid
         if (GameDescriptor.IsValid(result.SelectedDirectory))
             return await Services.Games.AddGameAsync(GameDescriptor, result.SelectedDirectory);
-
+        
         // If the executable does not exist the location is not valid
         if (!(result.SelectedDirectory + GameDescriptor.ExecutableName).FileExists)
         {

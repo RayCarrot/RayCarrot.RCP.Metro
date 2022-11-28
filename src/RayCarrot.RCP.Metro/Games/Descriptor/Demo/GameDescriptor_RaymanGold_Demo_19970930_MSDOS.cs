@@ -34,13 +34,14 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MSDOSGameDes
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
+        new LocateRayman1MSDOSGameAddAction(this),
         new DownloadGameAddAction(this, new Uri[]
         {
             new(AppURLs.Games_RGoldDemo_Url),
         })
-    });
+    };
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanDesigner_ViewModel(this, gameInstallation);

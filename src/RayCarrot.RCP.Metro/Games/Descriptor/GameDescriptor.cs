@@ -134,7 +134,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
     /// </summary>
-    public abstract bool SupportsGameLaunchMode { get; } // TODO-14: This should not be here
+    public abstract bool SupportsGameLaunchMode { get; } // TODO-14: This should not be here - only use for Win32?
 
     /// <summary>
     /// The directories to remove when uninstalling. This should not include the game install directory as that is included by default.

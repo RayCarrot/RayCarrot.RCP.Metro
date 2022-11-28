@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -30,13 +29,14 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MSDOSGameDescri
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
+        new LocateRayman1MSDOSGameAddAction(this),
         new DownloadGameAddAction(this, new Uri[]
         {
             new(AppURLs.Games_R1Demo2_Url),
         })
-    });
+    };
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);

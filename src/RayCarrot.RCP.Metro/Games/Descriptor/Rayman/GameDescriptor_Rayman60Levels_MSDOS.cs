@@ -32,6 +32,11 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
 
     #region Public Methods
 
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateRayman1MSDOSGameAddAction(this),
+    };
+
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
 

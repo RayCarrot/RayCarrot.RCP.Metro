@@ -51,11 +51,6 @@ public abstract class MSDOSGameDescriptor :
     public virtual IEnumerable<FileSystemPath> AdditionalConfigFiles => Enumerable.Empty<FileSystemPath>();
 
     /// <summary>
-    /// The Rayman Forever folder name, if available
-    /// </summary>
-    public virtual string? RaymanForeverFolderName => null; // TODO-14: Remove this...
-
-    /// <summary>
     /// The executable name for the game. This is independent of the <see cref="GameDescriptor.DefaultFileName"/> which is used to launch the game.
     /// </summary>
     public abstract string ExecutableName { get; }
@@ -156,66 +151,10 @@ public abstract class MSDOSGameDescriptor :
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new LocateMSDOSGameAddAction(this),
-    };
-
-    public override GameFinder_GameItem? GetGameFinderItem() => RaymanForeverFolderName == null ? null : new GameFinder_GameItem(null, "Rayman Forever", new[]
-        {
-            "Rayman Forever",
-        },
-        // Navigate to the sub-directory
-        x => x.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase) 
-            ? x.Parent + RaymanForeverFolderName 
-            : x + RaymanForeverFolderName);
-
     public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
         // Create config file
         new Emulator_DOSBox_AutoConfigManager(DosBoxConfigFile).Create();
-
-        // If the game was included in Rayman Forever...
-        if (RaymanForeverFolderName != null)
-        {
-            // Get the parent directory to the install directory
-            var foreverInstallDir = gameInstallation.InstallLocation.Parent;
-
-            // Attempt to automatically locate the mount file (based on the Rayman Forever location)
-            FileSystemPath[] mountFiles =
-            {
-                foreverInstallDir + "game.inst",
-                foreverInstallDir + "Music\\game.inst",
-                foreverInstallDir + "game.ins",
-                foreverInstallDir + "Music\\game.ins",
-            };
-
-            var mountPath = mountFiles.FirstOrDefault(x => x.FileExists);
-
-            if (mountPath.FileExists)
-            {
-                gameInstallation.SetValue(GameDataKey.DOSBoxMountPath, mountPath);
-                Logger.Info("The mount path for {0} was automatically found", Id);
-            }
-
-            // Find DOSBox path if not already added
-            if (!File.Exists(Services.Data.Emu_DOSBox_Path))
-            {
-                var dosBoxPath = foreverInstallDir + "DosBox" + "DOSBox.exe";
-
-                if (dosBoxPath.FileExists)
-                    Services.Data.Emu_DOSBox_Path = dosBoxPath;
-            }
-
-            // Find DOSBox config path if not already added
-            if (!File.Exists(Services.Data.Emu_DOSBox_ConfigPath))
-            {
-                var dosBoxConfigPath = foreverInstallDir + "dosboxRayman.conf";
-
-                if (dosBoxConfigPath.FileExists)
-                    Services.Data.Emu_DOSBox_ConfigPath = dosBoxConfigPath;
-            }
-        }
 
         return Task.CompletedTask;
     }

@@ -135,6 +135,11 @@ public sealed class GameDescriptor_EducationalDos_MSDOS : MSDOSGameDescriptor
 
     #region Public Methods
 
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateRayman1MSDOSGameAddAction(this),
+    };
+
     /// <summary>
     /// Get new info for a new educational DOSBox game
     /// </summary>

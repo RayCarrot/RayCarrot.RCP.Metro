@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro;
@@ -22,7 +24,6 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
     public override GameIconAsset Icon => GameIconAsset.Rayman1;
 
     public override string ExecutableName => "RAYMAN.EXE";
-    public override string RaymanForeverFolderName => "Rayman";
 
     public override FileSystemPath DOSBoxFilePath => Services.Data.Utility_TPLSData?.IsEnabled != true 
         ? base.DOSBoxFilePath 
@@ -34,6 +35,11 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
     #endregion
 
     #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    {
+        new LocateRayman1MSDOSGameAddAction(this),
+    };
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
@@ -57,6 +63,16 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_forever"),
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
     };
+
+    public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Forever", new[] { "Rayman Forever", },
+        // Navigate to the sub-directory
+        x => x.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase) ? x.Parent + "Rayman" : x + "Rayman");
+
+    public override async Task PostGameAddAsync(GameInstallation gameInstallation)
+    {
+        await base.PostGameAddAsync(gameInstallation);
+        GameDescriptorHelpers.PostAddRaymanForever(gameInstallation);
+    }
 
     #endregion
 }

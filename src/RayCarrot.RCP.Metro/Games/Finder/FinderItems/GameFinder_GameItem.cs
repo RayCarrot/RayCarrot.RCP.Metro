@@ -17,7 +17,7 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// <param name="possibleWin32Names">The possible names of the game to search for. This is not case sensitive, but most match entire string.</param>
     /// <param name="verifyInstallDirectory">Optional method for verifying the found install directory</param>
     public GameFinder_GameItem(
-        string ubiIniSectionName, 
+        string? ubiIniSectionName, 
         string? shortcutName, 
         string[]? possibleWin32Names, 
         Func<FileSystemPath, FileSystemPath?>? verifyInstallDirectory = null) 
