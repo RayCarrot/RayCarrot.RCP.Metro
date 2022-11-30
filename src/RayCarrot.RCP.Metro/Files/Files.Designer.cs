@@ -112,8 +112,7 @@ namespace RayCarrot.RCP.Metro {
         ///      &quot;Utility_RaymanDesigner_CreateConfig&quot;
         ///    ],
         ///    &quot;Rayman2&quot;: [
-        ///      &quot;Utility_Rayman2_GameSyncTextureInfo&quot;,
-        ///      &quot;Utility_Rayman2_RemoveDRM&quot;
+        ///      &quot;Utility_Rayman2_GameSyncTextureInfo&quot;
         ///    ],
         ///    &quot;RaymanM&quot;: [
         ///      &quot;Utility_RaymanM_GameSyncTextureInfo&quot;
@@ -121,7 +120,8 @@ namespace RayCarrot.RCP.Metro {
         ///    &quot;RaymanArena&quot;: [
         ///      &quot;Utility_RaymanArena_GameSyncTextureInfo&quot;
         ///    ],
-        ///     [rest of string was truncated]&quot;;.
+        ///    &quot;Rayman3&quot;: [
+        ///      &quot;Utility_Rayman3 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Games {
             get {
@@ -318,20 +318,10 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 13.4.0 - October ??, 2022   -----
-        ///• Updated the standard loading indicator and added support for canceling the current operation
-        ///
-        ///Other changes:
-        ///• Added a debug option to extract a patch library (.gpl) file
-        ///• Fixed a bug where repacking a .cnt archive would truncate the file names if they used special characters
-        ///• Bug fixes
-        ///
-        ///
-        ///-----   Version 13.3.1 - August 28, 2022   -----
-        ///• Fixed opening patch files through URI protocol when the specified URL redirects to the file download
-        ///
-        ///
-        ///- [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to -----   Version 13.4.2 - November 27, 2022   -----
+        ///• When editing a file in the Archive Explorer it will now always ask for the program to use the first time rather than automatically using the system default
+        ///• Fixed a bug where removing a game would fail if the folder could not be written to due to the check for patches attempting to create the patches library folder (this now only gets created when patches are applied)
+        ///• Fixed a bug where the game finder wouldn&apos;t correctly save the DOSBox path if found [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory_13_0_15_0 {
             get {
