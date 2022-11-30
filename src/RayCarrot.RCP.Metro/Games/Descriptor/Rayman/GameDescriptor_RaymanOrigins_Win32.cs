@@ -18,7 +18,6 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.RaymanOrigins;
 
     public override string DisplayName => "Rayman Origins";
-    public override string BackupName => "Rayman Origins";
     public override string DefaultFileName => "Rayman Origins.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanOrigins;
@@ -32,8 +31,8 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanOriginsRegistryKey);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanOrigins(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanOrigins(gameInstallation, "Rayman Origins").Yield();
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);

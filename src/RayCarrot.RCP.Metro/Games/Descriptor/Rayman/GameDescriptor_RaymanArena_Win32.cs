@@ -20,7 +20,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.RaymanArena;
 
     public override string DisplayName => "Rayman Arena";
-    public override string BackupName => "Rayman Arena";
     public override string DefaultFileName => "R_Arena.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanArena;
@@ -44,8 +43,8 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanArena_ViewModel(gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanMArena(gameInstallation, false);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanMArena(gameInstallation, "Rayman Arena", false).Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

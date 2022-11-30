@@ -18,7 +18,6 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.TonicTrouble;
 
     public override string DisplayName => "Tonic Trouble";
-    public override string BackupName => "Tonic Trouble";
     public override string DefaultFileName => "TonicTrouble.exe";
 
     public override GameIconAsset Icon => GameIconAsset.TonicTrouble;
@@ -35,8 +34,8 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
-        new GameProgressionManager_TonicTrouble(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
+        new GameProgressionManager_TonicTrouble(gameInstallation, "Tonic Trouble").Yield();
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new CPACntArchiveDataManager(

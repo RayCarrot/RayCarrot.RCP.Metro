@@ -58,7 +58,6 @@ public class GameProgressionViewModel : BaseRCPViewModel
     #region Private Properties
 
     private AsyncLock AsyncLock { get; }
-    private string BackupName => GameDescriptor.BackupName;
 
     #endregion
 
@@ -69,7 +68,10 @@ public class GameProgressionViewModel : BaseRCPViewModel
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
     public string IconSource => GameDescriptor.IconSource;
     public bool IsDemo => GameDescriptor.IsDemo;
-    public string DisplayName => GameDescriptor.DisplayName; // TODO: LocalizedString
+    // TODO-UPDATE: LocalizedString & localize
+    public string DisplayName => ProgressionManager.Name == null
+        ? GameDescriptor.DisplayName
+        : $"{GameDescriptor.DisplayName} ({ProgressionManager.Name})";
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }
@@ -87,8 +89,8 @@ public class GameProgressionViewModel : BaseRCPViewModel
 
     public ProgramDataSource ProgramDataSource
     {
-        get => Data.Backup_GameDataSources.TryGetValue(BackupName, ProgramDataSource.Auto);
-        set => Data.Backup_GameDataSources[BackupName] = value;
+        get => Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupName, ProgramDataSource.Auto);
+        set => Data.Backup_GameDataSources[ProgressionManager.BackupName] = value;
     }
 
     public ObservableCollection<GameProgressionSlotViewModel> Slots { get; }
@@ -400,14 +402,14 @@ public class GameProgressionViewModel : BaseRCPViewModel
             CurrentBackupStatus = BackupStatus.Syncing;
 
             // Create backup info if null
-            BackupInfo ??= new GameBackups_BackupInfo(BackupName, ProgressionManager.BackupDirectories, DisplayName);
+            BackupInfo ??= new GameBackups_BackupInfo(ProgressionManager.BackupName, ProgressionManager.BackupDirectories, DisplayName);
 
             // Refresh backup info
             await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource));
 
             // Determine if the program data source can be modified
             CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || 
-                                         (Data.Backup_GameDataSources.TryGetValue(BackupName, out ProgramDataSource src) && src != ProgramDataSource.Auto);
+                                         (Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupName, out ProgramDataSource src) && src != ProgramDataSource.Auto);
 
             // Check if GOG cloud sync is in use
             CheckForGOGCloudSync();

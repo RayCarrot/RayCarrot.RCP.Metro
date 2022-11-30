@@ -15,7 +15,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override Games? LegacyGame => Games.RaymanRavingRabbids;
 
     public override string DisplayName => "Rayman Raving Rabbids";
-    public override string BackupName => "Rayman Raving Rabbids";
     public override string DefaultFileName => "CheckApplication.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;
@@ -27,8 +26,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanRavingRabbids_ViewModel(gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanRavingRabbids(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanRavingRabbids(gameInstallation, "Rayman Raving Rabbids").Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

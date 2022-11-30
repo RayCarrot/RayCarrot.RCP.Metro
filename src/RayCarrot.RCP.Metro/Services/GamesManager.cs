@@ -61,7 +61,8 @@ public class GamesManager
             new GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32(),
 
             new GameDescriptor_Rayman1Minigames_Win32(),
-            new GameDescriptor_EducationalDos_MSDOS(),
+            new GameDescriptor_RaymanEdutainmentEdu_MSDOS(),
+            new GameDescriptor_RaymanEdutainmentQuiz_MSDOS(),
             new GameDescriptor_TonicTrouble_Win32(),
             new GameDescriptor_TonicTroubleSpecialEdition_Win32(),
             new GameDescriptor_RaymanDictées_Win32(),

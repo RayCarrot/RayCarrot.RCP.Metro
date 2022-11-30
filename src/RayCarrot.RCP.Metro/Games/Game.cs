@@ -120,10 +120,10 @@ public enum Game
     Rayman1Minigames,
 
     /// <summary>
-    /// Educational DOS Rayman games
+    /// Rayman Edutainment (Edu/Quiz)
     /// </summary>
-    [GameInfo("Educational Games", GameIconAsset.EducationalDos)]
-    EducationalDos,
+    [GameInfo("Rayman Edutainment", GameIconAsset.RaymanEdutainment)]
+    RaymanEdutainment,
 
     /// <summary>
     /// Tonic Trouble

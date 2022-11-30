@@ -55,7 +55,6 @@ public class AppUserData : BaseViewModel
         // Game
         Game_GameInstallations = new List<GameInstallation>();
         Game_AutoLocateGames = true;
-        Game_EducationalDosBoxGames = null;
         Game_RabbidsGoHomeLaunchData = null;
         Game_ShownRabbidsActivityCenterLaunchMessage = false;
 
@@ -188,7 +187,7 @@ public class AppUserData : BaseViewModel
     /// <summary>
     /// The collection of jump list item IDs
     /// </summary>
-    public List<string> App_JumpListItemIDCollection { get; set; }
+    public List<string> App_JumpListItemIDCollection { get; set; } // TODO-14: Might want to reset this during v14 migration
 
     /// <summary>
     /// Indicates if downloads should be handled manually. This does not apply to application updates.
@@ -263,11 +262,6 @@ public class AppUserData : BaseViewModel
     /// Indicates if games should be automatically located on startup
     /// </summary>
     public bool Game_AutoLocateGames { get; set; }
-
-    /// <summary>
-    /// The saved educational DOSBox games
-    /// </summary>
-    public List<UserData_EducationalDosBoxGameData> Game_EducationalDosBoxGames { get; set; }
 
     /// <summary>
     /// The launch data for Rabbids Go Home
@@ -498,7 +492,8 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private UserData_FiestaRunEdition FiestaRunVersion { set => Game_FiestaRunVersion = value; }
-    [JsonProperty] private List<UserData_EducationalDosBoxGameData> EducationalDosBoxGames { set => Game_EducationalDosBoxGames = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private List<UserData_EducationalDosBoxGameData> EducationalDosBoxGames { set => Game_EducationalDosBoxGames = value; }
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private UserData_RRR2LaunchMode RRR2LaunchMode { set => Game_RRR2LaunchMode = value; }
     [JsonProperty] private UserData_RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { set => Game_RabbidsGoHomeLaunchData = value; }

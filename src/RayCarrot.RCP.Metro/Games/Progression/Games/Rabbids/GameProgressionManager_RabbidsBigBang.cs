@@ -6,8 +6,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RabbidsBigBang : GameProgressionManager
 {
-    public GameProgressionManager_RabbidsBigBang(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
-        : base(gameInstallation)
+    public GameProgressionManager_RabbidsBigBang(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string backupName) 
+        : base(gameInstallation, backupName)
     {
         GameDescriptor = gameDescriptor;
     }

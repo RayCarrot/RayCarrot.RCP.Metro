@@ -21,7 +21,6 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override Games? LegacyGame => Games.RabbidsBigBang;
 
     public override string DisplayName => "Rabbids Big Bang";
-    public override string BackupName => "Rabbids Big Bang";
     public override string DefaultFileName => "Template.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsBigBang;
@@ -33,8 +32,8 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
 
     #region Public Methods
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RabbidsBigBang(this, gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RabbidsBigBang(this, gameInstallation, "Rabbids Big Bang").Yield();
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

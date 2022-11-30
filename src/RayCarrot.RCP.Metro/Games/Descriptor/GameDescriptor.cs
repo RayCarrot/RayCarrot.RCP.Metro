@@ -89,12 +89,6 @@ public abstract class GameDescriptor
     //public abstract LocalizedString ShortDisplayName { get; }
     //public abstract LocalizedString LongDisplayName { get; }
 
-    // TODO-14: Make this nullable instead?
-    /// <summary>
-    /// The game backup name
-    /// </summary>
-    public virtual string BackupName => throw new InvalidOperationException($"The game {Id} has no backup name associated with it");
-
     /// <summary>
     /// Gets the default file name for launching the game, if available
     /// </summary>
@@ -235,9 +229,11 @@ public abstract class GameDescriptor
     public virtual GameOptionsDialog_ConfigPageViewModel? GetConfigPageViewModel(GameInstallation gameInstallation) => null;
 
     /// <summary>
-    /// Gets the game progression manager, if available
+    /// Gets the game progression managers. This will usually be a single one, but games can define multiple
+    /// if the game is split into several parts which have to be treated separately.
     /// </summary>
-    public virtual GameProgressionManager? GetGameProgressionManager(GameInstallation gameInstallation) => null;
+    public virtual IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        Enumerable.Empty<GameProgressionManager>();
 
     /// <summary>
     /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.

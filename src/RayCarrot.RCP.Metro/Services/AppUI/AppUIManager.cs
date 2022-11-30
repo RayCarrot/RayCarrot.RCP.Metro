@@ -64,8 +64,6 @@ public class AppUIManager
         return result;
     }
 
-    public Task<EducationalDosGameEditResult> EditEducationalDosGameAsync(EducationalDosGameEditViewModel viewModel) => ShowDialogAsync(() => new EducationalDosGameEditDialog(viewModel));
-
     public Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel) => ShowDialogAsync(() => new JumpListEditDialog(viewModel));
 
     public async Task<FileExtensionSelectionDialogResult> SelectFileExtensionAsync(FileExtensionSelectionDialogViewModel viewModel)

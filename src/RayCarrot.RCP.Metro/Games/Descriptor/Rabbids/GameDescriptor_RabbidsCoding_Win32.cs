@@ -15,7 +15,6 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.RabbidsCoding;
 
     public override string DisplayName => "Rabbids Coding";
-    public override string BackupName => "Rabbids Coding";
     public override string DefaultFileName => "Rabbids Coding.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsCoding;

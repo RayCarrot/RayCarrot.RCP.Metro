@@ -16,7 +16,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override Games? LegacyGame => Games.RaymanRavingRabbids2;
 
     public override string DisplayName => "Rayman Raving Rabbids 2";
-    public override string BackupName => "Rayman Raving Rabbids 2";
     public override string DefaultFileName => "Jade.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids2;
@@ -41,8 +40,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanRavingRabbids2_ViewModel(gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanRavingRabbids2(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanRavingRabbids2(gameInstallation, "Rayman Raving Rabbids 2").Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation)
     {

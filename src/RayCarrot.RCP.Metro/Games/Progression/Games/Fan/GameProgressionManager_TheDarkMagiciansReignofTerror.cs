@@ -5,7 +5,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_TheDarkMagiciansReignofTerror : GameProgressionManager
 {
-    public GameProgressionManager_TheDarkMagiciansReignofTerror(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_TheDarkMagiciansReignofTerror(GameInstallation gameInstallation, string backupName) 
+        : base(gameInstallation, backupName) { }
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {

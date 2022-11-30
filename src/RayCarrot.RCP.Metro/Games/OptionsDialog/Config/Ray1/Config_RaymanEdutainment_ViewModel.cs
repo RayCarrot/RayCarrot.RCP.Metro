@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BinarySerializer;
@@ -10,9 +9,9 @@ using NLog;
 
 namespace RayCarrot.RCP.Metro;
 
-public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
+public class Config_RaymanEdutainment_ViewModel : Config_Ray1_BaseViewModel
 {
-    public Config_RaymanEduDos_ViewModel(MSDOSGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
+    public Config_RaymanEdutainment_ViewModel(MSDOSGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
         base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Edu, LanguageMode.None)
     {
         PageSelection = new ObservableCollection<string>();
@@ -23,8 +22,10 @@ public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
 
     public void RefreshSelection()
     {
+        var data = GameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData);
+
         PageSelection.Clear();
-        PageSelection.AddRange(Data.Game_EducationalDosBoxGames.Select(x => $"{x.Name} ({x.LaunchMode})"));
+        PageSelection.AddRange(data.AvailableGameModes);
 
         ResetSelectedPageSelectionIndex();
 
@@ -38,18 +39,18 @@ public class Config_RaymanEduDos_ViewModel : Config_Ray1_BaseViewModel
         if (SelectedPageSelectionIndex == -1)
             throw new Exception("Page selection is -1");
 
-        var game = Data.Game_EducationalDosBoxGames[SelectedPageSelectionIndex];
+        string gameMode = PageSelection[SelectedPageSelectionIndex];
 
-        Logger.Trace("Retrieving EDU config path for '{0} ({1})'", game.Name, game.LaunchMode);
+        Logger.Trace("Retrieving EDU config path for {0}", gameMode);
 
+        // TODO-14: Don't find primary name like this. It's either EDU or QUI depending on game!
         // Get the primary name
         using FileStream stream = File.OpenRead(GameInstallation.InstallLocation + "PCMAP" + "COMMON.DAT");
         using Reader reader = new(stream);
         string primary = reader.ReadString(5, Encoding.UTF8);
-        
-        string? secondary = game.LaunchMode;
 
-        return $"{primary}{secondary}.CFG";
+        // Primary + secondary names
+        return $"{primary}{gameMode}.CFG";
     }
 
     public override Task PageSelectionIndexChangedAsync()

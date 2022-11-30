@@ -16,7 +16,6 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     public override Games? LegacyGame => Games.TheDarkMagiciansReignofTerror;
 
     public override string DisplayName => "Rayman: The Dark Magician's Reign of Terror";
-    public override string BackupName => "Rayman The Dark Magicians Reign of Terror";
     public override string DefaultFileName => "Rayman! Dark Magician's reign of terror!.exe";
 
     public override GameIconAsset Icon => GameIconAsset.TheDarkMagiciansReignofTerror;
@@ -31,8 +30,8 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
 
     #region Public Methods
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
-        new GameProgressionManager_TheDarkMagiciansReignofTerror(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
+        new GameProgressionManager_TheDarkMagiciansReignofTerror(gameInstallation, "Rayman The Dark Magicians Reign of Terror").Yield();
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

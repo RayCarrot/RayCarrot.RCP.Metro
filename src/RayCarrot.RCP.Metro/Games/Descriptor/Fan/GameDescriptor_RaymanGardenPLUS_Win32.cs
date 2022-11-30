@@ -15,7 +15,6 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.RaymanGardenPLUS;
 
     public override string DisplayName => "Rayman Garden PLUS";
-    public override string BackupName => "Rayman Garden PLUS";
 
     public override string DefaultFileName => "rayman-garden-plus.exe";
 

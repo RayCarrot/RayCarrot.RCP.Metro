@@ -172,9 +172,6 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_DriveSelection" 
                        IconKind="{StaticResource RCP.Icons.Disc}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Window_EducationalDosGameEdit" 
-                       IconKind="{StaticResource RCP.Icons.Edit}"
-                       IconColor="{StaticResource RCP.Brushes.Info}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_FileExtensionSelection" 
                        IconKind="{StaticResource RCP.Icons.File}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />

@@ -21,7 +21,6 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     public override Games? LegacyGame => Games.Demo_RaymanM;
 
     public override string DisplayName => "Rayman M Demo (2002/06/27)";
-    public override string BackupName => "Rayman M Demo";
     public override string DefaultFileName => "RaymanM.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanM_Demo;
@@ -45,8 +44,8 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanMDemo_ViewModel(gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanMArena(gameInstallation, true);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanMArena(gameInstallation, "Rayman M Demo", true).Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

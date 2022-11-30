@@ -82,7 +82,7 @@ public abstract class MSDOSGameDescriptor : GameDescriptor
     {
         // Get the launch info
         FileSystemPath launchPath = DOSBoxFilePath;
-        string launchArgs = GetLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
             Id, launchPath, launchArgs);
@@ -97,11 +97,16 @@ public abstract class MSDOSGameDescriptor : GameDescriptor
         return new GameLaunchResult(process, process != null);
     }
 
-    protected string GetLaunchArgs(GameInstallation gameInstallation)
+    protected string GetDOSBoxLaunchArgs(GameInstallation gameInstallation)
     {
+        string? gameArgs = GetLaunchArgs(gameInstallation);
+        string launchName = gameArgs == null ? DefaultFileName : $"{DefaultFileName} {gameArgs}";
+
         FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
-        return GetDosBoxArguments(mountPath, DefaultFileName, gameInstallation.InstallLocation);
+        return GetDosBoxArguments(mountPath, launchName, gameInstallation.InstallLocation);
     }
+
+    protected virtual string? GetLaunchArgs(GameInstallation gameInstallation) => null;
 
     /// <summary>
     /// Gets the DosBox launch arguments for the game
@@ -174,7 +179,7 @@ public abstract class MSDOSGameDescriptor : GameDescriptor
     {
         // Get the launch info
         FileSystemPath launchPath = DOSBoxFilePath;
-        string launchArgs = GetLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
 
         return base.GetGameInfoItems(gameInstallation).Concat(new[]
         {
@@ -193,7 +198,7 @@ public abstract class MSDOSGameDescriptor : GameDescriptor
     {
         // Get the launch info
         FileSystemPath launchPath = DOSBoxFilePath;
-        string launchArgs = GetLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
 
         // Create the shortcut
         Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchPath, launchArgs);
@@ -205,7 +210,7 @@ public abstract class MSDOSGameDescriptor : GameDescriptor
     {
         // Get the launch info
         FileSystemPath launchPath = DOSBoxFilePath;
-        string launchArgs = GetLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
 
         if (!launchPath.FileExists)
             return Enumerable.Empty<JumpListItemViewModel>();

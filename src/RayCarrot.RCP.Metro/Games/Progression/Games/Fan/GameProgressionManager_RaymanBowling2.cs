@@ -5,7 +5,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanBowling2 : GameProgressionManager
 {
-    public GameProgressionManager_RaymanBowling2(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanBowling2(GameInstallation gameInstallation, string backupName) 
+        : base(gameInstallation, backupName) { }
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {

@@ -51,6 +51,7 @@ public class LocateRayman1MSDOSGameAddAction : GameAddAction
             return null;
         }
 
+        // TODO-14: Don't use .bat files - instead launch exe directly with specified launch arg
         // Create the .bat file
         File.WriteAllLines(result.SelectedDirectory + GameDescriptor.DefaultFileName, new[]
         {

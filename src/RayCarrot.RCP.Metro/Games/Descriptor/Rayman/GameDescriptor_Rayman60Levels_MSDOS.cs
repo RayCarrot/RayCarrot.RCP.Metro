@@ -19,7 +19,6 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
     public override Games? LegacyGame => Games.Rayman60Levels;
 
     public override string DisplayName => "Rayman 60 Levels";
-    public override string BackupName => "Rayman 60 Levels";
     public override string DefaultFileName => "Rayman.bat";
 
     public override GameIconAsset Icon => GameIconAsset.Rayman60Levels;
@@ -43,8 +42,8 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanByHisFans_ViewModel(this, gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_Rayman60Levels(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_Rayman60Levels(gameInstallation, "Rayman 60 Levels").Yield();
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "Rayman60LevelsPC", "r1/pc_60n");
 

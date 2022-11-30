@@ -15,7 +15,6 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.RaymanBowling2;
 
     public override string DisplayName => "Rayman Bowling 2";
-    public override string BackupName => "Rayman Bowling 2";
     public override string DefaultFileName => "Rayman Bowling 2.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanBowling2;
@@ -24,8 +23,8 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanBowling2(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanBowling2(gameInstallation, "Rayman Bowling 2").Yield();
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

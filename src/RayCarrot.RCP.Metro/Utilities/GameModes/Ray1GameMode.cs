@@ -9,7 +9,8 @@ public enum Ray1GameMode
     Rayman1_PC,
 
     [Ray1GameModeInfo("Rayman Educational (PC)", Ray1EngineVersion.PC_Edu, 
-        typeof(GameDescriptor_EducationalDos_MSDOS))]
+        typeof(GameDescriptor_RaymanEdutainmentEdu_MSDOS),
+        typeof(GameDescriptor_RaymanEdutainmentQuiz_MSDOS))]
     RaymanEducational_PC,
 
     [Ray1GameModeInfo("Rayman Designer (PC)", Ray1EngineVersion.PC_Kit, 

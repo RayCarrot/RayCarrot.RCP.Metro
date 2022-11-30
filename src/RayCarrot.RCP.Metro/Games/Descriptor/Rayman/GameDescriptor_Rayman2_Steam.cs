@@ -20,7 +20,6 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
     public override Games? LegacyGame => Games.Rayman2;
 
     public override string DisplayName => "Rayman 2";
-    public override string BackupName => "Rayman 2";
     public override string DefaultFileName => "Rayman2.exe";
 
     public override GameIconAsset Icon => GameIconAsset.Rayman2;
@@ -39,8 +38,8 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_Rayman2_ViewModel(gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
-        new GameProgressionManager_Rayman2(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
+        new GameProgressionManager_Rayman2(gameInstallation, "Rayman 2").Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

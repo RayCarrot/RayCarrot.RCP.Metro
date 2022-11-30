@@ -9,7 +9,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanRavingRabbids : GameProgressionManager
 {
-    public GameProgressionManager_RaymanRavingRabbids(GameInstallation gameInstallation) : base(gameInstallation) { }
+    public GameProgressionManager_RaymanRavingRabbids(GameInstallation gameInstallation, string backupName) 
+        : base(gameInstallation, backupName) { }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 

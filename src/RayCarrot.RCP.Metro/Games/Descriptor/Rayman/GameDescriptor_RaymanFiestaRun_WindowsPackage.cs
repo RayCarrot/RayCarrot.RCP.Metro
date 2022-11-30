@@ -21,7 +21,6 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     public override Games? LegacyGame => Games.RaymanFiestaRun;
 
     public override string DisplayName => "Rayman Fiesta Run";
-    public override string BackupName => "Rayman Fiesta Run (Default)";
     public override string DefaultFileName => "RFR_WinRT.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanFiestaRun;
@@ -36,8 +35,8 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanFiestaRun_ViewModel(this);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanFiestaRun(this, gameInstallation, 1);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanFiestaRun(this, gameInstallation, "Rayman Fiesta Run (Default)", 1).Yield();
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

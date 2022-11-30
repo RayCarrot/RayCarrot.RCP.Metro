@@ -21,7 +21,6 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override Games? LegacyGame => Games.RaymanJungleRun;
 
     public override string DisplayName => "Rayman Jungle Run";
-    public override string BackupName => "Rayman Jungle Run";
     public override string DefaultFileName => "RO1Mobile.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanJungleRun;
@@ -36,8 +35,8 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanJungleRun_ViewModel(this);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
-        new GameProgressionManager_RaymanJungleRun(this, gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
+        new GameProgressionManager_RaymanJungleRun(this, gameInstallation, "Rayman Jungle Run").Yield();
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

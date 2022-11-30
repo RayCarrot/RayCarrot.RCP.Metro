@@ -14,7 +14,10 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
     }
 
     public override GenericIconKind Icon => GenericIconKind.GamePanel_Progression;
-    public override LocalizedString Header => new ResourceLocString(nameof(Resources.Progression_Header));
+    public override LocalizedString Header => ProgressionManager.Name == null 
+        ? new ResourceLocString(nameof(Resources.Progression_Header))
+        // TODO-UPDATE: Localize
+        : new GeneratedLocString(() => $"{Resources.Progression_Header} ({ProgressionManager.Name})");
     public override bool CanRefresh => true;
 
     public GameProgressionManager ProgressionManager { get; }
@@ -22,11 +25,13 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
 
     protected override async Task LoadAsyncImpl()
     {
-        var dataSource = Services.Data.Backup_GameDataSources.TryGetValue(GameDescriptor.BackupName, ProgramDataSource.Auto);
+        var dataSource = Services.Data.Backup_GameDataSources.TryGetValue(ProgressionManager.BackupName, ProgramDataSource.Auto);
         var fileSystem = new GameProgressionManager.PhysicalFileSystemWrapper(dataSource);
 
         GameProgressionSlot[] slots = await ProgressionManager.LoadSlotsAsync(fileSystem).ToArrayAsync();
         GameProgressionSlot? primarySlot = GameProgressionManager.CreatePrimarySlot(slots);
+
+        // TODO-14: Hide panel if primary slot is null? Looks weird for edu games as an example.
         PrimarySlot = primarySlot == null ? null : new GameProgressionSlotViewModel(primarySlot);
     }
 

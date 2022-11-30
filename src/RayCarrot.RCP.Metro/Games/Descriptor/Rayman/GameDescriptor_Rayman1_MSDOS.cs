@@ -18,7 +18,6 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
     public override Games? LegacyGame => Games.Rayman1;
 
     public override string DisplayName => "Rayman";
-    public override string BackupName => "Rayman 1";
     public override string DefaultFileName => "Rayman.exe";
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1;
@@ -47,8 +46,8 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_Rayman1_ViewModel(this, gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
-        new GameProgressionManager_Rayman1(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
+        new GameProgressionManager_Rayman1(gameInstallation, "Rayman 1").Yield();
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121");
 

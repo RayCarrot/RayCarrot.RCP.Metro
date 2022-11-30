@@ -293,10 +293,7 @@ public class AppDataManager
         }
 
         if (lastVersion < new Version(6, 0, 0, 0))
-        {
-            Data.Game_EducationalDosBoxGames = null;
             Data.Game_RabbidsGoHomeLaunchData = null;
-        }
 
         if (lastVersion < new Version(6, 0, 0, 2))
         {

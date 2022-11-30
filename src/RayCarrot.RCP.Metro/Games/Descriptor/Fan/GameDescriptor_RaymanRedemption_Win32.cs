@@ -15,7 +15,6 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.RaymanRedemption;
 
     public override string DisplayName => "Rayman Redemption";
-    public override string BackupName => "Rayman Redemption";
     public override string DefaultFileName => "Rayman Redemption.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRedemption;
@@ -24,8 +23,8 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanRedemption(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanRedemption(gameInstallation, "Rayman Redemption").Yield();
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

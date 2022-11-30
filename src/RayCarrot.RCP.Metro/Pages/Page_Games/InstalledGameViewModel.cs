@@ -102,8 +102,7 @@ public class InstalledGameViewModel : BaseViewModel
             GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation));
 
         // Progression
-        GameProgressionManager? progressionManager = GameDescriptor.GetGameProgressionManager(GameInstallation);
-        if (progressionManager != null)
+        foreach (GameProgressionManager progressionManager in GameDescriptor.GetGameProgressionManagers(GameInstallation))
             GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation, progressionManager));
     }
 

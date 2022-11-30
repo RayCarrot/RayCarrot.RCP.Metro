@@ -18,7 +18,6 @@ public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
     public override Games? LegacyGame => Games.RaymanLegends;
 
     public override string DisplayName => "Rayman Legends";
-    public override string BackupName => "Rayman Legends";
     public override string DefaultFileName => "Rayman Legends.exe";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanLegends;
@@ -35,8 +34,8 @@ public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanLegendsRegistryKey);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanLegends(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanLegends(gameInstallation, "Rayman Legends").Yield();
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanLegends, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);

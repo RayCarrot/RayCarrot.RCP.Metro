@@ -55,6 +55,9 @@ public class GameInstallation
     // TODO-14: Logging
     // TODO-14: We should probably handle exceptions here and return null and log error?
 
+    public T GetRequiredObject<T>(string key) where T : class =>
+        GetObject<T>(key) ?? throw new Exception($"The object with key {key} and type {typeof(T)} could not be found");
+
     public T? GetObject<T>(string key)
         where T : class
     {
@@ -77,10 +80,9 @@ public class GameInstallation
         return parsedObj;
     }
 
-    public T GetValue<T>(string key) where T : struct => GetValue<T>(key, default);
+    public T? GetValue<T>(string key) => GetValue<T>(key, default);
 
-    public T GetValue<T>(string key, T defaultValue)
-        where T : struct
+    public T? GetValue<T>(string key, T? defaultValue)
     {
         if (!_additionalData.TryGetValue(key, out object obj))
             return defaultValue;

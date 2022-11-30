@@ -21,7 +21,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
     public override Games? LegacyGame => Games.RaymanDesigner;
     
     public override string DisplayName => "Rayman Designer";
-    public override string BackupName => "Rayman Designer";
     public override string DefaultFileName => "RAYKIT.bat";
 
     public override GameIconAsset Icon => GameIconAsset.RaymanDesigner;
@@ -45,8 +44,8 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MSDOSGameDescriptor
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanDesigner_ViewModel(this, gameInstallation);
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanDesigner(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
+        new GameProgressionManager_RaymanDesigner(gameInstallation, "Rayman Designer").Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

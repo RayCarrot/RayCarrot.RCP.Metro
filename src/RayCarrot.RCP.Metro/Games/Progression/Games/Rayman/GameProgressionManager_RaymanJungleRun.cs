@@ -9,8 +9,8 @@ namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
 {
-    public GameProgressionManager_RaymanJungleRun(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation) 
-        : base(gameInstallation)
+    public GameProgressionManager_RaymanJungleRun(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation, string backupName) 
+        : base(gameInstallation, backupName)
     {
         GameDescriptor = gameDescriptor;
     }

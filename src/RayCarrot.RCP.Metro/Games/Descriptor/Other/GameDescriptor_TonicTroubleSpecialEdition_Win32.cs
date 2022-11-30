@@ -18,7 +18,6 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override Games? LegacyGame => Games.TonicTroubleSpecialEdition;
 
     public override string DisplayName => "Tonic Trouble Special Edition";
-    public override string BackupName => "Tonic Trouble Special Edition";
     public override string DefaultFileName => "MaiD3Dvr.exe";
 
     public override GameIconAsset Icon => GameIconAsset.TonicTroubleSpecialEdition;
@@ -35,8 +34,8 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
 
     #region Public Methods
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
-        new GameProgressionManager_TonicTrouble(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
+        new GameProgressionManager_TonicTrouble(gameInstallation, "Tonic Trouble Special Edition").Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

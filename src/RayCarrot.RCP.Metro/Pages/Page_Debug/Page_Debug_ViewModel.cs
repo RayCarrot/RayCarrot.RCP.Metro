@@ -37,7 +37,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
         FileManager fileManager, 
         IBrowseUIManager browseUi, 
         IMessageUIManager messageUi, 
-        IDialogBaseManager dialogBaseManager, 
         LoggerManager loggerManager, 
         AppDataManager appDataManager, 
         GamesManager gamesManager) : base(app)
@@ -48,7 +47,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
         FileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
         BrowseUI = browseUi ?? throw new ArgumentNullException(nameof(browseUi));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
-        DialogBaseManager = dialogBaseManager ?? throw new ArgumentNullException(nameof(dialogBaseManager));
         LoggerManager = loggerManager ?? throw new ArgumentNullException(nameof(loggerManager));
         AppDataManager = appDataManager ?? throw new ArgumentNullException(nameof(appDataManager));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
@@ -112,7 +110,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
     private FileManager FileManager { get; }
     private IBrowseUIManager BrowseUI { get; }
     private IMessageUIManager MessageUI { get; }
-    private IDialogBaseManager DialogBaseManager { get; }
     private LoggerManager LoggerManager { get; }
     private AppDataManager AppDataManager { get; }
     private GamesManager GamesManager { get; }
@@ -230,16 +227,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                 case DebugDialogType.SaveFile:
                     await BrowseUI.SaveFileAsync(new SaveFileViewModel()
-                    {
-                        Title = "Debug"
-                    });
-                    break;
-
-                case DebugDialogType.EditEducationalDosGame:
-                    await UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(new UserData_EducationalDosBoxGameData(FileSystemPath.EmptyPath, "DEBUG", "DEBUG"), new string[]
-                    {
-                        "DEBUG"
-                    })
                     {
                         Title = "Debug"
                     });
@@ -786,8 +773,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
         /// A save file dialog
         /// </summary>
         SaveFile,
-
-        EditEducationalDosGame,
 
         EditJumpList,
 

@@ -74,8 +74,8 @@ public enum GameIconAsset
     [ImageFile("Ray1Minigames.png")]
     Rayman1Minigames,
 
-    [ImageFile("EducationalDos.png")]
-    EducationalDos,
+    [ImageFile("RaymanEdutainment.png")]
+    RaymanEdutainment,
 
     [ImageFile("TonicTrouble.png")]
     TonicTrouble,

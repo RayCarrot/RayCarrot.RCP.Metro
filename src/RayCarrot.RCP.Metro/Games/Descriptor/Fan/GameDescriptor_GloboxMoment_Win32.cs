@@ -16,7 +16,6 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override Games? LegacyGame => Games.GloboxMoment;
 
     public override string DisplayName => "Globox Moment";
-    public override string BackupName => "Globox Moment";
     public override string DefaultFileName => "Globox Moment.exe";
 
     public override GameIconAsset Icon => GameIconAsset.GloboxMoment;
@@ -31,8 +30,8 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override GameProgressionManager GetGameProgressionManager(GameInstallation gameInstallation) =>
-        new GameProgressionManager_GloboxMoment(gameInstallation);
+    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
+        new GameProgressionManager_GloboxMoment(gameInstallation, "Globox Moment").Yield();
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {
