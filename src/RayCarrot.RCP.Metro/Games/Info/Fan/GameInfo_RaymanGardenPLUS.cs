@@ -31,7 +31,7 @@ public sealed class GameInfo_RaymanGardenPLUS : GameInfo
     /// <summary>
     /// Gets the launch name for the game
     /// </summary>
-    public override string DefaultFileName => "Rayman Garden PLUS.exe";
+    public override string DefaultFileName => "rayman-garden-plus.exe";
 
     #endregion
 }
