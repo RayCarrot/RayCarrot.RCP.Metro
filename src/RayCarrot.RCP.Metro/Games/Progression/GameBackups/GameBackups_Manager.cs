@@ -41,6 +41,15 @@ public class GameBackups_Manager
 
     #endregion
 
+    #region Public Constant Fields
+
+    /// <summary>
+    /// The name of the backup directory for this application
+    /// </summary>
+    public const string BackupFamily = "Rayman Game Backups";
+
+    #endregion
+
     #region Private Static Properties
 
     /// <summary>
@@ -61,7 +70,7 @@ public class GameBackups_Manager
 
     #region Public Properties
 
-    public FileSystemPath BackupDirectory => Data.Backup_BackupLocation + AppViewModel.BackupFamily;
+    public FileSystemPath BackupDirectory => Data.Backup_BackupLocation + BackupFamily;
 
     #endregion
 

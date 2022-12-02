@@ -19,36 +19,63 @@ namespace RayCarrot.RCP.Metro;
 
 public class AppDataManager
 {
-    public AppDataManager(AppUserData data, LaunchArguments args, AppViewModel app, GamesManager gamesManager, IMessenger messenger)
+    #region Constructor
+
+    public AppDataManager(
+        AppUserData data, 
+        LaunchArguments args, 
+        GamesManager gamesManager, 
+        IMessenger messenger, 
+        IMessageUIManager messageUi, 
+        FileManager fileManager)
     {
         Data = data ?? throw new ArgumentNullException(nameof(data));
         Args = args ?? throw new ArgumentNullException(nameof(args));
-        AppViewModel = app ?? throw new ArgumentNullException(nameof(app));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
-
-        DataChangedHandlerAsyncLock = new AsyncLock();
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+        FileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
     }
+
+    #endregion
+
+    #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+    #endregion
+
+    #region Private Fields
+
     private readonly object _lock = new();
+    private readonly AsyncLock _dataChangedHandlerAsyncLock = new();
+
+    #endregion
+
+    #region Services
 
     private AppUserData Data { get; }
     private LaunchArguments Args { get; }
-    private AppViewModel AppViewModel { get; }
     private GamesManager GamesManager { get; }
     private IMessenger Messenger { get; }
+    private IMessageUIManager MessageUI { get; }
+    private FileManager FileManager { get; }
 
-    private AsyncLock DataChangedHandlerAsyncLock { get; }
-    
+    #endregion
+
+    #region Private Properties
+
     private FileSystemPath PreviousBackupLocation { get; set; }
     private UserData_LinkItemStyle PreviousLinkItemStyle { get; set; }
+
+    #endregion
+
+    #region Event Handlers
 
     private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
     {
         // TODO: Eventually get rid of needing this
-        using (await DataChangedHandlerAsyncLock.LockAsync())
+        using (await _dataChangedHandlerAsyncLock.LockAsync())
         {
             switch (e.PropertyName)
             {
@@ -58,7 +85,6 @@ public class AppDataManager
                     break;
 
                 case nameof(AppUserData.Backup_BackupLocation):
-                    // TODO-UPDATE: Avoid this being sent twice if the user moves backups
                     Messenger.Send<BackupLocationChangedMessage>();
 
                     if (!PreviousBackupLocation.DirectoryExists)
@@ -69,14 +95,14 @@ public class AppDataManager
 
                     Logger.Info("The backup location has been changed and old backups are being moved...");
 
-                    await AppViewModel.MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
+                    await MoveBackupsAsync(PreviousBackupLocation, Data.Backup_BackupLocation);
 
                     PreviousBackupLocation = Data.Backup_BackupLocation;
 
                     break;
 
                 case nameof(AppUserData.UI_LinkItemStyle):
-                    static string GetStyleSource(UserData_LinkItemStyle linkItemStye) => 
+                    static string GetStyleSource(UserData_LinkItemStyle linkItemStye) =>
                         $"{AppViewModel.WPFApplicationBasePath}/UI/Styles/LinkItem.{linkItemStye}.xaml";
 
                     // Get previous source
@@ -113,6 +139,70 @@ public class AppDataManager
             }
         }
     }
+
+    #endregion
+
+    #region Private Methods
+
+    /// <summary>
+    /// Attempts to move the backups from the old path to the new one
+    /// </summary>
+    /// <param name="oldPath">The old backup location</param>
+    /// <param name="newPath">The new backup location</param>
+    /// <returns>The task</returns>
+    private async Task MoveBackupsAsync(FileSystemPath oldPath, FileSystemPath newPath)
+    {
+        if (!await MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
+        {
+            Logger.Info("Moving old backups has been canceled by the user");
+            return;
+        }
+
+        try
+        {
+            // Get the complete paths
+            FileSystemPath oldLocation = oldPath + GameBackups_Manager.BackupFamily;
+            FileSystemPath newLocation = newPath + GameBackups_Manager.BackupFamily;
+
+            // Make sure the old location has backups
+            if (!oldLocation.DirectoryExists || !Directory.GetFileSystemEntries(oldLocation).Any())
+            {
+                Logger.Info("Old backups could not be moved due to not being found");
+
+                await MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
+
+                return;
+            }
+
+            // Make sure the new location doesn't already exist
+            if (newLocation.DirectoryExists)
+            {
+                Logger.Info("Old backups could not be moved due to the new location already existing");
+
+                await MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
+                return;
+            }
+
+            // Move the directory
+            FileManager.MoveDirectory(oldLocation, newLocation, false, false);
+
+            Logger.Info("Old backups have been moved");
+
+            // Refresh backups
+            Messenger.Send<BackupLocationChangedMessage>();
+
+            await MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Moving backups");
+            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader);
+        }
+    }
+
+    #endregion
+
+    #region Public Methods
 
     public void Load()
     {
@@ -247,7 +337,7 @@ public class AppDataManager
             // Data.Game_Games.Remove(Games.RaymanFiestaRun);
 
             // If a Fiesta Run backup exists the name needs to change to the new standard
-            FileSystemPath fiestaBackupDir = Data.Backup_BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
+            FileSystemPath fiestaBackupDir = Data.Backup_BackupLocation + GameBackups_Manager.BackupFamily + "Rayman Fiesta Run";
 
             if (fiestaBackupDir.DirectoryExists)
             {
@@ -325,28 +415,20 @@ public class AppDataManager
             // Check if the key exists
             if (RegistryHelpers.KeyExists(keyPath))
             {
-                // Make sure the user is running as admin
-                if (AppViewModel.IsRunningAsAdmin)
+                try
                 {
-                    try
-                    {
-                        // Open the parent key
-                        using RegistryKey? parentKey = RegistryHelpers.GetKeyFromFullPath(AppFilePaths.UninstallRegistryKey, RegistryView.Default, true);
+                    // Open the parent key
+                    using RegistryKey? parentKey = RegistryHelpers.GetKeyFromFullPath(AppFilePaths.UninstallRegistryKey, RegistryView.Default, true);
 
-                        // Delete the sub-key
-                        parentKey?.DeleteSubKey(regUninstallKeyName);
+                    // Delete the sub-key
+                    parentKey?.DeleteSubKey(regUninstallKeyName);
 
-                        Logger.Info("The program Registry key has been deleted");
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error(ex, "Removing uninstall Registry key");
-
-                        await Services.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
-                    }
+                    Logger.Info("The program Registry key has been deleted");
                 }
-                else
+                catch (Exception ex)
                 {
+                    Logger.Error(ex, "Removing uninstall Registry key");
+
                     await Services.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                 }
             }
@@ -448,4 +530,6 @@ public class AppDataManager
             }
         }
     }
+
+    #endregion
 }

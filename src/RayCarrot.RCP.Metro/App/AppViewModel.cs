@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ByteSizeLib;
-using CommunityToolkit.Mvvm.Messaging;
 using Nito.AsyncEx;
 using NLog;
 
@@ -39,8 +38,7 @@ public class AppViewModel : BaseViewModel
         FileManager file,
         AppUIManager ui,
         DeployableFilesManager deployableFiles,
-        AppUserData data, 
-        IMessenger messenger)
+        AppUserData data)
     {
         // Set properties
         Updater = updater ?? throw new ArgumentNullException(nameof(updater));
@@ -49,7 +47,6 @@ public class AppViewModel : BaseViewModel
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         DeployableFiles = deployableFiles ?? throw new ArgumentNullException(nameof(deployableFiles));
         Data = data ?? throw new ArgumentNullException(nameof(data));
-        Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         // Check if the application is running as administrator
         try
@@ -65,7 +62,6 @@ public class AppViewModel : BaseViewModel
         LoaderViewModel = new LoaderViewModel();
 
         // Create locks
-        MoveBackupsAsyncLock = new AsyncLock();
         AdminWorkerAsyncLock = new AsyncLock();
 
         // Create commands
@@ -96,11 +92,6 @@ public class AppViewModel : BaseViewModel
     /// </summary>
     public const string WPFApplicationBasePath = "pack://application:,,,/RayCarrot.RCP.Metro;component/";
 
-    /// <summary>
-    /// The name of the backup directory for this application
-    /// </summary>
-    public const string BackupFamily = "Rayman Game Backups";
-
     #endregion
 
     #region Services
@@ -111,16 +102,10 @@ public class AppViewModel : BaseViewModel
     private AppUIManager UI { get; }
     private DeployableFilesManager DeployableFiles { get; }
     private AppUserData Data { get; }
-    private IMessenger Messenger { get; }
 
     #endregion
 
     #region Private Properties
-
-    /// <summary>
-    /// An async lock for the <see cref="MoveBackupsAsync"/> method
-    /// </summary>
-    private AsyncLock MoveBackupsAsyncLock { get; }
 
     /// <summary>
     /// An async lock for the <see cref="RunAdminWorkerAsync"/> method
@@ -313,66 +298,6 @@ public class AppViewModel : BaseViewModel
             Logger.Error(ex, "Downloading files");
             await MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
             return false;
-        }
-    }
-
-    /// <summary>
-    /// Attempts to move the backups from the old path to the new one
-    /// </summary>
-    /// <param name="oldPath">The old backup location</param>
-    /// <param name="newPath">The new backup location</param>
-    /// <returns>The task</returns>
-    public async Task MoveBackupsAsync(FileSystemPath oldPath, FileSystemPath newPath)
-    {
-        // Lock moving the backups
-        using (await MoveBackupsAsyncLock.LockAsync())
-        {
-            if (!await MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
-            {
-                Logger.Info("Moving old backups has been canceled by the user");
-                return;
-            }
-
-            try
-            {
-                // Get the complete paths
-                FileSystemPath oldLocation = oldPath + BackupFamily;
-                FileSystemPath newLocation = newPath + BackupFamily;
-
-                // Make sure the old location has backups
-                if (!oldLocation.DirectoryExists || !Directory.GetFileSystemEntries(oldLocation).Any())
-                {
-                    Logger.Info("Old backups could not be moved due to not being found");
-
-                    await MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
-
-                    return;
-                }
-
-                // Make sure the new location doesn't already exist
-                if (newLocation.DirectoryExists)
-                {
-                    Logger.Info("Old backups could not be moved due to the new location already existing");
-
-                    await MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
-                    return;
-                }
-
-                // Move the directory
-                File.MoveDirectory(oldLocation, newLocation, false, false);
-
-                Logger.Info("Old backups have been moved");
-
-                // Refresh backups
-                Messenger.Send<BackupLocationChangedMessage>();
-
-                await MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Moving backups");
-                await MessageUI.DisplayExceptionMessageAsync(ex, Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader);
-            }
         }
     }
 

@@ -25,7 +25,7 @@ public class GameBackups_BackupInfo
         // Get the latest backup version to create a backup from
         LatestAvailableBackupVersion = AllBackupDirectories.Select(x => x.Value.Select(y => y.BackupVersion)).SelectMany(x => x).Max();
 
-        BackupLocation = Services.Data.Backup_BackupLocation + AppViewModel.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
+        BackupLocation = Services.Data.Backup_BackupLocation + GameBackups_Manager.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
         CompressedBackupLocation = BackupLocation.FullPath + AppFilePaths.BackupCompressionExtension;
         GameDisplayName = displayName;
     }
@@ -114,7 +114,7 @@ public class GameBackups_BackupInfo
     {
         try
         {
-            FileSystemPath path = Services.Data.Backup_BackupLocation + AppViewModel.BackupFamily;
+            FileSystemPath path = Services.Data.Backup_BackupLocation + GameBackups_Manager.BackupFamily;
 
             if (!path.DirectoryExists)
                 return Array.Empty<GameBackups_ExistingBackup>();
