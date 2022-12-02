@@ -4,7 +4,7 @@ namespace RayCarrot.RCP.Metro;
 
 public enum Ray1GameMode
 {
-    [Ray1GameModeInfo("Rayman 1 (PC)", Ray1EngineVersion.PC, 
+    [Ray1GameModeInfo("Rayman (PC)", Ray1EngineVersion.PC, 
         typeof(GameDescriptor_Rayman1_MSDOS))]
     Rayman1_PC,
 

@@ -12,7 +12,7 @@ public enum Game
     /// <summary>
     /// Rayman 1
     /// </summary>
-    [GameInfo("Rayman 1", GameIconAsset.Rayman1)]
+    [GameInfo("Rayman", GameIconAsset.Rayman1)]
     Rayman1,
 
     /// <summary>
@@ -114,9 +114,9 @@ public enum Game
     #region Other
 
     /// <summary>
-    /// Rayman 1 minigames
+    /// Rayman minigames
     /// </summary>
-    [GameInfo("Rayman 1 Minigames", GameIconAsset.Rayman1Minigames)]
+    [GameInfo("Rayman Minigames", GameIconAsset.Rayman1Minigames)]
     Rayman1Minigames,
 
     /// <summary>

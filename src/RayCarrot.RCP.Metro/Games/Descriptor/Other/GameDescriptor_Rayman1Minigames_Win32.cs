@@ -17,7 +17,7 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Other;
     public override Games? LegacyGame => Games.Ray1Minigames;
 
-    public override string DisplayName => "Rayman 1 Minigames";
+    public override string DisplayName => "Rayman Minigames";
     public override string DefaultFileName => "RayGames.exe";
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1Minigames;
