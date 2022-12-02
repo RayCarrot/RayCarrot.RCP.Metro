@@ -12,7 +12,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19951204_MSDOS : MSDOSGameDescri
 
     public override string Id => "Rayman1_Demo_19951204_MSDOS";
     public override Game Game => Game.Rayman1;
-    public override GameCategory Category => GameCategory.Demo;
+    public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
     public override Games? LegacyGame => Games.Demo_Rayman1_3;
 

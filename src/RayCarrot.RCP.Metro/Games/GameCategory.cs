@@ -18,12 +18,6 @@ public enum GameCategory
     Rabbids,
 
     /// <summary>
-    /// The demo game category
-    /// </summary>
-    [GameCategoryInfo(nameof(Resources.GamesPage_Category_Demos), GenericIconKind.Games_Demos)]
-    Demo,
-
-    /// <summary>
     /// The fan-game category
     /// </summary>
     [GameCategoryInfo(nameof(Resources.GamesPage_Category_Fan), GenericIconKind.Games_FanGames)]

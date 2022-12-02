@@ -169,6 +169,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
                                 // TODO-UPDATE: Normalize
                                 iconSource: $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{gameInfo.GameIcon.GetAttribute<ImageFileAttribute>()!.FileName}",
                                 displayName: gameInfo.DisplayName,
+                                // TODO-14: This needs to be sorted somehow. Either by user or by game descr.
                                 gameInstallations: gameInstallations);
 
                             // Add the group of game installations

@@ -16,7 +16,7 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MSDOSGameDes
 
     public override string Id => "RaymanGold_Demo_19970930_MSDOS";
     public override Game Game => Game.RaymanDesigner;
-    public override GameCategory Category => GameCategory.Demo;
+    public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
     public override Games? LegacyGame => Games.Demo_RaymanGold;
 
