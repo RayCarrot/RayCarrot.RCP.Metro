@@ -186,6 +186,7 @@
                             <DataTemplate>
                                 <!-- Panel -->
                                 <local:Card x:Name="PanelCard"
+                                            Visibility="{Binding Path=IsEmpty, Converter={local:InvertedBooleanToVisibilityConverter}}"
                                             Height="135" 
                                             Margin="8" 
                                             Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">

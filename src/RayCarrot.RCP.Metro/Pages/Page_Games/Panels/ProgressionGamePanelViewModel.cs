@@ -31,8 +31,10 @@ public class ProgressionGamePanelViewModel : GamePanelViewModel
         GameProgressionSlot[] slots = await ProgressionManager.LoadSlotsAsync(fileSystem).ToArrayAsync();
         GameProgressionSlot? primarySlot = GameProgressionManager.CreatePrimarySlot(slots);
 
-        // TODO-14: Hide panel if primary slot is null? Looks weird for edu games as an example.
         PrimarySlot = primarySlot == null ? null : new GameProgressionSlotViewModel(primarySlot);
+
+        if (PrimarySlot == null)
+            IsEmpty = true;
     }
 
     public class GameProgressionSlotViewModel : BaseViewModel

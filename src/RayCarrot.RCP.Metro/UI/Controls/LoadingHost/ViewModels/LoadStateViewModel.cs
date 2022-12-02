@@ -43,6 +43,7 @@ public class LoadStateViewModel : BaseViewModel
         MinProgress = progress.Min;
         MaxProgress = progress.Max;
 
+        // TODO-UPDATE: Respect setting which disables this
         App.Current.Dispatcher?.Invoke(() => App.Current.MainWindow?.SetTaskbarProgressValue(progress));
     }
 }

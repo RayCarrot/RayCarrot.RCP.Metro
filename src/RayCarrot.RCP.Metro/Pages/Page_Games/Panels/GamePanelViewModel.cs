@@ -38,6 +38,7 @@ public abstract class GamePanelViewModel : BaseViewModel
     public virtual bool CanRefresh => false;
 
     public bool IsLoading { get; private set; }
+    public bool IsEmpty { get; protected set; }
 
     #endregion
 
@@ -66,6 +67,7 @@ public abstract class GamePanelViewModel : BaseViewModel
         try
         {
             IsLoading = true;
+            IsEmpty = false;
 
             await LoadAsyncImpl();
 
