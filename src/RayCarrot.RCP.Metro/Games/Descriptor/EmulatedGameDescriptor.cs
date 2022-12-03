@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NLog;
 using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;
@@ -11,20 +10,14 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class EmulatedGameDescriptor : GameDescriptor
 {
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
-    #region Private Methods
+    #region Protected Methods
 
     /// <summary>
     /// Gets the emulator installation associated with this game installation or null if none was found
     /// </summary>
     /// <param name="gameInstallation">The game installation to get the emulator for</param>
     /// <returns>The associated emulator installation or null if none was found</returns>
-    private EmulatorInstallation? GetEmulator(GameInstallation gameInstallation)
+    protected EmulatorInstallation? GetEmulator(GameInstallation gameInstallation)
     {
         string? emuId = gameInstallation.GetValue<string>(GameDataKey.EmulatorInstallationId);
 
@@ -33,10 +26,6 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
 
         return Services.Games.GetEmulatorInstallation(emuId);
     }
-
-    #endregion
-
-    #region Protected Methods
 
     protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
     {

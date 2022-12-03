@@ -30,11 +30,11 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         gameInstallation.GameDescriptor as MsDosGameDescriptor 
         ?? throw new InvalidOperationException($"The {nameof(DosBoxEmulatorDescriptor)} can only be used with {nameof(MsDosGameDescriptor)}");
 
-    private string GetDOSBoxLaunchArgs(GameInstallation gameInstallation)
+    private string GetDOSBoxLaunchArgs(GameInstallation gameInstallation, string? gameLaunchArgs = null)
     {
         MsDosGameDescriptor descriptor = GetMsdosGameDescriptor(gameInstallation);
 
-        string? gameArgs = descriptor.GetLaunchArgs(gameInstallation);
+        string? gameArgs = gameLaunchArgs ?? descriptor.GetLaunchArgs(gameInstallation);
         string launchName = gameArgs == null ? descriptor.DefaultFileName : $"{descriptor.DefaultFileName} {gameArgs}";
 
         FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
@@ -109,7 +109,10 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     public override GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         new DosBoxGameConfigViewModel(gameInstallation, this);
 
-    public override async Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation)
+    public override Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
+        LaunchGameAsync(gameInstallation, emulatorInstallation, null);
+
+    public async Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation, string? gameLaunchArgs)
     {
         FileSystemPath launchPath = emulatorInstallation.InstallLocation;
         MsDosGameDescriptor gameDescriptor = GetMsdosGameDescriptor(gameInstallation);
@@ -130,7 +133,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         }
 
         // Get the launch args
-        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation, gameLaunchArgs);
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
             gameInstallation.FullId, launchPath, launchArgs);
@@ -183,6 +186,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         if (!launchPath.FileExists)
             return Enumerable.Empty<JumpListItemViewModel>();
 
+        // TODO-14: One for each game mode for edu games?
         return new[]
         {
             new JumpListItemViewModel(

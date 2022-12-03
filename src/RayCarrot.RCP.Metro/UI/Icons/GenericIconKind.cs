@@ -21,6 +21,8 @@ public enum GenericIconKind
     GameDisplay_Microsoft,
     GameDisplay_Purchase,
 
+    GameAction_Play,
+
     GamePanel_Progression,
 
     GameAdd_Locate,

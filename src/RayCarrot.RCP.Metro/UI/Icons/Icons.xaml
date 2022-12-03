@@ -25,6 +25,7 @@
     
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameOptions_Config">WrenchOutline</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Play">PlayOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Admin">Security</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.File">FileOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
@@ -116,6 +117,10 @@
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Purchase" 
                        IconKind="{StaticResource RCP.Icons.Purchase}" 
+                       IconColor="{x:Null}" />
+
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_Play" 
+                       IconKind="{StaticResource RCP.Icons.Play}" 
                        IconColor="{x:Null}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Progression" 

@@ -5,6 +5,8 @@ using System.Windows;
 using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
+using RayCarrot.RCP.Metro.Games.Emulators;
+using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -49,8 +51,6 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_RaymanEdutainment_ViewModel(this, gameInstallation);
 
-    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
-
     public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
     {
         UserData_Ray1MSDOSData data = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData);
@@ -60,6 +60,37 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
             primaryName: PrimaryName, 
             secondaryName: x));
     }
+
+    public override IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
+    {
+        // Add a lunch action for each game mode
+        string[] gameModes = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData).AvailableGameModes;
+
+        // Only show additional launch actions for the game if we have more than one game mode
+        if (gameModes.Length <= 1)
+            return base.GetAdditionalLaunchActions(gameInstallation);
+
+        return base.GetAdditionalLaunchActions(gameInstallation).Concat(gameModes.Select(x => 
+            new IconCommandItemViewModel(
+                header: x,
+                description: null,
+                iconKind: GenericIconKind.GameAction_Play,
+                command: new AsyncRelayCommand(async () =>
+                {
+                    EmulatorInstallation? emulatorInstallation = GetEmulator(gameInstallation);
+
+                    if (emulatorInstallation?.EmulatorDescriptor is not DosBoxEmulatorDescriptor emulatorDescriptor)
+                        return;
+
+                    string args = GetLaunchArgs(x); 
+                    bool success = await emulatorDescriptor.LaunchGameAsync(gameInstallation, emulatorInstallation, args);
+
+                    if (success)
+                        await PostLaunchAsync();
+                }))));
+    }
+
+    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));
@@ -83,8 +114,10 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
     public override string GetLaunchArgs(GameInstallation gameInstallation)
     {
         string gameMode = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData).SelectedGameMode;
-        return $"ver={gameMode}";
+        return GetLaunchArgs(gameMode);
     }
+
+    public string GetLaunchArgs(string gameMode) => $"ver={gameMode}";
 
     #endregion
 }
