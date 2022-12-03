@@ -96,7 +96,13 @@ public abstract class Win32GameDescriptor : GameDescriptor
                 header: Resources.GameDisplay_RunAsAdmin,
                 description: null,
                 iconKind: GenericIconKind.GameDisplay_Admin,
-                command: new AsyncRelayCommand(async () => await LaunchAsync(gameInstallation, true)))
+                command: new AsyncRelayCommand(async () =>
+                {
+                    bool success = await LaunchAsync(gameInstallation, true);
+
+                    if (success)
+                        await PostLaunchAsync();
+                }))
         };
     }
 
