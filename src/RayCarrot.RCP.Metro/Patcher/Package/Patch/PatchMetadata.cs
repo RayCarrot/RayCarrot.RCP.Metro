@@ -65,7 +65,7 @@ public class PatchMetadata : BinarySerializable
     public bool IsGameValid(GameDescriptor gameDescriptor)
     {
         if (Pre_FormatVersion >= 2)
-            return GameIds.Any(x => x == gameDescriptor.Id);
+            return GameIds.Any(x => x == gameDescriptor.GameId);
         else
             return gameDescriptor.LegacyGame.ToString() == LegacyGameName;
     }

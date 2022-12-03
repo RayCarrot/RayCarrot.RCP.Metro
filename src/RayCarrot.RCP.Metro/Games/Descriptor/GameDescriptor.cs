@@ -46,7 +46,7 @@ public abstract class GameDescriptor
     /// The game descriptor id. This should be unique and is used to identify this descriptor. Use this for logging as well.
     /// Note: There should never be hard-coded checks on this, which is why this is a string rather than an enum.
     /// </summary>
-    public abstract string Id { get; }
+    public abstract string GameId { get; }
 
     /// <summary>
     /// The game this descriptor is for. This is mainly for categorization and filter purposes.
@@ -161,8 +161,8 @@ public abstract class GameDescriptor
         if (gameInstallation == null)
             throw new ArgumentNullException(nameof(gameInstallation));
 
-        if (gameInstallation.Id != Id)
-            throw new Exception($"The provided game installation ID {gameInstallation.Id} does not match {Id}");
+        if (gameInstallation.GameId != GameId)
+            throw new Exception($"The provided game id {gameInstallation.GameId} does not match {GameId}");
     }
 
     /// <summary>
@@ -317,7 +317,7 @@ public abstract class GameDescriptor
         // TODO-14: This should probably not be here since it's platform specific. Only Win32 has this.
         bool forceRunAsAdmin)
     {
-        Logger.Trace("The game {0} is being launched...", Id);
+        Logger.Trace("The game {0} is being launched...", GameId);
 
         // Launch the game
         bool success = await LaunchAsync(gameInstallation, forceRunAsAdmin);

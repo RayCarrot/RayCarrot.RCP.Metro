@@ -14,7 +14,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20030108_Win32 : Win32GameDescri
 {
     #region Public Properties
 
-    public override string Id => "Rayman3_Demo_20030108_Win32";
+    public override string GameId => "Rayman3_Demo_20030108_Win32";
     public override Game Game => Game.Rayman3;
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;

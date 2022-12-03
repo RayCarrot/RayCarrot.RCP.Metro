@@ -10,7 +10,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 {
     #region Public Overrides
 
-    public override string Id => "RaymanRavingRabbids2_Win32";
+    public override string GameId => "RaymanRavingRabbids2_Win32";
     public override Game Game => Game.RaymanRavingRabbids2;
     public override GameCategory Category => GameCategory.Rabbids;
     public override Games? LegacyGame => Games.RaymanRavingRabbids2;

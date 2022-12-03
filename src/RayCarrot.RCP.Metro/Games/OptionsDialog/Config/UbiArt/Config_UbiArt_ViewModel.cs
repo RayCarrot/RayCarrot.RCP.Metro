@@ -112,14 +112,14 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", GameInstallation.Id);
+        Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
         using (RegistryKey? key = GetKey(false))
         {
             if (key != null)
                 Logger.Info("The key {0} has been opened", key.Name);
             else
-                Logger.Info("The key for {0} does not exist. Default values will be used.", GameInstallation.Id);
+                Logger.Info("The key for {0} does not exist. Default values will be used.", GameInstallation.FullId);
 
             GraphicsMode.GetAvailableResolutions();
             GraphicsMode.SelectedGraphicsMode = new GraphicsMode(
@@ -144,7 +144,7 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", GameInstallation.Id);
+        Logger.Info("{0} configuration is saving...", GameInstallation.FullId);
 
         try
         {
@@ -160,13 +160,13 @@ public class Config_UbiArt_ViewModel : GameOptionsDialog_ConfigPageViewModel
                 key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
             }
 
-            Logger.Info("{0} configuration has been saved", GameInstallation.Id);
+            Logger.Info("{0} configuration has been saved", GameInstallation.FullId);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} registry data", GameInstallation.Id);
+            Logger.Error(ex, "Saving {0} registry data", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
         }

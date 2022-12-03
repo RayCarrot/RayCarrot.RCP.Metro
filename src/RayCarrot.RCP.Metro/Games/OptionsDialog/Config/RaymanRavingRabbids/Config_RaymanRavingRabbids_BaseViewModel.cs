@@ -139,7 +139,7 @@ public abstract class Config_RaymanRavingRabbids_BaseViewModel : GameOptionsDial
         if (key != null)
             Logger.Info("The key {0} has been opened", keyName);
         else
-            Logger.Info("The key {0} for {1} does not exist. Default values will be used.", keyName, GameInstallation.Id);
+            Logger.Info("The key {0} for {1} does not exist. Default values will be used.", keyName, GameInstallation.FullId);
 
         // Load the values
         loadAction(key);
@@ -188,7 +188,7 @@ public abstract class Config_RaymanRavingRabbids_BaseViewModel : GameOptionsDial
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", GameInstallation.Id);
+        Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
         GraphicsMode.MinGraphicsWidth = 640;
         GraphicsMode.MinGraphicsHeight = 480;
@@ -251,7 +251,7 @@ public abstract class Config_RaymanRavingRabbids_BaseViewModel : GameOptionsDial
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", GameInstallation.Id);
+        Logger.Info("{0} configuration is saving...", GameInstallation.FullId);
 
         try
         {
@@ -304,13 +304,13 @@ public abstract class Config_RaymanRavingRabbids_BaseViewModel : GameOptionsDial
                 }
             }
 
-            Logger.Info("{0} configuration has been saved", GameInstallation.Id);
+            Logger.Info("{0} configuration has been saved", GameInstallation.FullId);
 
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} registry data", GameInstallation.Id);
+            Logger.Error(ex, "Saving {0} registry data", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
             return false;
         }

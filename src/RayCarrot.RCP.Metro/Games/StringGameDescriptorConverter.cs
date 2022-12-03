@@ -12,7 +12,7 @@ public class StringGameDescriptorConverter : JsonConverter<GameDescriptor>
         if (value == null)
             writer.WriteNull();
         else
-            writer.WriteValue(value.Id);
+            writer.WriteValue(value.GameId);
     }
 
     public override GameDescriptor ReadJson(JsonReader reader, Type objectType, GameDescriptor? existingValue, bool hasExistingValue,

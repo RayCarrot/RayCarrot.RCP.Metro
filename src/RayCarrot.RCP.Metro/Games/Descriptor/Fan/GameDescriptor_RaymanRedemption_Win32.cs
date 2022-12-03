@@ -9,7 +9,7 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
 {
     #region Public Properties
 
-    public override string Id => "RaymanRedemption_Win32";
+    public override string GameId => "RaymanRedemption_Win32";
     public override Game Game => Game.RaymanRedemption;
     public override GameCategory Category => GameCategory.Fan;
     public override Games? LegacyGame => Games.RaymanRedemption;

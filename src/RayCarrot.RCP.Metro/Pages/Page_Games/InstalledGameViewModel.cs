@@ -207,7 +207,7 @@ public class InstalledGameViewModel : BaseViewModel
                 // Open the location
                 await Services.File.OpenExplorerLocationAsync(instDir);
 
-                Logger.Trace("The Game {0} install location was opened", GameInstallation.Id);
+                Logger.Trace("The Game {0} install location was opened", GameInstallation.FullId);
             })));
     }
 
@@ -272,7 +272,7 @@ public class InstalledGameViewModel : BaseViewModel
     /// <returns>The task</returns>
     public async Task UninstallAsync()
     {
-        Logger.Info("{0} is being uninstalled...", GameInstallation.Id);
+        Logger.Info("{0} is being uninstalled...", GameInstallation.FullId);
 
         // Have user confirm
         if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
@@ -303,7 +303,7 @@ public class InstalledGameViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Uninstalling game {0}", GameInstallation.Id);
+            Logger.Error(ex, "Uninstalling game {0}", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.UninstallGameError, DisplayName), Resources.UninstallGameErrorHeader);
 
             return;
@@ -340,7 +340,7 @@ public class InstalledGameViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Creating game shortcut {0}", GameInstallation.Id);
+            Logger.Error(ex, "Creating game shortcut {0}", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
         }
     }

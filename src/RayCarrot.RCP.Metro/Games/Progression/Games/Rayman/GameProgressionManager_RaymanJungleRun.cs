@@ -34,7 +34,7 @@ public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
 
         for (int saveIndex = 0; saveIndex < 3; saveIndex++)
         {
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, saveIndex);
 
             // Get the file path
             string fileName = $"slot{saveIndex + 1}.dat";
@@ -44,11 +44,11 @@ public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.Id);
+                Logger.Info("{0} slot was not found", GameInstallation.FullId);
                 continue;
             }
 
-            Logger.Info("{0} slot has been deserialized", GameInstallation.Id);
+            Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
             // Create the collection with items for each time trial level + general information
             List<GameProgressionDataItem> progressItems = new();
@@ -133,7 +133,7 @@ public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
 
             yield return new SerializableGameProgressionSlot<JungleRun_SaveData>(null, saveIndex, lums + teeth, maxLums + maxTeeth, progressItems, context, saveData, fileName);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+            Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
         }
     }
 }

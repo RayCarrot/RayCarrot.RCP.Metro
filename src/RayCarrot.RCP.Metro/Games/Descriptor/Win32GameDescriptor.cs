@@ -33,14 +33,14 @@ public abstract class Win32GameDescriptor : GameDescriptor
         string? launchArgs = GetLaunchArgs(gameInstallation);
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
-            Id, launchPath, launchArgs);
+            GameId, launchPath, launchArgs);
 
         // Launch the game
         UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
         bool asAdmin = forceRunAsAdmin || launchMode == UserData_GameLaunchMode.AsAdmin;
         Process? process = await Services.File.LaunchFileAsync(launchPath, asAdmin, launchArgs);
 
-        Logger.Info("The game {0} has been launched", Id);
+        Logger.Info("The game {0} has been launched", GameId);
 
         return process != null;
     }
@@ -102,7 +102,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
         // Create the shortcut
         Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchPath, launchArgs);
 
-        Logger.Trace("A shortcut was created for {0} under {1}", Id, destinationDirectory);
+        Logger.Trace("A shortcut was created for {0} under {1}", GameId, destinationDirectory);
     }
 
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)

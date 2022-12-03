@@ -19,7 +19,7 @@ public class DownloadGameAddAction : GameAddAction
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Download;
 
     // Can only be downloaded once
-    public override bool IsAvailable => Services.Games.EnumerateInstalledGames(GameDescriptor.Id).
+    public override bool IsAvailable => Services.Games.EnumerateInstalledGames(GameDescriptor.GameId).
         All(x => x.GetObject<UserData_RCPGameInstallInfo>(GameDataKey.RCPGameInstallInfo)?.InstallMode 
                  != UserData_RCPGameInstallInfo.RCPInstallMode.Download);
 
@@ -28,7 +28,7 @@ public class DownloadGameAddAction : GameAddAction
 
     public override async Task<GameInstallation?> AddGameAsync()
     {
-        Logger.Trace("The game {0} is being downloaded...", GameDescriptor.Id);
+        Logger.Trace("The game {0} is being downloaded...", GameDescriptor.GameId);
 
         // TODO-14: Change this. Use id? Make sure to not download multiple times then.
         // Get the game directory
@@ -48,7 +48,7 @@ public class DownloadGameAddAction : GameAddAction
             x.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
         });
 
-        Logger.Trace("The game {0} has been downloaded", GameDescriptor.Id);
+        Logger.Trace("The game {0} has been downloaded", GameDescriptor.GameId);
 
         // TODO-UPDATE: Should we keep this?
         await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, GameDescriptor.DisplayName), Resources.GameInstall_SuccessHeader);

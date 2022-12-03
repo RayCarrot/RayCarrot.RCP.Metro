@@ -455,7 +455,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <returns>The task</returns>
     protected override Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", GameInstallation.Id);
+        Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
         // Get the config file name
         ConfigFileName = GetConfigFileName();
@@ -580,7 +580,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} config is saving...", GameInstallation.Id);
+        Logger.Info("{0} config is saving...", GameInstallation.FullId);
 
         try
         {
@@ -640,7 +640,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Saving {0} configuration data", GameInstallation.Id);
+            Logger.Error(ex, "Saving {0} configuration data", GameInstallation.FullId);
 
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
             return false;
@@ -776,7 +776,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Getting {0} language from batch file", GameInstallation.Id);
+            Logger.Error(ex, "Getting {0} language from batch file", GameInstallation.FullId);
             return null;
         }
     }
@@ -811,7 +811,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Setting {0} language from batch file", GameInstallation.Id);
+            Logger.Error(ex, "Setting {0} language from batch file", GameInstallation.FullId);
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader);
         }
     }

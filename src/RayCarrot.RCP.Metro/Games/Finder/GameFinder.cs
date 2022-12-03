@@ -410,19 +410,19 @@ public class GameFinder
     /// <returns>True if the game item was added, otherwise false</returns>
     private bool AddGame(GameFinderItemContainer game, FileSystemPath installDir)
     {
-        Logger.Info("An install directory was found for {0}", game.GameDescriptor.Id);
+        Logger.Info("An install directory was found for {0}", game.GameDescriptor.GameId);
 
         // Make sure the game hasn't already been found
         if (FoundGames.Contains(game.GameDescriptor))
         {
-            Logger.Warn("{0} could not be added. The game has already been found.", game.GameDescriptor.Id);
+            Logger.Warn("{0} could not be added. The game has already been found.", game.GameDescriptor.GameId);
             return false;
         }
 
         // Make sure the install directory exists
         if (!installDir.DirectoryExists)
         {
-            Logger.Warn("{0} could not be added. The install directory does not exist.", game.GameDescriptor.Id);
+            Logger.Warn("{0} could not be added. The install directory does not exist.", game.GameDescriptor.GameId);
             return false;
         }
 
@@ -433,7 +433,7 @@ public class GameFinder
 
             if (result == null)
             {
-                Logger.Info("{0} could not be added. The optional verification returned null.", game.GameDescriptor.Id);
+                Logger.Info("{0} could not be added. The optional verification returned null.", game.GameDescriptor.GameId);
                 return false;
             }
 
@@ -443,7 +443,7 @@ public class GameFinder
         // Make sure that the game is valid
         if (!game.GameDescriptor.IsValid(installDir))
         {
-            Logger.Info("{0} could not be added. The game default file was not found.", game.GameDescriptor.Id);
+            Logger.Info("{0} could not be added. The game default file was not found.", game.GameDescriptor.GameId);
             return false;
         }
 
@@ -453,7 +453,7 @@ public class GameFinder
         // Remove from games to find
         GamesToFind.Remove(game.GameDescriptor);
 
-        Logger.Info("The game {0} was found", game.GameDescriptor.Id);
+        Logger.Info("The game {0} was found", game.GameDescriptor.GameId);
 
         return true;
     }

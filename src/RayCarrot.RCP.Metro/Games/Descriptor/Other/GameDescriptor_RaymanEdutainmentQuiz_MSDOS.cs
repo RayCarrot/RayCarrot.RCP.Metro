@@ -23,7 +23,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MSDOSGameDescri
 
     #region Public Properties
 
-    public override string Id => "RaymanEdutainmentQui_MSDOS";
+    public override string GameId => "RaymanEdutainmentQui_MSDOS";
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
     public override Games? LegacyGame => Games.EducationalDos;

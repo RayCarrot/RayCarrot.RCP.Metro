@@ -484,7 +484,7 @@ public class Patcher
 
         // Update the library file
         libraryFile.FormatVersion = PatchLibraryFile.LatestFormatVersion;
-        libraryFile.GameId = gameInstallation.Id;
+        libraryFile.GameId = gameInstallation.GameId;
         libraryFile.History = history;
         libraryFile.Patches = patches;
 

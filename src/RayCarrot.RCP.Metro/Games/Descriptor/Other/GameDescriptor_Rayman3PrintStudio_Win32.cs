@@ -11,7 +11,7 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
 {
     #region Public Properties
 
-    public override string Id => "Rayman3PrintStudio_Win32";
+    public override string GameId => "Rayman3PrintStudio_Win32";
     public override Game Game => Game.Rayman3PrintStudio;
     public override GameCategory Category => GameCategory.Other;
     public override Games? LegacyGame => Games.PrintStudio;

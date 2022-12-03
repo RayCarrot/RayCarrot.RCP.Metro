@@ -27,7 +27,7 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
         CanModifyGame = Services.File.CheckDirectoryWriteAccess(GameInstallation.InstallLocation);
 
         if (!CanModifyGame)
-            Logger.Info("The game {0} can't be modified", GameInstallation.Id);
+            Logger.Info("The game {0} can't be modified", GameInstallation.FullId);
     }
 
     #endregion
@@ -66,7 +66,7 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
 
     protected override async Task LoadAsync()
     {
-        Logger.Info("{0} config is being set up", GameInstallation.Id);
+        Logger.Info("{0} config is being set up", GameInstallation.FullId);
 
         // Run setup code
         bool unsavedChanges = await OnSetupAsync();
@@ -91,7 +91,7 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
         {
             ConfigData.ReCreate();
             recreated = true;
-            Logger.Info("The ubi.ini section for {0} was recreated", GameInstallation.Id);
+            Logger.Info("The ubi.ini section for {0} was recreated", GameInstallation.FullId);
         }
 
         GraphicsMode.GetAvailableResolutions();
@@ -111,7 +111,7 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
     /// <returns>The task</returns>
     protected override async Task<bool> SaveAsync()
     {
-        Logger.Info("{0} configuration is saving...", GameInstallation.Id);
+        Logger.Info("{0} configuration is saving...", GameInstallation.FullId);
 
         try
         {
@@ -121,7 +121,7 @@ public abstract class Config_UbiIni_BaseViewModel<Handler> : GameOptionsDialog_C
             // Save the config data
             ConfigData.Save();
 
-            Logger.Info("{0} configuration has been saved", GameInstallation.Id);
+            Logger.Info("{0} configuration has been saved", GameInstallation.FullId);
         }
         catch (Exception ex)
         {

@@ -12,7 +12,7 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
 {
     #region Public Properties
 
-    public override string Id => "Rayman1_MSDOS";
+    public override string GameId => "Rayman1_MSDOS";
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Rayman;
     public override Games? LegacyGame => Games.Rayman1;

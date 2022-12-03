@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
 
     #region Public Properties
 
-    public override string Id => "RaymanFiestaRunWindows10Edition_WindowsPackage";
+    public override string GameId => "RaymanFiestaRunWindows10Edition_WindowsPackage";
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
     public override Games? LegacyGame => Games.RaymanFiestaRun;

@@ -30,7 +30,7 @@ public static class GameDescriptorHelpers
         if (mountPath.FileExists)
         {
             gameInstallation.SetValue(GameDataKey.DOSBoxMountPath, mountPath);
-            Logger.Info("The mount path for {0} was automatically found", gameInstallation.Id);
+            Logger.Info("The mount path for {0} was automatically found", gameInstallation.FullId);
         }
 
         // Find DOSBox path if not already added

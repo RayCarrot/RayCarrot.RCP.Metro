@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
 
     #region Public Properties
 
-    public override string Id => "RabbidsBigBang_WindowsPackage";
+    public override string GameId => "RabbidsBigBang_WindowsPackage";
     public override Game Game => Game.RabbidsBigBang;
     public override GameCategory Category => GameCategory.Rabbids;
     public override Games? LegacyGame => Games.RabbidsBigBang;

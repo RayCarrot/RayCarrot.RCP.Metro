@@ -33,13 +33,13 @@ public class GameProgressionManager_Rayman3 : GameProgressionManager
         {
             string fileName = filePath.Name;
 
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, fileName);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, fileName);
 
             R3SaveFile? saveData = await context.ReadFileDataAsync<R3SaveFile>(fileName, new R3SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.Id);
+                Logger.Info("{0} slot was not found", GameInstallation.FullId);
                 continue;
             }
 
@@ -83,7 +83,7 @@ public class GameProgressionManager_Rayman3 : GameProgressionManager
 
             yield return new SerializableGameProgressionSlot<R3SaveFile>($"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+            Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
 
             index++;
         }

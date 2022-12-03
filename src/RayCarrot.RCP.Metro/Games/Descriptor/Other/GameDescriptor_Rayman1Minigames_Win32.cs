@@ -12,7 +12,7 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
 {
     #region Public Override Properties
 
-    public override string Id => "Rayman1Minigames_Win32";
+    public override string GameId => "Rayman1Minigames_Win32";
     public override Game Game => Game.Rayman1Minigames;
     public override GameCategory Category => GameCategory.Other;
     public override Games? LegacyGame => Games.Ray1Minigames;

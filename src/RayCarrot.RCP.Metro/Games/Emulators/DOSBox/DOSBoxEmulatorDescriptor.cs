@@ -133,14 +133,14 @@ public sealed class DOSBoxEmulatorDescriptor : EmulatorDescriptor
         string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
-            gameInstallation.Id, launchPath, launchArgs);
+            gameInstallation.FullId, launchPath, launchArgs);
 
         // Launch the game
         UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
         bool asAdmin = forceRunAsAdmin || launchMode == UserData_GameLaunchMode.AsAdmin;
         Process? process = await Services.File.LaunchFileAsync(launchPath, asAdmin, launchArgs);
 
-        Logger.Info("The game {0} has been launched", gameInstallation.Id);
+        Logger.Info("The game {0} has been launched", gameInstallation.FullId);
 
         return process != null;
     }
@@ -173,7 +173,7 @@ public sealed class DOSBoxEmulatorDescriptor : EmulatorDescriptor
         // Create the shortcut
         Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchPath, launchArgs);
 
-        Logger.Trace("A shortcut was created for {0} under {1}", gameInstallation.Id, destinationDirectory);
+        Logger.Trace("A shortcut was created for {0} under {1}", gameInstallation.FullId, destinationDirectory);
     }
 
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation)

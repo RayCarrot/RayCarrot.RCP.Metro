@@ -18,7 +18,7 @@ public class FindSteamGameAddAction : GameAddAction
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Find;
 
     // Steam games can only be added once
-    public override bool IsAvailable => !Services.Games.EnumerateInstalledGames(GameDescriptor.Id).Any();
+    public override bool IsAvailable => !Services.Games.EnumerateInstalledGames(GameDescriptor.GameId).Any();
 
     public SteamGameDescriptor GameDescriptor { get; }
 
@@ -38,7 +38,7 @@ public class FindSteamGameAddAction : GameAddAction
             // Get the install directory
             if (key?.GetValue("InstallLocation") is not string dir)
             {
-                Logger.Info("The {0} was not found under Steam Apps", GameDescriptor.Id);
+                Logger.Info("The {0} was not found under Steam Apps", GameDescriptor.GameId);
 
                 await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 
@@ -59,7 +59,7 @@ public class FindSteamGameAddAction : GameAddAction
         // Make sure the game is valid
         if (!GameDescriptor.IsValid(installDir))
         {
-            Logger.Info("The {0} install directory was not valid", GameDescriptor.Id);
+            Logger.Info("The {0} install directory was not valid", GameDescriptor.GameId);
 
             await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 

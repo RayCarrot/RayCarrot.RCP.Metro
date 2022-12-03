@@ -10,7 +10,7 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 {
     #region Public Properties
 
-    public override string Id => "GloboxMoment_Win32";
+    public override string GameId => "GloboxMoment_Win32";
     public override Game Game => Game.GloboxMoment;
     public override GameCategory Category => GameCategory.Fan;
     public override Games? LegacyGame => Games.GloboxMoment;

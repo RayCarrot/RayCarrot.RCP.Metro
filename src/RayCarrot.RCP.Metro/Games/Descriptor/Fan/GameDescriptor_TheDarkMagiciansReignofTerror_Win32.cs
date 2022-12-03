@@ -10,7 +10,7 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
 {
     #region Public Properties
 
-    public override string Id => "TheDarkMagiciansReignofTerror_Win32";
+    public override string GameId => "TheDarkMagiciansReignofTerror_Win32";
     public override Game Game => Game.TheDarkMagiciansReignofTerror;
     public override GameCategory Category => GameCategory.Fan;
     public override Games? LegacyGame => Games.TheDarkMagiciansReignofTerror;

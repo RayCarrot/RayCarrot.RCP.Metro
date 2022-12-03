@@ -46,14 +46,14 @@ public class GameProgressionManager_RaymanOrigins : GameProgressionManager
         {
             string fileName = $"Savegame_{saveIndex}";
 
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, saveIndex);
 
             // Deserialize the data
             Origins_SaveData? saveFileData = await context.ReadFileDataAsync<Origins_SaveData>(fileName, endian: Endian.Big, removeFileWhenComplete: false);
 
             if (saveFileData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.Id);
+                Logger.Info("{0} slot was not found", GameInstallation.FullId);
                 continue;
             }
 
@@ -169,7 +169,7 @@ public class GameProgressionManager_RaymanOrigins : GameProgressionManager
                 //ExportedType = typeof(Origins_SaveData.Ray_PersistentGameData_Universe),
             };
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+            Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
         }
     }
 

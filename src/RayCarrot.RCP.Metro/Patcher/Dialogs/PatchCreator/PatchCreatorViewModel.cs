@@ -384,7 +384,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         Metadata = new PatchMetadata
                         {
                             ID = ID,
-                            GameIds = GameDescriptors.Select(x => x.Id).ToArray(),
+                            GameIds = GameDescriptors.Select(x => x.GameId).ToArray(),
                             Name = Name.IsNullOrWhiteSpace() ? "Unnamed patch" : Name,
                             Description = Description,
                             Author = Author,

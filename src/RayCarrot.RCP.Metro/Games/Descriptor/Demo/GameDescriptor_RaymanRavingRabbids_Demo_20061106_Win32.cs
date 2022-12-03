@@ -11,7 +11,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
 {
     #region Public Properties
 
-    public override string Id => "RaymanRavingRabbids_Demo_20061106_Win32";
+    public override string GameId => "RaymanRavingRabbids_Demo_20061106_Win32";
     public override Game Game => Game.RaymanRavingRabbids;
     public override GameCategory Category => GameCategory.Rabbids;
     public override bool IsDemo => true;

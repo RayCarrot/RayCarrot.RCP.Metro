@@ -9,7 +9,7 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
 {
     #region Public Properties
 
-    public override string Id => "RabbidsCoding_Win32";
+    public override string GameId => "RabbidsCoding_Win32";
     public override Game Game => Game.RabbidsCoding;
     public override GameCategory Category => GameCategory.Rabbids;
     public override Games? LegacyGame => Games.RabbidsCoding;

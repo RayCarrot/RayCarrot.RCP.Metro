@@ -34,17 +34,17 @@ public class GameProgressionManager_Rayman1 : GameProgressionManager
         {
             string fileName = $"RAYMAN{saveIndex + 1}.SAV";
 
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, saveIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, saveIndex);
 
             PC_SaveFile? saveData = await context.ReadFileDataAsync<PC_SaveFile>(fileName, new PC_SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.Id);
+                Logger.Info("{0} slot was not found", GameInstallation.FullId);
                 continue;
             }
 
-            Logger.Info("{0} slot has been deserialized", GameInstallation.Id);
+            Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
             // Get total amount of cages
             int cages = saveData.Wi_Save_Zone.Sum(x => x.Cages);
@@ -79,7 +79,7 @@ public class GameProgressionManager_Rayman1 : GameProgressionManager
                 serializable: saveData, 
                 fileName: fileName);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+            Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
         }
     }
 }

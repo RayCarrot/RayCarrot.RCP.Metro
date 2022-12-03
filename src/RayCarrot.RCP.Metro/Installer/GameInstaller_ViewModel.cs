@@ -18,7 +18,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
 
     public GameInstaller_ViewModel(GameDescriptor gameDescriptor, GameInstallerInfo info)
     {
-        Logger.Info("An installation has been requested for the game {0}", gameDescriptor.Id);
+        Logger.Info("An installation has been requested for the game {0}", gameDescriptor.GameId);
 
         // Create the commands
         InstallCommand = new AsyncRelayCommand(InstallAsync);
@@ -353,7 +353,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
                     }
                     catch (Exception ex)
                     {
-                        Logger.Error(ex, "Creating game shortcut for {0} from installer", GameDescriptor.Id);
+                        Logger.Error(ex, "Creating game shortcut for {0} from installer", GameDescriptor.GameId);
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
                     }
                 }

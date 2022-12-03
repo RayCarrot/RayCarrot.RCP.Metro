@@ -76,7 +76,7 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
 
         if (archiveDataManager == null)
         {
-            Logger.Error("Archive data manager is null for {0}", GameDescriptor.Id);
+            Logger.Error("Archive data manager is null for {0}", GameDescriptor.GameId);
             return;
         }
 

@@ -34,7 +34,7 @@ public class GameProgressionManager_RaymanMArena : GameProgressionManager
 
         FileSystemPath saveFileName = "raymanm.sav";
 
-        Logger.Info("{0} save file {1} is being loaded...", GameInstallation.Id, saveFileName);
+        Logger.Info("{0} save file {1} is being loaded...", GameInstallation.FullId, saveFileName);
 
         using RCPContext context = new(saveDir.DirPath);
 
@@ -43,7 +43,7 @@ public class GameProgressionManager_RaymanMArena : GameProgressionManager
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", GameInstallation.Id);
+            Logger.Info("{0} save was not found", GameInstallation.FullId);
             yield break;
         }
 
@@ -157,7 +157,7 @@ public class GameProgressionManager_RaymanMArena : GameProgressionManager
 
             yield return new SerializableGameProgressionSlot<RMSaveFile>(name.TrimEnd(), slotIndex, raceCompleted + battleCompleted, maxRace + maxBattle, progressItems, context, saveData, saveFileName);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+            Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
         }
     }
 }

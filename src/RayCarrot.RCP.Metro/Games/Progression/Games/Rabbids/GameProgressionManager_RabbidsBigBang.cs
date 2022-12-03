@@ -24,17 +24,17 @@ public class GameProgressionManager_RabbidsBigBang : GameProgressionManager
 
         using RCPContext context = new(saveFile.Parent);
 
-        Logger.Info("{0} save is being loaded...", GameInstallation.Id);
+        Logger.Info("{0} save is being loaded...", GameInstallation.FullId);
 
         Unity_PlayerPrefs? saveData = await context.ReadFileDataAsync<Unity_PlayerPrefs>(saveFile.Name, removeFileWhenComplete: false);
 
         if (saveData == null)
         {
-            Logger.Info("{0} save was not found", GameInstallation.Id);
+            Logger.Info("{0} save was not found", GameInstallation.FullId);
             yield break;
         }
 
-        Logger.Info("{0} save has been deserialized", GameInstallation.Id);
+        Logger.Info("{0} save has been deserialized", GameInstallation.FullId);
 
         const int maxScore = 12 * 45 * 3;
 
@@ -63,6 +63,6 @@ public class GameProgressionManager_RabbidsBigBang : GameProgressionManager
 
         yield return new SerializableGameProgressionSlot<Unity_PlayerPrefs>(null, 0, score, maxScore, progressItems, context, saveData, saveFile.Name);
 
-        Logger.Info("{0} save has been loaded", GameInstallation.Id);
+        Logger.Info("{0} save has been loaded", GameInstallation.FullId);
     }
 }

@@ -12,7 +12,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 {
     #region Public Override Properties
 
-    public override string Id => "TonicTrouble_Win32";
+    public override string GameId => "TonicTrouble_Win32";
     public override Game Game => Game.TonicTrouble;
     public override GameCategory Category => GameCategory.Other;
     public override Games? LegacyGame => Games.TonicTrouble;

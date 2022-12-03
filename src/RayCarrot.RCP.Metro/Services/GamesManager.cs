@@ -77,7 +77,7 @@ public class GamesManager
             new GameDescriptor_RaymanBowling2_Win32(),
             new GameDescriptor_RaymanGardenPLUS_Win32(),
             new GameDescriptor_GloboxMoment_Win32(),
-        }.ToDictionary(x => x.Id);
+        }.ToDictionary(x => x.GameId);
 
         EmulatorDescriptors = new EmulatorDescriptor[]
         {
@@ -114,7 +114,7 @@ public class GamesManager
         FileSystemPath installDirectory,
         Action<GameInstallation>? configureInstallation = null)
     {
-        Logger.Info("The game {0} is being added", gameDescriptor.Id);
+        Logger.Info("The game {0} is being added", gameDescriptor.GameId);
 
         // TODO-14: Remove this
         // Make sure the game hasn't already been added
@@ -134,7 +134,7 @@ public class GamesManager
         // Add the game
         Data.Game_GameInstallations.Add(gameInstallation);
 
-        Logger.Info("The game {0} has been added", gameInstallation.Id);
+        Logger.Info("The game {0} has been added", gameInstallation.FullId);
 
         // Run post-add operations
         await gameDescriptor.PostGameAddAsync(gameInstallation);
@@ -234,9 +234,9 @@ public class GamesManager
     /// <summary>
     /// Enumerates the installed games which have the specified id
     /// </summary>
-    /// <param name="id">The id to check for</param>
+    /// <param name="gameId">The id to check for</param>
     /// <returns>The installed games which have the id</returns>
-    public IEnumerable<GameInstallation> EnumerateInstalledGames(string id) => Data.Game_GameInstallations.Where(x => x.Id == id);
+    public IEnumerable<GameInstallation> EnumerateInstalledGames(string gameId) => Data.Game_GameInstallations.Where(x => x.GameId == gameId);
 
     /// <summary>
     /// Finds a game installation based on the provided search predicate
@@ -263,15 +263,15 @@ public class GamesManager
     /// <summary>
     /// Gets a game descriptor from the id
     /// </summary>
-    /// <param name="id">The game descriptor id</param>
+    /// <param name="gameId">The game descriptor id</param>
     /// <returns>The matching game descriptor</returns>
-    public GameDescriptor GetGameDescriptor(string id)
+    public GameDescriptor GetGameDescriptor(string gameId)
     {
-        if (id == null) 
-            throw new ArgumentNullException(nameof(id));
+        if (gameId == null) 
+            throw new ArgumentNullException(nameof(gameId));
         
         // TODO-14: Add check and throw if not found?
-        return GameDescriptors[id];
+        return GameDescriptors[gameId];
     }
 
     #endregion

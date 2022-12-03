@@ -51,13 +51,13 @@ public class GameProgressionManager_Rayman2 : GameProgressionManager
         {
             string slotFilePath = $@"Slot{saveSlot.SlotIndex}\General.sav";
 
-            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.Id, saveSlot.SlotIndex);
+            Logger.Info("{0} slot {1} is being loaded...", GameInstallation.FullId, saveSlot.SlotIndex);
 
             R2GeneralSaveFile? saveData= await context.ReadFileDataAsync<R2GeneralSaveFile>(slotFilePath, new R2SaveEncoder(), removeFileWhenComplete: false);
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.Id);
+                Logger.Info("{0} slot was not found", GameInstallation.FullId);
                 continue;
             }
 
@@ -117,7 +117,7 @@ public class GameProgressionManager_Rayman2 : GameProgressionManager
 
             yield return new SerializableGameProgressionSlot<R2GeneralSaveFile>(name, saveSlot.SlotIndex, parsedPercentage, progressItems, context, saveData, slotFilePath);
 
-            Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+            Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
         }
     }
 }

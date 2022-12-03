@@ -50,7 +50,7 @@ public class GameProgressionManager_RaymanDesigner : GameProgressionManager
         if (dir == null)
             yield break;
 
-        Logger.Info("{0} saves from {1} are being loaded...", GameInstallation.Id, saveDir.Name);
+        Logger.Info("{0} saves from {1} are being loaded...", GameInstallation.FullId, saveDir.Name);
 
         using RCPContext context = new(dir.DirPath);
         context.AddSettings(new Ray1Settings(EngineVersion));
@@ -88,7 +88,7 @@ public class GameProgressionManager_RaymanDesigner : GameProgressionManager
 
             if (saveData == null)
             {
-                Logger.Info("{0} slot was not found", GameInstallation.Id);
+                Logger.Info("{0} slot was not found", GameInstallation.FullId);
                 continue;
             }
 
@@ -127,7 +127,7 @@ public class GameProgressionManager_RaymanDesigner : GameProgressionManager
             yield return new RaymanDesignerProgressionSlotViewModel(null, 0, levelsFinished, LevelsCount, progressItems, levelTimes, saveDir);
         }
 
-        Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+        Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
     }
 
     private class RaymanDesignerProgressionSlotViewModel : GameProgressionSlot

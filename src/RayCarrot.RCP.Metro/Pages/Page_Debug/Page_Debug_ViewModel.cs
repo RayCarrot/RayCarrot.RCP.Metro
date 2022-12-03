@@ -405,7 +405,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     var result = new GameFinder(GamesManager.EnumerateGameDescriptors(), null).FindGames();
                         
                     // Output the found games
-                    DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.Id} - {x.InstallLocation}").JoinItems(Environment.NewLine);
+                    DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.GameId} - {x.InstallLocation}").JoinItems(Environment.NewLine);
                         
                     break;
 

@@ -159,7 +159,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         // Create the shortcut
         Services.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
 
-        Logger.Trace("A shortcut was created for {0} under {1}", Id, destinationDirectory);
+        Logger.Trace("A shortcut was created for {0} under {1}", GameId, destinationDirectory);
     }
 
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)

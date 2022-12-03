@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
 {
     #region Public Properties
 
-    public override string Id => "RaymanOrigins_Steam";
+    public override string GameId => "RaymanOrigins_Steam";
     public override Game Game => Game.RaymanOrigins;
     public override GameCategory Category => GameCategory.Rayman;
     public override Games? LegacyGame => Games.RaymanOrigins;

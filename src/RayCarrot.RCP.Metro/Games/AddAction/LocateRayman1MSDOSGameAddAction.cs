@@ -45,7 +45,7 @@ public class LocateRayman1MSDOSGameAddAction : GameAddAction
         // If the executable does not exist the location is not valid
         if (!(result.SelectedDirectory + GameDescriptor.ExecutableName).FileExists)
         {
-            Logger.Info("The selected install directory for {0} is not valid", GameDescriptor.Id);
+            Logger.Info("The selected install directory for {0} is not valid", GameDescriptor.GameId);
 
             await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
             return null;
@@ -59,7 +59,7 @@ public class LocateRayman1MSDOSGameAddAction : GameAddAction
             $"{Path.GetFileNameWithoutExtension(GameDescriptor.ExecutableName)} ver=usa"
         });
 
-        Logger.Info("A batch file was created for {0}", GameDescriptor.Id);
+        Logger.Info("A batch file was created for {0}", GameDescriptor.GameId);
 
         return await Services.Games.AddGameAsync(GameDescriptor, result.SelectedDirectory);
     }

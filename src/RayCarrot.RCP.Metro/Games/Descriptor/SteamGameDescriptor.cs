@@ -33,13 +33,13 @@ public abstract class SteamGameDescriptor : GameDescriptor
 
     protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
     {
-        Logger.Trace("The game {0} is launching with Steam ID {1}", Id, SteamID);
+        Logger.Trace("The game {0} is launching with Steam ID {1}", GameId, SteamID);
 
         // TODO-14: Does this return the Steam/game process or just explorer.exe?
         // Launch the game
         Process? process = await Services.File.LaunchFileAsync(SteamHelpers.GetStorePageURL(SteamID));
 
-        Logger.Info("The game {0} has been launched", Id);
+        Logger.Info("The game {0} has been launched", GameId);
 
         return process != null;
     }
@@ -86,7 +86,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
     {
         Services.File.CreateURLShortcut(shortcutName, destinationDirectory, SteamHelpers.GetGameLaunchURI(SteamID));
 
-        Logger.Trace("An URL shortcut was created for {0} under {1}", Id, destinationDirectory);
+        Logger.Trace("An URL shortcut was created for {0} under {1}", GameId, destinationDirectory);
     }
 
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation) => new[]

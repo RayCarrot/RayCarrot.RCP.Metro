@@ -57,7 +57,7 @@ public class GameProgressionManager_RaymanFiestaRun : GameProgressionManager
         UbiArtSettings settings = new(BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC);
         context.AddSettings(settings);
 
-        Logger.Info("{0} slot is being loaded...", GameInstallation.Id);
+        Logger.Info("{0} slot is being loaded...", GameInstallation.FullId);
 
         // Get the file path
         string fileName = $"slot{SlotIndex}.dat";
@@ -67,11 +67,11 @@ public class GameProgressionManager_RaymanFiestaRun : GameProgressionManager
 
         if (saveData == null)
         {
-            Logger.Info("{0} slot was not found", GameInstallation.Id);
+            Logger.Info("{0} slot was not found", GameInstallation.FullId);
             yield break;
         }
 
-        Logger.Info("{0} slot has been deserialized", GameInstallation.Id);
+        Logger.Info("{0} slot has been deserialized", GameInstallation.FullId);
 
         int crowns = saveData.LevelInfos_Land1.Count(x => x.HasCrown);
         int maxCrowns = 72;
@@ -121,6 +121,6 @@ public class GameProgressionManager_RaymanFiestaRun : GameProgressionManager
 
         yield return new SerializableGameProgressionSlot<FiestaRun_SaveData>(null, 0, crowns, maxCrowns, progressItems, context, saveData, fileName);
 
-        Logger.Info("{0} slot has been loaded", GameInstallation.Id);
+        Logger.Info("{0} slot has been loaded", GameInstallation.FullId);
     }
 }

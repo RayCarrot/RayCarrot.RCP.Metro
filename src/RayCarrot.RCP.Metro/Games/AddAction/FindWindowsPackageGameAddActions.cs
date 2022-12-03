@@ -17,7 +17,7 @@ public class FindWindowsPackageGameAddActions : GameAddAction
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Find;
 
     // Windows package games can only be added once
-    public override bool IsAvailable => !Services.Games.EnumerateInstalledGames(GameDescriptor.Id).Any();
+    public override bool IsAvailable => !Services.Games.EnumerateInstalledGames(GameDescriptor.GameId).Any();
 
     public WindowsPackageGameDescriptor GameDescriptor { get; }
 
@@ -41,7 +41,7 @@ public class FindWindowsPackageGameAddActions : GameAddAction
             // Make sure we got a valid directory
             if (dir == null)
             {
-                Logger.Info("The {0} was not found under Windows Store packages", GameDescriptor.Id);
+                Logger.Info("The {0} was not found under Windows Store packages", GameDescriptor.GameId);
 
                 return null;
             }
@@ -59,7 +59,7 @@ public class FindWindowsPackageGameAddActions : GameAddAction
 
         if (!GameDescriptor.IsValid(installDir))
         {
-            Logger.Info("The {0} install directory was not valid", GameDescriptor.Id);
+            Logger.Info("The {0} install directory was not valid", GameDescriptor.GameId);
 
             await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 

@@ -7,7 +7,7 @@ public sealed class GameDescriptor_RaymanPremiersClics_Win32 : Win32GameDescript
 {
     #region Public Properties
 
-    public override string Id => "RaymanPremiersClics_Win32";
+    public override string GameId => "RaymanPremiersClics_Win32";
     public override Game Game => Game.RaymanPremiersClics;
     public override GameCategory Category => GameCategory.Other;
     public override Games? LegacyGame => Games.RaymanPremiersClics;
