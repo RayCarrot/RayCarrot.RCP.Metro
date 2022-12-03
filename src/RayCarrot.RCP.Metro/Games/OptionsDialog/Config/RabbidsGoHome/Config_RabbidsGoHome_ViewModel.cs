@@ -204,7 +204,7 @@ public class Config_RabbidsGoHome_ViewModel : GameOptionsDialog_ConfigPageViewMo
             null;
 
         // Refresh
-        Services.Messenger.Send(new ModifiedGamesMessage(Games.RabbidsGoHome.GetInstallation()));
+        Services.Messenger.Send(new ModifiedGamesMessage(LegacyGame.RabbidsGoHome.GetInstallation()));
 
         Logger.Info("Rabbids Go Home configuration has been saved");
 

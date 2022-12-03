@@ -13,7 +13,7 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override string GameId => "GloboxMoment_Win32";
     public override Game Game => Game.GloboxMoment;
     public override GameCategory Category => GameCategory.Fan;
-    public override Games? LegacyGame => Games.GloboxMoment;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.GloboxMoment;
 
     public override string DisplayName => "Globox Moment";
     public override string DefaultFileName => "Globox Moment.exe";

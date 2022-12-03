@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MSDOSGameDescriptor
     public override string GameId => "RaymanByHisFans_MSDOS";
     public override Game Game => Game.RaymanByHisFans;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games? LegacyGame => Games.RaymanByHisFans;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanByHisFans;
 
     public override string DisplayName => "Rayman by his Fans";
     public override string DefaultFileName => "rayfan.bat";

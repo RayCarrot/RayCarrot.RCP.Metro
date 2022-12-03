@@ -14,7 +14,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MSDOS : MSDOSGameDescri
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
-    public override Games? LegacyGame => Games.Demo_Rayman1_1;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_Rayman1_1;
 
     public override string DisplayName => "Rayman Demo (1995/12/07)";
     public override string DefaultFileName => "RAYMAN.EXE";

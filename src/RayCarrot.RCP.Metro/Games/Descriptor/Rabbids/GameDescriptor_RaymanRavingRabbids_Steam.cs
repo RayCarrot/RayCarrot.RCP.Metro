@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
     public override string GameId => "RaymanRavingRabbids_Steam";
     public override Game Game => Game.RaymanRavingRabbids;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override Games? LegacyGame => Games.RaymanRavingRabbids;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbids;
 
     public override string DisplayName => "Rayman Raving Rabbids";
     public override string DefaultFileName => "CheckApplication.exe";

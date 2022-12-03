@@ -8,7 +8,7 @@ public record ExternalPatchesManifest(
     [JsonProperty(Required = Required.Always)]
     int ManifestVersion,
 
-    Dictionary<Games, string>? Games)
+    Dictionary<LegacyGame, string>? Games)
 {
     public const int LatestVersion = 0;
 }

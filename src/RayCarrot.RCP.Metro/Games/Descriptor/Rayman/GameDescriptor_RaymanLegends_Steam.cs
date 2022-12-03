@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
     public override string GameId => "RaymanLegends_Steam";
     public override Game Game => Game.RaymanLegends;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games? LegacyGame => Games.RaymanLegends;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanLegends;
 
     public override string DisplayName => "Rayman Legends";
     public override string DefaultFileName => "Rayman Legends.exe";

@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     public override string GameId => "RaymanBowling2_Win32";
     public override Game Game => Game.RaymanBowling2;
     public override GameCategory Category => GameCategory.Fan;
-    public override Games? LegacyGame => Games.RaymanBowling2;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanBowling2;
 
     public override string DisplayName => "Rayman Bowling 2";
     public override string DefaultFileName => "Rayman Bowling 2.exe";

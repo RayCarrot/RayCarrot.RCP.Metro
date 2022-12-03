@@ -26,7 +26,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MSDOSGameDescri
     public override string GameId => "RaymanEdutainmentQui_MSDOS";
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
-    public override Games? LegacyGame => Games.EducationalDos;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.EducationalDos;
 
     public override string DisplayName => "Rayman Edutainment (Quiz)";
     public override string DefaultFileName => $"RAY{PrimaryName}.EXE";

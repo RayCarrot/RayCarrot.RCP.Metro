@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     public override string GameId => "RaymanFiestaRunWindows10Edition_WindowsPackage";
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games? LegacyGame => Games.RaymanFiestaRun;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanFiestaRun;
 
     public override string DisplayName => "Rayman Fiesta Run Windows 10 Edition";
     public override string DefaultFileName => "RFRXAML.exe";

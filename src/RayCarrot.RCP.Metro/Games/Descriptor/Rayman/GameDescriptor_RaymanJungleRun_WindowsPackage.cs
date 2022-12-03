@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override string GameId => "RaymanJungleRun_WindowsPackage";
     public override Game Game => Game.RaymanJungleRun;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games? LegacyGame => Games.RaymanJungleRun;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanJungleRun;
 
     public override string DisplayName => "Rayman Jungle Run";
     public override string DefaultFileName => "RO1Mobile.exe";

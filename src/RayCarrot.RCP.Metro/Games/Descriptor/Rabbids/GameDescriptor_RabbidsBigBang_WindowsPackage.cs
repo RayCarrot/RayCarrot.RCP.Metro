@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override string GameId => "RabbidsBigBang_WindowsPackage";
     public override Game Game => Game.RabbidsBigBang;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override Games? LegacyGame => Games.RabbidsBigBang;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsBigBang;
 
     public override string DisplayName => "Rabbids Big Bang";
     public override string DefaultFileName => "Template.exe";

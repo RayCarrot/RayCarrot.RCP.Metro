@@ -163,7 +163,7 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
     public void EnableToggled()
     {
         Data.Utility_TPLSData.IsEnabled = IsEnabled;
-        Services.Messenger.Send(new ModifiedGamesMessage(Games.Rayman1.GetInstallation()));
+        Services.Messenger.Send(new ModifiedGamesMessage(LegacyGame.Rayman1.GetInstallation()));
     }
 
     #endregion

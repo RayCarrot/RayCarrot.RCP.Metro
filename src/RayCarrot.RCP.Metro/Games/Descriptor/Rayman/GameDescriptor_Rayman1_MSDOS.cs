@@ -15,7 +15,7 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MSDOSGameDescriptor
     public override string GameId => "Rayman1_MSDOS";
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games? LegacyGame => Games.Rayman1;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman1;
 
     public override string DisplayName => "Rayman";
     public override string DefaultFileName => "Rayman.exe";

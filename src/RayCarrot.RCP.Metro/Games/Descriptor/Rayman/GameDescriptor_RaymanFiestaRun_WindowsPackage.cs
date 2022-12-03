@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     public override string GameId => "RaymanFiestaRun_WindowsPackage";
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
-    public override Games? LegacyGame => Games.RaymanFiestaRun;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanFiestaRun;
 
     public override string DisplayName => "Rayman Fiesta Run";
     public override string DefaultFileName => "RFR_WinRT.exe";

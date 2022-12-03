@@ -559,8 +559,8 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
             WebPatchEntry[] patchEntries = JsonHelpers.DeserializeFromFile<WebPatchEntry[]>(inputResult.SelectedFile);
 
-            List<(Games Game, ExternalPatchManifest Manifest)> patches = new();
-            Dictionary<Games, string> gameManifestURLs = new();
+            List<(LegacyGame Game, ExternalPatchManifest Manifest)> patches = new();
+            Dictionary<LegacyGame, string> gameManifestURLs = new();
 
             using RCPContext context = new(String.Empty);
 
@@ -573,7 +573,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                 PatchFile patch = context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
 
                 // TODO-14: Update this
-                Games game = patch.Metadata.GetGameDescriptors(GamesManager).First().LegacyGame.Value;
+                LegacyGame game = patch.Metadata.GetGameDescriptors(GamesManager).First().LegacyGame.Value;
                 string? thumbURL = null;
 
                 // Extract thumbnail, if one exists

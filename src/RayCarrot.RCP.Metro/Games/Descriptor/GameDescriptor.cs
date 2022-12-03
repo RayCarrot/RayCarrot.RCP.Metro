@@ -72,7 +72,7 @@ public abstract class GameDescriptor
     /// <summary>
     /// The legacy games enum value
     /// </summary>
-    public virtual Games? LegacyGame => null; // TODO-14: Minimize references to this
+    public virtual LegacyGame? LegacyGame => null; // TODO-14: Minimize references to this
 
     // TODO-14: Clean up how names are handled, split up like this?
     // GameDescriptorDisplayName: Unique name for the descriptor. For a specific game edition, for example "Rayman 2 (Steam)"

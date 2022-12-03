@@ -26,7 +26,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MSDOSGameDescrip
     public override string GameId => "RaymanEdutainmentEdu_MSDOS";
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
-    public override Games? LegacyGame => Games.EducationalDos;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.EducationalDos;
 
     public override string DisplayName => "Rayman Edutainment (Edu)";
     public override string DefaultFileName => $"RAY{PrimaryName}.EXE";

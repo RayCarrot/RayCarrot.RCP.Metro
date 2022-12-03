@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
     public override string GameId => "RaymanRedemption_Win32";
     public override Game Game => Game.RaymanRedemption;
     public override GameCategory Category => GameCategory.Fan;
-    public override Games? LegacyGame => Games.RaymanRedemption;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRedemption;
 
     public override string DisplayName => "Rayman Redemption";
     public override string DefaultFileName => "Rayman Redemption.exe";

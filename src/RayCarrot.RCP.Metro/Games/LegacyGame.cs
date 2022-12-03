@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace RayCarrot.RCP.Metro;
@@ -7,10 +6,10 @@ namespace RayCarrot.RCP.Metro;
 // TODO-14: Remove when possible
 
 /// <summary>
-/// The games supported by the Rayman Control Panel
+/// The enum used for the games prior to version 14.0. This has to be kept for backwards compatibility.
 /// </summary>
 [JsonConverter(typeof(StringEnumConverter))]
-public enum Games
+public enum LegacyGame
 {
     #region Rayman
 
