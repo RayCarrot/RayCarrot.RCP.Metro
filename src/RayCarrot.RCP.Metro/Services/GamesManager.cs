@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
 using NLog;
+using RayCarrot.RCP.Metro.Games.Emulators;
+using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -81,7 +83,7 @@ public class GamesManager
 
         EmulatorDescriptors = new EmulatorDescriptor[]
         {
-            new DOSBoxEmulatorDescriptor(),
+            new DosBoxEmulatorDescriptor(),
         }.ToDictionary(x => x.EmulatorId);
     }
 

@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 /// <summary>
-/// Data model for a DosBox auto config file
+/// Data model for a DOSBox auto config file
 /// </summary>
-public class Emulator_DOSBox_AutoConfigData
+public class AutoConfigData
 {
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Emulator_DOSBox_AutoConfigData()
+    public AutoConfigData()
     {
         // Create properties
         Configuration = new Dictionary<string, string>();

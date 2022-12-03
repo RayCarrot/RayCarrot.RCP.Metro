@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Edutainment Edu (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MSDOSGameDescriptor
+public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescriptor
 {
     #region Constant Fields
 

@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 1 Demo 1996/02/15 (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MSDOSGameDescriptor
+public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescriptor
 {
     #region Public Properties
 

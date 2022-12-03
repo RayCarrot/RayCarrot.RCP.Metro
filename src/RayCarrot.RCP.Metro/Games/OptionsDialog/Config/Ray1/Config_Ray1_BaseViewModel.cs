@@ -20,7 +20,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <param name="gameInstallation">The game installation</param>
     /// <param name="engineVersion">The Rayman 1 engine version</param>
     /// <param name="langMode">The language mode to use</param>
-    protected Config_Ray1_BaseViewModel(MSDOSGameDescriptor gameDescriptor, GameInstallation gameInstallation, Ray1EngineVersion engineVersion, LanguageMode langMode)
+    protected Config_Ray1_BaseViewModel(MsDosGameDescriptor gameDescriptor, GameInstallation gameInstallation, Ray1EngineVersion engineVersion, LanguageMode langMode)
     {
         GameDescriptor = gameDescriptor;
         GameInstallation = gameInstallation;
@@ -109,7 +109,7 @@ public abstract class Config_Ray1_BaseViewModel : GameOptionsDialog_ConfigPageVi
     /// <summary>
     /// The game descriptor
     /// </summary>
-    public MSDOSGameDescriptor GameDescriptor { get; }
+    public MsDosGameDescriptor GameDescriptor { get; }
 
     /// <summary>
     /// The game installation

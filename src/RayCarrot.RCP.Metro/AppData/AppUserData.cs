@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using PropertyChanged;
+using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;
 

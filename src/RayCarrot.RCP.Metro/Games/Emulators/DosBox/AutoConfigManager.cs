@@ -3,18 +3,18 @@ using System.IO;
 using System.Text;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 /// <summary>
-/// Manager for auto DosBox config file
+/// Manager for auto DOSBox config file
 /// </summary>
-public class Emulator_DOSBox_AutoConfigManager
+public class AutoConfigManager
 {
     /// <summary>
     /// Default constructor
     /// </summary>
     /// <param name="path">The config file path</param>
-    public Emulator_DOSBox_AutoConfigManager(FileSystemPath path)
+    public AutoConfigManager(FileSystemPath path)
     {
         FilePath = path;
         FirstLines = $"[ipx]{Environment.NewLine}# ipx -- Enable ipx over UDP/IP emulation.{Environment.NewLine}ipx=false{Environment.NewLine}{Environment.NewLine}[autoexec]{Environment.NewLine}@echo off";
@@ -78,19 +78,19 @@ public class Emulator_DOSBox_AutoConfigManager
     /// Reads the file and returns the data
     /// </summary>
     /// <returns>The file data</returns>
-    public Emulator_DOSBox_AutoConfigData ReadFile()
+    public AutoConfigData ReadFile()
     {
         // Read the file content
-        var content = File.ReadAllText(FilePath);
+        string content = File.ReadAllText(FilePath);
 
         // Remove the first lines
         content = content.Substring(FirstLines.Length);
 
         // Split into lines
-        var lines = content.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        string[] lines = content.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
         // Create the output
-        var output = new Emulator_DOSBox_AutoConfigData();
+        AutoConfigData output = new();
 
         // Keep track of if we've reached the custom commands
         bool inCustomCommands = false;
@@ -99,7 +99,7 @@ public class Emulator_DOSBox_AutoConfigManager
         bool inSection = false;
 
         // Check each line
-        foreach (var line in lines)
+        foreach (string line in lines)
         {
             // Flag when the custom commands are reached
             if (!inCustomCommands && line == CustomCommandsSeparator)
@@ -164,7 +164,7 @@ public class Emulator_DOSBox_AutoConfigManager
     /// Writes the specified data to the file
     /// </summary>
     /// <param name="data">The data to write</param>
-    public void WriteFile(Emulator_DOSBox_AutoConfigData data)
+    public void WriteFile(AutoConfigData data)
     {
         StringBuilder stringBuilder = new StringBuilder();
 

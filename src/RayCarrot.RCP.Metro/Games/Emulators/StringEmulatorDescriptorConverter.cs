@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Emulators;
 
 public class StringEmulatorDescriptorConverter : JsonConverter<EmulatorDescriptor>
 {

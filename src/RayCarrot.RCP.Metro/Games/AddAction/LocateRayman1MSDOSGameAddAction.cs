@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class LocateRayman1MSDOSGameAddAction : GameAddAction
 {
-    public LocateRayman1MSDOSGameAddAction(MSDOSGameDescriptor gameDescriptor)
+    public LocateRayman1MSDOSGameAddAction(MsDosGameDescriptor gameDescriptor)
     {
         GameDescriptor = gameDescriptor;
     }
@@ -18,7 +18,7 @@ public class LocateRayman1MSDOSGameAddAction : GameAddAction
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Locate;
     public override bool IsAvailable => true;
 
-    public MSDOSGameDescriptor GameDescriptor { get; }
+    public MsDosGameDescriptor GameDescriptor { get; }
 
     public override async Task<GameInstallation?> AddGameAsync()
     {

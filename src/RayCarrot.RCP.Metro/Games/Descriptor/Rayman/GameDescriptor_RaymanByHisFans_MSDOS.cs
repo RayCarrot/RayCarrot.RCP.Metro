@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman by his Fans (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MSDOSGameDescriptor
+public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
 {
     #region Public Properties
 

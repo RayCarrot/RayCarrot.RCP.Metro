@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
-public class Emulator_DOSBox_ResolutionValidationRule : ValidationRule
+public class ResolutionValidationRule : ValidationRule
 {
     public override ValidationResult Validate(object? value, CultureInfo cultureInfo)
     {

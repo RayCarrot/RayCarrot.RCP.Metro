@@ -1,16 +1,16 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 /// <summary>
 /// Interaction logic for Emulator_DOSBox_ConfigControl.xaml
 /// </summary>
-public partial class Emulator_DOSBox_ConfigControl : UserControl
+public partial class DosBoxGameConfigControl : UserControl
 {
     /// <summary>
     /// Default constructor
     /// </summary>
-    public Emulator_DOSBox_ConfigControl()
+    public DosBoxGameConfigControl()
     {
         InitializeComponent();
     }

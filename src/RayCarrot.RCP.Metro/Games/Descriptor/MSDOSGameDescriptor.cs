@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A game descriptor for an emulated MS-DOS program
 /// </summary>
-public abstract class MSDOSGameDescriptor : EmulatedGameDescriptor
+public abstract class MsDosGameDescriptor : EmulatedGameDescriptor
 {
     #region Public Properties
 

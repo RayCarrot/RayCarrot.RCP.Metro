@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 60 Levels (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_Rayman60Levels_MSDOS : MSDOSGameDescriptor
+public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
 {
     #region Public Properties
 

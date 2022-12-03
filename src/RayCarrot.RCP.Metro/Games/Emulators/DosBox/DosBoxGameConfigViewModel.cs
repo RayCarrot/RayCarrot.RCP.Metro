@@ -5,9 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
-public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigPageViewModel
+public class DosBoxGameConfigViewModel : GameOptionsDialog_EmulatorConfigPageViewModel
 {
     #region Constructor
 
@@ -16,7 +16,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// </summary>
     /// <param name="gameInstallation">The game installation</param>
     /// <param name="dosBoxDescriptor">The DOSBox emulator descriptor</param>
-    public Emulator_DOSBox_ConfigViewModel(GameInstallation gameInstallation, DOSBoxEmulatorDescriptor dosBoxDescriptor) 
+    public DosBoxGameConfigViewModel(GameInstallation gameInstallation, DosBoxEmulatorDescriptor dosBoxDescriptor) 
         : base(dosBoxDescriptor.DisplayName)
     {
         GameInstallation = gameInstallation;
@@ -148,7 +148,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// <summary>
     /// The DOSBox emulator descriptor
     /// </summary>
-    public DOSBoxEmulatorDescriptor DOSBoxDescriptor { get; }
+    public DosBoxEmulatorDescriptor DOSBoxDescriptor { get; }
 
     /// <summary>
     /// The available resolution values to use for fullscreen
@@ -346,7 +346,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
 
     #region Protected Methods
 
-    protected override object GetPageUI() => new Emulator_DOSBox_ConfigControl()
+    protected override object GetPageUI() => new DosBoxGameConfigControl()
     {
         DataContext = this
     };
@@ -360,7 +360,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.FullId);
 
         // Get the config manager
-        var configManager = new Emulator_DOSBox_AutoConfigManager(DOSBoxDescriptor.GetGameConfigFile(GameInstallation));
+        var configManager = new AutoConfigManager(DOSBoxDescriptor.GetGameConfigFile(GameInstallation));
 
         // Create the file
         configManager.Create();
@@ -408,10 +408,10 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         try
         {
             // Get the config manager
-            var configManager = new Emulator_DOSBox_AutoConfigManager(DOSBoxDescriptor.GetGameConfigFile(GameInstallation));
+            var configManager = new AutoConfigManager(DOSBoxDescriptor.GetGameConfigFile(GameInstallation));
 
             // Create config data
-            var configData = new Emulator_DOSBox_AutoConfigData();
+            var configData = new AutoConfigData();
 
             // Add custom commands
             if (CustomCommands != null)

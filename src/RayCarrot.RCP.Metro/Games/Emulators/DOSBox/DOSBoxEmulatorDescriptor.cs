@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
-public sealed class DOSBoxEmulatorDescriptor : EmulatorDescriptor
+public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
 {
     #region Logger
 
@@ -26,13 +26,13 @@ public sealed class DOSBoxEmulatorDescriptor : EmulatorDescriptor
 
     #region Private Methods
 
-    private MSDOSGameDescriptor GetMsdosGameDescriptor(GameInstallation gameInstallation) =>
-        gameInstallation.GameDescriptor as MSDOSGameDescriptor 
-        ?? throw new InvalidOperationException($"The {nameof(DOSBoxEmulatorDescriptor)} can only be used with {nameof(MSDOSGameDescriptor)}");
+    private MsDosGameDescriptor GetMsdosGameDescriptor(GameInstallation gameInstallation) =>
+        gameInstallation.GameDescriptor as MsDosGameDescriptor 
+        ?? throw new InvalidOperationException($"The {nameof(DosBoxEmulatorDescriptor)} can only be used with {nameof(MsDosGameDescriptor)}");
 
     private string GetDOSBoxLaunchArgs(GameInstallation gameInstallation)
     {
-        MSDOSGameDescriptor descriptor = GetMsdosGameDescriptor(gameInstallation);
+        MsDosGameDescriptor descriptor = GetMsdosGameDescriptor(gameInstallation);
 
         string? gameArgs = descriptor.GetLaunchArgs(gameInstallation);
         string launchName = gameArgs == null ? descriptor.DefaultFileName : $"{descriptor.DefaultFileName} {gameArgs}";
@@ -107,12 +107,12 @@ public sealed class DOSBoxEmulatorDescriptor : EmulatorDescriptor
     #region Public Methods
 
     public override GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
-        new Emulator_DOSBox_ConfigViewModel(gameInstallation, this);
+        new DosBoxGameConfigViewModel(gameInstallation, this);
 
     public override async Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation, bool forceRunAsAdmin)
     {
         FileSystemPath launchPath = emulatorInstallation.InstallLocation;
-        MSDOSGameDescriptor gameDescriptor = GetMsdosGameDescriptor(gameInstallation);
+        MsDosGameDescriptor gameDescriptor = GetMsdosGameDescriptor(gameInstallation);
 
         // Make sure the DOSBox exe exists
         if (!launchPath.FileExists)
@@ -201,7 +201,7 @@ public sealed class DOSBoxEmulatorDescriptor : EmulatorDescriptor
     public override Task OnEmulatorSelected(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation)
     {
         // Create config file
-        new Emulator_DOSBox_AutoConfigManager(GetGameConfigFile(gameInstallation)).Create();
+        new AutoConfigManager(GetGameConfigFile(gameInstallation)).Create();
 
         return Task.CompletedTask;
     }

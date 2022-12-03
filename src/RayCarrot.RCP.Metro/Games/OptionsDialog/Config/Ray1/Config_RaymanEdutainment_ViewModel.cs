@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 
 public class Config_RaymanEdutainment_ViewModel : Config_Ray1_BaseViewModel
 {
-    public Config_RaymanEdutainment_ViewModel(MSDOSGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
+    public Config_RaymanEdutainment_ViewModel(MsDosGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
         base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Edu, LanguageMode.None)
     {
         PageSelection = new ObservableCollection<string>();
