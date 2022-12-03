@@ -21,8 +21,9 @@ public class GameOptionsDialog_OptionsPageViewModel : GameOptionsDialog_BasePage
 
         LaunchModeChangedCommand = new RelayCommand(LaunchModeChanged);
 
+        // TODO-14: Fix this
         // Check if the launch mode can be changed
-        CanChangeLaunchMode = gameInstallation.GameDescriptor.SupportsGameLaunchMode;
+        CanChangeLaunchMode = gameInstallation.GameDescriptor.Platform == GamePlatform.Win32;
 
         // Enable collection synchronization
         BindingOperations.EnableCollectionSynchronization(GameInfoItems, this);

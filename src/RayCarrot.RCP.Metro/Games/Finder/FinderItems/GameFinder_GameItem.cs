@@ -44,7 +44,7 @@ public class GameFinder_GameItem : GameFinder_BaseItem
     /// </summary>
     /// <param name="customFinderAction">Custom game finder action which return the game install directory if found</param>
     public GameFinder_GameItem(
-        Func<GameFinder_FoundResult> customFinderAction) 
+        Func<GameFinder_FoundResult?> customFinderAction) 
         : base(null, null, null, customFinderAction)
     {
 

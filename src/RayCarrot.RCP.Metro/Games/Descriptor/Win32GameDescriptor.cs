@@ -20,13 +20,12 @@ public abstract class Win32GameDescriptor : GameDescriptor
     #region Public Properties
 
     public override GamePlatform Platform => GamePlatform.Win32;
-    public override bool SupportsGameLaunchMode => true;
 
     #endregion
 
-    #region Protected Methods
+    #region Private Methods
 
-    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    private async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool asAdmin)
     {
         // Get the launch info
         FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
@@ -36,13 +35,22 @@ public abstract class Win32GameDescriptor : GameDescriptor
             GameId, launchPath, launchArgs);
 
         // Launch the game
-        UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-        bool asAdmin = forceRunAsAdmin || launchMode == UserData_GameLaunchMode.AsAdmin;
         Process? process = await Services.File.LaunchFileAsync(launchPath, asAdmin, launchArgs);
 
         Logger.Info("The game {0} has been launched", GameId);
 
         return process != null;
+    }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override Task<bool> LaunchAsync(GameInstallation gameInstallation)
+    {
+        UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+
+        return LaunchAsync(gameInstallation, launchMode == UserData_GameLaunchMode.AsAdmin);
     }
 
     /// <summary>
@@ -73,6 +81,24 @@ public abstract class Win32GameDescriptor : GameDescriptor
     {
         new LocateGameAddAction(this),
     };
+
+    public override IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
+    {
+        // Add run as admin option
+        UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+
+        if (launchMode != UserData_GameLaunchMode.AsAdminOption)
+            return Enumerable.Empty<ActionItemViewModel>();
+
+        return new[]
+        {
+            new IconCommandItemViewModel(
+                header: Resources.GameDisplay_RunAsAdmin,
+                description: null,
+                iconKind: GenericIconKind.GameDisplay_Admin,
+                command: new AsyncRelayCommand(async () => await LaunchAsync(gameInstallation, true)))
+        };
+    }
 
     public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
     {

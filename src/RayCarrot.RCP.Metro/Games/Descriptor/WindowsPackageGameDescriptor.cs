@@ -44,7 +44,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     public static bool SupportsWinRT => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
 
     public override GamePlatform Platform => GamePlatform.WindowsPackage;
-    public override bool SupportsGameLaunchMode => false;
     public override bool AllowPatching => false;
 
     public abstract string PackageName { get; }
@@ -67,7 +66,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
     {
         try
         {

@@ -108,17 +108,8 @@ public class InstalledGameViewModel : BaseViewModel
 
     private void AddAdditionalLaunchActions()
     {
-        // TODO-UPDATE: Always show this option if available (Win32, but not for Steam, packaged etc.). Keep setting in options
-        //              dialog for if should always run as admin by default.
-        // Add run as admin option
-        UserData_GameLaunchMode launchMode = GameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-
-        if (launchMode == UserData_GameLaunchMode.AsAdminOption)
-            AdditionalLaunchActions.AddGroup(new IconCommandItemViewModel(
-                header: Resources.GameDisplay_RunAsAdmin, 
-                description: null,
-                iconKind: GenericIconKind.GameDisplay_Admin, 
-                command: new AsyncRelayCommand(async () => await GameDescriptor.LaunchGameAsync(GameInstallation, true))));
+        // Add additional launch actions
+        AdditionalLaunchActions.AddGroup(GameDescriptor.GetAdditionalLaunchActions(GameInstallation));
 
         // Add local uri links
         AdditionalLaunchActions.AddGroup(GameDescriptor.GetLocalUriLinks(GameInstallation).
@@ -220,7 +211,7 @@ public class InstalledGameViewModel : BaseViewModel
         return Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
     }
 
-    public Task LaunchAsync() => GameDescriptor.LaunchGameAsync(GameInstallation, false);
+    public Task LaunchAsync() => GameDescriptor.LaunchGameAsync(GameInstallation);
     public Task OpenOptionsAsync() => Services.UI.ShowGameOptionsAsync(GameInstallation);
 
     /// <summary>

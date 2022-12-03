@@ -132,11 +132,6 @@ public abstract class GameDescriptor
     public virtual bool AllowPatching => true;
 
     /// <summary>
-    /// Indicates if using <see cref="UserData_GameLaunchMode"/> is supported
-    /// </summary>
-    public abstract bool SupportsGameLaunchMode { get; } // TODO-14: This should not be here - only use for Win32?
-
-    /// <summary>
     /// The directories to remove when uninstalling. This should not include the game install directory as that is included by default.
     /// </summary>
     public virtual IEnumerable<FileSystemPath> UninstallDirectories => Enumerable.Empty<FileSystemPath>();
@@ -169,12 +164,8 @@ public abstract class GameDescriptor
     /// The implementation for launching the game
     /// </summary>
     /// <param name="gameInstallation">The game installation to launch</param>
-    /// <param name="forceRunAsAdmin">Indicated if the game should be forced to run as admin</param>
     /// <returns>True if the launch succeeded, otherwise false</returns>
-    protected abstract Task<bool> LaunchAsync(GameInstallation gameInstallation, 
-        // TODO-14: Remove this. Instead provide additional launch options for each game. Win32 and Emu will use this for a
-        //          run as admin option. EDU can use this for each of its launch modes, such as GB1, GB2 etc.
-        bool forceRunAsAdmin);
+    protected abstract Task<bool> LaunchAsync(GameInstallation gameInstallation);
 
     /// <summary>
     /// Post launch operations for the game which launched
@@ -225,6 +216,14 @@ public abstract class GameDescriptor
     /// </summary>
     public virtual IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
         Enumerable.Empty<GameProgressionManager>();
+
+    /// <summary>
+    /// Gets any available additional launch actions for the game
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to get the actions for</param>
+    /// <returns>The launch actions</returns>
+    public virtual IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation) =>
+        Enumerable.Empty<ActionItemViewModel>();
 
     /// <summary>
     /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.
@@ -311,16 +310,13 @@ public abstract class GameDescriptor
     /// Launches the game
     /// </summary>
     /// <param name="gameInstallation">The game installation to launch</param>
-    /// <param name="forceRunAsAdmin">Indicated if the game should be forced to run as admin</param>
     /// <returns>The task</returns>
-    public async Task LaunchGameAsync(GameInstallation gameInstallation,
-        // TODO-14: This should probably not be here since it's platform specific. Only Win32 has this.
-        bool forceRunAsAdmin)
+    public async Task LaunchGameAsync(GameInstallation gameInstallation)
     {
         Logger.Trace("The game {0} is being launched...", GameId);
 
         // Launch the game
-        bool success = await LaunchAsync(gameInstallation, forceRunAsAdmin);
+        bool success = await LaunchAsync(gameInstallation);
 
         if (success)
             // Run any post launch operations

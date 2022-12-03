@@ -17,12 +17,6 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
 
     #endregion
 
-    #region Public Properties
-
-    public override bool SupportsGameLaunchMode => true;
-
-    #endregion
-
     #region Private Methods
 
     /// <summary>
@@ -44,7 +38,7 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
     {
         EmulatorInstallation? emu = GetEmulator(gameInstallation);
 
@@ -54,7 +48,7 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
             return false;
         }
 
-        return await emu.EmulatorDescriptor.LaunchGameAsync(gameInstallation, emu, forceRunAsAdmin);
+        return await emu.EmulatorDescriptor.LaunchGameAsync(gameInstallation, emu);
     }
 
     #endregion

@@ -109,7 +109,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     public override GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         new DosBoxGameConfigViewModel(gameInstallation, this);
 
-    public override async Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation, bool forceRunAsAdmin)
+    public override async Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation)
     {
         FileSystemPath launchPath = emulatorInstallation.InstallLocation;
         MsDosGameDescriptor gameDescriptor = GetMsdosGameDescriptor(gameInstallation);
@@ -136,9 +136,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
             gameInstallation.FullId, launchPath, launchArgs);
 
         // Launch the game
-        UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-        bool asAdmin = forceRunAsAdmin || launchMode == UserData_GameLaunchMode.AsAdmin;
-        Process? process = await Services.File.LaunchFileAsync(launchPath, asAdmin, launchArgs);
+        Process? process = await Services.File.LaunchFileAsync(launchPath, arguments: launchArgs);
 
         Logger.Info("The game {0} has been launched", gameInstallation.FullId);
 

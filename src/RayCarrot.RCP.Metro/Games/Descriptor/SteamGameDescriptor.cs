@@ -20,7 +20,6 @@ public abstract class SteamGameDescriptor : GameDescriptor
     #region Public Properties
 
     public override GamePlatform Platform => GamePlatform.Steam;
-    public override bool SupportsGameLaunchMode => false;
 
     /// <summary>
     /// The Steam product id
@@ -31,7 +30,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
     {
         Logger.Trace("The game {0} is launching with Steam ID {1}", GameId, SteamID);
 

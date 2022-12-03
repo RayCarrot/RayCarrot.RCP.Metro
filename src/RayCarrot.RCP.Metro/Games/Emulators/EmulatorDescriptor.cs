@@ -20,7 +20,7 @@ public abstract class EmulatorDescriptor
 
     public virtual GameOptionsDialog_EmulatorConfigPageViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
 
-    public abstract Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation, bool forceRunAsAdmin);
+    public abstract Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation);
 
     public virtual IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         Enumerable.Empty<DuoGridItemViewModel>();
