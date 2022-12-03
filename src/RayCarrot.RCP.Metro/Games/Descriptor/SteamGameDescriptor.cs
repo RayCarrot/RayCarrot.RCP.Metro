@@ -31,7 +31,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override async Task<GameLaunchResult> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
     {
         Logger.Trace("The game {0} is launching with Steam ID {1}", Id, SteamID);
 
@@ -41,7 +41,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
 
         Logger.Info("The game {0} has been launched", Id);
 
-        return new GameLaunchResult(process, process != null);
+        return process != null;
     }
 
     #endregion

@@ -40,16 +40,6 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MSDOSGameDescri
 
     #endregion
 
-    #region Protected Methods
-
-    protected override string GetLaunchArgs(GameInstallation gameInstallation)
-    {
-        string gameMode = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData).SelectedGameMode;
-        return $"ver={gameMode}";
-    }
-
-    #endregion
-
     #region Public Methods
 
     // TODO-14: Add new options control for setting game mode to use when launching the game
@@ -88,6 +78,12 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MSDOSGameDescri
 
         // Set the game mode data
         gameInstallation.SetObject(GameDataKey.Ray1MSDOSData, UserData_Ray1MSDOSData.Create(gameInstallation));
+    }
+
+    public override string GetLaunchArgs(GameInstallation gameInstallation)
+    {
+        string gameMode = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData).SelectedGameMode;
+        return $"ver={gameMode}";
     }
 
     #endregion

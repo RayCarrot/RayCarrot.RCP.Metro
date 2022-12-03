@@ -15,9 +15,12 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// Default constructor for a specific game
     /// </summary>
     /// <param name="gameInstallation">The game installation</param>
-    public Emulator_DOSBox_ConfigViewModel(GameInstallation gameInstallation) : base(new ResourceLocString(nameof(Resources.GameType_DosBox)))
+    /// <param name="dosBoxDescriptor">The DOSBox emulator descriptor</param>
+    public Emulator_DOSBox_ConfigViewModel(GameInstallation gameInstallation, DOSBoxEmulatorDescriptor dosBoxDescriptor) 
+        : base(dosBoxDescriptor.DisplayName)
     {
         GameInstallation = gameInstallation;
+        DOSBoxDescriptor = dosBoxDescriptor;
 
         // Set up the available resolution values
         AvailableFullscreenResolutionValues = new ObservableCollection<string>();
@@ -141,6 +144,11 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
     /// The game installation
     /// </summary>
     public GameInstallation GameInstallation { get; }
+
+    /// <summary>
+    /// The DOSBox emulator descriptor
+    /// </summary>
+    public DOSBoxEmulatorDescriptor DOSBoxDescriptor { get; }
 
     /// <summary>
     /// The available resolution values to use for fullscreen
@@ -352,9 +360,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.Id);
 
         // Get the config manager
-        var configManager = new Emulator_DOSBox_AutoConfigManager(
-            // TODO-14: Fix
-            ((MSDOSGameDescriptor)GameInstallation.GameDescriptor).DosBoxConfigFile);
+        var configManager = new Emulator_DOSBox_AutoConfigManager(DOSBoxDescriptor.GetGameConfigFile(GameInstallation));
 
         // Create the file
         configManager.Create();
@@ -402,9 +408,7 @@ public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigP
         try
         {
             // Get the config manager
-            var configManager = new Emulator_DOSBox_AutoConfigManager(
-                // TODO-14: Fix
-                ((MSDOSGameDescriptor)GameInstallation.GameDescriptor).DosBoxConfigFile);
+            var configManager = new Emulator_DOSBox_AutoConfigManager(DOSBoxDescriptor.GetGameConfigFile(GameInstallation));
 
             // Create config data
             var configData = new Emulator_DOSBox_AutoConfigData();

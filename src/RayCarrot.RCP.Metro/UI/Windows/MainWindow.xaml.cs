@@ -13,12 +13,12 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
 {
     #region Constructor
 
-    public MainWindow(AppUserData data, MainWindowViewModel viewModel, IMessenger messenger)
+    public MainWindow(MainWindowViewModel viewModel, IMessenger messenger, GamesManager games)
     {
         InitializeComponent();
 
         // Set properties
-        Data = data ?? throw new ArgumentNullException(nameof(data));
+        Games = games ?? throw new ArgumentNullException(nameof(games));
         DataContext = ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 
         // Register for messages
@@ -38,7 +38,7 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
 
     #region Private Properties
 
-    private AppUserData Data { get; }
+    private GamesManager Games { get; }
 
     #endregion
 
@@ -60,7 +60,7 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
 
         try
         {
-            ProgressionPageTab.IsEnabled = Data.Game_GameInstallations?.Any() ?? false;
+            ProgressionPageTab.IsEnabled = Games.EnumerateInstalledGames().Any();
         }
         catch (Exception ex)
         {

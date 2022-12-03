@@ -1,6 +1,5 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Perhaps find better place to store these?
 public static class GameDataKey
 {
     public const string Win32LaunchMode = "Win32LaunchMode";
@@ -8,4 +7,5 @@ public static class GameDataKey
     public const string Ray1MSDOSData = "Ray1MSDOSData"; // TODO-14: Use this for KIT, FAN and 60N as well
     public const string RRR2LaunchMode = "RRR2LaunchMode";
     public const string RCPGameInstallInfo = "RCPGameInstallInfo";
+    public const string EmulatorInstallationId = "EmulatorInstallationId";
 }

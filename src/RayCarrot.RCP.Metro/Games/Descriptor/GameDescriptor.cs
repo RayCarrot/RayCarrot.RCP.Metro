@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +12,13 @@ namespace RayCarrot.RCP.Metro;
 // TODO-14: Move descriptors to folders based on platform?
 // TODO-14: Minimize the amount of methods here which do things by moving to manager classes. The descriptor should really only
 //          be for providing data about the game.
+
+// It may be temping to have the games which inherit from GameDescriptor to be built up in a sort of hierarchy where they
+// inherit from base classes, such as the 3 Fiesta Run game editions inheriting from a base Fiesta Run class, but we
+// specifically do NOT want to do this. There are several reasons behind this which I won't go into here, but essentially
+// I'm approaching this in more of a component-based way where common functionality and data should be relegated to
+// separate classes which the descriptors then provide. In the future we might want to split this up further into more
+// manager classes to the pointer where the platform base classes won't be needed.
 
 /// <summary>
 /// A game descriptor, providing data for a game
@@ -145,13 +151,6 @@ public abstract class GameDescriptor
     /// </summary>
     public virtual bool HasArchives => false;
 
-    // TODO-14: Rework this system. Each game descriptor should have a collection of possible emulators. These are then
-    //          responsible for launching the game etc.
-    /// <summary>
-    /// An optional emulator to use for the game
-    /// </summary>
-    public virtual Emulator? Emulator => null;
-
     #endregion
 
     #region Protected Methods
@@ -167,30 +166,22 @@ public abstract class GameDescriptor
     }
 
     /// <summary>
-    /// Verifies if the game can launch
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to check</param>
-    /// <returns>True if the game can launch, otherwise false</returns>
-    protected virtual Task<bool> VerifyCanLaunchAsync(GameInstallation gameInstallation) => Task.FromResult(true);
-
-    /// <summary>
     /// The implementation for launching the game
     /// </summary>
     /// <param name="gameInstallation">The game installation to launch</param>
     /// <param name="forceRunAsAdmin">Indicated if the game should be forced to run as admin</param>
-    /// <returns>The launch result</returns>
-    protected abstract Task<GameLaunchResult> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin);
+    /// <returns>True if the launch succeeded, otherwise false</returns>
+    protected abstract Task<bool> LaunchAsync(GameInstallation gameInstallation, 
+        // TODO-14: Remove this. Instead provide additional launch options for each game. Win32 and Emu will use this for a
+        //          run as admin option. EDU can use this for each of its launch modes, such as GB1, GB2 etc.
+        bool forceRunAsAdmin);
 
     /// <summary>
     /// Post launch operations for the game which launched
     /// </summary>
-    /// <param name="process">The game process</param>
     /// <returns>The task</returns>
-    protected virtual async Task PostLaunchAsync(Process? process)
+    protected virtual async Task PostLaunchAsync()
     {
-        // Dispose the process
-        process?.Dispose();
-
         // Check if the application should close
         if (Services.Data.App_CloseAppOnGameLaunch)
             await App.Current.ShutdownAppAsync(false);
@@ -328,19 +319,12 @@ public abstract class GameDescriptor
     {
         Logger.Trace("The game {0} is being launched...", Id);
 
-        // Verify that the game can launch
-        if (!await VerifyCanLaunchAsync(gameInstallation))
-        {
-            Logger.Info("The game {0} could not be launched", Id);
-            return;
-        }
+        // Launch the game
+        bool success = await LaunchAsync(gameInstallation, forceRunAsAdmin);
 
-        // Launch the game and get the process if available
-        GameLaunchResult launchResult = await LaunchAsync(gameInstallation, forceRunAsAdmin);
-
-        if (launchResult.SuccessfulLaunch)
-            // Run any post launch operations on the process
-            await PostLaunchAsync(launchResult.GameProcess);
+        if (success)
+            // Run any post launch operations
+            await PostLaunchAsync();
     }
 
     /// <summary>
@@ -365,6 +349,7 @@ public abstract class GameDescriptor
     /// <returns>True if the game is valid, otherwise false</returns>
     public bool IsValid(FileSystemPath installDir) => Services.Data.App_DisableGameValidation || IsGameLocationValid(installDir);
 
+    // TODO-14: Rename to OnGameAddedAsync
     /// <summary>
     /// Gets called as soon as the game is added
     /// </summary>
@@ -372,6 +357,7 @@ public abstract class GameDescriptor
     /// <returns>The task</returns>
     public virtual Task PostGameAddAsync(GameInstallation gameInstallation) => Task.CompletedTask;
 
+    // TODO-14: Rename to OnGameRemovedAsync
     /// <summary>
     /// Gets called as soon as the game is removed
     /// </summary>
@@ -419,13 +405,6 @@ public abstract class GameDescriptor
         LocalizedString Header,
         string Path, 
         GenericIconKind Icon = GenericIconKind.GameDisplay_Purchase);
-
-    /// <summary>
-    /// The result from launching a game
-    /// </summary>
-    protected record GameLaunchResult(
-        Process? GameProcess, 
-        bool SuccessfulLaunch);
 
     #endregion
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
@@ -35,7 +34,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
         })
     };
 
-    protected override async Task PostLaunchAsync(Process? process)
+    protected override async Task PostLaunchAsync()
     {
         // Check if the launch message should show
         if (!Services.Data.Game_ShownRabbidsActivityCenterLaunchMessage)
@@ -47,7 +46,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
         }
 
         // Run the base code
-        await base.PostLaunchAsync(process);
+        await base.PostLaunchAsync();
     }
 
     #endregion

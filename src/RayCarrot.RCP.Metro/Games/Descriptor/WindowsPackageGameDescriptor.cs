@@ -67,7 +67,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override async Task<GameLaunchResult> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
     {
         try
         {
@@ -76,21 +76,19 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
             if (package == null)
             {
                 // TODO-14: Handle? Only log?
-                return new GameLaunchResult(null, false);
+                return false;
             }
 
             // Launch the first app entry for the package
             AppListEntry mainEntry = (await package.GetAppListEntriesAsync()).First();
-            await mainEntry.LaunchAsync();
-
-            return new GameLaunchResult(null, true);
+            return await mainEntry.LaunchAsync();
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Launching Windows Store application");
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, DisplayName));
 
-            return new GameLaunchResult(null, false);
+            return false;
         }
     }
 

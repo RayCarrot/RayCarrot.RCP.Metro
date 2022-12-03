@@ -12,13 +12,13 @@ public class GamesManager
 {
     #region Constructor
 
-    public GamesManager(AppUserData data, IMessageUIManager messageUi, IMessenger messenger)
+    public GamesManager(AppUserData data, IMessenger messenger)
     {
         Data = data ?? throw new ArgumentNullException(nameof(data));
-        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
         // TODO-14: Remove Windows Package apps if OS is older than 8?
+        // TODO-14: Reorder these here since demo category is removed. Order here shouldn't matter in the app though.
         GameDescriptors = new GameDescriptor[]
         {
             new GameDescriptor_Rayman1_MSDOS(),
@@ -78,6 +78,11 @@ public class GamesManager
             new GameDescriptor_RaymanGardenPLUS_Win32(),
             new GameDescriptor_GloboxMoment_Win32(),
         }.ToDictionary(x => x.Id);
+
+        EmulatorDescriptors = new EmulatorDescriptor[]
+        {
+            new DOSBoxEmulatorDescriptor(),
+        }.ToDictionary(x => x.EmulatorId);
     }
 
     #endregion
@@ -91,17 +96,14 @@ public class GamesManager
     #region Services
 
     private AppUserData Data { get; }
-    private IMessageUIManager MessageUI { get; } // TODO-14: Remove need for this
     private IMessenger Messenger { get; }
 
     #endregion
 
     #region Private Properties
 
-    /// <summary>
-    /// The available game infos
-    /// </summary>
     private Dictionary<string, GameDescriptor> GameDescriptors { get; }
+    private Dictionary<string, EmulatorDescriptor> EmulatorDescriptors { get; }
 
     #endregion
 
@@ -170,7 +172,7 @@ public class GamesManager
 
     #endregion
 
-    #region Public Methods
+    #region Public Game Methods
 
     /// <summary>
     /// Adds a new game to the app data
@@ -222,7 +224,7 @@ public class GamesManager
         Messenger.Send(new RemovedGamesMessage(gameInstallations));
     }
 
-    // TODO-14: Should we sort these?
+    // TODO-14: Should we sort these? The order here should not be assumed. Check for game add dialog how it's handled.
     /// <summary>
     /// Enumerates the installed games
     /// </summary>
@@ -270,6 +272,37 @@ public class GamesManager
         
         // TODO-14: Add check and throw if not found?
         return GameDescriptors[id];
+    }
+
+    #endregion
+
+    #region Public Emulator Methods
+
+    /// <summary>
+    /// Gets an emulator descriptor from the id
+    /// </summary>
+    /// <param name="emulatorId">The emulator id</param>
+    /// <returns>The matching emulator descriptor</returns>
+    public EmulatorDescriptor GetEmulatorDescriptor(string emulatorId)
+    {
+        if (emulatorId == null)
+            throw new ArgumentNullException(nameof(emulatorId));
+
+        // TODO-14: Add check and throw if not found?
+        return EmulatorDescriptors[emulatorId];
+    }
+
+    /// <summary>
+    /// Gets an emulator installation from the installation id
+    /// </summary>
+    /// <param name="installationId">The emulator installation id</param>
+    /// <returns>The matching emulator installation or null if not found</returns>
+    public EmulatorInstallation? GetEmulatorInstallation(string installationId)
+    {
+        if (installationId == null)
+            throw new ArgumentNullException(nameof(installationId));
+
+        return Data.Game_EmulatorInstallations.FirstOrDefault(x => x.InstallationId == installationId);
     }
 
     #endregion

@@ -54,6 +54,7 @@ public class AppUserData : BaseViewModel
 
         // Game
         Game_GameInstallations = new List<GameInstallation>();
+        Game_EmulatorInstallations = new List<EmulatorInstallation>();
         Game_AutoLocateGames = true;
         Game_RabbidsGoHomeLaunchData = null;
         Game_ShownRabbidsActivityCenterLaunchMessage = false;
@@ -115,6 +116,7 @@ public class AppUserData : BaseViewModel
             
         // Game
         Game_GameInstallations ??= new List<GameInstallation>();
+        Game_EmulatorInstallations ??= new List<EmulatorInstallation>();
 
         // Mod
         Mod_RRR_ToggleStates ??= new Dictionary<string, UserData_Mod_RRR_ToggleState>();
@@ -256,6 +258,11 @@ public class AppUserData : BaseViewModel
     /// </summary>
     public List<GameInstallation> Game_GameInstallations { get; set; }
 
+    /// <summary>
+    /// The installed emulators
+    /// </summary>
+    public List<EmulatorInstallation> Game_EmulatorInstallations { get; set; }
+
     // TODO-14: Remove most of the below games properties in favor of new AdditionalData system
 
     /// <summary>
@@ -277,6 +284,7 @@ public class AppUserData : BaseViewModel
 
     #region Emulator
 
+    // TODO-14: Remove these
     /// <summary>
     /// The path for the DosBox file
     /// </summary>

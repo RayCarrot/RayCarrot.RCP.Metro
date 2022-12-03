@@ -27,7 +27,7 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MSDOSGameDes
     
     public override bool HasArchives => true;
 
-    public override bool RequiresMounting => false;
+    public override bool RequiresDisc => false;
     public override string ExecutableName => "RAYKIT.EXE";
 
     #endregion

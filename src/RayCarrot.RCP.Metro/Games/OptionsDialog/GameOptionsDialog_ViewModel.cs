@@ -42,12 +42,13 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         if (configViewModel != null)
             pages.Add(configViewModel);
 
+        // TODO-14: This has to be changed since the emulator selection can change after this has been set
         // Add the emulator config page
-        Emulator? emu = gameDescriptor.Emulator;
-        GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GetGameConfigViewModel(gameInstallation);
+        //Emulator? emu = gameDescriptor.Emulator;
+        //GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GetGameConfigViewModel(gameInstallation);
 
-        if (emuConfigViewModel != null)
-            pages.Add(emuConfigViewModel);
+        //if (emuConfigViewModel != null)
+        //    pages.Add(emuConfigViewModel);
 
         // Add the utilities page
         UtilityViewModel[] utilities = gameDescriptor.GetUtilities(gameInstallation).Select(x => new UtilityViewModel(x)).ToArray();

@@ -26,7 +26,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override async Task<GameLaunchResult> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
+    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation, bool forceRunAsAdmin)
     {
         // Get the launch info
         FileSystemPath launchPath = GetLaunchFilePath(gameInstallation);
@@ -42,7 +42,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
 
         Logger.Info("The game {0} has been launched", Id);
 
-        return new GameLaunchResult(process, process != null);
+        return process != null;
     }
 
     /// <summary>
