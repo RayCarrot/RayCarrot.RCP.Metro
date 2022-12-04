@@ -221,13 +221,13 @@
 
                                             <Button x:Name="PanelRefreshButton"
                                                     Grid.Column="2"
-                                                    Visibility="{Binding Path=CanRefresh, Converter={local:BooleanToVisibilityConverter}}"
+                                                    Visibility="{Binding Path=CanRefresh, Converter={local:BooleanToVisibilityHiddenConverter}}"
                                                     Opacity="0"
                                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                                     ToolTip="Refresh"
                                                     Command="{Binding Path=RefreshCommand, Mode=OneTime}"
                                                     local:ButtonAssist.IconKind="Refresh"
-                                                    local:ButtonAssist.IconSize="16" />
+                                                    local:ButtonAssist.IconSize="12" />
 
                                         </Grid>
 
