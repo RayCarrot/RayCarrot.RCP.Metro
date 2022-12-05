@@ -191,12 +191,9 @@
                                     <StackPanel>
                                         <ItemsControl ItemsSource="{Binding Path=GameOptions}">
                                             <ItemsControl.Resources>
-                                                <!-- TODO: Move elsewhere? -->
+                                                <!-- Data templates -->
                                                 <DataTemplate DataType="{x:Type options:Win32GameOptionsViewModel}">
-                                                    <mah:ToggleSwitch Content="Run as admin"
-                                                                      Margin="6"
-                                                                      Background="{DynamicResource RCP.Brushes.Card.Popup}"
-                                                                      IsOn="{Binding Path=RunAsAdmin}" />
+                                                    <options:Win32GameOptionsControl />
                                                 </DataTemplate>
                                             </ItemsControl.Resources>
                                             <ItemsControl.ItemTemplate>
