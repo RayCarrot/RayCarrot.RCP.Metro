@@ -336,7 +336,7 @@
     <!-- Progression Game -->
 
     <DataTemplate x:Key="DataTemplate.ProgressionGame" DataType="{x:Type local:GameProgressionViewModel}">
-        <local:Card Margin="8" Padding="0">
+        <local:Card Margin="{StaticResource RCP.Thicknesses.Card}" Padding="0">
             <Expander Header="{Binding}"
                       HeaderTemplate="{StaticResource DataTemplate.ProgressionGameHeader}"
                       IsExpanded="{Binding Path=IsExpanded}">

@@ -9,4 +9,6 @@
 
     <Thickness x:Key="RCP.Thicknesses.Horizontal">0 0 8 0</Thickness>
 
+    <Thickness x:Key="RCP.Thicknesses.Card">8</Thickness>
+
 </ResourceDictionary>

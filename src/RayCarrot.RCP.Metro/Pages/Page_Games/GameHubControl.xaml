@@ -188,7 +188,7 @@
                                 <local:Card x:Name="PanelCard"
                                             Visibility="{Binding Path=IsEmpty, Converter={local:InvertedBooleanToVisibilityConverter}}"
                                             Height="135" 
-                                            Margin="8" 
+                                            Margin="{StaticResource RCP.Thicknesses.Card}"
                                             Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
                                     <Grid>
                                         <Grid.RowDefinitions>
