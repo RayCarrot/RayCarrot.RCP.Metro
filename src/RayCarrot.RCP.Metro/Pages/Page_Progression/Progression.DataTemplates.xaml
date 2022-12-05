@@ -18,7 +18,8 @@
                    Width="48" Height="48"
                    Margin="0 0 8 0" />
 
-            <TextBlock Text="{Binding Path=Text.Value}"
+            <TextBlock Text="{Binding Path=Value}"
+                       DataContext="{Binding Path=Text, Mode=OneTime}"
                        FontSize="22"
                        FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
                        VerticalAlignment="Center"
@@ -49,7 +50,8 @@
                        Margin="0 0 15 0" />
 
             <TextBlock Grid.Column="2"
-                       Text="{Binding Path=Text.Value}"
+                       Text="{Binding Path=Value}"
+                       DataContext="{Binding Path=Text, Mode=OneTime}"
                        FontSize="18"
                        FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
                        VerticalAlignment="Center" />

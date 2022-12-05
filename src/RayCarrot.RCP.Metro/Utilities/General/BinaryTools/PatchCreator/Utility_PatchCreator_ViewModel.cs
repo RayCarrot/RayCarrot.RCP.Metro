@@ -66,9 +66,7 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     #region Data Types
 
-    public record GameItem(GameDescriptor GameDescriptor,
-        // TODO: LocalizedString
-        string DisplayName);
+    public record GameItem(GameDescriptor GameDescriptor, LocalizedString DisplayName);
 
     #endregion
 }

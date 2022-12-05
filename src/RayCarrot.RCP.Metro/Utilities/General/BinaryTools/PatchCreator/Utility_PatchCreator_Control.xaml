@@ -20,8 +20,14 @@
         <ComboBox Grid.Column="0"
                   Margin="0 0 10 0"
                   ItemsSource="{Binding Path=Games, Mode=OneTime}"
-                  SelectedItem="{Binding Path=SelectedGame}"
-                  DisplayMemberPath="DisplayName" />
+                  SelectedItem="{Binding Path=SelectedGame}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Value}"
+                               DataContext="{Binding Path=DisplayName, Mode=OneTime}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>

@@ -35,7 +35,8 @@
                                Width="24" Height="24"
                                Margin="0 0 8 0" />
 
-                        <TextBlock Text="{Binding Path=Text.Value}"
+                        <TextBlock Text="{Binding Path=Value}"
+                                   DataContext="{Binding Path=Text, Mode=OneTime}"
                                    FontSize="14"
                                    FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
                                    VerticalAlignment="Center"
