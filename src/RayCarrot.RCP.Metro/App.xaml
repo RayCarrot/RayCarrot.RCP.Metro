@@ -39,6 +39,7 @@
                 <ResourceDictionary Source="UI/Styles/ChildWindow.xaml" />
                 <ResourceDictionary Source="UI/Styles/Window.xaml" />
                 <ResourceDictionary Source="UI/Styles/Expander.xaml" />
+                <ResourceDictionary Source="UI/Styles/GroupBox.xaml" />
 
                 <ResourceDictionary Source="UI/Controls/BrowseBox/BrowseBox.xaml" />
                 <ResourceDictionary Source="UI/Controls/Card/Card.xaml" />

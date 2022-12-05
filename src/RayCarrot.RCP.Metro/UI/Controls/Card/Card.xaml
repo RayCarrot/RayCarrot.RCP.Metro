@@ -62,11 +62,4 @@
         <Setter Property="UniformCornerRadius" Value="{StaticResource CornerRadiusDouble.Large}"/>
     </Style>
 
-    <Style x:Key="RCP.Styles.Card.Popup" TargetType="{x:Type local:Card}" BasedOn="{StaticResource {x:Type local:Card}}">
-        <Setter Property="Background" Value="{DynamicResource RCP.Brushes.Popup.Background}" />
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="UniformCornerRadius" Value="{StaticResource CornerRadiusDouble.Default}"/>
-    </Style>
-
 </ResourceDictionary>

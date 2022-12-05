@@ -203,6 +203,26 @@ public class Page_Games_ViewModel : BasePageViewModel,
         }
     }
 
+    public async Task RefreshInstallations(IList<GameInstallation> gameInstallations)
+    {
+        using (await AsyncLock.LockAsync())
+        {
+            foreach (InstalledGameCategoryViewModel gameCategory in GameCategories)
+            {
+                foreach (InstalledGameGroupViewModel gameGroup in gameCategory.GameGroups)
+                {
+                    foreach (InstalledGameViewModel installedGame in gameGroup.InstalledGames)
+                    {
+                        if (gameInstallations.Contains(installedGame.GameInstallation))
+                        {
+                            await installedGame.RefreshAsync();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public async Task FindGamesAsync(bool runInBackground)
     {
         if (IsGameFinderRunning)
@@ -308,9 +328,8 @@ public class Page_Games_ViewModel : BasePageViewModel,
         await RefreshAsync(message.GameInstallations.FirstOrDefault());
     public async void Receive(RemovedGamesMessage message) =>
         await RefreshAsync(SelectedInstalledGame?.GameInstallation);
-    // NOTE: We could optimize this by just refreshing the game which has been modified, but atm it's not worth it
     public async void Receive(ModifiedGamesMessage message) =>
-        await RefreshAsync(SelectedInstalledGame?.GameInstallation);
+        await RefreshInstallations(message.GameInstallations);
 
     #endregion
 }

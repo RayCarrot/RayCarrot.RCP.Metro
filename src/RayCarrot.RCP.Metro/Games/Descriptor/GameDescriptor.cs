@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -12,6 +13,7 @@ namespace RayCarrot.RCP.Metro;
 // TODO-14: Move descriptors to folders based on platform?
 // TODO-14: Minimize the amount of methods here which do things by moving to manager classes. The descriptor should really only
 //          be for providing data about the game.
+// TODO-14: Consistent naming. Should 'game' be included in member names?
 
 // It may be temping to have the games which inherit from GameDescriptor to be built up in a sort of hierarchy where they
 // inherit from base classes, such as the 3 Fiesta Run game editions inheriting from a base Fiesta Run class, but we
@@ -202,6 +204,9 @@ public abstract class GameDescriptor
     /// <param name="gameInstallation">The game installation to get the options for</param>
     /// <returns>The options UI or null if not available</returns>
     public virtual FrameworkElement? GetOptionsUI(GameInstallation gameInstallation) => null; // TODO-14: Don't use UI elements like this - use vm + template instead!
+
+    public virtual IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation)
+        => Enumerable.Empty<GameOptionsViewModel>();
 
     /// <summary>
     /// Gets the config page view model, if any is available

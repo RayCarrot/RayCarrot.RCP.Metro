@@ -98,6 +98,9 @@ public class DefaultPopupBehavior : Behavior<PopupEx>
 
     private void ParentScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
     {
+        if (e.VerticalChange == 0 && e.HorizontalChange == 0)
+            return;
+
         AssociatedObject.IsOpen = false;
     }
 

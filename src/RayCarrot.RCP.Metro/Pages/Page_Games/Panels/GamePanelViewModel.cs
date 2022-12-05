@@ -55,13 +55,12 @@ public abstract class GamePanelViewModel : BaseViewModel
         if (!_hasLoaded)
             return;
 
-        _hasLoaded = false;
         await LoadAsync();
     }
 
     public async Task LoadAsync()
     {
-        if (IsLoading || _hasLoaded)
+        if (IsLoading)
             return;
 
         try

@@ -1,73 +1,13 @@
 ﻿<UserControl x:Class="RayCarrot.RCP.Metro.GameOptions_Control"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="650" d:DataContext="{d:DesignInstance local:GameOptionsDialog_OptionsPageViewModel}">
-    <StackPanel>
-        <i:Interaction.Behaviors>
-            <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-        </i:Interaction.Behaviors>
-
-        <!-- Information -->
-
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx GameOptions_Info}" />
-
-        <local:DuoGrid ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}" />
-
-        <Separator Visibility="{Binding Path=HasOptionsOrCanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}" />
-
-        <!-- Launch Mode -->
-
-        <StackPanel Orientation="Horizontal"
-                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
-
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx GameOptions_LaunchMode}" />
-
-            <local:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
-
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal"
-                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
-
-            <i:Interaction.Behaviors>
-                <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Horizontal}" />
-            </i:Interaction.Behaviors>
-
-            <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
-                                       IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
-                                       Command="{Binding Path=LaunchModeChangedCommand, Mode=OneTime}"
-                                       ToolTip="{Resx GameOptions_LaunchMode_AsInvokerInfo}" />
-
-            <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
-                                       IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
-                                       Command="{Binding Path=LaunchModeChangedCommand, Mode=OneTime}"
-                                       ToolTip="{Resx GameOptions_LaunchMode_AsAdminOptionInfo}" />
-
-            <local:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
-                                       IsChecked="{Binding Path=LaunchMode, Converter={local:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
-                                       Command="{Binding Path=LaunchModeChangedCommand, Mode=OneTime}"
-                                       ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}" />
-
-        </StackPanel>
-
-        <Grid Visibility="{Binding Path=CanChangeLaunchMode, Converter={local:BooleanToVisibilityConverter}}">
-            <Separator Visibility="{Binding Path=OptionsContent, Converter={local:InvertedObjectNullToVisibilityConverter}}" />
-        </Grid>
-
-        <!-- Options Content -->
-
-        <ContentPresenter Content="{Binding Path=OptionsContent}"
-                          local:UnifiedMargin.Ignored="True" />
-
-    </StackPanel>
+    <ContentPresenter Content="{Binding Path=OptionsContent}" />
 </UserControl>

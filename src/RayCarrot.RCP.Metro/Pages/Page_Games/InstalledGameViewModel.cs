@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using BinarySerializer;
 using NLog;
+using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
@@ -28,16 +29,15 @@ public class InstalledGameViewModel : BaseViewModel
         PlatformDisplayName = platformInfo.DisplayName;
         PlatformIconSource = $"{AppViewModel.WPFApplicationBasePath}Img/GamePlatformIcons/{platformInfo.Icon.GetAttribute<ImageFileAttribute>()!.FileName}";
 
+        // Set banner image
         string bannerFileName = gameInstallation.GameDescriptor.Banner.GetAttribute<ImageFileAttribute>()?.FileName ?? "Default.png";
         GameBannerImageSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameBanners/{bannerFileName}";
 
-        // TODO-UPDATE: Reload all of these when the game info changes since paths etc. might be different
+        // Create collections
         GamePanels = new ObservableCollection<GamePanelViewModel>();
-        AddGamePanels();
-
         AdditionalLaunchActions = new ObservableActionItemsCollection();
-        AddAdditionalLaunchActions();
 
+        // Set other properties
         CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallInfo>(GameDataKey.RCPGameInstallInfo) != null;
 
         // Create commands
@@ -53,6 +53,12 @@ public class InstalledGameViewModel : BaseViewModel
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Private Fields
+
+    private bool _loaded;
 
     #endregion
 
@@ -87,12 +93,21 @@ public class InstalledGameViewModel : BaseViewModel
     /// </summary>
     public bool CanUninstall { get; }
 
+    /// <summary>
+    /// The game info items
+    /// </summary>
+    public ObservableCollection<DuoGridItemViewModel>? GameInfoItems { get; set; }
+
+    public ObservableCollection<GameOptionsViewModel>? GameOptions { get; set; }
+
     #endregion
 
     #region Private Methods
 
     private void AddGamePanels()
     {
+        GamePanels.Clear();
+
         // Patcher
         if (GameDescriptor.AllowPatching)
             GamePanels.Add(new PatcherGamePanelViewModel(GameInstallation));
@@ -108,6 +123,8 @@ public class InstalledGameViewModel : BaseViewModel
 
     private void AddAdditionalLaunchActions()
     {
+        AdditionalLaunchActions.Clear();
+
         // Add additional launch actions
         AdditionalLaunchActions.AddGroup(GameDescriptor.GetAdditionalLaunchActions(GameInstallation));
 
@@ -202,13 +219,43 @@ public class InstalledGameViewModel : BaseViewModel
             })));
     }
 
+    private Task ReloadAsync()
+    {
+        // TODO-14: Async lock
+
+        // Load info
+        GameInfoItems = new ObservableCollection<DuoGridItemViewModel>(GameInstallation.GameDescriptor.GetGameInfoItems(GameInstallation));
+
+        // Load additional launch actions
+        AddAdditionalLaunchActions();
+
+        // Load panels
+        AddGamePanels();
+        return Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
+    }
+
     #endregion
 
     #region Public Methods
 
     public Task LoadAsync()
     {
-        return Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
+        if (_loaded)
+            return Task.CompletedTask;
+
+        _loaded = true;
+
+        // Only get the options once when we load
+        GameOptions = new ObservableCollection<GameOptionsViewModel>(GameDescriptor.GetOptionsViewModels(GameInstallation));
+        return ReloadAsync();
+    }
+
+    public Task RefreshAsync()
+    {
+        if (!_loaded)
+            return Task.CompletedTask;
+
+        return ReloadAsync();
     }
 
     public Task LaunchAsync() => GameDescriptor.LaunchGameAsync(GameInstallation);

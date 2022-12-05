@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using NLog;
+using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -48,9 +49,8 @@ public abstract class Win32GameDescriptor : GameDescriptor
 
     protected override Task<bool> LaunchAsync(GameInstallation gameInstallation)
     {
-        UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
-
-        return LaunchAsync(gameInstallation, launchMode == UserData_GameLaunchMode.AsAdmin);
+        bool runAsAdmin = gameInstallation.GetValue(GameDataKey.Win32_RunAsAdmin, false);
+        return LaunchAsync(gameInstallation, runAsAdmin);
     }
 
     /// <summary>
@@ -82,12 +82,19 @@ public abstract class Win32GameDescriptor : GameDescriptor
         new LocateGameAddAction(this),
     };
 
+    public override IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation) =>
+        base.GetOptionsViewModels(gameInstallation).Concat(new GameOptionsViewModel[]
+        {
+            new Win32GameOptionsViewModel(gameInstallation)
+        });
+
     public override IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
     {
         // Add run as admin option
-        UserData_GameLaunchMode launchMode = gameInstallation.GetValue<UserData_GameLaunchMode>(GameDataKey.Win32LaunchMode);
+        bool runAsAdmin = gameInstallation.GetValue(GameDataKey.Win32_RunAsAdmin, false);
 
-        if (launchMode != UserData_GameLaunchMode.AsAdminOption)
+        // Don't include run as admin option if set to always do so
+        if (runAsAdmin)
             return Enumerable.Empty<ActionItemViewModel>();
 
         return new[]
