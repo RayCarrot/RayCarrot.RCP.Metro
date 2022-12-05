@@ -1,29 +1,27 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using NLog;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Options;
 
 /// <summary>
-/// View model for the Rayman 3 Print Studio options
+/// View model for the Rayman 3 Print Studio game options
 /// </summary>
-public class GameOptions_PrintStudio_ViewModel : BaseRCPViewModel
+public class Rayman3PrintStudioGameOptionsViewModel : GameOptionsViewModel
 {
     #region Constructor
 
-    public GameOptions_PrintStudio_ViewModel(GameInstallation gameInstallation)
+    public Rayman3PrintStudioGameOptionsViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     {
         // Create properties
         AsyncLock = new AsyncLock();
-        GameInstallation = gameInstallation;
 
         // Get the .mms file path
         MMSFilePath = gameInstallation.InstallLocation + "Run.MMS";
 
-        var currentVersion = GetCurrentVersion();
+        PrintStudioVersion? currentVersion = GetCurrentVersion();
 
         CanSetVersion = currentVersion != null;
         _selectedVersion = currentVersion ?? PrintStudioVersion.Version_03;
@@ -51,8 +49,6 @@ public class GameOptions_PrintStudio_ViewModel : BaseRCPViewModel
     /// The .mms file path
     /// </summary>
     private FileSystemPath MMSFilePath { get; }
-
-    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The async lock for <see cref="UpdatePrintStudioVersionAsync"/>

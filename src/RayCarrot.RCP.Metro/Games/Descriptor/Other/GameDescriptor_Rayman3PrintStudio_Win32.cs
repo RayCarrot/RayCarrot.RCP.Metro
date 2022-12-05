@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
+using System.Linq;
+using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -35,8 +36,11 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
         })
     };
 
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
-        new GameOptions_PrintStudio_Control(new GameOptions_PrintStudio_ViewModel(gameInstallation));
+    public override IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation) =>
+        base.GetOptionsViewModels(gameInstallation).Concat(new GameOptionsViewModel[]
+        {
+            new Rayman3PrintStudioGameOptionsViewModel(gameInstallation)
+        });
 
     #endregion
 }
