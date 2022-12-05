@@ -36,13 +36,15 @@
             <local:GameIcon Grid.Column="0"
                             IconSize="Medium"
                             IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
-                            Source="{Binding Path=IconSource, Mode=OneTime}" />
+                            Source="{Binding Path=IconSource, Mode=OneTime}"
+                            d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GameIcons/Rayman2.png" />
 
             <!-- Title -->
 
             <TextBlock Grid.Column="1"
                        Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
                        Text="{Binding Path=DisplayName, Mode=OneTime}"
+                       d:Text="Rayman 2"
                        VerticalAlignment="Center"
                        TextTrimming="WordEllipsis"
                        Margin="20 0 0 0" />
@@ -53,6 +55,7 @@
 
         <metro:MetroAnimatedTabControl Grid.Row="1"
                                        ItemsSource="{Binding Path=Pages, Mode=OneTime}"
+                                       d:ItemsSource="{d:SampleData ItemCount=4}"
                                        SelectedItem="{Binding Path=SelectedPage}"
                                        SelectionChanged="PagesTabControl_OnSelectionChanged">
 
