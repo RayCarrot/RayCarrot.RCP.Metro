@@ -125,7 +125,7 @@
                                 <!-- Options -->
                                 <Button Grid.Column="1"
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
-                                        local:ButtonAssist.IconKind="{StaticResource RCP.Icons.Settings}"
+                                        local:IconAssist.IconKind="{StaticResource RCP.Icons.Settings}"
                                         Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}"
                                         ToolTip="{Resx GameDisplay_Options}"
                                         Margin="0 0 4 0"/>
@@ -135,18 +135,18 @@
                                         <!-- TODO-UPDATE: Add rename game option -->
                                         <Button Content="{Resx GameOptions_CreateShortcut}"
                                                 Command="{Binding Path=CreateShortcutCommand, Mode=OneTime}"
-                                                local:ButtonAssist.IconKind="Link"
-                                                local:ButtonAssist.IconBrush="{StaticResource RCP.Brushes.Info}" />
+                                                local:IconAssist.IconKind="Link"
+                                                local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Info}" />
                                         <Separator />
                                         <Button Content="{Resx GameOptions_Remove}"
                                                 Command="{Binding Path=RemoveCommand, Mode=OneTime}"
-                                                local:ButtonAssist.IconKind="DeleteOutline"
-                                                local:ButtonAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}" />
+                                                local:IconAssist.IconKind="DeleteOutline"
+                                                local:IconAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}" />
                                         <Button Content="{Resx GameOptions_Uninstall}"
                                                 Visibility="{Binding Path=CanUninstall, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}"
                                                 Command="{Binding Path=UninstallCommand, Mode=OneTime}"
-                                                local:ButtonAssist.IconKind="DeleteForeverOutline"
-                                                local:ButtonAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}" />
+                                                local:IconAssist.IconKind="DeleteForeverOutline"
+                                                local:IconAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}" />
                                     </StackPanel>
                                 </local:PopupCard>
 
@@ -226,8 +226,8 @@
                                                     Style="{StaticResource RCP.Styles.Button.Flat}"
                                                     ToolTip="Refresh"
                                                     Command="{Binding Path=RefreshCommand, Mode=OneTime}"
-                                                    local:ButtonAssist.IconKind="Refresh"
-                                                    local:ButtonAssist.IconSize="12" />
+                                                    local:IconAssist.IconKind="Refresh"
+                                                    local:IconAssist.IconSize="12" />
 
                                         </Grid>
 

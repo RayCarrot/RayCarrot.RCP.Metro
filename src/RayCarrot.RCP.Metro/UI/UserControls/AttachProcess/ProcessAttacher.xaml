@@ -59,14 +59,14 @@
                     Margin="0 0 10 0"
                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                     Content="{Resx Page_Refresh}"
-                    local:ButtonAssist.IconKind="Refresh"
+                    local:IconAssist.IconKind="Refresh"
                     Command="{Binding Path=RefreshProcessesCommand, Mode=OneTime}" />
 
             <Button Grid.Column="2"
                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                     IsEnabled="{Binding Path=SelectedProcess, Converter={local:IsNotNullConverter}}"
                     Content="{Resx ProcessAttacher_Attach}"
-                    local:ButtonAssist.IconKind="Connection"
+                    local:IconAssist.IconKind="Connection"
                     Command="{Binding Path=AttachProcessCommand, Mode=OneTime}" />
 
         </Grid>
@@ -96,7 +96,7 @@
             <Button Style="{StaticResource RCP.Styles.Button.IconContent}"
                     HorizontalAlignment="Left"
                     Content="{Resx ProcessAttacher_Detach}"
-                    local:ButtonAssist.IconKind="Cancel"
+                    local:IconAssist.IconKind="Cancel"
                     Command="{Binding Path=DetachProcessCommand, Mode=OneTime}" />
 
         </StackPanel>

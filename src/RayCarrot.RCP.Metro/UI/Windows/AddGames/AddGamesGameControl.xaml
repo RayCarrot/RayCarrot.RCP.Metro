@@ -48,7 +48,7 @@
                     <Button Margin="4 0 0 0"
                             Style="{StaticResource RCP.Styles.Button.Flat}"
                             Content="{Binding Path=Header.Value}"
-                            local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                            local:IconAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
                             IsEnabled="{Binding Path=IsAvailable}"
                             Command="{Binding Path=DataContext.AddGameCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Mode=OneTime}"
                             CommandParameter="{Binding Mode=OneTime}" />
@@ -64,8 +64,8 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Content="{Binding Path=Header.Value}"
-                                local:ButtonAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                local:ButtonAssist.IconBrush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                local:IconAssist.IconKind="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                local:IconAssist.IconBrush="{Binding Path=Icon, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
                                 Command="{Binding Path=OpenLinkCommand, Mode=OneTime}"
                                 ToolTip="{Binding Path=Path, Mode=OneTime}" />
                     </DataTemplate>

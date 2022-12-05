@@ -158,7 +158,7 @@
                     Command="{Binding Path=ApplyMemoryPatchCommand, Mode=OneTime}"
                     HorizontalAlignment="Left"
                     Margin="{StaticResource RCP.Thicknesses.Vertical}"
-                    local:ButtonAssist.IconKind="AutoFix"
+                    local:IconAssist.IconKind="AutoFix"
                     Content="{Resx Mod_RRR_ApplyMemoryMod}" />
 
         </Grid>
@@ -217,7 +217,7 @@
                         ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=ApplyExePatchCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsExePatched, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                        local:ButtonAssist.IconKind="AutoFix"
+                        local:IconAssist.IconKind="AutoFix"
                         Content="{Resx Mod_RRR_ApplyExePatch}"/>
 
                     <!-- Revert Exe Patch -->
@@ -227,7 +227,7 @@
                         ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=RevertExePatchCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsExePatched, Converter={local:BooleanToVisibilityConverter}}"
-                        local:ButtonAssist.IconKind="UndoVariant"
+                        local:IconAssist.IconKind="UndoVariant"
                         Content="{Resx Mod_RRR_RevertExePatch}" />
 
                 <!-- Download Patched BF -->
@@ -237,7 +237,7 @@
                         IsEnabled="{Binding Path=CanDownloadPatchedBF}"
                         Command="{Binding Path=DownloadPatchedBFCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:InvertedBooleanToVisibilityConverter}}"
-                        local:ButtonAssist.IconKind="DownloadOutline"
+                        local:IconAssist.IconKind="DownloadOutline"
                         Content="{Resx Mod_RRR_DownloadBFPatch}" />
 
                 <!-- Remove Patched BF -->
@@ -246,7 +246,7 @@
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         Command="{Binding Path=RemovePatchedBFCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={local:BooleanToVisibilityConverter}}"
-                        local:ButtonAssist.IconKind="DeleteOutline"
+                        local:IconAssist.IconKind="DeleteOutline"
                         Content="{Resx Mod_RRR_RemoveBFPatch}" />
 
             </StackPanel>
@@ -311,14 +311,14 @@
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         HorizontalAlignment="Left"
                         IsEnabled="{Binding Path=CanUpdatePatchedBF}"
-                        local:ButtonAssist.IconKind="FileEditOutline"
+                        local:IconAssist.IconKind="FileEditOutline"
                         Content="{Resx Mod_RRR_UpdateBFPatch}" />
 
                 <Button Command="{Binding Path=LaunchWithPatchedBFCommand, Mode=OneTime}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         HorizontalAlignment="Left"
                         IsEnabled="{Binding Path=IsPatchedBFDownloaded}"
-                        local:ButtonAssist.IconKind="PlayOutline"
+                        local:IconAssist.IconKind="PlayOutline"
                         Content="{Resx Mod_RRR_LaunchBFPatch}" />
 
             </StackPanel>

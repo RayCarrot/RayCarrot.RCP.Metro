@@ -19,39 +19,39 @@
 
             <Button Content="Show Applied Utilities"
                     Command="{Binding Path=ShowInstalledUtilitiesCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="BriefcaseOutline"/>
+                    local:IconAssist.IconKind="BriefcaseOutline"/>
 
             <Button Content="Show Log"
                     Command="{Binding Path=ShowLogCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="Text"/>
+                    local:IconAssist.IconKind="Text"/>
 
             <Button Content="Show Welcome Window"
                     Command="{Binding Path=ShowWelcomeWindowCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="InformationOutline"/>
+                    local:IconAssist.IconKind="InformationOutline"/>
 
             <Button Content="Restart as administrator"
                     Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="Security"/>
+                    local:IconAssist.IconKind="Security"/>
 
             <Button Content="Run load operation"
                     Command="{Binding Path=RunLoadOperationCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="CircleOutline"/>
+                    local:IconAssist.IconKind="CircleOutline"/>
 
             <Button Content="Collect garbage"
                     Command="{Binding Path=GCCollectCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="Memory"/>
+                    local:IconAssist.IconKind="Memory"/>
 
             <Button Content="Throw unhandled exception"
                     Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="Exclamation"/>
+                    local:IconAssist.IconKind="Exclamation"/>
 
             <Button Content="Throw unhandled exception async"
                     Command="{Binding Path=ThrowUnhandledExceptionAsyncCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="Exclamation"/>
+                    local:IconAssist.IconKind="Exclamation"/>
 
             <Button Content="Shutdown app"
                     Command="{Binding Path=ShutdownAppCommand, Mode=OneTime}"
-                    local:ButtonAssist.IconKind="CloseOutline"/>
+                    local:IconAssist.IconKind="CloseOutline"/>
 
         </StackPanel>
     </local:BasePage.PopupMenu>
@@ -291,20 +291,20 @@
                                 ToolTip="Generates a JSON file from the selected patch files. This JSON file is only used locally to generate the actual web files. The array in it allows the patch order and other properties to be modified."
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                local:ButtonAssist.IconKind="CodeJson"
+                                local:IconAssist.IconKind="CodeJson"
                                 Command="{Binding Path=ExportWebPatchesJSONCommand, Mode=OneTime}"/>
 
                         <Button Content="Generate web files" 
                                 ToolTip="Generates all the files to be hosted for external patches from a JSON file."
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                local:ButtonAssist.IconKind="DatabaseExportOutline"
+                                local:IconAssist.IconKind="DatabaseExportOutline"
                                 Command="{Binding Path=ExportWebPatchesFilesCommand, Mode=OneTime}"/>
 
                         <Button Content="Extract library (.gpl)" 
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                local:ButtonAssist.IconKind="FileExportOutline"
+                                local:IconAssist.IconKind="FileExportOutline"
                                 Command="{Binding Path=ExtractPatchLibraryCommand, Mode=OneTime}"/>
 
                     </StackPanel>

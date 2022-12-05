@@ -86,8 +86,8 @@
                                 Style="{StaticResource RCP.Styles.Button.Flat}"
                                 Command="{Binding Path=AddPatchCommand, Mode=OneTime}"
                                 VerticalAlignment="Center"
-                                local:ButtonAssist.IconKind="PlusCircleOutline"
-                                local:ButtonAssist.IconSize="16"
+                                local:IconAssist.IconKind="PlusCircleOutline"
+                                local:IconAssist.IconSize="16"
                                 Margin="0 0 5 0" />
 
                     </Grid>
@@ -182,8 +182,8 @@
                                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                                         Command="{Binding Path=ExtractContentsCommand, Mode=OneTime}"
                                                         VerticalAlignment="Center"
-                                                        local:ButtonAssist.IconKind="Export"
-                                                        local:ButtonAssist.IconSize="16"
+                                                        local:IconAssist.IconKind="Export"
+                                                        local:IconAssist.IconSize="16"
                                                         Margin="0 0 4 0"
                                                         local:UserLevelAssist.MinUserLevel="Technical" />
 
@@ -191,16 +191,16 @@
                                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                         VerticalAlignment="Center"
-                                                        local:ButtonAssist.IconKind="FileExportOutline"
-                                                        local:ButtonAssist.IconSize="16"
+                                                        local:IconAssist.IconKind="FileExportOutline"
+                                                        local:IconAssist.IconSize="16"
                                                         Margin="0 0 4 0" />
 
                                                 <Button ToolTip="{Resx Patcher_RemovePatch}"
                                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                                         Command="{Binding Path=RemoveCommand, Mode=OneTime}"
                                                         VerticalAlignment="Center"
-                                                        local:ButtonAssist.IconKind="DeleteOutline"
-                                                        local:ButtonAssist.IconSize="16"
+                                                        local:IconAssist.IconKind="DeleteOutline"
+                                                        local:IconAssist.IconSize="16"
                                                         Margin="0 0 10 0" />
 
                                             </StackPanel>
@@ -253,8 +253,8 @@
                                                     Command="{Binding Path=DownloadCommand, Mode=OneTime}"
                                                     VerticalAlignment="Center"
                                                     HorizontalAlignment="Center"
-                                                    local:ButtonAssist.IconKind="DownloadOutline"
-                                                    local:ButtonAssist.IconSize="16"
+                                                    local:IconAssist.IconKind="DownloadOutline"
+                                                    local:IconAssist.IconSize="16"
                                                     Margin="-4 0 0 0" />
 
                                             <!-- Thumbnail -->
@@ -556,14 +556,14 @@
 
                 <Button Content="{Resx Cancel}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:ButtonAssist.IconKind="CloseOutline"
+                        local:IconAssist.IconKind="CloseOutline"
                         Click="CancelButton_OnClick"
                         Margin="0 0 10 0" />
 
                 <Button Content="{Resx Patcher_Apply}"
                         IsEnabled="{Binding Path=HasChanges}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:ButtonAssist.IconKind="ContentSaveOutline"
+                        local:IconAssist.IconKind="ContentSaveOutline"
                         Click="ApplyButton_OnClick" />
 
             </StackPanel>

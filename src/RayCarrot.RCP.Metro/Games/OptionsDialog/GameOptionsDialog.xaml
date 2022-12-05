@@ -98,7 +98,7 @@
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx DosBoxOptions_Recommended}"
-                                    local:ButtonAssist.IconKind="AutoFix"
+                                    local:IconAssist.IconKind="AutoFix"
                                     Command="{Binding Path=UseRecommendedCommand}"
                                     Margin="0 0 10 0"/>
 
@@ -113,7 +113,7 @@
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx Cancel}"
-                                    local:ButtonAssist.IconKind="CloseOutline"
+                                    local:IconAssist.IconKind="CloseOutline"
                                     Margin="0 0 10 0"
                                     Click="CancelButton_OnClick" />
 
@@ -121,7 +121,7 @@
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}"
                                     Content="{Resx Save}"
-                                    local:ButtonAssist.IconKind="ContentSaveOutline"
+                                    local:IconAssist.IconKind="ContentSaveOutline"
                                     IsEnabled="{Binding Path=UnsavedChanges}"
                                     Command="{Binding Path=SaveCommand, Mode=OneTime}" />
 

@@ -22,7 +22,7 @@
             <Button Grid.Column="0"
                     Style="{StaticResource RCP.Styles.Button.Flat}"
                     mah:ControlsHelper.CornerRadius="0"
-                    local:ButtonAssist.IconKind="Play"
+                    local:IconAssist.IconKind="Play"
                     FontSize="14"
                     Content="Play"
                     Command="{Binding Path=LaunchCommand, Mode=OneTime}"
@@ -35,8 +35,8 @@
                 <local:PopupCard.PopupButtonStyle>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">
                         <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
-                        <Setter Property="local:ButtonAssist.IconKind" Value="ChevronDown" />
-                        <Setter Property="local:ButtonAssist.IconSize" Value="12" />
+                        <Setter Property="local:IconAssist.IconKind" Value="ChevronDown" />
+                        <Setter Property="local:IconAssist.IconSize" Value="12" />
                     </Style>
                 </local:PopupCard.PopupButtonStyle>
 
@@ -48,8 +48,8 @@
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:IconCommandItemViewModel}">
                             <Button Content="{Binding Path=Header.Value}"
-                                    local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
-                                    local:ButtonAssist.IconBrush="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
+                                    local:IconAssist.IconKind="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToIconKindConverter}}"
+                                    local:IconAssist.IconBrush="{Binding Path=IconKind, Mode=OneTime, Converter={local:GenericIconToBrushConverter}}"
                                     ToolTip="{Binding Path=Description.Value}"
                                     Command="{Binding Path=Command, Mode=OneTime}"
                                     local:UserLevelAssist.MinUserLevel="{Binding Path=MinUserLevel, Mode=OneTime}" />

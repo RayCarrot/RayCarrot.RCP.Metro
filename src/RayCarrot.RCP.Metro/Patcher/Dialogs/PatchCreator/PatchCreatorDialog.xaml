@@ -153,12 +153,12 @@
                     <StackPanel HorizontalAlignment="Center"
                                 Orientation="Horizontal">
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                                local:ButtonAssist.IconKind="FileImageOutline"
+                                local:IconAssist.IconKind="FileImageOutline"
                                 Command="{Binding Path=BrowseThumbnailCommand, Mode=OneTime}"
                                 ToolTip="{Resx PatchCreator_AddThumbnailInfo}"
                                 Margin="0 0 4 0"/>
                         <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                                local:ButtonAssist.IconKind="CloseOutline"
+                                local:IconAssist.IconKind="CloseOutline"
                                 Command="{Binding Path=RemoveThumbnailCommand, Mode=OneTime}"
                                 ToolTip="{Resx PatchCreator_RemoveThumbnailInfo}"
                                 IsEnabled="{Binding Path=Thumbnail, Converter={local:IsNotNullConverter}}" />
@@ -292,19 +292,19 @@
                             Margin="5">
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                            local:ButtonAssist.IconKind="Plus"
+                            local:IconAssist.IconKind="Plus"
                             Command="{Binding Path=AddFileCommand, Mode=OneTime}"
                             ToolTip="{Resx PatchCreator_AddFile}"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                            local:ButtonAssist.IconKind="FilePlusOutline"
+                            local:IconAssist.IconKind="FilePlusOutline"
                             Command="{Binding Path=AddFromFilesCommand, Mode=OneTime}"
                             ToolTip="{Resx PatchCreator_AddFromFiles}"
                             Margin="0 0 4 0"/>
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
-                            local:ButtonAssist.IconKind="FolderPlusOutline"
+                            local:IconAssist.IconKind="FolderPlusOutline"
                             Command="{Binding Path=AddFromFolderCommand, Mode=OneTime}"
                             ToolTip="{Resx PatchCreator_AddFromFolder}"
                             Margin="0 0 8 0"/>
@@ -326,13 +326,13 @@
 
                 <Button Content="{Resx Cancel}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:ButtonAssist.IconKind="CloseOutline"
+                        local:IconAssist.IconKind="CloseOutline"
                         Click="CancelButton_OnClick"
                         Margin="0 0 10 0" />
 
                 <Button Content="{Resx PatchCreator_Create}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
-                        local:ButtonAssist.IconKind="ContentSaveOutline"
+                        local:IconAssist.IconKind="ContentSaveOutline"
                         Click="CreateButton_OnClick">
                     <Button.IsEnabled>
                         <Binding Path="Files.Count" Converter="{local:InvertedEqualsToConverter}">

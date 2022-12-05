@@ -123,7 +123,7 @@
                                         Command="{Binding Path=Command, Mode=OneTime}"
                                         IsEnabled="{Binding Path=IsEnabled}"
                                         HorizontalContentAlignment="Left"
-                                        local:ButtonAssist.IconKind="{Binding Path=IconKind, Mode=OneTime}"
+                                        local:IconAssist.IconKind="{Binding Path=IconKind, Mode=OneTime}"
                                         Margin="0 0 0 7" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -149,7 +149,7 @@
                         HorizontalAlignment="Left"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         Content="{Resx Page_Refresh}"
-                        local:ButtonAssist.IconKind="Refresh"
+                        local:IconAssist.IconKind="Refresh"
                         Command="{Binding Path=RefreshLogCommand, Mode=OneTime}" />
 
                 <TextBox Grid.Row="2"

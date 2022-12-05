@@ -21,7 +21,7 @@
             <Button Content="{Resx Settings_EditJumpList}"
                     ToolTip="{Resx Settings_EditJumpListInfo}"
                     Command="{Binding Path=EditJumpListCommand}"
-                    local:ButtonAssist.IconKind="PencilBoxOutline" />
+                    local:IconAssist.IconKind="PencilBoxOutline" />
 
             <Separator />
 
@@ -54,7 +54,7 @@
 
             <Separator local:UserLevelAssist.MinUserLevel="Advanced"/>
 
-            <Button local:ButtonAssist.IconKind="Refresh"
+            <Button local:IconAssist.IconKind="Refresh"
                     Command="{Binding Path=RefreshCommand}"
                     HorizontalContentAlignment="Stretch"
                     local:UserLevelAssist.MinUserLevel="Advanced">
@@ -77,7 +77,7 @@
             <Separator />
 
             <Button Content="{Resx Settings_ResetAppData}"
-                    local:ButtonAssist.IconKind="Restore"
+                    local:IconAssist.IconKind="Restore"
                     Command="{Binding Path=ResetCommand, Mode=OneTime}"/>
 
         </StackPanel>
