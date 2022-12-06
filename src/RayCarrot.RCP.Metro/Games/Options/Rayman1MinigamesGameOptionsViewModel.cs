@@ -3,16 +3,18 @@ using NLog;
 using System;
 using System.Threading.Tasks;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Options;
+
+// TODO: Rather than rename exe we could just change the exe RCP launches?
 
 /// <summary>
-/// View model for the Rayman 1 Minigames options
+/// View model for the Rayman 1 Minigames game options
 /// </summary>
-public class GameOptions_Ray1Minigames_ViewModel : BaseRCPViewModel
+public class Rayman1MinigamesGameOptionsViewModel : GameOptionsViewModel
 {
     #region Constructor
 
-    public GameOptions_Ray1Minigames_ViewModel(GameInstallation gameInstallation)
+    public Rayman1MinigamesGameOptionsViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     {
         // Create properties
         AsyncLock = new AsyncLock();

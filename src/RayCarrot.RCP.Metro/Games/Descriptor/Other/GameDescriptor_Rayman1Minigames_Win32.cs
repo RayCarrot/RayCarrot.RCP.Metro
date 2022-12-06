@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
+using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -35,8 +36,11 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
         })
     };
 
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
-        new GameOptions_Ray1Minigames_Controls(new GameOptions_Ray1Minigames_ViewModel(gameInstallation));
+    public override IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation) =>
+        base.GetOptionsViewModels(gameInstallation).Concat(new GameOptionsViewModel[]
+        {
+            new Rayman1MinigamesGameOptionsViewModel(gameInstallation),
+        });
 
     public override Task PostGameAddAsync(GameInstallation gameInstallation)
     {
