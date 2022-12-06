@@ -1,25 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Options;
 
 /// <summary>
-/// View model for the Rayman Raving Rabbids 2 options
+/// View model for the Rayman Raving Rabbids 2 game options
 /// </summary>
-public class GameOptions_RavingRabbids2_ViewModel : BaseRCPViewModel
+public class RaymanRavingRabbids2GameOptionsViewModel : GameOptionsViewModel
 {
     #region Constructor
 
-    public GameOptions_RavingRabbids2_ViewModel(GameInstallation gameInstallation)
-    {
-        // Set properties
-        GameInstallation = gameInstallation;
-    }
-
-    #endregion
-
-    #region Private Properties
-
-    public GameInstallation GameInstallation { get; }
+    public RaymanRavingRabbids2GameOptionsViewModel(GameInstallation gameInstallation) : base(gameInstallation) { }
 
     #endregion
 

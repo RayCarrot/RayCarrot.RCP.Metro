@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
+using System.Linq;
+using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -34,8 +35,11 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     #region Public Methods
 
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) => 
-        new GameOptions_RavingRabbids2_Control(new GameOptions_RavingRabbids2_ViewModel(gameInstallation));
+    public override IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation) =>
+        base.GetOptionsViewModels(gameInstallation).Concat(new GameOptionsViewModel[]
+        {
+            new RaymanRavingRabbids2GameOptionsViewModel(gameInstallation),
+        });
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanRavingRabbids2_ViewModel(gameInstallation);
