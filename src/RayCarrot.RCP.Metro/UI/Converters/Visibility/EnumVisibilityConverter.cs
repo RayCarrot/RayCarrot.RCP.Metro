@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
 
@@ -8,17 +7,15 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Converts an <see cref="Enum"/> to a <see cref="Visibility"/> which is <see cref="Visibility.Visible"/> if the value equals the parameter value.
 /// </summary>
-public class EnumVisibilityConverter : BaseValueConverter<EnumVisibilityConverter, Enum, Visibility, string>
+public class EnumVisibilityConverter : BaseValueConverter<EnumVisibilityConverter, Enum, Visibility, Enum>
 {
-    public override Visibility ConvertValue(Enum value, Type targetType, string parameter, CultureInfo culture)
+    public override Visibility ConvertValue(Enum value, Type targetType, Enum parameter, CultureInfo culture)
     {
-        object parameterValue = Enum.Parse(value.GetType(), parameter);
-
-        return parameterValue.Equals(value) ? Visibility.Visible : Visibility.Collapsed;
+        return value.Equals(parameter) ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    public override Enum ConvertValueBack(Visibility value, Type targetType, string parameter, CultureInfo culture)
+    public override Enum ConvertValueBack(Visibility value, Type targetType, Enum parameter, CultureInfo culture)
     {
-        return Enum.Parse(targetType, parameter).CastTo<Enum>();
+        return parameter;
     }
 }

@@ -28,7 +28,7 @@
                                                             Grid.Column="0"
                                                             Kind="{TemplateBinding local:IconAssist.IconKind}"
                                                             Foreground="{TemplateBinding local:IconAssist.IconBrush}"
-                                                            Visibility="{TemplateBinding local:IconAssist.IconKind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter=None}"
+                                                            Visibility="{TemplateBinding local:IconAssist.IconKind, Converter={local:InvertedEnumVisibilityConverter}, ConverterParameter={x:Static iconPacks:PackIconMaterialKind.None}}"
                                                             VerticalAlignment="Center"
                                                             Margin="0 0 8 0" />
 

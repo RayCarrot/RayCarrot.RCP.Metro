@@ -107,8 +107,7 @@
 
         </WrapPanel>
 
-        <Grid
-            Visibility="{Binding Path=SelectedGraphicsMode, Converter={local:EnumVisibilityConverter}, ConverterParameter=Custom}">
+        <Grid Visibility="{Binding Path=SelectedGraphicsMode, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static local:Config_Rayman2_ViewModel+R2GraphicsMode.Custom}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" MinWidth="110" />

@@ -485,7 +485,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Add}"
+                                                                Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static patcher:PatchedFileViewModel+PatchedFileModification.Add}}"
                                                                 HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"
                                                                 Width="16" Height="16"
@@ -494,7 +494,7 @@
                                                                 Margin="0 0 5 0" />
 
                                     <iconPacks:PackIconMaterial Grid.Column="0"
-                                                                Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter=Remove}"
+                                                                Visibility="{Binding Path=Modification, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static patcher:PatchedFileViewModel+PatchedFileModification.Remove}}"
                                                                 HorizontalAlignment="Center"
                                                                 VerticalAlignment="Center"
                                                                 Width="16" Height="16"

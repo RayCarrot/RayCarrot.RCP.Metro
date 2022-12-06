@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:ray1="clr-namespace:BinarySerializer.Ray1;assembly=BinarySerializer.Ray1"
              ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
@@ -97,7 +98,7 @@
                   IsChecked="{Binding Path=ShowBackground}" />
 
         <CheckBox Content="{Resx Config_ScrollBackground}"
-                  Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
+                  Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static ray1:Ray1EngineVersion.PC}}"
                   IsEnabled="{Binding Path=ShowBackground}"
                   IsChecked="{Binding Path=ShowParallaxBackground}" />
 
@@ -112,11 +113,11 @@
                   SelectedIndex="{Binding Path=SelectedFrameRateOption}" />
 
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
+                   Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static ray1:Ray1EngineVersion.PC}}"
                    Text="{Resx Config_Border}" />
 
         <Slider Value="{Binding Path=ZoneOfPlay}"
-                Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter=PC}"
+                Visibility="{Binding Path=EngineVersion, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static ray1:Ray1EngineVersion.PC}}"
                 Minimum="0"
                 Maximum="3"
                 TickPlacement="BottomRight"

@@ -214,19 +214,19 @@
                   VerticalAlignment="Center"
                   Width="20">
                 <iconpacks:PackIconMaterial Kind="CheckboxMarkedCircle"
-                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=UpToDate}"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static local:GameProgressionViewModel+BackupStatus.UpToDate}}"
                                             ToolTip="{Resx Progression_BackupStatus_UpToDate}"
                                             Foreground="{StaticResource RCP.Brushes.StatusComplete}"
                                             Width="20"
                                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
                 <iconpacks:PackIconMaterial Kind="CloseCircle"
-                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Outdated}"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static local:GameProgressionViewModel+BackupStatus.Outdated}}"
                                             ToolTip="{Resx Progression_BackupStatus_Outdated}"
                                             Foreground="{StaticResource RCP.Brushes.StatusIncomplete}"
                                             Width="20"
                                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
                 <iconpacks:PackIconMaterial Kind="SyncCircle"
-                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter=Syncing}"
+                                            Visibility="{Binding Path=CurrentBackupStatus, Converter={local:EnumVisibilityConverter}, ConverterParameter={x:Static local:GameProgressionViewModel+BackupStatus.Syncing}}"
                                             Foreground="{StaticResource RCP.Brushes.StatusPending}"
                                             Width="20"
                                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"/>
