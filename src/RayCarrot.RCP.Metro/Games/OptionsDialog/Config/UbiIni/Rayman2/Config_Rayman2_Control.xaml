@@ -97,13 +97,13 @@
             </i:Interaction.Behaviors>
 
             <local:RadioButtonExtended Content="{Resx R2Config_Graphics_DirectX}"
-                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={local:EnumBooleanConverter}, ConverterParameter=DirectX}" />
+                                       IsChecked="{Binding Path=SelectedGraphicsMode, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:Config_Rayman2_ViewModel+R2GraphicsMode.DirectX}}" />
 
             <local:RadioButtonExtended Content="{Resx R2Config_Graphics_nGlide}"
-                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={local:EnumBooleanConverter}, ConverterParameter=Glide}" />
+                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:Config_Rayman2_ViewModel+R2GraphicsMode.Glide}}" />
 
             <local:RadioButtonExtended Content="{Resx R2Config_Graphics_Custom}"
-                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={local:EnumBooleanConverter}, ConverterParameter=Custom}" />
+                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:Config_Rayman2_ViewModel+R2GraphicsMode.Custom}}" />
 
         </WrapPanel>
 

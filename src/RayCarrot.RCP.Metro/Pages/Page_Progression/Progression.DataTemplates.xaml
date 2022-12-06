@@ -362,7 +362,7 @@
                         <WrapPanel Margin="0 0 0 8">
                             <local:RadioButtonExtended Content="{Resx Progression_DataSource_Auto}"
                                                        ToolTip="{Resx Progression_DataSource_AutoInfo}"
-                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter=Auto}"
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:ProgramDataSource.Auto}}"
                                                        Margin="0 0 8 0">
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="Checked">
@@ -372,7 +372,7 @@
                             </local:RadioButtonExtended>
                             <local:RadioButtonExtended Content="{Resx Progression_DataSource_Default}"
                                                        ToolTip="{Resx Progression_DataSource_DefaultInfo}"
-                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}"
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:ProgramDataSource.Default}}"
                                                        Margin="0 0 8 0" >
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="Checked">
@@ -382,7 +382,7 @@
                             </local:RadioButtonExtended>
                             <local:RadioButtonExtended Content="{Resx Progression_DataSource_VirtualStore}"
                                                        ToolTip="{Resx Progression_DataSource_VirtualStoreInfo}"
-                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter=VirtualStore}" >
+                                                       IsChecked="{Binding Path=ProgramDataSource, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:ProgramDataSource.VirtualStore}}" >
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="Checked">
                                         <b:InvokeCommandAction Command="{Binding Path=UpdateProgramDataSourceCommand, Mode=OneTime}"/>

@@ -125,15 +125,15 @@
                                        Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                        Margin="0 0 0 4" />
                             <RadioButton Content="{Resx Archive_Sort_Default}"
-                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=Default}"
+                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserData_Archive_Sort.Default}}"
                                          Checked="SortMenuItem_OnChecked"
                                          Margin="0 0 0 4" />
                             <RadioButton Content="{Resx Archive_Sort_AlphabeticallyAscending}"
-                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}"
+                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserData_Archive_Sort.AlphabeticalAscending}}"
                                          Checked="SortMenuItem_OnChecked"
                                          Margin="0 0 0 4" />
                             <RadioButton Content="{Resx Archive_Sort_AlphabeticalDescending}"
-                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}"
+                                         IsChecked="{Binding Path=Archive_ExplorerSortOption, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserData_Archive_Sort.AlphabeticalDescending}}"
                                          Checked="SortMenuItem_OnChecked" />
                         </StackPanel>
 

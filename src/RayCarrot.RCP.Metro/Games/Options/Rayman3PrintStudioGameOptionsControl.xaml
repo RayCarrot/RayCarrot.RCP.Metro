@@ -25,11 +25,11 @@
         <StackPanel IsEnabled="{Binding Path=CanSetVersion}">
 
             <local:RadioButtonExtended Content="{Resx PrintStudioOptions_Version03}"
-                                       IsChecked="{Binding Path=SelectedVersion, Converter={local:EnumBooleanConverter}, ConverterParameter=Version_03}"
+                                       IsChecked="{Binding Path=SelectedVersion, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static options:Rayman3PrintStudioGameOptionsViewModel+PrintStudioVersion.Version_03}}"
                                        Margin="0 0 0 4" />
 
             <local:RadioButtonExtended Content="{Resx PrintStudioOptions_Version05}"
-                                       IsChecked="{Binding Path=SelectedVersion, Converter={local:EnumBooleanConverter}, ConverterParameter=Version_05}" />
+                                       IsChecked="{Binding Path=SelectedVersion, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static options:Rayman3PrintStudioGameOptionsViewModel+PrintStudioVersion.Version_05}}" />
 
         </StackPanel>
 

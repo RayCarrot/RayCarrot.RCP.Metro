@@ -32,22 +32,22 @@
                            Style="{StaticResource RCP.Styles.TextBlock.Header}"
                            Margin="0 0 0 4" />
                 <RadioButton Content="{Resx LinksPage_LinkStyle_List}"
-                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}" 
+                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserData_LinkItemStyle.List}}" 
                              Margin="0 0 0 4" />
                 <RadioButton Content="{Resx LinksPage_LinkStyle_Group}"
-                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=Group}"
+                             IsChecked="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserData_LinkItemStyle.Group}}"
                              Margin="0 0 0 6" />
 
                 <!-- Link alignment -->
-                <StackPanel IsEnabled="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter=List}">
+                <StackPanel IsEnabled="{Binding Path=Data.UI_LinkItemStyle, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserData_LinkItemStyle.List}}">
                     <TextBlock Text="{Resx LinksPage_LinkAlignmentStyleHeader}"
                                Style="{StaticResource RCP.Styles.TextBlock.Header}"
                                Margin="0 0 0 4" />
                     <RadioButton Content="{Resx LinksPage_LinkAlignmentStyle_Left}"
-                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Left}" 
+                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static HorizontalAlignment.Left}}" 
                                  Margin="0 0 0 4" />
                     <RadioButton Content="{Resx LinksPage_LinkAlignmentStyle_Stretch}"
-                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter=Stretch}" />
+                                 IsChecked="{Binding Path=Data.UI_LinkListHorizontalAlignment, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static HorizontalAlignment.Stretch}}" />
                 </StackPanel>
 
             </StackPanel>
@@ -186,25 +186,25 @@
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
                                                           ToolTip="{Resx Settings_UserLevelNormalInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Normal}" />
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Normal}}" />
 
                                 <!-- Advanced -->
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
                                                           ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Advanced}" />
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Advanced}}" />
 
                                 <!-- Technical -->
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
                                                           ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Technical}" />
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Technical}}" />
 
                                 <!-- Debug -->
 
                                 <local:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
                                                           ToolTip="{Resx Settings_UserLevelDebugInfo}"
-                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
+                                                          IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Debug}}"
                                                           local:UserLevelAssist.MinUserLevel="Technical" />
 
                             </WrapPanel>

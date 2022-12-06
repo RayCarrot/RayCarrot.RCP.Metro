@@ -111,25 +111,25 @@
 
                     <local:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
                                                ToolTip="{Resx Settings_UserLevelNormalInfo}"
-                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Normal}" />
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Normal}}" />
 
                     <!-- Advanced -->
 
                     <local:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
                                                ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
-                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Advanced}" />
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Advanced}}" />
 
                     <!-- Technical -->
 
                     <local:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
                                                ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
-                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Technical}" />
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Technical}}" />
 
                     <!-- Debug (only show if debug was set from before) -->
 
                     <local:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
                                                ToolTip="{Resx Settings_UserLevelDebugInfo}"
-                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter=Debug}"
+                                               IsChecked="{Binding Path=App_UserLevel, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:UserLevel.Debug}}"
                                                local:UserLevelAssist.MinUserLevel="Debug" />
 
                 </WrapPanel>

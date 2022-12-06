@@ -23,23 +23,23 @@
 
         <!-- TODO: This will call get on LaunchMode 5 times now. Maybe cache the value in the view model? -->
         <rcp:RadioButtonExtended Content="{Resx RR2Options_GameMode_All}"
-                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter=AllGames}"
+                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_RRR2LaunchMode.AllGames}}"
                                  Margin="0 0 0 4" />
 
         <rcp:RadioButtonExtended Content="{Resx RR2Options_GameMode_Orange}"
-                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter=Orange}"
+                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_RRR2LaunchMode.Orange}}"
                                  Margin="0 0 0 4" />
 
         <rcp:RadioButtonExtended Content="{Resx RR2Options_GameMode_Red}"
-                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter=Red}"
+                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_RRR2LaunchMode.Red}}"
                                  Margin="0 0 0 4" />
 
         <rcp:RadioButtonExtended Content="{Resx RR2Options_GameMode_Green}"
-                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter=Green}"
+                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_RRR2LaunchMode.Green}}"
                                  Margin="0 0 0 4" />
 
         <rcp:RadioButtonExtended Content="{Resx RR2Options_GameMode_Blue}"
-                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter=Blue}" />
+                                 IsChecked="{Binding Path=LaunchMode, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static rcp:UserData_RRR2LaunchMode.Blue}}" />
 
     </StackPanel>
 </UserControl>

@@ -16,11 +16,11 @@
                    Margin="0 0 0 4" />
 
         <local:RadioButtonExtended Content="{Resx Lang_French}"
-                                   IsChecked="{Binding Path=SelectedLanguage, Converter={local:EnumBooleanConverter}, ConverterParameter=French}"
+                                   IsChecked="{Binding Path=SelectedLanguage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static options:Rayman1MinigamesGameOptionsViewModel+Ray1MinigamesLanguage.French}}"
                                    Margin="0 0 0 4" />
 
         <local:RadioButtonExtended Content="{Resx Lang_German}"
-                                   IsChecked="{Binding Path=SelectedLanguage, Converter={local:EnumBooleanConverter}, ConverterParameter=German}" />
+                                   IsChecked="{Binding Path=SelectedLanguage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static options:Rayman1MinigamesGameOptionsViewModel+Ray1MinigamesLanguage.German}}" />
 
     </StackPanel>
 </UserControl>
