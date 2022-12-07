@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -30,10 +31,18 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
 
     #endregion
 
-    #region Public Methods
+    #region Protected Methods
 
-    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RabbidsBigBang(this, gameInstallation, "Rabbids Big Bang").Yield();
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RabbidsBigBang(this, x, "Rabbids Big Bang")));
+    }
+
+    #endregion
+
+    #region Public Methods
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

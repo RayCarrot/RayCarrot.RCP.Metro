@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
@@ -25,6 +25,14 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     #region Protected Methods
 
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameOptionsComponent(x => new RaymanRavingRabbids2GameOptionsViewModel(x)));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids2(x, "Rayman Raving Rabbids 2")));
+    }
+
     protected override string GetLaunchArgs(GameInstallation gameInstallation)
     {
         UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2LaunchMode, UserData_RRR2LaunchMode.AllGames);
@@ -35,17 +43,8 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     #region Public Methods
 
-    public override IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation) =>
-        base.GetOptionsViewModels(gameInstallation).Concat(new GameOptionsViewModel[]
-        {
-            new RaymanRavingRabbids2GameOptionsViewModel(gameInstallation),
-        });
-
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
         new Config_RaymanRavingRabbids2_ViewModel(gameInstallation);
-
-    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanRavingRabbids2(gameInstallation, "Rayman Raving Rabbids 2").Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation)
     {

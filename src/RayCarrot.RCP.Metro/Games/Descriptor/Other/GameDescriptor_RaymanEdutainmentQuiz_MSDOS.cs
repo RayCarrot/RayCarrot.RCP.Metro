@@ -5,6 +5,7 @@ using System.Windows;
 using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Emulators;
 using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
@@ -42,35 +43,18 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
 
     #endregion
 
-    #region Public Methods
+    #region Private Methods
 
-    // TODO-14: Add new options control for setting game mode to use when launching the game
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
-        new GameOptions_DOSBox_Control(gameInstallation);
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanEdutainment_ViewModel(this, gameInstallation);
-
-    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
-    {
-        UserData_Ray1MSDOSData data = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData);
-        return data.AvailableGameModes.Select(x => new GameProgressionManager_RaymanEdutainment(
-            gameInstallation: gameInstallation, 
-            backupName: $"Educational Games - {x}", 
-            primaryName: PrimaryName, 
-            secondaryName: x));
-    }
-
-    public override IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
+    private IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
     {
         // Add a lunch action for each game mode
         string[] gameModes = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData).AvailableGameModes;
 
         // Only show additional launch actions for the game if we have more than one game mode
         if (gameModes.Length <= 1)
-            return base.GetAdditionalLaunchActions(gameInstallation);
+            return Enumerable.Empty<ActionItemViewModel>();
 
-        return base.GetAdditionalLaunchActions(gameInstallation).Concat(gameModes.Select(x =>
+        return gameModes.Select(x =>
             new IconCommandItemViewModel(
                 header: x,
                 description: null,
@@ -87,8 +71,41 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
 
                     if (success)
                         await PostLaunchAsync();
-                }))));
+                })));
     }
+
+    private IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
+    {
+        UserData_Ray1MSDOSData data = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData);
+        return data.AvailableGameModes.Select(x => new GameProgressionManager_RaymanEdutainment(
+            gameInstallation: gameInstallation,
+            backupName: $"Educational Games - {x}",
+            primaryName: PrimaryName,
+            secondaryName: x));
+    }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new AdditionalLaunchActionsComponent(GetAdditionalLaunchActions));
+        builder.Register(new ProgressionManagersComponent(GetGameProgressionManagers));
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    // TODO-14: Add new options control for setting game mode to use when launching the game
+    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
+        new GameOptions_DOSBox_Control(gameInstallation);
+
+    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
+        new Config_RaymanEdutainment_ViewModel(this, gameInstallation);
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanQuizPC", "r1/quiz/pc_gf", "GF");
 

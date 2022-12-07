@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Games.Options;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Move some things to optional modules/extensions/components, such as installer, archive, progression etc.
 // TODO-14: Move descriptors to folders based on platform?
-// TODO-14: Minimize the amount of methods here which do things by moving to manager classes. The descriptor should really only
-//          be for providing data about the game.
+// TODO-14: Minimize the amount of methods here which do things by moving to manager classes retrieved through components.
+//          The descriptor should really only be for providing data about the game and registered components.
 // TODO-14: Consistent naming. Should 'game' be included in member names?
 
 // It may be temping to have the games which inherit from GameDescriptor to be built up in a sort of hierarchy where they
@@ -27,6 +26,15 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class GameDescriptor
 {
+    #region Constructor
+
+    protected GameDescriptor()
+    {
+        ComponentProvider = BuildComponentProvider();
+    }
+
+    #endregion
+
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -205,30 +213,12 @@ public abstract class GameDescriptor
     /// <returns>The options UI or null if not available</returns>
     public virtual FrameworkElement? GetOptionsUI(GameInstallation gameInstallation) => null; // TODO-14: Don't use UI elements like this - use vm + template instead!
 
-    public virtual IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation)
-        => Enumerable.Empty<GameOptionsViewModel>();
-
     /// <summary>
     /// Gets the config page view model, if any is available
     /// </summary>
     /// <param name="gameInstallation">The game installation to get the config page view model for</param>
     /// <returns>The config page view model of null if none is available</returns>
     public virtual GameOptionsDialog_ConfigPageViewModel? GetConfigPageViewModel(GameInstallation gameInstallation) => null;
-
-    /// <summary>
-    /// Gets the game progression managers. This will usually be a single one, but games can define multiple
-    /// if the game is split into several parts which have to be treated separately.
-    /// </summary>
-    public virtual IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
-        Enumerable.Empty<GameProgressionManager>();
-
-    /// <summary>
-    /// Gets any available additional launch actions for the game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the actions for</param>
-    /// <returns>The launch actions</returns>
-    public virtual IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation) =>
-        Enumerable.Empty<ActionItemViewModel>();
 
     /// <summary>
     /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.
@@ -299,6 +289,18 @@ public abstract class GameDescriptor
 
         return new[]
         {
+            new DuoGridItemViewModel(
+                header: "Game id:",
+                text: GameId,
+                minUserLevel: UserLevel.Debug),
+            new DuoGridItemViewModel(
+                header: "Installation id:",
+                text: gameInstallation.InstallationId,
+                minUserLevel: UserLevel.Debug),
+            new DuoGridItemViewModel(
+                header: "Components:",
+                text: ComponentProvider.GetComponents().Select(x => x.GetType().Name).JoinItems(Environment.NewLine),
+                minUserLevel: UserLevel.Debug),
             // TODO-14: Change this to show the platform
             //new DuoGridItemViewModel(
             //    header: new ResourceLocString(nameof(Resources.GameInfo_GameType)),
@@ -365,6 +367,37 @@ public abstract class GameDescriptor
     /// <param name="gameInstallation">The game installation for the removed game</param>
     /// <returns>The task</returns>
     public virtual Task PostGameRemovedAsync(GameInstallation gameInstallation) => Task.CompletedTask;
+
+    #endregion
+
+    #region Components
+
+    /// <summary>
+    /// The provider for the descriptor components
+    /// </summary>
+    private DescriptorComponentProvider ComponentProvider { get; }
+
+    /// <summary>
+    /// Builds a new component provider for this descriptor
+    /// </summary>
+    /// <returns>The built provider</returns>
+    private DescriptorComponentProvider BuildComponentProvider()
+    {
+        DescriptorComponentBuilder builder = new();
+        RegisterComponents(builder);
+        return builder.Build();
+    }
+
+    /// <summary>
+    /// Registers the components for this descriptor. This will only be called once.
+    /// </summary>
+    /// <param name="builder">The component builder</param>
+    protected virtual void RegisterComponents(DescriptorComponentBuilder builder) { }
+
+    public bool HasComponent<T>() where T : DescriptorComponent => ComponentProvider.HasComponent<T>();
+    public T? GetComponent<T>() where T : DescriptorComponent => ComponentProvider.GetComponent<T>();
+    public T GetRequiredComponent<T>() where T : DescriptorComponent => ComponentProvider.GetRequiredComponent<T>();
+    public IEnumerable<T> GetComponents<T>() where T : DescriptorComponent => ComponentProvider.GetComponents<T>();
 
     #endregion
 

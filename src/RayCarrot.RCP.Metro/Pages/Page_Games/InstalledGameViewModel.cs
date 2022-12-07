@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using BinarySerializer;
 using NLog;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -117,7 +118,9 @@ public class InstalledGameViewModel : BaseViewModel
             GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation));
 
         // Progression
-        foreach (GameProgressionManager progressionManager in GameDescriptor.GetGameProgressionManagers(GameInstallation))
+        foreach (GameProgressionManager progressionManager in GameDescriptor.
+                     GetComponents<ProgressionManagersComponent>().
+                     CreateManyObjects(GameInstallation))
             GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation, progressionManager));
     }
 
@@ -126,7 +129,12 @@ public class InstalledGameViewModel : BaseViewModel
         AdditionalLaunchActions.Clear();
 
         // Add additional launch actions
-        AdditionalLaunchActions.AddGroup(GameDescriptor.GetAdditionalLaunchActions(GameInstallation));
+        foreach (IEnumerable<ActionItemViewModel> launchActions in GameDescriptor.
+                     GetComponents<AdditionalLaunchActionsComponent>().
+                     CreateObjects(GameInstallation))
+        {
+            AdditionalLaunchActions.AddGroup(launchActions);
+        }
 
         // Add local uri links
         AdditionalLaunchActions.AddGroup(GameDescriptor.GetLocalUriLinks(GameInstallation).
@@ -246,7 +254,8 @@ public class InstalledGameViewModel : BaseViewModel
         _loaded = true;
 
         // Only get the options once when we load
-        GameOptions = new ObservableCollection<GameOptionsViewModel>(GameDescriptor.GetOptionsViewModels(GameInstallation));
+        var options = GameDescriptor.GetComponents<GameOptionsComponent>().CreateObjects(GameInstallation);
+        GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
         return ReloadAsync();
     }
 

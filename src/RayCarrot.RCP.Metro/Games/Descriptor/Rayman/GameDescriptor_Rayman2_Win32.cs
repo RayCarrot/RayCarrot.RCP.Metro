@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
@@ -35,6 +36,17 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
     #endregion
 
+    #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2(x, "Rayman 2")));
+    }
+
+    #endregion
+
     #region Public Methods
 
     public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
@@ -47,9 +59,6 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
     public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
         new Config_Rayman2_ViewModel(gameInstallation);
-
-    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
-        new GameProgressionManager_Rayman2(gameInstallation, "Rayman 2").Yield();
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

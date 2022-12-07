@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -28,10 +29,18 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 
     #endregion
 
-    #region Public Methods
+    #region Protected Methods
 
-    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
-        new GameProgressionManager_GloboxMoment(gameInstallation, "Globox Moment").Yield();
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_GloboxMoment(x, "Globox Moment")));
+    }
+
+    #endregion
+
+    #region Public Methods
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

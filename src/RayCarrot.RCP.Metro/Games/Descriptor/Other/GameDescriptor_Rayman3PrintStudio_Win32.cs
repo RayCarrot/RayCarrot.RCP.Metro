@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
@@ -24,6 +24,17 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
 
     #endregion
 
+    #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameOptionsComponent(x => new Rayman3PrintStudioGameOptionsViewModel(x)));
+    }
+
+    #endregion
+
     #region Public Methods
 
     // Can only be downloaded
@@ -35,12 +46,6 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
             new(AppURLs.Games_PrintStudio2_Url),
         })
     };
-
-    public override IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation) =>
-        base.GetOptionsViewModels(gameInstallation).Concat(new GameOptionsViewModel[]
-        {
-            new Rayman3PrintStudioGameOptionsViewModel(gameInstallation)
-        });
 
     #endregion
 }

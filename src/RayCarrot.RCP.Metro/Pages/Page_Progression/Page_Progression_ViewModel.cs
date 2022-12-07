@@ -8,6 +8,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Nito.AsyncEx;
 using NLog;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -114,7 +115,9 @@ public class Page_Progression_ViewModel : BasePageViewModel,
                 // Add the game items
                 foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
                 {
-                    foreach (GameProgressionManager progressionManager in gameInstallation.GameDescriptor.GetGameProgressionManagers(gameInstallation))
+                    foreach (GameProgressionManager progressionManager in gameInstallation.GameDescriptor.
+                                 GetComponents<ProgressionManagersComponent>().
+                                 CreateManyObjects(gameInstallation))
                     {
                         GameItems.Add(new GameProgressionViewModel(progressionManager));
                     }

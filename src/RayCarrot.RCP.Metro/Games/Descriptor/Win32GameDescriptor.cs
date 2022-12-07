@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using NLog;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 
 namespace RayCarrot.RCP.Metro;
@@ -43,9 +44,42 @@ public abstract class Win32GameDescriptor : GameDescriptor
         return process != null;
     }
 
+    private IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
+    {
+        // Add run as admin option
+        bool runAsAdmin = gameInstallation.GetValue(GameDataKey.Win32_RunAsAdmin, false);
+
+        // Don't include run as admin option if set to always do so
+        if (runAsAdmin)
+            return Enumerable.Empty<ActionItemViewModel>();
+
+        return new[]
+        {
+            new IconCommandItemViewModel(
+                header: Resources.GameDisplay_RunAsAdmin,
+                description: null,
+                iconKind: GenericIconKind.GameDisplay_Admin,
+                command: new AsyncRelayCommand(async () =>
+                {
+                    bool success = await LaunchAsync(gameInstallation, true);
+
+                    if (success)
+                        await PostLaunchAsync();
+                }))
+        };
+    }
+
     #endregion
 
     #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameOptionsComponent(x => new Win32GameOptionsViewModel(x)));
+        builder.Register(new AdditionalLaunchActionsComponent(GetAdditionalLaunchActions));
+    }
 
     protected override Task<bool> LaunchAsync(GameInstallation gameInstallation)
     {
@@ -81,37 +115,6 @@ public abstract class Win32GameDescriptor : GameDescriptor
     {
         new LocateGameAddAction(this),
     };
-
-    public override IEnumerable<GameOptionsViewModel> GetOptionsViewModels(GameInstallation gameInstallation) =>
-        base.GetOptionsViewModels(gameInstallation).Concat(new GameOptionsViewModel[]
-        {
-            new Win32GameOptionsViewModel(gameInstallation)
-        });
-
-    public override IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
-    {
-        // Add run as admin option
-        bool runAsAdmin = gameInstallation.GetValue(GameDataKey.Win32_RunAsAdmin, false);
-
-        // Don't include run as admin option if set to always do so
-        if (runAsAdmin)
-            return Enumerable.Empty<ActionItemViewModel>();
-
-        return new[]
-        {
-            new IconCommandItemViewModel(
-                header: Resources.GameDisplay_RunAsAdmin,
-                description: null,
-                iconKind: GenericIconKind.GameDisplay_Admin,
-                command: new AsyncRelayCommand(async () =>
-                {
-                    bool success = await LaunchAsync(gameInstallation, true);
-
-                    if (success)
-                        await PostLaunchAsync();
-                }))
-        };
-    }
 
     public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
     {

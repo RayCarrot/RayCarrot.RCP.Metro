@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,10 +22,18 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
 
     #endregion
 
-    #region Public Methods
+    #region Protected Methods
 
-    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) => 
-        new GameProgressionManager_RaymanBowling2(gameInstallation, "Rayman Bowling 2").Yield();
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanBowling2(x, "Rayman Bowling 2")));
+    }
+
+    #endregion
+
+    #region Public Methods
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

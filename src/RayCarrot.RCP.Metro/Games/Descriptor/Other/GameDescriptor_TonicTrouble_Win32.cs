@@ -2,6 +2,7 @@
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -28,14 +29,18 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 
     #region Protected Methods
 
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TonicTrouble(x, "Tonic Trouble")));
+    }
+
     protected override string GetLaunchArgs(GameInstallation gameInstallation) => "-cdrom:";
 
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation) =>
-        new GameProgressionManager_TonicTrouble(gameInstallation, "Tonic Trouble").Yield();
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new CPACntArchiveDataManager(
