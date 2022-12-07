@@ -224,7 +224,8 @@ public class StartupManager
         foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
         {
             // Check if it's valid
-            if (gameInstallation.GameDescriptor.IsValid(gameInstallation.InstallLocation))
+            if (gameInstallation.GameDescriptor.IsValid(gameInstallation.InstallLocation) &&
+                gameInstallation.GameDescriptor.IsValid(gameInstallation))
                 continue;
 
             // Show message

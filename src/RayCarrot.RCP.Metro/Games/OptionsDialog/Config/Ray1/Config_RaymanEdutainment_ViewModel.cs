@@ -22,7 +22,7 @@ public class Config_RaymanEdutainment_ViewModel : Config_Ray1_BaseViewModel
 
     public void RefreshSelection()
     {
-        var data = GameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1_MsDosData);
+        var data = GameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
 
         PageSelection.Clear();
         PageSelection.AddRange(data.AvailableGameModes);

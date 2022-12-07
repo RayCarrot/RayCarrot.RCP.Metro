@@ -6,9 +6,9 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class DescriptorComponentProvider
 {
-    public DescriptorComponentProvider(IEnumerable<DescriptorComponent> components)
+    public DescriptorComponentProvider(IEnumerable<(Type Type, DescriptorComponent Component)> components)
     {
-        _components = components.GroupBy(x => x.GetType()).ToDictionary(x => x.Key, x => x.ToList());
+        _components = components.GroupBy(x => x.Type).ToDictionary(x => x.Key, x => x.Select(c => c.Component).ToList());
     }
 
     private readonly Dictionary<Type, List<DescriptorComponent>> _components;

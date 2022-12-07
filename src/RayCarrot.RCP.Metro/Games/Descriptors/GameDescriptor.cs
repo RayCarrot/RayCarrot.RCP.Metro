@@ -352,6 +352,16 @@ public abstract class GameDescriptor
     /// <returns>True if the game is valid, otherwise false</returns>
     public bool IsValid(FileSystemPath installDir) => Services.Data.App_DisableGameValidation || IsGameLocationValid(installDir);
 
+    // TODO-14: Merge the install location check with this?
+    /// <summary>
+    /// Indicates if the game installation and its data is valid
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to check</param>
+    /// <returns>True if it's valid, otherwise false</returns>
+    public virtual bool IsValid(GameInstallation gameInstallation) => 
+        // The game is valid if every validation check returns true
+        GetComponents<GameValidationCheckComponent>().All(x => x.IsValid(gameInstallation));
+
     // TODO-14: Rename to OnGameAddedAsync
     /// <summary>
     /// Gets called as soon as the game is added
@@ -392,7 +402,10 @@ public abstract class GameDescriptor
     /// Registers the components for this descriptor. This will only be called once.
     /// </summary>
     /// <param name="builder">The component builder</param>
-    protected virtual void RegisterComponents(DescriptorComponentBuilder builder) { }
+    protected virtual void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
+    }
 
     public bool HasComponent<T>() where T : DescriptorComponent => ComponentProvider.HasComponent<T>();
     public T? GetComponent<T>() where T : DescriptorComponent => ComponentProvider.GetComponent<T>();
