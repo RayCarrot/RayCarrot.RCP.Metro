@@ -40,12 +40,12 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
         new GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenGameJoltPage)),
             Uri: "https://gamejolt.com/games/raymanredemption/340532",
-            Icon: GenericIconKind.GameDisplay_Web)
+            Icon: GenericIconKind.GameAction_Web)
     };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/raymanredemption/340532", GenericIconKind.GameDisplay_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/raymanredemption/340532", GenericIconKind.GameAction_Web),
     };
 
     #endregion

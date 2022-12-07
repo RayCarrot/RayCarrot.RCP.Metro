@@ -33,7 +33,7 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
 
     #region Public Properties
 
-    public override GenericIconKind Icon => GenericIconKind.GameDisplay_Patcher;
+    public override GenericIconKind Icon => GenericIconKind.GamePanel_Patcher;
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.Patcher_Title));
 
     public LocalizedString? InfoText { get; set; }

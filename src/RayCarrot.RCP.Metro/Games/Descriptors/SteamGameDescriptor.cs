@@ -58,11 +58,11 @@ public abstract class SteamGameDescriptor : GameDescriptor
         new GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenSteamStore)),
             Uri: SteamHelpers.GetStorePageURL(SteamID),
-            Icon: GenericIconKind.GameDisplay_Steam),
+            Icon: GenericIconKind.GameAction_Steam),
         new GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenSteamCommunity)),
             Uri: SteamHelpers.GetCommunityPageURL(SteamID),
-            Icon: GenericIconKind.GameDisplay_Steam)
+            Icon: GenericIconKind.GameAction_Steam)
     };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]

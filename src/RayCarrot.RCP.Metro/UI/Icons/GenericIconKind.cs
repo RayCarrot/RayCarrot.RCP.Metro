@@ -4,31 +4,28 @@ public enum GenericIconKind
 {
     None,
 
-    Games,
     Games_Rayman,
     Games_Rabbids,
     Games_Demos,
     Games_Other,
     Games_FanGames,
 
-    // TODO-UPDATE: Rename and re-reorganize for new ui
-    GameDisplay_Admin,
-    GameDisplay_Archive,
-    GameDisplay_Patcher,
-    GameDisplay_Location,
-    GameDisplay_Web,
-    GameDisplay_Steam,
-    GameDisplay_Microsoft,
-    GameDisplay_Purchase,
-
     GameAction_Play,
+    GameAction_RunAsAdmin,
+    GameAction_Location,
+    GameAction_Web,
+    GameAction_Steam,
+    GameAction_Microsoft,
 
+    GamePanel_Archive,
+    GamePanel_Patcher,
     GamePanel_Progression,
 
     GameAdd_Locate,
     GameAdd_Find,
     GameAdd_DiscInstall,
     GameAdd_Download,
+    GameAdd_Purchase,
 
     GameOptions_General,
     GameOptions_Config,
@@ -45,12 +42,12 @@ public enum GenericIconKind
     Window_DriveSelection,
     Window_FileExtensionSelection,
     Window_GamesSelection,
-    Window_GameTypeSelection, // TODO-14: Remove this
     Window_JumpListEdit,
     Window_DialogMessage,
     Window_StringInput,
     Window_ProgramSelection,
     Window_AppNews,
+    Window_AddGames,
 
     Utilities_SyncTextureInfo,
     Utilities_Rayman1_CompleteSoundtrack,

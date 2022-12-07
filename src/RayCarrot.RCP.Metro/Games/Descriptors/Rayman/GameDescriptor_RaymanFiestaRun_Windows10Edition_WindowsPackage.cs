@@ -51,7 +51,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     {
         new GameUriLink(Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInWinStore)),
             Uri: MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID),
-            Icon: GenericIconKind.GameDisplay_Microsoft)
+            Icon: GenericIconKind.GameAction_Microsoft)
     };
 
     public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]

@@ -29,12 +29,12 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
         new GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenGameJoltPage)),
             Uri: "https://gamejolt.com/games/RaymanGardenPlus/622289",
-            Icon: GenericIconKind.GameDisplay_Web)
+            Icon: GenericIconKind.GameAction_Web)
     };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/RaymanGardenPlus/622289", GenericIconKind.GameDisplay_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/RaymanGardenPlus/622289", GenericIconKind.GameAction_Web),
     };
 
     #endregion

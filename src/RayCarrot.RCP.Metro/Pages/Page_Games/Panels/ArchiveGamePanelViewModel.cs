@@ -33,7 +33,7 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
 
     #region Public Properties
 
-    public override GenericIconKind Icon => GenericIconKind.GameDisplay_Archive;
+    public override GenericIconKind Icon => GenericIconKind.GamePanel_Archive;
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.Utilities_ArchiveExplorer_Header));
 
     public ObservableCollection<string>? TrimmedArchiveFilePaths { get; set; }

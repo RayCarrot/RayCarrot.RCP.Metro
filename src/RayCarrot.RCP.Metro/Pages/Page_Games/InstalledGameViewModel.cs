@@ -210,7 +210,7 @@ public class InstalledGameViewModel : BaseViewModel
         AdditionalLaunchActions.Add(new IconCommandItemViewModel(
             header: Resources.GameDisplay_OpenLocation, 
             description: GameInstallation.InstallLocation.FullPath,
-            iconKind: GenericIconKind.GameDisplay_Location, 
+            iconKind: GenericIconKind.GameAction_Location, 
             command: new AsyncRelayCommand(async () =>
             {
                 // Get the install directory

@@ -451,7 +451,7 @@ public abstract class GameDescriptor
     public record GamePurchaseLink(
         LocalizedString Header,
         string Path, 
-        GenericIconKind Icon = GenericIconKind.GameDisplay_Purchase);
+        GenericIconKind Icon = GenericIconKind.GameAdd_Purchase);
 
     #endregion
 }

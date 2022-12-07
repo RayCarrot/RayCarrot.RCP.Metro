@@ -52,7 +52,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
         new GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInWinStore)),
             Uri: MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID),
-            Icon: GenericIconKind.GameDisplay_Microsoft)
+            Icon: GenericIconKind.GameAction_Microsoft)
     };
 
     #endregion

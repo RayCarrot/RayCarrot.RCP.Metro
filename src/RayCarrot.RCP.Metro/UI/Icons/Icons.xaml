@@ -75,9 +75,6 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.None" 
                        IconKind="{x:Static iconPacks:PackIconMaterialKind.None}" />
 
-    <local:GenericIcon x:Key="RCP.GenericIcons.Games" 
-                       IconKind="{StaticResource RCP.Icons.Games}" 
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Games_Rayman" 
                        IconKind="{StaticResource RCP.Icons.Games}" 
                        IconColor="{StaticResource RCP.Brushes.Games}" />
@@ -94,35 +91,31 @@
                        IconKind="{StaticResource RCP.Icons.Games}" 
                        IconColor="{StaticResource RCP.Brushes.OtherGames}" />
 
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Admin" 
-                       IconKind="{StaticResource RCP.Icons.Admin}" 
-                       IconColor="{StaticResource RCP.Brushes.Technical}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Archive" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
-                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Patcher" 
-                       IconKind="{StaticResource RCP.Icons.Patcher}" 
-                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Location" 
-                       IconKind="{StaticResource RCP.Icons.Folder}" 
-                       IconColor="{StaticResource RCP.Brushes.Info}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Web" 
-                       IconKind="{StaticResource RCP.Icons.Web}" 
-                       IconColor="{x:Null}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Steam" 
-                       IconKind="{StaticResource RCP.Icons.Steam}" 
-                       IconColor="{x:Null}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Microsoft" 
-                       IconKind="{StaticResource RCP.Icons.Microsoft}" 
-                       IconColor="{x:Null}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameDisplay_Purchase" 
-                       IconKind="{StaticResource RCP.Icons.Purchase}" 
-                       IconColor="{x:Null}" />
-
     <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_Play" 
                        IconKind="{StaticResource RCP.Icons.Play}" 
                        IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_RunAsAdmin" 
+                       IconKind="{StaticResource RCP.Icons.Admin}" 
+                       IconColor="{StaticResource RCP.Brushes.Technical}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_Location" 
+                       IconKind="{StaticResource RCP.Icons.Folder}" 
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_Web" 
+                       IconKind="{StaticResource RCP.Icons.Web}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_Steam" 
+                       IconKind="{StaticResource RCP.Icons.Steam}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAction_Microsoft" 
+                       IconKind="{StaticResource RCP.Icons.Microsoft}" 
+                       IconColor="{x:Null}" />
 
+    <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Archive" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Patcher" 
+                       IconKind="{StaticResource RCP.Icons.Patcher}" 
+                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GamePanel_Progression" 
                        IconKind="{StaticResource RCP.Icons.Progression}" 
                        IconColor="{StaticResource RCP.Brushes.Progression}" />
@@ -138,6 +131,9 @@
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_Download" 
                        IconKind="{StaticResource RCP.Icons.CloudDownload}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_Purchase" 
+                       IconKind="{StaticResource RCP.Icons.Purchase}" 
                        IconColor="{x:Null}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_General" 
@@ -183,9 +179,6 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_GamesSelection" 
                        IconKind="{StaticResource RCP.Icons.Games}"
                        IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameTypeSelection" 
-                       IconKind="{StaticResource RCP.Icons.Games}"
-                       IconColor="{StaticResource RCP.Brushes.Games}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_JumpListEdit" 
                        IconKind="{StaticResource RCP.Icons.EditJumpList}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />
@@ -201,6 +194,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_AppNews" 
                        IconKind="{StaticResource RCP.Icons.News}"
                        IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_AddGames" 
+                       IconKind="{StaticResource RCP.Icons.Games}"
+                       IconColor="{StaticResource RCP.Brushes.Games}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_SyncTextureInfo" 
                        IconKind="{StaticResource RCP.Icons.Utilities_SyncTextureInfo}"

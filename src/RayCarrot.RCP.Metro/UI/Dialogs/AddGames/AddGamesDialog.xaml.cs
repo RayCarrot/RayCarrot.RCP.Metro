@@ -31,7 +31,7 @@ public partial class AddGamesDialog : WindowContentControl
         base.WindowAttached();
 
         WindowInstance.Title = "Add Games"; // TODO-UPDATE: Localize
-        WindowInstance.Icon = GenericIconKind.Games;
+        WindowInstance.Icon = GenericIconKind.Window_AddGames;
         WindowInstance.MinWidth = 500;
         WindowInstance.MinHeight = 400;
         WindowInstance.Width = 600;
