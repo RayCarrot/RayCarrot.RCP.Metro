@@ -4,11 +4,11 @@ using Newtonsoft.Json.Converters;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// Information for a game which was installed through the Rayman Control Panel
+/// Data for a game which was installed through the Rayman Control Panel
 /// </summary>
-public class UserData_RCPGameInstallInfo
+public class UserData_RCPGameInstallData
 {
-    public UserData_RCPGameInstallInfo(FileSystemPath installDir, RCPInstallMode installMode)
+    public UserData_RCPGameInstallData(FileSystemPath installDir, RCPInstallMode installMode)
     {
         InstallDir = installDir;
         InstallMode = installMode;

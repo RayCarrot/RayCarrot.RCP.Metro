@@ -37,7 +37,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         string? gameArgs = gameLaunchArgs ?? descriptor.GetLaunchArgs(gameInstallation);
         string launchName = gameArgs == null ? descriptor.DefaultFileName : $"{descriptor.DefaultFileName} {gameArgs}";
 
-        FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
+        FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.Emu_DosBox_MountPath);
         return GetDOSBoxLaunchArgs(
             mountPath: mountPath, 
             requiresMounting: descriptor.RequiresDisc, 
@@ -125,7 +125,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         }
 
         // Make sure the mount path exists
-        FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
+        FileSystemPath mountPath = gameInstallation.GetValue<FileSystemPath>(GameDataKey.Emu_DosBox_MountPath);
         if (gameDescriptor.RequiresDisc && !mountPath.Exists)
         {
             await Services.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);

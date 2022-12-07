@@ -2,13 +2,19 @@
 
 public static class GameDataKey
 {
+    // TODO-14: Maybe move to relevant GameDescriptor files instead?
+    
+    // General
+    public const string RCP_GameInstallData = "RCP_GameInstallData";
+    
     // Win32
     public const string Win32_RunAsAdmin = "Win32_RunAsAdmin";
     
-    // TODO-14: Rename and organize. Maybe move to relevant GameDescriptor files instead?
-    public const string DOSBoxMountPath = "DOSBoxMountPath";
-    public const string Ray1MSDOSData = "Ray1MSDOSData"; // TODO-14: Use this for KIT, FAN and 60N as well
-    public const string RRR2LaunchMode = "RRR2LaunchMode";
-    public const string RCPGameInstallInfo = "RCPGameInstallInfo";
-    public const string EmulatorInstallationId = "EmulatorInstallationId";
+    // Emulated
+    public const string Emu_InstallationId = "Emu_InstallationId";
+    public const string Emu_DosBox_MountPath = "Emu_DosBox_MountPath";
+    
+    // Games
+    public const string Ray1_MsDosData = "Ray1_MsDosData"; // TODO-14: Use this for KIT, FAN and 60N as well
+    public const string RRR2_LaunchMode = "RRR2_LaunchMode";
 }

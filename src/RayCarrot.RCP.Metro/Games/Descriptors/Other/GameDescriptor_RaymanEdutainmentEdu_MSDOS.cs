@@ -48,7 +48,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
     private IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
     {
         // Add a lunch action for each game mode
-        string[] gameModes = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData).AvailableGameModes;
+        string[] gameModes = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1_MsDosData).AvailableGameModes;
 
         // Only show additional launch actions for the game if we have more than one game mode
         if (gameModes.Length <= 1)
@@ -76,7 +76,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
 
     private IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
     {
-        UserData_Ray1MSDOSData data = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData);
+        UserData_Ray1MSDOSData data = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1_MsDosData);
         return data.AvailableGameModes.Select(x => new GameProgressionManager_RaymanEdutainment(
             gameInstallation: gameInstallation,
             backupName: $"Educational Games - {x}",
@@ -125,12 +125,12 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
         await base.PostGameAddAsync(gameInstallation);
 
         // Set the game mode data
-        gameInstallation.SetObject(GameDataKey.Ray1MSDOSData, UserData_Ray1MSDOSData.Create(gameInstallation));
+        gameInstallation.SetObject(GameDataKey.Ray1_MsDosData, UserData_Ray1MSDOSData.Create(gameInstallation));
     }
 
     public override string GetLaunchArgs(GameInstallation gameInstallation)
     {
-        string gameMode = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1MSDOSData).SelectedGameMode;
+        string gameMode = gameInstallation.GetRequiredObject<UserData_Ray1MSDOSData>(GameDataKey.Ray1_MsDosData).SelectedGameMode;
         return GetLaunchArgs(gameMode);
     }
 

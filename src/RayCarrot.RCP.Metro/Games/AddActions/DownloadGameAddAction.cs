@@ -20,8 +20,8 @@ public class DownloadGameAddAction : GameAddAction
 
     // Can only be downloaded once
     public override bool IsAvailable => Services.Games.EnumerateInstalledGames(GameDescriptor.GameId).
-        All(x => x.GetObject<UserData_RCPGameInstallInfo>(GameDataKey.RCPGameInstallInfo)?.InstallMode 
-                 != UserData_RCPGameInstallInfo.RCPInstallMode.Download);
+        All(x => x.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData)?.InstallMode 
+                 != UserData_RCPGameInstallData.RCPInstallMode.Download);
 
     public GameDescriptor GameDescriptor { get; }
     public Uri[] DownloadUrls { get; }
@@ -44,8 +44,8 @@ public class DownloadGameAddAction : GameAddAction
         GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, gameDir, x =>
         {
             // Set the install info
-            UserData_RCPGameInstallInfo installInfo = new(gameDir, UserData_RCPGameInstallInfo.RCPInstallMode.Download);
-            x.SetObject(GameDataKey.RCPGameInstallInfo, installInfo);
+            UserData_RCPGameInstallData installData = new(gameDir, UserData_RCPGameInstallData.RCPInstallMode.Download);
+            x.SetObject(GameDataKey.RCP_GameInstallData, installData);
         });
 
         Logger.Trace("The game {0} has been downloaded", GameDescriptor.GameId);

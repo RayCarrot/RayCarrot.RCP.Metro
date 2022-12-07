@@ -35,7 +35,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     protected override string GetLaunchArgs(GameInstallation gameInstallation)
     {
-        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2LaunchMode, UserData_RRR2LaunchMode.AllGames);
+        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
         return $"/{launchMode.ToString().ToLower()} /B Rrr2.bf";
     }
 
@@ -48,7 +48,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation)
     {
-        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2LaunchMode, UserData_RRR2LaunchMode.AllGames);
+        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
 
         return new GameUriLink[]
         {

@@ -38,10 +38,10 @@ public class GameOptions_DOSBox_ViewModel : BaseViewModel
     /// </summary>
     public FileSystemPath MountPath
     {
-        get => GameInstallation.GetValue<FileSystemPath>(GameDataKey.DOSBoxMountPath);
+        get => GameInstallation.GetValue<FileSystemPath>(GameDataKey.Emu_DosBox_MountPath);
         set
         {
-            GameInstallation.SetValue(GameDataKey.DOSBoxMountPath, value);
+            GameInstallation.SetValue(GameDataKey.Emu_DosBox_MountPath, value);
             Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
         }
     }

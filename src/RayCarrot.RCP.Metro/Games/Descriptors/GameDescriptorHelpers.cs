@@ -29,7 +29,7 @@ public static class GameDescriptorHelpers
 
         if (mountPath.FileExists)
         {
-            gameInstallation.SetValue(GameDataKey.DOSBoxMountPath, mountPath);
+            gameInstallation.SetValue(GameDataKey.Emu_DosBox_MountPath, mountPath);
             Logger.Info("The mount path for {0} was automatically found", gameInstallation.FullId);
         }
 

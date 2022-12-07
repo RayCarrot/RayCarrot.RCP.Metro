@@ -39,7 +39,7 @@ public class InstalledGameViewModel : BaseViewModel
         AdditionalLaunchActions = new ObservableActionItemsCollection();
 
         // Set other properties
-        CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallInfo>(GameDataKey.RCPGameInstallInfo) != null;
+        CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
 
         // Create commands
         LaunchCommand = new AsyncRelayCommand(LaunchAsync);

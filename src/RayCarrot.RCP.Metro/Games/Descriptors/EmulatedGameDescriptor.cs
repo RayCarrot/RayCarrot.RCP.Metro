@@ -19,7 +19,7 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
     /// <returns>The associated emulator installation or null if none was found</returns>
     protected EmulatorInstallation? GetEmulator(GameInstallation gameInstallation)
     {
-        string? emuId = gameInstallation.GetValue<string>(GameDataKey.EmulatorInstallationId);
+        string? emuId = gameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId);
 
         if (emuId == null)
             return null;
