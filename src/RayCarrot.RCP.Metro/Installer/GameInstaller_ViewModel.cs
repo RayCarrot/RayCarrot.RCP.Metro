@@ -35,7 +35,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
         CancellationTokenSource = new CancellationTokenSource();
 
         // Get images
-        GameLogoSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameLogos/{Info.GameLogoFileName}";
+        GameLogo = Info.GameLogo;
         Gifs = Info.GifFileNames.Select(x => $"{AppViewModel.WPFApplicationBasePath}Installer/InstallerGifs/{x}").ToArray();
 
         // Default the install directory
@@ -87,9 +87,9 @@ public class GameInstaller_ViewModel : UserInputViewModel
     public string CurrentGifImageSource { get; set; }
 
     /// <summary>
-    /// The game logo image source
+    /// The game logo
     /// </summary>
-    public string GameLogoSource { get; }
+    public GameLogoAsset GameLogo { get; }
 
     /// <summary>
     /// Indicates if the current gif image should be shown

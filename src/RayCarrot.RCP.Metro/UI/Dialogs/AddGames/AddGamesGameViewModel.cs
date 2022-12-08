@@ -25,7 +25,7 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameDescriptor.Platform.GetInfo();
         PlatformDisplayName = platformInfo.DisplayName;
-        PlatformIconSource = $"{AppViewModel.WPFApplicationBasePath}Img/GamePlatformIcons/{platformInfo.Icon.GetAttribute<ImageFileAttribute>()!.FileName}";
+        PlatformIcon = platformInfo.Icon;
 
         AddGameCommand = new AsyncRelayCommand(x => AddGameAsync(((GameAddActionViewModel)x!).AddAction));
 
@@ -55,7 +55,7 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
     public bool HasPurchaseLinks => PurchaseLinks.Any();
 
     public LocalizedString PlatformDisplayName { get; }
-    public string PlatformIconSource { get; }
+    public GamePlatformIconAsset PlatformIcon { get; }
 
     #endregion
 

@@ -26,7 +26,7 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
         // Set properties
         GameInstallation = gameInstallation;
         DisplayName = gameDescriptor.DisplayName;
-        IconSource = gameDescriptor.IconSource;
+        Icon = gameDescriptor.Icon;
         IsDemo = gameDescriptor.IsDemo;
         PageLoadLock = new AsyncLock();
 
@@ -92,9 +92,9 @@ public class GameOptionsDialog_ViewModel : BaseRCPViewModel, IDisposable
     public string DisplayName { get; } // TODO: LocalizedString
 
     /// <summary>
-    /// The icons source
+    /// The icon
     /// </summary>
-    public string IconSource { get; }
+    public GameIconAsset Icon { get; }
 
     /// <summary>
     /// Indicates if the game is a demo

@@ -94,18 +94,18 @@ public class GameProgressionManager_RaymanLegends : GameProgressionManager
             // Add general progress info
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RL_Teensy, 
+                icon: ProgressionIconAsset.RL_Teensy, 
                 header: new ResourceLocString(nameof(Resources.Progression_Teensies)), 
                 value: teensies, 
                 max: 700));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
-                icon: ProgressionIcon.RL_Lum,
+                icon: ProgressionIconAsset.RL_Lum,
                 header: new ResourceLocString(nameof(Resources.Progression_Lums)),
                 value: saveData.Score.LocalLumsCount));
 
             // Add rank
-            var rankIcon = (ProgressionIcon)Enum.Parse(typeof(ProgressionIcon), $"RL_Rank{saveData.Profile.StatusIcon}");
+            var rankIcon = (ProgressionIconAsset)Enum.Parse(typeof(ProgressionIconAsset), $"RL_Rank{saveData.Profile.StatusIcon}");
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
                 icon: rankIcon,
@@ -116,22 +116,22 @@ public class GameProgressionManager_RaymanLegends : GameProgressionManager
             // Add cups
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
-                icon: ProgressionIcon.RL_Bronze,
+                icon: ProgressionIconAsset.RL_Bronze,
                 header: new ResourceLocString(nameof(Resources.Progression_RLBronzeCups)),
                 value: (int)saveData.Profile.BronzeMedals));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
-                icon: ProgressionIcon.RL_Silver,
+                icon: ProgressionIconAsset.RL_Silver,
                 header: new ResourceLocString(nameof(Resources.Progression_RLSilverCups)),
                 value: (int)saveData.Profile.SilverMedals));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
-                icon: ProgressionIcon.RL_Gold,
+                icon: ProgressionIconAsset.RL_Gold,
                 header: new ResourceLocString(nameof(Resources.Progression_RLGoldCups)),
                 value: (int)saveData.Profile.GoldMedals));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
-                icon: ProgressionIcon.RL_Diamond,
+                icon: ProgressionIconAsset.RL_Diamond,
                 header: new ResourceLocString(nameof(Resources.Progression_RLDiamondCups)),
                 value: (int)saveData.Profile.DiamondMedals));
 
@@ -146,7 +146,7 @@ public class GameProgressionManager_RaymanLegends : GameProgressionManager
                 OrderBy(x => x.Item1).
                 Select(x => new GameProgressionDataItem(
                     isPrimaryItem: false,
-                    icon: Enum.Parse(typeof(ProgressionIcon), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIcon>(),
+                    icon: Enum.Parse(typeof(ProgressionIconAsset), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIconAsset>(),
                     header: new ResourceLocString($"RL_LevelName_{x.Item1.Replace("-", "_")}"),
                     text: $"{TimeSpan.FromMilliseconds(x.BestTime * 1000):mm\\:ss\\.fff}")));
 

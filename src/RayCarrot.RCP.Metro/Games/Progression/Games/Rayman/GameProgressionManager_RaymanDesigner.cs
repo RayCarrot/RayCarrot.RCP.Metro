@@ -107,7 +107,7 @@ public class GameProgressionManager_RaymanDesigner : GameProgressionManager
 
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
-                icon: ProgressionIcon.R1_Flag, 
+                icon: ProgressionIconAsset.R1_Flag, 
                 header: $"{longWorldNames[save.World]} {save.Level}", 
                 text: $"{time:mm\\:ss\\.fff}"));
         }
@@ -119,7 +119,7 @@ public class GameProgressionManager_RaymanDesigner : GameProgressionManager
             // Add levels completed
             progressItems.Insert(0, new GameProgressionDataItem(
                 isPrimaryItem: true,
-                icon: ProgressionIcon.R1_Flag,
+                icon: ProgressionIconAsset.R1_Flag,
                 header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)),
                 value: levelsFinished,
                 max: LevelsCount));

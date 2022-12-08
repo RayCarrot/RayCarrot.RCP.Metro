@@ -110,12 +110,6 @@ public abstract class GameDescriptor
     /// </summary>
     public abstract string DefaultFileName { get; } // TODO-14: Remove from here - not all games have an exe!
 
-    // TODO-14: Remove from here and normalize
-    /// <summary>
-    /// The icon source for the game icon asset
-    /// </summary>
-    public string IconSource => $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{Icon.GetAttribute<ImageFileAttribute>()!.FileName}";
-
     /// <summary>
     /// The game icon asset
     /// </summary>
@@ -439,6 +433,13 @@ public abstract class GameDescriptor
         {
             RayMapViewer.RayMap => AppURLs.GetRayMapGameURL(Mode, Folder),
             RayMapViewer.Ray1Map => AppURLs.GetRay1MapGameURL(Mode, Folder, Vol),
+            _ => throw new ArgumentOutOfRangeException(nameof(Viewer), Viewer, null)
+        };
+
+        public RayMapIconAsset GetIcon() => Viewer switch
+        {
+            RayMapViewer.RayMap => RayMapIconAsset.RayMap,
+            RayMapViewer.Ray1Map => RayMapIconAsset.Ray1Map,
             _ => throw new ArgumentOutOfRangeException(nameof(Viewer), Viewer, null)
         };
     }

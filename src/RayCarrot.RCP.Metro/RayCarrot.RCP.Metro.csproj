@@ -26,7 +26,7 @@
     <!-- TODO: Migrate AssemblyInfo here -->
     <RootNamespace>RayCarrot.RCP.Metro</RootNamespace>
     <AssemblyName>RayCarrot.RCP.Metro</AssemblyName>
-    <ApplicationIcon>Img\RCP_Metro.ico</ApplicationIcon>
+    <ApplicationIcon>Files\RCP_Metro.ico</ApplicationIcon>
     <Version>13.4.5.0</Version>
     <Authors>RayCarrot</Authors>
     <Product>Rayman Control Panel</Product>
@@ -135,7 +135,7 @@
 
     <!-- Resources -->
     <Resource Include="UI\Fonts\RaymanOrigins.ttf" />
-    <Resource Include="Img\RCP_Metro.ico" />
+    <Resource Include="Files\RCP_Metro.ico" />
   </ItemGroup>
 
   <!-- Resource files (resx) -->

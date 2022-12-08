@@ -83,13 +83,13 @@ public class GameProgressionManager_Rayman2 : GameProgressionManager
             {
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R2_Lum, 
+                    icon: ProgressionIconAsset.R2_Lum, 
                     header: new ResourceLocString(nameof(Resources.Progression_Lums)),
                     value: lums, 
                     max: 1000),
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R2_Cage, 
+                    icon: ProgressionIconAsset.R2_Cage, 
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: 80),
@@ -98,14 +98,14 @@ public class GameProgressionManager_Rayman2 : GameProgressionManager
             if (walkOfLifeTime > 120)
                 progressItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.R2_Clock, 
+                    icon: ProgressionIconAsset.R2_Clock, 
                     header: new ResourceLocString(nameof(Resources.R2_BonusLevelName_1)), 
                     text: $"{new TimeSpan(0, 0, 0, 0, walkOfLifeTime):mm\\:ss\\.ff}"));
 
             if (walkOfPowerTime > 120)
                 progressItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.R2_Clock,
+                    icon: ProgressionIconAsset.R2_Clock,
                     header: new ResourceLocString(nameof(Resources.R2_BonusLevelName_2)),
                     text: $"{new TimeSpan(0, 0, 0, 0, walkOfPowerTime):mm\\:ss\\.ff}"));
 

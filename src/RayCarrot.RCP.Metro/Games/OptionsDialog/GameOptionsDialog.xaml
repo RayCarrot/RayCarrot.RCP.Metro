@@ -36,8 +36,8 @@
             <local:GameIcon Grid.Column="0"
                             IconSize="Medium"
                             IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
-                            Source="{Binding Path=IconSource, Mode=OneTime}"
-                            d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GameIcons/Rayman2.png" />
+                            Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                            d:Source="{x:Static local:DesignData.GameIconSource}" />
 
             <!-- Title -->
 

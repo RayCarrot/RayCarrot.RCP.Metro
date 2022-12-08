@@ -7,16 +7,16 @@ namespace RayCarrot.RCP.Metro;
 
 public class InstalledGameGroupViewModel : BaseViewModel
 {
-    public InstalledGameGroupViewModel(string iconSource, LocalizedString displayName, IEnumerable<GameInstallation> gameInstallations)
+    public InstalledGameGroupViewModel(GameIconAsset icon, LocalizedString displayName, IEnumerable<GameInstallation> gameInstallations)
     {
-        IconSource = iconSource;
+        Icon = icon;
         DisplayName = displayName;
         InstalledGames = new ObservableCollection<InstalledGameViewModel>(gameInstallations.Select(x => new InstalledGameViewModel(x)));
     }
 
     private InstalledGameViewModel? _selectedInstalledGame;
 
-    public string IconSource { get; }
+    public GameIconAsset Icon { get; }
     public LocalizedString DisplayName { get; }
     public ObservableCollection<InstalledGameViewModel> InstalledGames { get; }
 

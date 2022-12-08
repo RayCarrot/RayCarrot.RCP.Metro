@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media;
 using BinarySerializer;
 using NLog;
 using RayCarrot.RCP.Metro.Games.Components;
@@ -24,15 +23,10 @@ public class InstalledGameViewModel : BaseViewModel
         GameInstallation = gameInstallation;
         DisplayName = gameInstallation.GameDescriptor.DisplayName;
 
-        // TODO-14: Don't hard-code WPF paths like this as they're hard to find when reorganizing solution
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameInstallation.GameDescriptor.Platform.GetInfo();
         PlatformDisplayName = platformInfo.DisplayName;
-        PlatformIconSource = $"{AppViewModel.WPFApplicationBasePath}Img/GamePlatformIcons/{platformInfo.Icon.GetAttribute<ImageFileAttribute>()!.FileName}";
-
-        // Set banner image
-        string bannerFileName = gameInstallation.GameDescriptor.Banner.GetAttribute<ImageFileAttribute>()?.FileName ?? "Default.png";
-        GameBannerImageSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameBanners/{bannerFileName}";
+        PlatformIcon = platformInfo.Icon;
 
         // Create collections
         GamePanels = new ObservableCollection<GamePanelViewModel>();
@@ -80,11 +74,11 @@ public class InstalledGameViewModel : BaseViewModel
     public LocalizedString DisplayName { get; }
 
     public LocalizedString PlatformDisplayName { get; }
-    public string PlatformIconSource { get; }
+    public GamePlatformIconAsset PlatformIcon { get; }
 
-    public string IconSource => GameDescriptor.IconSource;
+    public GameIconAsset Icon => GameDescriptor.Icon;
     public bool IsDemo => GameDescriptor.IsDemo;
-    public string GameBannerImageSource { get; }
+    public GameBannerAsset GameBanner => GameDescriptor.Banner;
 
     public ObservableCollection<GamePanelViewModel> GamePanels { get; }
     public ObservableActionItemsCollection AdditionalLaunchActions { get; }
@@ -202,7 +196,7 @@ public class InstalledGameViewModel : BaseViewModel
             AdditionalLaunchActions.AddGroup(new ImageCommandItemViewModel(
                 header: Resources.GameDisplay_Raymap, 
                 description: url,
-                imageSource: (ImageSource)new ImageSourceConverter().ConvertFrom($"{AppViewModel.WPFApplicationBasePath}Img/RayMap/{rayMapInfo.Viewer}.png")!, 
+                assetValue: rayMapInfo.GetIcon(), 
                 command: new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(url))?.Dispose())));
         }
 

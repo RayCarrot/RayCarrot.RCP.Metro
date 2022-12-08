@@ -48,7 +48,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     {
         new DiscInstallGameAddAction(this, new GameInstallerInfo(
             discFilesListFileName: "RaymanArena",
-            gameLogoFileName: "RaymanArena_Logo.png",
+            gameLogo: GameLogoAsset.RaymanArena,
             gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", }))
     });
 

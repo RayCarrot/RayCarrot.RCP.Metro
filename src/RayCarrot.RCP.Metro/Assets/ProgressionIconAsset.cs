@@ -3,7 +3,8 @@
 /// <summary>
 /// The available progression icons
 /// </summary>
-public enum ProgressionIcon
+[AssetDirectory($"{Assets.AssetsPath}/ProgressionIcons", defaultFileExtension: ".png")]
+public enum ProgressionIconAsset
 {
     // Rayman 1
     R1_Cage,

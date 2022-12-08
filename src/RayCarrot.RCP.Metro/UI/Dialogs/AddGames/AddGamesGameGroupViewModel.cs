@@ -6,14 +6,14 @@ namespace RayCarrot.RCP.Metro;
 
 public class AddGamesGameGroupViewModel : BaseViewModel
 {
-    public AddGamesGameGroupViewModel(string iconSource, LocalizedString displayName, IEnumerable<GameDescriptor> gameDescriptors)
+    public AddGamesGameGroupViewModel(GameIconAsset icon, LocalizedString displayName, IEnumerable<GameDescriptor> gameDescriptors)
     {
-        IconSource = iconSource;
+        Icon = icon;
         DisplayName = displayName;
         Games = new ObservableCollection<AddGamesGameViewModel>(gameDescriptors.Select(x => new AddGamesGameViewModel(x)));
     }
 
-    public string IconSource { get; }
+    public GameIconAsset Icon { get; }
     public LocalizedString DisplayName { get; }
     public ObservableCollection<AddGamesGameViewModel> Games { get; }
 }

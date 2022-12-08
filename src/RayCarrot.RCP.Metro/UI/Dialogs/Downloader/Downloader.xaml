@@ -12,7 +12,7 @@
                             d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
     <StackPanel Margin="10">
 
-        <Image Source="../../../Img/MessageIcons/Generic.png"
+        <Image Source="{local:AssetImageSource Asset={x:Static local:MessageIconAsset.Generic}}"
                Width="128" Height="128"
                Margin="0 8 0 16" />
 

@@ -53,18 +53,18 @@ public class GameProgressionManager_Rayman1 : GameProgressionManager
             {
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R1_Cage, 
+                    icon: ProgressionIconAsset.R1_Cage, 
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: 102),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.R1_Continue, 
+                    icon: ProgressionIconAsset.R1_Continue, 
                     header: new ResourceLocString(nameof(Resources.Progression_Continues)),
                     value: saveData.ContinuesCount),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.R1_Life, 
+                    icon: ProgressionIconAsset.R1_Life, 
                     header: new ResourceLocString(nameof(Resources.Progression_Lives)),
                     value: saveData.StatusBar.LivesCount),
             };

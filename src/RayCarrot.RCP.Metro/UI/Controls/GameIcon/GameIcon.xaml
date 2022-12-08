@@ -89,7 +89,7 @@
 
                         <!-- Demo Icon -->
                         <Image Visibility="{TemplateBinding IsDemo, Converter={local:BooleanToVisibilityConverter}}"
-                               Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GameIcons/Demo.png" />
+                               Source="{local:AssetImageSource Asset={x:Static local:GameIconAsset.DemoOverlay}}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -87,6 +87,7 @@ public class AppViewModel : BaseViewModel
 
     #region Constant Fields
 
+    // TODO-14: Remove from here
     /// <summary>
     /// The application base path to use for WPF related operations
     /// </summary>

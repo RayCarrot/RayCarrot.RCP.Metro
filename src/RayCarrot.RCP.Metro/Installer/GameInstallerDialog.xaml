@@ -45,7 +45,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Column="0"
-                       Source="{Binding Path=GameLogoSource}"
+                       Source="{Binding Path=GameLogo, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                        Width="330"/>
 
                 <Image Grid.Column="1"

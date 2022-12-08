@@ -109,13 +109,13 @@ public class GameProgressionManager_RaymanMArena : GameProgressionManager
             // Add completed challenges
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RM_Race,
+                icon: ProgressionIconAsset.RM_Race,
                 header: new ResourceLocString(nameof(Resources.Progression_RMRacesCompleted)),
                 value: raceCompleted, 
                 max: maxRace));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RM_Battle,
+                icon: ProgressionIconAsset.RM_Battle,
                 header: new ResourceLocString(nameof(Resources.Progression_RMBattlesCompleted)),
                 value: battleCompleted, 
                 max: maxBattle));
@@ -137,7 +137,7 @@ public class GameProgressionManager_RaymanMArena : GameProgressionManager
                         progressItems.Add(new GameProgressionDataItem(
                             isPrimaryItem: false,
                             // Get the level icon
-                            icon: Enum.Parse(typeof(ProgressionIcon), $"RM_R{raceIndex}").CastTo<ProgressionIcon>(),
+                            icon: Enum.Parse(typeof(ProgressionIconAsset), $"RM_R{raceIndex}").CastTo<ProgressionIconAsset>(),
                             // The header
                             header: new GeneratedLocString(() => $"{Resources.ResourceManager.GetString($"RM_RaceName_{raceIndex}", Services.InstanceData.CurrentCulture)} ({getDescription()})"),
                             // The value

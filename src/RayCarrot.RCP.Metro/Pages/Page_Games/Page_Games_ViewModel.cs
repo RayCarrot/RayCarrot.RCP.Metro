@@ -166,8 +166,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
                             GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
 
                             InstalledGameGroupViewModel group = new(
-                                // TODO-UPDATE: Normalize
-                                iconSource: $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{gameInfo.GameIcon.GetAttribute<ImageFileAttribute>()!.FileName}",
+                                icon: gameInfo.GameIcon,
                                 displayName: gameInfo.DisplayName,
                                 // TODO-14: This needs to be sorted somehow. Either by user or by game descr.
                                 gameInstallations: gameInstallations);

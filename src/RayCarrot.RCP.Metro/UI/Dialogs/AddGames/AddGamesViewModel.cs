@@ -29,8 +29,7 @@ public class AddGamesViewModel : BaseViewModel
 
                 // Add the group of games
                 category.GameGroups.Add(new AddGamesGameGroupViewModel(
-                    // TODO-UPDATE: Normalize
-                    iconSource: $"{AppViewModel.WPFApplicationBasePath}Img/GameIcons/{gameInfo.GameIcon.GetAttribute<ImageFileAttribute>()!.FileName}",
+                    icon: gameInfo.GameIcon,
                     displayName: gameInfo.DisplayName,
                     gameDescriptors: gameDescriptors));
             }

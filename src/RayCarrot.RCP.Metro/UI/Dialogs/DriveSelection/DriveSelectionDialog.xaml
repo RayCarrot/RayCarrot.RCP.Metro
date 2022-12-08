@@ -13,7 +13,7 @@
                             mc:Ignorable="d"
                             d:DesignHeight="300" d:DesignWidth="500"
                             Loaded="UserControl_LoadedAsync" 
-                            d:DataContext="{x:Static local:DesignTimeVM.DriveSelectionViewModel}">
+                            d:DataContext="{x:Static local:DesignData.DriveSelectionViewModel}">
     <UserControl.InputBindings>
 
         <!-- Refresh -->

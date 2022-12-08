@@ -109,7 +109,7 @@ public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
                 // Add the item
                 progressItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.RO_Clock, 
+                    icon: ProgressionIconAsset.RO_Clock, 
                     header: $"{worldNum}-{lvlNum}", 
                     text: $"{new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\.fff}"));
             }
@@ -120,13 +120,13 @@ public class GameProgressionManager_RaymanJungleRun : GameProgressionManager
             // Add general progress info first
             progressItems.Insert(0, new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_Lum,
+                icon: ProgressionIconAsset.RO_Lum,
                 header: new ResourceLocString(nameof(Resources.Progression_Lums)),
                 value: lums, 
                 max: maxLums));
             progressItems.Insert(1, new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_RedTooth,
+                icon: ProgressionIconAsset.RO_RedTooth,
                 header: new ResourceLocString(nameof(Resources.Progression_Teeth)),
                 value: teeth, 
                 max: maxTeeth));

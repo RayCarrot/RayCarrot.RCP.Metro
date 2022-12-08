@@ -30,7 +30,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="0 4">
-                        <Image Source="{Binding Path=IconImageSource, Mode=OneTime}"
+                        <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                                VerticalAlignment="Center"
                                Width="24" Height="24"
                                Margin="0 0 8 0" />

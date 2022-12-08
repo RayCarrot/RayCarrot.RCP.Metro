@@ -648,13 +648,13 @@ public class GameProgressionManager_RaymanRavingRabbids : GameProgressionManager
             {
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.RRR_Plunger, 
+                    icon: ProgressionIconAsset.RRR_Plunger, 
                     header: new ResourceLocString(nameof(Resources.Progression_RRRDays)), 
                     value: slot.SlotDesc.Progress_Days, 
                     max: 15),
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.RRR_Trophy, 
+                    icon: ProgressionIconAsset.RRR_Trophy, 
                     header: new ResourceLocString(nameof(Resources.Progression_RRRMinigamesCompleted)), 
                     value: completedMinigames, 
                     max: 5 * 15),
@@ -727,14 +727,14 @@ public class GameProgressionManager_RaymanRavingRabbids : GameProgressionManager
             if (score != 0 && (types[mgID] & 0x100) == 0 && mgID != 64)
                 scoreDataItems.Add(new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.RRR_Star, 
+                    icon: ProgressionIconAsset.RRR_Star, 
                     header: new GeneratedLocString(() => String.Format(Resources.Progression_RRRPoints, Resources.ResourceManager.GetString($"RRR_LevelName_{mgID}"))), 
                     value: score, 
                     max: 1000));
 
             scoreDataItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false, 
-                icon: ProgressionIcon.RRR_Trophy, 
+                icon: ProgressionIconAsset.RRR_Trophy, 
                 header: new GeneratedLocString(() => String.Format(Resources.Progression_RRRScore, Resources.ResourceManager.GetString($"RRR_LevelName_{mgID}"))), 
                 text: $"{name}: {playerHighScore}"));
         }
@@ -742,7 +742,7 @@ public class GameProgressionManager_RaymanRavingRabbids : GameProgressionManager
         // Add total score
         scoreDataItems.Insert(0, new GameProgressionDataItem(
             isPrimaryItem: true, 
-            icon: ProgressionIcon.RRR_Star, 
+            icon: ProgressionIconAsset.RRR_Star, 
             header: new ResourceLocString(nameof(Resources.Progression_RRRTotalPoints)), 
             value: totalScore, 
             max: maxScore));

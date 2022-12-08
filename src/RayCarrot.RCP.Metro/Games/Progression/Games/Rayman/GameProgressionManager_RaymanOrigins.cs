@@ -129,25 +129,25 @@ public class GameProgressionManager_RaymanOrigins : GameProgressionManager
             // Add general progress info
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_Electoon,
+                icon: ProgressionIconAsset.RO_Electoon,
                 header: new ResourceLocString(nameof(Resources.Progression_Electoons)),
                 value: electoons, 
                 max: 246));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_RedTooth, 
+                icon: ProgressionIconAsset.RO_RedTooth, 
                 header: new ResourceLocString(nameof(Resources.Progression_Teeth)),
                 value: teeth, 
                 max: 10));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_Medal, 
+                icon: ProgressionIconAsset.RO_Medal, 
                 header: new ResourceLocString(nameof(Resources.Progression_ROLumMedals)),
                 value: lumAttack3, 
                 max: 51));
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RO_Trophy,
+                icon: ProgressionIconAsset.RO_Trophy,
                 header: new ResourceLocString(nameof(Resources.Progression_ROSpeedTrophies)),
                 value: timeAttack2, 
                 max: 31));

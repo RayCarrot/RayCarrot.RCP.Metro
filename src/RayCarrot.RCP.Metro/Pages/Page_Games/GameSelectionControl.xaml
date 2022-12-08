@@ -98,10 +98,9 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
 
-                                                <!-- TODO-UPDATE: This should be demo for demo category -->
                                                 <local:GameIcon Grid.Column="0"
                                                                 IconSize="Small"
-                                                                Source="{Binding Path=IconSource, Mode=OneTime}"
+                                                                Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                                                                 IsDemo="False"
                                                                 Margin="0 0 8 0" />
 
@@ -138,7 +137,7 @@
                                                             </Grid.ColumnDefinitions>
 
                                                             <Image Grid.Column="0"
-                                                                   Source="{Binding Path=PlatformIconSource, Mode=OneTime}" 
+                                                                   Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                                                                    VerticalAlignment="Center"
                                                                    Width="20"
                                                                    Margin="0 2"

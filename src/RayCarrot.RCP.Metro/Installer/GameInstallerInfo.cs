@@ -9,12 +9,12 @@ public class GameInstallerInfo
     /// Default constructor
     /// </summary>
     /// <param name="discFilesListFileName">The disc files list .txt file name</param>
-    /// <param name="gameLogoFileName">The game logo file name</param>
+    /// <param name="gameLogo">The game logo file name</param>
     /// <param name="gifFileNames">The .gif file names</param>
-    public GameInstallerInfo(string discFilesListFileName, string gameLogoFileName, string[] gifFileNames)
+    public GameInstallerInfo(string discFilesListFileName, GameLogoAsset gameLogo, string[] gifFileNames)
     {
         DiscFilesListFileName = discFilesListFileName;
-        GameLogoFileName = gameLogoFileName;
+        GameLogo = gameLogo;
         GifFileNames = gifFileNames;
     }
 
@@ -26,7 +26,7 @@ public class GameInstallerInfo
     /// <summary>
     /// The game logo file name
     /// </summary>
-    public string GameLogoFileName { get; }
+    public GameLogoAsset GameLogo { get; }
 
     /// <summary>
     /// The .gif file names

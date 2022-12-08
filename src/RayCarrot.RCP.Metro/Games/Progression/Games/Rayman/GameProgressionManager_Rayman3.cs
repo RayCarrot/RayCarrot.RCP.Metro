@@ -54,31 +54,31 @@ public class GameProgressionManager_Rayman3 : GameProgressionManager
             {
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R3_Cage,
+                    icon: ProgressionIconAsset.R3_Cage,
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: saveData.TotalCages, 
                     max: 60),
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R3_Stamp, 
+                    icon: ProgressionIconAsset.R3_Stamp, 
                     header: new ResourceLocString(nameof(Resources.Progression_R3Stamps)),
                     value: stamps, 
                     max: stampScores.Length),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.R3_Score, 
+                    icon: ProgressionIconAsset.R3_Score, 
                     header: new ResourceLocString(nameof(Resources.Progression_TotalScore)),
                     value: saveData.TotalScore),
                 
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level3Header)), saveData.Levels[2].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level4Header)), saveData.Levels[3].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level5Header)), saveData.Levels[4].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level6Header)), saveData.Levels[5].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level7Header)), saveData.Levels[6].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level8Header)), saveData.Levels[7].Score),
-                new GameProgressionDataItem(false, ProgressionIcon.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level1Header)), saveData.Levels[0].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level2Header)), saveData.Levels[1].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level3Header)), saveData.Levels[2].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level4Header)), saveData.Levels[3].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level5Header)), saveData.Levels[4].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level6Header)), saveData.Levels[5].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level7Header)), saveData.Levels[6].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level8Header)), saveData.Levels[7].Score),
+                new GameProgressionDataItem(false, ProgressionIconAsset.R3_Score, new ResourceLocString(nameof(Resources.Progression_R3_Level9Header)), saveData.Levels[8].Score),
             };
 
             yield return new SerializableGameProgressionSlot<R3SaveFile>($"{filePath.RemoveFileExtension().Name}", index, saveData.TotalCages + stamps, 60 + stampScores.Length, progressItems, context, saveData, fileName);

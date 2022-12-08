@@ -50,7 +50,7 @@
 
             <Image Grid.Column="1"
                    FlowDirection="{Binding Path=FlowDirection, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"
-                   Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
+                   Source="{local:AssetImageSource Asset={x:Static local:MessageIconAsset.Info}}"
                    Height="128"
                    Width="128" />
 

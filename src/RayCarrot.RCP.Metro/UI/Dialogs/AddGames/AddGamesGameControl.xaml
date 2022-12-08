@@ -4,9 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:controlzex="urn:controlzex"
-             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignWidth="400" 
              d:DataContext="{d:DesignInstance local:AddGamesGameViewModel}">
@@ -20,8 +17,8 @@
 
         <!-- Platform icon -->
         <Image Grid.Column="0"
-               Source="{Binding Path=PlatformIconSource, Mode=OneTime}" 
-               d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/GamePlatformIcons/Win32.png"
+               Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+               d:Source="{x:Static local:DesignData.GamePlatformIconSource}"
                VerticalAlignment="Center"
                Width="20"
                Margin="0 2"

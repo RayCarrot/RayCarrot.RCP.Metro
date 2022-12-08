@@ -55,7 +55,7 @@ public class GameProgressionManager_RabbidsBigBang : GameProgressionManager
         {
             new GameProgressionDataItem(
                 isPrimaryItem: true, 
-                icon: ProgressionIcon.RabbidsBigBang_Score, 
+                icon: ProgressionIconAsset.RabbidsBigBang_Score, 
                 header: new ResourceLocString(nameof(Resources.Progression_RabbidsBigBangStars)), 
                 value: score, 
                 max: maxScore),

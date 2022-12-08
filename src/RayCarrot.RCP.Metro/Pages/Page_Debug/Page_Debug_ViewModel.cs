@@ -419,7 +419,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     {
                         AddLine("Display name", gameDescriptor.DisplayName);
                         AddLine("Default file name", gameDescriptor.DefaultFileName);
-                        AddLine("Icon source", gameDescriptor.IconSource);
+                        AddLine("Icon source", gameDescriptor.Icon.GetAssetPath());
                         AddLine("Dialog group names", gameDescriptor.DialogGroupNames.JoinItems(", "));
                         
                         DataOutput += Environment.NewLine;

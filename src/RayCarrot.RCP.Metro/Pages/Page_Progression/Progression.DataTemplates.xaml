@@ -13,7 +13,7 @@
 
     <DataTemplate x:Key="DataTemplate.ProgressionDataItem.Horizontal" DataType="{x:Type local:GameProgressionDataItem}">
         <StackPanel Orientation="Horizontal">
-            <Image Source="{Binding Path=IconImageSource, Mode=OneTime}"
+            <Image Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                    VerticalAlignment="Center"
                    Width="48" Height="48"
                    Margin="0 0 8 0" />
@@ -38,7 +38,7 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0"
-                   Source="{Binding Path=IconImageSource, Mode=OneTime}"
+                   Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                    Width="48" Height="48"
                    VerticalAlignment="Center"
                    Margin="0 0 8 0" />
@@ -103,7 +103,7 @@
             <local:GameIcon Grid.Row="0"
                             IconSize="Medium"
                             IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
-                            Source="{Binding Path=IconSource, Mode=OneTime}"
+                            Source="{Binding Path=GameIcon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
                             Margin="0 0 15 0" />
 
             <!-- Title -->

@@ -86,7 +86,7 @@ public class GameProgressionManager_RaymanFiestaRun : GameProgressionManager
 
         progressItems.Add(new GameProgressionDataItem(
             isPrimaryItem: true,
-            icon: ProgressionIcon.RFR_Crown,
+            icon: ProgressionIconAsset.RFR_Crown,
             header: new ResourceLocString(nameof(Resources.Progression_RFRCrowns)),
             value: crowns,
             max: maxCrowns));
@@ -94,14 +94,14 @@ public class GameProgressionManager_RaymanFiestaRun : GameProgressionManager
         if (saveData.Version >= 2)
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: true,
-                icon: ProgressionIcon.RFR_Nightmare,
+                icon: ProgressionIconAsset.RFR_Nightmare,
                 header: new ResourceLocString(nameof(Resources.Progression_RFRNightmareMode)),
                 value: GetLevelIdFromIndex(saveData.MaxNightMareLevelIdx % 100),
                 max: 36));
 
         progressItems.Add(new GameProgressionDataItem(
             isPrimaryItem: false,
-            icon: ProgressionIcon.RL_Lum,
+            icon: ProgressionIconAsset.RL_Lum,
             header: new ResourceLocString(nameof(Resources.Progression_Lums)),
             value: (int)saveData.LumsGlobalCounter));
 
@@ -114,7 +114,7 @@ public class GameProgressionManager_RaymanFiestaRun : GameProgressionManager
             // Add the item
             progressItems.Add(new GameProgressionDataItem(
                 isPrimaryItem: false,
-                icon: ProgressionIcon.RO_Clock,
+                icon: ProgressionIconAsset.RO_Clock,
                 header: new ResourceLocString($"RFR_LevelName_{lvlIndex + 1}_10"),
                 text: $"{new TimeSpan(0, 0, 0, 0, (int)saveData.LevelTimes[lvlIndex]):mm\\:ss\\.fff}"));
         }

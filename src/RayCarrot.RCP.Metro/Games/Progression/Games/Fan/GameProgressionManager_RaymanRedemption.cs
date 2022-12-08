@@ -130,7 +130,7 @@ public class GameProgressionManager_RaymanRedemption : GameProgressionManager
                 TimeValue = saveData.GetValue($"magicianTime{i}").NumberValue,
             }).Where(x => x.TimeValue > 0).Select(x =>
             {
-                var icon = (ProgressionIcon)Enum.Parse(typeof(ProgressionIcon), $"Redemption_Magician{x.Index}");
+                var icon = (ProgressionIconAsset)Enum.Parse(typeof(ProgressionIconAsset), $"Redemption_Magician{x.Index}");
                 var time = TimeSpan.FromSeconds(x.TimeValue / 60);
                 return new GameProgressionDataItem(
                     isPrimaryItem: false, 
@@ -160,53 +160,53 @@ public class GameProgressionManager_RaymanRedemption : GameProgressionManager
             {
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R1_LevelExit, 
+                    icon: ProgressionIconAsset.R1_LevelExit, 
                     header: new ResourceLocString(nameof(Resources.Progression_LevelsCompleted)), 
                     value: levelsCompleted, max: maxLevelsCompleted),
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.R1_Cage,
+                    icon: ProgressionIconAsset.R1_Cage,
                     header: new ResourceLocString(nameof(Resources.Progression_Cages)),
                     value: cages, 
                     max: maxCages),
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.Redemption_Token, 
+                    icon: ProgressionIconAsset.Redemption_Token, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionTokens)),
                     value: tokens, 
                     max: maxTokens),
                 new GameProgressionDataItem(
                     isPrimaryItem: true, 
-                    icon: ProgressionIcon.Redemption_Present, 
+                    icon: ProgressionIconAsset.Redemption_Present, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionPresents)),
                     value: presents, 
                     max: maxPresents),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.Redemption_RaymanSkin, 
+                    icon: ProgressionIconAsset.Redemption_RaymanSkin, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionRaySkins)),
                     value: raymanSkins, 
                     max: maxRaymanSkins),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.Redemption_BzzitSkin, 
+                    icon: ProgressionIconAsset.Redemption_BzzitSkin, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionBzzitSkins)),
                     value: bzzitSkins, 
                     max: maxBzzitSkins),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.Redemption_CheckpointSkin, 
+                    icon: ProgressionIconAsset.Redemption_CheckpointSkin, 
                     header: new ResourceLocString(nameof(Resources.Progression_RedemptionCheckpointSkins)),
                     value: checkpointSkins, 
                     max: maxCheckpointSkins),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.R1_Ting, 
+                    icon: ProgressionIconAsset.R1_Ting, 
                     header: new ResourceLocString(nameof(Resources.Progression_Tings)),
                     value: tings),
                 new GameProgressionDataItem(
                     isPrimaryItem: false, 
-                    icon: ProgressionIcon.R1_Life, 
+                    icon: ProgressionIconAsset.R1_Life, 
                     header: new ResourceLocString(nameof(Resources.Progression_Lives)),
                     text: lives),
             };

@@ -132,18 +132,18 @@ public class AppUIManager
         // Helper method for getting the image source for the message type
         static string GetImgSource(MessageType mt)
         {
-            string name = mt switch
+            MessageIconAsset asset = mt switch
             {
-                MessageType.Generic => "Generic",
-                MessageType.Information => "Generic",
-                MessageType.Error => "Error",
-                MessageType.Warning => "Info",
-                MessageType.Question => "Question",
-                MessageType.Success => "Happy",
-                _ => "Generic"
+                MessageType.Generic => MessageIconAsset.Generic,
+                MessageType.Information => MessageIconAsset.Generic,
+                MessageType.Error => MessageIconAsset.Error,
+                MessageType.Warning => MessageIconAsset.Info,
+                MessageType.Question => MessageIconAsset.Question,
+                MessageType.Success => MessageIconAsset.Happy,
+                _ => MessageIconAsset.Generic
             };
 
-            return $"{AppViewModel.WPFApplicationBasePath}Img/MessageIcons/{name}.png";
+            return asset.GetAssetPath();
         }
 
         // Create the message actions

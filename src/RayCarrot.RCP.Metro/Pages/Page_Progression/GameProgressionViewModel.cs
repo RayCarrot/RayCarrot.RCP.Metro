@@ -66,7 +66,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
     public GameProgressionManager ProgressionManager { get; }
     public GameInstallation GameInstallation => ProgressionManager.GameInstallation;
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
-    public string IconSource => GameDescriptor.IconSource;
+    public GameIconAsset GameIcon => GameDescriptor.Icon;
     public bool IsDemo => GameDescriptor.IsDemo;
     // TODO-UPDATE: LocalizedString & localize
     public string DisplayName => ProgressionManager.Name == null
