@@ -37,12 +37,13 @@
                                         Clip="{TemplateBinding ContentClip}" />
                             </Border>
                         </AdornerDecorator>
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Margin="{TemplateBinding Padding}"
-                                          Content="{TemplateBinding ContentControl.Content}"
-                                          ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                        <Border x:Name="ContentPresenter">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              Content="{TemplateBinding ContentControl.Content}"
+                                              ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}"
+                                              ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ClipContent" Value="True">
