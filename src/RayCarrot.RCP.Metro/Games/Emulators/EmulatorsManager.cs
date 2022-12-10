@@ -92,6 +92,8 @@ public class EmulatorsManager
     {
         Data.Game_EmulatorInstallations.Remove(emulatorInstallation);
 
+        // TODO-14: Deselect this from any game which uses this emulator
+
         Messenger.Send(new RemovedEmulatorsMessage(emulatorInstallation));
     }
 

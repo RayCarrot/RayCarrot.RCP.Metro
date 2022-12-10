@@ -175,16 +175,54 @@
             </local:Card>
         </Grid>
 
-
         <local:Card Grid.Column="1"
                     Margin="{StaticResource RCP.Thicknesses.Card}"
                     DataContext="{Binding Path=SelectedEmulator}">
-            <!-- TODO-14: Create an actual UI here with options and info -->
-            <StackPanel>
-                <Button Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Content="Remove"
-                        Command="{Binding Path=RemoveEmulatorCommand, Mode=OneTime}" />
-            </StackPanel>
+
+            <ScrollViewer>
+                <StackPanel>
+                    <Grid Margin="0 0 0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0"
+                               Width="64"
+                               Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                               d:Source="{x:Static local:DesignData.EmulatorIconSource}"
+                               Margin="0 0 8 0" />
+
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                                   Text="{Binding Path=DisplayName.Value}"
+                                   d:Text="DOSBox"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center" />
+
+                        <local:PopupCard Grid.Column="2" 
+                                         VerticalAlignment="Center">
+                            <StackPanel>
+                                <!-- TODO-14: Add rename option -->
+                                <Button Content="Open location"
+                                        Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
+                                        local:IconAssist.IconKind="FolderOutline"
+                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Info}" />
+                                <Button Content="{Resx GameOptions_Remove}"
+                                        Command="{Binding Path=RemoveEmulatorCommand, Mode=OneTime}"
+                                        local:IconAssist.IconKind="DeleteOutline"
+                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.DeleteItem}" />
+                            </StackPanel>
+                        </local:PopupCard>
+
+                    </Grid>
+
+                    <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
+
+                </StackPanel>
+            </ScrollViewer>
+
         </local:Card>
 
     </Grid>

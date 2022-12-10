@@ -25,6 +25,21 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 
     public abstract Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation);
 
+    public virtual IEnumerable<DuoGridItemViewModel> GetEmulatorInfoItems(EmulatorInstallation emulatorInstallation) => new[]
+    {
+        new DuoGridItemViewModel(
+            header: "Emulator id:",
+            text: EmulatorId,
+            minUserLevel: UserLevel.Debug),
+        new DuoGridItemViewModel(
+            header: "Installation id:",
+            text: emulatorInstallation.InstallationId,
+            minUserLevel: UserLevel.Debug),
+        new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),
+            text: emulatorInstallation.InstallLocation.FullPath),
+    };
+
     public virtual IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         Enumerable.Empty<DuoGridItemViewModel>();
 
