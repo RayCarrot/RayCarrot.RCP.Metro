@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rayman Activity Center (Win32) game descriptor
@@ -14,6 +16,7 @@ public sealed class GameDescriptor_RaymanActivityCenter_Win32 : Win32GameDescrip
 
     public override string DisplayName => "Rayman Activity Center";
     public override string DefaultFileName => "Rayman.exe";
+    public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanActivityCenter;
 

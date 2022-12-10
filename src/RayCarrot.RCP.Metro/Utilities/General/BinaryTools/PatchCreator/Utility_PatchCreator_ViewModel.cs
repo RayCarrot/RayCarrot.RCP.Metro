@@ -12,7 +12,7 @@ public class Utility_PatchCreator_ViewModel : BaseRCPViewModel
 
     public Utility_PatchCreator_ViewModel()
     {
-        Games = new ObservableCollection<GameItem>(Services.Games.EnumerateGameDescriptors().
+        Games = new ObservableCollection<GameItem>(Services.Games.GetGameDescriptors().
             Where(x => x.AllowPatching).
             Select(x => new GameItem(x, x.GameDescriptorName)));
         SelectedGame = Games.First();

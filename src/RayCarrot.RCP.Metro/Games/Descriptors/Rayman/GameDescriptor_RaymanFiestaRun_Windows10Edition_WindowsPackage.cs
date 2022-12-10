@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
@@ -23,6 +24,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
 
     public override string DisplayName => "Rayman Fiesta Run Windows 10 Edition";
     public override string DefaultFileName => "RFRXAML.exe";
+    public override DateTime ReleaseDate => new(2016, 04, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanFiestaRun;
 

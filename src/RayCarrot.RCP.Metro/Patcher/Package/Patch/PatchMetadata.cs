@@ -75,7 +75,7 @@ public class PatchMetadata : BinarySerializable
         if (Pre_FormatVersion >= 2)
             return GameIds.Select(x => gamesManager.GetGameDescriptor(x));
         else
-            return gamesManager.EnumerateGameDescriptors().Where(x => x.LegacyGame.ToString() == LegacyGameName);
+            return gamesManager.GetGameDescriptors().Where(x => x.LegacyGame.ToString() == LegacyGameName);
     }
 
     public override void SerializeImpl(SerializerObject s)

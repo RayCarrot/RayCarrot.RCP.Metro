@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
@@ -17,6 +18,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
 
     public override string DisplayName => "Rayman Raving Rabbids";
     public override string DefaultFileName => "CheckApplication.exe";
+    public override DateTime ReleaseDate => new(2006, 12, 07);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;
 

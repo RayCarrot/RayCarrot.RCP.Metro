@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// A game descriptor, providing data for a game
 /// </summary>
-public abstract class GameDescriptor
+public abstract class GameDescriptor : IComparable<GameDescriptor>
 {
     #region Constructor
 
@@ -101,6 +101,12 @@ public abstract class GameDescriptor
     /// A unique display name for this game descriptor
     /// </summary>
     public virtual string GameDescriptorName => $"{DisplayName} ({Platform})"; // TODO-14: Implement this, localized, for each game and use where needed
+
+    /// <summary>
+    /// The game's release data. This is mainly used for sorting and doesn't have
+    /// to be exact (i.e. January 1st is acceptable if only the year is known).
+    /// </summary>
+    public abstract DateTime ReleaseDate { get; }
 
     //public abstract LocalizedString ShortDisplayName { get; }
     //public abstract LocalizedString LongDisplayName { get; }
@@ -371,6 +377,42 @@ public abstract class GameDescriptor
     /// <param name="gameInstallation">The game installation for the removed game</param>
     /// <returns>The task</returns>
     public virtual Task PostGameRemovedAsync(GameInstallation gameInstallation) => Task.CompletedTask;
+
+    public int CompareTo(GameDescriptor? other)
+    {
+        if (this == other)
+            return 0;
+        if (other == null)
+            return 1;
+
+        // Category
+        int categoryComparison = Category.CompareTo(other.Category);
+        if (categoryComparison != 0)
+            return categoryComparison;
+
+        // Game
+        int gameComparison = Game.CompareTo(other.Game);
+        if (gameComparison != 0)
+            return gameComparison;
+
+        // Platform
+        int platformComparison = Platform.CompareTo(other.Platform);
+        if (platformComparison != 0)
+            return platformComparison;
+
+        // Demo
+        int demoComparison = IsDemo.CompareTo(other.IsDemo);
+        if (demoComparison != 0)
+            return demoComparison;
+
+        // Release date
+        int releaseDateComparison = ReleaseDate.CompareTo(other.ReleaseDate);
+        if (releaseDateComparison != 0)
+            return releaseDateComparison;
+
+        // Id
+        return String.Compare(GameId, other.GameId, StringComparison.Ordinal);
+    }
 
     #endregion
 

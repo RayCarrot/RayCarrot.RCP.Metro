@@ -9,7 +9,6 @@ using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Make this thread-safe
 public class GamesManager
 {
     #region Constructor
@@ -80,6 +79,7 @@ public class GamesManager
             new GameDescriptor_RaymanGardenPLUS_Win32(),
             new GameDescriptor_GloboxMoment_Win32(),
         }.ToDictionary(x => x.GameId);
+        SortedGameDescriptors = GameDescriptors.Values.OrderBy(x => x).ToArray();
 
         EmulatorDescriptors = new EmulatorDescriptor[]
         {
@@ -105,6 +105,7 @@ public class GamesManager
     #region Private Properties
 
     private Dictionary<string, GameDescriptor> GameDescriptors { get; }
+    private GameDescriptor[] SortedGameDescriptors { get; }
     private Dictionary<string, EmulatorDescriptor> EmulatorDescriptors { get; }
 
     #endregion
@@ -118,23 +119,11 @@ public class GamesManager
     {
         Logger.Info("The game {0} is being added", gameDescriptor.GameId);
 
-        // TODO-14: Remove this
-        // Make sure the game hasn't already been added
-        //if (gameDescriptor.LegacyGame.IsAdded())
-        //{
-        //    Logger.Warn("The game {0} has already been added", gameDescriptor.Id);
-
-        //    await MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, gameDescriptor.DisplayName), 
-        //        Resources.AddGame_DuplicateHeader, MessageType.Error);
-
-        //    return null;
-        //}
-
         // Create an installation
         GameInstallation gameInstallation = new(gameDescriptor, installDirectory);
 
         // Add the game
-        Data.Game_GameInstallations.Add(gameInstallation);
+        Data.Game_GameInstallations.AddSorted(gameInstallation);
 
         Logger.Info("The game {0} has been added", gameInstallation.FullId);
 
@@ -153,114 +142,26 @@ public class GamesManager
 
     private async Task RemoveGameImplAsync(GameInstallation gameInstallation)
     {
-        try
-        {
-            // Remove the game from the jump list
-            foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
-                Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
+        // Remove the game from the jump list
+        foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
+            Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
 
-            // Remove the game
-            Data.Game_GameInstallations.Remove(gameInstallation);
+        // Remove the game
+        Data.Game_GameInstallations.Remove(gameInstallation);
 
-            // Run post game removal
-            await gameInstallation.GameDescriptor.PostGameRemovedAsync(gameInstallation);
-        }
-        catch (Exception ex)
-        {
-            Logger.Fatal(ex, "Removing game");
-            throw;
-        }
+        // Run post game removal
+        await gameInstallation.GameDescriptor.PostGameRemovedAsync(gameInstallation);
     }
 
     #endregion
 
-    #region Public Game Methods
-
-    /// <summary>
-    /// Adds a new game to the app data
-    /// </summary>
-    /// <param name="gameDescriptor">The game descriptor for the game to add</param>
-    /// <param name="installDirectory">The game install directory</param>
-    /// <returns>The game installation</returns>
-    public async Task<GameInstallation> AddGameAsync(
-        GameDescriptor gameDescriptor, 
-        FileSystemPath installDirectory, 
-        Action<GameInstallation>? configureInstallation = null)
-    {
-        GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installDirectory, configureInstallation);
-
-        Messenger.Send(new AddedGamesMessage(gameInstallation));
-
-        return gameInstallation;
-    }
-
-    public async Task<IList<GameInstallation>> AddGamesAsync(IEnumerable<(GameDescriptor gameDescriptor, FileSystemPath installDirectory)> games)
-    {
-        List<GameInstallation> gameInstallations = new();
-
-        foreach (var game in games)
-            gameInstallations.Add(await AddGameImplAsync(game.gameDescriptor, game.installDirectory));
-
-        Messenger.Send(new AddedGamesMessage(gameInstallations));
-
-        return gameInstallations;
-    }
-
-    /// <summary>
-    /// Removes the specified game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to remove</param>
-    /// <param name="forceRemove">Indicates if the game should be force removed</param>
-    /// <returns>The task</returns>
-    public async Task RemoveGameAsync(GameInstallation gameInstallation)
-    {
-        await RemoveGameImplAsync(gameInstallation);
-        Messenger.Send(new RemovedGamesMessage(gameInstallation));
-    }
-
-    public async Task RemoveGamesAsync(IList<GameInstallation> gameInstallations)
-    {
-        foreach (GameInstallation gameInstallation in gameInstallations)
-            await RemoveGameImplAsync(gameInstallation);
-
-        Messenger.Send(new RemovedGamesMessage(gameInstallations));
-    }
-
-    // TODO-14: Should we sort these? The order here should not be assumed. Check for game add dialog how it's handled.
-    /// <summary>
-    /// Enumerates the installed games
-    /// </summary>
-    /// <returns>The game installations</returns>
-    public IEnumerable<GameInstallation> EnumerateInstalledGames() => Data.Game_GameInstallations;
-
-    /// <summary>
-    /// Enumerates the installed games which have the specified id
-    /// </summary>
-    /// <param name="gameId">The id to check for</param>
-    /// <returns>The installed games which have the id</returns>
-    public IEnumerable<GameInstallation> EnumerateInstalledGames(string gameId) => Data.Game_GameInstallations.Where(x => x.GameId == gameId);
-
-    /// <summary>
-    /// Finds a game installation based on the provided search predicate
-    /// </summary>
-    /// <param name="gameSearchPredicate">The predicate to use when finding the game installation</param>
-    /// <returns>The first matching game installation or null if none was found</returns>
-    public GameInstallation? FindGameInstallation(GameSearch.Predicate gameSearchPredicate) =>
-        EnumerateInstalledGames().FirstOrDefault(x => gameSearchPredicate(x.GameDescriptor));
-
-    /// <summary>
-    /// Finds a game installation based on the provided search predicates
-    /// </summary>
-    /// <param name="gameSearchPredicates">The predicates to use when finding the game installation. A game is valid if at least one matches.</param>
-    /// <returns>The first matching game installation or null if none was found</returns>
-    public GameInstallation? FindGameInstallation(params GameSearch.Predicate[] gameSearchPredicates) =>
-        FindGameInstallation(GameSearch.Create(gameSearchPredicates));
+    #region Game Descriptor Methods
 
     /// <summary>
     /// Enumerates the available game descriptors
     /// </summary>
     /// <returns>The game descriptors</returns>
-    public IEnumerable<GameDescriptor> EnumerateGameDescriptors() => GameDescriptors.Values;
+    public IReadOnlyList<GameDescriptor> GetGameDescriptors() => SortedGameDescriptors;
 
     /// <summary>
     /// Gets a game descriptor from the id
@@ -269,16 +170,133 @@ public class GamesManager
     /// <returns>The matching game descriptor</returns>
     public GameDescriptor GetGameDescriptor(string gameId)
     {
-        if (gameId == null) 
+        if (gameId == null)
             throw new ArgumentNullException(nameof(gameId));
-        
-        // TODO-14: Add check and throw if not found?
-        return GameDescriptors[gameId];
+
+        if (!GameDescriptors.TryGetValue(gameId, out GameDescriptor descriptor))
+            throw new ArgumentException($"Not game descriptor found for the provided game id {gameId}", nameof(gameId));
+
+        return descriptor;
     }
 
     #endregion
 
-    #region Public Emulator Methods
+    #region Game Installation Methods
+
+    /// <summary>
+    /// Adds a new game to the app
+    /// </summary>
+    /// <param name="gameDescriptor">The game descriptor for the game to add</param>
+    /// <param name="installDirectory">The game install directory</param>
+    /// <param name="configureInstallation">An optional action callback for configuring the added game installation</param>
+    /// <returns>The game installation</returns>
+    public async Task<GameInstallation> AddGameAsync(
+        GameDescriptor gameDescriptor, 
+        FileSystemPath installDirectory, 
+        Action<GameInstallation>? configureInstallation = null)
+    {
+        // Add the game
+        GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installDirectory, configureInstallation);
+
+        // Send a message that it's been added
+        Messenger.Send(new AddedGamesMessage(gameInstallation));
+
+        return gameInstallation;
+    }
+
+    /// <summary>
+    /// Adds multiple new games to the app
+    /// </summary>
+    /// <param name="games">The games to add</param>
+    /// <param name="configureInstallation">An optional action callback for configuring the added game installation</param>
+    /// <returns>The game installations</returns>
+    public async Task<IList<GameInstallation>> AddGamesAsync(
+        IEnumerable<(GameDescriptor gameDescriptor, FileSystemPath installDirectory)> games,
+        Action<GameInstallation>? configureInstallation = null)
+    {
+        List<GameInstallation> gameInstallations = new();
+
+        // Add each game
+        foreach ((GameDescriptor? gameDescriptor, FileSystemPath installDirectory) in games)
+            gameInstallations.Add(await AddGameImplAsync(gameDescriptor, installDirectory, configureInstallation));
+
+        Messenger.Send(new AddedGamesMessage(gameInstallations));
+
+        return gameInstallations;
+    }
+
+    /// <summary>
+    /// Removes the specified game from the app
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to remove</param>
+    /// <returns>The task</returns>
+    public async Task RemoveGameAsync(GameInstallation gameInstallation)
+    {
+        // Remove the game
+        await RemoveGameImplAsync(gameInstallation);
+
+        // Send a message that the game was removed
+        Messenger.Send(new RemovedGamesMessage(gameInstallation));
+    }
+
+    /// <summary>
+    /// Removes multiple games from the app
+    /// </summary>
+    /// <param name="gameInstallations">The games to remove</param>
+    /// <returns>The task</returns>
+    public async Task RemoveGamesAsync(IList<GameInstallation> gameInstallations)
+    {
+        // Remove the games
+        foreach (GameInstallation gameInstallation in gameInstallations)
+            await RemoveGameImplAsync(gameInstallation);
+
+        Messenger.Send(new RemovedGamesMessage(gameInstallations));
+    }
+
+    /// <summary>
+    /// Gets a collection of the currently installed games
+    /// </summary>
+    /// <returns>The game installations</returns>
+    public IReadOnlyList<GameInstallation> GetInstalledGames()
+    {
+        // Copy to a list to avoid issues with it being modified when enumerating
+        return Data.Game_GameInstallations.ToList();
+    }
+
+    /// <summary>
+    /// Determines whether there are any installed games
+    /// </summary>
+    /// <returns>True if there is at least one installed game, otherwise false</returns>
+    public bool AnyInstalledGames() => Data.Game_GameInstallations.Any();
+
+    /// <summary>
+    /// Determines whether there are any installed games which meet the specified criteria
+    /// </summary>
+    /// <returns>True if there is at least one installed game which meets the specified criteria, otherwise false</returns>
+    public bool AnyInstalledGames(Func<GameInstallation, bool> predicate) => Data.Game_GameInstallations.Any(predicate);
+
+    /// <summary>
+    /// Finds a game installation based on the provided search predicate
+    /// </summary>
+    /// <param name="gameSearchPredicate">The predicate to use when finding the game installation</param>
+    /// <returns>The first matching game installation or null if none was found</returns>
+    public GameInstallation? FindInstalledGame(GameSearch.Predicate gameSearchPredicate) =>
+        Data.Game_GameInstallations.
+            Where(x => gameSearchPredicate(x.GameDescriptor)).
+            OrderBy(x => x).
+            FirstOrDefault();
+
+    /// <summary>
+    /// Finds a game installation based on the provided search predicates
+    /// </summary>
+    /// <param name="gameSearchPredicates">The predicates to use when finding the game installation. A game is valid if at least one matches.</param>
+    /// <returns>The first matching game installation or null if none was found</returns>
+    public GameInstallation? FindInstalledGame(params GameSearch.Predicate[] gameSearchPredicates) =>
+        FindInstalledGame(GameSearch.Create(gameSearchPredicates));
+
+    #endregion
+
+    #region Emulator Methods
 
     /// <summary>
     /// Gets an emulator descriptor from the id

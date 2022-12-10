@@ -113,7 +113,7 @@ public class Page_Progression_ViewModel : BasePageViewModel,
                 GameItems.Clear();
 
                 // Add the game items
-                foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
+                foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
                 {
                     foreach (GameProgressionManager progressionManager in gameInstallation.GameDescriptor.
                                  GetComponents<ProgressionManagersComponent>().

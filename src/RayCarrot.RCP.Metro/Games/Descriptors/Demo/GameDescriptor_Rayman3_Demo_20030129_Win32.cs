@@ -22,6 +22,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20030129_Win32 : Win32GameDescri
 
     public override string DisplayName => "Rayman 3 Demo (2003/01/29)";
     public override string DefaultFileName => "MainP5Pvf.exe";
+    public override DateTime ReleaseDate => new(2003, 01, 29);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3_Demo;
 

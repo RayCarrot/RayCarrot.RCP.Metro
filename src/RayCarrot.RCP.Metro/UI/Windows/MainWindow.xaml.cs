@@ -60,7 +60,7 @@ public partial class MainWindow : BaseWindow, IRecipient<AddedGamesMessage>, IRe
 
         try
         {
-            ProgressionPageTab.IsEnabled = Games.EnumerateInstalledGames().Any();
+            ProgressionPageTab.IsEnabled = Games.AnyInstalledGames();
         }
         catch (Exception ex)
         {

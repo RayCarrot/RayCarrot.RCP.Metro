@@ -20,6 +20,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
 
     public override string DisplayName => "Rayman Demo (1996/02/15)";
     public override string DefaultFileName => "RAYMAN.EXE";
+    public override DateTime ReleaseDate => new(1996, 02, 15);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
 

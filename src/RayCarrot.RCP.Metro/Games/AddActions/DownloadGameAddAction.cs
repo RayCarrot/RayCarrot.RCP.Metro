@@ -19,7 +19,8 @@ public class DownloadGameAddAction : GameAddAction
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Download;
 
     // Can only be downloaded once
-    public override bool IsAvailable => Services.Games.EnumerateInstalledGames(GameDescriptor.GameId).
+    public override bool IsAvailable => Services.Games.GetInstalledGames().
+        Where(x => x.GameId == GameDescriptor.GameId).
         All(x => x.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData)?.InstallMode 
                  != UserData_RCPGameInstallData.RCPInstallMode.Download);
 

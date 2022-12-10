@@ -79,7 +79,7 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The item ID
     /// </summary>
-    public string ID { get; }
+    public string ID { get; } // TODO-14: Update how this works
 
     /// <summary>
     /// Indicates if the item is included in the jump list

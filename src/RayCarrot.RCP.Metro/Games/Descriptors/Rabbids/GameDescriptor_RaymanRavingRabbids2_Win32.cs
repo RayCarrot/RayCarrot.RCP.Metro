@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 
@@ -18,6 +19,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     public override string DisplayName => "Rayman Raving Rabbids 2";
     public override string DefaultFileName => "Jade.exe";
+    public override DateTime ReleaseDate => new(2007, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids2;
 

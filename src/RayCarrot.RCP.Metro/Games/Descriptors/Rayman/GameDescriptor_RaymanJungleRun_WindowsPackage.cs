@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
@@ -23,6 +24,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
 
     public override string DisplayName => "Rayman Jungle Run";
     public override string DefaultFileName => "RO1Mobile.exe";
+    public override DateTime ReleaseDate => new(2013, 03, 07);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanJungleRun;
 

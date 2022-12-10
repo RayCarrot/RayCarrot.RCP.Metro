@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
@@ -20,6 +21,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
 
     public override string DisplayName => "Tonic Trouble Special Edition";
     public override string DefaultFileName => "MaiD3Dvr.exe";
+    public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.TonicTroubleSpecialEdition;
 

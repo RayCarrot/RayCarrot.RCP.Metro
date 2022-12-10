@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
@@ -17,6 +18,7 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
 
     public override string DisplayName => "Rayman Redemption";
     public override string DefaultFileName => "Rayman Redemption.exe";
+    public override DateTime ReleaseDate => new(2020, 06, 19);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRedemption;
 

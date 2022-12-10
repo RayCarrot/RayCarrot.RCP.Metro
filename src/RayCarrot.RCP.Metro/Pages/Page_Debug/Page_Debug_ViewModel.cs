@@ -178,7 +178,9 @@ public class Page_Debug_ViewModel : BasePageViewModel
     protected override Task InitializeAsync()
     {
         // Set properties
-        AvailableInstallers = GamesManager.EnumerateGameDescriptors().Where(x => x.GetAddActions().OfType<DiscInstallGameAddAction>().Any()).ToObservableCollection();
+        AvailableInstallers = GamesManager.GetGameDescriptors().
+            Where(x => x.GetAddActions().OfType<DiscInstallGameAddAction>().Any()).
+            ToObservableCollection();
         SelectedInstaller = AvailableInstallers.First();
         SelectedAccentColor = ThemeManager.Current.DetectTheme(Metro.App.Current)?.PrimaryAccentColor ?? new Color();
 
@@ -306,7 +308,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     {
         var lines = new List<string>();
 
-        foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
+        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             lines.AddRange((await gameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(gameInstallation)).
                 Select(utility => $"{utility} ({gameInstallation.GameDescriptor.DisplayName})"));
@@ -402,7 +404,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
                 case DebugDataOutputType.GameFinder:
                     // Run and get the result
-                    var result = new GameFinder(GamesManager.EnumerateGameDescriptors(), null).FindGames();
+                    var result = new GameFinder(GamesManager.GetGameDescriptors(), null).FindGames();
                         
                     // Output the found games
                     DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.GameId} - {x.InstallLocation}").JoinItems(Environment.NewLine);
@@ -415,7 +417,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     // Helper method for adding a new line of text
                     void AddLine(string header, object content) => DataOutput += $"{header}: {content}{Environment.NewLine}";
 
-                    foreach (GameDescriptor gameDescriptor in GamesManager.EnumerateGameDescriptors())
+                    foreach (GameDescriptor gameDescriptor in GamesManager.GetGameDescriptors())
                     {
                         AddLine("Display name", gameDescriptor.DisplayName);
                         AddLine("Default file name", gameDescriptor.DefaultFileName);
@@ -437,7 +439,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     var totalTime = 0L;
 
                     // Enumerate each game
-                    foreach (GameInstallation installedGame in GamesManager.EnumerateInstalledGames())
+                    foreach (GameInstallation installedGame in GamesManager.GetInstalledGames())
                     {
                         try
                         {

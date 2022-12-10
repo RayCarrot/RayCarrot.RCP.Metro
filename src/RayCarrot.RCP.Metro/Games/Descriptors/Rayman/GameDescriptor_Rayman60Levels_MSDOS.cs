@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
@@ -21,6 +22,7 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
 
     public override string DisplayName => "Rayman 60 Levels";
     public override string DefaultFileName => "Rayman.bat";
+    public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.Rayman60Levels;
 

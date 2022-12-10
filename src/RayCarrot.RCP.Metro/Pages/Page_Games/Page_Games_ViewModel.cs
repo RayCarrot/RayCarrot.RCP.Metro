@@ -148,8 +148,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
                     SelectedInstalledGame = null;
 
                     // Enumerate every category of installed games
-                    foreach (var categorizedGames in GamesManager.EnumerateInstalledGames().
-                                 OrderBy(x => x.GameDescriptor.Category). // TODO-14: Normalize games sorting
+                    foreach (var categorizedGames in GamesManager.GetInstalledGames().
                                  GroupBy(x => x.GameDescriptor.Category))
                     {
                         // Create a view model
@@ -158,9 +157,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
                         GameCategories.Add(category);
 
                         // Enumerate every group of installed games
-                        foreach (var gameInstallations in categorizedGames.
-                                     OrderBy(x => x.GameDescriptor.Game). // TODO-14: Normalize games sorting
-                                     GroupBy(x => x.GameDescriptor.Game))
+                        foreach (var gameInstallations in categorizedGames.GroupBy(x => x.GameDescriptor.Game))
                         {
                             // Get the game info
                             GameInfoAttribute gameInfo = gameInstallations.Key.GetInfo();
@@ -168,7 +165,6 @@ public class Page_Games_ViewModel : BasePageViewModel,
                             InstalledGameGroupViewModel group = new(
                                 icon: gameInfo.GameIcon,
                                 displayName: gameInfo.DisplayName,
-                                // TODO-14: This needs to be sorted somehow. Either by user or by game descr.
                                 gameInstallations: gameInstallations);
 
                             // Add the group of game installations
@@ -234,9 +230,10 @@ public class Page_Games_ViewModel : BasePageViewModel,
         try
         {
             // TODO-14: Change how the game finder works
+            IReadOnlyList<GameInstallation> installedGames = Services.Games.GetInstalledGames();
             // Get all games which have not been added
-            GameDescriptor[] games = Services.Games.EnumerateGameDescriptors().
-                Where(x => Services.Games.EnumerateInstalledGames().All(g => g.GameDescriptor != x)).
+            GameDescriptor[] games = Services.Games.GetGameDescriptors().
+                Where(x => installedGames.All(g => g.GameDescriptor != x)).
                 ToArray();
 
             Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));

@@ -18,6 +18,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
 
     public override string DisplayName => "Rayman Raving Rabbids Activity Center";
     public override string DefaultFileName => "Rayman.exe";
+    public override DateTime ReleaseDate => new(2006, 10, 19);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbidsActivityCenter;
 

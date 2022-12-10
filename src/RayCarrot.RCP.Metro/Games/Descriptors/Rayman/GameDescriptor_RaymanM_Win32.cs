@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
@@ -22,6 +23,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
     public override string DisplayName => "Rayman M";
     public override string DefaultFileName => "RaymanM.exe";
+    public override DateTime ReleaseDate => new(2001, 12, 14);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanM;
 

@@ -18,7 +18,7 @@ public class FindSteamGameAddAction : GameAddAction
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Find;
 
     // Steam games can only be added once
-    public override bool IsAvailable => !Services.Games.EnumerateInstalledGames(GameDescriptor.GameId).Any();
+    public override bool IsAvailable => !Services.Games.AnyInstalledGames(x => x.GameId == GameDescriptor.GameId);
 
     public SteamGameDescriptor GameDescriptor { get; }
 

@@ -20,6 +20,7 @@ public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
 
     public override string DisplayName => "Rayman Origins";
     public override string DefaultFileName => "Rayman Origins.exe";
+    public override System.DateTime ReleaseDate => new(2012, 03, 29);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanOrigins;
 

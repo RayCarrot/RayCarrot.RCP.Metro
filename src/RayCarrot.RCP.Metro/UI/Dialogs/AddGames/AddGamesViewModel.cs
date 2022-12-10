@@ -10,9 +10,7 @@ public class AddGamesViewModel : BaseViewModel
         GameCategories = new ObservableCollection<AddGamesGameCategoryViewModel>();
 
         // Enumerate every category of games
-        foreach (var categorizedGames in Services.Games.EnumerateGameDescriptors().
-                     OrderBy(x => x.Category). // TODO-14: Normalize games sorting
-                     GroupBy(x => x.Category))
+        foreach (var categorizedGames in Services.Games.GetGameDescriptors().GroupBy(x => x.Category))
         {
             // Create a view model
             GameCategoryInfoAttribute categoryInfo = categorizedGames.Key.GetInfo();
@@ -20,9 +18,7 @@ public class AddGamesViewModel : BaseViewModel
             GameCategories.Add(category);
 
             // Enumerate every group of games
-            foreach (var gameDescriptors in categorizedGames.
-                         OrderBy(x => x.Game). // TODO-14: Normalize games sorting
-                         GroupBy(x => x.Game))
+            foreach (var gameDescriptors in categorizedGames.GroupBy(x => x.Game))
             {
                 // Get the game info
                 GameInfoAttribute gameInfo = gameDescriptors.Key.GetInfo();

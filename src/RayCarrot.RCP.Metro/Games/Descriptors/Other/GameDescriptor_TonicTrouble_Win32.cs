@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
@@ -20,6 +21,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 
     public override string DisplayName => "Tonic Trouble";
     public override string DefaultFileName => "TonicTrouble.exe";
+    public override DateTime ReleaseDate => new(1999, 12, 07);
 
     public override GameIconAsset Icon => GameIconAsset.TonicTrouble;
 

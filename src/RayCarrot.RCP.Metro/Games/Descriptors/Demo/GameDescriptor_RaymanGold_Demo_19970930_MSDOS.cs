@@ -22,6 +22,7 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
 
     public override string DisplayName => "Rayman Gold Demo (1997/09/30)";
     public override string DefaultFileName => "Rayman.bat";
+    public override DateTime ReleaseDate => new(1997, 09, 30);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanGold_Demo;
     

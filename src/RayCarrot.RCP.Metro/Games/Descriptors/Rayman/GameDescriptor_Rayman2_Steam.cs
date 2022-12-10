@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BinarySerializer.OpenSpace;
@@ -22,6 +23,7 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
 
     public override string DisplayName => "Rayman 2";
     public override string DefaultFileName => "Rayman2.exe";
+    public override DateTime ReleaseDate => new(1999, 11, 05);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman2;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman2;

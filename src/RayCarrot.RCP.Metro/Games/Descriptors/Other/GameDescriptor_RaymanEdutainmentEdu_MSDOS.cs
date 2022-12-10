@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,6 +32,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
 
     public override string DisplayName => "Rayman Edutainment (Edu)";
     public override string DefaultFileName => $"RAY{PrimaryName}.EXE";
+    public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
 

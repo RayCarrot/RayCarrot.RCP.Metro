@@ -10,7 +10,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MSDOS : MsDosGameDescri
 {
     #region Public Properties
 
-    public override string GameId => "Rayman1_Demo19951207_MSDOS";
+    public override string GameId => "Rayman1_Demo_19951207_MSDOS";
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
@@ -18,6 +18,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MSDOS : MsDosGameDescri
 
     public override string DisplayName => "Rayman Demo (1995/12/07)";
     public override string DefaultFileName => "RAYMAN.EXE";
+    public override DateTime ReleaseDate => new(1995, 12, 07);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
 

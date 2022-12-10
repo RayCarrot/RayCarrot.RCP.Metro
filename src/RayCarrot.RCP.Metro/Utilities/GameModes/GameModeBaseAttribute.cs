@@ -33,5 +33,5 @@ public abstract class GameModeBaseAttribute : Attribute
     public abstract object? GetSettingsObject();
 
     public GameInstallation? FindGameInstallation(GamesManager gamesManager) =>
-        gamesManager.FindGameInstallation(x => DescriptorTypes.Contains(x.GetType()));
+        gamesManager.FindInstalledGame(x => DescriptorTypes.Contains(x.GetType()));
 }

@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rayman Premiers Clics (Win32) game descriptor
@@ -14,6 +16,7 @@ public sealed class GameDescriptor_RaymanPremiersClics_Win32 : Win32GameDescript
 
     public override string DisplayName => "Rayman Premiers Clics";
     public override string DefaultFileName => "RAYMAN.exe";
+    public override DateTime ReleaseDate => new(2001, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanPremiersClics;
 

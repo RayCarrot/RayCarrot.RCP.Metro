@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,6 +16,7 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanGardenPLUS;
 
     public override string DisplayName => "Rayman Garden PLUS";
+    public override DateTime ReleaseDate => new(2021, 06, 05);
 
     public override string DefaultFileName => "rayman-garden-plus.exe";
 

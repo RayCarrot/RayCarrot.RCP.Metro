@@ -23,6 +23,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
 
     public override string DisplayName => "Rayman by his Fans";
     public override string DefaultFileName => "rayfan.bat";
+    public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanByHisFans;
 

@@ -356,7 +356,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             // Get all the installations for the matching game descriptors
             GameDescriptor[] gameDescriptors = patch.Metadata.GetGameDescriptors(Services.Games).ToArray();
-            GameInstallation[] gameInstallations = Services.Games.EnumerateInstalledGames().
+            GameInstallation[] gameInstallations = Services.Games.GetInstalledGames().
                 Where(x => gameDescriptors.Contains(x.GameDescriptor)).
                 ToArray();
 

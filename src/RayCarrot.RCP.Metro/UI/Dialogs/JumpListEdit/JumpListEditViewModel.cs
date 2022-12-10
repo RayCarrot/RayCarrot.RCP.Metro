@@ -26,7 +26,7 @@ public class JumpListEditViewModel : UserInputViewModel
         NotIncluded = new ObservableCollection<JumpListItemViewModel>();
 
         // Get all jump list items
-        foreach (GameInstallation gameInstallation in Services.Games.EnumerateInstalledGames())
+        foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
             foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
             {

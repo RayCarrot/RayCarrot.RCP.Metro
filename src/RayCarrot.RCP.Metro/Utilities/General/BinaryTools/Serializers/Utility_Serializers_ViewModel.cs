@@ -123,7 +123,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                         GetDefaultDir = g =>
                         {
                             var gameSearch = GameSearch.Create(Game.RaymanJungleRun, GamePlatformFlag.Plat_WindowsPackage);
-                            GameDescriptor? gameDescriptor = g.FindGameInstallation(gameSearch)?.GameDescriptor;
+                            GameDescriptor? gameDescriptor = g.FindInstalledGame(gameSearch)?.GameDescriptor;
 
                             if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
                                 return winDescr.GetLocalAppDataDirectory();
@@ -144,7 +144,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                         GetDefaultDir = g =>
                         {
                             var gameSearch = GameSearch.Create(Game.RaymanFiestaRun, GamePlatformFlag.Plat_WindowsPackage);
-                            GameDescriptor? gameDescriptor = g.FindGameInstallation(gameSearch)?.GameDescriptor;
+                            GameDescriptor? gameDescriptor = g.FindInstalledGame(gameSearch)?.GameDescriptor;
 
                             if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
                                 return winDescr.GetLocalAppDataDirectory();
@@ -165,7 +165,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                         GetDefaultDir = g =>
                         {
                             var gameSearch = GameSearch.Create(Game.RabbidsBigBang, GamePlatformFlag.Plat_WindowsPackage);
-                            GameDescriptor? gameDescriptor = g.FindGameInstallation(gameSearch)?.GameDescriptor;
+                            GameDescriptor? gameDescriptor = g.FindInstalledGame(gameSearch)?.GameDescriptor;
 
                             if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
                                 return winDescr.GetLocalAppDataDirectory();

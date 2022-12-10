@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
@@ -23,6 +24,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
 
     public override string DisplayName => "Rabbids Big Bang";
     public override string DefaultFileName => "Template.exe";
+    public override DateTime ReleaseDate => new(2014, 03, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsBigBang;
 

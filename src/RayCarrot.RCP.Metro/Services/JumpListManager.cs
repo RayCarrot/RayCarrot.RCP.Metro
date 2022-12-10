@@ -48,7 +48,7 @@ public class JumpListManager : IRecipient<AddedGamesMessage>, IRecipient<Removed
                 }
 
                 // Create a jump list
-                new JumpList(GamesManager.EnumerateInstalledGames().
+                new JumpList(GamesManager.GetInstalledGames().
                         // Get the items for each game
                         Select(x => x.GameDescriptor.GetJumpListItems(x)).
                         // Select into single collection

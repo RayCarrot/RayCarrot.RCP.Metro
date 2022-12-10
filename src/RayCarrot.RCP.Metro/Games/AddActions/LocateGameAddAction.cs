@@ -18,7 +18,7 @@ public class LocateGameAddAction : GameAddAction
 
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.GameDisplay_Locate));
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Locate;
-    public override bool IsAvailable => !_singleInstallationOnly || !Services.Games.EnumerateInstalledGames(GameDescriptor.GameId).Any();
+    public override bool IsAvailable => !_singleInstallationOnly || !Services.Games.AnyInstalledGames(x => x.GameId == GameDescriptor.GameId);
 
     public GameDescriptor GameDescriptor { get; }
     

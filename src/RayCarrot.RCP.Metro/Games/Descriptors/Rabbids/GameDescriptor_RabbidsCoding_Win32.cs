@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -16,6 +17,7 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
 
     public override string DisplayName => "Rabbids Coding";
     public override string DefaultFileName => "Rabbids Coding.exe";
+    public override DateTime ReleaseDate => new(2019, 10, 08);
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsCoding;
 

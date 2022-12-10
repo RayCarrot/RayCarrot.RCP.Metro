@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using System;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rayman Dictées (Win32) game descriptor
@@ -14,6 +16,7 @@ public sealed class GameDescriptor_RaymanDictées_Win32 : Win32GameDescriptor
 
     public override string DisplayName => "Rayman Dictées";
     public override string DefaultFileName => "Dictee.exe";
+    public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanDictées;
 

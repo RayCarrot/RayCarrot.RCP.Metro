@@ -221,7 +221,7 @@ public class StartupManager
         // TODO-14: Only show single message to user
         
         // Make sure every game is valid
-        foreach (GameInstallation gameInstallation in GamesManager.EnumerateInstalledGames())
+        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             // Check if it's valid
             if (gameInstallation.GameDescriptor.IsValid(gameInstallation.InstallLocation) &&

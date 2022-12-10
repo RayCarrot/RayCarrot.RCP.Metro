@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -16,6 +17,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
 
     public override string DisplayName => "Rabbids Go Home";
     public override string DefaultFileName => Services.Data.Game_RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
+    public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsGoHome;
 

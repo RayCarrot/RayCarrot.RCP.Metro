@@ -519,7 +519,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     public override Task InitializeAsync()
     {
         // Set the default directory to that of the game, if it's been added
-        GameInstallation gameInstallation = Services.Games.FindGameInstallation(GameSearch.Create(Game.RaymanRavingRabbids, GamePlatformFlag.PC));
+        GameInstallation gameInstallation = Services.Games.FindInstalledGame(GameSearch.Create(Game.RaymanRavingRabbids, GamePlatformFlag.PC));
         GameDirectoryPath = gameInstallation?.InstallLocation ?? FileSystemPath.EmptyPath;
 
         // Restore saved button mapping

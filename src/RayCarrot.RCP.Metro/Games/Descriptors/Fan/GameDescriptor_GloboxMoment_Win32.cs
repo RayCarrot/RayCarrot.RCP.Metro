@@ -18,6 +18,7 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 
     public override string DisplayName => "Globox Moment";
     public override string DefaultFileName => "Globox Moment.exe";
+    public override DateTime ReleaseDate => new(2019, 07, 26); // Unsure if this is correct
 
     public override GameIconAsset Icon => GameIconAsset.GloboxMoment;
 

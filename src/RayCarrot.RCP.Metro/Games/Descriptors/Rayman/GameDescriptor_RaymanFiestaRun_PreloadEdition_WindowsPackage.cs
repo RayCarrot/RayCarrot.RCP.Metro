@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
@@ -23,6 +24,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
 
     public override string DisplayName => "Rayman Fiesta Run Preload Edition";
     public override string DefaultFileName => "RFR_WinRT_OEM.exe";
+    public override DateTime ReleaseDate => new(2014, 06, 04);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanFiestaRun;
 

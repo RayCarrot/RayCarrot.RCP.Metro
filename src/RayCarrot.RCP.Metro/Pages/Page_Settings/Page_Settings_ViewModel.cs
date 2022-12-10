@@ -237,7 +237,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
                 LocalLinkItems.Clear();
 
-                GameInstallation? r2GameInstallation = GamesManager.FindGameInstallation(GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC));
+                GameInstallation? r2GameInstallation = GamesManager.FindInstalledGame(GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC));
 
                 // Config files
                 LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
