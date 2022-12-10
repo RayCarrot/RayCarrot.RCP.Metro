@@ -15,6 +15,9 @@ using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Perhaps remove the links page? We could move game-specific links to game hub (like registry key links). The RCP
+//          specific ones could be moved to the page popup for either the Settings or About page.
+
 /// <summary>
 /// View model for the settings page
 /// </summary>
@@ -248,13 +251,6 @@ public class Page_Settings_ViewModel : BasePageViewModel
                         ? r2GameInstallation.InstallLocation + "ubi.ini"
                         : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
                     new(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
-                });
-
-                // DOSBox files
-                LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]
-                {
-                    new(new FileSystemPath(Data.Emu_DOSBox_Path), Resources.Links_Local_DOSBox),
-                    new(new FileSystemPath(Data.Emu_DOSBox_ConfigPath), Resources.Links_Local_DOSBoxConfig, UserLevel.Technical)
                 });
 
                 // Steam paths

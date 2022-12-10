@@ -243,30 +243,31 @@ public class Page_Games_ViewModel : BasePageViewModel,
             // Get additional finder items
             List<GameFinder_GenericItem> finderItems = new(1);
 
+            // TODO-14: Restore this. Perhaps implement a better system where game finder finds games and emulators?
             // Create DOSBox finder item if it doesn't exist
-            if (!System.IO.File.Exists(Data.Emu_DOSBox_Path))
-            {
-                string[] names =
-                {
-                    "DosBox",
-                    "Dos Box"
-                };
+            //if (!System.IO.File.Exists(Data.Emu_DOSBox_Path))
+            //{
+            //    string[] names =
+            //    {
+            //        "DosBox",
+            //        "Dos Box"
+            //    };
 
-                void foundAction(FileSystemPath installDir)
-                {
-                    if (System.IO.File.Exists(Data.Emu_DOSBox_Path))
-                    {
-                        Logger.Warn("The DosBox executable was not added from the game finder due to already having been added");
-                        return;
-                    }
+            //    void foundAction(FileSystemPath installDir)
+            //    {
+            //        if (System.IO.File.Exists(Data.Emu_DOSBox_Path))
+            //        {
+            //            Logger.Warn("The DosBox executable was not added from the game finder due to already having been added");
+            //            return;
+            //        }
 
-                    Logger.Info("The DosBox executable was found from the game finder");
+            //        Logger.Info("The DosBox executable was found from the game finder");
 
-                    Data.Emu_DOSBox_Path = installDir + "DOSBox.exe";
-                }
+            //        Data.Emu_DOSBox_Path = installDir + "DOSBox.exe";
+            //    }
 
-                finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : (FileSystemPath?)null, foundAction, "DOSBox"));
-            }
+            //    finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : (FileSystemPath?)null, foundAction, "DOSBox"));
+            //}
 
             // Run the game finder and get the result
             GameFinder finder = new(games, finderItems);

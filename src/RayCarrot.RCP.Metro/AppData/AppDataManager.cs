@@ -128,14 +128,6 @@ public class AppDataManager
                     PreviousLinkItemStyle = Data.UI_LinkItemStyle;
 
                     break;
-
-                case nameof(AppUserData.Emu_DOSBox_Path):
-                case nameof(AppUserData.Emu_DOSBox_ConfigPath):
-                    // TODO-14: Handle this much better
-                    //Messenger.Send(new ModifiedGamesMessage(GamesManager.EnumerateInstalledGames().
-                    //    Where(x => x.GameDescriptor.Emulator is Emulator_DOSBox).
-                    //    ToArray()));
-                    break;
             }
         }
     }

@@ -60,10 +60,6 @@ public class AppUserData : BaseViewModel
         Game_RabbidsGoHomeLaunchData = null;
         Game_ShownRabbidsActivityCenterLaunchMessage = false;
 
-        // Emulator
-        Emu_DOSBox_Path = FileSystemPath.EmptyPath;
-        Emu_DOSBox_ConfigPath = FileSystemPath.EmptyPath;
-
         // Utility
         Utility_TPLSData = null;
 
@@ -283,21 +279,6 @@ public class AppUserData : BaseViewModel
 
     #endregion
 
-    #region Emulator
-
-    // TODO-14: Remove these
-    /// <summary>
-    /// The path for the DosBox file
-    /// </summary>
-    public string Emu_DOSBox_Path { get; set; }
-
-    /// <summary>
-    /// Optional path for the DosBox config file
-    /// </summary>
-    public string Emu_DOSBox_ConfigPath { get; set; }
-
-    #endregion
-
     #region Utility
 
     /// <summary>
@@ -489,8 +470,10 @@ public class AppUserData : BaseViewModel
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private Dictionary<Games, UserData_DosBoxOptions> DosBoxGames { set => Game_DosBoxGames = value; }
     [JsonProperty] private bool IsFirstLaunch { set => App_IsFirstLaunch = value; }
-    [JsonProperty] private string DosBoxPath { set => Emu_DOSBox_Path = value; }
-    [JsonProperty] private string DosBoxConfig { set => Emu_DOSBox_ConfigPath = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private string DosBoxPath { set => Emu_DOSBox_Path = value; }
+    // TODO-14: Restore this once we implement the app data migration
+    //[JsonProperty] private string DosBoxConfig { set => Emu_DOSBox_ConfigPath = value; }
     [JsonProperty] private bool AutoLocateGames { set => Game_AutoLocateGames = value; }
     [JsonProperty] private bool CloseAppOnGameLaunch { set => App_CloseAppOnGameLaunch = value; }
     [JsonProperty] private bool CloseConfigOnSave { set => App_CloseConfigOnSave = value; }

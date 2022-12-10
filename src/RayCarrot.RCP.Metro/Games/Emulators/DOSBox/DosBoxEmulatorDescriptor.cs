@@ -31,7 +31,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         gameInstallation.GameDescriptor as MsDosGameDescriptor 
         ?? throw new InvalidOperationException($"The {nameof(DosBoxEmulatorDescriptor)} can only be used with {nameof(MsDosGameDescriptor)}");
 
-    private string GetDOSBoxLaunchArgs(GameInstallation gameInstallation, string? gameLaunchArgs = null)
+    private string GetDOSBoxLaunchArgs(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation, string? gameLaunchArgs = null)
     {
         MsDosGameDescriptor descriptor = GetMsdosGameDescriptor(gameInstallation);
 
@@ -44,7 +44,14 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
             requiresMounting: descriptor.RequiresDisc, 
             launchName: launchName, 
             installDir: gameInstallation.InstallLocation, 
-            dosBoxConfigFile: GetGameConfigFile(gameInstallation));
+            dosBoxConfigFiles: new[]
+            {
+                // Add the primary config file
+                emulatorInstallation.GetValue<FileSystemPath>(EmulatorDataKey.DosBox_ConfigFilePath),
+
+                // Add the RCP config file
+                GetGameConfigFile(gameInstallation)
+            });
     }
 
     private static string GetDOSBoxLaunchArgs(
@@ -52,7 +59,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         bool requiresMounting, 
         string launchName, 
         FileSystemPath installDir,
-        FileSystemPath dosBoxConfigFile)
+        IEnumerable<FileSystemPath> dosBoxConfigFiles)
     {
         // Create a string builder for the argument
         var str = new StringBuilder();
@@ -63,22 +70,12 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
             str.Append($"{arg} ");
         }
 
-        // Helper method for adding a config file to the argument
-        void AddConfig(FileSystemPath configFile)
+        // Add config files
+        foreach (FileSystemPath configFile in dosBoxConfigFiles)
         {
             if (configFile.FileExists)
                 AddArg($"-conf \"{configFile.FullPath}\"");
         }
-
-        // Add the primary config file
-        AddConfig(Services.Data.Emu_DOSBox_ConfigPath);
-
-        // Add the RCP config file
-        AddConfig(dosBoxConfigFile.FullPath);
-
-        // Add additional config files
-        //foreach (var config in additionalConfigFiles)
-        //    AddConfig(config);
 
         // Mount the disc if required
         if (requiresMounting)
@@ -110,7 +107,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     public override GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         new DosBoxGameConfigViewModel(gameInstallation, this);
 
-    public override EmulatorOptionsViewModel? GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) =>
+    public override EmulatorOptionsViewModel GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) =>
         new DosBoxEmulatorOptionsViewModel(emulatorInstallation);
 
     public override Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
@@ -137,7 +134,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         }
 
         // Get the launch args
-        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation, gameLaunchArgs);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation, emulatorInstallation, gameLaunchArgs);
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
             gameInstallation.FullId, launchPath, launchArgs);
@@ -154,7 +151,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     {
         // Get the launch info
         FileSystemPath launchPath = emulatorInstallation.InstallLocation;
-        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation, emulatorInstallation);
 
         return base.GetGameInfoItems(gameInstallation, emulatorInstallation).Concat(new[]
         {
@@ -173,7 +170,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     {
         // Get the launch info
         FileSystemPath launchPath = emulatorInstallation.InstallLocation;
-        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation, emulatorInstallation);
 
         // Create the shortcut
         Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchPath, launchArgs);
@@ -185,7 +182,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     {
         // Get the launch info
         FileSystemPath launchPath = emulatorInstallation.InstallLocation;
-        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation);
+        string launchArgs = GetDOSBoxLaunchArgs(gameInstallation, emulatorInstallation);
 
         if (!launchPath.FileExists)
             return Enumerable.Empty<JumpListItemViewModel>();
