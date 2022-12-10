@@ -11,8 +11,11 @@ public class InstalledEmulatorViewModel : BaseViewModel
     public InstalledEmulatorViewModel(EmulatorInstallation emulatorInstallation)
     {
         EmulatorInstallation = emulatorInstallation;
+        
         Platforms = new ObservableCollection<PlatformViewModel>(Descriptor.SupportedPlatforms.Select(x => new PlatformViewModel(x)));
         InfoItems = new ObservableCollection<DuoGridItemViewModel>(Descriptor.GetEmulatorInfoItems(emulatorInstallation));
+
+        OptionsViewModel = Descriptor.GetEmulatorOptionsViewModel(emulatorInstallation);
 
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         RemoveEmulatorCommand = new RelayCommand(RemoveEmulator);
@@ -29,13 +32,8 @@ public class InstalledEmulatorViewModel : BaseViewModel
     public ObservableCollection<PlatformViewModel> Platforms { get; }
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
 
+    public EmulatorOptionsViewModel? OptionsViewModel { get; }
+
     public Task OpenLocationAsync() => Services.File.OpenExplorerLocationAsync(EmulatorInstallation.InstallLocation);
-
-    public void RemoveEmulator()
-    {
-        Services.Emulators.RemoveEmulator(EmulatorInstallation);
-    }
-
-    // TODO: Add info
-    // TODO: Add emulator specific options
+    public void RemoveEmulator() => Services.Emulators.RemoveEmulator(EmulatorInstallation);
 }

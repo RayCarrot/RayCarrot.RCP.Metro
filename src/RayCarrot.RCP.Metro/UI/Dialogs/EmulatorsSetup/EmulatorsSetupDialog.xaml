@@ -5,6 +5,7 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            xmlns:dosBox="clr-namespace:RayCarrot.RCP.Metro.Games.Emulators.DosBox"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -218,7 +219,20 @@
 
                     </Grid>
 
-                    <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}" />
+                    <local:DuoGrid ItemsSource="{Binding Path=InfoItems, Mode=OneTime}"
+                                   Margin="0 0 0 8" />
+
+                    <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                               Visibility="{Binding Path=OptionsViewModel, Converter={local:InvertedObjectNullToVisibilityConverter}}"
+                               Margin="0 0 0 8" />
+
+                    <ContentPresenter Content="{Binding Path=OptionsViewModel, Mode=OneTime}">
+                        <ContentPresenter.Resources>
+                            <DataTemplate DataType="{x:Type dosBox:DosBoxEmulatorOptionsViewModel}">
+                                <dosBox:DosBoxEmulatorOptionsControl />
+                            </DataTemplate>
+                        </ContentPresenter.Resources>
+                    </ContentPresenter>
 
                 </StackPanel>
             </ScrollViewer>

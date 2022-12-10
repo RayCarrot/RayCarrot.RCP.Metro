@@ -9,7 +9,7 @@ public abstract class MsDosGameDescriptor : EmulatedGameDescriptor
 {
     #region Public Properties
 
-    public override GamePlatform Platform => GamePlatform.MSDOS;
+    public override GamePlatform Platform => GamePlatform.MsDos;
 
     /// <summary>
     /// Indicates if the game requires a disc to be mounted in order to play

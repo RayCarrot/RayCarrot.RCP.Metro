@@ -19,7 +19,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     #region Public Properties
 
     public override string EmulatorId => "DOSBox";
-    public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MSDOS };
+    public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MsDos };
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameType_DosBox));
     public override EmulatorIconAsset Icon => EmulatorIconAsset.DosBox;
 
@@ -109,6 +109,9 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
 
     public override GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         new DosBoxGameConfigViewModel(gameInstallation, this);
+
+    public override EmulatorOptionsViewModel? GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) =>
+        new DosBoxEmulatorOptionsViewModel(emulatorInstallation);
 
     public override Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         LaunchGameAsync(gameInstallation, emulatorInstallation, null);

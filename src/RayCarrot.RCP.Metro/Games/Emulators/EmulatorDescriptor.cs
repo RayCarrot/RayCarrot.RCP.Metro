@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators;
 
+// TODO-14: Use components here as well
 public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 {
     public abstract string EmulatorId { get; }
@@ -22,6 +23,8 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
     public abstract EmulatorIconAsset Icon { get; }
 
     public virtual GameOptionsDialog_EmulatorConfigPageViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
+
+    public virtual EmulatorOptionsViewModel? GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) => null;
 
     public abstract Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation);
 

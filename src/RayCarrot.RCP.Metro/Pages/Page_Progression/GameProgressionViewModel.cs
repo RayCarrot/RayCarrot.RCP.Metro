@@ -107,7 +107,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
     {
         // TODO-14: This should not be handled here and definitely not by checking if the platform is MSDOS
         // If the type is DOSBox, check if GOG cloud sync is being used
-        if (GameDescriptor.Platform == GamePlatform.MSDOS)
+        if (GameDescriptor.Platform == GamePlatform.MsDos)
         {
             try
             {

@@ -9,7 +9,7 @@ public enum GamePlatform
     /// MS-DOS
     /// </summary>
     [GamePlatformInfo("MS-DOS", GamePlatformIconAsset.MsDos)]
-    MSDOS = GamePlatformFlag.Plat_MSDOS | GamePlatformFlag.PC,
+    MsDos = GamePlatformFlag.Plat_MsDos | GamePlatformFlag.PC,
 
     /// <summary>
     /// Win32
