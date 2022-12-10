@@ -1,6 +1,7 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
+using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -66,6 +67,11 @@ public static class Services
     /// The games manager
     /// </summary>
     public static GamesManager Games => GetService<GamesManager>();
+
+    /// <summary>
+    /// The emulators manager
+    /// </summary>
+    public static EmulatorsManager Emulators => GetService<EmulatorsManager>();
 
     public static IMessenger Messenger => GetService<IMessenger>();
 }

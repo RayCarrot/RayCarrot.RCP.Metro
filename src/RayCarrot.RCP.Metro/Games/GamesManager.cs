@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
 using NLog;
-using RayCarrot.RCP.Metro.Games.Emulators;
-using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -80,11 +78,6 @@ public class GamesManager
             new GameDescriptor_GloboxMoment_Win32(),
         }.ToDictionary(x => x.GameId);
         SortedGameDescriptors = GameDescriptors.Values.OrderBy(x => x).ToArray();
-
-        EmulatorDescriptors = new EmulatorDescriptor[]
-        {
-            new DosBoxEmulatorDescriptor(),
-        }.ToDictionary(x => x.EmulatorId);
     }
 
     #endregion
@@ -106,7 +99,6 @@ public class GamesManager
 
     private Dictionary<string, GameDescriptor> GameDescriptors { get; }
     private GameDescriptor[] SortedGameDescriptors { get; }
-    private Dictionary<string, EmulatorDescriptor> EmulatorDescriptors { get; }
 
     #endregion
 
@@ -174,7 +166,7 @@ public class GamesManager
             throw new ArgumentNullException(nameof(gameId));
 
         if (!GameDescriptors.TryGetValue(gameId, out GameDescriptor descriptor))
-            throw new ArgumentException($"Not game descriptor found for the provided game id {gameId}", nameof(gameId));
+            throw new ArgumentException($"No game descriptor found for the provided game id {gameId}", nameof(gameId));
 
         return descriptor;
     }
@@ -293,37 +285,6 @@ public class GamesManager
     /// <returns>The first matching game installation or null if none was found</returns>
     public GameInstallation? FindInstalledGame(params GameSearch.Predicate[] gameSearchPredicates) =>
         FindInstalledGame(GameSearch.Create(gameSearchPredicates));
-
-    #endregion
-
-    #region Emulator Methods
-
-    /// <summary>
-    /// Gets an emulator descriptor from the id
-    /// </summary>
-    /// <param name="emulatorId">The emulator id</param>
-    /// <returns>The matching emulator descriptor</returns>
-    public EmulatorDescriptor GetEmulatorDescriptor(string emulatorId)
-    {
-        if (emulatorId == null)
-            throw new ArgumentNullException(nameof(emulatorId));
-
-        // TODO-14: Add check and throw if not found?
-        return EmulatorDescriptors[emulatorId];
-    }
-
-    /// <summary>
-    /// Gets an emulator installation from the installation id
-    /// </summary>
-    /// <param name="installationId">The emulator installation id</param>
-    /// <returns>The matching emulator installation or null if not found</returns>
-    public EmulatorInstallation? GetEmulatorInstallation(string installationId)
-    {
-        if (installationId == null)
-            throw new ArgumentNullException(nameof(installationId));
-
-        return Data.Game_EmulatorInstallations.FirstOrDefault(x => x.InstallationId == installationId);
-    }
 
     #endregion
 }

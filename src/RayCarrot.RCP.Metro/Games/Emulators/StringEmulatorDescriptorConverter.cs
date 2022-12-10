@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro.Games.Emulators;
 
 public class StringEmulatorDescriptorConverter : JsonConverter<EmulatorDescriptor>
 {
-    public GamesManager GamesManager => Services.Games; // TODO: Pass in through ctor instead
+    public EmulatorsManager EmulatorsManager => Services.Emulators; // TODO: Pass in through ctor instead
 
     public override void WriteJson(JsonWriter writer, EmulatorDescriptor? value, JsonSerializer serializer)
     {
@@ -20,6 +20,6 @@ public class StringEmulatorDescriptorConverter : JsonConverter<EmulatorDescripto
         if (reader.Value is not string id)
             throw new Exception("The emulator descriptor ID can not be null");
 
-        return GamesManager.GetEmulatorDescriptor(id);
+        return EmulatorsManager.GetEmulatorDescriptor(id);
     }
 }

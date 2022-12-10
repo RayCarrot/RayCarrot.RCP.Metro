@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators;
 
-public abstract class EmulatorDescriptor
+public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 {
     public abstract string EmulatorId { get; }
 
@@ -17,6 +18,8 @@ public abstract class EmulatorDescriptor
     /// The emulator display name
     /// </summary>
     public abstract LocalizedString DisplayName { get; }
+
+    public abstract EmulatorIconAsset Icon { get; }
 
     public virtual GameOptionsDialog_EmulatorConfigPageViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
 
@@ -34,4 +37,16 @@ public abstract class EmulatorDescriptor
 
     // TODO-14: Call this
     public virtual Task OnEmulatorDeselected(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => Task.CompletedTask;
+
+    public int CompareTo(EmulatorDescriptor? other)
+    {
+        if (this == other)
+            return 0;
+        if (other == null)
+            return 1;
+
+        // TODO-14: Add proper sorting based on platforms
+
+        return String.Compare(EmulatorId, other.EmulatorId, StringComparison.Ordinal);
+    }
 }

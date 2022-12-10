@@ -190,6 +190,15 @@
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal">
 
+                <Button Margin="0 0 4 0"
+                        Style="{StaticResource RCP.Styles.Button.Flat}"
+                        Command="{Binding Path=ConfigureEmulatorsCommand, Mode=OneTime}"
+                        ToolTip="Configure emulators"
+                        local:IconAssist.IconKind="{StaticResource RCP.Icons.EmulatorEdit}" />
+
+                <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" 
+                           Margin="0 0 4 0" />
+
                 <!-- TODO-UPDATE: Implement -->
                 <Grid Margin="0 0 4 0">
                     <Button Style="{StaticResource RCP.Styles.Button.Flat}"

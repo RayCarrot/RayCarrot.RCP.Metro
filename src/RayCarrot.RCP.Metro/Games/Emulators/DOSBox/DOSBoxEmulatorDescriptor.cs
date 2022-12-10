@@ -21,6 +21,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
     public override string EmulatorId => "DOSBox";
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MSDOS };
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameType_DosBox));
+    public override EmulatorIconAsset Icon => EmulatorIconAsset.DosBox;
 
     #endregion
 

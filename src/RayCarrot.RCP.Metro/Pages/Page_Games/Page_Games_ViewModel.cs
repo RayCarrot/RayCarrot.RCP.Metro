@@ -47,6 +47,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
         RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
         FindGamesCommand = new AsyncRelayCommand(() => FindGamesAsync(false));
         AddGamesCommand = new AsyncRelayCommand(AddGamesAsync);
+        ConfigureEmulatorsCommand = new AsyncRelayCommand(ConfigureEmulatorsAsync);
     }
 
     #endregion
@@ -62,6 +63,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
     public ICommand RefreshGamesCommand { get; }
     public ICommand FindGamesCommand { get; }
     public ICommand AddGamesCommand { get; }
+    public ICommand ConfigureEmulatorsCommand { get; }
 
     #endregion
 
@@ -318,6 +320,11 @@ public class Page_Games_ViewModel : BasePageViewModel,
     public Task AddGamesAsync()
     {
         return UI.ShowAddGamesAsync();
+    }
+
+    public Task ConfigureEmulatorsAsync()
+    {
+        return UI.ShowEmulatorsSetupAsync();
     }
 
     public async void Receive(AddedGamesMessage message) =>

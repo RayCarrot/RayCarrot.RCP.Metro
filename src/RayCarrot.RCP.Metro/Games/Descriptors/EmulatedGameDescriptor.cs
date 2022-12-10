@@ -24,7 +24,7 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
         if (emuId == null)
             return null;
 
-        return Services.Games.GetEmulatorInstallation(emuId);
+        return Services.Emulators.GetInstalledEmulator(emuId);
     }
 
     protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)

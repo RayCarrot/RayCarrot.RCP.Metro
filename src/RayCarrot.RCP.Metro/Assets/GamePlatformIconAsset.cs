@@ -4,7 +4,7 @@
 public enum GamePlatformIconAsset
 {
     [AssetFileName("MSDOS.png")]
-    MSDOS,
+    MsDos,
 
     [AssetFileName("Win32.png")]
     Win32,

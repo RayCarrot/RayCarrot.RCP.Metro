@@ -564,7 +564,7 @@
         <!-- DOSBox -->
 
         <TabItem local:TabItemAssist.IconKind="{StaticResource RCP.Icons.Settings_ArchiveExplorer}"
-                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Technical}"
+                 local:TabItemAssist.IconForeground="{StaticResource RCP.Brushes.Emulator}"
                  Header="{Resx Settings_DosBoxHeader}">
 
             <ScrollViewer>

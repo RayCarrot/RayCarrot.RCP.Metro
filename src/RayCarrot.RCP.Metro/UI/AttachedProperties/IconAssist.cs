@@ -4,6 +4,7 @@ using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Rename to Icon. Then you do local:Icon.Kind, local:Icon.Brush etc.
 public static class IconAssist
 {
     #region Icon Kind

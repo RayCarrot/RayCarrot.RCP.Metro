@@ -44,6 +44,8 @@ public abstract class ProgramInstallation
     [JsonProperty(PropertyName = "InstallationId")]
     public string InstallationId { get; }
 
+    // TODO-14: Add user-defined name
+
     #endregion
 
     #region Protected Methods

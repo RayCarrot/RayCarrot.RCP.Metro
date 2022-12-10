@@ -367,5 +367,22 @@ public class AppUIManager
         await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.DuplicateTypesNotAllowed);
     }
 
+    /// <summary>
+    /// Shows a new instance of the emulators setup dialog
+    /// </summary>
+    /// <returns>The task</returns>
+    public async Task ShowEmulatorsSetupAsync()
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("An emulators setup window was opened");
+
+        // Run on UI thread
+        // ReSharper disable once AccessToDisposedClosure
+        using EmulatorsSetupDialog dialog = Application.Current.Dispatcher.Invoke(() => new EmulatorsSetupDialog());
+        await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.DuplicateTypesNotAllowed);
+    }
+
     #endregion
 }
