@@ -1,4 +1,5 @@
 ﻿using Nito.AsyncEx;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -18,15 +19,14 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IDisposable
         // Set properties
         GameInstallation = gameInstallation;
         PageLoadLock = new AsyncLock();
-        Pages = new ObservableCollection<GameOptionsDialogPageViewModel>(GameDescriptor.GetGameOptionsDialogPages(gameInstallation));
+
+        var pages = gameInstallation.GameDescriptor.GetComponents<GameOptionsDialogPageComponent>().
+            Where(x => x.IsAvailable(gameInstallation)).
+            OrderByDescending(x => x.Priority).
+            Select(x => x.CreateObject(gameInstallation));
+        Pages = new ObservableCollection<GameOptionsDialogPageViewModel>(pages);
         SelectedPage = Pages.First();
     }
-
-    #endregion
-
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 

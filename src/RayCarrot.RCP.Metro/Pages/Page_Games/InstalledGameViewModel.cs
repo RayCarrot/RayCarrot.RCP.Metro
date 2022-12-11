@@ -28,7 +28,8 @@ public class InstalledGameViewModel : BaseViewModel
 
         // Set other properties
         CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
-        HasOptionsDialog = gameInstallation.GameDescriptor.HasGameOptionsDialogPages();
+        HasOptionsDialog = gameInstallation.GameDescriptor.GetComponents<GameOptionsDialogPageComponent>().
+            Any(x => x.IsAvailable(gameInstallation));
 
         // Create commands
         LaunchCommand = new AsyncRelayCommand(LaunchAsync);

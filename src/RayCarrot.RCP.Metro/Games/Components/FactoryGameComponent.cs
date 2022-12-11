@@ -13,5 +13,5 @@ public abstract class FactoryGameComponent<T> : DescriptorComponent
 
     private readonly Func<GameInstallation, T> _objFactory;
 
-    public T CreateObject(GameInstallation gameInstallation) => _objFactory(gameInstallation);
+    public virtual T CreateObject(GameInstallation gameInstallation) => _objFactory(gameInstallation);
 }

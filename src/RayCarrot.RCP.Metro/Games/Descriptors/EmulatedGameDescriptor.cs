@@ -1,4 +1,6 @@
-﻿using RayCarrot.RCP.Metro.Games.Emulators;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Emulators;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -8,6 +10,18 @@ namespace RayCarrot.RCP.Metro;
 public abstract class EmulatedGameDescriptor : GameDescriptor
 {
     #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(
+            // Emulator config page
+            new GameOptionsDialogPageComponent(
+                objFactory: x => new EmulatorConfigPageViewModel(),
+                isAvailableFunc: _ => true,
+                priority: GameOptionsDialogPageComponent.PagePriority.Normal));
+    }
 
     /// <summary>
     /// Gets the emulator installation associated with this game installation or null if none was found

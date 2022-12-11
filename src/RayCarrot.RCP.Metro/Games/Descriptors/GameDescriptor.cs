@@ -209,35 +209,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <returns>The options UI or null if not available</returns>
     public virtual FrameworkElement? GetOptionsUI(GameInstallation gameInstallation) => null; // TODO-14: Remove this once we have emulator page working
 
-    public bool HasGameOptionsDialogPages()
-    {
-        // TODO-14: Emulator page
-        return HasComponent<GameConfigComponent>() ||
-               HasComponent<UtilityComponent>();
-    }
-
-    public IEnumerable<GameOptionsDialogPageViewModel> GetGameOptionsDialogPages(GameInstallation gameInstallation)
-    {
-        // Add the config page
-        if (HasComponent<GameConfigComponent>())
-            yield return GetRequiredComponent<GameConfigComponent>().CreateObject(gameInstallation);
-
-        // TODO-14: This has to be changed since the emulator selection can change after this has been set
-        // Add the emulator config page
-        //Emulator? emu = gameDescriptor.Emulator;
-        //GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GetGameConfigViewModel(gameInstallation);
-
-        //if (emuConfigViewModel != null)
-        //    pages.Add(emuConfigViewModel);
-
-        // Add the utilities page
-        if (HasComponent<UtilityComponent>())
-            yield return new UtilitiesPageViewModel(GetComponents<UtilityComponent>().
-                CreateObjects(gameInstallation).
-                Select(x => new UtilityViewModel(x)));
-
-    }
-
     /// <summary>
     /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.
     /// </summary>
@@ -456,6 +427,20 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     protected virtual void RegisterComponents(DescriptorComponentBuilder builder)
     {
         builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
+        
+        // Config page
+        builder.Register(new GameOptionsDialogPageComponent(
+            objFactory: x => GetRequiredComponent<GameConfigComponent>().CreateObject(x),
+            isAvailableFunc: _ => HasComponent<GameConfigComponent>(),
+            priority: GameOptionsDialogPageComponent.PagePriority.High));
+
+        // Utilities page
+        builder.Register(new GameOptionsDialogPageComponent(
+            objFactory: x => new UtilitiesPageViewModel(GetComponents<UtilityComponent>().
+                CreateObjects(x).
+                Select(utility => new UtilityViewModel(utility))),
+            isAvailableFunc: _ => HasComponent<UtilityComponent>(),
+            priority: GameOptionsDialogPageComponent.PagePriority.Low));
     }
 
     public bool HasComponent<T>() where T : DescriptorComponent => ComponentProvider.HasComponent<T>();
