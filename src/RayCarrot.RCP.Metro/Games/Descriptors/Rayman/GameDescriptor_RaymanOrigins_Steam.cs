@@ -3,6 +3,7 @@ using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -37,14 +38,16 @@ public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanOrigins(x, "Rayman Origins")));
+        builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanOriginsRegistryKey)));
+
+        builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_HQVideos(x)));
+        builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_DebugCommands(x)));
+        builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_Update(x)));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanOriginsRegistryKey);
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
@@ -52,13 +55,6 @@ public sealed class GameDescriptor_RaymanOrigins_Steam : SteamGameDescriptor
     public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
         @"GameData\bundle_PC.ipk",
-    };
-
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_RaymanOrigins_HQVideos(gameInstallation),
-        new Utility_RaymanOrigins_DebugCommands(gameInstallation),
-        new Utility_RaymanOrigins_Update(gameInstallation),
     };
 
     #endregion

@@ -6,6 +6,7 @@ using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -40,6 +41,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanByHisFans(x, "Rayman by his Fans")));
+        builder.Register(new GameConfigComponent(x => new RaymanByHisFansConfigViewModel(this, x)));
     }
 
     #endregion
@@ -53,9 +55,6 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanByHisFans_ViewModel(this, gameInstallation);
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanByHisFansPC", "r1/pc_fan");
 

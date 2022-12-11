@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -40,14 +41,12 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanJungleRun(this, x, "Rayman Jungle Run")));
+        builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this)));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_RaymanJungleRun_ViewModel(this);
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {

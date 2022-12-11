@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -31,14 +32,12 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids(x, "Rayman Raving Rabbids")));
+        builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_RaymanRavingRabbids_ViewModel(gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

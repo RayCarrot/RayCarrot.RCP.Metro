@@ -6,6 +6,7 @@ using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -43,14 +44,14 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2(x, "Rayman 2")));
+        builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
+
+        builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC))));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_Rayman2_ViewModel(gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
@@ -78,11 +79,6 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
         // No longer available for purchase
         Enumerable.Empty<GamePurchaseLink>();
 
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_CPATextureSync(gameInstallation, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC)),
-    };
-
     public override async Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
     {
         // TODO-14: These are not utilities - these are game modifications caused by the config
@@ -90,15 +86,15 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
         // Create the output
         var output = new List<string>();
 
-        if (await Config_Rayman2_ViewModel.GetIsWidescreenHackAppliedAsync(gameInstallation) == true)
+        if (await Rayman2ConfigViewModel.GetIsWidescreenHackAppliedAsync(gameInstallation) == true)
             output.Add(Resources.Config_WidescreenSupport);
 
-        var dinput = Config_Rayman2_ViewModel.GetCurrentDinput(gameInstallation);
+        var dinput = Rayman2ConfigViewModel.GetCurrentDinput(gameInstallation);
 
-        if (dinput == Config_Rayman2_ViewModel.R2Dinput.Controller)
+        if (dinput == Rayman2ConfigViewModel.R2Dinput.Controller)
             output.Add(Resources.Config_UseController);
 
-        if (dinput == Config_Rayman2_ViewModel.R2Dinput.Mapping)
+        if (dinput == Rayman2ConfigViewModel.R2Dinput.Mapping)
             output.Add(Resources.Config_ButtonMapping);
 
         // Get other utilities

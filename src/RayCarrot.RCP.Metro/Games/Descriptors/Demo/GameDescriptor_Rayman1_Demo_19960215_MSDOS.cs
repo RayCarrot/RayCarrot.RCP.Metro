@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -28,6 +30,17 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
 
     #endregion
 
+    #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
+    }
+
+    #endregion
+
     #region Public Methods
 
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
@@ -41,9 +54,6 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_Rayman1_ViewModel(this, gameInstallation);
 
     public override async Task PostGameAddAsync(GameInstallation gameInstallation)
     {

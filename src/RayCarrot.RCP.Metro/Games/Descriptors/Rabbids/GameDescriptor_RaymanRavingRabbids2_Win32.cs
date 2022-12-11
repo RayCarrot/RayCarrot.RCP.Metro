@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -33,6 +34,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
         builder.Register(new GameOptionsComponent(x => new RaymanRavingRabbids2GameOptionsViewModel(x)));
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids2(x, "Rayman Raving Rabbids 2")));
+        builder.Register(new GameConfigComponent(x => new RaymanRavingRabbids2ConfigViewModel(x)));
     }
 
     protected override string GetLaunchArgs(GameInstallation gameInstallation)
@@ -44,9 +46,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_RaymanRavingRabbids2_ViewModel(gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation)
     {

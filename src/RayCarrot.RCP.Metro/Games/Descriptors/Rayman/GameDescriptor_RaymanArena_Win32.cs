@@ -5,6 +5,7 @@ using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
@@ -40,6 +41,9 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena(x, "Rayman Arena", false)));
+        builder.Register(new GameConfigComponent(x => new RaymanArenaConfigViewModel(x)));
+
+        builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanArena_PC))));
     }
 
     #endregion
@@ -53,9 +57,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
             gameLogo: GameLogoAsset.RaymanArena,
             gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", }))
     });
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanArena_ViewModel(gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
@@ -83,11 +84,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         @"TribeBin\tex32.cnt",
         @"TribeBin\vignette.cnt",
         @"TribeBin\Sound.cnt",
-    };
-
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_CPATextureSync(gameInstallation, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanArena_PC)),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(UbiIniData_RaymanArena.SectionName, "Rayman Arena", new[]

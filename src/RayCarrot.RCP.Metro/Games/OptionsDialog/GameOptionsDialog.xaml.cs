@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Messaging;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>
 /// Interaction logic for GameOptionsDialog.xaml
@@ -25,7 +25,7 @@ public partial class GameOptionsDialog : WindowContentControl, IRecipient<Remove
         InitializeComponent();
 
         // Create view model
-        ViewModel = new GameOptionsDialog_ViewModel(gameInstallation);
+        ViewModel = new GameOptionsDialogViewModel(gameInstallation);
         DataContext = ViewModel;
 
         // Subscribe to events
@@ -51,7 +51,7 @@ public partial class GameOptionsDialog : WindowContentControl, IRecipient<Remove
     /// <summary>
     /// The window view model
     /// </summary>
-    public GameOptionsDialog_ViewModel ViewModel { get; set; }
+    public GameOptionsDialogViewModel ViewModel { get; set; }
 
     #endregion
 
@@ -142,7 +142,8 @@ public partial class GameOptionsDialog : WindowContentControl, IRecipient<Remove
             WindowInstance.Close();
     }
 
-    private async void PagesTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => await ViewModel.LoadCurrentPageAsync();
+    private async void PagesTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => 
+        await ViewModel.LoadCurrentPageAsync();
 
     private void CancelButton_OnClick(object sender, RoutedEventArgs e)
     {

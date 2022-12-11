@@ -3,6 +3,7 @@ using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -36,14 +37,15 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends(x, "Rayman Legends")));
+        builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
+
+        builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_UbiRay(x)));
+        builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_DebugCommands(x)));
     }
 
     #endregion
 
     #region Public Override Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_UbiArt_ViewModel(gameInstallation, AppFilePaths.RaymanLegendsRegistryKey);
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanLegends, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
@@ -57,12 +59,6 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
-    };
-
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_RaymanLegends_UbiRay(gameInstallation),
-        new Utility_RaymanLegends_DebugCommands(gameInstallation),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Legends", new[]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -40,14 +41,14 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun(this, x, "Rayman Fiesta Run (Preload)", 1)));
+        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this)));
+
+        builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 1)));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanFiestaRun_ViewModel(this);
 
     public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
     {
@@ -55,11 +56,6 @@ public sealed class GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage
             Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInWinStore)),
             Uri: MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID),
             Icon: GenericIconKind.GameAction_Microsoft)
-    };
-
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_RaymanFiestaRun_SaveFix(this, gameInstallation, 1),
     };
 
     #endregion

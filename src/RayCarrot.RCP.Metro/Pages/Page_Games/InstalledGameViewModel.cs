@@ -34,6 +34,7 @@ public class InstalledGameViewModel : BaseViewModel
 
         // Set other properties
         CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
+        HasOptionsDialog = gameInstallation.GameDescriptor.HasGameOptionsDialogPages();
 
         // Create commands
         LaunchCommand = new AsyncRelayCommand(LaunchAsync);
@@ -87,6 +88,8 @@ public class InstalledGameViewModel : BaseViewModel
     /// Indicates if the game can be uninstalled through the Rayman Control Panel
     /// </summary>
     public bool CanUninstall { get; }
+
+    public bool HasOptionsDialog { get; }
 
     /// <summary>
     /// The game info items

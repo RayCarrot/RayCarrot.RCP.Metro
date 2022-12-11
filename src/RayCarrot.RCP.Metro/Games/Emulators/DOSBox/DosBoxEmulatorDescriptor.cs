@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NLog;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
@@ -104,7 +105,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
 
     #region Public Methods
 
-    public override GameOptionsDialog_EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
+    public override EmulatorConfigPageViewModel GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         new DosBoxGameConfigViewModel(gameInstallation, this);
 
     public override EmulatorOptionsViewModel GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) =>

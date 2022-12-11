@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
+using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -33,6 +34,17 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
 
     #endregion
 
+    #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
+    }
+
+    #endregion
+
     #region Public Methods
 
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
@@ -43,9 +55,6 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
             new(AppURLs.Games_RGoldDemo_Url),
         })
     };
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_RaymanDesigner_ViewModel(this, gameInstallation);
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));

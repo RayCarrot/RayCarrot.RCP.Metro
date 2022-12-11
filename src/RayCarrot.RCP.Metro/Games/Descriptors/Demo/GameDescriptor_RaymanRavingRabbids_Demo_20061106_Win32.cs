@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -27,6 +29,13 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
 
     #region Protected Methods
 
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsDemoConfigViewModel(x)));
+    }
+
     protected override string GetLaunchArgs(GameInstallation gameInstallation) => "/B Rayman4.bf";
 
     #endregion
@@ -40,9 +49,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
             new(AppURLs.Games_RRRDemo_Url),
         })
     });
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_RaymanRavingRabbidsDemo_ViewModel(gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

@@ -9,6 +9,7 @@ using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Emulators;
 using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -95,6 +96,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
         builder.Register(new AdditionalLaunchActionsComponent(GetAdditionalLaunchActions));
         builder.Register(new ProgressionManagersComponent(GetGameProgressionManagers));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
+        builder.Register(new GameConfigComponent(x => new RaymanEdutainmentConfigViewModel(this, x)));
     }
 
     #endregion
@@ -104,9 +106,6 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
     // TODO-14: Add new options control for setting game mode to use when launching the game
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanEdutainment_ViewModel(this, gameInstallation);
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
 

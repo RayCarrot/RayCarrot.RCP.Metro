@@ -5,6 +5,7 @@ using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -39,6 +40,7 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman60Levels(x, "Rayman 60 Levels")));
+        builder.Register(new GameConfigComponent(x => new RaymanByHisFansConfigViewModel(this, x)));
     }
 
     #endregion
@@ -52,9 +54,6 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanByHisFans_ViewModel(this, gameInstallation);
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "Rayman60LevelsPC", "r1/pc_60n");
 

@@ -4,6 +4,8 @@ using System.Linq;
 using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -32,6 +34,17 @@ public sealed class GameDescriptor_Rayman3_Demo_20030108_Win32 : Win32GameDescri
 
     #endregion
 
+    #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
+    }
+
+    #endregion
+
     #region Public Methods
 
     public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
@@ -41,9 +54,6 @@ public sealed class GameDescriptor_Rayman3_Demo_20030108_Win32 : Win32GameDescri
             new(AppURLs.Games_R3Demo5_Url),
         })
     });
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_Rayman3_ViewModel(gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {

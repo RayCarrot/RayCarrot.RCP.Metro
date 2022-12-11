@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators;
 
@@ -22,7 +23,7 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 
     public abstract EmulatorIconAsset Icon { get; }
 
-    public virtual GameOptionsDialog_EmulatorConfigPageViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
+    public virtual EmulatorConfigPageViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
 
     public virtual EmulatorOptionsViewModel? GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) => null;
 

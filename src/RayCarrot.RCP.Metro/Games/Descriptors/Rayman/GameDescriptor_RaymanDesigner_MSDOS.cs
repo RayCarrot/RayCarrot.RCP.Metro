@@ -6,6 +6,7 @@ using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -40,6 +41,10 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanDesigner(x, "Rayman Designer")));
+        builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
+
+        builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
+        builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
     }
 
     #endregion
@@ -53,9 +58,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
 
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_RaymanDesigner_ViewModel(this, gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
@@ -82,12 +84,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
 
         @"PCMAP\USA\SNDSMP.DAT",
         @"PCMAP\USA\SPECIAL.DAT",
-    };
-
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_RaymanDesigner_ReplaceFiles(gameInstallation),
-        new Utility_RaymanDesigner_CreateConfig(gameInstallation),
     };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]

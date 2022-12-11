@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -25,15 +27,19 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
 
     #region Protected Methods
 
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new GameConfigComponent(x => new RabbidsGoHomeConfigViewModel()));
+    }
+
     protected override string? GetLaunchArgs(GameInstallation gameInstallation) =>
         Services.Data.Game_RabbidsGoHomeLaunchData?.ToString();
 
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_RabbidsGoHome_ViewModel();
 
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rabbids Go Home", new[]
     {

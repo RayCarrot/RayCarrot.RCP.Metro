@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -43,6 +44,10 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1(x, "Rayman 1")));
+        builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
+
+        builder.Register(new UtilityComponent(x => new Utility_Rayman1_TPLS(x)));
+        builder.Register(new UtilityComponent(x => new Utility_Rayman1_CompleteSoundtrack(x)));
     }
 
     #endregion
@@ -57,16 +62,7 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
     public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
         new GameOptions_DOSBox_Control(gameInstallation);
 
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) =>
-        new Config_Rayman1_ViewModel(this, gameInstallation);
-
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121");
-
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_Rayman1_TPLS(gameInstallation),
-        new Utility_Rayman1_CompleteSoundtrack(gameInstallation),
-    };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {

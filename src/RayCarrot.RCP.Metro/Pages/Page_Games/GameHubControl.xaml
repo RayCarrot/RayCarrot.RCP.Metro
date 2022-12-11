@@ -182,6 +182,7 @@
                                 <Button Grid.Column="2"
                                         Style="{StaticResource RCP.Styles.Button.Flat}"
                                         local:IconAssist.IconKind="{StaticResource RCP.Icons.Settings}"
+                                        IsEnabled="{Binding Path=HasOptionsDialog, Mode=OneTime}"
                                         Command="{Binding Path=OpenOptionsCommand, Mode=OneTime}"
                                         ToolTip="{Resx GameDisplay_Options}"
                                         Margin="0 0 4 0"/>

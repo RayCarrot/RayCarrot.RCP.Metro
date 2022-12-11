@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Media;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;

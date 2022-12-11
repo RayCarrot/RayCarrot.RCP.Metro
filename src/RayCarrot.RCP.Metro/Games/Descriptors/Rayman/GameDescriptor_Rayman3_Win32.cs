@@ -4,6 +4,7 @@ using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
@@ -42,14 +43,15 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3(x, "Rayman 3")));
+        builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
+
+        builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC))));
+        builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override GameOptionsDialog_ConfigPageViewModel GetConfigPageViewModel(GameInstallation gameInstallation) => 
-        new Config_Rayman3_ViewModel(gameInstallation);
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
     {
@@ -69,12 +71,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         @"Gamedatabin\tex32_1.cnt",
         @"Gamedatabin\tex32_2.cnt",
         @"Gamedatabin\vignette.cnt",
-    };
-
-    public override IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => new Utility[]
-    {
-        new Utility_CPATextureSync(gameInstallation, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC)),
-        new Utility_Rayman3_DirectPlay(gameInstallation),
     };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]

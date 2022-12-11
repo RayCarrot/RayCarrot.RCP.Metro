@@ -139,9 +139,6 @@
                        IconKind="{StaticResource RCP.Icons.Purchase}" 
                        IconColor="{x:Null}" />
 
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_General" 
-                       IconKind="{StaticResource RCP.Icons.Settings}" 
-                       IconColor="{StaticResource RCP.Brushes.Settings}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_Config" 
                        IconKind="{StaticResource RCP.Icons.GameOptions_Config}"
                        IconColor="{StaticResource RCP.Brushes.GameConfig}" />

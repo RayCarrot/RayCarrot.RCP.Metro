@@ -6,6 +6,7 @@ using System.Windows;
 using NLog;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -211,14 +212,36 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     /// <param name="gameInstallation">The game installation to get the options for</param>
     /// <returns>The options UI or null if not available</returns>
-    public virtual FrameworkElement? GetOptionsUI(GameInstallation gameInstallation) => null; // TODO-14: Don't use UI elements like this - use vm + template instead!
+    public virtual FrameworkElement? GetOptionsUI(GameInstallation gameInstallation) => null; // TODO-14: Remove this once we have emulator page working
 
-    /// <summary>
-    /// Gets the config page view model, if any is available
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the config page view model for</param>
-    /// <returns>The config page view model of null if none is available</returns>
-    public virtual GameOptionsDialog_ConfigPageViewModel? GetConfigPageViewModel(GameInstallation gameInstallation) => null;
+    public bool HasGameOptionsDialogPages()
+    {
+        // TODO-14: Emulator page
+        return HasComponent<GameConfigComponent>() ||
+               HasComponent<UtilityComponent>();
+    }
+
+    public IEnumerable<GameOptionsDialogPageViewModel> GetGameOptionsDialogPages(GameInstallation gameInstallation)
+    {
+        // Add the config page
+        if (HasComponent<GameConfigComponent>())
+            yield return GetRequiredComponent<GameConfigComponent>().CreateObject(gameInstallation);
+
+        // TODO-14: This has to be changed since the emulator selection can change after this has been set
+        // Add the emulator config page
+        //Emulator? emu = gameDescriptor.Emulator;
+        //GameOptionsDialog_EmulatorConfigPageViewModel? emuConfigViewModel = emu?.GetGameConfigViewModel(gameInstallation);
+
+        //if (emuConfigViewModel != null)
+        //    pages.Add(emuConfigViewModel);
+
+        // Add the utilities page
+        if (HasComponent<UtilityComponent>())
+            yield return new UtilitiesPageViewModel(GetComponents<UtilityComponent>().
+                CreateObjects(gameInstallation).
+                Select(x => new UtilityViewModel(x)));
+
+    }
 
     /// <summary>
     /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.
@@ -251,13 +274,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <param name="gameInstallation">The game installation, if available. This should only be used if absolutely needed.</param>
     public virtual IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => Enumerable.Empty<string>();
 
-    /// <summary>
-    /// Gets the utilities for this game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to use with the utilities</param>
-    /// <returns>The utilities</returns>
-    public virtual IEnumerable<Utility> GetUtilities(GameInstallation gameInstallation) => Enumerable.Empty<Utility>();
-
+    // TODO-14: Probably remove or change this
     /// <summary>
     /// Gets the applied utilities for the specified game
     /// </summary>
@@ -265,7 +282,10 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <returns>The applied utilities</returns>
     public virtual Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
     {
-        return Task.FromResult<IList<string>>(GetUtilities(gameInstallation).SelectMany(x => x.GetAppliedUtilities()).ToArray());
+        return Task.FromResult<IList<string>>(GetComponents<UtilityComponent>().
+            CreateObjects(gameInstallation).
+            SelectMany(x => x.GetAppliedUtilities()).
+            ToArray());
     }
 
     /// <summary>

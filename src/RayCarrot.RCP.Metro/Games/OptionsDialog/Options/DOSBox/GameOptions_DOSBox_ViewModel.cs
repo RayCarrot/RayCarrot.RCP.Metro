@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Rework
+
 /// <summary>
 /// View model for the DOSBox games options
 /// </summary>
