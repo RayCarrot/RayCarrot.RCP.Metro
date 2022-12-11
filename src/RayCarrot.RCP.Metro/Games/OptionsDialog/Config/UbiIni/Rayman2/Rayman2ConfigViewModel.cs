@@ -1,13 +1,7 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using NLog;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;

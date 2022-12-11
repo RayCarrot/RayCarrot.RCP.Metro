@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro.Games.Components;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 /// <summary>
 /// A game component which provides an object factory of a specific type

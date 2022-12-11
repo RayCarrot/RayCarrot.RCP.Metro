@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using BinarySerializer.Ray1;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

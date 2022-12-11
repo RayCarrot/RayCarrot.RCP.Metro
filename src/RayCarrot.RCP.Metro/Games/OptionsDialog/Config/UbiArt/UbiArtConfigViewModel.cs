@@ -1,7 +1,4 @@
 ﻿using Microsoft.Win32;
-using NLog;
-using System;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;

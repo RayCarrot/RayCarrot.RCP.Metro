@@ -1,6 +1,4 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
-
-namespace RayCarrot.RCP.Metro.Games.Components;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 public abstract class GameValidationCheckComponent : DescriptorComponent
 {

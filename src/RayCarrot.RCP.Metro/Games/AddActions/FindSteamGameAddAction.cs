@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Win32;
-using NLog;
+﻿using Microsoft.Win32;
 
 namespace RayCarrot.RCP.Metro;
 

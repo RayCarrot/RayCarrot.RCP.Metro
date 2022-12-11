@@ -1,6 +1,4 @@
-﻿using System;
-using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;

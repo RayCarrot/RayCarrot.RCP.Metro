@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.Messaging;
-using NLog;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class GamesManager
 {

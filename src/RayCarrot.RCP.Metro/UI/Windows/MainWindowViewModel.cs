@@ -1,5 +1,4 @@
-﻿using System;
-using PropertyChanged;
+﻿using PropertyChanged;
 
 namespace RayCarrot.RCP.Metro;
 

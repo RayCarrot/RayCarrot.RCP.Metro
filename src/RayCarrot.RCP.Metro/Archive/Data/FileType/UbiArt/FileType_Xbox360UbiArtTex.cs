@@ -1,5 +1,4 @@
-﻿using System;
-using BinarySerializer.UbiArt;
+﻿using BinarySerializer.UbiArt;
 using ImageMagick;
 
 namespace RayCarrot.RCP.Metro.Archive.UbiArt;

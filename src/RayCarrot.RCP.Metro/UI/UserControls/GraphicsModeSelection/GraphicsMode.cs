@@ -1,8 +1,4 @@
 ﻿#nullable disable
-using System;
-using System.Linq;
-using NLog;
-
 namespace RayCarrot.RCP.Metro;
 
 public record GraphicsMode

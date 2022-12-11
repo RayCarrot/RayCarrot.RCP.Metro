@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for an enum selection

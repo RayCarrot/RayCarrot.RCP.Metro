@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using AutoCompleteTextBox.Editors;
 using ByteSizeLib;
 using Nito.AsyncEx;
-using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive;
 

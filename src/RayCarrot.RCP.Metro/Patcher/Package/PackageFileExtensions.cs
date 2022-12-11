@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Threading;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Patcher;

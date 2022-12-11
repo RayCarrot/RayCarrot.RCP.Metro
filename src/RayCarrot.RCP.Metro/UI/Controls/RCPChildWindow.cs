@@ -1,8 +1,5 @@
 ﻿#nullable disable
 using MahApps.Metro.SimpleChildWindow;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

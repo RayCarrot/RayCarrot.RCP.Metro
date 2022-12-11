@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using BinarySerializer;
-using NLog;
 using LogLevel = BinarySerializer.LogLevel;
 
 namespace RayCarrot.RCP.Metro;

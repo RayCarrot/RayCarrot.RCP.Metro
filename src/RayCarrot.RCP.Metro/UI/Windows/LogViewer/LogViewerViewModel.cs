@@ -1,6 +1,4 @@
 ﻿#nullable disable
-using NLog;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro;

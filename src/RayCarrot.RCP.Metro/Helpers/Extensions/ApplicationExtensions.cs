@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using ControlzEx.Theming;
+﻿using ControlzEx.Theming;
 using System.Windows;
 using System.Windows.Media;
 

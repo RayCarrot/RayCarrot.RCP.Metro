@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class EditorFieldGroupViewModel : BaseViewModel
 {

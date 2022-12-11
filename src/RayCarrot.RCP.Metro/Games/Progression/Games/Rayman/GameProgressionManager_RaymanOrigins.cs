@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using BinarySerializer;
 using BinarySerializer.UbiArt;
 using Newtonsoft.Json;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

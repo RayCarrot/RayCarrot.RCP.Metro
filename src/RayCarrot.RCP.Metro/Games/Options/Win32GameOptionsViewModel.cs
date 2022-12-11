@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-
-namespace RayCarrot.RCP.Metro.Games.Options;
+﻿namespace RayCarrot.RCP.Metro.Games.Options;
 
 public class Win32GameOptionsViewModel : GameOptionsViewModel
 {

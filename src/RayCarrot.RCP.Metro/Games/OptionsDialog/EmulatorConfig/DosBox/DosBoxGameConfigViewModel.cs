@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows;
-using NLog;
 using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;

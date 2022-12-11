@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class DiscInstallGameAddAction : GameAddAction
 {

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using BinarySerializer;
+﻿using BinarySerializer;
 using BinarySerializer.UbiArt;
 
 namespace RayCarrot.RCP.Metro;

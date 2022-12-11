@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>
 /// View model for the Rayman Jungle Run configuration

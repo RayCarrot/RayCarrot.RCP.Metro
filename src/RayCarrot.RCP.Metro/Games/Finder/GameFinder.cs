@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using IniParser;
 using Microsoft.Win32;
-using NLog;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;

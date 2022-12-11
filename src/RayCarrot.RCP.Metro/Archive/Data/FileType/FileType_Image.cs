@@ -1,8 +1,6 @@
-﻿using System;
-using ImageMagick;
+﻿using ImageMagick;
 using MahApps.Metro.IconPacks;
 using System.IO;
-using System.Linq;
 using System.Windows.Media.Imaging;
 
 namespace RayCarrot.RCP.Metro.Archive;

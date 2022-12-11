@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public abstract class URILaunchHandler : LaunchArgHandler
 {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using System.Windows.Input;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

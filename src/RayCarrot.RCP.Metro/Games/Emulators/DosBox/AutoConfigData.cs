@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
+﻿namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 /// <summary>
 /// Data model for a DOSBox auto config file

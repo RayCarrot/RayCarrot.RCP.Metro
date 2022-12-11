@@ -1,10 +1,7 @@
 ﻿#nullable disable
-using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.WindowsAPICodePack.Shell;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

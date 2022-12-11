@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using IWshRuntimeLibrary;
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;

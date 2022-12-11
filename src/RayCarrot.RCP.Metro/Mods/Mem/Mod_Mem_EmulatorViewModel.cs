@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class Mod_Mem_EmulatorViewModel : BaseViewModel
 {

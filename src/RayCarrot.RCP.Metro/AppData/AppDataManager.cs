@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
-using NLog;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;

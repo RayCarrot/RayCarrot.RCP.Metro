@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class LoadState : IDisposable
 {

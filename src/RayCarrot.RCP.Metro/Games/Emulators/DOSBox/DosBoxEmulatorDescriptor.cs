@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
-using NLog;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;

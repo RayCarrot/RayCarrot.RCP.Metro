@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BinarySerializer.UbiArt;
+﻿using BinarySerializer.UbiArt;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;

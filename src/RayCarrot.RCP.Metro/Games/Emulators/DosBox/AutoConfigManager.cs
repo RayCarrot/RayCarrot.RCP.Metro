@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
-using NLog;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 

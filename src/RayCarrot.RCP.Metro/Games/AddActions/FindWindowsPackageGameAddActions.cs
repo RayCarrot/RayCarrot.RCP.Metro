@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NLog;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class FindWindowsPackageGameAddActions : GameAddAction
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rayman Dictées (Win32) game descriptor

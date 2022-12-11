@@ -1,7 +1,4 @@
 ﻿#nullable disable
-using System;
-using System.Linq;
-
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>

@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;

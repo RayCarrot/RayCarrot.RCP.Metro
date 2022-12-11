@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
 using BinarySerializer.Ray1;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

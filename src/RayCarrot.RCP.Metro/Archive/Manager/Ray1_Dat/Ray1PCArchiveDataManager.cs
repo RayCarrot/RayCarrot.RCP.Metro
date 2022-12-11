@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.IO;
 using BinarySerializer;
 using BinarySerializer.Ray1;
 using ByteSizeLib;
-using NLog;
 
 namespace RayCarrot.RCP.Metro.Archive.Ray1;
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using BinarySerializer;
-using NLog;
 using RayCarrot.RCP.Metro.Archive;
 
 namespace RayCarrot.RCP.Metro.Patcher;

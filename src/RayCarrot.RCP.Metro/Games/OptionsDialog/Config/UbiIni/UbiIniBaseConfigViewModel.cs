@@ -1,8 +1,5 @@
 ﻿#nullable disable
 using IniParser.Model;
-using NLog;
-using System;
-using System.Threading.Tasks;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

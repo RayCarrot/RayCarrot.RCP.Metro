@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// An available action to perform for attempting to add the game

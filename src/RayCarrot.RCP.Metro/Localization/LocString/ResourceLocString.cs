@@ -1,6 +1,4 @@
 ﻿#nullable disable
-using System;
-
 namespace RayCarrot.RCP.Metro;
 
 public class ResourceLocString : LocalizedString

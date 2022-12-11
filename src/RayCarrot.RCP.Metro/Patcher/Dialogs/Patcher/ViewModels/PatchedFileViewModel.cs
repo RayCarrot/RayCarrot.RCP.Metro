@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-namespace RayCarrot.RCP.Metro.Patcher;
+﻿namespace RayCarrot.RCP.Metro.Patcher;
 
 // TODO: After loading patcher UI, enumerate async every modified file and verify checksum. Update UI with checkmark if ok or warning
 //       symbol if not. Keep hash set of not okay files for when refreshing. Always ok for new modifications.

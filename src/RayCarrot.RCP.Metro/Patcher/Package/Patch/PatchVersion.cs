@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro.Patcher;
+﻿namespace RayCarrot.RCP.Metro.Patcher;
 
 public class PatchVersion : ICloneable, IComparable, IComparable<PatchVersion>, IEquatable<PatchVersion>
 {

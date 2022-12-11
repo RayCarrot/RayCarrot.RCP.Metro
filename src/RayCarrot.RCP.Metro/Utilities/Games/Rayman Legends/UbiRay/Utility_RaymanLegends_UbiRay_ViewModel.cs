@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Input;
 using BinarySerializer.UbiArt;
-using NLog;
 
 // ReSharper disable StringLiteralTypo
 

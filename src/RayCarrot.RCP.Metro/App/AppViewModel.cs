@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ByteSizeLib;
 using Nito.AsyncEx;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

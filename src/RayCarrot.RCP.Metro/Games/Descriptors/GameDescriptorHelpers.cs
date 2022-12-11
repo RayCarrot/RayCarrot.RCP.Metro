@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using NLog;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Common game descriptor helper methods

@@ -1,9 +1,6 @@
 ﻿#nullable disable
 using ByteSizeLib;
-using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

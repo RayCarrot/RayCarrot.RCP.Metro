@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.Net;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ByteSizeLib;
-using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 

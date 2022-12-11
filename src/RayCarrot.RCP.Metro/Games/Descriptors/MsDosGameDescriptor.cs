@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A game descriptor for an emulated MS-DOS program

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BinarySerializer;
+﻿using BinarySerializer;
 using BinarySerializer.Ray1;
 using MahApps.Metro.IconPacks;
 

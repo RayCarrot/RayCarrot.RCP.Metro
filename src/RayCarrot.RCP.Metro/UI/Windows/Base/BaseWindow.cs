@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using MahApps.Metro.Controls;
-using NLog;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

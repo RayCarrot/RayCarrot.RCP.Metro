@@ -1,8 +1,4 @@
-﻿using NLog;
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows.Input;
 using BinarySerializer.Ray1;
 

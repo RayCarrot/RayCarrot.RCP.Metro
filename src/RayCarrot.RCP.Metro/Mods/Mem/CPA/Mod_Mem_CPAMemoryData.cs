@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class Mod_Mem_CPAMemoryData : Mod_Mem_MemoryData
 {

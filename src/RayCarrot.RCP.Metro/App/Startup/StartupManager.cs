@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.Controls;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

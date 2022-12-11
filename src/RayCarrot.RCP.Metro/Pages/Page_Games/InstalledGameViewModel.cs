@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Input;
 using BinarySerializer;
-using NLog;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Patcher;

@@ -1,8 +1,4 @@
 ﻿#nullable disable
-using System;
-using System.Threading.Tasks;
-using NLog;
-
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 public class RaymanRavingRabbids2ConfigViewModel : RaymanRavingRabbidsBaseConfigViewModel

@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using NLog;
 using NLog.Config;
 using NLog.Targets;
 

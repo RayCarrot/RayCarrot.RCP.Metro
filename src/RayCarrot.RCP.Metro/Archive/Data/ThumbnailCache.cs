@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using NLog;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace RayCarrot.RCP.Metro.Archive;
 

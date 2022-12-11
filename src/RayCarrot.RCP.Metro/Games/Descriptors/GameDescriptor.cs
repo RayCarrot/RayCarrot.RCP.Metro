@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using NLog;
+﻿using System.Windows;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;

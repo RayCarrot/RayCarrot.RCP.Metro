@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// A browse UI Manager for managing browsing UI requests

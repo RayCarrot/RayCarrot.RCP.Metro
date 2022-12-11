@@ -1,10 +1,7 @@
 ﻿#nullable disable
 using Microsoft.VisualBasic.FileIO;
-using System;
 using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

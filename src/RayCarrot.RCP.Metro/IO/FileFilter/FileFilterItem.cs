@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// An item to use for filtering files when browsing

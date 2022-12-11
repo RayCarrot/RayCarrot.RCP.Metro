@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using System.Collections.Generic;
 using System.IO;
 
 namespace RayCarrot.RCP.Metro;

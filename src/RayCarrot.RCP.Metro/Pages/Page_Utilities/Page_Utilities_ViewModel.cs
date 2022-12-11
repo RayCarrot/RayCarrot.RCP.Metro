@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for the utilities page

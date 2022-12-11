@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Media;
-using NLog;
+﻿using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;
 

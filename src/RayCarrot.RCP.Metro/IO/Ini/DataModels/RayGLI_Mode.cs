@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro.Ini;
+﻿namespace RayCarrot.RCP.Metro.Ini;
 
 /// <summary>
 /// Formats a Rayman GLI_Mode key

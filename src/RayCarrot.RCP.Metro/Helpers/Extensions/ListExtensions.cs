@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Extension methods for <see cref="List{T}"/>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Markup;
+﻿using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro;

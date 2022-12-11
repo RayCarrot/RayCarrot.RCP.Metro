@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
-using NLog;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;

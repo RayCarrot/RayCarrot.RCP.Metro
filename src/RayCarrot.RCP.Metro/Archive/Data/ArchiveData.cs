@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro.Archive;
+﻿namespace RayCarrot.RCP.Metro.Archive;
 
 /// <summary>
 /// Generic archive data

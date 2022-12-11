@@ -1,8 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows.Media;
-using NLog;
 
 namespace RayCarrot.RCP.Metro;
 

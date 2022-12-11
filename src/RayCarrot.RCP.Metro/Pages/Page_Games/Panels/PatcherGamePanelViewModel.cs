@@ -1,9 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using BinarySerializer;
-using NLog;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;

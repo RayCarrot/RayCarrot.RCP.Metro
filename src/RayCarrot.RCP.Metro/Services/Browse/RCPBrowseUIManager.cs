@@ -1,9 +1,6 @@
 ﻿#nullable disable
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using NLog;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro;

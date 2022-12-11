@@ -1,9 +1,6 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
 using System.Text;
 using BinarySerializer;
-using NLog;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 

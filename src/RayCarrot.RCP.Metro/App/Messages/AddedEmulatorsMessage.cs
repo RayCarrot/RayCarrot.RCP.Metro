@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RayCarrot.RCP.Metro.Games.Emulators;
+﻿using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;
 

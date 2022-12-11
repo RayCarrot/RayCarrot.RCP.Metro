@@ -1,7 +1,4 @@
 ﻿#nullable disable
-using System.Collections.Generic;
-using System.Threading;
-
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>

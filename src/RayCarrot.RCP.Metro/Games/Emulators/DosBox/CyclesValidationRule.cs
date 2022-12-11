@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;

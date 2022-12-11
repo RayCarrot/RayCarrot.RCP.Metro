@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using Microsoft.WindowsAPICodePack.Taskbar;
+﻿using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace RayCarrot.RCP.Metro;
 

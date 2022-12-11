@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;

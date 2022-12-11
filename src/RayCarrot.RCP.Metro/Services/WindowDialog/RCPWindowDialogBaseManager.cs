@@ -1,7 +1,5 @@
-﻿using System;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.SimpleChildWindow;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro;

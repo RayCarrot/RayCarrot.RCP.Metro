@@ -1,6 +1,4 @@
 ﻿#nullable disable
-using System.Threading.Tasks;
-
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>

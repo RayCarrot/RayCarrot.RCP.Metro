@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 // TODO-UPDATE: Remove support for multiple extensions. This can cause issues when a file name has multiple periods
 //              in it. The reason for this class being made in the first place was for UbiArt IPK files containing files with
 //              extensions such as .tga.ckd, where the .ckd (cooked) extension was appended to the normal one, but not the

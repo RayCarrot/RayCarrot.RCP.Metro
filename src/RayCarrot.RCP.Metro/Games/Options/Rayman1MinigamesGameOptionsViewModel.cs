@@ -1,7 +1,4 @@
 ﻿using Nito.AsyncEx;
-using NLog;
-using System;
-using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro.Games.Options;
 

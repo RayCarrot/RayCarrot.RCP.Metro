@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media;
@@ -7,7 +6,6 @@ using System.Windows.Media.Imaging;
 using BinarySerializer.OpenSpace;
 using ImageMagick;
 using MahApps.Metro.IconPacks;
-using NLog;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro.Archive.CPA;

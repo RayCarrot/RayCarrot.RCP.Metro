@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro.Patcher;

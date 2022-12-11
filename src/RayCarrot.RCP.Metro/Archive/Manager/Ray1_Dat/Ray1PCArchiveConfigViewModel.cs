@@ -1,5 +1,4 @@
-﻿using System;
-using BinarySerializer.Ray1;
+﻿using BinarySerializer.Ray1;
 
 namespace RayCarrot.RCP.Metro.Archive.Ray1;
 

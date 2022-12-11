@@ -1,11 +1,6 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using NLog;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Patcher;

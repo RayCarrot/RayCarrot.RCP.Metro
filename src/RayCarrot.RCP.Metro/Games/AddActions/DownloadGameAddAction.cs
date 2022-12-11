@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using NLog;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class DownloadGameAddAction : GameAddAction
 {

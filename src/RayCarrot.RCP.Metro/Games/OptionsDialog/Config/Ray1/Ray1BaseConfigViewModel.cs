@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Input;
 using BinarySerializer;
 using BinarySerializer.Ray1;
-using NLog;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 

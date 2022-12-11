@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using System;
 using BinarySerializer;
 
 namespace RayCarrot.RCP.Metro.Patcher;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using NLog;
+﻿using System.IO;
 
 namespace RayCarrot.RCP.Metro.Archive;
 

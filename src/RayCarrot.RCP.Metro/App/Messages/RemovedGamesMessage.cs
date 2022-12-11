@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public record RemovedGamesMessage(IList<GameInstallation> GameInstallations)
 {

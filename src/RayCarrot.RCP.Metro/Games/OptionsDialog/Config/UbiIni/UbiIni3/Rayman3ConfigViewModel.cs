@@ -1,5 +1,4 @@
 ﻿#nullable disable
-using System.Threading.Tasks;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Nito.AsyncEx;
-using NLog;
+﻿using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 

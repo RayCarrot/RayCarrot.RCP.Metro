@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace RayCarrot.RCP.Metro.Games.Components;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class Ray1MsDosGameDataGameValidationCheckComponent : GameValidationCheckComponent
 {

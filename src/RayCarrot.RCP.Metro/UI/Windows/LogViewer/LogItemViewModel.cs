@@ -1,7 +1,4 @@
 ﻿#nullable disable
-using System;
-using NLog;
-
 namespace RayCarrot.RCP.Metro;
 
 public class LogItemViewModel : BaseRCPViewModel

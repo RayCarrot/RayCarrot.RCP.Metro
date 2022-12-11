@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
-using System.Threading.Tasks;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
 

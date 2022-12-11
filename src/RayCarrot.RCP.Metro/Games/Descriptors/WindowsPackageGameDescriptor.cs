@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using NLog;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Management.Deployment;

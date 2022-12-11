@@ -1,7 +1,4 @@
 ﻿#nullable disable
-using System.Threading.Tasks;
-using NLog;
-
 namespace RayCarrot.RCP.Metro;
 
 public static class TaskExtensions

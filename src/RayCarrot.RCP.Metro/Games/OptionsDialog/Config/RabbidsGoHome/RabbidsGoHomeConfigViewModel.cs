@@ -1,9 +1,4 @@
 ﻿#nullable disable
-using NLog;
-using System;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.Messaging;
-
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>

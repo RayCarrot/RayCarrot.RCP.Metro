@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 
 namespace RayCarrot.RCP.Metro;
 

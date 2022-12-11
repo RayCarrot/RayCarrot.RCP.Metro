@@ -1,6 +1,4 @@
-﻿using System;
-using NLog;
-using RayCarrot.RCP.Metro.Patcher;
+﻿using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
 

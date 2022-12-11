@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using Microsoft.WindowsAPICodePack.Taskbar;
-using System;
 using System.Windows;
 using System.Windows.Interop;
 

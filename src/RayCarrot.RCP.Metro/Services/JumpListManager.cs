@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Shell;
-using CommunityToolkit.Mvvm.Messaging;
-using NLog;
+﻿using System.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro;
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 // TODO: Refactor this. Don't use constant strings, but rather turn into a service class in DI. This way we can easily
 //       change the URLs for testing, or even have local ones.

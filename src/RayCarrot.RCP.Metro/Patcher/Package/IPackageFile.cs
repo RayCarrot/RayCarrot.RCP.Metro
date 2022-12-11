@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RayCarrot.RCP.Metro.Patcher;
+﻿namespace RayCarrot.RCP.Metro.Patcher;
 
 /// <summary>
 /// A serializable package file containing resources to be packed after a header

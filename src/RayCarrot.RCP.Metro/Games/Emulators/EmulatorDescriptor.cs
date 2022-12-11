@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators;
 

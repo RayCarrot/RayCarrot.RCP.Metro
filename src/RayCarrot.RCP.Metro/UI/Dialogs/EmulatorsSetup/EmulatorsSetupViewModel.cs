@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using CommunityToolkit.Mvvm.Messaging;
-using RayCarrot.RCP.Metro.Games.Emulators;
+﻿using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;
 

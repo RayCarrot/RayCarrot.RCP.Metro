@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NLog;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 public class GameProgressionManager_RabbidsBigBang : GameProgressionManager
 {

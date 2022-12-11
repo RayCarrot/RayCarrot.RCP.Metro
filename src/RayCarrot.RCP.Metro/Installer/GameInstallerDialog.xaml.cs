@@ -1,7 +1,5 @@
 ﻿#nullable disable
 using Microsoft.WindowsAPICodePack.Taskbar;
-using System;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro;

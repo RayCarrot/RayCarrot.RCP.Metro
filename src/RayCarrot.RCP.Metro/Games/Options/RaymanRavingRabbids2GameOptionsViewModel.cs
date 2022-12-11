@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-
-namespace RayCarrot.RCP.Metro.Games.Options;
+﻿namespace RayCarrot.RCP.Metro.Games.Options;
 
 /// <summary>
 /// View model for the Rayman Raving Rabbids 2 game options

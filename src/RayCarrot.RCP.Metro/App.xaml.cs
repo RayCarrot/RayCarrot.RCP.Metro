@@ -1,16 +1,11 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
-using NLog;
 using NLog.Targets;
 
 namespace RayCarrot.RCP.Metro;

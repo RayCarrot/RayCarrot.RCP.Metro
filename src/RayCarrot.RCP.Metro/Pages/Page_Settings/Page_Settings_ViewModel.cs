@@ -1,13 +1,8 @@
 ﻿using Microsoft.Win32;
 using Nito.AsyncEx;
-using NLog;
-using System;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 public abstract class ConfigPageViewModel : GameOptionsDialogPageViewModel
 {

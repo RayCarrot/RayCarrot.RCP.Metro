@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using BinarySerializer.OpenSpace;
+﻿using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;

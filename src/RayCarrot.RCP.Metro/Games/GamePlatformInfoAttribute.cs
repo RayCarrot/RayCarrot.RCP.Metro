@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class GamePlatformInfoAttribute : Attribute

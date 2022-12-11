@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RayCarrot.RCP.Metro.Games.Components;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class InstallDataGameValidationCheckComponent : GameValidationCheckComponent
 {

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 public class UtilitiesPageViewModel : GameOptionsDialogPageViewModel
 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Data;
 
 namespace RayCarrot.RCP.Metro;

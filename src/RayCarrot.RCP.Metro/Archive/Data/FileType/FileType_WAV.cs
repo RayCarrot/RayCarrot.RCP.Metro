@@ -1,5 +1,4 @@
 ﻿using MahApps.Metro.IconPacks;
-using System;
 using System.IO;
 
 namespace RayCarrot.RCP.Metro.Archive;

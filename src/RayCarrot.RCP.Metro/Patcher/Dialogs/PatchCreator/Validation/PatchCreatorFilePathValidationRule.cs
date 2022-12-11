@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro.Patcher;
