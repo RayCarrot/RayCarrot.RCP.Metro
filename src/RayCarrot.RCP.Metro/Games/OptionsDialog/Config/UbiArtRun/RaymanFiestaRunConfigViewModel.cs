@@ -5,8 +5,5 @@
 /// </summary>
 public class RaymanFiestaRunConfigViewModel : UbiArtRunBaseConfigViewModel
 {
-    public RaymanFiestaRunConfigViewModel(WindowsPackageGameDescriptor gameDescriptor) : base(gameDescriptor) 
-    { }
-
-    protected override Task OnGameInfoModifiedAsync() => LoadPageAsync();
+    public RaymanFiestaRunConfigViewModel(WindowsPackageGameDescriptor gameDescriptor) : base(gameDescriptor) { }
 }

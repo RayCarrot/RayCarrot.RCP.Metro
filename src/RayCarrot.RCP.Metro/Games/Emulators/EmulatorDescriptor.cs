@@ -47,11 +47,24 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 
     public abstract IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation);
 
-    // TODO-14: Call this
-    public virtual Task OnEmulatorSelected(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => Task.CompletedTask;
+    public virtual Task OnEmulatorSelectedAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => 
+        Task.CompletedTask;
 
-    // TODO-14: Call this
-    public virtual Task OnEmulatorDeselected(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => Task.CompletedTask;
+    public virtual Task OnEmulatorDeselectedAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => 
+        Task.CompletedTask;
+
+    public void RefreshEmulatedGames(EmulatorInstallation emulatorInstallation)
+    {
+        List<GameInstallation> gamesToRefresh = new();
+
+        foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
+        {
+            if (gameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId) == emulatorInstallation.InstallationId)
+                gamesToRefresh.Add(gameInstallation);
+        }
+
+        Services.Messenger.Send(new ModifiedGamesMessage(gamesToRefresh));
+    }
 
     public int CompareTo(EmulatorDescriptor? other)
     {

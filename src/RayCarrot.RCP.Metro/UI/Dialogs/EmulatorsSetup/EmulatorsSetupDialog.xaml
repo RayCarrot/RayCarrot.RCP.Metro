@@ -14,6 +14,7 @@
                             d:DataContext="{d:DesignInstance local:EmulatorsSetupViewModel}">
 
     <!-- TODO-UPDATE: Localize -->
+    <!-- TODO-UPDATE: Improve ui when no selection and no emulators added -->
     <Grid Margin="8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

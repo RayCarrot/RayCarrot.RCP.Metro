@@ -70,24 +70,41 @@ public class EmulatorsManager
 
     #region Emulator Installation Methods
 
-    public EmulatorInstallation AddEmulator(EmulatorDescriptor descriptor, FileSystemPath installLocation)
+    public async Task<EmulatorInstallation> AddEmulatorAsync(EmulatorDescriptor descriptor, FileSystemPath installLocation)
     {
         EmulatorInstallation installation = new(descriptor, installLocation);
 
         Data.Game_EmulatorInstallations.AddSorted(installation);
 
-        // TODO-14: If an emulated game has no emulator selected, default to this if it matches?
-
         Messenger.Send(new AddedEmulatorsMessage(installation));
+        
+        // If there are games which don't have an emulator selected we attempt to use this one
+        foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
+        {
+            if (gameInstallation.GameDescriptor is EmulatedGameDescriptor gameDescriptor &&
+                descriptor.SupportedPlatforms.Contains(gameDescriptor.Platform) &&
+                gameDescriptor.GetEmulator(gameInstallation) == null)
+            {
+                await gameDescriptor.SetEmulatorAsync(gameInstallation, installation);
+            }
+        }
 
         return installation;
     }
 
-    public void RemoveEmulator(EmulatorInstallation emulatorInstallation)
+    public async Task RemoveEmulatorAsync(EmulatorInstallation emulatorInstallation)
     {
         Data.Game_EmulatorInstallations.Remove(emulatorInstallation);
 
-        // TODO-14: Deselect this from any game which uses this emulator
+        // Deselect this emulator from any games which use it
+        foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
+        {
+            if (gameInstallation.GameDescriptor is EmulatedGameDescriptor gameDescriptor &&
+                gameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId) == emulatorInstallation.InstallationId)
+            {
+                await gameDescriptor.SetEmulatorAsync(gameInstallation, null);
+            }
+        }
 
         Messenger.Send(new RemovedEmulatorsMessage(emulatorInstallation));
     }

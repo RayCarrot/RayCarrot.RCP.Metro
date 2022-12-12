@@ -53,7 +53,8 @@ public class AutoConfigManager
     /// <summary>
     /// Creates the configuration file if it does not already exist with a valid configuration
     /// </summary>
-    public void Create()
+    /// <param name="gameInstallation">The game installation for which to create the file</param>
+    public void Create(GameInstallation gameInstallation)
     {
         Logger.Trace("Recreating DosBox config file {0}", FilePath);
 
@@ -68,6 +69,9 @@ public class AutoConfigManager
 
         // Create the file with default content
         File.WriteAllText(FilePath, FirstLines);
+
+        // Add this file as a created one to the game installation
+        gameInstallation.GetOrCreateObject<AddedGameFiles>(GameDataKey.RCP_AddedFiles).Files.Add(FilePath);
 
         Logger.Info("The DosBox config file was recreated");
     }

@@ -46,12 +46,12 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
         "Rabbids: Go Home",
     });
 
-    public override Task PostGameRemovedAsync(GameInstallation gameInstallation)
+    public override async Task PostGameRemovedAsync(GameInstallation gameInstallation)
     {
+        await base.PostGameRemovedAsync(gameInstallation);
+
         // Remove the game specific data
         Services.Data.Game_RabbidsGoHomeLaunchData = null;
-
-        return base.PostGameRemovedAsync(gameInstallation);
     }
 
     #endregion

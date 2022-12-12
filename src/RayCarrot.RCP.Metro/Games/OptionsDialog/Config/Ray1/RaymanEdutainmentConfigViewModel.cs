@@ -55,14 +55,6 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
         return LoadPageAsync();
     }
 
-    protected override Task OnGameInfoModifiedAsync()
-    {
-        // Refresh the selection
-        RefreshSelection();
-
-        return LoadPageAsync();
-    }
-
     /// <summary>
     /// Optional selection for the page
     /// </summary>

@@ -33,6 +33,6 @@ public class AvailableEmulatorViewModel : BaseViewModel
         if (broweResult.CanceledByUser)
             return;
 
-        Services.Emulators.AddEmulator(Descriptor, broweResult.SelectedFile);
+        await Services.Emulators.AddEmulatorAsync(Descriptor, broweResult.SelectedFile);
     }
 }

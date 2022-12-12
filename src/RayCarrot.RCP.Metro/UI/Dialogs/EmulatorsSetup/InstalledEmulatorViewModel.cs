@@ -15,7 +15,7 @@ public class InstalledEmulatorViewModel : BaseViewModel
         OptionsViewModel = Descriptor.GetEmulatorOptionsViewModel(emulatorInstallation);
 
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
-        RemoveEmulatorCommand = new RelayCommand(RemoveEmulator);
+        RemoveEmulatorCommand = new AsyncRelayCommand(RemoveEmulatorAsync);
     }
 
     public ICommand OpenLocationCommand { get; }
@@ -32,5 +32,5 @@ public class InstalledEmulatorViewModel : BaseViewModel
     public EmulatorOptionsViewModel? OptionsViewModel { get; }
 
     public Task OpenLocationAsync() => Services.File.OpenExplorerLocationAsync(EmulatorInstallation.InstallLocation);
-    public void RemoveEmulator() => Services.Emulators.RemoveEmulator(EmulatorInstallation);
+    public Task RemoveEmulatorAsync() => Services.Emulators.RemoveEmulatorAsync(EmulatorInstallation);
 }

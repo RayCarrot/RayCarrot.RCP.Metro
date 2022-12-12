@@ -14,6 +14,7 @@ public class DosBoxGameConfigViewModel : EmulatorConfigPageViewModel
     /// <param name="gameInstallation">The game installation</param>
     /// <param name="dosBoxDescriptor">The DOSBox emulator descriptor</param>
     public DosBoxGameConfigViewModel(GameInstallation gameInstallation, DosBoxEmulatorDescriptor dosBoxDescriptor) 
+        : base(gameInstallation, null)
     {
         GameInstallation = gameInstallation;
         DosBoxDescriptor = dosBoxDescriptor;
@@ -356,7 +357,7 @@ public class DosBoxGameConfigViewModel : EmulatorConfigPageViewModel
         var configManager = new AutoConfigManager(DosBoxDescriptor.GetGameConfigFile(GameInstallation));
 
         // Create the file
-        configManager.Create();
+        configManager.Create(GameInstallation);
 
         // Read the content
         var configData = configManager.ReadFile();

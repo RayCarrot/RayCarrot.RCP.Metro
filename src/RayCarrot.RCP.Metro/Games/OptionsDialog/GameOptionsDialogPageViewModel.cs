@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDisposable, IRecipient<ModifiedGamesMessage>
+public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDisposable
 {
     #region Constructor
 
@@ -16,9 +16,6 @@ public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDispos
         SaveCommand = new AsyncRelayCommand(SavePageAsync);
         UseRecommendedCommand = new RelayCommand(UseRecommended);
         PageSelectionIndexChangedCommand = new AsyncRelayCommand(PageSelectionIndexChangedAsync);
-
-        // Register for messages
-        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -114,7 +111,6 @@ public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDispos
 
     protected virtual Task LoadAsync() => Task.CompletedTask;
     protected virtual Task<bool> SaveAsync() => Task.FromResult(false);
-    protected virtual Task OnGameInfoModifiedAsync() => Task.CompletedTask;
     protected virtual void UseRecommended() { }
 
     protected void ResetSelectedPageSelectionIndex()
@@ -127,12 +123,6 @@ public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDispos
     #endregion
 
     #region Public Methods
-
-    public async void Receive(ModifiedGamesMessage message)
-    {
-        // TODO-14: Check for same game? Otherwise this will be invoked for all games...
-        await OnGameInfoModifiedAsync();
-    }
 
     public virtual Task PageSelectionIndexChangedAsync() => Task.CompletedTask;
 
@@ -179,9 +169,6 @@ public abstract class GameOptionsDialogPageViewModel : BaseRCPViewModel, IDispos
     {
         PageName.Dispose();
         UnsavedChanges = false;
-
-        // Unregister for messages
-        Services.Messenger.UnregisterAll(this);
     }
 
     #endregion

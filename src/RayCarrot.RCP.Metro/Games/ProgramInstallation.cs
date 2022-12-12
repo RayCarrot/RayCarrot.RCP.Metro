@@ -83,6 +83,34 @@ public abstract class ProgramInstallation
         return parsedObj;
     }
 
+    public T GetOrCreateObject<T>(string key)
+        where T : class, new()
+    {
+        if (_dataCache.TryGetValue(key, out object obj))
+            return (T)obj;
+
+        if (!_additionalData.TryGetValue(key, out obj) ||
+            obj is not JObject jObj)
+        {
+            T newObj = new();
+            SetObject(key, newObj);
+            return newObj;
+        }
+
+        T? parsedObj = jObj.ToObject<T>();
+
+        if (parsedObj == null)
+        {
+            T newObj = new();
+            SetObject(key, newObj);
+            return newObj;
+        }
+
+        _dataCache[key] = parsedObj;
+
+        return parsedObj;
+    }
+
     public T? GetValue<T>(string key) => GetValue<T>(key, default);
 
     public T? GetValue<T>(string key, T? defaultValue)
@@ -109,9 +137,11 @@ public abstract class ProgramInstallation
     }
 
     public void SetValue<T>(string key, T obj)
-        where T : struct
     {
-        _additionalData[key] = obj;
+        if (obj is null)
+            _additionalData.Remove(key);
+        else
+            _additionalData[key] = obj;
     }
 
     #endregion

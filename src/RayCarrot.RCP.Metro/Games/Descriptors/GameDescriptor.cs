@@ -362,7 +362,28 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     /// <param name="gameInstallation">The game installation for the removed game</param>
     /// <returns>The task</returns>
-    public virtual Task PostGameRemovedAsync(GameInstallation gameInstallation) => Task.CompletedTask;
+    public virtual Task PostGameRemovedAsync(GameInstallation gameInstallation)
+    {
+        AddedGameFiles? addedGameFiles = gameInstallation.GetObject<AddedGameFiles>(GameDataKey.RCP_AddedFiles);
+        
+        if (addedGameFiles == null)
+            return Task.CompletedTask;
+
+        foreach (FileSystemPath filePath in addedGameFiles.Files)
+        {
+            try
+            {
+                // Remove the file
+                Services.File.DeleteFile(filePath);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Removing added game file");
+            }
+        }
+        
+        return Task.CompletedTask;
+    }
 
     public int CompareTo(GameDescriptor? other)
     {

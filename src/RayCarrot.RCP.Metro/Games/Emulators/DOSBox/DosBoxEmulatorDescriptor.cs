@@ -104,7 +104,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         new DosBoxGameConfigViewModel(gameInstallation, this);
 
     public override EmulatorOptionsViewModel GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) =>
-        new DosBoxEmulatorOptionsViewModel(emulatorInstallation);
+        new DosBoxEmulatorOptionsViewModel(emulatorInstallation, this);
 
     public override Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
         LaunchGameAsync(gameInstallation, emulatorInstallation, null);
@@ -197,25 +197,10 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         };
     }
 
-    public override Task OnEmulatorSelected(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation)
+    public override Task OnEmulatorSelectedAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation)
     {
         // Create config file
-        new AutoConfigManager(GetGameConfigFile(gameInstallation)).Create();
-
-        return Task.CompletedTask;
-    }
-
-    public override Task OnEmulatorDeselected(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation)
-    {
-        try
-        {
-            // Remove the config file
-            Services.File.DeleteFile(GetGameConfigFile(gameInstallation));
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Removing DosBox auto config file");
-        }
+        new AutoConfigManager(GetGameConfigFile(gameInstallation)).Create(gameInstallation);
 
         return Task.CompletedTask;
     }

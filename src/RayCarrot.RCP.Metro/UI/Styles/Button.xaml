@@ -218,6 +218,7 @@
         </Setter>
     </Style>
 
+    <!-- TODO-14: Have default button style support icons like the flat one does -->
     <!-- Icon Content Button -->
 
     <Style x:Key="RCP.Styles.Button.IconContent" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
