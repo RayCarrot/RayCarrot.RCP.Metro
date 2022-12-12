@@ -124,8 +124,8 @@
                                     </DataTemplate>
 
                                     <!-- Emulator config -->
-                                    <DataTemplate DataType="{x:Type optionsDialog:EmulatorConfigPageViewModel}">
-                                        <optionsDialog:EmulatorConfigControl />
+                                    <DataTemplate DataType="{x:Type optionsDialog:EmulatorGameConfigPageViewModel}">
+                                        <optionsDialog:EmulatorGameConfigControl />
                                     </DataTemplate>
 
                                     <!-- Utilities -->

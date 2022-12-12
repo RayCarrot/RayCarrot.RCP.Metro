@@ -18,7 +18,7 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
         builder.Register(
             // Emulator config page
             new GameOptionsDialogPageComponent(
-                objFactory: x => new EmulatorConfigPageViewModel(x, this),
+                objFactory: x => new EmulatorGameConfigPageViewModel(x, this),
                 isAvailableFunc: _ => true,
                 priority: GameOptionsDialogPageComponent.PagePriority.Normal));
     }

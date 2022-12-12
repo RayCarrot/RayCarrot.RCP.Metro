@@ -3,10 +3,10 @@ using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public class EmulatorConfigPageViewModel : GameOptionsDialogPageViewModel, 
+public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel, 
     IRecipient<AddedEmulatorsMessage>, IRecipient<RemovedEmulatorsMessage>, IRecipient<ModifiedGamesMessage>
 {
-    public EmulatorConfigPageViewModel(GameInstallation gameInstallation, EmulatedGameDescriptor gameDescriptor)
+    public EmulatorGameConfigPageViewModel(GameInstallation gameInstallation, EmulatedGameDescriptor gameDescriptor)
     {
         GameInstallation = gameInstallation;
         GameDescriptor = gameDescriptor;

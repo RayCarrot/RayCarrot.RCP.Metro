@@ -4,7 +4,7 @@ using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public class DosBoxGameConfigViewModel : EmulatorConfigPageViewModel
+public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
 {
     #region Constructor
 

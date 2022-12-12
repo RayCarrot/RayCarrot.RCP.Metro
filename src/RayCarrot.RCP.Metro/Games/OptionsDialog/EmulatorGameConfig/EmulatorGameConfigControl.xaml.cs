@@ -3,14 +3,14 @@
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>
-/// Interaction logic for EmulatorConfigControl.xaml
+/// Interaction logic for EmulatorGameConfigControl.xaml
 /// </summary>
-public partial class EmulatorConfigControl : UserControl
+public partial class EmulatorGameConfigControl : UserControl
 {
     /// <summary>
     /// Default constructor
     /// </summary>
-    public EmulatorConfigControl()
+    public EmulatorGameConfigControl()
     {
         InitializeComponent();
     }
