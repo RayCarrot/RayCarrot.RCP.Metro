@@ -1,5 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
+// TODO-14: This was recently fully dumped and the .bin files include the music. We should include that here as well.
+
 /// <summary>
 /// The Rayman 1 Demo 1995/12/07 (MS-DOS) game descriptor
 /// </summary>

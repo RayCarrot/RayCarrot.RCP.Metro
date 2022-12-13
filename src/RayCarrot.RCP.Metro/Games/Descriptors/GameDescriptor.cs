@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using RayCarrot.RCP.Metro.Archive;
+﻿using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -201,13 +200,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     #region Public Methods
 
     public abstract IEnumerable<GameAddAction> GetAddActions();
-
-    /// <summary>
-    /// The options UI, if any is available
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the options for</param>
-    /// <returns>The options UI or null if not available</returns>
-    public virtual FrameworkElement? GetOptionsUI(GameInstallation gameInstallation) => null; // TODO-14: Remove this once we have emulator page working
 
     /// <summary>
     /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.

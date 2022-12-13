@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -6,6 +7,8 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel, 
     IRecipient<AddedEmulatorsMessage>, IRecipient<RemovedEmulatorsMessage>, IRecipient<ModifiedGamesMessage>
 {
+    #region Constructor
+
     public EmulatorGameConfigPageViewModel(GameInstallation gameInstallation, EmulatedGameDescriptor gameDescriptor)
     {
         GameInstallation = gameInstallation;
@@ -18,13 +21,32 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
         Services.Messenger.RegisterAll(this);
     }
 
+    #endregion
+
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
+    #region Private Fields
+
     private EmulatorViewModel? _selectedEmulator;
+
+    #endregion
+
+    #region Commands
 
     public ICommand ConfigureEmulatorsCommand { get; }
 
+    #endregion
+
+    #region Public Properties
+
     public override LocalizedString PageName => "Emulator"; // TODO-UPDATE: Localize
     public override GenericIconKind PageIcon => GenericIconKind.GameOptions_Emulator;
-    public override bool CanSave => true; // TODO-14: Depends on if selected emulator has config
+    public override bool CanSave => EmulatorGameConfig?.CanSave ?? false;
+    public override bool CanUseRecommended => EmulatorGameConfig?.CanUseRecommended ?? false;
 
     public GameInstallation GameInstallation { get; }
     public EmulatedGameDescriptor GameDescriptor { get; }
@@ -39,16 +61,66 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
             _selectedEmulator = value;
 
             Invoke();
-            async void Invoke() => await GameDescriptor.SetEmulatorAsync(GameInstallation, value?.EmulatorInstallation);
+            async void Invoke()
+            {
+                await GameDescriptor.SetEmulatorAsync(GameInstallation, value?.EmulatorInstallation);
+                await SetSelectedEmulatorAsync(value);
+            }
         }
     }
 
-    // TODO-14: Selected emulator might have config for this game
+    public EmulatorGameConfigViewModel? EmulatorGameConfig { get; set; }
 
-    protected override Task LoadAsync()
+    #endregion
+
+    #region Private Methods
+
+    private async Task SetSelectedEmulatorAsync(EmulatorViewModel? emulator)
     {
-        _selectedEmulator = null;
+        _selectedEmulator = emulator;
         OnPropertyChanged(nameof(SelectedEmulator));
+
+        if (EmulatorGameConfig != null)
+            EmulatorGameConfig.PropertyChanged -= EmulatorGameConfig_PropertyChanged;
+
+        // Set the emulator config
+        EmulatorGameConfig = emulator?.EmulatorInstallation.EmulatorDescriptor.GetGameConfigViewModel(GameInstallation, emulator.EmulatorInstallation);
+
+        // Update page properties to match emulator config
+        OnPropertyChanged(nameof(CanSave));
+        OnPropertyChanged(nameof(CanUseRecommended));
+
+        UnsavedChanges = EmulatorGameConfig?.UnsavedChanges ?? false;
+        if (EmulatorGameConfig != null)
+            EmulatorGameConfig.PropertyChanged += EmulatorGameConfig_PropertyChanged;
+
+        try
+        {
+            EmulatorGameConfig?.Load();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Loading emulator config");
+
+            // TODO-14: Show an error message to the user
+
+            EmulatorGameConfig = null;
+        }
+    }
+
+    private void EmulatorGameConfig_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(EmulatorGameConfig.UnsavedChanges))
+            UnsavedChanges = EmulatorGameConfig?.UnsavedChanges ?? false;
+    }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override async Task LoadAsync()
+    {
+        await SetSelectedEmulatorAsync(null);
 
         var emulators = Services.Emulators.GetInstalledEmulators().
             Where(x => x.EmulatorDescriptor.SupportedPlatforms.Contains(GameDescriptor.Platform)).
@@ -58,13 +130,22 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
         string? emuId = GameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId);
 
         if (emuId != null)
-        {
-            _selectedEmulator = Emulators.FirstOrDefault(x => x.EmulatorInstallation.InstallationId == emuId);
-            OnPropertyChanged(nameof(SelectedEmulator));
-        }
-
-        return Task.CompletedTask;
+            await SetSelectedEmulatorAsync(Emulators.FirstOrDefault(x => x.EmulatorInstallation.InstallationId == emuId));
     }
+
+    protected override async Task<bool> SaveAsync()
+    {
+        if (EmulatorGameConfig != null)
+            return await EmulatorGameConfig.SaveAsync();
+        else
+            return true;
+    }
+
+    protected override void UseRecommended() => EmulatorGameConfig?.UseRecommended();
+
+    #endregion
+
+    #region Public Methods
 
     public Task ConfigureEmulatorsAsync() => Services.UI.ShowEmulatorsSetupAsync();
 
@@ -82,17 +163,14 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
                 x.EmulatorDescriptor.SupportedPlatforms.Contains(GameInstallation.GameDescriptor.Platform)))
             await LoadPageAsync();
     }
-    public void Receive(ModifiedGamesMessage message)
+    public async void Receive(ModifiedGamesMessage message)
     {
         if (message.GameInstallations.Contains(GameInstallation))
         {
             string? emuId = GameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId);
 
             if (emuId != SelectedEmulator?.EmulatorInstallation.InstallationId)
-            {
-                _selectedEmulator = Emulators?.FirstOrDefault(x => x.EmulatorInstallation.InstallationId == emuId);
-                OnPropertyChanged(nameof(SelectedEmulator));
-            }
+                await SetSelectedEmulatorAsync(Emulators?.FirstOrDefault(x => x.EmulatorInstallation.InstallationId == emuId));
         }
     }
 
@@ -103,6 +181,10 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
         // Unregister for messages
         Services.Messenger.UnregisterAll(this);
     }
+
+    #endregion
+
+    #region Classes
 
     public class EmulatorViewModel : BaseViewModel
     {
@@ -115,4 +197,6 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
         public LocalizedString DisplayName => EmulatorInstallation.EmulatorDescriptor.DisplayName;
         public EmulatorIconAsset Icon => EmulatorInstallation.EmulatorDescriptor.Icon;
     }
+
+    #endregion
 }

@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -55,9 +54,6 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
     {
         new LocateRayman1MSDOSGameAddAction(this),
     };
-
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
-        new GameOptions_DOSBox_Control(gameInstallation);
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121");
 

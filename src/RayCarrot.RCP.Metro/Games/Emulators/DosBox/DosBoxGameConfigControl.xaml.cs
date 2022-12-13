@@ -1,9 +1,10 @@
-﻿using System.Windows.Controls;
+﻿using System.IO;
+using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
 /// <summary>
-/// Interaction logic for Emulator_DOSBox_ConfigControl.xaml
+/// Interaction logic for DosBoxGameConfigControl.xaml
 /// </summary>
 public partial class DosBoxGameConfigControl : UserControl
 {
@@ -13,5 +14,6 @@ public partial class DosBoxGameConfigControl : UserControl
     public DosBoxGameConfigControl()
     {
         InitializeComponent();
+        MountPathBrowseBox.AllowedDriveTypes = new[] { DriveType.CDRom };
     }
 }

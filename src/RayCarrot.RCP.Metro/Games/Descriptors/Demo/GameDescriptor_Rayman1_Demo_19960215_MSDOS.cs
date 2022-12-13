@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -48,9 +47,6 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
             new(AppURLs.Games_R1Demo2_Url),
         })
     };
-
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
-        new GameOptions_DOSBox_Control(gameInstallation);
 
     public override async Task PostGameAddAsync(GameInstallation gameInstallation)
     {

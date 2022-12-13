@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using BinarySerializer.Ray1;
+﻿using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
@@ -98,10 +97,6 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
     #endregion
 
     #region Public Methods
-
-    // TODO-14: Add new options control for setting game mode to use when launching the game
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
-        new GameOptions_DOSBox_Control(gameInstallation);
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
 

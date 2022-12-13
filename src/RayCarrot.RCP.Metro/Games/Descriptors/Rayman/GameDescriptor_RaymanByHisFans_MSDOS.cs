@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using BinarySerializer.Ray1;
+﻿using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
@@ -49,9 +48,6 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
     {
         new LocateRayman1MSDOSGameAddAction(this),
     };
-
-    public override FrameworkElement GetOptionsUI(GameInstallation gameInstallation) =>
-        new GameOptions_DOSBox_Control(gameInstallation);
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanByHisFansPC", "r1/pc_fan");
 

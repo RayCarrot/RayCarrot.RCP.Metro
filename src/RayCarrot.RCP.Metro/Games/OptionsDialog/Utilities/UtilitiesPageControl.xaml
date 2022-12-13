@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.OptionsDialog.UtilitiesPageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:optionsDialog="clr-namespace:RayCarrot.RCP.Metro.Games.OptionsDialog"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             IsTabStop="False"
+             mc:Ignorable="d"
+             d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance optionsDialog:UtilitiesPageViewModel}">
+    <ScrollViewer>
+        <b:Interaction.Behaviors>
+            <rcp:FocusScrollViewerOnLoad />
+        </b:Interaction.Behaviors>
+
+        <rcp:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}" />
+
+    </ScrollViewer>
+</UserControl>

@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows;
-using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
-namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
-public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
+public class DosBoxGameConfigViewModel : EmulatorGameConfigViewModel
 {
     #region Constructor
 
@@ -12,12 +11,16 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
     /// Default constructor for a specific game
     /// </summary>
     /// <param name="gameInstallation">The game installation</param>
-    /// <param name="dosBoxDescriptor">The DOSBox emulator descriptor</param>
-    public DosBoxGameConfigViewModel(GameInstallation gameInstallation, DosBoxEmulatorDescriptor dosBoxDescriptor) 
-        : base(gameInstallation, null)
+    /// <param name="emulatorDescriptor">The DOSBox emulator descriptor</param>
+    /// <param name="gameDescriptor">The game descriptor</param>
+    public DosBoxGameConfigViewModel(
+        GameInstallation gameInstallation, 
+        DosBoxEmulatorDescriptor emulatorDescriptor,
+        MsDosGameDescriptor gameDescriptor)
     {
         GameInstallation = gameInstallation;
-        DosBoxDescriptor = dosBoxDescriptor;
+        EmulatorDescriptor = emulatorDescriptor;
+        GameDescriptor = gameDescriptor;
 
         // Set up the available resolution values
         AvailableFullscreenResolutionValues = new ObservableCollection<string>();
@@ -104,6 +107,7 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
 
     #region Private Fields
 
+    private FileSystemPath _mountPath;
     private bool? _fullscreenEnabled;
     private bool? _fullDoubleEnabled;
     private bool? _aspectCorrectionEnabled;
@@ -137,8 +141,6 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
 
     #region Public Properties
 
-    public override LocalizedString PageName => DosBoxDescriptor.DisplayName;
-
     /// <summary>
     /// The game installation
     /// </summary>
@@ -147,7 +149,27 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
     /// <summary>
     /// The DOSBox emulator descriptor
     /// </summary>
-    public DosBoxEmulatorDescriptor DosBoxDescriptor { get; }
+    public DosBoxEmulatorDescriptor EmulatorDescriptor { get; }
+
+    /// <summary>
+    /// The game descriptor
+    /// </summary>
+    public MsDosGameDescriptor GameDescriptor { get; }
+
+    public bool RequiredDisc => GameDescriptor.RequiresDisc;
+
+    /// <summary>
+    /// The file or directory to mount
+    /// </summary>
+    public FileSystemPath MountPath
+    {
+        get => _mountPath;
+        set
+        {
+            _mountPath = value;
+            UnsavedChanges = true;
+        }
+    }
 
     /// <summary>
     /// The available resolution values to use for fullscreen
@@ -336,25 +358,22 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
         }
     }
 
-    /// <summary>
-    /// Indicates if the option to use recommended options in the page is available
-    /// </summary>
     public override bool CanUseRecommended => true;
+    public override bool CanSave => true;
 
     #endregion
 
     #region Protected Methods
 
-    /// <summary>
-    /// Loads and sets up the current configuration properties
-    /// </summary>
-    /// <returns>The task</returns>
-    protected override Task LoadAsync()
+    public override void Load()
     {
         Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.FullId);
 
+        // Get the current mount path
+        MountPath = GameInstallation.GetValue<FileSystemPath>(GameDataKey.Emu_DosBox_MountPath);
+
         // Get the config manager
-        var configManager = new AutoConfigManager(DosBoxDescriptor.GetGameConfigFile(GameInstallation));
+        var configManager = new AutoConfigManager(EmulatorDescriptor.GetGameConfigFile(GameInstallation));
 
         // Create the file
         configManager.Create(GameInstallation);
@@ -380,8 +399,6 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
 
         UnsavedChanges = false;
 
-        return Task.CompletedTask;
-
         // Helper methods for getting properties
         bool? GetBool(string propName) =>
             Boolean.TryParse(configData.Configuration.TryGetValue(propName), out bool output) ? output : null;
@@ -395,14 +412,18 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
     /// Saves the changes
     /// </summary>
     /// <returns>The task</returns>
-    protected override async Task<bool> SaveAsync()
+    public override async Task<bool> SaveAsync()
     {
         Logger.Info("DOSBox emulator game config for {0} is saving...", GameInstallation.FullId);
 
         try
         {
+            // Set the mount path
+            GameInstallation.SetValue(GameDataKey.Emu_DosBox_MountPath, MountPath);
+            Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+
             // Get the config manager
-            var configManager = new AutoConfigManager(DosBoxDescriptor.GetGameConfigFile(GameInstallation));
+            var configManager = new AutoConfigManager(EmulatorDescriptor.GetGameConfigFile(GameInstallation));
 
             // Create config data
             var configData = new AutoConfigData();
@@ -476,7 +497,7 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigPageViewModel
     /// <summary>
     /// Applies the recommended settings for the specified game
     /// </summary>
-    protected override void UseRecommended()
+    public override void UseRecommended()
     {
         AspectCorrectionEnabled = false;
         MemorySize = 30;

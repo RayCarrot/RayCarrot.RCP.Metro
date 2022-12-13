@@ -11,80 +11,88 @@
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance optionsDialog:RabbidsGoHomeConfigViewModel}">
-    <StackPanel>
+
+    <ScrollViewer>
         <i:Interaction.Behaviors>
-            <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            <rcp:FocusScrollViewerOnLoad />
         </i:Interaction.Behaviors>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx GoHomeConfig_CustomLaunchHeader}" />
-
-            <rcp:InfoIcon Text="{Resx GoHomeConfig_CustomLaunchInfo}" />
-
-        </StackPanel>
-
-        <metro:ToggleSwitch IsOn="{Binding Path=EnableCustomSettings}"
-                            HorizontalAlignment="Left"
-                            OnContent="{Resx SettingEnabled}"
-                            OffContent="{Resx SettingDisabled}" />
-
-        <StackPanel IsEnabled="{Binding Path=EnableCustomSettings}"
-                    rcp:UnifiedMargin.Ignored="True">
+        <StackPanel>
             <i:Interaction.Behaviors>
                 <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
             </i:Interaction.Behaviors>
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_Resolution}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx GoHomeConfig_CustomLaunchHeader}" />
 
-            <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
+                <rcp:InfoIcon Text="{Resx GoHomeConfig_CustomLaunchInfo}" />
 
-            <CheckBox Content="{Resx Config_Fullscreen}"
-                      ToolTip="{Resx Config_FullscreenInfo}"
-                      IsChecked="{Binding Path=Fullscreen}" />
+            </StackPanel>
 
-            <CheckBox Content="{Resx Config_VSync}"
-                      IsChecked="{Binding Path=VSync}" />
+            <metro:ToggleSwitch IsOn="{Binding Path=EnableCustomSettings}"
+                                HorizontalAlignment="Left"
+                                OnContent="{Resx SettingEnabled}"
+                                OffContent="{Resx SettingDisabled}" />
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_Language}" />
+            <StackPanel IsEnabled="{Binding Path=EnableCustomSettings}"
+                        rcp:UnifiedMargin.Ignored="True">
+                <i:Interaction.Behaviors>
+                    <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+                </i:Interaction.Behaviors>
 
-            <ComboBox SelectedIndex="{Binding Path=Language, Converter={rcp:EnumToIntConverter}}"
-                      HorizontalAlignment="Left">
-                <TextBlock Text="{Resx Lang_English}" />
-                <TextBlock Text="{Resx Lang_French}" />
-                <TextBlock Text="{Resx Lang_German}" />
-                <TextBlock Text="{Resx Lang_Italian}" />
-                <TextBlock Text="{Resx Lang_Spanish}" />
-                <TextBlock Text="{Resx Lang_Dutch}" />
-            </ComboBox>
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_Resolution}" />
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx GoHomeConfig_VersionIndex}" />
+                <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
 
-            <metro:NumericUpDown Value="{Binding Path=VersionIndex}"
-                                 Minimum="1"
-                                 Maximum="5"
-                                 HorizontalAlignment="Left" />
+                <CheckBox Content="{Resx Config_Fullscreen}"
+                          ToolTip="{Resx Config_FullscreenInfo}"
+                          IsChecked="{Binding Path=Fullscreen}" />
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx GoHomeConfig_BigFile}"
-                       rcp:UserLevelAssist.MinUserLevel="Technical" />
+                <CheckBox Content="{Resx Config_VSync}"
+                          IsChecked="{Binding Path=VSync}" />
 
-            <TextBox Text="{Binding Path=BigFile}"
-                     rcp:UserLevelAssist.MinUserLevel="Technical" />
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_Language}" />
 
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx GoHomeConfig_Commands}"
-                       rcp:UserLevelAssist.MinUserLevel="Technical" />
+                <ComboBox SelectedIndex="{Binding Path=Language, Converter={rcp:EnumToIntConverter}}"
+                          HorizontalAlignment="Left">
+                    <TextBlock Text="{Resx Lang_English}" />
+                    <TextBlock Text="{Resx Lang_French}" />
+                    <TextBlock Text="{Resx Lang_German}" />
+                    <TextBlock Text="{Resx Lang_Italian}" />
+                    <TextBlock Text="{Resx Lang_Spanish}" />
+                    <TextBlock Text="{Resx Lang_Dutch}" />
+                </ComboBox>
 
-            <TextBox Text="{Binding Path=CustomCommands}"
-                     AcceptsReturn="True"
-                     rcp:UserLevelAssist.MinUserLevel="Technical"
-                     MinHeight="70" />
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx GoHomeConfig_VersionIndex}" />
+
+                <metro:NumericUpDown Value="{Binding Path=VersionIndex}"
+                                     Minimum="1"
+                                     Maximum="5"
+                                     HorizontalAlignment="Left" />
+
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx GoHomeConfig_BigFile}"
+                           rcp:UserLevelAssist.MinUserLevel="Technical" />
+
+                <TextBox Text="{Binding Path=BigFile}"
+                         rcp:UserLevelAssist.MinUserLevel="Technical" />
+
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx GoHomeConfig_Commands}"
+                           rcp:UserLevelAssist.MinUserLevel="Technical" />
+
+                <TextBox Text="{Binding Path=CustomCommands}"
+                         AcceptsReturn="True"
+                         rcp:UserLevelAssist.MinUserLevel="Technical"
+                         MinHeight="70" />
+
+            </StackPanel>
 
         </StackPanel>
 
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

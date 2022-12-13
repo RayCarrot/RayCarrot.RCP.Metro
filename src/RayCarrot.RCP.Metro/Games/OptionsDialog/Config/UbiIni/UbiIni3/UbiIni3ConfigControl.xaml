@@ -11,214 +11,223 @@
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance optionsDialog:Rayman3ConfigViewModel}">
-    <StackPanel>
+
+    <ScrollViewer>
         <i:Interaction.Behaviors>
-            <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            <rcp:FocusScrollViewerOnLoad />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Resolution}" />
-
-        <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
-
-        <CheckBox Content="{Resx Config_Fullscreen}"
-                  ToolTip="{Resx Config_FullscreenInfo}"
-                  IsChecked="{Binding Path=FullscreenMode}" />
-
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Graphics}" />
-
-        <CheckBox Content="{Resx Config_TriLinear}"
-                  IsChecked="{Binding Path=TriLinear}" />
-
-        <CheckBox Content="{Resx Config_TnL}"
-                  ToolTip="{Resx Config_TnLInfo}"
-                  IsChecked="{Binding Path=TnL}" />
-
-        <Grid rcp:UserLevelAssist.MinUserLevel="Advanced"
-              rcp:UnifiedMargin.Ignored="True">
-            <CheckBox Content="{Resx Config_DynamicShadows}"
-                      IsChecked="{Binding Path=DynamicShadows}"
-                      Visibility="{Binding Path=HasShadowConfig, Converter={rcp:BooleanToVisibilityConverter}}"
-                      Margin="0 8" />
-        </Grid>
-
-        <Grid rcp:UserLevelAssist.MinUserLevel="Advanced"
-              rcp:UnifiedMargin.Ignored="True">
-            <CheckBox Content="{Resx Config_StaticShadows}"
-                      IsChecked="{Binding Path=StaticShadows}"
-                      Visibility="{Binding Path=HasShadowConfig, Converter={rcp:BooleanToVisibilityConverter}}"
-                      Margin="0 8" />
-        </Grid>
-
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Textures}" />
-
-        <StackPanel Orientation="Horizontal">
-            <RadioButton Content="{Resx Config_Textures16}"
-                         Margin="0 0 10 0"
-                         IsChecked="{Binding Path=IsTextures32Bit, Converter={rcp:InvertedBooleanConverter}}" />
-            <RadioButton Content="{Resx Config_Textures32}"
-                         IsChecked="{Binding Path=IsTextures32Bit}" />
-        </StackPanel>
-
-        <CheckBox Content="{Resx Config_Compressed}"
-                  IsChecked="{Binding Path=CompressedTextures}" />
-
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Video}" />
-
         <StackPanel>
+            <i:Interaction.Behaviors>
+                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            </i:Interaction.Behaviors>
 
-            <Slider Maximum="4"
-                    Value="{Binding Path=VideoQuality}"
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Resolution}" />
+
+            <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}"/>
+
+            <CheckBox Content="{Resx Config_Fullscreen}"
+                      ToolTip="{Resx Config_FullscreenInfo}"
+                      IsChecked="{Binding Path=FullscreenMode}" />
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Graphics}" />
+
+            <CheckBox Content="{Resx Config_TriLinear}"
+                      IsChecked="{Binding Path=TriLinear}" />
+
+            <CheckBox Content="{Resx Config_TnL}"
+                      ToolTip="{Resx Config_TnLInfo}"
+                      IsChecked="{Binding Path=TnL}" />
+
+            <Grid rcp:UserLevelAssist.MinUserLevel="Advanced"
+                  rcp:UnifiedMargin.Ignored="True">
+                <CheckBox Content="{Resx Config_DynamicShadows}"
+                          IsChecked="{Binding Path=DynamicShadows}"
+                          Visibility="{Binding Path=HasShadowConfig, Converter={rcp:BooleanToVisibilityConverter}}"
+                          Margin="0 8" />
+            </Grid>
+
+            <Grid rcp:UserLevelAssist.MinUserLevel="Advanced"
+                  rcp:UnifiedMargin.Ignored="True">
+                <CheckBox Content="{Resx Config_StaticShadows}"
+                          IsChecked="{Binding Path=StaticShadows}"
+                          Visibility="{Binding Path=HasShadowConfig, Converter={rcp:BooleanToVisibilityConverter}}"
+                          Margin="0 8" />
+            </Grid>
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Textures}" />
+
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="{Resx Config_Textures16}"
+                             Margin="0 0 10 0"
+                             IsChecked="{Binding Path=IsTextures32Bit, Converter={rcp:InvertedBooleanConverter}}" />
+                <RadioButton Content="{Resx Config_Textures32}"
+                             IsChecked="{Binding Path=IsTextures32Bit}" />
+            </StackPanel>
+
+            <CheckBox Content="{Resx Config_Compressed}"
+                      IsChecked="{Binding Path=CompressedTextures}" />
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Video}" />
+
+            <StackPanel>
+
+                <Slider Maximum="4"
+                        Value="{Binding Path=VideoQuality}"
+                        TickPlacement="BottomRight"
+                        IsSnapToTickEnabled="True"
+                        Width="200"
+                        HorizontalAlignment="Left" />
+
+                <Grid Width="200" HorizontalAlignment="Left">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Resx Config_VideoGood}"
+                               TextWrapping="WrapWithOverflow" />
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Resx Config_VideoBad}"
+                               TextWrapping="WrapWithOverflow"
+                               HorizontalAlignment="Right" />
+
+                </Grid>
+
+            </StackPanel>
+
+            <CheckBox Content="{Resx Config_VideoAuto}"
+                      IsChecked="{Binding Path=AutoVideoQuality}" />
+
+            <StackPanel Orientation="Horizontal">
+
+                <RadioButton Content="{Resx Config_Video16Bpp}"
+                             Margin="0 0 10 0"
+                             IsChecked="{Binding Path=IsVideo32Bpp, Converter={rcp:InvertedBooleanConverter}}" />
+
+                <RadioButton Content="{Resx Config_Video32Bpp}"
+                             IsChecked="{Binding Path=IsVideo32Bpp}" />
+
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Language}" />
+
+            <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={rcp:EnumToIntConverter}}"
+                      HorizontalAlignment="Left">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                        <Setter Property="Visibility"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <TextBlock Text="{Resx Lang_English}" />
+                <TextBlock Text="{Resx Lang_French}" />
+                <TextBlock Text="{Resx Lang_Spanish}" />
+                <TextBlock Text="{Resx Lang_German}"
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
+                <TextBlock Text="{Resx Lang_Italian}"
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
+                <TextBlock Text="{Resx Lang_Danish}"
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                <TextBlock Text="{Resx Lang_Finnish}"
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                <TextBlock Text="{Resx Lang_Norwegian}"
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                <TextBlock Text="{Resx Lang_Swedish}"
+                           Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+            </ComboBox>
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_Controller}" />
+
+                <rcp:InfoIcon Text="{Resx Config_ControllerInfo}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <rcp:AdminButton
+                    Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                    Margin="0 0 5 0" />
+
+                <CheckBox Content="{Resx Config_EnableNativeController}"
+                          IsChecked="{Binding Path=ControllerSupport}"
+                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+
+            </StackPanel>
+
+            <TextBlock Text="{Resx Config_ControllerVertical}"
+                       Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
+
+            <Slider Minimum="2"
+                    Maximum="7"
+                    Value="{Binding Path=VerticalAxis}"
                     TickPlacement="BottomRight"
                     IsSnapToTickEnabled="True"
                     Width="200"
-                    HorizontalAlignment="Left" />
+                    HorizontalAlignment="Left"
+                    Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
 
-            <Grid Width="200" HorizontalAlignment="Left">
+            <TextBlock Text="{Resx Config_ControllerHorizontal}"
+                       Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0"
-                           Text="{Resx Config_VideoGood}"
-                           TextWrapping="WrapWithOverflow" />
-
-                <TextBlock Grid.Column="1"
-                           Text="{Resx Config_VideoBad}"
-                           TextWrapping="WrapWithOverflow"
-                           HorizontalAlignment="Right" />
-
-            </Grid>
-
-        </StackPanel>
-
-        <CheckBox Content="{Resx Config_VideoAuto}"
-                  IsChecked="{Binding Path=AutoVideoQuality}" />
-
-        <StackPanel Orientation="Horizontal">
-
-            <RadioButton Content="{Resx Config_Video16Bpp}"
-                         Margin="0 0 10 0"
-                         IsChecked="{Binding Path=IsVideo32Bpp, Converter={rcp:InvertedBooleanConverter}}" />
-
-            <RadioButton Content="{Resx Config_Video32Bpp}"
-                         IsChecked="{Binding Path=IsVideo32Bpp}" />
-
-        </StackPanel>
-
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Language}" />
-
-        <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={rcp:EnumToIntConverter}}"
-                  HorizontalAlignment="Left">
-            <ComboBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                    <Setter Property="Visibility"
-                            Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
-                </Style>
-            </ComboBox.ItemContainerStyle>
-            <TextBlock Text="{Resx Lang_English}" />
-            <TextBlock Text="{Resx Lang_French}" />
-            <TextBlock Text="{Resx Lang_Spanish}" />
-            <TextBlock Text="{Resx Lang_German}"
-                       Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
-            <TextBlock Text="{Resx Lang_Italian}"
-                       Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
-            <TextBlock Text="{Resx Lang_Danish}"
-                       Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
-            <TextBlock Text="{Resx Lang_Finnish}"
-                       Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
-            <TextBlock Text="{Resx Lang_Norwegian}"
-                       Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
-            <TextBlock Text="{Resx Lang_Swedish}"
-                       Visibility="{Binding Path=CurrentLanguage, Converter={rcp:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
-        </ComboBox>
-
-        <StackPanel Orientation="Horizontal">
+            <Slider Minimum="2"
+                    Maximum="7"
+                    Value="{Binding Path=HorizontalAxis}"
+                    TickPlacement="BottomRight"
+                    IsSnapToTickEnabled="True"
+                    Width="200"
+                    HorizontalAlignment="Left"
+                    Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
 
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_Controller}" />
+                       Text="{Resx Config_Network}"
+                       Visibility="{Binding Path=HasNetworkConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
 
-            <rcp:InfoIcon Text="{Resx Config_ControllerInfo}" />
+            <ComboBox ItemsSource="{Binding Path=ModemQualityOptions, Mode=OneTime}"
+                      SelectedIndex="{Binding Path=ModemQualityIndex}"
+                      HorizontalAlignment="Left"
+                      Visibility="{Binding Path=HasNetworkConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
 
-        </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding Path=CanRemoveDiscCheck, Converter={rcp:BooleanToVisibilityConverter}}">
 
-        <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_DiscCheck}" />
 
-            <rcp:AdminButton
-                Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                Margin="0 0 5 0" />
+                <rcp:InfoIcon Text="{Resx Config_DiscCheckInfo}" />
 
-            <CheckBox Content="{Resx Config_EnableNativeController}"
-                      IsChecked="{Binding Path=ControllerSupport}"
-                      IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+            </StackPanel>
 
-        </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding Path=CanRemoveDiscCheck, Converter={rcp:BooleanToVisibilityConverter}}">
 
-        <TextBlock Text="{Resx Config_ControllerVertical}"
-                   Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
+                <rcp:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                                 Margin="0 0 5 0" />
 
-        <Slider Minimum="2"
-                Maximum="7"
-                Value="{Binding Path=VerticalAxis}"
-                TickPlacement="BottomRight"
-                IsSnapToTickEnabled="True"
-                Width="200"
-                HorizontalAlignment="Left"
-                Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
+                <CheckBox Content="{Resx Config_DisableDiscCheck}"
+                          IsChecked="{Binding Path=IsDiscCheckRemoved}"
+                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
 
-        <TextBlock Text="{Resx Config_ControllerHorizontal}"
-                   Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
+                <rcp:InfoIcon Style="{StaticResource RCP.Styles.InfoIcon.Notice}"
+                              Text="{Resx Config_OutdatedPatchNotice}"
+                              Visibility="{Binding Path=IsDiscPatchOutdated, Converter={rcp:BooleanToVisibilityConverter}}"/>
 
-        <Slider Minimum="2"
-                Maximum="7"
-                Value="{Binding Path=HorizontalAxis}"
-                TickPlacement="BottomRight"
-                IsSnapToTickEnabled="True"
-                Width="200"
-                HorizontalAlignment="Left"
-                Visibility="{Binding Path=HasControllerConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
-
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Network}"
-                   Visibility="{Binding Path=HasNetworkConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
-
-        <ComboBox ItemsSource="{Binding Path=ModemQualityOptions, Mode=OneTime}"
-                  SelectedIndex="{Binding Path=ModemQualityIndex}"
-                  HorizontalAlignment="Left"
-                  Visibility="{Binding Path=HasNetworkConfig, Converter={rcp:BooleanToVisibilityConverter}}" />
-
-        <StackPanel Orientation="Horizontal"
-                    Visibility="{Binding Path=CanRemoveDiscCheck, Converter={rcp:BooleanToVisibilityConverter}}">
-
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_DiscCheck}" />
-
-            <rcp:InfoIcon Text="{Resx Config_DiscCheckInfo}" />
+            </StackPanel>
 
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"
-                    Visibility="{Binding Path=CanRemoveDiscCheck, Converter={rcp:BooleanToVisibilityConverter}}">
+    </ScrollViewer>
 
-            <rcp:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rcp:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                               Margin="0 0 5 0" />
-
-            <CheckBox Content="{Resx Config_DisableDiscCheck}"
-                      IsChecked="{Binding Path=IsDiscCheckRemoved}"
-                      IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
-
-            <rcp:InfoIcon Style="{StaticResource RCP.Styles.InfoIcon.Notice}"
-                            Text="{Resx Config_OutdatedPatchNotice}"
-                            Visibility="{Binding Path=IsDiscPatchOutdated, Converter={rcp:BooleanToVisibilityConverter}}"/>
-
-        </StackPanel>
-
-    </StackPanel>
 </UserControl>

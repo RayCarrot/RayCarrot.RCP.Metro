@@ -12,57 +12,66 @@
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance optionsDialog:RaymanRavingRabbidsBaseConfigViewModel}">
-    <StackPanel>
+
+    <ScrollViewer>
         <i:Interaction.Behaviors>
-            <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            <rcp:FocusScrollViewerOnLoad />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Resolution}" />
+        <StackPanel>
+            <i:Interaction.Behaviors>
+                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            </i:Interaction.Behaviors>
 
-        <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}" />
-
-        <CheckBox Content="{Resx Config_Fullscreen}"
-                  ToolTip="{Resx Config_FullscreenInfo}"
-                  IsChecked="{Binding Path=FullscreenMode}" />
-
-        <StackPanel Orientation="Horizontal"
-                    rcp:UserLevelAssist.MinUserLevel="Advanced">
             <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_RRRScreenMode}" />
+                       Text="{Resx Config_Resolution}" />
 
-            <rcp:InfoIcon Text="{Resx Config_RRRScreenModeInfo}" />
+            <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}" />
+
+            <CheckBox Content="{Resx Config_Fullscreen}"
+                      ToolTip="{Resx Config_FullscreenInfo}"
+                      IsChecked="{Binding Path=FullscreenMode}" />
+
+            <StackPanel Orientation="Horizontal"
+                        rcp:UserLevelAssist.MinUserLevel="Advanced">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_RRRScreenMode}" />
+
+                <rcp:InfoIcon Text="{Resx Config_RRRScreenModeInfo}" />
+
+            </StackPanel>
+
+            <ComboBox SelectedIndex="{Binding Path=ScreenModeIndex}"
+                      HorizontalAlignment="Left"
+                      rcp:UserLevelAssist.MinUserLevel="Advanced">
+                <TextBlock Text="{Resx Config_RRRScreenMode_4_3Borders}" />
+                <TextBlock Text="{Resx Config_RRRScreenMode_4_3}" />
+                <TextBlock Text="{Resx Config_RRRScreenMode_16_9}" />
+            </ComboBox>
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Controller}" />
+
+            <CheckBox Content="{Resx Config_UseController}"
+                      IsChecked="{Binding Path=UseController}" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                           Text="{Resx Config_Cheats}" />
+
+                <rcp:InfoIcon Text="{Resx Config_RRRCheatsInfo}" />
+            </StackPanel>
+
+            <CheckBox Content="{Resx Config_RRRInvertHor}"
+                      IsEnabled="{Binding Path=CanModifyCheats}"
+                      IsChecked="{Binding Path=Cheat_InvertHor}" />
+
+            <CheckBox Content="{Resx Config_RRROldMovie}"
+                      IsEnabled="{Binding Path=CanModifyCheats}"
+                      IsChecked="{Binding Path=Cheat_OldMovie}" />
 
         </StackPanel>
 
-        <ComboBox SelectedIndex="{Binding Path=ScreenModeIndex}"
-                  HorizontalAlignment="Left"
-                  rcp:UserLevelAssist.MinUserLevel="Advanced">
-            <TextBlock Text="{Resx Config_RRRScreenMode_4_3Borders}" />
-            <TextBlock Text="{Resx Config_RRRScreenMode_4_3}" />
-            <TextBlock Text="{Resx Config_RRRScreenMode_16_9}" />
-        </ComboBox>
+    </ScrollViewer>
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Controller}" />
-
-        <CheckBox Content="{Resx Config_UseController}"
-                  IsChecked="{Binding Path=UseController}" />
-
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                       Text="{Resx Config_Cheats}" />
-
-            <rcp:InfoIcon Text="{Resx Config_RRRCheatsInfo}" />
-        </StackPanel>
-
-        <CheckBox Content="{Resx Config_RRRInvertHor}"
-                  IsEnabled="{Binding Path=CanModifyCheats}"
-                  IsChecked="{Binding Path=Cheat_InvertHor}" />
-
-        <CheckBox Content="{Resx Config_RRROldMovie}"
-                  IsEnabled="{Binding Path=CanModifyCheats}"
-                  IsChecked="{Binding Path=Cheat_OldMovie}" />
-
-    </StackPanel>
 </UserControl>

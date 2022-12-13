@@ -19,7 +19,7 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 
     public abstract EmulatorIconAsset Icon { get; }
 
-    public virtual EmulatorGameConfigPageViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
+    public virtual EmulatorGameConfigViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
 
     public virtual EmulatorOptionsViewModel? GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) => null;
 

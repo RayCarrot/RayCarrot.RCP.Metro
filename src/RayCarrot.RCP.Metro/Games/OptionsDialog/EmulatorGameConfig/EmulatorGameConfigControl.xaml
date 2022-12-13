@@ -5,15 +5,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:optionsDialog="clr-namespace:RayCarrot.RCP.Metro.Games.OptionsDialog"
+             xmlns:dosBox="clr-namespace:RayCarrot.RCP.Metro.Games.Emulators.DosBox"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DesignWidth="400"
              d:DataContext="{d:DesignInstance optionsDialog:EmulatorGameConfigPageViewModel}">
     <!-- TODO-UPDATE: Localize -->
-    <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <Grid Margin="0 0 0 8">
+        <Grid Grid.Row="0"
+              Margin="0 0 0 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -34,7 +42,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"
-                                   Width="32"
+                                   Width="16"
                                    Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
                                    d:Source="{x:Static rcp:DesignData.EmulatorIconSource}"
                                    Margin="0 0 4 0" />
@@ -58,9 +66,23 @@
 
         </Grid>
 
-        <Separator />
+        <Separator Grid.Row="1"
+                   Visibility="{Binding Path=EmulatorGameConfig, Converter={rcp:InvertedObjectNullToVisibilityConverter}}" />
 
-        <!-- TODO-14: Add emulator config -->
+        <ScrollViewer Grid.Row="2">
+            <b:Interaction.Behaviors>
+                <rcp:FocusScrollViewerOnLoad />
+            </b:Interaction.Behaviors>
 
-    </StackPanel>
+            <ContentPresenter Content="{Binding Path=EmulatorGameConfig}">
+                <ContentPresenter.Resources>
+                    <DataTemplate DataType="{x:Type dosBox:DosBoxGameConfigViewModel}">
+                        <dosBox:DosBoxGameConfigControl />
+                    </DataTemplate>
+                </ContentPresenter.Resources>
+            </ContentPresenter>
+
+        </ScrollViewer>
+
+    </Grid>
 </UserControl>

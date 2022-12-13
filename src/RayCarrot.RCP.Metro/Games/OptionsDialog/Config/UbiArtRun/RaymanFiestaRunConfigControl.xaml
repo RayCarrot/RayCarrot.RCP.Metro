@@ -10,34 +10,43 @@
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance optionsDialog:RaymanFiestaRunConfigViewModel}">
-    <StackPanel>
+
+    <ScrollViewer>
         <i:Interaction.Behaviors>
-            <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            <rcp:FocusScrollViewerOnLoad />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_MusicVolumeHeader}" />
+        <StackPanel>
+            <i:Interaction.Behaviors>
+                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            </i:Interaction.Behaviors>
 
-        <Slider Value="{Binding Path=MusicVolume}"
-                Minimum="0"
-                Maximum="99"
-                TickPlacement="BottomRight"
-                TickFrequency="25"
-                Width="300"
-                AutoToolTipPlacement="TopLeft"
-                HorizontalAlignment="Left" />
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_MusicVolumeHeader}" />
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_SoundVolumeHeader}" />
+            <Slider Value="{Binding Path=MusicVolume}"
+                    Minimum="0"
+                    Maximum="99"
+                    TickPlacement="BottomRight"
+                    TickFrequency="25"
+                    Width="300"
+                    AutoToolTipPlacement="TopLeft"
+                    HorizontalAlignment="Left" />
 
-        <Slider Value="{Binding Path=SoundVolume}"
-                Minimum="0"
-                Maximum="99"
-                TickPlacement="BottomRight"
-                TickFrequency="25"
-                Width="300"
-                AutoToolTipPlacement="TopLeft"
-                HorizontalAlignment="Left" />
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_SoundVolumeHeader}" />
 
-    </StackPanel>
+            <Slider Value="{Binding Path=SoundVolume}"
+                    Minimum="0"
+                    Maximum="99"
+                    TickPlacement="BottomRight"
+                    TickFrequency="25"
+                    Width="300"
+                    AutoToolTipPlacement="TopLeft"
+                    HorizontalAlignment="Left" />
+
+        </StackPanel>
+
+    </ScrollViewer>
+
 </UserControl>

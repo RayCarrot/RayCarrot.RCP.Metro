@@ -79,63 +79,56 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <ScrollViewer Grid.Row="0"
-                                      Padding="5">
-                            <i:Interaction.Behaviors>
-                                <rcp:FocusScrollViewerOnLoad />
-                            </i:Interaction.Behaviors>
+                        <ContentPresenter Grid.Row="0"
+                                          Content="{Binding}"
+                                          Visibility="{Binding Path=HasError, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
+                            <ContentPresenter.Resources>
+                                <!-- Config -->
+                                <DataTemplate DataType="{x:Type optionsDialog:RabbidsGoHomeConfigViewModel}">
+                                    <optionsDialog:RabbidsGoHomeConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:Ray1BaseConfigViewModel}">
+                                    <optionsDialog:Ray1ConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:RaymanRavingRabbidsBaseConfigViewModel}">
+                                    <optionsDialog:RaymanRavingRabbidsConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:RaymanRavingRabbids2ConfigViewModel}">
+                                    <optionsDialog:RaymanRavingRabbids2ConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:UbiArtConfigViewModel}">
+                                    <optionsDialog:UbiArtConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:RaymanJungleRunConfigViewModel}">
+                                    <optionsDialog:RaymanJungleRunConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:RaymanFiestaRunConfigViewModel}">
+                                    <optionsDialog:RaymanFiestaRunConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:Rayman2ConfigViewModel}">
+                                    <optionsDialog:Rayman2ConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:Rayman3ConfigViewModel}">
+                                    <optionsDialog:UbiIni3ConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:RaymanArenaConfigViewModel}">
+                                    <optionsDialog:UbiIni3ConfigControl />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type optionsDialog:RaymanMConfigViewModel}">
+                                    <optionsDialog:UbiIni3ConfigControl />
+                                </DataTemplate>
 
-                            <ContentPresenter Content="{Binding}"
-                                              Visibility="{Binding Path=HasError, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
-                                <ContentPresenter.Resources>
-                                    <!-- Config -->
-                                    <DataTemplate DataType="{x:Type optionsDialog:RabbidsGoHomeConfigViewModel}">
-                                        <optionsDialog:RabbidsGoHomeConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:Ray1BaseConfigViewModel}">
-                                        <optionsDialog:Ray1ConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:RaymanRavingRabbidsBaseConfigViewModel}">
-                                        <optionsDialog:RaymanRavingRabbidsConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:RaymanRavingRabbids2ConfigViewModel}">
-                                        <optionsDialog:RaymanRavingRabbids2ConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:UbiArtConfigViewModel}">
-                                        <optionsDialog:UbiArtConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:RaymanJungleRunConfigViewModel}">
-                                        <optionsDialog:RaymanJungleRunConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:RaymanFiestaRunConfigViewModel}">
-                                        <optionsDialog:RaymanFiestaRunConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:Rayman2ConfigViewModel}">
-                                        <optionsDialog:Rayman2ConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:Rayman3ConfigViewModel}">
-                                        <optionsDialog:UbiIni3ConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:RaymanArenaConfigViewModel}">
-                                        <optionsDialog:UbiIni3ConfigControl />
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type optionsDialog:RaymanMConfigViewModel}">
-                                        <optionsDialog:UbiIni3ConfigControl />
-                                    </DataTemplate>
+                                <!-- Emulator config -->
+                                <DataTemplate DataType="{x:Type optionsDialog:EmulatorGameConfigPageViewModel}">
+                                    <optionsDialog:EmulatorGameConfigControl />
+                                </DataTemplate>
 
-                                    <!-- Emulator config -->
-                                    <DataTemplate DataType="{x:Type optionsDialog:EmulatorGameConfigPageViewModel}">
-                                        <optionsDialog:EmulatorGameConfigControl />
-                                    </DataTemplate>
-
-                                    <!-- Utilities -->
-                                    <DataTemplate DataType="{x:Type optionsDialog:UtilitiesPageViewModel}">
-                                        <rcp:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}" />
-                                    </DataTemplate>
-                                </ContentPresenter.Resources>
-                            </ContentPresenter>
-
-                        </ScrollViewer>
+                                <!-- Utilities -->
+                                <DataTemplate DataType="{x:Type optionsDialog:UtilitiesPageViewModel}">
+                                    <optionsDialog:UtilitiesPageControl />
+                                </DataTemplate>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
 
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -147,7 +140,7 @@
 
                             <Button Grid.Column="0" 
                                     Style="{StaticResource RCP.Styles.Button.IconContent}"
-                                    Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={rcp:BooleanToVisibilityConverter}}"
+                                    Visibility="{Binding Path=CanUseRecommended, Converter={rcp:BooleanToVisibilityConverter}}"
                                     Content="{Resx DosBoxOptions_Recommended}"
                                     rcp:IconAssist.IconKind="AutoFix"
                                     Command="{Binding Path=UseRecommendedCommand}"

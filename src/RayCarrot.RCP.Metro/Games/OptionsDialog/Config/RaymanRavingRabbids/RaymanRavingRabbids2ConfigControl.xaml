@@ -10,15 +10,23 @@
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance optionsDialog:RaymanRavingRabbids2ConfigViewModel}">
-    <StackPanel>
+    <ScrollViewer>
         <i:Interaction.Behaviors>
-            <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            <rcp:FocusScrollViewerOnLoad />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Config_Resolution}" />
+        <StackPanel>
+            <i:Interaction.Behaviors>
+                <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
+            </i:Interaction.Behaviors>
 
-        <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}" />
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx Config_Resolution}" />
 
-    </StackPanel>
+            <rcp:GraphicsModeSelection DataContext="{Binding Path=GraphicsMode, Mode=OneTime}" />
+
+        </StackPanel>
+
+    </ScrollViewer>
+
 </UserControl>
