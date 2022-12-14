@@ -239,6 +239,24 @@ public class AppUIManager
     }
 
     /// <summary>
+    /// Shows a new instance of the game debug
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to show the debug for</param>
+    /// <returns>The task</returns>
+    public async Task ShowGameDebugAsync(GameInstallation gameInstallation)
+    {
+        if (Application.Current.Dispatcher == null)
+            throw new Exception("The application does not have a valid dispatcher");
+
+        Logger.Trace("A game debug window was opened");
+
+        // Run on UI thread
+        // ReSharper disable once AccessToDisposedClosure
+        using GameDebugDialog ui = Application.Current.Dispatcher.Invoke(() => new GameDebugDialog(gameInstallation));
+        await Dialog.ShowWindowAsync(ui, ShowWindowFlags.DuplicateTypesNotAllowed);
+    }
+
+    /// <summary>
     /// Shows a new instance of the Archive Explorer
     /// </summary>
     /// <param name="manager">The archive data manager</param>

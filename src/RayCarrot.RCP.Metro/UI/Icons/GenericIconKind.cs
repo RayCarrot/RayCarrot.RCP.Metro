@@ -48,6 +48,7 @@ public enum GenericIconKind
     Window_AppNews,
     Window_AddGames,
     Window_EmulatorsSetup,
+    Window_GameDebug,
 
     Utilities_SyncTextureInfo,
     Utilities_Rayman1_CompleteSoundtrack,

@@ -37,6 +37,7 @@ public class InstalledGameViewModel : BaseViewModel
         RemoveCommand = new AsyncRelayCommand(RemoveAsync);
         UninstallCommand = new AsyncRelayCommand(UninstallAsync);
         CreateShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
+        OpenGameDebugCommand = new AsyncRelayCommand(OpenGameDebugAsync);
     }
 
     #endregion
@@ -60,6 +61,7 @@ public class InstalledGameViewModel : BaseViewModel
     public ICommand RemoveCommand { get; }
     public ICommand UninstallCommand { get; }
     public ICommand CreateShortcutCommand { get; }
+    public ICommand OpenGameDebugCommand { get; }
 
     #endregion
 
@@ -383,6 +385,8 @@ public class InstalledGameViewModel : BaseViewModel
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
         }
     }
+
+    public Task OpenGameDebugAsync() => Services.UI.ShowGameDebugAsync(GameInstallation);
 
     #endregion
 }

@@ -1,5 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Serialize as a string
+
 /// <summary>
 /// The available modes to launch Rayman Raving Rabbids 2 in
 /// </summary>
