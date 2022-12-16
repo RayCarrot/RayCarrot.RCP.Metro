@@ -52,10 +52,14 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
             TrimmedArchiveFilePaths = new ObservableCollection<string>(ArchiveFilePaths.Take(2).Append("..."));
             IsTrimmed = true;
         }
-        else
+        else if (ArchiveFilePaths.Count != 0)
         {
             TrimmedArchiveFilePaths = ArchiveFilePaths;
             IsTrimmed = false;
+        }
+        else
+        {
+            IsEmpty = true;
         }
 
         return Task.CompletedTask;
