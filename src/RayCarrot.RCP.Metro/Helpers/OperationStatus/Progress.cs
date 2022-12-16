@@ -72,9 +72,24 @@ public readonly struct Progress
     public double Percentage_100 => Percentage * 100;
 
     /// <summary>
-    /// The progress percentage of the operation with a range of 0-1
+    /// The progress percentage of the operation with a range of 0-1. If min and max
+    /// are the same then 1 is returned to mark this as complete.
     /// </summary>
-    public double Percentage => Current / (Max - Min);
+    public double Percentage
+    {
+        get
+        {
+            double range = Max - Min;
+
+            // Avoid the percentage being NaN by defaulting to 100% if 0. This
+            // is going to make the most sense in most cases as a progress value
+            // with a max of 0 should always be seen as "finished".
+            if (range == 0)
+                return 1;
+
+            return Current / range;
+        }
+    }
 
     #endregion
 

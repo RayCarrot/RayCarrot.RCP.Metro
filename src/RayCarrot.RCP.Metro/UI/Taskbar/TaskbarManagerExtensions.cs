@@ -22,7 +22,7 @@ public static class TaskbarManagerExtensions
     /// application and must be already loaded.</param>
     public static void SetProgressValue(this TaskbarManager taskbarManager, Progress progress, IntPtr windowHandle)
     {
-        taskbarManager.SetProgressValue((int)progress.Percentage_100, 100, windowHandle);
+        taskbarManager.SetProgressValue(((int)progress.Percentage_100).Clamp(0, 100), 100, windowHandle);
     }
 
     /// <summary>
@@ -36,6 +36,6 @@ public static class TaskbarManagerExtensions
     /// and must be already loaded.</param>
     public static void SetProgressValue(this TaskbarManager taskbarManager, Progress progress, Window window)
     {
-        taskbarManager.SetProgressValue((int)progress.Percentage_100, 100, new WindowInteropHelper(window).Handle);
+        SetProgressValue(taskbarManager, progress, new WindowInteropHelper(window).Handle);
     }
 }
