@@ -18,7 +18,7 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman60Levels;
 
-    public override string DisplayName => "Rayman 60 Levels";
+    public override LocalizedString DisplayName => "Rayman 60 Levels";
     public override string DefaultFileName => "Rayman.bat";
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 

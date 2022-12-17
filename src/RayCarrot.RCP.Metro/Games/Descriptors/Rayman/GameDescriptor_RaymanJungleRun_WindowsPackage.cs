@@ -21,7 +21,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanJungleRun;
 
-    public override string DisplayName => "Rayman Jungle Run";
+    public override LocalizedString DisplayName => "Rayman Jungle Run";
     public override string DefaultFileName => "RO1Mobile.exe";
     public override DateTime ReleaseDate => new(2013, 03, 07);
 
@@ -39,7 +39,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanJungleRun(this, x, "Rayman Jungle Run")));
-        builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this)));
+        builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this, x)));
     }
 
     #endregion

@@ -7,7 +7,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 namespace RayCarrot.RCP.Metro;
 
 public class Page_Progression_ViewModel : BasePageViewModel, 
-    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<BackupLocationChangedMessage>
+    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<BackupLocationChangedMessage>, IRecipient<ModifiedGamesMessage>
 {
     #region Constructor
 
@@ -94,6 +94,18 @@ public class Page_Progression_ViewModel : BasePageViewModel,
     public async void Receive(AddedGamesMessage message) => await Task.Run(async () => await RefreshAsync());
     public async void Receive(RemovedGamesMessage message) => await Task.Run(async () => await RefreshAsync());
     public async void Receive(BackupLocationChangedMessage message) => await Task.Run(async () => await RefreshAsync());
+    public async void Receive(ModifiedGamesMessage message)
+    {
+        // As of right now there's no need to do a full refresh when a game
+        // is modified, but we might have to change this in the future
+        using (await AsyncLock.LockAsync())
+        {
+            foreach (GameProgressionViewModel gameProgression in GameItems.Where(x => message.GameInstallations.Contains(x.GameInstallation)))
+            {
+                gameProgression.RefreshGameInfo();
+            }
+        }
+    }
 
     public async Task RefreshAsync()
     {

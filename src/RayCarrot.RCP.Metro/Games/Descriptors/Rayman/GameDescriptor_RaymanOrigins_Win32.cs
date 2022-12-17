@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanOrigins;
 
-    public override string DisplayName => "Rayman Origins";
+    public override LocalizedString DisplayName => "Rayman Origins";
     public override string DefaultFileName => "Rayman Origins.exe";
     public override System.DateTime ReleaseDate => new(2012, 03, 29);
 

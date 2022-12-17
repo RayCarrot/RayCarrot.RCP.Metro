@@ -273,12 +273,13 @@ public class GameBackups_Manager
     /// Performs a backup on the game
     /// </summary>
     /// <param name="backupInformation">The backup information</param>
+    /// <param name="displayName">The game's display name</param>
     /// <returns>True if the backup was successful</returns>
-    public async Task<bool> BackupAsync(GameBackups_BackupInfo backupInformation)
+    public async Task<bool> BackupAsync(GameBackups_BackupInfo backupInformation, string displayName)
     {
         using (await AsyncLock.LockAsync())
         {
-            Logger.Info("A backup has been requested for {0}", backupInformation.GameDisplayName);
+            Logger.Info("A backup has been requested for {0}", displayName);
 
             try
             {
@@ -301,7 +302,7 @@ public class GameBackups_Manager
                 {
                     Logger.Info("Backup failed - the input directories could not be found");
 
-                    await Message.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                    await Message.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, displayName), Resources.Backup_FailedHeader, MessageType.Error);
 
                     return false;
                 }
@@ -313,8 +314,8 @@ public class GameBackups_Manager
 
                 // Perform the backup and keep track if it succeeded
                 bool success = await (compress ? 
-                    PerformCompressedBackupAsync(backupInformation.BackupDirectories, backupInformation.CompressedBackupLocation, backupInformation.GameDisplayName) : 
-                    PerformBackupAsync(backupInformation.BackupDirectories, backupInformation.BackupLocation, backupInformation.GameDisplayName));
+                    PerformCompressedBackupAsync(backupInformation.BackupDirectories, backupInformation.CompressedBackupLocation, displayName) : 
+                    PerformBackupAsync(backupInformation.BackupDirectories, backupInformation.BackupLocation, displayName));
 
                 if (!success)
                     return false;
@@ -334,7 +335,7 @@ public class GameBackups_Manager
                 Logger.Error(ex, "Backing up game");
 
                 // Display message to user
-                await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
+                await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, displayName), Resources.Backup_FailedHeader);
 
                 // Return that backup did not succeed
                 return false;
@@ -346,12 +347,13 @@ public class GameBackups_Manager
     /// Restores a backup on the game
     /// </summary>
     /// <param name="backupInformation">The backup information</param>
+    /// <param name="displayName">The game's display name</param>
     /// <returns>True if the backup was successful</returns>
-    public async Task<bool> RestoreAsync(GameBackups_BackupInfo backupInformation)
+    public async Task<bool> RestoreAsync(GameBackups_BackupInfo backupInformation, string displayName)
     {
         using (await AsyncLock.LockAsync())
         {
-            Logger.Info("A backup restore has been requested for {0}", backupInformation.GameDisplayName);
+            Logger.Info("A backup restore has been requested for {0}", displayName);
 
             try
             {
@@ -363,7 +365,7 @@ public class GameBackups_Manager
                 {
                     Logger.Info("Restore failed - the input location could not be found");
 
-                    await Message.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
+                    await Message.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, displayName), Resources.Restore_FailedHeader, MessageType.Error);
 
                     return false;
                 }
@@ -482,7 +484,7 @@ public class GameBackups_Manager
             catch (Exception ex)
             {
                 Logger.Error(ex, "Restoring game");
-                await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
+                await Message.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, displayName), Resources.Restore_FailedHeader);
 
                 return false;
             }

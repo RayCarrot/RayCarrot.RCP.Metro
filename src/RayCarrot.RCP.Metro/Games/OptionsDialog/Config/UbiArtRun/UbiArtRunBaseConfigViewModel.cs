@@ -13,10 +13,12 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// Default constructor
     /// </summary>
     /// <param name="gameDescriptor">The game descriptor</param>
-    protected UbiArtRunBaseConfigViewModel(WindowsPackageGameDescriptor gameDescriptor)
+    /// <param name="gameInstallation">The game installation</param>
+    protected UbiArtRunBaseConfigViewModel(WindowsPackageGameDescriptor gameDescriptor, GameInstallation gameInstallation)
     {
         // Set properties
         GameDescriptor = gameDescriptor;
+        GameInstallation = gameInstallation;
     }
 
     #endregion
@@ -47,6 +49,8 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
     /// The save directory
     /// </summary>
     private FileSystemPath SaveDir { get; set; }
+
+    private GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The game descriptor
@@ -221,7 +225,7 @@ public abstract class UbiArtRunBaseConfigViewModel : ConfigPageViewModel
         catch (Exception ex)
         {
             Logger.Error(ex, "Saving {0} config", GameDescriptor.GameId);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GetDisplayName()), Resources.Config_SaveErrorHeader);
             return false;
         }
     }

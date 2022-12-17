@@ -19,7 +19,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanArena;
 
-    public override string DisplayName => "Rayman Arena";
+    public override LocalizedString DisplayName => "Rayman Arena";
     public override string DefaultFileName => "R_Arena.exe";
     public override DateTime ReleaseDate => new(2002, 09, 24);
 
@@ -52,7 +52,8 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         new DiscInstallGameAddAction(this, new GameInstallerInfo(
             discFilesListFileName: "RaymanArena",
             gameLogo: GameLogoAsset.RaymanArena,
-            gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", }))
+            gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", },
+            installFolderName: "Rayman Arena"))
     });
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]

@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanPremiersClics_Win32 : Win32GameDescript
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanPremiersClics;
 
-    public override string DisplayName => "Rayman Premiers Clics";
+    public override LocalizedString DisplayName => "Rayman Premiers Clics";
     public override string DefaultFileName => "RAYMAN.exe";
     public override DateTime ReleaseDate => new(2001, 01, 01); // Not exact
 

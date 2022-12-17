@@ -17,7 +17,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.TonicTroubleSpecialEdition;
 
-    public override string DisplayName => "Tonic Trouble Special Edition";
+    public override LocalizedString DisplayName => "Tonic Trouble Special Edition";
     public override string DefaultFileName => "MaiD3Dvr.exe";
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 

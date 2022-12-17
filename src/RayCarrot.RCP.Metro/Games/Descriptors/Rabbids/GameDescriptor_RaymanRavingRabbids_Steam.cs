@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
     public override GameCategory Category => GameCategory.Rabbids;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbids;
 
-    public override string DisplayName => "Rayman Raving Rabbids";
+    public override LocalizedString DisplayName => "Rayman Raving Rabbids";
     public override string DefaultFileName => "CheckApplication.exe";
     public override DateTime ReleaseDate => new(2006, 12, 07);
 

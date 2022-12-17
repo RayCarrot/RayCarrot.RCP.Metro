@@ -45,7 +45,7 @@
 
             <TextBlock Grid.Column="1"
                        Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                       Text="{Binding Path=DisplayName, Mode=OneTime}"
+                       Text="{Binding Path=DisplayName.Value}"
                        d:Text="Rayman 2"
                        VerticalAlignment="Center"
                        TextTrimming="WordEllipsis"

@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Fan;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanBowling2;
 
-    public override string DisplayName => "Rayman Bowling 2";
+    public override LocalizedString DisplayName => "Rayman Bowling 2";
     public override string DefaultFileName => "Rayman Bowling 2.exe";
     public override DateTime ReleaseDate => new(2020, 09, 01);
 

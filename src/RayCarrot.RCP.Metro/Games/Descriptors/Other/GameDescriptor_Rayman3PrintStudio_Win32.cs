@@ -15,7 +15,7 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.PrintStudio;
 
-    public override string DisplayName => "Rayman 3 Print Studio";
+    public override LocalizedString DisplayName => "Rayman 3 Print Studio";
     public override string DefaultFileName => "Autorun.exe";
     public override DateTime ReleaseDate => new(2003, 01, 01); // Not exact
 

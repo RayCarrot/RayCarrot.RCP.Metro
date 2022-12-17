@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.IO.Compression;
 using System.Windows.Input;
 using Nito.AsyncEx;
@@ -8,7 +9,6 @@ namespace RayCarrot.RCP.Metro;
 // TODO-14: The progression system has to be updated to work with multiple game installations. For simplicity they should share the
 //          same backup if the game itself is identical (i.e. Steam and Win32 are the same release, but PS1 is not!).
 
-// TODO-14: Rename to GameProgressionViewModel
 public class GameProgressionViewModel : BaseRCPViewModel
 {
     #region Constructor
@@ -20,6 +20,8 @@ public class GameProgressionViewModel : BaseRCPViewModel
         AsyncLock = new AsyncLock();
         Slots = new ObservableCollection<GameProgressionSlotViewModel>();
         BackupSlots = new ObservableCollection<GameProgressionSlotViewModel>();
+
+        RefreshGameInfo();
 
         UpdateProgramDataSourceCommand = new AsyncRelayCommand(UpdateProgramDataSourceAsync);
         LoadBackupViewCommand = new AsyncRelayCommand(LoadBackupViewAsync);
@@ -63,10 +65,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
     public GameIconAsset GameIcon => GameDescriptor.Icon;
     public bool IsDemo => GameDescriptor.IsDemo;
-    // TODO-UPDATE: LocalizedString & localize
-    public string DisplayName => ProgressionManager.Name == null
-        ? GameDescriptor.DisplayName
-        : $"{GameDescriptor.DisplayName} ({ProgressionManager.Name})";
+    public LocalizedString DisplayName { get; set; }
     public bool IsLoading { get; set; }
     public bool IsExpanded { get; set; }
     public bool IsBackupViewExpanded { get; set; }
@@ -311,7 +310,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Getting backup status for {0}", DisplayName);
+            Logger.Error(ex, "Getting backup status for {0} ({1})", GameInstallation.FullId, DisplayName);
 
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, DisplayName));
 
@@ -327,9 +326,18 @@ public class GameProgressionViewModel : BaseRCPViewModel
 
     #region Public Methods
 
+    [MemberNotNull(nameof(DisplayName))]
+    public void RefreshGameInfo()
+    {
+        DisplayName = ProgressionManager.Name == null
+            ? GameInstallation.GetDisplayName()
+            // TODO-UPDATE: Localize
+            : new GeneratedLocString(() => $"{GameInstallation.GetDisplayName()} ({ProgressionManager.Name})");
+    }
+
     public async Task UpdateProgramDataSourceAsync()
     {
-        Logger.Trace($"Updating program data source for {DisplayName}");
+        Logger.Trace("Updating program data source for {0} ({1})", GameInstallation.FullId, DisplayName);
 
         await LoadProgressAsync();
         await LoadBackupAsync();
@@ -341,7 +349,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
         if (_hasLoadedBackupView)
             return;
 
-        Logger.Trace($"First time loading backup view for {DisplayName}");
+        Logger.Trace("First time loading backup view for {0} ({1})", GameInstallation.FullId, DisplayName);
 
         await LoadBackupInfoAsync(BackupInfo?.GetPrimaryBackup);
         await LoadBackupSlotsAsync();
@@ -397,10 +405,10 @@ public class GameProgressionViewModel : BaseRCPViewModel
             CurrentBackupStatus = BackupStatus.Syncing;
 
             // Create backup info if null
-            BackupInfo ??= new GameBackups_BackupInfo(ProgressionManager.BackupName, ProgressionManager.BackupDirectories, DisplayName);
+            BackupInfo ??= new GameBackups_BackupInfo(ProgressionManager.BackupName, ProgressionManager.BackupDirectories);
 
             // Refresh backup info
-            await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource));
+            await Task.Run(async () => await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName));
 
             // Determine if the program data source can be modified
             CanChangeProgramDataSource = BackupInfo.HasVirtualStoreVersion || 
@@ -424,7 +432,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
             // Update the backup view if it was previously loaded
             if (_hasLoadedBackupView)
             {
-                Logger.Trace($"Reloading backup view for {DisplayName}");
+                Logger.Trace("Reloading backup view for {0} ({1})", GameInstallation.FullId, DisplayName);
 
                 await LoadBackupInfoAsync(backup);
                 await LoadBackupSlotsAsync();
@@ -461,12 +469,12 @@ public class GameProgressionViewModel : BaseRCPViewModel
                     await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
                 // Refresh the backup info
-                await BackupInfo.RefreshAsync(ProgramDataSource);
+                await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName);
 
                 // Confirm backup if one already exists
                 if (!fromBatchOperation && 
                     BackupInfo.ExistingBackups.Any() && 
-                    !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                    !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, DisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
                     Logger.Info("Backup canceled");
                     return false;
@@ -477,7 +485,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
                 try
                 {
                     // Perform the backup
-                    success = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo));
+                    success = await Task.Run(async () => await Services.Backup.BackupAsync(BackupInfo, DisplayName));
                 }
                 finally
                 {
@@ -488,7 +496,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
             await LoadBackupAsync();
 
             if (success && !fromBatchOperation)
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, DisplayName), Resources.Backup_SuccessHeader);
         }
         finally
         {
@@ -524,10 +532,10 @@ public class GameProgressionViewModel : BaseRCPViewModel
                     await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
                 // Refresh the backup info
-                await BackupInfo.RefreshAsync(ProgramDataSource);
+                await BackupInfo.RefreshAsync(ProgramDataSource, DisplayName);
 
                 // Confirm restore
-                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
+                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, DisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                 {
                     Logger.Info("Restore canceled");
 
@@ -539,7 +547,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
                 try
                 {
                     // Perform the restore
-                    backupResult = await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo));
+                    backupResult = await Task.Run(async () => await Services.Backup.RestoreAsync(BackupInfo, DisplayName));
                 }
                 finally
                 {
@@ -552,7 +560,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
             await LoadBackupAsync();
 
             if (backupResult)
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, DisplayName), Resources.Restore_SuccessHeader);
         }
         finally
         {

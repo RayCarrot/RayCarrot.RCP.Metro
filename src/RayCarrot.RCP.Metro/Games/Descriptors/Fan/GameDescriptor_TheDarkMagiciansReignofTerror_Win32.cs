@@ -14,7 +14,7 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     public override GameCategory Category => GameCategory.Fan;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.TheDarkMagiciansReignofTerror;
 
-    public override string DisplayName => "Rayman: The Dark Magician's Reign of Terror";
+    public override LocalizedString DisplayName => "Rayman: The Dark Magician's Reign of Terror";
     public override string DefaultFileName => "Rayman! Dark Magician's reign of terror!.exe";
     public override DateTime ReleaseDate => new(2015, 07, 13); // A bit unclear what the actual date is
 

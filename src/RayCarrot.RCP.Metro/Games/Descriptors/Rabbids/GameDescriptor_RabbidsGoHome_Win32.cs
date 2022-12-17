@@ -15,7 +15,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rabbids;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsGoHome;
 
-    public override string DisplayName => "Rabbids Go Home";
+    public override LocalizedString DisplayName => "Rabbids Go Home";
     public override string DefaultFileName => Services.Data.Game_RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
     public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact
 

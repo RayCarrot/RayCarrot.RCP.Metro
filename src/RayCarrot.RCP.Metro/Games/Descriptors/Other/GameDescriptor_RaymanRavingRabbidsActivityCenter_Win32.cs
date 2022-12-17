@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbidsActivityCenter;
 
-    public override string DisplayName => "Rayman Raving Rabbids Activity Center";
+    public override LocalizedString DisplayName => "Rayman Raving Rabbids Activity Center";
     public override string DefaultFileName => "Rayman.exe";
     public override DateTime ReleaseDate => new(2006, 10, 19);
 

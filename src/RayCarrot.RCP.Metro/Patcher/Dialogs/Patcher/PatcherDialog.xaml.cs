@@ -46,7 +46,7 @@ public partial class PatcherDialog : WindowContentControl
     {
         base.WindowAttached();
 
-        WindowInstance.Title = String.Format(Metro.Resources.Patcher_DialogTitle, ViewModel.GameInstallation.GameDescriptor.DisplayName);
+        WindowInstance.Title = String.Format(Metro.Resources.Patcher_DialogTitle, ViewModel.GameInstallation.GetDisplayName());
         WindowInstance.Icon = GenericIconKind.Window_Patcher;
         WindowInstance.MinWidth = 600;
         WindowInstance.MinHeight = 400;

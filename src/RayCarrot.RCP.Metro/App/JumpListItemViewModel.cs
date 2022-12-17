@@ -47,7 +47,7 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The item name
     /// </summary>
-    public string Name { get; }
+    public string Name { get; } // TODO-14: Localized string
 
     /// <summary>
     /// The item icon resource path

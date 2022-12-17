@@ -305,7 +305,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
         foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             lines.AddRange((await gameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(gameInstallation)).
-                Select(utility => $"{utility} ({gameInstallation.GameDescriptor.DisplayName})"));
+                Select(utility => $"{utility} ({gameInstallation.GetDisplayName()})"));
         }
 
         await MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
@@ -447,12 +447,12 @@ public class Page_Debug_ViewModel : BasePageViewModel
                             totalTime += gameTimer.ElapsedMilliseconds;
 
                             // Output the size
-                            DataOutput += $"{installedGame.GameDescriptor.DisplayName}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
+                            DataOutput += $"{installedGame.GetDisplayName()}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
                         }
                         catch (Exception ex)
                         {
                             Logger.Error(ex, "Getting game install dir size");
-                            DataOutput += $"{installedGame.GameDescriptor.DisplayName}: N/A{Environment.NewLine}";
+                            DataOutput += $"{installedGame.GetDisplayName()}: N/A{Environment.NewLine}";
                         }
                     }
 

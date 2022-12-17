@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class WindowInstance
 {
-    public abstract string Title { get; set; }
+    public abstract string Title { get; set; } // TODO: LocalizedString?
     public abstract bool CanClose { get; set; }
 
     public abstract GenericIconKind Icon { get; set; }

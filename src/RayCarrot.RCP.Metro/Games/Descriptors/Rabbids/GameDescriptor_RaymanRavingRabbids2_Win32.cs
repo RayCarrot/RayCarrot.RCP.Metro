@@ -16,7 +16,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override GameCategory Category => GameCategory.Rabbids;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbids2;
 
-    public override string DisplayName => "Rayman Raving Rabbids 2";
+    public override LocalizedString DisplayName => "Rayman Raving Rabbids 2";
     public override string DefaultFileName => "Jade.exe";
     public override DateTime ReleaseDate => new(2007, 01, 01); // Not exact
 

@@ -19,7 +19,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman3;
 
-    public override string DisplayName => "Rayman 3";
+    public override LocalizedString DisplayName => "Rayman 3";
     public override string DefaultFileName => "Rayman3.exe";
     public override DateTime ReleaseDate => new(2003, 03, 18);
 

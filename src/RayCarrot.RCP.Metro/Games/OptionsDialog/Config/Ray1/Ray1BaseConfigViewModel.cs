@@ -633,7 +633,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         {
             Logger.Error(ex, "Saving {0} configuration data", GameInstallation.FullId);
 
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GetDisplayName()), Resources.Config_SaveErrorHeader);
             return false;
         }
     }

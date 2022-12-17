@@ -14,6 +14,7 @@
 
     <Control.InputBindings>
         <KeyBinding Key="F5" Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}" />
+        <KeyBinding Key="F2" Command="{Binding Path=SelectedInstalledGame.RenameCommand}" />
     </Control.InputBindings>
 
     <Grid Margin="15">

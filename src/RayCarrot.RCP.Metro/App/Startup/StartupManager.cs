@@ -225,7 +225,7 @@ public class StartupManager
                 continue;
 
             // Show message
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, gameInstallation.GameDescriptor.DisplayName), 
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, gameInstallation.GetDisplayName()), 
                 Resources.GameNotFoundHeader, MessageType.Error);
 
             // Add to removed games

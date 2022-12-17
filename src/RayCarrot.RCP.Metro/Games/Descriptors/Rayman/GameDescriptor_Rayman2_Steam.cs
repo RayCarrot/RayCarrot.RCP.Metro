@@ -18,7 +18,7 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman2;
 
-    public override string DisplayName => "Rayman 2";
+    public override LocalizedString DisplayName => "Rayman 2";
     public override string DefaultFileName => "Rayman2.exe";
     public override DateTime ReleaseDate => new(1999, 11, 05);
 

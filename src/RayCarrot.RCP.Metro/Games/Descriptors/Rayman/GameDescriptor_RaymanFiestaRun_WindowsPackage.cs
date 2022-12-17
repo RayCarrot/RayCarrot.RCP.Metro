@@ -21,7 +21,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanFiestaRun;
 
-    public override string DisplayName => "Rayman Fiesta Run";
+    public override LocalizedString DisplayName => "Rayman Fiesta Run";
     public override string DefaultFileName => "RFR_WinRT.exe";
     public override DateTime ReleaseDate => new(2014, 02, 12);
 
@@ -39,7 +39,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun(this, x, "Rayman Fiesta Run (Default)", 1)));
-        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this)));
+        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x)));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 1)));
     }

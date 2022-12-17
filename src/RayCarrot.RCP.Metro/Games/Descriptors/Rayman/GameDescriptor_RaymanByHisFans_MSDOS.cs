@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanByHisFans;
 
-    public override string DisplayName => "Rayman by his Fans";
+    public override LocalizedString DisplayName => "Rayman by his Fans";
     public override string DefaultFileName => "rayfan.bat";
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 

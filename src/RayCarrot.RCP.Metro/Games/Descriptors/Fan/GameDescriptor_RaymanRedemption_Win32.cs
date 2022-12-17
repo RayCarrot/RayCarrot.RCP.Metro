@@ -14,7 +14,7 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Fan;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRedemption;
 
-    public override string DisplayName => "Rayman Redemption";
+    public override LocalizedString DisplayName => "Rayman Redemption";
     public override string DefaultFileName => "Rayman Redemption.exe";
     public override DateTime ReleaseDate => new(2020, 06, 19);
 

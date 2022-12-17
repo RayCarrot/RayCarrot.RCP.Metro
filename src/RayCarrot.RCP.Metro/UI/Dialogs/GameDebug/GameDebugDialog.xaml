@@ -20,11 +20,11 @@
         <ComboBox Grid.Row="0"
                   Margin="0 0 0 8"
                   ItemsSource="{Binding Path=GameInstallations}"
-                  SelectedItem="{Binding Path=GameInstallation}">
+                  SelectedItem="{Binding Path=SelectedGameInstallation}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock DataContext="{Binding Path=GameDescriptor, Mode=OneTime}" 
-                               Text="{Binding Path=DisplayName, Mode=OneTime}" />
+                    <TextBlock DataContext="{Binding Path=DisplayName, Mode=OneTime}" 
+                               Text="{Binding Path=Value}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -48,7 +48,7 @@
                     <!-- Title -->
                     <TextBlock Grid.Column="1"
                                Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                               Text="{Binding Path=DisplayName}"
+                               Text="{Binding Path=SelectedGameInstallation.DisplayName.Value}"
                                d:Text="Rayman 2"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap" />

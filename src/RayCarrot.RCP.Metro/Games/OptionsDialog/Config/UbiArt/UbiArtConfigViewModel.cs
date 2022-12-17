@@ -159,7 +159,7 @@ public class UbiArtConfigViewModel : ConfigPageViewModel
         catch (Exception ex)
         {
             Logger.Error(ex, "Saving {0} registry data", GameInstallation.FullId);
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GameDescriptor.DisplayName), Resources.Config_SaveErrorHeader);
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, GameInstallation.GetDisplayName()), Resources.Config_SaveErrorHeader);
             return false;
         }
     }

@@ -1,4 +1,5 @@
-﻿using Nito.AsyncEx;
+﻿using System.Diagnostics.CodeAnalysis;
+using Nito.AsyncEx;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -6,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 /// <summary>
 /// View model for a game options dialog
 /// </summary>
-public class GameOptionsDialogViewModel : BaseRCPViewModel, IDisposable
+public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedGamesMessage>, IDisposable
 {
     #region Constructor
 
@@ -20,12 +21,16 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IDisposable
         GameInstallation = gameInstallation;
         PageLoadLock = new AsyncLock();
 
+        Refresh();
+
         var pages = gameInstallation.GameDescriptor.GetComponents<GameOptionsDialogPageComponent>().
             Where(x => x.IsAvailable(gameInstallation)).
             OrderByDescending(x => x.Priority).
             Select(x => x.CreateObject(gameInstallation));
         Pages = new ObservableCollection<GameOptionsDialogPageViewModel>(pages);
         SelectedPage = Pages.First();
+
+        Services.Messenger.RegisterAll(this);
     }
 
     #endregion
@@ -50,11 +55,21 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IDisposable
 
     public GameInstallation GameInstallation { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
-    public string DisplayName => GameDescriptor.DisplayName; // TODO: LocalizedString
+    public LocalizedString DisplayName { get; set; }
     public GameIconAsset Icon => GameDescriptor.Icon;
     public bool IsDemo => GameDescriptor.IsDemo;
 
     public bool IsLoading { get; set; }
+
+    #endregion
+
+    #region Private Methods
+
+    [MemberNotNull(nameof(DisplayName))]
+    private void Refresh()
+    {
+        DisplayName = GameInstallation.GetDisplayName();
+    }
 
     #endregion
 
@@ -91,6 +106,8 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IDisposable
         }
     }
 
+    public void Receive(ModifiedGamesMessage message) => Refresh();
+
     /// <summary>
     /// Disposes the view model
     /// </summary>
@@ -98,6 +115,8 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IDisposable
     {
         // Dispose
         Pages.DisposeAll();
+
+        Services.Messenger.UnregisterAll(this);
     }
 
     #endregion

@@ -15,7 +15,7 @@ public class InstalledGameViewModel : BaseViewModel
     {
         // Set properties
         GameInstallation = gameInstallation;
-        DisplayName = gameInstallation.GameDescriptor.DisplayName;
+        DisplayName = gameInstallation.GetDisplayName();
 
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameInstallation.GameDescriptor.Platform.GetInfo();
@@ -34,6 +34,7 @@ public class InstalledGameViewModel : BaseViewModel
         // Create commands
         LaunchCommand = new AsyncRelayCommand(LaunchAsync);
         OpenOptionsCommand = new AsyncRelayCommand(OpenOptionsAsync);
+        RenameCommand = new AsyncRelayCommand(RenameAsync);
         RemoveCommand = new AsyncRelayCommand(RemoveAsync);
         UninstallCommand = new AsyncRelayCommand(UninstallAsync);
         CreateShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
@@ -58,6 +59,7 @@ public class InstalledGameViewModel : BaseViewModel
 
     public ICommand LaunchCommand { get; }
     public ICommand OpenOptionsCommand { get; }
+    public ICommand RenameCommand { get; }
     public ICommand RemoveCommand { get; }
     public ICommand UninstallCommand { get; }
     public ICommand CreateShortcutCommand { get; }
@@ -69,7 +71,7 @@ public class InstalledGameViewModel : BaseViewModel
 
     public GameInstallation GameInstallation { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
-    public LocalizedString DisplayName { get; }
+    public LocalizedString DisplayName { get; set; }
 
     public LocalizedString PlatformDisplayName { get; }
     public GamePlatformIconAsset PlatformIcon { get; }
@@ -255,6 +257,9 @@ public class InstalledGameViewModel : BaseViewModel
 
     public Task RefreshAsync()
     {
+        // Always update the display name
+        DisplayName = GameInstallation.GetDisplayName();
+
         if (!_loaded)
             return Task.CompletedTask;
 
@@ -263,6 +268,28 @@ public class InstalledGameViewModel : BaseViewModel
 
     public Task LaunchAsync() => GameDescriptor.LaunchGameAsync(GameInstallation);
     public Task OpenOptionsAsync() => Services.UI.ShowGameOptionsAsync(GameInstallation);
+
+    public async Task RenameAsync()
+    {
+        StringInputResult result = await Services.UI.GetStringInputAsync(new StringInputViewModel
+        {
+            Title = "Rename game", // TODO-UPDATE: Localize
+            HeaderText = $"Rename {GameDescriptor.DisplayName}. Keep the name empty to use the default one.", // TODO-UPDATE: Localize
+            StringInput = GameInstallation.GetValue<string>(GameDataKey.RCP_CustomName),
+        });
+
+        if (result.CanceledByUser)
+            return;
+
+        string? name = result.StringInput;
+
+        if (name.IsNullOrWhiteSpace())
+            name = null;
+
+        GameInstallation.SetValue(GameDataKey.RCP_CustomName, name);
+
+        Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
+    }
 
     /// <summary>
     /// Removes the game from the program
@@ -373,7 +400,7 @@ public class InstalledGameViewModel : BaseViewModel
             if (result.CanceledByUser)
                 return;
 
-            var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GameDescriptor.DisplayName);
+            string shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GetDisplayName());
 
             GameInstallation.GameDescriptor.CreateGameShortcut(GameInstallation, shortcutName, result.SelectedDirectory);
 

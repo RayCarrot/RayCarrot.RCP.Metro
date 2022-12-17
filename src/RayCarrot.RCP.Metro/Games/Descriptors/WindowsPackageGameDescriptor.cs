@@ -80,7 +80,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         catch (Exception ex)
         {
             Logger.Error(ex, "Launching Windows Store application");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, DisplayName));
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, gameInstallation.GetDisplayName()));
 
             return false;
         }
@@ -161,7 +161,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         return new[]
         {
             new JumpListItemViewModel(
-                name: gameInstallation.GameDescriptor.DisplayName,
+                name: gameInstallation.GetDisplayName(),
                 iconSource: LegacyLaunchPath,
                 launchPath: LegacyLaunchPath,
                 workingDirectory: null,

@@ -11,8 +11,7 @@ public class GameBackups_BackupInfo
     /// </summary>
     /// <param name="backupName">The backup name to use to get the paths</param>
     /// <param name="backupDirectories">The backup directory infos</param>
-    /// <param name="displayName">The game display name</param>
-    public GameBackups_BackupInfo(string backupName, IEnumerable<GameBackups_Directory> backupDirectories, string displayName)
+    public GameBackups_BackupInfo(string backupName, IEnumerable<GameBackups_Directory> backupDirectories)
     {
         BackupName = backupName;
         AllBackupDirectories = backupDirectories.GroupBy(x => x.BackupVersion).ToDictionary(x => x.Key, x => x.ToArray());
@@ -22,7 +21,6 @@ public class GameBackups_BackupInfo
 
         BackupLocation = Services.Data.Backup_BackupLocation + GameBackups_Manager.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
         CompressedBackupLocation = BackupLocation.FullPath + AppFilePaths.BackupCompressionExtension;
-        GameDisplayName = displayName;
     }
 
     #endregion
@@ -58,11 +56,6 @@ public class GameBackups_BackupInfo
     /// The path for the backup
     /// </summary>
     public FileSystemPath BackupLocation { get; }
-
-    /// <summary>
-    /// The game display name
-    /// </summary>
-    public string GameDisplayName { get; }
 
     /// <summary>
     /// The existing backups for this game, ordered by priority.
@@ -105,27 +98,18 @@ public class GameBackups_BackupInfo
     /// Get all existing backups for this info, ordered by priority
     /// </summary>
     /// <returns>The existing backups</returns>
-    private async Task<GameBackups_ExistingBackup[]> GetExistingBackupsAsync()
+    private GameBackups_ExistingBackup[] GetExistingBackups()
     {
-        try
-        {
-            FileSystemPath path = Services.Data.Backup_BackupLocation + GameBackups_Manager.BackupFamily;
+        FileSystemPath path = Services.Data.Backup_BackupLocation + GameBackups_Manager.BackupFamily;
 
-            if (!path.DirectoryExists)
-                return Array.Empty<GameBackups_ExistingBackup>();
-
-            return Directory.GetFileSystemEntries(path, $"{BackupName}*", SearchOption.TopDirectoryOnly).
-                Select(x => new GameBackups_ExistingBackup(x)).
-                OrderByDescending(x => x.BackupVersion).
-                ThenBy(x => x.IsCompressed == Services.Data.Backup_CompressBackups ? 0 : 1).
-                ToArray();
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Getting existing backups");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GetExistingBackupsError, GameDisplayName));
+        if (!path.DirectoryExists)
             return Array.Empty<GameBackups_ExistingBackup>();
-        }
+
+        return Directory.GetFileSystemEntries(path, $"{BackupName}*", SearchOption.TopDirectoryOnly).
+            Select(x => new GameBackups_ExistingBackup(x)).
+            OrderByDescending(x => x.BackupVersion).
+            ThenBy(x => x.IsCompressed == Services.Data.Backup_CompressBackups ? 0 : 1).
+            ToArray();
     }
 
     #endregion
@@ -135,10 +119,22 @@ public class GameBackups_BackupInfo
     /// <summary>
     /// Refreshes the backup info
     /// </summary>
+    /// <param name="dataSource">The backup program data source</param>
+    /// <param name="displayName">The game's display name</param>
     /// <returns>The task</returns>
-    public async Task RefreshAsync(ProgramDataSource dataSource)
+    public async Task RefreshAsync(ProgramDataSource dataSource, string displayName)
     {
-        ExistingBackups = await GetExistingBackupsAsync();
+        try
+        {
+            ExistingBackups = GetExistingBackups();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Getting existing backups");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GetExistingBackupsError, displayName));
+
+            ExistingBackups = Array.Empty<GameBackups_ExistingBackup>();
+        }
 
         // Get the latest backup version to restore from
         LatestAvailableRestoreVersion = GetPrimaryBackup?.BackupVersion ?? -1;

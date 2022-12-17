@@ -19,7 +19,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20021210_Win32 : Win32GameDescri
     public override bool IsDemo => true;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_Rayman3_3;
 
-    public override string DisplayName => "Rayman 3 Demo (2002/12/10)";
+    public override LocalizedString DisplayName => "Rayman 3 Demo (2002/12/10)";
     public override string DefaultFileName => "MainP5Pvf.exe";
     public override DateTime ReleaseDate => new(2002, 12, 10);
 

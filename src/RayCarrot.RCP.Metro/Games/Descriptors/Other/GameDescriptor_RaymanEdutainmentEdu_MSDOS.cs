@@ -26,7 +26,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.EducationalDos;
 
-    public override string DisplayName => "Rayman Edutainment (Edu)";
+    public override LocalizedString DisplayName => "Rayman Edutainment (Edu)";
     public override string DefaultFileName => $"RAY{PrimaryName}.EXE";
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 

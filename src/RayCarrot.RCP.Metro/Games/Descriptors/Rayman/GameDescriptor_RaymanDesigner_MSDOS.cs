@@ -18,7 +18,7 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanDesigner;
     
-    public override string DisplayName => "Rayman Designer";
+    public override LocalizedString DisplayName => "Rayman Designer";
     public override string DefaultFileName => "RAYKIT.bat";
     public override DateTime ReleaseDate => new(1997, 01, 01); // Not exact
 

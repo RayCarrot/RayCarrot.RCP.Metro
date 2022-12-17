@@ -16,7 +16,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
     public override bool IsDemo => true;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_RaymanRavingRabbids;
 
-    public override string DisplayName => "Rayman Raving Rabbids Demo (2006/11/06)";
+    public override LocalizedString DisplayName => "Rayman Raving Rabbids Demo (2006/11/06)";
     public override string DefaultFileName => "Jade_enr.exe";
     public override DateTime ReleaseDate => new(2006, 11, 06);
 

@@ -19,7 +19,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman2;
 
-    public override string DisplayName => "Rayman 2";
+    public override LocalizedString DisplayName => "Rayman 2";
     public override string DefaultFileName => "Rayman2.exe";
     public override DateTime ReleaseDate => new(1999, 11, 05);
 
@@ -56,7 +56,8 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         new DiscInstallGameAddAction(this, new GameInstallerInfo(
             discFilesListFileName: "Rayman2",
             gameLogo: GameLogoAsset.Rayman2,
-            gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", }))
+            gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", },
+            installFolderName: "Rayman 2"))
     });
 
     public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]

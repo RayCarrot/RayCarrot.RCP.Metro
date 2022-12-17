@@ -12,7 +12,7 @@ public sealed class GameDescriptor_RaymanDictées_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanDictées;
 
-    public override string DisplayName => "Rayman Dictées";
+    public override LocalizedString DisplayName => "Rayman Dictées";
     public override string DefaultFileName => "Dictee.exe";
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 

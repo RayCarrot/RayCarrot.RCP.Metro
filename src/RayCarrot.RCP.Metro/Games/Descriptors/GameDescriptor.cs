@@ -79,18 +79,12 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     public virtual LegacyGame? LegacyGame => null; // TODO-14: Minimize references to this
 
-    // TODO-14: Clean up how names are handled, split up like this?
-    // GameDescriptorDisplayName: Unique name for the descriptor. For a specific game edition, for example "Rayman 2 (Steam)"
-    // GameDisplayName: Normal game name, for example "Rayman 2"
-    // FullGameDisplayName: Full game name, for example "Rayman 2: The Great Escape"
-    // 
-    // User can also define their own names. For example you might have multiple installations of Rayman 1 and they
-    // can then be named differently.
-
     /// <summary>
-    /// The game display name
+    /// The default game display name. This might be the same across multiple descriptors.
+    /// For games with a short and long name then this will usually be the short one. For
+    /// example "Rayman 2" is used instead of "Rayman 2: The Great Escape".
     /// </summary>
-    public abstract string DisplayName { get; } // TODO-14: Localize & split up into short and long name
+    public abstract LocalizedString DisplayName { get; } // TODO-UPDATE: Localize this for all games
 
     /// <summary>
     /// A unique display name for this game descriptor

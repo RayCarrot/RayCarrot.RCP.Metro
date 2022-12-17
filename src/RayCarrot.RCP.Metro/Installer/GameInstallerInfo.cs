@@ -11,11 +11,13 @@ public class GameInstallerInfo
     /// <param name="discFilesListFileName">The disc files list .txt file name</param>
     /// <param name="gameLogo">The game logo file name</param>
     /// <param name="gifFileNames">The .gif file names</param>
-    public GameInstallerInfo(string discFilesListFileName, GameLogoAsset gameLogo, string[] gifFileNames)
+    /// <param name="installFolderName">The default name for the folder of the game when installed</param>
+    public GameInstallerInfo(string discFilesListFileName, GameLogoAsset gameLogo, string[] gifFileNames, string installFolderName)
     {
         DiscFilesListFileName = discFilesListFileName;
         GameLogo = gameLogo;
         GifFileNames = gifFileNames;
+        InstallFolderName = installFolderName;
     }
 
     /// <summary>
@@ -32,4 +34,9 @@ public class GameInstallerInfo
     /// The .gif file names
     /// </summary>
     public string[] GifFileNames { get; }
+
+    /// <summary>
+    /// The default name for the folder of the game when installed
+    /// </summary>
+    public string InstallFolderName { get; }
 }

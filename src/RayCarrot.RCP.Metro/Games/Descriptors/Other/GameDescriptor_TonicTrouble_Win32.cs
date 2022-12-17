@@ -17,7 +17,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.TonicTrouble;
 
-    public override string DisplayName => "Tonic Trouble";
+    public override LocalizedString DisplayName => "Tonic Trouble";
     public override string DefaultFileName => "TonicTrouble.exe";
     public override DateTime ReleaseDate => new(1999, 12, 07);
 

@@ -303,12 +303,8 @@ public class GameInstaller_ViewModel : UserInputViewModel
             // Begin refreshing gifs
             Task.Run(async () => await RefreshGifsAsync()).WithoutAwait("Refreshed installed GIFs");
 
-            // TODO-14: We shouldn't use the display name for things like the folder path
-            // Get the game display name
-            var displayName = GameDescriptor.DisplayName;
-
             // Get the output path
-            FileSystemPath output = InstallDir + displayName;
+            FileSystemPath output = InstallDir + Info.InstallFolderName;
 
             // Create the installer
             using var installer = new GameInstaller(new GameInstaller_Data(GetInstallerItems(output), output, CancellationTokenSource.Token));
@@ -333,10 +329,10 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 });
 
                 if (CreateDesktopShortcut)
-                    await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, displayName));
+                    await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, GameDescriptor.DisplayName));
 
                 if (CreateStartMenuShortcut)
-                    await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu).GetFolderPath() + "Programs", displayName);
+                    await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu).GetFolderPath() + "Programs", GameDescriptor.DisplayName);
 
                 // Helper method for creating a shortcut
                 async Task AddShortcutAsync(FileSystemPath dir, string shortcutName)
@@ -356,7 +352,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
             switch (result)
             {
                 case GameInstaller_Result.Successful:
-                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, displayName), Resources.Installer_SuccessHeader, MessageType.Success);
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, GameDescriptor.DisplayName), Resources.Installer_SuccessHeader, MessageType.Success);
                     break;
 
                 default:

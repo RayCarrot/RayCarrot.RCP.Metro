@@ -21,7 +21,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanFiestaRun;
 
-    public override string DisplayName => "Rayman Fiesta Run Windows 10 Edition";
+    public override LocalizedString DisplayName => "Rayman Fiesta Run Windows 10 Edition";
     public override string DefaultFileName => "RFRXAML.exe";
     public override DateTime ReleaseDate => new(2016, 04, 05);
 
@@ -39,7 +39,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun(this, x, "Rayman Fiesta Run (Win10)", 0)));
-        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this)));
+        builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x)));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 0)));
     }
