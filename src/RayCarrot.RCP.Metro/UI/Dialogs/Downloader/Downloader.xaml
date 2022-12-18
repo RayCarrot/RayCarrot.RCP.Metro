@@ -10,7 +10,7 @@
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             MinWidth="480" MinHeight="300"
                             d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
-    <StackPanel Margin="10">
+    <StackPanel Margin="8">
 
         <Image Source="{local:AssetImageSource Asset={x:Static local:MessageIconAsset.Generic}}"
                Width="128" Height="128"

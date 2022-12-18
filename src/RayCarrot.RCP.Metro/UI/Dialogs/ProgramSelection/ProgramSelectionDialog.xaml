@@ -11,7 +11,7 @@
                             Height="500" Width="450" 
                             Loaded="ProgramSelectionDialog_OnLoaded"
                             d:DataContext="{d:DesignInstance local:ProgramSelectionViewModel}">
-    <Grid Margin="10">
+    <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -67,11 +67,16 @@
                          BrowseType="File"
                          PathValidation="FileExists"
                          FileFilter="Exe (*.exe)|*.exe"
-                         Margin="0 0 0 10"/>
+                         Margin="0 0 0 8"/>
         
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <Button Content="{Resx Cancel}" Click="CancelButton_Click" />
-            <Button Content="{Resx Accept}" Margin="10 0 0 0" Click="OKButton_Click" IsDefault="True" IsEnabled="{Binding Path=IsValid}" />
+            <Button Content="{Resx Cancel}" 
+                    Click="CancelButton_Click" 
+                    Margin="0 0 10 0" />
+            <Button Content="{Resx Accept}" 
+                    Click="OKButton_Click" 
+                    IsDefault="True" 
+                    IsEnabled="{Binding Path=IsValid}" />
         </StackPanel>
     </Grid>
 </local:WindowContentControl>

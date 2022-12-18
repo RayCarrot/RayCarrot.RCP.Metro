@@ -22,7 +22,7 @@
 
     </UserControl.InputBindings>
     
-    <Grid>
+    <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -30,7 +30,7 @@
 
         <ListBox Grid.Row="0"
                  Grid.IsSharedSizeScope="True"
-                 Margin="5"
+                 Margin="0 0 0 8"
                  BorderThickness="{StaticResource Thickness.Border.Default}"
                  metro:ControlsHelper.CornerRadius="{StaticResource CornerRadius.Default}"
                  ItemsSource="{Binding Path=Drives}"
@@ -93,14 +93,16 @@
 
         </ListBox>
 
-        <Grid Grid.Row="1" Margin="5">
+        <Grid Grid.Row="1">
 
             <Button Content="{Resx Page_Refresh}" HorizontalAlignment="Left" Command="{Binding Path=RefreshCommand}"/>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="{Resx Cancel}" Click="Cancel_Click" />
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right">
+                <Button Content="{Resx Cancel}" 
+                        Click="Cancel_Click"
+                        Margin="0 0 10 0" />
                 <Button Content="{Resx Accept}" 
-                        Margin="10 0 0 0" 
                         Click="Continue_ClickAsync" 
                         IsDefault="True"
                         IsEnabled="{Binding Path=SelectedItem, Converter={local:IsNotNullConverter}}"/>
