@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// Manager for the application jump-list
 /// </summary>
-public class JumpListManager : IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
+public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
 {
     public JumpListManager(AppUserData data, GamesManager gamesManager, IMessenger messenger)
     {
@@ -36,21 +36,12 @@ public class JumpListManager : IRecipient<AddedGamesMessage>, IRecipient<Removed
         {
             try
             {
-                if (Data.App_JumpListItemIDCollection == null)
-                {
-                    Logger.Warn("The jump could not refresh due to collection not existing");
-
-                    return;
-                }
-
                 // Create a jump list
                 new JumpList(GamesManager.GetInstalledGames().
                         // Get the items for each game
-                        Select(x => x.GameDescriptor.GetJumpListItems(x)).
-                        // Select into single collection
-                        SelectMany(x => x).
+                        SelectMany(x => x.GameDescriptor.GetJumpListItems(x)).
                         // Keep only the included items
-                        Where(x => x.IsIncluded).
+                        Where(x => Data.App_JumpListItemIDCollection.Contains(x.ID)).
                         // Keep custom order
                         OrderBy(x => Data.App_JumpListItemIDCollection.IndexOf(x.ID)).
                         // Create the jump tasks
@@ -61,7 +52,7 @@ public class JumpListManager : IRecipient<AddedGamesMessage>, IRecipient<Removed
                             ApplicationPath = x.LaunchPath,
                             WorkingDirectory = x.WorkingDirectory,
                             Arguments = x.LaunchArguments,
-                            IconResourcePath = x.IconSource
+                            IconResourcePath = x.IconSource,
                         }), false, false).
                     // Apply the new jump list
                     Apply();
@@ -75,7 +66,27 @@ public class JumpListManager : IRecipient<AddedGamesMessage>, IRecipient<Removed
         });
     }
 
-    public void Receive(AddedGamesMessage message) => Refresh();
+    public void AddGame(GameInstallation gameInstallation)
+    {
+        int count = Data.App_JumpListItemIDCollection.Count;
+
+        Data.App_JumpListItemIDCollection.AddRange(gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.ID));
+
+        if (count != Data.App_JumpListItemIDCollection.Count)
+            Refresh();
+    }
+
+    public void RemoveGame(GameInstallation gameInstallation)
+    {
+        int count = Data.App_JumpListItemIDCollection.Count;
+
+        foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
+            Data.App_JumpListItemIDCollection.RemoveWhere(x => x == item.ID);
+
+        if (count != Data.App_JumpListItemIDCollection.Count)
+            Refresh();
+    }
+
     public void Receive(RemovedGamesMessage message) => Refresh();
     public void Receive(ModifiedGamesMessage message) => Refresh();
 }

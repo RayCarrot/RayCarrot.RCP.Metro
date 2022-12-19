@@ -121,11 +121,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public virtual IEnumerable<string> DialogGroupNames => Enumerable.Empty<string>(); // TODO-14: Change this
 
     /// <summary>
-    /// Indicates if the game should automatically be added to the jump list once added
-    /// </summary>
-    public virtual bool AutoAddToJumpList => !IsDemo;
-
-    /// <summary>
     /// Indicates if the game supports the game patcher
     /// </summary>
     public virtual bool AllowPatching => true;
@@ -269,9 +264,14 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
                 header: "Installation id:",
                 text: gameInstallation.InstallationId,
                 minUserLevel: UserLevel.Debug),
+            // TODO-14: Move to debug game dialog instead? It takes up a lot of space. Could also be shown a bit nicer.
             new DuoGridItemViewModel(
                 header: "Components:",
-                text: ComponentProvider.GetComponents().Select(x => x.GetType().Name).JoinItems(Environment.NewLine),
+                text: ComponentProvider.GetComponents().
+                    Select(x => x.GetType()).
+                    GroupBy(x => x).
+                    Select(x => $"{x.Key.Name} ({x.Count()})").
+                    JoinItems(Environment.NewLine),
                 minUserLevel: UserLevel.Debug),
             // TODO-14: Change this to show the platform
             //new DuoGridItemViewModel(
@@ -323,53 +323,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <param name="installDir">The game install directory, if any</param>
     /// <returns>True if the game is valid, otherwise false</returns>
     public bool IsValid(FileSystemPath installDir) => Services.Data.App_DisableGameValidation || IsGameLocationValid(installDir);
-
-    // TODO-14: Merge the install location check with this?
-    /// <summary>
-    /// Indicates if the game installation and its data is valid
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to check</param>
-    /// <returns>True if it's valid, otherwise false</returns>
-    public virtual bool IsValid(GameInstallation gameInstallation) => 
-        // The game is valid if every validation check returns true
-        GetComponents<GameValidationCheckComponent>().All(x => x.IsValid(gameInstallation));
-
-    // TODO-14: Rename to OnGameAddedAsync
-    /// <summary>
-    /// Gets called as soon as the game is added
-    /// </summary>
-    /// <param name="gameInstallation">The added game installation</param>
-    /// <returns>The task</returns>
-    public virtual Task PostGameAddAsync(GameInstallation gameInstallation) => Task.CompletedTask;
-
-    // TODO-14: Rename to OnGameRemovedAsync
-    /// <summary>
-    /// Gets called as soon as the game is removed
-    /// </summary>
-    /// <param name="gameInstallation">The game installation for the removed game</param>
-    /// <returns>The task</returns>
-    public virtual Task PostGameRemovedAsync(GameInstallation gameInstallation)
-    {
-        AddedGameFiles? addedGameFiles = gameInstallation.GetObject<AddedGameFiles>(GameDataKey.RCP_AddedFiles);
-        
-        if (addedGameFiles == null)
-            return Task.CompletedTask;
-
-        foreach (FileSystemPath filePath in addedGameFiles.Files)
-        {
-            try
-            {
-                // Remove the file
-                Services.File.DeleteFile(filePath);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Removing added game file");
-            }
-        }
-        
-        return Task.CompletedTask;
-    }
 
     public int CompareTo(GameDescriptor? other)
     {
@@ -434,6 +387,8 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     protected virtual void RegisterComponents(DescriptorComponentBuilder builder)
     {
         builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
+        builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
+        builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
         
         // Config page
         builder.Register(new GameOptionsDialogPageComponent(

@@ -5,6 +5,7 @@ using System.Net;
 using System.Reflection;
 using System.Windows;
 using MahApps.Metro.Controls;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -221,7 +222,8 @@ public class StartupManager
         {
             // Check if it's valid
             if (gameInstallation.GameDescriptor.IsValid(gameInstallation.InstallLocation) &&
-                gameInstallation.GameDescriptor.IsValid(gameInstallation))
+                // TODO-14: Merge the install location check with this?
+                gameInstallation.GameDescriptor.GetComponents<GameValidationCheckComponent>().All(x => x.IsValid(gameInstallation)))
                 continue;
 
             // Show message

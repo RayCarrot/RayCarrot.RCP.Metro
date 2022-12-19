@@ -16,7 +16,7 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <param name="workingDirectory">The working directory for the launch path</param>
     /// <param name="launchArguments">The item launch arguments</param>
     /// <param name="id">The item ID</param>
-    public JumpListItemViewModel(string name, string? iconSource, string launchPath, string? workingDirectory, string? launchArguments, string id)
+    public JumpListItemViewModel(LocalizedString name, string? iconSource, string launchPath, string? workingDirectory, string? launchArguments, string id)
     {
         Name = name;
         IconSource = iconSource;
@@ -47,7 +47,7 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The item name
     /// </summary>
-    public string Name { get; } // TODO-14: Localized string
+    public LocalizedString Name { get; }
 
     /// <summary>
     /// The item icon resource path
@@ -78,9 +78,4 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// The item ID
     /// </summary>
     public string ID { get; } // TODO-14: Update how this works
-
-    /// <summary>
-    /// Indicates if the item is included in the jump list
-    /// </summary>
-    public bool IsIncluded => Data.App_JumpListItemIDCollection.Contains(ID);
 }

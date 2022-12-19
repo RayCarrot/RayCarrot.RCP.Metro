@@ -36,6 +36,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanOrigins(x, "Rayman Origins")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanOriginsRegistryKey)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_HQVideos(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_DebugCommands(x)));

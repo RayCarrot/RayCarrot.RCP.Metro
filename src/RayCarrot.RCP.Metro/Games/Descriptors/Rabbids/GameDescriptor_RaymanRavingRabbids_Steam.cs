@@ -33,6 +33,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids(x, "Rayman Raving Rabbids")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
     }
 
     #endregion

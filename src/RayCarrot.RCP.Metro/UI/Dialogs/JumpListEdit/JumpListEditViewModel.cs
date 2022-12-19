@@ -25,7 +25,7 @@ public class JumpListEditViewModel : UserInputViewModel
         {
             foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
             {
-                if (item.IsIncluded)
+                if (Services.Data.App_JumpListItemIDCollection.Contains(item.ID))
                     included.Add(item);
                 else
                     NotIncluded.Add(item);

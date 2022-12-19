@@ -30,6 +30,7 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new GameOptionsComponent(x => new Rayman1MinigamesGameOptionsViewModel(x)));
+        builder.Register<OnGameAddedComponent, DefaultToRunAsAdminOnGameAddedComponent>();
     }
 
     #endregion
@@ -44,15 +45,6 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
             new(AppURLs.Games_Ray1Minigames_Url),
         })
     };
-
-    public override Task PostGameAddAsync(GameInstallation gameInstallation)
-    {
-        // Default to run as admin
-        gameInstallation.SetValue(GameDataKey.Win32_RunAsAdmin, true);
-
-        // Call base and return
-        return base.PostGameAddAsync(gameInstallation);
-    }
 
     #endregion
 }

@@ -65,7 +65,7 @@
                                     <TextBlock Grid.Column="1"
                                                TextWrapping="Wrap"
                                                VerticalAlignment="Center"
-                                               Text="{Binding Path=Name, Mode=OneTime}" />
+                                               Text="{Binding Path=Name.Value}" />
 
                                 </Grid>
                             </DataTemplate>
@@ -91,7 +91,7 @@
                           VerticalScrollBarVisibility="Auto"
                           Padding="5">
                 <ItemsControl Style="{StaticResource JumpListItemsDisplay}"
-                              ItemsSource="{Binding Path=Included}" />
+                              ItemsSource="{Binding Path=Included, Mode=OneTime}" />
             </ScrollViewer>
 
             <Separator Grid.Column="1"
@@ -104,7 +104,7 @@
                           VerticalScrollBarVisibility="Auto"
                           Padding="5">
                 <ItemsControl Style="{StaticResource JumpListItemsDisplay}"
-                              ItemsSource="{Binding Path=NotIncluded}" />
+                              ItemsSource="{Binding Path=NotIncluded, Mode=OneTime}" />
             </ScrollViewer>
         </Grid>
 

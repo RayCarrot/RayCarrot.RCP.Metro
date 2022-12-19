@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+
+namespace RayCarrot.RCP.Metro;
 
 public class GamesManager
 {
@@ -112,12 +114,8 @@ public class GamesManager
 
         Logger.Info("The game {0} has been added", gameInstallation.FullId);
 
-        // Run post-add operations
-        await gameDescriptor.PostGameAddAsync(gameInstallation);
-
-        // Add the game to the jump list
-        if (gameDescriptor.AutoAddToJumpList)
-            Data.App_JumpListItemIDCollection.AddRange(gameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.ID));
+        // Invoke added actions
+        await gameInstallation.GameDescriptor.GetComponents<OnGameAddedComponent>().InvokeAllAsync(gameInstallation);
 
         // Configure
         configureInstallation?.Invoke(gameInstallation);
@@ -127,15 +125,11 @@ public class GamesManager
 
     private async Task RemoveGameImplAsync(GameInstallation gameInstallation)
     {
-        // Remove the game from the jump list
-        foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
-            Data.App_JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
-
         // Remove the game
         Data.Game_GameInstallations.Remove(gameInstallation);
 
-        // Run post game removal
-        await gameInstallation.GameDescriptor.PostGameRemovedAsync(gameInstallation);
+        // Invoke removal actions
+        await gameInstallation.GameDescriptor.GetComponents<OnGameRemovedComponent>().InvokeAllAsync(gameInstallation);
     }
 
     #endregion

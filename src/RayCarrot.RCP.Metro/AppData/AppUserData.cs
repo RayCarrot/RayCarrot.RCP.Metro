@@ -258,18 +258,18 @@ public class AppUserData : BaseViewModel
     /// </summary>
     public List<EmulatorInstallation> Game_EmulatorInstallations { get; set; }
 
-    // TODO-14: Remove most of the below games properties in favor of new AdditionalData system
-
     /// <summary>
     /// Indicates if games should be automatically located on startup
     /// </summary>
     public bool Game_AutoLocateGames { get; set; }
 
+    // TODO-14: Replace with game installation data
     /// <summary>
     /// The launch data for Rabbids Go Home
     /// </summary>
     public UserData_RabbidsGoHomeLaunchData Game_RabbidsGoHomeLaunchData { get; set; }
 
+    // TODO-14: Replace with game installation data
     /// <summary>
     /// Indicates if the launch message for Rayman Raving Rabbids Activity Center has been shown
     /// </summary>

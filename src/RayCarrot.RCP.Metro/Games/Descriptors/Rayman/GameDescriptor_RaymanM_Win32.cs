@@ -39,6 +39,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena(x, "Rayman M", false)));
         builder.Register(new GameConfigComponent(x => new RaymanMConfigViewModel(x)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanM_PC))));
     }

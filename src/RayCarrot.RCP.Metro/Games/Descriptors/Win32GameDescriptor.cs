@@ -160,8 +160,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
                 launchPath: launchPath,
                 workingDirectory: launchPath.Parent,
                 launchArguments: launchArgs,
-                // TODO-14: Use game ID instead
-                id: gameInstallation.LegacyGame.ToString())
+                id: gameInstallation.InstallationId)
         };
     }
 

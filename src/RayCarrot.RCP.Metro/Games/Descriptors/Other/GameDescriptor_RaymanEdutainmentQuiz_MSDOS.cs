@@ -92,6 +92,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         builder.Register(new ProgressionManagersComponent(GetGameProgressionManagers));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanEdutainmentConfigViewModel(this, x)));
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
     }
 
     #endregion
@@ -110,14 +111,6 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         @"PCMAP\SNDD8B.DAT",
         @"PCMAP\SNDH8B.DAT",
     };
-
-    public override async Task PostGameAddAsync(GameInstallation gameInstallation)
-    {
-        await base.PostGameAddAsync(gameInstallation);
-
-        // Set the game mode data
-        gameInstallation.SetObject(GameDataKey.Ray1_MsDosData, UserData_Ray1MsDosData.Create(gameInstallation));
-    }
 
     public override string GetLaunchArgs(GameInstallation gameInstallation)
     {

@@ -26,6 +26,21 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
 
     #endregion
 
+    #region Private Methods
+
+    private static Task TryFindMountPath(GameInstallation gameInstallation)
+    {
+        // Set the default mount path if available
+        FileSystemPath mountPath = gameInstallation.InstallLocation + "Disc" + "RAY1DEMO.cue";
+
+        if (mountPath.FileExists)
+            gameInstallation.SetValue(GameDataKey.Emu_DosBox_MountPath, mountPath);
+
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(DescriptorComponentBuilder builder)
@@ -33,6 +48,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
         base.RegisterComponents(builder);
 
         builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
+        builder.Register(new OnGameAddedComponent(TryFindMountPath));
     }
 
     #endregion
@@ -47,18 +63,6 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
             new(AppURLs.Games_R1Demo2_Url),
         })
     };
-
-    public override async Task PostGameAddAsync(GameInstallation gameInstallation)
-    {
-        // Run base
-        await base.PostGameAddAsync(gameInstallation);
-
-        // Set the default mount path if available
-        FileSystemPath mountPath = gameInstallation.InstallLocation + "Disc" + "RAY1DEMO.cue";
-
-        if (mountPath.FileExists)
-            gameInstallation.SetValue(GameDataKey.Emu_DosBox_MountPath, mountPath);
-    }
 
     #endregion
 }

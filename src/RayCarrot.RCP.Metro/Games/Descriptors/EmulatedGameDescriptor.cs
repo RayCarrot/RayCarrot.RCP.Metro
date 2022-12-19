@@ -9,12 +9,31 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class EmulatedGameDescriptor : GameDescriptor
 {
+    #region Private Methods
+
+    private Task SelectDefaultEmulatorAsync(GameInstallation gameInstallation)
+    {
+        return SetEmulatorAsync(gameInstallation, null);
+    }
+
+    private async Task DeselectEmulatorAsync(GameInstallation gameInstallation)
+    {
+        // Get the previous emulator installation and invoke it being deselected
+        EmulatorInstallation? prevEmulatorInstallation = GetEmulator(gameInstallation);
+        if (prevEmulatorInstallation != null)
+            await prevEmulatorInstallation.EmulatorDescriptor.OnEmulatorDeselectedAsync(gameInstallation, prevEmulatorInstallation);
+    }
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(DescriptorComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new OnGameAddedComponent(SelectDefaultEmulatorAsync));
+        builder.Register(new OnGameRemovedComponent(DeselectEmulatorAsync));
         builder.Register(
             // Emulator config page
             new GameOptionsDialogPageComponent(
@@ -69,19 +88,6 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
             return Enumerable.Empty<JumpListItemViewModel>();
 
         return emu.EmulatorDescriptor.GetJumpListItems(gameInstallation, emu);
-    }
-
-    public override Task PostGameAddAsync(GameInstallation gameInstallation) =>
-        SetEmulatorAsync(gameInstallation, null);
-
-    public override async Task PostGameRemovedAsync(GameInstallation gameInstallation)
-    {
-        await base.PostGameRemovedAsync(gameInstallation);
-
-        // Get the previous emulator installation and invoke it being deselected
-        EmulatorInstallation? prevEmulatorInstallation = GetEmulator(gameInstallation);
-        if (prevEmulatorInstallation != null)
-            await prevEmulatorInstallation.EmulatorDescriptor.OnEmulatorDeselectedAsync(gameInstallation, prevEmulatorInstallation);
     }
 
     /// <summary>

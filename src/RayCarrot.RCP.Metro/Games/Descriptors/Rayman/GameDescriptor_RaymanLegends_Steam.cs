@@ -39,6 +39,7 @@ public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends(x, "Rayman Legends")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_UbiRay(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_DebugCommands(x)));

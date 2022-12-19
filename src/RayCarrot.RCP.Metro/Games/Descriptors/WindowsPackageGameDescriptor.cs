@@ -166,8 +166,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
                 launchPath: LegacyLaunchPath,
                 workingDirectory: null,
                 launchArguments: null, 
-                // TODO-14: Use game ID instead
-                id: gameInstallation.LegacyGame.ToString())
+                id: gameInstallation.InstallationId)
         };
     }
 

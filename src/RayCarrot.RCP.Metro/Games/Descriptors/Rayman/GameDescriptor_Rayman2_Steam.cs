@@ -41,6 +41,7 @@ public sealed class GameDescriptor_Rayman2_Steam : SteamGameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2(x, "Rayman 2")));
         builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC))));
     }

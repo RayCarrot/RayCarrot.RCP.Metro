@@ -1,13 +1,12 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-/// <summary>
-/// Common game descriptor helper methods
-/// </summary>
-public static class GameDescriptorHelpers
+public class FindRaymanForeverFilesOnGameAddedComponent : OnGameAddedComponent
 {
+    public FindRaymanForeverFilesOnGameAddedComponent() : base(FindRaymanForeverFiles) { }
+
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public static void PostAddRaymanForever(GameInstallation gameInstallation)
+    private static void FindRaymanForeverFiles(GameInstallation gameInstallation)
     {
         // Get the parent directory to the install directory
         FileSystemPath foreverInstallDir = gameInstallation.InstallLocation.Parent;

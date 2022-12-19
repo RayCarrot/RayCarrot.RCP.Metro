@@ -41,6 +41,8 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman1(x, "Rayman 1")));
         builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_TPLS(x)));
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_CompleteSoundtrack(x)));
@@ -66,12 +68,6 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Forever", new[] { "Rayman Forever", },
         // Navigate to the sub-directory
         x => x.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase) ? x.Parent + "Rayman" : x + "Rayman");
-
-    public override async Task PostGameAddAsync(GameInstallation gameInstallation)
-    {
-        await base.PostGameAddAsync(gameInstallation);
-        GameDescriptorHelpers.PostAddRaymanForever(gameInstallation);
-    }
 
     #endregion
 }

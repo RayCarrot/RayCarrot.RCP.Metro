@@ -38,6 +38,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RabbidsBigBang(this, x, "Rabbids Big Bang")));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
     }
 
     #endregion

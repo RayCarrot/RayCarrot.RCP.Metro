@@ -30,6 +30,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new GameConfigComponent(x => new RabbidsGoHomeConfigViewModel()));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
     }
 
     protected override string? GetLaunchArgs(GameInstallation gameInstallation) =>
@@ -45,14 +46,6 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
         "Rabbids Go Home - DVD",
         "Rabbids: Go Home",
     });
-
-    public override async Task PostGameRemovedAsync(GameInstallation gameInstallation)
-    {
-        await base.PostGameRemovedAsync(gameInstallation);
-
-        // Remove the game specific data
-        Services.Data.Game_RabbidsGoHomeLaunchData = null;
-    }
 
     #endregion
 }

@@ -92,8 +92,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
             launchPath: SteamHelpers.GetGameLaunchURI(SteamID),
             workingDirectory: null,
             launchArguments: null, 
-            // TODO-14: Use game ID instead
-            id: gameInstallation.LegacyGame.ToString())
+            id: gameInstallation.InstallationId)
     };
 
     #endregion

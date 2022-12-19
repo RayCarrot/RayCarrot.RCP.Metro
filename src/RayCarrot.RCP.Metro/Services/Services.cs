@@ -72,4 +72,6 @@ public static class Services
     public static EmulatorsManager Emulators => GetService<EmulatorsManager>();
 
     public static IMessenger Messenger => GetService<IMessenger>();
+
+    public static JumpListManager JumpList => GetService<JumpListManager>();
 }

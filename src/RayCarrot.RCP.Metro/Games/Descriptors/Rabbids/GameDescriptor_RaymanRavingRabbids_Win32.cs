@@ -31,6 +31,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids(x, "Rayman Raving Rabbids")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
     }
 
     #endregion

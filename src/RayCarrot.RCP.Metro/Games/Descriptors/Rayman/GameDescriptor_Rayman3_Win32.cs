@@ -42,6 +42,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3(x, "Rayman 3")));
         builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
+        builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC))));
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
