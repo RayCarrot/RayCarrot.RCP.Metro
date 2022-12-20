@@ -297,6 +297,9 @@ public class AppDataManager
 
     public async Task PostUpdateAsync(Version lastVersion)
     {
+        // TODO-14: Do we actually need to reset the values here? If they don't exist from prev version they will have their
+        //          default value anyway due to how we serialize the JSON.
+
         if (lastVersion < new Version(4, 0, 0, 6))
             Data.UI_EnableAnimations = true;
 
@@ -373,12 +376,12 @@ public class AppDataManager
 
         if (lastVersion < new Version(6, 0, 0, 2))
         {
-            // TODO-14: Remove this?
+            // TODO-14: Remove this
             // By default, add all games to the jump list collection
-            Data.App_JumpListItemIDCollection = GamesManager.GetInstalledGames().
-                Select(x => x.GameDescriptor.GetJumpListItems(x).Select(y => y.ID)).
-                SelectMany(x => x).
-                ToList();
+            //Data.App_JumpListItemIDCollection = GamesManager.GetInstalledGames().
+            //    Select(x => x.GameDescriptor.GetJumpListItems(x).Select(y => y.Id)).
+            //    SelectMany(x => x).
+            //    ToList();
         }
 
         if (lastVersion < new Version(7, 0, 0, 0))
@@ -515,6 +518,11 @@ public class AppDataManager
             {
                 Logger.Error(ex, "Deleting old R2 DRM removal utility backup files");
             }
+        }
+
+        if (lastVersion < new Version(14, 0, 0, 0))
+        {
+            Data.App_AutoSortJumpList = true;
         }
     }
 

@@ -87,6 +87,7 @@ public abstract class SteamGameDescriptor : GameDescriptor
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation) => new[]
     {
         new JumpListItemViewModel(
+            gameInstallation: gameInstallation,
             name: gameInstallation.GetDisplayName(),
             iconSource: gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName,
             launchPath: SteamHelpers.GetGameLaunchURI(SteamID),

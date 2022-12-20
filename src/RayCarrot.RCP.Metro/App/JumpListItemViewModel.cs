@@ -5,25 +5,27 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// View model for a jump list item
 /// </summary>
-public class JumpListItemViewModel : BaseRCPViewModel
+public class JumpListItemViewModel : BaseRCPViewModel, IComparable<JumpListItemViewModel>
 {
     /// <summary>
     /// Default constructor
     /// </summary>
+    /// <param name="gameInstallation">The game installation the item is for</param>
     /// <param name="name">The item name</param>
     /// <param name="iconSource">The item icon resource path</param>
     /// <param name="launchPath">The item launch path</param>
     /// <param name="workingDirectory">The working directory for the launch path</param>
     /// <param name="launchArguments">The item launch arguments</param>
     /// <param name="id">The item ID</param>
-    public JumpListItemViewModel(LocalizedString name, string? iconSource, string launchPath, string? workingDirectory, string? launchArguments, string id)
+    public JumpListItemViewModel(GameInstallation gameInstallation, LocalizedString name, string? iconSource, string launchPath, string? workingDirectory, string? launchArguments, string id)
     {
+        GameInstallation = gameInstallation;
         Name = name;
         IconSource = iconSource;
         LaunchPath = launchPath;
         WorkingDirectory = workingDirectory;
         LaunchArguments = launchArguments;
-        ID = id;
+        Id = id;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -43,6 +45,11 @@ public class JumpListItemViewModel : BaseRCPViewModel
             Logger.Warn(ex, "Getting jump list icon image source");
         }
     }
+
+    /// <summary>
+    /// The game installation the item is for
+    /// </summary>
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The item name
@@ -77,5 +84,16 @@ public class JumpListItemViewModel : BaseRCPViewModel
     /// <summary>
     /// The item ID
     /// </summary>
-    public string ID { get; } // TODO-14: Update how this works
+    public string Id { get; }
+
+    public int CompareTo(JumpListItemViewModel? other)
+    {
+        if (other == this) 
+            return 0;
+
+        if (other == null) 
+            return 1;
+
+        return GameInstallation.CompareTo(other.GameInstallation);
+    }
 }

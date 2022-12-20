@@ -273,5 +273,18 @@ public class GamesManager
     public GameInstallation? FindInstalledGame(params GameSearch.Predicate[] gameSearchPredicates) =>
         FindInstalledGame(GameSearch.Create(gameSearchPredicates));
 
+    /// <summary>
+    /// Gets a game installation from the installation id
+    /// </summary>
+    /// <param name="installationId">The game installation id</param>
+    /// <returns>The matching game installation or null if not found</returns>
+    public GameInstallation? GetInstalledGame(string installationId)
+    {
+        if (installationId == null)
+            throw new ArgumentNullException(nameof(installationId));
+
+        return Data.Game_GameInstallations.FirstOrDefault(x => x.InstallationId == installationId);
+    }
+
     #endregion
 }

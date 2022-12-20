@@ -1,5 +1,4 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// View model for editing the jump list
@@ -16,6 +15,8 @@ public class JumpListEditViewModel : UserInputViewModel
         // Set the title
         Title = Resources.JumpListEditor_Header;
 
+        _autoSort = Services.Data.App_AutoSortJumpList;
+
         // Create the collections
         var included = new List<JumpListItemViewModel>();
         NotIncluded = new ObservableCollection<JumpListItemViewModel>();
@@ -25,7 +26,7 @@ public class JumpListEditViewModel : UserInputViewModel
         {
             foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
             {
-                if (Services.Data.App_JumpListItemIDCollection.Contains(item.ID))
+                if (Services.Data.App_JumpListItems.Any(x => x.ItemId == item.Id))
                     included.Add(item);
                 else
                     NotIncluded.Add(item);
@@ -33,8 +34,14 @@ public class JumpListEditViewModel : UserInputViewModel
         }
 
         // Order the included games
-        Included = included.OrderBy(x => Services.Data.App_JumpListItemIDCollection.IndexOf(x.ID)).ToObservableCollection();
+        Included = included.OrderBy(x => Services.Data.App_JumpListItems.FindIndex(j => j.ItemId == x.Id)).ToObservableCollection();
     }
+
+    #endregion
+
+    #region Private Fields
+
+    private bool _autoSort;
 
     #endregion
 
@@ -43,12 +50,28 @@ public class JumpListEditViewModel : UserInputViewModel
     /// <summary>
     /// The included items
     /// </summary>
-    public ObservableCollection<JumpListItemViewModel> Included { get; }
+    public ObservableCollection<JumpListItemViewModel> Included { get; set; }
 
     /// <summary>
     /// The not included items
     /// </summary>
     public ObservableCollection<JumpListItemViewModel> NotIncluded { get; }
+
+    /// <summary>
+    /// Indicates if the items should be automatically sorted
+    /// </summary>
+    public bool AutoSort
+    {
+        get => _autoSort;
+        set
+        {
+            _autoSort = value;
+
+            // Sort
+            if (value)
+                Included = new ObservableCollection<JumpListItemViewModel>(Included.OrderBy(x => x));
+        }
+    }
 
     #endregion
 

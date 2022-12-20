@@ -41,9 +41,9 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
                         // Get the items for each game
                         SelectMany(x => x.GameDescriptor.GetJumpListItems(x)).
                         // Keep only the included items
-                        Where(x => Data.App_JumpListItemIDCollection.Contains(x.ID)).
+                        Where(x => Data.App_JumpListItems.Any(j => j.ItemId == x.Id)).
                         // Keep custom order
-                        OrderBy(x => Data.App_JumpListItemIDCollection.IndexOf(x.ID)).
+                        OrderBy(x => Data.App_JumpListItems.FindIndex(j => j.ItemId == x.Id)).
                         // Create the jump tasks
                         Select(x => new JumpTask
                         {
@@ -68,23 +68,30 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
 
     public void AddGame(GameInstallation gameInstallation)
     {
-        int count = Data.App_JumpListItemIDCollection.Count;
+        int count = Data.App_JumpListItems.Count;
+        JumpListItemComparer comparer = new(GamesManager);
 
-        Data.App_JumpListItemIDCollection.AddRange(gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.ID));
+        foreach (string itemId in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.Id))
+            Data.App_JumpListItems.AddSorted(new JumpListItem(gameInstallation.InstallationId, itemId), comparer);
 
-        if (count != Data.App_JumpListItemIDCollection.Count)
+        if (count != Data.App_JumpListItems.Count)
             Refresh();
     }
 
     public void RemoveGame(GameInstallation gameInstallation)
     {
-        int count = Data.App_JumpListItemIDCollection.Count;
+        int count = Data.App_JumpListItems.Count;
 
-        foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
-            Data.App_JumpListItemIDCollection.RemoveWhere(x => x == item.ID);
+        Data.App_JumpListItems.RemoveWhere(x => x.GameInstallationId == gameInstallation.InstallationId);
 
-        if (count != Data.App_JumpListItemIDCollection.Count)
+        if (count != Data.App_JumpListItems.Count)
             Refresh();
+    }
+
+    public void SetItems(IEnumerable<JumpListItem> items)
+    {
+        Data.App_JumpListItems = items.ToList();
+        Refresh();
     }
 
     public void Receive(RemovedGamesMessage message) => Refresh();

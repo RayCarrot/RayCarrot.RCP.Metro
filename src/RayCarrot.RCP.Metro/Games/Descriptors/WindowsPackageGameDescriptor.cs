@@ -161,6 +161,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         return new[]
         {
             new JumpListItemViewModel(
+                gameInstallation: gameInstallation,
                 name: gameInstallation.GetDisplayName(),
                 iconSource: LegacyLaunchPath,
                 launchPath: LegacyLaunchPath,

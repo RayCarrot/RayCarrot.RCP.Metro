@@ -249,6 +249,7 @@ public class StartupManager
         {
             await AppDataManager.PostUpdateAsync(Data.App_LastVersion);
 
+            // TODO-14: Probably remove this. But we should refresh whenever the app exe file path is changed.
             // Refresh the jump list
             JumpListManager.Refresh();
 

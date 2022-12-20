@@ -35,7 +35,8 @@ public class AppUserData : BaseViewModel
         App_IsFirstLaunch = true;
         App_CloseAppOnGameLaunch = false;
         App_CloseConfigOnSave = true;
-        App_JumpListItemIDCollection = new List<string>();
+        App_JumpListItems = new List<JumpListItem>();
+        App_AutoSortJumpList = true;
         App_HandleDownloadsManually = false;
         App_DisableGameValidation = false;
 
@@ -107,7 +108,7 @@ public class AppUserData : BaseViewModel
         // App
         App_LastVersion ??= new Version(0, 0, 0, 0);
         App_CurrentCulture ??= LocalizationManager.DefaultCulture.Name;
-        App_JumpListItemIDCollection ??= new List<string>();
+        App_JumpListItems ??= new List<JumpListItem>();
             
         // Game
         Game_GameInstallations ??= new List<GameInstallation>();
@@ -182,9 +183,14 @@ public class AppUserData : BaseViewModel
     public bool App_CloseConfigOnSave { get; set; }
 
     /// <summary>
-    /// The collection of jump list item IDs
+    /// The saved jump list items
     /// </summary>
-    public List<string> App_JumpListItemIDCollection { get; set; } // TODO-14: Might want to reset this during v14 migration
+    public List<JumpListItem> App_JumpListItems { get; set; } // TODO-14: Might want to reset this during v14 migration
+
+    /// <summary>
+    /// Indicates if the jump list items should be automatically sorted
+    /// </summary>
+    public bool App_AutoSortJumpList { get; set; } // TODO-14: Re-sort if game sort is changed if we allow custom game sort
 
     /// <summary>
     /// Indicates if downloads should be handled manually. This does not apply to application updates.
@@ -487,7 +493,7 @@ public class AppUserData : BaseViewModel
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private UserData_RRR2LaunchMode RRR2LaunchMode { set => Game_RRR2LaunchMode = value; }
     [JsonProperty] private UserData_RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { set => Game_RabbidsGoHomeLaunchData = value; }
-    [JsonProperty] private List<string> JumpListItemIDCollection { set => App_JumpListItemIDCollection = value; }
+    //[JsonProperty] private List<string> JumpListItemIDCollection { set => App_JumpListItemIDCollection = value; }
     // TODO-14: Restore this once we implement the app data migration
     //[JsonProperty] private HashSet<Games> InstalledGames { set => Game_InstalledGames = value; }
     [JsonProperty] private bool ShownRabbidsActivityCenterLaunchMessage { set => Game_ShownRabbidsActivityCenterLaunchMessage = value; }

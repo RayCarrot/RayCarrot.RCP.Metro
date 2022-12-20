@@ -186,6 +186,7 @@ public sealed class DosBoxEmulatorDescriptor : EmulatorDescriptor
         return new[]
         {
             new JumpListItemViewModel(
+                gameInstallation: gameInstallation,
                 name: gameInstallation.GetDisplayName(),
                 iconSource: emulatorInstallation.InstallLocation,
                 launchPath: launchPath,

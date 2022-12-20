@@ -1,5 +1,5 @@
-﻿#nullable disable
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -63,7 +63,7 @@ public partial class JumpListEditDialog : WindowContentControl, IDialogWindowCon
     /// <returns>The result</returns>
     public JumpListEditResult GetResult()
     {
-        return new JumpListEditResult(ViewModel.Included.ToArray())
+        return new JumpListEditResult(ViewModel.Included.ToArray(), ViewModel.AutoSort)
         {
             CanceledByUser = CanceledByUser
         };
@@ -81,6 +81,25 @@ public partial class JumpListEditDialog : WindowContentControl, IDialogWindowCon
         _hasLoaded = true;
 
         await ViewModel.LoadIconsAsync();
+    }
+
+    private void ListBox_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var listBox = (ListBox)sender;
+        var dropHandler = (JumpListEditDropHandler)GongSolutions.Wpf.DragDrop.DragDrop.GetDropHandler(listBox);
+        dropHandler.ViewModel = ViewModel;
+    }
+
+    private void ListBoxItem_OnLostFocus(object sender, RoutedEventArgs e)
+    {
+        if (sender is ListBoxItem item)
+            item.IsSelected = false;
+    }
+
+    private void ListBoxItem_OnSelected(object sender, RoutedEventArgs e)
+    {
+        if (sender is ListBoxItem item)
+            item.Focus();
     }
 
     private void OKButton_Click(object sender, RoutedEventArgs e)

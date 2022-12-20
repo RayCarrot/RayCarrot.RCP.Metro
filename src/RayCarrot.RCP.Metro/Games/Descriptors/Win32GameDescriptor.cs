@@ -155,6 +155,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
         return new[]
         {
             new JumpListItemViewModel(
+                gameInstallation: gameInstallation,
                 name: gameInstallation.GetDisplayName(),
                 iconSource: GetIconResourcePath(gameInstallation),
                 launchPath: launchPath,

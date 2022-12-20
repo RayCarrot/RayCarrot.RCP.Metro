@@ -181,17 +181,14 @@ public class Page_Settings_ViewModel : BasePageViewModel
     public async Task EditJumpListAsync()
     {
         // Get the result
-        var result = await UI.EditJumpListAsync(new JumpListEditViewModel());
+        JumpListEditResult result = await UI.EditJumpListAsync(new JumpListEditViewModel());
 
         if (result.CanceledByUser)
             return;
 
         // Update the jump list items collection
-        Data.App_JumpListItemIDCollection = result.IncludedItems.Select(x => x.ID).ToList();
-
-        // TODO: Perhaps find cleaner way of doing this?
-        // Refresh
-        JumpListManager.Refresh();
+        Data.App_AutoSortJumpList = result.AutoSort;
+        JumpListManager.SetItems(result.IncludedItems.Select(x => new JumpListItem(x.GameInstallation.InstallationId, x.Id)));
     }
 
     /// <summary>

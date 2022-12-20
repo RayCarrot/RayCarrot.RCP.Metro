@@ -5,6 +5,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:dd="urn:gong-wpf-dragdrop"
+                            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -29,29 +30,38 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="4" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Grid.Resources>
                 <Style x:Key="JumpListItemsDisplay"
-                       TargetType="{x:Type ItemsControl}"
-                       BasedOn="{StaticResource {x:Type ItemsControl}}">
+                       TargetType="{x:Type ListBox}"
+                       BasedOn="{StaticResource {x:Type ListBox}}">
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="dd:DragDrop.IsDragSource" Value="True" />
-                    <Setter Property="dd:DragDrop.IsDropTarget" Value="True" />
-                    <Setter Property="dd:DragDrop.DragAdornerTemplate">
+                    <Setter Property="dd:DragDrop.DropHandler">
                         <Setter.Value>
-                            <DataTemplate DataType="local:JumpListItemViewModel">
-                                <Image Source="{Binding Path=IconImageSource}"
-                                       MaxHeight="16"
-                                       MaxWidth="16" />
-                            </DataTemplate>
+                            <local:JumpListEditDropHandler />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="dd:DragDrop.UseDefaultDragAdorner" Value="True" />
+                    <Setter Property="dd:DragDrop.IsDropTarget" Value="True" />
+                    <Setter Property="ItemContainerStyle">
+                        <Setter.Value>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MahApps.Styles.ListBoxItemV3}">
+                                <Setter Property="Margin" Value="0 0 0 2" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Default}" />
+                                <EventSetter Event="Selected" Handler="ListBoxItem_OnSelected" />
+                                <EventSetter Event="LostFocus" Handler="ListBoxItem_OnLostFocus" />
+                            </Style>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="ItemTemplate">
                         <Setter.Value>
                             <DataTemplate DataType="local:JumpListItemViewModel">
-                                <Grid Margin="0 5"
+                                <Grid Margin="4"
                                       Background="Transparent">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -59,6 +69,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Grid.Column="0"
+                                           VerticalAlignment="Center"
                                            Source="{Binding Path=IconImageSource}"
                                            Margin="0 0 8 0" />
 
@@ -71,6 +82,7 @@
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
+                    <EventSetter Event="Loaded" Handler="ListBox_OnLoaded" />
                 </Style>
             </Grid.Resources>
 
@@ -86,43 +98,48 @@
                        Style="{StaticResource RCP.Styles.TextBlock.Header}"
                        HorizontalAlignment="Center"/>
 
-            <ScrollViewer Grid.Column="0"
-                          Grid.Row="1"
-                          VerticalScrollBarVisibility="Auto"
-                          Padding="5">
-                <ItemsControl Style="{StaticResource JumpListItemsDisplay}"
-                              ItemsSource="{Binding Path=Included, Mode=OneTime}" />
-            </ScrollViewer>
+            <ListBox Grid.Column="0"
+                     Grid.Row="2"
+                     Style="{StaticResource JumpListItemsDisplay}"
+                     ItemsSource="{Binding Path=Included}" />
 
             <Separator Grid.Column="1"
-                       Grid.Row="1"
+                       Grid.Row="2"
                        HorizontalAlignment="Center"
                        Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            
-            <ScrollViewer Grid.Column="2"
-                          Grid.Row="1"
-                          VerticalScrollBarVisibility="Auto"
-                          Padding="5">
-                <ItemsControl Style="{StaticResource JumpListItemsDisplay}"
-                              ItemsSource="{Binding Path=NotIncluded, Mode=OneTime}" />
-            </ScrollViewer>
+
+            <ListBox Grid.Column="2"
+                     Grid.Row="2"
+                     Style="{StaticResource JumpListItemsDisplay}"
+                     ItemsSource="{Binding Path=NotIncluded, Mode=OneTime}" />
         </Grid>
 
         <!-- Actions -->
 
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-            <Button Content="{Resx Cancel}"
+            <!-- TODO-UPDATE: Localize -->
+            <CheckBox Grid.Column="0"
+                      Content="Automatically sort games"
+                      IsChecked="{Binding Path=AutoSort}" />
+
+            <Button Grid.Column="2"
+                    Content="{Resx Cancel}"
                     Click="CancelButton_Click"
                     Margin="0 0 10 0" />
 
-            <Button Content="{Resx Accept}"
+            <Button Grid.Column="3"
+                    Content="{Resx Accept}"
                     IsDefault="True"
                     Click="OKButton_Click" />
 
-        </StackPanel>
+        </Grid>
 
     </Grid>
 </local:WindowContentControl>
