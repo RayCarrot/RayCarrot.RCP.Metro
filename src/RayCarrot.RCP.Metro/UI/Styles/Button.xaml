@@ -27,8 +27,8 @@
     <!-- Flat Button -->
 
     <!-- TODO-UPDATE: Update other button styles to use icons like this one -->
-    <Style x:Key="RCP.Styles.Button.Flat" TargetType="{x:Type ButtonBase}">
-        <Setter Property="Background" Value="Transparent" />
+    <Style x:Key="RCP.Styles.Button.Default" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Background" Value="{DynamicResource RCP.Brushes.Button.Background}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="6" />
         <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource CornerRadius.Default}" />
@@ -105,6 +105,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="RCP.Styles.Button.Flat" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource RCP.Styles.Button.Default}">
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
     <Style x:Key="RCP.Styles.ToggleButton.Flat" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource RCP.Styles.Button.Flat}">

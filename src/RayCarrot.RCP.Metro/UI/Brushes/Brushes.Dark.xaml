@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover">#393939</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatSelected">#404040</SolidColorBrush>
     <SolidColorBrush x:Key="RCP.Brushes.Card.SecondaryBackground">#404040</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Button.Background">#404040</SolidColorBrush>
 
     <!-- Flat button (use darker colors here since the foreground is white) -->
     <SolidColorBrush x:Key="RCP.Brushes.FlatButton.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary800}" />
