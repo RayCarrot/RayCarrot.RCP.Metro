@@ -13,7 +13,7 @@
                   Width="900" Height="600"
                   MinWidth="650" MinHeight="500"
                   d:DataContext="{d:DesignInstance local:LogViewerViewModel}">
-    <Grid Margin="5">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -21,7 +21,8 @@
 
         <!-- Top Row -->
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0"
+              Margin="4 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>

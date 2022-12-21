@@ -15,7 +15,7 @@
 
     <mah:MetroAnimatedTabControl x:Name="ModsTabControl"
                                  ItemsSource="{Binding Path=Mods, Mode=OneTime}"
-                                 Margin="15"
+                                 Margin="0 12 0 0"
                                  FocusVisualStyle="{x:Null}">
 
         <i:Interaction.Behaviors>
@@ -33,7 +33,8 @@
         <mah:MetroAnimatedTabControl.ContentTemplate>
             <DataTemplate DataType="{x:Type local:Mod_BaseViewModel}">
 
-                <ContentPresenter Content="{Binding Path=UIContent, Mode=OneTime}" />
+                <ContentPresenter Content="{Binding Path=UIContent, Mode=OneTime}"
+                                  Margin="12 0 12 12"/>
 
             </DataTemplate>
         </mah:MetroAnimatedTabControl.ContentTemplate>

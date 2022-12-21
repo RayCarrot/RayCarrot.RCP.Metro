@@ -13,21 +13,17 @@
                             d:DesignWidth="650" d:DesignHeight="700"
                             mc:Ignorable="d"
                             d:DataContext="{d:DesignInstance optionsDialog:GameOptionsDialogViewModel}">
-    <Grid Margin="10"
-          IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}">
+    <Grid IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <i:Interaction.Behaviors>
-            <rcp:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
-        </i:Interaction.Behaviors>
-
         <!-- TODO-UPDATE: Redesign header to match other game headers more? -->
         <!-- Header -->
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0"
+              Margin="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -73,7 +69,7 @@
             <metro:MetroAnimatedTabControl.ContentTemplate>
                 <DataTemplate DataType="{x:Type optionsDialog:GameOptionsDialogPageViewModel}">
 
-                    <Grid>
+                    <Grid Margin="0 8 0 0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
@@ -130,7 +126,8 @@
                             </ContentPresenter.Resources>
                         </ContentPresenter>
 
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Row="1"
+                              Margin="12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />

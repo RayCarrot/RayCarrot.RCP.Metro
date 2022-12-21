@@ -6,7 +6,6 @@
     <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource {x:Type ScrollViewer}}">
         <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Padding" Value="5" />
     </Style>
 
 </ResourceDictionary>

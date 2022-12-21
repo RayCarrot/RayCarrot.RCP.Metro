@@ -72,9 +72,8 @@
     </local:BasePage.PopupMenu>
 
     <metro:MetroAnimatedTabControl x:Name="DebugTabControl"
-                                   Margin="15"
+                                   Margin="0 12 0 0"
                                    FocusVisualStyle="{x:Null}">
-
         <i:Interaction.Behaviors>
             <local:FocusElementOnLoad />
         </i:Interaction.Behaviors>
@@ -86,7 +85,7 @@
                  Header="Information">
 
             <ScrollViewer>
-                <StackPanel Grid.IsSharedSizeScope="True">
+                <StackPanel Margin="12 0 12 12">
                     <i:Interaction.Behaviors>
                         <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.VerticalSmall}" />
                     </i:Interaction.Behaviors>
@@ -117,7 +116,7 @@
                         <TextBlock Text="Launch Arguments"
                                    Style="{StaticResource RCP.Styles.TextBlock.Header}" />
 
-                        <StackPanel>
+                        <StackPanel Grid.IsSharedSizeScope="True">
 
                             <local:DuoGridItem Header="-reset" 
                                                Text="Resets the app user data. This will not reset that the license has been accepted." />
@@ -157,7 +156,7 @@
                  Header="Services">
 
             <ScrollViewer>
-                <StackPanel>
+                <StackPanel Margin="12 0 12 12">
                     <i:Interaction.Behaviors>
                         <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
@@ -240,7 +239,7 @@
                  Header="Output">
 
             <ScrollViewer>
-                <StackPanel Margin="2 0">
+                <StackPanel Margin="12 0 12 12">
                     <i:Interaction.Behaviors>
                         <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
@@ -289,7 +288,7 @@
                  Header="Tools">
 
             <ScrollViewer>
-                <StackPanel Margin="2 0">
+                <StackPanel Margin="12 0 12 12">
                     <i:Interaction.Behaviors>
                         <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>
@@ -336,7 +335,7 @@
                  Header="User Interface">
 
             <ScrollViewer>
-                <StackPanel Margin="2 0">
+                <StackPanel Margin="12 0 12 12">
                     <i:Interaction.Behaviors>
                         <local:UnifiedMarginBehavior Margin="{StaticResource RCP.Thicknesses.Vertical}" />
                     </i:Interaction.Behaviors>

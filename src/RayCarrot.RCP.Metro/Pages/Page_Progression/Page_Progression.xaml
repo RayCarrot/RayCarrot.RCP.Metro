@@ -64,7 +64,7 @@
         <KeyBinding Key="F5" Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
     </Control.InputBindings>
 
-    <Grid Margin="15">
+    <Grid Margin="0 12 0 0">
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
             <i:Interaction.Behaviors>
@@ -73,7 +73,8 @@
 
             <!-- Games -->
 
-            <ItemsControl ItemsSource="{Binding Path=GameItems, Mode=OneTime}"
+            <ItemsControl Margin="12 0 12 12"
+                          ItemsSource="{Binding Path=GameItems, Mode=OneTime}"
                           ItemTemplate="{StaticResource DataTemplate.ProgressionGame}"/>
 
         </ScrollViewer>

@@ -30,7 +30,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <ScrollViewer Grid.Column="0">
+                <ScrollViewer Grid.Column="0"
+                              Padding="4">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />

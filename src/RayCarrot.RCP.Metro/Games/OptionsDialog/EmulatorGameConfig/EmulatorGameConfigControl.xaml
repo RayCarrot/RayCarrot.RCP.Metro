@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              Margin="0 0 0 8">
+              Margin="12 0 12 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -67,6 +67,7 @@
         </Grid>
 
         <Separator Grid.Row="1"
+                   Margin="12 0"
                    Visibility="{Binding Path=EmulatorGameConfig, Converter={rcp:InvertedObjectNullToVisibilityConverter}}" />
 
         <ScrollViewer Grid.Row="2">
@@ -74,7 +75,8 @@
                 <rcp:FocusScrollViewerOnLoad />
             </b:Interaction.Behaviors>
 
-            <ContentPresenter Content="{Binding Path=EmulatorGameConfig}">
+            <ContentPresenter Margin="12 0"
+                              Content="{Binding Path=EmulatorGameConfig}">
                 <ContentPresenter.Resources>
                     <DataTemplate DataType="{x:Type dosBox:DosBoxGameConfigViewModel}">
                         <dosBox:DosBoxGameConfigControl />

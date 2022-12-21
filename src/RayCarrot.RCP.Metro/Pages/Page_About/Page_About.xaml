@@ -11,7 +11,7 @@
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800" d:DataContext="{d:DesignInstance local:Page_About_ViewModel}">
-    <Grid MaxWidth="800" Margin="15">
+    <Grid MaxWidth="800" Margin="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

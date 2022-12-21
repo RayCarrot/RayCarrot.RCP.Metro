@@ -14,7 +14,7 @@
                 d:DataContext="{d:DesignInstance local:Page_Utilities_ViewModel}">
 
     <mah:MetroAnimatedTabControl x:Name="UtilitiesTabControl"
-                                 Margin="15"
+                                 Margin="0 12 0 0"
                                  FocusVisualStyle="{x:Null}">
 
         <i:Interaction.Behaviors>
@@ -28,7 +28,8 @@
                  Header="{Resx Utilities_BinaryTools_Header}">
 
             <ScrollViewer>
-                <local:UtilitiesContainer Utilities="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
+                <local:UtilitiesContainer Margin="12 0 12 12"
+                                          Utilities="{Binding Path=BinaryToolViewModels, Mode=OneTime}" />
             </ScrollViewer>
 
         </TabItem>
@@ -40,7 +41,8 @@
                  Header="{Resx Utilities_Other_Header}">
 
             <ScrollViewer>
-                <local:UtilitiesContainer Utilities="{Binding Path=OtherViewModels, Mode=OneTime}" />
+                <local:UtilitiesContainer Margin="12 0 12 12"
+                                          Utilities="{Binding Path=OtherViewModels, Mode=OneTime}" />
             </ScrollViewer>
 
         </TabItem>
@@ -52,7 +54,8 @@
                  Header="{Resx Utilities_ExternalTools_Header}">
 
             <ScrollViewer>
-                <local:UtilitiesContainer Utilities="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
+                <local:UtilitiesContainer Margin="12 0 12 12"
+                                          Utilities="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
             </ScrollViewer>
 
         </TabItem>

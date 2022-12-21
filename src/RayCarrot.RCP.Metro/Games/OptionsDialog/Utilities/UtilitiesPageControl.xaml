@@ -16,7 +16,8 @@
             <rcp:FocusScrollViewerOnLoad />
         </b:Interaction.Behaviors>
 
-        <rcp:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}" />
+        <rcp:UtilitiesContainer Margin="12 0"
+                                Utilities="{Binding Path=Utilities, Mode=OneTime}" />
 
     </ScrollViewer>
 </UserControl>

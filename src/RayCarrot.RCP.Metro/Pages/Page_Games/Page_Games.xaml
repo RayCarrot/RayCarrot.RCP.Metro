@@ -17,7 +17,7 @@
         <KeyBinding Key="F2" Command="{Binding Path=SelectedInstalledGame.RenameCommand}" />
     </Control.InputBindings>
 
-    <Grid Margin="15">
+    <Grid Margin="12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="16" />

@@ -8,20 +8,28 @@
                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                   mc:Ignorable="d"
                   Title="License"
-                  Height="360" Width="525">
-    <Grid Margin="10">
+                  Height="400" Width="525">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="10">
-            <TextBlock TextWrapping="Wrap" Text="{x:Static local:Files.License}" />
+        <ScrollViewer Padding="8" 
+                      Margin="0 0 0 8">
+            <TextBlock TextWrapping="Wrap" 
+                       Text="{x:Static local:Files.License}" />
         </ScrollViewer>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 10">
-            <Button Content="Do not accept" Margin="0 0 15 0" Click="DoNotAccept_Click" />
-            <Button Content="Accept" Click="Accept_Click" />
+        <StackPanel Grid.Row="1" 
+                    HorizontalAlignment="Center" 
+                    Orientation="Horizontal" 
+                    Margin="0 0 0 8">
+            <Button Content="Do not accept" 
+                    Margin="0 0 10 0" 
+                    Click="DoNotAccept_Click" />
+            <Button Content="Accept" 
+                    Click="Accept_Click" />
         </StackPanel>
 
     </Grid>
