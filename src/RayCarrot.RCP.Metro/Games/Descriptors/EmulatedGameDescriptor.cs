@@ -38,8 +38,7 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
             // Emulator config page
             new GameOptionsDialogPageComponent(
                 objFactory: x => new EmulatorGameConfigPageViewModel(x, this),
-                isAvailableFunc: _ => true,
-                priority: GameOptionsDialogPageComponent.PagePriority.Normal));
+                isAvailableFunc: _ => true));
     }
 
     protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)

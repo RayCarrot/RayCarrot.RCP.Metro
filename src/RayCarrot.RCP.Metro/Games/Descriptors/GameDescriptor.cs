@@ -391,18 +391,20 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
         
         // Config page
-        builder.Register(new GameOptionsDialogPageComponent(
-            objFactory: x => GetRequiredComponent<GameConfigComponent>().CreateObject(x),
-            isAvailableFunc: _ => HasComponent<GameConfigComponent>(),
-            priority: GameOptionsDialogPageComponent.PagePriority.High));
+        builder.Register(
+            component: new GameOptionsDialogPageComponent(
+                objFactory: x => GetRequiredComponent<GameConfigComponent>().CreateObject(x), 
+                isAvailableFunc: _ => HasComponent<GameConfigComponent>()), 
+            priority: ComponentPriority.High);
 
         // Utilities page
-        builder.Register(new GameOptionsDialogPageComponent(
-            objFactory: x => new UtilitiesPageViewModel(GetComponents<UtilityComponent>().
-                CreateObjects(x).
-                Select(utility => new UtilityViewModel(utility))),
-            isAvailableFunc: _ => HasComponent<UtilityComponent>(),
-            priority: GameOptionsDialogPageComponent.PagePriority.Low));
+        builder.Register(
+            component: new GameOptionsDialogPageComponent(
+                objFactory: x => new UtilitiesPageViewModel(GetComponents<UtilityComponent>().
+                    CreateObjects(x).
+                    Select(utility => new UtilityViewModel(utility))), 
+                isAvailableFunc: _ => HasComponent<UtilityComponent>()),
+            priority: ComponentPriority.Low);
     }
 
     public bool HasComponent<T>() where T : DescriptorComponent => ComponentProvider.HasComponent<T>();

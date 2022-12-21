@@ -2,9 +2,14 @@
 
 public class DescriptorComponentProvider
 {
-    public DescriptorComponentProvider(IEnumerable<(Type Type, DescriptorComponent Component)> components)
+    public DescriptorComponentProvider(IEnumerable<(Type Type, DescriptorComponent Component, ComponentPriority Priority)> components)
     {
-        _components = components.GroupBy(x => x.Type).ToDictionary(x => x.Key, x => x.Select(c => c.Component).ToList());
+        _components = components.
+            GroupBy(x => x.Type).
+            ToDictionary(x => x.Key, x => x.
+                OrderByDescending(c => c.Priority).
+                Select(c => c.Component).
+                ToList());
     }
 
     private readonly Dictionary<Type, List<DescriptorComponent>> _components;

@@ -25,7 +25,6 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
 
         var pages = gameInstallation.GameDescriptor.GetComponents<GameOptionsDialogPageComponent>().
             Where(x => x.IsAvailable(gameInstallation)).
-            OrderByDescending(x => x.Priority).
             Select(x => x.CreateObject(gameInstallation));
         Pages = new ObservableCollection<GameOptionsDialogPageViewModel>(pages);
         SelectedPage = Pages.First();
