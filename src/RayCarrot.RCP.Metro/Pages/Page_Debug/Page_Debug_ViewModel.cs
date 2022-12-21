@@ -405,27 +405,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         
                     break;
 
-                // TODO-14: Replace with data grid view in UI
-                case DebugDataOutputType.GameDescriptor:
-
-                    // Helper method for adding a new line of text
-                    void AddLine(string header, object content) => DataOutput += $"{header}: {content}{Environment.NewLine}";
-
-                    foreach (GameDescriptor gameDescriptor in GamesManager.GetGameDescriptors())
-                    {
-                        AddLine("Display name", gameDescriptor.DisplayName);
-                        AddLine("Default file name", gameDescriptor.DefaultFileName);
-                        AddLine("Icon source", gameDescriptor.Icon.GetAssetPath());
-                        AddLine("Dialog group names", gameDescriptor.DialogGroupNames.JoinItems(", "));
-                        
-                        DataOutput += Environment.NewLine;
-                        DataOutput += "------------------------------------------";
-                        DataOutput += Environment.NewLine;
-                        DataOutput += Environment.NewLine;
-                    }
-
-                    break;
-
                 case DebugDataOutputType.GameSizes:
 
                     // IDEA: Update with new system when done
@@ -495,7 +474,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
     {
         Metro.App.Current.SetTheme(Data.Theme_DarkMode, false, SelectedAccentColor);
     }
-
+    
     public async Task ExportWebPatchesJSONAsync()
     {
         try
@@ -808,11 +787,6 @@ public class Page_Debug_ViewModel : BasePageViewModel
         /// Runs the game finder, searching for all games and displaying the output of found games and their install locations
         /// </summary>
         GameFinder,
-
-        /// <summary>
-        /// Display the descriptor info available for each game
-        /// </summary>
-        GameDescriptor,
 
         /// <summary>
         /// Displays the install sizes for each game
