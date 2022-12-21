@@ -17,39 +17,54 @@
     <local:BasePage.PopupMenu>
         <StackPanel ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
-            <Button Content="Show Applied Utilities"
+            <Button Content="Show applied utilities"
+                    ToolTip="Shows a list of every utility which is marked as applied by an installed game"
                     Command="{Binding Path=ShowInstalledUtilitiesCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="BriefcaseOutline"/>
+                    local:IconAssist.IconKind="BriefcaseOutline" />
 
-            <Button Content="Show Log"
+            <Button Content="Show log"
+                    ToolTip="Shows the application log, either through the in-app log viewer or as a fallback by opening the log file"
                     Command="{Binding Path=ShowLogCommand, Mode=OneTime}"
                     local:IconAssist.IconKind="Text"/>
 
-            <Button Content="Show Welcome Window"
+            <Button Content="Show welcome window"
+                    ToolTip="Shows the initial first launch welcome window"
                     Command="{Binding Path=ShowWelcomeWindowCommand, Mode=OneTime}"
                     local:IconAssist.IconKind="InformationOutline"/>
 
-            <Button Content="Restart as administrator"
-                    Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
-                    local:IconAssist.IconKind="Security"/>
+            <Separator />
 
             <Button Content="Run load operation"
+                    ToolTip="Runs a dummy load operation which can be canceled half way through"
                     Command="{Binding Path=RunLoadOperationCommand, Mode=OneTime}"
                     local:IconAssist.IconKind="CircleOutline"/>
 
             <Button Content="Collect garbage"
+                    ToolTip="Forces the runtime garbage collector to collect"
                     Command="{Binding Path=GCCollectCommand, Mode=OneTime}"
                     local:IconAssist.IconKind="Memory"/>
 
+            <Separator />
+
             <Button Content="Throw unhandled exception"
+                    ToolTip="Throws an unhandled exception and thus crashing the app"
                     Command="{Binding Path=ThrowUnhandledExceptionCommand, Mode=OneTime}"
                     local:IconAssist.IconKind="Exclamation"/>
 
             <Button Content="Throw unhandled exception async"
+                    ToolTip="Throws an unhandled exception on a background thread and thus crashing the app"
                     Command="{Binding Path=ThrowUnhandledExceptionAsyncCommand, Mode=OneTime}"
                     local:IconAssist.IconKind="Exclamation"/>
 
+            <Separator />
+
+            <Button Content="Restart as administrator"
+                    ToolTip="Restarts the app with administrator privileges"
+                    Command="{Binding Path=App.RestartAsAdminCommand, Mode=OneTime}"
+                    local:IconAssist.IconKind="Security"/>
+
             <Button Content="Shutdown app"
+                    ToolTip="Closes the app"
                     Command="{Binding Path=ShutdownAppCommand, Mode=OneTime}"
                     local:IconAssist.IconKind="CloseOutline"/>
 
