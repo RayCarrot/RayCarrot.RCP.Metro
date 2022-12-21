@@ -1,11 +1,19 @@
-﻿#nullable disable
-namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>
 /// View model for the Rabbids Go Home config
 /// </summary>
 public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
 {
+    #region Constructor
+
+    public RabbidsGoHomeConfigViewModel(GameInstallation gameInstallation)
+    {
+        GameInstallation = gameInstallation;
+    }
+
+    #endregion
+
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -15,22 +23,18 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
     #region Private Fields
 
     private bool _enableCustomSettings;
-
     private RabbidsGoHomeLanguage _language;
-
     private bool _fullscreen;
-
     private bool _vSync;
-
     private int _versionIndex;
-
-    private string _bigFile;
-
-    private string _customCommands;
+    private string _bigFile = String.Empty;
+    private string _customCommands = String.Empty;
 
     #endregion
 
     #region Public Properties
+
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// Indicates if custom settings are enabled
@@ -159,7 +163,7 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
         Logger.Info("Rabbids Go Home config is being set up");
 
         // Get the current launch data
-        var launchData = Data.Game_RabbidsGoHomeLaunchData;
+        var launchData = GameInstallation.GetObject<UserData_RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData);
 
         if (launchData != null)
         {
@@ -189,9 +193,20 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
         Logger.Info("Rabbids Go Home configuration is saving...");
 
         // Set the launch data
-        Data.Game_RabbidsGoHomeLaunchData = EnableCustomSettings ?
-            new UserData_RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), GraphicsMode.Width, GraphicsMode.Height, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
-            null;
+        UserData_RabbidsGoHomeLaunchData? launchData = null;
+
+        if (EnableCustomSettings)
+            launchData = new UserData_RabbidsGoHomeLaunchData(
+                bigFile: BigFile, 
+                language: GetLanguageName(Language), 
+                resolutionX: GraphicsMode.Width,
+                resolutionY: GraphicsMode.Height, 
+                isVSyncEnabled: VSync, 
+                isFullscreen: Fullscreen, 
+                versionIndex: VersionIndex,
+                optionalCommands: CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+
+        GameInstallation.SetObject(GameDataKey.RGH_LaunchData, launchData);
 
         // Refresh
         Services.Messenger.Send(new ModifiedGamesMessage(LegacyGame.RabbidsGoHome.GetInstallation()));

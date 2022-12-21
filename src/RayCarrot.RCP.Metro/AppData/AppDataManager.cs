@@ -371,9 +371,6 @@ public class AppDataManager
             Data.Update_DisableDowngradeWarning = false;
         }
 
-        if (lastVersion < new Version(6, 0, 0, 0))
-            Data.Game_RabbidsGoHomeLaunchData = null;
-
         if (lastVersion < new Version(6, 0, 0, 2))
         {
             // TODO-14: Remove this
@@ -391,9 +388,6 @@ public class AppDataManager
             if (Data.App_UserLevel == UserLevel.Normal)
                 Data.App_UserLevel = UserLevel.Advanced;
         }
-
-        if (lastVersion < new Version(7, 2, 0, 0))
-            Data.Game_ShownRabbidsActivityCenterLaunchMessage = false;
 
         if (lastVersion < new Version(9, 0, 0, 0))
         {

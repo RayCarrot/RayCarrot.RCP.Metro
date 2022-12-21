@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rayman Raving Rabbids Activity Center (Win32) game descriptor
@@ -20,7 +22,30 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
 
     #endregion
 
+    #region Private Methods
+
+    private static async Task ShowLaunchMessageAsync(GameInstallation gameInstallation)
+    {
+        // Check if the launch message should show
+        if (!gameInstallation.GetValue<bool>(GameDataKey.RRRAC_ShownLaunchMessage))
+        {
+            await Services.MessageUI.DisplayMessageAsync(Resources.RabbidsActivityCenter_LaunchMessage, MessageType.Information);
+
+            // Flag that the message should not be shown again
+            gameInstallation.SetValue(GameDataKey.RRRAC_ShownLaunchMessage, true);
+        }
+    }
+
+    #endregion
+
     #region Protected Methods
+
+    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register(new OnGameLaunchedComponent(ShowLaunchMessageAsync));
+    }
 
     // Can only be downloaded
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
@@ -30,21 +55,6 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
             new(AppURLs.Games_RavingRabbidsActivityCenter_Url),
         })
     };
-
-    protected override async Task PostLaunchAsync()
-    {
-        // Check if the launch message should show
-        if (!Services.Data.Game_ShownRabbidsActivityCenterLaunchMessage)
-        {
-            await Services.MessageUI.DisplayMessageAsync(Resources.RabbidsActivityCenter_LaunchMessage, MessageType.Information);
-
-            // Flag that the message should not be shown again
-            Services.Data.Game_ShownRabbidsActivityCenterLaunchMessage = true;
-        }
-
-        // Run the base code
-        await base.PostLaunchAsync();
-    }
 
     #endregion
 }

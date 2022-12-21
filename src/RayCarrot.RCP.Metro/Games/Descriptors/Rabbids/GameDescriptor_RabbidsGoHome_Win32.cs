@@ -16,7 +16,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsGoHome;
 
     public override LocalizedString DisplayName => "Rabbids Go Home";
-    public override string DefaultFileName => Services.Data.Game_RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
+    public override string DefaultFileName => "Launcher.exe"; // TODO-14: This should be the same as GetLaunchFilePath()
     public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsGoHome;
@@ -29,12 +29,17 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new GameConfigComponent(x => new RabbidsGoHomeConfigViewModel()));
+        builder.Register(new GameConfigComponent(x => new RabbidsGoHomeConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
     }
 
+    protected override FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation) =>
+        gameInstallation.GetObject<UserData_RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData) == null 
+            ? "Launcher.exe" 
+            : "LyN_f.exe";
+
     protected override string? GetLaunchArgs(GameInstallation gameInstallation) =>
-        Services.Data.Game_RabbidsGoHomeLaunchData?.ToString();
+        gameInstallation.GetObject<UserData_RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData)?.ToString();
 
     #endregion
 

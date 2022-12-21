@@ -56,8 +56,6 @@ public class AppUserData : BaseViewModel
         Game_GameInstallations = new List<GameInstallation>();
         Game_EmulatorInstallations = new List<EmulatorInstallation>();
         Game_AutoLocateGames = true;
-        Game_RabbidsGoHomeLaunchData = null;
-        Game_ShownRabbidsActivityCenterLaunchMessage = false;
 
         // Utility
         Utility_TPLSData = null;
@@ -269,22 +267,11 @@ public class AppUserData : BaseViewModel
     /// </summary>
     public bool Game_AutoLocateGames { get; set; }
 
-    // TODO-14: Replace with game installation data
-    /// <summary>
-    /// The launch data for Rabbids Go Home
-    /// </summary>
-    public UserData_RabbidsGoHomeLaunchData Game_RabbidsGoHomeLaunchData { get; set; }
-
-    // TODO-14: Replace with game installation data
-    /// <summary>
-    /// Indicates if the launch message for Rayman Raving Rabbids Activity Center has been shown
-    /// </summary>
-    public bool Game_ShownRabbidsActivityCenterLaunchMessage { get; set; }
-
     #endregion
 
     #region Utility
 
+    // TODO-14: Replace with game installation data?
     /// <summary>
     /// The current TPLS data if installed, otherwise null
     /// </summary>
@@ -469,15 +456,7 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private bool GetBetaUpdates { set => Update_GetBetaUpdates = value; }
     [JsonProperty] private bool DisableDowngradeWarning { set => Update_DisableDowngradeWarning = value; }
     [JsonProperty] private bool IsUpdateAvailable { set => Update_IsUpdateAvailable = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private Dictionary<Games, UserData_GameData> Games { set => Game_Games = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private Dictionary<Games, UserData_DosBoxOptions> DosBoxGames { set => Game_DosBoxGames = value; }
     [JsonProperty] private bool IsFirstLaunch { set => App_IsFirstLaunch = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private string DosBoxPath { set => Emu_DOSBox_Path = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private string DosBoxConfig { set => Emu_DOSBox_ConfigPath = value; }
     [JsonProperty] private bool AutoLocateGames { set => Game_AutoLocateGames = value; }
     [JsonProperty] private bool CloseAppOnGameLaunch { set => App_CloseAppOnGameLaunch = value; }
     [JsonProperty] private bool CloseConfigOnSave { set => App_CloseConfigOnSave = value; }
@@ -486,17 +465,6 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private UserData_LinkItemStyle LinkItemStyle { set => UI_LinkItemStyle = value; }
     [JsonProperty] private HorizontalAlignment LinkListHorizontalAlignment { set => UI_LinkListHorizontalAlignment = value; }
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private UserData_FiestaRunEdition FiestaRunVersion { set => Game_FiestaRunVersion = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private List<UserData_EducationalDosBoxGameData> EducationalDosBoxGames { set => Game_EducationalDosBoxGames = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private UserData_RRR2LaunchMode RRR2LaunchMode { set => Game_RRR2LaunchMode = value; }
-    [JsonProperty] private UserData_RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { set => Game_RabbidsGoHomeLaunchData = value; }
-    //[JsonProperty] private List<string> JumpListItemIDCollection { set => App_JumpListItemIDCollection = value; }
-    // TODO-14: Restore this once we implement the app data migration
-    //[JsonProperty] private HashSet<Games> InstalledGames { set => Game_InstalledGames = value; }
-    [JsonProperty] private bool ShownRabbidsActivityCenterLaunchMessage { set => Game_ShownRabbidsActivityCenterLaunchMessage = value; }
     [JsonProperty] private FileSystemPath BinarySerializationFileLogPath { set => Binary_BinarySerializationFileLogPath = value; }
     [JsonProperty] private bool HandleDownloadsManually { set => App_HandleDownloadsManually = value; }
     [JsonProperty] private UserData_Archive_Sort ArchiveExplorerSortOption { set => Archive_ExplorerSortOption = value; }

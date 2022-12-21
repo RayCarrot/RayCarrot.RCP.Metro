@@ -129,11 +129,19 @@ public abstract class ProgramInstallation
             return (T)Convert.ChangeType(obj, typeof(T));
     }
 
-    public void SetObject<T>(string key, T obj)
+    public void SetObject<T>(string key, T? obj)
         where T : class
     {
-        _additionalData[key] = JObject.FromObject(obj);
-        _dataCache[key] = obj;
+        if (obj is null)
+        {
+            _additionalData.Remove(key);
+            _dataCache.Remove(key);
+        }
+        else
+        {
+            _additionalData[key] = JObject.FromObject(obj);
+            _dataCache[key] = obj;
+        }
     }
 
     public void SetValue<T>(string key, T obj)

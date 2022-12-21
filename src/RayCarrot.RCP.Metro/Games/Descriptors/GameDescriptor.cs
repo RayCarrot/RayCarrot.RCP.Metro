@@ -161,17 +161,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <returns>True if the launch succeeded, otherwise false</returns>
     protected abstract Task<bool> LaunchAsync(GameInstallation gameInstallation);
 
-    /// <summary>
-    /// Post launch operations for the game which launched
-    /// </summary>
-    /// <returns>The task</returns>
-    protected virtual async Task PostLaunchAsync()
-    {
-        // Check if the application should close
-        if (Services.Data.App_CloseAppOnGameLaunch)
-            await App.Current.ShutdownAppAsync(false);
-    }
-
     // TODO-14: Don't do this - an install location might be a file in case of roms
     /// <summary>
     /// Indicates if the game location is valid
@@ -298,8 +287,8 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         bool success = await LaunchAsync(gameInstallation);
 
         if (success)
-            // Run any post launch operations
-            await PostLaunchAsync();
+            // Invoke any launch actions
+            await GetComponents<OnGameLaunchedComponent>().InvokeAllAsync(gameInstallation);
     }
 
     /// <summary>
@@ -389,6 +378,9 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
         builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
+
+        // Give this low priority so that it runs last
+        builder.Register<OnGameLaunchedComponent, OptionallyCloseAppOnGameLaunchedComponent>(ComponentPriority.Low);
         
         // Config page
         builder.Register(

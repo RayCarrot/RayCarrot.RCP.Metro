@@ -1,9 +1,10 @@
 ﻿using System.Text;
+using Newtonsoft.Json;
 
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The launch data for Rabbids Go Home, if used
+/// The launch data for Rabbids Go Home
 /// </summary>
 public class UserData_RabbidsGoHomeLaunchData
 {
@@ -25,7 +26,16 @@ public class UserData_RabbidsGoHomeLaunchData
     /// <summary>
     /// Constructor for specified values
     /// </summary>
-    public UserData_RabbidsGoHomeLaunchData(string bigFile, string language, int resolutionX, int resolutionY, bool isVSyncEnabled, bool isFullscreen, int versionIndex, string[] optionalCommands)
+    [JsonConstructor]
+    public UserData_RabbidsGoHomeLaunchData(
+        string bigFile, 
+        string language, 
+        int resolutionX, 
+        int resolutionY, 
+        bool isVSyncEnabled, 
+        bool isFullscreen, 
+        int versionIndex, 
+        string[] optionalCommands)
     {
         BigFile = bigFile;
         Language = language;
@@ -97,11 +107,11 @@ public class UserData_RabbidsGoHomeLaunchData
 
         // Add V-Sync
         if (IsVSyncEnabled)
-            sb.Append($" /vsync");
+            sb.Append(" /vsync");
 
         // Add fullscreen
         if (IsFullscreen)
-            sb.Append($" /fullscreen");
+            sb.Append(" /fullscreen");
 
         // Add resolution
         sb.Append($" /res{ResolutionX}x{ResolutionY}");

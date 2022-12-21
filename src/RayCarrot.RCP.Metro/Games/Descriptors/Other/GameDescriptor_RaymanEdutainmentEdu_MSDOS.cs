@@ -66,7 +66,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
                     bool success = await emulatorDescriptor.LaunchGameAsync(gameInstallation, emulatorInstallation, args);
 
                     if (success)
-                        await PostLaunchAsync();
+                        await GetComponents<OnGameLaunchedComponent>().InvokeAllAsync(gameInstallation);
                 })));
     }
 

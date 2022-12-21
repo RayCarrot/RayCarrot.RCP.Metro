@@ -60,7 +60,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
                     bool success = await LaunchAsync(gameInstallation, true);
 
                     if (success)
-                        await PostLaunchAsync();
+                        await GetComponents<OnGameLaunchedComponent>().InvokeAllAsync(gameInstallation);
                 }))
         };
     }
