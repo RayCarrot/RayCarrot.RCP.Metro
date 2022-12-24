@@ -30,8 +30,7 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
 
     #region Private Properties
 
-    // TODO: Might not need to be nullable
-    private GameComponentProvider? ComponentProvider { get; set; }
+    private GameComponentProvider ComponentProvider { get; set; }
 
     #endregion
 
@@ -50,20 +49,12 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
 
     #region Public Methods
 
-    public bool HasComponent<T>() 
-        where T : GameComponent => 
-        ComponentProvider?.HasComponent<T>() ?? false;
-    public T? GetComponent<T>() 
-        where T : GameComponent => 
-        ComponentProvider?.GetComponent<T>();
-    public T GetRequiredComponent<T>() 
-        where T : GameComponent => 
-        ComponentProvider?.GetComponent<T>() ?? throw new InvalidOperationException($"Component of type {typeof(T)} was not found");
-    public IEnumerable<T> GetComponents<T>() 
-        where T : GameComponent => 
-        ComponentProvider?.GetComponents<T>() ?? Enumerable.Empty<T>();
-    public IEnumerable<GameComponent> GetComponents() => 
-        ComponentProvider?.GetComponents() ?? Enumerable.Empty<GameComponent>();
+    public bool HasComponent<T>() where T : GameComponent => ComponentProvider.HasComponent<T>();
+    public T? GetComponent<T>() where T : GameComponent => ComponentProvider.GetComponent<T>();
+    public T GetRequiredComponent<T>() where T : GameComponent => 
+        ComponentProvider.GetComponent<T>() ?? throw new InvalidOperationException($"Component of type {typeof(T)} was not found");
+    public IEnumerable<T> GetComponents<T>() where T : GameComponent => ComponentProvider.GetComponents<T>();
+    public IEnumerable<GameComponent> GetComponents() => ComponentProvider.GetComponents();
 
     [MemberNotNull(nameof(ComponentProvider))]
     public void RebuildComponents()
