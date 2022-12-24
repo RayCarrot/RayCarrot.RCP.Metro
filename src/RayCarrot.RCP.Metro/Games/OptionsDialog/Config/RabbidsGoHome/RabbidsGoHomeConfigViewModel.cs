@@ -209,7 +209,7 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
         GameInstallation.SetObject(GameDataKey.RGH_LaunchData, launchData);
 
         // Refresh
-        Services.Messenger.Send(new ModifiedGamesMessage(LegacyGame.RabbidsGoHome.GetInstallation()));
+        Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
 
         Logger.Info("Rabbids Go Home configuration has been saved");
 
