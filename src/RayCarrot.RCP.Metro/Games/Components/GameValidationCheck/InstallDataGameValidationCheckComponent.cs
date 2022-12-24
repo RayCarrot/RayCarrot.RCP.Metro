@@ -2,10 +2,10 @@
 
 public class InstallDataGameValidationCheckComponent : GameValidationCheckComponent
 {
-    public override bool IsValid(GameInstallation gameInstallation)
+    public override bool IsValid()
     {
         // TODO-14: Log
-        if (gameInstallation.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData) is { } installData)
+        if (GameInstallation.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData) is { } installData)
         {
             // Make sure the install directory exists
             if (!installData.InstallDir.DirectoryExists)

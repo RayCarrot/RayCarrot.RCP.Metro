@@ -115,7 +115,7 @@ public class GamesManager
         Logger.Info("The game {0} has been added", gameInstallation.FullId);
 
         // Invoke added actions
-        await gameInstallation.GameDescriptor.GetComponents<OnGameAddedComponent>().InvokeAllAsync(gameInstallation);
+        await gameInstallation.GetComponents<OnGameAddedComponent>().InvokeAllAsync();
 
         // Configure
         configureInstallation?.Invoke(gameInstallation);
@@ -129,7 +129,7 @@ public class GamesManager
         Data.Game_GameInstallations.Remove(gameInstallation);
 
         // Invoke removal actions
-        await gameInstallation.GameDescriptor.GetComponents<OnGameRemovedComponent>().InvokeAllAsync(gameInstallation);
+        await gameInstallation.GetComponents<OnGameRemovedComponent>().InvokeAllAsync();
     }
 
     #endregion

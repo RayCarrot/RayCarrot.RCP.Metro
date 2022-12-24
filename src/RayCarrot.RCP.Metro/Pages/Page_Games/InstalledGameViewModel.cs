@@ -28,8 +28,7 @@ public class InstalledGameViewModel : BaseViewModel
 
         // Set other properties
         CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
-        HasOptionsDialog = gameInstallation.GameDescriptor.GetComponents<GameOptionsDialogPageComponent>().
-            Any(x => x.IsAvailable(gameInstallation));
+        HasOptionsDialog = gameInstallation.GetComponents<GameOptionsDialogPageComponent>().Any(x => x.IsAvailable());
 
         // Create commands
         LaunchCommand = new AsyncRelayCommand(LaunchAsync);
@@ -114,9 +113,9 @@ public class InstalledGameViewModel : BaseViewModel
             GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation));
 
         // Progression
-        foreach (GameProgressionManager progressionManager in GameDescriptor.
+        foreach (GameProgressionManager progressionManager in GameInstallation.
                      GetComponents<ProgressionManagersComponent>().
-                     CreateManyObjects(GameInstallation))
+                     CreateManyObjects())
             GamePanels.Add(new ProgressionGamePanelViewModel(GameInstallation, progressionManager));
     }
 
@@ -125,9 +124,9 @@ public class InstalledGameViewModel : BaseViewModel
         AdditionalLaunchActions.Clear();
 
         // Add additional launch actions
-        foreach (IEnumerable<ActionItemViewModel> launchActions in GameDescriptor.
+        foreach (IEnumerable<ActionItemViewModel> launchActions in GameInstallation.
                      GetComponents<AdditionalLaunchActionsComponent>().
-                     CreateObjects(GameInstallation))
+                     CreateObjects())
         {
             AdditionalLaunchActions.AddGroup(launchActions);
         }
@@ -250,7 +249,7 @@ public class InstalledGameViewModel : BaseViewModel
         _loaded = true;
 
         // Only get the options once when we load
-        var options = GameDescriptor.GetComponents<GameOptionsComponent>().CreateObjects(GameInstallation);
+        var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
         GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
         return ReloadAsync();
     }

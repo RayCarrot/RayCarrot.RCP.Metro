@@ -223,7 +223,7 @@ public class StartupManager
             // Check if it's valid
             if (gameInstallation.GameDescriptor.IsValid(gameInstallation.InstallLocation) &&
                 // TODO-14: Merge the install location check with this?
-                gameInstallation.GameDescriptor.GetComponents<GameValidationCheckComponent>().All(x => x.IsValid(gameInstallation)))
+                gameInstallation.GetComponents<GameValidationCheckComponent>().All(x => x.IsValid()))
                 continue;
 
             // Show message

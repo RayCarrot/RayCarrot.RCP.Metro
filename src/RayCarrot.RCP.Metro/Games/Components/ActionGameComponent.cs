@@ -1,8 +1,6 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-namespace RayCarrot.RCP.Metro;
-
-public abstract class ActionGameComponent : DescriptorComponent
+public abstract class ActionGameComponent : GameComponent
 {
     protected ActionGameComponent(Func<GameInstallation, Task> asyncAction)
     {
@@ -19,5 +17,5 @@ public abstract class ActionGameComponent : DescriptorComponent
 
     private readonly Func<GameInstallation, Task> _action;
 
-    public Task InvokeAsync(GameInstallation gameInstallation) => _action(gameInstallation);
+    public Task InvokeAsync() => _action(GameInstallation);
 }

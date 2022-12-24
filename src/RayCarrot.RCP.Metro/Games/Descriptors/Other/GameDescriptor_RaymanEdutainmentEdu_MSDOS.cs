@@ -66,7 +66,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
                     bool success = await emulatorDescriptor.LaunchGameAsync(gameInstallation, emulatorInstallation, args);
 
                     if (success)
-                        await GetComponents<OnGameLaunchedComponent>().InvokeAllAsync(gameInstallation);
+                        await gameInstallation.GetComponents<OnGameLaunchedComponent>().InvokeAllAsync();
                 })));
     }
 
@@ -84,7 +84,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
 
     #region Protected Methods
 
-    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    protected override void RegisterComponents(GameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

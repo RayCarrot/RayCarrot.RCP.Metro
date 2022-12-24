@@ -2,6 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
+[GameComponent]
 public class GameOptionsDialogPageComponent : FactoryGameComponent<GameOptionsDialogPageViewModel>
 {
     public GameOptionsDialogPageComponent(
@@ -14,13 +15,13 @@ public class GameOptionsDialogPageComponent : FactoryGameComponent<GameOptionsDi
 
     private readonly Func<GameInstallation, bool> _isAvailableFunc;
 
-    public bool IsAvailable(GameInstallation gameInstallation) => _isAvailableFunc(gameInstallation);
+    public bool IsAvailable() => _isAvailableFunc(GameInstallation);
     
-    public override GameOptionsDialogPageViewModel CreateObject(GameInstallation gameInstallation)
+    public override GameOptionsDialogPageViewModel CreateObject()
     {
-        if (!IsAvailable(gameInstallation))
+        if (!IsAvailable())
             throw new InvalidOperationException("The page can not be created when it is not available");
 
-        return base.CreateObject(gameInstallation);
+        return base.CreateObject();
     }
 }

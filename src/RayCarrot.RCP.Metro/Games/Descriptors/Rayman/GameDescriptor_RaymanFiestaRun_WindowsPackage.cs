@@ -34,7 +34,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
 
     #region Protected Methods
 
-    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    protected override void RegisterComponents(GameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

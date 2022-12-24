@@ -40,7 +40,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
 
     #region Protected Methods
 
-    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    protected override void RegisterComponents(GameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

@@ -21,15 +21,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class GameDescriptor : IComparable<GameDescriptor>
 {
-    #region Constructor
-
-    protected GameDescriptor()
-    {
-        ComponentProvider = BuildComponentProvider();
-    }
-
-    #endregion
-
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -144,6 +135,36 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
     #region Protected Methods
 
+    /// <summary>
+    /// Registers the game components for a game installation
+    /// </summary>
+    /// <param name="builder">The component builder</param>
+    protected virtual void RegisterComponents(GameComponentBuilder builder)
+    {
+        builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
+        builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
+        builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
+
+        // Give this low priority so that it runs last
+        builder.Register<OnGameLaunchedComponent, OptionallyCloseAppOnGameLaunchedComponent>(ComponentPriority.Low);
+
+        // Config page
+        builder.Register(
+            component: new GameOptionsDialogPageComponent(
+                objFactory: x => x.GetRequiredComponent<GameConfigComponent>().CreateObject(),
+                isAvailableFunc: x => x.HasComponent<GameConfigComponent>()),
+            priority: ComponentPriority.High);
+
+        // Utilities page
+        builder.Register(
+            component: new GameOptionsDialogPageComponent(
+                objFactory: x => new UtilitiesPageViewModel(x.GetComponents<UtilityComponent>().
+                    CreateObjects().
+                    Select(utility => new UtilityViewModel(utility))),
+                isAvailableFunc: x => x.HasComponent<UtilityComponent>()),
+            priority: ComponentPriority.Low);
+    }
+
     // TODO-14: Use this for all public APIs
     protected void VerifyGameInstallation(GameInstallation gameInstallation)
     {
@@ -176,6 +197,28 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     #endregion
 
     #region Public Methods
+
+    /// <summary>
+    /// Builds a new component provider for the game installation
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to build the components for</param>
+    /// <returns>The component provider</returns>
+    public GameComponentProvider BuildComponents(GameInstallation gameInstallation)
+    {
+        // Create the builder
+        GameComponentBuilder builder = new();
+
+        // TODO-14: Ideally we'd pass in the game installation here so that which components
+        //          get registered can depend on the game data, for example the progression
+        //          managers for the edutainment games. The problem is this gets called before
+        //          the game installation has been fully initialized if added. To solve that
+        //          we either need to rebuild components twice in those cases or we have the
+        //          OnGameAdded component be a virtual method in the GameDescriptor.
+        // Register the components from the game descriptor
+        RegisterComponents(builder);
+
+        return builder.Build(gameInstallation);
+    }
 
     public abstract IEnumerable<GameAddAction> GetAddActions();
 
@@ -218,8 +261,8 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <returns>The applied utilities</returns>
     public virtual Task<IList<string>> GetAppliedUtilitiesAsync(GameInstallation gameInstallation)
     {
-        return Task.FromResult<IList<string>>(GetComponents<UtilityComponent>().
-            CreateObjects(gameInstallation).
+        return Task.FromResult<IList<string>>(gameInstallation.GetComponents<UtilityComponent>().
+            CreateObjects().
             SelectMany(x => x.GetAppliedUtilities()).
             ToArray());
     }
@@ -256,7 +299,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
             // TODO-14: Move to debug game dialog instead? It takes up a lot of space. Could also be shown a bit nicer.
             new DuoGridItemViewModel(
                 header: "Components:",
-                text: ComponentProvider.GetComponents().
+                text: gameInstallation.GetComponents().
                     Select(x => x.GetType()).
                     GroupBy(x => x).
                     Select(x => $"{x.Key.Name} ({x.Count()})").
@@ -288,7 +331,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
         if (success)
             // Invoke any launch actions
-            await GetComponents<OnGameLaunchedComponent>().InvokeAllAsync(gameInstallation);
+            await gameInstallation.GetComponents<OnGameLaunchedComponent>().InvokeAllAsync();
     }
 
     /// <summary>
@@ -348,61 +391,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Id
         return String.Compare(GameId, other.GameId, StringComparison.Ordinal);
     }
-
-    #endregion
-
-    #region Components
-
-    /// <summary>
-    /// The provider for the descriptor components
-    /// </summary>
-    private DescriptorComponentProvider ComponentProvider { get; }
-
-    /// <summary>
-    /// Builds a new component provider for this descriptor
-    /// </summary>
-    /// <returns>The built provider</returns>
-    private DescriptorComponentProvider BuildComponentProvider()
-    {
-        DescriptorComponentBuilder builder = new();
-        RegisterComponents(builder);
-        return builder.Build();
-    }
-
-    /// <summary>
-    /// Registers the components for this descriptor. This will only be called once.
-    /// </summary>
-    /// <param name="builder">The component builder</param>
-    protected virtual void RegisterComponents(DescriptorComponentBuilder builder)
-    {
-        builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
-        builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
-        builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
-
-        // Give this low priority so that it runs last
-        builder.Register<OnGameLaunchedComponent, OptionallyCloseAppOnGameLaunchedComponent>(ComponentPriority.Low);
-        
-        // Config page
-        builder.Register(
-            component: new GameOptionsDialogPageComponent(
-                objFactory: x => GetRequiredComponent<GameConfigComponent>().CreateObject(x), 
-                isAvailableFunc: _ => HasComponent<GameConfigComponent>()), 
-            priority: ComponentPriority.High);
-
-        // Utilities page
-        builder.Register(
-            component: new GameOptionsDialogPageComponent(
-                objFactory: x => new UtilitiesPageViewModel(GetComponents<UtilityComponent>().
-                    CreateObjects(x).
-                    Select(utility => new UtilityViewModel(utility))), 
-                isAvailableFunc: _ => HasComponent<UtilityComponent>()),
-            priority: ComponentPriority.Low);
-    }
-
-    public bool HasComponent<T>() where T : DescriptorComponent => ComponentProvider.HasComponent<T>();
-    public T? GetComponent<T>() where T : DescriptorComponent => ComponentProvider.GetComponent<T>();
-    public T GetRequiredComponent<T>() where T : DescriptorComponent => ComponentProvider.GetRequiredComponent<T>();
-    public IEnumerable<T> GetComponents<T>() where T : DescriptorComponent => ComponentProvider.GetComponents<T>();
 
     #endregion
 

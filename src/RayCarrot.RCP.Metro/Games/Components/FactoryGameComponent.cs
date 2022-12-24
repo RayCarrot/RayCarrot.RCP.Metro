@@ -4,7 +4,7 @@
 /// A game component which provides an object factory of a specific type
 /// </summary>
 /// <typeparam name="T">The type of objects to create</typeparam>
-public abstract class FactoryGameComponent<T> : DescriptorComponent
+public abstract class FactoryGameComponent<T> : GameComponent
 {
     protected FactoryGameComponent(Func<GameInstallation, T> objFactory)
     {
@@ -13,5 +13,5 @@ public abstract class FactoryGameComponent<T> : DescriptorComponent
 
     private readonly Func<GameInstallation, T> _objFactory;
 
-    public virtual T CreateObject(GameInstallation gameInstallation) => _objFactory(gameInstallation);
+    public virtual T CreateObject() => _objFactory(GameInstallation);
 }

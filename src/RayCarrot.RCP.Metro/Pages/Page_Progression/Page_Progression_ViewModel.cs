@@ -121,9 +121,9 @@ public class Page_Progression_ViewModel : BasePageViewModel,
                 // Add the game items
                 foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
                 {
-                    foreach (GameProgressionManager progressionManager in gameInstallation.GameDescriptor.
+                    foreach (GameProgressionManager progressionManager in gameInstallation.
                                  GetComponents<ProgressionManagersComponent>().
-                                 CreateManyObjects(gameInstallation))
+                                 CreateManyObjects())
                     {
                         GameItems.Add(new GameProgressionViewModel(progressionManager));
                     }

@@ -32,7 +32,7 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
 
     #region Protected Methods
 
-    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    protected override void RegisterComponents(GameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

@@ -60,7 +60,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
                     bool success = await LaunchAsync(gameInstallation, true);
 
                     if (success)
-                        await GetComponents<OnGameLaunchedComponent>().InvokeAllAsync(gameInstallation);
+                        await gameInstallation.GetComponents<OnGameLaunchedComponent>().InvokeAllAsync();
                 }))
         };
     }
@@ -69,7 +69,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override void RegisterComponents(DescriptorComponentBuilder builder)
+    protected override void RegisterComponents(GameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

@@ -2,9 +2,9 @@
 
 public class Ray1MsDosGameDataGameValidationCheckComponent : GameValidationCheckComponent
 {
-    public override bool IsValid(GameInstallation gameInstallation)
+    public override bool IsValid()
     {
-        UserData_Ray1MsDosData? data = gameInstallation.GetObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        UserData_Ray1MsDosData? data = GameInstallation.GetObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
 
         // TODO-14: Log
         // The data has to exist

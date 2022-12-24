@@ -3,8 +3,9 @@
 /// <summary>
 /// Game component for providing additional launch actions for an installed game
 /// </summary>
+[GameComponent]
 public class AdditionalLaunchActionsComponent : FactoryGameComponent<IEnumerable<ActionItemViewModel>>
 {
-    public AdditionalLaunchActionsComponent(Func<GameInstallation, IEnumerable<ActionItemViewModel>> objFactory) : base(objFactory) 
+    public AdditionalLaunchActionsComponent(Func<GameInstallation, IEnumerable<ActionItemViewModel>> objFactory) : base(objFactory)
     { }
 }

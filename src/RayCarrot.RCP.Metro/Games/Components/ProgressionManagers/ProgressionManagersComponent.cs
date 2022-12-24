@@ -1,5 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
+[GameComponent]
 public class ProgressionManagersComponent : FactoryGameComponent<IEnumerable<GameProgressionManager>>
 {
     public ProgressionManagersComponent(Func<GameInstallation, GameProgressionManager> objFactory) : base(x => objFactory(x).Yield())
