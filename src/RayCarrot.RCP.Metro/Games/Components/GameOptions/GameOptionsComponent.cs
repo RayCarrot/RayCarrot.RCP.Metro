@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[GameComponent(IsBase = true)]
+[BaseGameComponent]
 public class GameOptionsComponent : FactoryGameComponent<GameOptionsViewModel>
 {
     public GameOptionsComponent(Func<GameInstallation, GameOptionsViewModel> objFactory) : base(objFactory) 

@@ -3,7 +3,7 @@
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 // This class has several DEBUG conditions. These are mainly there to find easily
-// preventable errors and don't need to run in RELEASE mode.
+// preventable errors and aren't run in RELEASE mode for performance reasons.
 
 public class GameComponentBuilder
 {
@@ -11,20 +11,14 @@ public class GameComponentBuilder
 
     private void Register(Component component)
     {
-        // TODO-14: We also need to get the component on other types here since they might be defining requirements separate from the base... Easiest way if to have multiple attributes where some of them are inherited.
-        GameComponentAttribute? attr = component.BaseType.GetCustomAttribute<GameComponentAttribute>();
-
 #if DEBUG
-        // Make sure the base type is correct
-        if (attr is not { IsBase: true })
+        // Make sure the base type has the attribute
+        if (component.BaseType.GetCustomAttribute<BaseGameComponentAttribute>() == null)
             throw new InvalidOperationException($"Can't register a component of type {component.BaseType} due to it not being a component base type");
-
-        // Save the attribute for when we build
-        component.Attribute = attr;
 #endif
 
         // Check if it's a single-instance component
-        if (attr.SingleInstance)
+        if (component.InstanceType.GetCustomAttribute<SingleInstanceGameComponentAttribute>() != null)
             _components.RemoveAll(x => x.BaseType == component.BaseType);
 
         _components.Add(component);
@@ -82,10 +76,8 @@ public class GameComponentBuilder
         // optimized at all as it will do multiple enumerations.
         foreach (Component component in _components)
         {
-            if (component.Attribute?.RequiredComponents.Any() != true) 
-                continue;
-            
-            foreach (Type type in component.Attribute.RequiredComponents)
+            foreach (Type type in component.InstanceType.GetCustomAttributes<RequiredGameComponentsAttribute>().
+                         SelectMany(x => x.RequiredComponents))
             {
                 if (_components.All(x => x.BaseType != type))
                     throw new Exception($"The required component type {type.FullName} has not been registered");
@@ -101,10 +93,6 @@ public class GameComponentBuilder
     private record Component(Type BaseType, Type InstanceType, GameComponent? Instance, ComponentPriority Priority)
     {
         public GameComponent? Instance { get; private set; } = Instance;
-
-#if DEBUG
-        public GameComponentAttribute? Attribute { get; set; }
-#endif
         public GameComponent GetInstance() => Instance ??= (GameComponent)Activator.CreateInstance(InstanceType);
     }
 }

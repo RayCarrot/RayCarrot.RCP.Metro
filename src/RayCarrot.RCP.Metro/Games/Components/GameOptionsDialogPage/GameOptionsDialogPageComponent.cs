@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-[GameComponent(IsBase = true)]
+[BaseGameComponent]
 public class GameOptionsDialogPageComponent : FactoryGameComponent<GameOptionsDialogPageViewModel>
 {
     public GameOptionsDialogPageComponent(

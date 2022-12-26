@@ -5,7 +5,8 @@ using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
-[GameComponent(IsBase = true, SingleInstance = true)]
+[BaseGameComponent]
+[SingleInstanceGameComponent]
 public class WindowsPackageComponent : GameComponent
 {
     public WindowsPackageComponent(string packageName, string fullPackageName)

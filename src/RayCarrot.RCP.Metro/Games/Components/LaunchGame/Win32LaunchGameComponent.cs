@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro;
 /// but a <see cref="Win32LaunchPathComponent"/> is required. Optionally a <see cref="Win32LaunchArgsComponent"/> can
 /// also be used to specify launch arguments.
 /// </summary>
-[GameComponent(typeof(Win32LaunchPathComponent))]
+[RequiredGameComponents(typeof(Win32LaunchPathComponent))]
 public class Win32LaunchGameComponent : LaunchGameComponent
 {
     #region Logger

@@ -2,7 +2,8 @@
 
 namespace RayCarrot.RCP.Metro;
 
-[GameComponent(IsBase = true, SingleInstance = true)]
+[BaseGameComponent]
+[SingleInstanceGameComponent]
 public class Win32LaunchArgsComponent : FactoryGameComponent<string?>
 {
     public Win32LaunchArgsComponent(Func<GameInstallation, string?> objFactory) : base(objFactory) { }

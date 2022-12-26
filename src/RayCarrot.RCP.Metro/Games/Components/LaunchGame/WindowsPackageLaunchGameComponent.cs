@@ -3,7 +3,7 @@ using Windows.ApplicationModel.Core;
 
 namespace RayCarrot.RCP.Metro;
 
-[GameComponent(typeof(WindowsPackageComponent))]
+[RequiredGameComponents(typeof(WindowsPackageComponent))]
 public class WindowsPackageLaunchGameComponent : LaunchGameComponent
 {
     #region Logger
