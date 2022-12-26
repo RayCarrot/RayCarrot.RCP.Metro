@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[GameComponent]
+[GameComponent(IsBase = true)]
 public class OnGameLaunchedComponent : ActionGameComponent
 {
     public OnGameLaunchedComponent(Func<GameInstallation, Task> asyncAction) : base(asyncAction) { }

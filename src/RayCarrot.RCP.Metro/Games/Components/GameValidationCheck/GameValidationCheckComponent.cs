@@ -1,6 +1,6 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
-[GameComponent]
+[GameComponent(IsBase = true)]
 public abstract class GameValidationCheckComponent : GameComponent
 {
     public abstract bool IsValid();
