@@ -21,12 +21,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class GameDescriptor : IComparable<GameDescriptor>
 {
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
     #region Protected Constant Fields
 
     /// <summary>
@@ -141,6 +135,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <param name="builder">The component builder</param>
     protected virtual void RegisterComponents(GameComponentBuilder builder)
     {
+        builder.Register<GameInfoComponent, DefaultGameInfoComponent>();
         builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();
         builder.Register<OnGameRemovedComponent, RemoveFromJumpListOnGameRemovedComponent>();
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
@@ -174,13 +169,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         if (gameInstallation.GameId != GameId)
             throw new Exception($"The provided game id {gameInstallation.GameId} does not match {GameId}");
     }
-
-    /// <summary>
-    /// The implementation for launching the game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to launch</param>
-    /// <returns>True if the launch succeeded, otherwise false</returns>
-    protected abstract Task<bool> LaunchAsync(GameInstallation gameInstallation);
 
     // TODO-14: Don't do this - an install location might be a file in case of roms
     /// <summary>
@@ -276,78 +264,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// Gets the game finder item for this game
     /// </summary>
     public virtual GameFinder_GameItem? GetGameFinderItem() => null;
-
-    /// <summary>
-    /// Gets the info items for the game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the info items for</param>
-    /// <returns>The info items</returns>
-    public virtual IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
-    {
-        VerifyGameInstallation(gameInstallation);
-
-        return new[]
-        {
-            new DuoGridItemViewModel(
-                header: "Game id:",
-                text: GameId,
-                minUserLevel: UserLevel.Debug),
-            new DuoGridItemViewModel(
-                header: "Installation id:",
-                text: gameInstallation.InstallationId,
-                minUserLevel: UserLevel.Debug),
-            // TODO-14: Move to debug game dialog instead? It takes up a lot of space. Could also be shown a bit nicer.
-            new DuoGridItemViewModel(
-                header: "Components:",
-                text: gameInstallation.GetComponents().
-                    Select(x => x.GetType()).
-                    GroupBy(x => x).
-                    Select(x => $"{x.Key.Name} ({x.Count()})").
-                    JoinItems(Environment.NewLine),
-                minUserLevel: UserLevel.Debug),
-            // TODO-14: Change this to show the platform
-            //new DuoGridItemViewModel(
-            //    header: new ResourceLocString(nameof(Resources.GameInfo_GameType)),
-            //    text: GameTypeDisplayName,
-            //    minUserLevel: UserLevel.Advanced),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),
-                text: gameInstallation.InstallLocation.FullPath),
-            //new DuoGridItemViewModel("Install size", GameData.InstallDirectory.GetSize().ToString())
-        };
-    }
-
-    /// <summary>
-    /// Launches the game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to launch</param>
-    /// <returns>The task</returns>
-    public async Task LaunchGameAsync(GameInstallation gameInstallation)
-    {
-        Logger.Trace("The game {0} is being launched...", GameId);
-
-        // Launch the game
-        bool success = await LaunchAsync(gameInstallation);
-
-        if (success)
-            // Invoke any launch actions
-            await gameInstallation.GetComponents<OnGameLaunchedComponent>().InvokeAllAsync();
-    }
-
-    /// <summary>
-    /// Creates a shortcut to launch the game from
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to create the shortcut for</param>
-    /// <param name="shortcutName">The name of the shortcut</param>
-    /// <param name="destinationDirectory">The destination directory for the shortcut</param>
-    public abstract void CreateGameShortcut(GameInstallation gameInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory);
-
-    /// <summary>
-    /// Gets the available jump list items for the game installation
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the items for</param>
-    /// <returns>The items</returns>
-    public abstract IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation);
 
     /// <summary>
     /// Indicates if the game is valid

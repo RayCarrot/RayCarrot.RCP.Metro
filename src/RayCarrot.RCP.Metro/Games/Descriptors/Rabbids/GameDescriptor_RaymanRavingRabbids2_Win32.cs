@@ -24,6 +24,16 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     #endregion
 
+    #region Private Methods
+
+    private static string GetLaunchArgs(GameInstallation gameInstallation)
+    {
+        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
+        return $"/{launchMode.ToString().ToLower()} /B Rrr2.bf";
+    }
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(GameComponentBuilder builder)
@@ -34,12 +44,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids2(x, "Rayman Raving Rabbids 2")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbids2ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
-    }
-
-    protected override string GetLaunchArgs(GameInstallation gameInstallation)
-    {
-        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
-        return $"/{launchMode.ToString().ToLower()} /B Rrr2.bf";
+        builder.Register(new Win32LaunchArgsComponent(GetLaunchArgs));
     }
 
     #endregion

@@ -227,7 +227,7 @@ public class InstalledGameViewModel : BaseViewModel
         // TODO-14: Async lock
 
         // Load info
-        GameInfoItems = new ObservableCollection<DuoGridItemViewModel>(GameInstallation.GameDescriptor.GetGameInfoItems(GameInstallation));
+        GameInfoItems = new ObservableCollection<DuoGridItemViewModel>(GameInstallation.GetComponents<GameInfoComponent>().CreateManyObjects());
 
         // Load additional launch actions
         AddAdditionalLaunchActions();
@@ -265,7 +265,19 @@ public class InstalledGameViewModel : BaseViewModel
         return ReloadAsync();
     }
 
-    public Task LaunchAsync() => GameDescriptor.LaunchGameAsync(GameInstallation);
+    public async Task LaunchAsync()
+    {
+        LaunchGameComponent? launchComponent = GameInstallation.GetComponent<LaunchGameComponent>();
+
+        if (launchComponent == null)
+        {
+            // TODO-14: Show error message to user. They probably need to select an emulator to use.
+            return;
+        }
+
+        await launchComponent.LaunchAsync();
+    }
+
     public Task OpenOptionsAsync() => Services.UI.ShowGameOptionsAsync(GameInstallation);
 
     public async Task RenameAsync()
@@ -390,6 +402,14 @@ public class InstalledGameViewModel : BaseViewModel
     {
         try
         {
+            LaunchGameComponent? component = GameInstallation.GetComponent<LaunchGameComponent>();
+
+            if (component == null)
+            {
+                // TODO-14: What do we do? Maybe best don't show the option in the UI if this can't be done. Or just error message like with launching the game.
+                return;
+            }
+
             var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 DefaultDirectory = Environment.SpecialFolder.Desktop.GetFolderPath(),
@@ -401,7 +421,7 @@ public class InstalledGameViewModel : BaseViewModel
 
             string shortcutName = String.Format(Resources.GameShortcut_ShortcutName, GameInstallation.GetDisplayName());
 
-            GameInstallation.GameDescriptor.CreateGameShortcut(GameInstallation, shortcutName, result.SelectedDirectory);
+            component.CreateShortcut(shortcutName, result.SelectedDirectory);
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
         }

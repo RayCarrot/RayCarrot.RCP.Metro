@@ -16,6 +16,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbids;
 
     public override LocalizedString DisplayName => "Rayman Raving Rabbids";
+    // TODO-14: Launch game exe directly and allow custom args like for RGH?
     public override string DefaultFileName => "CheckApplication.exe";
     public override DateTime ReleaseDate => new(2006, 12, 07);
 

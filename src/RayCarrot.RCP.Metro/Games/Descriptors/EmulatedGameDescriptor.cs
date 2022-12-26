@@ -4,6 +4,8 @@ using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Rework emulator system to work by overriding components. Refer to as game clients where Steam can be treated as such.
+
 /// <summary>
 /// A game descriptor for an emulated game
 /// </summary>
@@ -41,53 +43,53 @@ public abstract class EmulatedGameDescriptor : GameDescriptor
                 isAvailableFunc: _ => true));
     }
 
-    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
-    {
-        EmulatorInstallation? emu = GetEmulator(gameInstallation);
+    //protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
+    //{
+    //    EmulatorInstallation? emu = GetEmulator(gameInstallation);
 
-        if (emu == null)
-        {
-            // TODO-UPDATE: Show error message
-            return false;
-        }
+    //    if (emu == null)
+    //    {
+    //        // TODO-UPDATE: Show error message
+    //        return false;
+    //    }
 
-        return await emu.EmulatorDescriptor.LaunchGameAsync(gameInstallation, emu);
-    }
+    //    return await emu.EmulatorDescriptor.LaunchGameAsync(gameInstallation, emu);
+    //}
 
     #endregion
 
     #region Public Methods
 
-    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
-    {
-        EmulatorInstallation? emu = GetEmulator(gameInstallation);
+    //public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
+    //{
+    //    EmulatorInstallation? emu = GetEmulator(gameInstallation);
 
-        if (emu == null)
-            return base.GetGameInfoItems(gameInstallation);
+    //    if (emu == null)
+    //        return base.GetGameInfoItems(gameInstallation);
 
-        return base.GetGameInfoItems(gameInstallation).Concat(emu.EmulatorDescriptor.GetGameInfoItems(gameInstallation, emu));
-    }
+    //    return base.GetGameInfoItems(gameInstallation).Concat(emu.EmulatorDescriptor.GetGameInfoItems(gameInstallation, emu));
+    //}
 
-    public override void CreateGameShortcut(GameInstallation gameInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory)
-    {
-        EmulatorInstallation? emu = GetEmulator(gameInstallation);
+    //public override void CreateGameShortcut(GameInstallation gameInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory)
+    //{
+    //    EmulatorInstallation? emu = GetEmulator(gameInstallation);
 
-        if (emu == null)
-            // TODO-UPDATE: Show error message
-            return;
+    //    if (emu == null)
+    //        // TODO-UPDATE: Show error message
+    //        return;
 
-        emu.EmulatorDescriptor.CreateGameShortcut(gameInstallation, emu, shortcutName, destinationDirectory);
-    }
+    //    emu.EmulatorDescriptor.CreateGameShortcut(gameInstallation, emu, shortcutName, destinationDirectory);
+    //}
 
-    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
-    {
-        EmulatorInstallation? emu = GetEmulator(gameInstallation);
+    //public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
+    //{
+    //    EmulatorInstallation? emu = GetEmulator(gameInstallation);
 
-        if (emu == null)
-            return Enumerable.Empty<JumpListItemViewModel>();
+    //    if (emu == null)
+    //        return Enumerable.Empty<JumpListItemViewModel>();
 
-        return emu.EmulatorDescriptor.GetJumpListItems(gameInstallation, emu);
-    }
+    //    return emu.EmulatorDescriptor.GetJumpListItems(gameInstallation, emu);
+    //}
 
     /// <summary>
     /// Gets the emulator installation associated with this game installation or null if none was found

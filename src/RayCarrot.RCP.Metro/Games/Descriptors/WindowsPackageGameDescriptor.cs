@@ -1,7 +1,6 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.IO;
+using RayCarrot.RCP.Metro.Games.Components;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Core;
 using Windows.Management.Deployment;
 
 namespace RayCarrot.RCP.Metro;
@@ -14,23 +13,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class WindowsPackageGameDescriptor : GameDescriptor
 {
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
-    #region Private Properties
-
-    /// <summary>
-    /// Gets the legacy launch path to use for launching the game. This method of launching should only be used when no
-    /// other method is available. If the package is not found this method will launch a new Windows Explorer window
-    /// instead. The entry point is defaulted to "!APP" and may not always be correct.
-    /// </summary>
-    private string LegacyLaunchPath => "shell:appsFolder\\" + $"{FullPackageName}!App";
-
-    #endregion
-
     #region Public Properties
 
     /// <summary>
@@ -61,29 +43,12 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
+    protected override void RegisterComponents(GameComponentBuilder builder)
     {
-        try
-        {
-            Package? package = GetPackage();
+        base.RegisterComponents(builder);
 
-            if (package == null)
-            {
-                // TODO-14: Handle? Only log?
-                return false;
-            }
-
-            // Launch the first app entry for the package
-            AppListEntry mainEntry = (await package.GetAppListEntriesAsync()).First();
-            return await mainEntry.LaunchAsync();
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex, "Launching Windows Store application");
-            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, gameInstallation.GetDisplayName()));
-
-            return false;
-        }
+        builder.Register<LaunchGameComponent, WindowsPackageLaunchGameComponent>();
+        builder.Register(new WindowsPackageComponent(PackageName, FullPackageName));
     }
 
     protected override bool IsGameLocationValid(FileSystemPath installLocation)
@@ -114,62 +79,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         // Return the install directory, if found
         return new GameFinder_FoundResult(GetPackageInstallDirectory());
     });
-
-    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
-    {
-        // Get the package
-        Package? package = GetPackage();
-
-        if (package == null)
-            return base.GetGameInfoItems(gameInstallation);
-
-        return base.GetGameInfoItems(gameInstallation).Concat(new[]
-        {
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreDependencies)),
-                text: package.Dependencies.Select(x => x.Id.Name).JoinItems(", "),
-                minUserLevel: UserLevel.Technical),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreFullName)),
-                text: package.Id.FullName,
-                minUserLevel: UserLevel.Advanced),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreArchitecture)),
-                text: package.Id.Architecture.ToString(),
-                minUserLevel: UserLevel.Technical),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreVersion)),
-                text: $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}",
-                minUserLevel: UserLevel.Technical),
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_WinStoreInstallDate)),
-                text: new GeneratedLocString(() => package.InstalledDate.DateTime.ToString(CultureInfo.CurrentCulture)),
-                minUserLevel: UserLevel.Advanced),
-        });
-    }
-
-    public override void CreateGameShortcut(GameInstallation gameInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory)
-    {
-        // Create the shortcut
-        Services.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
-
-        Logger.Trace("A shortcut was created for {0} under {1}", GameId, destinationDirectory);
-    }
-
-    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation)
-    {
-        return new[]
-        {
-            new JumpListItemViewModel(
-                gameInstallation: gameInstallation,
-                name: gameInstallation.GetDisplayName(),
-                iconSource: LegacyLaunchPath,
-                launchPath: LegacyLaunchPath,
-                workingDirectory: null,
-                launchArguments: null, 
-                id: gameInstallation.InstallationId)
-        };
-    }
 
     /// <summary>
     /// Gets the package install directory

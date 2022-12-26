@@ -339,7 +339,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 {
                     try
                     {
-                        GameDescriptor.CreateGameShortcut(InstalledGame, shortcutName, dir);
+                        InstalledGame.GetComponent<LaunchGameComponent>()?.CreateShortcut(shortcutName, dir);
                     }
                     catch (Exception ex)
                     {

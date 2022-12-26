@@ -39,7 +39,8 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
                 // Create a jump list
                 new JumpList(GamesManager.GetInstalledGames().
                         // Get the items for each game
-                        SelectMany(x => x.GameDescriptor.GetJumpListItems(x)).
+                        SelectMany(x => x.GetComponent<LaunchGameComponent>()?.GetJumpListItems() 
+                                        ?? Enumerable.Empty<JumpListItemViewModel>()).
                         // Keep only the included items
                         Where(x => Data.App_JumpListItems.Any(j => j.ItemId == x.Id)).
                         // Keep custom order
@@ -68,10 +69,19 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
 
     public void AddGame(GameInstallation gameInstallation)
     {
+        // TODO-14: Do emulated games get added to the jump list on add with this? Test!
+        LaunchGameComponent? component = gameInstallation.GetComponent<LaunchGameComponent>();
+        
+        if (component == null)
+        {
+            // TODO-14: Log here (and many other places too...)
+            return;
+        }
+
         int count = Data.App_JumpListItems.Count;
         JumpListItemComparer comparer = new(GamesManager);
 
-        foreach (string itemId in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation).Select(x => x.Id))
+        foreach (string itemId in component.GetJumpListItems().Select(x => x.Id))
             Data.App_JumpListItems.AddSorted(new JumpListItem(gameInstallation.InstallationId, itemId), comparer);
 
         if (count != Data.App_JumpListItems.Count)

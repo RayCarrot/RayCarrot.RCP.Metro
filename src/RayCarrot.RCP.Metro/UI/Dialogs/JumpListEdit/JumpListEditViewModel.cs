@@ -24,7 +24,12 @@ public class JumpListEditViewModel : UserInputViewModel
         // Get all jump list items
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            foreach (JumpListItemViewModel item in gameInstallation.GameDescriptor.GetJumpListItems(gameInstallation))
+            LaunchGameComponent? component = gameInstallation.GetComponent<LaunchGameComponent>();
+
+            if (component == null)
+                continue;
+
+            foreach (JumpListItemViewModel item in component.GetJumpListItems())
             {
                 if (Services.Data.App_JumpListItems.Any(x => x.ItemId == item.Id))
                     included.Add(item);

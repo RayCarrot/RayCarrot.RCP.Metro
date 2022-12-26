@@ -11,6 +11,7 @@ public class GameComponentBuilder
 
     private void Register(Component component)
     {
+        // TODO-14: We also need to get the component on other types here since they might be defining requirements separate from the base... Easiest way if to have multiple attributes where some of them are inherited.
         GameComponentAttribute? attr = component.BaseType.GetCustomAttribute<GameComponentAttribute>();
 
 #if DEBUG
@@ -71,6 +72,11 @@ public class GameComponentBuilder
     /// <returns></returns>
     public GameComponentProvider Build(GameInstallation gameInstallation)
     {
+        // TODO-14: This should probably be recursive - but how?
+        // Register components from components
+        foreach (Component component in _components.ToArray())
+            component.GetInstance().RegisterComponents(this);
+
 #if DEBUG
         // Verify all required components are there. This code is not
         // optimized at all as it will do multiple enumerations.
@@ -94,9 +100,11 @@ public class GameComponentBuilder
 
     private record Component(Type BaseType, Type InstanceType, GameComponent? Instance, ComponentPriority Priority)
     {
+        public GameComponent? Instance { get; private set; } = Instance;
+
 #if DEBUG
         public GameComponentAttribute? Attribute { get; set; }
 #endif
-        public GameComponent GetInstance() => Instance ?? (GameComponent)Activator.CreateInstance(InstanceType);
+        public GameComponent GetInstance() => Instance ??= (GameComponent)Activator.CreateInstance(InstanceType);
     }
 }

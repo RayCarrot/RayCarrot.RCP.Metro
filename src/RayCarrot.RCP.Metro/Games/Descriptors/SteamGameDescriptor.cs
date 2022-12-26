@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -7,12 +7,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class SteamGameDescriptor : GameDescriptor
 {
-    #region Logger
-
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-    #endregion
-
     #region Public Properties
 
     public override GamePlatform Platform => GamePlatform.Steam;
@@ -24,19 +18,26 @@ public abstract class SteamGameDescriptor : GameDescriptor
 
     #endregion
 
+    #region Private Methods
+
+    private IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) => new[]
+    {
+        new DuoGridItemViewModel(
+            header: new ResourceLocString(nameof(Resources.GameInfo_SteamID)),
+            text: SteamID,
+            minUserLevel: UserLevel.Advanced)
+    };
+
+    #endregion
+
     #region Protected Methods
 
-    protected override async Task<bool> LaunchAsync(GameInstallation gameInstallation)
+    protected override void RegisterComponents(GameComponentBuilder builder)
     {
-        Logger.Trace("The game {0} is launching with Steam ID {1}", GameId, SteamID);
+        base.RegisterComponents(builder);
 
-        // TODO-14: Does this return the Steam/game process or just explorer.exe?
-        // Launch the game
-        Process? process = await Services.File.LaunchFileAsync(SteamHelpers.GetStorePageURL(SteamID));
-
-        Logger.Info("The game {0} has been launched", GameId);
-
-        return process != null;
+        builder.Register(new GameInfoComponent(GetGameInfoItems));
+        builder.Register<LaunchGameComponent>(new SteamLaunchGameComponent(SteamID));
     }
 
     #endregion
@@ -67,34 +68,6 @@ public abstract class SteamGameDescriptor : GameDescriptor
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(SteamID);
-
-    public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation) =>
-        base.GetGameInfoItems(gameInstallation).Concat(new[]
-        {
-            new DuoGridItemViewModel(
-                header: new ResourceLocString(nameof(Resources.GameInfo_SteamID)),
-                text: SteamID,
-                minUserLevel: UserLevel.Advanced)
-        });
-
-    public override void CreateGameShortcut(GameInstallation gameInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory)
-    {
-        Services.File.CreateURLShortcut(shortcutName, destinationDirectory, SteamHelpers.GetGameLaunchURI(SteamID));
-
-        Logger.Trace("An URL shortcut was created for {0} under {1}", GameId, destinationDirectory);
-    }
-
-    public override IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation) => new[]
-    {
-        new JumpListItemViewModel(
-            gameInstallation: gameInstallation,
-            name: gameInstallation.GetDisplayName(),
-            iconSource: gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName,
-            launchPath: SteamHelpers.GetGameLaunchURI(SteamID),
-            workingDirectory: null,
-            launchArguments: null, 
-            id: gameInstallation.InstallationId)
-    };
 
     #endregion
 }

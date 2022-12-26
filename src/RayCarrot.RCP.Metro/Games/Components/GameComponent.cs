@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+
+namespace RayCarrot.RCP.Metro;
 
 // TODO: Find some way to integrate this with the dependency injection system
 
@@ -13,6 +15,8 @@ public abstract class GameComponent
 
     public GameDescriptor GameDescriptor => _gameDescriptor ?? throw new Exception("The component has not been initialized");
     public GameInstallation GameInstallation => _gameInstallation ?? throw new Exception("The component has not been initialized");
+
+    public virtual void RegisterComponents(GameComponentBuilder builder) { }
 
     public void Initialize(GameInstallation gameInstallation)
     {
