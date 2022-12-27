@@ -7,6 +7,7 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class GameComponentBuilder : IGameComponentBuilder
 {
+    private bool _hasBuilt;
     private readonly List<Component> _components = new();
 
     public void Register(Type baseType, Type instanceType, GameComponent? instance, ComponentPriority priority)
@@ -25,11 +26,16 @@ public class GameComponentBuilder : IGameComponentBuilder
     }
 
     /// <summary>
-    /// Builds the components to a provider
+    /// Builds the components and returns them
     /// </summary>
-    /// <returns>The provider</returns>
-    public GameComponentProvider Build(GameInstallation gameInstallation)
+    /// <returns>The built components</returns>
+    public IEnumerable<Component> Build()
     {
+        if (_hasBuilt)
+            throw new InvalidOperationException("The components can only be built once");
+
+        _hasBuilt = true;
+
         // TODO-14: This should probably be recursive - but how?
         // Register components from components
         foreach (Component component in _components.ToArray())
@@ -49,12 +55,10 @@ public class GameComponentBuilder : IGameComponentBuilder
         }
 #endif
 
-        return new GameComponentProvider(_components.
-            OrderByDescending(x => x.Priority).
-            Select(x => (x.BaseType, x.GetInstance())), gameInstallation);
+        return _components.OrderByDescending(x => x.Priority);
     }
 
-    private record Component(Type BaseType, Type InstanceType, GameComponent? Instance, ComponentPriority Priority)
+    public record Component(Type BaseType, Type InstanceType, GameComponent? Instance, ComponentPriority Priority)
     {
         private GameComponent? Instance { get; set; } = Instance;
         public GameComponent GetInstance() => Instance ??= (GameComponent)Activator.CreateInstance(InstanceType);

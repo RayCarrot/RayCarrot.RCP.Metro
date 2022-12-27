@@ -205,7 +205,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Register the components from the game descriptor
         RegisterComponents(builder);
 
-        return builder.Build(gameInstallation);
+        return builder.BuildProvider(gameInstallation);
     }
 
     public abstract IEnumerable<GameAddAction> GetAddActions();

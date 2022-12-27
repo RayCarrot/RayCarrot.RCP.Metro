@@ -40,4 +40,15 @@ public static class GameComponentBuilderExtensions
     {
         builder.Register(typeof(T), typeof(U), null, priority);
     }
+
+    /// <summary>
+    /// Builds the components to a provider
+    /// </summary>
+    /// <param name="builder">The component builder</param>
+    /// <param name="gameInstallation">The game installation to build for</param>
+    /// <returns>The provider with the build components</returns>
+    public static GameComponentProvider BuildProvider(this GameComponentBuilder builder, GameInstallation gameInstallation)
+    {
+        return new GameComponentProvider(builder.Build().Select(x => (x.BaseType, x.GetInstance())), gameInstallation);
+    }
 }
