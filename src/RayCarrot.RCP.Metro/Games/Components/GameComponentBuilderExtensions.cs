@@ -12,7 +12,7 @@ public static class GameComponentBuilderExtensions
     public static void Register<T>(this IGameComponentBuilder builder, T component, ComponentPriority priority = ComponentPriority.Normal)
         where T : GameComponent
     {
-        builder.Register(typeof(T), typeof(T), component, priority);
+        builder.Register(typeof(T), component.GetType(), component, priority);
     }
 
     /// <summary>
