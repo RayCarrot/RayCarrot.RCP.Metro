@@ -15,7 +15,7 @@ public abstract class Win32GameDescriptor : GameDescriptor
 
     #region Protected Methods
 
-    protected override void RegisterComponents(GameComponentBuilder builder)
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

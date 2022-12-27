@@ -133,7 +133,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// Registers the game components for a game installation
     /// </summary>
     /// <param name="builder">The component builder</param>
-    protected virtual void RegisterComponents(GameComponentBuilder builder)
+    protected virtual void RegisterComponents(IGameComponentBuilder builder)
     {
         builder.Register<GameInfoComponent, DefaultGameInfoComponent>();
         builder.Register<GameValidationCheckComponent, InstallDataGameValidationCheckComponent>();

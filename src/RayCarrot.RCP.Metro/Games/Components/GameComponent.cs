@@ -16,7 +16,7 @@ public abstract class GameComponent
     public GameDescriptor GameDescriptor => _gameDescriptor ?? throw new Exception("The component has not been initialized");
     public GameInstallation GameInstallation => _gameInstallation ?? throw new Exception("The component has not been initialized");
 
-    public virtual void RegisterComponents(GameComponentBuilder builder) { }
+    public virtual void RegisterComponents(IGameComponentBuilder builder) { }
 
     public void Initialize(GameInstallation gameInstallation)
     {

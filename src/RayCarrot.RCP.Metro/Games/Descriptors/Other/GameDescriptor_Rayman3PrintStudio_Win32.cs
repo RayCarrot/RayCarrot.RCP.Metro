@@ -25,7 +25,7 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
 
     #region Protected Methods
 
-    protected override void RegisterComponents(GameComponentBuilder builder)
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

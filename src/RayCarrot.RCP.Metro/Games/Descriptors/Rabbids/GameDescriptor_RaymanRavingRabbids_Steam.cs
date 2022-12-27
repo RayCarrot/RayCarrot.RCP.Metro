@@ -27,7 +27,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Steam : SteamGameDescript
 
     #region Protected Methods
 
-    protected override void RegisterComponents(GameComponentBuilder builder)
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

@@ -33,7 +33,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
 
     #region Protected Methods
 
-    protected override void RegisterComponents(GameComponentBuilder builder)
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

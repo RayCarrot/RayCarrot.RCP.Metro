@@ -58,7 +58,7 @@ public class WindowsPackageComponent : GameComponent
         };
     }
 
-    public override void RegisterComponents(GameComponentBuilder builder)
+    public override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

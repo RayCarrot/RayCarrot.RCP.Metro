@@ -95,7 +95,7 @@ public class Win32LaunchGameComponent : LaunchGameComponent
 
     #region Public Methods
 
-    public override void RegisterComponents(GameComponentBuilder builder)
+    public override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

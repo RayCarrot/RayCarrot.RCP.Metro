@@ -35,7 +35,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
 
     #region Protected Methods
 
-    protected override void RegisterComponents(GameComponentBuilder builder)
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

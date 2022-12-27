@@ -33,7 +33,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20021004_Win32 : Win32GameDescri
 
     #region Protected Methods
 
-    protected override void RegisterComponents(GameComponentBuilder builder)
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 

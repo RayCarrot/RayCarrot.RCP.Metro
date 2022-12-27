@@ -33,7 +33,7 @@ public sealed class GameDescriptor_RaymanLegends_Steam : SteamGameDescriptor
 
     #region Protected Methods
 
-    protected override void RegisterComponents(GameComponentBuilder builder)
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 
