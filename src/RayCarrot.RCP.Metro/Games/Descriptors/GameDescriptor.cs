@@ -187,11 +187,11 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     #region Public Methods
 
     /// <summary>
-    /// Builds a new component provider for the game installation
+    /// Registers the components for a game installation
     /// </summary>
     /// <param name="gameInstallation">The game installation to build the components for</param>
-    /// <returns>The component provider</returns>
-    public GameComponentProvider BuildComponents(GameInstallation gameInstallation)
+    /// <returns>The component builder with the components ready to be built</returns>
+    public GameComponentBuilder RegisterComponents(GameInstallation gameInstallation)
     {
         // Create the builder
         GameComponentBuilder builder = new();
@@ -205,7 +205,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Register the components from the game descriptor
         RegisterComponents(builder);
 
-        return builder.BuildProvider(gameInstallation);
+        return builder;
     }
 
     public abstract IEnumerable<GameAddAction> GetAddActions();

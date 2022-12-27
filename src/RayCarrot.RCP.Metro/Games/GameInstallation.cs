@@ -59,7 +59,7 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
     [MemberNotNull(nameof(ComponentProvider))]
     public void RebuildComponents()
     {
-        ComponentProvider = GameDescriptor.BuildComponents(this);
+        ComponentProvider = GameDescriptor.RegisterComponents(this).BuildProvider(this);
     }
 
     public int CompareTo(GameInstallation? other)

@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Have a similar way of showing game client installation data?
 public class GameDebugViewModel : BaseViewModel, 
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>, IRecipient<ModifiedGamesMessage>
 {
@@ -33,6 +35,7 @@ public class GameDebugViewModel : BaseViewModel,
     public bool IsDemo { get; private set; }
     public GameIconAsset Icon { get; private set; }
     public JToken? GameInstallationJToken { get; private set; }
+    public ObservableCollection<GameComponentBuilder.Component>? Components { get; private set; }
 
     public ObservableCollection<GameIcon.GameIconSize> IconSizes { get; }
 
@@ -41,12 +44,25 @@ public class GameDebugViewModel : BaseViewModel,
         GameDescriptor = SelectedGameInstallation?.GameDescriptor;
         IsDemo = GameDescriptor?.IsDemo ?? false;
         Icon = GameDescriptor?.Icon ?? GameIconAsset.Rayman1;
-        GameInstallationJToken = SelectedGameInstallation == null 
-            ? null 
-            : JToken.FromObject(SelectedGameInstallation.GameInstallation, JsonSerializer.Create(new JsonSerializerSettings() 
+
+        if (SelectedGameInstallation != null && GameDescriptor != null)
+        {
+            // Get game data
+            JsonSerializerSettings jsonSettings = new()
             {
                 Converters = new JsonConverter[] { new StringEnumConverter() }
-            }));
+            };
+            GameInstallationJToken = JToken.FromObject(SelectedGameInstallation.GameInstallation, JsonSerializer.Create(jsonSettings));
+
+            // Get components
+            GameComponentBuilder builder = GameDescriptor.RegisterComponents(SelectedGameInstallation.GameInstallation);
+            Components = builder.Build().ToObservableCollection();
+        }
+        else
+        {
+            GameInstallationJToken = null;
+            Components = null;
+        }
     }
 
     public void RefreshGameInstallations(GameInstallation? selectedGameInstallation)

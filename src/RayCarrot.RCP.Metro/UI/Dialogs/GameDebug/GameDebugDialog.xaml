@@ -29,7 +29,8 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer x:Name="ContentScrollViewer" 
+                      Grid.Row="1">
             <StackPanel>
                 <Grid Margin="0 0 0 8">
                     <Grid.ColumnDefinitions>
@@ -70,7 +71,7 @@
                            binding to view models). It doesn't really matter for a debug dialog, but I don't
                            want that for a reusable control. -->
                 <TreeView ItemsSource="{Binding Path=GameInstallationJToken}"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                          PreviewMouseWheel="TreeView_OnPreviewMouseWheel">
                     <TreeView.Resources>
                         <DataTemplate x:Key="ValueTemplate" DataType="{x:Type jlinq:JValue}">
                             <TextBlock Text="{Binding Mode=OneTime, Converter={local:JValueToStringConverter}}"
@@ -182,7 +183,47 @@
                     </TreeView.ItemTemplateSelector>
                 </TreeView>
 
-                <!-- TODO-14: Add more debug info? Components? Game descriptor properties? Do the same for emulators? -->
+                <Separator />
+
+                <!-- TODO: Improve component visualization. Show where they get registered from? Show priority? Show overriden components? -->
+                <Grid>
+                    <Grid.Resources>
+                        <CollectionViewSource x:Key="ComponentsSource" Source="{Binding Path=Components}">
+                            <CollectionViewSource.GroupDescriptions>
+                                <PropertyGroupDescription PropertyName="BaseType.Name" />
+                            </CollectionViewSource.GroupDescriptions>
+                        </CollectionViewSource>
+                    </Grid.Resources>
+
+                    <ItemsControl ItemsSource="{Binding Source={StaticResource ComponentsSource}}">
+                        <ItemsControl.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                                        <StackPanel Orientation="Horizontal" 
+                                                    TextBlock.FontWeight="Bold"
+                                                    Margin="0 8 0 0">
+                                            <TextBlock Text="{Binding Path=Name, Mode=OneTime}" />
+                                            <TextBlock Text=" (" />
+                                            <TextBlock Text="{Binding Path=ItemCount, Mode=OneTime}" />
+                                            <TextBlock Text=")" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ItemsControl.GroupStyle>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="• " />
+                                    <TextBlock Text="{Binding Path=InstanceType.Name, Mode=OneTime}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+                </Grid>
 
             </StackPanel>
         </ScrollViewer>
