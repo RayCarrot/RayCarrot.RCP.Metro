@@ -34,7 +34,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
         FileSystemPath mountPath = gameInstallation.InstallLocation + "Disc" + "RAY1DEMO.cue";
 
         if (mountPath.FileExists)
-            gameInstallation.SetValue(GameDataKey.Emu_DosBox_MountPath, mountPath);
+            gameInstallation.SetValue(GameDataKey.Client_DosBox_MountPath, mountPath);
 
         return Task.CompletedTask;
     }
@@ -49,6 +49,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
 
         builder.Register(new GameConfigComponent(x => new Rayman1ConfigViewModel(this, x)));
         builder.Register(new OnGameAddedComponent(TryFindMountPath));
+        builder.Register<MsDosGameRequiresDiscComponent>();
     }
 
     #endregion

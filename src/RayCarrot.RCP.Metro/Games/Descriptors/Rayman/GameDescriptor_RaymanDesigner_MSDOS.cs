@@ -40,6 +40,7 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
         builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
+        builder.Register<MsDosGameRequiresDiscComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));

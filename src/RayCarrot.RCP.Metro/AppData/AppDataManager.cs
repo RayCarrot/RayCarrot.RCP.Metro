@@ -230,6 +230,10 @@ public class AppDataManager
             Data.Reset();
         }
 
+        // Rebuild game components
+        foreach (GameInstallation gameInstallation in Data.Game_GameInstallations)
+            gameInstallation.RebuildComponents();
+
         string? assemblyPath = Assembly.GetEntryAssembly()?.Location;
 
         // Log some debug information

@@ -19,7 +19,6 @@ public sealed class GameDescriptor_Rayman1_Demo_19951204_MSDOS : MsDosGameDescri
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
 
-    public override bool RequiresDisc => false;
     public override string ExecutableName => "RAYMAN.EXE";
 
     #endregion

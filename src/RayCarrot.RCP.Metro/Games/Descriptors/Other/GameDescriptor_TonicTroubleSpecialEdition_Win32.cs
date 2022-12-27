@@ -42,7 +42,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TonicTrouble(x, "Tonic Trouble Special Edition")));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
 
-        builder.Register(new Win32LaunchArgsComponent(GetLaunchArgs));
+        builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC))));
     }

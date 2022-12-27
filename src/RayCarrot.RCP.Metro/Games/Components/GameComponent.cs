@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Emulators;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,6 +16,9 @@ public abstract class GameComponent
 
     public GameDescriptor GameDescriptor => _gameDescriptor ?? throw new Exception("The component has not been initialized");
     public GameInstallation GameInstallation => _gameInstallation ?? throw new Exception("The component has not been initialized");
+
+    public EmulatorInstallation GetRequiredGameClientInstallation() =>
+        GameDescriptor.GetGameClient(GameInstallation) ?? throw new Exception("The game does not have a game client selected");
 
     public virtual void RegisterComponents(IGameComponentBuilder builder) { }
 

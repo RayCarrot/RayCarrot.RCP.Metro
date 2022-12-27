@@ -44,7 +44,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids2(x, "Rayman Raving Rabbids 2")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbids2ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
-        builder.Register(new Win32LaunchArgsComponent(GetLaunchArgs));
+        builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
     }
 
     #endregion

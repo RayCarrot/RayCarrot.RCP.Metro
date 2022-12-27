@@ -9,10 +9,9 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
 {
     #region Constructor
 
-    public EmulatorGameConfigPageViewModel(GameInstallation gameInstallation, EmulatedGameDescriptor gameDescriptor)
+    public EmulatorGameConfigPageViewModel(GameInstallation gameInstallation)
     {
         GameInstallation = gameInstallation;
-        GameDescriptor = gameDescriptor;
 
         ConfigureEmulatorsCommand = new AsyncRelayCommand(ConfigureEmulatorsAsync);
 
@@ -49,7 +48,6 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
     public override bool CanUseRecommended => EmulatorGameConfig?.CanUseRecommended ?? false;
 
     public GameInstallation GameInstallation { get; }
-    public EmulatedGameDescriptor GameDescriptor { get; }
 
     public ObservableCollection<EmulatorViewModel>? Emulators { get; set; }
 
@@ -63,7 +61,7 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
             Invoke();
             async void Invoke()
             {
-                await GameDescriptor.SetEmulatorAsync(GameInstallation, value?.EmulatorInstallation);
+                await GameInstallation.GameDescriptor.SetGameClientAsync(GameInstallation, value?.EmulatorInstallation);
                 await SetSelectedEmulatorAsync(value);
             }
         }
@@ -123,11 +121,11 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
         await SetSelectedEmulatorAsync(null);
 
         var emulators = Services.Emulators.GetInstalledEmulators().
-            Where(x => x.EmulatorDescriptor.SupportedPlatforms.Contains(GameDescriptor.Platform)).
+            Where(x => x.EmulatorDescriptor.SupportedPlatforms.Contains(GameInstallation.GameDescriptor.Platform)).
             Select(x => new EmulatorViewModel(x));
         Emulators = new ObservableCollection<EmulatorViewModel>(emulators);
 
-        string? emuId = GameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId);
+        string? emuId = GameInstallation.GetValue<string>(GameDataKey.Client_SelectedClient);
 
         if (emuId != null)
             await SetSelectedEmulatorAsync(Emulators.FirstOrDefault(x => x.EmulatorInstallation.InstallationId == emuId));
@@ -167,7 +165,7 @@ public class EmulatorGameConfigPageViewModel : GameOptionsDialogPageViewModel,
     {
         if (message.GameInstallations.Contains(GameInstallation))
         {
-            string? emuId = GameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId);
+            string? emuId = GameInstallation.GetValue<string>(GameDataKey.Client_SelectedClient);
 
             if (emuId != SelectedEmulator?.EmulatorInstallation.InstallationId)
                 await SetSelectedEmulatorAsync(Emulators?.FirstOrDefault(x => x.EmulatorInstallation.InstallationId == emuId));

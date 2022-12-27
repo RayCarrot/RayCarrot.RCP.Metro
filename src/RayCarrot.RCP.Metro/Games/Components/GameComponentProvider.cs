@@ -41,6 +41,4 @@ public class GameComponentProvider
     {
         return _components.TryGetValue(typeof(T), out List<GameComponent> c) ? c.Cast<T>() : Array.Empty<T>();
     }
-
-    public IEnumerable<GameComponent> GetComponents() => _components.Values.SelectMany(x => x);
 }

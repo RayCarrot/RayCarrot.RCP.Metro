@@ -78,14 +78,14 @@ public class EmulatorsManager
 
         Messenger.Send(new AddedEmulatorsMessage(installation));
         
-        // If there are games which don't have an emulator selected we attempt to use this one
+        // If there are games which require emulators and don't have an emulator selected we attempt to use this one
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            if (gameInstallation.GameDescriptor is EmulatedGameDescriptor gameDescriptor &&
-                descriptor.SupportedPlatforms.Contains(gameDescriptor.Platform) &&
-                gameDescriptor.GetEmulator(gameInstallation) == null)
+            if (gameInstallation.GameDescriptor.Platform.GetInfo().RequiresEmulator &&
+                descriptor.SupportedPlatforms.Contains(gameInstallation.GameDescriptor.Platform) &&
+                gameInstallation.GameDescriptor.GetGameClient(gameInstallation) == null)
             {
-                await gameDescriptor.SetEmulatorAsync(gameInstallation, installation);
+                await gameInstallation.GameDescriptor.SetGameClientAsync(gameInstallation, installation);
             }
         }
 
@@ -99,11 +99,8 @@ public class EmulatorsManager
         // Deselect this emulator from any games which use it
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            if (gameInstallation.GameDescriptor is EmulatedGameDescriptor gameDescriptor &&
-                gameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId) == emulatorInstallation.InstallationId)
-            {
-                await gameDescriptor.SetEmulatorAsync(gameInstallation, null);
-            }
+            if (gameInstallation.GetValue<string>(GameDataKey.Client_SelectedClient) == emulatorInstallation.InstallationId)
+                await gameInstallation.GameDescriptor.SetGameClientAsync(gameInstallation, null);
         }
 
         Messenger.Send(new RemovedEmulatorsMessage(emulatorInstallation));

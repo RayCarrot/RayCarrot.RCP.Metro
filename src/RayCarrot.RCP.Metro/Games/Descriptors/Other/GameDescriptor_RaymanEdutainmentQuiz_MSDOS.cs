@@ -2,8 +2,6 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.Emulators;
-using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -41,7 +39,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
 
     #region Private Methods
 
-    private IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
+    private static IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
     {
         // Add a lunch action for each game mode
         string[] gameModes = gameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData).AvailableGameModes;
@@ -57,20 +55,18 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
                 iconKind: GenericIconKind.GameAction_Play,
                 command: new AsyncRelayCommand(async () =>
                 {
-                    EmulatorInstallation? emulatorInstallation = GetEmulator(gameInstallation);
-
-                    if (emulatorInstallation?.EmulatorDescriptor is not DosBoxEmulatorDescriptor emulatorDescriptor)
+                    if (gameInstallation.GetComponent<LaunchGameComponent>() is not DosBoxLaunchGameComponent c)
                         return;
 
-                    string args = GetLaunchArgs(x);
-                    bool success = await emulatorDescriptor.LaunchGameAsync(gameInstallation, emulatorInstallation, args);
+                    string args = Ray1LaunchArgumentsComponent.GetLaunchArgs(x);
+                    bool success = await c.LaunchGameAsync(args);
 
                     if (success)
                         await gameInstallation.GetComponents<OnGameLaunchedComponent>().InvokeAllAsync();
                 })));
     }
 
-    private IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
+    private static IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
     {
         UserData_Ray1MsDosData data = gameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
         return data.AvailableGameModes.Select(x => new GameProgressionManager_RaymanEdutainment(
@@ -93,6 +89,8 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanEdutainmentConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
+        builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
+        builder.Register<MsDosGameRequiresDiscComponent>();
     }
 
     #endregion
@@ -111,14 +109,6 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         @"PCMAP\SNDD8B.DAT",
         @"PCMAP\SNDH8B.DAT",
     };
-
-    public override string GetLaunchArgs(GameInstallation gameInstallation)
-    {
-        string gameMode = gameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData).SelectedGameMode;
-        return GetLaunchArgs(gameMode);
-    }
-
-    public string GetLaunchArgs(string gameMode) => $"ver={gameMode}";
 
     #endregion
 }

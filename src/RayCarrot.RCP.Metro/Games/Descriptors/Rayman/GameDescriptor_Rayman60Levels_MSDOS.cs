@@ -39,6 +39,7 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman60Levels(x, "Rayman 60 Levels")));
         builder.Register(new GameConfigComponent(x => new RaymanByHisFansConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register<MsDosGameRequiresDiscComponent>();
     }
 
     #endregion

@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Provides functionality to a launch a Win32 game. The platform doesn't have to be <see cref="GamePlatform.Win32"/>,
-/// but a <see cref="Win32LaunchPathComponent"/> is required. Optionally a <see cref="Win32LaunchArgsComponent"/> can
+/// but a <see cref="Win32LaunchPathComponent"/> is required. Optionally a <see cref="LaunchArgumentsComponent"/> can
 /// also be used to specify launch arguments.
 /// </summary>
 [RequiredGameComponents(typeof(Win32LaunchPathComponent))]
@@ -49,7 +49,7 @@ public class Win32LaunchGameComponent : LaunchGameComponent
     {
         // Get the launch info
         FileSystemPath launchPath = GameInstallation.GetRequiredComponent<Win32LaunchPathComponent>().CreateObject();
-        string? launchArgs = GameInstallation.GetComponent<Win32LaunchArgsComponent>()?.CreateObject();
+        string? launchArgs = GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
 
         return new[]
         {
@@ -68,7 +68,7 @@ public class Win32LaunchGameComponent : LaunchGameComponent
     {
         // Get the launch info
         FileSystemPath launchPath = GameInstallation.GetRequiredComponent<Win32LaunchPathComponent>().CreateObject();
-        string? launchArgs = GameInstallation.GetComponent<Win32LaunchArgsComponent>()?.CreateObject();
+        string? launchArgs = GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
 
         Logger.Trace("The game {0} launch info has been retrieved as Path = {1}, Args = {2}",
             gameInstallation.FullId, launchPath, launchArgs);
@@ -111,7 +111,7 @@ public class Win32LaunchGameComponent : LaunchGameComponent
     {
         // Get the launch info
         FileSystemPath launchPath = GameInstallation.GetRequiredComponent<Win32LaunchPathComponent>().CreateObject();
-        string? launchArgs = GameInstallation.GetComponent<Win32LaunchArgsComponent>()?.CreateObject();
+        string? launchArgs = GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
 
         // Create the shortcut
         Services.File.CreateFileShortcut(shortcutName, destinationDirectory, launchPath, launchArgs);
@@ -123,7 +123,7 @@ public class Win32LaunchGameComponent : LaunchGameComponent
     {
         // Get the launch info
         FileSystemPath launchPath = GameInstallation.GetRequiredComponent<Win32LaunchPathComponent>().CreateObject();
-        string? launchArgs = GameInstallation.GetComponent<Win32LaunchArgsComponent>()?.CreateObject();
+        string? launchArgs = GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
 
         if (!launchPath.FileExists)
             return Enumerable.Empty<JumpListItemViewModel>();

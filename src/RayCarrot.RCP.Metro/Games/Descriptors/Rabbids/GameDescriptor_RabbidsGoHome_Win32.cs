@@ -44,7 +44,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
         builder.Register(new GameConfigComponent(x => new RabbidsGoHomeConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new Win32LaunchPathComponent(GetLaunchFilePath));
-        builder.Register(new Win32LaunchArgsComponent(GetLaunchArgs));
+        builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
     }
 
     #endregion

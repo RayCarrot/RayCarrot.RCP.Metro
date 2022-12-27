@@ -109,6 +109,9 @@ public class GamesManager
         // Create an installation
         GameInstallation gameInstallation = new(gameDescriptor, installDirectory);
 
+        // Build the components
+        gameInstallation.RebuildComponents();
+
         // Add the game
         Data.Game_GameInstallations.AddSorted(gameInstallation);
 

@@ -1,4 +1,4 @@
-﻿using RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators;
 
@@ -19,11 +19,14 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 
     public abstract EmulatorIconAsset Icon { get; }
 
+    public virtual void RegisterComponents(IGameComponentBuilder builder)
+    {
+        builder.Register<OnGameRemovedComponent, DeselectClientOnGameRemovedComponent>();
+    }
+
     public virtual EmulatorGameConfigViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => null;
 
     public virtual EmulatorOptionsViewModel? GetEmulatorOptionsViewModel(EmulatorInstallation emulatorInstallation) => null;
-
-    public abstract Task<bool> LaunchGameAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation);
 
     public virtual IEnumerable<DuoGridItemViewModel> GetEmulatorInfoItems(EmulatorInstallation emulatorInstallation) => new[]
     {
@@ -40,13 +43,6 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
             text: emulatorInstallation.InstallLocation.FullPath),
     };
 
-    public virtual IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) =>
-        Enumerable.Empty<DuoGridItemViewModel>();
-
-    public abstract void CreateGameShortcut(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation, FileSystemPath shortcutName, FileSystemPath destinationDirectory);
-
-    public abstract IEnumerable<JumpListItemViewModel> GetJumpListItems(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation);
-
     public virtual Task OnEmulatorSelectedAsync(GameInstallation gameInstallation, EmulatorInstallation emulatorInstallation) => 
         Task.CompletedTask;
 
@@ -59,7 +55,7 @@ public abstract class EmulatorDescriptor : IComparable<EmulatorDescriptor>
 
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            if (gameInstallation.GetValue<string>(GameDataKey.Emu_InstallationId) == emulatorInstallation.InstallationId)
+            if (gameInstallation.GetValue<string>(GameDataKey.Client_SelectedClient) == emulatorInstallation.InstallationId)
                 gamesToRefresh.Add(gameInstallation);
         }
 

@@ -3,16 +3,11 @@
 /// <summary>
 /// A game descriptor for an emulated MS-DOS program
 /// </summary>
-public abstract class MsDosGameDescriptor : EmulatedGameDescriptor
+public abstract class MsDosGameDescriptor : GameDescriptor
 {
     #region Public Properties
 
     public override GamePlatform Platform => GamePlatform.MsDos;
-
-    /// <summary>
-    /// Indicates if the game requires a disc to be mounted in order to play
-    /// </summary>
-    public virtual bool RequiresDisc => true;
 
     // TODO-14: Merge this and DefaultFileName. Don't use .bat files.
     /// <summary>
@@ -28,8 +23,6 @@ public abstract class MsDosGameDescriptor : EmulatedGameDescriptor
     {
         new LocateGameAddAction(this),
     };
-
-    public virtual string? GetLaunchArgs(GameInstallation gameInstallation) => null;
 
     #endregion
 }

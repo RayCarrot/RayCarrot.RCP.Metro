@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Emulators.DosBox;
 
@@ -156,7 +157,7 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigViewModel
     /// </summary>
     public MsDosGameDescriptor GameDescriptor { get; }
 
-    public bool RequiredDisc => GameDescriptor.RequiresDisc;
+    public bool RequiredDisc => GameInstallation.HasComponent<MsDosGameRequiresDiscComponent>();
 
     /// <summary>
     /// The file or directory to mount
@@ -370,7 +371,7 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigViewModel
         Logger.Info("DOSBox emulator game config for {0} is being set up", GameInstallation.FullId);
 
         // Get the current mount path
-        MountPath = GameInstallation.GetValue<FileSystemPath>(GameDataKey.Emu_DosBox_MountPath);
+        MountPath = GameInstallation.GetValue<FileSystemPath>(GameDataKey.Client_DosBox_MountPath);
 
         // Get the config manager
         var configManager = new AutoConfigManager(EmulatorDescriptor.GetGameConfigFile(GameInstallation));
@@ -419,7 +420,7 @@ public class DosBoxGameConfigViewModel : EmulatorGameConfigViewModel
         try
         {
             // Set the mount path
-            GameInstallation.SetValue(GameDataKey.Emu_DosBox_MountPath, MountPath);
+            GameInstallation.SetValue(GameDataKey.Client_DosBox_MountPath, MountPath);
             Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
 
             // Get the config manager
