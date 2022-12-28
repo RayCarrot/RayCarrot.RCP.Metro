@@ -114,9 +114,9 @@
                                     <optionsDialog:UbiIni3ConfigControl />
                                 </DataTemplate>
 
-                                <!-- Emulator config -->
-                                <DataTemplate DataType="{x:Type optionsDialog:EmulatorGameConfigPageViewModel}">
-                                    <optionsDialog:EmulatorGameConfigControl />
+                                <!-- Game client config -->
+                                <DataTemplate DataType="{x:Type optionsDialog:GameClientGameConfigPageViewModel}">
+                                    <optionsDialog:GameClientGameConfigControl />
                                 </DataTemplate>
 
                                 <!-- Utilities -->

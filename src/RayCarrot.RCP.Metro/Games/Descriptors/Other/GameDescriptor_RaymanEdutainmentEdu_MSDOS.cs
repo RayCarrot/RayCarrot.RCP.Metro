@@ -2,7 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
+using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;

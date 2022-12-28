@@ -1,4 +1,4 @@
-﻿using RayCarrot.RCP.Metro.Games.Emulators;
+﻿using RayCarrot.RCP.Metro.Games.Clients;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -8,9 +8,9 @@ public class DeselectClientOnGameRemovedComponent : OnGameRemovedComponent
 
     private static async Task DeselectClientAsync(GameInstallation gameInstallation)
     {
-        // Get the previous emulator installation and invoke it being deselected
-        EmulatorInstallation? prevEmulatorInstallation = gameInstallation.GameDescriptor.GetGameClient(gameInstallation);
-        if (prevEmulatorInstallation != null)
-            await prevEmulatorInstallation.EmulatorDescriptor.OnEmulatorDeselectedAsync(gameInstallation, prevEmulatorInstallation);
+        // Get the previous game client installation and invoke it being deselected
+        GameClientInstallation? prevClient = gameInstallation.GameDescriptor.GetGameClient(gameInstallation);
+        if (prevClient != null)
+            await prevClient.GameClientDescriptor.OnGameClientDeselectedAsync(gameInstallation, prevClient);
     }
 }

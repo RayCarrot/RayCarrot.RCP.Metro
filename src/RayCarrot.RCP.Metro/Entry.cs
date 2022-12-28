@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RayCarrot.RCP.Metro.Games.Emulators;
+using RayCarrot.RCP.Metro.Games.Clients;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -33,7 +33,7 @@ public static class Entry
         serviceCollection.AddTransient<StartupManager>();
         serviceCollection.AddTransient<LicenseManager>();
         serviceCollection.AddSingleton<GamesManager>();
-        serviceCollection.AddSingleton<EmulatorsManager>();
+        serviceCollection.AddSingleton<GameClientsManager>();
         serviceCollection.AddSingleton<AppViewModel>();
         serviceCollection.AddSingleton<AppUserData>();
         serviceCollection.AddSingleton<IAppInstanceData, AppInstanceData>();

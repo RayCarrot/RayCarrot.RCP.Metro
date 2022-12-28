@@ -29,7 +29,8 @@ public class FindRaymanForeverFilesOnGameAddedComponent : OnGameAddedComponent
         }
 
         // TODO-14: Restore this? If user has not added any DOSBox emulators then attempt to add one and assign to this game?
-        //          Or probably don't need to assign since that should be automatic when added.
+        //          Or probably don't need to assign since that should be automatic when added. Or alternatively we rely on
+        //          the game finder checking this?
         //// Find DOSBox path if not already added
         //if (!File.Exists(Services.Data.Emu_DOSBox_Path))
         //{

@@ -192,9 +192,9 @@
 
                 <Button Margin="0 0 4 0"
                         Style="{StaticResource RCP.Styles.Button.Flat}"
-                        Command="{Binding Path=ConfigureEmulatorsCommand, Mode=OneTime}"
-                        ToolTip="Configure emulators"
-                        local:IconAssist.IconKind="{StaticResource RCP.Icons.EmulatorEdit}" />
+                        Command="{Binding Path=ConfigureGameClientsCommand, Mode=OneTime}"
+                        ToolTip="Configure game clients and emulators"
+                        local:IconAssist.IconKind="{StaticResource RCP.Icons.GameClientEdit}" />
 
                 <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" 
                            Margin="0 0 4 0" />

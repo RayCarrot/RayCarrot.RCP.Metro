@@ -2,7 +2,7 @@
 
 public static class GameDataKey
 {
-    // TODO-14: Maybe move to relevant GameDescriptor files instead? Same with EmulatorDataKey.
+    // TODO-14: Maybe move to relevant GameDescriptor files instead? Same with GameClientDataKey.
 
     // General
     public const string RCP_GameInstallData = "RCP_GameInstallData";

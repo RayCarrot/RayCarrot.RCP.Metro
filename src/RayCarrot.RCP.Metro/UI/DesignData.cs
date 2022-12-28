@@ -23,5 +23,5 @@ public static class DesignData
 
     public static ImageSource GamePlatformIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(GamePlatformIconAsset.Win32.GetAssetPath())!;
 
-    public static ImageSource EmulatorIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(EmulatorIconAsset.DosBox.GetAssetPath())!;
+    public static ImageSource GameClientIconSource => (ImageSource)new ImageSourceConverter().ConvertFrom(GameClientIconAsset.DosBox.GetAssetPath())!;
 }

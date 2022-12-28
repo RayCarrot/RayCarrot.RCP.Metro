@@ -16,7 +16,7 @@
     <SolidColorBrush x:Key="RCP.Brushes.Info" Color="{StaticResource RCP.Colors.BluePrimary500}" />
     <SolidColorBrush x:Key="RCP.Brushes.Debug" Color="{StaticResource RCP.Colors.GreyPrimary500}" />
     <SolidColorBrush x:Key="RCP.Brushes.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Emulator" Color="{StaticResource RCP.Colors.YellowPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.GameClient" Color="{StaticResource RCP.Colors.YellowPrimary500}" />
     <SolidColorBrush x:Key="RCP.Brushes.GameConfig" Color="{StaticResource RCP.Colors.IndigoPrimary500}" />
     <SolidColorBrush x:Key="RCP.Brushes.Patcher" Color="{StaticResource RCP.Colors.DeepOrangePrimary500}" />
 

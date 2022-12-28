@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using PropertyChanged;
-using RayCarrot.RCP.Metro.Games.Emulators;
+using RayCarrot.RCP.Metro.Games.Clients;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -54,7 +54,7 @@ public class AppUserData : BaseViewModel
 
         // Game
         Game_GameInstallations = new List<GameInstallation>();
-        Game_EmulatorInstallations = new List<EmulatorInstallation>();
+        Game_GameClientInstallations = new List<GameClientInstallation>();
         Game_AutoLocateGames = true;
 
         // Utility
@@ -110,7 +110,7 @@ public class AppUserData : BaseViewModel
             
         // Game
         Game_GameInstallations ??= new List<GameInstallation>();
-        Game_EmulatorInstallations ??= new List<EmulatorInstallation>();
+        Game_GameClientInstallations ??= new List<GameClientInstallation>();
 
         // Mod
         Mod_RRR_ToggleStates ??= new Dictionary<string, UserData_Mod_RRR_ToggleState>();
@@ -258,9 +258,9 @@ public class AppUserData : BaseViewModel
     public List<GameInstallation> Game_GameInstallations { get; set; }
 
     /// <summary>
-    /// The installed emulators
+    /// The installed game clients
     /// </summary>
-    public List<EmulatorInstallation> Game_EmulatorInstallations { get; set; }
+    public List<GameClientInstallation> Game_GameClientInstallations { get; set; }
 
     /// <summary>
     /// Indicates if games should be automatically located on startup

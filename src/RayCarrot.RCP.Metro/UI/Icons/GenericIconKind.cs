@@ -28,7 +28,7 @@ public enum GenericIconKind
     GameAdd_Purchase,
 
     GameOptions_Config,
-    GameOptions_Emulator,
+    GameOptions_GameClient,
     GameOptions_Utilities,
 
     Window_ArchiveExplorer,
@@ -47,7 +47,7 @@ public enum GenericIconKind
     Window_ProgramSelection,
     Window_AppNews,
     Window_AddGames,
-    Window_EmulatorsSetup,
+    Window_GameClientsSetup,
     Window_GameDebug,
 
     Utilities_SyncTextureInfo,

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
-using RayCarrot.RCP.Metro.Games.Emulators;
-using RayCarrot.RCP.Metro.Games.Emulators.DosBox;
+using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -9,7 +9,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 {
     #region Constructor
 
-    public DosBoxLaunchGameComponent(DosBoxEmulatorDescriptor gameClientDescriptor)
+    public DosBoxLaunchGameComponent(DosBoxGameClientDescriptor gameClientDescriptor)
     {
         GameClientDescriptor = gameClientDescriptor;
     }
@@ -24,7 +24,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     #region Public Properties
 
-    public DosBoxEmulatorDescriptor GameClientDescriptor { get; }
+    public DosBoxGameClientDescriptor GameClientDescriptor { get; }
 
     #endregion
 
@@ -32,7 +32,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     private IEnumerable<DuoGridItemViewModel> GetGameInfoItems(GameInstallation gameInstallation)
     {
-        EmulatorInstallation gameClientInstallation = GetRequiredGameClientInstallation();
+        GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
         // Get the launch info
         FileSystemPath launchPath = gameClientInstallation.InstallLocation;
@@ -53,7 +53,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     private string GetDOSBoxLaunchArgs(string? gameLaunchArgs = null)
     {
-        EmulatorInstallation gameClientInstallation = GetRequiredGameClientInstallation();
+        GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
         string? gameArgs = gameLaunchArgs ?? GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
         string launchName = gameArgs == null ? GameDescriptor.DefaultFileName : $"{GameDescriptor.DefaultFileName} {gameArgs}";
@@ -67,7 +67,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
             dosBoxConfigFiles: new[]
             {
                 // Add the primary config file
-                gameClientInstallation.GetValue<FileSystemPath>(EmulatorDataKey.DosBox_ConfigFilePath),
+                gameClientInstallation.GetValue<FileSystemPath>(GameClientDataKey.DosBox_ConfigFilePath),
 
                 // Add the RCP config file
                 GameClientDescriptor.GetGameConfigFile(GameInstallation)
@@ -139,7 +139,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     public override void CreateShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
     {
-        EmulatorInstallation gameClientInstallation = GetRequiredGameClientInstallation();
+        GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
         // Get the launch info
         FileSystemPath launchPath = gameClientInstallation.InstallLocation;
@@ -153,7 +153,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     public override IEnumerable<JumpListItemViewModel> GetJumpListItems()
     {
-        EmulatorInstallation gameClientInstallation = GetRequiredGameClientInstallation();
+        GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
         // Get the launch info
         FileSystemPath launchPath = gameClientInstallation.InstallLocation;
@@ -178,7 +178,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
 
     public async Task<bool> LaunchGameAsync(string? gameLaunchArgs)
     {
-        EmulatorInstallation gameClientInstallation = GetRequiredGameClientInstallation();
+        GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
         FileSystemPath launchPath = gameClientInstallation.InstallLocation;
 
         // Make sure the DOSBox exe exists

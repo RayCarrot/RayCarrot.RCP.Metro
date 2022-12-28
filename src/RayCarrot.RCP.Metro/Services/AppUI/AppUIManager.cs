@@ -382,19 +382,19 @@ public class AppUIManager
     }
 
     /// <summary>
-    /// Shows a new instance of the emulators setup dialog
+    /// Shows a new instance of the game clients setup dialog
     /// </summary>
     /// <returns>The task</returns>
-    public async Task ShowEmulatorsSetupAsync()
+    public async Task ShowGameClientsSetupAsync()
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        Logger.Trace("An emulators setup window was opened");
+        Logger.Trace("A game clients setup window was opened");
 
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
-        using EmulatorsSetupDialog dialog = Application.Current.Dispatcher.Invoke(() => new EmulatorsSetupDialog());
+        using GameClientsSetupDialog dialog = Application.Current.Dispatcher.Invoke(() => new GameClientsSetupDialog());
         await Dialog.ShowWindowAsync(dialog, ShowWindowFlags.DuplicateTypesNotAllowed);
     }
 

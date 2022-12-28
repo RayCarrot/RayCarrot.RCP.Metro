@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.Emulators;
+using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -159,9 +159,9 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Game client page
         if (Platform.GetInfo().RequiresEmulator)
             builder.Register(
-                // Emulator config page
+                // Client config page
                 new GameOptionsDialogPageComponent(
-                    objFactory: x => new EmulatorGameConfigPageViewModel(x),
+                    objFactory: x => new GameClientGameConfigPageViewModel(x),
                     isAvailableFunc: _ => true));
 
         // Utilities page
@@ -222,8 +222,8 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Register the components from an optional client. This can be emulators or game clients
         // such as Steam. When they register components they may override existing ones registered
         // by the game descriptor, thus changing some functionality for the game.
-        EmulatorInstallation? clientInstallation = GetGameClient(gameInstallation);
-        clientInstallation?.EmulatorDescriptor.RegisterComponents(builder);
+        GameClientInstallation? clientInstallation = GetGameClient(gameInstallation);
+        clientInstallation?.GameClientDescriptor.RegisterComponents(builder);
 
         return builder;
     }
@@ -233,29 +233,29 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     /// <param name="gameInstallation">The game installation to get the client for</param>
     /// <returns>The associated client installation or null if none was found</returns>
-    public EmulatorInstallation? GetGameClient(GameInstallation gameInstallation)
+    public GameClientInstallation? GetGameClient(GameInstallation gameInstallation)
     {
         string? clientInstallationId = gameInstallation.GetValue<string>(GameDataKey.Client_SelectedClient);
 
         if (clientInstallationId == null)
             return null;
 
-        return Services.Emulators.GetInstalledEmulator(clientInstallationId);
+        return Services.GameClients.GetInstalledGameClient(clientInstallationId);
     }
 
     // TODO: Move to GamesManager?
-    public async Task SetGameClientAsync(GameInstallation gameInstallation, EmulatorInstallation? gameClientInstallation)
+    public async Task SetGameClientAsync(GameInstallation gameInstallation, GameClientInstallation? gameClientInstallation)
     {
         // Get the previous client installation and invoke it being deselected
-        EmulatorInstallation? prevClient = GetGameClient(gameInstallation);
+        GameClientInstallation? prevClient = GetGameClient(gameInstallation);
         if (prevClient != null)
-            await prevClient.EmulatorDescriptor.OnEmulatorDeselectedAsync(gameInstallation, prevClient);
+            await prevClient.GameClientDescriptor.OnGameClientDeselectedAsync(gameInstallation, prevClient);
 
         // If the provided installation is null and an emulator is required then
         // we attempt to find the first available emulator to use
         if (Platform.GetInfo().RequiresEmulator)
-            gameClientInstallation ??= Services.Emulators.GetInstalledEmulators().
-                FirstOrDefault(x => x.EmulatorDescriptor.SupportedPlatforms.Contains(Platform));
+            gameClientInstallation ??= Services.GameClients.GetInstalledGameClients().
+                FirstOrDefault(x => x.GameClientDescriptor.SupportedPlatforms.Contains(Platform));
 
         // Set the client for the game
         gameInstallation.SetValue(GameDataKey.Client_SelectedClient, gameClientInstallation?.InstallationId);
@@ -266,7 +266,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
         // Invoke the new client being selected
         if (gameClientInstallation != null)
-            await gameClientInstallation.EmulatorDescriptor.OnEmulatorSelectedAsync(gameInstallation, gameClientInstallation);
+            await gameClientInstallation.GameClientDescriptor.OnGameClientSelectedAsync(gameInstallation, gameClientInstallation);
 
         // Refresh the game
         Services.Messenger.Send(new ModifiedGamesMessage(gameInstallation));

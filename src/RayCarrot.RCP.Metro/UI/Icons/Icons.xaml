@@ -21,10 +21,10 @@
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_ArchiveExplorer">FolderCogOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_Patcher">ArchiveCogOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_Emulator">FileCogOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings_GameClient">FileCogOutline</iconPacks:PackIconMaterialKind>
     
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Emulator">ApplicationOutline</iconPacks:PackIconMaterialKind>
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.EmulatorEdit">ApplicationEditOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClient">ApplicationOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClientEdit">ApplicationEditOutline</iconPacks:PackIconMaterialKind>
     
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameOptions_Config">WrenchOutline</iconPacks:PackIconMaterialKind>
 
@@ -142,9 +142,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_Config" 
                        IconKind="{StaticResource RCP.Icons.GameOptions_Config}"
                        IconColor="{StaticResource RCP.Brushes.GameConfig}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_Emulator" 
-                       IconKind="{StaticResource RCP.Icons.Settings_Emulator}"
-                       IconColor="{StaticResource RCP.Brushes.Emulator}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_GameClient" 
+                       IconKind="{StaticResource RCP.Icons.Settings_GameClient}"
+                       IconColor="{StaticResource RCP.Brushes.GameClient}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameOptions_Utilities" 
                        IconKind="{StaticResource RCP.Icons.Utilities}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
@@ -197,9 +197,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_AddGames" 
                        IconKind="{StaticResource RCP.Icons.Games}"
                        IconColor="{StaticResource RCP.Brushes.Games}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Window_EmulatorsSetup" 
-                       IconKind="{StaticResource RCP.Icons.EmulatorEdit}"
-                       IconColor="{StaticResource RCP.Brushes.Emulator}" />
+    <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameClientsSetup" 
+                       IconKind="{StaticResource RCP.Icons.GameClientEdit}"
+                       IconColor="{StaticResource RCP.Brushes.GameClient}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Window_GameDebug" 
                        IconKind="{StaticResource RCP.Icons.Debug}"
                        IconColor="{StaticResource RCP.Brushes.Debug}" />
