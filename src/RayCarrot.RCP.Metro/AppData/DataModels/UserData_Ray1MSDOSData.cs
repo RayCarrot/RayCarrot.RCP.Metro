@@ -15,14 +15,15 @@ public class UserData_Ray1MsDosData
 
     public static UserData_Ray1MsDosData Create(GameInstallation gameInstallation)
     {
-        // TODO-14: Try/catch and handle? Or let it fail?
         // Find the available game modes
         string[] gameModes = Directory.
             GetDirectories(gameInstallation.InstallLocation + "PCMAP", "*", SearchOption.TopDirectoryOnly).
             Select(x => new FileSystemPath(x).Name).
             ToArray();
 
-        // TODO-14: Verify collection is not empty
+        if (gameModes.Length == 0)
+            throw new Exception("No game modes were found");
+
         return new UserData_Ray1MsDosData(gameModes, gameModes.First());
     }
 }
