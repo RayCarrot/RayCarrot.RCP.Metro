@@ -9,9 +9,6 @@ public enum GamePlatformIconAsset
     [AssetFileName("Win32.png")]
     Win32,
 
-    [AssetFileName("Steam.png")]
-    Steam,
-
     [AssetFileName("WindowsPackage.png")]
     WindowsPackage,
 }

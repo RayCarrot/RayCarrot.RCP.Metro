@@ -28,6 +28,13 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
 
     private static string GetLaunchArgs(GameInstallation gameInstallation) => "/B Rayman4.bf";
 
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_Setup)),
+            Uri: gameInstallation.InstallLocation + "SettingsApplication.exe")
+    };
+
     #endregion
 
     #region Protected Methods
@@ -38,6 +45,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
 
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsDemoConfigViewModel(x)));
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
+        builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
     }
 
     #endregion
@@ -51,11 +59,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
             new(AppURLs.Games_RRRDemo_Url),
         })
     });
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
-    {
-        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "SettingsApplication.exe")
-    };
 
     #endregion
 }

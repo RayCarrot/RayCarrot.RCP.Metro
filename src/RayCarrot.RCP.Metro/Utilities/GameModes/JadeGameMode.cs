@@ -3,7 +3,6 @@
 public enum JadeGameMode
 {
     [JadeGameModeInfo("Rayman Raving Rabbids (PC)", 
-        typeof(GameDescriptor_RaymanRavingRabbids_Win32), 
-        typeof(GameDescriptor_RaymanRavingRabbids_Steam))]
+        typeof(GameDescriptor_RaymanRavingRabbids_Win32))]
     RaymanRavingRabbids_PC,
 }

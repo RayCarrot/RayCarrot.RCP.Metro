@@ -41,21 +41,10 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanFiestaRun(this, x, "Rayman Fiesta Run (Default)", 1)));
         builder.Register(new GameConfigComponent(x => new RaymanFiestaRunConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 1)));
     }
-
-    #endregion
-
-    #region Public Methods
-
-    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
-    {
-        new GameUriLink(
-            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInWinStore)),
-            Uri: MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID),
-            Icon: GenericIconKind.GameAction_Microsoft)
-    };
 
     #endregion
 }

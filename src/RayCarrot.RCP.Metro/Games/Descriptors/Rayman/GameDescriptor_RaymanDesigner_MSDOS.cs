@@ -30,6 +30,17 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
 
     #endregion
 
+    #region Private Methods
+
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_RDMapper)), 
+            Uri: gameInstallation.InstallLocation + "MAPPER.EXE")
+    };
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(IGameComponentBuilder builder)
@@ -41,6 +52,7 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
+        builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
@@ -53,11 +65,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
         new LocateRayman1MSDOSGameAddAction(this),
-    };
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
-    {
-        new(new ResourceLocString(nameof(Resources.GameLink_RDMapper)), gameInstallation.InstallLocation + "MAPPER.EXE")
     };
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanDesignerPC", "r1/pc_kit");

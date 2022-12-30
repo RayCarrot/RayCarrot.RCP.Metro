@@ -32,6 +32,19 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         return $"/{launchMode.ToString().ToLower()} /B Rrr2.bf";
     }
 
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation)
+    {
+        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
+
+        return new[]
+        {
+            new GameLinksComponent.GameUriLink(
+                Header: new ResourceLocString(nameof(Resources.GameLink_Setup)), 
+                Uri: gameInstallation.InstallLocation + "SettingsApplication.exe",
+                Arguments: $"/{launchMode.ToString().ToLower()}")
+        };
+    }
+
     #endregion
 
     #region Protected Methods
@@ -45,22 +58,12 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbids2ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
+        builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation)
-    {
-        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
-
-        return new GameUriLink[]
-        {
-            new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "SettingsApplication.exe",
-                Arguments: $"/{launchMode.ToString().ToLower()}")
-        };
-    }
 
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Raving Rabbids 2", new[]
     {

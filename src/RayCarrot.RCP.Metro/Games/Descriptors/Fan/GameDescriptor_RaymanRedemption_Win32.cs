@@ -7,6 +7,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
 {
+    #region Constant Fields
+
+    private const string GameJoltUrl = "https://gamejolt.com/games/raymanredemption/340532";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "RaymanRedemption_Win32";
@@ -29,23 +35,16 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRedemption(x, "Rayman Redemption")));
+        builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 
     #endregion
 
     #region Public Methods
 
-    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
-    {
-        new GameUriLink(
-            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenGameJoltPage)),
-            Uri: "https://gamejolt.com/games/raymanredemption/340532",
-            Icon: GenericIconKind.GameAction_Web)
-    };
-
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/raymanredemption/340532", GenericIconKind.GameAction_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), GameJoltUrl, GenericIconKind.GameAction_Web),
     };
 
     #endregion

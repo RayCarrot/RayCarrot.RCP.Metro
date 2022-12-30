@@ -41,19 +41,8 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanJungleRun(this, x, "Rayman Jungle Run")));
         builder.Register(new GameConfigComponent(x => new RaymanJungleRunConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
     }
-
-    #endregion
-
-    #region Public Methods
-
-    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
-    {
-        new GameUriLink(
-            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenInWinStore)),
-            Uri: MicrosoftStoreHelpers.GetStorePageURI(MicrosoftStoreID),
-            Icon: GenericIconKind.GameAction_Microsoft)
-    };
 
     #endregion
 }

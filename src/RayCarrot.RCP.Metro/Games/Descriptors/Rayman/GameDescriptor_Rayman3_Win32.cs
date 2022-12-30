@@ -43,6 +43,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman3(x, "Rayman 3")));
         builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register<LocalGameLinksComponent>(new Rayman3SetupLocalGameLinksComponent(false));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC))));
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
@@ -51,11 +52,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
-    {
-        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "R3_Setup_DX8.exe")
-    };
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "r3_pc", "r3_pc");
 

@@ -132,9 +132,10 @@ public class InstalledGameViewModel : BaseViewModel
         }
 
         // Add local uri links
-        AdditionalLaunchActions.AddGroup(GameDescriptor.GetLocalUriLinks(GameInstallation).
+        AdditionalLaunchActions.AddGroup(GameInstallation.GetComponents<LocalGameLinksComponent>().
+            CreateManyObjects().
             Where(x => File.Exists(x.Uri)).
-            Select<GameDescriptor.GameUriLink, ActionItemViewModel>(x =>
+            Select<GameLinksComponent.GameUriLink, ActionItemViewModel>(x =>
             {
                 // Get the path
                 string path = x.Uri;
@@ -172,7 +173,8 @@ public class InstalledGameViewModel : BaseViewModel
             }));
 
         // Add external uri links
-        AdditionalLaunchActions.AddGroup(GameDescriptor.GetExternalUriLinks(GameInstallation).
+        AdditionalLaunchActions.AddGroup(GameInstallation.GetComponents<ExternalGameLinksComponent>().
+            CreateManyObjects().
             Select(x =>
             {
                 // Get the path

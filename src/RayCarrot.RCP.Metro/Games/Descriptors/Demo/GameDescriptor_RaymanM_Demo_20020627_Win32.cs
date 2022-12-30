@@ -39,6 +39,7 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena(x, "Rayman M Demo", true)));
         builder.Register(new GameConfigComponent(x => new RaymanMDemoConfigViewModel(x)));
+        builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
     }
 
     #endregion
@@ -52,11 +53,6 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
             new(AppURLs.Games_RMDemo_Url),
         })
     });
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
-    {
-        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "RM_Setup_DX8.exe")
-    };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new CPACntArchiveDataManager(

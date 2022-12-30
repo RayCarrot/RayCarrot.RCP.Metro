@@ -11,6 +11,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
 {
+    #region Constant Fields
+
+    private const string SteamId = "242550";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "RaymanLegends_Win32";
@@ -35,6 +41,8 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new SteamGameClientComponent(SteamId));
+
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanLegends(x, "Rayman Legends")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanLegendsRegistryKey)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
@@ -45,20 +53,26 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
 
     #endregion
 
-    #region Public Override Methods
+    #region Public Methods
+
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new FindSteamGameAddAction(this, SteamId),
+    });
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanLegends, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 
     public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
-        @"Bundle_PC.ipk",
-        @"persistentLoading_PC.ipk",
+        "Bundle_PC.ipk",
+        "persistentLoading_PC.ipk",
     };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html"),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Legends", new[]

@@ -12,6 +12,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 {
+    #region Constant Fields
+
+    private const string SteamId = "15060";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "Rayman2_Win32";
@@ -35,15 +41,38 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
     #endregion
 
+    #region Private Methods
+
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_Setup)), 
+            Uri: gameInstallation.InstallLocation + "GXSetup.exe"),
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_R2nGlide)), 
+            Uri: gameInstallation.InstallLocation + "nglide_config.exe"),
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), 
+            Uri: gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_R2Fix)), 
+            Uri: gameInstallation.InstallLocation + "R2FixCfg.exe"),
+    };
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new SteamGameClientComponent(SteamId));
+
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman2(x, "Rayman 2")));
         builder.Register(new GameConfigComponent(x => new Rayman2ConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC))));
     }
@@ -54,20 +83,13 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
     public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
     {
+        new FindSteamGameAddAction(this, SteamId),
         new DiscInstallGameAddAction(this, new GameInstallerInfo(
             discFilesListFileName: "Rayman2",
             gameLogo: GameLogoAsset.Rayman2,
             gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", },
             installFolderName: "Rayman 2"))
     });
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
-    {
-        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "GXSetup.exe"),
-        new(new ResourceLocString(nameof(Resources.GameLink_R2nGlide)), gameInstallation.InstallLocation + "nglide_config.exe"),
-        new(new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
-        new(new ResourceLocString(nameof(Resources.GameLink_R2Fix)), gameInstallation.InstallLocation + "R2FixCfg.exe"),
-    };
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "r2_pc", "r2_pc");
 

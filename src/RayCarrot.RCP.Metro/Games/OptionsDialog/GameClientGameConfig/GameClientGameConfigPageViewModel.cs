@@ -121,7 +121,7 @@ public class GameClientGameConfigPageViewModel : GameOptionsDialogPageViewModel,
         await SetSelectedGameClientAsync(null);
 
         var gameClients = Services.GameClients.GetInstalledGameClients().
-            Where(x => x.GameClientDescriptor.SupportedPlatforms.Contains(GameInstallation.GameDescriptor.Platform)).
+            Where(x => x.GameClientDescriptor.SupportsGame(GameInstallation)).
             Select(x => new GameClientViewModel(x));
         GameClients = new ObservableCollection<GameClientViewModel>(gameClients);
 
@@ -149,16 +149,14 @@ public class GameClientGameConfigPageViewModel : GameOptionsDialogPageViewModel,
 
     public async void Receive(AddedGameClientsMessage message)
     {
-        // Refresh if any added game clients work on this game
-        if (message.GameClientInstallations.Any(x => 
-                x.GameClientDescriptor.SupportedPlatforms.Contains(GameInstallation.GameDescriptor.Platform)))
+        // Refresh if any added game clients support this game
+        if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation)))
             await LoadPageAsync();
     }
     public async void Receive(RemovedGameClientsMessage message)
     {
-        // Refresh if any removed game clients work on this game
-        if (message.GameClientInstallations.Any(x =>
-                x.GameClientDescriptor.SupportedPlatforms.Contains(GameInstallation.GameDescriptor.Platform)))
+        // Refresh if any removed game clients support this game
+        if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation)))
             await LoadPageAsync();
     }
     public async void Receive(ModifiedGamesMessage message)

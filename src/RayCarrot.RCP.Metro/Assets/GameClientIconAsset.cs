@@ -5,4 +5,7 @@ public enum GameClientIconAsset
 {
     [AssetFileName("DOSBox.png")]
     DosBox,
+    
+    [AssetFileName("Steam.png")]
+    Steam,
 }

@@ -7,6 +7,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32GameDescriptor
 {
+    #region Constant Fields
+
+    private const string GameJoltUrl = "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "TheDarkMagiciansReignofTerror_Win32";
@@ -35,23 +41,16 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TheDarkMagiciansReignofTerror(x, "Rayman The Dark Magicians Reign of Terror")));
+        builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 
     #endregion
 
     #region Public Methods
 
-    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
-    {
-        new GameUriLink(
-            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenGameJoltPage)),
-            Uri: "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701",
-            Icon: GenericIconKind.GameAction_Web)
-    };
-
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701", GenericIconKind.GameAction_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), GameJoltUrl, GenericIconKind.GameAction_Web),
     };
 
     #endregion

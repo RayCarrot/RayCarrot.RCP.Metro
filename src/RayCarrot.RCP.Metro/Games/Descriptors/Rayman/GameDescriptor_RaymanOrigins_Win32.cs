@@ -11,6 +11,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
 {
+    #region Constant Fields
+
+    private const string SteamId = "207490";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "RaymanOrigins_Win32";
@@ -34,6 +40,8 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new SteamGameClientComponent(SteamId));
+
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanOrigins(x, "Rayman Origins")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanOriginsRegistryKey)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
@@ -47,6 +55,11 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
+    {
+        new FindSteamGameAddAction(this, SteamId),
+    });
+
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 
@@ -58,7 +71,8 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_origins"),
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html"),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Origins", new[]

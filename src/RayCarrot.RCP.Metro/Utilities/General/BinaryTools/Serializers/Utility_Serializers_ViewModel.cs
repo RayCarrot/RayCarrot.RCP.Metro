@@ -117,7 +117,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     {
                         GetDefaultDir = g =>
                         {
-                            var gameSearch = GameSearch.Create(Game.RaymanJungleRun, GamePlatformFlag.Plat_WindowsPackage);
+                            var gameSearch = GameSearch.Create(Game.RaymanJungleRun, GamePlatform.Win32);
                             GameDescriptor? gameDescriptor = g.FindInstalledGame(gameSearch)?.GameDescriptor;
 
                             if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
@@ -138,7 +138,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     {
                         GetDefaultDir = g =>
                         {
-                            var gameSearch = GameSearch.Create(Game.RaymanFiestaRun, GamePlatformFlag.Plat_WindowsPackage);
+                            var gameSearch = GameSearch.Create(Game.RaymanFiestaRun, GamePlatform.Win32);
                             GameDescriptor? gameDescriptor = g.FindInstalledGame(gameSearch)?.GameDescriptor;
 
                             if (gameDescriptor is WindowsPackageGameDescriptor winDescr)
@@ -159,7 +159,7 @@ public class Utility_Serializers_ViewModel : BaseRCPViewModel, IDisposable
                     {
                         GetDefaultDir = g =>
                         {
-                            var gameSearch = GameSearch.Create(Game.RabbidsBigBang, GamePlatformFlag.Plat_WindowsPackage);
+                            var gameSearch = GameSearch.Create(Game.RabbidsBigBang, GamePlatform.Win32);
                             GameDescriptor? gameDescriptor = g.FindInstalledGame(gameSearch)?.GameDescriptor;
 
                             if (gameDescriptor is WindowsPackageGameDescriptor winDescr)

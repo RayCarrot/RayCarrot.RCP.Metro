@@ -126,6 +126,12 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     public virtual bool HasArchives => false;
 
+    /// <summary>
+    /// Indicates if the game should default to use an available game client. This is mainly
+    /// for games which require to be emulated as they can't launch by themselves.
+    /// </summary>
+    public virtual bool DefaultToUseGameClient => false;
+
     #endregion
 
     #region Protected Methods
@@ -142,7 +148,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
 
         // TODO: Ideally we don't want conditionally registered components. Better solution?
-        if (Platform.GetInfo().RequiresEmulator)
+        if (DefaultToUseGameClient)
             builder.Register<OnGameAddedComponent, SelectDefaultClientOnGameAddedComponent>();
 
         // Give this low priority so that it runs last
@@ -155,14 +161,12 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
                 isAvailableFunc: x => x.HasComponent<GameConfigComponent>()),
             priority: ComponentPriority.High);
 
-        // TODO-14: This should also be available if the game supports other game clients like Steam - fix this
         // Game client page
-        if (Platform.GetInfo().RequiresEmulator)
-            builder.Register(
-                // Client config page
-                new GameOptionsDialogPageComponent(
-                    objFactory: x => new GameClientGameConfigPageViewModel(x),
-                    isAvailableFunc: _ => true));
+        builder.Register(
+            // Client config page
+            new GameOptionsDialogPageComponent(
+                objFactory: x => new GameClientGameConfigPageViewModel(x),
+                isAvailableFunc: x => Services.GameClients.SupportsGameClient(x)));
 
         // Utilities page
         builder.Register(
@@ -244,6 +248,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     }
 
     // TODO: Move to GamesManager?
+    // TODO: Split into AttachGameClient and DetachGameClient? Attach to null attaches the first available one like before.
     public async Task SetGameClientAsync(GameInstallation gameInstallation, GameClientInstallation? gameClientInstallation)
     {
         // Get the previous client installation and invoke it being deselected
@@ -251,11 +256,11 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         if (prevClient != null)
             await prevClient.GameClientDescriptor.OnGameClientDeselectedAsync(gameInstallation, prevClient);
 
-        // If the provided installation is null and an emulator is required then
-        // we attempt to find the first available emulator to use
-        if (Platform.GetInfo().RequiresEmulator)
+        // If the provided installation is null, default to first available
+        // game client if set to do so
+        if (DefaultToUseGameClient)
             gameClientInstallation ??= Services.GameClients.GetInstalledGameClients().
-                FirstOrDefault(x => x.GameClientDescriptor.SupportedPlatforms.Contains(Platform));
+                FirstOrDefault(x => x.GameClientDescriptor.SupportsGame(gameInstallation));
 
         // Set the client for the game
         gameInstallation.SetValue(GameDataKey.Client_SelectedClient, gameClientInstallation?.InstallationId);
@@ -273,20 +278,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     }
 
     public abstract IEnumerable<GameAddAction> GetAddActions();
-
-    /// <summary>
-    /// Gets the local uri links for the game. These are usually configuration program which come bundled with the game.
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the uri links for</param>
-    /// <returns>The uri links</returns>
-    public virtual IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => Enumerable.Empty<GameUriLink>();
-
-    /// <summary>
-    /// Gets the external uri links for the game. These are usually websites related to the game, such as the store page.
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the uri links for</param>
-    /// <returns>The uri links</returns>
-    public virtual IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => Enumerable.Empty<GameUriLink>();
 
     /// <summary>
     /// Gets optional RayMap map viewer information
@@ -375,19 +366,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     #endregion
 
     #region Data Types
-
-    /// <summary>
-    /// A game uri link for local and external locations
-    /// </summary>
-    /// <param name="Header">The link header</param>
-    /// <param name="Uri">The link uri</param>
-    /// <param name="Icon">An optional icon</param>
-    /// <param name="Arguments">Optional arguments if it's a local file</param>
-    public record GameUriLink(
-        LocalizedString Header, 
-        string Uri, 
-        GenericIconKind Icon = GenericIconKind.None, 
-        string? Arguments = null);
 
     public record RayMapInfo(
         RayMapViewer Viewer,

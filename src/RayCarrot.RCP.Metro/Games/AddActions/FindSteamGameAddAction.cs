@@ -2,22 +2,24 @@
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: If this action finds the game we should default to use the Steam client if there is one
 public class FindSteamGameAddAction : GameAddAction
 {
-    public FindSteamGameAddAction(SteamGameDescriptor gameDescriptor)
+    public FindSteamGameAddAction(GameDescriptor gameDescriptor, string steamId)
     {
         GameDescriptor = gameDescriptor;
+        SteamId = steamId;
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public override LocalizedString Header => "Find"; // TODO-UPDATE: Localize
+    public override LocalizedString Header => "Find Steam"; // TODO-UPDATE: Localize
     public override GenericIconKind Icon => GenericIconKind.GameAdd_Find;
 
-    // Steam games can only be added once
-    public override bool IsAvailable => !Services.Games.AnyInstalledGames(x => x.GameId == GameDescriptor.GameId);
+    public override bool IsAvailable => true;
 
-    public SteamGameDescriptor GameDescriptor { get; }
+    public GameDescriptor GameDescriptor { get; }
+    public string SteamId { get; }
 
     public override async Task<GameInstallation?> AddGameAsync()
     {
@@ -28,7 +30,7 @@ public class FindSteamGameAddAction : GameAddAction
             // TODO-UPDATE: Fix messages
 
             // Get the key path
-            var keyPath = RegistryHelpers.CombinePaths(AppFilePaths.UninstallRegistryKey, $"Steam App {GameDescriptor.SteamID}");
+            var keyPath = RegistryHelpers.CombinePaths(AppFilePaths.UninstallRegistryKey, $"Steam App {SteamId}");
 
             using var key = RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Registry64);
 

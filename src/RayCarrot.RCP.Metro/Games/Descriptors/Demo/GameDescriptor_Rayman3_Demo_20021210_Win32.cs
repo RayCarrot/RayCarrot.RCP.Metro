@@ -38,6 +38,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20021210_Win32 : Win32GameDescri
         base.RegisterComponents(builder);
 
         builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
+        builder.Register<LocalGameLinksComponent>(new Rayman3SetupLocalGameLinksComponent(true));
     }
 
     #endregion
@@ -51,11 +52,6 @@ public sealed class GameDescriptor_Rayman3_Demo_20021210_Win32 : Win32GameDescri
             new(AppURLs.Games_R3Demo3_Url),
         })
     });
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
-    {
-        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "R3_Setup_DX8D.exe")
-    };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new CPACntArchiveDataManager(

@@ -5,8 +5,7 @@ namespace RayCarrot.RCP.Metro;
 public enum CPAGameMode
 {
     [CPAGameModeInfo("Rayman 2 (PC)", EngineVersion.Rayman2, Platform.PC, 
-        typeof(GameDescriptor_Rayman2_Win32), 
-        typeof(GameDescriptor_Rayman2_Steam))]
+        typeof(GameDescriptor_Rayman2_Win32))]
     Rayman2_PC,
 
     [CPAGameModeInfo("Rayman 2 (DreamCast)", EngineVersion.Rayman2, Platform.Dreamcast)]

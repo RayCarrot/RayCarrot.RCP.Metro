@@ -1,30 +1,19 @@
 ﻿using System.Diagnostics;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Components;
 
+[RequiredGameComponents(typeof(SteamGameClientComponent))]
 public class SteamLaunchGameComponent : LaunchGameComponent
 {
-    #region Constructor
-
-    public SteamLaunchGameComponent(string steamId)
-    {
-        SteamId = steamId;
-    }
-
-    #endregion
-
     #region Logger
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     #endregion
 
-    #region Public Properties
+    #region Private Methods
 
-    /// <summary>
-    /// The Steam product id
-    /// </summary>
-    public string SteamId { get; }
+    private string GetSteamId() => GameInstallation.GetRequiredComponent<SteamGameClientComponent>().SteamId;
 
     #endregion
 
@@ -32,11 +21,14 @@ public class SteamLaunchGameComponent : LaunchGameComponent
 
     protected override async Task<bool> LaunchImplAsync()
     {
-        Logger.Trace("The game {0} is launching with Steam ID {1}", GameInstallation.FullId, SteamId);
+        // Get the steam id
+        string steamId = GetSteamId();
+
+        Logger.Trace("The game {0} is launching with Steam ID {1}", GameInstallation.FullId, steamId);
 
         // TODO-14: Does this return the Steam/game process or just explorer.exe?
         // Launch the game
-        Process? process = await Services.File.LaunchFileAsync(SteamHelpers.GetStorePageURL(SteamId));
+        Process? process = await Services.File.LaunchFileAsync(SteamHelpers.GetStorePageURL(steamId));
 
         Logger.Info("The game {0} has been launched", GameInstallation.FullId);
 
@@ -49,7 +41,7 @@ public class SteamLaunchGameComponent : LaunchGameComponent
 
     public override void CreateShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
     {
-        Services.File.CreateURLShortcut(shortcutName, destinationDirectory, SteamHelpers.GetGameLaunchURI(SteamId));
+        Services.File.CreateURLShortcut(shortcutName, destinationDirectory, SteamHelpers.GetGameLaunchURI(GetSteamId()));
 
         Logger.Trace("An URL shortcut was created for {0} under {1}", GameInstallation.FullId, destinationDirectory);
     }
@@ -60,7 +52,7 @@ public class SteamLaunchGameComponent : LaunchGameComponent
             gameInstallation: GameInstallation,
             name: GameInstallation.GetDisplayName(),
             iconSource: GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName,
-            launchPath: SteamHelpers.GetGameLaunchURI(SteamId),
+            launchPath: SteamHelpers.GetGameLaunchURI(GetSteamId()),
             workingDirectory: null,
             launchArguments: null,
             id: GameInstallation.InstallationId)

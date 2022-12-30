@@ -8,6 +8,12 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescriptor
 {
+    #region Constant Fields
+
+    private const string SteamId = "15080";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "RaymanRavingRabbids_Win32";
@@ -24,30 +30,45 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
 
     #endregion
 
+    #region Private Methods
+
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_Setup)), 
+            Uri: gameInstallation.InstallLocation + "SettingsApplication.exe")
+    };
+
+    #endregion
+
     #region Protected Methods
 
     protected override void RegisterComponents(IGameComponentBuilder builder)
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new SteamGameClientComponent(SteamId));
+
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids(x, "Rayman Raving Rabbids")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
     }
 
     #endregion
 
     #region Public Methods
 
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
     {
-        new(new ResourceLocString(nameof(Resources.GameLink_Setup)), gameInstallation.InstallLocation + "SettingsApplication.exe")
-    };
+        new FindSteamGameAddAction(this, SteamId),
+    });
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_raving_rabbids"),
-        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
+        new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html"),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
     };
 
     public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Raving Rabbids", new[]

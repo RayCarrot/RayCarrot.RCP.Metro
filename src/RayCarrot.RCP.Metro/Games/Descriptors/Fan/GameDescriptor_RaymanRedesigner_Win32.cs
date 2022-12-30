@@ -1,10 +1,18 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rayman ReDesigner (Win32) game descriptor
 /// </summary>
 public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
 {
+    #region Constant Fields
+
+    private const string GameJoltUrl = "https://gamejolt.com/games/Rayman_ReDesigner/539216";
+
+    #endregion
+
     #region Public Properties
 
     public override string GameId => "RaymanRedesigner_Win32";
@@ -20,19 +28,22 @@ public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
 
     #endregion
 
-    #region Public Methods
+    #region Protected Methods
 
-    public override IEnumerable<GameUriLink> GetExternalUriLinks(GameInstallation gameInstallation) => new[]
+    protected override void RegisterComponents(IGameComponentBuilder builder)
     {
-        new GameUriLink(
-            Header: new ResourceLocString(nameof(Resources.GameDisplay_OpenGameJoltPage)),
-            Uri: "https://gamejolt.com/games/Rayman_ReDesigner/539216",
-            Icon: GenericIconKind.GameAction_Web)
-    };
+        base.RegisterComponents(builder);
+
+        builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
+    }
+
+    #endregion
+
+    #region Public Methods
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
-        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), "https://gamejolt.com/games/Rayman_ReDesigner/539216", GenericIconKind.GameAction_Web),
+        new(new ResourceLocString(nameof(Resources.GameDisplay_GameJolt)), GameJoltUrl, GenericIconKind.GameAction_Web),
     };
 
     #endregion

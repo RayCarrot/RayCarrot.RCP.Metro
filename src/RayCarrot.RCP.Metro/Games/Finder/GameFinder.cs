@@ -5,7 +5,8 @@ using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO: Rewrite this
+// TODO-14: Rewrite this
+// TODO-14: Add back support for finding Steam games (was temporarily removed when removing Steam game descriptors)
 
 /// <summary>
 /// The game finder, used to find installed games

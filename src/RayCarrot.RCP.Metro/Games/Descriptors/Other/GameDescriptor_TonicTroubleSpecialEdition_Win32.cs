@@ -31,6 +31,13 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
 
     private static string GetLaunchArgs(GameInstallation gameInstallation) => "-cdrom:";
 
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), 
+            Uri: gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
+    };
+
     #endregion
 
     #region Protected Methods
@@ -41,8 +48,8 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TonicTrouble(x, "Tonic Trouble Special Edition")));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
-
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
+        builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC))));
     }
@@ -50,11 +57,6 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameUriLink> GetLocalUriLinks(GameInstallation gameInstallation) => new GameUriLink[]
-    {
-        new(new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
-    };
 
     public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "ttse_pc", "ttse_pc");
 

@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
 
-public sealed class DosBoxGameClientDescriptor : GameClientDescriptor
+public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
 {
     #region Public Properties
 

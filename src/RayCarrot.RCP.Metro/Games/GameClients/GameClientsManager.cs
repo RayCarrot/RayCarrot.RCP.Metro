@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Clients.DosBox;
+using RayCarrot.RCP.Metro.Games.Clients.Steam;
 
 namespace RayCarrot.RCP.Metro.Games.Clients;
 
@@ -14,6 +15,7 @@ public class GameClientsManager
         GameClientDescriptors = new GameClientDescriptor[]
         {
             new DosBoxGameClientDescriptor(),
+            new SteamGameClientDescriptor(),
         }.ToDictionary(x => x.GameClientId);
         SortedGameClientDescriptors = GameClientDescriptors.Values.OrderBy(x => x).ToArray();
     }
@@ -66,6 +68,9 @@ public class GameClientsManager
         return descriptor;
     }
 
+    public bool SupportsGameClient(GameInstallation gameInstallation) => 
+        SortedGameClientDescriptors.Any(x => x.SupportsGame(gameInstallation));
+
     #endregion
 
     #region Game Client Installation Methods
@@ -78,11 +83,11 @@ public class GameClientsManager
 
         Messenger.Send(new AddedGameClientsMessage(installation));
         
-        // If there are games which require emulators and don't have an emulator selected we attempt to use this one
+        // Attempt to use this game client on games without one and which default to use one
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            if (gameInstallation.GameDescriptor.Platform.GetInfo().RequiresEmulator &&
-                descriptor.SupportedPlatforms.Contains(gameInstallation.GameDescriptor.Platform) &&
+            if (gameInstallation.GameDescriptor.DefaultToUseGameClient &&
+                descriptor.SupportsGame(gameInstallation) &&
                 gameInstallation.GameDescriptor.GetGameClient(gameInstallation) == null)
             {
                 await gameInstallation.GameDescriptor.SetGameClientAsync(gameInstallation, installation);

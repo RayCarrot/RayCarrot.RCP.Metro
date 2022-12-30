@@ -232,7 +232,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
 
                 LocalLinkItems.Clear();
 
-                GameInstallation? r2GameInstallation = GamesManager.FindInstalledGame(GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC));
+                GameInstallation? r2GameInstallation = GamesManager.FindInstalledGame(GameSearch.Create(Game.Rayman2, GamePlatform.Win32));
 
                 // Config files
                 LocalLinkItems.Add(new Page_Settings_LinkItemViewModel[]

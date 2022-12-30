@@ -5,8 +5,7 @@ namespace RayCarrot.RCP.Metro;
 public enum UbiArtGameMode
 {
     [UbiArtGameModeInfo("Rayman Origins (PC)", BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PC, 
-        typeof(GameDescriptor_RaymanOrigins_Win32), 
-        typeof(GameDescriptor_RaymanOrigins_Steam))]
+        typeof(GameDescriptor_RaymanOrigins_Win32))]
     RaymanOrigins_PC,
 
     [UbiArtGameModeInfo("Rayman Origins (PS3)", BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PlayStation3)]
@@ -32,8 +31,7 @@ public enum UbiArtGameMode
     RaymanJungleRun_Android,
 
     [UbiArtGameModeInfo("Rayman Legends (PC)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC, 
-        typeof(GameDescriptor_RaymanLegends_Win32), 
-        typeof(GameDescriptor_RaymanLegends_Steam))]
+        typeof(GameDescriptor_RaymanLegends_Win32))]
     RaymanLegends_PC,
 
     [UbiArtGameModeInfo("Rayman Legends (Xbox 360)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.Xbox360)]

@@ -8,7 +8,12 @@ public class AvailableGameClientViewModel : BaseViewModel
     public AvailableGameClientViewModel(GameClientDescriptor descriptor)
     {
         Descriptor = descriptor;
-        Platforms = new ObservableCollection<PlatformViewModel>(descriptor.SupportedPlatforms.Select(x => new PlatformViewModel(x)));
+
+        // Only emulators define platforms
+        if (descriptor is EmulatorGameClientDescriptor emu)
+            Platforms = new ObservableCollection<PlatformViewModel>(emu.SupportedPlatforms.Select(x => new PlatformViewModel(x)));
+        else
+            Platforms = new ObservableCollection<PlatformViewModel>();
         
         AddGameClientCommand = new AsyncRelayCommand(AddGameClientAsync);
     }

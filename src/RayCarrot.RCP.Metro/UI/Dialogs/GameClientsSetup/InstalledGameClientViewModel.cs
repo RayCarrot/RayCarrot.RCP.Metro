@@ -9,7 +9,12 @@ public class InstalledGameClientViewModel : BaseViewModel
     {
         GameClientInstallation = gameClientInstallation;
         
-        Platforms = new ObservableCollection<PlatformViewModel>(Descriptor.SupportedPlatforms.Select(x => new PlatformViewModel(x)));
+        // Only emulators define platforms
+        if (Descriptor is EmulatorGameClientDescriptor emu)
+            Platforms = new ObservableCollection<PlatformViewModel>(emu.SupportedPlatforms.Select(x => new PlatformViewModel(x)));
+        else
+            Platforms = new ObservableCollection<PlatformViewModel>();
+
         InfoItems = new ObservableCollection<DuoGridItemViewModel>(Descriptor.GetGameClientInfoItems(gameClientInstallation));
 
         OptionsViewModel = Descriptor.GetGameClientOptionsViewModel(gameClientInstallation);

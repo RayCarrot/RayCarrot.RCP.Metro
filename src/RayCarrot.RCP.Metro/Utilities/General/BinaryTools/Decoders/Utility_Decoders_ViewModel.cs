@@ -24,8 +24,8 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
                 }.CombineAll("SAV").ToString(),
                 gameSearchPredicates: new[]
                 {
-                    GameSearch.Create(Game.Rayman1, GamePlatformFlag.PC),
-                    GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC),
+                    GameSearch.Create(Game.Rayman1, GamePlatform.Win32),
+                    GameSearch.Create(Game.Rayman2, GamePlatform.Win32),
                 }),
 
             new Utility_Decoders_TypeViewModel(
@@ -36,7 +36,7 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
                     new("*.sna", "SNA"),
                     new("*.dsb", "DSB"),
                 }.CombineAll("Tonic Trouble").ToString(),
-                gameSearchPredicates: GameSearch.Create(Game.TonicTrouble, GamePlatformFlag.PC)),
+                gameSearchPredicates: GameSearch.Create(Game.TonicTrouble, GamePlatform.Win32)),
 
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R2SnaHeader)), 
@@ -46,19 +46,19 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
                     new("*.sna", "SNA"),
                     new("*.dsb", "DSB"),
                 }.CombineAll("Rayman 2").ToString(),
-                gameSearchPredicates: GameSearch.Create(Game.Rayman2, GamePlatformFlag.PC)),
+                gameSearchPredicates: GameSearch.Create(Game.Rayman2, GamePlatform.Win32)),
 
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Decoder_R3SaveHeader)), 
                 encoder: new R3SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
-                gameSearchPredicates: GameSearch.Create(Game.Rayman3, GamePlatformFlag.PC)),
+                gameSearchPredicates: GameSearch.Create(Game.Rayman3, GamePlatform.Win32)),
 
             new Utility_Decoders_TypeViewModel(
                 name: new ResourceLocString(nameof(Resources.Utilities_Format_RRRSaveHeader)), 
                 encoder: new RRR_SaveEncoder(),
                 getFileFilter: () => new FileFilterItem("*.sav", "SAV").ToString(),
-                gameSearchPredicates: GameSearch.Create(Game.RaymanRavingRabbids, GamePlatformFlag.PC)),
+                gameSearchPredicates: GameSearch.Create(Game.RaymanRavingRabbids, GamePlatform.Win32)),
         };
         SelectedType = Types.First();
 
