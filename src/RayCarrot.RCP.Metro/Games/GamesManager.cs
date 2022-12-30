@@ -111,14 +111,24 @@ public class GamesManager
         // Add the game
         Data.Game_GameInstallations.AddSorted(gameInstallation);
 
-        Logger.Info("The game {0} has been added", gameInstallation.FullId);
+        try
+        {
+            // Invoke added actions
+            await gameInstallation.GetComponents<OnGameAddedComponent>().InvokeAllAsync();
 
-        // Invoke added actions
-        await gameInstallation.GetComponents<OnGameAddedComponent>().InvokeAllAsync();
+            // Configure
+            configureInstallation?.Invoke(gameInstallation);
 
-        // Configure
-        configureInstallation?.Invoke(gameInstallation);
-        
+            Logger.Info("The game {0} has been added", gameInstallation.FullId);
+        }
+        catch
+        {
+            // Remove the game if there was an error during its initialization.
+            // This is to avoid adding the game in an invalid state.
+            Data.Game_GameInstallations.Remove(gameInstallation);
+            throw;
+        }
+
         return gameInstallation;
     }
 
