@@ -1,27 +1,24 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows;
+using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Components;
 
-namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
+namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
-public class DosBoxGameConfigViewModel : GameClientGameConfigViewModel
+public class DosBoxGameConfigViewModel : GameClientGameConfigPageViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor for a specific game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation</param>
-    /// <param name="gameClientDescriptor">The DOSBox game client descriptor</param>
-    /// <param name="gameDescriptor">The game descriptor</param>
     public DosBoxGameConfigViewModel(
         GameInstallation gameInstallation, 
-        DosBoxGameClientDescriptor gameClientDescriptor,
-        MsDosGameDescriptor gameDescriptor)
+        GameClientInstallation gameClientInstallation,
+        MsDosGameDescriptor gameDescriptor,
+        DosBoxGameClientDescriptor gameClientDescriptor) : base(gameClientInstallation)
     {
         GameInstallation = gameInstallation;
-        GameClientDescriptor = gameClientDescriptor;
         GameDescriptor = gameDescriptor;
+        GameClientDescriptor = gameClientDescriptor;
 
         // Set up the available resolution values
         AvailableFullscreenResolutionValues = new ObservableCollection<string>();
@@ -148,14 +145,14 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigViewModel
     public GameInstallation GameInstallation { get; }
 
     /// <summary>
-    /// The DOSBox game client descriptor
-    /// </summary>
-    public DosBoxGameClientDescriptor GameClientDescriptor { get; }
-
-    /// <summary>
     /// The game descriptor
     /// </summary>
     public MsDosGameDescriptor GameDescriptor { get; }
+
+    /// <summary>
+    /// The DOSBox game client descriptor
+    /// </summary>
+    public DosBoxGameClientDescriptor GameClientDescriptor { get; }
 
     public bool RequiredDisc => GameInstallation.HasComponent<MsDosGameRequiresDiscComponent>();
 
@@ -360,13 +357,12 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigViewModel
     }
 
     public override bool CanUseRecommended => true;
-    public override bool CanSave => true;
 
     #endregion
 
     #region Protected Methods
 
-    public override void Load()
+    protected override Task LoadAsync()
     {
         Logger.Info("DOSBox game client game config for {0} is being set up", GameInstallation.FullId);
 
@@ -400,6 +396,8 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigViewModel
 
         UnsavedChanges = false;
 
+        return Task.CompletedTask;
+
         // Helper methods for getting properties
         bool? GetBool(string propName) =>
             Boolean.TryParse(configData.Configuration.TryGetValue(propName), out bool output) ? output : null;
@@ -409,11 +407,7 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigViewModel
             Double.TryParse(configData.Configuration.TryGetValue(propName), out double output) ? output : null;
     }
 
-    /// <summary>
-    /// Saves the changes
-    /// </summary>
-    /// <returns>The task</returns>
-    public override async Task<bool> SaveAsync()
+    protected override async Task<bool> SaveAsync()
     {
         Logger.Info("DOSBox game client game config for {0} is saving...", GameInstallation.FullId);
 
@@ -495,10 +489,7 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigViewModel
         }
     }
 
-    /// <summary>
-    /// Applies the recommended settings for the specified game
-    /// </summary>
-    public override void UseRecommended()
+    protected override void UseRecommended()
     {
         AspectCorrectionEnabled = false;
         MemorySize = 30;

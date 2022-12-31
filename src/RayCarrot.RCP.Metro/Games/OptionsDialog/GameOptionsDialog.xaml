@@ -52,7 +52,7 @@
         <!-- Pages -->
 
         <metro:MetroAnimatedTabControl Grid.Row="1"
-                                       ItemsSource="{Binding Path=Pages, Mode=OneTime}"
+                                       ItemsSource="{Binding Path=Pages}"
                                        d:ItemsSource="{d:SampleData ItemCount=4}"
                                        d:SelectedIndex="0"
                                        SelectedItem="{Binding Path=SelectedPage}"
@@ -115,8 +115,8 @@
                                 </DataTemplate>
 
                                 <!-- Game client config -->
-                                <DataTemplate DataType="{x:Type optionsDialog:GameClientGameConfigPageViewModel}">
-                                    <optionsDialog:GameClientGameConfigControl />
+                                <DataTemplate DataType="{x:Type optionsDialog:DosBoxGameConfigViewModel}">
+                                    <optionsDialog:DosBoxGameConfigControl />
                                 </DataTemplate>
 
                                 <!-- Utilities -->

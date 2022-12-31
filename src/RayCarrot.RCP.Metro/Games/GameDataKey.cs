@@ -13,7 +13,7 @@ public static class GameDataKey
     public const string Win32_RunAsAdmin = "Win32_RunAsAdmin";
     
     // Game clients
-    public const string Client_SelectedClient = "Client_SelectedClient";
+    public const string Client_AttachedClient = "Client_AttachedClient";
     public const string Client_DosBox_MountPath = "Client_DosBox_MountPath";
     
     // Games

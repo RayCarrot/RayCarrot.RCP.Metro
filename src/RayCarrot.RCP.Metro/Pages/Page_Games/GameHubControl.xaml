@@ -207,6 +207,9 @@
                                                 <DataTemplate DataType="{x:Type options:RaymanEdutainmentGameOptionsViewModel}">
                                                     <options:RaymanEdutainmentGameOptionsControl />
                                                 </DataTemplate>
+                                                <DataTemplate DataType="{x:Type options:GameClientSelectionGameOptionsViewModel}">
+                                                    <options:GameClientSelectionGameOptionsControl />
+                                                </DataTemplate>
                                             </ItemsControl.Resources>
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>

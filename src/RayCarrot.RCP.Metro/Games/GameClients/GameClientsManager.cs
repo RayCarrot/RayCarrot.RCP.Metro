@@ -88,9 +88,9 @@ public class GameClientsManager
         {
             if (gameInstallation.GameDescriptor.DefaultToUseGameClient &&
                 descriptor.SupportsGame(gameInstallation) &&
-                gameInstallation.GameDescriptor.GetGameClient(gameInstallation) == null)
+                gameInstallation.GameDescriptor.GetAttachedGameClient(gameInstallation) == null)
             {
-                await gameInstallation.GameDescriptor.SetGameClientAsync(gameInstallation, installation);
+                await gameInstallation.GameDescriptor.AttachGameClientAsync(gameInstallation, installation);
             }
         }
 
@@ -104,8 +104,20 @@ public class GameClientsManager
         // Deselect this game client from any games which use it
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            if (gameInstallation.GetValue<string>(GameDataKey.Client_SelectedClient) == gameClientInstallation.InstallationId)
-                await gameInstallation.GameDescriptor.SetGameClientAsync(gameInstallation, null);
+            if (gameInstallation.GetValue<string>(GameDataKey.Client_AttachedClient) == gameClientInstallation.InstallationId)
+            {
+                if (gameInstallation.GameDescriptor.DefaultToUseGameClient)
+                {
+                    bool success = await gameInstallation.GameDescriptor.AttachDefaultGameClientAsync(gameInstallation);
+
+                    if (!success)
+                        await gameInstallation.GameDescriptor.DetachGameClientAsync(gameInstallation);
+                }
+                else
+                {
+                    await gameInstallation.GameDescriptor.DetachGameClientAsync(gameInstallation);
+                }
+            }
         }
 
         Messenger.Send(new RemovedGameClientsMessage(gameClientInstallation));

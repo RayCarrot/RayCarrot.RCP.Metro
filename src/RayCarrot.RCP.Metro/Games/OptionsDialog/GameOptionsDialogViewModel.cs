@@ -23,12 +23,6 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
 
         Refresh();
 
-        var pages = gameInstallation.GetComponents<GameOptionsDialogPageComponent>().
-            Where(x => x.IsAvailable()).
-            Select(x => x.CreateObject());
-        Pages = new ObservableCollection<GameOptionsDialogPageViewModel>(pages);
-        SelectedPage = Pages.First();
-
         Services.Messenger.RegisterAll(this);
     }
 
@@ -45,12 +39,12 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
     /// <summary>
     /// The available options pages
     /// </summary>
-    public ObservableCollection<GameOptionsDialogPageViewModel> Pages { get; }
+    public ObservableCollection<GameOptionsDialogPageViewModel> Pages { get; set; }
 
     /// <summary>
     /// The currently selected page
     /// </summary>
-    public GameOptionsDialogPageViewModel SelectedPage { get; set; }
+    public GameOptionsDialogPageViewModel? SelectedPage { get; set; }
 
     public GameInstallation GameInstallation { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
@@ -65,9 +59,22 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
     #region Private Methods
 
     [MemberNotNull(nameof(DisplayName))]
+    [MemberNotNull(nameof(Pages))]
     private void Refresh()
     {
         DisplayName = GameInstallation.GetDisplayName();
+
+        // Attempt to keep the selection
+        int selectedIndex = -1;
+        if (Pages != null && SelectedPage != null)
+            selectedIndex = Pages.IndexOf(SelectedPage);
+
+        // We have to recreate the pages on each refresh as they might have changed (if say a game client was attached/detached)
+        var pages = GameInstallation.GetComponents<GameOptionsDialogPageComponent>().
+            Where(x => x.IsAvailable()).
+            Select(x => x.CreateObject());
+        Pages = new ObservableCollection<GameOptionsDialogPageViewModel>(pages);
+        SelectedPage = Pages.ElementAtOrDefault(selectedIndex) ?? Pages.FirstOrDefault();
     }
 
     #endregion
@@ -82,10 +89,10 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         using (await PageLoadLock.LockAsync())
         {
             // Get the selected page
-            GameOptionsDialogPageViewModel page = SelectedPage;
+            GameOptionsDialogPageViewModel? page = SelectedPage;
 
-            // Ignore if already loaded
-            if (page.IsLoaded)
+            // Ignore if already loaded or null
+            if (page == null || page.IsLoaded)
                 return;
 
             try

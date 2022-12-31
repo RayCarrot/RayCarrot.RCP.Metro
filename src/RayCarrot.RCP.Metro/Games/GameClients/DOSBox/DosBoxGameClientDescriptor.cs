@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
 
@@ -28,15 +29,21 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
         base.RegisterComponents(builder);
 
         builder.Register<LaunchGameComponent>(new DosBoxLaunchGameComponent(this));
-    }
 
-    public override GameClientGameConfigViewModel GetGameConfigViewModel(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) =>
-        new DosBoxGameConfigViewModel(gameInstallation, this, GetMsdosGameDescriptor(gameInstallation));
+        // Client config page
+        builder.Register(new GameOptionsDialogPageComponent(
+            objFactory: x => new DosBoxGameConfigViewModel(
+                gameInstallation: x, 
+                gameClientInstallation: x.GameDescriptor.GetRequiredAttachedGameClient(x), 
+                gameDescriptor: GetMsdosGameDescriptor(x), 
+                gameClientDescriptor: this),
+            isAvailableFunc: _ => true));
+    }
 
     public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>
         new DosBoxGameClientOptionsViewModel(gameClientInstallation, this);
 
-    public override Task OnGameClientSelectedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
+    public override Task OnGameClientAttachedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
     {
         // Create config file
         new AutoConfigManager(GetGameConfigFile(gameInstallation)).Create(gameInstallation);

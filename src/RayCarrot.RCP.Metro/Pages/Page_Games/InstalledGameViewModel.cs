@@ -228,6 +228,10 @@ public class InstalledGameViewModel : BaseViewModel
     {
         // TODO-14: Async lock
 
+        // Load options
+        var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
+        GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
+
         // Load info
         GameInfoItems = new ObservableCollection<DuoGridItemViewModel>(GameInstallation.GetComponents<GameInfoComponent>().CreateManyObjects());
 
@@ -250,9 +254,6 @@ public class InstalledGameViewModel : BaseViewModel
 
         _loaded = true;
 
-        // Only get the options once when we load
-        var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
-        GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
         return ReloadAsync();
     }
 

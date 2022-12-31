@@ -9,8 +9,8 @@ public class DeselectClientOnGameRemovedComponent : OnGameRemovedComponent
     private static async Task DeselectClientAsync(GameInstallation gameInstallation)
     {
         // Get the previous game client installation and invoke it being deselected
-        GameClientInstallation? prevClient = gameInstallation.GameDescriptor.GetGameClient(gameInstallation);
+        GameClientInstallation? prevClient = gameInstallation.GameDescriptor.GetAttachedGameClient(gameInstallation);
         if (prevClient != null)
-            await prevClient.GameClientDescriptor.OnGameClientDeselectedAsync(gameInstallation, prevClient);
+            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
     }
 }

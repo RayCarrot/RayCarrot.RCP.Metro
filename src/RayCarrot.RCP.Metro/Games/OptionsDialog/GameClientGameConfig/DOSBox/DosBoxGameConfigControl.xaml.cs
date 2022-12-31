@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
+namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>
 /// Interaction logic for DosBoxGameConfigControl.xaml

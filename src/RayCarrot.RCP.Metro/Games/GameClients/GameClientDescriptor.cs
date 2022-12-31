@@ -11,6 +11,7 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
 {
     public abstract string GameClientId { get; }
 
+    // TODO-14: Allow user to rename this like we did with game installations
     /// <summary>
     /// The game client's display name
     /// </summary>
@@ -24,8 +25,6 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
     }
 
     public abstract bool SupportsGame(GameInstallation gameInstallation);
-
-    public virtual GameClientGameConfigViewModel? GetGameConfigViewModel(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => null;
 
     public virtual GameClientOptionsViewModel? GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) => null;
 
@@ -44,10 +43,10 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
             text: gameClientInstallation.InstallLocation.FullPath),
     };
 
-    public virtual Task OnGameClientSelectedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
+    public virtual Task OnGameClientAttachedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
         Task.CompletedTask;
 
-    public virtual Task OnGameClientDeselectedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
+    public virtual Task OnGameClientDetachedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
         Task.CompletedTask;
 
     /// <summary>
@@ -60,7 +59,7 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
 
         foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
         {
-            if (gameInstallation.GetValue<string>(GameDataKey.Client_SelectedClient) == gameClientInstallation.InstallationId)
+            if (gameInstallation.GetValue<string>(GameDataKey.Client_AttachedClient) == gameClientInstallation.InstallationId)
                 gamesToRefresh.Add(gameInstallation);
         }
 
