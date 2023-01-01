@@ -191,15 +191,15 @@ public class InstalledGameViewModel : BaseViewModel
                     command: command);
             }));
 
-        // Add RayMap link
-        GameDescriptor.RayMapInfo? rayMapInfo = GameDescriptor.GetRayMapInfo();
-        if (rayMapInfo != null)
+        // Add RayMap link (for now we assume there's only a single RayMap component per game)
+        RayMapComponent? rayMapComponent = GameInstallation.GetComponent<RayMapComponent>();
+        if (rayMapComponent != null)
         {
-            string url = rayMapInfo.GetURL();
+            string url = rayMapComponent.GetURL();
             AdditionalLaunchActions.AddGroup(new ImageCommandItemViewModel(
                 header: Resources.GameDisplay_Raymap, 
                 description: url,
-                assetValue: rayMapInfo.GetIcon(), 
+                assetValue: rayMapComponent.GetIcon(), 
                 command: new AsyncRelayCommand(async () => (await Services.File.LaunchFileAsync(url))?.Dispose())));
         }
 

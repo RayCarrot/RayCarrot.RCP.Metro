@@ -93,13 +93,12 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new GameOptionsComponent(x => new RaymanEdutainmentGameOptionsViewModel(x)));
+        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanQuizPC", "r1/quiz/pc_gf", "GF"));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.Ray1Map, "RaymanQuizPC", "r1/quiz/pc_gf", "GF");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));

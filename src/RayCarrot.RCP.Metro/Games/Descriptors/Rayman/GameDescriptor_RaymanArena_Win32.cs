@@ -41,6 +41,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         builder.Register(new GameConfigComponent(x => new RaymanArenaConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
+        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "ra_pc", "ra_pc"));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanArena_PC))));
     }
@@ -57,8 +58,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
             gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", },
             installFolderName: "Rayman Arena"))
     });
-
-    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "ra_pc", "ra_pc");
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new CPACntArchiveDataManager(

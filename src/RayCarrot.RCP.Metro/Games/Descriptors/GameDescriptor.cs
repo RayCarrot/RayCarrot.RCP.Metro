@@ -321,12 +321,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public abstract IEnumerable<GameAddAction> GetAddActions();
 
     /// <summary>
-    /// Gets optional RayMap map viewer information
-    /// </summary>
-    /// <returns>The info or null if not available</returns>
-    public virtual RayMapInfo? GetRayMapInfo() => null; // TODO-UPDATE: Add for demos
-
-    /// <summary>
     /// Gets the archive data manager for the game
     /// </summary>
     public virtual IArchiveDataManager? GetArchiveDataManager(GameInstallation? gameInstallation) => null;
@@ -407,29 +401,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     #endregion
 
     #region Data Types
-
-    public record RayMapInfo(
-        RayMapViewer Viewer,
-        string Mode,
-        string Folder,
-        string? Vol = null)
-    {
-        public string GetURL() => Viewer switch
-        {
-            RayMapViewer.RayMap => AppURLs.GetRayMapGameURL(Mode, Folder),
-            RayMapViewer.Ray1Map => AppURLs.GetRay1MapGameURL(Mode, Folder, Vol),
-            _ => throw new ArgumentOutOfRangeException(nameof(Viewer), Viewer, null)
-        };
-
-        public RayMapIconAsset GetIcon() => Viewer switch
-        {
-            RayMapViewer.RayMap => RayMapIconAsset.RayMap,
-            RayMapViewer.Ray1Map => RayMapIconAsset.Ray1Map,
-            _ => throw new ArgumentOutOfRangeException(nameof(Viewer), Viewer, null)
-        };
-    }
-
-    public enum RayMapViewer { RayMap, Ray1Map }
 
     /// <summary>
     /// A game purchase link which can be accessed from the game

@@ -50,6 +50,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
+        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "tt_pc", "tt_pc"));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_PC))));
     }
@@ -63,8 +64,6 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
             settings: new OpenSpaceSettings(EngineVersion.TonicTrouble, BinarySerializer.OpenSpace.Platform.PC), 
             gameInstallation: gameInstallation, 
             cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_PC));
-
-    public override RayMapInfo GetRayMapInfo() => new(RayMapViewer.RayMap, "tt_pc", "tt_pc");
 
     public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
     {
