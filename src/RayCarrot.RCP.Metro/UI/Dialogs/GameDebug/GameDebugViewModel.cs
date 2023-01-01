@@ -56,7 +56,7 @@ public class GameDebugViewModel : BaseViewModel,
 
             // Get components
             GameComponentBuilder builder = GameDescriptor.RegisterComponents(SelectedGameInstallation.GameInstallation);
-            Components = builder.Build().ToObservableCollection();
+            Components = builder.Build().OrderBy(x => x.BaseType.Name).ThenBy(x => x.InstanceType.Name).ToObservableCollection();
         }
         else
         {
