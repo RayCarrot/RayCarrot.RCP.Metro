@@ -78,7 +78,7 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
         }
         set
         {
-            if (value is bool v)
+            if (value is { } v)
                 DebugCommands[InvincibilityKey] = v ? "1" : "0";
             else
                 DebugCommands.Remove(InvincibilityKey);
@@ -101,7 +101,7 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
         }
         set
         {
-            if (value is bool v)
+            if (value is { } v)
                 DebugCommands[MouseHiddenKey] = v ? "1" : "0";
             else
                 DebugCommands.Remove(MouseHiddenKey);
@@ -121,8 +121,8 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
         get => DebugCommands.TryGetValue(MapKey);
         set
         {
-            if (value is string v && !v.IsNullOrWhiteSpace())
-                DebugCommands[MapKey] = v;
+            if (value != null && !value.IsNullOrWhiteSpace())
+                DebugCommands[MapKey] = value;
             else
                 DebugCommands.Remove(MapKey);
         }
@@ -144,7 +144,7 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
         }
         set
         {
-            if (value is bool v)
+            if (value is { } v)
                 DebugCommands[DisableSaveKey] = v ? "1" : "0";
             else
                 DebugCommands.Remove(DisableSaveKey);
