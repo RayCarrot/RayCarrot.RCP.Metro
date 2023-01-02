@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using RayCarrot.RCP.Metro.Games.Components;
-using Windows.ApplicationModel;
+using RayCarrot.RCP.Metro.Games.Finder;
 using Windows.Management.Deployment;
 
 namespace RayCarrot.RCP.Metro;
@@ -25,19 +25,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
 
     public abstract string PackageName { get; }
     public abstract string FullPackageName { get; }
-
-    #endregion
-
-    #region Private Methods
-
-    /// <summary>
-    /// Gets the game package
-    /// </summary>
-    /// <returns>The package or null if not found</returns>
-    private Package? GetPackage()
-    {
-        return new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == PackageName);
-    }
 
     #endregion
 
@@ -70,15 +57,17 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         new FindWindowsPackageGameAddActions(this)
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(() =>
+    public override FinderQuery[] GetFinderQueries()
     {
         // Make sure version is at least Windows 8
         if (!SupportsWinRT)
-            return null;
+            return Array.Empty<FinderQuery>();
 
-        // Return the install directory, if found
-        return new GameFinder_FoundResult(GetPackageInstallDirectory());
-    });
+        return new FinderQuery[]
+        {
+            new WindowsPackageFinderQuery(PackageName),
+        };
+    }
 
     /// <summary>
     /// Gets the package install directory
@@ -86,7 +75,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     /// <returns>The package install directory</returns>
     public string? GetPackageInstallDirectory()
     {
-        return GetPackage()?.InstalledLocation.Path;
+        return new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == PackageName)?.InstalledLocation.Path;
     }
 
     public GameBackups_Directory[] GetBackupDirectories() => new GameBackups_Directory[]

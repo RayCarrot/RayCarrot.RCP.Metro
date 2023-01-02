@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -71,12 +72,16 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Raving Rabbids", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rayman Raving Rabbids",
-        "Rayman: Raving Rabbids",
-        "RRR",
-    });
+        new UninstallProgramFinderQuery("Rayman Raving Rabbids"),
+        new UninstallProgramFinderQuery("Rayman: Raving Rabbids"),
+        new UninstallProgramFinderQuery("RRR"),
+
+        new Win32ShortcutFinderQuery("Rayman Raving Rabbids"),
+
+        new SteamFinderQuery(SteamId),
+    };
 
     #endregion
 }

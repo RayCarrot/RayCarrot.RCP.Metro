@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -75,11 +76,15 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         new(new ResourceLocString(nameof(Resources.GameDisplay_Steam)), SteamHelpers.GetStorePageURL(SteamId)),
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Legends", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rayman Legends",
-        "Rayman: Legends",
-    });
+        new UninstallProgramFinderQuery("Rayman Legends"),
+        new UninstallProgramFinderQuery("Rayman: Legends"),
+
+        new Win32ShortcutFinderQuery("Rayman Legends"),
+
+        new SteamFinderQuery(SteamId),
+    };
 
     #endregion
 }

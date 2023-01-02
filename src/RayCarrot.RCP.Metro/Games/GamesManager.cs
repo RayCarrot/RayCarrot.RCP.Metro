@@ -208,7 +208,8 @@ public class GamesManager
         foreach ((GameDescriptor? gameDescriptor, FileSystemPath installDirectory) in games)
             gameInstallations.Add(await AddGameImplAsync(gameDescriptor, installDirectory, configureInstallation));
 
-        Messenger.Send(new AddedGamesMessage(gameInstallations));
+        if (gameInstallations.Any())
+            Messenger.Send(new AddedGamesMessage(gameInstallations));
 
         return gameInstallations;
     }
@@ -234,6 +235,9 @@ public class GamesManager
     /// <returns>The task</returns>
     public async Task RemoveGamesAsync(IList<GameInstallation> gameInstallations)
     {
+        if (!gameInstallations.Any())
+            return;
+
         // Remove the games
         foreach (GameInstallation gameInstallation in gameInstallations)
             await RemoveGameImplAsync(gameInstallation);

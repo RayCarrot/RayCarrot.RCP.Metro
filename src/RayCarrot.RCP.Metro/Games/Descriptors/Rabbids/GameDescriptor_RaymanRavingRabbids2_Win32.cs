@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -65,14 +66,16 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     #region Public Methods
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Raving Rabbids 2", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rayman Raving Rabbids 2",
-        "Rayman: Raving Rabbids 2",
-        "Rayman Raving Rabbids 2 Orange",
-        "Rayman: Raving Rabbids 2 Orange",
-        "RRR2",
-    });
+        new UninstallProgramFinderQuery("Rayman Raving Rabbids 2"),
+        new UninstallProgramFinderQuery("Rayman: Raving Rabbids 2"),
+        new UninstallProgramFinderQuery("Rayman Raving Rabbids 2 Orange"),
+        new UninstallProgramFinderQuery("Rayman: Raving Rabbids 2 Orange"),
+        new UninstallProgramFinderQuery("RRR2"),
+
+        new Win32ShortcutFinderQuery("Rayman Raving Rabbids 2"),
+    };
 
     #endregion
 }

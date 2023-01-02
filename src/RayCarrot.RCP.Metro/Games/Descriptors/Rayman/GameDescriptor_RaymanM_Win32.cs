@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -75,11 +76,15 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
         @"TribeBin\vignette.cnt",
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(UbiIniData_RaymanM.SectionName, "Rayman M", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rayman M",
-        "Rayman: M",
-    });
+        new UbiIniFinderQuery(UbiIniData_RaymanM.SectionName),
+
+        new UninstallProgramFinderQuery("Rayman M"),
+        new UninstallProgramFinderQuery("Rayman: M"),
+
+        new Win32ShortcutFinderQuery("Rayman M"),
+    };
 
     #endregion
 }

@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -73,13 +74,17 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(UbiIniData_Rayman3.SectionName, "Rayman 3", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rayman 3",
-        "Rayman: 3",
-        "Rayman 3 - Hoodlum Havoc",
-        "Rayman: 3 - Hoodlum Havoc",
-    });
+        new UbiIniFinderQuery(UbiIniData_Rayman3.SectionName),
+
+        new UninstallProgramFinderQuery("Rayman 3"),
+        new UninstallProgramFinderQuery("Rayman: 3"),
+        new UninstallProgramFinderQuery("Rayman 3 - Hoodlum Havoc"),
+        new UninstallProgramFinderQuery("Rayman: 3 - Hoodlum Havoc"),
+
+        new Win32ShortcutFinderQuery("Rayman 3"),
+    };
 
     #endregion
 }

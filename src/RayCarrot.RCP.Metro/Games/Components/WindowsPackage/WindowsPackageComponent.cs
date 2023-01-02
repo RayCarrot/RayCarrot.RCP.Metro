@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
+using RayCarrot.RCP.Metro.Games.Components;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
-using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -70,8 +70,5 @@ public class WindowsPackageComponent : GameComponent
     /// Gets the game package
     /// </summary>
     /// <returns>The package or null if not found</returns>
-    public Package? GetPackage()
-    {
-        return new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == PackageName);
-    }
+    public Package? GetPackage() => new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == PackageName);
 }

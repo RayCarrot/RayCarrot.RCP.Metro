@@ -2,6 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
+using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,14 +16,12 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
     public Page_Games_ViewModel(
         AppViewModel app,
-        AppUserData data,
         GamesManager gamesManager, 
         AppUIManager ui,
         IMessageUIManager messageUi,
         IMessenger messenger) : base(app)
     {
         // Set services
-        Data = data ?? throw new ArgumentNullException(nameof(data));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
@@ -74,7 +73,6 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
     #region Services
 
-    private AppUserData Data { get; }
     private GamesManager GamesManager { get; }
     private AppUIManager UI { get; }
     private IMessageUIManager MessageUI { get; }
@@ -168,6 +166,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
                             if (selectedGameInstallation != null)
                             {
                                 InstalledGameViewModel? selectedInstalledGame = group.InstalledGames.
+                                    // ReSharper disable once AccessToModifiedClosure
                                     FirstOrDefault(x => x.GameInstallation == selectedGameInstallation);
 
                                 if (selectedInstalledGame != null)
@@ -220,65 +219,47 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
         IsGameFinderRunning = true;
 
-        IReadOnlyList<GameFinder_BaseResult> foundItems;
+        FinderItem[] runFinderItems;
 
         try
         {
-            // TODO-14: Change how the game finder works
-            IReadOnlyList<GameInstallation> installedGames = Services.Games.GetInstalledGames();
-            // Get all games which have not been added
-            GameDescriptor[] games = Services.Games.GetGameDescriptors().
-                Where(x => installedGames.All(g => g.GameDescriptor != x)).
-                ToArray();
+            // TODO-14: Add clients first
+            // Get the installed games
+            IReadOnlyList<GameInstallation> installedGames = GamesManager.GetInstalledGames();
 
-            Logger.Trace("The following games were added to the game checker: {0}", games.JoinItems(", "));
+            List<FinderItem> finderItems = new();
 
-            // Get additional finder items
-            List<GameFinder_GenericItem> finderItems = new(1);
+            // Get finder items for all games which don't have an added game installation
+            foreach (GameDescriptor gameDescriptor in GamesManager.GetGameDescriptors())
+            {
+                // Make sure the game has not already been added
+                if (installedGames.Any(g => g.GameDescriptor == gameDescriptor))
+                    continue;
 
-            // TODO-14: Restore this. Perhaps implement a better system where game finder finds games and emulators?
-            // Create DOSBox finder item if it doesn't exist
-            //if (!System.IO.File.Exists(Data.Emu_DOSBox_Path))
-            //{
-            //    string[] names =
-            //    {
-            //        "DosBox",
-            //        "Dos Box"
-            //    };
+                // Get the finder item for the game
+                GameFinderItem? finderItem = gameDescriptor.GetFinderItem();
 
-            //    void foundAction(FileSystemPath installDir)
-            //    {
-            //        if (System.IO.File.Exists(Data.Emu_DOSBox_Path))
-            //        {
-            //            Logger.Warn("The DosBox executable was not added from the game finder due to already having been added");
-            //            return;
-            //        }
+                if (finderItem == null)
+                    continue;
 
-            //        Logger.Info("The DosBox executable was found from the game finder");
+                finderItems.Add(finderItem);
+            }
 
-            //        Data.Emu_DOSBox_Path = installDir + "DOSBox.exe";
-            //    }
+            // Create a finder
+            Finder finder = new(Finder.DefaultOperations, finderItems.ToArray());
 
-            //    finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : (FileSystemPath?)null, foundAction, "DOSBox"));
-            //}
+            // Run the finder
+            finder.Run();
 
-            // Run the game finder and get the result
-            GameFinder finder = new(games, finderItems);
-            foundItems = await Task.Run(finder.FindGames);
-
-            // Handle the generic results
-            foreach (GameFinder_GenericResult genericResult in foundItems.OfType<GameFinder_GenericResult>())
-                genericResult.HandledAction?.Invoke(genericResult.InstallLocation);
-
-            // Handle the game results by adding the found games
-            if (foundItems.OfType<GameFinder_GameResult>().Any())
-                await GamesManager.AddGamesAsync(foundItems.OfType<GameFinder_GameResult>().
-                    Select(x => (x.GameDescriptor, x.InstallLocation)));
+            // Get the finder items
+            runFinderItems = finder.FinderItems;
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Game finder");
-            await MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
+            Logger.Error(ex, "Running finder");
+            await MessageUI.DisplayExceptionMessageAsync(ex, 
+                // TODO-UPDATE: Update localization (and other occurrences of "Game finder" or "Find games")
+                Resources.GameFinder_Error);
             return;
         }
         finally
@@ -286,29 +267,27 @@ public class Page_Games_ViewModel : BasePageViewModel,
             IsGameFinderRunning = false;
         }
 
-        // Check if new games were found
-        if (foundItems.Count > 0)
+        bool foundItems = false;
+
+        // TODO-14: Add clients and notify of found ones to user
+
+        // Add the found games
+        IList<GameInstallation> addedGames = await GamesManager.AddGamesAsync(runFinderItems.OfType<GameFinderItem>().
+            Where(x => x.HasBeenFound).
+            Select(x => (x.GameDescriptor, x.FoundLocation!.Value)));
+
+        if (addedGames.Any())
         {
-            // Split into found games and items and sort
-            IEnumerable<string> gameFinderResults = foundItems.
-                OfType<GameFinder_GameResult>().
-                OrderBy(x => x.GameDescriptor.Game).
-                Select(x => x.DisplayName);
+            foundItems = true;
 
-            IEnumerable<string> finderResults = foundItems.
-                OfType<GameFinder_GenericResult>().
-                OrderBy(x => x.DisplayName).
-                Select(x => x.DisplayName);
+            Logger.Info("The finder found {0} games", addedGames.Count);
 
-            await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
-
-            Logger.Info("The game finder found the following items {0}", foundItems.JoinItems(", ", x => x.DisplayName));
+            await MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
         }
-        else if (!runInBackground)
-        {
+
+        if (!foundItems && !runInBackground)
             await MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader,
                 MessageType.Information);
-        }
     }
 
     public Task AddGamesAsync()

@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -71,10 +72,14 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
         @"gamedata\Vignette.cnt",
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new("TONICT", "Tonic Trouble", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Tonic Trouble",
-    });
+        new UbiIniFinderQuery("TONICT"),
+
+        new UninstallProgramFinderQuery("Tonic Trouble"),
+
+        new Win32ShortcutFinderQuery("Tonic Trouble"),
+    };
 
     #endregion
 }

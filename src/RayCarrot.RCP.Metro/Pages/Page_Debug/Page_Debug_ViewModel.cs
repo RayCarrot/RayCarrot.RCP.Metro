@@ -10,6 +10,7 @@ using System.Windows.Media;
 using BinarySerializer;
 using ByteSizeLib;
 using ControlzEx.Theming;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
@@ -396,13 +397,36 @@ public class Page_Debug_ViewModel : BasePageViewModel
                         
                     break;
 
-                case DebugDataOutputType.GameFinder:
-                    // Run and get the result
-                    var result = new GameFinder(GamesManager.GetGameDescriptors(), null).FindGames();
-                        
-                    // Output the found games
-                    DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.GameDescriptor.GameId} - {x.InstallLocation}").JoinItems(Environment.NewLine);
-                        
+                case DebugDataOutputType.Finder:
+                    List<FinderItem> finderItems = new();
+
+                    foreach (GameDescriptor gameDescriptor in GamesManager.GetGameDescriptors())
+                    {
+                        GameFinderItem? finderItem = gameDescriptor.GetFinderItem();
+                        if (finderItem == null)
+                            continue;
+                        finderItems.Add(finderItem);
+                    }
+
+                    // Create a finder
+                    Finder finder = new(Finder.DefaultOperations, finderItems.ToArray());
+
+                    Stopwatch timer = Stopwatch.StartNew();
+
+                    // Run the finder
+                    finder.Run();
+
+                    timer.Stop();
+
+                    // Output the found items
+                    DataOutput = finder.FinderItems.
+                        Where(x => x.HasBeenFound).
+                        Select(x => $"{x.ItemId} - {x.FoundLocation} ({x.FoundQuery!.GetType().Name})").JoinItems(Environment.NewLine);
+
+                    DataOutput += Environment.NewLine;
+                    DataOutput += Environment.NewLine;
+                    DataOutput += $"{timer.ElapsedMilliseconds} ms";
+
                     break;
 
                 case DebugDataOutputType.GameSizes:
@@ -784,9 +808,9 @@ public class Page_Debug_ViewModel : BasePageViewModel
         AppWindows,
 
         /// <summary>
-        /// Runs the game finder, searching for all games and displaying the output of found games and their install locations
+        /// Runs the finder, searching for all games and game clients and displaying the results
         /// </summary>
-        GameFinder,
+        Finder,
 
         /// <summary>
         /// Displays the install sizes for each game

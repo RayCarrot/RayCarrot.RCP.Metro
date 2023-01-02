@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -134,14 +135,20 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         return output;
     }
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(UbiIniData_Rayman2.SectionName, "Rayman 2", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rayman 2",
-        "Rayman: 2",
-        "Rayman 2 - The Great Escape",
-        "Rayman: 2 - The Great Escape",
-        "GOG.com Rayman 2",
-    });
+        new UbiIniFinderQuery(UbiIniData_Rayman2.SectionName),
+
+        new UninstallProgramFinderQuery("Rayman 2"),
+        new UninstallProgramFinderQuery("Rayman: 2"),
+        new UninstallProgramFinderQuery("Rayman 2 - The Great Escape"),
+        new UninstallProgramFinderQuery("Rayman: 2 - The Great Escape"),
+        new UninstallProgramFinderQuery("GOG.com Rayman 2"),
+
+        new Win32ShortcutFinderQuery("Rayman 2"),
+
+        new SteamFinderQuery(SteamId),
+    };
 
     #endregion
 }

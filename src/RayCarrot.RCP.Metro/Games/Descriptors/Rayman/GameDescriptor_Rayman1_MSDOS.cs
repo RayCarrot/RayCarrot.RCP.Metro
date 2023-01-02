@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -65,9 +66,24 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseUplay)), "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rayman Forever", new[] { "Rayman Forever", },
-        // Navigate to the sub-directory
-        x => x.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase) ? x.Parent + "Rayman" : x + "Rayman");
+    public override FinderQuery[] GetFinderQueries()
+    {
+        static FileSystemPath validateLocation(FileSystemPath location)
+        {
+            const string gameName = "Rayman";
+
+            if (location.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase))
+                return location.Parent + gameName;
+            else
+                return location + gameName;
+        }
+
+        return new FinderQuery[]
+        {
+            new UninstallProgramFinderQuery("Rayman Forever") { ValidateLocationFunc = validateLocation },
+            new Win32ShortcutFinderQuery("Rayman Forever") { ValidateLocationFunc = validateLocation },
+        };
+    }
 
     #endregion
 }

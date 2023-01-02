@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -51,12 +52,14 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rabbids Go Home", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rabbids Go Home",
-        "Rabbids Go Home - DVD",
-        "Rabbids: Go Home",
-    });
+        new UninstallProgramFinderQuery("Rabbids Go Home"),
+        new UninstallProgramFinderQuery("Rabbids Go Home - DVD"),
+        new UninstallProgramFinderQuery("Rabbids: Go Home"),
+
+        new Win32ShortcutFinderQuery("Rabbids Go Home"),
+    };
 
     #endregion
 }

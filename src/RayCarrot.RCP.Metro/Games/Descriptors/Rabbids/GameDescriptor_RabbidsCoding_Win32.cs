@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using RayCarrot.RCP.Metro.Games.Finder;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rabbids Coding (Win32) game descriptor
@@ -27,11 +29,13 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
         new(new ResourceLocString(nameof(Resources.GameDisplay_DownloadUplay)), "https://register.ubisoft.com/rabbids-coding/")
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(null, "Rabbids Coding", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "RabbidsCoding",
-        "Rabbids Coding",
-    });
+        new UninstallProgramFinderQuery("RabbidsCoding"),
+        new UninstallProgramFinderQuery("Rabbids Coding"),
+
+        new Win32ShortcutFinderQuery("Rabbids Coding"),
+    };
 
     #endregion
 }

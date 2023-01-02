@@ -1,6 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -351,9 +352,24 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public virtual IEnumerable<GamePurchaseLink> GetPurchaseLinks() => Enumerable.Empty<GamePurchaseLink>();
 
     /// <summary>
-    /// Gets the game finder item for this game
+    /// Gets the queries to user when finding the game
     /// </summary>
-    public virtual GameFinder_GameItem? GetGameFinderItem() => null;
+    /// <returns>The queries</returns>
+    public virtual FinderQuery[] GetFinderQueries() => Array.Empty<FinderQuery>();
+
+    /// <summary>
+    /// Gets the finder item for this descriptor or null if there is none
+    /// </summary>
+    /// <returns>The finder item or null if there is none</returns>
+    public GameFinderItem? GetFinderItem()
+    {
+        FinderQuery[] queries = GetFinderQueries();
+
+        if (queries.Length == 0)
+            return null;
+
+        return new GameFinderItem(this, queries);
+    }
 
     /// <summary>
     /// Indicates if the game is valid

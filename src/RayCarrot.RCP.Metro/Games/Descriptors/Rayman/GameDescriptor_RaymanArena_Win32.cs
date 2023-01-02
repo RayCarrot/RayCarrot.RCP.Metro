@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Ini;
 
@@ -80,11 +81,15 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         @"TribeBin\Sound.cnt",
     };
 
-    public override GameFinder_GameItem GetGameFinderItem() => new(UbiIniData_RaymanArena.SectionName, "Rayman Arena", new[]
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {
-        "Rayman Arena",
-        "Rayman: Arena",
-    });
+        new UbiIniFinderQuery(UbiIniData_RaymanArena.SectionName),
+
+        new UninstallProgramFinderQuery("Rayman Arena"),
+        new UninstallProgramFinderQuery("Rayman: Arena"),
+
+        new Win32ShortcutFinderQuery("Rayman Arena"),
+    };
 
     #endregion
 }
