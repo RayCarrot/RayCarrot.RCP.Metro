@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
+﻿using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 /// <summary>
 /// View model for the Rabbids Go Home config
@@ -48,7 +50,7 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
             UnsavedChanges = true;
 
             if (EnableCustomSettings)
-                ImportConfig(new UserData_RabbidsGoHomeLaunchData());
+                ImportConfig(new RabbidsGoHomeLaunchData());
         }
     }
 
@@ -138,7 +140,7 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
     /// Import the specified data
     /// </summary>
     /// <param name="data">The data to import</param>
-    private void ImportConfig(UserData_RabbidsGoHomeLaunchData data)
+    private void ImportConfig(RabbidsGoHomeLaunchData data)
     {
         GraphicsMode.GetAvailableResolutions();
         GraphicsMode.SelectedGraphicsMode = new GraphicsMode(data.ResolutionX, data.ResolutionY);
@@ -163,7 +165,7 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
         Logger.Info("Rabbids Go Home config is being set up");
 
         // Get the current launch data
-        var launchData = GameInstallation.GetObject<UserData_RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData);
+        var launchData = GameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData);
 
         if (launchData != null)
         {
@@ -193,10 +195,10 @@ public class RabbidsGoHomeConfigViewModel : ConfigPageViewModel
         Logger.Info("Rabbids Go Home configuration is saving...");
 
         // Set the launch data
-        UserData_RabbidsGoHomeLaunchData? launchData = null;
+        RabbidsGoHomeLaunchData? launchData = null;
 
         if (EnableCustomSettings)
-            launchData = new UserData_RabbidsGoHomeLaunchData(
+            launchData = new RabbidsGoHomeLaunchData(
                 bigFile: BigFile, 
                 language: GetLanguageName(Language), 
                 resolutionX: GraphicsMode.Width,

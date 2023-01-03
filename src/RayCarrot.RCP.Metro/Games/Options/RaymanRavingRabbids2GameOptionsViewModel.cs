@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Options;
+﻿using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro.Games.Options;
 
 /// <summary>
 /// View model for the Rayman Raving Rabbids 2 game options
@@ -13,9 +15,9 @@ public class RaymanRavingRabbids2GameOptionsViewModel : GameOptionsViewModel
 
     #region Public Properties
 
-    public UserData_RRR2LaunchMode LaunchMode
+    public RaymanRavingRabbids2LaunchMode LaunchMode
     {
-        get => GameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
+        get => GameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, RaymanRavingRabbids2LaunchMode.AllGames);
         set
         {
             GameInstallation.SetValue(GameDataKey.RRR2_LaunchMode, value);

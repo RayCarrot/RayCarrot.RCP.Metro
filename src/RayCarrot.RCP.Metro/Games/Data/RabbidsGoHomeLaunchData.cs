@@ -1,17 +1,17 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Data;
 
 /// <summary>
 /// The launch data for Rabbids Go Home
 /// </summary>
-public class UserData_RabbidsGoHomeLaunchData
+public class RabbidsGoHomeLaunchData
 {
     /// <summary>
     /// Constructor for default values
     /// </summary>
-    public UserData_RabbidsGoHomeLaunchData()
+    public RabbidsGoHomeLaunchData()
     {
         BigFile = "RGH_defrag.bf";
         Language = "en";
@@ -27,7 +27,7 @@ public class UserData_RabbidsGoHomeLaunchData
     /// Constructor for specified values
     /// </summary>
     [JsonConstructor]
-    public UserData_RabbidsGoHomeLaunchData(
+    public RabbidsGoHomeLaunchData(
         string bigFile, 
         string language, 
         int resolutionX, 

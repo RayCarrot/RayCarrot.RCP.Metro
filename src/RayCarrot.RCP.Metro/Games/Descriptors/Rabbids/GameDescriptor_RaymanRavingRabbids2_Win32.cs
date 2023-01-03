@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -29,13 +30,13 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
 
     private static string GetLaunchArgs(GameInstallation gameInstallation)
     {
-        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
+        RaymanRavingRabbids2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, RaymanRavingRabbids2LaunchMode.AllGames);
         return $"/{launchMode.ToString().ToLower()} /B Rrr2.bf";
     }
 
     private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation)
     {
-        UserData_RRR2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, UserData_RRR2LaunchMode.AllGames);
+        RaymanRavingRabbids2LaunchMode launchMode = gameInstallation.GetValue(GameDataKey.RRR2_LaunchMode, RaymanRavingRabbids2LaunchMode.AllGames);
 
         return new[]
         {

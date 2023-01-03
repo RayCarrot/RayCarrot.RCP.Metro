@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
+using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -44,7 +45,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
     private static IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
     {
         // Add a lunch action for each game mode
-        string[] gameModes = gameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData).AvailableGameModes;
+        string[] gameModes = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData).AvailableGameModes;
 
         // Only show additional launch actions for the game if we have more than one game mode
         if (gameModes.Length <= 1)
@@ -70,7 +71,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
 
     private static IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
     {
-        UserData_Ray1MsDosData data = gameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        Ray1MsDosData data = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
         return data.AvailableGameModes.Select(x => new GameProgressionManager_RaymanEdutainment(
             gameInstallation: gameInstallation,
             backupName: $"Educational Games - {x}",

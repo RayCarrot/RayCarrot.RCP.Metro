@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using BinarySerializer;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -27,7 +28,7 @@ public class InstalledGameViewModel : BaseViewModel
         AdditionalLaunchActions = new ObservableActionItemsCollection();
 
         // Set other properties
-        CanUninstall = gameInstallation.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
+        CanUninstall = gameInstallation.GetObject<RCPGameInstallData>(GameDataKey.RCP_GameInstallData) != null;
         HasOptionsDialog = gameInstallation.GetComponents<GameOptionsDialogPageComponent>().Any(x => x.IsAvailable());
 
         // Create commands

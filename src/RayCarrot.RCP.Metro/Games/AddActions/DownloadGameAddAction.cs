@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro;
 
 public class DownloadGameAddAction : GameAddAction
 {
@@ -16,8 +18,8 @@ public class DownloadGameAddAction : GameAddAction
     // Can only be downloaded once
     public override bool IsAvailable => Services.Games.GetInstalledGames().
         Where(x => x.GameId == GameDescriptor.GameId).
-        All(x => x.GetObject<UserData_RCPGameInstallData>(GameDataKey.RCP_GameInstallData)?.InstallMode 
-                 != UserData_RCPGameInstallData.RCPInstallMode.Download);
+        All(x => x.GetObject<RCPGameInstallData>(GameDataKey.RCP_GameInstallData)?.InstallMode 
+                 != RCPGameInstallData.RCPInstallMode.Download);
 
     public GameDescriptor GameDescriptor { get; }
     public Uri[] DownloadUrls { get; }
@@ -40,7 +42,7 @@ public class DownloadGameAddAction : GameAddAction
         GameInstallation gameInstallation = await Services.Games.AddGameAsync(GameDescriptor, gameDir, x =>
         {
             // Set the install info
-            UserData_RCPGameInstallData installData = new(gameDir, UserData_RCPGameInstallData.RCPInstallMode.Download);
+            RCPGameInstallData installData = new(gameDir, RCPGameInstallData.RCPInstallMode.Download);
             x.SetObject(GameDataKey.RCP_GameInstallData, installData);
         });
 

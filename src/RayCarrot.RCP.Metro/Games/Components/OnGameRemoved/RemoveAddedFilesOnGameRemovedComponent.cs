@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class RemoveAddedFilesOnGameRemovedComponent : OnGameRemovedComponent
 {

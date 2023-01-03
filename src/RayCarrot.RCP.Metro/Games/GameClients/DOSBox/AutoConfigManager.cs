@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Text;
+using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
 

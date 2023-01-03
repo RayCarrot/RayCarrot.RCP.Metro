@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -27,12 +28,12 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     #region Private Methods
 
     private static FileSystemPath GetLaunchFilePath(GameInstallation gameInstallation) =>
-        gameInstallation.GetObject<UserData_RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData) == null
+        gameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData) == null
             ? "Launcher.exe"
             : "LyN_f.exe";
 
     private static string? GetLaunchArgs(GameInstallation gameInstallation) =>
-        gameInstallation.GetObject<UserData_RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData)?.ToString();
+        gameInstallation.GetObject<RabbidsGoHomeLaunchData>(GameDataKey.RGH_LaunchData)?.ToString();
 
     #endregion
 

@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class Ray1LaunchArgumentsComponent : LaunchArgumentsComponent
 {
@@ -6,7 +8,7 @@ public class Ray1LaunchArgumentsComponent : LaunchArgumentsComponent
 
     private static string GetLaunchArgs(GameInstallation gameInstallation)
     {
-        string gameMode = gameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData).SelectedGameMode;
+        string gameMode = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData).SelectedGameMode;
         return GetLaunchArgs(gameMode);
     }
 

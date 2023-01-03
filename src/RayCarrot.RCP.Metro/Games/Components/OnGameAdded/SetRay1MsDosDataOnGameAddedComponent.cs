@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class SetRay1MsDosDataOnGameAddedComponent : OnGameAddedComponent
 {
@@ -6,6 +8,6 @@ public class SetRay1MsDosDataOnGameAddedComponent : OnGameAddedComponent
 
     private static void SetRay1MsDosData(GameInstallation gameInstallation)
     {
-        gameInstallation.SetObject(GameDataKey.Ray1_MsDosData, UserData_Ray1MsDosData.Create(gameInstallation));
+        gameInstallation.SetObject(GameDataKey.Ray1_MsDosData, Ray1MsDosData.Create(gameInstallation));
     }
 }

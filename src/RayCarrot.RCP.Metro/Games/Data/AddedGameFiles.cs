@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Data;
 
 /// <summary>
 /// Defines files added for a game installation. These should be removed

@@ -1,10 +1,12 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class Ray1MsDosGameDataGameValidationCheckComponent : GameValidationCheckComponent
 {
     public override bool IsValid()
     {
-        UserData_Ray1MsDosData? data = GameInstallation.GetObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        Ray1MsDosData? data = GameInstallation.GetObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
 
         // TODO-14: Log
         // The data has to exist

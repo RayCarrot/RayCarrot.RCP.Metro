@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Windows.Input;
+using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -324,7 +325,7 @@ public class GameInstaller_ViewModel : UserInputViewModel
                 InstalledGame = await Services.Games.AddGameAsync(GameDescriptor, output, x =>
                 {
                     // Set the install info
-                    UserData_RCPGameInstallData installData = new(output, UserData_RCPGameInstallData.RCPInstallMode.DiscInstall);
+                    RCPGameInstallData installData = new(output, RCPGameInstallData.RCPInstallMode.DiscInstall);
                     x.SetObject(GameDataKey.RCP_GameInstallData, installData);
                 });
 

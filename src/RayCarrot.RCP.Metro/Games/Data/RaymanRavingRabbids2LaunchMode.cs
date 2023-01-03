@@ -1,11 +1,11 @@
-﻿namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro.Games.Data;
 
 // TODO-14: Serialize as a string
 
 /// <summary>
 /// The available modes to launch Rayman Raving Rabbids 2 in
 /// </summary>
-public enum UserData_RRR2LaunchMode
+public enum RaymanRavingRabbids2LaunchMode
 {
     /// <summary>
     /// All modes are included

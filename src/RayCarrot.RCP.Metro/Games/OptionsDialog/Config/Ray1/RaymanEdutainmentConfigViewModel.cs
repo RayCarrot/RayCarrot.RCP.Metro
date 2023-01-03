@@ -2,6 +2,7 @@
 using System.Text;
 using BinarySerializer;
 using BinarySerializer.Ray1;
+using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
@@ -18,7 +19,7 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
 
     public void RefreshSelection()
     {
-        var data = GameInstallation.GetRequiredObject<UserData_Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        var data = GameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
 
         PageSelection.Clear();
         PageSelection.AddRange(data.AvailableGameModes);
