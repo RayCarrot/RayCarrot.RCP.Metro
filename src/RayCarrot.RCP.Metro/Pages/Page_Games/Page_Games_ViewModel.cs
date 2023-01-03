@@ -249,7 +249,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
             Finder finder = new(Finder.DefaultOperations, finderItems.ToArray());
 
             // Run the finder
-            finder.Run();
+            await Task.Run(finder.Run);
 
             // Get the finder items
             runFinderItems = finder.FinderItems;
