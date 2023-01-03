@@ -60,11 +60,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
-    {
-        new FindSteamGameAddAction(this, SteamId),
-    });
-
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {
         new(new ResourceLocString(nameof(Resources.GameDisplay_PurchaseGOG)), "https://www.gog.com/game/rayman_raving_rabbids"),

@@ -13,6 +13,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <!-- Platform icon -->
@@ -53,8 +54,18 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
+        <!-- TODO-UPDATE: Localize -->
+        <!-- Finder action -->
+        <Button Grid.Column="3"
+                IsEnabled="{Binding Path=FinderItem, Converter={local:IsNotNullConverter}}"
+                Command="{Binding Path=FindGameCommand, Mode=OneTime}"
+                Style="{StaticResource RCP.Styles.Button.Flat}"
+                local:IconAssist.IconKind="{StaticResource RCP.Icons.Finder}"
+                ToolTip="Find game"
+                Margin="4 0 0 0" />
+
         <!-- Purchase links -->
-        <local:PopupCard Grid.Column="3"
+        <local:PopupCard Grid.Column="4"
                          IsEnabled="{Binding Path=HasPurchaseLinks, Mode=OneTime}"
                          Margin="4 0 0 0">
             <ItemsControl ItemsSource="{Binding Path=PurchaseLinks, Mode=OneTime}">

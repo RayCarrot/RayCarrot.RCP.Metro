@@ -22,7 +22,6 @@ public enum GenericIconKind
     GamePanel_Progression,
 
     GameAdd_Locate,
-    GameAdd_Find,
     GameAdd_DiscInstall,
     GameAdd_Download,
     GameAdd_Purchase,

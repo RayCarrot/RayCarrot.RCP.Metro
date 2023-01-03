@@ -56,11 +56,6 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
-    {
-        new FindSteamGameAddAction(this, SteamId),
-    });
-
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
 

@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
-using Windows.Management.Deployment;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -52,11 +51,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new FindWindowsPackageGameAddActions(this)
-    };
-
     public override FinderQuery[] GetFinderQueries()
     {
         // Make sure version is at least Windows 8
@@ -67,15 +61,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         {
             new WindowsPackageFinderQuery(PackageName),
         };
-    }
-
-    /// <summary>
-    /// Gets the package install directory
-    /// </summary>
-    /// <returns>The package install directory</returns>
-    public string? GetPackageInstallDirectory()
-    {
-        return new PackageManager().FindPackagesForUser(String.Empty).FirstOrDefault(x => x.Id.Name == PackageName)?.InstalledLocation.Path;
     }
 
     public GameBackups_Directory[] GetBackupDirectories() => new GameBackups_Directory[]

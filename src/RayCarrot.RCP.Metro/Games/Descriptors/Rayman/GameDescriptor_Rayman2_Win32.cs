@@ -85,7 +85,6 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
     public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
     {
-        new FindSteamGameAddAction(this, SteamId),
         new DiscInstallGameAddAction(this, new GameInstallerInfo(
             discFilesListFileName: "Rayman2",
             gameLogo: GameLogoAsset.Rayman2,

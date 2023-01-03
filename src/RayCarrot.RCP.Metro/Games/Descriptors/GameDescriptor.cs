@@ -319,7 +319,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         Services.Messenger.Send(new ModifiedGamesMessage(gameInstallation));
     }
 
-    public abstract IEnumerable<GameAddAction> GetAddActions();
+    public virtual IEnumerable<GameAddAction> GetAddActions() => Enumerable.Empty<GameAddAction>();
 
     /// <summary>
     /// Gets the archive data manager for the game

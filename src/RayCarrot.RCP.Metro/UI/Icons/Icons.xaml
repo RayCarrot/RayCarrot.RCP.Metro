@@ -41,6 +41,8 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.News">TooltipTextOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Link">Link</iconPacks:PackIconMaterialKind>
 
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Finder">Magnify</iconPacks:PackIconMaterialKind>
+
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.EditJumpList">PencilBoxOutline</iconPacks:PackIconMaterialKind>
     
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Web">Earth</iconPacks:PackIconMaterialKind>
@@ -125,9 +127,6 @@
 
     <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_Locate" 
                        IconKind="{StaticResource RCP.Icons.Folder}" 
-                       IconColor="{x:Null}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_Find" 
-                       IconKind="{StaticResource RCP.Icons.FolderSearch}" 
                        IconColor="{x:Null}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.GameAdd_DiscInstall" 
                        IconKind="{StaticResource RCP.Icons.Disc}" 

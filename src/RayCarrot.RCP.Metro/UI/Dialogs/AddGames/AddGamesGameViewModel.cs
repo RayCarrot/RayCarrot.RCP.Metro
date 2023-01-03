@@ -1,8 +1,9 @@
 ﻿using System.Windows.Input;
+using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
 
-public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessage>
+public class AddGamesGameViewModel : BaseViewModel, IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
 {
     #region Constructor
 
@@ -15,13 +16,17 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
             Reverse().Select(x => new GameAddActionViewModel(x)));
         PurchaseLinks = new ObservableCollection<GamePurchaseLinkViewModel>(gameDescriptor.GetPurchaseLinks().
             Select(x => new GamePurchaseLinkViewModel(x.Header, x.Path, x.Icon)));
-
+        
         // Get and set platform info
         GamePlatformInfoAttribute platformInfo = gameDescriptor.Platform.GetInfo();
         PlatformDisplayName = platformInfo.DisplayName;
         PlatformIcon = platformInfo.Icon;
 
+        // Do a first refresh
+        Refresh(true);
+
         AddGameCommand = new AsyncRelayCommand(x => AddGameAsync(((GameAddActionViewModel)x!).AddAction));
+        FindGameCommand = new AsyncRelayCommand(FindGameAsync);
 
         Services.Messenger.RegisterAll(this);
     }
@@ -37,6 +42,7 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
     #region Commands
 
     public ICommand AddGameCommand { get; }
+    public ICommand FindGameCommand { get; }
 
     #endregion
 
@@ -45,6 +51,7 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
     public GameDescriptor GameDescriptor { get; }
     public LocalizedString DisplayName { get; }
     public ObservableCollection<GameAddActionViewModel> AddActions { get; }
+    public GameFinderItem? FinderItem { get; set; }
     public ObservableCollection<GamePurchaseLinkViewModel> PurchaseLinks { get; }
     public bool HasPurchaseLinks => PurchaseLinks.Any();
 
@@ -55,8 +62,16 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
 
     #region Private Methods
 
-    private void Refresh()
+    private void Refresh(bool firstRefresh)
     {
+        // Only get the finder item if there are no added games with this game descriptor
+        FinderItem = !Services.Games.AnyInstalledGames(x => x.GameDescriptor == GameDescriptor) 
+            ? GameDescriptor.GetFinderItem() 
+            : null;
+
+        if (firstRefresh)
+            return;
+
         // Re-evaluate if each action is available
         foreach (GameAddActionViewModel addAction in AddActions)
             addAction.OnPropertyChanged(nameof(GameAddActionViewModel.IsAvailable));
@@ -71,14 +86,7 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
         try
         {
             // Call the add action
-            GameInstallation? gameInstallation = await addAction.AddGameAsync();
-
-            // Return if it failed
-            if (gameInstallation == null)
-                return;
-
-            // Refresh
-            Refresh();
+            await addAction.AddGameAsync();
         }
         catch (Exception ex)
         {
@@ -88,7 +96,48 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<RemovedGamesMessa
         }
     }
 
-    public void Receive(RemovedGamesMessage message) => Refresh();
+    public async Task FindGameAsync()
+    {
+        if (FinderItem == null)
+            return;
+
+        try
+        {
+            // Create a finder
+            Finder finder = new(Finder.DefaultOperations, FinderItem.YieldToArray<FinderItem>());
+
+            // Run the finder
+            finder.Run();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Running finder for a game");
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex,
+                // TODO-UPDATE: Update localization
+                Resources.GameFinder_Error);
+            return;
+        }
+
+        if (FinderItem.HasBeenFound)
+        {
+            // Have to get the location here since FinderItem is null after the game gets added
+            FileSystemPath foundLocation = FinderItem.FoundLocation.Value;
+
+            // Add the found games
+            await Services.Games.AddGameAsync(FinderItem.GameDescriptor, foundLocation);
+
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync($"The game was found at {foundLocation}", "Finder result", MessageType.Success);
+        }
+        else
+        {
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync("The game was not found", "Finder result", MessageType.Information);
+        }
+    }
+
+    public void Receive(AddedGamesMessage message) => Refresh(false);
+    public void Receive(RemovedGamesMessage message) => Refresh(false);
 
     #endregion
 

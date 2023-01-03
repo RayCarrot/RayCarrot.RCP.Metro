@@ -205,7 +205,7 @@
                             Command="{Binding Path=FindGamesCommand, Mode=OneTime}"
                             Visibility="{Binding Path=IsGameFinderRunning, Converter={local:InvertedBooleanToVisibilityConverter}}"
                             ToolTip="Find games"
-                            local:IconAssist.IconKind="Magnify" />
+                            local:IconAssist.IconKind="{StaticResource RCP.Icons.Finder}" />
 
                     <metro:ProgressRing Width="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
                                         Height="{Binding Path=ActualHeight, ElementName=ActionsGrid}"
