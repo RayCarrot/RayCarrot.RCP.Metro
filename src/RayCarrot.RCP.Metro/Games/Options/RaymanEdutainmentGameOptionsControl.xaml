@@ -14,7 +14,7 @@
 
         <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="Game Mode"
+                   Text="Game mode"
                    Margin="0 0 0 4" />
 
         <ListBox ItemsSource="{Binding Path=GameModes, Mode=OneTime}"

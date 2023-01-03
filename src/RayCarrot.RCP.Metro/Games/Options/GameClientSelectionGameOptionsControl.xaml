@@ -13,9 +13,16 @@
     <StackPanel Margin="6">
 
         <!-- TODO-UPDATE: Localize -->
-        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="Game client/emulator"
-                   Margin="0 0 0 4" />
+        <StackPanel Orientation="Horizontal"
+                    Margin="0 0 0 4">
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="Client/emulator" />
+
+            <rcp:InfoIcon Text="Here a client or emulator can be selected to be used with the game. The selected client will be responsible for launching the game. For emulated games this is required as they can't launch on their own." />
+
+        </StackPanel>
+
 
         <ListBox ItemsSource="{Binding Path=GameClients}"
                  SelectedItem="{Binding Path=SelectedGameClient}"

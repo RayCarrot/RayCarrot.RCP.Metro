@@ -22,6 +22,7 @@
 
         </StackPanel>
 
+        <!-- TODO-UPDATE: Update localization - lowercase 'version' -->
         <StackPanel IsEnabled="{Binding Path=CanSetVersion}">
 
             <local:RadioButtonExtended Content="{Resx PrintStudioOptions_Version03}"
