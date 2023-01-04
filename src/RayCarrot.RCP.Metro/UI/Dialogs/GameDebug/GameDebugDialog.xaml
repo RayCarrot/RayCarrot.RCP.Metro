@@ -108,11 +108,11 @@
                                                   DataType="{x:Type jlinq:JProperty}" 
                                                   ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
                             <TextBlock TextWrapping="Wrap">
-                                    <Run Text="&quot;" /><!--
-                                 --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
-                                 --><Run Text="&quot;" /><!--
-                                 --><Run Text=":  " /><!--
-                                 --><Run Text="[ ]" Foreground="#d8a0df" />
+                                <Run Text="&quot;" /><!--
+                             --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
+                             --><Run Text="&quot;" /><!--
+                             --><Run Text=":  " /><!--
+                             --><Run Text="[ ]" Foreground="#d8a0df" />
                             </TextBlock>
                         </HierarchicalDataTemplate>
                         <HierarchicalDataTemplate x:Key="ObjectPropertyTemplate" 
@@ -120,11 +120,18 @@
                                                   ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
                             <TextBlock TextWrapping="Wrap">
                                 <Run Text="&quot;" /><!--
-                                 --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
-                                 --><Run Text="&quot;" /><!--
-                                 --><Run Text=":  " /><!--
-                                 --><Run Text="{}{ }" Foreground="#d8a0df" />
+                             --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
+                             --><Run Text="&quot;" /><!--
+                             --><Run Text=":  " /><!--
+                             --><Run Text="{}{ }" Foreground="#d8a0df" />
                             </TextBlock>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate x:Key="ObjectTemplate" 
+                                                  DataType="{x:Type jlinq:JObject}" 
+                                                  ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="{}{ }" 
+                                       Foreground="#d8a0df" />
                         </HierarchicalDataTemplate>
                         <DataTemplate x:Key="PrimitivePropertyTemplate" 
                                       DataType="{x:Type jlinq:JProperty}">
@@ -178,6 +185,7 @@
                     <TreeView.ItemTemplateSelector>
                         <local:JPropertyDataTemplateSelector ArrayPropertyTemplate="{StaticResource ArrayPropertyTemplate}"
                                                              ObjectPropertyTemplate="{StaticResource ObjectPropertyTemplate}"
+                                                             ObjectTemplate="{StaticResource ObjectTemplate}"
                                                              PrimitivePropertyTemplate ="{StaticResource PrimitivePropertyTemplate}"
                                                              ValueTemplate="{StaticResource ValueTemplate}" />
                     </TreeView.ItemTemplateSelector>
