@@ -204,8 +204,8 @@
                                                 <DataTemplate DataType="{x:Type options:RaymanRavingRabbids2GameOptionsViewModel}">
                                                     <options:RaymanRavingRabbids2GameOptionsControl />
                                                 </DataTemplate>
-                                                <DataTemplate DataType="{x:Type options:RaymanEdutainmentGameOptionsViewModel}">
-                                                    <options:RaymanEdutainmentGameOptionsControl />
+                                                <DataTemplate DataType="{x:Type options:Ray1MsDosGameOptionsViewModel}">
+                                                    <options:Ray1MsDosGameOptionsControl />
                                                 </DataTemplate>
                                                 <DataTemplate DataType="{x:Type options:GameClientSelectionGameOptionsViewModel}">
                                                     <options:GameClientSelectionGameOptionsControl />

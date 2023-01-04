@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -20,14 +21,12 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_RaymanGold;
 
     public override LocalizedString DisplayName => "Rayman Gold Demo (1997/09/30)";
-    public override string DefaultFileName => "Rayman.bat";
+    public override string DefaultFileName => "RAYKIT.EXE";
     public override DateTime ReleaseDate => new(1997, 09, 30);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanGold_Demo;
     
     public override bool HasArchives => true;
-
-    public override string ExecutableName => "RAYKIT.EXE";
 
     #endregion
 
@@ -37,21 +36,25 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
     {
         base.RegisterComponents(builder);
 
+        builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
+        builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
+        builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
+        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Kit)));
     }
 
     #endregion
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
     {
-        new LocateRayman1MSDOSGameAddAction(this),
         new DownloadGameAddAction(this, new Uri[]
         {
             new(AppURLs.Games_RGoldDemo_Url),
         })
-    };
+    });
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));

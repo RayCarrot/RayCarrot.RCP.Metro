@@ -35,47 +35,18 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
     public override bool AllowPatching => false; // Disable patching since game modes differ between releases
     public override bool HasArchives => true;
 
-    public override string ExecutableName => $"RAY{PrimaryName}.EXE";
-
     #endregion
 
     #region Private Methods
 
-    private static IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
-    {
-        // Add a lunch action for each game mode
-        string[] gameModes = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData).AvailableGameModes;
-
-        // Only show additional launch actions for the game if we have more than one game mode
-        if (gameModes.Length <= 1)
-            return Enumerable.Empty<ActionItemViewModel>();
-
-        return gameModes.Select(x =>
-            new IconCommandItemViewModel(
-                header: x,
-                description: null,
-                iconKind: GenericIconKind.GameAction_Play,
-                command: new AsyncRelayCommand(async () =>
-                {
-                    if (gameInstallation.GetComponent<LaunchGameComponent>() is not DosBoxLaunchGameComponent c)
-                        return;
-
-                    string args = Ray1LaunchArgumentsComponent.GetLaunchArgs(x);
-                    bool success = await c.LaunchGameAsync(args);
-
-                    if (success)
-                        await gameInstallation.GetComponents<OnGameLaunchedComponent>().InvokeAllAsync();
-                })));
-    }
-
     private static IEnumerable<GameProgressionManager> GetGameProgressionManagers(GameInstallation gameInstallation)
     {
         Ray1MsDosData data = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
-        return data.AvailableGameModes.Select(x => new GameProgressionManager_RaymanEdutainment(
+        return data.AvailableVersions.Select(x => new GameProgressionManager_RaymanEdutainment(
             gameInstallation: gameInstallation,
-            backupName: $"Educational Games - {x}",
+            backupName: $"Educational Games - {x.Id}",
             primaryName: PrimaryName,
-            secondaryName: x));
+            version: x));
     }
 
     #endregion
@@ -86,15 +57,16 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new AdditionalLaunchActionsComponent(GetAdditionalLaunchActions));
+        builder.Register<AdditionalLaunchActionsComponent, Ray1MsDosAdditionalLaunchActionsComponent>();
         builder.Register(new ProgressionManagersComponent(GetGameProgressionManagers));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanEdutainmentConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
-        builder.Register(new GameOptionsComponent(x => new RaymanEdutainmentGameOptionsViewModel(x)));
+        builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanQuizPC", "r1/quiz/pc_gf", "GF"));
+        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Edu)));
     }
 
     #endregion

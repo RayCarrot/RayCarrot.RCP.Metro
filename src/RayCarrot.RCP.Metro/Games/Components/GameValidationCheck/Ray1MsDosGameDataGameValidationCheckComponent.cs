@@ -14,11 +14,11 @@ public class Ray1MsDosGameDataGameValidationCheckComponent : GameValidationCheck
             return false;
 
         // There has to be at least one game mode available
-        if (data.AvailableGameModes == null! || data.AvailableGameModes.Length == 0) 
+        if (data.AvailableVersions == null! || data.AvailableVersions.Length == 0) 
             return false;
 
         // The available game modes has to contain the selected one
-        if (!data.AvailableGameModes.Contains(data.SelectedGameMode))
+        if (data.AvailableVersions.All(x => x.Id != data.SelectedVersion))
             return false;
 
         return true;

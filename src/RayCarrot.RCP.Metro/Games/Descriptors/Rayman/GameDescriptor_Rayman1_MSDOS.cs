@@ -17,12 +17,10 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman1;
 
     public override LocalizedString DisplayName => "Rayman";
-    public override string DefaultFileName => "Rayman.exe";
+    public override string DefaultFileName => "RAYMAN.EXE";
     public override DateTime ReleaseDate => new(1995, 09, 01);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1;
-
-    public override string ExecutableName => "RAYMAN.EXE";
 
     // TODO-14: Fix this. Perhaps have TPLS add an EmulatorInstallation? Somehow it has to override it anyway.
     //public override FileSystemPath DOSBoxFilePath => Services.Data.Utility_TPLSData?.IsEnabled != true 
@@ -54,11 +52,6 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new LocateRayman1MSDOSGameAddAction(this),
-    };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {

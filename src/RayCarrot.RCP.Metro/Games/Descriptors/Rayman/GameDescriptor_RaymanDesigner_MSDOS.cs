@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
+using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -20,14 +21,12 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanDesigner;
     
     public override LocalizedString DisplayName => "Rayman Designer";
-    public override string DefaultFileName => "RAYKIT.bat";
+    public override string DefaultFileName => "RAYKIT.EXE";
     public override DateTime ReleaseDate => new(1997, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanDesigner;
 
     public override bool HasArchives => true;
-
-    public override string ExecutableName => "RAYKIT.EXE";
 
     #endregion
 
@@ -49,12 +48,17 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanDesigner(x, "Rayman Designer")));
+        builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
+        builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
+        builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanDesignerPC", "r1/pc_kit"));
+        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Kit)));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
@@ -63,11 +67,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new LocateRayman1MSDOSGameAddAction(this),
-    };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));

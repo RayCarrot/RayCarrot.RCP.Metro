@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -19,14 +20,12 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman60Levels;
 
     public override LocalizedString DisplayName => "Rayman 60 Levels";
-    public override string DefaultFileName => "Rayman.bat";
+    public override string DefaultFileName => "RAYPLUS.EXE";
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.Rayman60Levels;
 
     public override bool HasArchives => true;
-
-    public override string ExecutableName => "RAYPLUS.EXE";
 
     #endregion
 
@@ -37,20 +36,20 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_Rayman60Levels(x, "Rayman 60 Levels")));
+        builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanByHisFansConfigViewModel(this, x)));
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
+        builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "Rayman60LevelsPC", "r1/pc_60n"));
+        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Fan)));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new LocateRayman1MSDOSGameAddAction(this),
-    };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Fan));

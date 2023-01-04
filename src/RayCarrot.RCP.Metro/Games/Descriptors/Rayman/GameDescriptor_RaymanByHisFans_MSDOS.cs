@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
+using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro;
@@ -20,14 +21,12 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanByHisFans;
 
     public override LocalizedString DisplayName => "Rayman by his Fans";
-    public override string DefaultFileName => "rayfan.bat";
+    public override string DefaultFileName => "RAYFAN.EXE";
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanByHisFans;
 
     public override bool HasArchives => true;
-
-    public override string ExecutableName => "RAYFAN.EXE";
 
     #endregion
 
@@ -38,21 +37,21 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
         base.RegisterComponents(builder);
 
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanByHisFans(x, "Rayman by his Fans")));
+        builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanByHisFansConfigViewModel(this, x)));
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
+        builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
+        builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanByHisFansPC", "r1/pc_fan"));
+        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Fan)));
     }
 
     #endregion
 
     #region Public Methods
-
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
-    {
-        new LocateRayman1MSDOSGameAddAction(this),
-    };
 
     public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
         new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Fan));

@@ -27,7 +27,7 @@
             <!-- Language -->
 
             <StackPanel Orientation="Horizontal"
-                        Visibility="{Binding Path=IsGameLanguageAvailable, Converter={rcp:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                        Visibility="{Binding Path=IsGameLanguageAvailable, Converter={rcp:BooleanToVisibilityConverter}, FallbackValue=Collapsed, Mode=OneTime}">
                 <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
                            Text="{Resx Config_Language}" />
 
@@ -38,20 +38,10 @@
             <ComboBox SelectedIndex="{Binding Path=GameLanguage, Converter={rcp:ByteEnumToIntConverter}}"
                       Visibility="{Binding Path=IsGameLanguageAvailable, Converter={rcp:BooleanToVisibilityConverter}}"
                       HorizontalAlignment="Left">
-                <ComboBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                        <Setter Property="Visibility"
-                                Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
-                    </Style>
-                </ComboBox.ItemContainerStyle>
-
-                <TextBlock Text="{Resx Lang_English}"
-                           Visibility="{Binding Path=IsEnglishAvailable, Converter={rcp:BooleanToVisibilityConverter}}" />
-                <TextBlock Text="{Resx Lang_French}"
-                           Visibility="{Binding Path=IsFrenchAvailable, Converter={rcp:BooleanToVisibilityConverter}}" />
-                <TextBlock Text="{Resx Lang_German}"
-                           Visibility="{Binding Path=IsGermanAvailable, Converter={rcp:BooleanToVisibilityConverter}}" />
+                <!-- Sadly there is no way to determine which languages a specific release can use as most releases have all languages in the files, but have it hard-coded in the exe to only pick a specific one. -->
+                <TextBlock Text="{Resx Lang_English}" />
+                <TextBlock Text="{Resx Lang_French}" />
+                <TextBlock Text="{Resx Lang_German}" />
             </ComboBox>
 
             <!-- Sound -->

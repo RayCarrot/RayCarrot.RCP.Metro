@@ -1,24 +1,29 @@
-﻿using System.IO;
+﻿using BinarySerializer;
+using BinarySerializer.Ray1;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Data;
 
+/// <summary>
+/// Defines the common Ray1 MS-DOS data for a game.
+/// </summary>
 public class Ray1MsDosData
 {
-    public Ray1MsDosData(string[] availableGameModes, string selectedGameMode)
+    public Ray1MsDosData(Version[] availableVersions, string selectedVersion)
     {
-        AvailableGameModes = availableGameModes;
-        SelectedGameMode = selectedGameMode;
+        AvailableVersions = availableVersions;
+        SelectedVersion = selectedVersion;
     }
 
     /// <summary>
-    /// The available game modes for the game. This gets set once when the game is added.
+    /// The available version for the game. This gets set once when the game is added.
     /// </summary>
-    public string[] AvailableGameModes { get; }
+    public Version[] AvailableVersions { get; }
 
     /// <summary>
-    /// The currently selected game mode. This determines how the game should launch by default.
+    /// The currently selected version. This determines the default launch behavior for the game.
     /// </summary>
-    public string SelectedGameMode { get; set; }
+    public string SelectedVersion { get; set; }
 
     /// <summary>
     /// Creates a new <see cref="Ray1MsDosData"/> instance from a newly added game installation
@@ -27,18 +32,37 @@ public class Ray1MsDosData
     /// <returns>The data instance</returns>
     public static Ray1MsDosData Create(GameInstallation gameInstallation)
     {
-        // Find the available game modes. This might throw an exception, but we let
-        // it do that if so since the game requires this to be added in order to work.
-        string[] gameModes = Directory.
-            GetDirectories(gameInstallation.InstallLocation + "PCMAP", "*", SearchOption.TopDirectoryOnly).
-            Select(x => new FileSystemPath(x).Name).
-            ToArray();
+        // Read the VERSION file to get the versions supported by this release. Then keep
+        // the ones which are actually available.
+        using RCPContext context = new(gameInstallation.InstallLocation);
+        gameInstallation.GetComponents<BinarySettingsComponent>().AddSettings(context);
+        LinearFile commonFile = context.AddFile(new LinearFile(context, "PCMAP/COMMON.DAT"));
 
-        // Make sure at least one game mode was found. The game requires at least one
+        PC_FileArchive commonArchive = FileFactory.Read<PC_FileArchive>(context, commonFile.FilePath);
+        PC_VersionFile versionFile = commonArchive.ReadFile<PC_VersionFile>(context, "VERSION");
+
+        List<Version> availableVersions = new();
+
+        for (int i = 0; i < versionFile.VersionsCount; i++)
+        {
+            FileSystemPath versionDir = gameInstallation.InstallLocation + "PCMAP" + versionFile.VersionCodes[i];
+
+            // Not all releases contain all supported versions
+            if (versionDir.DirectoryExists)
+                availableVersions.Add(new Version(versionFile.VersionCodes[i], versionFile.VersionModes[i]));
+        }
+
+        // Make sure at least one version was found. The game requires at least one
         // in order to work and have one be selected.
-        if (gameModes.Length == 0)
-            throw new Exception("No game modes were found");
+        if (availableVersions.Count == 0)
+            throw new Exception("No versions were found");
 
-        return new Ray1MsDosData(gameModes, gameModes.First());
+        // Default to English if available, otherwise use the first version
+        string selectedVersion = availableVersions.Find(x => x.Id.Equals("USA", StringComparison.OrdinalIgnoreCase))?.Id ?? 
+                                 availableVersions.First().Id;
+
+        return new Ray1MsDosData(availableVersions.ToArray(), selectedVersion);
     }
+
+    public record Version(string Id, string DisplayName);
 }

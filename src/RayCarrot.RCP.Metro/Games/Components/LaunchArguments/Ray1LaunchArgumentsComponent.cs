@@ -8,9 +8,9 @@ public class Ray1LaunchArgumentsComponent : LaunchArgumentsComponent
 
     private static string GetLaunchArgs(GameInstallation gameInstallation)
     {
-        string gameMode = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData).SelectedGameMode;
-        return GetLaunchArgs(gameMode);
+        string version = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData).SelectedVersion;
+        return GetLaunchArgs(version);
     }
 
-    public static string GetLaunchArgs(string gameMode) => $"ver={gameMode}";
+    public static string GetLaunchArgs(string version) => $"ver={version}";
 }

@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 public class RaymanDesignerConfigViewModel : Ray1BaseConfigViewModel
 {
     public RaymanDesignerConfigViewModel(MsDosGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
-        base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Kit, LanguageMode.Argument) { }
+        base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Kit) { }
 
     public override string GetConfigFileName() => "RAYKIT.CFG";
 }

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.Options.RaymanEdutainmentGameOptionsControl"
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.Options.Ray1MsDosGameOptionsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,16 +9,16 @@
              mc:Ignorable="d" 
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             d:DataContext="{d:DesignInstance options:RaymanEdutainmentGameOptionsViewModel}">
+             d:DataContext="{d:DesignInstance options:Ray1MsDosGameOptionsViewModel}">
     <StackPanel Margin="6">
 
         <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="Game mode"
+                   Text="Version"
                    Margin="0 0 0 4" />
 
-        <ListBox ItemsSource="{Binding Path=GameModes, Mode=OneTime}"
-                 SelectedItem="{Binding Path=GameMode}"
+        <ListBox ItemsSource="{Binding Path=AvailableVersions, Mode=OneTime}"
+                 SelectedItem="{Binding Path=SelectedVersion}"
                  Margin="0 0 0 -4"
                  Background="Transparent">
             <ListBox.ItemContainerStyle>
@@ -35,6 +35,12 @@
                     </Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=DisplayName, Mode=OneTime}"
+                               ToolTip="{Binding Path=Id, Mode=OneTime}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
     </StackPanel>

@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Components;
+﻿using BinarySerializer;
+
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 public static class GameComponentExtensions
 {
@@ -13,5 +15,11 @@ public static class GameComponentExtensions
     {
         foreach (ActionGameComponent action in actions)
             await action.InvokeAsync();
+    }
+
+    public static void AddSettings(this IEnumerable<BinarySettingsComponent> settings, Context context)
+    {
+        foreach (BinarySettingsComponent settingsComponent in settings)
+            settingsComponent.AddSettings(context);
     }
 }

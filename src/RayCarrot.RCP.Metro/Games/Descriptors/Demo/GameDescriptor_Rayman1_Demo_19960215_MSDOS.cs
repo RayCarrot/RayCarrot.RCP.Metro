@@ -22,8 +22,6 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
 
-    public override string ExecutableName => "RAYMAN.EXE";
-
     #endregion
 
     #region Private Methods
@@ -56,14 +54,13 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
 
     #region Public Methods
 
-    public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
+    public override IEnumerable<GameAddAction> GetAddActions() => base.GetAddActions().Concat(new GameAddAction[]
     {
-        new LocateRayman1MSDOSGameAddAction(this),
         new DownloadGameAddAction(this, new Uri[]
         {
             new(AppURLs.Games_R1Demo2_Url),
         })
-    };
+    });
 
     #endregion
 }

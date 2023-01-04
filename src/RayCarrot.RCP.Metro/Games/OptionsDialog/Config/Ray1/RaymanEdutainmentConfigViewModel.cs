@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Text;
 using BinarySerializer;
 using BinarySerializer.Ray1;
@@ -9,7 +9,7 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
 {
     public RaymanEdutainmentConfigViewModel(MsDosGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
-        base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Edu, LanguageMode.None)
+        base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Edu)
     {
         PageSelection = new ObservableCollection<string>();
         RefreshSelection();
@@ -22,7 +22,9 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
         var data = GameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
 
         PageSelection.Clear();
-        PageSelection.AddRange(data.AvailableGameModes);
+
+        // TODO-14:: Maybe better having a separate page for each rather than an in-page selection?
+        PageSelection.AddRange(data.AvailableVersions.Select(x => x.DisplayName));
 
         ResetSelectedPageSelectionIndex();
 
@@ -36,9 +38,10 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
         if (SelectedPageSelectionIndex == -1)
             throw new Exception("Page selection is -1");
 
-        string gameMode = PageSelection[SelectedPageSelectionIndex];
+        var data = GameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        string version = data.AvailableVersions[SelectedPageSelectionIndex].Id;
 
-        Logger.Trace("Retrieving EDU config path for {0}", gameMode);
+        Logger.Trace("Retrieving EDU config path for {0}", version);
 
         // TODO-14: Don't find primary name like this. It's either EDU or QUI depending on game!
         // Get the primary name
@@ -47,7 +50,7 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
         string primary = reader.ReadString(5, Encoding.UTF8);
 
         // Primary + secondary names
-        return $"{primary}{gameMode}.CFG";
+        return $"{primary}{version}.CFG";
     }
 
     public override Task PageSelectionIndexChangedAsync()
