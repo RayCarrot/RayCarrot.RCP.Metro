@@ -28,7 +28,7 @@ public class SteamLaunchGameComponent : LaunchGameComponent
 
         // TODO-14: Does this return the Steam/game process or just explorer.exe?
         // Launch the game
-        Process? process = await Services.File.LaunchFileAsync(SteamHelpers.GetStorePageURL(steamId));
+        Process? process = await Services.File.LaunchFileAsync(SteamHelpers.GetGameLaunchURI(steamId));
 
         Logger.Info("The game {0} has been launched", GameInstallation.FullId);
 
