@@ -32,7 +32,6 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
 
-    public override bool AllowPatching => false; // Disable patching since game modes differ between releases
     public override bool HasArchives => true;
 
     #endregion
