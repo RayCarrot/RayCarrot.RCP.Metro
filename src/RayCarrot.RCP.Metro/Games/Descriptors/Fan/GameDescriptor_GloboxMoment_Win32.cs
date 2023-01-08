@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.GloboxMoment;
 
     public override LocalizedString DisplayName => "Globox Moment";
-    public override string DefaultFileName => "Globox Moment.exe";
     public override DateTime ReleaseDate => new(2019, 07, 26); // Unsure if this is correct
 
     public override GameIconAsset Icon => GameIconAsset.GloboxMoment;
@@ -43,6 +43,12 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_GloboxMoment(x, "Globox Moment")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Globox Moment.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

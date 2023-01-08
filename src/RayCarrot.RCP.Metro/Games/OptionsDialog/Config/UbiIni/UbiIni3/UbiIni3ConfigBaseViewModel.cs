@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System.IO;
 using ByteSizeLib;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -361,8 +362,8 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
 
         if (CanRemoveDiscCheck)
         {
-            // Get the game file path
-            var gameFile = GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName;
+            GameInstallationStructure gameStructure = GameInstallation.GameDescriptor.Structure;
+            FileSystemPath gameFile = gameStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Check if it exists
             if (gameFile.FileExists)
@@ -519,7 +520,10 @@ public abstract class UbiIni3ConfigBaseViewModel<Handler, Language> : UbiIniBase
             {
                 try
                 {
-                    Patcher = new FilePatcher(GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName, Patches);
+                    GameInstallationStructure gameStructure = GameInstallation.GameDescriptor.Structure;
+                    FileSystemPath exeFile = gameStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+
+                    Patcher = new FilePatcher(exeFile, Patches);
 
                     FilePatcher.PatchState patchState = Patcher.GetPatchState();
 

@@ -1,6 +1,7 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,8 +24,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbids;
 
     public override LocalizedString DisplayName => "Rayman Raving Rabbids";
-    // TODO-14: Launch game exe directly and allow custom args like for RGH?
-    public override string DefaultFileName => "CheckApplication.exe";
     public override DateTime ReleaseDate => new(2006, 12, 07);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids;
@@ -53,8 +52,17 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRavingRabbids(x, "Rayman Raving Rabbids")));
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        // TODO-14: Launch game exe directly and allow custom args like for RGH?
+        builder.Register(new Win32LaunchPathComponent(x => x.InstallLocation + "CheckApplication.exe"));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Jade_enr.exe", GameInstallationPathType.PrimaryExe, required: true),
+        new GameInstallationFilePath("CheckApplication.exe", GameInstallationPathType.OtherExe, required: true),
+    });
 
     #endregion
 

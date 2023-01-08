@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -19,7 +20,6 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.TonicTrouble;
 
     public override LocalizedString DisplayName => "Tonic Trouble";
-    public override string DefaultFileName => "TonicTrouble.exe";
     public override DateTime ReleaseDate => new(1999, 12, 07);
 
     public override GameIconAsset Icon => GameIconAsset.TonicTrouble;
@@ -55,6 +55,12 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_PC))));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("TonicTrouble.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

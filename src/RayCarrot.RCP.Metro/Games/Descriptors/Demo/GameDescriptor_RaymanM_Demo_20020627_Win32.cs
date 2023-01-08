@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -20,7 +21,6 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_RaymanM;
 
     public override LocalizedString DisplayName => "Rayman M Demo (2002/06/27)";
-    public override string DefaultFileName => "RaymanM.exe";
     public override DateTime ReleaseDate => new(2002, 06, 27);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanM_Demo;
@@ -41,6 +41,12 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
         builder.Register(new GameConfigComponent(x => new RaymanMDemoConfigViewModel(x)));
         builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("RaymanM.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

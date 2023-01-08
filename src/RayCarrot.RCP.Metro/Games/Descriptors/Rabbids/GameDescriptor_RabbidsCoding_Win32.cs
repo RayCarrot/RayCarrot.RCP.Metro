@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Finder;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,10 +16,19 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsCoding;
 
     public override LocalizedString DisplayName => "Rabbids Coding";
-    public override string DefaultFileName => "Rabbids Coding.exe";
     public override DateTime ReleaseDate => new(2019, 10, 08);
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsCoding;
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rabbids Coding.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

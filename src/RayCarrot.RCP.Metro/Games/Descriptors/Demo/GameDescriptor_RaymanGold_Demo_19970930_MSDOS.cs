@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_RaymanGold;
 
     public override LocalizedString DisplayName => "Rayman Gold Demo (1997/09/30)";
-    public override string DefaultFileName => "RAYKIT.EXE";
     public override DateTime ReleaseDate => new(1997, 09, 30);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanGold_Demo;
@@ -43,6 +43,15 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Kit)));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("RAYKIT.EXE", GameInstallationPathType.PrimaryExe, required: true),
+
+        // Directories
+        new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
+    });
 
     #endregion
 

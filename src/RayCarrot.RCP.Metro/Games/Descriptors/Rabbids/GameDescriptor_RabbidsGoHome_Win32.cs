@@ -2,6 +2,7 @@
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -18,7 +19,6 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsGoHome;
 
     public override LocalizedString DisplayName => "Rabbids Go Home";
-    public override string DefaultFileName => "Launcher.exe"; // TODO-14: This should be the same as GetLaunchFilePath()
     public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsGoHome;
@@ -48,6 +48,13 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
         builder.Register(new Win32LaunchPathComponent(GetLaunchFilePath));
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("LyN_f.exe", GameInstallationPathType.PrimaryExe, required: true),
+        new GameInstallationFilePath("Launcher.exe", GameInstallationPathType.OtherExe, required: true),
+    });
 
     #endregion
 

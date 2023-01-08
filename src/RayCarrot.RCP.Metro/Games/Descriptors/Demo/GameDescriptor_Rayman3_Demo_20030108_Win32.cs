@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Archive;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -20,7 +21,6 @@ public sealed class GameDescriptor_Rayman3_Demo_20030108_Win32 : Win32GameDescri
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_Rayman3_5;
 
     public override LocalizedString DisplayName => "Rayman 3 Demo (2003/01/08)";
-    public override string DefaultFileName => "MainP5Pvf.exe";
     public override DateTime ReleaseDate => new(2003, 01, 08);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3_Demo;
@@ -40,6 +40,12 @@ public sealed class GameDescriptor_Rayman3_Demo_20030108_Win32 : Win32GameDescri
         builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
         builder.Register<LocalGameLinksComponent>(new Rayman3SetupLocalGameLinksComponent(true));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("MainP5Pvf.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanArena;
 
     public override LocalizedString DisplayName => "Rayman Arena";
-    public override string DefaultFileName => "R_Arena.exe";
     public override DateTime ReleaseDate => new(2002, 09, 24);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanArena;
@@ -46,6 +46,19 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanArena_PC))));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("R_Arena.exe", GameInstallationPathType.PrimaryExe, required: true),
+        new GameInstallationFilePath("RM_Setup_DX8.exe", GameInstallationPathType.ConfigExe),
+
+        // Directories
+        new GameInstallationDirectoryPath("MenuBin", GameInstallationPathType.Data, required: true),
+        new GameInstallationDirectoryPath("FishBin", GameInstallationPathType.Data, required: true),
+        new GameInstallationDirectoryPath("TribeBin", GameInstallationPathType.Data, required: true),
+        new GameInstallationDirectoryPath("MENU", GameInstallationPathType.Save),
+    });
 
     #endregion
 

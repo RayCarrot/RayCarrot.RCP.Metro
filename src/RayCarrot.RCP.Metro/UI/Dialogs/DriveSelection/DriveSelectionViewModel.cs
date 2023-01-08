@@ -2,7 +2,6 @@
 using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
-using System.Collections;
 using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;

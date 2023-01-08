@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Archive.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -26,7 +27,6 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanLegends;
 
     public override LocalizedString DisplayName => "Rayman Legends";
-    public override string DefaultFileName => "Rayman Legends.exe";
     public override System.DateTime ReleaseDate => new(2013, 08, 29);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanLegends;
@@ -51,6 +51,13 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_UbiRay(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_DebugCommands(x)));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman Legends.exe", GameInstallationPathType.PrimaryExe, required: true),
+        new GameInstallationFilePath("Bundle_PC.ipk", GameInstallationPathType.Data, required: true),
+    });
 
     #endregion
 

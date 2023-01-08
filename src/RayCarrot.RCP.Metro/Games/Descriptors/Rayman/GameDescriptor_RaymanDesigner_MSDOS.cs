@@ -5,6 +5,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanDesigner;
     
     public override LocalizedString DisplayName => "Rayman Designer";
-    public override string DefaultFileName => "RAYKIT.EXE";
     public override DateTime ReleaseDate => new(1997, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanDesigner;
@@ -63,6 +63,15 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("RAYKIT.EXE", GameInstallationPathType.PrimaryExe, required: true),
+
+        // Directories
+        new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
+    });
 
     #endregion
 

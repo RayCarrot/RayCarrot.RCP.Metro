@@ -3,6 +3,7 @@ using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -19,7 +20,6 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbids2;
 
     public override LocalizedString DisplayName => "Rayman Raving Rabbids 2";
-    public override string DefaultFileName => "Jade.exe";
     public override DateTime ReleaseDate => new(2007, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids2;
@@ -62,6 +62,12 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Jade.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

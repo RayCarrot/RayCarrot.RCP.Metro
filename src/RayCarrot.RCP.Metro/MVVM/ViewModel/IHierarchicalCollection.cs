@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace RayCarrot.RCP.Metro;
+﻿namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// Represents a hierarchical collection where each element is identified

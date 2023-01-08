@@ -5,6 +5,7 @@ using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -27,7 +28,6 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
     public override LegacyGame? LegacyGame => Metro.LegacyGame.EducationalDos;
 
     public override LocalizedString DisplayName => "Rayman Edutainment (Quiz)";
-    public override string DefaultFileName => $"RAY{PrimaryName}.EXE";
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
@@ -68,6 +68,15 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanQuizPC", "r1/quiz/pc_gf", "GF"));
         builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Edu)));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath($"RAY{PrimaryName}.EXE", GameInstallationPathType.PrimaryExe, required: true),
+
+        // Directories
+        new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
+    });
 
     #endregion
 

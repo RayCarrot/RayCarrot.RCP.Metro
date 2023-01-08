@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
@@ -27,7 +28,6 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman2;
 
     public override LocalizedString DisplayName => "Rayman 2";
-    public override string DefaultFileName => "Rayman2.exe";
     public override DateTime ReleaseDate => new(1999, 11, 05);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman2;
@@ -78,6 +78,21 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC))));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman2.exe", GameInstallationPathType.PrimaryExe, required: true),
+        new GameInstallationFilePath("GXSetup.exe", GameInstallationPathType.ConfigExe),
+
+        // Directories
+        new GameInstallationDirectoryPath("Data", GameInstallationPathType.Data, required: true)
+        {
+            new GameInstallationDirectoryPath("Options", GameInstallationPathType.Save),
+            new GameInstallationDirectoryPath("World", GameInstallationPathType.Data, required: true),
+            new GameInstallationDirectoryPath("SaveGame", GameInstallationPathType.Save)
+        },
+    });
 
     #endregion
 

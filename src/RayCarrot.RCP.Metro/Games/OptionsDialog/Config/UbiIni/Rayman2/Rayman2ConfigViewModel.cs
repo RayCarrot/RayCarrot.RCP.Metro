@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Input;
 using ByteSizeLib;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -458,8 +459,9 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         {
             Logger.Info("The Rayman 2 aspect ratio is being set...");
 
-            // Get the file path
-            FileSystemPath path = GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName;
+            // Get the exe file path
+            GameInstallationStructure gameStructure = GameInstallation.GameDescriptor.Structure;
+            FileSystemPath path = gameStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Make sure the file exists
             if (!path.FileExists)
@@ -728,8 +730,9 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     {
         try
         {
-            // Get the file path
-            FileSystemPath path = gameInstallation.InstallLocation + gameInstallation.GameDescriptor.DefaultFileName;
+            // Get the exe file path
+            GameInstallationStructure gameStructure = gameInstallation.GameDescriptor.Structure;
+            FileSystemPath path = gameStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Get the location
             var location = GetAspectRatioLocation(path);

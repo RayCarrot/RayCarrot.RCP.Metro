@@ -2,6 +2,7 @@
 using System.Text;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -55,8 +56,9 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
     {
         GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
+        string exeFileName = GameDescriptor.Structure.GetLocalPath(GameInstallationPathType.PrimaryExe);
         string? gameArgs = gameLaunchArgs ?? GameInstallation.GetComponent<LaunchArgumentsComponent>()?.CreateObject();
-        string launchName = gameArgs == null ? GameDescriptor.DefaultFileName : $"{GameDescriptor.DefaultFileName} {gameArgs}";
+        string launchName = gameArgs == null ? exeFileName : $"{exeFileName} {gameArgs}";
 
         FileSystemPath mountPath = GameInstallation.GetValue<FileSystemPath>(GameDataKey.Client_DosBox_MountPath);
         return GetDOSBoxLaunchArgs(

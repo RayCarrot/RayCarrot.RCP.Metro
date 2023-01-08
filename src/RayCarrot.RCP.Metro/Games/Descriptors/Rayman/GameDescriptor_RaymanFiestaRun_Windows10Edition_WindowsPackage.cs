@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -22,7 +23,6 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanFiestaRun;
 
     public override LocalizedString DisplayName => "Rayman Fiesta Run Windows 10 Edition";
-    public override string DefaultFileName => "RFRXAML.exe";
     public override DateTime ReleaseDate => new(2016, 04, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanFiestaRun;
@@ -45,6 +45,12 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 0)));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("RFRXAML.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 }

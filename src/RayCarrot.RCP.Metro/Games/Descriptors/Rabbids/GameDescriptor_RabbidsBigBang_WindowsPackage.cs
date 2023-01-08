@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsBigBang;
 
     public override LocalizedString DisplayName => "Rabbids Big Bang";
-    public override string DefaultFileName => "Template.exe";
     public override DateTime ReleaseDate => new(2014, 03, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsBigBang;
@@ -41,6 +41,12 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Template.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 }

@@ -4,9 +4,11 @@ using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Serialize this to JSON and show in debug dialog
 // TODO-14: Move descriptors to folders based on platform?
 // TODO-14: Minimize the amount of methods here which do things by moving to manager classes retrieved through components.
 //          The descriptor should really only be for providing data about the game and registered components.
@@ -31,6 +33,12 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// The group name to use for a dialog which requires reading/writing to a ubi.ini file
     /// </summary>
     protected const string UbiIniFileGroupName = "ubini-config"; // TODO-14: Remove from here
+
+    #endregion
+
+    #region Private Fields
+
+    private GameInstallationStructure? _structure;
 
     #endregion
 
@@ -86,14 +94,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     public abstract DateTime ReleaseDate { get; }
 
-    //public abstract LocalizedString ShortDisplayName { get; }
-    //public abstract LocalizedString LongDisplayName { get; }
-
-    /// <summary>
-    /// Gets the default file name for launching the game, if available
-    /// </summary>
-    public abstract string DefaultFileName { get; } // TODO-14: Remove from here - not all games have an exe!
-
     /// <summary>
     /// The game icon asset
     /// </summary>
@@ -134,6 +134,13 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// for games which require to be emulated as they can't launch by themselves.
     /// </summary>
     public virtual bool DefaultToUseGameClient => false;
+
+    /// <summary>
+    /// Gets the game structure for the game
+    /// </summary>
+    public GameInstallationStructure Structure => 
+        // Cache the object to avoid re-creating it each time it's requested
+        _structure ??= GetStructure();
 
     #endregion
 
@@ -188,17 +195,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
             throw new Exception($"The provided game id {gameInstallation.GameId} does not match {GameId}");
     }
 
-    // TODO-14: Don't do this - an install location might be a file in case of roms
-    /// <summary>
-    /// Indicates if the game location is valid
-    /// </summary>
-    /// <param name="installLocation">The game install location</param>
-    /// <returns>True if the game directory is valid, otherwise false</returns>
-    protected virtual bool IsGameLocationValid(FileSystemPath installLocation)
-    {
-        // Make sure the default file exists in the install directory
-        return (installLocation + DefaultFileName).FileExists;
-    }
+    protected abstract GameInstallationStructure GetStructure();
 
     #endregion
 
@@ -376,7 +373,16 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// </summary>
     /// <param name="installDir">The game install directory, if any</param>
     /// <returns>True if the game is valid, otherwise false</returns>
-    public bool IsValid(FileSystemPath installDir) => Services.Data.App_DisableGameValidation || IsGameLocationValid(installDir);
+    public bool IsValid(FileSystemPath installDir)
+    {
+        // Always return true if game validation is disabled
+        if (Services.Data.App_DisableGameValidation)
+            return true;
+
+        // TODO-14: Return reason why it's not valid so we can tell user (like which file is missing)
+        // Verify the game structure
+        return Structure.IsLocationValid(installDir);
+    }
 
     public int CompareTo(GameDescriptor? other)
     {

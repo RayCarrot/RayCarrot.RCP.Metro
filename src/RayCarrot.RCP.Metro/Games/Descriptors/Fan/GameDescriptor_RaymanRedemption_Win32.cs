@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRedemption;
 
     public override LocalizedString DisplayName => "Rayman Redemption";
-    public override string DefaultFileName => "Rayman Redemption.exe";
     public override DateTime ReleaseDate => new(2020, 06, 19);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRedemption;
@@ -37,6 +37,12 @@ public sealed class GameDescriptor_RaymanRedemption_Win32 : Win32GameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanRedemption(x, "Rayman Redemption")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
+    
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman Redemption.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

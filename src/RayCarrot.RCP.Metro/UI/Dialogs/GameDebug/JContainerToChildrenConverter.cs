@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Globalization;
+﻿using System.Globalization;
 using Newtonsoft.Json.Linq;
 
 namespace RayCarrot.RCP.Metro;

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
@@ -51,7 +52,7 @@ public class SteamLaunchGameComponent : LaunchGameComponent
         new JumpListItemViewModel(
             gameInstallation: GameInstallation,
             name: GameInstallation.GetDisplayName(),
-            iconSource: GameInstallation.InstallLocation + GameInstallation.GameDescriptor.DefaultFileName,
+            iconSource: GameDescriptor.Structure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe),
             launchPath: SteamHelpers.GetGameLaunchURI(GetSteamId()),
             workingDirectory: null,
             launchArguments: null,

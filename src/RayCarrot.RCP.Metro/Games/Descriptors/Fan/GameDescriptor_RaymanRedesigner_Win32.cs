@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRedesigner;
 
     public override LocalizedString DisplayName => "Rayman ReDesigner";
-    public override string DefaultFileName => "Rayman ReDesigner.exe";
     public override DateTime ReleaseDate => new(2021, 02, 04);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRedesigner;
@@ -36,6 +36,12 @@ public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
 
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman ReDesigner.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

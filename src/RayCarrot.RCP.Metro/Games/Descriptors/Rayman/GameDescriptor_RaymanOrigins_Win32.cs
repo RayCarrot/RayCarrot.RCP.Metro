@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Archive.UbiArt;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -26,7 +27,6 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanOrigins;
 
     public override LocalizedString DisplayName => "Rayman Origins";
-    public override string DefaultFileName => "Rayman Origins.exe";
     public override System.DateTime ReleaseDate => new(2012, 03, 29);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanOrigins;
@@ -51,6 +51,15 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_DebugCommands(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_Update(x)));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman Origins.exe", GameInstallationPathType.PrimaryExe, required: true),
+        
+        // Directories
+        new GameInstallationDirectoryPath("GameData", GameInstallationPathType.Data, required: true),
+    });
 
     #endregion
 

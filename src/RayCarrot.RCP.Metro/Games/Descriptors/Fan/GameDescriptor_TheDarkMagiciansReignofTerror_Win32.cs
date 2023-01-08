@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
     public override LegacyGame? LegacyGame => Metro.LegacyGame.TheDarkMagiciansReignofTerror;
 
     public override LocalizedString DisplayName => "Rayman: The Dark Magician's Reign of Terror";
-    public override string DefaultFileName => "Rayman! Dark Magician's reign of terror!.exe";
     public override DateTime ReleaseDate => new(2015, 07, 13); // A bit unclear what the actual date is
 
     public override GameIconAsset Icon => GameIconAsset.TheDarkMagiciansReignofTerror;
@@ -43,6 +43,12 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_TheDarkMagiciansReignofTerror(x, "Rayman The Dark Magicians Reign of Terror")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman! Dark Magician's reign of terror!.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

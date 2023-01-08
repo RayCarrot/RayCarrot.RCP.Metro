@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanBowling2;
 
     public override LocalizedString DisplayName => "Rayman Bowling 2";
-    public override string DefaultFileName => "Rayman Bowling 2.exe";
     public override DateTime ReleaseDate => new(2020, 09, 01);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanBowling2;
@@ -37,6 +37,12 @@ public sealed class GameDescriptor_RaymanBowling2_Win32 : Win32GameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanBowling2(x, "Rayman Bowling 2")));
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman Bowling 2.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

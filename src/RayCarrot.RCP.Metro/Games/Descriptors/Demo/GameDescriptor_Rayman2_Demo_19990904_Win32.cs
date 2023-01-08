@@ -1,6 +1,7 @@
 ﻿using BinarySerializer.OpenSpace;
 using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -18,13 +19,22 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_Rayman2_2;
 
     public override LocalizedString DisplayName => "Rayman 2 Demo (1999/09/04)";
-    public override string DefaultFileName => "Rayman2Demo.exe";
     public override DateTime ReleaseDate => new(1999, 09, 04);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman2_Demo;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman2;
 
     public override bool HasArchives => true;
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman2Demo.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

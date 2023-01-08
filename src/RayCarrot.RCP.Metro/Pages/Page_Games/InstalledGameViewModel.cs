@@ -4,6 +4,7 @@ using BinarySerializer;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Patcher;
 
 namespace RayCarrot.RCP.Metro;
@@ -211,15 +212,17 @@ public class InstalledGameViewModel : BaseViewModel
             iconKind: GenericIconKind.GameAction_Location, 
             command: new AsyncRelayCommand(async () =>
             {
-                // Get the install directory
-                FileSystemPath instDir = GameInstallation.InstallLocation;
+                // Get the install location to open
+                FileSystemPath pathToOpen = GameInstallation.InstallLocation;
 
-                // Select the file in Explorer if it exists
-                if ((instDir + GameDescriptor.DefaultFileName).FileExists)
-                    instDir += GameDescriptor.DefaultFileName;
+                // Select the exe file in Explorer if it exists
+                GameInstallationStructure gameStructure = GameInstallation.GameDescriptor.Structure;
+                FileSystemPath exeFilePath = gameStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+                if (exeFilePath.FileExists && exeFilePath.Parent == pathToOpen)
+                    pathToOpen = exeFilePath;
 
                 // Open the location
-                await Services.File.OpenExplorerLocationAsync(instDir);
+                await Services.File.OpenExplorerLocationAsync(pathToOpen);
 
                 Logger.Trace("The Game {0} install location was opened", GameInstallation.FullId);
             })));

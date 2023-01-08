@@ -4,6 +4,7 @@ using RayCarrot.RCP.Metro.Archive.CPA;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 using RayCarrot.RCP.Metro.Ini;
 
 namespace RayCarrot.RCP.Metro;
@@ -21,7 +22,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman3;
 
     public override LocalizedString DisplayName => "Rayman 3";
-    public override string DefaultFileName => "Rayman3.exe";
     public override DateTime ReleaseDate => new(2003, 03, 18);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3;
@@ -50,6 +50,16 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC))));
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman3.exe", GameInstallationPathType.PrimaryExe, required: true),
+
+        // Directories
+        new GameInstallationDirectoryPath("Gamedatabin", GameInstallationPathType.Data, required: true),
+        new GameInstallationDirectoryPath("GAMEDATA", GameInstallationPathType.Save),
+    });
 
     #endregion
 

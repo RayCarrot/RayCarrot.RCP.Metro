@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -23,8 +24,6 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     public override LocalizedString DisplayName => "Rayman Garden PLUS";
     public override DateTime ReleaseDate => new(2021, 06, 05);
 
-    public override string DefaultFileName => "rayman-garden-plus.exe";
-
     public override GameIconAsset Icon => GameIconAsset.RaymanGardenPLUS;
 
     #endregion
@@ -37,6 +36,12 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
 
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("rayman-garden-plus.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 

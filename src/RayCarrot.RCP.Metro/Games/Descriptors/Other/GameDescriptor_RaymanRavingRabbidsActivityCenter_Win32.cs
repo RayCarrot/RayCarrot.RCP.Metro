@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -15,7 +16,6 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRavingRabbidsActivityCenter;
 
     public override LocalizedString DisplayName => "Rayman Raving Rabbids Activity Center";
-    public override string DefaultFileName => "Rayman.exe";
     public override DateTime ReleaseDate => new(2006, 10, 19);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbidsActivityCenter;
@@ -46,6 +46,16 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
 
         builder.Register(new OnGameLaunchedComponent(ShowLaunchMessageAsync));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("Rayman.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
+
+    #endregion
+
+    #region Public Methods
 
     // Can only be downloaded
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]

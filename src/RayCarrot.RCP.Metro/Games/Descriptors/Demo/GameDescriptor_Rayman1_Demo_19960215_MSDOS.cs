@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -17,7 +18,6 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_Rayman1_2;
 
     public override LocalizedString DisplayName => "Rayman Demo (1996/02/15)";
-    public override string DefaultFileName => "RAYMAN.EXE";
     public override DateTime ReleaseDate => new(1996, 02, 15);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
@@ -49,6 +49,15 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MSDOS : MsDosGameDescri
         builder.Register(new OnGameAddedComponent(TryFindMountPath));
         builder.Register<MsDosGameRequiresDiscComponent>();
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("RAYMAN.EXE", GameInstallationPathType.PrimaryExe, required: true),
+
+        // Directories
+        new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
+    });
 
     #endregion
 

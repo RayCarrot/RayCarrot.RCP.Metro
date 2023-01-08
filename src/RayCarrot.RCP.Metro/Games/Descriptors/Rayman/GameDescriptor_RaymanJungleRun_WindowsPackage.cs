@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -22,7 +23,6 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanJungleRun;
 
     public override LocalizedString DisplayName => "Rayman Jungle Run";
-    public override string DefaultFileName => "RO1Mobile.exe";
     public override DateTime ReleaseDate => new(2013, 03, 07);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanJungleRun;
@@ -43,6 +43,12 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<ExternalGameLinksComponent>(new MicrosoftStoreExternalGameLinksComponent(MicrosoftStoreID));
     }
+
+    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    {
+        // Files
+        new GameInstallationFilePath("RO1Mobile.exe", GameInstallationPathType.PrimaryExe, required: true),
+    });
 
     #endregion
 }

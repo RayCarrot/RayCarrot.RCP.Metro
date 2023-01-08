@@ -37,16 +37,6 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
         builder.Register(new WindowsPackageComponent(PackageName, FullPackageName));
     }
 
-    protected override bool IsGameLocationValid(FileSystemPath installLocation)
-    {
-        // Make sure version is at least Windows 8
-        if (!SupportsWinRT)
-            return false;
-
-        // Make sure the default game file is found
-        return base.IsGameLocationValid(installLocation);
-    }
-
     #endregion
 
     #region Public Methods
