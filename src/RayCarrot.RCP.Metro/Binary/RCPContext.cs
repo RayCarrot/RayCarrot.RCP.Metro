@@ -16,6 +16,9 @@ public class RCPContext : Context
             systemLogger: new RCPLogger())
     { }
 
+    // TODO-14: This is not thread-safe! While testing I got an I/O race condition exception. Although rare it should be resolved.
+    //          The bug can be reproduced pretty consistently by quickly changing Run as admin in game hub since that refreshes
+    //          the patches in a quick succession in a task.
     // Use a static log instance so that multiple contexts can be open and log at the same time without conflicts
     private static readonly RCPSerializerLogger LogInstance = new();
 

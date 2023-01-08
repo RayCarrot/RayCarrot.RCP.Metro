@@ -10,12 +10,10 @@ public partial class PatchCreatorDialog : WindowContentControl
 {
     #region Constructor
     
-    public PatchCreatorDialog(PatchCreatorViewModel viewModel, FileSystemPath? existingPatch)
+    public PatchCreatorDialog(PatchCreatorViewModel viewModel)
     {
         DataContext = viewModel;
         ViewModel = viewModel;
-
-        _patchToImportFrom = existingPatch;
 
         // Set up UI
         InitializeComponent();
@@ -27,7 +25,6 @@ public partial class PatchCreatorDialog : WindowContentControl
 
     #region Private Fields
 
-    private readonly FileSystemPath? _patchToImportFrom;
     private bool _forceClose;
 
     #endregion
@@ -75,24 +72,13 @@ public partial class PatchCreatorDialog : WindowContentControl
 
     #region Event Handlers
 
-    private async void PatchCreatorUI_Loaded(object sender, RoutedEventArgs e)
+    private void PatchCreatorUI_Loaded(object sender, RoutedEventArgs e)
     {
         Loaded -= PatchCreatorUI_Loaded;
 
         // Disable the closing button when loading
         ViewModel.LoaderViewModel.IsRunningChanged += (_, _) =>
             WindowInstance.CanClose = !ViewModel.LoaderViewModel.IsRunning;
-
-        if (_patchToImportFrom == null)
-            return;
-
-        bool success = await ViewModel.ImportFromPatchAsync(_patchToImportFrom.Value);
-
-        if (!success)
-        {
-            _forceClose = true;
-            WindowInstance.Close();
-        }
     }
 
     private void FilesGrid_OnMouseDown(object sender, MouseButtonEventArgs e)

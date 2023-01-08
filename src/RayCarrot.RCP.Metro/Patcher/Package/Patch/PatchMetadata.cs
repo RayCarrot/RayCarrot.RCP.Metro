@@ -11,8 +11,8 @@ public class PatchMetadata : BinarySerializable
 
     public string ID { get; set; }
 
-    private string LegacyGameName { get; set; }
-    public string[] GameIds { get; set; }
+    private string LegacyGameId { get; set; } // Prior to 14.0
+    public string[] GameIds { get; set; } // After 14.0
 
     public string Name { get; set; }
     public string Description { get; set; }
@@ -57,14 +57,14 @@ public class PatchMetadata : BinarySerializable
     /// <summary>
     /// Checks if the game descriptor is a valid game for this patch library
     /// </summary>
-    /// <param name="gameDescriptor"></param>
-    /// <returns></returns>
+    /// <param name="gameDescriptor">The game descriptor to check</param>
+    /// <returns>True if it's valid, otherwise false</returns>
     public bool IsGameValid(GameDescriptor gameDescriptor)
     {
         if (Pre_FormatVersion >= 2)
             return GameIds.Any(x => x == gameDescriptor.GameId);
         else
-            return gameDescriptor.LegacyGame.ToString() == LegacyGameName;
+            return gameDescriptor.LegacyGame.ToString() == LegacyGameId;
     }
 
     public IEnumerable<GameDescriptor> GetGameDescriptors(GamesManager gamesManager)
@@ -72,7 +72,7 @@ public class PatchMetadata : BinarySerializable
         if (Pre_FormatVersion >= 2)
             return GameIds.Select(x => gamesManager.GetGameDescriptor(x));
         else
-            return gamesManager.GetGameDescriptors().Where(x => x.LegacyGame.ToString() == LegacyGameName);
+            return gamesManager.GetGameDescriptors().Where(x => x.LegacyGame.ToString() == LegacyGameId);
     }
 
     public override void SerializeImpl(SerializerObject s)
@@ -88,7 +88,7 @@ public class PatchMetadata : BinarySerializable
         }
         else
         {
-            LegacyGameName = s.SerializeString(LegacyGameName, name: nameof(LegacyGameName));
+            LegacyGameId = s.SerializeString(LegacyGameId, name: nameof(LegacyGameId));
         }
 
         Name = s.SerializeString(Name, name: nameof(Name));

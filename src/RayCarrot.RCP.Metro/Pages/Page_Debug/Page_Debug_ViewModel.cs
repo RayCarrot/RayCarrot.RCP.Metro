@@ -263,7 +263,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     break;
 
                 case DebugDialogType.GamesSelection_Single:
-                    await UI.GetGamesAsync(new GamesSelectionViewModel(GamesManager)
+                    await UI.SelectGamesAsync(new GamesSelectionViewModel(GamesManager.GetInstalledGames())
                     {
                         Title = "Debug",
                         MultiSelection = false,
@@ -271,7 +271,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     break;
 
                 case DebugDialogType.GamesSelection_Multiple:
-                    await UI.GetGamesAsync(new GamesSelectionViewModel(GamesManager)
+                    await UI.SelectGamesAsync(new GamesSelectionViewModel(GamesManager.GetInstalledGames())
                     {
                         Title = "Debug",
                         MultiSelection = true,

@@ -11,6 +11,7 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
     public PatcherGamePanelViewModel(GameInstallation gameInstallation) : base(gameInstallation)
     {
         OpenPatcherCommand = new AsyncRelayCommand(OpenPatcherAsync);
+        OpenPatchCreatorCommand = new AsyncRelayCommand(OpenPatchCreatorAsync);
     }
 
     #endregion
@@ -24,6 +25,7 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
     #region Commands
 
     public ICommand OpenPatcherCommand { get; }
+    public ICommand OpenPatchCreatorCommand { get; }
 
     #endregion
 
@@ -65,6 +67,7 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
     #region Public Methods
 
     public Task OpenPatcherAsync() => Services.UI.ShowPatcherAsync(GameInstallation);
+    public Task OpenPatchCreatorAsync() => Services.UI.ShowPatchCreatorAsync(GameInstallation);
 
     #endregion
 }

@@ -348,12 +348,12 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             if (patch == null)
                 return null;
 
-            // Get all the installations for the matching game descriptors
-            GameDescriptor[] gameDescriptors = patch.Metadata.GetGameDescriptors(Services.Games).ToArray();
-            GameInstallation[] gameInstallations = Services.Games.GetInstalledGames().
-                Where(x => gameDescriptors.Contains(x.GameDescriptor)).
-                ToArray();
+            // Get all the installations which the patch supports
+            List<GameInstallation> gameInstallations = Services.Games.GetInstalledGames().
+                Where(x => patch.Metadata.IsGameValid(x.GameDescriptor)).
+                ToList();
 
+            // Make sure there is an installed game which can be patched
             if (!gameInstallations.Any())
             {
                 // TODO-14: Update error message
@@ -362,8 +362,26 @@ public class PatcherViewModel : BaseViewModel, IDisposable
                 return null;
             }
 
-            // TODO-14: Have user choose an installation
-            GameInstallation gameInstallation = gameInstallations.First();
+            GameInstallation gameInstallation;
+
+            // If there is more than 1 matching game we ask the user which one to patch
+            if (gameInstallations.Count > 1)
+            {
+                GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(gameInstallations)
+                {
+                    // TODO-UPDATE: Localize
+                    Title = "Select game to patch"
+                });
+
+                if (result.CanceledByUser)
+                    return null;
+
+                gameInstallation = result.SelectedGame;
+            }
+            else
+            {
+                gameInstallation = gameInstallations.First();
+            }
 
             // Create the view model
             PendingPatch[] pendingPatches = patchFilePaths.Select((x, i) => new PendingPatch(x, i == 0 ? patch : null)).ToArray();

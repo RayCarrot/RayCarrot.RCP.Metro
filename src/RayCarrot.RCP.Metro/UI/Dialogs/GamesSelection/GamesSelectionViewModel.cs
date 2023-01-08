@@ -5,9 +5,21 @@
 /// </summary>
 public class GamesSelectionViewModel : UserInputViewModel
 {
-    public GamesSelectionViewModel(GamesManager gamesManager)
+    public GamesSelectionViewModel(IEnumerable<GameInstallation> gameInstallations)
     {
-        Games = new ObservableCollection<GameViewModel>(gamesManager.GetInstalledGames().Select(x => new GameViewModel(this, x)));
+        Games = new ObservableCollection<GameViewModel>(gameInstallations.Select(x => new GameViewModel(this, x)));
+    }
+
+    public GamesSelectionViewModel(IEnumerable<GameInstallation> gameInstallations, IEnumerable<GameInstallation> selectedGames) 
+        : this(gameInstallations)
+    {
+        foreach (GameInstallation gameInstallation in selectedGames)
+        {
+            GameViewModel? gameViewModel = Games.FirstOrDefault(x => x.GameInstallation == gameInstallation);
+
+            if (gameViewModel != null)
+                gameViewModel.IsSelected = true;
+        }
     }
 
     public ObservableCollection<GameViewModel> Games { get; }

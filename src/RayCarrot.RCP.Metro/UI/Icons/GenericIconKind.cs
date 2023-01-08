@@ -67,7 +67,6 @@ public enum GenericIconKind
     Utilities_Converters,
     Utilities_Decoders,
     Utilities_Serializers,
-    Utilities_PatchCreator,
 
     Mods_Mem,
     Mods_RRR,

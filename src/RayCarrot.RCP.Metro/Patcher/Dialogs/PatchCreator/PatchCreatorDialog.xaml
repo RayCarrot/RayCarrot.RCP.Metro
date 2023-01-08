@@ -18,7 +18,7 @@
     <local:LoadingHost local:LoadingHostAssist.ViewModel="{Binding Path=LoaderViewModel, Mode=OneTime}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" MinHeight="250" />
+                <RowDefinition Height="*" MinHeight="250" d:Height="300" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1.5*" MinHeight="150" />
                 <RowDefinition Height="Auto" />
@@ -48,46 +48,79 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
+                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Grid.Column="0"
                                    Grid.Row="0"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
+                                   VerticalAlignment="Center" 
+                                   Text="Game targets"
+                                   Margin="0 0 0 10" />
+                        <Grid Grid.Column="2"
+                              Grid.Row="0" 
+                              Margin="0 0 0 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <ItemsControl Grid.Column="0"
+                                          VerticalAlignment="Center"
+                                          ItemsSource="{Binding Path=GameTargetNames}"/>
+
+                            <!-- TODO-UPDATE: Localize -->
+                            <Button Grid.Column="1"
+                                    Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
+                                    local:IconAssist.IconKind="{StaticResource RCP.Icons.Edit}"
+                                    Command="{Binding Path=EditGameTargetsCommand, Mode=OneTime}"
+                                    ToolTip="The games the patch targets determines which games it can be applied to. A patch can target multiple games, but if it adds files to an archive which a game is missing then they will be ignored for that game."
+                                    Margin="0 0 4 0"/>
+
+                        </Grid>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="1"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                    VerticalAlignment="Center" 
                                    Text="{Resx PatchCreator_NameField}" 
                                    Margin="0 0 0 10"/>
                         <TextBox Grid.Column="2"
-                                 Grid.Row="0"
+                                 Grid.Row="1"
                                  Margin="0 0 0 10"
                                  Text="{Binding Path=Name}"
                                  MaxLength="80" />
 
                         <TextBlock Grid.Column="0"
-                                   Grid.Row="1"
+                                   Grid.Row="2"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                    VerticalAlignment="Center" 
                                    Text="{Resx PatchCreator_AuthorField}"
                                    Margin="0 0 0 10" />
                         <TextBox Grid.Column="2"
-                                 Grid.Row="1" 
+                                 Grid.Row="2" 
                                  Margin="0 0 0 10"
                                  Text="{Binding Path=Author}"
                                  MaxLength="150"/>
 
                         <TextBlock Grid.Column="0"
-                                   Grid.Row="2"
+                                   Grid.Row="3"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                    VerticalAlignment="Center" 
                                    Text="{Resx PatchCreator_WebsiteField}"
                                    Margin="0 0 0 10" />
                         <TextBox Grid.Column="2"
-                                 Grid.Row="2" 
+                                 Grid.Row="3" 
                                  Margin="0 0 0 10"
                                  Text="{Binding Path=Website}"
                                  MaxLength="200"/>
 
                         <TextBlock Grid.Column="0"
-                                   Grid.Row="3"
+                                   Grid.Row="4"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                    VerticalAlignment="Center" 
                                    Text="{Resx PatchCreator_DescriptionField}"
                                    Margin="0 0 0 10" />
                         <TextBox Grid.Column="2"
-                                 Grid.Row="3" 
+                                 Grid.Row="4" 
                                  MinHeight="50"
                                  AcceptsReturn="True"
                                  TextWrapping="Wrap"
@@ -97,13 +130,14 @@
                                  MaxLines="10"/>
 
                         <TextBlock Grid.Column="0"
-                                   Grid.Row="4"
+                                   Grid.Row="5"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                    VerticalAlignment="Center" 
                                    Text="{Resx PatchCreator_VersionField}"
                                    Margin="0 0 0 10" />
                         <StackPanel Orientation="Horizontal"
                                     Grid.Column="2"
-                                    Grid.Row="4"
+                                    Grid.Row="5"
                                     Margin="0 0 0 10">
                             <mah:NumericUpDown MinWidth="0" Margin="0 0 3 0" Value="{Binding Path=Version_Major}" />
                             <TextBlock Text="." VerticalAlignment="Bottom"  Margin="0 0 3 0"/>
@@ -113,27 +147,18 @@
                         </StackPanel>
 
                         <TextBlock Grid.Column="0"
-                                   Grid.Row="5"
+                                   Grid.Row="6"
+                                   Style="{StaticResource RCP.Styles.TextBlock.HeaderSmall}"
                                    VerticalAlignment="Center" 
                                    Text="{Resx Patcher_ID}"
                                    local:UserLevelAssist.MinUserLevel="Technical"
                                    Margin="0 0 0 10" />
                         <TextBlock Grid.Column="2"
-                                   Grid.Row="5" 
+                                   Grid.Row="6" 
                                    Margin="0 0 0 10"
                                    Text="{Binding Path=ID}" 
                                    local:UserLevelAssist.MinUserLevel="Technical"/>
 
-                        <TextBlock Grid.Column="0"
-                                   Grid.Row="6"
-                                   VerticalAlignment="Center" 
-                                   Text="{Resx Patcher_Game}"
-                                   local:UserLevelAssist.MinUserLevel="Technical"
-                                   Margin="0 0 0 10" />
-                        <TextBlock Grid.Column="2"
-                                   Grid.Row="6" 
-                                   Margin="0 0 0 10"
-                                   Text="{Binding Path=GameDisplayName, Mode=OneTime}" />
                     </Grid>
                 </ScrollViewer>
 
@@ -170,18 +195,18 @@
             </Grid>
 
             <!-- Splitter -->
-
             <GridSplitter Grid.Row="1" Height="4" Margin="0 0 0 10" />
 
-            <Grid Grid.Row="2" Background="Transparent" MouseDown="FilesGrid_OnMouseDown">
-
+            <Grid Grid.Row="2" 
+                  Background="Transparent" 
+                  MouseDown="FilesGrid_OnMouseDown"
+                  Margin="0 0 0 8">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- Files -->
-
                 <DataGrid Grid.Row="0"
                           ItemsSource="{Binding Path=Files}"
                           d:ItemsSource="{d:SampleData}"
@@ -289,8 +314,7 @@
 
                 <StackPanel Grid.Row="1"
                             Orientation="Horizontal"
-                            HorizontalAlignment="Left"
-                            Margin="5">
+                            HorizontalAlignment="Left">
 
                     <Button Style="{StaticResource RCP.Styles.Button.IconCircleSmall}"
                             local:IconAssist.IconKind="Plus"
@@ -320,18 +344,32 @@
             </Grid>
 
             <!-- Actions -->
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="3"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
+                <!-- TODO-UPDATE: Localize -->
+                <Button Grid.Column="0"
+                        Content="Import from existing patch"
+                        ToolTip="This will allow importing the contents from an already created patch. This can be used to create an updated version of a patch."
+                        Style="{StaticResource RCP.Styles.Button.IconContent}"
+                        local:IconAssist.IconKind="Import"
+                        Command="{Binding Path=ImportPatchCommand, Mode=OneTime}"
+                        Margin="0 0 10 0" />
 
-                <Button Content="{Resx Cancel}"
+                <Button Grid.Column="2"
+                        Content="{Resx Cancel}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         local:IconAssist.IconKind="CloseOutline"
                         Click="CancelButton_OnClick"
                         Margin="0 0 10 0" />
 
-                <Button Content="{Resx PatchCreator_Create}"
+                <Button Grid.Column="3"
+                        Content="{Resx PatchCreator_Create}"
                         Style="{StaticResource RCP.Styles.Button.IconContent}"
                         local:IconAssist.IconKind="ContentSaveOutline"
                         Click="CreateButton_OnClick">
@@ -344,7 +382,7 @@
                     </Button.IsEnabled>
                 </Button>
 
-            </StackPanel>
+            </Grid>
 
         </Grid>
     </local:LoadingHost>

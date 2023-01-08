@@ -257,9 +257,6 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_Serializers" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Serializers}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
-    <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_PatchCreator" 
-                       IconKind="{StaticResource RCP.Icons.PatchCreator}"
-                       IconColor="{StaticResource RCP.Brushes.Patcher}" />
     
     <local:GenericIcon x:Key="RCP.GenericIcons.Mods_Mem" 
                        IconKind="{StaticResource RCP.Icons.Mods_Mem}"

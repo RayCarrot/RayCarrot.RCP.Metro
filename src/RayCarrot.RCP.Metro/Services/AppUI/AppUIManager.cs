@@ -81,7 +81,7 @@ public class AppUIManager
 
     public Task<ProgramSelectionResult> GetProgramAsync(ProgramSelectionViewModel programSelectionViewModel) => ShowDialogAsync(() => new ProgramSelectionDialog(programSelectionViewModel));
 
-    public Task<GamesSelectionResult> GetGamesAsync(GamesSelectionViewModel gamesSelectionViewModel) => 
+    public Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel) => 
         ShowDialogAsync(() => new GamesSelectionDialog(gamesSelectionViewModel));
 
     /// <summary>
@@ -349,21 +349,20 @@ public class AppUIManager
     /// <summary>
     /// Shows a new instance of the Patch Creator
     /// </summary>
-    /// <param name="gameDescriptors">The game descriptors the patch should be made for</param>
-    /// <param name="existingPatch">Optionally an existing patch to update</param>
+    /// <param name="gameTargets">The game installations the patch should be made for</param>
     /// <returns>The task</returns>
-    public async Task ShowPatchCreatorAsync(GameDescriptor[] gameDescriptors, FileSystemPath? existingPatch)
+    public async Task ShowPatchCreatorAsync(params GameInstallation[] gameTargets)
     {
         if (Application.Current.Dispatcher == null)
             throw new Exception("The application does not have a valid dispatcher");
 
-        using PatchCreatorViewModel vm = new(gameDescriptors);
+        using PatchCreatorViewModel vm = new(gameTargets);
 
         Logger.Trace("A Patch Creator window was opened");
 
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
-        using PatchCreatorDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatchCreatorDialog(vm, existingPatch));
+        using PatchCreatorDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatchCreatorDialog(vm));
         await Dialog.ShowWindowAsync(dialog);
     }
 

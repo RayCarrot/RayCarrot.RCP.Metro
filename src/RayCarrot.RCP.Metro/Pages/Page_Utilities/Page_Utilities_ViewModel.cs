@@ -34,7 +34,6 @@ public class Page_Utilities_ViewModel : BasePageViewModel, IDisposable
         BinaryToolViewModels.AddRange(new[]
         {
             new UtilityViewModel(new Utility_Archives()),
-            new UtilityViewModel(new Utility_PatchCreator()),
             new UtilityViewModel(new Utility_Serializers()),
             new UtilityViewModel(new Utility_Converters()),
             new UtilityViewModel(new Utility_Decoders()),

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -10,41 +11,19 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 {
     #region Constructor
 
-    public PatchCreatorViewModel(GameDescriptor[] gameDescriptors)
+    public PatchCreatorViewModel(params GameInstallation[] gameTargets)
     {
-        GameDescriptors = gameDescriptors;
+        // Set properties
         ID = PatchMetadata.GenerateID();
-        AvailableLocations = new ObservableCollection<AvailableFileLocation>()
-        {
-            new(new ResourceLocString(nameof(Resources.Patcher_PhysicalGameLocation)), String.Empty, String.Empty)
-        };
-
-        // TODO-14: Fix
-        //GameDisplayName = gameDescriptor.DisplayName;
-
-        foreach (GameDescriptor gameDescriptor in gameDescriptors)
-        {
-            string? archiveID = gameDescriptor.GetArchiveDataManager(null)?.ID;
-
-            if (archiveID == null)
-                continue;
-
-            foreach (string archivePath in gameDescriptor.GetArchiveFilePaths(null))
-            {
-                AvailableFileLocation? existingLocation = AvailableLocations.
-                    FirstOrDefault(x => x.Location == archivePath && x.LocationID == archiveID);
-
-                if (existingLocation != null)
-                    existingLocation.GameDescriptors.Add(gameDescriptor);
-                else
-                    AvailableLocations.Add(new AvailableFileLocation(archivePath, archivePath, archiveID));
-            }
-        }
-
-        SelectedLocation = AvailableLocations.First();
-
+        AvailableLocations = new ObservableCollection<AvailableFileLocation>();
         LoaderViewModel = new LoaderViewModel();
 
+        // Set the game targets
+        SetGameTargets(gameTargets);
+
+        // Create commands
+        EditGameTargetsCommand = new AsyncRelayCommand(EditGameTargetsAsync);
+        ImportPatchCommand = new AsyncRelayCommand(ImportPatchAsync);
         BrowseThumbnailCommand = new AsyncRelayCommand(BrowseThumbnailAsync);
         RemoveThumbnailCommand = new RelayCommand(RemoveThumbnail);
         AddFileCommand = new RelayCommand(AddFile);
@@ -69,6 +48,8 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #region Commands
 
+    public ICommand EditGameTargetsCommand { get; }
+    public ICommand ImportPatchCommand { get; }
     public ICommand BrowseThumbnailCommand { get; }
     public ICommand RemoveThumbnailCommand { get; }
     public ICommand AddFileCommand { get; }
@@ -79,6 +60,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #region Public Properties
 
+    // Metadata
     public string Name { get; set; } = String.Empty;
     public string Description { get; set; } = String.Empty;
     public string Author { get; set; } = String.Empty;
@@ -87,23 +69,75 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public int Version_Minor { get; set; }
     public int Version_Revision { get; set; }
     public string ID { get; set; }
-    public GameDescriptor[] GameDescriptors { get; }
-    public string GameDisplayName { get; } // TODO: LocalizedString
+    public GameInstallation[] GameTargets { get; private set; }
+    public ObservableCollection<string> GameTargetNames { get; private set; }
     public BitmapSource? Thumbnail { get; set; }
 
+    // Files
     public ObservableCollection<FileViewModel> Files { get; } = new();
     public FileViewModel? SelectedFile { get; set; }
 
+    // Locations
     public ObservableCollection<AvailableFileLocation> AvailableLocations { get; }
     public AvailableFileLocation SelectedLocation { get; set; }
 
-    public bool IsImported { get; set; }
-
+    // Other
     public LoaderViewModel LoaderViewModel { get; }
 
     #endregion
 
     #region Private Methods
+
+    [MemberNotNull(nameof(GameTargets))]
+    [MemberNotNull(nameof(SelectedLocation))]
+    [MemberNotNull(nameof(GameTargetNames))]
+    private void SetGameTargets(IEnumerable<GameInstallation> gameTargets)
+    {
+        // Set the game targets
+        GameTargets = gameTargets.ToArray();
+        GameTargetNames = new ObservableCollection<string>(
+            GameTargets.Select(x => x.GameDescriptor).Distinct().Select(x => x.GameDescriptorName));
+
+        // Clear previous locations
+        AvailableLocations.Clear();
+
+        // Always add the physical game location first
+        AvailableLocations.Add(new AvailableFileLocation(new ResourceLocString(nameof(Resources.Patcher_PhysicalGameLocation)), String.Empty, String.Empty));
+
+        // Add additional locations based on the game targets
+        foreach (GameInstallation gameInstallation in GameTargets)
+        {
+            string? archiveID = gameInstallation.GameDescriptor.GetArchiveDataManager(null)?.ID;
+
+            if (archiveID == null)
+                continue;
+
+            foreach (string archivePath in gameInstallation.GameDescriptor.GetArchiveFilePaths(null))
+            {
+                AvailableFileLocation? existingLocation = AvailableLocations.
+                    FirstOrDefault(x => x.Location == archivePath && x.LocationID == archiveID);
+
+                if (existingLocation != null)
+                    existingLocation.GameTargets.Add(gameInstallation);
+                else
+                    AvailableLocations.Add(new AvailableFileLocation(archivePath, archivePath, archiveID));
+            }
+        }
+
+        // NOTE: I commented this out for now since we might not need it. The importing keeps
+        //       files even if they're in a location which isn't listed. We should probably
+        //       look into it a bit more, but it should be fine like this.
+        // Remove files which use removed locations
+        /*
+        foreach (FileViewModel file in Files.ToList())
+        {
+            if (AvailableLocations.All(x => x.LocationID != file.LocationID))
+                Files.Remove(file);
+        }*/
+
+        // Default to select the first location
+        SelectedLocation = AvailableLocations.First();
+    }
 
     private void AddFile(FileViewModel file)
     {
@@ -120,13 +154,40 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     #region Public Methods
 
-    public async Task<bool> ImportFromPatchAsync(FileSystemPath patchFilePath)
+    public async Task EditGameTargetsAsync()
     {
-        using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_ImportingPatch_Status, canCancel: true))
+        var availableGameInstallations = Services.Games.GetInstalledGames().Where(x => x.GameDescriptor.AllowPatching);
+        GamesSelectionResult result = await Services.UI.SelectGamesAsync(new GamesSelectionViewModel(availableGameInstallations, GameTargets)
         {
-            Logger.Trace("Importing from patch at {0}", patchFilePath);
+            // TODO-UPDATE: Localize
+            Title = "Select game targets",
+            MultiSelection = true,
+        });
 
-            try
+        if (result.CanceledByUser)
+            return;
+
+        // Set the game targets to the new selection
+        SetGameTargets(result.SelectedGames);
+    }
+
+    public async Task ImportPatchAsync()
+    {
+        FileBrowserResult browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+        {
+            Title = Resources.PatchCreator_SelectImportPatch,
+            ExtensionFilter = new FileFilterItem($"*{PatchFile.FileExtension}", Resources.Patcher_FileType).StringRepresentation,
+        });
+
+        if (browseResult.CanceledByUser)
+            return;
+
+        FileSystemPath patchFilePath = browseResult.SelectedFile;
+        Logger.Trace("Importing from patch at {0}", patchFilePath);
+
+        try
+        {
+            using (LoadState state = await LoaderViewModel.RunAsync(Resources.PatchCreator_ImportingPatch_Status, canCancel: true))
             {
                 // Create a context
                 using RCPContext context = new(String.Empty);
@@ -144,8 +205,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                     await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_ReadPatchNewerVersionError,
                         MessageType.Error);
-
-                    return false;
+                    return;
                 }
 
                 PatchMetadata metadata = patchFile.Metadata;
@@ -163,6 +223,9 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                 // Extract thumbnail
                 if (patchFile.HasThumbnail)
                 {
+                    // Dispose the temp file for the thumbnail if it existed before
+                    _tempThumbFile?.Dispose();
+
                     _tempThumbFile = new TempFile(false);
 
                     using (Stream thumbStream = patchFile.ThumbnailResource.ReadData(context, true))
@@ -183,7 +246,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                     Thumbnail = thumb;
                 }
 
-                _tempDir = new TempDirectory(true);
+                _tempDir ??= new TempDirectory(true);
 
                 // Add added files and extract resources to temp
                 for (int i = 0; i < patchFile.AddedFiles.Length; i++)
@@ -196,7 +259,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
                     state.SetProgress(new Progress(i, patchFile.AddedFiles.Length));
 
-                    FileSystemPath tempFilePath = _tempDir.TempPath + filePath.FullFilePath;
+                    FileSystemPath tempFilePath = _tempDir.TempPath + metadata.ID + filePath.FullFilePath;
 
                     Directory.CreateDirectory(tempFilePath.Parent);
 
@@ -225,26 +288,18 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         locationId: filePath.LocationID));
                 }
 
-                IsImported = true;
-
                 Logger.Info("Imported patch {0} with format version {1}", metadata.Name, patchFile.FormatVersion);
-
-                return true;
             }
-            catch (OperationCanceledException ex)
-            {
-                Logger.Trace(ex, "Cancelled importing patch to creator");
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Trace(ex, "Cancelled importing patch to creator");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Importing patch to creator");
 
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Importing patch to creator");
-
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ReadPatchGenericError);
-
-                return false;
-            }
+            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_ReadPatchGenericError);
         }
     }
 
@@ -378,7 +433,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
                         Metadata = new PatchMetadata
                         {
                             ID = ID,
-                            GameIds = GameDescriptors.Select(x => x.GameId).ToArray(),
+                            GameIds = GameTargets.Select(x => x.GameId).ToArray(),
                             Name = Name.IsNullOrWhiteSpace() ? "Unnamed patch" : Name,
                             Description = Description,
                             Author = Author,
@@ -560,9 +615,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     public record AvailableFileLocation(LocalizedString DisplayName, string Location, string LocationID)
     {
-        public List<GameDescriptor> GameDescriptors { get; } = new();
-        // TODO-14: Bind to and show in UI
-        public string GameDescriptorsDisplayString => String.Join(", ", GameDescriptors.Select(x => x.GameDescriptorName));
+        public List<GameInstallation> GameTargets { get; } = new();
     }
 
     #endregion
