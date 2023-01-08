@@ -4,7 +4,7 @@ using Microsoft.Win32;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// View model for a string input dialog
+/// View model for a program selection dialog
 /// </summary>
 public class ProgramSelectionViewModel : UserInputViewModel
 {

@@ -81,6 +81,9 @@ public class AppUIManager
 
     public Task<ProgramSelectionResult> GetProgramAsync(ProgramSelectionViewModel programSelectionViewModel) => ShowDialogAsync(() => new ProgramSelectionDialog(programSelectionViewModel));
 
+    public Task<GamesSelectionResult> GetGamesAsync(GamesSelectionViewModel gamesSelectionViewModel) => 
+        ShowDialogAsync(() => new GamesSelectionDialog(gamesSelectionViewModel));
+
     /// <summary>
     /// Allows the user to browse for a drive
     /// </summary>

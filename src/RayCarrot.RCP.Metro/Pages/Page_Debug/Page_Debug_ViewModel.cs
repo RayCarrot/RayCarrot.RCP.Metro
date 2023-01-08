@@ -262,6 +262,22 @@ public class Page_Debug_ViewModel : BasePageViewModel
                     });
                     break;
 
+                case DebugDialogType.GamesSelection_Single:
+                    await UI.GetGamesAsync(new GamesSelectionViewModel(GamesManager)
+                    {
+                        Title = "Debug",
+                        MultiSelection = false,
+                    });
+                    break;
+
+                case DebugDialogType.GamesSelection_Multiple:
+                    await UI.GetGamesAsync(new GamesSelectionViewModel(GamesManager)
+                    {
+                        Title = "Debug",
+                        MultiSelection = true,
+                    });
+                    break;
+
                 default:
                     await MessageUI.DisplayMessageAsync("Invalid selection");
                     break;
@@ -780,6 +796,9 @@ public class Page_Debug_ViewModel : BasePageViewModel
         StringInput,
 
         ProgramSelection,
+
+        GamesSelection_Single,
+        GamesSelection_Multiple,
     }
 
     /// <summary>
