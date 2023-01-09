@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Structure;
+﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -25,6 +26,13 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MSDOS : MsDosGameDescri
     #endregion
 
     #region Protected Methods
+
+    protected override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
+    }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {

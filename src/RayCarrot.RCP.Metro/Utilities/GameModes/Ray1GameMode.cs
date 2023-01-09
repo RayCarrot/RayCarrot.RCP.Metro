@@ -4,24 +4,18 @@ namespace RayCarrot.RCP.Metro;
 
 public enum Ray1GameMode
 {
-    [Ray1GameModeInfo("Rayman (PC)", Ray1EngineVersion.PC, 
-        typeof(GameDescriptor_Rayman1_MSDOS))]
+    [Ray1GameModeInfo("Rayman (PC)", Ray1EngineVersion.PC)]
     Rayman1_PC,
 
-    [Ray1GameModeInfo("Rayman Educational (PC)", Ray1EngineVersion.PC_Edu, 
-        typeof(GameDescriptor_RaymanEdutainmentEdu_MSDOS),
-        typeof(GameDescriptor_RaymanEdutainmentQuiz_MSDOS))]
+    [Ray1GameModeInfo("Rayman Educational (PC)", Ray1EngineVersion.PC_Edu)]
     RaymanEducational_PC,
 
-    [Ray1GameModeInfo("Rayman Designer (PC)", Ray1EngineVersion.PC_Kit, 
-        typeof(GameDescriptor_RaymanDesigner_MSDOS))]
+    [Ray1GameModeInfo("Rayman Designer (PC)", Ray1EngineVersion.PC_Kit)]
     RaymanDesigner_PC,
 
-    [Ray1GameModeInfo("Rayman by his Fans (PC)", Ray1EngineVersion.PC_Fan, 
-        typeof(GameDescriptor_RaymanByHisFans_MSDOS))]
+    [Ray1GameModeInfo("Rayman by his Fans (PC)", Ray1EngineVersion.PC_Fan)]
     RaymanByHisFans_PC,
 
-    [Ray1GameModeInfo("Rayman 60 Levels (PC)", Ray1EngineVersion.PC_Fan, 
-        typeof(GameDescriptor_Rayman60Levels_MSDOS))]
+    [Ray1GameModeInfo("Rayman 60 Levels (PC)", Ray1EngineVersion.PC_Fan)]
     Rayman60Levels_PC,
 }

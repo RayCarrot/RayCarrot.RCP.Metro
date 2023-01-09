@@ -12,7 +12,14 @@ public class Utility_SerializableTypeModeViewModel : BaseViewModel
 
         GameMode = gameMode;
         DisplayName = displayName ?? attr?.DisplayName ?? "NULL";
-        GetDefaultDir = g => attr?.FindGameInstallation(g)?.InstallLocation ?? FileSystemPath.EmptyPath;
+
+        GetDefaultDir = g =>
+        {
+            if (gameMode == null)
+                return FileSystemPath.EmptyPath;
+
+            return GameModeHelpers.FindGameInstallation(g, gameMode)?.InstallLocation ?? FileSystemPath.EmptyPath;
+        };
     }
 
     protected Enum? GameMode { get; }

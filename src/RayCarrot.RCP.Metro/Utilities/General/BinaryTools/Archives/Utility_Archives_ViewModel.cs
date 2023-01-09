@@ -105,7 +105,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
 
     public async Task OpenArchiveExplorerAsync()
     {
-        GameInstallation? gameInstallation = SelectedType.Modes.SelectedValue.GetAttribute<GameModeBaseAttribute>()?.FindGameInstallation(Services.Games);
+        GameInstallation? gameInstallation = GameModeHelpers.FindGameInstallation(Services.Games, SelectedType.Modes.SelectedValue);
 
         // Allow the user to select the files
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()

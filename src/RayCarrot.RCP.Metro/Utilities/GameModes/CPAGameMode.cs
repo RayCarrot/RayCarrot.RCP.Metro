@@ -4,8 +4,7 @@ namespace RayCarrot.RCP.Metro;
 
 public enum CPAGameMode
 {
-    [CPAGameModeInfo("Rayman 2 (PC)", EngineVersion.Rayman2, Platform.PC, 
-        typeof(GameDescriptor_Rayman2_Win32))]
+    [CPAGameModeInfo("Rayman 2 (PC)", EngineVersion.Rayman2, Platform.PC)]
     Rayman2_PC,
 
     [CPAGameModeInfo("Rayman 2 (DreamCast)", EngineVersion.Rayman2, Platform.Dreamcast)]
@@ -26,27 +25,22 @@ public enum CPAGameMode
     [CPAGameModeInfo("Rayman 2 (Nintendo 3DS)", EngineVersion.Rayman2, Platform.Nintendo3DS)]
     Rayman2_3DS,
 
-    [CPAGameModeInfo("Rayman 2 Demo 1999/08/18 (PC)", EngineVersion.Rayman2Demo, Platform.PC, 
-        typeof(GameDescriptor_Rayman2_Demo_19990818_Win32))]
+    [CPAGameModeInfo("Rayman 2 Demo 1999/08/18 (PC)", EngineVersion.Rayman2Demo, Platform.PC)]
     Rayman2_Demo1_PC,
 
-    [CPAGameModeInfo("Rayman 2 Demo 1999/09/04 (PC)", EngineVersion.Rayman2Demo, Platform.PC, 
-        typeof(GameDescriptor_Rayman2_Demo_19990904_Win32))]
+    [CPAGameModeInfo("Rayman 2 Demo 1999/09/04 (PC)", EngineVersion.Rayman2Demo, Platform.PC)]
     Rayman2_Demo2_PC,
 
-    [CPAGameModeInfo("Rayman M (PC)", EngineVersion.RaymanM, Platform.PC, 
-        typeof(GameDescriptor_RaymanM_Win32))]
+    [CPAGameModeInfo("Rayman M (PC)", EngineVersion.RaymanM, Platform.PC)]
     RaymanM_PC,
 
-    [CPAGameModeInfo("Rayman Arena (PC)", EngineVersion.RaymanM, Platform.PC, 
-        typeof(GameDescriptor_RaymanArena_Win32))]
+    [CPAGameModeInfo("Rayman Arena (PC)", EngineVersion.RaymanM, Platform.PC)]
     RaymanArena_PC,
 
     [CPAGameModeInfo("Rayman Arena (GameCube)", EngineVersion.RaymanArena, Platform.NintendoGameCube)]
     RaymanArena_GC,
 
-    [CPAGameModeInfo("Rayman 3 (PC)", EngineVersion.Rayman3, Platform.PC, 
-        typeof(GameDescriptor_Rayman3_Win32))]
+    [CPAGameModeInfo("Rayman 3 (PC)", EngineVersion.Rayman3, Platform.PC)]
     Rayman3_PC,
 
     [CPAGameModeInfo("Rayman 3 (GameCube)", EngineVersion.Rayman3, Platform.NintendoGameCube)]

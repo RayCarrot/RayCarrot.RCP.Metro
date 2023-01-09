@@ -4,8 +4,7 @@ namespace RayCarrot.RCP.Metro;
 
 public enum UbiArtGameMode
 {
-    [UbiArtGameModeInfo("Rayman Origins (PC)", BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PC, 
-        typeof(GameDescriptor_RaymanOrigins_Win32))]
+    [UbiArtGameModeInfo("Rayman Origins (PC)", BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PC)]
     RaymanOrigins_PC,
 
     [UbiArtGameModeInfo("Rayman Origins (PS3)", BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.PlayStation3)]
@@ -23,15 +22,13 @@ public enum UbiArtGameMode
     [UbiArtGameModeInfo("Rayman Origins (3DS)", BinarySerializer.UbiArt.Game.RaymanOrigins, Platform.Nintendo3DS)]
     RaymanOrigins_3DS,
 
-    [UbiArtGameModeInfo("Rayman Jungle Run (PC)", BinarySerializer.UbiArt.Game.RaymanJungleRun, Platform.PC, 
-        typeof(GameDescriptor_RaymanJungleRun_WindowsPackage))]
+    [UbiArtGameModeInfo("Rayman Jungle Run (PC)", BinarySerializer.UbiArt.Game.RaymanJungleRun, Platform.PC)]
     RaymanJungleRun_PC,
 
     [UbiArtGameModeInfo("Rayman Jungle Run (Android)", BinarySerializer.UbiArt.Game.RaymanJungleRun, Platform.Android)]
     RaymanJungleRun_Android,
 
-    [UbiArtGameModeInfo("Rayman Legends (PC)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC, 
-        typeof(GameDescriptor_RaymanLegends_Win32))]
+    [UbiArtGameModeInfo("Rayman Legends (PC)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.PC)]
     RaymanLegends_PC,
 
     [UbiArtGameModeInfo("Rayman Legends (Xbox 360)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.Xbox360)]
@@ -49,10 +46,7 @@ public enum UbiArtGameMode
     [UbiArtGameModeInfo("Rayman Legends (Switch)", BinarySerializer.UbiArt.Game.RaymanLegends, Platform.NintendoSwitch)]
     RaymanLegends_Switch,
 
-    [UbiArtGameModeInfo("Rayman Fiesta Run (PC)", BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC, 
-        typeof(GameDescriptor_RaymanFiestaRun_WindowsPackage), 
-        typeof(GameDescriptor_RaymanFiestaRun_PreloadEdition_WindowsPackage), 
-        typeof(GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPackage))]
+    [UbiArtGameModeInfo("Rayman Fiesta Run (PC)", BinarySerializer.UbiArt.Game.RaymanFiestaRun, Platform.PC)]
     RaymanFiestaRun_PC,
 
     [UbiArtGameModeInfo("Rayman Fiesta Run (Android)", BinarySerializer.UbiArt.Game.RaymanJungleRun, Platform.Android)]
