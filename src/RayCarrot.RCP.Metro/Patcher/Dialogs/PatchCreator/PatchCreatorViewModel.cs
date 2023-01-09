@@ -413,6 +413,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
             {
                 Title = Resources.PatchCreator_CreateSaveFileHeader,
                 Extensions = new FileFilterItem($"*{PatchFile.FileExtension}", Resources.Patcher_FileType).StringRepresentation,
+                DefaultName = Name
             });
 
             if (browseResult.CanceledByUser)
