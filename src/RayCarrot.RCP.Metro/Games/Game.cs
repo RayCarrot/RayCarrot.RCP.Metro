@@ -132,12 +132,6 @@ public enum Game
     TonicTrouble,
 
     /// <summary>
-    /// Tonic Trouble Special Edition
-    /// </summary>
-    [GameInfo("Tonic Trouble Special Edition", GameIconAsset.TonicTroubleSpecialEdition)]
-    TonicTroubleSpecialEdition,
-
-    /// <summary>
     /// Rayman Dictées
     /// </summary>
     [GameInfo("Rayman Dictées", GameIconAsset.RaymanDictées)]
