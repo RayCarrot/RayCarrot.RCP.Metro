@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Input;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -18,14 +17,12 @@ public class AppDataManager
     public AppDataManager(
         AppUserData data, 
         LaunchArguments args, 
-        GamesManager gamesManager, 
         IMessenger messenger, 
         IMessageUIManager messageUi, 
         FileManager fileManager)
     {
         Data = data ?? throw new ArgumentNullException(nameof(data));
         Args = args ?? throw new ArgumentNullException(nameof(args));
-        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         FileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
@@ -50,7 +47,6 @@ public class AppDataManager
 
     private AppUserData Data { get; }
     private LaunchArguments Args { get; }
-    private GamesManager GamesManager { get; }
     private IMessenger Messenger { get; }
     private IMessageUIManager MessageUI { get; }
     private FileManager FileManager { get; }
@@ -301,32 +297,10 @@ public class AppDataManager
 
     public async Task PostUpdateAsync(Version lastVersion)
     {
-        // TODO-14: Do we actually need to reset the values here? If they don't exist from prev version they will have their
-        //          default value anyway due to how we serialize the JSON.
-
-        if (lastVersion < new Version(4, 0, 0, 6))
-            Data.UI_EnableAnimations = true;
-
-        if (lastVersion < new Version(4, 1, 1, 0))
-            Data.App_ShowIncompleteTranslations = false;
-
-        if (lastVersion < new Version(4, 5, 0, 0))
-        {
-            Data.UI_LinkItemStyle = UserData_LinkItemStyle.List;
-            Data.App_ApplicationPath = Assembly.GetEntryAssembly()?.Location;
-            Data.Update_ForceUpdate = false;
-            Data.Update_GetBetaUpdates = false;
-        }
-
-        if (lastVersion < new Version(4, 6, 0, 0))
-            Data.UI_LinkListHorizontalAlignment = HorizontalAlignment.Left;
-
+        // TODO-14: Restore and fix this once we implement the app data migration
         if (lastVersion < new Version(5, 0, 0, 0))
         {
-            Data.Backup_CompressBackups = true;
-
             // Due to the fiesta run version system being changed the game has to be removed and then re-added
-            // TODO-14: Restore this once we implement the app data migration
             // Data.Game_Games.Remove(Games.RaymanFiestaRun);
 
             // If a Fiesta Run backup exists the name needs to change to the new standard
@@ -345,7 +319,6 @@ public class AppDataManager
 
                     if (isWin10 != null)
                     {
-                        // TODO-14: Fix this migration
                         // Set the current edition
                         //Data.Game_FiestaRunVersion = isWin10.Value
                         //    ? UserData_FiestaRunEdition.Win10
@@ -375,20 +348,9 @@ public class AppDataManager
             Data.Update_DisableDowngradeWarning = false;
         }
 
-        if (lastVersion < new Version(6, 0, 0, 2))
-        {
-            // TODO-14: Remove this
-            // By default, add all games to the jump list collection
-            //Data.App_JumpListItemIDCollection = GamesManager.GetInstalledGames().
-            //    Select(x => x.GameDescriptor.GetJumpListItems(x).Select(y => y.Id)).
-            //    SelectMany(x => x).
-            //    ToList();
-        }
-
         if (lastVersion < new Version(7, 0, 0, 0))
         {
-            Data.Update_IsUpdateAvailable = false;
-
+            // Change the default from Normal to Advanced
             if (Data.App_UserLevel == UserLevel.Normal)
                 Data.App_UserLevel = UserLevel.Advanced;
         }
@@ -421,65 +383,12 @@ public class AppDataManager
                 }
             }
 
+            // Prompt that TPLS has been updated
             if (Data.Utility_TPLSData != null)
             {
                 Data.Utility_TPLSData.IsEnabled = false;
-                await Services.MessageUI.DisplayMessageAsync(Resources.PostUpdate_TPLSUpdatePrompt);
+                await MessageUI.DisplayMessageAsync(Resources.PostUpdate_TPLSUpdatePrompt);
             }
-        }
-
-        if (lastVersion < new Version(9, 4, 0, 0))
-        {
-            Data.Archive_GF_GenerateMipmaps = true;
-            Data.Archive_GF_UpdateTransparency = UserData_Archive_GF_TransparencyMode.PreserveFormat;
-        }
-
-        if (lastVersion < new Version(9, 5, 0, 0))
-            Data.Binary_BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
-
-        if (lastVersion < new Version(10, 0, 0, 0))
-        {
-            Data.Theme_SyncTheme = false;
-            Data.App_HandleDownloadsManually = false;
-        }
-
-        if (lastVersion < new Version(10, 2, 0, 0))
-            Data.Archive_GF_ForceGF8888Import = false;
-
-        if (lastVersion < new Version(11, 0, 0, 0))
-            Data.Archive_ExplorerSortOption = UserData_Archive_Sort.Default;
-
-        if (lastVersion < new Version(11, 1, 0, 0))
-        {
-            Data.Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
-            Data.Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
-        }
-
-        if (lastVersion < new Version(11, 3, 0, 0))
-            Data.Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
-
-        if (lastVersion < new Version(12, 0, 0, 0))
-        {
-            Data.App_DisableGameValidation = false;
-            Data.UI_UseChildWindows = true;
-        }
-
-        if (lastVersion < new Version(13, 0, 0, 0))
-        {
-            Data.Progression_SaveEditorExe = FileSystemPath.EmptyPath;
-            Data.Progression_ShownEditSaveWarning = false;
-            Data.Backup_GameDataSources = new Dictionary<string, ProgramDataSource>();
-            Data.Binary_IsSerializationLogEnabled = false;
-            Data.Mod_RRR_ToggleStates = new Dictionary<string, UserData_Mod_RRR_ToggleState>();
-        }
-
-        if (lastVersion < new Version(13, 1, 0, 0))
-            Data.Archive_CNT_SyncOnRepack = false;
-
-        if (lastVersion < new Version(13, 3, 0, 0))
-        {
-            Data.Archive_CNT_SyncOnRepackRequested = false;
-            Data.Patcher_LoadExternalPatches = true;
         }
 
         if (lastVersion < new Version(13, 3, 0, 2))
@@ -516,11 +425,6 @@ public class AppDataManager
             {
                 Logger.Error(ex, "Deleting old R2 DRM removal utility backup files");
             }
-        }
-
-        if (lastVersion < new Version(14, 0, 0, 0))
-        {
-            Data.App_AutoSortJumpList = true;
         }
     }
 
