@@ -3,7 +3,7 @@
 public record CPATextureSyncData(CPAGameMode GameMode, params CPATextureSyncDataItem[] Items)
 {
     // TODO-14: Add Donald Duck - seems same as R2?
-    public static CPAGameMode[] SupportedGameModes => new[]
+    public static CPAGameMode[] SupportedGameModes { get; } = 
     {
         CPAGameMode.TonicTrouble_PC,
         CPAGameMode.TonicTrouble_SE_PC,

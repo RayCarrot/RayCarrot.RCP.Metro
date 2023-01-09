@@ -1,7 +1,4 @@
-﻿using BinarySerializer.Ray1;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.Ray1;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
@@ -25,8 +22,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
     public override DateTime ReleaseDate => new(1997, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanDesigner;
-
-    public override bool HasArchives => true;
 
     #endregion
 
@@ -58,7 +53,8 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanDesignerPC", "r1/pc_kit"));
-        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Kit)));
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanDesigner_PC));
+        builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
@@ -76,26 +72,6 @@ public sealed class GameDescriptor_RaymanDesigner_MSDOS : MsDosGameDescriptor
     #endregion
 
     #region Public Methods
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
-        new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"PCMAP\COMMON.DAT",
-        @"PCMAP\SNDD8B.DAT",
-        @"PCMAP\SNDH8B.DAT",
-        @"PCMAP\VIGNET.DAT",
-
-        @"PCMAP\AL\SNDSMP.DAT",
-        @"PCMAP\AL\SPECIAL.DAT",
-
-        @"PCMAP\FR\SNDSMP.DAT",
-        @"PCMAP\FR\SPECIAL.DAT",
-
-        @"PCMAP\USA\SNDSMP.DAT",
-        @"PCMAP\USA\SPECIAL.DAT",
-    };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {

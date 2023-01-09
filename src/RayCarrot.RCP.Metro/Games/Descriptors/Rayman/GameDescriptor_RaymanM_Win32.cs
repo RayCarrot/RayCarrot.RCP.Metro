@@ -1,7 +1,4 @@
-﻿using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.CPA;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
@@ -28,8 +25,6 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
-    public override bool HasArchives => true;
-
     #endregion
 
     #region Protected Methods
@@ -43,6 +38,16 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "rm_pc", "rm_pc"));
+        builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.RaymanM_PC));
+        builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
+        {
+            @"FishBin\tex32.cnt",
+            @"FishBin\vignette.cnt",
+            @"MenuBin\tex32.cnt",
+            @"MenuBin\vignette.cnt",
+            @"TribeBin\tex32.cnt",
+            @"TribeBin\vignette.cnt",
+        }));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanM_PC))));
     }
@@ -72,22 +77,6 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
             gifFileNames: new[] { "ASTRO.gif", "CASK.gif", "CHASE.gif", "GLOB.gif", "RODEO.gif", },
             installFolderName: "Rayman M"))
     });
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
-        new CPACntArchiveDataManager(
-            settings: new OpenSpaceSettings(EngineVersion.RaymanM, BinarySerializer.OpenSpace.Platform.PC), 
-            gameInstallation: gameInstallation,
-            cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.RaymanM_PC));
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"FishBin\tex32.cnt",
-        @"FishBin\vignette.cnt",
-        @"MenuBin\tex32.cnt",
-        @"MenuBin\vignette.cnt",
-        @"TribeBin\tex32.cnt",
-        @"TribeBin\vignette.cnt",
-    };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {

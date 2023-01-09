@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using BinarySerializer;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
@@ -107,20 +108,20 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
         // Add additional locations based on the game targets
         foreach (GameInstallation gameInstallation in GameTargets)
         {
-            string? archiveID = gameInstallation.GameDescriptor.GetArchiveDataManager(null)?.ID;
-
-            if (archiveID == null)
-                continue;
-
-            foreach (string archivePath in gameInstallation.GameDescriptor.GetArchiveFilePaths(null))
+            foreach (ArchiveComponent archiveComponent in gameInstallation.GetComponents<ArchiveComponent>())
             {
-                AvailableFileLocation? existingLocation = AvailableLocations.
-                    FirstOrDefault(x => x.Location == archivePath && x.LocationID == archiveID);
+                string archiveID = archiveComponent.Id;
 
-                if (existingLocation != null)
-                    existingLocation.GameTargets.Add(gameInstallation);
-                else
-                    AvailableLocations.Add(new AvailableFileLocation(archivePath, archivePath, archiveID));
+                foreach (string archivePath in archiveComponent.GetArchiveFilePaths())
+                {
+                    AvailableFileLocation? existingLocation = AvailableLocations.
+                        FirstOrDefault(x => x.Location == archivePath && x.LocationID == archiveID);
+
+                    if (existingLocation != null)
+                        existingLocation.GameTargets.Add(gameInstallation);
+                    else
+                        AvailableLocations.Add(new AvailableFileLocation(archivePath, archivePath, archiveID));
+                }
             }
         }
 

@@ -44,6 +44,7 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanPC_1_21", "r1/pc_121"));
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
 
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_TPLS(x)));
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_CompleteSoundtrack(x)));

@@ -1,6 +1,4 @@
-﻿using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Archive.CPA;
-using RayCarrot.RCP.Metro.Archive;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
@@ -24,11 +22,20 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
     public override GameIconAsset Icon => GameIconAsset.Rayman2_Demo;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman2;
 
-    public override bool HasArchives => true;
-
     #endregion
 
     #region Protected Methods
+
+    protected override void RegisterComponents(IGameComponentBuilder builder)
+    {
+        base.RegisterComponents(builder);
+
+        builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.Rayman2_Demo2_PC));
+        builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
+        {
+            @"BinData\Textures.cnt",
+        }));
+    }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
@@ -47,17 +54,6 @@ public sealed class GameDescriptor_Rayman2_Demo_19990904_Win32 : Win32GameDescri
             new(AppURLs.Games_R2Demo2_Url),
         })
     });
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new CPACntArchiveDataManager(
-            settings: new OpenSpaceSettings(EngineVersion.Rayman2Demo, BinarySerializer.OpenSpace.Platform.PC), 
-            gameInstallation: gameInstallation,
-            cpaTextureSyncData: null);
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"BinData\Textures.cnt",
-    };
 
     #endregion
 }

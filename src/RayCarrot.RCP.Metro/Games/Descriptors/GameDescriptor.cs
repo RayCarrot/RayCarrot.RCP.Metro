@@ -1,5 +1,4 @@
-﻿using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Options;
@@ -10,8 +9,6 @@ namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Serialize this to JSON and show in debug dialog
 // TODO-14: Move descriptors to folders based on platform?
-// TODO-14: Minimize the amount of methods here which do things by moving to manager classes retrieved through components.
-//          The descriptor should really only be for providing data about the game and registered components.
 // TODO-14: Consistent naming. Should 'game' be included in member names?
 // TODO-14: Move client methods to games/clients managers?
 
@@ -123,11 +120,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// The files to remove when uninstalling
     /// </summary>
     public virtual IEnumerable<FileSystemPath> UninstallFiles => Enumerable.Empty<FileSystemPath>();
-
-    /// <summary>
-    /// Indicates if the game has archives which can be opened
-    /// </summary>
-    public virtual bool HasArchives => false;
 
     /// <summary>
     /// Indicates if the game should default to use an available game client. This is mainly
@@ -318,18 +310,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
     public virtual IEnumerable<GameAddAction> GetAddActions() => Enumerable.Empty<GameAddAction>();
 
-    /// <summary>
-    /// Gets the archive data manager for the game
-    /// </summary>
-    public virtual IArchiveDataManager? GetArchiveDataManager(GameInstallation? gameInstallation) => null;
-
-    /// <summary>
-    /// Gets the relative archive file paths for the game
-    /// </summary>
-    /// <param name="gameInstallation">The game installation, if available. This should only be used if absolutely needed.</param>
-    public virtual IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => Enumerable.Empty<string>();
-
-    // TODO-14: Probably remove or change this
+    // TODO-14: Remove or change this. If kept it should be a component.
     /// <summary>
     /// Gets the applied utilities for the specified game
     /// </summary>

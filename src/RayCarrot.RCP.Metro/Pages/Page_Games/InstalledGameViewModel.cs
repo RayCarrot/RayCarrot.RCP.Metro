@@ -109,10 +109,10 @@ public class InstalledGameViewModel : BaseViewModel
         // Patcher
         if (GameDescriptor.AllowPatching)
             GamePanels.Add(new PatcherGamePanelViewModel(GameInstallation));
-        
+
         // Archive Explorer
-        if (GameDescriptor.HasArchives)
-            GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation));
+        foreach (ArchiveComponent archiveComponent in GameInstallation.GetComponents<ArchiveComponent>())
+            GamePanels.Add(new ArchiveGamePanelViewModel(GameInstallation, archiveComponent));
 
         // Progression
         foreach (GameProgressionManager progressionManager in GameInstallation.

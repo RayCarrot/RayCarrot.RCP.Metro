@@ -39,8 +39,6 @@ public class Ray1PCArchiveDataManager : IArchiveDataManager
 
     #region Public Properties
 
-    public string ID => "RAY1_DAT";
-
     public Context Context { get; }
 
     /// <summary>

@@ -1,7 +1,4 @@
-﻿using BinarySerializer.Ray1;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.Ray1;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Options;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
@@ -26,8 +23,6 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
 
     public override GameIconAsset Icon => GameIconAsset.RaymanGold_Demo;
     
-    public override bool HasArchives => true;
-
     #endregion
 
     #region Protected Methods
@@ -41,7 +36,8 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
-        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Kit)));
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanDesigner_PC));
+        builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
@@ -64,26 +60,6 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDes
             new(AppURLs.Games_RGoldDemo_Url),
         })
     });
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Kit));
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"PCMAP\COMMON.DAT",
-        @"PCMAP\SNDD8B.DAT",
-        @"PCMAP\SNDH8B.DAT",
-        @"PCMAP\VIGNET.DAT",
-
-        @"PCMAP\AL\SNDSMP.DAT",
-        @"PCMAP\AL\SPECIAL.DAT",
-
-        @"PCMAP\FR\SNDSMP.DAT",
-        @"PCMAP\FR\SPECIAL.DAT",
-
-        @"PCMAP\USA\SNDSMP.DAT",
-        @"PCMAP\USA\SPECIAL.DAT",
-    };
 
     #endregion
 }

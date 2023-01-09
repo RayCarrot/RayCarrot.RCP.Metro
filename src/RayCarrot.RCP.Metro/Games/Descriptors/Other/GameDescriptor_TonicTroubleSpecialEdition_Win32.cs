@@ -1,7 +1,4 @@
-﻿using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.CPA;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -23,8 +20,6 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.TonicTroubleSpecialEdition;
-
-    public override bool HasArchives => true;
 
     #endregion
 
@@ -52,6 +47,12 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
         builder.Register(new LaunchArgumentsComponent(GetLaunchArgs));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "ttse_pc", "ttse_pc"));
+        builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.TonicTrouble_SE_PC));
+        builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
+        {
+            @"GameData\Textures.cnt",
+            @"GameData\Vignette.cnt",
+        }));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC))));
     }
@@ -65,18 +66,6 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     #endregion
 
     #region Public Methods
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new CPACntArchiveDataManager(
-            settings: new OpenSpaceSettings(EngineVersion.TonicTroubleSpecialEdition, BinarySerializer.OpenSpace.Platform.PC), 
-            gameInstallation: gameInstallation, 
-            cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC));
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"GameData\Textures.cnt",
-        @"GameData\Vignette.cnt",
-    };
 
     public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
     {

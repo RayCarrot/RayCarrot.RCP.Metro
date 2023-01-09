@@ -17,9 +17,9 @@ public static class GameComponentExtensions
             await action.InvokeAsync();
     }
 
-    public static void AddSettings(this IEnumerable<BinarySettingsComponent> settings, Context context)
+    public static void InitContext(this IEnumerable<InitializeContextComponent> settings, Context context)
     {
-        foreach (BinarySettingsComponent settingsComponent in settings)
-            settingsComponent.AddSettings(context);
+        foreach (InitializeContextComponent contextComponent in settings)
+            contextComponent.InitContext(context);
     }
 }

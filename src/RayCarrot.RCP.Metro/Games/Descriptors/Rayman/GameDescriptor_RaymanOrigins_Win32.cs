@@ -1,7 +1,4 @@
-﻿using BinarySerializer.UbiArt;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.UbiArt;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
@@ -27,11 +24,9 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanOrigins;
 
     public override LocalizedString DisplayName => "Rayman Origins";
-    public override System.DateTime ReleaseDate => new(2012, 03, 29);
+    public override DateTime ReleaseDate => new(2012, 03, 29);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanOrigins;
-
-    public override bool HasArchives => true;
 
     #endregion
 
@@ -46,6 +41,11 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanOrigins(x, "Rayman Origins")));
         builder.Register(new GameConfigComponent(x => new UbiArtConfigViewModel(x, AppFilePaths.RaymanOriginsRegistryKey)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
+        builder.Register<BinaryGameModeComponent>(new UbiArtGameModeComponent(UbiArtGameMode.RaymanOrigins_PC));
+        builder.Register<ArchiveComponent>(new UbiArtArchiveComponent(_ => new[]
+        {
+            @"GameData\bundle_PC.ipk",
+        }));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_HQVideos(x)));
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_DebugCommands(x)));
@@ -64,14 +64,6 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
     #endregion
 
     #region Public Methods
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
-        new UbiArtIPKArchiveDataManager(new UbiArtSettings(BinarySerializer.UbiArt.Game.RaymanOrigins, BinarySerializer.UbiArt.Platform.PC), UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed);
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"GameData\bundle_PC.ipk",
-    };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {

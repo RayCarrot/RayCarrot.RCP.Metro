@@ -1,7 +1,4 @@
-﻿using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.CPA;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -27,8 +24,6 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
-    public override bool HasArchives => true;
-
     #endregion
 
     #region Protected Methods
@@ -40,6 +35,16 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanMArena(x, "Rayman M Demo", true)));
         builder.Register(new GameConfigComponent(x => new RaymanMDemoConfigViewModel(x)));
         builder.Register<LocalGameLinksComponent, RaymanMArenaSetupLocalGameLinksComponent>();
+        builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.RaymanM_PC));
+        builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
+        {
+            @"FishBin\tex32.cnt",
+            @"FishBin\vignette.cnt",
+            @"MenuBin\tex32.cnt",
+            @"MenuBin\vignette.cnt",
+            @"TribeBin\tex32.cnt",
+            @"TribeBin\vignette.cnt",
+        }));
     }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
@@ -59,22 +64,6 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
             new(AppURLs.Games_RMDemo_Url),
         })
     });
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
-        new CPACntArchiveDataManager(
-            settings: new OpenSpaceSettings(EngineVersion.RaymanM, BinarySerializer.OpenSpace.Platform.PC), 
-            gameInstallation: gameInstallation,
-            cpaTextureSyncData: null);
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"FishBin\tex32.cnt",
-        @"FishBin\vignette.cnt",
-        @"MenuBin\tex32.cnt",
-        @"MenuBin\vignette.cnt",
-        @"TribeBin\tex32.cnt",
-        @"TribeBin\vignette.cnt",
-    };
 
     #endregion
 }

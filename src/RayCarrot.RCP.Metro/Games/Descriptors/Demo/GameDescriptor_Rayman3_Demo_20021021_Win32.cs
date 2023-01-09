@@ -1,7 +1,4 @@
-﻿using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Archive.CPA;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -27,8 +24,6 @@ public sealed class GameDescriptor_Rayman3_Demo_20021021_Win32 : Win32GameDescri
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
-    public override bool HasArchives => true;
-
     #endregion
 
     #region Protected Methods
@@ -39,6 +34,13 @@ public sealed class GameDescriptor_Rayman3_Demo_20021021_Win32 : Win32GameDescri
 
         builder.Register(new GameConfigComponent(x => new Rayman3ConfigViewModel(x)));
         builder.Register<LocalGameLinksComponent>(new Rayman3SetupLocalGameLinksComponent(true));
+        builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.Rayman3_PC));
+        builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
+        {
+            //@"Gamedatabin\tex16.cnt", // TODO-14: Why is this commented out?
+            @"Gamedatabin\tex32.cnt",
+            @"Gamedatabin\vignette.cnt",
+        }));
     }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
@@ -58,19 +60,6 @@ public sealed class GameDescriptor_Rayman3_Demo_20021021_Win32 : Win32GameDescri
             new(AppURLs.Games_R3Demo2_Url),
         })
     });
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new CPACntArchiveDataManager(
-            settings: new OpenSpaceSettings(EngineVersion.Rayman3, BinarySerializer.OpenSpace.Platform.PC), 
-            gameInstallation: gameInstallation,
-            cpaTextureSyncData: null);
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        //@"Gamedatabin\tex16.cnt", // TODO-14: Why is this commented out?
-        @"Gamedatabin\tex32.cnt",
-        @"Gamedatabin\vignette.cnt",
-    };
 
     #endregion
 }

@@ -402,6 +402,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     {
         Dictionary<string, PatchedFileViewModel> files = new();
 
+        // TODO-14: We should indicate if a file will be ignored. Right now two cases causes files to be ignored:
+        //          - No archive component with the location id exists for this game
+        //          - The archive location file doesn't exist
+        //          Both of these will silently ignore the files while logging a warning.
         foreach (LocalPatchViewModel patchViewModel in LocalPatches.Where(x => x.IsEnabled))
         {
             PatchFile patch = patchViewModel.PatchFile;

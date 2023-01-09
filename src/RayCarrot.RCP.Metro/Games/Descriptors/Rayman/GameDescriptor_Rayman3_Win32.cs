@@ -1,7 +1,4 @@
-﻿using BinarySerializer.OpenSpace;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.CPA;
-using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
@@ -31,8 +28,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         UbiIniFileGroupName
     };
 
-    public override bool HasArchives => true;
-
     #endregion
 
     #region Protected Methods
@@ -46,6 +41,13 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<LocalGameLinksComponent>(new Rayman3SetupLocalGameLinksComponent(false));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.RayMap, "r3_pc", "r3_pc"));
+        builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.Rayman3_PC));
+        builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
+        {
+            @"Gamedatabin\tex32_1.cnt",
+            @"Gamedatabin\tex32_2.cnt",
+            @"Gamedatabin\vignette.cnt",
+        }));
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC))));
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
@@ -64,19 +66,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     #endregion
 
     #region Public Methods
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) => 
-        new CPACntArchiveDataManager(
-            settings: new OpenSpaceSettings(EngineVersion.Rayman3, BinarySerializer.OpenSpace.Platform.PC), 
-            gameInstallation: gameInstallation, 
-            cpaTextureSyncData: CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC));
-
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"Gamedatabin\tex32_1.cnt",
-        @"Gamedatabin\tex32_2.cnt",
-        @"Gamedatabin\vignette.cnt",
-    };
 
     public override IEnumerable<GamePurchaseLink> GetPurchaseLinks() => new GamePurchaseLink[]
     {

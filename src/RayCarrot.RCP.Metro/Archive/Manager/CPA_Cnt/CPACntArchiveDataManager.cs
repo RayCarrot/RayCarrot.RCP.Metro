@@ -52,8 +52,6 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
     public GameInstallation? GameInstallation { get; }
 
-    public string ID => "CPA_CNT";
-
     public Context Context { get; }
 
     /// <summary>

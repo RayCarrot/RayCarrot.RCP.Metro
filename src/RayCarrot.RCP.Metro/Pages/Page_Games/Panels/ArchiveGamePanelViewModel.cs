@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
 
@@ -7,8 +8,9 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
 {
     #region Constructor
 
-    public ArchiveGamePanelViewModel(GameInstallation gameInstallation) : base(gameInstallation)
+    public ArchiveGamePanelViewModel(GameInstallation gameInstallation, ArchiveComponent archiveComponent) : base(gameInstallation)
     {
+        ArchiveComponent = archiveComponent;
         OpenArchiveExplorerCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
     }
 
@@ -31,6 +33,8 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
     public override GenericIconKind Icon => GenericIconKind.GamePanel_Archive;
     public override LocalizedString Header => new ResourceLocString(nameof(Resources.Utilities_ArchiveExplorer_Header));
 
+    public ArchiveComponent ArchiveComponent { get; }
+
     public ObservableCollection<string>? TrimmedArchiveFilePaths { get; set; }
     public ObservableCollection<string>? ArchiveFilePaths { get; set; }
     public bool IsTrimmed { get; set; }
@@ -43,7 +47,7 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
     {
         // Ideally all of this trimming and formatting shouldn't be handled here like this, but it's the easiest for now
         ArchiveFilePaths = new ObservableCollection<string>(
-            GameDescriptor.GetArchiveFilePaths(GameInstallation).
+            ArchiveComponent.GetArchiveFilePaths().
                 Where(x => (GameInstallation.InstallLocation + x).FileExists).
                 Select(x => $"• {x}"));
 
@@ -71,20 +75,14 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
 
     public async Task OpenArchiveExplorerAsync()
     {
-        using IArchiveDataManager? archiveDataManager = GameDescriptor.GetArchiveDataManager(GameInstallation);
-
-        if (archiveDataManager == null)
-        {
-            Logger.Error("Archive data manager is null for {0}", GameDescriptor.GameId);
-            return;
-        }
+        using IArchiveDataManager archiveDataManager = ArchiveComponent.CreateObject();
 
         try
         {
             // Show the Archive Explorer
             await Services.UI.ShowArchiveExplorerAsync(
                 manager: archiveDataManager,
-                filePaths: GameDescriptor.GetArchiveFilePaths(GameInstallation).
+                filePaths: ArchiveComponent.GetArchiveFilePaths().
                     Select(x => GameInstallation.InstallLocation + x).
                     Where(x => x.FileExists).
                     ToArray());

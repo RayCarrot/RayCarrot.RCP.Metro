@@ -2,6 +2,7 @@
 using System.IO;
 using BinarySerializer;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Patcher;
 
@@ -26,7 +27,7 @@ public class Patcher
         IEnumerable<PatchFile> enabledPatches)
     {
         Dictionary<string, LocationModifications> locationModifications = new();
-        Dictionary<string, IArchiveDataManager> archiveDataManagers = new();
+        Dictionary<string, IArchiveDataManager?> archiveDataManagers = new();
 
         // Local helper method for adding a file modification
         void addModification(
@@ -40,22 +41,35 @@ public class Patcher
             string locationKey = NormalizePath(patchFilePath.Location);
             string filePathKey = NormalizePath(patchFilePath.FilePath);
 
-            // TODO-14: Update this to support multiple game descriptor matches
+            // Add the location to the dictionary if it doesn't exist
             if (!locationModifications.ContainsKey(locationKey))
             {
                 IArchiveDataManager? manager = null;
+                string locationId = patchFilePath.LocationID;
 
-                if (patchFilePath.Location != String.Empty && patchFilePath.LocationID != String.Empty)
+                // If the location is not empty then we're in an archive. An empty location means
+                // the physical game installation for which the archive manager is null.
+                if (patchFilePath.Location != String.Empty && locationId != String.Empty)
                 {
-                    if (!archiveDataManagers.ContainsKey(patchFilePath.LocationID))
+                    // Create the manager if it hasn't already been created
+                    if (!archiveDataManagers.ContainsKey(locationId))
                     {
-                        // NOTE: In the future we'll want to use the location ID to get the corresponding
-                        //       manager. This makes it so we can have one game support multiple archive
-                        //       formats. But for now it doesn't matter, so we just get the default one.
-                        archiveDataManagers.Add(patchFilePath.LocationID, gameInstallation.GameDescriptor.GetArchiveDataManager(gameInstallation));
+                        ArchiveComponent? archiveComponent = gameInstallation.GetComponents<ArchiveComponent>().
+                            FirstOrDefault(x => x.Id == locationId);
+
+                        archiveDataManagers.Add(locationId, archiveComponent?.CreateObject());
+
+                        // This might happen if you multi-target games with different archive managers
+                        if (archiveComponent == null)
+                            Logger.Warn("Archive manager with id {0} wasn't found. Some file modifications will be skipped.", locationId);
                     }
 
-                    manager = archiveDataManagers[patchFilePath.LocationID];
+                    // Get the manager for this id
+                    manager = archiveDataManagers[locationId];
+
+                    // If the manager is null we ignore this file since it can't be processed
+                    if (manager == null)
+                        return;
                 }
 
                 locationModifications.Add(locationKey, new LocationModifications(patchFilePath.Location, manager));

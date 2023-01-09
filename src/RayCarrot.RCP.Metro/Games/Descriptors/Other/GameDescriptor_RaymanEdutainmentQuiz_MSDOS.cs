@@ -1,6 +1,4 @@
 ﻿using BinarySerializer.Ray1;
-using RayCarrot.RCP.Metro.Archive;
-using RayCarrot.RCP.Metro.Archive.Ray1;
 using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Data;
 using RayCarrot.RCP.Metro.Games.Options;
@@ -31,8 +29,6 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
-
-    public override bool HasArchives => true;
 
     #endregion
 
@@ -65,7 +61,8 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanQuizPC", "r1/quiz/pc_gf", "GF"));
-        builder.Register<BinarySettingsComponent>(new Ray1BinarySettingsComponent(new Ray1Settings(Ray1EngineVersion.PC_Edu)));
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanEducational_PC));
+        builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
@@ -76,21 +73,6 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
         // Directories
         new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
     });
-
-    #endregion
-
-    #region Public Methods
-
-    public override IArchiveDataManager GetArchiveDataManager(GameInstallation? gameInstallation) =>
-        new Ray1PCArchiveDataManager(new Ray1Settings(Ray1EngineVersion.PC_Edu));
-
-    // TODO-14: Based on the modes also include SNDSMP.DAT, SPECIAL.DAT and VIGNET.DAT
-    public override IEnumerable<string> GetArchiveFilePaths(GameInstallation? gameInstallation) => new[]
-    {
-        @"PCMAP\COMMON.DAT",
-        @"PCMAP\SNDD8B.DAT",
-        @"PCMAP\SNDH8B.DAT",
-    };
 
     #endregion
 }
