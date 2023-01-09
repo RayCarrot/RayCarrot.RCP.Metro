@@ -21,6 +21,7 @@ public sealed class GameDescriptor_Rayman1_MSDOS : MsDosGameDescriptor
     public override DateTime ReleaseDate => new(1995, 09, 01);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
 
     // TODO-14: Fix this. Perhaps have TPLS add an EmulatorInstallation? Somehow it has to override it anyway.
     //public override FileSystemPath DOSBoxFilePath => Services.Data.Utility_TPLSData?.IsEnabled != true 

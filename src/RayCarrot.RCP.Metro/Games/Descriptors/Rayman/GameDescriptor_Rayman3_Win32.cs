@@ -22,6 +22,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(2003, 03, 18);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman3;
 
     public override IEnumerable<string> DialogGroupNames => new string[]
     {

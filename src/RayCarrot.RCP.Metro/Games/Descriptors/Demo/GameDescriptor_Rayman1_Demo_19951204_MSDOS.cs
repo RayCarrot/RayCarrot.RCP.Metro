@@ -20,6 +20,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19951204_MSDOS : MsDosGameDescri
     public override DateTime ReleaseDate => new(1995, 12, 04);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1_Demo;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
 
     #endregion
 

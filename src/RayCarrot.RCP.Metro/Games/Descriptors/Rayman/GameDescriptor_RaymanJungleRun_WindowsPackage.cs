@@ -26,6 +26,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override DateTime ReleaseDate => new(2013, 03, 07);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanJungleRun;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanJungleRun;
 
     public override string PackageName => "UbisoftEntertainment.RaymanJungleRun";
     public override string FullPackageName => "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";

@@ -21,6 +21,7 @@ public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.Rayman60Levels;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
 
     #endregion
 

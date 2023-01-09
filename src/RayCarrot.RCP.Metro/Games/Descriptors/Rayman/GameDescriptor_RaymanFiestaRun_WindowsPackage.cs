@@ -26,6 +26,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_WindowsPackage : WindowsPacka
     public override DateTime ReleaseDate => new(2014, 02, 12);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanFiestaRun;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanFiestaRun;
 
     public override string PackageName => "Ubisoft.RaymanFiestaRun";
     public override string FullPackageName => "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";

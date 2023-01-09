@@ -22,6 +22,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(2002, 09, 24);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanArena;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanM;
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 

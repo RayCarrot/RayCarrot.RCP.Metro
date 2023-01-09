@@ -21,6 +21,7 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     public override DateTime ReleaseDate => new(2002, 06, 27);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanM_Demo;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanM;
 
     public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
 
