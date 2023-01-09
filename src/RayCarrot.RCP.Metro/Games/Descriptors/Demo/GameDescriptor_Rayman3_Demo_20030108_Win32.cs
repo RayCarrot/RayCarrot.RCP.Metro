@@ -37,7 +37,6 @@ public sealed class GameDescriptor_Rayman3_Demo_20030108_Win32 : Win32GameDescri
         builder.Register<BinaryGameModeComponent>(new CPAGameModeComponent(CPAGameMode.Rayman3_PC));
         builder.Register<ArchiveComponent>(new CPAArchiveComponent(_ => new[]
         {
-            //@"Gamedatabin\tex16.cnt", // TODO-14: Why is this commented out?
             @"Gamedatabin\tex32.cnt",
             @"Gamedatabin\vignette.cnt",
         }));

@@ -47,6 +47,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         {
             "Bundle_PC.ipk",
             "persistentLoading_PC.ipk",
+            "patch_PC.ipk",
         }));
 
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_UbiRay(x)));
