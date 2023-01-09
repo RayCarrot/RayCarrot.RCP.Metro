@@ -20,6 +20,7 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(1999, 07, 20);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1Minigames;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
 
     #endregion
 

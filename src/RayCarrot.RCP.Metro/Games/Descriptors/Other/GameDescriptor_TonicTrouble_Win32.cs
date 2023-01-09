@@ -20,6 +20,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(1999, 12, 07);
 
     public override GameIconAsset Icon => GameIconAsset.TonicTrouble;
+    public override GameBannerAsset Banner => GameBannerAsset.TonicTrouble;
 
     #endregion
 

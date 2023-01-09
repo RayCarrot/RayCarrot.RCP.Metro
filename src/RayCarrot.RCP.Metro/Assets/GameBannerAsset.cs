@@ -1,6 +1,5 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Add more banner images
 [AssetDirectory($"{Assets.AssetsPath}/GameBanners", defaultFileName: "Default.png")]
 public enum GameBannerAsset
 {
@@ -30,4 +29,25 @@ public enum GameBannerAsset
 
     [AssetFileName("Rayman Fiesta Run.png")]
     RaymanFiestaRun,
+
+    [AssetFileName("Rayman Raving Rabbids.png")]
+    RaymanRavingRabbids,
+
+    [AssetFileName("Rabbids Go Home.png")]
+    RabbidsGoHome,
+
+    [AssetFileName("Rabbids Big Bang.png")]
+    RabbidsBigBang,
+
+    [AssetFileName("Tonic Trouble.png")]
+    TonicTrouble,
+
+    [AssetFileName("Rayman Activity Center.png")]
+    RaymanActivityCenter,
+
+    [AssetFileName("Rayman Dictées.png")]
+    RaymanDictées,
+
+    [AssetFileName("Rayman Premiers Clics.png")]
+    RaymanPremiersClics,
 }

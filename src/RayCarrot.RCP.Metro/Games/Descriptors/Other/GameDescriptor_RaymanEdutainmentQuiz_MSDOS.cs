@@ -29,6 +29,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MSDOS : MsDosGameDescri
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
 
     #endregion
 

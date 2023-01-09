@@ -18,6 +18,7 @@ public sealed class GameDescriptor_RaymanActivityCenter_Win32 : Win32GameDescrip
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanActivityCenter;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanActivityCenter;
 
     #endregion
 

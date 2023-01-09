@@ -22,6 +22,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsGoHome;
+    public override GameBannerAsset Banner => GameBannerAsset.RabbidsGoHome;
 
     #endregion
 

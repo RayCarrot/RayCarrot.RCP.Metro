@@ -25,6 +25,7 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     public override DateTime ReleaseDate => new(2014, 03, 05);
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsBigBang;
+    public override GameBannerAsset Banner => GameBannerAsset.RabbidsBigBang;
 
     public override string PackageName => "UbisoftEntertainment.RabbidsBigBang";
     public override string FullPackageName => "UbisoftEntertainment.RabbidsBigBang_dbgk1hhpxymar";

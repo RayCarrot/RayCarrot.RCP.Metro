@@ -20,6 +20,7 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
     public override DateTime ReleaseDate => new(2003, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.Rayman3PrintStudio;
+    public override GameBannerAsset Banner => GameBannerAsset.Rayman3;
 
     #endregion
 

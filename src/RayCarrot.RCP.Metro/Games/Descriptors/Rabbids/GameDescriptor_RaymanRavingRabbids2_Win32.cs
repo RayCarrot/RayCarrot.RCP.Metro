@@ -23,6 +23,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override DateTime ReleaseDate => new(2007, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids2;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanRavingRabbids;
 
     #endregion
 

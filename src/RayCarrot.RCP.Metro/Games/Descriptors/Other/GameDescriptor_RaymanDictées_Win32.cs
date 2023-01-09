@@ -18,6 +18,7 @@ public sealed class GameDescriptor_RaymanDictées_Win32 : Win32GameDescriptor
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanDictées;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanDictées;
 
     #endregion
 

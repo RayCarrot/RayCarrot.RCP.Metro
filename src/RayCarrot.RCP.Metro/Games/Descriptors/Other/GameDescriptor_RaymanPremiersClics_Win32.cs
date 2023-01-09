@@ -18,6 +18,7 @@ public sealed class GameDescriptor_RaymanPremiersClics_Win32 : Win32GameDescript
     public override DateTime ReleaseDate => new(2001, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanPremiersClics;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanPremiersClics;
 
     #endregion
 

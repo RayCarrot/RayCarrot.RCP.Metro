@@ -19,6 +19,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
     public override DateTime ReleaseDate => new(2006, 10, 19);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbidsActivityCenter;
+    public override GameBannerAsset Banner => GameBannerAsset.RaymanRavingRabbids;
 
     #endregion
 
