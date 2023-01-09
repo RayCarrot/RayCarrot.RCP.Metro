@@ -254,7 +254,9 @@
 
                         <DataGridTextColumn Width="*" MinWidth="100">
                             <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal"
+                                            Language="{UICulture}"
+                                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
                                     <TextBlock Text="Source" />
                                     <local:InfoIcon Text="{Resx PatchCreator_SourcePathInfo}" />
                                 </StackPanel>
