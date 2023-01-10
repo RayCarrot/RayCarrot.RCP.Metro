@@ -47,6 +47,7 @@ public class AppUserData : BaseViewModel
         UI_LinkItemStyle = UserData_LinkItemStyle.List;
         UI_LinkListHorizontalAlignment = HorizontalAlignment.Left;
         UI_UseChildWindows = true;
+        UI_ShowGameInfo = false;
 
         // Theme
         Theme_DarkMode = true;
@@ -233,6 +234,11 @@ public class AppUserData : BaseViewModel
     /// Indicates if dialogs should be shown as child windows whenever possible
     /// </summary>
     public bool UI_UseChildWindows { get; set; }
+
+    /// <summary>
+    /// Indicates if the game info should show in the game hub
+    /// </summary>
+    public bool UI_ShowGameInfo { get; set; }
 
     #endregion
 

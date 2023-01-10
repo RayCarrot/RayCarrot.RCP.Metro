@@ -125,6 +125,7 @@
                                                          HorizontalAlignment="Left" />
 
                                 <ToggleButton Grid.Column="1"
+                                              IsChecked="{Binding Path=UI_ShowGameInfo, Source={x:Static local:Services.Data}}"
                                               ToolTip="{Resx GameOptions_Info}"
                                               Margin="0 0 4 0"
                                               Style="{StaticResource RCP.Styles.ToggleButton.Flat}"
@@ -270,7 +271,7 @@
 
                     <GroupBox x:Name="InfoCard"
                               Grid.Row="1" 
-                              Visibility="Collapsed"
+                              Visibility="{Binding Path=UI_ShowGameInfo, Source={x:Static local:Services.Data}, Converter={local:BooleanToVisibilityConverter}, Mode=OneTime}"
                               d:Visibility="Visible"
                               MinHeight="80" 
                               Margin="0 8"
