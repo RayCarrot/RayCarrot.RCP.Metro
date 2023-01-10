@@ -8,11 +8,11 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman Gold Demo 1997/09/30 (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanGold_Demo_19970930_MSDOS : MsDosGameDescriptor
+public sealed class GameDescriptor_RaymanGold_Demo_19970930_MsDos : MsDosGameDescriptor
 {
     #region Public Properties
 
-    public override string GameId => "RaymanGold_Demo_19970930_MSDOS";
+    public override string GameId => "RaymanGold_Demo_19970930_MsDos";
     public override Game Game => Game.RaymanDesigner;
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;

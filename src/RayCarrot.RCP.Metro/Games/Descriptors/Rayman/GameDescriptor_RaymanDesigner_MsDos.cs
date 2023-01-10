@@ -7,22 +7,33 @@ using RayCarrot.RCP.Metro.Games.Structure;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman by his Fans (MS-DOS) game descriptor
+/// The Rayman Designer (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
+public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
 {
     #region Public Properties
 
-    public override string GameId => "RaymanByHisFans_MSDOS";
-    public override Game Game => Game.RaymanByHisFans;
+    public override string GameId => "RaymanDesigner_MsDos";
+    public override Game Game => Game.RaymanDesigner;
     public override GameCategory Category => GameCategory.Rayman;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanByHisFans;
+    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanDesigner;
+    
+    public override LocalizedString DisplayName => "Rayman Designer";
+    public override DateTime ReleaseDate => new(1997, 01, 01); // Not exact
 
-    public override LocalizedString DisplayName => "Rayman by his Fans";
-    public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
-
-    public override GameIconAsset Icon => GameIconAsset.RaymanByHisFans;
+    public override GameIconAsset Icon => GameIconAsset.RaymanDesigner;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
+
+    #endregion
+
+    #region Private Methods
+
+    private static IEnumerable<GameLinksComponent.GameUriLink> GetLocalGameLinks(GameInstallation gameInstallation) => new[]
+    {
+        new GameLinksComponent.GameUriLink(
+            Header: new ResourceLocString(nameof(Resources.GameLink_RDMapper)), 
+            Uri: gameInstallation.InstallLocation + "MAPPER.EXE")
+    };
 
     #endregion
 
@@ -32,24 +43,28 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
     {
         base.RegisterComponents(builder);
 
-        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanByHisFans(x, "Rayman by his Fans")));
+        builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanDesigner(x, "Rayman Designer")));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
-        builder.Register(new GameConfigComponent(x => new RaymanByHisFansConfigViewModel(this, x)));
+        builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
         builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
-        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanByHisFansPC", "r1/pc_fan"));
-        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanByHisFans_PC));
+        builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
+        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanDesignerPC", "r1/pc_kit"));
+        builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanDesigner_PC));
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
+
+        builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_ReplaceFiles(x)));
+        builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
     }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
-        new GameInstallationFilePath("RAYFAN.EXE", GameInstallationPathType.PrimaryExe, required: true),
+        new GameInstallationFilePath("RAYKIT.EXE", GameInstallationPathType.PrimaryExe, required: true),
 
         // Directories
         new GameInstallationDirectoryPath("PCMAP", GameInstallationPathType.Data, required: true),
@@ -69,7 +84,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MSDOS : MsDosGameDescriptor
     {
         static FileSystemPath validateLocation(FileSystemPath location)
         {
-            const string gameName = "RayFan";
+            const string gameName = "RayKit";
 
             if (location.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase))
                 return location.Parent + gameName;

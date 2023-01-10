@@ -15,10 +15,10 @@ public class GamesManager
         // TODO-14: Reorder these here since demo category is removed. Order here shouldn't matter in the app though.
         GameDescriptors = new GameDescriptor[]
         {
-            new GameDescriptor_Rayman1_MSDOS(),
-            new GameDescriptor_RaymanDesigner_MSDOS(),
-            new GameDescriptor_RaymanByHisFans_MSDOS(),
-            new GameDescriptor_Rayman60Levels_MSDOS(),
+            new GameDescriptor_Rayman1_MsDos(),
+            new GameDescriptor_RaymanDesigner_MsDos(),
+            new GameDescriptor_RaymanByHisFans_MsDos(),
+            new GameDescriptor_Rayman60Levels_MsDos(),
             new GameDescriptor_Rayman2_Win32(),
             new GameDescriptor_RaymanM_Win32(),
             new GameDescriptor_RaymanArena_Win32(),
@@ -36,10 +36,10 @@ public class GamesManager
             new GameDescriptor_RabbidsBigBang_WindowsPackage(),
             new GameDescriptor_RabbidsCoding_Win32(),
 
-            new GameDescriptor_Rayman1_Demo_19951207_MSDOS(),
-            new GameDescriptor_Rayman1_Demo_19960215_MSDOS(),
-            new GameDescriptor_Rayman1_Demo_19951204_MSDOS(),
-            new GameDescriptor_RaymanGold_Demo_19970930_MSDOS(),
+            new GameDescriptor_Rayman1_Demo_19951207_MsDos(),
+            new GameDescriptor_Rayman1_Demo_19960215_MsDos(),
+            new GameDescriptor_Rayman1_Demo_19951204_MsDos(),
+            new GameDescriptor_RaymanGold_Demo_19970930_MsDos(),
             new GameDescriptor_Rayman2_Demo_19990818_Win32(),
             new GameDescriptor_Rayman2_Demo_19990904_Win32(),
             new GameDescriptor_RaymanM_Demo_20020627_Win32(),
@@ -51,8 +51,8 @@ public class GamesManager
             new GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32(),
 
             new GameDescriptor_Rayman1Minigames_Win32(),
-            new GameDescriptor_RaymanEdutainmentEdu_MSDOS(),
-            new GameDescriptor_RaymanEdutainmentQuiz_MSDOS(),
+            new GameDescriptor_RaymanEdutainmentEdu_MsDos(),
+            new GameDescriptor_RaymanEdutainmentQuiz_MsDos(),
             new GameDescriptor_TonicTrouble_Win32(),
             new GameDescriptor_TonicTroubleSpecialEdition_Win32(),
             new GameDescriptor_RaymanDictées_Win32(),

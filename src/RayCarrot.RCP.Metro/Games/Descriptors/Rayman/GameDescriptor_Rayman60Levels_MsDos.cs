@@ -8,11 +8,11 @@ namespace RayCarrot.RCP.Metro;
 /// <summary>
 /// The Rayman 60 Levels (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_Rayman60Levels_MSDOS : MsDosGameDescriptor
+public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
 {
     #region Public Properties
 
-    public override string GameId => "Rayman60Levels_MSDOS";
+    public override string GameId => "Rayman60Levels_MsDos";
     public override Game Game => Game.Rayman60Levels;
     public override GameCategory Category => GameCategory.Rayman;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman60Levels;

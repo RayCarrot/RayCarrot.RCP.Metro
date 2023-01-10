@@ -8,24 +8,24 @@ using RayCarrot.RCP.Metro.Games.Structure;
 namespace RayCarrot.RCP.Metro;
 
 /// <summary>
-/// The Rayman Edutainment Edu (MS-DOS) game descriptor
+/// The Rayman Edutainment Qui (MS-DOS) game descriptor
 /// </summary>
-public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescriptor
+public sealed class GameDescriptor_RaymanEdutainmentQuiz_MsDos : MsDosGameDescriptor
 {
     #region Constant Fields
 
-    private const string PrimaryName = "EDU";
+    private const string PrimaryName = "QUI";
 
     #endregion
 
     #region Public Properties
 
-    public override string GameId => "RaymanEdutainmentEdu_MSDOS";
+    public override string GameId => "RaymanEdutainmentQui_MsDos";
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
     public override LegacyGame? LegacyGame => Metro.LegacyGame.EducationalDos;
 
-    public override LocalizedString DisplayName => "Rayman Edutainment (Edu)";
+    public override LocalizedString DisplayName => "Rayman Edutainment (Quiz)";
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanEdutainment;
@@ -61,7 +61,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MSDOS : MsDosGameDescrip
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
-        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanEducationalPC", "r1/edu/pc_gb", "GB1"));
+        builder.Register(new RayMapComponent(RayMapComponent.RayMapViewer.Ray1Map, "RaymanQuizPC", "r1/quiz/pc_gf", "GF"));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanEducational_PC));
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
