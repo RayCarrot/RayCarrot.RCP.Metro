@@ -41,9 +41,9 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
             async void Invoke()
             {
                 if (value?.GameClientInstallation == null)
-                    await GameInstallation.GameDescriptor.DetachGameClientAsync(GameInstallation);
+                    await Services.GameClients.DetachGameClientAsync(GameInstallation);
                 else
-                    await GameInstallation.GameDescriptor.AttachGameClientAsync(GameInstallation, value.GameClientInstallation);
+                    await Services.GameClients.AttachGameClientAsync(GameInstallation, value.GameClientInstallation);
             }
         }
     }

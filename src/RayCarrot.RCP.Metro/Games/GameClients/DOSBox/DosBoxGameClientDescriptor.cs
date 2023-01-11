@@ -34,7 +34,7 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
         builder.Register(new GameOptionsDialogPageComponent(
             objFactory: x => new DosBoxGameConfigViewModel(
                 gameInstallation: x, 
-                gameClientInstallation: x.GameDescriptor.GetRequiredAttachedGameClient(x), 
+                gameClientInstallation: Services.GameClients.GetRequiredAttachedGameClient(x), 
                 gameDescriptor: GetMsdosGameDescriptor(x), 
                 gameClientDescriptor: this),
             isAvailableFunc: _ => true));

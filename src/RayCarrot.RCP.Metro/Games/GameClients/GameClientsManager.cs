@@ -7,10 +7,11 @@ public class GameClientsManager
 {
     #region Constructor
 
-    public GameClientsManager(AppUserData data, IMessenger messenger)
+    public GameClientsManager(AppUserData data, IMessenger messenger, GamesManager gamesManager)
     {
         Data = data ?? throw new ArgumentNullException(nameof(data));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
+        GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
 
         GameClientDescriptors = new GameClientDescriptor[]
         {
@@ -34,6 +35,7 @@ public class GameClientsManager
 
     private AppUserData Data { get; }
     private IMessenger Messenger { get; }
+    private GamesManager GamesManager { get; }
 
     #endregion
 
@@ -84,13 +86,13 @@ public class GameClientsManager
         Messenger.Send(new AddedGameClientsMessage(installation));
         
         // Attempt to use this game client on games without one and which default to use one
-        foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
+        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             if (gameInstallation.GameDescriptor.DefaultToUseGameClient &&
                 descriptor.SupportsGame(gameInstallation) &&
-                gameInstallation.GameDescriptor.GetAttachedGameClient(gameInstallation) == null)
+                GetAttachedGameClient(gameInstallation) == null)
             {
-                await gameInstallation.GameDescriptor.AttachGameClientAsync(gameInstallation, installation);
+                await AttachGameClientAsync(gameInstallation, installation);
             }
         }
 
@@ -102,20 +104,20 @@ public class GameClientsManager
         Data.Game_GameClientInstallations.Remove(gameClientInstallation);
 
         // Deselect this game client from any games which use it
-        foreach (GameInstallation gameInstallation in Services.Games.GetInstalledGames())
+        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             if (gameInstallation.GetValue<string>(GameDataKey.Client_AttachedClient) == gameClientInstallation.InstallationId)
             {
                 if (gameInstallation.GameDescriptor.DefaultToUseGameClient)
                 {
-                    bool success = await gameInstallation.GameDescriptor.AttachDefaultGameClientAsync(gameInstallation);
+                    bool success = await AttachDefaultGameClientAsync(gameInstallation);
 
                     if (!success)
-                        await gameInstallation.GameDescriptor.DetachGameClientAsync(gameInstallation);
+                        await DetachGameClientAsync(gameInstallation);
                 }
                 else
                 {
-                    await gameInstallation.GameDescriptor.DetachGameClientAsync(gameInstallation);
+                    await DetachGameClientAsync(gameInstallation);
                 }
             }
         }
@@ -144,6 +146,102 @@ public class GameClientsManager
             throw new ArgumentNullException(nameof(installationId));
 
         return Data.Game_GameClientInstallations.FirstOrDefault(x => x.InstallationId == installationId);
+    }
+
+    #endregion
+
+    #region Game Methods
+
+    /// <summary>
+    /// Gets the game client installation attached to the game installation, or null if there is none
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to get the attached client for</param>
+    /// <returns>The attached client installation or null if none was found</returns>
+    public GameClientInstallation? GetAttachedGameClient(GameInstallation gameInstallation)
+    {
+        string? clientInstallationId = gameInstallation.GetValue<string>(GameDataKey.Client_AttachedClient);
+
+        if (clientInstallationId == null)
+            return null;
+
+        return GetInstalledGameClient(clientInstallationId);
+    }
+
+    /// <summary>
+    /// Gets the game client installation attached to the game installation
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to get the attached client for</param>
+    /// <returns>The attached client installation</returns>
+    public GameClientInstallation GetRequiredAttachedGameClient(GameInstallation gameInstallation) =>
+        GetAttachedGameClient(gameInstallation) ?? throw new Exception("The game does not have an attached game client");
+
+    /// <summary>
+    /// Detaches any currently attached game client from the game installation
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to detach the game client for</param>
+    public async Task DetachGameClientAsync(GameInstallation gameInstallation)
+    {
+        // Get the previous client installation and invoke it being detached
+        GameClientInstallation? prevClient = GetAttachedGameClient(gameInstallation);
+        if (prevClient != null)
+            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
+
+        // Detach the client for the game
+        gameInstallation.SetValue<string?>(GameDataKey.Client_AttachedClient, null);
+
+        // Rebuild the game components since the client change might change which components get registered
+        gameInstallation.RebuildComponents();
+
+        // Refresh the game
+        Messenger.Send(new ModifiedGamesMessage(gameInstallation));
+    }
+
+    /// <summary>
+    /// Attaches the first available game client to the game installation
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to attach the game client to</param>
+    /// <returns>True if there was a game client to attach, otherwise false</returns>
+    public async Task<bool> AttachDefaultGameClientAsync(GameInstallation gameInstallation)
+    {
+        // Get the first available game client
+        GameClientInstallation? gameClientInstallation = GetInstalledGameClients().
+            FirstOrDefault(x => x.GameClientDescriptor.SupportsGame(gameInstallation));
+
+        if (gameClientInstallation == null)
+            return false;
+
+        await AttachGameClientAsync(gameInstallation, gameClientInstallation);
+        return true;
+    }
+
+    /// <summary>
+    /// Attaches the specified game client to the game installation
+    /// </summary>
+    /// <param name="gameInstallation">The game installation to attach the game client to</param>
+    /// <param name="gameClientInstallation">The game client to attach</param>
+    public async Task AttachGameClientAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
+    {
+        if (gameInstallation == null)
+            throw new ArgumentNullException(nameof(gameInstallation));
+        if (gameClientInstallation == null)
+            throw new ArgumentNullException(nameof(gameClientInstallation));
+
+        // Get the previous client installation and invoke it being detached
+        GameClientInstallation? prevClient = GetAttachedGameClient(gameInstallation);
+        if (prevClient != null)
+            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
+
+        // Set the client for the game
+        gameInstallation.SetValue(GameDataKey.Client_AttachedClient, gameClientInstallation.InstallationId);
+
+        // Rebuild the game components since the client change might change which components get registered
+        gameInstallation.RebuildComponents();
+
+        // Invoke the new client being selected
+        await gameClientInstallation.GameClientDescriptor.OnGameClientAttachedAsync(gameInstallation, gameClientInstallation);
+
+        // Refresh the game
+        Messenger.Send(new ModifiedGamesMessage(gameInstallation));
     }
 
     #endregion

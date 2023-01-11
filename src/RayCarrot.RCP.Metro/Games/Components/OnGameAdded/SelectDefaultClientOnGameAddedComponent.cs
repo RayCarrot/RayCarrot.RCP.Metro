@@ -6,6 +6,6 @@ public class SelectDefaultClientOnGameAddedComponent : OnGameAddedComponent
 
     private static Task SelectDefaultClientAsync(GameInstallation gameInstallation)
     {
-        return gameInstallation.GameDescriptor.AttachDefaultGameClientAsync(gameInstallation);
+        return Services.GameClients.AttachDefaultGameClientAsync(gameInstallation);
     }
 }

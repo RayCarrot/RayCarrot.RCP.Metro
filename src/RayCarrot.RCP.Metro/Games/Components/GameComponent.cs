@@ -17,7 +17,7 @@ public abstract class GameComponent
     public GameInstallation GameInstallation => _gameInstallation ?? throw new Exception("The component has not been initialized");
 
     public GameClientInstallation GetRequiredGameClientInstallation() =>
-        GameDescriptor.GetRequiredAttachedGameClient(GameInstallation);
+        Services.GameClients.GetRequiredAttachedGameClient(GameInstallation);
 
     public virtual void RegisterComponents(IGameComponentBuilder builder) { }
 

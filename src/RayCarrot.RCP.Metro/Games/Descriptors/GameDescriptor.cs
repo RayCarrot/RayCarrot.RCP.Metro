@@ -8,8 +8,6 @@ using RayCarrot.RCP.Metro.Games.Structure;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: Move descriptors to folders based on platform?
-// TODO-14: Consistent naming. Should 'game' be included in member names?
-// TODO-14: Move client methods to games/clients managers?
 
 // It may be temping to have the games which inherit from GameDescriptor to be built up in a sort of hierarchy where they
 // inherit from base classes, such as the 3 Fiesta Run game editions inheriting from a base Fiesta Run class, but we
@@ -153,16 +151,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
             priority: ComponentPriority.Low);
     }
 
-    // TODO-14: Use this for all public APIs
-    protected void VerifyGameInstallation(GameInstallation gameInstallation)
-    {
-        if (gameInstallation == null)
-            throw new ArgumentNullException(nameof(gameInstallation));
-
-        if (gameInstallation.GameId != GameId)
-            throw new Exception($"The provided game id {gameInstallation.GameId} does not match {GameId}");
-    }
-
     protected abstract GameInstallationStructure GetStructure();
 
     #endregion
@@ -191,97 +179,10 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         // Register the components from an optional client. This can be emulators or game clients
         // such as Steam. When they register components they may override existing ones registered
         // by the game descriptor, thus changing some functionality for the game.
-        GameClientInstallation? clientInstallation = GetAttachedGameClient(gameInstallation);
+        GameClientInstallation? clientInstallation = Services.GameClients.GetAttachedGameClient(gameInstallation);
         clientInstallation?.GameClientDescriptor.RegisterComponents(builder);
 
         return builder;
-    }
-
-    /// <summary>
-    /// Gets the game client installation attached to the game installation, or null if there is none
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to get the attached client for</param>
-    /// <returns>The attached client installation or null if none was found</returns>
-    public GameClientInstallation? GetAttachedGameClient(GameInstallation gameInstallation)
-    {
-        string? clientInstallationId = gameInstallation.GetValue<string>(GameDataKey.Client_AttachedClient);
-
-        if (clientInstallationId == null)
-            return null;
-
-        return Services.GameClients.GetInstalledGameClient(clientInstallationId);
-    }
-
-    public GameClientInstallation GetRequiredAttachedGameClient(GameInstallation gameInstallation) => 
-        GetAttachedGameClient(gameInstallation) ?? throw new Exception("The game does not have an attached game client");
-
-    /// <summary>
-    /// Detaches any currently attached game client from the game installation
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to detach the game client for</param>
-    public async Task DetachGameClientAsync(GameInstallation gameInstallation)
-    {
-        // Get the previous client installation and invoke it being detached
-        GameClientInstallation? prevClient = GetAttachedGameClient(gameInstallation);
-        if (prevClient != null)
-            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
-
-        // Detach the client for the game
-        gameInstallation.SetValue<string?>(GameDataKey.Client_AttachedClient, null);
-
-        // Rebuild the game components since the client change might change which components get registered
-        gameInstallation.RebuildComponents();
-
-        // Refresh the game
-        Services.Messenger.Send(new ModifiedGamesMessage(gameInstallation));
-    }
-
-    /// <summary>
-    /// Attaches the first available game client to the game installation
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to attach the game client to</param>
-    /// <returns>True if there was a game client to attach, otherwise false</returns>
-    public async Task<bool> AttachDefaultGameClientAsync(GameInstallation gameInstallation)
-    {
-        // Get the first available game client
-        GameClientInstallation? gameClientInstallation = Services.GameClients.GetInstalledGameClients().
-            FirstOrDefault(x => x.GameClientDescriptor.SupportsGame(gameInstallation));
-
-        if (gameClientInstallation == null)
-            return false;
-        
-        await AttachGameClientAsync(gameInstallation, gameClientInstallation);
-        return true;
-    }
-
-    /// <summary>
-    /// Attaches the specified game client to the game installation
-    /// </summary>
-    /// <param name="gameInstallation">The game installation to attach the game client to</param>
-    /// <param name="gameClientInstallation">The game client to attach</param>
-    public async Task AttachGameClientAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
-    {
-        if (gameInstallation == null) 
-            throw new ArgumentNullException(nameof(gameInstallation));
-        if (gameClientInstallation == null) 
-            throw new ArgumentNullException(nameof(gameClientInstallation));
-        
-        // Get the previous client installation and invoke it being detached
-        GameClientInstallation? prevClient = GetAttachedGameClient(gameInstallation);
-        if (prevClient != null)
-            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
-
-        // Set the client for the game
-        gameInstallation.SetValue(GameDataKey.Client_AttachedClient, gameClientInstallation.InstallationId);
-
-        // Rebuild the game components since the client change might change which components get registered
-        gameInstallation.RebuildComponents();
-
-        // Invoke the new client being selected
-        await gameClientInstallation.GameClientDescriptor.OnGameClientAttachedAsync(gameInstallation, gameClientInstallation);
-
-        // Refresh the game
-        Services.Messenger.Send(new ModifiedGamesMessage(gameInstallation));
     }
 
     public virtual IEnumerable<GameAddAction> GetAddActions() => Enumerable.Empty<GameAddAction>();
