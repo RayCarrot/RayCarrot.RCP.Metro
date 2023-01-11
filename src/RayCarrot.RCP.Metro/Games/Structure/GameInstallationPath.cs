@@ -1,7 +1,10 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Structure;
+﻿using Newtonsoft.Json;
+
+namespace RayCarrot.RCP.Metro.Games.Structure;
 
 // TODO: This can be expanded and improved upon a lot in the future. For example we could add
 //       search patterns, allow files outside the install dir etc.
+[JsonObject] // Force it to be serialized as an object even though it implements IEnumerable
 public abstract class GameInstallationPath : IEnumerable<GameInstallationPath>
 {
     protected GameInstallationPath(string path, GameInstallationPathType type, bool required)

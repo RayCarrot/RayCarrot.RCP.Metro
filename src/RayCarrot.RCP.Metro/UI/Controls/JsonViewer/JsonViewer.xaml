@@ -1,0 +1,145 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:jlinq="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json">
+
+    <!-- NOTE: This implementation isn't optimal as it probably causes memory leaks due to binding to objects
+               which don't implement INotifyPropertyChanged or the collection equivalent. But since we only
+               use this for debug-related UI right now it doesn't really matter. -->
+    <Style TargetType="{x:Type local:JsonViewer}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:JsonViewer}">
+                    <TreeView ItemsSource="{TemplateBinding Source}"
+                              Background="Transparent">
+                        <TreeView.Resources>
+                            <DataTemplate x:Key="ValueTemplate" DataType="{x:Type jlinq:JValue}">
+                                <TextBlock Text="{Binding Mode=OneTime, Converter={local:JValueToStringConverter}}"
+                                           TextWrapping="Wrap">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
+                                                             Value="{x:Static jlinq:JTokenType.String}">
+                                                    <Setter Property="Foreground" Value="#d69d85" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
+                                                             Value="{x:Static jlinq:JTokenType.Float}">
+                                                    <Setter Property="Foreground" Value="#b5cea8" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
+                                                             Value="{x:Static jlinq:JTokenType.Integer}">
+                                                    <Setter Property="Foreground" Value="#b5cea8" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
+                                                             Value="{x:Static jlinq:JTokenType.Boolean}">
+                                                    <Setter Property="Foreground" Value="#569cd6" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
+                                                             Value="{x:Static jlinq:JTokenType.Null}">
+                                                    <Setter Property="Foreground" Value="#569cd6" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                            <HierarchicalDataTemplate x:Key="ArrayPropertyTemplate" 
+                                                      DataType="{x:Type jlinq:JProperty}" 
+                                                      ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run Text="&quot;" /><!--
+                                 --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
+                                 --><Run Text="&quot;" /><!--
+                                 --><Run Text=":  " /><!--
+                                 --><Run Text="[ ]" Foreground="#d8a0df" />
+                                </TextBlock>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate x:Key="ObjectPropertyTemplate" 
+                                                      DataType="{x:Type jlinq:JProperty}" 
+                                                      ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run Text="&quot;" /><!--
+                                 --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
+                                 --><Run Text="&quot;" /><!--
+                                 --><Run Text=":  " /><!--
+                                 --><Run Text="{}{ }" Foreground="#d8a0df" />
+                                </TextBlock>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate x:Key="ObjectTemplate" 
+                                                      DataType="{x:Type jlinq:JObject}" 
+                                                      ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
+                                <TextBlock TextWrapping="Wrap"
+                                           Text="{}{ }" 
+                                           Foreground="#d8a0df" />
+                            </HierarchicalDataTemplate>
+                            <DataTemplate x:Key="PrimitivePropertyTemplate" 
+                                          DataType="{x:Type jlinq:JProperty}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0">
+                                        <Run Text="&quot;" /><!--
+                                     --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
+                                     --><Run Text="&quot;" /><!--
+                                     --><Run Text=":  " />
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Column="1"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding Path=Value, Mode=OneTime, Converter={local:JValueToStringConverter}}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
+                                                                 Value="{x:Static jlinq:JTokenType.String}">
+                                                        <Setter Property="Foreground" Value="#d69d85" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
+                                                                 Value="{x:Static jlinq:JTokenType.Float}">
+                                                        <Setter Property="Foreground" Value="#b5cea8" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
+                                                                 Value="{x:Static jlinq:JTokenType.Integer}">
+                                                        <Setter Property="Foreground" Value="#b5cea8" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
+                                                                 Value="{x:Static jlinq:JTokenType.Boolean}">
+                                                        <Setter Property="Foreground" Value="#569cd6" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
+                                                                 Value="{x:Static jlinq:JTokenType.Null}">
+                                                        <Setter Property="Foreground" Value="#569cd6" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+
+                                </Grid>
+                            </DataTemplate>
+                        </TreeView.Resources>
+                        <TreeView.ItemTemplateSelector>
+                            <local:JPropertyDataTemplateSelector ArrayPropertyTemplate="{StaticResource ArrayPropertyTemplate}"
+                                                                 ObjectPropertyTemplate="{StaticResource ObjectPropertyTemplate}"
+                                                                 ObjectTemplate="{StaticResource ObjectTemplate}"
+                                                                 PrimitivePropertyTemplate ="{StaticResource PrimitivePropertyTemplate}"
+                                                                 ValueTemplate="{StaticResource ValueTemplate}" />
+                        </TreeView.ItemTemplateSelector>
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="Background" Value="Transparent" />
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                    </TreeView>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

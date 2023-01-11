@@ -44,7 +44,7 @@ public partial class GameDebugDialog : WindowContentControl
 
     #region Event Handlers
 
-    private void TreeView_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    private void JsonViewer_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
     {
         // Redirect the mouse wheel movement to allow scrolling
         MouseWheelEventArgs eventArg = new(e.MouseDevice, e.Timestamp, e.Delta)

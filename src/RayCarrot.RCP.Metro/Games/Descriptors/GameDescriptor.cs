@@ -7,7 +7,6 @@ using RayCarrot.RCP.Metro.Games.Structure;
 
 namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Serialize this to JSON and show in debug dialog
 // TODO-14: Move descriptors to folders based on platform?
 // TODO-14: Consistent naming. Should 'game' be included in member names?
 // TODO-14: Move client methods to games/clients managers?

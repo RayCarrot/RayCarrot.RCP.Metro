@@ -4,7 +4,6 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                            xmlns:jlinq="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json"
                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -66,172 +65,71 @@
 
                 <Separator Margin="0 0 0 8" />
 
-                <!-- TODO: Ideally we'd move this to a JsonViewer control, but I don't want to do that yet
-                           as the way this is set up is currently causing some binding leaks (due to not
-                           binding to view models). It doesn't really matter for a debug dialog, but I don't
-                           want that for a reusable control. -->
-                <TreeView ItemsSource="{Binding Path=GameInstallationJToken}"
-                          PreviewMouseWheel="TreeView_OnPreviewMouseWheel">
-                    <TreeView.Resources>
-                        <DataTemplate x:Key="ValueTemplate" DataType="{x:Type jlinq:JValue}">
-                            <TextBlock Text="{Binding Mode=OneTime, Converter={local:JValueToStringConverter}}"
-                                       TextWrapping="Wrap">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
-                                                         Value="{x:Static jlinq:JTokenType.String}">
-                                                <Setter Property="Foreground" Value="#d69d85" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
-                                                         Value="{x:Static jlinq:JTokenType.Float}">
-                                                <Setter Property="Foreground" Value="#b5cea8" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
-                                                         Value="{x:Static jlinq:JTokenType.Integer}">
-                                                <Setter Property="Foreground" Value="#b5cea8" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
-                                                         Value="{x:Static jlinq:JTokenType.Boolean}">
-                                                <Setter Property="Foreground" Value="#569cd6" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=Type, Mode=OneTime}"
-                                                         Value="{x:Static jlinq:JTokenType.Null}">
-                                                <Setter Property="Foreground" Value="#569cd6" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </DataTemplate>
-                        <HierarchicalDataTemplate x:Key="ArrayPropertyTemplate" 
-                                                  DataType="{x:Type jlinq:JProperty}" 
-                                                  ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
-                            <TextBlock TextWrapping="Wrap">
-                                <Run Text="&quot;" /><!--
-                             --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
-                             --><Run Text="&quot;" /><!--
-                             --><Run Text=":  " /><!--
-                             --><Run Text="[ ]" Foreground="#d8a0df" />
-                            </TextBlock>
-                        </HierarchicalDataTemplate>
-                        <HierarchicalDataTemplate x:Key="ObjectPropertyTemplate" 
-                                                  DataType="{x:Type jlinq:JProperty}" 
-                                                  ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
-                            <TextBlock TextWrapping="Wrap">
-                                <Run Text="&quot;" /><!--
-                             --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
-                             --><Run Text="&quot;" /><!--
-                             --><Run Text=":  " /><!--
-                             --><Run Text="{}{ }" Foreground="#d8a0df" />
-                            </TextBlock>
-                        </HierarchicalDataTemplate>
-                        <HierarchicalDataTemplate x:Key="ObjectTemplate" 
-                                                  DataType="{x:Type jlinq:JObject}" 
-                                                  ItemsSource="{Binding Mode=OneTime, Converter={local:JContainerToChildrenConverter}}">
-                            <TextBlock TextWrapping="Wrap"
-                                       Text="{}{ }" 
-                                       Foreground="#d8a0df" />
-                        </HierarchicalDataTemplate>
-                        <DataTemplate x:Key="PrimitivePropertyTemplate" 
-                                      DataType="{x:Type jlinq:JProperty}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                <GroupBox Header="Metadata" 
+                          local:IconAssist.IconKind="{StaticResource RCP.Icons.Games}"
+                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Games}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
 
-                                <TextBlock Grid.Column="0">
-                                    <Run Text="&quot;" /><!--
-                                 --><Run Text="{Binding Path=Name, Mode=OneTime}" /><!--
-                                 --><Run Text="&quot;" /><!--
-                                 --><Run Text=":  " />
-                                </TextBlock>
+                    <local:JsonViewer Source="{Binding Path=GameDescriptorJToken}"
+                                      PreviewMouseWheel="JsonViewer_OnPreviewMouseWheel" />
 
-                                <TextBlock Grid.Column="1"
-                                           TextWrapping="Wrap"
-                                           Text="{Binding Path=Value, Mode=OneTime, Converter={local:JValueToStringConverter}}">
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
-                                                             Value="{x:Static jlinq:JTokenType.String}">
-                                                    <Setter Property="Foreground" Value="#d69d85" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
-                                                             Value="{x:Static jlinq:JTokenType.Float}">
-                                                    <Setter Property="Foreground" Value="#b5cea8" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
-                                                             Value="{x:Static jlinq:JTokenType.Integer}">
-                                                    <Setter Property="Foreground" Value="#b5cea8" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
-                                                             Value="{x:Static jlinq:JTokenType.Boolean}">
-                                                    <Setter Property="Foreground" Value="#569cd6" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Path=Value.Type, Mode=OneTime}"
-                                                             Value="{x:Static jlinq:JTokenType.Null}">
-                                                    <Setter Property="Foreground" Value="#569cd6" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                </GroupBox>
 
-                            </Grid>
-                        </DataTemplate>
-                    </TreeView.Resources>
-                    <TreeView.ItemTemplateSelector>
-                        <local:JPropertyDataTemplateSelector ArrayPropertyTemplate="{StaticResource ArrayPropertyTemplate}"
-                                                             ObjectPropertyTemplate="{StaticResource ObjectPropertyTemplate}"
-                                                             ObjectTemplate="{StaticResource ObjectTemplate}"
-                                                             PrimitivePropertyTemplate ="{StaticResource PrimitivePropertyTemplate}"
-                                                             ValueTemplate="{StaticResource ValueTemplate}" />
-                    </TreeView.ItemTemplateSelector>
-                </TreeView>
+                <GroupBox Header="Data" 
+                          local:IconAssist.IconKind="{StaticResource RCP.Icons.Settings}"
+                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Settings}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
 
-                <Separator />
+                    <local:JsonViewer Source="{Binding Path=GameInstallationJToken}"
+                                      PreviewMouseWheel="JsonViewer_OnPreviewMouseWheel" />
 
-                <!-- TODO: Improve component visualization. Show where they get registered from? Show priority? Show overriden components? -->
-                <Grid>
-                    <Grid.Resources>
-                        <CollectionViewSource x:Key="ComponentsSource" Source="{Binding Path=Components}">
-                            <CollectionViewSource.GroupDescriptions>
-                                <PropertyGroupDescription PropertyName="BaseType.Name" />
-                            </CollectionViewSource.GroupDescriptions>
-                        </CollectionViewSource>
-                    </Grid.Resources>
+                </GroupBox>
 
-                    <ItemsControl ItemsSource="{Binding Source={StaticResource ComponentsSource}}">
-                        <ItemsControl.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate DataType="{x:Type CollectionViewGroup}">
-                                        <StackPanel Orientation="Horizontal" 
-                                                    TextBlock.FontWeight="Bold"
-                                                    Margin="0 8 0 0">
-                                            <TextBlock Text="{Binding Path=Name, Mode=OneTime}" />
-                                            <TextBlock Text=" (" />
-                                            <TextBlock Text="{Binding Path=ItemCount, Mode=OneTime}" />
-                                            <TextBlock Text=")" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
-                        </ItemsControl.GroupStyle>
+                <GroupBox Header="Components" 
+                          local:IconAssist.IconKind="PowerPlugOutline"
+                          local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Games}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
 
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="• " />
-                                    <TextBlock Text="{Binding Path=InstanceType.Name, Mode=OneTime}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                    <!-- TODO: Improve component visualization. Show where they get registered from? Show priority? Show overriden components? -->
+                    <Grid>
+                        <Grid.Resources>
+                            <CollectionViewSource x:Key="ComponentsSource" Source="{Binding Path=Components}">
+                                <CollectionViewSource.GroupDescriptions>
+                                    <PropertyGroupDescription PropertyName="BaseType.Name" />
+                                </CollectionViewSource.GroupDescriptions>
+                            </CollectionViewSource>
+                        </Grid.Resources>
 
-                    </ItemsControl>
-                </Grid>
+                        <ItemsControl ItemsSource="{Binding Source={StaticResource ComponentsSource}}">
+                            <ItemsControl.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                                            <StackPanel Orientation="Horizontal" 
+                                                        TextBlock.FontWeight="Bold"
+                                                        Margin="0 8 0 0">
+                                                <TextBlock Text="{Binding Path=Name, Mode=OneTime}" />
+                                                <TextBlock Text=" (" />
+                                                <TextBlock Text="{Binding Path=ItemCount, Mode=OneTime}" />
+                                                <TextBlock Text=")" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ItemsControl.GroupStyle>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="• " />
+                                        <TextBlock Text="{Binding Path=InstanceType.Name, Mode=OneTime}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+                    </Grid>
+                </GroupBox>
 
             </StackPanel>
         </ScrollViewer>
