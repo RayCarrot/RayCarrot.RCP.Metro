@@ -21,9 +21,9 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MsDos : MsDosGameDescri
     #region Public Properties
 
     public override string GameId => "RaymanEdutainmentQui_MsDos";
+    public override string LegacyGameId => "EducationalDos";
     public override Game Game => Game.RaymanEdutainment;
     public override GameCategory Category => GameCategory.Other;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.EducationalDos;
 
     public override LocalizedString DisplayName => "Rayman Edutainment (Quiz)";
     public override DateTime ReleaseDate => new(1996, 01, 01); // Not exact

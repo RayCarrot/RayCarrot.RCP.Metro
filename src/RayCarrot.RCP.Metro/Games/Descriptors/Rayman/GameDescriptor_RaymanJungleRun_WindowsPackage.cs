@@ -18,9 +18,9 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     #region Public Properties
 
     public override string GameId => "RaymanJungleRun_WindowsPackage";
+    public override string LegacyGameId => "RaymanJungleRun";
     public override Game Game => Game.RaymanJungleRun;
     public override GameCategory Category => GameCategory.Rayman;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanJungleRun;
 
     public override LocalizedString DisplayName => "Rayman Jungle Run";
     public override DateTime ReleaseDate => new(2013, 03, 07);

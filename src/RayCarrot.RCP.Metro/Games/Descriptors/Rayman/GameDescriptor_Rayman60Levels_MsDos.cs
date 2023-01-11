@@ -13,9 +13,9 @@ public sealed class GameDescriptor_Rayman60Levels_MsDos : MsDosGameDescriptor
     #region Public Properties
 
     public override string GameId => "Rayman60Levels_MsDos";
+    public override string LegacyGameId => "Rayman60Levels";
     public override Game Game => Game.Rayman60Levels;
     public override GameCategory Category => GameCategory.Rayman;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.Rayman60Levels;
 
     public override LocalizedString DisplayName => "Rayman 60 Levels";
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact

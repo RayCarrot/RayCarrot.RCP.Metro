@@ -17,9 +17,9 @@ public sealed class GameDescriptor_RabbidsBigBang_WindowsPackage : WindowsPackag
     #region Public Properties
 
     public override string GameId => "RabbidsBigBang_WindowsPackage";
+    public override string LegacyGameId => "RabbidsBigBang";
     public override Game Game => Game.RabbidsBigBang;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsBigBang;
 
     public override LocalizedString DisplayName => "Rabbids Big Bang";
     public override DateTime ReleaseDate => new(2014, 03, 05);

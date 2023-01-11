@@ -11,10 +11,10 @@ public sealed class GameDescriptor_Rayman2_Demo_19990818_Win32 : Win32GameDescri
     #region Public Properties
 
     public override string GameId => "Rayman2_Demo_19990818_Win32";
+    public override string LegacyGameId => "Demo_Rayman2_1";
     public override Game Game => Game.Rayman2;
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_Rayman2_1;
 
     public override LocalizedString DisplayName => "Rayman 2 Demo (1999/08/18)";
     public override DateTime ReleaseDate => new(1999, 08, 18);

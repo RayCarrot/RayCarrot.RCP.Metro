@@ -18,9 +18,9 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
     #region Public Properties
 
     public override string GameId => "RaymanFiestaRunWindows10Edition_WindowsPackage";
+    public override string LegacyGameId => "RaymanFiestaRun";
     public override Game Game => Game.RaymanFiestaRun;
     public override GameCategory Category => GameCategory.Rayman;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanFiestaRun;
 
     public override LocalizedString DisplayName => "Rayman Fiesta Run Windows 10 Edition";
     public override DateTime ReleaseDate => new(2016, 04, 05);

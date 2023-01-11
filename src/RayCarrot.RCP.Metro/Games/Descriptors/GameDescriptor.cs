@@ -48,6 +48,12 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public abstract string GameId { get; }
 
     /// <summary>
+    /// The game id prior to version 14.0. Multiple games might share this id. This should only be used for
+    /// backwards compatibility.
+    /// </summary>
+    public virtual string? LegacyGameId => null;
+
+    /// <summary>
     /// The game this descriptor is for. This is mainly for categorization and filter purposes.
     /// </summary>
     public abstract Game Game { get; }
@@ -67,11 +73,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// Indicates if the game is a demo
     /// </summary>
     public virtual bool IsDemo => false;
-
-    /// <summary>
-    /// The legacy games enum value
-    /// </summary>
-    public virtual LegacyGame? LegacyGame => null; // TODO-14: Minimize references to this
 
     /// <summary>
     /// The default game display name. This might be the same across multiple descriptors.

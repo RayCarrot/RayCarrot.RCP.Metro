@@ -51,13 +51,12 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
         return Task.CompletedTask;
     }
 
-    // TODO-14: Should be per installation
     /// <summary>
     /// Gets the DosBox configuration file path for the auto config file
     /// </summary>
     /// <returns>The file path</returns>
     public FileSystemPath GetGameConfigFile(GameInstallation gameInstallation) =>
-        AppFilePaths.UserDataBaseDir + "DosBox" + (gameInstallation.GameDescriptor.LegacyGame + ".ini");
+        AppFilePaths.UserDataBaseDir + "Clients" + "DOSBox" + (gameInstallation.InstallationId + ".ini");
 
     #endregion
 }

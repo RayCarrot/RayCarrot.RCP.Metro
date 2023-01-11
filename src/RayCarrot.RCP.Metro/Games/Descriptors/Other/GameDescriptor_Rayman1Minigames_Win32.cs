@@ -12,9 +12,9 @@ public sealed class GameDescriptor_Rayman1Minigames_Win32 : Win32GameDescriptor
     #region Public Override Properties
 
     public override string GameId => "Rayman1Minigames_Win32";
+    public override string LegacyGameId => "Ray1Minigames";
     public override Game Game => Game.Rayman1Minigames;
     public override GameCategory Category => GameCategory.Other;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.Ray1Minigames;
 
     public override LocalizedString DisplayName => "Rayman Minigames";
     public override DateTime ReleaseDate => new(1999, 07, 20);

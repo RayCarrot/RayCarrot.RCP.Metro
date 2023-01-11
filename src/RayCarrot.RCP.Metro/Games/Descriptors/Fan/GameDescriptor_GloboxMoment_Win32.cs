@@ -17,9 +17,9 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
     #region Public Properties
 
     public override string GameId => "GloboxMoment_Win32";
+    public override string LegacyGameId => "GloboxMoment";
     public override Game Game => Game.GloboxMoment;
     public override GameCategory Category => GameCategory.Fan;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.GloboxMoment;
 
     public override LocalizedString DisplayName => "Globox Moment";
     public override DateTime ReleaseDate => new(2019, 07, 26); // Unsure if this is correct

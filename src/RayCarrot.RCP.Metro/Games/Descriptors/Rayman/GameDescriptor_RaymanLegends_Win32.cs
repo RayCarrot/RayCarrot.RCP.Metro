@@ -19,9 +19,9 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     #region Public Properties
 
     public override string GameId => "RaymanLegends_Win32";
+    public override string LegacyGameId => "RaymanLegends";
     public override Game Game => Game.RaymanLegends;
     public override GameCategory Category => GameCategory.Rayman;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanLegends;
 
     public override LocalizedString DisplayName => "Rayman Legends";
     public override DateTime ReleaseDate => new(2013, 08, 29);

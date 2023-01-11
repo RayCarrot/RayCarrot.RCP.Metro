@@ -172,8 +172,13 @@ public class GamesManager
     /// </summary>
     /// <param name="legacyGameId">The legacy game id</param>
     /// <returns>The matching game descriptors</returns>
-    public IReadOnlyList<GameDescriptor> GetGameDescriptorsFromLegacyId(string legacyGameId) =>
-        SortedGameDescriptors.Where(x => x.LegacyGame?.ToString() == legacyGameId).ToList();
+    public IReadOnlyList<GameDescriptor> GetGameDescriptorsFromLegacyId(string legacyGameId)
+    {
+        if (legacyGameId == null) 
+            throw new ArgumentNullException(nameof(legacyGameId));
+        
+        return SortedGameDescriptors.Where(x => x.LegacyGameId == legacyGameId).ToList();
+    }
 
     #endregion
 

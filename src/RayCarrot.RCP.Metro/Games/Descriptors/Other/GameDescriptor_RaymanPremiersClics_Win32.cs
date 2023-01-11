@@ -10,9 +10,9 @@ public sealed class GameDescriptor_RaymanPremiersClics_Win32 : Win32GameDescript
     #region Public Properties
 
     public override string GameId => "RaymanPremiersClics_Win32";
+    public override string LegacyGameId => "RaymanPremiersClics";
     public override Game Game => Game.RaymanPremiersClics;
     public override GameCategory Category => GameCategory.Other;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanPremiersClics;
 
     public override LocalizedString DisplayName => "Rayman Premiers Clics";
     public override DateTime ReleaseDate => new(2001, 01, 01); // Not exact

@@ -10,9 +10,9 @@ public sealed class GameDescriptor_RaymanActivityCenter_Win32 : Win32GameDescrip
     #region Public Properties
 
     public override string GameId => "RaymanActivityCenter_Win32";
+    public override string LegacyGameId => "RaymanActivityCenter";
     public override Game Game => Game.RaymanActivityCenter;
     public override GameCategory Category => GameCategory.Other;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanActivityCenter;
 
     public override LocalizedString DisplayName => "Rayman Activity Center";
     public override DateTime ReleaseDate => new(1999, 01, 01); // Not exact

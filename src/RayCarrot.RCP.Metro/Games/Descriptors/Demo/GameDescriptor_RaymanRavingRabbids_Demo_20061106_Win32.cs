@@ -12,10 +12,10 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
     #region Public Properties
 
     public override string GameId => "RaymanRavingRabbids_Demo_20061106_Win32";
+    public override string LegacyGameId => "Demo_RaymanRavingRabbids";
     public override Game Game => Game.RaymanRavingRabbids;
     public override GameCategory Category => GameCategory.Rabbids;
     public override bool IsDemo => true;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_RaymanRavingRabbids;
 
     public override LocalizedString DisplayName => "Rayman Raving Rabbids Demo (2006/11/06)";
     public override DateTime ReleaseDate => new(2006, 11, 06);

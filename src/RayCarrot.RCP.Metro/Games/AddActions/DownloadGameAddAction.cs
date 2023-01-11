@@ -28,9 +28,8 @@ public class DownloadGameAddAction : GameAddAction
     {
         Logger.Trace("The game {0} is being downloaded...", GameDescriptor.GameId);
 
-        // TODO-14: Change this. Use id? Make sure to not download multiple times then.
-        // Get the game directory
-        var gameDir = AppFilePaths.GamesBaseDir + GameDescriptor.LegacyGame.ToString();
+        // Get the game directory. Since it can only be downloaded once we use the game id.
+        FileSystemPath gameDir = AppFilePaths.GamesBaseDir + GameDescriptor.GameId;
 
         // Download the game
         bool downloaded = await Services.App.DownloadAsync(DownloadUrls, true, gameDir, true);

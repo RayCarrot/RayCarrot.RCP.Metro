@@ -14,9 +14,9 @@ public sealed class GameDescriptor_RaymanByHisFans_MsDos : MsDosGameDescriptor
     #region Public Properties
 
     public override string GameId => "RaymanByHisFans_MsDos";
+    public override string LegacyGameId => "RaymanByHisFans";
     public override Game Game => Game.RaymanByHisFans;
     public override GameCategory Category => GameCategory.Rayman;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanByHisFans;
 
     public override LocalizedString DisplayName => "Rayman by his Fans";
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact

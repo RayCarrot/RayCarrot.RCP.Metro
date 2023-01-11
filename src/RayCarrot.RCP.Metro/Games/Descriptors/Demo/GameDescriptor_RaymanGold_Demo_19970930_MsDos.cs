@@ -13,10 +13,10 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MsDos : MsDosGameDes
     #region Public Properties
 
     public override string GameId => "RaymanGold_Demo_19970930_MsDos";
+    public override string LegacyGameId => "Demo_RaymanGold";
     public override Game Game => Game.RaymanDesigner;
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_RaymanGold;
 
     public override LocalizedString DisplayName => "Rayman Gold Demo (1997/09/30)";
     public override DateTime ReleaseDate => new(1997, 09, 30);

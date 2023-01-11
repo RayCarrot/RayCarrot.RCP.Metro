@@ -53,7 +53,7 @@ public class PatchLibraryFile : BinarySerializable, IPackageFile
         if (FormatVersion >= 1)
             return gameDescriptor.GameId == GameId;
         else
-            return gameDescriptor.LegacyGame.ToString() == LegacyGameName;
+            return LegacyGameName != null && gameDescriptor.LegacyGameId == LegacyGameName;
     }
 
     public override void SerializeImpl(SerializerObject s)

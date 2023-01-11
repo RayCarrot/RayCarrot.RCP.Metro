@@ -14,9 +14,9 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     #region Public Override Properties
 
     public override string GameId => "RabbidsGoHome_Win32";
+    public override string LegacyGameId => "RabbidsGoHome";
     public override Game Game => Game.RabbidsGoHome;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsGoHome;
 
     public override LocalizedString DisplayName => "Rabbids Go Home";
     public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact

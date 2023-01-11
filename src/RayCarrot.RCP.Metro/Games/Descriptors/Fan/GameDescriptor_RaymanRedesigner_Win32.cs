@@ -17,9 +17,9 @@ public sealed class GameDescriptor_RaymanRedesigner_Win32 : Win32GameDescriptor
     #region Public Properties
 
     public override string GameId => "RaymanRedesigner_Win32";
+    public override string LegacyGameId => "RaymanRedesigner";
     public override Game Game => Game.RaymanRedesigner;
     public override GameCategory Category => GameCategory.Fan;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanRedesigner;
 
     public override LocalizedString DisplayName => "Rayman ReDesigner";
     public override DateTime ReleaseDate => new(2021, 02, 04);

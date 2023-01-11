@@ -17,9 +17,9 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
     #region Public Properties
 
     public override string GameId => "RaymanGardenPLUS_Win32";
+    public override string LegacyGameId => "RaymanGardenPLUS";
     public override Game Game => Game.RaymanGardenPLUS;
     public override GameCategory Category => GameCategory.Fan;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RaymanGardenPLUS;
 
     public override LocalizedString DisplayName => "Rayman Garden PLUS";
     public override DateTime ReleaseDate => new(2021, 06, 05);

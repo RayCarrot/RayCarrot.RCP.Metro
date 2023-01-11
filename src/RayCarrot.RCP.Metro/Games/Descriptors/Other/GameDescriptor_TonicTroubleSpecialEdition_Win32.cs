@@ -12,9 +12,9 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     #region Public Override Properties
 
     public override string GameId => "TonicTroubleSpecialEdition_Win32";
+    public override string LegacyGameId => "TonicTroubleSpecialEdition";
     public override Game Game => Game.TonicTrouble;
     public override GameCategory Category => GameCategory.Other;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.TonicTroubleSpecialEdition;
 
     public override LocalizedString DisplayName => "Tonic Trouble Special Edition";
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact

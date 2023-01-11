@@ -12,9 +12,9 @@ public sealed class GameDescriptor_Rayman3PrintStudio_Win32 : Win32GameDescripto
     #region Public Properties
 
     public override string GameId => "Rayman3PrintStudio_Win32";
+    public override string LegacyGameId => "PrintStudio";
     public override Game Game => Game.Rayman3PrintStudio;
     public override GameCategory Category => GameCategory.Other;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.PrintStudio;
 
     public override LocalizedString DisplayName => "Rayman 3 Print Studio";
     public override DateTime ReleaseDate => new(2003, 01, 01); // Not exact

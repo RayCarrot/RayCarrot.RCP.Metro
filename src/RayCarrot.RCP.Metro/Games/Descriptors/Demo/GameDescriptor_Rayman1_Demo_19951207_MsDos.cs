@@ -13,10 +13,10 @@ public sealed class GameDescriptor_Rayman1_Demo_19951207_MsDos : MsDosGameDescri
     #region Public Properties
 
     public override string GameId => "Rayman1_Demo_19951207_MsDos";
+    public override string LegacyGameId => "Demo_Rayman1_1";
     public override Game Game => Game.Rayman1;
     public override GameCategory Category => GameCategory.Rayman;
     public override bool IsDemo => true;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.Demo_Rayman1_1;
 
     public override LocalizedString DisplayName => "Rayman Demo (1995/12/07)";
     public override DateTime ReleaseDate => new(1995, 12, 07);

@@ -11,9 +11,9 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
     #region Public Properties
 
     public override string GameId => "RabbidsCoding_Win32";
+    public override string LegacyGameId => "RabbidsCoding";
     public override Game Game => Game.RabbidsCoding;
     public override GameCategory Category => GameCategory.Rabbids;
-    public override LegacyGame? LegacyGame => Metro.LegacyGame.RabbidsCoding;
 
     public override LocalizedString DisplayName => "Rabbids Coding";
     public override DateTime ReleaseDate => new(2019, 10, 08);
