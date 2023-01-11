@@ -27,6 +27,12 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
 
     #endregion
 
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Private Properties
 
     private GameComponentProvider? ComponentProvider { get; set; }
@@ -63,6 +69,7 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
     public void RebuildComponents()
     {
         ComponentProvider = GameDescriptor.RegisterComponents(this).BuildProvider(this);
+        Logger.Trace("Rebuilt components for {0}", FullId);
     }
 
     public int CompareTo(GameInstallation? other)

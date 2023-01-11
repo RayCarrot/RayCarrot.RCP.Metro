@@ -1,6 +1,3 @@
-using System.IO;
-using System.Text;
-using BinarySerializer;
 using BinarySerializer.Ray1;
 using RayCarrot.RCP.Metro.Games.Data;
 
@@ -8,14 +5,20 @@ namespace RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
 {
-    public RaymanEdutainmentConfigViewModel(MsDosGameDescriptor gameDescriptor, GameInstallation gameInstallation) : 
-        base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Edu)
+    public RaymanEdutainmentConfigViewModel(
+        MsDosGameDescriptor gameDescriptor, 
+        GameInstallation gameInstallation, 
+        string primaryName) 
+        : base(gameDescriptor, gameInstallation, Ray1EngineVersion.PC_Edu)
     {
+        _primaryName = primaryName;
         PageSelection = new ObservableCollection<string>();
         RefreshSelection();
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    private readonly string _primaryName;
 
     public void RefreshSelection()
     {
@@ -23,7 +26,7 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
 
         PageSelection.Clear();
 
-        // TODO-14:: Maybe better having a separate page for each rather than an in-page selection?
+        // TODO-14: Maybe better having a separate page for each rather than an in-page selection?
         PageSelection.AddRange(data.AvailableVersions.Select(x => x.DisplayName));
 
         ResetSelectedPageSelectionIndex();
@@ -43,14 +46,8 @@ public class RaymanEdutainmentConfigViewModel : Ray1BaseConfigViewModel
 
         Logger.Trace("Retrieving EDU config path for {0}", version);
 
-        // TODO-14: Don't find primary name like this. It's either EDU or QUI depending on game!
-        // Get the primary name
-        using FileStream stream = File.OpenRead(GameInstallation.InstallLocation + "PCMAP" + "COMMON.DAT");
-        using Reader reader = new(stream);
-        string primary = reader.ReadString(5, Encoding.UTF8);
-
         // Primary + secondary names
-        return $"{primary}{version}.CFG";
+        return $"{_primaryName}{version}.CFG";
     }
 
     public override Task PageSelectionIndexChangedAsync()
