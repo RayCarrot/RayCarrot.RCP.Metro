@@ -65,7 +65,33 @@
 
                             <ItemsControl Grid.Column="0"
                                           VerticalAlignment="Center"
-                                          ItemsSource="{Binding Path=GameTargetNames}"/>
+                                          ItemsSource="{Binding Path=GameTargetViewModels}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Grid.Column="0"
+                                                   Source="{Binding Path=PlatformIcon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
+                                                   VerticalAlignment="Center"
+                                                   Width="20"
+                                                   Margin="0 2"
+                                                   ToolTip="{Binding Path=PlatformDisplayName.Value}" />
+
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Path=GameDisplayName.Value}"
+                                                       d:Text="Rayman 2"
+                                                       VerticalAlignment="Center"
+                                                       TextWrapping="Wrap"
+                                                       Margin="8 0 0 0"/>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
 
                             <!-- TODO-UPDATE: Localize -->
                             <Button Grid.Column="1"

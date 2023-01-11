@@ -70,11 +70,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public abstract LocalizedString DisplayName { get; } // TODO-UPDATE: Localize this for all games
 
     /// <summary>
-    /// A unique display name for this game descriptor
-    /// </summary>
-    public virtual string GameDescriptorName => $"{DisplayName} ({Platform})"; // TODO-14: Implement this, localized, for each game and use where needed
-
-    /// <summary>
     /// The game's release data. This is mainly used for sorting and doesn't have
     /// to be exact (i.e. January 1st is acceptable if only the year is known).
     /// </summary>

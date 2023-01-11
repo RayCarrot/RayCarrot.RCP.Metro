@@ -256,7 +256,9 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             {
                 LibraryInfo = new ObservableCollection<DuoGridItemViewModel>()
                 {
-                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), GameInstallation.GameDescriptor.GameDescriptorName),
+                    new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Game)), GameInstallation.GameDescriptor.DisplayName),
+                    // TODO-UPDATE: Localize
+                    new("Platform", GameInstallation.GameDescriptor.Platform.GetInfo().DisplayName),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_Patches)), libraryFile.Patches.Length.ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_AppliedPatches)), libraryFile.Patches.Count(x => x.IsEnabled).ToString()),
                     new(new ResourceLocString(nameof(Resources.Patcher_LibraryInfo_ModifiedDate)), libraryFile.History.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
@@ -283,10 +285,10 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         // Verify game
         if (libraryFile != null && !libraryFile.IsGameValid(GameInstallation.GameDescriptor))
         {
-            Logger.Warn("Failed to load library due to the game {0} not matching the current one ({1})", libraryFile.GameId, GameInstallation.FullId);
+            Logger.Warn("Failed to load library due to the game {0} not being valid", GameInstallation.FullId);
 
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Patcher_ReadLibraryGameMismatchError, GameInstallation.GameDescriptor.GameDescriptorName),
-                MessageType.Error);
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync("The game patch library was made for a different game and can not be read", MessageType.Error);
 
             return false;
         }

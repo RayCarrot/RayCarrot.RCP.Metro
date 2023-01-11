@@ -71,7 +71,7 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     public int Version_Revision { get; set; }
     public string ID { get; set; }
     public GameInstallation[] GameTargets { get; private set; }
-    public ObservableCollection<string> GameTargetNames { get; private set; }
+    public ObservableCollection<GameTargetViewModel> GameTargetViewModels { get; private set; }
     public BitmapSource? Thumbnail { get; set; }
 
     // Files
@@ -91,13 +91,13 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
 
     [MemberNotNull(nameof(GameTargets))]
     [MemberNotNull(nameof(SelectedLocation))]
-    [MemberNotNull(nameof(GameTargetNames))]
+    [MemberNotNull(nameof(GameTargetViewModels))]
     private void SetGameTargets(IEnumerable<GameInstallation> gameTargets)
     {
         // Set the game targets
         GameTargets = gameTargets.ToArray();
-        GameTargetNames = new ObservableCollection<string>(
-            GameTargets.Select(x => x.GameDescriptor).Distinct().Select(x => x.GameDescriptorName));
+        GameTargetViewModels = new ObservableCollection<GameTargetViewModel>(
+            GameTargets.Select(x => x.GameDescriptor).Distinct().Select(x => new GameTargetViewModel(x.DisplayName, x.Platform)));
 
         // Clear previous locations
         AvailableLocations.Clear();
@@ -580,6 +580,22 @@ public class PatchCreatorViewModel : BaseViewModel, IDisposable
     #endregion
 
     #region Data Types
+
+    public class GameTargetViewModel : BaseViewModel
+    {
+        public GameTargetViewModel(LocalizedString gameDisplayName, GamePlatform platform)
+        {
+            GameDisplayName = gameDisplayName;
+     
+            GamePlatformInfoAttribute info = platform.GetInfo();
+            PlatformDisplayName = info.DisplayName;
+            PlatformIcon = info.Icon;
+        }
+
+        public LocalizedString GameDisplayName { get; }
+        public LocalizedString PlatformDisplayName { get; }
+        public GamePlatformIconAsset PlatformIcon { get; }
+    }
 
     public class FileViewModel : BaseViewModel
     {
