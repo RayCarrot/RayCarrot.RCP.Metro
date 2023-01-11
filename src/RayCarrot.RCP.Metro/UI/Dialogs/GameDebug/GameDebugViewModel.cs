@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using RayCarrot.RCP.Metro.Games.Components;
 
@@ -48,10 +47,7 @@ public class GameDebugViewModel : BaseViewModel,
         if (SelectedGameInstallation != null && GameDescriptor != null)
         {
             // Get game data
-            JsonSerializerSettings jsonSettings = new()
-            {
-                Converters = new JsonConverter[] { new StringEnumConverter() }
-            };
+            JsonSerializerSettings jsonSettings = new();
             GameInstallationJToken = JToken.FromObject(SelectedGameInstallation.GameInstallation, JsonSerializer.Create(jsonSettings));
 
             // Get components

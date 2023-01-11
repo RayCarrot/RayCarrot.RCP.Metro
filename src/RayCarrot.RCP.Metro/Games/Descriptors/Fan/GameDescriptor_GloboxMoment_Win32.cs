@@ -26,12 +26,6 @@ public sealed class GameDescriptor_GloboxMoment_Win32 : Win32GameDescriptor
 
     public override GameIconAsset Icon => GameIconAsset.GloboxMoment;
 
-    // TODO-14: Should we be removing this?
-    public override IEnumerable<FileSystemPath> UninstallFiles => new[]
-    {
-        Environment.SpecialFolder.ApplicationData.GetFolderPath() + "MMFApplications" + "globoxmoment.ini"
-    };
-
     #endregion
 
     #region Protected Methods

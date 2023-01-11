@@ -26,12 +26,6 @@ public sealed class GameDescriptor_TheDarkMagiciansReignofTerror_Win32 : Win32Ga
 
     public override GameIconAsset Icon => GameIconAsset.TheDarkMagiciansReignofTerror;
 
-    // TODO-14: Should we be removing this?
-    public override IEnumerable<FileSystemPath> UninstallDirectories => new FileSystemPath[]
-    {
-        Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Rayman__Dark_Magician_s_reign_of_terror_"
-    };
-
     #endregion
 
     #region Protected Methods

@@ -113,16 +113,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public virtual bool AllowPatching => true;
 
     /// <summary>
-    /// The directories to remove when uninstalling. This should not include the game install directory as that is included by default.
-    /// </summary>
-    public virtual IEnumerable<FileSystemPath> UninstallDirectories => Enumerable.Empty<FileSystemPath>();
-
-    /// <summary>
-    /// The files to remove when uninstalling
-    /// </summary>
-    public virtual IEnumerable<FileSystemPath> UninstallFiles => Enumerable.Empty<FileSystemPath>();
-
-    /// <summary>
     /// Indicates if the game should default to use an available game client. This is mainly
     /// for games which require to be emulated as they can't launch by themselves.
     /// </summary>

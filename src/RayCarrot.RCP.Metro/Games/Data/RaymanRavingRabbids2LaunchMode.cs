@@ -1,10 +1,12 @@
-﻿namespace RayCarrot.RCP.Metro.Games.Data;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
-// TODO-14: Serialize as a string
+namespace RayCarrot.RCP.Metro.Games.Data;
 
 /// <summary>
 /// The available modes to launch Rayman Raving Rabbids 2 in
 /// </summary>
+[JsonConverter(typeof(StringEnumConverter))]
 public enum RaymanRavingRabbids2LaunchMode
 {
     /// <summary>

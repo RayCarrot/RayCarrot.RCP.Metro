@@ -374,18 +374,6 @@ public class InstalledGameViewModel : BaseViewModel
             Services.File.DeleteDirectory(GameInstallation.InstallLocation);
 
             Logger.Info("The game install directory was removed");
-
-            // Delete additional directories
-            foreach (FileSystemPath dir in GameInstallation.GameDescriptor.UninstallDirectories)
-                Services.File.DeleteDirectory(dir);
-
-            Logger.Info("The game additional directories were removed");
-
-            // Delete additional files
-            foreach (FileSystemPath file in GameInstallation.GameDescriptor.UninstallFiles)
-                Services.File.DeleteFile(file);
-
-            Logger.Info("The game additional files were removed");
         }
         catch (Exception ex)
         {
