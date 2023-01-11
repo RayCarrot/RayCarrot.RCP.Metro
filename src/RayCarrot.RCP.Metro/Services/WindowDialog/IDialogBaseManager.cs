@@ -10,5 +10,9 @@ public interface IDialogBaseManager
         where UserInput : UserInputViewModel
         where Result : UserInputResult;
 
-    Task ShowWindowAsync(IWindowControl windowContent, ShowWindowFlags flags = ShowWindowFlags.None, params string[] groupNames);
+    Task ShowWindowAsync(
+        IWindowControl windowContent,
+        ShowWindowFlags flags = ShowWindowFlags.None,
+        string[] typeGroupNames = null,
+        string[] globalGroupNames = null);
 }

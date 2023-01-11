@@ -23,8 +23,6 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
     public override GameIconAsset Icon => GameIconAsset.RaymanM_Demo;
     public override GameBannerAsset Banner => GameBannerAsset.RaymanM;
 
-    public override IEnumerable<string> DialogGroupNames => new[] { UbiIniFileGroupName };
-
     #endregion
 
     #region Protected Methods
@@ -46,6 +44,7 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
             @"TribeBin\tex32.cnt",
             @"TribeBin\vignette.cnt",
         }));
+        builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
     }
 
     protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]

@@ -119,9 +119,13 @@ public class WindowDialogBaseManager : IDialogBaseManager
         }
     }
 
-    public async Task ShowWindowAsync(IWindowControl windowContent, ShowWindowFlags flags = ShowWindowFlags.None, params string[] groupNames)
+    public async Task ShowWindowAsync(
+        IWindowControl windowContent, 
+        ShowWindowFlags flags = ShowWindowFlags.None, 
+        string[] typeGroupNames = null, 
+        string[] globalGroupNames = null)
     {
-        OpenWindowInstance openWindowInstance = new(windowContent, groupNames);
+        OpenWindowInstance openWindowInstance = new(windowContent, typeGroupNames, globalGroupNames);
 
         try
         {
@@ -135,8 +139,17 @@ public class WindowDialogBaseManager : IDialogBaseManager
                     if (flags.HasFlag(ShowWindowFlags.DuplicateTypesNotAllowed) && x.Window.UIContent.GetType() == contentType)
                         return true;
 
-                    // Check for duplicate group names
-                    if (groupNames.Any() && x.GroupNames.Any(groupNames.Contains))
+                    // Check for duplicate global group names
+                    if (globalGroupNames != null && 
+                        globalGroupNames.Any() && 
+                        x.GlobalGroupNames.Any(globalGroupNames.Contains))
+                        return true;
+
+                    // Check for duplicate type group names
+                    if (typeGroupNames != null && 
+                        typeGroupNames.Any() && 
+                        x.Window.UIContent.GetType() == contentType && 
+                        x.TypeGroupNames.Any(typeGroupNames.Contains))
                         return true;
 
                     return false;
@@ -170,7 +183,7 @@ public class WindowDialogBaseManager : IDialogBaseManager
 
     #region Records
 
-    protected record OpenWindowInstance(IWindowControl Window, string[] GroupNames);
+    protected record OpenWindowInstance(IWindowControl Window, string[] TypeGroupNames, string[] GlobalGroupNames);
 
     #endregion
 }

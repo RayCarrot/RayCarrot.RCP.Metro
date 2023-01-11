@@ -24,11 +24,6 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
     public override GameIconAsset Icon => GameIconAsset.Rayman3;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman3;
 
-    public override IEnumerable<string> DialogGroupNames => new string[]
-    {
-        UbiIniFileGroupName
-    };
-
     #endregion
 
     #region Protected Methods
@@ -49,6 +44,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
             @"Gamedatabin\tex32_2.cnt",
             @"Gamedatabin\vignette.cnt",
         }));
+        builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
 
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC))));
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));

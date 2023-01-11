@@ -23,15 +23,6 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public abstract class GameDescriptor : IComparable<GameDescriptor>
 {
-    #region Protected Constant Fields
-
-    /// <summary>
-    /// The group name to use for a dialog which requires reading/writing to a ubi.ini file
-    /// </summary>
-    protected const string UbiIniFileGroupName = "ubini-config"; // TODO-14: Remove from here
-
-    #endregion
-
     #region Private Fields
 
     private GameInstallationStructure? _structure;
@@ -100,11 +91,6 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// The game banner asset
     /// </summary>
     public virtual GameBannerAsset Banner => GameBannerAsset.Default;
-
-    /// <summary>
-    /// The group names to use for the options, config and utility dialog
-    /// </summary>
-    public virtual IEnumerable<string> DialogGroupNames => Enumerable.Empty<string>(); // TODO-14: Change this
 
     /// <summary>
     /// Indicates if the game supports the game patcher

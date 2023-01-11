@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using RayCarrot.RCP.Metro.Archive;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -233,12 +234,18 @@ public class AppUIManager
 
         Logger.Trace("A game options window was opened");
 
+        // Get group names from components
+        List<string> groupNames = gameInstallation.GetComponents<GameOptionsDialogGroupNameComponent>().
+            Select(x => x.GroupName).
+            ToList();
+
+        // Only allow once per installation
+        groupNames.Add(gameInstallation.InstallationId);
+
         // Run on UI thread
         // ReSharper disable once AccessToDisposedClosure
         using GameOptionsDialog ui = Application.Current.Dispatcher.Invoke(() => new GameOptionsDialog(gameInstallation));
-        await Dialog.ShowWindowAsync(ui, groupNames: gameInstallation.GameDescriptor.DialogGroupNames.
-            // TODO-14: Use install location as group name?
-            Append(gameInstallation.GameId).ToArray());
+        await Dialog.ShowWindowAsync(ui, typeGroupNames: groupNames.ToArray());
     }
 
     /// <summary>
@@ -317,8 +324,8 @@ public class AppUIManager
         // ReSharper disable once AccessToDisposedClosure
         using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
         await Dialog.ShowWindowAsync(dialog, 
-            // TODO-14: Use install location as group name?
-            groupNames: gameInstallation.GameId);
+            // Only allow one patcher window per installation
+            typeGroupNames: new[] { gameInstallation.InstallationId });
     }
 
     /// <summary>
@@ -342,8 +349,8 @@ public class AppUIManager
         // ReSharper disable once AccessToDisposedClosure
         using PatcherDialog dialog = Application.Current.Dispatcher.Invoke(() => new PatcherDialog(vm));
         await Dialog.ShowWindowAsync(dialog,
-            // TODO-14: Use install location as group name?
-            groupNames: vm.GameInstallation.GameId);
+            // Only allow one patcher window per installation
+            typeGroupNames: new[] { vm.GameInstallation.InstallationId });
     }
 
     /// <summary>

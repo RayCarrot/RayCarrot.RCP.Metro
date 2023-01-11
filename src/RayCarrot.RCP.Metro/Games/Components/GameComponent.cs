@@ -1,7 +1,6 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
-using RayCarrot.RCP.Metro.Games.Clients;
+﻿using RayCarrot.RCP.Metro.Games.Clients;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Components;
 
 // TODO: Find some way to integrate this with the dependency injection system
 
