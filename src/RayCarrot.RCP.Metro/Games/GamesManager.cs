@@ -167,6 +167,14 @@ public class GamesManager
         return descriptor;
     }
 
+    /// <summary>
+    /// Gets all of the game descriptors which match a legacy game id (a game id used prior to version 14.0)
+    /// </summary>
+    /// <param name="legacyGameId">The legacy game id</param>
+    /// <returns>The matching game descriptors</returns>
+    public IReadOnlyList<GameDescriptor> GetGameDescriptorsFromLegacyId(string legacyGameId) =>
+        SortedGameDescriptors.Where(x => x.LegacyGame?.ToString() == legacyGameId).ToList();
+
     #endregion
 
     #region Game Installation Methods

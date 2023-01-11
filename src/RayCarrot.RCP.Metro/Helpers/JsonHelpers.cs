@@ -21,12 +21,13 @@ public static class JsonHelpers
     /// </summary>
     /// <typeparam name="T">The type of file to serialize</typeparam>
     /// <param name="obj">The object to serialize</param>
+    /// <param name="formatting">The formatting to use</param>
     /// <param name="filePath">The file to serialize to</param>
     /// <param name="converters">Optional converters to use</param>
-    public static void SerializeToFile<T>(T obj, string filePath, params JsonConverter[] converters)
+    public static void SerializeToFile<T>(T obj, string filePath, Formatting formatting = Formatting.Indented, params JsonConverter[] converters)
     {
         // Serialize to JSON
-        var json = JsonConvert.SerializeObject(obj, Formatting.Indented, converters.Concat(GetDefaultConverters()).ToArray());
+        var json = JsonConvert.SerializeObject(obj, formatting, converters.Concat(GetDefaultConverters()).ToArray());
 
         // Write to output
         File.WriteAllText(filePath, json);

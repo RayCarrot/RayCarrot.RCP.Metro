@@ -57,7 +57,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
     private readonly Context _context;
 
     private ExternalPatchViewModel[]? _externalPatches;
-    private Uri? _externalGamePatchesURL;
 
     private LocalPatchViewModel? _selectedLocalPatch;
     private ExternalPatchViewModel? _selectedExternalPatch;
@@ -117,8 +116,8 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
     public LoaderViewModel LoaderViewModel { get; }
     public bool IsLoadingExternalPatches { get; set; }
-    [MemberNotNullWhen(true, nameof(_externalPatches), nameof(_externalGamePatchesURL))]
-    public bool HasLoadedExternalPatches => _externalPatches != null && _externalGamePatchesURL != null;
+    [MemberNotNullWhen(true, nameof(_externalPatches))]
+    public bool HasLoadedExternalPatches => _externalPatches != null;
     public bool HasChanges { get; set; }
 
     #endregion
@@ -504,20 +503,15 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         Logger.Info("Added patches");
     }
 
-    public async Task DownloadPatchAsync(ExternalPatchManifest externalManifest)
+    public async Task DownloadPatchAsync(Uri patchUri)
     {
-        if (_externalGamePatchesURL == null)
-            throw new Exception("Attempted to download patch before the URL was set");
-
         Logger.Info("Downloading external patch");
 
         TempDirectory tempDir = new(true);
 
         try
         {
-            Uri patchURL = new(_externalGamePatchesURL, externalManifest.Patch);
-
-            bool result = await Services.App.DownloadAsync(new[] { patchURL }, false, tempDir.TempPath);
+            bool result = await Services.App.DownloadAsync(new[] { patchUri }, false, tempDir.TempPath);
 
             if (!result)
             {
@@ -526,7 +520,7 @@ public class PatcherViewModel : BaseViewModel, IDisposable
             }
 
             // Due to how the downloading system currently works we need to get the path like this
-            FileSystemPath patchFilePath = tempDir.TempPath + Path.GetFileName(patchURL.AbsoluteUri);
+            FileSystemPath patchFilePath = tempDir.TempPath + Path.GetFileName(patchUri.AbsoluteUri);
 
             using (_context)
             {
@@ -805,52 +799,83 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         {
             Logger.Info("Loading external patches");
 
-            ExternalPatchesManifest manifest =
-                await JsonHelpers.DeserializeFromURLAsync<ExternalPatchesManifest>(AppURLs.PatchesManifestUrl);
+            Uri baseUri = new(AppURLs.PatchesManifestUrl);
 
-            Logger.Info("Read external patches manifest with version {0}", manifest.ManifestVersion);
+            ExternalPatchesManifest manifest = await JsonHelpers.DeserializeFromURLAsync<ExternalPatchesManifest>(baseUri.AbsoluteUri);
 
-            if (manifest.ManifestVersion > ExternalPatchesManifest.LatestVersion)
+            Logger.Info("Read external patches manifest");
+
+            if (manifest.Patches == null)
             {
-                Logger.Warn(
-                    "Failed to load external patches due to the version number {0} being higher than the current one ({1})",
-                    manifest.ManifestVersion, ExternalPatchesManifest.LatestVersion);
-
-                await Services.MessageUI.DisplayMessageAsync(Resources.Patcher_LoadExternalNewerVersionError, MessageType.Error);
-
+                Logger.Warn("The patches manifest has no patches");
                 _externalPatches = null;
                 return;
             }
 
-            // Make sure the game has external patches defined
-            if (manifest.Games?.ContainsKey(GameInstallation.LegacyGame.Value) != true)
+            Version appVersion = AppViewModel.AppVersion;
+            
+            List<ExternalPatchViewModel> patchViewModels = new();
+
+            for (int i = 0; i < manifest.Patches.Length; i++)
+            {
+                ExternalPatch? patch = manifest.Patches[i];
+
+                // Verify all of the patch data is valid. Since we're deserializing JSON obtained
+                // from an external source we can't make any assumptions about it. 
+                if (patch == null)
+                {
+                    Logger.Warn("Could not load external patch {0} due to it being null", i);
+                    continue;
+                }
+                if (patch.MetaData == null)
+                {
+                    Logger.Warn("Could not load external patch {0} due to the metadata being null", i);
+                    continue;
+                }
+                if (patch.MinAppVersion != null && patch.MinAppVersion > appVersion)
+                {
+                    Logger.Info("Could not load external patch {0} with id {1} due to the minimum app version {2} being greater than the current app version {3}", i, patch.MetaData.Id, patch.MinAppVersion, appVersion);
+                    continue;
+                }
+                if (patch.MaxAppVersion != null && patch.MaxAppVersion <= appVersion)
+                {
+                    Logger.Info("Could not load external patch {0} with id {1} due to the maximum app version {2} being less than or equal to the current app version {3}", i, patch.MetaData.Id, patch.MaxAppVersion, appVersion);
+                    continue;
+                }
+                if (patch.MetaData.GameIds == null || !patch.MetaData.GameIds.Contains(GameInstallation.GameId))
+                {
+                    Logger.Trace("Could not load external patch {0} with id {1} due to the current game id not being supported", i, patch.MetaData.Id);
+                    continue;
+                }
+                if (patch.MetaData.FormatVersion > PatchFile.LatestFormatVersion)
+                {
+                    Logger.Info("Could not load external patch {0} with id {1} due to the patch format version {2} being greater than the latest supported version {3}", i, patch.MetaData.Id, patch.MetaData.FormatVersion, PatchFile.LatestFormatVersion);
+                    continue;
+                }
+                if (patch.MetaData.Id == null)
+                {
+                    Logger.Warn("Could not load external patch {0} due to the patch id being null", i);
+                    continue;
+                }
+                if (patch.MetaData.PatchUrl == null)
+                {
+                    Logger.Warn("Could not load external patch {0} with id {1} due to the patch url being null", i, patch.MetaData.Id);
+                }
+
+                // Create a view model for the patch
+                patchViewModels.Add(new ExternalPatchViewModel(this, patch.MetaData, baseUri));
+            }
+
+            if (patchViewModels.Count == 0)
             {
                 Logger.Info("The game {0} has no external patches", GameInstallation.FullId);
-                _externalGamePatchesURL = null;
                 _externalPatches = null;
                 return;
             }
 
-            Logger.Info("Loading external patches for game {0}", GameInstallation.FullId);
+            Logger.Info("Loaded {0} external patches for game {1}", patchViewModels.Count, GameInstallation.FullId);
 
-            _externalGamePatchesURL = new Uri(new Uri(AppURLs.PatchesManifestUrl), manifest.Games[GameInstallation.LegacyGame.Value]);
-
-            ExternalGamePatchesManifest gameManifest =
-                await JsonHelpers.DeserializeFromURLAsync<ExternalGamePatchesManifest>(_externalGamePatchesURL
-                    .AbsoluteUri);
-
-            Logger.Info("Loaded {0} external patches for game {1}", gameManifest.Patches?.Length, GameInstallation.FullId);
-
-            if (gameManifest.Patches == null)
-            {
-                _externalPatches = null;
-                return;
-            }
-
-            _externalPatches = gameManifest.Patches.
-                Where(x => x.FormatVersion <= PatchFile.LatestFormatVersion && x.MinAppVersion <= Services.App.CurrentAppVersion).
-                Select(x => new ExternalPatchViewModel(this, x)).
-                ToArray();
+            _externalPatches = patchViewModels.ToArray();
         }
         catch (Exception ex)
         {
@@ -858,7 +883,6 @@ public class PatcherViewModel : BaseViewModel, IDisposable
 
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Patcher_LoadExternalGenericError);
 
-            _externalGamePatchesURL = null;
             _externalPatches = null;
         }
         finally
@@ -883,18 +907,18 @@ public class PatcherViewModel : BaseViewModel, IDisposable
         foreach (ExternalPatchViewModel externalPatch in _externalPatches)
         {
             string id = externalPatch.ID;
-            PatchVersion version = externalPatch.ExternalManifest.Version;
+            PatchVersion? version = externalPatch.ExternalPatchMetaData.Version;
 
             // TODO: Ideally access to the local patches collection should be locked as it might be modified on another thread
             // Don't show if it exists locally (except if the external revision is newer)
-            if (LocalPatches.Any(x => x.ID == id && x.Metadata.Version >= version))
+            if (version != null && LocalPatches.Any(x => x.ID == id && x.Metadata.Version >= version))
                 continue;
 
             // Add view model
             DisplayedExternalPatches.Add(externalPatch);
 
             // Load the thumbnail
-            _ = externalPatch.LoadThumbnailAsync(_externalGamePatchesURL);
+            _ = externalPatch.LoadThumbnailAsync();
         }
         
         Logger.Info("Refreshed displayed external patches");

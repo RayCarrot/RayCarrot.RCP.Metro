@@ -28,7 +28,7 @@ public static class AppURLs
     /// <summary>
     /// The patches manifest URL
     /// </summary>
-    public const string PatchesManifestUrl = RCPBaseUrl + "patches.json";
+    public const string PatchesManifestUrl = RCPBaseUrl + "game_patches.json";
 
     /// <summary>
     /// The base resource URL

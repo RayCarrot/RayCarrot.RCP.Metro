@@ -11,8 +11,7 @@ public class PatchMetadata : BinarySerializable
 
     public string ID { get; set; }
 
-    private string LegacyGameId { get; set; } // Prior to 14.0
-    public string[] GameIds { get; set; } // After 14.0
+    public string[] GameIds { get; set; }
 
     public string Name { get; set; }
     public string Description { get; set; }
@@ -59,21 +58,7 @@ public class PatchMetadata : BinarySerializable
     /// </summary>
     /// <param name="gameDescriptor">The game descriptor to check</param>
     /// <returns>True if it's valid, otherwise false</returns>
-    public bool IsGameValid(GameDescriptor gameDescriptor)
-    {
-        if (Pre_FormatVersion >= 2)
-            return GameIds.Any(x => x == gameDescriptor.GameId);
-        else
-            return gameDescriptor.LegacyGame.ToString() == LegacyGameId;
-    }
-
-    public IEnumerable<GameDescriptor> GetGameDescriptors(GamesManager gamesManager)
-    {
-        if (Pre_FormatVersion >= 2)
-            return GameIds.Select(x => gamesManager.GetGameDescriptor(x));
-        else
-            return gamesManager.GetGameDescriptors().Where(x => x.LegacyGame.ToString() == LegacyGameId);
-    }
+    public bool IsGameValid(GameDescriptor gameDescriptor) => GameIds.Any(x => x == gameDescriptor.GameId);
 
     public override void SerializeImpl(SerializerObject s)
     {
@@ -88,7 +73,10 @@ public class PatchMetadata : BinarySerializable
         }
         else
         {
-            LegacyGameId = s.SerializeString(LegacyGameId, name: nameof(LegacyGameId));
+            string legacyGameId = s.SerializeString(null, name: "LegacyGameId");
+
+            // Convert to game ids
+            GameIds = Services.Games.GetGameDescriptorsFromLegacyId(legacyGameId).Select(x => x.GameId).ToArray();
         }
 
         Name = s.SerializeString(Name, name: nameof(Name));

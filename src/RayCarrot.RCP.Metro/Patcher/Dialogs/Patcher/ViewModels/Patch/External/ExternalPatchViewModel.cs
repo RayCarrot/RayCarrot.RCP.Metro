@@ -9,23 +9,38 @@ namespace RayCarrot.RCP.Metro.Patcher;
 
 public class ExternalPatchViewModel : PatchViewModel
 {
-    public ExternalPatchViewModel(PatcherViewModel patcherViewModel, ExternalPatchManifest externalManifest) : base(patcherViewModel)
+    public ExternalPatchViewModel(PatcherViewModel patcherViewModel, ExternalPatchMetaData externalPatchMetaData, Uri baseUri) 
+        : base(patcherViewModel)
     {
-        ExternalManifest = externalManifest;
-        
+        ExternalPatchMetaData = externalPatchMetaData;
+        BaseUri = baseUri;
+        ID = externalPatchMetaData.Id ??
+             throw new ArgumentException("The patch metadata has no id", nameof(externalPatchMetaData));
+
+        if (ExternalPatchMetaData.PatchUrl == null)
+            throw new ArgumentException("The patch metadata has no patch url", nameof(externalPatchMetaData));
+
         PatchInfo = new ObservableCollection<DuoGridItemViewModel>()
         {
-            new("Author:", externalManifest.Author),
-            new("Size:", ByteSize.FromBytes(externalManifest.TotalSize).ToString()),
-            new("Download size:", ByteSize.FromBytes(externalManifest.PatchSize).ToString()),
-            new("Last modified:", externalManifest.ModifiedDate.ToString(CultureInfo.CurrentCulture)),
-            new("Revision:", externalManifest.Version.ToString()),
-            new("ID:", externalManifest.ID, UserLevel.Debug),
-            new("Added files:", (externalManifest.AddedFilesCount).ToString()),
-            new("Removed files:", (externalManifest.RemovedFilesCount).ToString()),
+            new("Author:", externalPatchMetaData.Author),
+            new("Size:", externalPatchMetaData.TotalSize == null 
+                ? null 
+                : ByteSize.FromBytes(externalPatchMetaData.TotalSize.Value).ToString()),
+            new("Download size:", externalPatchMetaData.FileSize == null
+                ? null
+                : ByteSize.FromBytes(externalPatchMetaData.FileSize.Value).ToString()),
+            new("Last modified:", externalPatchMetaData.ModifiedDate?.ToString(CultureInfo.CurrentCulture)),
+            new("Revision:", externalPatchMetaData.Version?.ToString()),
+            new("ID:", externalPatchMetaData.Id, UserLevel.Debug),
+            new("Added files:", externalPatchMetaData.AddedFilesCount?.ToString()),
+            new("Removed files:", externalPatchMetaData.RemovedFilesCount?.ToString()),
         };
 
-        DownloadCommand = new AsyncRelayCommand(() => PatcherViewModel.DownloadPatchAsync(ExternalManifest));
+        DownloadCommand = new AsyncRelayCommand(() =>
+        {
+            Uri patchURL = new(BaseUri, ExternalPatchMetaData.PatchUrl);
+            return PatcherViewModel.DownloadPatchAsync(patchURL);
+        });
     }
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -34,17 +49,18 @@ public class ExternalPatchViewModel : PatchViewModel
 
     public ICommand DownloadCommand { get; }
 
-    public override string ID => ExternalManifest.ID;
-    public override string Name => ExternalManifest.Name ?? String.Empty;
-    public override string Description => ExternalManifest.Description ?? String.Empty;
-    public override string Website => ExternalManifest.Website ?? String.Empty;
+    public override string ID { get; }
+    public override string Name => ExternalPatchMetaData.Name ?? String.Empty;
+    public override string Description => ExternalPatchMetaData.Description ?? String.Empty;
+    public override string Website => ExternalPatchMetaData.Website ?? String.Empty;
     public override ObservableCollection<DuoGridItemViewModel> PatchInfo { get; }
 
-    public ExternalPatchManifest ExternalManifest { get; }
+    public ExternalPatchMetaData ExternalPatchMetaData { get; }
+    public Uri BaseUri { get; }
 
-    public async Task LoadThumbnailAsync(Uri baseUri)
+    public async Task LoadThumbnailAsync()
     {
-        if (_loadingThumbnail || Thumbnail != null || ExternalManifest.Thumbnail == null)
+        if (_loadingThumbnail || Thumbnail != null || ExternalPatchMetaData.ThumbnailUrl == null)
             return;
 
         Logger.Info("Loading external thumbnail for patch with ID {0}", ID);
@@ -53,7 +69,7 @@ public class ExternalPatchViewModel : PatchViewModel
         {
             _loadingThumbnail = true;
 
-            Uri thumbUrl = new(baseUri, ExternalManifest.Thumbnail);
+            Uri thumbUrl = new(BaseUri, ExternalPatchMetaData.ThumbnailUrl);
 
             // Create the web client
             using WebClient wc = new();

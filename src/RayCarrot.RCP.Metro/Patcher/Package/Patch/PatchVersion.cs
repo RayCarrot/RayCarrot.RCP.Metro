@@ -1,5 +1,9 @@
-﻿namespace RayCarrot.RCP.Metro.Patcher;
+﻿using System.Globalization;
+using Newtonsoft.Json;
 
+namespace RayCarrot.RCP.Metro.Patcher;
+
+[JsonConverter(typeof(PatchVersionConverter))]
 public class PatchVersion : ICloneable, IComparable, IComparable<PatchVersion>, IEquatable<PatchVersion>
 {
     public PatchVersion(int major, int minor, int revision)
@@ -9,9 +13,30 @@ public class PatchVersion : ICloneable, IComparable, IComparable<PatchVersion>, 
         Revision = revision;
     }
 
+    private static readonly char[] SeparatorsArray = { '.' };
+
     public int Major { get; }
     public int Minor { get; }
     public int Revision { get; }
+
+    public static PatchVersion Parse(string input)
+    {
+        if (input == null) 
+            throw new ArgumentNullException(nameof(input));
+
+        string[] components = input.Split(SeparatorsArray);
+        
+        if (components.Length != 3)
+            throw new FormatException("The number of components in the version string is invalid");
+
+        static int parseComponent(string component) => Int32.Parse(component, NumberStyles.Integer, CultureInfo.InvariantCulture);
+
+        int major = parseComponent(components[0]);
+        int minor = parseComponent(components[1]);
+        int revision = parseComponent(components[2]);
+
+        return new PatchVersion(major, minor, revision);
+    }
 
     public object Clone() => new PatchVersion(Major, Minor, Revision);
 

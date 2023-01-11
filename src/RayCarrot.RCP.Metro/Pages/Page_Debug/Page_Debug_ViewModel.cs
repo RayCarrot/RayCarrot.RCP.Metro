@@ -10,6 +10,7 @@ using System.Windows.Media;
 using BinarySerializer;
 using ByteSizeLib;
 using ControlzEx.Theming;
+using Newtonsoft.Json;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Patcher;
 
@@ -536,8 +537,10 @@ public class Page_Debug_ViewModel : BasePageViewModel
             foreach (FileSystemPath patchFilePath in files)
             {
                 await writer.WriteLineAsync($"    {{ " +
-                                       $"\"{nameof(WebPatchEntry.FilePath)}\": \"{patchFilePath - browseResult.SelectedDirectory}\", " +
-                                       $"\"{nameof(WebPatchEntry.MinVersion)}\": \"{App.CurrentAppVersion.ToString(4)}\"" +
+                                       $"\"patchFile\": \"{patchFilePath - browseResult.SelectedDirectory}\", " +
+                                       $"\"rcp_minAppVersion\": \"{App.CurrentAppVersion.ToString(4)}\", " +
+                                       $"\"rcp_maxAppVersion\": null," +
+                                       $"\"changelog\": null" +
                                        $" }},");
             }
 
@@ -558,7 +561,7 @@ public class Page_Debug_ViewModel : BasePageViewModel
             FileBrowserResult inputResult = await BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = "Select patches JSON",
-                ExtensionFilter = new FileFilterItem($"*jsonc", "JSON").StringRepresentation,
+                ExtensionFilter = new FileFilterItem("*jsonc", "JSON").StringRepresentation,
             });
 
             if (inputResult.CanceledByUser)
@@ -572,75 +575,68 @@ public class Page_Debug_ViewModel : BasePageViewModel
             if (outputResult.CanceledByUser)
                 return;
 
+            // Read the .jsonc to get the patches, their order and additional data
             WebPatchEntry[] patchEntries = JsonHelpers.DeserializeFromFile<WebPatchEntry[]>(inputResult.SelectedFile);
 
-            List<(LegacyGame Game, ExternalPatchManifest Manifest)> patches = new();
-            Dictionary<LegacyGame, string> gameManifestURLs = new();
+            ExternalPatch[] patches = new ExternalPatch[patchEntries.Length];
 
             using RCPContext context = new(String.Empty);
 
             // Process each patch
-            foreach (WebPatchEntry patchEntry in patchEntries)
+            for (int i = 0; i < patchEntries.Length; i++)
             {
-                FileSystemPath patchFilePath = inputResult.SelectedFile.Parent + patchEntry.FilePath;
+                WebPatchEntry patchEntry = patchEntries[i];
+                FileSystemPath localPatchFilePath = inputResult.SelectedFile.Parent + patchEntry.PatchFilePath;
 
                 // Read the file
-                PatchFile patch = context.ReadRequiredFileData<PatchFile>(patchFilePath, removeFileWhenComplete: false);
+                PatchFile patch = context.ReadRequiredFileData<PatchFile>(localPatchFilePath, removeFileWhenComplete: false);
 
-                // TODO-14: Update this
-                LegacyGame game = patch.Metadata.GetGameDescriptors(GamesManager).First().LegacyGame.Value;
                 string? thumbURL = null;
 
                 // Extract thumbnail, if one exists
                 if (patch.HasThumbnail)
                 {
-                    thumbURL = $"{game.ToString().ToLowerInvariant()}/{patchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
+                    thumbURL = $"patches/{localPatchFilePath.ChangeFileExtension(new FileExtension(".png")).Name}";
 
-                    FileSystemPath thumbFilePath = outputResult.SelectedDirectory + "patches" + thumbURL;
+                    FileSystemPath thumbFilePath = outputResult.SelectedDirectory + thumbURL;
 
                     Directory.CreateDirectory(thumbFilePath.Parent);
 
                     using Stream thumbOutputStream = File.Create(thumbFilePath);
-                    patch.ThumbnailResource.ReadData(context, true).CopyTo(thumbOutputStream);
+                    using Stream thumbInputSteam = patch.ThumbnailResource.ReadData(context, true);
+                    thumbInputSteam.CopyTo(thumbOutputStream);
                 }
 
-                string patchURL = $"{game.ToString().ToLowerInvariant()}/{patchFilePath.Name}";
+                string patchURL = $"patches/{localPatchFilePath.Name}";
 
                 // Copy the patch file
-                FileManager.CopyFile(patchFilePath, outputResult.SelectedDirectory + "patches" + patchURL, true);
+                FileManager.CopyFile(localPatchFilePath, outputResult.SelectedDirectory + patchURL, true);
 
-                patches.Add((game, new ExternalPatchManifest(
-                    ID: patch.Metadata.ID,
-                    FormatVersion: patch.FormatVersion,
-                    MinAppVersion: patchEntry.MinVersion,
-                    Name: patch.Metadata.Name,
-                    Description: patch.Metadata.Description,
-                    Author: patch.Metadata.Author,
-                    Website: patch.Metadata.Website,
-                    TotalSize: patch.Metadata.TotalSize,
-                    ModifiedDate: patch.Metadata.ModifiedDate,
-                    Version: patch.Metadata.Version,
-                    AddedFilesCount: patch.AddedFiles?.Length ?? 0,
-                    RemovedFilesCount: patch.RemovedFiles?.Length ?? 0,
-                    Patch: patchURL,
-                    PatchSize: (int)patchFilePath.GetSize().Bytes,
-                    Thumbnail: thumbURL)));
+                patches[i] = new ExternalPatch(
+                    MinAppVersion: patchEntry.MinAppVersion,
+                    MaxAppVersion: patchEntry.MaxAppVersion,
+                    MetaData: new ExternalPatchMetaData(
+                        Id: patch.Metadata.ID,
+                        FormatVersion: patch.FormatVersion,
+                        GameIds: patch.Metadata.GameIds,
+                        Name: patch.Metadata.Name,
+                        Description: patch.Metadata.Description,
+                        Author: patch.Metadata.Author,
+                        Website: patch.Metadata.Website,
+                        TotalSize: patch.Metadata.TotalSize,
+                        FileSize: (int)localPatchFilePath.GetSize().Bytes,
+                        ModifiedDate: patch.Metadata.ModifiedDate,
+                        Version: patch.Metadata.Version,
+                        ChangeLog: patchEntry.ChangeLog,
+                        AddedFilesCount: patch.AddedFiles?.Length ?? 0,
+                        RemovedFilesCount: patch.RemovedFiles?.Length ?? 0,
+                        PatchUrl: patchURL,
+                        ThumbnailUrl: thumbURL));
             }
 
-            // Write game manifests detailing the patches for each game
-            foreach (var gamePatches in patches.GroupBy(x => x.Game))
-            {
-                ExternalGamePatchesManifest manifest = new(gamePatches.Key, gamePatches.Select(x => x.Manifest).ToArray());
-
-                string url = $"patches/{gamePatches.Key.ToString().ToLowerInvariant()}.json";
-                gameManifestURLs[gamePatches.Key] = url;
-
-                JsonHelpers.SerializeToFile(manifest, outputResult.SelectedDirectory + url);
-            }
-
-            // Write the main patches manifest
-            ExternalPatchesManifest patchesManifest = new(ExternalPatchesManifest.LatestVersion, gameManifestURLs);
-            JsonHelpers.SerializeToFile(patchesManifest, outputResult.SelectedDirectory + "patches.json");
+            // Write the manifest
+            ExternalPatchesManifest patchesManifest = new(patches);
+            JsonHelpers.SerializeToFile(patchesManifest, outputResult.SelectedDirectory + "game_patches.json", Formatting.None);
         }
         catch (Exception ex)
         {
@@ -753,7 +749,13 @@ public class Page_Debug_ViewModel : BasePageViewModel
 
     #region Records
 
-    private record WebPatchEntry(string FilePath, Version MinVersion);
+    private record WebPatchEntry(
+        [property: JsonProperty("patchFile")] string PatchFilePath,
+
+        [property: JsonProperty("rcp_minAppVersion")] Version? MinAppVersion,
+        [property: JsonProperty("rcp_maxAppVersion")] Version? MaxAppVersion,
+
+        [property: JsonProperty("changeLog")] ExternalPatchChangeLogEntry?[]? ChangeLog);
 
     #endregion
 

@@ -57,7 +57,7 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
     /// </summary>
     /// <returns>The file path</returns>
     public FileSystemPath GetGameConfigFile(GameInstallation gameInstallation) =>
-        AppFilePaths.UserDataBaseDir + "DosBox" + (gameInstallation.LegacyGame + ".ini");
+        AppFilePaths.UserDataBaseDir + "DosBox" + (gameInstallation.GameDescriptor.LegacyGame + ".ini");
 
     #endregion
 }

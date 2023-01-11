@@ -42,8 +42,6 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
     public string GameId => GameDescriptor.GameId;
     public string FullId => $"{GameId}|{InstallationId}"; // TODO-14: Use this for some logging
 
-    public LegacyGame? LegacyGame => GameDescriptor.LegacyGame; // TODO-14: Remove once no longer needed
-
     #endregion
 
     #region Public Methods
