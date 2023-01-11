@@ -8,6 +8,8 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public class AssetEnumToImageSourceConverter : BaseValueConverter<AssetEnumToImageSourceConverter, Enum, ImageSource?>
 {
+    protected override bool AllowValue1Null => true;
+
     public override ImageSource? ConvertValue(Enum value, Type targetType, object parameter, CultureInfo culture)
     {
         return new ImageSourceConverter().ConvertFrom(value.GetAssetPath()) as ImageSource;

@@ -79,13 +79,21 @@ public abstract class BaseValueConverter<TConverter, TValue1, TValue2> : BaseVal
 
     #endregion
 
+    #region Protected Properties
+
+    protected virtual bool AllowValue1Null => false;
+    protected virtual bool AllowValue2Null => false;
+
+    #endregion
+
     #region Value Converter Methods
 
     public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!(value is TValue1 converterValue))
+        if (value is not TValue1 converterValue)
         {
-            Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue1).FullName);
+            if (!(value is null && AllowValue1Null))
+                Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue1).FullName);
             return DependencyProperty.UnsetValue;
         }
 
@@ -94,9 +102,10 @@ public abstract class BaseValueConverter<TConverter, TValue1, TValue2> : BaseVal
 
     public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!(value is TValue2 converterValue))
+        if (value is not TValue2 converterValue)
         {
-            Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue2).FullName);
+            if (!(value is null && AllowValue2Null))
+                Logger.Warn("The converter {0} returned null due to the value not being of the expected type {1}", typeof(TConverter).Name, typeof(TValue2).FullName);
             return DependencyProperty.UnsetValue;
         }
 
