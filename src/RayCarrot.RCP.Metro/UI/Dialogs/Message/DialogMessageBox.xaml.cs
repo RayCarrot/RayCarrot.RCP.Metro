@@ -71,8 +71,9 @@ public partial class DialogMessageBox : WindowContentControl, IDialogWindowContr
 
     private void DialogAction_ActionHandled(object sender, DialogMessageActionHandledEventArgs e)
     {
-        // Set the result
-        DialogResult = e.ActionResult;
+        // Set the result if there is one
+        if (e.ActionResult != null)
+            DialogResult = e.ActionResult;
             
         // Close if set to do so
         if (e.ShouldCloseDialog)
