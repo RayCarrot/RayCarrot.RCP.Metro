@@ -58,9 +58,6 @@ public class AppUserData : BaseViewModel
         Game_GameClientInstallations = new List<GameClientInstallation>();
         Game_AutoLocateGames = true;
 
-        // Utility
-        Utility_TPLSData = null;
-
         // Mod
         Mod_RRR_ToggleStates = new Dictionary<string, UserData_Mod_RRR_ToggleState>();
         Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
@@ -275,16 +272,6 @@ public class AppUserData : BaseViewModel
 
     #endregion
 
-    #region Utility
-
-    // TODO-14: Replace with game installation data?
-    /// <summary>
-    /// The current TPLS data if installed, otherwise null
-    /// </summary>
-    public UserData_TPLSData Utility_TPLSData { get; set; }
-
-    #endregion
-
     #region Mod
 
     /// <summary>
@@ -445,6 +432,7 @@ public class AppUserData : BaseViewModel
     // In version 12.0 the property names were changed. In order to still deserialize the properties using their old names we
     // provide legacy set-only properties for them
 
+    // TODO-14: Move to other file by making class partial
 #pragma warning disable IDE0051 // Remove unused private members
     [JsonProperty] private UserLevel UserLevel { set => App_UserLevel = value; }
     [JsonProperty] private Version LastVersion { set => App_LastVersion = value; }
@@ -467,7 +455,6 @@ public class AppUserData : BaseViewModel
     [JsonProperty] private bool CloseAppOnGameLaunch { set => App_CloseAppOnGameLaunch = value; }
     [JsonProperty] private bool CloseConfigOnSave { set => App_CloseConfigOnSave = value; }
     [JsonProperty] private FileSystemPath BackupLocation { set => Backup_BackupLocation = value; }
-    [JsonProperty] private UserData_TPLSData TPLSData { set => Utility_TPLSData = value; }
     [JsonProperty] private UserData_LinkItemStyle LinkItemStyle { set => UI_LinkItemStyle = value; }
     [JsonProperty] private HorizontalAlignment LinkListHorizontalAlignment { set => UI_LinkListHorizontalAlignment = value; }
     [JsonProperty] private bool CompressBackups { set => Backup_CompressBackups = value; }

@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro;
+using RayCarrot.RCP.Metro.Games.Data;
+
+namespace RayCarrot.RCP.Metro;
 
 /// <summary>
 /// The Rayman 1 TPLS utility
@@ -6,6 +8,7 @@
 public class Utility_Rayman1_TPLS : Utility<Utility_Rayman1_TPLS_Control, Utility_Rayman1_TPLS_ViewModel>
 {
     public Utility_Rayman1_TPLS(GameInstallation gameInstallation)
+        : base(new Utility_Rayman1_TPLS_ViewModel(gameInstallation))
     {
         GameInstallation = gameInstallation;
     }
@@ -18,7 +21,7 @@ public class Utility_Rayman1_TPLS : Utility<Utility_Rayman1_TPLS_Control, Utilit
     public override bool RequiresAdditionalFiles => true;
     public override IEnumerable<string> GetAppliedUtilities()
     {
-        if (Services.Data.Utility_TPLSData != null)
+        if (GameInstallation.GetObject<Rayman1TplsData>(GameDataKey.R1_TplsData) != null)
             yield return Resources.R1U_TPLSHeader;
     }
 }

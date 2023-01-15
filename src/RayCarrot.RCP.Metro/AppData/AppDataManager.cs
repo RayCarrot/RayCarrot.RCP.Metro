@@ -382,13 +382,6 @@ public class AppDataManager
                     await Services.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                 }
             }
-
-            // Prompt that TPLS has been updated
-            if (Data.Utility_TPLSData != null)
-            {
-                Data.Utility_TPLSData.IsEnabled = false;
-                await MessageUI.DisplayMessageAsync(Resources.PostUpdate_TPLSUpdatePrompt);
-            }
         }
 
         if (lastVersion < new Version(13, 3, 0, 2))

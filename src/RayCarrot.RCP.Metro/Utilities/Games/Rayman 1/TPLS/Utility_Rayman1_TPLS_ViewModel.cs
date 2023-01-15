@@ -1,9 +1,11 @@
-﻿#nullable disable
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Clients.Data;
+using RayCarrot.RCP.Metro.Games.Clients.DosBox;
+using RayCarrot.RCP.Metro.Games.Clients.DosBox.Data;
+using RayCarrot.RCP.Metro.Games.Data;
 
 namespace RayCarrot.RCP.Metro;
-
-// TODO-14: This utility should only work on a single installation
 
 /// <summary>
 /// View model for the Rayman 1 TPLS utility
@@ -12,29 +14,31 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
 {
     #region Constructor
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    public Utility_Rayman1_TPLS_ViewModel()
+    public Utility_Rayman1_TPLS_ViewModel(GameInstallation gameInstallation)
     {
+        GameInstallation = gameInstallation;
+
         // Create the commands
         InstallTPLSCommand = new AsyncRelayCommand(InstallTPLSAsync);
         UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
-        EnableToggledCommand = new RelayCommand(EnableToggled);
 
-        // Check if TPLS is installed under the default location
-        if (!AppFilePaths.R1TPLSDir.DirectoryExists)
-            Data.Utility_TPLSData = null;
-        else if (Data.Utility_TPLSData == null)
-            Data.Utility_TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
+        Rayman1TplsData? data = gameInstallation.GetObject<Rayman1TplsData>(GameDataKey.R1_TplsData);
 
-        if (Data.Utility_TPLSData != null)
+        if (data != null)
         {
-            SelectedRaymanVersion = Data.Utility_TPLSData.RaymanVersion;
-            IsEnabled = Data.Utility_TPLSData.IsEnabled;
+            // Make sure it's still installed
+            if (!AppFilePaths.R1TPLSDir.DirectoryExists)
+            {
+                gameInstallation.SetObject<Rayman1TplsData>(GameDataKey.R1_TplsData, null);
+                data = null;
+            }
+            else
+            {
+                _selectedRaymanVersion = data.RaymanVersion;
+            }
         }
 
-        VerifyTPLS();
+        IsInstalled = data != null;
     }
 
     #endregion
@@ -49,42 +53,50 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
 
     public ICommand InstallTPLSCommand { get; }
     public ICommand UninstallTPLSCommand { get; }
-    public ICommand EnableToggledCommand { get; }
+
+    #endregion
+
+    #region Private Fields
+
+    private Utility_Rayman1_TPLS_RaymanVersion _selectedRaymanVersion;
 
     #endregion
 
     #region Public Properties
 
-    /// <summary>
-    /// Indicates if TPLS can be enabled
-    /// </summary>
-    public bool CanEnableTPLS { get; set; }
+    public GameInstallation GameInstallation { get; }
 
     /// <summary>
     /// The selected Rayman version
     /// </summary>
-    public Utility_Rayman1_TPLS_RaymanVersion SelectedRaymanVersion { get; set; }
+    public Utility_Rayman1_TPLS_RaymanVersion SelectedRaymanVersion
+    {
+        get => _selectedRaymanVersion;
+        set
+        {
+            _selectedRaymanVersion = value;
 
-    /// <summary>
-    /// Indicates if the utility is enabled
-    /// </summary>
-    public bool IsEnabled { get; set; }
+            updateVersion();
+
+            async void updateVersion()
+            {
+                Rayman1TplsData? data = GameInstallation.GetObject<Rayman1TplsData>(GameDataKey.R1_TplsData);
+
+                if (data == null)
+                    return;
+
+                data.RaymanVersion = value;
+                await data.UpdateConfigAsync();
+                GameInstallation.SetObject(GameDataKey.R1_TplsData, data);
+            }
+        }
+    }
+
+    public bool IsInstalled { get; set; }
 
     #endregion
 
     #region Public Methods
-
-    /// <summary>
-    /// Verifies if TPLS can be enabled
-    /// </summary>
-    public void VerifyTPLS()
-    {
-        if (Data.Utility_TPLSData == null)
-            return;
-
-        // Check if TPLS can be enabled (i.e. if the pre-9 version is still installed)
-        CanEnableTPLS = Data.Utility_TPLSData.DOSBoxFilePath.FileExists;
-    }
 
     /// <summary>
     /// Installs TPLS
@@ -101,21 +113,46 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
                 Services.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
 
             // Download the files
-            if (!await App.DownloadAsync(new Uri[]
-                {
-                    new Uri(AppURLs.R1_TPLS_Url),
-                }, true, AppFilePaths.R1TPLSDir))
+            if (!await App.DownloadAsync(new[] { new Uri(AppURLs.R1_TPLS_Url), }, true, AppFilePaths.R1TPLSDir))
             {
                 // If canceled, delete the directory
                 Services.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
                 return;
             }
 
-            // Save
-            Services.Data.Utility_TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
+            // Create the TPLS data for the game
+            Rayman1TplsData data = new(AppFilePaths.R1TPLSDir);
+            GameInstallation.SetObject(GameDataKey.R1_TplsData, data);
 
-            // Update the version
-            await Data.Utility_TPLSData.UpdateConfigAsync();
+            // Perform the initial config update
+            await data.UpdateConfigAsync();
+
+            // Create an emulator installation
+            // TODO-14: Find better way of doing this
+            GameClientDescriptor gameClientDescriptor = Services.GameClients.GetGameCientDescriptors().OfType<DosBoxGameClientDescriptor>().First();
+            GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, data.DosBoxFilePath, x =>
+            {
+                // Add the TPLS config file to the data
+                DosBoxConfigFilePaths configPaths = x.GetOrCreateObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths);
+                configPaths.FilePaths.Add(data.ConfigFilePath);
+                x.SetObject(GameClientDataKey.DosBox_ConfigFilePaths, configPaths);
+
+                // Set the game client installation id
+                data.GameClientInstallationId = x.InstallationId;
+                GameInstallation.SetObject(GameDataKey.R1_TplsData, data);
+
+                // Limit to only work on this game installation
+                RequiredGameInstallations requiredGames = new();
+                requiredGames.GameInstallationIds.Add(GameInstallation.InstallationId);
+                x.SetObject(GameClientDataKey.RCP_RequiredGameInstallations, requiredGames);
+
+                // TODO-14: Once we implement naming clients we should give this a distinct name
+            });
+
+            // Select the client for the game by default
+            await Services.GameClients.AttachGameClientAsync(GameInstallation, gameClientInstallation);
+
+            IsInstalled = true;
 
             Logger.Info("The TPLS utility has been downloaded");
         }
@@ -123,10 +160,6 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
         {
             Logger.Error(ex, "Installing TPLS");
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader);
-        }
-        finally
-        {
-            VerifyTPLS();
         }
     }
 
@@ -141,11 +174,24 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
 
         try
         {
-            Services.File.DeleteDirectory(Services.Data.Utility_TPLSData.InstallDir);
+            Rayman1TplsData? data = GameInstallation.GetObject<Rayman1TplsData>(GameDataKey.R1_TplsData);
+
+            if (data != null)
+            {
+                Services.File.DeleteDirectory(data.InstallDir);
+                GameInstallation.SetObject<Rayman1TplsData>(GameDataKey.R1_TplsData, null);
+
+                if (data.GameClientInstallationId != null)
+                    await Services.GameClients.RemoveGameClientAsync(data.GameClientInstallationId);
+            }
+            else
+            {
+                Logger.Warn("The TPLS data was null when uninstalling");
+            }
+
+            IsInstalled = false;
 
             await Services.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
-
-            Services.Data.Utility_TPLSData = null;
 
             Logger.Info("The TPLS utility has been uninstalled");
         }
@@ -154,13 +200,6 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
             Logger.Error(ex, "Uninstalling TPLS");
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
         }
-    }
-
-    public void EnableToggled()
-    {
-        Data.Utility_TPLSData.IsEnabled = IsEnabled;
-        // TODO-14: Fix
-        //Services.Messenger.Send(new ModifiedGamesMessage(LegacyGame.Rayman1.GetInstallation()));
     }
 
     #endregion

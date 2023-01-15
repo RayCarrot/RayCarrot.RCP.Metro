@@ -74,11 +74,17 @@ public class GameClientsManager
 
     #region Game Client Installation Methods
 
-    public async Task<GameClientInstallation> AddGameClientAsync(GameClientDescriptor descriptor, FileSystemPath installLocation)
+    public async Task<GameClientInstallation> AddGameClientAsync(
+        GameClientDescriptor descriptor, 
+        FileSystemPath installLocation, 
+        Action<GameClientInstallation>? configureInstallation = null)
     {
         GameClientInstallation installation = new(descriptor, installLocation);
 
         Data.Game_GameClientInstallations.AddSorted(installation);
+
+        // Configure
+        configureInstallation?.Invoke(installation);
 
         Messenger.Send(new AddedGameClientsMessage(installation));
         
@@ -120,6 +126,16 @@ public class GameClientsManager
         }
 
         Messenger.Send(new RemovedGameClientsMessage(gameClientInstallation));
+    }
+
+    public Task RemoveGameClientAsync(string installationId)
+    {
+        GameClientInstallation? gameClientInstallation = GetInstalledGameClient(installationId);
+
+        if (gameClientInstallation == null)
+            return Task.CompletedTask;
+
+        return RemoveGameClientAsync(gameClientInstallation);
     }
 
     /// <summary>
@@ -225,6 +241,12 @@ public class GameClientsManager
 
         // Get the previous client installation and invoke it being detached
         GameClientInstallation? prevClient = GetAttachedGameClient(gameInstallation);
+        
+        // If the previous one is the same as what we're trying to attach then we return
+        if (gameClientInstallation == prevClient)
+            return;
+
+        // Invoke the previous one being detached
         if (prevClient != null)
             await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
 

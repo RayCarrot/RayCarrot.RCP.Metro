@@ -1,11 +1,11 @@
 ﻿using System.IO;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Games.Data;
 
 /// <summary>
 /// TPLS data for the Rayman 1 utility
 /// </summary>
-public class UserData_TPLSData
+public class Rayman1TplsData
 {
     #region Constructor
 
@@ -13,7 +13,7 @@ public class UserData_TPLSData
     /// Default constructor
     /// </summary>
     /// <param name="installDir">The directory it is installed under</param>
-    public UserData_TPLSData(FileSystemPath installDir)
+    public Rayman1TplsData(FileSystemPath installDir)
     {
         InstallDir = installDir;
     }
@@ -34,24 +34,24 @@ public class UserData_TPLSData
     public FileSystemPath InstallDir { get; }
 
     /// <summary>
+    /// The id for the game client installation added for the TPLS DOSBox version
+    /// </summary>
+    public string? GameClientInstallationId { get; set; }
+
+    /// <summary>
     /// The selected Rayman version to search for
     /// </summary>
     public Utility_Rayman1_TPLS_RaymanVersion RaymanVersion { get; set; }
 
     /// <summary>
-    /// Indicates if the utility is enabled
-    /// </summary>
-    public bool IsEnabled { get; set; }
-
-    /// <summary>
-    /// The DOSBox TPLS config file path
+    /// Gets the DOSBox TPLS config file path
     /// </summary>
     public FileSystemPath ConfigFilePath => InstallDir + "TPLS.conf";
 
     /// <summary>
-    /// The DOSBox exe file path
+    /// Gets the DOSBox exe file path
     /// </summary>
-    public FileSystemPath DOSBoxFilePath => InstallDir + "dosbox.exe";
+    public FileSystemPath DosBoxFilePath => InstallDir + "dosbox.exe";
 
     #endregion
 
@@ -79,7 +79,7 @@ public class UserData_TPLSData
 
         try
         {
-            lock (this)
+            lock (this) // TODO: Doing lock on 'this' is not a good idea - change this
             {
                 File.WriteAllLines(ConfigFilePath, new[]
                 {

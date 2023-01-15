@@ -23,14 +23,6 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
     public override GameIconAsset Icon => GameIconAsset.Rayman1;
     public override GameBannerAsset Banner => GameBannerAsset.Rayman1;
 
-    // TODO-14: Fix this. Perhaps have TPLS add an EmulatorInstallation? Somehow it has to override it anyway.
-    //public override FileSystemPath DOSBoxFilePath => Services.Data.Utility_TPLSData?.IsEnabled != true 
-    //    ? base.DOSBoxFilePath 
-    //    : Services.Data.Utility_TPLSData.DOSBoxFilePath;
-    //public override IEnumerable<FileSystemPath> AdditionalConfigFiles => Services.Data.Utility_TPLSData?.IsEnabled != true 
-    //    ? base.AdditionalConfigFiles 
-    //    : new[] { Services.Data.Utility_TPLSData.ConfigFilePath };
-
     #endregion
 
     #region Protected Methods
