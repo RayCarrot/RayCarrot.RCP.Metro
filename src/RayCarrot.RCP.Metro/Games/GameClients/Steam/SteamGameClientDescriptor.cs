@@ -52,8 +52,8 @@ public class SteamGameClientDescriptor : GameClientDescriptor
         builder.Register(new ExternalGameLinksComponent(GetExternalUriLinks));
     }
 
-    public override bool SupportsGame(GameInstallation gameInstallation) =>
-        gameInstallation.HasComponent<SteamGameClientComponent>();
+    public override bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) =>
+        base.SupportsGame(gameInstallation, gameClientInstallation) && gameInstallation.HasComponent<SteamGameClientComponent>();
 
     #endregion
 }

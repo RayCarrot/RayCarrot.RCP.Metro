@@ -70,9 +70,6 @@ public class GameClientsManager
         return descriptor;
     }
 
-    public bool SupportsGameClient(GameInstallation gameInstallation) => 
-        SortedGameClientDescriptors.Any(x => x.SupportsGame(gameInstallation));
-
     #endregion
 
     #region Game Client Installation Methods
@@ -89,7 +86,7 @@ public class GameClientsManager
         foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             if (gameInstallation.GameDescriptor.DefaultToUseGameClient &&
-                descriptor.SupportsGame(gameInstallation) &&
+                descriptor.SupportsGame(gameInstallation, installation) &&
                 GetAttachedGameClient(gameInstallation) == null)
             {
                 await AttachGameClientAsync(gameInstallation, installation);
@@ -205,7 +202,7 @@ public class GameClientsManager
     {
         // Get the first available game client
         GameClientInstallation? gameClientInstallation = GetInstalledGameClients().
-            FirstOrDefault(x => x.GameClientDescriptor.SupportsGame(gameInstallation));
+            FirstOrDefault(x => x.GameClientDescriptor.SupportsGame(gameInstallation, x));
 
         if (gameClientInstallation == null)
             return false;

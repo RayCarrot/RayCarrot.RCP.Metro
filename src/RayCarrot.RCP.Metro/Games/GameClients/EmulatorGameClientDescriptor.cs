@@ -7,6 +7,7 @@ public abstract class EmulatorGameClientDescriptor : GameClientDescriptor
     /// </summary>
     public abstract GamePlatform[] SupportedPlatforms { get; }
 
-    public override bool SupportsGame(GameInstallation gameInstallation) =>
+    public override bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) =>
+        base.SupportsGame(gameInstallation, gameClientInstallation) && 
         SupportedPlatforms.Contains(gameInstallation.GameDescriptor.Platform);
 }

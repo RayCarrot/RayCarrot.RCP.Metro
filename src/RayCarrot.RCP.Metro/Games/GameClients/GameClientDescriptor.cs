@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Clients.DosBox.Data;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Clients;
 
@@ -24,7 +25,15 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
         builder.Register<OnGameRemovedComponent, DeselectClientOnGameRemovedComponent>();
     }
 
-    public abstract bool SupportsGame(GameInstallation gameInstallation);
+    public virtual bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
+    {
+        RequiredGameInstallations? requiredGames = gameClientInstallation.GetObject<RequiredGameInstallations>(GameClientDataKey.RCP_RequiredGameInstallations);
+
+        if (requiredGames != null && !requiredGames.GameInstallationIds.Contains(gameInstallation.InstallationId))
+            return false;
+
+        return true;
+    }
 
     public virtual GameClientOptionsViewModel? GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) => null;
 

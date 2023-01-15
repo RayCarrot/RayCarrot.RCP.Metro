@@ -63,7 +63,7 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
         SetSelectedGameClient(null);
 
         var gameClients = Services.GameClients.GetInstalledGameClients().
-            Where(x => x.GameClientDescriptor.SupportsGame(GameInstallation)).
+            Where(x => x.GameClientDescriptor.SupportsGame(GameInstallation, x)).
             Select(x => new GameClientViewModel(x));
         GameClients = new ObservableCollection<GameClientViewModel>(gameClients);
         GameClients.Insert(0, new GameClientViewModel(null));
@@ -84,13 +84,13 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
     public void Receive(AddedGameClientsMessage message)
     {
         // Refresh if any added game clients support this game
-        if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation)))
+        if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation, x)))
             Load();
     }
     public void Receive(RemovedGameClientsMessage message)
     {
         // Refresh if any removed game clients support this game
-        if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation)))
+        if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation, x)))
             Load();
     }
 
