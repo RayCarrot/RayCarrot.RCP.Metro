@@ -8,19 +8,19 @@ public abstract class ProgramInstallation
 {
     #region Constructors
 
-    protected ProgramInstallation(FileSystemPath installLocation, string installationId, Dictionary<string, object>? additionalData)
+    protected ProgramInstallation(FileSystemPath installLocation, string installationId, Dictionary<string, object>? data)
     {
         InstallLocation = installLocation;
         InstallationId = installationId ?? throw new ArgumentNullException(nameof(installationId));
-        _additionalData = additionalData ?? new Dictionary<string, object>();
+        _data = data ?? new Dictionary<string, object>();
     }
 
     #endregion
 
     #region Private Fields
 
-    [JsonProperty(PropertyName = "AdditionalData")]
-    private readonly Dictionary<string, object> _additionalData;
+    [JsonProperty(PropertyName = "Data")]
+    private readonly Dictionary<string, object> _data;
     private readonly Dictionary<string, object> _dataCache = new();
 
     #endregion
@@ -41,8 +41,6 @@ public abstract class ProgramInstallation
     /// </summary>
     [JsonProperty(PropertyName = "InstallationId")]
     public string InstallationId { get; }
-
-    // TODO-14: Add user-defined name
 
     #endregion
 
@@ -67,7 +65,7 @@ public abstract class ProgramInstallation
         if (_dataCache.TryGetValue(key, out object obj))
             return (T)obj;
 
-        if (!_additionalData.TryGetValue(key, out obj))
+        if (!_data.TryGetValue(key, out obj))
             return null;
 
         if (obj is not JObject jObj)
@@ -89,7 +87,7 @@ public abstract class ProgramInstallation
         if (_dataCache.TryGetValue(key, out object obj))
             return (T)obj;
 
-        if (!_additionalData.TryGetValue(key, out obj) ||
+        if (!_data.TryGetValue(key, out obj) ||
             obj is not JObject jObj)
         {
             T newObj = new();
@@ -115,7 +113,7 @@ public abstract class ProgramInstallation
 
     public T? GetValue<T>(string key, T? defaultValue)
     {
-        if (!_additionalData.TryGetValue(key, out object obj))
+        if (!_data.TryGetValue(key, out object obj))
             return defaultValue;
 
         if (obj is T value)
@@ -134,12 +132,12 @@ public abstract class ProgramInstallation
     {
         if (obj is null)
         {
-            _additionalData.Remove(key);
+            _data.Remove(key);
             _dataCache.Remove(key);
         }
         else
         {
-            _additionalData[key] = JObject.FromObject(obj);
+            _data[key] = JObject.FromObject(obj);
             _dataCache[key] = obj;
         }
     }
@@ -147,9 +145,9 @@ public abstract class ProgramInstallation
     public void SetValue<T>(string key, T obj)
     {
         if (obj is null)
-            _additionalData.Remove(key);
+            _data.Remove(key);
         else
-            _additionalData[key] = obj;
+            _data[key] = obj;
     }
 
     #endregion

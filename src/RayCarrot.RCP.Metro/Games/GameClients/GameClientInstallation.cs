@@ -16,8 +16,8 @@ public class GameClientInstallation : ProgramInstallation, IComparable<GameClien
         GameClientDescriptor gameClientDescriptor,
         FileSystemPath installLocation, 
         string installationId,
-        Dictionary<string, object>? additionalData) 
-        : base(installLocation, installationId, additionalData)
+        Dictionary<string, object>? data) 
+        : base(installLocation, installationId, data)
     {
         GameClientDescriptor = gameClientDescriptor;
     }
