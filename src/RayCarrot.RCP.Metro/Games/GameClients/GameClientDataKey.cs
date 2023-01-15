@@ -3,5 +3,5 @@
 public static class GameClientDataKey
 {
     // DOSBox
-    public const string DosBox_ConfigFilePath = "DosBox_ConfigFilePath";
+    public const string DosBox_ConfigFilePaths = "DosBox_ConfigFilePaths";
 }

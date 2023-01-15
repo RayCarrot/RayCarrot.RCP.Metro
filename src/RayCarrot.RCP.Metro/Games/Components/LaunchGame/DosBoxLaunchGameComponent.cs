@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
 using RayCarrot.RCP.Metro.Games.Clients;
+using RayCarrot.RCP.Metro.Games.Clients.Data;
 using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -61,19 +62,23 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
         string launchName = gameArgs == null ? exeFileName : $"{exeFileName} {gameArgs}";
 
         FileSystemPath mountPath = GameInstallation.GetValue<FileSystemPath>(GameDataKey.Client_DosBox_MountPath);
+
+        List<FileSystemPath> configFilePaths = new();
+
+        // Get config files from the data
+        var dataPaths = gameClientInstallation.GetObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths);
+        if (dataPaths != null)
+            configFilePaths.AddRange(dataPaths.FilePaths);
+
+        // Get config files from the components
+        configFilePaths.AddRange(GameInstallation.GetComponents<DosBoxConfigFileComponent>().CreateObjects());
+
         return GetDOSBoxLaunchArgs(
             mountPath: mountPath,
             requiresMounting: GameInstallation.HasComponent<MsDosGameRequiresDiscComponent>(),
             launchName: launchName,
             installDir: GameInstallation.InstallLocation,
-            dosBoxConfigFiles: new[]
-            {
-                // Add the primary config file
-                gameClientInstallation.GetValue<FileSystemPath>(GameClientDataKey.DosBox_ConfigFilePath),
-
-                // Add the RCP config file
-                GameClientDescriptor.GetGameConfigFile(GameInstallation)
-            });
+            dosBoxConfigFiles: configFilePaths);
     }
 
     private static string GetDOSBoxLaunchArgs(

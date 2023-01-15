@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:dosBox="clr-namespace:RayCarrot.RCP.Metro.Games.Clients.DosBox"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
              d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
@@ -12,17 +13,47 @@
              mc:Ignorable="d"
              d:DesignWidth="800"
              d:DataContext="{d:DesignInstance dosBox:DosBoxGameClientOptionsViewModel}">
+    <!-- TODO-UPDATE: Localize -->
     <StackPanel>
-        <!-- TODO-UPDATE: Change loc string to not say DOSBox? -->
         <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
-                   Text="{Resx Settings_OptionalDosBoxConfigPath}"
+                   Text="Configuration file paths"
                    Margin="0 0 0 4" />
 
-        <!-- TODO-14: Restyle this to match new ui -->
-        <rcp:BrowseBox FileFilter="Conf (*.conf)|*.conf"
-                         SelectedPath="{Binding Path=ConfigFilePath}"
-                         ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
-                         BrowseType="File"
-                         PathValidation="FileExists" />
+        <!-- TODO-14: Apply changes on reorder -->
+        <ListBox x:Name="ConfigFilesListBox"
+                 Margin="0 0 4 0"
+                 ItemsSource="{Binding Path=ConfigFiles, Mode=OneTime}"
+                 d:ItemsSource="{d:SampleData ItemCount=3}"
+                 SelectionMode="Extended"
+                 ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
+                 Background="Transparent"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 dd:DragDrop.IsDragSource="True"
+                 dd:DragDrop.IsDropTarget="True">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="4"
+                               Text="{Binding}" 
+                               TextWrapping="Wrap" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal">
+
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                    rcp:IconAssist.IconKind="PlusBoxOutline"
+                    Command="{Binding Path=AddConfigFileCommand, Mode=OneTime}"
+                    ToolTip="Add file"
+                    Margin="0 0 4 0" />
+
+            <Button Style="{StaticResource RCP.Styles.Button.Flat}"
+                    rcp:IconAssist.IconKind="DeleteOutline"
+                    ToolTip="Remove selected files"
+                    IsEnabled="{Binding Path=SelectedItem, ElementName=ConfigFilesListBox, Converter={rcp:IsNotNullConverter}}"
+                    Click="DeleteButton_OnClick"/>
+
+        </StackPanel>
+
     </StackPanel>
 </UserControl>

@@ -13,12 +13,10 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigPageViewModel
     public DosBoxGameConfigViewModel(
         GameInstallation gameInstallation, 
         GameClientInstallation gameClientInstallation,
-        MsDosGameDescriptor gameDescriptor,
-        DosBoxGameClientDescriptor gameClientDescriptor) : base(gameClientInstallation)
+        FileSystemPath configFilePath) : base(gameClientInstallation)
     {
         GameInstallation = gameInstallation;
-        GameDescriptor = gameDescriptor;
-        GameClientDescriptor = gameClientDescriptor;
+        ConfigFilePath = configFilePath;
 
         // Set up the available resolution values
         AvailableFullscreenResolutionValues = new ObservableCollection<string>();
@@ -144,15 +142,7 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigPageViewModel
     /// </summary>
     public GameInstallation GameInstallation { get; }
 
-    /// <summary>
-    /// The game descriptor
-    /// </summary>
-    public MsDosGameDescriptor GameDescriptor { get; }
-
-    /// <summary>
-    /// The DOSBox game client descriptor
-    /// </summary>
-    public DosBoxGameClientDescriptor GameClientDescriptor { get; }
+    public FileSystemPath ConfigFilePath { get; }
 
     public bool RequiredDisc => GameInstallation.HasComponent<MsDosGameRequiresDiscComponent>();
 
@@ -370,7 +360,7 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigPageViewModel
         MountPath = GameInstallation.GetValue<FileSystemPath>(GameDataKey.Client_DosBox_MountPath);
 
         // Get the config manager
-        var configManager = new AutoConfigManager(GameClientDescriptor.GetGameConfigFile(GameInstallation));
+        var configManager = new AutoConfigManager(ConfigFilePath);
 
         // Create the file
         configManager.Create(GameInstallation);
@@ -418,7 +408,7 @@ public class DosBoxGameConfigViewModel : GameClientGameConfigPageViewModel
             Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
 
             // Get the config manager
-            var configManager = new AutoConfigManager(GameClientDescriptor.GetGameConfigFile(GameInstallation));
+            var configManager = new AutoConfigManager(ConfigFilePath);
 
             // Create config data
             var configData = new AutoConfigData();

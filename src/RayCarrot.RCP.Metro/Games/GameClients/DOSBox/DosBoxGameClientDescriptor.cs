@@ -16,9 +16,12 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
 
     #region Private Methods
 
-    private static MsDosGameDescriptor GetMsdosGameDescriptor(GameInstallation gameInstallation) =>
-        gameInstallation.GameDescriptor as MsDosGameDescriptor 
-        ?? throw new InvalidOperationException($"The {nameof(DosBoxGameClientDescriptor)} can only be used with {nameof(MsDosGameDescriptor)}");
+    /// <summary>
+    /// Gets the DOSBox configuration file path for the auto config file
+    /// </summary>
+    /// <returns>The file path</returns>
+    private static FileSystemPath GetGameConfigFile(GameInstallation gameInstallation) =>
+        AppFilePaths.UserDataBaseDir + "Clients" + "DOSBox" + (gameInstallation.InstallationId + ".ini");
 
     #endregion
 
@@ -29,20 +32,23 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
         base.RegisterComponents(builder);
 
         builder.Register<LaunchGameComponent>(new DosBoxLaunchGameComponent(this));
+        
+        // Add the RCP config file
+        builder.Register(new DosBoxConfigFileComponent(GetGameConfigFile));
 
         // Client config page
         builder.Register(new GameOptionsDialogPageComponent(
             objFactory: x => new DosBoxGameConfigViewModel(
                 gameInstallation: x, 
                 gameClientInstallation: Services.GameClients.GetRequiredAttachedGameClient(x), 
-                gameDescriptor: GetMsdosGameDescriptor(x), 
-                gameClientDescriptor: this),
+                configFilePath: GetGameConfigFile(x)),
             isAvailableFunc: _ => true));
     }
 
     public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>
         new DosBoxGameClientOptionsViewModel(gameClientInstallation, this);
 
+    // TODO-14: Have attach and detach be components
     public override Task OnGameClientAttachedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
     {
         // Create config file
@@ -50,13 +56,6 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
 
         return Task.CompletedTask;
     }
-
-    /// <summary>
-    /// Gets the DosBox configuration file path for the auto config file
-    /// </summary>
-    /// <returns>The file path</returns>
-    public FileSystemPath GetGameConfigFile(GameInstallation gameInstallation) =>
-        AppFilePaths.UserDataBaseDir + "Clients" + "DOSBox" + (gameInstallation.InstallationId + ".ini");
 
     #endregion
 }
