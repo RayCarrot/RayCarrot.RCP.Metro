@@ -206,7 +206,7 @@ public class GameClientsManager
         gameInstallation.RebuildComponents();
 
         // Refresh the game
-        Messenger.Send(new ModifiedGamesMessage(gameInstallation));
+        Messenger.Send(new ModifiedGamesMessage(gameInstallation, rebuiltComponents: true));
     }
 
     /// <summary>
@@ -260,7 +260,7 @@ public class GameClientsManager
         await gameClientInstallation.GameClientDescriptor.OnGameClientAttachedAsync(gameInstallation, gameClientInstallation);
 
         // Refresh the game
-        Messenger.Send(new ModifiedGamesMessage(gameInstallation));
+        Messenger.Send(new ModifiedGamesMessage(gameInstallation, rebuiltComponents: true));
     }
 
     #endregion

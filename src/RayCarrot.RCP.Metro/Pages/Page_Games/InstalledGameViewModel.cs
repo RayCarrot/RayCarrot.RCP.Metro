@@ -228,13 +228,16 @@ public class InstalledGameViewModel : BaseViewModel
             })));
     }
 
-    private Task ReloadAsync()
+    private Task ReloadAsync(bool loadOptions)
     {
         // TODO-14: Async lock
 
         // Load options
-        var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
-        GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
+        if (loadOptions)
+        {
+            var options = GameInstallation.GetComponents<GameOptionsComponent>().CreateObjects();
+            GameOptions = new ObservableCollection<GameOptionsViewModel>(options);
+        }
 
         // Load info
         GameInfoItems = new ObservableCollection<DuoGridItemViewModel>(GameInstallation.GetComponents<GameInfoComponent>().CreateManyObjects());
@@ -258,10 +261,10 @@ public class InstalledGameViewModel : BaseViewModel
 
         _loaded = true;
 
-        return ReloadAsync();
+        return ReloadAsync(true);
     }
 
-    public Task RefreshAsync()
+    public Task RefreshAsync(bool rebuiltComponents)
     {
         // Always update the display name
         DisplayName = GameInstallation.GetDisplayName();
@@ -269,7 +272,8 @@ public class InstalledGameViewModel : BaseViewModel
         if (!_loaded)
             return Task.CompletedTask;
 
-        return ReloadAsync();
+        // Only reload options if the components were rebuilt
+        return ReloadAsync(loadOptions: rebuiltComponents);
     }
 
     public async Task LaunchAsync()

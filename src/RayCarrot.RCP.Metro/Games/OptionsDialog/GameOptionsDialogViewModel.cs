@@ -22,6 +22,7 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         PageLoadLock = new AsyncLock();
 
         Refresh();
+        CreatePages();
 
         Services.Messenger.RegisterAll(this);
     }
@@ -59,11 +60,14 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
     #region Private Methods
 
     [MemberNotNull(nameof(DisplayName))]
-    [MemberNotNull(nameof(Pages))]
     private void Refresh()
     {
         DisplayName = GameInstallation.GetDisplayName();
+    }
 
+    [MemberNotNull(nameof(Pages))]
+    private void CreatePages()
+    {
         // Attempt to keep the selection
         int selectedIndex = -1;
         if (Pages != null && SelectedPage != null)
@@ -112,7 +116,15 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         }
     }
 
-    public void Receive(ModifiedGamesMessage message) => Refresh();
+    public void Receive(ModifiedGamesMessage message)
+    {
+        Refresh();
+
+        // If the components were rebuilt we have to re-create the
+        // pages too since they might have changed
+        if (message.RebuiltComponents)
+            CreatePages();
+    }
 
     /// <summary>
     /// Disposes the view model

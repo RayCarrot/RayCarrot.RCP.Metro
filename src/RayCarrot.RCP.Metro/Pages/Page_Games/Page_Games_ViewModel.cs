@@ -192,7 +192,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
         }
     }
 
-    public async Task RefreshInstallations(IList<GameInstallation> gameInstallations)
+    public async Task RefreshInstallations(IList<GameInstallation> gameInstallations, bool rebuiltComponents)
     {
         using (await AsyncLock.LockAsync())
         {
@@ -204,7 +204,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
                     {
                         if (gameInstallations.Contains(installedGame.GameInstallation))
                         {
-                            await installedGame.RefreshAsync();
+                            await installedGame.RefreshAsync(rebuiltComponents);
                         }
                     }
                 }
@@ -305,7 +305,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
     public async void Receive(RemovedGamesMessage message) =>
         await RefreshAsync(SelectedInstalledGame?.GameInstallation);
     public async void Receive(ModifiedGamesMessage message) =>
-        await RefreshInstallations(message.GameInstallations);
+        await RefreshInstallations(message.GameInstallations, message.RebuiltComponents);
 
     #endregion
 }
