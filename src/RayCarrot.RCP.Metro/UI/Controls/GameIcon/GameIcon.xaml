@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
 
     <Style TargetType="{x:Type local:GameIcon}">
         <Setter Property="Focusable" Value="False" />
@@ -8,89 +9,22 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:GameIcon}">
-                    <Grid>
-                        <Grid.Resources>
-                            <Style TargetType="{x:Type Image}">
+                    <mah:ClipBorder CornerRadius="{TemplateBinding CornerRadius}"
+                                    Width="{TemplateBinding IconWidth}"
+                                    Height="{TemplateBinding IconHeight}">
+                        <Grid>
+                            <!-- Game icon -->
+                            <Image Source="{TemplateBinding Source}"
+                                   Width="{TemplateBinding IconWidth}"
+                                   Height="{TemplateBinding IconHeight}" />
 
-                                <!-- Default size (128) -->
-                                <Setter Property="Width" Value="128" />
-                                <Setter Property="Height" Value="128" />
-                                <Setter Property="FlowDirection" Value="LeftToRight" />
-                                <Setter Property="Clip">
-                                    <Setter.Value>
-                                        <RectangleGeometry RadiusX="16"
-                                                           RadiusY="16"
-                                                           Rect="0 0 128 128" />
-                                    </Setter.Value>
-                                </Setter>
-
-                                <Style.Triggers>
-                                    <!-- Large size (96) -->
-                                    <DataTrigger Binding="{Binding Path=IconSize, RelativeSource={RelativeSource TemplatedParent}}" 
-                                                 Value="Large">
-                                        <Setter Property="Width" Value="96" />
-                                        <Setter Property="Height" Value="96" />
-                                        <Setter Property="Clip">
-                                            <Setter.Value>
-                                                <RectangleGeometry RadiusX="12"
-                                                                   RadiusY="12"
-                                                                   Rect="0 0 96 96" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-
-                                    <!-- Medium size (64) -->
-                                    <DataTrigger Binding="{Binding Path=IconSize, RelativeSource={RelativeSource TemplatedParent}}" 
-                                                 Value="Medium">
-                                        <Setter Property="Width" Value="64" />
-                                        <Setter Property="Height" Value="64" />
-                                        <Setter Property="Clip">
-                                            <Setter.Value>
-                                                <RectangleGeometry RadiusX="8"
-                                                                   RadiusY="8"
-                                                                   Rect="0 0 64 64" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-
-                                    <!-- Small size (48) -->
-                                    <DataTrigger Binding="{Binding Path=IconSize, RelativeSource={RelativeSource TemplatedParent}}" 
-                                                 Value="Small">
-                                        <Setter Property="Width" Value="48" />
-                                        <Setter Property="Height" Value="48" />
-                                        <Setter Property="Clip">
-                                            <Setter.Value>
-                                                <RectangleGeometry RadiusX="6"
-                                                                   RadiusY="6"
-                                                                   Rect="0 0 48 48" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-
-                                    <!-- Smallest size (32) -->
-                                    <DataTrigger Binding="{Binding Path=IconSize, RelativeSource={RelativeSource TemplatedParent}}" 
-                                                 Value="Smallest">
-                                        <Setter Property="Width" Value="32" />
-                                        <Setter Property="Height" Value="32" />
-                                        <Setter Property="Clip">
-                                            <Setter.Value>
-                                                <RectangleGeometry RadiusX="4"
-                                                                   RadiusY="4"
-                                                                   Rect="0 0 32 32" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Grid.Resources>
-
-                        <!-- Game Icon -->
-                        <Image Source="{TemplateBinding Source}" />
-
-                        <!-- Demo Icon -->
-                        <Image Visibility="{TemplateBinding IsDemo, Converter={local:BooleanToVisibilityConverter}}"
-                               Source="{local:AssetImageSource Asset={x:Static local:GameIconAsset.DemoOverlay}}" />
-                    </Grid>
+                            <!-- Demo overlay -->
+                            <Image Visibility="{TemplateBinding IsDemo, Converter={local:BooleanToVisibilityConverter}}"
+                                   Source="{local:AssetImageSource Asset={x:Static local:GameIconAsset.DemoOverlay}}"
+                                   Width="{TemplateBinding IconWidth}"
+                                   Height="{TemplateBinding IconHeight}" />
+                        </Grid>
+                    </mah:ClipBorder>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
