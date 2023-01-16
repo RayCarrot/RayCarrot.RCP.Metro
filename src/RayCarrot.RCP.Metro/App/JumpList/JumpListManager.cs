@@ -74,7 +74,8 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
         
         if (component == null)
         {
-            // TODO-14: Log here (and many other places too...)
+            Logger.Info("The game {0} was not added to the jump list due to it not having a launch component", 
+                gameInstallation.FullId);
             return;
         }
 
@@ -83,6 +84,8 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
 
         foreach (string itemId in component.GetJumpListItems().Select(x => x.Id))
             Data.App_JumpListItems.AddSorted(new JumpListItem(gameInstallation.InstallationId, itemId), comparer);
+
+        Logger.Info("Added {0} to the jump list", gameInstallation.FullId);
 
         if (count != Data.App_JumpListItems.Count)
             Refresh();
@@ -94,6 +97,8 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
 
         Data.App_JumpListItems.RemoveWhere(x => x.GameInstallationId == gameInstallation.InstallationId);
 
+        Logger.Info("Removed {0} from the jump list", gameInstallation.FullId);
+
         if (count != Data.App_JumpListItems.Count)
             Refresh();
     }
@@ -101,6 +106,9 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
     public void SetItems(IEnumerable<JumpListItem> items)
     {
         Data.App_JumpListItems = items.ToList();
+
+        Logger.Info("Set the jump list items");
+
         Refresh();
     }
 

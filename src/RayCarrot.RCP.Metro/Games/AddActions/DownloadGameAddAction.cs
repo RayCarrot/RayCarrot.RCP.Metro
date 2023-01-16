@@ -26,7 +26,7 @@ public class DownloadGameAddAction : GameAddAction
 
     public override async Task<GameInstallation?> AddGameAsync()
     {
-        Logger.Trace("The game {0} is being downloaded...", GameDescriptor.GameId);
+        Logger.Trace("Adding the game {0} through downloading", GameDescriptor.GameId);
 
         // Get the game directory. Since it can only be downloaded once we use the game id.
         FileSystemPath gameDir = AppFilePaths.GamesBaseDir + GameDescriptor.GameId;

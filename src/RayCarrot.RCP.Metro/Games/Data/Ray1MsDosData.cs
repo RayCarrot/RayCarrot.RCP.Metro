@@ -15,6 +15,8 @@ public class Ray1MsDosData
         SelectedVersion = selectedVersion;
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     /// <summary>
     /// The available version for the game. This gets set once when the game is added.
     /// </summary>
@@ -32,6 +34,8 @@ public class Ray1MsDosData
     /// <returns>The data instance</returns>
     public static Ray1MsDosData Create(GameInstallation gameInstallation)
     {
+        Logger.Trace("Finding Ray1 MS-DOS versions");
+
         // Read the VERSION file to get the versions supported by this release. Then keep
         // the ones which are actually available.
         using RCPContext context = new(gameInstallation.InstallLocation);
@@ -49,7 +53,14 @@ public class Ray1MsDosData
 
             // Not all releases contain all supported versions
             if (versionDir.DirectoryExists)
+            {
                 availableVersions.Add(new Version(versionFile.VersionCodes[i], versionFile.VersionModes[i]));
+                Logger.Trace("Found the version {0} ({1})", versionFile.VersionModes[i], versionFile.VersionCodes[i]);
+            }
+            else
+            {
+                Logger.Trace("Could not find the version {0} ({1})", versionFile.VersionModes[i], versionFile.VersionCodes[i]);
+            }
         }
 
         // Make sure at least one version was found. The game requires at least one
@@ -60,6 +71,8 @@ public class Ray1MsDosData
         // Default to English if available, otherwise use the first version
         string selectedVersion = availableVersions.Find(x => x.Id.Equals("USA", StringComparison.OrdinalIgnoreCase))?.Id ?? 
                                  availableVersions.First().Id;
+
+        Logger.Trace("Set the default version to {0}", selectedVersion);
 
         return new Ray1MsDosData(availableVersions.ToArray(), selectedVersion);
     }

@@ -20,6 +20,8 @@ public class LocateGameAddAction : GameAddAction
     
     public override async Task<GameInstallation?> AddGameAsync()
     {
+        Logger.Trace("Adding the game {0} through locating", GameDescriptor.GameId);
+
         // Have user browse for directory
         DirectoryBrowserResult result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
         {

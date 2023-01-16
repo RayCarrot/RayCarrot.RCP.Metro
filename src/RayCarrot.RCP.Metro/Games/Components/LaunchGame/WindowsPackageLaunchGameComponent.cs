@@ -23,13 +23,20 @@ public class WindowsPackageLaunchGameComponent : LaunchGameComponent
 
             if (package == null)
             {
-                // TODO-14: Handle? Only log?
+                Logger.Warn("The game {0} could not launch due to the package not being found", GameInstallation.FullId);
                 return false;
             }
 
             // Launch the first app entry for the package
             AppListEntry mainEntry = (await package.GetAppListEntriesAsync()).First();
-            return await mainEntry.LaunchAsync();
+            bool success = await mainEntry.LaunchAsync();
+
+            if (success)
+                Logger.Info("The game {0} has been launched", GameInstallation.FullId);
+            else
+                Logger.Warn("The game {0} failed to launch", GameInstallation.FullId);
+            
+            return success;
         }
         catch (Exception ex)
         {

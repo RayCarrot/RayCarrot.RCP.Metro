@@ -9,7 +9,11 @@ public class Ray1MsDosAdditionalLaunchActionsComponent : AdditionalLaunchActions
     private static IEnumerable<ActionItemViewModel> GetAdditionalLaunchActions(GameInstallation gameInstallation)
     {
         // Add a lunch action for each version
-        Ray1MsDosData data = gameInstallation.GetRequiredObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+        Ray1MsDosData? data = gameInstallation.GetObject<Ray1MsDosData>(GameDataKey.Ray1_MsDosData);
+
+        if (data == null)
+            return Enumerable.Empty<ActionItemViewModel>();
+
         Ray1MsDosData.Version[] versions = data.AvailableVersions;
 
         // Only show additional launch actions for the game if we have more than one version
