@@ -2,7 +2,9 @@
 
 namespace RayCarrot.RCP.Metro;
 
-public class GameClientsSetupViewModel : BaseViewModel, IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>
+public class GameClientsSetupViewModel : BaseViewModel, 
+    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, 
+    IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
 {
     public GameClientsSetupViewModel()
     {
@@ -20,10 +22,14 @@ public class GameClientsSetupViewModel : BaseViewModel, IRecipient<AddedGameClie
 
     public InstalledGameClientViewModel? SelectedGameClient { get; set; }
 
+    private void RefreshSupportedGames()
+    {
+        foreach (InstalledGameClientViewModel gameClient in InstalledGameClients)
+            gameClient.RefreshSupportedGames();
+    }
+
     public void Refresh(GameClientInstallation? selectedGameClientInstallation = null)
     {
-        // TODO: Lock
-
         InstalledGameClients.Clear();
 
         foreach (GameClientInstallation gameClientInstallation in Services.GameClients.GetInstalledGameClients())
@@ -33,7 +39,6 @@ public class GameClientsSetupViewModel : BaseViewModel, IRecipient<AddedGameClie
 
             if (selectedGameClientInstallation == gameClientInstallation)
                 SelectedGameClient = viewModel;
-
         }
     }
 
@@ -41,4 +46,9 @@ public class GameClientsSetupViewModel : BaseViewModel, IRecipient<AddedGameClie
         Refresh(message.GameClientInstallations.FirstOrDefault());
     public void Receive(RemovedGameClientsMessage message) => 
         Refresh(SelectedGameClient?.GameClientInstallation);
+
+    public void Receive(AddedGamesMessage message) =>
+        RefreshSupportedGames();
+    public void Receive(RemovedGamesMessage message) =>
+        RefreshSupportedGames();
 }

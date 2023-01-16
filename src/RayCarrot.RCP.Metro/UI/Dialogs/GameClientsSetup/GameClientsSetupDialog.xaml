@@ -227,13 +227,32 @@
                                Visibility="{Binding Path=OptionsViewModel, Converter={local:InvertedObjectNullToVisibilityConverter}}"
                                Margin="0 0 0 8" />
 
-                    <ContentPresenter Content="{Binding Path=OptionsViewModel, Mode=OneTime}">
+                    <ContentPresenter Content="{Binding Path=OptionsViewModel, Mode=OneTime}"
+                                      Margin="0 0 0 8">
                         <ContentPresenter.Resources>
                             <DataTemplate DataType="{x:Type dosBox:DosBoxGameClientOptionsViewModel}">
                                 <dosBox:DosBoxGameClientOptionsControl />
                             </DataTemplate>
                         </ContentPresenter.Resources>
                     </ContentPresenter>
+
+                    <Separator Style="{StaticResource RCP.Styles.Separator.Bold}"
+                               Margin="0 0 0 8" />
+
+                    <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               Text="Supported games"
+                               Margin="0 0 0 4" />
+
+                    <ItemsControl ItemsSource="{Binding Path=SupportedGames}"
+                                  d:ItemsSource="{d:SampleData ItemCount=3}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:GameTitle Margin="0 0 0 8"
+                                                 GameInstallation="{Binding}"
+                                                 d:GameInstallation="{x:Static local:DesignData.GameInstallation}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
                 </StackPanel>
             </ScrollViewer>

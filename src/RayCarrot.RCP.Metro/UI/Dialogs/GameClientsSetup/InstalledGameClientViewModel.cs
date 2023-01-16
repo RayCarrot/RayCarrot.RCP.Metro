@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
 using RayCarrot.RCP.Metro.Games.Clients;
 
 namespace RayCarrot.RCP.Metro;
@@ -21,6 +22,8 @@ public class InstalledGameClientViewModel : BaseViewModel
 
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
         RemoveGameClientCommand = new AsyncRelayCommand(RemoveGameClientAsync);
+
+        RefreshSupportedGames();
     }
 
     public ICommand OpenLocationCommand { get; }
@@ -35,6 +38,16 @@ public class InstalledGameClientViewModel : BaseViewModel
     public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
 
     public GameClientOptionsViewModel? OptionsViewModel { get; }
+
+    public ObservableCollection<GameInstallation> SupportedGames { get; set; }
+
+    [MemberNotNull(nameof(SupportedGames))]
+    public void RefreshSupportedGames()
+    {
+        SupportedGames = Services.Games.GetInstalledGames().
+            Where(x => Descriptor.SupportsGame(x, GameClientInstallation)).
+            ToObservableCollection();
+    }
 
     public Task OpenLocationAsync() => Services.File.OpenExplorerLocationAsync(GameClientInstallation.InstallLocation);
     public Task RemoveGameClientAsync() => Services.GameClients.RemoveGameClientAsync(GameClientInstallation);
