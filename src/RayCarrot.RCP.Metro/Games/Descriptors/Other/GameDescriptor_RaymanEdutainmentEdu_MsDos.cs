@@ -57,7 +57,7 @@ public sealed class GameDescriptor_RaymanEdutainmentEdu_MsDos : MsDosGameDescrip
         builder.Register(new ProgressionManagersComponent(GetGameProgressionManagers));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanEdutainmentConfigViewModel(this, x, PrimaryName)));
-        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register<MsDosGameRequiresDiscComponent>();
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));

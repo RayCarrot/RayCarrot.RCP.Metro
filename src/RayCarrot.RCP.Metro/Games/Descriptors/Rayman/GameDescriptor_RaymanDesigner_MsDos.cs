@@ -46,7 +46,7 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
         builder.Register(new ProgressionManagersComponent(x => new GameProgressionManager_RaymanDesigner(x, "Rayman Designer")));
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
-        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         builder.Register<OnGameAddedComponent, FindRaymanForeverFilesOnGameAddedComponent>();
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();

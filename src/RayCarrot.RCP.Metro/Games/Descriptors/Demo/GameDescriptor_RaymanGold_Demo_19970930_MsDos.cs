@@ -34,7 +34,7 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MsDos : MsDosGameDes
 
         builder.Register<GameValidationCheckComponent, Ray1MsDosGameDataGameValidationCheckComponent>();
         builder.Register(new GameConfigComponent(x => new RaymanDesignerConfigViewModel(this, x)));
-        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>();
+        builder.Register<OnGameAddedComponent, SetRay1MsDosDataOnGameAddedComponent>(ComponentPriority.High);
         builder.Register<LaunchArgumentsComponent, Ray1LaunchArgumentsComponent>();
         builder.Register(new GameOptionsComponent(x => new Ray1MsDosGameOptionsViewModel(x)));
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.RaymanDesigner_PC));
