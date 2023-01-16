@@ -42,7 +42,9 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
                 gameInstallation: x, 
                 gameClientInstallation: Services.GameClients.GetRequiredAttachedGameClient(x), 
                 configFilePath: GetGameConfigFile(x)),
-            isAvailableFunc: _ => true));
+            isAvailableFunc: _ => true,
+            // The id depends on the client as that determines the content
+            getInstanceIdFunc: x => $"ClientConfig_{Services.GameClients.GetRequiredAttachedGameClient(x).InstallationId}"));
     }
 
     public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>

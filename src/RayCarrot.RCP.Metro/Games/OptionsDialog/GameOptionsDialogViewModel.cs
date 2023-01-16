@@ -20,6 +20,7 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         // Set properties
         GameInstallation = gameInstallation;
         PageLoadLock = new AsyncLock();
+        CachedPages = new Dictionary<string, GameOptionsDialogPageViewModel>();
 
         Refresh();
         CreatePages();
@@ -32,6 +33,7 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
     #region Private Properties
 
     private AsyncLock PageLoadLock { get; }
+    private Dictionary<string, GameOptionsDialogPageViewModel> CachedPages { get; }
 
     #endregion
 
@@ -76,7 +78,19 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         // We have to recreate the pages on each refresh as they might have changed (if say a game client was attached/detached)
         var pages = GameInstallation.GetComponents<GameOptionsDialogPageComponent>().
             Where(x => x.IsAvailable()).
-            Select(x => x.CreateObject());
+            Select(x =>
+            {
+                // Cache pages to avoid recreating the same page
+                string instanceId = x.GetInstanceId();
+
+                if (!CachedPages.TryGetValue(instanceId, out GameOptionsDialogPageViewModel page))
+                {
+                    page = x.CreateObject();
+                    CachedPages.Add(instanceId, page);
+                }
+
+                return page;
+            });
         Pages = new ObservableCollection<GameOptionsDialogPageViewModel>(pages);
         SelectedPage = Pages.ElementAtOrDefault(selectedIndex) ?? Pages.FirstOrDefault();
     }

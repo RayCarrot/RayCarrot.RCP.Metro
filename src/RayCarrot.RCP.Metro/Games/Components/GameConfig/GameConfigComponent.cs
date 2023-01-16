@@ -3,6 +3,7 @@
 namespace RayCarrot.RCP.Metro.Games.Components;
 
 [BaseGameComponent]
+[SingleInstanceGameComponent]
 public class GameConfigComponent : FactoryGameComponent<ConfigPageViewModel>
 {
     public GameConfigComponent(Func<GameInstallation, ConfigPageViewModel> objFactory) : base(objFactory) { }

@@ -133,7 +133,10 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register(
             component: new GameOptionsDialogPageComponent(
                 objFactory: x => x.GetRequiredComponent<GameConfigComponent>().CreateObject(),
-                isAvailableFunc: x => x.HasComponent<GameConfigComponent>()),
+                isAvailableFunc: x => x.HasComponent<GameConfigComponent>(),
+                // Constant id since rebuilding components won't change this (we assume a game config
+                // component does not come from a client)
+                getInstanceIdFunc: _ => "GameConfig"),
             priority: ComponentPriority.High);
 
         // Utilities page
@@ -142,7 +145,10 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
                 objFactory: x => new UtilitiesPageViewModel(x.GetComponents<UtilityComponent>().
                     CreateObjects().
                     Select(utility => new UtilityViewModel(utility))),
-                isAvailableFunc: x => x.HasComponent<UtilityComponent>()),
+                isAvailableFunc: x => x.HasComponent<UtilityComponent>(),
+                // Constant id since rebuilding components won't change this (we assume a utility
+                // component does not come from a client)
+                getInstanceIdFunc: _ => "Utilities"),
             priority: ComponentPriority.Low);
     }
 
