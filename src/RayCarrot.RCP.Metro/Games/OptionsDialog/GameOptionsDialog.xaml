@@ -3,7 +3,6 @@
                             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
                             xmlns:optionsDialog="clr-namespace:RayCarrot.RCP.Metro.Games.OptionsDialog"
@@ -19,38 +18,15 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- TODO-UPDATE: Redesign header to match other game headers more? -->
         <!-- Header -->
-
-        <Grid Grid.Row="0"
-              Margin="12">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <!-- Icon -->
-
-            <rcp:GameIcon Grid.Column="0"
-                          IconSize="Medium"
-                          IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
-                          Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
-                          d:Source="{x:Static rcp:DesignData.GameIconSource}" />
-
-            <!-- Title -->
-
-            <TextBlock Grid.Column="1"
-                       Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                       Text="{Binding Path=DisplayName.Value}"
-                       d:Text="Rayman 2"
-                       VerticalAlignment="Center"
-                       TextTrimming="WordEllipsis"
-                       Margin="20 0 0 0" />
-
-        </Grid>
+        <rcp:GameTitle Grid.Row="0"
+                       Margin="12"
+                       GameIconSize="Medium" 
+                       TextBlock.FontSize="22"
+                       GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}"
+                       d:GameInstallation="{x:Static rcp:DesignData.GameInstallation}" />
 
         <!-- Pages -->
-
         <metro:MetroAnimatedTabControl Grid.Row="1"
                                        ItemsSource="{Binding Path=Pages}"
                                        d:ItemsSource="{d:SampleData ItemCount=4}"

@@ -39,9 +39,6 @@ public class GamesSelectionViewModel : UserInputViewModel
 
         public GamesSelectionViewModel ParentViewModel { get; }
         public GameInstallation GameInstallation { get; }
-        public LocalizedString DisplayName => GameInstallation.GetDisplayName();
-        public GameIconAsset Icon => GameInstallation.GameDescriptor.Icon;
-        public bool IsDemo => GameInstallation.GameDescriptor.IsDemo;
 
         public bool IsSelected
         {

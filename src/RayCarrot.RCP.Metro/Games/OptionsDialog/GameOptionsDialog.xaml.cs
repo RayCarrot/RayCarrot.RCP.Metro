@@ -57,7 +57,7 @@ public partial class GameOptionsDialog : WindowContentControl, IRecipient<Remove
     {
         base.WindowAttached();
 
-        WindowInstance.Title = ViewModel.DisplayName;
+        WindowInstance.Title = ViewModel.GameInstallation.GetDisplayName();
         WindowInstance.Icon = GenericIconKind.Window_GameOptions;
         WindowInstance.MinWidth = 500;
         WindowInstance.MinHeight = 400;

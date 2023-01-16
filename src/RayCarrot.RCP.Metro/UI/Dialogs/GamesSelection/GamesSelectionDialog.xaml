@@ -23,24 +23,10 @@
                       d:ItemsSource="{d:SampleData ItemCount=3}">
             <ItemsControl.Resources>
                 <DataTemplate x:Key="GameDataTemplate" DataType="{x:Type local:GamesSelectionViewModel+GameViewModel}">
-                    <Grid Margin="8 0 0 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <local:GameIcon Grid.Column="0"
-                                        IconSize="Small"
-                                        IsDemo="{Binding Path=IsDemo, Mode=OneTime}"
-                                        Source="{Binding Path=Icon, Mode=OneTime, Converter={local:AssetEnumToImageSourceConverter}}"
-                                        d:Source="{x:Static local:DesignData.GameIconSource}"
-                                        Margin="0 0 8 0" />
-
-                        <TextBlock Grid.Column="1" 
-                                   VerticalAlignment="Center"
-                                   Text="{Binding Path=DisplayName.Value}" />
-
-                    </Grid>
+                    <local:GameTitle Margin="8 0 0 0"
+                                     GameIconSize="Small" 
+                                     GameInstallation="{Binding Path=GameInstallation, Mode=OneTime}"
+                                     d:GameInstallation="{x:Static local:DesignData.GameInstallation}" />
                 </DataTemplate>
             </ItemsControl.Resources>
             <ItemsControl.Style>

@@ -22,7 +22,6 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
         PageLoadLock = new AsyncLock();
         CachedPages = new Dictionary<string, GameOptionsDialogPageViewModel>();
 
-        Refresh();
         CreatePages();
 
         Services.Messenger.RegisterAll(this);
@@ -51,21 +50,12 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
 
     public GameInstallation GameInstallation { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
-    public LocalizedString DisplayName { get; set; }
-    public GameIconAsset Icon => GameDescriptor.Icon;
-    public bool IsDemo => GameDescriptor.IsDemo;
 
     public bool IsLoading { get; set; }
 
     #endregion
 
     #region Private Methods
-
-    [MemberNotNull(nameof(DisplayName))]
-    private void Refresh()
-    {
-        DisplayName = GameInstallation.GetDisplayName();
-    }
 
     [MemberNotNull(nameof(Pages))]
     private void CreatePages()
@@ -132,8 +122,6 @@ public class GameOptionsDialogViewModel : BaseRCPViewModel, IRecipient<ModifiedG
 
     public void Receive(ModifiedGamesMessage message)
     {
-        Refresh();
-
         // If the components were rebuilt we have to re-create the
         // pages too since they might have changed
         if (message.RebuiltComponents)

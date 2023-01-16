@@ -31,29 +31,12 @@
         <ScrollViewer x:Name="ContentScrollViewer" 
                       Grid.Row="1">
             <StackPanel>
-                <Grid Margin="0 0 0 8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Icon -->
-                    <local:GameIcon Grid.Column="0"
-                                    Margin="0 0 12 0"
-                                    IconSize="{Binding Path=SelectedItem, ElementName=IconSizeComboBox}"
-                                    IsDemo="{Binding Path=IsDemo}"
-                                    Source="{Binding Path=Icon, Converter={local:AssetEnumToImageSourceConverter}}"
-                                    d:Source="{x:Static local:DesignData.GameIconSource}" />
-
-                    <!-- Title -->
-                    <TextBlock Grid.Column="1"
-                               Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
-                               Text="{Binding Path=SelectedGameInstallation.DisplayName.Value}"
-                               d:Text="Rayman 2"
-                               VerticalAlignment="Center"
-                               TextWrapping="Wrap" />
-
-                </Grid>
+                <!-- Title -->
+                <local:GameTitle Margin="0 0 0 8"
+                                 GameInstallation="{Binding Path=SelectedGameInstallation.GameInstallation, Mode=OneTime}"
+                                 d:GameInstallation="{x:Static local:DesignData.GameInstallation}"
+                                 GameIconSize="{Binding Path=SelectedItem, ElementName=IconSizeComboBox}" 
+                                 TextBlock.FontSize="22" />
 
                 <!-- Icon size -->
                 <ComboBox x:Name="IconSizeComboBox"
