@@ -113,11 +113,11 @@ public class GamesManager
 
         try
         {
-            // Invoke added actions
-            await gameInstallation.GetComponents<OnGameAddedComponent>().InvokeAllAsync();
-
             // Configure
             configureInstallation?.Invoke(gameInstallation);
+
+            // Invoke added actions
+            await gameInstallation.GetComponents<OnGameAddedComponent>().InvokeAllAsync();
 
             Logger.Info("The game {0} has been added", gameInstallation.FullId);
         }
