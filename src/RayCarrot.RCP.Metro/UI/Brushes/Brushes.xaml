@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Colors/Colors.MaterialDesign.xaml" />
@@ -7,50 +8,50 @@
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Main -->
-    <SolidColorBrush x:Key="RCP.Brushes.Games" Color="{StaticResource RCP.Colors.PurplePrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.OtherGames" Color="{StaticResource RCP.Colors.CyanPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Progression" Color="{StaticResource RCP.Colors.PinkPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Utilities" Color="{StaticResource RCP.Colors.GreenPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Mods" Color="{StaticResource RCP.Colors.DeepPurplePrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Settings" Color="{StaticResource RCP.Colors.AmberPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Info" Color="{StaticResource RCP.Colors.BluePrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Debug" Color="{StaticResource RCP.Colors.GreyPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.GameClient" Color="{StaticResource RCP.Colors.YellowPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.GameConfig" Color="{StaticResource RCP.Colors.IndigoPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Patcher" Color="{StaticResource RCP.Colors.DeepOrangePrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Games" Color="{StaticResource RCP.Colors.PurplePrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.OtherGames" Color="{StaticResource RCP.Colors.CyanPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Progression" Color="{StaticResource RCP.Colors.PinkPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Utilities" Color="{StaticResource RCP.Colors.GreenPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Mods" Color="{StaticResource RCP.Colors.DeepPurplePrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Settings" Color="{StaticResource RCP.Colors.AmberPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Info" Color="{StaticResource RCP.Colors.BluePrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Debug" Color="{StaticResource RCP.Colors.GreyPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.GameClient" Color="{StaticResource RCP.Colors.YellowPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.GameConfig" Color="{StaticResource RCP.Colors.IndigoPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Patcher" Color="{StaticResource RCP.Colors.DeepOrangePrimary500}" po:Freeze="True" />
 
     <!-- General UI -->
-    <SolidColorBrush x:Key="RCP.Brushes.Overlay" Color="#60000000" />
+    <SolidColorBrush x:Key="RCP.Brushes.Overlay" Color="#60000000" po:Freeze="True" />
 
     <!-- Brands -->
-    <SolidColorBrush x:Key="RCP.Brushes.Email" Color="{StaticResource RCP.Colors.PurplePrimary600}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Twitter" Color="{StaticResource RCP.Colors.Twitter}" />
-    <SolidColorBrush x:Key="RCP.Brushes.YouTube" Color="{StaticResource RCP.Colors.YouTube}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Email" Color="{StaticResource RCP.Colors.PurplePrimary600}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Twitter" Color="{StaticResource RCP.Colors.Twitter}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.YouTube" Color="{StaticResource RCP.Colors.YouTube}" po:Freeze="True" />
 
     <!-- Status -->
-    <SolidColorBrush x:Key="RCP.Brushes.StatusComplete" Color="{StaticResource RCP.Colors.GreenPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.StatusIncomplete" Color="{StaticResource RCP.Colors.RedPrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.StatusPending" Color="{StaticResource RCP.Colors.IndigoPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.StatusComplete" Color="{StaticResource RCP.Colors.GreenPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.StatusIncomplete" Color="{StaticResource RCP.Colors.RedPrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.StatusPending" Color="{StaticResource RCP.Colors.IndigoPrimary500}" po:Freeze="True" />
 
     <!-- Alert -->
-    <SolidColorBrush x:Key="RCP.Brushes.Warning" Color="{StaticResource RCP.Colors.RedPrimary700}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Notice" Color="{StaticResource RCP.Colors.AmberPrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.Warning" Color="{StaticResource RCP.Colors.RedPrimary700}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Notice" Color="{StaticResource RCP.Colors.AmberPrimary700}" po:Freeze="True" />
 
     <!-- Logging -->
-    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Trace" Color="{StaticResource RCP.Colors.LightGreenPrimary700}" />
-    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Debug" Color="{StaticResource RCP.Colors.LimePrimary700}" />
-    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Info" Color="{StaticResource RCP.Colors.BluePrimary700}" />
-    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Warn" Color="{StaticResource RCP.Colors.AmberPrimary700}" />
-    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Error" Color="{StaticResource RCP.Colors.DeepOrangePrimary700}" />
-    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Fatal" Color="{StaticResource RCP.Colors.RedPrimary700}" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Trace" Color="{StaticResource RCP.Colors.LightGreenPrimary700}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Debug" Color="{StaticResource RCP.Colors.LimePrimary700}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Info" Color="{StaticResource RCP.Colors.BluePrimary700}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Warn" Color="{StaticResource RCP.Colors.AmberPrimary700}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Error" Color="{StaticResource RCP.Colors.DeepOrangePrimary700}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.LogLevel.Fatal" Color="{StaticResource RCP.Colors.RedPrimary700}" po:Freeze="True" />
 
     <!-- Browsing -->
-    <SolidColorBrush x:Key="RCP.Brushes.File" Color="{StaticResource RCP.Colors.PurplePrimary600}" />
-    <SolidColorBrush x:Key="RCP.Brushes.Folder" Color="{StaticResource RCP.Colors.OrangePrimary600}" />
+    <SolidColorBrush x:Key="RCP.Brushes.File" Color="{StaticResource RCP.Colors.PurplePrimary600}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.Folder" Color="{StaticResource RCP.Colors.OrangePrimary600}" po:Freeze="True" />
 
     <!-- Operations -->
-    <SolidColorBrush x:Key="RCP.Brushes.AddItem" Color="{StaticResource RCP.Colors.GreenPrimary600}" />
-    <SolidColorBrush x:Key="RCP.Brushes.DeleteItem" Color="{StaticResource RCP.Colors.RedPrimary600}" />
+    <SolidColorBrush x:Key="RCP.Brushes.AddItem" Color="{StaticResource RCP.Colors.GreenPrimary600}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.DeleteItem" Color="{StaticResource RCP.Colors.RedPrimary600}" po:Freeze="True" />
 
 </ResourceDictionary>

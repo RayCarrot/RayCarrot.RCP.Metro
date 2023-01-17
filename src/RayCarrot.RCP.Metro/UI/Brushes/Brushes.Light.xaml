@@ -1,21 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Colors/Colors.MaterialDesign.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Normal theme background is #FFFFFF -->
-    <SolidColorBrush x:Key="RCP.Brushes.Card.Background">#ECECEC</SolidColorBrush>
-    <SolidColorBrush x:Key="RCP.Brushes.Popup.Background">#E0E0E0</SolidColorBrush>
-    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover">#E0E0E0</SolidColorBrush>
-    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatSelected">#D8D8D8</SolidColorBrush>
-    <SolidColorBrush x:Key="RCP.Brushes.Card.SecondaryBackground">#D8D8D8</SolidColorBrush>
-    <SolidColorBrush x:Key="RCP.Brushes.Button.Background">#D8D8D8</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Card.Background" po:Freeze="True">#ECECEC</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Popup.Background" po:Freeze="True">#E0E0E0</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatHover" po:Freeze="True">#E0E0E0</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.ListBoxItem.FlatSelected" po:Freeze="True">#D8D8D8</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Card.SecondaryBackground" po:Freeze="True">#D8D8D8</SolidColorBrush>
+    <SolidColorBrush x:Key="RCP.Brushes.Button.Background" po:Freeze="True">#D8D8D8</SolidColorBrush>
 
     <!-- Flat button -->
-    <SolidColorBrush x:Key="RCP.Brushes.FlatButton.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.FlatButton.Patcher" Color="{StaticResource RCP.Colors.DeepOrangePrimary500}" />
-    <SolidColorBrush x:Key="RCP.Brushes.FlatButton.Play" Color="{StaticResource RCP.Colors.GreenPrimary500}" />
+    <SolidColorBrush x:Key="RCP.Brushes.FlatButton.ArchiveExplorer" Color="{StaticResource RCP.Colors.OrangePrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.FlatButton.Patcher" Color="{StaticResource RCP.Colors.DeepOrangePrimary500}" po:Freeze="True" />
+    <SolidColorBrush x:Key="RCP.Brushes.FlatButton.Play" Color="{StaticResource RCP.Colors.GreenPrimary500}" po:Freeze="True" />
 
 </ResourceDictionary>
