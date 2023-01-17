@@ -15,15 +15,16 @@ public class GameClientsManager
 
         GameClientDescriptors = new GameClientDescriptor[]
         {
+            // Emulators
             new DosBoxGameClientDescriptor(),
+            
+            // Clients
             new SteamGameClientDescriptor(),
         }.ToDictionary(x => x.GameClientId);
         SortedGameClientDescriptors = GameClientDescriptors.Values.OrderBy(x => x).ToArray();
     }
 
     #endregion
-
-    // TODO-14: Add logging
 
     #region Logger
 
@@ -86,6 +87,8 @@ public class GameClientsManager
         // Configure
         configureInstallation?.Invoke(installation);
 
+        Logger.Info("The game client {0} has been added", installation.FullId);
+
         Messenger.Send(new AddedGameClientsMessage(installation));
         
         // Attempt to use this game client on games without one and which default to use one
@@ -125,6 +128,8 @@ public class GameClientsManager
             }
         }
 
+        Logger.Info("The game client {0} has been removed", gameClientInstallation.FullId);
+
         Messenger.Send(new RemovedGameClientsMessage(gameClientInstallation));
     }
 
@@ -133,7 +138,10 @@ public class GameClientsManager
         GameClientInstallation? gameClientInstallation = GetInstalledGameClient(installationId);
 
         if (gameClientInstallation == null)
+        {
+            Logger.Info("The game client with the installation id {0} was not removed due to not being found", installationId);
             return Task.CompletedTask;
+        }
 
         return RemoveGameClientAsync(gameClientInstallation);
     }
@@ -205,6 +213,8 @@ public class GameClientsManager
         // Rebuild the game components since the client change might change which components get registered
         gameInstallation.RebuildComponents();
 
+        Logger.Info("Detached game client {0} from {1}", prevClient?.FullId, gameInstallation.FullId);
+
         // Refresh the game
         Messenger.Send(new ModifiedGamesMessage(gameInstallation, rebuiltComponents: true));
     }
@@ -221,7 +231,10 @@ public class GameClientsManager
             FirstOrDefault(x => x.GameClientDescriptor.SupportsGame(gameInstallation, x));
 
         if (gameClientInstallation == null)
+        {
+            Logger.Info("Failed to attach a default game client for {0} due to one not being found", gameInstallation.FullId);
             return false;
+        }
 
         await AttachGameClientAsync(gameInstallation, gameClientInstallation);
         return true;
@@ -244,7 +257,10 @@ public class GameClientsManager
         
         // If the previous one is the same as what we're trying to attach then we return
         if (gameClientInstallation == prevClient)
+        {
+            Logger.Info("Cancelling attaching game client {0} to {1} due to it already being attached", gameClientInstallation.FullId, gameInstallation.FullId);
             return;
+        }
 
         // Invoke the previous one being detached
         if (prevClient != null)
@@ -255,6 +271,8 @@ public class GameClientsManager
 
         // Rebuild the game components since the client change might change which components get registered
         gameInstallation.RebuildComponents();
+
+        Logger.Info("Attached the game client {0} to {1}", gameClientInstallation.FullId, gameInstallation.FullId);
 
         // Invoke the new client being selected
         await gameClientInstallation.GameClientDescriptor.OnGameClientAttachedAsync(gameInstallation, gameClientInstallation);

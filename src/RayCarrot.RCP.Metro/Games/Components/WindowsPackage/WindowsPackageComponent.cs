@@ -15,6 +15,8 @@ public class WindowsPackageComponent : GameComponent
         FullPackageName = fullPackageName;
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     public string PackageName { get; }
     public string FullPackageName { get; }
 
@@ -31,7 +33,10 @@ public class WindowsPackageComponent : GameComponent
         Package? package = GetPackage();
 
         if (package == null)
+        {
+            Logger.Warn("Could not find the package for the game {0}", GameInstallation.FullId);
             return Enumerable.Empty<DuoGridItemViewModel>();
+        }
 
         return new[]
         {

@@ -40,7 +40,7 @@ public class WindowsPackageLaunchGameComponent : LaunchGameComponent
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Launching Windows Store application");
+            Logger.Error(ex, "Launching Windows package application");
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, GameInstallation.GetDisplayName()));
 
             return false;

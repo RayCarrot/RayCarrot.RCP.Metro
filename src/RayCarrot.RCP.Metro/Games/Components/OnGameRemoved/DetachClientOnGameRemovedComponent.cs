@@ -2,11 +2,11 @@
 
 namespace RayCarrot.RCP.Metro.Games.Components;
 
-public class DeselectClientOnGameRemovedComponent : OnGameRemovedComponent
+public class DetachClientOnGameRemovedComponent : OnGameRemovedComponent
 {
-    public DeselectClientOnGameRemovedComponent() : base(DeselectClientAsync) { }
+    public DetachClientOnGameRemovedComponent() : base(DetachClientAsync) { }
 
-    private static async Task DeselectClientAsync(GameInstallation gameInstallation)
+    private static async Task DetachClientAsync(GameInstallation gameInstallation)
     {
         // Get the previous game client installation and invoke it being deselected
         GameClientInstallation? prevClient = Services.GameClients.GetAttachedGameClient(gameInstallation);

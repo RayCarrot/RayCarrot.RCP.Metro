@@ -22,7 +22,7 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
 
     public virtual void RegisterComponents(IGameComponentBuilder builder)
     {
-        builder.Register<OnGameRemovedComponent, DeselectClientOnGameRemovedComponent>();
+        builder.Register<OnGameRemovedComponent, DetachClientOnGameRemovedComponent>();
     }
 
     public virtual bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)

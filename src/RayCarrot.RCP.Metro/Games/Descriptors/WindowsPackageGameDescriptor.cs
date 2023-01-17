@@ -5,7 +5,6 @@ using RayCarrot.RCP.Metro.Games.Finder;
 namespace RayCarrot.RCP.Metro;
 
 // TODO-14: We might need to disable inlining some places here so that this doesn't crash on Windows 7 where WinRT isn't supported
-// TODO-14: Fix logs and comments due to rename from WinStore
 
 /// <summary>
 /// A game descriptor for a Windows package
@@ -15,7 +14,7 @@ public abstract class WindowsPackageGameDescriptor : GameDescriptor
     #region Public Properties
 
     /// <summary>
-    /// Indicates if th Windows runtime is supported on the current system
+    /// Indicates if the Windows runtime is supported on the current system
     /// </summary>
     public static bool SupportsWinRT => AppViewModel.WindowsVersion is >= WindowsVersion.Win8 or WindowsVersion.Unknown;
 

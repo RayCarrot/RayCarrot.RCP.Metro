@@ -15,12 +15,16 @@ public class RemoveAddedFilesOnGameRemovedComponent : OnGameRemovedComponent
         if (addedGameFiles == null)
             return;
 
+        Logger.Info("Removing added game files");
+
         foreach (FileSystemPath filePath in addedGameFiles.Files)
         {
             try
             {
                 // Remove the file
                 Services.File.DeleteFile(filePath);
+
+                Logger.Trace("Removed added file {0}", filePath);
             }
             catch (Exception ex)
             {

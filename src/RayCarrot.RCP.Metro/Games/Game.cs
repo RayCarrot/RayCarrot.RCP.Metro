@@ -1,6 +1,5 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-// TODO-14: Rename to GameGroup?
 /// <summary>
 /// Defines a game. This does not identify a unique <see cref="GameDescriptor"/> as multiple ones may be
 /// for the same game! This enum is mostly used to group the descriptors.

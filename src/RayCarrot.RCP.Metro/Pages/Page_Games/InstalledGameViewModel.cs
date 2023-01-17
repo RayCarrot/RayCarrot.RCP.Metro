@@ -228,7 +228,7 @@ public class InstalledGameViewModel : BaseViewModel
             })));
     }
 
-    private Task ReloadAsync(bool loadOptions)
+    private async Task ReloadAsync(bool loadOptions)
     {
         // TODO-14: Async lock
 
@@ -247,7 +247,10 @@ public class InstalledGameViewModel : BaseViewModel
 
         // Load panels
         AddGamePanels();
-        return Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
+        
+        await Task.WhenAll(GamePanels.Select(x => x.LoadAsync()));
+
+        Logger.Info("Loaded game {0}", GameInstallation.FullId);
     }
 
     #endregion
@@ -310,6 +313,8 @@ public class InstalledGameViewModel : BaseViewModel
 
         GameInstallation.SetValue(GameDataKey.RCP_CustomName, name);
 
+        Logger.Info("Renamed the game {0} to {1}", GameInstallation.FullId, name);
+
         Services.Messenger.Send(new ModifiedGamesMessage(GameInstallation));
     }
 
@@ -326,7 +331,6 @@ public class InstalledGameViewModel : BaseViewModel
         // Get applied utilities
         IList<string> appliedUtilities = await GameInstallation.GameDescriptor.GetAppliedUtilitiesAsync(GameInstallation);
 
-        // TODO-UPDATE: This crashes for packaged apps since it tries to create the patch folder
         // Warn about applied utilities, if any
         if (appliedUtilities.Any() && !await Services.MessageUI.DisplayMessageAsync(
                 $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}" +

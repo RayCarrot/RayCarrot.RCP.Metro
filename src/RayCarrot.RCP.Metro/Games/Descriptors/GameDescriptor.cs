@@ -119,7 +119,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
         builder.Register<OnGameRemovedComponent, RemoveAddedFilesOnGameRemovedComponent>();
 
         if (DefaultToUseGameClient)
-            builder.Register<OnGameAddedComponent, SelectDefaultClientOnGameAddedComponent>();
+            builder.Register<OnGameAddedComponent, AttachDefaultClientOnGameAddedComponent>();
 
         // Give this low priority so that it runs last
         builder.Register<OnGameLaunchedComponent, OptionallyCloseAppOnGameLaunchedComponent>(ComponentPriority.Low);

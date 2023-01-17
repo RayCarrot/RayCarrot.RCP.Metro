@@ -8,6 +8,8 @@ public class GameInstallationStructure
         GamePaths = gamePaths;
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     /// <summary>
     /// The paths defined for the game installation. Note that these aren't
     /// all the paths for the game and is only to be used as a reference.
@@ -38,7 +40,10 @@ public class GameInstallationStructure
                 continue;
 
             if (!Path.IsValid(FullPath))
+            {
+                Logger.Info("The validation for the location {0} failed due to the path {1} not being valid", location, FullPath);
                 return false;
+            }
         }
 
         return true;

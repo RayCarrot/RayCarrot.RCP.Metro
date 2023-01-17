@@ -100,8 +100,6 @@ public class GamesManager
         FileSystemPath installDirectory,
         Action<GameInstallation>? configureInstallation = null)
     {
-        Logger.Info("The game {0} is being added", gameDescriptor.GameId);
-
         // Create an installation
         GameInstallation gameInstallation = new(gameDescriptor, installDirectory);
 
@@ -116,10 +114,10 @@ public class GamesManager
             // Configure
             configureInstallation?.Invoke(gameInstallation);
 
+            Logger.Info("The game {0} has been added", gameInstallation.FullId);
+
             // Invoke added actions
             await gameInstallation.GetComponents<OnGameAddedComponent>().InvokeAllAsync();
-
-            Logger.Info("The game {0} has been added", gameInstallation.FullId);
         }
         catch
         {
@@ -136,6 +134,8 @@ public class GamesManager
     {
         // Remove the game
         Data.Game_GameInstallations.Remove(gameInstallation);
+
+        Logger.Info("The game {0} has been removed", gameInstallation.FullId);
 
         // Invoke removal actions
         await gameInstallation.GetComponents<OnGameRemovedComponent>().InvokeAllAsync();
