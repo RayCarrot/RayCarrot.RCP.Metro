@@ -11,7 +11,7 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
     #region Constructors
 
     public GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation) 
-        : this(gameDescriptor, installLocation, GenerateInstallationID(), new Dictionary<string, object>()) 
+        : this(gameDescriptor, installLocation, GenerateInstallationID(), new Dictionary<string, object?>()) 
     { }
 
     [JsonConstructor]
@@ -19,7 +19,7 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
         GameDescriptor gameDescriptor, 
         FileSystemPath installLocation, 
         string installationId, 
-        Dictionary<string, object>? data) 
+        Dictionary<string, object?>? data) 
         : base(installLocation, installationId, data)
     {
         GameDescriptor = gameDescriptor;
