@@ -38,6 +38,14 @@ public class AvailableGameClientViewModel : BaseViewModel
         if (broweResult.CanceledByUser)
             return;
 
+        // Make sure it's valid
+        if (!Descriptor.IsValid(broweResult.SelectedFile))
+        {
+            // TODO-UPDATE: Localize
+            await Services.MessageUI.DisplayMessageAsync("The selected location is not valid", MessageType.Error);
+            return;
+        }
+
         await Services.GameClients.AddGameClientAsync(Descriptor, broweResult.SelectedFile);
     }
 }

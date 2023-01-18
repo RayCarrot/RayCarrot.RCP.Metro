@@ -5,6 +5,7 @@ using System.Net;
 using System.Reflection;
 using System.Windows;
 using MahApps.Metro.Controls;
+using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro;
@@ -24,7 +25,10 @@ public class StartupManager
         AppViewModel appViewModel, 
         JumpListManager jumpListManager, 
         DeployableFilesManager deployableFilesManager, 
-        GamesManager gamesManager)
+        GamesManager gamesManager, 
+        GameClientsManager gameClientsManager, 
+        IMessageUIManager messageUi, 
+        AppUIManager ui)
     {
         Args = args ?? throw new ArgumentNullException(nameof(args));
         LoggerManager = loggerManager ?? throw new ArgumentNullException(nameof(loggerManager));
@@ -34,6 +38,9 @@ public class StartupManager
         JumpListManager = jumpListManager ?? throw new ArgumentNullException(nameof(jumpListManager));
         DeployableFilesManager = deployableFilesManager ?? throw new ArgumentNullException(nameof(deployableFilesManager));
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
+        GameClientsManager = gameClientsManager ?? throw new ArgumentNullException(nameof(gameClientsManager));
+        MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
+        UI = ui ?? throw new ArgumentNullException(nameof(ui));
     }
 
     #endregion
@@ -58,6 +65,9 @@ public class StartupManager
     private JumpListManager JumpListManager { get; }
     private DeployableFilesManager DeployableFilesManager { get; }
     private GamesManager GamesManager { get; }
+    private GameClientsManager GameClientsManager { get; }
+    private IMessageUIManager MessageUI { get; }
+    private AppUIManager UI { get; }
 
     #endregion
 
@@ -234,10 +244,39 @@ public class StartupManager
             return;
 
         // Remove the games
-        await Services.Games.RemoveGamesAsync(removed);
+        await GamesManager.RemoveGamesAsync(removed);
 
         // TODO-UPDATE: Localize
-        await Services.MessageUI.DisplayMessageAsync(String.Format("The following games are no longer valid and were removed:\n\n{0}", String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), "Removed invalid games", MessageType.Error);
+        await MessageUI.DisplayMessageAsync(String.Format("The following games are no longer valid and were removed:\n\n{0}", String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), "Removed invalid games", MessageType.Error);
+    }
+
+    private async Task ValidateGameClientsAsync()
+    {
+        // Keep track of removed game clients
+        List<GameClientInstallation> removed = new();
+
+        // Make sure every game client is valid
+        foreach (GameClientInstallation gameClientInstallation in GameClientsManager.GetInstalledGameClients())
+        {
+            // Check if it's valid
+            if (gameClientInstallation.GameClientDescriptor.IsValid(gameClientInstallation.InstallLocation))
+                continue;
+
+            // Add to removed game clients
+            removed.Add(gameClientInstallation);
+
+            Logger.Info("The game client {0} is being removed due to not being valid", gameClientInstallation.FullId);
+        }
+
+        // Return if no game clients were removed
+        if (!removed.Any())
+            return;
+
+        // Remove the game clients
+        await GameClientsManager.RemoveGameClientsAsync(removed);
+
+        // TODO-UPDATE: Localize
+        await MessageUI.DisplayMessageAsync(String.Format("The following game clients/emulators are no longer valid and were removed:\n\n{0}", String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), "Removed invalid game clients/emulators", MessageType.Error);
     }
 
     private async Task PostUpdateAsync()
@@ -257,7 +296,7 @@ public class StartupManager
             CloseSplashScreen();
 
             // Show app news
-            await Services.UI.ShowAppNewsAsync();
+            await UI.ShowAppNewsAsync();
 
             // Update the last version
             Data.App_LastVersion = AppViewModel.CurrentAppVersion;
@@ -278,7 +317,7 @@ public class StartupManager
             Logger.Warn("A newer version ({0}) has been recorded in the application data", Data.App_LastVersion);
 
             if (!Data.Update_DisableDowngradeWarning)
-                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.DowngradeWarning, AppViewModel.CurrentAppVersion,
+                await MessageUI.DisplayMessageAsync(String.Format(Resources.DowngradeWarning, AppViewModel.CurrentAppVersion,
                     Data.App_LastVersion), Resources.DowngradeWarningHeader, MessageType.Warning);
         }
     }
@@ -402,8 +441,9 @@ public class StartupManager
             {
                 CheckFirstLaunch();
                 await ValidateGamesAsync();
+                await ValidateGameClientsAsync();
                 await PostUpdateAsync();
-                Logger.Debug("Startup {0} ms: Checked first launch, validated games & ran post-update", sw.ElapsedMilliseconds);
+                Logger.Debug("Startup {0} ms: Checked first launch, validated games and clients & ran post-update", sw.ElapsedMilliseconds);
             }
 
             ShowAppWindow<AppWindow>(createWindow);

@@ -67,6 +67,13 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
         Services.Messenger.Send(new ModifiedGamesMessage(gamesToRefresh));
     }
 
+    /// <summary>
+    /// Indicates if the game client is valid
+    /// </summary>
+    /// <param name="installLocation">The game client install location</param>
+    /// <returns>True if the game client is valid, otherwise false</returns>
+    public bool IsValid(FileSystemPath installLocation) => installLocation.FileExists;
+
     public int CompareTo(GameClientDescriptor? other)
     {
         if (this == other)

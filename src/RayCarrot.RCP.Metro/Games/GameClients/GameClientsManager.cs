@@ -48,6 +48,36 @@ public class GameClientsManager
 
     #endregion
 
+    #region Private Methods
+
+    private async Task RemoveGameImplAsync(GameClientInstallation gameClientInstallation)
+    {
+        Data.Game_GameClientInstallations.Remove(gameClientInstallation);
+
+        // Deselect this game client from any games which use it
+        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
+        {
+            if (gameInstallation.GetValue<string>(GameDataKey.Client_AttachedClient) == gameClientInstallation.InstallationId)
+            {
+                if (gameInstallation.GameDescriptor.DefaultToUseGameClient)
+                {
+                    bool success = await AttachDefaultGameClientAsync(gameInstallation);
+
+                    if (!success)
+                        await DetachGameClientAsync(gameInstallation);
+                }
+                else
+                {
+                    await DetachGameClientAsync(gameInstallation);
+                }
+            }
+        }
+
+        Logger.Info("The game client {0} has been removed", gameClientInstallation.FullId);
+    }
+
+    #endregion
+
     #region Game Client Descriptor Methods
 
     /// <summary>
@@ -108,28 +138,7 @@ public class GameClientsManager
 
     public async Task RemoveGameClientAsync(GameClientInstallation gameClientInstallation)
     {
-        Data.Game_GameClientInstallations.Remove(gameClientInstallation);
-
-        // Deselect this game client from any games which use it
-        foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
-        {
-            if (gameInstallation.GetValue<string>(GameDataKey.Client_AttachedClient) == gameClientInstallation.InstallationId)
-            {
-                if (gameInstallation.GameDescriptor.DefaultToUseGameClient)
-                {
-                    bool success = await AttachDefaultGameClientAsync(gameInstallation);
-
-                    if (!success)
-                        await DetachGameClientAsync(gameInstallation);
-                }
-                else
-                {
-                    await DetachGameClientAsync(gameInstallation);
-                }
-            }
-        }
-
-        Logger.Info("The game client {0} has been removed", gameClientInstallation.FullId);
+        await RemoveGameImplAsync(gameClientInstallation);
 
         Messenger.Send(new RemovedGameClientsMessage(gameClientInstallation));
     }
@@ -145,6 +154,18 @@ public class GameClientsManager
         }
 
         return RemoveGameClientAsync(gameClientInstallation);
+    }
+
+    public async Task RemoveGameClientsAsync(IList<GameClientInstallation> gameClientInstallations)
+    {
+        if (!gameClientInstallations.Any())
+            return;
+
+        // Remove the game clients
+        foreach (GameClientInstallation gameClientInstallation in gameClientInstallations)
+            await RemoveGameImplAsync(gameClientInstallation);
+
+        Messenger.Send(new RemovedGameClientsMessage(gameClientInstallations));
     }
 
     /// <summary>
