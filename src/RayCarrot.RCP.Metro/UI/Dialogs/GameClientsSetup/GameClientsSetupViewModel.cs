@@ -3,7 +3,7 @@
 namespace RayCarrot.RCP.Metro;
 
 public class GameClientsSetupViewModel : BaseViewModel, 
-    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, 
+    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>,
     IRecipient<AddedGamesMessage>, IRecipient<RemovedGamesMessage>
 {
     public GameClientsSetupViewModel()
@@ -46,6 +46,12 @@ public class GameClientsSetupViewModel : BaseViewModel,
         Refresh(message.GameClientInstallations.FirstOrDefault());
     public void Receive(RemovedGameClientsMessage message) => 
         Refresh(SelectedGameClient?.GameClientInstallation);
+
+    public void Receive(ModifiedGameClientsMessage message)
+    {
+        foreach (InstalledGameClientViewModel gameClient in InstalledGameClients)
+            gameClient.RefreshDisplayName();
+    }
 
     public void Receive(AddedGamesMessage message) =>
         RefreshSupportedGames();

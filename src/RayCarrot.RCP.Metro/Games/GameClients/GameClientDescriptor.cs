@@ -12,7 +12,6 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
 {
     public abstract string GameClientId { get; }
 
-    // TODO-14: Allow user to rename this like we did with game installations
     /// <summary>
     /// The game client's display name
     /// </summary>

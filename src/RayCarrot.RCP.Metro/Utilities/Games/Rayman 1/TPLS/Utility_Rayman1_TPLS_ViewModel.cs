@@ -146,7 +146,9 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
                 requiredGames.GameInstallationIds.Add(GameInstallation.InstallationId);
                 x.SetObject(GameClientDataKey.RCP_RequiredGameInstallations, requiredGames);
 
-                // TODO-14: Once we implement naming clients we should give this a distinct name
+                // Give the emulator a name so it's apparent what it's for
+                // TODO-UPDATE: Localize
+                x.SetValue(GameClientDataKey.RCP_CustomName, "DOSBox (per-level soundtrack)");
             });
 
             // Select the client for the game by default

@@ -21,17 +21,22 @@ public class InstalledGameClientViewModel : BaseViewModel
         OptionsViewModel = Descriptor.GetGameClientOptionsViewModel(gameClientInstallation);
 
         OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
+        RenameCommand = new AsyncRelayCommand(RenameAsync);
         RemoveGameClientCommand = new AsyncRelayCommand(RemoveGameClientAsync);
 
         RefreshSupportedGames();
+        RefreshDisplayName();
     }
 
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     public ICommand OpenLocationCommand { get; }
+    public ICommand RenameCommand { get; }
     public ICommand RemoveGameClientCommand { get; }
 
     public GameClientInstallation GameClientInstallation { get; }
     public GameClientDescriptor Descriptor => GameClientInstallation.GameClientDescriptor;
-    public LocalizedString DisplayName => Descriptor.DisplayName;
+    public LocalizedString DisplayName { get; private set; }
     public GameClientIconAsset Icon => Descriptor.Icon;
 
     public ObservableCollection<PlatformViewModel> Platforms { get; }
@@ -49,6 +54,37 @@ public class InstalledGameClientViewModel : BaseViewModel
             ToObservableCollection();
     }
 
+    [MemberNotNull(nameof(DisplayName))]
+    public void RefreshDisplayName()
+    {
+        DisplayName = GameClientInstallation.GetDisplayName();
+    }
+
     public Task OpenLocationAsync() => Services.File.OpenExplorerLocationAsync(GameClientInstallation.InstallLocation);
+
+    public async Task RenameAsync()
+    {
+        StringInputResult result = await Services.UI.GetStringInputAsync(new StringInputViewModel
+        {
+            Title = "Rename game client/emulator", // TODO-UPDATE: Localize
+            HeaderText = $"Rename {Descriptor.DisplayName}. Keep the name empty to use the default one.", // TODO-UPDATE: Localize
+            StringInput = GameClientInstallation.GetValue<string>(GameClientDataKey.RCP_CustomName),
+        });
+
+        if (result.CanceledByUser)
+            return;
+
+        string? name = result.StringInput;
+
+        if (name.IsNullOrWhiteSpace())
+            name = null;
+
+        GameClientInstallation.SetValue(GameClientDataKey.RCP_CustomName, name);
+
+        Logger.Info("Renamed the game client {0} to {1}", GameClientInstallation.FullId, name);
+
+        Services.Messenger.Send(new ModifiedGameClientsMessage(GameClientInstallation));
+    }
+
     public Task RemoveGameClientAsync() => Services.GameClients.RemoveGameClientAsync(GameClientInstallation);
 }

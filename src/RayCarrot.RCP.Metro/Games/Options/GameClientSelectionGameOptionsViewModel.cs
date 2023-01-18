@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Clients;
+﻿using System.Diagnostics.CodeAnalysis;
+using RayCarrot.RCP.Metro.Games.Clients;
 
 namespace RayCarrot.RCP.Metro.Games.Options;
 
@@ -6,7 +7,7 @@ namespace RayCarrot.RCP.Metro.Games.Options;
 /// View model for the client selection game options
 /// </summary>
 public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
-    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>
+    IRecipient<AddedGameClientsMessage>, IRecipient<RemovedGameClientsMessage>, IRecipient<ModifiedGameClientsMessage>
 {
     #region Constructor
 
@@ -93,6 +94,20 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
         if (message.GameClientInstallations.Any(x => x.GameClientDescriptor.SupportsGame(GameInstallation, x)))
             Load();
     }
+    public void Receive(ModifiedGameClientsMessage message)
+    {
+        if (GameClients == null)
+            return;
+
+        foreach (GameClientViewModel gameClientViewModel in GameClients)
+        {
+            if (gameClientViewModel.GameClientInstallation != null &&
+                message.GameClientInstallations.Contains(gameClientViewModel.GameClientInstallation))
+            {
+                gameClientViewModel.Refresh();
+            }
+        }
+    }
 
     #endregion
 
@@ -103,12 +118,17 @@ public class GameClientSelectionGameOptionsViewModel : GameOptionsViewModel,
         public GameClientViewModel(GameClientInstallation? gameClientInstallation)
         {
             GameClientInstallation = gameClientInstallation;
+            Refresh();
         }
 
         public GameClientInstallation? GameClientInstallation { get; }
-        // TODO-UPDATE: Localize
-        public LocalizedString DisplayName => GameClientInstallation?.GameClientDescriptor.DisplayName ?? "None";
+        public LocalizedString DisplayName { get; private set; }
         public GameClientIconAsset? Icon => GameClientInstallation?.GameClientDescriptor.Icon;
+
+        [MemberNotNull(nameof(DisplayName))]
+        public void Refresh() => DisplayName = GameClientInstallation?.GetDisplayName() ??
+                                               // TODO-UPDATE: Localize
+                                               "None";
     }
 
     #endregion

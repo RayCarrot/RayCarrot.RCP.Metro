@@ -3,6 +3,7 @@
 public static class GameClientDataKey
 {
     // General
+    public const string RCP_CustomName = "RCP_CustomName";
     public const string RCP_RequiredGameInstallations = "RCP_RequiredGameInstallations";
 
     // DOSBox

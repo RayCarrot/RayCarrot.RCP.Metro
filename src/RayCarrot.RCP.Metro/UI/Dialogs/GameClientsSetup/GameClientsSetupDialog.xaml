@@ -13,6 +13,10 @@
                             mc:Ignorable="d"
                             d:DataContext="{d:DesignInstance local:GameClientsSetupViewModel}">
 
+    <Control.InputBindings>
+        <KeyBinding Key="F2" Command="{Binding Path=SelectedGameClient.RenameCommand}" />
+    </Control.InputBindings>
+
     <!-- TODO-UPDATE: Localize -->
     <!-- TODO-UPDATE: Improve ui when no selection and no game clients added -->
     <Grid Margin="8">
@@ -44,6 +48,7 @@
                     <!-- TODO-14: Allow reorder -->
                     <ListBox Grid.Row="1"
                              Background="Transparent"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              ItemsSource="{Binding Path=InstalledGameClients, Mode=OneTime}"
                              d:ItemsSource="{d:SampleData ItemCount=3}"
                              SelectedItem="{Binding Path=SelectedGameClient}">
@@ -206,11 +211,29 @@
                         <local:PopupCard Grid.Column="2" 
                                          VerticalAlignment="Center">
                             <StackPanel>
-                                <!-- TODO-14: Add rename option -->
                                 <Button Content="Open location"
                                         Command="{Binding Path=OpenLocationCommand, Mode=OneTime}"
                                         local:IconAssist.IconKind="FolderOutline"
                                         local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Info}" />
+                                <Button Command="{Binding Path=RenameCommand, Mode=OneTime}"
+                                        local:IconAssist.IconKind="PencilOutline"
+                                        local:IconAssist.IconBrush="{StaticResource RCP.Brushes.Info}"
+                                        HorizontalContentAlignment="Stretch">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="Rename" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="F2"
+                                                   Margin="0 0 8 0" />
+
+                                    </Grid>
+                                </Button>
                                 <Button Content="{Resx GameOptions_Remove}"
                                         Command="{Binding Path=RemoveGameClientCommand, Mode=OneTime}"
                                         local:IconAssist.IconKind="DeleteOutline"
