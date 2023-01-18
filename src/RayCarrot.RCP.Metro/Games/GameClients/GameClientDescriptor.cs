@@ -3,7 +3,6 @@ using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Clients;
 
-// TODO-14: Move methods and such to components
 /// <summary>
 /// A descriptor for defining a game client. This can be a client like Steam or an
 /// emulator like DOSBox. Basically any program which handles launching a game.
@@ -50,12 +49,6 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),
             text: gameClientInstallation.InstallLocation.FullPath),
     };
-
-    public virtual Task OnGameClientAttachedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
-        Task.CompletedTask;
-
-    public virtual Task OnGameClientDetachedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
-        Task.CompletedTask;
 
     /// <summary>
     /// Refreshes the games which use the specified game client

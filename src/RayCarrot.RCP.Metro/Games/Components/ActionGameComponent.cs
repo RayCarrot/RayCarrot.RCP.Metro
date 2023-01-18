@@ -19,3 +19,23 @@ public abstract class ActionGameComponent : GameComponent
 
     public Task InvokeAsync() => _action(GameInstallation);
 }
+
+public abstract class ActionGameComponent<T> : GameComponent
+{
+    protected ActionGameComponent(Func<GameInstallation, T, Task> asyncAction)
+    {
+        _action = asyncAction;
+    }
+    protected ActionGameComponent(Action<GameInstallation, T> action)
+    {
+        _action = (x, a) =>
+        {
+            action(x, a);
+            return Task.CompletedTask;
+        };
+    }
+
+    private readonly Func<GameInstallation, T, Task> _action;
+
+    public Task InvokeAsync(T arg) => _action(GameInstallation, arg);
+}

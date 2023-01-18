@@ -1,6 +1,4 @@
-﻿using BinarySerializer;
-
-namespace RayCarrot.RCP.Metro.Games.Components;
+﻿namespace RayCarrot.RCP.Metro.Games.Components;
 
 public static class GameComponentExtensions
 {
@@ -17,9 +15,11 @@ public static class GameComponentExtensions
             await action.InvokeAsync();
     }
 
-    public static void InitContext(this IEnumerable<InitializeContextComponent> settings, Context context)
+    public static async Task InvokeAllAsync<T>(
+        this IEnumerable<ActionGameComponent<T>> actions,
+        T arg)
     {
-        foreach (InitializeContextComponent contextComponent in settings)
-            contextComponent.InitContext(context);
+        foreach (ActionGameComponent<T> action in actions)
+            await action.InvokeAsync(arg);
     }
 }

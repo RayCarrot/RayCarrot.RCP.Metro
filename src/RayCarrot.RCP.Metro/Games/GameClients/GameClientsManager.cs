@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Clients.DosBox;
 using RayCarrot.RCP.Metro.Games.Clients.Steam;
+using RayCarrot.RCP.Metro.Games.Components;
 
 namespace RayCarrot.RCP.Metro.Games.Clients;
 
@@ -205,7 +206,7 @@ public class GameClientsManager
         // Get the previous client installation and invoke it being detached
         GameClientInstallation? prevClient = GetAttachedGameClient(gameInstallation);
         if (prevClient != null)
-            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
+            await gameInstallation.GetComponents<OnGameClientDetachedComponent>().InvokeAllAsync(prevClient);
 
         // Detach the client for the game
         gameInstallation.SetValue<string?>(GameDataKey.Client_AttachedClient, null);
@@ -264,7 +265,7 @@ public class GameClientsManager
 
         // Invoke the previous one being detached
         if (prevClient != null)
-            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
+            await gameInstallation.GetComponents<OnGameClientDetachedComponent>().InvokeAllAsync(prevClient);
 
         // Set the client for the game
         gameInstallation.SetValue(GameDataKey.Client_AttachedClient, gameClientInstallation.InstallationId);
@@ -275,7 +276,7 @@ public class GameClientsManager
         Logger.Info("Attached the game client {0} to {1}", gameClientInstallation.FullId, gameInstallation.FullId);
 
         // Invoke the new client being selected
-        await gameClientInstallation.GameClientDescriptor.OnGameClientAttachedAsync(gameInstallation, gameClientInstallation);
+        await gameInstallation.GetComponents<OnGameClientAttachedComponent>().InvokeAllAsync(gameClientInstallation);
 
         // Refresh the game
         Messenger.Send(new ModifiedGamesMessage(gameInstallation, rebuiltComponents: true));

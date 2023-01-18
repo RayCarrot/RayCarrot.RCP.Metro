@@ -11,6 +11,6 @@ public class DetachClientOnGameRemovedComponent : OnGameRemovedComponent
         // Get the previous game client installation and invoke it being deselected
         GameClientInstallation? prevClient = Services.GameClients.GetAttachedGameClient(gameInstallation);
         if (prevClient != null)
-            await prevClient.GameClientDescriptor.OnGameClientDetachedAsync(gameInstallation, prevClient);
+            await gameInstallation.GetComponents<OnGameClientDetachedComponent>().InvokeAllAsync(prevClient);
     }
 }

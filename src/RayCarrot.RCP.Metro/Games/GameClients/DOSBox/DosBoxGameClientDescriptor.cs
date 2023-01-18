@@ -23,6 +23,9 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
     private static FileSystemPath GetGameConfigFile(GameInstallation gameInstallation) =>
         AppFilePaths.UserDataBaseDir + "Clients" + "DOSBox" + (gameInstallation.InstallationId + ".ini");
 
+    private static void CreateConfigFile(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) => 
+        new AutoConfigManager(GetGameConfigFile(gameInstallation)).Create(gameInstallation);
+
     #endregion
 
     #region Public Methods
@@ -31,6 +34,7 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
     {
         base.RegisterComponents(builder);
 
+        builder.Register(new OnGameClientAttachedComponent(CreateConfigFile));
         builder.Register<LaunchGameComponent>(new DosBoxLaunchGameComponent(this));
         
         // Add the RCP config file
@@ -49,15 +53,6 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
 
     public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>
         new DosBoxGameClientOptionsViewModel(gameClientInstallation, this);
-
-    // TODO-14: Have attach and detach be components
-    public override Task OnGameClientAttachedAsync(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation)
-    {
-        // Create config file
-        new AutoConfigManager(GetGameConfigFile(gameInstallation)).Create(gameInstallation);
-
-        return Task.CompletedTask;
-    }
 
     #endregion
 }

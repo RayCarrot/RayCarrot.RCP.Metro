@@ -8,14 +8,8 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 /// settings to the context.
 /// </summary>
 [BaseGameComponent]
-public class InitializeContextComponent : GameComponent
+public class InitializeContextComponent : ActionGameComponent<Context>
 {
-    public InitializeContextComponent(Action<GameInstallation, Context> initContextAction)
-    {
-        _initContextAction = initContextAction;
-    }
-
-    private readonly Action<GameInstallation, Context> _initContextAction;
-
-    public void InitContext(Context context) => _initContextAction(GameInstallation, context);
+    public InitializeContextComponent(Func<GameInstallation, Context, Task> asyncAction) : base(asyncAction) { }
+    public InitializeContextComponent(Action<GameInstallation, Context> action) : base(action) { }
 }

@@ -4,10 +4,11 @@ namespace RayCarrot.RCP.Metro.Games.Components;
 
 public class SetRay1MsDosDataOnGameAddedComponent : OnGameAddedComponent
 {
-    public SetRay1MsDosDataOnGameAddedComponent() : base(SetRay1MsDosData) { }
+    public SetRay1MsDosDataOnGameAddedComponent() : base(SetRay1MsDosDataAsync) { }
 
-    private static void SetRay1MsDosData(GameInstallation gameInstallation)
+    private static async Task SetRay1MsDosDataAsync(GameInstallation gameInstallation)
     {
-        gameInstallation.SetObject(GameDataKey.Ray1_MsDosData, Ray1MsDosData.Create(gameInstallation));
+        Ray1MsDosData data = await Ray1MsDosData.CreateAsync(gameInstallation);
+        gameInstallation.SetObject(GameDataKey.Ray1_MsDosData, data);
     }
 }

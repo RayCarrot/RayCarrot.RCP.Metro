@@ -32,14 +32,14 @@ public class Ray1MsDosData
     /// </summary>
     /// <param name="gameInstallation">The game installation to create the data for</param>
     /// <returns>The data instance</returns>
-    public static Ray1MsDosData Create(GameInstallation gameInstallation)
+    public static async Task<Ray1MsDosData> CreateAsync(GameInstallation gameInstallation)
     {
         Logger.Trace("Finding Ray1 MS-DOS versions");
 
         // Read the VERSION file to get the versions supported by this release. Then keep
         // the ones which are actually available.
         using RCPContext context = new(gameInstallation.InstallLocation);
-        gameInstallation.GetComponents<InitializeContextComponent>().InitContext(context);
+        await gameInstallation.GetComponents<InitializeContextComponent>().InvokeAllAsync(context);
         LinearFile commonFile = context.AddFile(new LinearFile(context, "PCMAP/COMMON.DAT"));
 
         PC_FileArchive commonArchive = FileFactory.Read<PC_FileArchive>(context, commonFile.FilePath);
