@@ -215,20 +215,13 @@ public class StartupManager
         // Keep track of removed games
         List<GameInstallation> removed = new();
 
-        // TODO-14: Only show single message to user
-        
         // Make sure every game is valid
         foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             // Check if it's valid
             if (gameInstallation.GameDescriptor.IsValid(gameInstallation.InstallLocation) &&
-                // TODO-14: Merge the install location check with this?
                 gameInstallation.GetComponents<GameValidationCheckComponent>().All(x => x.IsValid()))
                 continue;
-
-            // Show message
-            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, gameInstallation.GetDisplayName()), 
-                Resources.GameNotFoundHeader, MessageType.Error);
 
             // Add to removed games
             removed.Add(gameInstallation);
@@ -236,8 +229,15 @@ public class StartupManager
             Logger.Info("The game {0} is being removed due to not being valid", gameInstallation.FullId);
         }
 
+        // Return if no games were removed
+        if (!removed.Any())
+            return;
+
         // Remove the games
         await Services.Games.RemoveGamesAsync(removed);
+
+        // TODO-UPDATE: Localize
+        await Services.MessageUI.DisplayMessageAsync(String.Format("The following games are no longer valid and were removed:\n\n{0}", String.Join(Environment.NewLine, removed.Select(x => x.GetDisplayName()))), "Removed invalid games", MessageType.Error);
     }
 
     private async Task PostUpdateAsync()
