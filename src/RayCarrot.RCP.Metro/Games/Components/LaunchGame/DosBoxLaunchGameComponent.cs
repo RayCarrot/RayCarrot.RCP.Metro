@@ -37,7 +37,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
         GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
         // Get the launch info
-        FileSystemPath launchPath = gameClientInstallation.InstallLocation;
+        FileSystemPath launchPath = gameClientInstallation.InstallLocation.FilePath;
         string launchArgs = GetDOSBoxLaunchArgs();
 
         return new[]
@@ -77,7 +77,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
             mountPath: mountPath,
             requiresMounting: GameInstallation.HasComponent<MsDosGameRequiresDiscComponent>(),
             launchName: launchName,
-            installDir: GameInstallation.InstallLocation,
+            installDir: GameInstallation.InstallLocation.Directory,
             dosBoxConfigFiles: configFilePaths);
     }
 
@@ -149,7 +149,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
         GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
         // Get the launch info
-        FileSystemPath launchPath = gameClientInstallation.InstallLocation;
+        FileSystemPath launchPath = gameClientInstallation.InstallLocation.FilePath;
         string launchArgs = GetDOSBoxLaunchArgs();
 
         // Create the shortcut
@@ -163,7 +163,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
         GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
 
         // Get the launch info
-        FileSystemPath launchPath = gameClientInstallation.InstallLocation;
+        FileSystemPath launchPath = gameClientInstallation.InstallLocation.FilePath;
         string launchArgs = GetDOSBoxLaunchArgs();
 
         if (!launchPath.FileExists)
@@ -175,7 +175,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
             new JumpListItemViewModel(
                 gameInstallation: GameInstallation,
                 name: GameInstallation.GetDisplayName(),
-                iconSource: gameClientInstallation.InstallLocation,
+                iconSource: gameClientInstallation.InstallLocation.FilePath,
                 launchPath: launchPath,
                 workingDirectory: launchPath.Parent,
                 launchArguments: launchArgs,
@@ -186,7 +186,7 @@ public class DosBoxLaunchGameComponent : LaunchGameComponent
     public async Task<bool> LaunchGameAsync(string? gameLaunchArgs)
     {
         GameClientInstallation gameClientInstallation = GetRequiredGameClientInstallation();
-        FileSystemPath launchPath = gameClientInstallation.InstallLocation;
+        FileSystemPath launchPath = gameClientInstallation.InstallLocation.FilePath;
 
         // Make sure the DOSBox exe exists
         if (!launchPath.FileExists)

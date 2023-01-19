@@ -460,7 +460,9 @@ public class Page_Debug_ViewModel : BasePageViewModel
                             Stopwatch gameTimer = Stopwatch.StartNew();
 
                             // Get the size
-                            ByteSize size = installedGame.InstallLocation.GetSize();
+                            ByteSize size = (installedGame.InstallLocation.HasFile 
+                                ? installedGame.InstallLocation.FilePath 
+                                : installedGame.InstallLocation.Directory).GetSize();
 
                             gameTimer.Stop();
 

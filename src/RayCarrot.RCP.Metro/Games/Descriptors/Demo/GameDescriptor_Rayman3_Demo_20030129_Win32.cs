@@ -42,7 +42,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20030129_Win32 : Win32GameDescri
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("MainP5Pvf.exe", GameInstallationPathType.PrimaryExe, required: true),

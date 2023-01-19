@@ -43,7 +43,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_Rayman1_CompleteSoundtrack(x)));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYMAN.EXE", GameInstallationPathType.PrimaryExe, required: true),
@@ -64,14 +64,14 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
 
     public override FinderQuery[] GetFinderQueries()
     {
-        static FileSystemPath validateLocation(FileSystemPath location)
+        static InstallLocation validateLocation(InstallLocation location)
         {
             const string gameName = "Rayman";
 
-            if (location.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase))
-                return location.Parent + gameName;
+            if (location.Directory.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase))
+                return new InstallLocation(location.Directory.Parent + gameName);
             else
-                return location + gameName;
+                return new InstallLocation(location.Directory + gameName);
         }
 
         return new FinderQuery[]

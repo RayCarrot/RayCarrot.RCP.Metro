@@ -48,7 +48,7 @@ public sealed class GameDescriptor_RaymanFiestaRun_Windows10Edition_WindowsPacka
         builder.Register(new UtilityComponent(x => new Utility_RaymanFiestaRun_SaveFix(this, x, 0)));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RFRXAML.exe", GameInstallationPathType.PrimaryExe, required: true),

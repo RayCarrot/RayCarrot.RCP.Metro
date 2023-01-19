@@ -1,9 +1,9 @@
 ﻿namespace RayCarrot.RCP.Metro.Games.Structure;
 
 // TODO: In the future we can expand this to allow for files on a disc (iso/bin/cue), in a package (apk etc.) and offsets (roms)
-public class GameInstallationStructure
+public class ProgramInstallationStructure
 {
-    public GameInstallationStructure(GameInstallationPath[] gamePaths)
+    public ProgramInstallationStructure(GameInstallationPath[] gamePaths)
     {
         GamePaths = gamePaths;
     }
@@ -32,9 +32,11 @@ public class GameInstallationStructure
     public IEnumerable<(FileSystemPath FullPath, GameInstallationPath Path)> EnumeratePaths(FileSystemPath basePath) =>
         EnumeratePaths(basePath, GamePaths);
 
-    public bool IsLocationValid(FileSystemPath location)
+    public bool IsLocationValid(InstallLocation location)
     {
-        foreach ((FileSystemPath FullPath, GameInstallationPath Path) in EnumeratePaths(location))
+        // TODO-14: Validate the location if it's a file instead
+
+        foreach ((FileSystemPath FullPath, GameInstallationPath Path) in EnumeratePaths(location.Directory))
         {
             if (!Path.Required)
                 continue;
@@ -50,14 +52,14 @@ public class GameInstallationStructure
     }
 
     public IEnumerable<FileSystemPath> GetAbsolutePaths(GameInstallation gameInstallation, GameInstallationPathType type) =>
-        GetAbsolutePaths(gameInstallation.InstallLocation, type);
+        GetAbsolutePaths(gameInstallation.InstallLocation.Directory, type);
     public IEnumerable<FileSystemPath> GetAbsolutePaths(FileSystemPath basePath, GameInstallationPathType type) =>
         EnumeratePaths(basePath).Where(x => x.Path.Type == type).Select(x => x.FullPath);
 
     public string GetLocalPath(GameInstallationPathType type) =>
         GetAbsolutePath(FileSystemPath.EmptyPath, type);
     public FileSystemPath GetAbsolutePath(GameInstallation gameInstallation, GameInstallationPathType type) =>
-        GetAbsolutePath(gameInstallation.InstallLocation, type);
+        GetAbsolutePath(gameInstallation.InstallLocation.Directory, type);
     public FileSystemPath GetAbsolutePath(FileSystemPath basePath, GameInstallationPathType type) =>
         EnumeratePaths(basePath).FirstOrDefault(x => x.Path.Type == type).FullPath;
 }

@@ -106,7 +106,7 @@ public class UninstallProgramFinderOperation : FinderOperation
                     continue;
 
                 // Validate the location
-                finderItem.Validate(query, location);
+                finderItem.Validate(query, new InstallLocation(location));
             }
         }
     }

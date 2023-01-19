@@ -53,7 +53,7 @@ public sealed class GameDescriptor_RaymanOrigins_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_RaymanOrigins_Update(x)));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman Origins.exe", GameInstallationPathType.PrimaryExe, required: true),

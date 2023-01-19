@@ -514,7 +514,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     {
         // Set the default directory to that of the game, if it's been added
         GameInstallation gameInstallation = Services.Games.FindInstalledGame(GameSearch.Create(Game.RaymanRavingRabbids, GamePlatform.Win32));
-        GameDirectoryPath = gameInstallation?.InstallLocation ?? FileSystemPath.EmptyPath;
+        GameDirectoryPath = gameInstallation?.InstallLocation.Directory ?? FileSystemPath.EmptyPath;
 
         // Restore saved button mapping
         foreach (var buttonItem in Data.Mod_RRR_KeyboardButtonMapping)

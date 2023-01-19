@@ -21,7 +21,7 @@ public abstract class UbiIniBaseConfigViewModel<Handler> : ConfigPageViewModel
     {
         // Set properties
         GameInstallation = gameInstallation;
-        CanModifyGame = Services.File.CheckDirectoryWriteAccess(GameInstallation.InstallLocation);
+        CanModifyGame = Services.File.CheckDirectoryWriteAccess(GameInstallation.InstallLocation.Directory);
 
         if (!CanModifyGame)
             Logger.Info("The game {0} can't be modified", GameInstallation.FullId);

@@ -48,7 +48,7 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
         // Ideally all of this trimming and formatting shouldn't be handled here like this, but it's the easiest for now
         ArchiveFilePaths = new ObservableCollection<string>(
             ArchiveComponent.GetArchiveFilePaths().
-                Where(x => (GameInstallation.InstallLocation + x).FileExists).
+                Where(x => (GameInstallation.InstallLocation.Directory + x).FileExists).
                 Select(x => $"• {x}"));
 
         if (ArchiveFilePaths.Count > 3)
@@ -83,7 +83,7 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
             await Services.UI.ShowArchiveExplorerAsync(
                 manager: archiveDataManager,
                 filePaths: ArchiveComponent.GetArchiveFilePaths().
-                    Select(x => GameInstallation.InstallLocation + x).
+                    Select(x => GameInstallation.InstallLocation.Directory + x).
                     Where(x => x.FileExists).
                     ToArray());
         }

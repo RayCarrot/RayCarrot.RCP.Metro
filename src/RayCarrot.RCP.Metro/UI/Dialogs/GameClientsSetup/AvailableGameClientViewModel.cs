@@ -38,14 +38,16 @@ public class AvailableGameClientViewModel : BaseViewModel
         if (broweResult.CanceledByUser)
             return;
 
+        InstallLocation location = InstallLocation.FromFilePath(broweResult.SelectedFile);
+
         // Make sure it's valid
-        if (!Descriptor.IsValid(broweResult.SelectedFile))
+        if (!Descriptor.IsValid(location))
         {
             // TODO-UPDATE: Localize
             await Services.MessageUI.DisplayMessageAsync("The selected location is not valid", MessageType.Error);
             return;
         }
 
-        await Services.GameClients.AddGameClientAsync(Descriptor, broweResult.SelectedFile);
+        await Services.GameClients.AddGameClientAsync(Descriptor, location);
     }
 }

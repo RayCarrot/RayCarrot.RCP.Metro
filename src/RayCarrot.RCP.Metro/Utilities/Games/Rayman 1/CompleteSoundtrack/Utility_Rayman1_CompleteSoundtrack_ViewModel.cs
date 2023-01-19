@@ -20,7 +20,7 @@ public class Utility_Rayman1_CompleteSoundtrack_ViewModel : BaseRCPViewModel
         ReplaceSoundtrackCommand = new AsyncRelayCommand(ReplaceSoundtrackAsync);
 
         // Attempt to find the Rayman Forever music directory
-        var dir = gameInstallation.InstallLocation.Parent + "Music";
+        var dir = gameInstallation.InstallLocation.Directory.Parent + "Music";
 
         // Set to music path if found
         MusicDir = dir.DirectoryExists && (dir + "rayman02.ogg").FileExists ? dir : FileSystemPath.EmptyPath;

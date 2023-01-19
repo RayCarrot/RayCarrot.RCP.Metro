@@ -13,7 +13,7 @@ public class GameProgressionManager_Rayman60Levels : GameProgressionManager_Raym
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
-        new(GameInstallation.InstallLocation + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0)
+        new(GameInstallation.InstallLocation.Directory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
+        new(GameInstallation.InstallLocation.Directory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0)
     };
 }

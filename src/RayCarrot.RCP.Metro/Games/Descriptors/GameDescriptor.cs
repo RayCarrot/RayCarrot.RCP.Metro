@@ -23,7 +23,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 {
     #region Private Fields
 
-    private GameInstallationStructure? _structure;
+    private ProgramInstallationStructure? _structure;
 
     #endregion
 
@@ -99,7 +99,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <summary>
     /// Gets the game structure for the game
     /// </summary>
-    public GameInstallationStructure Structure => 
+    public ProgramInstallationStructure Structure => 
         // Cache the object to avoid re-creating it each time it's requested
         _structure ??= GetStructure();
 
@@ -152,7 +152,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
             priority: ComponentPriority.Low);
     }
 
-    protected abstract GameInstallationStructure GetStructure();
+    protected abstract ProgramInstallationStructure GetStructure();
 
     #endregion
 
@@ -230,9 +230,9 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     /// <summary>
     /// Indicates if the game is valid
     /// </summary>
-    /// <param name="installDir">The game install directory, if any</param>
+    /// <param name="installLocation">The game install location</param>
     /// <returns>True if the game is valid, otherwise false</returns>
-    public bool IsValid(FileSystemPath installDir)
+    public bool IsValid(InstallLocation installLocation)
     {
         // Always return true if game validation is disabled
         if (Services.Data.App_DisableGameValidation)
@@ -240,7 +240,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
 
         // TODO-14: Return reason why it's not valid so we can tell user (like which file is missing)
         // Verify the game structure
-        return Structure.IsLocationValid(installDir);
+        return Structure.IsLocationValid(installLocation);
     }
 
     public int CompareTo(GameDescriptor? other)

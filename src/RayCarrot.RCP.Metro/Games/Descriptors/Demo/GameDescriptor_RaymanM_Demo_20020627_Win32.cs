@@ -47,7 +47,7 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RaymanM.exe", GameInstallationPathType.PrimaryExe, required: true),

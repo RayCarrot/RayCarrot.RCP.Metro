@@ -23,7 +23,7 @@ public class Utility_RaymanLegends_UbiRay_ViewModel : BaseRCPViewModel
         RevertCommand = new AsyncRelayCommand(RevertAsync);
 
         // Set properties
-        IPKFilePath = gameInstallation.InstallLocation + "Bundle_PC.ipk";
+        IPKFilePath = gameInstallation.InstallLocation.Directory + "Bundle_PC.ipk";
 
         try
         {

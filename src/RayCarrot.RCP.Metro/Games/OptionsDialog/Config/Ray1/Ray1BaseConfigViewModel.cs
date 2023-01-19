@@ -431,7 +431,7 @@ public abstract class Ray1BaseConfigViewModel : ConfigPageViewModel
         ConfigFileName = GetConfigFileName();
 
         // Create the context to use
-        Context = new RCPContext(GameInstallation.InstallLocation);
+        Context = new RCPContext(GameInstallation.InstallLocation.Directory);
         Context.AddSettings(new Ray1Settings(EngineVersion));
         Context.AddFile(new LinearFile(Context, ConfigFileName));
 

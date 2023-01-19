@@ -10,14 +10,14 @@ public class GameInstallation : ProgramInstallation, IComparable<GameInstallatio
 {
     #region Constructors
 
-    public GameInstallation(GameDescriptor gameDescriptor, FileSystemPath installLocation) 
+    public GameInstallation(GameDescriptor gameDescriptor, InstallLocation installLocation) 
         : this(gameDescriptor, installLocation, GenerateInstallationID(), new Dictionary<string, object?>()) 
     { }
 
     [JsonConstructor]
     private GameInstallation(
-        GameDescriptor gameDescriptor, 
-        FileSystemPath installLocation, 
+        GameDescriptor gameDescriptor,
+        InstallLocation installLocation, 
         string installationId, 
         Dictionary<string, object?>? data) 
         : base(installLocation, installationId, data)

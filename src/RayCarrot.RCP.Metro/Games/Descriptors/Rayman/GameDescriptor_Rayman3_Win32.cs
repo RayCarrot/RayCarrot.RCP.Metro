@@ -50,7 +50,7 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman3.exe", GameInstallationPathType.PrimaryExe, required: true),

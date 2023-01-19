@@ -17,7 +17,7 @@ public class GameProgressionManager_RaymanMArena : GameProgressionManager
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new(GameInstallation.InstallLocation + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
+        new(GameInstallation.InstallLocation.Directory + "MENU" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
     };
 
     public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)

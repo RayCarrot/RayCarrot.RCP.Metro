@@ -204,7 +204,7 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
         {
             Logger.Info("Loading cheats from save file");
 
-            ProgressionDirectory saveDir = new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.sav");
+            ProgressionDirectory saveDir = new(GameInstallation.InstallLocation.Directory, SearchOption.TopDirectoryOnly, "*.sav");
             FileSystemPath saveDirPath = saveDir.GetReadSearchPattern(ProgramDataSource.Auto).DirPath;
 
             using RCPContext context = new(saveDirPath);
@@ -264,7 +264,7 @@ public abstract class RaymanRavingRabbidsBaseConfigViewModel : ConfigPageViewMod
             {
                 Logger.Info("Saving cheats to save files");
 
-                ProgressionDirectory saveDir = new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.sav");
+                ProgressionDirectory saveDir = new(GameInstallation.InstallLocation.Directory, SearchOption.TopDirectoryOnly, "*.sav");
 
                 // TODO: Have this respect the data source setting in the progression page? Save for reading then.
                 foreach (FileSystemPath saveDirPath in saveDir.GetWriteSearchPatterns(ProgramDataSource.Auto).Select(x => x.DirPath))

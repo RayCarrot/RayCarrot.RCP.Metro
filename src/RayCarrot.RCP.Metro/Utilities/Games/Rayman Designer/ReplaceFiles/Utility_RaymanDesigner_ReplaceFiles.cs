@@ -17,6 +17,6 @@ public class Utility_RaymanDesigner_ReplaceFiles : Utility<Utility_RaymanDesigne
     public override GenericIconKind Icon => GenericIconKind.Utilities_RaymanDesigner_ReplaceFiles;
     public override string InfoText => Resources.RDU_ReplaceFilesInfo;
     public override bool RequiresAdditionalFiles => true;
-    public override bool RequiresAdmin => !Services.File.CheckDirectoryWriteAccess(GameInstallation.InstallLocation);
-    public override bool IsAvailable => GameInstallation.InstallLocation.DirectoryExists;
+    public override bool RequiresAdmin => !Services.File.CheckDirectoryWriteAccess(GameInstallation.InstallLocation.Directory);
+    public override bool IsAvailable => GameInstallation.InstallLocation.Directory.DirectoryExists;
 }

@@ -66,7 +66,7 @@ public sealed class GameDescriptor_RaymanEdutainmentQuiz_MsDos : MsDosGameDescri
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath($"RAY{PrimaryName}.EXE", GameInstallationPathType.PrimaryExe, required: true),

@@ -16,7 +16,7 @@ public abstract class MsDosGameDescriptor : GameDescriptor
 
     public override IEnumerable<GameAddAction> GetAddActions() => new GameAddAction[]
     {
-        new LocateGameAddAction(this),
+        new LocateDirectoryGameAddAction(this),
     };
 
     #endregion

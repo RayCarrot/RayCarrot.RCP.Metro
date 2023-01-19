@@ -38,16 +38,16 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
     {
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_Setup)), 
-            Uri: gameInstallation.InstallLocation + "GXSetup.exe"),
+            Uri: gameInstallation.InstallLocation.Directory + "GXSetup.exe"),
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_R2nGlide)), 
-            Uri: gameInstallation.InstallLocation + "nglide_config.exe"),
+            Uri: gameInstallation.InstallLocation.Directory + "nglide_config.exe"),
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), 
-            Uri: gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
+            Uri: gameInstallation.InstallLocation.Directory + "dgVoodooCpl.exe"),
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_R2Fix)), 
-            Uri: gameInstallation.InstallLocation + "R2FixCfg.exe"),
+            Uri: gameInstallation.InstallLocation.Directory + "R2FixCfg.exe"),
     };
 
     #endregion
@@ -76,7 +76,7 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC))));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman2.exe", GameInstallationPathType.PrimaryExe, required: true),

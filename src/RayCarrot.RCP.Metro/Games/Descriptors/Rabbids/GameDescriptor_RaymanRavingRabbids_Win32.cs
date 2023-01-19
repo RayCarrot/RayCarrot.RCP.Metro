@@ -37,7 +37,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
     {
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_Setup)), 
-            Uri: gameInstallation.InstallLocation + "SettingsApplication.exe")
+            Uri: gameInstallation.InstallLocation.Directory + "SettingsApplication.exe")
     };
 
     #endregion
@@ -54,12 +54,12 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Win32 : Win32GameDescript
         builder.Register(new GameConfigComponent(x => new RaymanRavingRabbidsConfigViewModel(x)));
         builder.Register<OnGameAddedComponent, AddToJumpListOnGameAddedComponent>();
         // TODO-14: Launch game exe directly and allow custom args like for RGH?
-        builder.Register(new Win32LaunchPathComponent(x => x.InstallLocation + "CheckApplication.exe"));
+        builder.Register(new Win32LaunchPathComponent(x => x.InstallLocation.Directory + "CheckApplication.exe"));
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
         builder.Register<BinaryGameModeComponent>(new JadeGameModeComponent(JadeGameMode.RaymanRavingRabbids_PC));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Jade_enr.exe", GameInstallationPathType.PrimaryExe, required: true),

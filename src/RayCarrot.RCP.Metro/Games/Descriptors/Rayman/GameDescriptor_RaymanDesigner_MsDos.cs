@@ -32,7 +32,7 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
     {
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_RDMapper)), 
-            Uri: gameInstallation.InstallLocation + "MAPPER.EXE")
+            Uri: gameInstallation.InstallLocation.Directory + "MAPPER.EXE")
     };
 
     #endregion
@@ -61,7 +61,7 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_RaymanDesigner_CreateConfig(x)));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYKIT.EXE", GameInstallationPathType.PrimaryExe, required: true),
@@ -82,14 +82,14 @@ public sealed class GameDescriptor_RaymanDesigner_MsDos : MsDosGameDescriptor
 
     public override FinderQuery[] GetFinderQueries()
     {
-        static FileSystemPath validateLocation(FileSystemPath location)
+        static InstallLocation validateLocation(InstallLocation location)
         {
             const string gameName = "RayKit";
 
-            if (location.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase))
-                return location.Parent + gameName;
+            if (location.Directory.Name.Equals("DOSBOX", StringComparison.OrdinalIgnoreCase))
+                return new InstallLocation(location.Directory.Parent + gameName);
             else
-                return location + gameName;
+                return new InstallLocation(location.Directory + gameName);
         }
 
         return new FinderQuery[]

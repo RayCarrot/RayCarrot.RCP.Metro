@@ -16,7 +16,7 @@ public class Rayman1MinigamesGameOptionsViewModel : GameOptionsViewModel
         // Create properties
         AsyncLock = new AsyncLock();
 
-        InstallDir = gameInstallation.InstallLocation;
+        InstallDir = gameInstallation.InstallLocation.Directory;
 
         _selectedLanguage = GetCurrentLanguage() ?? Ray1MinigamesLanguage.French;
 

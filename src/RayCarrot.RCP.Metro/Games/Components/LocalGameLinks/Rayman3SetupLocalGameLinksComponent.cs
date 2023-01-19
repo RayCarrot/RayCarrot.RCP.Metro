@@ -12,7 +12,7 @@ public class Rayman3SetupLocalGameLinksComponent : LocalGameLinksComponent
         {
             new GameUriLink(
                 Header: new ResourceLocString(nameof(Resources.GameLink_Setup)),
-                Uri: gameInstallation.InstallLocation + setupFileName)
+                Uri: gameInstallation.InstallLocation.Directory + setupFileName)
         };
     }
 }

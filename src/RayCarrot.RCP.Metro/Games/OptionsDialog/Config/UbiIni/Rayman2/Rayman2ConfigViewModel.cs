@@ -346,10 +346,10 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         if (!ConfigPath.FileExists)
         {
             // Check if the game is the GOG version, in which case the file is located in the install directory
-            bool isGOG = (GameInstallation.InstallLocation + "goggame.sdb").FileExists;
+            bool isGOG = (GameInstallation.InstallLocation.Directory + "goggame.sdb").FileExists;
 
             // Get the new file path
-            var newFile = isGOG ? GameInstallation.InstallLocation + "ubi.ini" : AppFilePaths.UbiIniPath1;
+            var newFile = isGOG ? GameInstallation.InstallLocation.Directory + "ubi.ini" : AppFilePaths.UbiIniPath1;
 
             try
             {
@@ -460,8 +460,8 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
             Logger.Info("The Rayman 2 aspect ratio is being set...");
 
             // Get the exe file path
-            GameInstallationStructure gameStructure = GameInstallation.GameDescriptor.Structure;
-            FileSystemPath path = gameStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+            ProgramInstallationStructure programStructure = GameInstallation.GameDescriptor.Structure;
+            FileSystemPath path = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Make sure the file exists
             if (!path.FileExists)
@@ -663,7 +663,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     /// <returns>The path</returns>
     private static FileSystemPath GetDinputPath(GameInstallation gameInstallation)
     {
-        return gameInstallation.InstallLocation + "dinput.dll";
+        return gameInstallation.InstallLocation.Directory + "dinput.dll";
     }
 
     /// <summary>
@@ -673,7 +673,7 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
     /// <returns>The path</returns>
     private static FileSystemPath GetUbiIniPath(GameInstallation gameInstallation)
     {
-        var path1 = gameInstallation.InstallLocation + "ubi.ini";
+        var path1 = gameInstallation.InstallLocation.Directory + "ubi.ini";
 
         if (path1.FileExists)
             return path1;
@@ -731,8 +731,8 @@ public class Rayman2ConfigViewModel : UbiIniBaseConfigViewModel<UbiIniData_Rayma
         try
         {
             // Get the exe file path
-            GameInstallationStructure gameStructure = gameInstallation.GameDescriptor.Structure;
-            FileSystemPath path = gameStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
+            ProgramInstallationStructure programStructure = gameInstallation.GameDescriptor.Structure;
+            FileSystemPath path = programStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
 
             // Get the location
             var location = GetAspectRatioLocation(path);

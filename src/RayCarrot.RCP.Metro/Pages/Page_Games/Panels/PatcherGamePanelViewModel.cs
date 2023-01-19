@@ -45,7 +45,7 @@ public class PatcherGamePanelViewModel : GamePanelViewModel
         // TODO-UPDATE: Need to update this once the user has modified the patches
         // Get applied patches
         using Context context = new RCPContext(String.Empty);
-        PatchLibrary library = new(GameInstallation.InstallLocation, Services.File);
+        PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
         PatchLibraryFile? libraryFile = null;
 
         try

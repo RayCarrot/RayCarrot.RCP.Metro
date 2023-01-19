@@ -32,7 +32,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     {
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), 
-            Uri: gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
+            Uri: gameInstallation.InstallLocation.Directory + "dgVoodooCpl.exe"),
     };
 
     #endregion
@@ -58,7 +58,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC))));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("MaiD3Dvr.exe", GameInstallationPathType.PrimaryExe, required: true),

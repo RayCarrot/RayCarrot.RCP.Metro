@@ -60,7 +60,21 @@ public class InstalledGameClientViewModel : BaseViewModel
         DisplayName = GameClientInstallation.GetDisplayName();
     }
 
-    public Task OpenLocationAsync() => Services.File.OpenExplorerLocationAsync(GameClientInstallation.InstallLocation);
+    public async Task OpenLocationAsync()
+    {
+        // Get the install location to open
+        FileSystemPath pathToOpen;
+
+        if (GameClientInstallation.InstallLocation.HasFile)
+            pathToOpen = GameClientInstallation.InstallLocation.FilePath;
+        else
+            pathToOpen = GameClientInstallation.InstallLocation.Directory;
+
+        // Open the location
+        await Services.File.OpenExplorerLocationAsync(pathToOpen);
+
+        Logger.Trace("The game client {0} install location was opened", GameClientInstallation.FullId);
+    }
 
     public async Task RenameAsync()
     {

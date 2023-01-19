@@ -142,7 +142,7 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
             Title = Resources.Utilities_Decoder_DecodeFileSelectionHeader,
-            DefaultDirectory = Services.Games.FindInstalledGame(SelectedType.GameSearchPredicates)?.InstallLocation.FullPath,
+            DefaultDirectory = Services.Games.FindInstalledGame(SelectedType.GameSearchPredicates)?.InstallLocation.Directory.FullPath,
             ExtensionFilter = SelectedType.GetFileFilter(),
             MultiSelection = true
         });
@@ -186,7 +186,7 @@ public class Utility_Decoders_ViewModel : BaseRCPViewModel, IDisposable
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
             Title = Resources.Utilities_Decoder_EncodeFileSelectionHeader,
-            DefaultDirectory = Services.Games.FindInstalledGame(SelectedType.GameSearchPredicates)?.InstallLocation.FullPath,
+            DefaultDirectory = Services.Games.FindInstalledGame(SelectedType.GameSearchPredicates)?.InstallLocation.Directory.FullPath,
             ExtensionFilter = SelectedType.GetFileFilter(),
             MultiSelection = true
         });

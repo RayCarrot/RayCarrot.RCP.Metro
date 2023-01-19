@@ -37,7 +37,7 @@ public sealed class GameDescriptor_RaymanGardenPLUS_Win32 : Win32GameDescriptor
         builder.Register<ExternalGameLinksComponent>(new GameJoltExternalGameLinksComponent(GameJoltUrl));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("rayman-garden-plus.exe", GameInstallationPathType.PrimaryExe, required: true),

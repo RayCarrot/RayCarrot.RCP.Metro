@@ -43,7 +43,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         {
             new GameLinksComponent.GameUriLink(
                 Header: new ResourceLocString(nameof(Resources.GameLink_Setup)), 
-                Uri: gameInstallation.InstallLocation + "SettingsApplication.exe",
+                Uri: gameInstallation.InstallLocation.Directory + "SettingsApplication.exe",
                 Arguments: $"/{launchMode.ToString().ToLower()}")
         };
     }
@@ -64,7 +64,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
         builder.Register(new LocalGameLinksComponent(GetLocalGameLinks));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Jade.exe", GameInstallationPathType.PrimaryExe, required: true),

@@ -41,7 +41,7 @@ public sealed class GameDescriptor_RaymanGold_Demo_19970930_MsDos : MsDosGameDes
         builder.Register<ArchiveComponent, Ray1MsDosArchiveComponent>();
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYKIT.EXE", GameInstallationPathType.PrimaryExe, required: true),

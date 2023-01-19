@@ -96,12 +96,12 @@ public class GamesManager
     #region Private Methods
 
     private async Task<GameInstallation> AddGameImplAsync(
-        GameDescriptor gameDescriptor, 
-        FileSystemPath installDirectory,
+        GameDescriptor gameDescriptor,
+        InstallLocation installLocation,
         Action<GameInstallation>? configureInstallation = null)
     {
         // Create an installation
-        GameInstallation gameInstallation = new(gameDescriptor, installDirectory);
+        GameInstallation gameInstallation = new(gameDescriptor, installLocation);
 
         // Build the components
         gameInstallation.RebuildComponents();
@@ -188,16 +188,16 @@ public class GamesManager
     /// Adds a new game to the app
     /// </summary>
     /// <param name="gameDescriptor">The game descriptor for the game to add</param>
-    /// <param name="installDirectory">The game install directory</param>
+    /// <param name="installLocation">The game install location</param>
     /// <param name="configureInstallation">An optional action callback for configuring the added game installation</param>
     /// <returns>The game installation</returns>
     public async Task<GameInstallation> AddGameAsync(
         GameDescriptor gameDescriptor, 
-        FileSystemPath installDirectory, 
+        InstallLocation installLocation, 
         Action<GameInstallation>? configureInstallation = null)
     {
         // Add the game
-        GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installDirectory, configureInstallation);
+        GameInstallation gameInstallation = await AddGameImplAsync(gameDescriptor, installLocation, configureInstallation);
 
         // Send a message that it's been added
         Messenger.Send(new AddedGamesMessage(gameInstallation));
@@ -212,14 +212,14 @@ public class GamesManager
     /// <param name="configureInstallation">An optional action callback for configuring the added game installation</param>
     /// <returns>The game installations</returns>
     public async Task<IList<GameInstallation>> AddGamesAsync(
-        IEnumerable<(GameDescriptor gameDescriptor, FileSystemPath installDirectory)> games,
+        IEnumerable<(GameDescriptor gameDescriptor, InstallLocation installLocation)> games,
         Action<GameInstallation>? configureInstallation = null)
     {
         List<GameInstallation> gameInstallations = new();
 
         // Add each game
-        foreach ((GameDescriptor? gameDescriptor, FileSystemPath installDirectory) in games)
-            gameInstallations.Add(await AddGameImplAsync(gameDescriptor, installDirectory, configureInstallation));
+        foreach ((GameDescriptor? gameDescriptor, InstallLocation installLocation) in games)
+            gameInstallations.Add(await AddGameImplAsync(gameDescriptor, installLocation, configureInstallation));
 
         if (gameInstallations.Any())
             Messenger.Send(new AddedGamesMessage(gameInstallations));

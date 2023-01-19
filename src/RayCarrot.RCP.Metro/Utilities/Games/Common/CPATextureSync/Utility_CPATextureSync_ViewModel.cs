@@ -339,7 +339,7 @@ public class Utility_CPATextureSync_ViewModel : BaseViewModel
             TextureInfoEditResult syncResult = await Task.Run(() =>
             {
                 // Get the game install directory
-                FileSystemPath installDir = GameInstallation.InstallLocation;
+                FileSystemPath installDir = GameInstallation.InstallLocation.Directory;
 
                 // Get the settings
                 CPAGameModeInfoAttribute attr = Data.GameMode.GetAttribute<CPAGameModeInfoAttribute>();

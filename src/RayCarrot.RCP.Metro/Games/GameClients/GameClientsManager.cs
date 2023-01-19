@@ -107,8 +107,8 @@ public class GameClientsManager
     #region Game Client Installation Methods
 
     public async Task<GameClientInstallation> AddGameClientAsync(
-        GameClientDescriptor descriptor, 
-        FileSystemPath installLocation, 
+        GameClientDescriptor descriptor,
+        InstallLocation installLocation, 
         Action<GameClientInstallation>? configureInstallation = null)
     {
         GameClientInstallation installation = new(descriptor, installLocation);

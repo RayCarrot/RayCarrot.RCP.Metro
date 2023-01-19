@@ -13,8 +13,8 @@ public class GameProgressionManager_Rayman2 : GameProgressionManager
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new(GameInstallation.InstallLocation + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
-        new(GameInstallation.InstallLocation + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
+        new(GameInstallation.InstallLocation.Directory + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
+        new(GameInstallation.InstallLocation.Directory + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
     };
 
     public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)

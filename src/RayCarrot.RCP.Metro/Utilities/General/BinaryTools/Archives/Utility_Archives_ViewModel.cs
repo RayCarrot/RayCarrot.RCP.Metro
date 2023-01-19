@@ -111,7 +111,7 @@ public class Utility_Archives_ViewModel : BaseRCPViewModel, IDisposable
         FileBrowserResult fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
         {
             Title = Resources.Utilities_ArchiveExplorer_FileSelectionHeader,
-            DefaultDirectory = gameInstallation?.InstallLocation ?? FileSystemPath.EmptyPath,
+            DefaultDirectory = gameInstallation?.InstallLocation.Directory ?? FileSystemPath.EmptyPath,
             ExtensionFilter = SelectedType.FileExtension.GetFileFilterItem.ToString(),
             MultiSelection = true,
         });

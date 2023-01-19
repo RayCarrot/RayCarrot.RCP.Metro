@@ -47,7 +47,7 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
             minUserLevel: UserLevel.Debug),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),
-            text: gameClientInstallation.InstallLocation.FullPath),
+            text: gameClientInstallation.InstallLocation.ToString()),
     };
 
     /// <summary>
@@ -72,7 +72,14 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
     /// </summary>
     /// <param name="installLocation">The game client install location</param>
     /// <returns>True if the game client is valid, otherwise false</returns>
-    public bool IsValid(FileSystemPath installLocation) => installLocation.FileExists;
+    public bool IsValid(InstallLocation installLocation)
+    {
+        // TODO-14: Improve this validation?
+        if (installLocation.HasFile)
+            return (installLocation.Directory + installLocation.FileName).FileExists;
+        else
+            return installLocation.Directory.DirectoryExists;
+    }
 
     public int CompareTo(GameClientDescriptor? other)
     {

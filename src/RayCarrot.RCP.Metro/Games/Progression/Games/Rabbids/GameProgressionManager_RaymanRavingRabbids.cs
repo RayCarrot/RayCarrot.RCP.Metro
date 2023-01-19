@@ -595,7 +595,7 @@ public class GameProgressionManager_RaymanRavingRabbids : GameProgressionManager
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
+        new(GameInstallation.InstallLocation.Directory, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
     };
 
     public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)

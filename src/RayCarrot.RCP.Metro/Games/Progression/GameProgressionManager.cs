@@ -20,7 +20,7 @@ public abstract class GameProgressionManager
 
     #region Protected Properties
 
-    protected FileSystemPath InstallDir => GameInstallation.InstallLocation;
+    protected FileSystemPath InstallDir => GameInstallation.InstallLocation.Directory;
 
     #endregion
 

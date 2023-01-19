@@ -57,7 +57,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanArena_PC))));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("R_Arena.exe", GameInstallationPathType.PrimaryExe, required: true),

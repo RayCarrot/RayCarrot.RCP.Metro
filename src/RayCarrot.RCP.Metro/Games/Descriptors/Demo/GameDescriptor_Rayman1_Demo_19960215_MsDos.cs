@@ -30,7 +30,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MsDos : MsDosGameDescri
     private static Task TryFindMountPath(GameInstallation gameInstallation)
     {
         // Set the default mount path if available
-        FileSystemPath mountPath = gameInstallation.InstallLocation + "Disc" + "RAY1DEMO.cue";
+        FileSystemPath mountPath = gameInstallation.InstallLocation.Directory + "Disc" + "RAY1DEMO.cue";
 
         if (mountPath.FileExists)
             gameInstallation.SetValue(GameDataKey.Client_DosBox_MountPath, mountPath);
@@ -52,7 +52,7 @@ public sealed class GameDescriptor_Rayman1_Demo_19960215_MsDos : MsDosGameDescri
         builder.Register<BinaryGameModeComponent>(new Ray1GameModeComponent(Ray1GameMode.Rayman1_PC));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("RAYMAN.EXE", GameInstallationPathType.PrimaryExe, required: true),

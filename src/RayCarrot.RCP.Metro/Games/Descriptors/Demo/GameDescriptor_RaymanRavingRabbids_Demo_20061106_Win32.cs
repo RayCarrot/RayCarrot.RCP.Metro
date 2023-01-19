@@ -33,7 +33,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
     {
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_Setup)),
-            Uri: gameInstallation.InstallLocation + "SettingsApplication.exe")
+            Uri: gameInstallation.InstallLocation.Directory + "SettingsApplication.exe")
     };
 
     #endregion
@@ -50,7 +50,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids_Demo_20061106_Win32 : Win
         builder.Register<BinaryGameModeComponent>(new JadeGameModeComponent(JadeGameMode.RaymanRavingRabbids_PC));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Jade_enr.exe", GameInstallationPathType.PrimaryExe, required: true),

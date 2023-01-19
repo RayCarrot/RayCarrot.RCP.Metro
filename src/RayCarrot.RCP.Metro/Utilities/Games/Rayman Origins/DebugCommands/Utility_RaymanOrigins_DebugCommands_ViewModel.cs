@@ -26,7 +26,7 @@ public class Utility_RaymanOrigins_DebugCommands_ViewModel : BaseRCPViewModel
         UpdateDebugCommandsCommand = new AsyncRelayCommand(UpdateDebugCommandsAsync);
 
         // Get the Rayman Origins install directory
-        var instDir = gameInstallation.InstallLocation;
+        var instDir = gameInstallation.InstallLocation.Directory;
 
         DebugCommandFilePath = GetDebugCommandFilePath(instDir);
 

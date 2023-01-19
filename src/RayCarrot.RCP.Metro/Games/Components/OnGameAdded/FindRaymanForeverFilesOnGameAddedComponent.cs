@@ -9,7 +9,7 @@ public class FindRaymanForeverFilesOnGameAddedComponent : OnGameAddedComponent
     private static void FindRaymanForeverFiles(GameInstallation gameInstallation)
     {
         // Get the parent directory to the install directory
-        FileSystemPath foreverInstallDir = gameInstallation.InstallLocation.Parent;
+        FileSystemPath foreverInstallDir = gameInstallation.InstallLocation.Directory.Parent;
 
         // Attempt to automatically locate the mount file (based on the Rayman Forever location)
         FileSystemPath[] mountFiles =

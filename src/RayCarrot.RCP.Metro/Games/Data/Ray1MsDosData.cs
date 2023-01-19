@@ -38,7 +38,7 @@ public class Ray1MsDosData
 
         // Read the VERSION file to get the versions supported by this release. Then keep
         // the ones which are actually available.
-        using RCPContext context = new(gameInstallation.InstallLocation);
+        using RCPContext context = new(gameInstallation.InstallLocation.Directory);
         await gameInstallation.GetComponents<InitializeContextComponent>().InvokeAllAsync(context);
         LinearFile commonFile = context.AddFile(new LinearFile(context, "PCMAP/COMMON.DAT"));
 
@@ -49,7 +49,7 @@ public class Ray1MsDosData
 
         for (int i = 0; i < versionFile.VersionsCount; i++)
         {
-            FileSystemPath versionDir = gameInstallation.InstallLocation + "PCMAP" + versionFile.VersionCodes[i];
+            FileSystemPath versionDir = gameInstallation.InstallLocation.Directory + "PCMAP" + versionFile.VersionCodes[i];
 
             // Not all releases contain all supported versions
             if (versionDir.DirectoryExists)

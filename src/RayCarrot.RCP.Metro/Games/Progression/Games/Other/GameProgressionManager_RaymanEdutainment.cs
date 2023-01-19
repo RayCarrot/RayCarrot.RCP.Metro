@@ -19,7 +19,7 @@ public class GameProgressionManager_RaymanEdutainment : GameProgressionManager
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, $"{PrimaryName}{Version.Id}??.SAV", "0", 0),
-        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, $"{PrimaryName}{Version.Id}.CFG", "1", 0)
+        new(GameInstallation.InstallLocation.Directory, SearchOption.TopDirectoryOnly, $"{PrimaryName}{Version.Id}??.SAV", "0", 0),
+        new(GameInstallation.InstallLocation.Directory, SearchOption.TopDirectoryOnly, $"{PrimaryName}{Version.Id}.CFG", "1", 0)
     };
 }

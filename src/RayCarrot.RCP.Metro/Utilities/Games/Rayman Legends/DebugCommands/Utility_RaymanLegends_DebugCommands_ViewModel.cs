@@ -24,8 +24,8 @@ public class Utility_RaymanLegends_DebugCommands_ViewModel : BaseRCPViewModel
         LaunchGameCommand = new AsyncRelayCommand(LaunchGameAsync);
 
         // Get the game exe file path
-        GameInstallationStructure gameStructure = gameInstallation.GameDescriptor.Structure;
-        GameFilePath = gameStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
+        ProgramInstallationStructure programStructure = gameInstallation.GameDescriptor.Structure;
+        GameFilePath = programStructure.GetAbsolutePath(gameInstallation, GameInstallationPathType.PrimaryExe);
     }
 
     #endregion

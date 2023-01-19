@@ -34,7 +34,7 @@ public abstract class FinderItem
     /// <summary>
     /// The location. This is set if it has been found.
     /// </summary>
-    public FileSystemPath? FoundLocation { get; private set; }
+    public InstallLocation? FoundLocation { get; private set; }
 
     /// <summary>
     /// The query which found the item, if it has been found.
@@ -52,7 +52,7 @@ public abstract class FinderItem
 
     #region Protected Methods
 
-    protected abstract bool ValidateLocation(FileSystemPath location);
+    protected abstract bool ValidateLocation(InstallLocation installLocation);
 
     #endregion
 
@@ -63,7 +63,7 @@ public abstract class FinderItem
     /// </summary>
     /// <param name="query">The query from which the location was found</param>
     /// <param name="location">The found location</param>
-    public void Validate(FinderQuery query, FileSystemPath location)
+    public void Validate(FinderQuery query, InstallLocation location)
     {
         Logger.Info("A location was found for {0}", ItemId);
 
@@ -73,10 +73,17 @@ public abstract class FinderItem
             return;
         }
 
-        // Make sure the location exists
-        if (!location.DirectoryExists)
+        // Make sure the location directory exists
+        if (!location.Directory.DirectoryExists)
         {
-            Logger.Warn("{0} could not be validated. The location does not exist.", ItemId);
+            Logger.Warn("{0} could not be validated. The location directory does not exist.", ItemId);
+            return;
+        }
+
+        // If there's a file we make sure that exists as well
+        if (location.HasFile && !location.FilePath.FileExists)
+        {
+            Logger.Warn("{0} could not be validated. The location file does not exist.", ItemId);
             return;
         }
 
@@ -86,9 +93,14 @@ public abstract class FinderItem
             location = query.ValidateLocationFunc(location);
 
             // Make sure the location till exists
-            if (!location.DirectoryExists)
+            if (!location.Directory.DirectoryExists)
             {
-                Logger.Warn("{0} could not be validated. The location does not exist after query validation.", ItemId);
+                Logger.Warn("{0} could not be validated. The location directory does not exist after query validation.", ItemId);
+                return;
+            }
+            if (location.HasFile && !location.FilePath.FileExists)
+            {
+                Logger.Warn("{0} could not be validated. The location file does not exist after query validation.", ItemId);
                 return;
             }
         }

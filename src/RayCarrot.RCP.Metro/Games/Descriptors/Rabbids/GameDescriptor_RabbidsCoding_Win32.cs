@@ -24,7 +24,7 @@ public sealed class GameDescriptor_RabbidsCoding_Win32 : Win32GameDescriptor
 
     #region Protected Methods
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rabbids Coding.exe", GameInstallationPathType.PrimaryExe, required: true),

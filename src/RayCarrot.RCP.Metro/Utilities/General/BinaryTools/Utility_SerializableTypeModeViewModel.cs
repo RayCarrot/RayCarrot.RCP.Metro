@@ -18,7 +18,7 @@ public class Utility_SerializableTypeModeViewModel : BaseViewModel
             if (gameMode == null)
                 return FileSystemPath.EmptyPath;
 
-            return GameModeHelpers.FindGameInstallation(g, gameMode)?.InstallLocation ?? FileSystemPath.EmptyPath;
+            return GameModeHelpers.FindGameInstallation(g, gameMode)?.InstallLocation.Directory ?? FileSystemPath.EmptyPath;
         };
     }
 

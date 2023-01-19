@@ -20,7 +20,7 @@ public class Utility_RaymanOrigins_HQVideos_ViewModel : BaseRCPViewModel
         ReplaceVideosCommand = new AsyncRelayCommand(ReplaceVideosAsync);
 
         // Attempt to find the Rayman Origins video directory
-        var dir = gameInstallation.InstallLocation + "GameData";
+        var dir = gameInstallation.InstallLocation.Directory + "GameData";
 
         // Set to music path if found
         VideoDir = dir.DirectoryExists && (dir + "intro.bik").FileExists ? dir : FileSystemPath.EmptyPath;

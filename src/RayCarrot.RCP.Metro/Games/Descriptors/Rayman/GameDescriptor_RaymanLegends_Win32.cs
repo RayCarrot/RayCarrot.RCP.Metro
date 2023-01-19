@@ -54,7 +54,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_RaymanLegends_DebugCommands(x)));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman Legends.exe", GameInstallationPathType.PrimaryExe, required: true),

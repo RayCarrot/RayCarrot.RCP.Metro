@@ -8,7 +8,7 @@ public abstract class ProgramInstallation
 {
     #region Constructors
 
-    protected ProgramInstallation(FileSystemPath installLocation, string installationId, Dictionary<string, object?>? data)
+    protected ProgramInstallation(InstallLocation installLocation, string installationId, Dictionary<string, object?>? data)
     {
         InstallLocation = installLocation;
         InstallationId = installationId ?? throw new ArgumentNullException(nameof(installationId));
@@ -33,12 +33,10 @@ public abstract class ProgramInstallation
     #region Public Properties
 
     /// <summary>
-    /// The install location of this program. This can either be a directory or a file path depending on
-    /// the program. For example most installed games expect a directory, but an emulator or emulated
-    /// ROM-based game would expect a file.
+    /// The install location of this program
     /// </summary>
     [JsonProperty(PropertyName = "InstallLocation")]
-    public FileSystemPath InstallLocation { get; }
+    public InstallLocation InstallLocation { get; }
 
     /// <summary>
     /// The unique ID of this specific installation. This is needed to ensure we can reference an installation

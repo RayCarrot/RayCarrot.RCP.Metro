@@ -107,7 +107,7 @@ public class InstalledGameViewModel : BaseViewModel
         GamePanels.Clear();
 
         // Patcher
-        if (GameDescriptor.AllowPatching)
+        if (GameDescriptor.AllowPatching) // TODO-14: Do not allow for single-file games
             GamePanels.Add(new PatcherGamePanelViewModel(GameInstallation));
 
         // Archive Explorer
@@ -208,23 +208,32 @@ public class InstalledGameViewModel : BaseViewModel
         // Add open location (don't add as a group since it's the last item)
         AdditionalLaunchActions.Add(new IconCommandItemViewModel(
             header: Resources.GameDisplay_OpenLocation, 
-            description: GameInstallation.InstallLocation.FullPath,
+            description: GameInstallation.InstallLocation.Directory.FullPath,
             iconKind: GenericIconKind.GameAction_Location, 
             command: new AsyncRelayCommand(async () =>
             {
                 // Get the install location to open
-                FileSystemPath pathToOpen = GameInstallation.InstallLocation;
+                FileSystemPath pathToOpen;
 
-                // Select the exe file in Explorer if it exists
-                GameInstallationStructure gameStructure = GameInstallation.GameDescriptor.Structure;
-                FileSystemPath exeFilePath = gameStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
-                if (exeFilePath.FileExists && exeFilePath.Parent == pathToOpen)
-                    pathToOpen = exeFilePath;
+                if (GameInstallation.InstallLocation.HasFile)
+                {
+                    pathToOpen = GameInstallation.InstallLocation.FilePath;
+                }
+                else
+                {
+                    pathToOpen = GameInstallation.InstallLocation.Directory;
+
+                    // Select the exe file in Explorer if it exists
+                    ProgramInstallationStructure programStructure = GameInstallation.GameDescriptor.Structure;
+                    FileSystemPath exeFilePath = programStructure.GetAbsolutePath(GameInstallation, GameInstallationPathType.PrimaryExe);
+                    if (exeFilePath.FileExists && exeFilePath.Parent == pathToOpen)
+                        pathToOpen = exeFilePath;
+                }
 
                 // Open the location
                 await Services.File.OpenExplorerLocationAsync(pathToOpen);
 
-                Logger.Trace("The Game {0} install location was opened", GameInstallation.FullId);
+                Logger.Trace("The game {0} install location was opened", GameInstallation.FullId);
             })));
     }
 
@@ -338,9 +347,10 @@ public class InstalledGameViewModel : BaseViewModel
                 Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
             return;
 
+        // TODO-14: Only check this if the game can have patches. Shouldn't be allowed for single-file games for example
         // Get applied patches
         using Context context = new RCPContext(String.Empty);
-        PatchLibrary library = new(GameInstallation.InstallLocation, Services.File);
+        PatchLibrary library = new(GameInstallation.InstallLocation.Directory, Services.File);
         PatchLibraryFile? libraryFile = null;
 
         try
@@ -366,6 +376,14 @@ public class InstalledGameViewModel : BaseViewModel
     /// <returns>The task</returns>
     public async Task UninstallAsync()
     {
+        RCPGameInstallData? installData = GameInstallation.GetObject<RCPGameInstallData>(GameDataKey.RCP_GameInstallData);
+
+        if (installData == null)
+        {
+            Logger.Warn("Can't uninstall a game without install data");
+            return;
+        }
+
         Logger.Info("{0} is being uninstalled...", GameInstallation.FullId);
 
         // Have user confirm
@@ -379,7 +397,7 @@ public class InstalledGameViewModel : BaseViewModel
         try
         {
             // Delete the game directory
-            Services.File.DeleteDirectory(GameInstallation.InstallLocation);
+            Services.File.DeleteDirectory(installData.InstallDir);
 
             Logger.Info("The game install directory was removed");
         }

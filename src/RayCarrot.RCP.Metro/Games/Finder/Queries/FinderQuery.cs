@@ -2,5 +2,5 @@
 
 public abstract class FinderQuery
 {
-    public Func<FileSystemPath, FileSystemPath>? ValidateLocationFunc { get; init; }
+    public Func<InstallLocation, InstallLocation>? ValidateLocationFunc { get; init; }
 }

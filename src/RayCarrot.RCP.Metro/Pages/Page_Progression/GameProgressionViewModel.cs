@@ -105,7 +105,7 @@ public class GameProgressionViewModel : BaseRCPViewModel
         {
             try
             {
-                FileSystemPath cloudSyncDir = GameInstallation.InstallLocation.Parent + "cloud_saves";
+                FileSystemPath cloudSyncDir = GameInstallation.InstallLocation.Directory.Parent + "cloud_saves";
                 IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.EnumerateFileSystemEntries(cloudSyncDir).Any();
             }
             catch (Exception ex)

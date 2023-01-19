@@ -8,6 +8,6 @@ public class RaymanMArenaSetupLocalGameLinksComponent : LocalGameLinksComponent
     {
         new GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_Setup)),
-            Uri: gameInstallation.InstallLocation + "RM_Setup_DX8.exe")
+            Uri: gameInstallation.InstallLocation.Directory + "RM_Setup_DX8.exe")
     };
 }

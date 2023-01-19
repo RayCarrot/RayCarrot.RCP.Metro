@@ -44,7 +44,7 @@ public class Utility_RaymanDesigner_CreateConfig_ViewModel : BaseRCPViewModel
     /// <summary>
     /// The path to the config file
     /// </summary>
-    public FileSystemPath ConfigPath => GameInstallation.InstallLocation + "Ubisoft" + "ubi.ini";
+    public FileSystemPath ConfigPath => GameInstallation.InstallLocation.Directory + "Ubisoft" + "ubi.ini";
 
     #endregion
 

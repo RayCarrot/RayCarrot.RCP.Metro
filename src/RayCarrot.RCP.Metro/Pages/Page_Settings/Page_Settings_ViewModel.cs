@@ -240,7 +240,7 @@ public class Page_Settings_ViewModel : BasePageViewModel
                     new(AppFilePaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
                     new(AppFilePaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni, UserLevel.Advanced),
                     new(r2GameInstallation != null
-                        ? r2GameInstallation.InstallLocation + "ubi.ini"
+                        ? r2GameInstallation.InstallLocation.Directory + "ubi.ini"
                         : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
                     new(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
                 });

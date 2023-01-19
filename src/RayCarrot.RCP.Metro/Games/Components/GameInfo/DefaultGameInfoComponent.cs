@@ -16,7 +16,7 @@ public class DefaultGameInfoComponent : GameInfoComponent
             minUserLevel: UserLevel.Debug),
         new DuoGridItemViewModel(
             header: new ResourceLocString(nameof(Resources.GameInfo_InstallDir)),
-            text: gameInstallation.InstallLocation.FullPath),
+            text: gameInstallation.InstallLocation.ToString()),
         //new DuoGridItemViewModel("Install size", GameData.InstallDirectory.GetSize().ToString())
     };
 }

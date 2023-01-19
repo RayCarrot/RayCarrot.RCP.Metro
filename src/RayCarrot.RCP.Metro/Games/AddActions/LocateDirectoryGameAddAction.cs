@@ -1,8 +1,8 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
-public class LocateGameAddAction : GameAddAction
+public class LocateDirectoryGameAddAction : GameAddAction
 {
-    public LocateGameAddAction(GameDescriptor gameDescriptor, bool singleInstallationOnly = false)
+    public LocateDirectoryGameAddAction(GameDescriptor gameDescriptor, bool singleInstallationOnly = false)
     {
         GameDescriptor = gameDescriptor;
         _singleInstallationOnly = singleInstallationOnly;
@@ -38,8 +38,10 @@ public class LocateGameAddAction : GameAddAction
         if (!result.SelectedDirectory.DirectoryExists)
             return null;
 
+        InstallLocation location = new(result.SelectedDirectory);
+
         // Make sure the directory is valid
-        if (!GameDescriptor.IsValid(result.SelectedDirectory))
+        if (!GameDescriptor.IsValid(location))
         {
             Logger.Info("The selected install directory for {0} is not valid", GameDescriptor.GameId);
 
@@ -50,6 +52,6 @@ public class LocateGameAddAction : GameAddAction
         }
 
         // Add the game
-        return await Services.Games.AddGameAsync(GameDescriptor, result.SelectedDirectory);
+        return await Services.Games.AddGameAsync(GameDescriptor, location);
     }
 }

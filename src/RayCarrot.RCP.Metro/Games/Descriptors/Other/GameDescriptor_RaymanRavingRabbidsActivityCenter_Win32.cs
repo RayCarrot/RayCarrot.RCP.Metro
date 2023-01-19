@@ -48,7 +48,7 @@ public sealed class GameDescriptor_RaymanRavingRabbidsActivityCenter_Win32 : Win
         builder.Register(new OnGameLaunchedComponent(ShowLaunchMessageAsync));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("Rayman.exe", GameInstallationPathType.PrimaryExe, required: true),

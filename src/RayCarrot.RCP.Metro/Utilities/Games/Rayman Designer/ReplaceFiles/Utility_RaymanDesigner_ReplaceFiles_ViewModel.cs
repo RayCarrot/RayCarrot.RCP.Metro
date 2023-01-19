@@ -70,7 +70,7 @@ public class Utility_RaymanDesigner_ReplaceFiles_ViewModel : BaseRCPViewModel
         };
 
         // Get the game install dir
-        var installDir = GameInstallation.InstallLocation;
+        var installDir = GameInstallation.InstallLocation.Directory;
 
         // Find the directories to search
         var dirs = new FileSystemPath[]

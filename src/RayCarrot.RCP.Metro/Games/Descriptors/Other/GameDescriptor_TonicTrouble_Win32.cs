@@ -32,7 +32,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
     {
         new GameLinksComponent.GameUriLink(
             Header: new ResourceLocString(nameof(Resources.GameLink_R2dgVoodoo)), 
-            Uri: gameInstallation.InstallLocation + "dgVoodooCpl.exe"),
+            Uri: gameInstallation.InstallLocation.Directory + "dgVoodooCpl.exe"),
     };
 
     #endregion
@@ -58,7 +58,7 @@ public sealed class GameDescriptor_TonicTrouble_Win32 : Win32GameDescriptor
         builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_PC))));
     }
 
-    protected override GameInstallationStructure GetStructure() => new(new GameInstallationPath[]
+    protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]
     {
         // Files
         new GameInstallationFilePath("TonicTrouble.exe", GameInstallationPathType.PrimaryExe, required: true),

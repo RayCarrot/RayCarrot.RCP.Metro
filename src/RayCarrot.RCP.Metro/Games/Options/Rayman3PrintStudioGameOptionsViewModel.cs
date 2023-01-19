@@ -16,7 +16,7 @@ public class Rayman3PrintStudioGameOptionsViewModel : GameOptionsViewModel
         AsyncLock = new AsyncLock();
 
         // Get the .mms file path
-        MMSFilePath = gameInstallation.InstallLocation + "Run.MMS";
+        MMSFilePath = gameInstallation.InstallLocation.Directory + "Run.MMS";
 
         PrintStudioVersion? currentVersion = GetCurrentVersion();
 
@@ -170,7 +170,7 @@ public class Rayman3PrintStudioGameOptionsViewModel : GameOptionsViewModel
                 });
 
                 // Get the install directory
-                FileSystemPath installDir = GameInstallation.InstallLocation;
+                FileSystemPath installDir = GameInstallation.InstallLocation.Directory;
 
                 // Move existing files to the calender data
                 Services.File.MoveFiles(new IOSearchPattern(installDir + @"Pictures\Common\calendars", SearchOption.TopDirectoryOnly, "Picture*"), installDir + "CalendarData" + GetVersionTag(previousVersion) + "Common", true);

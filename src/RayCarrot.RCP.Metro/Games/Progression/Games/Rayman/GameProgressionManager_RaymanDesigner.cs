@@ -15,20 +15,20 @@ public class GameProgressionManager_RaymanDesigner : GameProgressionManager
 
     public override GameBackups_Directory[] BackupDirectories => new GameBackups_Directory[]
     {
-        new(GameInstallation.InstallLocation, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
-        new(GameInstallation.InstallLocation + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
+        new(GameInstallation.InstallLocation.Directory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
+        new(GameInstallation.InstallLocation.Directory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
         //
         // Note:
         // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
         // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
         // correct mapper directories within each world directory
         //
-        new(GameInstallation.InstallLocation + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
-        new(GameInstallation.InstallLocation + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
-        new(GameInstallation.InstallLocation + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
-        new(GameInstallation.InstallLocation + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
-        new(GameInstallation.InstallLocation + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
-        new(GameInstallation.InstallLocation + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
+        new(GameInstallation.InstallLocation.Directory + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
+        new(GameInstallation.InstallLocation.Directory + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
+        new(GameInstallation.InstallLocation.Directory + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
+        new(GameInstallation.InstallLocation.Directory + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
+        new(GameInstallation.InstallLocation.Directory + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
+        new(GameInstallation.InstallLocation.Directory + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
     };
 
     public override async IAsyncEnumerable<GameProgressionSlot> LoadSlotsAsync(FileSystemWrapper fileSystem)

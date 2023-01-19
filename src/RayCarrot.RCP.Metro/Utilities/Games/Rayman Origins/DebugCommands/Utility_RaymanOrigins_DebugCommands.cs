@@ -18,7 +18,7 @@ public class Utility_RaymanOrigins_DebugCommands : Utility<Utility_RaymanOrigins
     public override string InfoText => Resources.ROU_DebugCommandsInfo;
     public override string WarningText => Resources.ROU_DebugCommandsWarning;
     public override bool RequiresAdmin => ViewModel.DebugCommandFilePath.FileExists && !Services.File.CheckFileWriteAccess(ViewModel.DebugCommandFilePath);
-    public override bool IsAvailable => GameInstallation.InstallLocation.DirectoryExists;
+    public override bool IsAvailable => GameInstallation.InstallLocation.Directory.DirectoryExists;
     public override IEnumerable<string> GetAppliedUtilities()
     {
         if (ViewModel.DebugCommandFilePath.FileExists)

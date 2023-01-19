@@ -121,7 +121,7 @@ public class AddGamesGameViewModel : BaseViewModel, IRecipient<AddedGamesMessage
         if (FinderItem.HasBeenFound)
         {
             // Have to get the location here since FinderItem is null after the game gets added
-            FileSystemPath foundLocation = FinderItem.FoundLocation.Value;
+            InstallLocation foundLocation = FinderItem.FoundLocation.Value;
 
             // Add the found games
             await Services.Games.AddGameAsync(FinderItem.GameDescriptor, foundLocation);
