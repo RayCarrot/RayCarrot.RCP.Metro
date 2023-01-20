@@ -67,15 +67,21 @@ public class GameClientsManager
         await descriptor.OnGameClientAddedAsync(installation);
 
         // Attempt to use this game client on games without one and which default to use one
+        List<GameInstallation> modifiedGames = new();
         foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {
             if (gameInstallation.GameDescriptor.DefaultToUseGameClient &&
                 descriptor.SupportsGame(gameInstallation, installation) &&
                 GetAttachedGameClient(gameInstallation) == null)
             {
-                await AttachGameClientAsync(gameInstallation, installation);
+                await AttachGameClientImplAsync(gameInstallation, installation);
+                modifiedGames.Add(gameInstallation);
             }
         }
+
+        // Refresh all modified games in a single message
+        if (modifiedGames.Any())
+            Messenger.Send(new ModifiedGamesMessage(modifiedGames, rebuiltComponents: true));
 
         return installation;
     }
@@ -116,7 +122,8 @@ public class GameClientsManager
         }
 
         // Refresh all modified games in a single message
-        Messenger.Send(new ModifiedGamesMessage(modifiedGames, rebuiltComponents: true));
+        if (modifiedGames.Any())
+            Messenger.Send(new ModifiedGamesMessage(modifiedGames, rebuiltComponents: true));
 
         Logger.Info("The game client {0} has been removed", gameClientInstallation.FullId);
     }
