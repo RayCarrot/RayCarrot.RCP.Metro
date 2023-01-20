@@ -292,6 +292,20 @@ public class GameClientsManager
         return Data.Game_GameClientInstallations.FirstOrDefault(x => x.InstallationId == installationId);
     }
 
+    /// <summary>
+    /// Determines whether there are any installed game clients
+    /// </summary>
+    /// <returns>True if there is at least one installed game client, otherwise false</returns>
+    public bool AnyInstalledGameClients() => 
+        Data.Game_GameClientInstallations.Any();
+
+    /// <summary>
+    /// Determines whether there are any installed game clients which meet the specified criteria
+    /// </summary>
+    /// <returns>True if there is at least one installed game client which meets the specified criteria, otherwise false</returns>
+    public bool AnyInstalledGameClients(Func<GameClientInstallation, bool> predicate) => 
+        Data.Game_GameClientInstallations.Any(predicate);
+
     #endregion
 
     #region Game Methods
