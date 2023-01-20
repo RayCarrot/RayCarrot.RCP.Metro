@@ -208,7 +208,7 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public virtual IEnumerable<GamePurchaseLink> GetPurchaseLinks() => Enumerable.Empty<GamePurchaseLink>();
 
     /// <summary>
-    /// Gets the queries to user when finding the game
+    /// Gets the queries to use when finding the game
     /// </summary>
     /// <returns>The queries</returns>
     public virtual FinderQuery[] GetFinderQueries() => Array.Empty<FinderQuery>();

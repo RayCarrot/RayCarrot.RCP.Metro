@@ -60,9 +60,7 @@ public class AutoConfigManager
         Logger.Trace("Recreating DosBox config file {0}", FilePath);
 
         // Add this file as a created one to the game installation
-        AddedGameFiles addedGameFiles = gameInstallation.GetOrCreateObject<AddedGameFiles>(GameDataKey.RCP_AddedFiles);
-        addedGameFiles.Files.Add(FilePath);
-        gameInstallation.SetObject(GameDataKey.RCP_AddedFiles, addedGameFiles);
+        gameInstallation.ModifyObject<AddedGameFiles>(GameDataKey.RCP_AddedFiles, x => x.Files.Add(FilePath));
 
         // Check if the file exists and is valid
         if (FilePath.FileExists && File.ReadAllText(FilePath).StartsWith(FirstLines))

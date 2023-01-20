@@ -64,6 +64,8 @@ public class GameClientsManager
 
         Logger.Info("The game client {0} has been added", installation.FullId);
 
+        await descriptor.OnGameClientAddedAsync(installation);
+
         // Attempt to use this game client on games without one and which default to use one
         foreach (GameInstallation gameInstallation in GamesManager.GetInstalledGames())
         {

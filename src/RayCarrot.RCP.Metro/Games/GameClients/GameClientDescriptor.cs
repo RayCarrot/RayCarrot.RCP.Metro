@@ -1,5 +1,6 @@
 ﻿using RayCarrot.RCP.Metro.Games.Clients.DosBox.Data;
 using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro.Games.Clients;
 
@@ -10,6 +11,11 @@ namespace RayCarrot.RCP.Metro.Games.Clients;
 public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
 {
     public abstract string GameClientId { get; }
+
+    /// <summary>
+    /// Indicates if the installation requires the location to have a file specified
+    /// </summary>
+    public virtual bool InstallationRequiresFile => false;
 
     /// <summary>
     /// The game client's display name
@@ -50,6 +56,8 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
             text: gameClientInstallation.InstallLocation.ToString()),
     };
 
+    public virtual Task OnGameClientAddedAsync(GameClientInstallation gameClientInstallation) => Task.CompletedTask;
+
     /// <summary>
     /// Refreshes the games which use the specified game client
     /// </summary>
@@ -68,15 +76,34 @@ public abstract class GameClientDescriptor : IComparable<GameClientDescriptor>
     }
 
     /// <summary>
+    /// Gets the queries to use when finding the game client
+    /// </summary>
+    /// <returns>The queries</returns>
+    public virtual FinderQuery[] GetFinderQueries() => Array.Empty<FinderQuery>();
+
+    /// <summary>
+    /// Gets the finder item for this descriptor or null if there is none
+    /// </summary>
+    /// <returns>The finder item or null if there is none</returns>
+    public GameClientFinderItem? GetFinderItem()
+    {
+        FinderQuery[] queries = GetFinderQueries();
+
+        if (queries.Length == 0)
+            return null;
+
+        return new GameClientFinderItem(this, queries);
+    }
+
+    /// <summary>
     /// Indicates if the game client is valid
     /// </summary>
     /// <param name="installLocation">The game client install location</param>
     /// <returns>True if the game client is valid, otherwise false</returns>
     public bool IsValid(InstallLocation installLocation)
     {
-        // TODO-14: Improve this validation?
-        if (installLocation.HasFile)
-            return (installLocation.Directory + installLocation.FileName).FileExists;
+        if (InstallationRequiresFile)
+            return installLocation.HasFile && (installLocation.Directory + installLocation.FileName).FileExists;
         else
             return installLocation.Directory.DirectoryExists;
     }

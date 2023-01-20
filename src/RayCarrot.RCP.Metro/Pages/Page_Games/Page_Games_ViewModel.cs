@@ -2,6 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
+using RayCarrot.RCP.Metro.Games.Clients;
 using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro;
@@ -17,12 +18,14 @@ public class Page_Games_ViewModel : BasePageViewModel,
     public Page_Games_ViewModel(
         AppViewModel app,
         GamesManager gamesManager, 
+        GameClientsManager gameClientsManager, 
         AppUIManager ui,
         IMessageUIManager messageUi,
         IMessenger messenger) : base(app)
     {
         // Set services
         GamesManager = gamesManager ?? throw new ArgumentNullException(nameof(gamesManager));
+        GameClientsManager = gameClientsManager ?? throw new ArgumentNullException(nameof(gameClientsManager));
         UI = ui ?? throw new ArgumentNullException(nameof(ui));
         MessageUI = messageUi ?? throw new ArgumentNullException(nameof(messageUi));
         Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
@@ -74,6 +77,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
     #region Services
 
     private GamesManager GamesManager { get; }
+    private GameClientsManager GameClientsManager { get; }
     private AppUIManager UI { get; }
     private IMessageUIManager MessageUI { get; }
     private IMessenger Messenger { get; }
@@ -223,11 +227,28 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
         try
         {
-            // TODO-14: Add clients first
             // Get the installed games
+            IReadOnlyList<GameClientInstallation> installedGameClients = GameClientsManager.GetInstalledGameClients();
             IReadOnlyList<GameInstallation> installedGames = GamesManager.GetInstalledGames();
 
+            // Add the items for game clients and games
             List<FinderItem> finderItems = new();
+
+            // Get finder items for all game clients which don't have an added game client installation
+            foreach (GameClientDescriptor gameClientDescriptor in GameClientsManager.GetGameCientDescriptors())
+            {
+                // Make sure the game client has not already been added
+                if (installedGameClients.Any(g => g.GameClientDescriptor == gameClientDescriptor))
+                    continue;
+
+                // Get the finder item for the game client
+                GameClientFinderItem? finderItem = gameClientDescriptor.GetFinderItem();
+
+                if (finderItem == null)
+                    continue;
+
+                finderItems.Add(finderItem);
+            }
 
             // Get finder items for all games which don't have an added game installation
             foreach (GameDescriptor gameDescriptor in GamesManager.GetGameDescriptors())
@@ -269,7 +290,20 @@ public class Page_Games_ViewModel : BasePageViewModel,
 
         bool foundItems = false;
 
-        // TODO-14: Add clients and notify of found ones to user
+        // Add the found game clients
+        IList<GameClientInstallation> addedGameClients = await GameClientsManager.AddGameClientsAsync(runFinderItems.OfType<GameClientFinderItem>().
+            Where(x => x.HasBeenFound).
+            Select(x => (x.GameClientDescriptor, x.FoundLocation!.Value)));
+
+        if (addedGameClients.Any())
+        {
+            foundItems = true;
+
+            Logger.Info("The finder found {0} game clients", addedGameClients.Count);
+
+            // TODO-UPDATE: Localize
+            await MessageUI.DisplayMessageAsync($"The following new game clients/emulators were found:{Environment.NewLine}{Environment.NewLine}• {addedGameClients.Select(x => x.GetDisplayName()).JoinItems(Environment.NewLine + "• ")}", "Installed game clients/emulators found", MessageType.Success);
+        }
 
         // Add the found games
         IList<GameInstallation> addedGames = await GamesManager.AddGamesAsync(runFinderItems.OfType<GameFinderItem>().
@@ -286,6 +320,7 @@ public class Page_Games_ViewModel : BasePageViewModel,
         }
 
         if (!foundItems && !runInBackground)
+            // TODO-UPDATE: Update localization to say games or game clients?
             await MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader,
                 MessageType.Information);
     }

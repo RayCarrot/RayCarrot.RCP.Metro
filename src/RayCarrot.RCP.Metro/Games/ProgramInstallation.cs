@@ -159,6 +159,14 @@ public abstract class ProgramInstallation
             _data[key] = obj;
     }
 
+    public void ModifyObject<T>(string key, Action<T> modifyObjectAction)
+        where T : class, new()
+    {
+        T obj = GetOrCreateObject<T>(key);
+        modifyObjectAction(obj);
+        SetObject(key, obj); // Don't really need to do this step anymore, but let's keep it anyway
+    }
+
     public void SetValue<T>(string key, T obj)
     {
         if (obj is null)

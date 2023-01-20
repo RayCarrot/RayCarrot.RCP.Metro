@@ -1,4 +1,5 @@
 ﻿using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 
 namespace RayCarrot.RCP.Metro.Games.Clients.Steam;
 
@@ -54,6 +55,12 @@ public class SteamGameClientDescriptor : GameClientDescriptor
 
     public override bool SupportsGame(GameInstallation gameInstallation, GameClientInstallation gameClientInstallation) =>
         base.SupportsGame(gameInstallation, gameClientInstallation) && gameInstallation.HasComponent<SteamGameClientComponent>();
+
+    public override FinderQuery[] GetFinderQueries() => new FinderQuery[]
+    {
+        new UninstallProgramFinderQuery("Steam"),
+        new Win32ShortcutFinderQuery("Steam"),
+    };
 
     #endregion
 }

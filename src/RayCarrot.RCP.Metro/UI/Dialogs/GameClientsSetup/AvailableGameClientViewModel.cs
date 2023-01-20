@@ -28,17 +28,35 @@ public class AvailableGameClientViewModel : BaseViewModel
 
     public async Task AddGameClientAsync()
     {
-        FileBrowserResult broweResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+        InstallLocation location;
+
+        if (Descriptor.InstallationRequiresFile)
         {
-            // TODO-UPDATE: Localize
-            Title = "Select the game client executable",
-            ExtensionFilter = new FileExtension(".exe").GetFileFilterItem.StringRepresentation,
-        });
+            FileBrowserResult broweResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+            {
+                // TODO-UPDATE: Localize
+                Title = "Select the game client executable",
+                ExtensionFilter = new FileExtension(".exe").GetFileFilterItem.StringRepresentation,
+            });
 
-        if (broweResult.CanceledByUser)
-            return;
+            if (broweResult.CanceledByUser)
+                return;
 
-        InstallLocation location = InstallLocation.FromFilePath(broweResult.SelectedFile);
+            location = InstallLocation.FromFilePath(broweResult.SelectedFile);
+        }
+        else
+        {
+            DirectoryBrowserResult broweResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel
+            {
+                // TODO-UPDATE: Localize
+                Title = "Select the game client installation",
+            });
+
+            if (broweResult.CanceledByUser)
+                return;
+
+            location = new InstallLocation(broweResult.SelectedDirectory);
+        }
 
         // Make sure it's valid
         if (!Descriptor.IsValid(location))

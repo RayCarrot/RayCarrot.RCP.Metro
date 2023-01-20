@@ -73,6 +73,10 @@ public abstract class FinderItem
             return;
         }
 
+        // Optionally add a file name to it
+        if (!location.HasFile && query.FileName != null)
+            location = new InstallLocation(location.Directory, query.FileName);
+
         // Make sure the location directory exists
         if (!location.Directory.DirectoryExists)
         {

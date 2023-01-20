@@ -1,13 +1,22 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Games.Clients.Data;
+using RayCarrot.RCP.Metro.Games.Components;
+using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 
 namespace RayCarrot.RCP.Metro.Games.Clients.DosBox;
 
 public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
 {
+    #region Logger
+
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+    #endregion
+
     #region Public Properties
 
     public override string GameClientId => "DOSBox";
+    public override bool InstallationRequiresFile => true;
     public override GamePlatform[] SupportedPlatforms => new[] { GamePlatform.MsDos };
     public override LocalizedString DisplayName => new ResourceLocString(nameof(Resources.GameType_DosBox));
     public override GameClientIconAsset Icon => GameClientIconAsset.DosBox;
@@ -53,6 +62,44 @@ public sealed class DosBoxGameClientDescriptor : EmulatorGameClientDescriptor
 
     public override GameClientOptionsViewModel GetGameClientOptionsViewModel(GameClientInstallation gameClientInstallation) =>
         new DosBoxGameClientOptionsViewModel(gameClientInstallation, this);
+
+    public override async Task OnGameClientAddedAsync(GameClientInstallation gameClientInstallation)
+    {
+        await base.OnGameClientAddedAsync(gameClientInstallation);
+
+        try
+        {
+            // Add the config file from Rayman Forever if found
+            FileSystemPath raymanForeverConfigPath = gameClientInstallation.InstallLocation.Directory.Parent + "dosboxRayman.conf";
+
+            if (raymanForeverConfigPath.FileExists)
+                gameClientInstallation.ModifyObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths, 
+                    x => x.FilePaths.Add(raymanForeverConfigPath));
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn(ex, "Finding DOSBox config file");
+        }
+    }
+
+    public override FinderQuery[] GetFinderQueries()
+    {
+        const string fileName = "DOSBox.exe";
+
+        static InstallLocation validateRaymanForeverLocation(InstallLocation location) => 
+            InstallLocation.FromFilePath(location.Directory.Parent + "DosBox" + "DOSBox.exe");
+
+        return new FinderQuery[]
+        {
+            // Find DOSBox in Rayman Forever installation
+            new UninstallProgramFinderQuery("Rayman Forever") { ValidateLocationFunc = validateRaymanForeverLocation },
+            new Win32ShortcutFinderQuery("Rayman Forever") { ValidateLocationFunc = validateRaymanForeverLocation },
+
+            // Find standalone DOSBox installations
+            new UninstallProgramFinderQuery("DOSBox") { FileName = fileName },
+            new Win32ShortcutFinderQuery("DOSBox") { FileName = fileName },
+        };
+    }
 
     #endregion
 }

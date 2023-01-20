@@ -27,26 +27,5 @@ public class FindRaymanForeverFilesOnGameAddedComponent : OnGameAddedComponent
             gameInstallation.SetValue(GameDataKey.Client_DosBox_MountPath, mountPath);
             Logger.Info("The mount path for {0} was automatically found", gameInstallation.FullId);
         }
-
-        // TODO-14: Restore this? If user has not added any DOSBox emulators then attempt to add one and assign to this game?
-        //          Or probably don't need to assign since that should be automatic when added. Or alternatively we rely on
-        //          the game finder checking this?
-        //// Find DOSBox path if not already added
-        //if (!File.Exists(Services.Data.Emu_DOSBox_Path))
-        //{
-        //    FileSystemPath dosBoxPath = foreverInstallDir + "DosBox" + "DOSBox.exe";
-
-        //    if (dosBoxPath.FileExists)
-        //        Services.Data.Emu_DOSBox_Path = dosBoxPath;
-        //}
-
-        //// Find DOSBox config path if not already added
-        //if (!File.Exists(Services.Data.Emu_DOSBox_ConfigPath))
-        //{
-        //    FileSystemPath dosBoxConfigPath = foreverInstallDir + "dosboxRayman.conf";
-
-        //    if (dosBoxConfigPath.FileExists)
-        //        Services.Data.Emu_DOSBox_ConfigPath = dosBoxConfigPath;
-        //}
     }
 }

@@ -133,9 +133,8 @@ public class Utility_Rayman1_TPLS_ViewModel : BaseRCPViewModel
             GameClientInstallation gameClientInstallation = await Services.GameClients.AddGameClientAsync(gameClientDescriptor, InstallLocation.FromFilePath(data.DosBoxFilePath), x =>
             {
                 // Add the TPLS config file to the data
-                DosBoxConfigFilePaths configPaths = x.GetOrCreateObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths);
-                configPaths.FilePaths.Add(data.ConfigFilePath);
-                x.SetObject(GameClientDataKey.DosBox_ConfigFilePaths, configPaths);
+                x.ModifyObject<DosBoxConfigFilePaths>(GameClientDataKey.DosBox_ConfigFilePaths, 
+                    y => y.FilePaths.Add(data.ConfigFilePath));
 
                 // Set the game client installation id
                 data.GameClientInstallationId = x.InstallationId;
