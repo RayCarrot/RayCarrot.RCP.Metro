@@ -47,9 +47,6 @@ public class DownloadGameAddAction : GameAddAction
 
         Logger.Trace("The game {0} has been downloaded", GameDescriptor.GameId);
 
-        // TODO-UPDATE: Should we keep this?
-        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, GameDescriptor.DisplayName), Resources.GameInstall_SuccessHeader);
-
         return gameInstallation;
     }
 }
