@@ -9,13 +9,20 @@ namespace RayCarrot.RCP.Metro;
 public class FilePatcher_Patch
 {
     /// <summary>
-    /// Default constructor
+    /// Creates a new patch with a single possible file size
     /// </summary>
     /// <param name="fileSize">The expected file size of the file to patch</param>
     /// <param name="patchEntries">The patch entries used to determine what data in the file to patch</param>
-    public FilePatcher_Patch(uint fileSize, PatchEntry[] patchEntries)
+    public FilePatcher_Patch(uint fileSize, PatchEntry[] patchEntries) : this(new[] { fileSize }, patchEntries) { }
+
+    /// <summary>
+    /// Creates a new patch with multiple possible file sizes
+    /// </summary>
+    /// <param name="fileSizes">The possible expected file sizes of the file to patch</param>
+    /// <param name="patchEntries">The patch entries used to determine what data in the file to patch</param>
+    public FilePatcher_Patch(uint[] fileSizes, PatchEntry[] patchEntries)
     {
-        FileSize = fileSize;
+        FileSizes = fileSizes;
         PatchEntries = patchEntries ?? throw new ArgumentNullException(nameof(patchEntries));
 
         if (!PatchEntries.Any())
@@ -23,9 +30,9 @@ public class FilePatcher_Patch
     }
 
     /// <summary>
-    /// The expected file size of the file to patch
+    /// The possible expected file sizes of the file to patch
     /// </summary>
-    public uint FileSize { get; }
+    public uint[] FileSizes { get; }
 
     /// <summary>
     /// The patch entries used to determine what data in the file to patch

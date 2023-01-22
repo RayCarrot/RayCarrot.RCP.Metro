@@ -23,7 +23,7 @@ public class FilePatcher
         GameFile = gameFile;
         Patches = patches;
 
-        if (Patches.Select(x => x.FileSize).Distinct().Count() != Patches.Length)
+        if (Patches.SelectMany(x => x.FileSizes).Distinct().Count() != Patches.Length)
             throw new ArgumentException("All patches must have unique file sizes", nameof(patches));
     }
 
@@ -65,7 +65,7 @@ public class FilePatcher
             uint fileSize = (uint)GameFile.GetSize().Bytes;
 
             // Find matching patch
-            int patchIndex = Patches.FindItemIndex(x => x.FileSize == fileSize);
+            int patchIndex = Patches.FindItemIndex(x => x.FileSizes.Contains(fileSize));
 
             if (patchIndex == -1)
             {
@@ -138,7 +138,7 @@ public class FilePatcher
             using Stream stream = File.Open(GameFile, FileMode.Open, FileAccess.Write);
 
             // Find matching patch
-            FilePatcher_Patch patch = Patches.First(x => x.FileSize == stream.Length);
+            FilePatcher_Patch patch = Patches.First(x => x.FileSizes.Contains((uint)stream.Length));
 
             // Apply each patch entry
             foreach (FilePatcher_Patch.PatchEntry patchEntry in patch.PatchEntries)

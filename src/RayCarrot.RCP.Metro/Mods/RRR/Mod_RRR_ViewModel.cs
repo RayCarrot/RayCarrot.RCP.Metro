@@ -419,8 +419,15 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
                 }),
         }),
 
-        // GOG
-        [GameVersion.GOG] = new FilePatcher_Patch(0x459000, new FilePatcher_Patch.PatchEntry[]
+        // GOG/Ubisoft Connect
+        [GameVersion.GOG_UbisoftConnect] = new FilePatcher_Patch(new uint[]
+        {
+            // GOG
+            0x459000,
+            
+            // Ubisoft Connect
+            0x45A668,
+        }, new FilePatcher_Patch.PatchEntry[]
         {
             new FilePatcher_Patch.PatchEntry(
                 PatchOffset: 0x003C73FD, 
@@ -585,7 +592,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             return GameVersion.Unknown;
         }
 
-        GameVersion version = ExePatches.FirstOrDefault(x => x.Value.FileSize == fileSize).Key;
+        GameVersion version = ExePatches.FirstOrDefault(x => x.Value.FileSizes.Contains((uint)fileSize)).Key;
 
         Logger.Info("RRR game version detected as {0}", version);
 
@@ -680,7 +687,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
             version switch
             {
                 GameVersion.Steam => new Uri(AppURLs.RRR_PatchedBF_Steam_URL),
-                GameVersion.GOG => new Uri(AppURLs.RRR_PatchedBF_GOG_URL),
+                GameVersion.GOG_UbisoftConnect => new Uri(AppURLs.RRR_PatchedBF_GOG_URL),
                 _ => throw new Exception("Invalid game version")
             }
         }, true, GameDirectoryPath);
@@ -836,7 +843,7 @@ public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     {
         Unknown,
         Steam,
-        GOG,
+        GOG_UbisoftConnect,
     }
 
     #endregion
