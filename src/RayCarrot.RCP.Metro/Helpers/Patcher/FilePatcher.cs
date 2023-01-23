@@ -23,7 +23,7 @@ public class FilePatcher
         GameFile = gameFile;
         Patches = patches;
 
-        if (Patches.SelectMany(x => x.FileSizes).Distinct().Count() != Patches.Length)
+        if (Patches.SelectMany(x => x.FileSizes).Distinct().Count() != Patches.Sum(x => x.FileSizes.Length))
             throw new ArgumentException("All patches must have unique file sizes", nameof(patches));
     }
 
