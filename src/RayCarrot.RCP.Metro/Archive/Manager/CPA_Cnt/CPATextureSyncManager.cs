@@ -148,10 +148,10 @@ public class CPATextureSyncManager
         // Most games just use .tga, but Tonic Trouble uses the other ones too
         byte[][] fileExtensions =
         {
-            new byte[] { 0x2E, 0x74, 0x67, 0x61 }, // .tga
-            new byte[] { 0x2E, 0x54, 0x47, 0x41 }, // .TGA
-            new byte[] { 0x2E, 0x62, 0x6D, 0x70 }, // .bmp
-            new byte[] { 0x2E, 0x42, 0x4D, 0x50 }, // .BMP
+            ".tga"u8.ToArray(),
+            ".TGA"u8.ToArray(),
+            ".bmp"u8.ToArray(),
+            ".BMP"u8.ToArray(),
         };
 
         // Enumerate each file
