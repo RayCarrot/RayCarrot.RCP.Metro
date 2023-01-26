@@ -27,7 +27,8 @@
                  metro:TextBoxHelper.Watermark="Search"
                  BorderThickness="0" 
                  Text="{Binding Path=GameFilter, UpdateSourceTrigger=PropertyChanged}"
-                 Margin="0 0 0 8">
+                 Margin="0 0 0 8"
+                 KeyDown="SearchTextBox_OnKeyDown">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
                     <Style.Triggers>

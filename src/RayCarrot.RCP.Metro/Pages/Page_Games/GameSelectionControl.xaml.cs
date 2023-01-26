@@ -34,8 +34,15 @@ public partial class GameSelectionControl : UserControl
         if (sender is not ListBoxItem { DataContext: InstalledGameViewModel vm } item)
             return;
 
+        // Ignore if already selected
+        if (ViewModel.SelectedInstalledGame == vm)
+            return;
+
         // Scroll the item into view
         item.BringIntoView();
+
+        // Focus on the item
+        item.Focus();
 
         // Select the item in the main view model
         ViewModel.SelectedInstalledGame = vm;
@@ -48,6 +55,23 @@ public partial class GameSelectionControl : UserControl
                 if (gameGroupViewModel.SelectedInstalledGame != vm)
                     gameGroupViewModel.SelectedInstalledGame = null;
             }
+        }
+    }
+
+    private void SearchTextBox_OnKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
+        {
+            InstalledGameGroupViewModel? firstGameGroup = ViewModel.FilteredGameCategories.
+                Cast<InstalledGameCategoryViewModel>().
+                FirstOrDefault()?.FilteredGameGroups.
+                Cast<InstalledGameGroupViewModel>().
+                FirstOrDefault();
+
+            if (firstGameGroup != null)
+                firstGameGroup.IsSelected = true;
+
+            e.Handled = true;
         }
     }
 }
