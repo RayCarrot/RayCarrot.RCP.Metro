@@ -1,5 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro;
 
+// TODO-14: Remove this for games now that we have the archive panel action
+
 /// <summary>
 /// The CPA texture sync utility
 /// </summary>

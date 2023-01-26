@@ -69,7 +69,6 @@ public class JumpListManager : IRecipient<RemovedGamesMessage>, IRecipient<Modif
 
     public void AddGame(GameInstallation gameInstallation)
     {
-        // TODO-14: Do emulated games get added to the jump list on add with this? Test!
         LaunchGameComponent? component = gameInstallation.GetComponent<LaunchGameComponent>();
         
         if (component == null)

@@ -264,5 +264,9 @@
     <local:GenericIcon x:Key="RCP.GenericIcons.Mods_RRR" 
                        IconKind="{StaticResource RCP.Icons.Mods_RRR}"
                        IconColor="{StaticResource RCP.Brushes.Mods}" />
+
+    <local:GenericIcon x:Key="RCP.GenericIcons.ArchiveAdditionalAction_CPATextureSync" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_SyncTextureInfo}"
+                       IconColor="{x:Null}" />
     
 </ResourceDictionary>

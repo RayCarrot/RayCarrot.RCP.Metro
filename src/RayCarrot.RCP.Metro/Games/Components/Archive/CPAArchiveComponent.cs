@@ -12,7 +12,7 @@ public class CPAArchiveComponent : ArchiveComponent
 
     private new const string Id = "CPA_CNT";
 
-    private static (OpenSpaceSettings, CPAGameMode) GetSettings(GameInstallation gameInstallation)
+    private static (OpenSpaceSettings Settings, CPAGameMode GameMode) GetSettings(GameInstallation gameInstallation)
     {
         BinaryGameModeComponent gameModeComponent = gameInstallation.GetRequiredComponent<BinaryGameModeComponent>();
 
@@ -35,5 +35,30 @@ public class CPAArchiveComponent : ArchiveComponent
             settings: settings,
             gameInstallation: gameInstallation,
             cpaTextureSyncData: textureSyncData);
+    }
+
+    private static async Task SynchronizeTexturesAsync(GameInstallation gameInstallation)
+    {
+        CPATextureSyncData textureSyncData = CPATextureSyncData.FromGameMode(GetSettings(gameInstallation).GameMode);
+
+        CPATextureSyncManager textureSyncManager = new(gameInstallation, textureSyncData);
+
+        // TODO-UPDATE: Localize
+        using (LoadState state = await Services.App.LoaderViewModel.RunAsync("Synchronizing textures"))
+        {
+            await textureSyncManager.SyncTextureInfoAsync(progressCallback: state.SetProgress);
+        }
+    }
+
+    public override AdditionalArchiveAction? GetAdditionalAction()
+    {
+        if (!CPATextureSyncData.SupportedGameModes.Contains(GetSettings(GameInstallation).GameMode))
+            return null;
+
+        return new AdditionalArchiveAction(
+            GenericIconKind.ArchiveAdditionalAction_CPATextureSync,
+            // TODO-UPDATE: Localize
+            "Synchronize textures. This is required to do if the resolution of a texture has been increased.",
+            SynchronizeTexturesAsync);
     }
 }

@@ -288,9 +288,10 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
         data.Archive_CNT_SyncOnRepackRequested = true;
 
-        Utility_CPATextureSync_ViewModel syncVm = new(GameInstallation, CPATextureSyncData);
+        CPATextureSyncManager textureSyncManager = new(GameInstallation, CPATextureSyncData);
 
-        await syncVm.SyncTextureInfoAsync(archiveFilePaths);
+        // TODO-14: Add progress callback?
+        await textureSyncManager.SyncTextureInfoAsync(archiveFilePaths);
     }
 
     /// <summary>

@@ -49,7 +49,13 @@ public readonly struct Progress
 
     #endregion
 
-    #region Properties
+    #region Public Static Properties
+
+    public static Progress Complete => new(1, 1);
+
+    #endregion
+
+    #region Public Properties
 
     /// <summary>
     /// The maximum progress value

@@ -23,4 +23,8 @@ public class ArchiveComponent : FactoryGameComponent<IArchiveDataManager>
     public string Id { get; }
 
     public IEnumerable<string> GetArchiveFilePaths() => _archivePathsFunc(GameInstallation);
+
+    public virtual AdditionalArchiveAction? GetAdditionalAction() => null;
+
+    public record AdditionalArchiveAction(GenericIconKind Icon, LocalizedString Description, Func<GameInstallation, Task> Action);
 }

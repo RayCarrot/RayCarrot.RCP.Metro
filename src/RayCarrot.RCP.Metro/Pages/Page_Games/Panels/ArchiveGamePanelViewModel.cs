@@ -11,7 +11,10 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
     public ArchiveGamePanelViewModel(GameInstallation gameInstallation, ArchiveComponent archiveComponent) : base(gameInstallation)
     {
         ArchiveComponent = archiveComponent;
+        AdditionalAction = archiveComponent.GetAdditionalAction();
+
         OpenArchiveExplorerCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
+        AdditionalActionCommand = new AsyncRelayCommand(AdditionalActionAsync);
     }
 
     #endregion
@@ -25,6 +28,7 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
     #region Commands
 
     public ICommand OpenArchiveExplorerCommand { get; }
+    public ICommand AdditionalActionCommand { get; }
 
     #endregion
 
@@ -38,6 +42,10 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
     public ObservableCollection<string>? TrimmedArchiveFilePaths { get; set; }
     public ObservableCollection<string>? ArchiveFilePaths { get; set; }
     public bool IsTrimmed { get; set; }
+
+    public ArchiveComponent.AdditionalArchiveAction? AdditionalAction { get; }
+    public GenericIconKind AdditionalActionIcon => AdditionalAction?.Icon ?? GenericIconKind.None;
+    public LocalizedString? AdditionalActionDescription => AdditionalAction?.Description;
 
     #endregion
 
@@ -94,6 +102,8 @@ public class ArchiveGamePanelViewModel : GamePanelViewModel
             await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
         }
     }
+
+    public Task AdditionalActionAsync() => AdditionalAction?.Action(GameInstallation) ?? Task.CompletedTask;
 
     #endregion
 }
