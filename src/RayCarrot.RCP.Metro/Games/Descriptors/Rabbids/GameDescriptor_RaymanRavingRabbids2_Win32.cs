@@ -20,6 +20,7 @@ public sealed class GameDescriptor_RaymanRavingRabbids2_Win32 : Win32GameDescrip
     public override GameCategory Category => GameCategory.Rabbids;
 
     public override LocalizedString DisplayName => "Rayman Raving Rabbids 2";
+    public override string[] SearchKeywords => new[] { "rrr2" };
     public override DateTime ReleaseDate => new(2007, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RaymanRavingRabbids2;

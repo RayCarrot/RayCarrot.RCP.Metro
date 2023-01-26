@@ -15,6 +15,7 @@ public sealed class GameDescriptor_RaymanByHisFans_MsDos : MsDosGameDescriptor
 
     public override string GameId => "RaymanByHisFans_MsDos";
     public override string LegacyGameId => "RaymanByHisFans";
+    public override string[] SearchKeywords => new[] { "rbhf" };
     public override Game Game => Game.RaymanByHisFans;
     public override GameCategory Category => GameCategory.Rayman;
 

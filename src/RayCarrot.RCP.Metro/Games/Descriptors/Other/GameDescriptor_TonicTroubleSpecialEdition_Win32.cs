@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Public Properties
 
     public override string GameId => "TonicTroubleSpecialEdition_Win32";
     public override string LegacyGameId => "TonicTroubleSpecialEdition";
@@ -18,6 +18,7 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
     public override GameCategory Category => GameCategory.Other;
 
     public override LocalizedString DisplayName => "Tonic Trouble Special Edition";
+    public override string[] SearchKeywords => new[] { "ttse" };
     public override DateTime ReleaseDate => new(1998, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.TonicTroubleSpecialEdition;

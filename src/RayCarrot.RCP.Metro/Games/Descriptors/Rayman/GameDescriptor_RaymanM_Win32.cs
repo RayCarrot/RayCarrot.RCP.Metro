@@ -19,6 +19,7 @@ public sealed class GameDescriptor_RaymanM_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
 
     public override LocalizedString DisplayName => "Rayman M";
+    public override string[] SearchKeywords => new[] { "rm" };
     public override DateTime ReleaseDate => new(2001, 12, 14);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanM;

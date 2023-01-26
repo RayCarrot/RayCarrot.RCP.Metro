@@ -11,7 +11,7 @@ namespace RayCarrot.RCP.Metro;
 /// </summary>
 public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
 {
-    #region Public Override Properties
+    #region Public Properties
 
     public override string GameId => "RabbidsGoHome_Win32";
     public override string LegacyGameId => "RabbidsGoHome";
@@ -19,6 +19,7 @@ public sealed class GameDescriptor_RabbidsGoHome_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rabbids;
 
     public override LocalizedString DisplayName => "Rabbids Go Home";
+    public override string[] SearchKeywords => new[] { "rgh" };
     public override DateTime ReleaseDate => new(2009, 01, 01); // Not exact
 
     public override GameIconAsset Icon => GameIconAsset.RabbidsGoHome;

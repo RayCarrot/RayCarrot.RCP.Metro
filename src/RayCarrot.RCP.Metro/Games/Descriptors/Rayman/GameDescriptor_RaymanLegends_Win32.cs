@@ -24,6 +24,7 @@ public sealed class GameDescriptor_RaymanLegends_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
 
     public override LocalizedString DisplayName => "Rayman Legends";
+    public override string[] SearchKeywords => new[] { "rl" };
     public override DateTime ReleaseDate => new(2013, 08, 29);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanLegends;

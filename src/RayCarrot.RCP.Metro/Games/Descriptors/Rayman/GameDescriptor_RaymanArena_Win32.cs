@@ -19,6 +19,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
 
     public override LocalizedString DisplayName => "Rayman Arena";
+    public override string[] SearchKeywords => new[] { "ra" };
     public override DateTime ReleaseDate => new(2002, 09, 24);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanArena;

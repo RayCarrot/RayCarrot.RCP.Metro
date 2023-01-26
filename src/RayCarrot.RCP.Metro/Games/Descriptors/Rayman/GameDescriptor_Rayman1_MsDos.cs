@@ -18,6 +18,7 @@ public sealed class GameDescriptor_Rayman1_MsDos : MsDosGameDescriptor
     public override GameCategory Category => GameCategory.Rayman;
 
     public override LocalizedString DisplayName => "Rayman";
+    public override string[] SearchKeywords => new[] { "r1", "ray1" };
     public override DateTime ReleaseDate => new(1995, 09, 01);
 
     public override GameIconAsset Icon => GameIconAsset.Rayman1;

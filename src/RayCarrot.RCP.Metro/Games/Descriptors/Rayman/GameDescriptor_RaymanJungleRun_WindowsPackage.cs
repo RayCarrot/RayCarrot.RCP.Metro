@@ -23,6 +23,7 @@ public sealed class GameDescriptor_RaymanJungleRun_WindowsPackage : WindowsPacka
     public override GameCategory Category => GameCategory.Rayman;
 
     public override LocalizedString DisplayName => "Rayman Jungle Run";
+    public override string[] SearchKeywords => new[] { "rjr" };
     public override DateTime ReleaseDate => new(2013, 03, 07);
 
     public override GameIconAsset Icon => GameIconAsset.RaymanJungleRun;

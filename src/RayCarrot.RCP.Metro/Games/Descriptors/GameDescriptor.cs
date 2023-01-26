@@ -70,6 +70,12 @@ public abstract class GameDescriptor : IComparable<GameDescriptor>
     public abstract LocalizedString DisplayName { get; } // TODO-UPDATE: Localize this for all games
 
     /// <summary>
+    /// Optional keywords to use when searching/filtering games. This should not include
+    /// the display name.
+    /// </summary>
+    public virtual string[] SearchKeywords => Array.Empty<string>();
+
+    /// <summary>
     /// The game's release data. This is mainly used for sorting and doesn't have
     /// to be exact (i.e. January 1st is acceptable if only the year is known).
     /// </summary>

@@ -37,6 +37,20 @@ public class InstalledGameGroupViewModel : BaseViewModel
 
     public bool MatchesFilter(string filter)
     {
-        return DisplayName.Value.IndexOf(filter, StringComparison.InvariantCultureIgnoreCase) != -1;
+        bool matchesString(string str) => str.IndexOf(filter, StringComparison.CurrentCultureIgnoreCase) != -1;
+
+        // Check the display name of the group
+        if (matchesString(DisplayName))
+            return true;
+
+        // Check the games in the group
+        foreach (InstalledGameViewModel game in InstalledGames)
+        {
+            if (matchesString(game.DisplayName) ||
+                game.GameDescriptor.SearchKeywords.Any(matchesString))
+                return true;
+        }
+
+        return false;
     }
 }
