@@ -70,6 +70,9 @@ public class InstalledGameViewModel : BaseViewModel
 
     #region Public Properties
 
+    // Keep this here for the UI to bind to
+    public AppUserData Data => Services.Data;
+
     public GameInstallation GameInstallation { get; }
     public GameDescriptor GameDescriptor => GameInstallation.GameDescriptor;
     public LocalizedString DisplayName { get; set; }

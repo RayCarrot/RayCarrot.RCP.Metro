@@ -10,7 +10,8 @@
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="600" d:DesignWidth="900"
-                d:DataContext="{d:DesignInstance local:Page_Games_ViewModel}">
+                d:DataContext="{d:DesignInstance local:Page_Games_ViewModel}"
+                KeyDown="Page_Games_OnKeyDown">
 
     <Control.InputBindings>
         <KeyBinding Key="F5" Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}" />
@@ -26,7 +27,7 @@
 
         <!-- Game selection -->
         <local:Card Grid.Column="0">
-            <local:GameSelectionControl />
+            <local:GameSelectionControl x:Name="GameSelectionControl" />
         </local:Card>
 
         <!-- Selected game hub -->

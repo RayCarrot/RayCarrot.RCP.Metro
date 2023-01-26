@@ -5,6 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="300" 
              d:Background="{DynamicResource RCP.Brushes.Card.Background}"
@@ -21,7 +22,8 @@
         </Grid.RowDefinitions>
 
         <!-- Search - has a 50 ms delay so the ui doesn't update too quickly -->
-        <TextBox Grid.Row="0"
+        <TextBox x:Name="SearchTextBox"
+                 Grid.Row="0"
                  metro:TextBoxHelper.Watermark="Search"
                  BorderThickness="0" 
                  Text="{Binding Path=GameFilter, UpdateSourceTrigger=PropertyChanged, Delay=50}"
@@ -42,6 +44,10 @@
         <ScrollViewer x:Name="GamesPanelScrollViewer"
                       Grid.Row="1"
                       Margin="0 0 0 8">
+
+            <b:Interaction.Behaviors>
+                <local:FocusElementOnLoad />
+            </b:Interaction.Behaviors>
 
             <!-- Game categories -->
             <ItemsControl ItemsSource="{Binding Path=FilteredGameCategories, Mode=OneTime}"
