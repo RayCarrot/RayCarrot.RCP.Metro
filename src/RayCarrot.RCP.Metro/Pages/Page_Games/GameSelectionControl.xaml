@@ -21,12 +21,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Search - has a 50 ms delay so the ui doesn't update too quickly -->
+        <!-- Search -->
         <TextBox x:Name="SearchTextBox"
                  Grid.Row="0"
                  metro:TextBoxHelper.Watermark="Search"
                  BorderThickness="0" 
-                 Text="{Binding Path=GameFilter, UpdateSourceTrigger=PropertyChanged, Delay=50}"
+                 Text="{Binding Path=GameFilter, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0 0 0 8">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
