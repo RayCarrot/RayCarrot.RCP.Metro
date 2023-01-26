@@ -51,6 +51,7 @@ public readonly struct Progress
 
     #region Public Static Properties
 
+    public static Progress Empty => new(0, 1);
     public static Progress Complete => new(1, 1);
 
     #endregion

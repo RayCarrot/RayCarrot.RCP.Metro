@@ -63,6 +63,10 @@ public class CPATextureSyncManager
         IEnumerable<FileSystemPath> cntFiles,
         Action<Progress>? progressCallback = null)
     {
+        // Start by invoking an empty progress callback since it takes a bit before we
+        // start tracking the actual progress
+        progressCallback?.Invoke(Progress.Empty);
+
         // The offset for the size from the name
         int sizeOffset = gameSettings.MajorEngineVersion switch
         {
