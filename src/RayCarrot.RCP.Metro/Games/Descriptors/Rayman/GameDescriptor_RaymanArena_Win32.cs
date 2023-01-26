@@ -53,8 +53,7 @@ public sealed class GameDescriptor_RaymanArena_Win32 : Win32GameDescriptor
             @"TribeBin\Sound.cnt",
         }));
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
-
-        builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.RaymanArena_PC))));
+        builder.Register<CPATextureSyncComponent, RaymanMArenaCPATextureSyncComponent>();
     }
 
     protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]

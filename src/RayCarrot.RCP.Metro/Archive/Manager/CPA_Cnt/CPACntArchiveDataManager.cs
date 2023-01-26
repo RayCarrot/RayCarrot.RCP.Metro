@@ -17,12 +17,12 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     /// </summary>
     /// <param name="settings">The settings when serializing the data</param>
     /// <param name="gameInstallation">The game installation or null if one is not specified</param>
-    /// <param name="cpaTextureSyncData">Optional CPA texture sync data for when repacking</param>
-    public CPACntArchiveDataManager(OpenSpaceSettings settings, GameInstallation? gameInstallation, CPATextureSyncData? cpaTextureSyncData)
+    /// <param name="cpaTextureSyncItems">Optional CPA texture sync items for when repacking</param>
+    public CPACntArchiveDataManager(OpenSpaceSettings settings, GameInstallation? gameInstallation, CPATextureSyncDataItem[]? cpaTextureSyncItems)
     {
         Settings = settings;
         GameInstallation = gameInstallation;
-        CPATextureSyncData = cpaTextureSyncData;
+        CPATextureSyncItems = cpaTextureSyncItems;
 
         Context = new RCPContext(String.Empty, new RCPSerializerSettings()
         {
@@ -42,9 +42,9 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     #region Private Properties
 
     /// <summary>
-    /// Optional CPA texture sync data for when repacking
+    /// Optional CPA texture sync items for when repacking
     /// </summary>
-    private CPATextureSyncData? CPATextureSyncData { get; }
+    private CPATextureSyncDataItem[]? CPATextureSyncItems { get; }
 
     #endregion
 
@@ -265,7 +265,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
     public async Task OnRepackedArchivesAsync(FileSystemPath[] archiveFilePaths)
     {
         // Make sure the texture sync can be performed
-        if (GameInstallation == null || CPATextureSyncData == null)
+        if (GameInstallation == null || CPATextureSyncItems == null)
             return;
 
         AppUserData data = Services.Data;
@@ -288,7 +288,7 @@ public class CPACntArchiveDataManager : IArchiveDataManager
 
         data.Archive_CNT_SyncOnRepackRequested = true;
 
-        CPATextureSyncManager textureSyncManager = new(GameInstallation, CPATextureSyncData);
+        CPATextureSyncManager textureSyncManager = new(GameInstallation, Settings, CPATextureSyncItems);
 
         // TODO-14: Add progress callback?
         await textureSyncManager.SyncTextureInfoAsync(archiveFilePaths);

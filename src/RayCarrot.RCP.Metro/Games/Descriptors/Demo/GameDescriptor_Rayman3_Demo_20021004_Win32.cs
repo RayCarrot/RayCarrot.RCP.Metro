@@ -40,6 +40,7 @@ public sealed class GameDescriptor_Rayman3_Demo_20021004_Win32 : Win32GameDescri
             @"Gamedatabin\vignette.cnt",
         }));
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
+        builder.Register<CPATextureSyncComponent, Rayman3CPATextureSyncComponent>();
     }
 
     protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]

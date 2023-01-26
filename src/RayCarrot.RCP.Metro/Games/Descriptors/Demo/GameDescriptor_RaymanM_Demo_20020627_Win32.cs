@@ -45,6 +45,7 @@ public sealed class GameDescriptor_RaymanM_Demo_20020627_Win32 : Win32GameDescri
             @"TribeBin\vignette.cnt",
         }));
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
+        builder.Register<CPATextureSyncComponent, RaymanMArenaCPATextureSyncComponent>();
     }
 
     protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]

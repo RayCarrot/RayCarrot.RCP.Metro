@@ -45,8 +45,8 @@ public sealed class GameDescriptor_Rayman3_Win32 : Win32GameDescriptor
             @"Gamedatabin\vignette.cnt",
         }));
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
+        builder.Register<CPATextureSyncComponent, Rayman3CPATextureSyncComponent>();
 
-        builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman3_PC))));
         builder.Register(new UtilityComponent(x => new Utility_Rayman3_DirectPlay(x)));
     }
 

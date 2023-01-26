@@ -52,7 +52,6 @@
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Patcher">ArchiveOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.PatchCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
 
-    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_SyncTextureInfo">FileSyncOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_CompleteSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman1_TPLS">MusicNoteOutline</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Rayman3_DirectPlay">ApplicationCogOutline</iconPacks:PackIconMaterialKind>
@@ -74,6 +73,8 @@
 
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_Mem">Memory</iconPacks:PackIconMaterialKind>
     <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Mods_RRR">MapOutline</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ArchiveAdditionalAction_CPATextureSync">FileSyncOutline</iconPacks:PackIconMaterialKind>
 
     <!-- Generic Icons (used from C# code) -->
 
@@ -203,9 +204,6 @@
                        IconKind="{StaticResource RCP.Icons.Debug}"
                        IconColor="{StaticResource RCP.Brushes.Debug}" />
 
-    <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_SyncTextureInfo" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_SyncTextureInfo}"
-                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
     <local:GenericIcon x:Key="RCP.GenericIcons.Utilities_Rayman1_CompleteSoundtrack" 
                        IconKind="{StaticResource RCP.Icons.Utilities_Rayman1_CompleteSoundtrack}"
                        IconColor="{StaticResource RCP.Brushes.Utilities}" />
@@ -266,7 +264,7 @@
                        IconColor="{StaticResource RCP.Brushes.Mods}" />
 
     <local:GenericIcon x:Key="RCP.GenericIcons.ArchiveAdditionalAction_CPATextureSync" 
-                       IconKind="{StaticResource RCP.Icons.Utilities_SyncTextureInfo}"
+                       IconKind="{StaticResource RCP.Icons.ArchiveAdditionalAction_CPATextureSync}"
                        IconColor="{x:Null}" />
     
 </ResourceDictionary>

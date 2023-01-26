@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Archive.CPA;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.OptionsDialog;
 using RayCarrot.RCP.Metro.Games.Structure;
@@ -72,8 +73,10 @@ public sealed class GameDescriptor_Rayman2_Win32 : Win32GameDescriptor
             @"Data\Vignette.cnt",
         }));
         builder.Register<GameOptionsDialogGroupNameComponent, UbiIniGameOptionsDialogGroupNameComponent>();
-
-        builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.Rayman2_PC))));
+        builder.Register(new CPATextureSyncComponent(
+            new CPATextureSyncDataItem(
+                Name: "Data",
+                Archives: new[] { "Textures.cnt", "Vignette.cnt" })));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]

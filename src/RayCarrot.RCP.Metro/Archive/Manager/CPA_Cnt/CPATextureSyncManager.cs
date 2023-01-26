@@ -4,16 +4,20 @@ using System.Text;
 using BinarySerializer;
 using BinarySerializer.OpenSpace;
 
-namespace RayCarrot.RCP.Metro;
+namespace RayCarrot.RCP.Metro.Archive.CPA;
 
 public class CPATextureSyncManager
 {
     #region Constructor
 
-    public CPATextureSyncManager(GameInstallation gameInstallation, CPATextureSyncData data)
+    public CPATextureSyncManager(
+        GameInstallation gameInstallation,
+        OpenSpaceSettings gameSettings, 
+        CPATextureSyncDataItem[] textureSyncItems)
     {
         GameInstallation = gameInstallation;
-        Data = data;
+        GameSettings = gameSettings;
+        TextureSyncItems = textureSyncItems;
     }
 
     #endregion
@@ -27,38 +31,21 @@ public class CPATextureSyncManager
     #region Public Properties
 
     public GameInstallation GameInstallation { get; }
-    public CPATextureSyncData Data { get; }
+    public OpenSpaceSettings GameSettings { get; }
+    public CPATextureSyncDataItem[] TextureSyncItems { get; }
 
     #endregion
 
     #region Private Methods
 
     /// <summary>
-    /// Gets the file extension for the level data files
-    /// </summary>
-    /// <param name="gameSettings">The settings</param>
-    /// <returns>The file extension</returns>
-    private static string GetLevelFileExtension(OpenSpaceSettings gameSettings)
-    {
-        return gameSettings.MajorEngineVersion switch
-        {
-            MajorEngineVersion.TonicTrouble => ".sna",
-            MajorEngineVersion.Rayman2 => ".sna",
-            MajorEngineVersion.Rayman3 => ".lvl",
-            _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
-        };
-    }
-
-    /// <summary>
     /// Edits all found texture info objects in CPA data files (.sna, .lvl etc.) to have their resolution match the .gf textures
     /// </summary>
-    /// <param name="gameSettings">The CPA game settings to use</param>
     /// <param name="files">The files to edit</param>
     /// <param name="cntFiles">The .cnt file paths</param>
     /// <param name="progressCallback">An optional progress callback</param>
     /// <returns>The result</returns>
-    private static TextureInfoEditResult EditTextureInfo(
-        OpenSpaceSettings gameSettings,
+    private TextureInfoEditResult EditTextureInfo(
         IList<FileSystemPath> files,
         IEnumerable<FileSystemPath> cntFiles,
         Action<Progress>? progressCallback = null)
@@ -68,19 +55,19 @@ public class CPATextureSyncManager
         progressCallback?.Invoke(Progress.Empty);
 
         // The offset for the size from the name
-        int sizeOffset = gameSettings.MajorEngineVersion switch
+        int sizeOffset = GameSettings.MajorEngineVersion switch
         {
             MajorEngineVersion.TonicTrouble => 52,
             MajorEngineVersion.Rayman2 => 42,
             MajorEngineVersion.Rayman3 => 46,
 
             // Other versions are not yet supported...
-            _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(GameSettings.EngineVersion), GameSettings.EngineVersion, null)
         };
 
         // NOTE: Although TT uses 32-bit integers for the sizes we use ushorts anyway since they never exceed the ushort max size
         // Indicates if sizes are 32-bit
-        bool is32Bit = gameSettings.MajorEngineVersion == MajorEngineVersion.TonicTrouble;
+        bool is32Bit = GameSettings.MajorEngineVersion == MajorEngineVersion.TonicTrouble;
 
         // Create a list of .gf files to read into
         List<GFFileSizeData> gfFiles = new List<GFFileSizeData>();
@@ -90,7 +77,7 @@ public class CPATextureSyncManager
         {
             // Create a context
             using RCPContext context = new(cntFile.Parent);
-            context.AddFile(new LinearFile(context, cntFile.Name, gameSettings.GetEndian));
+            context.AddFile(new LinearFile(context, cntFile.Name, GameSettings.GetEndian));
 
             // Read the CNT data
             CNT cntData = FileFactory.Read<CNT>(context, cntFile.Name);
@@ -108,14 +95,14 @@ public class CPATextureSyncManager
                     cntData.ReadFile(x, s =>
                     {
                         // Skip the format
-                        if (gameSettings.EngineVersion != EngineVersion.TonicTroubleSpecialEdition)
+                        if (GameSettings.EngineVersion != EngineVersion.TonicTroubleSpecialEdition)
                             s.Serialize<uint>(default, "Format");
 
                         // Read the size
                         width = s.Serialize<int>(default, name: "Width");
                         height = s.Serialize<int>(default, name: "Height");
 
-                        if (gameSettings.MajorEngineVersion == MajorEngineVersion.Rayman3)
+                        if (GameSettings.MajorEngineVersion == MajorEngineVersion.Rayman3)
                         {
                             // Skip the channel count...
                             s.Serialize<byte>(default, "Channels");
@@ -142,7 +129,7 @@ public class CPATextureSyncManager
         int edited = 0;
 
         // Create a encoder
-        IStreamEncoder? encoder = gameSettings.EngineVersion switch
+        IStreamEncoder? encoder = GameSettings.EngineVersion switch
         {
             EngineVersion.TonicTrouble => new TTSNADataEncoder(),
             EngineVersion.Rayman2 => new R2SNADataEncoder(),
@@ -192,7 +179,7 @@ public class CPATextureSyncManager
                 // Get the longest possible name
                 string longestName = Encoding.GetEncoding(1252).GetString(data, i - largestNameSize, largestNameSize);
 
-                if (gameSettings.MajorEngineVersion == MajorEngineVersion.TonicTrouble)
+                if (GameSettings.MajorEngineVersion == MajorEngineVersion.TonicTrouble)
                     longestName = longestName.Replace('/', '\\');
 
                 // Find the matching file
@@ -230,7 +217,7 @@ public class CPATextureSyncManager
                 ushort gfHeight = gf.Height;
                 ushort gfWidth = gf.Width;
 
-                if (gameSettings.MajorEngineVersion == MajorEngineVersion.Rayman2)
+                if (GameSettings.MajorEngineVersion == MajorEngineVersion.Rayman2)
                 {
                     uint flags_TextureCaps = BitConverter.ToUInt32(data, i - pathLength - sizeOffset - 8);
                     byte flags_CyclingMode = data[i - pathLength - sizeOffset + 41];
@@ -271,7 +258,7 @@ public class CPATextureSyncManager
                 }
 
                 // Set mipmaps if available
-                if (gameSettings.MajorEngineVersion == MajorEngineVersion.Rayman3)
+                if (GameSettings.MajorEngineVersion == MajorEngineVersion.Rayman3)
                 {
                     // Get the mipmap bytes
                     byte[] mipmapBytes = BitConverter.GetBytes(gf.MipmapCount);
@@ -327,16 +314,17 @@ public class CPATextureSyncManager
                 // Get the game install directory
                 FileSystemPath installDir = GameInstallation.InstallLocation.Directory;
 
-                // Get the settings
-                CPAGameModeInfoAttribute attr = Data.GameMode.GetAttribute<CPAGameModeInfoAttribute>() 
-                                                ?? throw new Exception("The game mode does not have the correct attribute");
-                OpenSpaceSettings gameSettings = attr.GetSettings();
-
                 // Get the file extension for the level data files
-                string fileExt = GetLevelFileExtension(gameSettings);
+                string fileExt = GameSettings.MajorEngineVersion switch
+                {
+                    MajorEngineVersion.TonicTrouble => ".sna",
+                    MajorEngineVersion.Rayman2 => ".sna",
+                    MajorEngineVersion.Rayman3 => ".lvl",
+                    _ => throw new ArgumentOutOfRangeException(nameof(GameSettings.EngineVersion), GameSettings.EngineVersion, null)
+                };
 
                 // Get the level data files
-                List<FileSystemPath> dataFiles = Data.Items.Select(x => x.Name).
+                List<FileSystemPath> dataFiles = TextureSyncItems.Select(x => x.Name).
                     Select(x => Directory.GetFiles(installDir + x, $"*{fileExt}", SearchOption.AllDirectories).
                         Select(y => new FileSystemPath(y))).
                     SelectMany(x => x).
@@ -345,7 +333,7 @@ public class CPATextureSyncManager
                 if (cntFiles == null)
                 {
                     // Get the full paths and only keep the ones which exist
-                    cntFiles = Data.Items.
+                    cntFiles = TextureSyncItems.
                         Select(dataItem => dataItem.Archives.
                             Select(cnt => installDir + dataItem.Name + cnt).
                             Where(cntPath => cntPath.FileExists)).
@@ -356,8 +344,10 @@ public class CPATextureSyncManager
                     // TODO: Should we verify that the provided file paths are part of what's defined in the data?
                 }
 
+                // TODO-14: We probably need to do this per "item" since they don't share the same textures. For example
+                //          in M/Arena it's split into 3 games each with their own levels and .cnt files.
                 // Sync the texture info
-                return EditTextureInfo(gameSettings, dataFiles, cntFiles, progressCallback);
+                return EditTextureInfo(dataFiles, cntFiles, progressCallback);
             });
 
             await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));

@@ -1,4 +1,5 @@
-﻿using RayCarrot.RCP.Metro.Games.Components;
+﻿using RayCarrot.RCP.Metro.Archive.CPA;
+using RayCarrot.RCP.Metro.Games.Components;
 using RayCarrot.RCP.Metro.Games.Finder;
 using RayCarrot.RCP.Metro.Games.Structure;
 
@@ -54,8 +55,10 @@ public sealed class GameDescriptor_TonicTroubleSpecialEdition_Win32 : Win32GameD
             @"GameData\Textures.cnt",
             @"GameData\Vignette.cnt",
         }));
-
-        builder.Register(new UtilityComponent(x => new Utility_CPATextureSync(x, CPATextureSyncData.FromGameMode(CPAGameMode.TonicTrouble_SE_PC))));
+        builder.Register(new CPATextureSyncComponent(
+            new CPATextureSyncDataItem(
+                Name: "GameData",
+                Archives: new[] { "Textures.cnt", "Vignette.cnt" })));
     }
 
     protected override ProgramInstallationStructure GetStructure() => new(new GameInstallationPath[]

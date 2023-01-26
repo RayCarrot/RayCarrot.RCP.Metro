@@ -12,36 +12,31 @@ public class CPAArchiveComponent : ArchiveComponent
 
     private new const string Id = "CPA_CNT";
 
-    private static (OpenSpaceSettings Settings, CPAGameMode GameMode) GetSettings(GameInstallation gameInstallation)
+    private static OpenSpaceSettings GetSettings(GameInstallation gameInstallation)
     {
         BinaryGameModeComponent gameModeComponent = gameInstallation.GetRequiredComponent<BinaryGameModeComponent>();
 
         if (gameModeComponent.GameModeAttribute.GetSettingsObject() is not OpenSpaceSettings openSpaceSettings)
             throw new Exception($"The settings object provided by the corresponding game mode {gameModeComponent.GameMode} is not of the correct type");
 
-        return (openSpaceSettings, (CPAGameMode)gameModeComponent.GameMode);
+        return openSpaceSettings;
     }
 
     private static IArchiveDataManager GetArchiveManager(GameInstallation gameInstallation)
     {
-        (OpenSpaceSettings? settings, CPAGameMode gameMode) = GetSettings(gameInstallation);
-
-        CPATextureSyncData? textureSyncData = null;
-
-        if (CPATextureSyncData.SupportedGameModes.Contains(gameMode))
-            textureSyncData = CPATextureSyncData.FromGameMode(gameMode);
+        OpenSpaceSettings settings = GetSettings(gameInstallation);
 
         return new CPACntArchiveDataManager(
             settings: settings,
             gameInstallation: gameInstallation,
-            cpaTextureSyncData: textureSyncData);
+            cpaTextureSyncItems: gameInstallation.GetComponent<CPATextureSyncComponent>()?.TextureSyncItems);
     }
 
     private static async Task SynchronizeTexturesAsync(GameInstallation gameInstallation)
     {
-        CPATextureSyncData textureSyncData = CPATextureSyncData.FromGameMode(GetSettings(gameInstallation).GameMode);
+        CPATextureSyncDataItem[] textureSyncItems = gameInstallation.GetRequiredComponent<CPATextureSyncComponent>().TextureSyncItems;
 
-        CPATextureSyncManager textureSyncManager = new(gameInstallation, textureSyncData);
+        CPATextureSyncManager textureSyncManager = new(gameInstallation, GetSettings(gameInstallation), textureSyncItems);
 
         // TODO-UPDATE: Localize
         using (LoadState state = await Services.App.LoaderViewModel.RunAsync("Synchronizing textures"))
@@ -52,13 +47,13 @@ public class CPAArchiveComponent : ArchiveComponent
 
     public override AdditionalArchiveAction? GetAdditionalAction()
     {
-        if (!CPATextureSyncData.SupportedGameModes.Contains(GetSettings(GameInstallation).GameMode))
+        if (!GameInstallation.HasComponent<CPATextureSyncComponent>())
             return null;
 
         return new AdditionalArchiveAction(
             GenericIconKind.ArchiveAdditionalAction_CPATextureSync,
             // TODO-UPDATE: Localize
-            "Synchronize textures. This is required to do if the resolution of a texture has been increased.",
+            "Synchronize textures. This updates the texture sizes in the game files to match the textures themselves. This is required to do if the resolution of a texture has been increased or else the game will crash.",
             SynchronizeTexturesAsync);
     }
 }
